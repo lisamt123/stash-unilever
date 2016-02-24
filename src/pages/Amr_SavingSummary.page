@@ -1,0 +1,451 @@
+<apex:page controller="Amr_SavingSummaryController" sidebar="false">
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    <apex:include pageName="amr_common" />
+     <script type="text/javascript">
+      $j(function() {          
+              var strArr = {!CategoryList};
+              //  alert(strArr.length);
+              
+              //alert('{!categoryName}');
+             var newOp;
+             for(var j=0;j<strArr.length;j++){
+                
+                if('{!categoryName}' == strArr[j] && '{!categoryName}' !== null){
+                    newOp = $j('<option value="'+strArr[j]+'">'+strArr[j]+'</option>');
+                    $j('#categoryList').append(newOp);
+                   // alert('inside match');
+                }
+               
+             }
+             
+             var none = $j('<option value="none">--None--</option>');
+             $j('#categoryList').append(none);
+             
+            for(var j=0;j<strArr.length;j++){
+                // console.log(strArr[j]);
+                if('{!categoryName}' == strArr[j]){
+                 j = j+1;
+                }
+                 newOp = $j('<option value="'+strArr[j]+'">'+strArr[j]+'</option>');
+                // alert(newOp);
+                 $j('#categoryList').append(newOp);
+              
+              
+            }
+         //   console.log('options'+newOp);
+     });
+        function transferCategoryValue(categoryValue){
+        
+            sendCategory(categoryValue);
+            $j('.loading').show();
+        //    alert(categoryValue);
+        }
+        
+        function callActionFunctionStartDate(startDate) {          
+            callContrlStartDate(startDate);
+         }  
+        function callActionFunctionEndDate(endDate) {        
+            callContrlEndDate(endDate);        
+        }
+        function callActionFunctionTotalFilms(films) {        
+            callContrlFilms(films);        
+        }
+         function callFuctionForJobsSort(jobsSort){        
+            callContrlJobsSort(jobsSort);
+        }
+        
+    </script>
+    <style type="text/css">
+        .leftbar {
+        float: left;            
+        width: 71%;         
+        }
+        .rightbar {
+        float: right;           
+        width: 27%; 
+        }
+        .inputclass select {
+            width:245px !important;
+        }
+        .inputclass input {
+            width:222px !important;
+        }
+        .inputclass {
+            width:auto !important;
+        }
+        .inputpanel {
+            margin-right: 12px;
+        }
+        .input-section {
+            min-height:210px;
+        }
+    </style>
+    <div class="job-portfolio-container">
+        <apex:form >
+            <div class="leftbar bg-g1">
+                <div class="leftbar-container bg-g1 margin-btwn-container">
+                    <div class="leftbar-container-header dark-blue-header">
+                        Search &amp; Filter
+                    </div>
+                    <div class="leftbar-container-content margin12 bg-w8" style="padding:12px 0 12px 12px;">
+                        <div class="input-section">
+                        <div class="inputpanel left">
+                            <div class="left inputclass">
+                                AdManager number
+                            </div>
+                            <div class="clear  inputclass">
+                                <input type="text" />
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>                      
+                        <div class="inputpanel left">
+                            <div class="left inputclass">
+                                Category
+                            </div>
+                            <div class="clear  inputclass">
+                                <!--  
+                                    <apex:selectList value="{!categoryName}" size="1"  multiselect="false" >
+                                        <apex:actionSupport event="onchange" reRender="brandPosPick,brandPick" status="actStatusId"/>
+                                        <apex:selectOptions value="{!CategoryList}" />
+                                    </apex:selectList>
+                                    -->
+                                <select id="categoryList" size="1" style="width: 370px;" onchange="transferCategoryValue(this.value)" reRender="brandPosPick"  class="categorySelected"></select>
+                            
+                            </div>
+                            <div style="display:none;width:30px;border:none;margin-bottom:5px;" class="loading">
+                            <img src="/img/loading.gif" />  
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="inputpanel left">
+                            <div class="left inputclass">
+                                Brand position name 
+                            </div>
+                            <div class="clear  inputclass">
+                            <apex:actionRegion >
+                                <apex:selectList id="brandPosPick" value="{!brandPosName}" size="1">
+                                    <apex:selectOptions value="{!listOfBrandPosition}" />
+                                <apex:actionSupport event="onchange" reRender="brandPick" status="actStatusId1" />
+                            </apex:selectList>
+                        </apex:actionRegion>
+                                <apex:actionstatus id="actStatusId1">
+                            <apex:facet name="start" >
+                                <img src="/img/loading.gif" />                    
+                            </apex:facet>
+                        </apex:actionstatus>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="inputpanel left">
+                            <div class="left inputclass">
+                                Brand name 
+                            </div>
+                            <div class="clear  inputclass">
+                                 <apex:actionRegion >
+                                     <apex:selectList id="brandPick" value="{!brandNameFromPage}" size="1">
+                                         <apex:selectOptions value="{!BrandList}" />
+                                     </apex:selectList>
+                                </apex:actionRegion>
+                                
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="inputpanel left">
+                            <div class="clear inputclass">
+                                Project name
+                            </div>
+                            <div class="clear  inputclass">
+                                <div class="hide">
+                                    <input type="text" />
+                                </div>
+                                 
+                                <select id="projectList" size="1"></select>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>                        
+                        <div class="inputpanel left">
+                            <div class="left inputclass">
+                                Campaign name
+                            </div>
+                            <div class="clear  inputclass">
+                                 <input type="text" />
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="mainleftfield">
+                                                <div class="subleftfield">
+                                                    Start date
+                                                </div>
+                                                <div class="subrightfield">
+                                                    <input type="text" class="inputTextCommon" id="datepicker" onchange="callActionFunctionStartDate(this.value);"/>
+                                                </div>
+                                                <div class="clear">
+                                                </div>
+                                            </div>
+                                            <div class="mainleftfield">
+                                                <div class="subleftfield">
+                                                    End date
+                                                </div>
+                                                <div class="subrightfield">
+                                                    <input type="text" class="inputTextCommon" id="datepicker1" onchange="callActionFunctionEndDate(this.value);"/>
+                                                </div>
+                                                <div class="clear">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mainleftfield">
+                                            <div class="subleftfield">
+                                                No Of Masters
+                                            </div>
+                                            <div class="subrightfield">
+                                                <apex:inputField value="{!savingObject.No_of_Masters__c}" />
+                                            </div>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                        <div class="mainleftfield">
+                                            <div class="subleftfield">
+                                                Duration Of Masters
+                                            </div>
+                                            <div class="subrightfield">
+                                                <apex:inputField value="{!savingObject.Duration_of_Masters__c}" />
+                                            </div>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                        <div class="mainleftfield">
+                                            <div class="subleftfield">
+                                                No Of Additional Films
+                                            </div>
+                                            <div class="subrightfield">
+                                                <apex:inputField value="{!savingObject.No_of_Additional_Films__c}" />
+                                            </div>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                        <div class="mainleftfield">
+                                            <div class="subleftfield">
+                                                Duration Of Additional Films
+                                            </div>
+                                            <div class="subrightfield">
+                                                <apex:inputField value="{!savingObject.Duration_of_Additional_Films__c}" />
+                                            </div>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="mainleftfield">
+                                            <div class="subleftfield">
+                                                Total No Of Films
+                                            </div>
+                                            <div class="subrightfield">
+                                                <input type="text" class="inputTextCommon1" onchange="callActionFunctionTotalFilms(this.value);"/>
+                                            </div>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                        <div class="mainleftfield">
+                                            <div class="subleftfield">
+                                                No Of Shoot Days
+                                            </div>
+                                            <div class="subrightfield">
+                                                <apex:inputField value="{!savingObject.No_of_shoot_days__c}" />
+                                            </div>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                        <div class="mainleftfield">
+                                            <div class="subleftfield">
+                                                Script Title
+                                            </div>
+                                            <div class="subrightfield">
+                                                <apex:inputField value="{!savingObject.Script_Title__c}" />
+                                            </div>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                        <div class="mainleftfield">
+                                            <div class="subleftfield">
+                                                Stage RAP Engaged
+                                            </div>
+                                            <div class="subrightfield">
+                                                <apex:inputField value="{!savingObject.Stage_RAP_engaged__c}" />
+                                            </div>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                        <div class="mainleftfield">
+                                            <div class="subleftfield">
+                                                Scope Re Brief
+                                            </div>
+                                            <div class="subrightfield">
+                                                <apex:inputField value="{!savingObject.Scope_re_brief__c}" />
+                                            </div>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                        <div class="mainleftfield">
+                                            <div class="subleftfield">
+                                                Folder Name
+                                            </div>
+                                            <div class="subrightfield">
+                                                <apex:inputField value="{!savingObject.Folder_Name__c}" />
+                                            </div>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                        <div class="mainleftfield">
+                                            <div class="subleftfield">
+                                                Shoot Location
+                                            </div>
+                                            <div class="subrightfield">
+                                                <apex:selectList value="{!selectedCountry}" multiselect="true" size="5">
+                                                    <apex:selectOptions value="{!shootLocation}"/>
+                                                </apex:selectList>
+                                            </div>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                        <div class="mainleftfield">
+                                            <div class="subleftfield">
+                                                Production Activity Type
+                                            </div>
+                                            <div class="subrightfield">
+                                                <apex:inputField value="{!savingObject.Production_Type__c}" />
+                                            </div>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                       <div class="clear">
+                            </div>
+                        
+                       </div>
+                        <div class="inputpanel">
+                            <div class="left inputclass bold padding-top10">
+                                <a>Advanced Search</a>
+                            </div>
+                            <div class="right">
+                                <apex:commandButton styleClass="commonbtn" value="Apply" action="{!getJobSearchDetails}" reRender="listRefresh,lstcancelid" status="actionStatusSearchFilter"></apex:commandButton>
+                                <apex:actionStatus id="actionStatusSearchFilter" >
+                                    <apex:facet name="start" >
+                                        <img src="/img/loading.gif" />                    
+                                    </apex:facet>
+                                </apex:actionStatus>
+                            </div>
+                             <div class="right bold margin-right12">
+                                <apex:commandButton styleClass="commonbtn" value="Clear" onclick="this.form.reset();return false;" />
+                            </div>                            
+                            <div class="clear">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           
+            <div class="rightbar bg-g1">
+                <div class="leftbar-container bg-g1 margin-btwn-container">
+                    <div class="leftbar-container-header dark-blue-header">
+                        Dashboard
+                    </div>
+                    <div class="leftbar-container-content margin12 bg-w8" style="text-align: center;">
+                        <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/dashboard.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="clear">             
+            </div>
+            <div class="joblist-main-section bg-g1 margin-top30">                
+                <h4 class="main_inner_sectionh4">
+                    Job List
+                    <div data-id="joblist-section" class="commonall foldclass">                                     
+                    </div>
+                </h4>
+                <div class="margin12 bg-w8 joblist-section">
+                    <div class="tabsection">
+                    
+                        <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlStartDate" reRender="listRefresh1">
+                            <apex:param name="param" value="" id="y" assignTo="{!startDate}" />
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlEndDate" reRender="listRefresh1">
+                            <apex:param name="param16" value="" id="y16" assignTo="{!endDate}" />
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlFilms" reRender="listRefresh1">
+                            <apex:param name="param17" value="" id="y165" assignTo="{!films}" />
+                        </apex:actionFunction>
+                        <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlJobsSort" reRender="listRefresh" status="actionStatusJobsSorting">
+                           <apex:param name="param18" value="" id="y18" assignTo="{!selectedSortJobsOption}" />
+                        </apex:actionFunction>
+                                    
+                        <apex:outputPanel id="listRefresh">
+                                        <script type="text/javascript">
+                                            $j('td.empty').remove();
+                                            addHeaderTitle();
+                                        </script>                                       
+                                        <div style="padding:10px;background:#FFFFFF;">
+                                            <apex:outputPanel >
+                                                <apex:outputLabel value="Sort By"></apex:outputLabel>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                                <apex:selectList value="{!selectedSortJobsOption}" size="1" multiselect="false"  onchange="callFuctionForJobsSort(this.value);">                   
+                                                    <apex:selectOptions value="{!SortOptions}" />              
+                                                </apex:selectList>
+                                                <apex:actionStatus id="actionStatusJobsSorting" >
+                                                    <apex:facet name="start" >
+                                                        <img src="/img/loading.gif" />                    
+                                                    </apex:facet>
+                                                </apex:actionStatus>
+                                            </apex:outputPanel>                                            
+                                        </div>                                        
+                                        <apex:pageBlock >
+                                            <apex:pageBlockSection >                                           
+                                                <apex:pageBlockTable value="{!summaryJobsToShow}" var="job" >
+                                                <apex:column headerValue="ADManager Number">
+                                                            <apex:commandLink value="{!job.Job_Details__r.AdManagerText__c}"  action="{!jobSheetPageTransfer}"  target="_blank">
+                                                                <apex:param name="chosenId" value="{!job.Job_Details__r.id}" assignTo="{!chosenId}"/>  
+                                                            </apex:commandLink>
+                                                        </apex:column>
+                                                    <apex:column headerValue="Date Savings Submitted">
+                                                        <apex:outputText value="{0,date,MM/dd/yy}">
+                                                            <apex:param value="{!job.CreatedDate}" />
+                                                        </apex:outputText>
+                                                    </apex:column>
+                                                    <apex:column value="{!job.Production_Type__c}" headerValue="Production Type"/>
+                                                    <apex:column value="{!job.No_of_Masters__c}" headerValue="No Of Masters"/>
+                                                    <apex:column value="{!job.Duration_of_Masters__c}" headerValue="Duration Of Masters"/>
+                                                    <apex:column value="{!job.No_of_Additional_Films__c}" headerValue="No Of Additional Films"/>
+                                                    <apex:column value="{!job.Duration_of_Additional_Films__c}" headerValue="Duration Of Additional Films"/>
+                                                    <apex:column value="{!job.Total_no_of_films__c}" headerValue="Total No Of Films"/>
+                                                    <apex:column value="{!job.No_of_shoot_days__c}" headerValue="No Of Shoot Days"/>
+                                                    <apex:column value="{!job.Stage_RAP_engaged__c}" headerValue="Stage RAP Engaged"/>
+                                                    <apex:column value="{!job.Script_Title__c}" headerValue="Script Title"/>
+                                                    <apex:column value="{!job.Scope_re_brief__c}" headerValue="Scope Re Brief"/>
+                                                    <apex:column value="{!job.Folder_Name__c}" headerValue="Folder Name"/>
+                                                    <apex:column value="{!job.Shoot_Location__c }" headerValue="Shoot Location"/>
+                                                </apex:pageBlockTable>
+                                                
+                                                <apex:outputPanel rendered="{!showPageButtonForSummary}" styleClass="pagination">
+                                                      <apex:commandButton value="<<" action="{!beginningForSummaryJobs}" disabled="{!DisablePreviousForSummaryJobs}"  reRender="listRefresh"/>
+                                                      <apex:commandButton value="<" action="{!previousForSummaryJobs}" disabled="{!DisablePreviousForSummaryJobs}" reRender="listRefresh"/>
+                                                      <apex:commandButton value=">" action="{!nextForSummaryJobs}" disabled="{!DisableNextForSummaryJobs}" reRender="listRefresh"/>
+                                                      <apex:commandButton value=">>" action="{!lastForSummaryJobs}" disabled="{!DisableNextForSummaryJobs}" reRender="listRefresh"/>
+                                            </apex:outputPanel>
+                                            
+                                           
+                                          
+                                            </apex:pageBlockSection>
+                                        </apex:pageBlock>
+                                    </apex:outputPanel>
+                    </div>
+                </div>                                        
+            </div>
+            <apex:actionFunction name="sendCategory" action="{!brandPositionListData}" reRender="brandPosPick" oncomplete="closeloading()">
+                <apex:param id="catname" assignTo="{!categoryName}" name="categoryName" value="{!categoryName}" />
+            </apex:actionFunction>
+        </apex:form>
+    </div>
+</apex:page>

@@ -1,0 +1,14 @@
+<table height="400" width="600" cellpadding="5" border="0" cellspacing="5" >
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<font color="#3366ff"><font style="font-size: 15.5555562973022px; font-family: Arial, sans-serif;">{!IF(ISPICKVAL(</font><font face="Arial, sans-serif" style="font-size: 15.5555562973022px;">Account</font><font face="arial" style="font-size: 15.5555562973022px;"><font face="Arial, sans-serif">.Gender__c,"Male"),"Dear Mr.", IF(ISPICKVAL(</font></font><span style="font-size: 15.5555562973022px; font-family: Arial, sans-serif;">Account</span><font face="arial" style="font-size: 15.5555562973022px;"><font face="Arial, sans-serif">.Gender__c,"Female"),"Dear Ms.","Dear Sir/Madam"))} {!</font></font><span style="font-size: 15.5555562973022px; font-family: Arial, sans-serif;">Account</span><font face="arial" style="font-size: 15.5555562973022px;"><font face="Arial, sans-serif">.LastName}&nbsp;</font></font></font>]]></td>
+</tr>
+<tr height="300" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r2" locked="0" aEditID="c1r2" >
+<![CDATA[<font color="#3366ff">Hello From Flora</font>]]></td>
+</tr>
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r3" locked="0" aEditID="c1r3" >
+<![CDATA[<font face="arial" color="#3366ff">{!User.Name}</font>]]></td>
+</tr>
+</table>

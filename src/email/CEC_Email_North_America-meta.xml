@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>CEC Email - North America</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <role>CEC_Global_Head</role>
+        <role>CEC_Manager_North_America</role>
+        <role>CEC_User_North_America</role>
+    </sharedTo>
+</EmailFolder>

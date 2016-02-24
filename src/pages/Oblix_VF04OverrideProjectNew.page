@@ -13,7 +13,7 @@
         
     </head>
     <script>
-         var country = '{!project.Campaign_Countries__c}';
+         var country = '{!project.OblixCountries__c}';
          var country = country.replace(';',','); 
         $(document).ready(function() {
            
@@ -180,7 +180,7 @@
             
         <!-- End Multi Select Countries -->
                 <apex:inputField value="{!project.Jobs_to_be_Done__c}"></apex:inputField>
-                 <apex:outputField value="{!project.Campaign_Countries__c}" id="CountryID"></apex:outputField>
+                 <apex:outputField value="{!project.OblixCountries__c}" id="CountryID"></apex:outputField>
                 <apex:outputField value="{!project.OblixRegion__c}" id="regionId"></apex:outputField>
                 <apex:inputField value="{!project.Platform__c}"></apex:inputField>
                 <apex:inputField value="{!project.OblixProjectSplitPercentage_Comment__c}"></apex:inputField>

@@ -1,0 +1,9 @@
+Dear Content Owner, 
+<p>
+Your content - {!Asset.Name} - has been scheduled for deletion in 5 days. <br/> 
+Please, review it and change the status from ToDelete to Approved if you want to keep your asset. <br/>See: {!$Label.WINatPOS_Salesforce_Base_URL}/{!Asset__c.Id}. 
+
+<p>
+Best Regards, 
+<p>
+WIN@POS

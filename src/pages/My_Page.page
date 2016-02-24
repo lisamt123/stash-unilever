@@ -1,0 +1,12 @@
+<apex:page standardController="CPA_PWORF__c" recordSetVar="CPA_PWORF__c" extensions="apxCancelPworfController">
+   <apex:form >
+       <apex:pageBlock title="MyPage" mode="edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!doSave}" value="MyButton"/>
+            </apex:pageBlockButtons>
+             <apex:pageBlockSection title="Case Information" columns="2">
+                <apex:inputField value="{!Pworf.ltxt_Reason_for_Cancellation__c}" required="true"/>               
+            </apex:pageBlockSection>            
+        </apex:pageBlock>
+    </apex:form>  
+</apex:page>

@@ -1,0 +1,866 @@
+<apex:page controller="Amr_NewSavingController">    
+    <script type="text/javascript">
+        
+        function closeloading() {
+           $j('.loadingclass').remove();
+           $j('.holder-class').attr('style','');
+         }
+              
+    function isNumber(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+        }
+                return true;
+       }
+        
+        function disableOnSubmit(input) {
+            var btn = input;
+            setTimeout(function(){ 
+                btn.disabled = 'disabled';
+                // Use the Salesforce CSS style to make the button appear disabled
+                btn.className = 'btnDisabled';
+                btn.value = "Saving..."; 
+            }, 50);
+        }
+        
+        $j(function(){
+            currencyPopup();
+        });
+        
+        
+        
+    function PCEuroAmountAccepted(){
+          var stringArray = JSON.parse('{!lstcov }');
+          var PCCurrency = $j('.PCCurrencyAccepted').val();
+          var PCLocalAmount = $j('.PCLocalAmountAccepted').val();
+          //alert('inside'+PCLocalAmount);
+          //alert('PCCurrency'+PCLocalAmount);
+          for(var i=0;i<stringArray.length;i++){
+                   
+                    if(stringArray[i].Currency_Unit__c == PCCurrency ){
+                         //console.debug('inside'+PCLocalAmount);
+                         if(PCLocalAmount == 0.000){
+                            PCLocalAmount = 0;
+                         }
+                          if(PCLocalAmount !==0){
+                             if(PCLocalAmount !==null && PCLocalAmount !==""){
+                                  PCLocalAmount = parseInt(PCLocalAmount);
+                                 $j('.PCEuroAmountAccepted').val(stringArray[i].Currency_Unit_To_Euro__c/PCLocalAmount);
+                             }         
+                          }else{
+                          
+                               $j('.PCEuroAmountAccepted').val(0);
+                          }
+                    }
+                    
+            }
+            
+            var PPCEuroAmount = $j('.PPCEuroAmountAccepted').val();
+           
+            
+            
+            var CAEuroAmount = $j('.CAEuroAmountAccepted').val();
+           
+           
+             
+            var PCEuroAmount = $j('.PCEuroAmountAccepted').val();
+            
+           
+            
+            if(PCEuroAmount !== "" && PPCEuroAmount !=="" && CAEuroAmount!== ""){
+                  PPCEuroAmount = parseFloat(PPCEuroAmount);
+                  CAEuroAmount = parseFloat(CAEuroAmount);
+                  PCEuroAmount =  parseFloat(PCEuroAmount);
+                  var total = PCEuroAmount+PPCEuroAmount+CAEuroAmount;
+                 
+                  total = total.toFixed(4);
+                  //console.debug('===>'+total );
+                 $j('.TotalAcceptedFinalCostAccepted').val(total);
+            }
+          
+      }
+      
+      function PPCEuroAmountAccepted(){
+         var stringArray = JSON.parse('{!lstcov }');
+          var PPCCurrency = $j('.PPCCurrencyAccepted').val();
+          var PPCLocalAmount = $j('.PPCLocalAmountAccepted').val();
+         
+          
+          for(var i=0;i<stringArray.length;i++){
+                   
+                    if(stringArray[i].Currency_Unit__c == PPCCurrency){
+                         //console.debug('inside');
+                         if(PPCLocalAmount == "0.000"){
+                            PPCLocalAmount = "0";
+                         }
+                          if(PPCLocalAmount!=="0"){
+                             if(PPCLocalAmount!==null && PPCLocalAmount!==""){
+                                  PPCLocalAmount = parseInt(PPCLocalAmount);
+                                 $j('.PPCEuroAmountAccepted').val(stringArray[i].Currency_Unit_To_Euro__c/PPCLocalAmount);
+                             }         
+                          }else{
+                          
+                               $j('.PPCEuroAmountAccepted').val(0);
+                          }
+                    }
+                    
+            }
+            
+            var PPCEuroAmount = $j('.PPCEuroAmountAccepted').val();
+           
+            
+            
+            var CAEuroAmount = $j('.CAEuroAmountAccepted').val();
+            
+           
+             
+            var PCEuroAmount = $j('.PCEuroAmountAccepted').val();
+           
+           
+            
+            if(PCEuroAmount !== "" && PPCEuroAmount !=="" && CAEuroAmount!== ""){
+                 PPCEuroAmount = parseFloat(PPCEuroAmount);
+                 CAEuroAmount = parseFloat(CAEuroAmount);
+                 PCEuroAmount =  parseFloat(PCEuroAmount);
+                 
+                 var total = PCEuroAmount+PPCEuroAmount+CAEuroAmount;
+                 
+                  total = total.toFixed(4);
+                  //console.debug('===>'+total );
+                 $j('.TotalAcceptedFinalCostAccepted').val(total);
+            }
+          
+      }
+      
+      function CAEuroAmountAccepted(){
+          var stringArray = JSON.parse('{!lstcov }');
+          var CACurrency = $j('.CACurrencyAccepted').val();
+          var CALocalAmount = $j('.CALocalAmountAccepted').val();
+          
+          
+          for(var i=0;i<stringArray.length;i++){
+                   
+                    if(stringArray[i].Currency_Unit__c == CACurrency){
+                         //console.debug('inside');
+                         if(CALocalAmount == "0.000"){
+                            CALocalAmount = "0";
+                         }
+                          if(CALocalAmount !=="0"){
+                             if(CALocalAmount !==null && CALocalAmount !==""){
+                                  CALocalAmount = parseInt(CALocalAmount);
+                                 $j('.CAEuroAmountAccepted').val(stringArray[i].Currency_Unit_To_Euro__c/CALocalAmount );
+                             }         
+                          }else{
+                          
+                               $j('.CAEuroAmountAccepted').val(0);
+                          }
+                    }
+                    
+            }
+            
+            var PPCEuroAmount = $j('.PPCEuroAmountAccepted').val();
+           
+            
+            var CAEuroAmount = $j('.CAEuroAmountAccepted').val();
+            
+           
+             
+            var PCEuroAmount = $j('.PCEuroAmountAccepted').val();
+           
+           
+            
+            if(PCEuroAmount !== "" && PPCEuroAmount !=="" && CAEuroAmount!== ""){
+                   PPCEuroAmount = parseFloat(PPCEuroAmount);
+                   CAEuroAmount = parseFloat(CAEuroAmount);
+                   PCEuroAmount =  parseFloat(PCEuroAmount);
+                  var total = PCEuroAmount+PPCEuroAmount+CAEuroAmount;
+                 
+                  total = total.toFixed(4);
+                  //console.debug('===>'+total );
+                 $j('.TotalAcceptedFinalCostAccepted').val(total);
+            }
+          
+      }
+</script>
+
+    <apex:form >
+    
+        <div class="padding12-0-0-0 bg-g1">
+             <div class="inner_section margin-top8">
+                 <h4>
+                     New Saving line                          
+                     <div data-id="savings_file_download" class="commonall minusclass">                                      
+                     </div>
+                 </h4>
+                 <div class="savings_file_download inner_sub_section" style="display: block;">
+                     <div class="inner_sub2_section">
+                        <div class="right">
+                        
+                        </div>
+                        <div class="clear">                         
+                        </div>
+                        <apex:actionRegion >        
+                        </apex:actionRegion>
+                        <apex:pageBlock >
+                        <div class="job-field-parent left" style="margin-top:8px;">
+                            <div class="job-field-label">AdManager number</div>
+                            <div class="job-field-input" style="font-weight:bold;"><input type="text" value="{!adManagerNumber}" style="background-color:#E6E6E6;" disabled="disabled" /></div>
+                            
+                        </div>
+                        <div class="job-field-parent left" style="margin-top:8px;">
+                            <div class="job-field-label">Production type</div>
+                            <div class="job-field-input"><apex:inputField value="{!savingObj.Production_Type__c}"/></div>
+                            
+                        </div>
+                        <div class="job-field-parent left" style="margin-top:8px;">
+                            <div class="job-field-label">No of masters</div>
+                            <div class="job-field-input"><apex:inputField value="{!savingObj.No_of_Masters__c}" /></div>
+                            
+                        </div>
+                        <div class="job-field-parent left" style="margin-top:8px;">
+                            <div class="job-field-label">Duration of masters(e.g. 30,30 or 30,20,15)</div>
+                            <div class="job-field-input"><apex:inputField value="{!savingObj.Duration_of_Masters__c}" /></div>
+                            
+                        </div>
+                        
+                        <div class="job-field-parent left" style="margin-top:8px;">
+                            <div class="job-field-label" title="No of Additional Films(cut-downs, re-edits etc - exc masters)">No of Additional Films(cut-downs..</div>
+                            <div class="job-field-input"><apex:inputField value="{!savingObj.No_of_Additional_Films__c}" /></div>
+                            
+                        </div>
+                        <div class="clear"></div>
+                        <div class="job-field-parent left">
+                            <div class="job-field-label" title="Duration of Additional Films(e.g. 30,30 or 30,20,15)">Duration of Add. Films(e.g. 30,30 or 30,20,15)</div>
+                            <div class="job-field-input"><apex:inputField value="{!savingObj.Duration_of_Additional_Films__c}" /></div>
+                            
+                        </div>
+                        <div class="job-field-parent left">
+                            <div class="job-field-label">No of shoot days</div>
+                            <div class="job-field-input"><apex:inputField value="{!savingObj.No_of_shoot_days__c}" /></div>
+                            
+                        </div>
+                        <div class="job-field-parent left">
+                            <div class="job-field-label">Stage RAP engaged</div>
+                            <div class="job-field-input"><apex:inputField value="{!savingObj.Stage_RAP_engaged__c}" /></div>
+                            
+                        </div>                        
+                        <div class="job-field-parent left">
+                            <div class="job-field-label">Script title</div>
+                            <div class="job-field-input"><apex:inputField value="{!savingObj.Script_Title__c}" /></div>
+                            
+                        </div>
+                        <div class="job-field-parent left">
+                            <div class="job-field-label">Scope re-brief</div>
+                            <div class="job-field-input"><apex:inputField value="{!savingObj.Scope_re_brief__c}" /></div>
+                            
+                        </div>
+                        <div class="clear"></div>
+                        <div class="job-field-parent left">
+                            <div class="job-field-label">Shoot location</div>
+                            <div class="job-field-input job-field-input-multiselect">
+                                <apex:selectList value="{!selectedCountry}" multiselect="true" size="5" label="Shoot Location">
+                                      <apex:selectOptions value="{!shootLocation}"/>
+                                </apex:selectList></div>
+                            
+                        </div> 
+                                         
+                        <div class="job-field-parent left">
+                            <div class="job-field-label">Folder name</div>
+                            <div class="job-field-input"><apex:inputField value="{!savingObj.Folder_Name__c}" /></div>
+                            
+                        </div>                        
+                        <div class="job-field-parent left">
+                            <div class="job-field-document"><apex:inputFile value="{!document.body}" filename="{!document.name}" id="test"/></div>                          
+                            
+                        </div>
+                         <!--
+                           <div class="job-field-parent left">
+                                                         
+                                                            <div class="job-field-label">Cost Per Master</div>
+                                                            <div class="job-field-input">
+                                                                
+                                                                <apex:outputText value="{!savingObj.Cost_Per_Master__c}" />
+                                                            </div>
+                                                            
+                                                        </div>   
+                                                         <div class="clear"></div>    -->                  
+                             
+                             <apex:actionRegion >
+                             	<div class="clear"></div>
+                                <apex:commandButton value="Save" action="{!SaveSaving}" styleclass="commonbtn right"/>
+                             </apex:actionRegion>
+                                                         
+                          </apex:pageBlock> 
+                
+                
+                <apex:pageBlock >
+                   <apex:actionregion >
+                    <apex:commandLink value="Add Quote" action="{!addRowQuote}" reRender="quoteSection,msg" status="actStatusIdQuote" styleclass="btn commonbtn anchorbtn" />
+                    <apex:actionStatus id="actStatusIdQuote" >
+                                                        <apex:facet name="start" >
+                                                            <img src="/img/loading.gif" />                    
+                                                        </apex:facet>
+                                                    </apex:actionStatus>
+                 </apex:actionregion>
+                                                
+                 </apex:pageBlock>
+                          
+                          
+                          <apex:pageBlock id="quoteSection">
+            <script type="text/javascript">
+               var stringArray = JSON.parse('{!lstcov }');              
+               currencyPopup();                            
+            </script>
+                    <apex:repeat value="{!docAndQuoteLst}" var="docAndQuoteObj" >
+                        <div class="radio-selected">
+                             <div class="inner_heading_sub_section margin-btwn-inner-container margin-top30">
+                                 <h4>                             
+                                    <apex:inputField value="{!docAndQuoteObj.quoteObj.Is_Accepted__c}"/>     Quote : {!docAndQuoteObj.quoteObj.Quote_Number__c}                                   
+                                 </h4> 
+                            </div>
+                        
+                            <div class="adMangerNo quote-related{!docAndQuoteObj.quoteObj.Quote_Number__c}" number-id="{!docAndQuoteObj.quoteObj.Quote_Number__c}">
+                            
+                            
+                            <div class="job-field-parent left" style="margin-top:0px;">
+                                <div class="job-field-label">Is PC Part Of The Roster?</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.Is_PC_part_of_the_Roster__c}"/></div>
+                            </div>
+                            <div class="job-field-parent left" style="margin-top:0px;">
+                                <div class="job-field-label">PC Name</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.PC_name__c}"/></div>
+                            </div>
+                            <div class="job-field-parent left" style="margin-top:0px;">
+                                <div class="job-field-label">PC Country Location</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.PC_Country__c}"/></div>
+                            </div>
+                            <div class="job-field-parent left" style="margin-top:0px;">
+                                <div class="job-field-label">Service Company Name</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.Service_Company_Name__c}" /></div>
+                            </div>                            
+                            <div class="job-field-parent left" style="margin-top:0px;">
+                                <div class="job-field-label">PC Costs Only (Local Currency)</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_PC_Costs__c}" styleclass="commonCurrencyRelated" html-data-id="{!docAndQuoteObj.quoteObj.Quote_Number__c}"/></div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">PC Costs Only (Local Amount)</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_PC__c}" styleclass="commonPCLocalAmount PCLocalAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}" /></div>
+                            </div>
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">PC Costs Only (Euro Amount)</div>
+                                <div class="job-field-input"><apex:inputText value="{!docAndQuoteObj.quoteObj.PC_Costs_Euro_Amount__c}" styleclass="commonPCEuroAmount PCEuroAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"  html-readonly="true" /></div>
+                            </div>
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">Is the PPC part of the Roster?</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.Is_the_PPC_part_of_the_Roster__c}" /></div>
+                            </div>
+                            
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">PPC Name</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.PPC_Name__c}" /></div>
+                            </div>
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">PPC Country Location</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.PPC_Country__c}" /></div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">PPC Costs Only (Local Currency)</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_PPC_Costs__c}" styleclass="commonCurrencyRelatedPPC" html-data-id="{!docAndQuoteObj.quoteObj.Quote_Number__c}"/></div>
+                            </div>
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">PPC Costs Only (Local Amount)</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_PPC__c}" styleclass="commonPPCLocalAmount PPCLocalAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}" /></div>
+                            </div>                            
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">PPC Costs Only (Euro Amount)</div>
+                                <div class="job-field-input"><apex:inputtext value="{!docAndQuoteObj.quoteObj.PPC_Costs_Euro_Amount__c}" styleclass="commonPPCEuroAmount PPCEuroAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"  html-readonly="true"/></div>
+                            </div>
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">CA/Additional agency Name</div>
+                                <div class="job-field-input"><apex:inputtext value="{!docAndQuoteObj.quoteObj.CA_Additional_agency_Name__c}"/></div>
+                            </div>
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">CA Location</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.CA_Location__c}" /></div>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">CA Costs Only (Local Currency)</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_CA_Costs__c}"  styleclass="commonCurrencyRelatedCA" html-data-id="{!docAndQuoteObj.quoteObj.Quote_Number__c}"/></div>
+                            </div>                            
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">CA Costs Only (Local Amount)</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_CA__c}" styleclass="commonCALocalAmount CALocalAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"/></div>
+                            </div>
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">CA Costs Only (Euro Amount)</div>
+                                <div class="job-field-input"><apex:inputText value="{!docAndQuoteObj.quoteObj.CA_Costs_Euro_Amount__c}" styleclass="commonCAEuroAmount CAEuroAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"  html-readonly="true"/></div>
+                            </div>
+                            <div class="job-field-parent left">
+                                <div class="job-field-label">Folder</div>
+                                <div class="job-field-input"><apex:inputField value="{!docAndQuoteObj.quoteObj.Folder__c}" /></div>
+                            </div>
+                            <div class="job-field-parent left">
+                                <div class="job-field-document"><apex:inputFile value="{!docAndQuoteObj.attachmentObj.body}" filename="{!docAndQuoteObj.attachmentObj.name}"/></div>                               
+                            </div>
+                            
+                            <div class="clear">
+                            
+                            </div>
+                            
+                            
+                            <!--  
+                            
+                            
+                            <div class="left">Is PC Part Of The Roster?</div><div class="left"><apex:inputField value="{!docAndQuoteObj.quoteObj.Is_PC_part_of_the_Roster__c}"/></div>
+                            
+                            PC Name<apex:inputField value="{!docAndQuoteObj.quoteObj.PC_name__c}"/>
+                            PC Country Location<apex:inputField value="{!docAndQuoteObj.quoteObj.PC_Country__c}"/>
+                            Service Company Name<apex:inputField value="{!docAndQuoteObj.quoteObj.Service_Company_Name__c}" />
+                            PC Costs Only (Local Currency)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_PC_Costs__c}" styleclass="commonCurrencyRelated" html-data-id="{!docAndQuoteObj.quoteObj.Quote_Number__c}"/>
+                            PC Costs Only (Local Amount) <apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_PC__c}" styleclass="commonPCLocalAmount PCLocalAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}" />
+                            PC Costs Only (Euro Amount)<apex:inputText value="{!docAndQuoteObj.quoteObj.PC_Costs_Euro_Amount__c}" styleclass="commonPCEuroAmount PCEuroAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"  html-readonly="true" />
+                            Is the PPC part of the Roster?<apex:inputField value="{!docAndQuoteObj.quoteObj.Is_the_PPC_part_of_the_Roster__c}" />
+                            PPC Name <apex:inputField value="{!docAndQuoteObj.quoteObj.PPC_Name__c}" />
+                            PPC Country Location<apex:inputField value="{!docAndQuoteObj.quoteObj.PPC_Country__c}" />
+                            PPC Costs Only (Local Currency)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_PPC_Costs__c}" styleclass="commonCurrencyRelatedPPC" html-data-id="{!docAndQuoteObj.quoteObj.Quote_Number__c}"/>
+                            PPC Costs Only (Local Amount)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_PPC__c}" styleclass="commonPPCLocalAmount PPCLocalAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}" />
+                            PPC Costs Only (Euro Amount)<apex:inputtext value="{!docAndQuoteObj.quoteObj.PPC_Costs_Euro_Amount__c}" styleclass="commonPPCEuroAmount PPCEuroAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"  html-readonly="true"/>
+                            CA/Additional agency Name<apex:inputtext value="{!docAndQuoteObj.quoteObj.CA_Additional_agency_Name__c}"/>
+                            CA Location<apex:inputField value="{!docAndQuoteObj.quoteObj.CA_Location__c}" />
+                            CA Costs Only (Local Currency)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_CA_Costs__c}"  styleclass="commonCurrencyRelatedCA" html-data-id="{!docAndQuoteObj.quoteObj.Quote_Number__c}"/>
+                            CA Costs Only (Local Amount)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_CA__c}" styleclass="commonCALocalAmount CALocalAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"/>
+                            CA Costs Only (Euro Amount)<apex:inputText value="{!docAndQuoteObj.quoteObj.CA_Costs_Euro_Amount__c}" styleclass="commonCAEuroAmount CAEuroAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"  html-readonly="true"/>
+                            Folder <apex:inputField value="{!docAndQuoteObj.quoteObj.Folder__c}" />
+                         -->
+<!--                            <input type="file" value="{!docAndQuoteObj.attachmentObj.body}" name="{!docAndQuoteObj.attachmentObj.name}" id="file" > </input> -->
+                           <!--  
+                           <apex:inputFile value="{!docAndQuoteObj.attachmentObj.body}" filename="{!docAndQuoteObj.attachmentObj.name}"/>
+                           
+                           -->
+                            </div>
+                         
+                             <apex:actionregion >
+                                <apex:commandlink action="{!SaveAllData}" value="Save"   status="actStatusIdQuote1"  onclick="disableOnSubmit(this);" styleclass="commonbtn anchorbtn right">
+                                <apex:param name="param" value="{!docAndQuoteObj.quoteObj.Quote_Number__c}" assignTo="{!QuoteNumber}"/> 
+                                </apex:commandlink>
+                                
+                                 <apex:actionStatus id="actStatusIdQuote1" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                        
+                                        <div class="clear">
+                                        </div>
+                                        
+                            </apex:actionregion>
+                            
+                       </div>
+                    </apex:repeat>
+                    <apex:actionregion >
+                    <apex:actionFunction name="passQuote" action="{!test}" rerender="none" >
+                                        <apex:param name="one" value="" assignTo="{!QuoteNumber}"/>    
+                                </apex:actionFunction>  
+                    
+                    </apex:actionregion>
+      </apex:pageBlock>
+      
+      
+      <div class="inner_heading_sub_section margin-btwn-inner-container margin-top30">
+          <h4>                             
+             Accepted Quote                                  
+          </h4> 
+     </div>
+      
+      
+      <apex:pageBlock >
+        
+        <!--  
+        
+        Accepted Final Cost - PC only (Currency)===>{!acceptedQuote.Accepted_Final_Cost_PC_only_Currency__c}
+        Accepted Final Cost - PC only (Local Amount)===>{!acceptedQuote.Accepted_Final_Cost_PC_only_Local_Amo__c}
+        <apex:inputtext label=Accepted Final Cost - PC only (Euro Amount)===>{!acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c}
+        
+        Accepted Final Cost - PPC only (Currency)===>{!acceptedQuote.Accepted_Final_Cost_PPC_only_Currency__c}
+        Accepted Final Cost - PPC only (Local Amount)===>{!acceptedQuote.Accepted_Final_Cost_PPC_only_Local_Am__c}
+        <apex:inputtext label=Accepted Final Cost - PPC only (Euro Amount)===>{!acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c}
+        
+        Accepted Final Cost - CA only (Currency)===>{!acceptedQuote.Accepted_Final_Cost_CA_only_Currency__c}
+        Accepted Final Cost - CA only (Local Amount)===>{!acceptedQuote.Accepted_Final_Cost_CA_Local_Amount__c}
+        <apex:inputtext label=Accepted Final Cost - CA only (Euro Amount)===>{!acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c}
+        
+        Accepted Final Cost - Editors name===>{!acceptedQuote.Accepted_Final_Cost_Editors_name__c} />
+        Accepted Final Cost - Total editing cost===>{!acceptedQuote.Accepted_Final_Cost_Total_editing_cost__c} />
+        Accepted Final Cost - Sound Studio Name===>{!acceptedQuote.Accepted_Final_Cost_Sound_Studio_Name__c} />
+        Accepted Final Cost - Total Sound Studio costs===>{!acceptedQuote.Accepted_Final_Cost_Total_Sound_Studio__c} />
+        Accepted Final Cost - Travel Costs===>{!acceptedQuote.Accepted_Final_Cost_Travel_Costs__c} />
+        Accepted Final Cost - Value of props & wardrobe (paid for)===>{!acceptedQuote.Accepted_Final_Cost_props_wardrobe__c} />
+        <apex:inputText label=Total Accepted Final Cost (CA/PC/PPC) Euro Amount===>{!acceptedQuote.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}
+        What type of Savings is this?===>{!acceptedQuote.Saving_Type__c} /> 
+        
+        
+        <apex:commandButton action={!UpdateAcceptedQuote}===>Save/>
+        -->         
+        
+        <div class="job-field-parent left" style="margin-top:0px;">
+            <div class="job-field-label">Accepted Final Cost - PC only (Currency)</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Currency__c}" /></div>
+        </div>
+        <div class="job-field-parent left" style="margin-top:0px;">
+            <div class="job-field-label">Accepted Final Cost - PC only (Local Amount)</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Local_Amo__c}" /></div>
+        </div>
+        <div class="job-field-parent left" style="margin-top:0px;">
+            <div class="job-field-label">Accepted Final Cost - PC only (Euro Amount)</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c}" /></div>
+        </div>
+        <div class="job-field-parent left" style="margin-top:0px;">
+            <div class="job-field-label">Accepted Final Cost - PPC only (Currency)</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Currency__c}" /></div>
+        </div>        
+        <div class="job-field-parent left" style="margin-top:0px;">
+            <div class="job-field-label">Accepted Final Cost - PPC only (Local Amount)</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Local_Am__c}" /></div>
+        </div>
+        <div class="clear"></div>
+        <div class="job-field-parent left">
+            <div class="job-field-label">Accepted Final Cost - PPC only (Euro Amount)</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c}" /></div>
+        </div>
+        <div class="job-field-parent left">
+            <div class="job-field-label">Accepted Final Cost - CA only (Currency)</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_CA_only_Currency__c}" /></div>
+        </div>
+        <div class="job-field-parent left">
+            <div class="job-field-label">Accepted Final Cost - CA only (Local Amount)</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_CA_Local_Amount__c}" /></div>
+        </div>        
+        <div class="job-field-parent left">
+            <div class="job-field-label">Accepted Final Cost - CA only (Euro Amount)</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c}" /></div>
+        </div>
+        <div class="job-field-parent left">
+            <div class="job-field-label">Accepted Final Cost - Editors name</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_Editors_name__c}" /></div>
+        </div>
+        <div class="clear"></div>
+        <div class="job-field-parent left">
+            <div class="job-field-label">Accepted Final Cost - Total editing cost</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_Total_editing_cost__c}" /></div>
+        </div>
+        <div class="job-field-parent left">
+            <div class="job-field-label"> Accepted Final Cost - Sound Studio Name</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_Sound_Studio_Name__c}" /></div>
+        </div>        
+        <div class="job-field-parent left">
+            <div class="job-field-label">Accepted Final Cost - Total Sound Studio costs</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_Total_Sound_Studio__c}" /></div>
+        </div>
+        <div class="job-field-parent left">
+            <div class="job-field-label">Accepted Final Cost - Travel Costs</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_Travel_Costs__c}" /></div>
+        </div>
+        <div class="job-field-parent left" style="width:310px;">
+            <div class="job-field-label" title="Accepted Final Cost - Value of props & wardrobe (paid for)">Acc. Final Cost - Value of props &amp; wardrobe (paid for)</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Accepted_Final_Cost_props_wardrobe__c}" /></div>
+        </div>
+        <div class="clear"></div>
+        <div class="job-field-parent left">
+            <div class="job-field-label" title="Total Accepted Final Cost (CA/PC/PPC) Euro Amount">Total Acc. Final Cost (CA/PC/PPC) Euro Amount</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}" /></div>
+        </div>        
+        <div class="job-field-parent left">
+            <div class="job-field-label">What type of Savings is this?</div>
+            <div class="job-field-input"><apex:inputfield value="{!acceptedQuote.Saving_Type__c}" /></div>
+        </div>            
+        <div class="clear">        
+        </div>  
+            
+        <!--  
+         <apex:pageBlockSection columns="2" collapsible="false">
+           <apex:inputfield label="Accepted Final Cost - PC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Currency__c}" styleclass="PCCurrencyAccepted" onchange="PCEuroAmountAccepted()"/>
+           <apex:inputfield label="Accepted Final Cost - PC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Local_Amo__c}" styleclass="PCLocalAmountAccepted" onkeypress="return isNumber(event)" onkeyup="PCEuroAmountAccepted()"/>
+           <apex:inputtext label="Accepted Final Cost - PC only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c}" styleclass="PCEuroAmountAccepted" html-readonly="true"/>
+             
+             <apex:inputfield label="Accepted Final Cost - PPC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Currency__c}" styleclass="PPCCurrencyAccepted" onchange="PPCEuroAmountAccepted()"/> 
+             <apex:inputfield label="Accepted Final Cost - PPC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Local_Am__c}" styleclass="PPCLocalAmountAccepted" onkeypress="return isNumber(event)" onkeyup="PPCEuroAmountAccepted()"/>
+             <apex:inputtext label="Accepted Final Cost - PPC only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c}" styleclass="PPCEuroAmountAccepted" html-readonly="true"/>
+             
+             <apex:inputfield label="Accepted Final Cost - CA only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_CA_only_Currency__c}" styleclass="CACurrencyAccepted"  onchange="CAEuroAmountAccepted()"/> 
+             <apex:inputfield label="Accepted Final Cost - CA only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Local_Amount__c}" styleclass="CALocalAmountAccepted" onkeypress="return isNumber(event)" onkeyup="CAEuroAmountAccepted()"/> 
+              <apex:inputtext label="Accepted Final Cost - CA only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c}" styleclass="CAEuroAmountAccepted" html-readonly="true"/>
+             
+             <apex:inputfield label="Accepted Final Cost - Editors name" value="{!acceptedQuote.Accepted_Final_Cost_Editors_name__c}" />
+             <apex:inputfield label="Accepted Final Cost - Total editing cost" value="{!acceptedQuote.Accepted_Final_Cost_Total_editing_cost__c}" />
+             <apex:inputfield label="Accepted Final Cost - Sound Studio Name" value="{!acceptedQuote.Accepted_Final_Cost_Sound_Studio_Name__c}" />
+             <apex:inputfield label="Accepted Final Cost - Total Sound Studio costs" value="{!acceptedQuote.Accepted_Final_Cost_Total_Sound_Studio__c}" />
+             <apex:inputfield label="Accepted Final Cost - Travel Costs" value="{!acceptedQuote.Accepted_Final_Cost_Travel_Costs__c}" />
+             <apex:inputfield label="Accepted Final Cost - Value of props & wardrobe (paid for)" value="{!acceptedQuote.Accepted_Final_Cost_props_wardrobe__c}" />
+             <apex:inputText label="Total Accepted Final Cost (CA/PC/PPC) Euro Amount" value="{!acceptedQuote.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}" styleclass="TotalAcceptedFinalCostAccepted" html-readonly="true"/>
+             <apex:inputfield label="What type of Savings is this?" value="{!acceptedQuote.Saving_Type__c}" /> 
+             
+             <apex:commandButton action="{!UpdateAcceptedQuote}" value="Save"/>
+         </apex:pageBlockSection>
+         
+         -->
+         
+      </apex:pageBlock>
+      
+      <div class="inner_heading_sub_section margin-btwn-inner-container margin-top30">
+          <h4>                             
+             Appraisal                                
+          </h4> 
+     </div>
+      
+      <apex:pageBlock >
+        <apex:pageBlockSection collapsible="false">
+              <div class = "main-container" id="mainclass">
+        <div class = "category-container">
+            <label style ="font-size:20px; font-weight:bold;display:none;"> PC Appraisal </label>
+            
+            <div class="holder-class" data-id="sendPcTimeMangCategory">
+                <div class="categoryStyleHeader">PC Appraisal</div>
+                <div class="categoryStyle" style="margin-top:20px;border-radius: 6px 0 0;"><label>Time Management  </label>
+                </div>
+                <div class="pc-star-rating" >
+                    <span class="common pc-time-cat" rel= "1"></span>
+                    <span class="common pc-time-cat" rel= "2"><i></i></span>
+                    <span class="common pc-time-cat" rel= "3"><i></i></span>
+                    <span class="common pc-time-cat" rel= "4"><i></i></span>
+                    <span class="common pc-time-cat" rel= "5"></span>  
+                </div>
+            </div>   
+            <div class="holder-class" data-id="sendPcCostMangCategory">
+                <div class="categoryStyle"><label>Cost Management  </label>
+                </div>
+                <div class="pc-star-rating2">
+                    <span class="common pc-cost-cat" rel= "1"></span>
+                    <span class="common pc-cost-cat" rel= "2"><i></i></span>
+                    <span class="common pc-cost-cat" rel= "3"><i></i></span>
+                    <span class="common pc-cost-cat" rel= "4"><i></i></span>
+                    <span class="common pc-cost-cat" rel= "5"></span>      
+                </div>
+            </div>   
+            <div class="holder-class" data-id="sendPcProcessMangCategory"> 
+                <div class="categoryStyle"><label>Process Management</label>
+                </div>
+                <div class="pc-star-rating3">
+                    <span class="common pc-process-cat" rel= "1"></span>
+                    <span class="common pc-process-cat" rel= "2"><i></i></span>
+                    <span class="common pc-process-cat" rel= "3"><i></i></span>
+                    <span class="common pc-process-cat" rel= "4"><i></i></span>
+                    <span class="common pc-process-cat" rel= "5"></span>      
+                </div>
+            </div>
+            <div class="holder-class" data-id="sendPcOutputQualityCategory">    
+                <div class="categoryStyle" style="border-radius:0 6px 0 0"><label>Output Quality </label>
+                </div>
+                <div class="pc-star-rating4">
+                    <span class="common pc-output-cat" rel= "1"></span>
+                    <span class="common pc-output-cat" rel= "2"><i></i></span>
+                    <span class="common pc-output-cat" rel= "3"><i></i></span>
+                    <span class="common pc-output-cat" rel= "4"><i></i></span>
+                    <span class="common pc-output-cat" rel= "5"></span>      
+                </div>  
+            </div>
+            <div class="clear"></div>   
+        </div> 
+        <div class = "category-container">
+            <label style ="font-size:20px; font-weight:bold;display:none;"> PPC Appraisal </label>
+            <div class="holder-class" data-id="sendPpcTimeMangCategory">
+                <div class="categoryStyleHeader">PPC Appraisal</div>
+                <div class="categoryStyle"  style="margin-top:20px;border-radius: 6px 0 0;"><label>Time Management </label>
+                </div>
+                <div class="ppc-star-rating">
+                    <span class="common ppc-time-cat" rel= "1"></span>
+                    <span class="common ppc-time-cat" rel= "2"><i></i></span>
+                    <span class="common ppc-time-cat" rel= "3"><i></i></span>
+                    <span class="common ppc-time-cat" rel= "4"><i></i></span>
+                    <span class="common ppc-time-cat" rel= "5"></span>  
+                </div>
+              </div>
+              <div class="holder-class" data-id="sendPpcCostMangCategory"> 
+                    <div class="categoryStyle"><label>Cost Management  </label>
+                    </div>
+                    <div class="ppc-star-rating2">
+                        <span class="common ppc-cost-cat" rel= "1"></span>
+                        <span class="common ppc-cost-cat" rel= "2"><i></i></span>
+                        <span class="common ppc-cost-cat" rel= "3"><i></i></span>
+                        <span class="common ppc-cost-cat" rel= "4"><i></i></span>
+                        <span class="common ppc-cost-cat" rel= "5"></span>      
+                    </div>
+               </div>
+               <div class="holder-class" data-id="sendPpcProcessMangCategory"> 
+                    <div class="categoryStyle"><label>Process Management</label>
+                    </div>
+                    <div class="ppc-star-rating3">
+                        <span class="common ppc-process-cat" rel= "1"></span>
+                        <span class="common ppc-process-cat" rel= "2"><i></i></span>
+                        <span class="common ppc-process-cat" rel= "3"><i></i></span>
+                        <span class="common ppc-process-cat" rel= "4"><i></i></span>
+                        <span class="common ppc-process-cat" rel= "5"></span>      
+                    </div>
+                </div>
+                <div class="holder-class" data-id="sendPpcOutputQualityCategory">
+                    <div class="categoryStyle" style="border-radius:0 6px 0 0"><label>Output Quality </label>
+                    </div>
+                    <div class="ppc-star-rating4">
+                        <span class="common ppc-output-cat" rel= "1"></span>
+                        <span class="common ppc-output-cat" rel= "2"><i></i></span>
+                        <span class="common ppc-output-cat" rel= "3"><i></i></span>
+                        <span class="common ppc-output-cat" rel= "4"><i></i></span>
+                        <span class="common ppc-output-cat" rel= "5"></span>      
+                    </div>
+                </div>
+                <div class="clear"></div>   
+            </div>
+    
+        <div class = "category-container">
+            <label style ="font-size:20px; font-weight:bold;display:none;"> CA Appraisal </label>
+            <div class="holder-class" data-id="sendCaTimeMangCategory">
+                <div class="categoryStyleHeader">CA Appraisal</div>
+                <div class="categoryStyle"  style="margin-top:20px;border-radius: 6px 0 0;"><label>Time Management </label>
+                </div>
+                <div class="ca-star-rating">
+                    <span class="common ca-time-cat" rel= "1"></span>
+                    <span class="common ca-time-cat" rel= "2"><i></i></span>
+                    <span class="common ca-time-cat" rel= "3"><i></i></span>
+                    <span class="common ca-time-cat" rel= "4"><i></i></span>
+                    <span class="common ca-time-cat" rel= "5"></span>  
+                </div>
+             </div>
+             <div class="holder-class" data-id="sendCaCostMangCategory">  
+                <div class="categoryStyle"><label>Cost Management</label>
+                </div>
+                <div class="ca-star-rating2">
+                    <span class="common ca-cost-cat" rel= "1"></span>
+                    <span class="common ca-cost-cat" rel= "2"><i></i></span>
+                    <span class="common ca-cost-cat" rel= "3"><i></i></span>
+                    <span class="common ca-cost-cat" rel= "4"><i></i></span>
+                    <span class="common ca-cost-cat" rel= "5"></span>      
+                </div>
+            </div>
+            <div class="holder-class" data-id="sendCaProcessMangCategory">
+                <div class="categoryStyle"><label>Process Management</label>
+                </div>
+                <div class="ca-star-rating3">
+                    <span class="common ca-process-cat" rel= "1"></span>
+                    <span class="common ca-process-cat" rel= "2"><i></i></span>
+                    <span class="common ca-process-cat" rel= "3"><i></i></span>
+                    <span class="common ca-process-cat" rel= "4"><i></i></span>
+                    <span class="common ca-process-cat" rel= "5"></span>      
+                </div>
+            </div>
+            <div class="holder-class" data-id="sendCaOutputQualityCategory">
+            
+                <div class="categoryStyle" style="border-radius:0 6px 0 0"><label>Output Quality</label>
+                </div>
+                <div class="ca-star-rating4">
+                    <span class="common ca-output-cat" rel= "1"></span>
+                    <span class="common ca-output-cat" rel= "2"><i></i></span>
+                    <span class="common ca-output-cat" rel= "3"><i></i></span>
+                    <span class="common ca-output-cat" rel= "4"><i></i></span>
+                    <span class="common ca-output-cat" rel= "5"></span>      
+                </div>
+            
+        </div>
+        <div class="clear"></div>   
+    </div>
+
+</div>
+
+
+        </apex:pageBlockSection>
+      </apex:pageBlock>
+      <apex:actionRegion >
+        <apex:commandLink action="{!allValues}" value="Submit" status="actStatusIdQuote3" ReRender="mainclass" styleclass="commonbtn-blue anchorsubmitbtn right margin-top18" />
+        <div class="clear">         
+        </div>
+       <apex:actionStatus id="actStatusIdQuote3" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+  
+<apex:actionFunction name="sendPcTimeMangCategory" action="{!getCaProcessMangCategory}" reRender="mainclass" oncomplete="closeloading()">
+   <apex:param id="pccattimename" assignTo="{!pcTimeMangCategoryValue}" name="sendPcTimeMangCategory"  value="{!pcTimeMangCategoryValue}" />
+   <apex:param id="pccattimeclass" assignTo="{!pcTimeMangCategoryClass}" name="pcTimeMangCategoryClass"  value="{!pcTimeMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPcCostMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+   <apex:param id="pccatcostname" assignTo="{!pcCostMangCategoryValue}" name="sendPcCostMangCategory"  value="{!pcCostMangCategoryValue}" />
+   <apex:param id="pccattcostclass" assignTo="{!pcCostMangCategoryClass }" name="pcCostMangCategoryClass "  value="{!pcCostMangCategoryClass }" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPcProcessMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+   <apex:param id="pccatprocessname" assignTo="{!pcProcessMangCategoryValue}"  name="sendPcProcessMangCategory" value="{!pcProcessMangCategoryValue}" />
+   <apex:param id="pccatprocssclass" assignTo="{!pcProcessMangCategoryClass}" name="pcProcessMangCategoryClass"  value="{!pcProcessMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPcOutputQualityCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+   <apex:param id="pccatoutput" assignTo="{!pcOutputQualityCategoryValue}" name="sendPcOutputQualityCategory"  value="{!pcOutputQualityCategoryValue}" />
+   <apex:param id="pccatoutputclass" assignTo="{!pcOutputQualityCategoryClass}" name="pcOutputQualityCategoryClass"  value="{!pcOutputQualityCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPpcTimeMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+   <apex:param id="pcccattimename" assignTo="{!pccTimeMangCategoryValue}" name="sendPpcTimeMangCategory" value="{!pccTimeMangCategoryValue}" />
+   <apex:param id="pcttimeclass" assignTo="{!pccTimeMangCategoryClass}" name="pccTimeMangCategoryClass"  value="{!pccTimeMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPpcCostMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+   <apex:param id="pcccatcostname" assignTo="{!pccCostMangCategoryValue }"  name="sendPpcCostMangCategory" value="{!pccCostMangCategoryValue }" />
+   <apex:param id="pcccatcostclass" assignTo="{!pccCostMangCategoryClass}" name="pccCostMangCategoryClass"  value="{!pccCostMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPpcProcessMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+   <apex:param id="pcccatprocessname" assignTo="{!pccProcessMangCategoryValue}"  name="sendPpcProcessMangCategory" value="{!pccProcessMangCategoryValue}" />
+   <apex:param id="pcccatprocessclass" assignTo="{!pccProcessMangCategoryClass}" name="pccProcessMangCategoryClass"  value="{!pccProcessMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPpcOutputQualityCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+   <apex:param id="pcccatoutput" assignTo="{!pccOutputQualityCategoryValue }" name="sendPpcOutputQualityCategory"   value="{!pccOutputQualityCategoryValue }" />
+   <apex:param id="pcccatoutputclass" assignTo="{!pccOutputQualityCategoryClass}" name="pccOutputQualityCategoryClass"  value="{!pccOutputQualityCategoryClass}" />
+</apex:actionFunction>
+
+
+<apex:actionFunction name="sendCaTimeMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+   <apex:param id="cacattimename" assignTo="{!caTimeMangCategoryValue}" name="sendCaTimeMangCategory" value="{!caTimeMangCategoryValue}" />
+   <apex:param id="cacattimeclass" assignTo="{!caTimeMangCategoryClass}" name="caTimeMangCategoryClass"  value="{!caTimeMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendCaCostMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+   <apex:param id="cacatcostname" assignTo="{!caCostMangCategoryValue}" name="sendCaCostMangCategory"  value="{!caCostMangCategoryValue}" />
+   <apex:param id="cacatcostclass" assignTo="{!caCostMangCategoryClass }" name="caCostMangCategoryClass "  value="{!caCostMangCategoryClass }" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendCaProcessMangCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+   <apex:param id="cacatprocessname" assignTo="{!caProcessMangCategoryValue}" name="sendCaProcessMangCategory"  value="{!caProcessMangCategoryValue}" />
+   <apex:param id="cacatprocessclass" assignTo="{!caProcessMangCategoryClass}" name="caProcessMangCategoryClass"  value="{!caProcessMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendCaOutputQualityCategory" action="{!getCaProcessMangCategory}" reRender="view" oncomplete="closeloading()">
+   <apex:param id="cacatoutput" assignTo="{!caOutputQualityCategoryValue }"  name="sendCaOutputQualityCategory" value="{!caOutputQualityCategoryValue}" />
+   <apex:param id="cacatoutputclass" assignTo="{!caOutputQualityCategoryClass}" name="caOutputQualityCategoryClass"  value="{!caOutputQualityCategoryClass}" />
+</apex:actionFunction>
+
+</apex:actionRegion>
+<!--  <apex:outputLink value="Amr_JobSheet?id={!jobId}">Submit</apex:outputLink> -->
+      
+      
+      
+                          
+                                                        
+                     </div>
+                 </div>
+             </div>             
+         </div>
+    
+        
+    </apex:form>
+
+</apex:page>

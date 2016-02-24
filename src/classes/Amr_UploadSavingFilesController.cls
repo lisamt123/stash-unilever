@@ -11,6 +11,7 @@ public with sharing class Amr_UploadSavingFilesController {
      public String bodyUpdated{get;set;}
      public String SavingObjId {get;set;}
    	 public String adManagerNumber{get;set;}
+   	 public String quoteId{get;set;}
 
      public Amr_UploadSavingFilesController()  {  
        
@@ -25,9 +26,21 @@ public with sharing class Amr_UploadSavingFilesController {
         allFileList = new List<MultipleDocumentInner>(); 
        // allFileList.add(new MultipleDocumentInner());
         attachedListToDisplay = new List<FeedItem>();
-        
+        Boolean flag = false;
+        List<Amr_Saving__c> savObjList = [select Id from Amr_Saving__c];
+        for(Amr_Saving__c obj:savObjList){
+        	if(SavingObjId == obj.Id){
+        		flag = true;
+        	}
+        }
+        if(flag == true){
         Amr_Saving__c savObjNum = [select Job_Details__r.AdManagerText__c from Amr_Saving__c where Id =:SavingObjId limit 1];
         adManagerNumber = savObjNum.Job_Details__r.AdManagerText__c;
+        }else{
+        Amr_Quote__c quoteObjNum =[select Saving__r.Job_Details__r.AdManagerText__c from Amr_Quote__c where Id =:SavingObjId limit 1];
+        adManagerNumber = quoteObjNum.Saving__r.Job_Details__r.AdManagerText__c;
+        }
+        
                 
         system.debug('adManagerNumber!!'+adManagerNumber);
         system.debug('===fileCount'+FileCount);

@@ -1,0 +1,15 @@
+<font face="Arial" size = "2" color="#000000">Exm. <span>{!Contact.Salutation} <span> {!Contact.FirstName} <span> {!Contact.LastName},<br/><br/>
+Agradecemos o seu contacto para  <span>{!Case.Case_Brand__c}.<br/>
+
+<br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+<font face="Arial"  style="font-size:13px" color="#000000">Com os melhores cumprimentos, <br/><br/>
+<b>Centro de Atendimento ao Consumidor</b><br/><br/>
+
+
+ <img src={!IF(ISBLANK(Case.External_Image_Address__c),"https://unilever--cgdev--c.cs15.content.force.com/servlet/servlet.ImageServer?id=015e0000000M8vp&oid=00De0000005UoG9&lastMod=1429607799000",Case.External_Image_Address__c)} alt="Logo"/>
+
+<br>
+<font face="Arial"  style="font-size:10px" color="#0099FF">Largo Monterroio Mascarenhas, 1 1099-081 Lisboa<br/>
+<a href="www.unilever-jm.com"> <font face = "Arial" style="font-size:10px" color = "#0099FF" > <b>www.unilever-jm.com</b> </font></a><br/><br/></font>

@@ -52,11 +52,11 @@ public Class CPA_PwoCnfTnf_CancelReasonController{
             pwoRec.txta_Reason_for_Cancellation__c = strReason;
             pwoRec.pkl_Status__c = 'Cancelled';
         }else if(recordType == 'CNF'){
-            pwoRec.CNF_Status__c = 'Saved';
+            pwoRec.CNF_Status__c = null;
             pwoRec.chk_isCNFcancelled__c = true;
             pwoRec.ltxta_CNF_Reason_for_Cancellation__c = strReason;
         }else if(recordType == 'TNF'){
-            pwoRec.TNF_Status__c = 'Saved';
+            pwoRec.TNF_Status__c = null;
              pwoRec.chk_isTNFcancelled__c = true;
             pwoRec.txta_TNF_Reason_for_Cancellation__c = strReason;
         }

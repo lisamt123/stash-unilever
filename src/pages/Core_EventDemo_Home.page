@@ -1,0 +1,13 @@
+<apex:page standardController="Core_Events__c" tabStyle="Core_Events__c" >
+    <style>
+        .sfdc_richtext {
+            display: none;
+        } 
+        span#01I180000000Ijc.00N18000000ILJe-_help{
+            display: none;
+        }
+    </style>
+    <apex:form >
+        <apex:detail subject="{!Core_Events__c.Id}" showChatter="true" title="true" relatedList="true" />
+    </apex:form>
+</apex:page>

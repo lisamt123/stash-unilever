@@ -1,0 +1,49 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal"><span style="font-size: 10pt; line-height: 107%; font-family: Arial, sans-serif;">Dear {!FAU_Participant__c.FAU_First_Name__c}
+{!FAU_Participant__c.FAU_Last_Name__c},</span><span style="font-size:
+10.0pt;line-height:107%"><o:p></o:p></span></p>]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p class="p1" style="color: rgb(0, 0, 0); font-family: arial;"><br></p>
+<p class="p1" style="color: rgb(0, 0, 0); font-family: arial;"><i><font size="2">&nbsp;</font></i></p>
+<p class="p2" style="color: rgb(0, 0, 0); font-family: arial;"><b><font size="2">About UL2020:</font></b></p>
+<p class="p1"><font size="2"><font face="arial">The UL2020 is multi-faceted 9-month experience, including robust feedback, Individual Development Planning, self-led assignments, executive coaching, intimate dialogues with senior Unilever leaders and </font><span class="s1" style="color: rgb(0, 0, 0); font-family: arial;">two residential</span><span class="s2" style="color: rgb(0, 0, 0); font-family: arial;"> </span><span class="s1" style="color: rgb(0, 0, 0); font-family: arial;">modules</span><font face="arial"> to be held at Four Acres in {!FAU_Participant__c.FAU_Program_Location__c}. The first residential module will be on from&nbsp;</font><span class="s1"><b><font color="#ff0000"><font face="arial">{!FAU_Participant__c.FAU_Module_1_Start_Date__c} to&nbsp;</font></font></b></span><font color="#ff0000" face="arial"><b>{!FAU_Participant__c.FAU_Module_1_End_Date__c}</b></font><b><font color="#ff0000"><font color="#000000" face="arial">.</font></font></b></font></p>
+<p class="p1" style="color: rgb(0, 0, 0); font-family: arial;"><font size="2">&nbsp;</font></p>
+<p class="p1" style="color: rgb(0, 0, 0); font-family: arial;"><font size="2">Here’s a 3-minute video introduction to the program: <a href="https://www.youtube.com/watch?v=sRYem0TNjMQ"><span class="s3">https://www.youtube.com/watch?v=sRYem0TNjMQ</span></a></font></p>
+<p class="p1" style="color: rgb(0, 0, 0); font-family: arial;"><i><font size="2">&nbsp;</font></i></p>
+<p class="p2" style="color: rgb(0, 0, 0); font-family: arial;"><b><font size="2">Immediate Action Required:</font></b></p>
+<p class="p1" style="color: rgb(0, 0, 0); font-family: arial;"><font size="2"><font face="arial">Please review the </font><b style="color: rgb(0, 0, 0); font-family: arial;">attached</b><font face="arial"> and </font><b style="color: rgb(0, 0, 0); font-family: arial;">confirm participation on the programme by</b><span class="s2" style="color: rgb(0, 0, 0); font-family: arial;"><b> </b></span><b style="color: rgb(0, 0, 0); font-family: arial;">filling up</b><span class="s2" style="color: rgb(0, 0, 0); font-family: arial;"><b> </b><a href="https://docs.google.com/forms/d/1t_XNjO2y4uoBEurmPIB5-8-cq9QeD7IrTWpF0Jlfsx4/viewform"><span class="s4">{!FAU_Participant__c.FAU_Invitation_Link__c}</span></a></span><b style="color: rgb(0, 0, 0); font-family: arial;"> </b><span class="s5" style="color: rgb(0, 0, 0); font-family: arial;"><b>on or before&nbsp;</b></span><font face="arial"><b>{!FAU_Participant__c.FAU_RSVP_Deadline__c}</b></font></font></p>
+<p class="p3" style="color: rgb(0, 0, 0); font-family: arial;"><font size="2">&nbsp;</font></p>
+<p class="p1" style="color: rgb(0, 0, 0); font-family: arial;"><b><font size="2">What’s coming next:</font></b></p>
+<ul class="ul1" style="color: rgb(0, 0, 0); font-family: arial;"><li class="li1"><font size="2">You will receive a detailed participant kit outlining key program components and pre-work</font></li>
+<li class="li2"><font size="2">You will also receive an email from <span class="s1">a YSC Associate to begin scheduling for the first phase of this program: </span>an assessment and feedback process into your drivers, strengths, and development opportunities.&nbsp;</font></li>
+</ul>
+<p class="p1" style="color: rgb(0, 0, 0); font-family: arial;"><font size="2">&nbsp;</font></p>
+<p class="p1" style="color: rgb(0, 0, 0); font-family: arial;"><font size="2"><b>Lastly, this program experience will be facilitated by the Four Acres team– and supported by your Leadership Development team, as well as your HRBP.&nbsp;&nbsp;</b></font></p>
+<p class="p4" style="color: rgb(0, 0, 0); font-family: arial;"><font size="2">&nbsp;</font></p>
+<p class="p1" style="color: rgb(0, 0, 0); font-family: arial;"><font size="2">Congratulations again on your nomination and we look forward to hearing from you.</font></p>
+<p class="p1" style="color: rgb(0, 0, 0); font-family: arial;"><font size="2">&nbsp;</font></p>
+<p class="p1" style="color: rgb(0, 0, 0); font-family: arial;"><font size="2">Kind regards,</font></p>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[<div style="color: rgb(0, 0, 0); font-family: arial;"><font size="2">{!FAU_Participant__c.OwnerFullName}</font></div><div><font face="arial" size="2">{!FAU_Participant__c.OwnerTitle}</font></div><div style="color: rgb(0, 0, 0); font-family: arial;"><font size="2"><br></font></div><div><font size="2"><font face="arial" style="color: rgb(0, 0, 0); font-family: arial;"><b>Ph:</b>&nbsp;</font><font face="arial">{!FAU_Participant__c.OwnerPhone}</font></font></div><div style="color: rgb(0, 0, 0); font-family: arial;"><font face="arial" size="2"><b>Email:</b>&nbsp;{!FAU_Participant__c.OwnerEmail}</font></div><div style="color: rgb(0, 0, 0); font-family: arial;"><font face="arial" size="2"><br></font><div>
+
+
+
+
+
+
+
+<p class="p1"><font size="2">Four Acres Singapore</font></p>
+<p class="p1"><font size="2">18 Nepal Park, Singapore 139407</font></p>
+<p class="p1"><font size="2">Tel: +65 6933 5000</font></p>
+<p class="p1"><font size="2">&nbsp;&nbsp;</font></p>
+<p class="p2"><font size="2">Unilever Asia Private Limited<span class="s1"><br>
+</span>#06-22 Mapletree Business City, 20 Pasir Panjang Road, Singapore, 117439</font></p>
+<p class="p3"><font size="2"><a href="http://www.unilever.com/"><b>www.unilever.com</b></a><span class="s1"><b> </b></span><span class="s2"><b>| </b><a href="http://www.facebook.com/unilever"><span class="s3"><b>www.facebook.com/unilever</b></span></a></span></font></p></div></div>]]></td>
+</tr>
+</table>

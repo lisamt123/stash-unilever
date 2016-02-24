@@ -1,0 +1,53 @@
+<html>
+<head>
+<style>
+p {
+color: #2A599F;
+font-family: Arial, Helvetica, sans-serif;
+padding:10px 0 0 5px;
+font-size: 12pt;
+}
+
+.foot {
+font-size: 7pt;
+}
+
+</style>
+</head>
+
+<body leftmargin="0" marginwidth="0" marginheight="0" offset="0">
+
+
+<table width="100%" bgcolor="#ffffff" cellpadding="10" cellspacing="0">
+	<tr valign="top" align="center">
+		<td>
+			<table width="500" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff">
+				<tr>
+					<td>
+					<img src="{!Case.External_Image_Address__c}" alt="Logo">
+					</td>
+				</tr>
+
+				<tr style="background-color:#ffffff">
+					<td style="padding:15px; bordercolor=#FFFFFF;" bgcolor="#ffffff" >
+<p>Hello From {!if(Case.Brand__c="","Unilever","")}{!Case.Brand__c}</p>
+<p>Thank you for your recent [channel description]</p>
+
+<p>Yours sincerely<br /><br />
+
+{!Case.OwnerFullName}<br />
+<strong>Careline Advisor</strong></p>
+					</td>
+
+				</tr>
+				<tr>
+					<td>
+					<p class="foot">* Please note that we can only accept attachments under 4 megabytes on this email address * Unilever UK Limited Registered in England & Wales; Company No 334527 Registered Office: Unilever House, Springfield Drive, Leatherhead, KT22 7GR Unilever Ireland Registered Office: 20 Riverwalk, National Digital Park, Citywest Business Campus, Dublin 24 </p>
+					</td>
+				</tr>
+			</table>
+		</td>
+	<tr>
+</table>
+</body>
+</html>

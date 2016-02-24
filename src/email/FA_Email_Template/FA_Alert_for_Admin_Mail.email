@@ -1,0 +1,36 @@
+<!-- The Below Visual force Email Template is written on Occurrence Member Object for Sending the Invitation to  -->
+     <!--  the Participants who are registered to a Course and Other details like dates,Venue and other content needed -->
+
+<messaging:emailTemplate relatedToType="FA_Occurence_Member__c" subject="Updation of Programme Logistics by User" recipientType="User" >
+<messaging:htmlEmailBody >
+    <!-- Displaying the Coure Logo in the Left top most of the Course Inviitation Mail -->
+ <apex:image value="{!relatedTo.FA_Course_Occurence__r.FA_Course__r.FA_Course_Logo__c}" width="80px" height="80px"/>
+ 
+ <td>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+ </td>         
+ 
+   <!-- Displaying the Company Logo in the Right top most of the Course Inviitation Mail -->                    
+ <apex:image id="Logo" value="https://unilever--adfs--c.cs14.content.force.com/servlet/servlet.ImageServer?id=015c0000000E92z&oid=00Dc0000001KMA0&lastMod=1366034146000"
+ width="80px" height="80px" />  
+ 
+ <font face="Calibri" size="3"> 
+   
+   <!-- Mail Invitation Content sent to the participants registered to a course -->
+<p>Dear &nbsp; <apex:outputtext style="text-transform: capitalize" value=" {!relatedTo.FA_Course_Occurence__r.CreatedBy.Name}" escape="false"></apex:outputtext>,</p> 
+ <p>This is to inform you that the programme logisics for&nbsp; <apex:outputtext value="{!relatedTo.FA_Course_Occurence__r.Name}" escape="false"></apex:outputtext> has been updated by user&nbsp; <apex:outputtext value="{!relatedTo.LastModifiedBy.Name}" escape="false"></apex:outputtext>.</p> 
+   
+   
+</font> 
+ 
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

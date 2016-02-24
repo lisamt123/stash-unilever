@@ -1,0 +1,12 @@
+<messaging:emailTemplate subject=" Reminder to provide a Clarity ID to PWORF: {!RelatedTo.auto_PWORF_ID__c}"  recipientType="User" relatedToType="CPA_PWORF__c">
+<messaging:htmlEmailBody >
+    Hi, <br/><br/>
+    A PWORF with ID: {!RelatedTo.Id}  does not have a Clarity ID. Do the needful . <br/><br/>
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!$Label.CPA_Default_URL}{!RelatedTo.Id} </a> <br/><br/>
+
+Regards, <br/><br/>
+
+Automation Contract System
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

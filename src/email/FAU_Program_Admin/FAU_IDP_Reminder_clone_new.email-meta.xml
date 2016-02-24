@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FAU IDP Reminder</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FAU_Letterhead</letterhead>
+    <name>FAU IDP Reminder_clone_new</name>
+    <style>formalLetter</style>
+    <subject>RESPONSE REQUIRED: IDP Reminder {!FAU_Participant__c.FAU_Program_Name__c}</subject>
+    <textOnly>Dear {!FAU_Participant__c.FAU_First_Name__c} {!FAU_Participant__c.FAU_Last_Name__c},
+{!FAU_Participant__c.FAU_Program_Name__c}
+
+IDP Reminder
+
+
+
+
+We have noticed in our records that you have IDP tasks outstanding.
+
+
+
+Could you please follow up on them as soon as possible.
+
+
+
+
+
+To see your progress check  out your: {!FAU_Participant__c.FAU_Participants_Workbook__c} and update details if needed.
+
+
+
+Chatter group : {!FAU_Participant__c.FAU_Chatter_Group__c}
+
+
+
+
+
+
+
+
+Kind regards,
+{!FAU_Participant__c.OwnerFullName}
+{!FAU_Participant__c.OwnerTitle}
+
+Ph: {!FAU_Participant__c.OwnerPhone}
+Email: {!FAU_Participant__c.OwnerEmail}
+
+Four Acres Singapore
+
+18 Nepal Park, Singapore 139407
+
+Tel: +65 6933 5000
+
+
+Unilever Asia Private Limited
+#06-22 Mapletree Business City, 20 Pasir Panjang Road, Singapore, 117439
+
+www.unilever.com | www.facebook.com/unilever</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -1,0 +1,285 @@
+<apex:page standardStylesheets="false" sidebar="false">
+    <head>
+   <title>Job Portfolio</title>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <style type="text/css">
+      body{background:#fff;font-family: 'Open Sans', sans-serif;margin:0 auto;}
+      /* Ad Main section CSS */
+      .container{width:1170px; margin: 0 auto;}
+      .navbar-header{background:#F6F6F6;}
+      .navbar-header img{float:left;}
+      .clear{clear:both;}
+      .form-control { border-radius: 30px 0 0 30px;padding: 0 100px 0 8px; height: 25px;border:2px solid #dcdcdc;}
+      .form-groupright {padding: 20px;float:left;padding: 20px 0 20px 150px;}
+      .btn {border-radius: 30px;}
+      .btn-default {background-color:#fbf9fc;border: medium none;border-bottom-left-radius: 0;border-top-left-radius: 0;color: #1796BF;padding: 5px 10px 5px 0;font-weight:bold;font-size:12px;}
+      #myNavbar{float:right;display:inline;}
+      #myNavbar a{text-decoration:none;padding: 20px 15px 0px 20px;display:block;color:#1796bf;}
+      #myNavbar ul li {display: inline-block;list-style-type:none;color:#1796BF;font-size:12px;font-weight:bold;}
+      .caret{display: inline-block;width: 0;height: 0;vertical-align: middle;border-top: 4px dashed;border-right: 4px solid transparent;border-left: 4px solid transparent;margin-left: 5px;}
+      .admanager_text a{color:#fff !important;background: #1796bf none repeat scroll 0 0;border-radius: 30px;padding: 5px 30px 5px 5px !important;}
+      .caret1{color:#fff;margin: 0 -21px 0 20px;}
+      .subsection{background:#e1f0f5; border-bottom:solid #20b0b9 2px; padding-left:10px; padding-top: 10px;}
+      .subsection > ul {margin: 0; padding:0px}
+      .subsection ul li{display: inline-block;list-style-type:none;}
+      .subsection a{text-decoration:none;display:block;color:#1796BF;padding:2px 8px; font-size: 13px; border-top-left-radius:10px; border-top-right-radius:10px;}
+      .subsection .active a{color:#fff; background: none repeat scroll 0 0 #20b0b9;}
+      #myNavbar > ul {padding: 0 30px 0 0;}
+      /* START Ad Main section CSS */
+      .jobportpoliosection h1{color:#3c3c3c;}
+      /*#alertright_section{float:right;width:69%;}*/
+      .dashboardtxt{border-radius: 8px;height:300px;
+      /*float:left;*/
+      
+      margin-top: 20px;border:1px solid #e6e6e6;overflow:hidden;}
+      .dashboardtxt img{padding: 10px 0 0 50px;}
+      /* #dasboard{width:100%;} */
+      .dash_header h3{padding:10px;border-bottom:1px solid #e6e6e6;background:#e6e6e6;margin: 0;padding:6px;font-size: 14px;}
+      .txtnumber a{color:#0172c2;}
+      .removetxt a{color:#919191;}
+      .emailtext a{color:#4383cd;}
+      .state1{background:#fe0000;}
+      .state2{background:#ed7d31;}
+      .state3{background:#92d14f;}
+      .state4{background:#fe0100;}
+      .padd20 {padding: 0 30px;text-align: center;}
+      .filterbtn{text-align: right;margin: 20px 0 -3px;}
+      .fbtn{border-radius: 6px;
+      padding: 3px 20px;}
+      input[type=text] {width: 100px;margin: 10px 1px 0 0;border:1px solid #efefef;}
+      .caret2{margin-left:5px;color:#646464;border-top: 12px dashed;border-left: 7px solid transparent;border-right: 7px solid transparent;position: relative;left: 200px;}
+      .jobalerts table, th, td {border: 1px solid #d4d4d4;border-collapse: collapse;font-size: 12px;margin-top:15px;} 
+      .filteralert td {border:none !important;line-height: 30px;}
+      .bottom_border{border-bottom:1px solid #e0e0e0;margin-top: 20px;}
+      .canel{background:#c8c8c8;color:#fff;font-weight:bold;}
+      .apply{background:#20aeb8;color:#fff;font-weight:bold;}
+      .jobalerts th, td {padding: 5px;text-align: left;}    
+      .width30{width:100%;}
+      .width20{border:1px solid #e6e6e6;margin:20px 0px;border-radius:10px;overflow:hidden;}
+      .box_content{padding: 15px;background:#f8f8f8;}
+      .box_header{padding:10px;border-bottom:1px solid #e6e6e6;background:#e6e6e6;}
+      .box_header h3{margin:0;padding:0;font-size:14px;}
+      .box_header span {margin-left: 842px;}
+      .caret4{margin-left: 883px !important;}
+      select{border: 1px solid #e3e3e3;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 5px 0 5px 6px;
+      width: 20%;}
+      .caret5{display: inline-block;margin-left: 5px;border-left: 7px solid transparent;border-right: 7px solid transparent;
+      border-top: 12px dashed;color: #646464;}
+      .outer td {
+      vertical-align: middle !important;
+      }
+      
+      h1 {
+    display: block;
+    font-size: 2em !important;
+    -webkit-margin-before: 0.67em;
+    -webkit-margin-after: 0.67em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold !important;
+}
+      
+   </style>
+</head>
+<body>
+   <!---Ad Main section---->
+   <div class="container">
+      <!---End Ad Main section---->
+      <div class="jobportpoliosection">
+         <h1>Jobs Portfolio</h1>
+      </div>
+      <!--- Ad DASHBOARD section---->
+      <div id="dasboard">
+         <div class="dashboardtxt">
+            <div class="box_header">
+                <h3>Dashboard<span class="caret caret2 caret3"></span></h3>
+            </div>            
+            <img src="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/jobs.png')}" alt="DASHBOARD"/>           
+         </div>
+         
+         
+         <div id="alertright_section">
+            <div class="jobalerts width20">
+               <!--- END Ad DASHBOARD section---->
+               <!--- Ad JOBALERTS section---->
+               <div class="box_header">
+                  <h3>Job Alert(3)<span class="caret caret2 caret3"></span></h3>
+               </div>
+               <div class="box_content jobalerts">
+                  <table style="width:100%">
+                     <tr>
+                        <th>ID</th>
+                        <th>DATE</th>
+                        <th colspan="2">Message</th>
+                        <th>Action</th>
+                     </tr>
+                     <tr>
+                        <td class="txtnumber"><a href="#">ABC123</a></td>
+                        <td>DD/MM/YR</td>
+                        <td colspan="2">The alert message message will comes here ...</td>
+                        <td class="removetxt"><a href="#">Remove</a></td>
+                     </tr>
+                     <tr>
+                        <td class="txtnumber"><a href="#">ABC123</a></td>
+                        <td>DD/MM/YR</td>
+                        <td colspan="2">The alert message message will comes here ...</td>
+                        <td class="removetxt"><a href="#">Remove</a></td>
+                     </tr>
+                     <tr>
+                        <td class="txtnumber"><a href="#">ABC123</a></td>
+                        <td>DD/MM/YR</td>
+                        <td colspan="2">The alert message message will comes here ...</td>
+                        <td class="removetxt"><a href="#">Remove</a></td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <!---  END Ad JOBALERTS section---->
+            <!--- Ad FILTERS section---->
+            <div class="filter_section width30">
+               <div class="filters width20">
+                  <div class="box_header">
+                     <h3>Filters<span class="caret caret2 caret4"></span></h3>
+                  </div>
+                  <div class="box_content filteralert">
+                     <table style="width:100%" >
+                        <tr>
+                           <td>Ad Manager Id<br/><input type="text" class="caret5" name="adname"/></td>
+                           <td>Stage<br/><input type="text" name="adname" value="1"/></td>
+                           <td>Location<br/><input type="text"  name="adname"/></td>
+                           <td>Category<br/><input type="text"  name="adname"/></td>
+                           <td>Brand<br/><input type="text"  name="adname"/></td>
+                           <td>Agency<br/><input type="text"  name="adname"/></td>
+                        </tr>
+                        <tr>
+                           <td>Job Shared<br/><input type="text"  name="adname" value="YES" /></td>
+                           <td>Accepted &nbsp;email sent<br/><input type="text"  name="adname" value="YES"/></td>
+                           <td>Started<br/><input type="text"  name="adname" value="YES"/></td>
+                           <td>Reported<br/><input type="text"  name="adname" value="YES"/></td>
+                           <td>Project Leader Email<br/>
+                              <input type="text" class="projecttxt" name="adname"/>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>Start Date<br/><input type="text" name="adname"/></td>
+                           <td>End  Date<br/><input type="text"  name="adname"/></td>
+                        </tr>
+                     </table>
+                     <div class="bottom_border"></div>
+                     <div class="filterbtn">
+                        <button type="button" class="fbtn canel">Clear</button>
+                        <button type="button" class="fbtn apply">Apply</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!---   Ad JOBALERTS2 section---->
+            <div class="job_section width30">
+               <div class="joblist width20">
+                  <div class="box_header">
+                     <h3>Job List(4)<span class="caret caret2 caret3"></span></h3>
+                  </div>
+                  <div class="box_content jobalerts">
+                     <div class="sort_dropdown">
+                        <select>
+                           <option>sort by..</option>
+                           <br/>
+                           <span class="caret caret1"></span>
+                        </select>
+                     </div>
+                     <table style="width:100%">
+                        <tr>
+                           <th>Type</th>
+                           <th colspan="1">St..</th>
+                           <th>ID</th>
+                           <th>Loc..</th>
+                           <th>categoty</th>
+                           <th>Brand</th>
+                           <th>Project</th>
+                           <th>Agency</th>
+                           <th>Budget</th>
+                           <th>Alloc</th>
+                           <th>Acce</th>
+                           <th>St..</th>
+                           <th>Re..</th>
+                           <th>project lead allocated</th>
+                        </tr>
+                        <tr>
+                           <td>Pending</td>
+                           <td class="state1 padd20">1</td>
+                           <td class="txtnumber"><a href="#">ABC123</a></td>
+                           <td>UK</td>
+                           <td>Skinclean..</td>
+                           <td>Dove</td>
+                           <td>Alapha</td>
+                           <td>Alapha</td>
+                           <td>&euro; XXX</td>
+                           <td>Y</td>
+                           <td>Y</td>
+                           <td>N</td>
+                           <td>N</td>
+                           <td class="emailtext"><a href="#">abc@uniliver.com</a></td>
+                        </tr>
+                        <tr>
+                           <td>priority</td>
+                           <td class="state2 padd20">2</td>
+                           <td class="txtnumber"><a href="#">ABC123</a></td>
+                           <td>USA</td>
+                           <td>Deos an..</td>
+                           <td>Axe</td>
+                           <td>Bravo</td>
+                           <td>Bravo</td>
+                           <td>&euro; XXX</td>
+                           <td>Y</td>
+                           <td>Y</td>
+                           <td>N</td>
+                           <td>N</td>
+                           <td class="emailtext"><a href="#">abc@uniliver.com</a></td>
+                        </tr>
+                        <tr>
+                           <td>Live</td>
+                           <td class="state3 padd20">3</td>
+                           <td class="txtnumber"><a href="#">ABC123</a></td>
+                           <td>SIN</td>
+                           <td>Deos an..</td>
+                           <td>Rexona</td>
+                           <td>Charlie</td>
+                           <td>Charlie</td>
+                           <td>&euro; XXX</td>
+                           <td>Y</td>
+                           <td>Y</td>
+                           <td>N</td>
+                           <td>N</td>
+                           <td class="emailtext"><a href="#">abc@uniliver.com</a></td>
+                        </tr>
+                        <tr>
+                           <td>Dormant</td>
+                           <td class="state4 padd20">4</td>
+                           <td class="txtnumber"><a href="#">ABC123</a></td>
+                           <td>GER</td>
+                           <td>Spread..</td>
+                           <td>Flora</td>
+                           <td>Delta</td>
+                           <td>Delta</td>
+                           <td>&euro; XXX</td>
+                           <td>Y</td>
+                           <td>Y</td>
+                           <td>N</td>
+                           <td>N</td>
+                           <td class="emailtext"><a href="#">abc@uniliver.com</a></td>
+                        </tr>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <!---  END Ad JOBALERTS2 section---->
+         </div>
+      </div>
+   </div>
+</body>
+
+</apex:page>

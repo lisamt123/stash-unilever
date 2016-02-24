@@ -1,0 +1,1013 @@
+<apex:page docType="html-5.0" showHeader="false" controller="AIW_Competition" action="{!getCompetitionData}">
+      <apex:form >
+    
+    
+    
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>Title of the document</title>
+    <link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system.css"/>
+    <link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system-ltng.css"/>
+    <link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system-scoped.css"/>
+    <link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system-vf.css"/>
+    <link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource_New/AIW_Static_Resource2/modal/css/bootstrap-modal.css"/>
+    
+    </head>
+    <style>
+    .slds table{
+        width: auto;
+    }
+    .slds-page-header{
+        background: #1766A6 !important;
+    }
+    .user_icon{
+        margin-left: 3.7em !important;
+        height: 33px !important;
+    }
+    .slds-media__figure{
+        margin-left: 19.5em;
+    }
+    .setting_icon{
+        width: 70%;
+    }
+    .slds-grid
+    {
+        margin-left: -1em !important;
+    }
+    .slds-dropdown-trigger
+    {
+        margin-top: -6px;
+    }
+    .sub-header{
+        height: 2.2em;
+    }
+    .sub-header{
+        background-color: #104774;
+        color: white;
+    }
+    .sub-header .slds-badge{
+        width: 23%;
+        text-align: center;
+        font-weight: bolder;
+        font-size: 15px;
+    }
+    .tabBadges .slds-badge{
+        width: 23%;
+        text-align: center;
+        background-color: white;
+        border: 1px solid #f2f2f2 !important;
+    }
+    .sub-header .slds-grid
+    {
+        padding-top: 0.5em;
+        padding-left: 1.5em;
+    }
+    .heart_icon{
+        width: 7%;
+        margin-left: 11em;
+    }
+    .edit_icon{
+        width: 7%;
+        border-radius: 6px;
+        border: 0px solid #1766A6;
+        background: #1766A6;
+        margin-left: 1em;
+    }
+    .tabBadges .middle{
+        margin-left: 0em !important;
+        border-radius: 2px;
+        border: 1px solid white;
+        height: 22px;
+        margin-top: 1px;
+    }
+    .tabBadges .last{
+        margin-left: 0em !important;
+        margin-top: 1px;
+        color: black;
+        border-radius: 0px 240px 240px 0px;
+       
+    }
+    .tabBadges .top{
+        margin-top: 1px;
+        margin-left: 0.5em;
+        border-radius: 240px 0px 0px 240px;
+    }
+    .tabBadges .slds-media
+    {
+        padding-right: 5em;
+        padding-top: 0.7em;
+    }
+    .slds-table
+    {
+        border-radius: 12px;
+        margin-left: 0em;
+        font-size: 11.5px;
+        margin-top: 0em;
+        margin-right: 0.5em;
+        width: 96% !important;
+    }
+    
+    .slds-table .firstRow
+    {
+        border-top-color: transparent !important;
+        font-size: 9.3px;
+        font-weight: 900;
+    }
+    .slds-table .secondRowRed
+    {
+        border-top-color: red !important;
+    }
+    .slds-table .secondRowGreen
+    {
+        border-top-color: lightgreen !important;
+    }
+    .slds-hint-parent
+    {
+        height: 4em;
+        border: 2px solid #f2f2f2
+    }
+    .bigFont{
+        font-size: 22px !important;
+    }
+    .greenFont{
+        color: #4AB471;
+    }
+    .redFont{
+        color: red;
+    }
+    .smallFont
+    {
+        font-size: 9px;
+    }
+    .arrowRight_icon{
+        width: 27px;
+        zoom: 15;
+    }
+    .customise{
+        height: 2.2em !important;
+        background-color: #e0e5ee !important;
+        border: none !important;
+        color: black !important;
+        width: 89%;
+        margin-left: 1em !important;
+    }
+    .footerIcon{
+        height: 22px !important;
+        margin-top: -1em;
+    }
+    .footerSection span{
+        font-size: 11px;
+        color: white;
+        margin-left: 18px;
+        margin-top: 12px;
+    }
+    .footerSection div{
+        margin-top: -0.3em;
+    }
+    .sub-branding{
+        font-size: 10.5px;
+        margin-top: 1px;
+        margin-left: 2px;
+    }
+    .sub-header-change{
+        color: #2A94D6;
+        font-size: 13px;
+        margin-top: -3px;
+    }
+    .main-branding{
+        padding-left: 0.75em;
+        font-size: 19px;
+        padding-right: 0.5em;
+    }
+    .thirdColumn{
+        padding-left: 2em !important;
+        font-weight: bold;
+    }
+    .weekEnding{
+        margin-top: 1.5em;
+        margin-left: 10em;
+        font-size: 11px;
+        width: 100%;
+    }
+    .headerBadges .top
+    {
+        margin-left: 3em;
+        width: 85%;
+        margin-top: 1.6em;
+    }
+    .headerBadges .slds-badge
+    {
+        background-color: #1766A6;
+        color: white;
+    }
+    .slds.container
+    {
+    overflow-x: hidden;
+    }
+    .firstRow
+    {
+    width:15% !important;
+    }
+    
+    @font-face {
+      font-family: 'dinOffPro';
+      src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.eot'); /* IE9 Compat Modes */
+      src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+           url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.woff2') format('woff2'), /* Super Modern Browsers */
+           url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.woff') format('woff'), /* Pretty Modern Browsers */
+           url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.ttf')  format('truetype'), /* Safari, Android, iOS */
+           url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.svg#svgFontName') format('svg'); /* Legacy iOS */
+    }
+    @font-face {
+      font-family: 'dinOffProBold';
+      src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.eot'); /* IE9 Compat Modes */
+      src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+           url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+           url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+           url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+           url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+    }
+    body {
+      font-family: 'Salesforce Sans', Arial, sans-serif !important;
+      background-color: #f2f2f2;
+    }
+    .slds.container{
+      font-family: 'Salesforce Sans', Arial, sans-serif !important;
+    }
+    .slds td{
+      font-family: 'Salesforce Sans', Arial, sans-serif !important;
+    }
+    .setting_icon_logo{
+        width: 9%;
+        margin-top: -0.5em;
+        border-radius: 10px;
+        z-index: 1;
+        height:31px !important;
+    }
+    .slds .slds-table tr > th:first-child, .slds .slds-table tr > td:first-child{
+        padding-left: 5px !important;
+        padding-right: 0px !important;
+    }
+    .slds .slds-table th, .slds .slds-table td {
+       padding:5px;
+        white-space: normal;
+    }
+    setting_icon_logo_FullWidth{
+        width:100% !important;
+    }
+    .slds .slds-table tr > th:last-child, .slds .slds-table tr > td:last-child {
+        padding-right: 5px !important;
+    }
+    .slds .slds-table--bordered td, .slds .slds-table--bordered th {
+        border-top: 1px solid white;
+    }
+    .disabled{
+        opacity: 0.5 !important;
+    }
+    .fontBold{
+        font-weight: bolder;
+        font-size: 9.5px;
+        width:20% !important;
+    }
+    .headerIcon{
+        border: 1px solid #f2f2f2 !important;
+        border-radius: 7px;
+    }
+    .slds .slds-page-header {
+        padding: 18px 24px 12px !important;
+    }
+    *:focus {
+        outline: 0;
+    } 
+  
+.slds .slds-table:not(.slds-no-row-hover) tbody tr:hover > td, .slds .slds-table:not(.slds-no-row-hover) tbody tr:hover > th{
+    background-color: white !important;
+}
+
+
+    <!-- All big screen phones -->
+    @media only screen and (min-device-width: 320px) and (max-device-width: 568px) 
+    { 
+       .slds.container{
+       max-width: 100%;
+       }
+       .setting_icon_logo{
+       width:9% !important;
+       height:31px !important;
+     
+       }
+       .sub-header-change{
+        margin-top: 2px; <!--4/11-->
+        }
+        .truncate {
+      width: 280px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top:-2px !important;
+    }
+    .other-slds-media{
+            margin-left: 63px !important;
+    }
+    .slds.container
+    {
+    height:40.3em;
+    }
+    }
+    <!-- iphone6 -->
+    @media only screen and (min-device-width: 375px) and (max-device-width: 568px) 
+     { 
+       .slds.container{
+       max-width: 375px;
+       }
+       .setting_icon_logo{
+       height:31px !important;
+       width:8% !important;
+       
+       }
+       .sub-header-change{
+        margin-top: 2px; <!--4/11-->
+        }
+        .truncate {
+      width: 280px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top:-2px !important;
+    }
+    .other-slds-media{
+            margin-left: 63px !important;
+    }
+    .slds.container
+    {
+    height:44.6em !important;
+    }
+    .slds td {
+    font-size: 10px;
+    }
+    .slds-table .firstRow {
+    font-size: 10.5px;
+    }
+    .fontBold {
+    font-size: 10.5px !important;
+    }
+    }
+    <!-- iphone5 -->
+    @media only screen and (min-device-width: 320px) and (max-device-width: 568px) 
+    and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) { 
+       .slds.container{
+       max-width: 320px;
+       }
+       .setting_icon_logo{
+       width:9%;
+       }
+       .sub-header-change{
+        margin-top: 2px; <!--4/11-->
+    }
+    .truncate {
+      width: 230px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top:-2px !important;
+    }
+    .slds.container
+    {
+    height:40.5em !important;
+    }
+    .other-slds-media{
+            margin-left: 3em !important;
+    }
+    }
+    
+    </style>
+    
+    <body>
+    <div class="slds container" style="overflow-y: hidden; background-color: #f2f2f2;">
+        <div class="sub-header" role="banner">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <div class="slds-media" style="position: relative;"  onclick="showModal();">
+                        <img class="setting_icon_logo" src="{!USImage}" />
+                        
+    <div class="truncate">
+                                <span class="sub-branding" style="padding-left: 6px;" >{!USCategory},</span>
+                                <span class="sub-branding">{!USlevel1},</span>
+                                <span class="sub-branding">{!USlevel2}</span>
+                                </div>
+                        <span class="sub-header-change">
+                               <!--<apex:commandButton value="Change" action="{!openBrandSwitching}" style="margin-top:1px;font-size:10.5px;position: absolute;right: 5px;border: none;background: 0;"/>-->
+                          <a href="javascript:void(0);" class="modal-btn-change" style="font-size:10.5px; position: absolute;right: 5px;border: none;background:0;" onclick="showModal();">Change</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navigationSection">
+            <div class="slds-page-header footerSection" role="banner" style="height: 4.4em;">
+            <div class="slds-grid">
+                <div style="margin-left: -13px;">
+                    <apex:commandButton image="/resource/AIW_Static_Resource/icons/standard/user_60.png" action="{!openHBM}" style="margin-bottom: -14px;opacity:0.5; border: none;background: 0;width: 2.3em;margin-top: -1em;margin-left: 3em;padding-bottom: 0px;"/>
+                    <span id="keys" style="margin-left: 35px;" class="disabled">My Profile</span>
+                </div>
+                <div>
+                    <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_heartbeat.png" action="{!openHBM}" style="margin-bottom: -8px;opacity:0.5; border: none;background: 0;width: 1.7em;margin-top: -0.8em;margin-left: 2em;padding-bottom: 0px;"/>
+                    <span id="heartbeat" class="disabled">Heartbeat</span>
+                </div>
+                <div>
+                    <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_competition.png" action="{!openCompetition}"  style="margin-bottom: -8px; border: none;background: 0;width: 1.7em;margin-top: -0.5em;margin-left: 2.6em;padding-bottom: 0px;" />
+                    <span id="competition">Competition</span>
+                </div>
+                <div>
+                    <apex:outputText rendered="{!IF(level1 == 'All' && level2 =='All',true,false)}" >
+                    <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_trending.png" action="{!openSocial}" style="margin-bottom: -5px;opacity:0.5; border: none;background: 0;width: 1.5em;margin-top: -0.3em;margin-left: 1.7em;padding-bottom: 0px;"/>
+                    <span id="trending" class="disabled">Social</span>
+                    </apex:outputText> 
+                    <apex:outputText rendered="{!IF(level1 != 'All' || level2 != 'All',true,false)}" >
+                   <div id="an" style="margin-top: 0px;">
+                  <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_trending.png" onclick="showSocialAlert()" reRender="an" style="margin-bottom: -5px;opacity:0.5; border: none;background: 0;width: 1.5em;margin-top: -0.3em;margin-left: 1.7em;padding-bottom: 0px;"/>
+                <span id="trending" class="disabled" onclick="showSocialAlert()">Social</span>
+                </div>
+                    </apex:outputText>  
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="tabBadges" role="banner" style="margin-bottom: 6px;">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <div class="slds-media other-slds-media"  style="width:28em;">
+                   
+                        <span id = "tabcolorchange1" class="tabcolorchange slds-badge slds-theme--shade top" style="color:#999999;height: 26px;width: 20% !important;"><apex:commandButton value="4W" action="{!getCompetitionData}" onClick="changeColor('tabcolorchange1')"  
+                        reRender="metricsdata,metricsdata2,metricsdata3,metricsdata4,metricsdata5,metricsdata6,metricsdata7,metricsdata8,metricsdata9,metricsdata10,
+                        metricsdata11,metricsdata12,metricsdata13,metricsdata14,metricsdata15,metricsdata16,metricsdata17,metricsdata18,metricsdata19,metricsdata20,
+                        metricsdata21,metricsdata22,metricsdata23,metricsdata24,metricsdata25,metricsdata26,metricsdata27,metricsdata28,metricsdata29,metricsdata30,
+                        metricsdata31,metricsdata32,metricsdata33,metricsdata34,metricsdata35,metricsdata36,metricsdata37,metricsdata38,metricsdata39,metricsdata40,
+                        metricsdata41,metricsdata42,metricsdata43,metricsdata44,metricsdata45,metricsdata46,metricsdata47,metricsdata48,metricsdata49,metricsdata50,metricsdata51"
+                        style=" border: none;background: 0;">                       
+                <apex:param name="4wbuttonparam" value="4W" assignTo="{!timeperiod}"/>
+                      </apex:commandButton></span>
+                        <span id = "tabcolorchange2" class="tabcolorchange slds-badge slds-theme--shade middle" style="color:#999999;height: 26px;width: 20% !important;"> <apex:commandButton value="12W" action="{!getCompetitionData}" onClick="changeColor('tabcolorchange2')" 
+                        reRender="metricsdata,metricsdata2,metricsdata3,metricsdata4,metricsdata5,metricsdata6,metricsdata7,metricsdata8,metricsdata9,metricsdata10,
+                        metricsdata11,metricsdata12,metricsdata13,metricsdata14,metricsdata15,metricsdata16,metricsdata17,metricsdata18,metricsdata19,metricsdata20,
+                        metricsdata21,metricsdata22,metricsdata23,metricsdata24,metricsdata25,metricsdata26,metricsdata27,metricsdata28,metricsdata29,metricsdata30,
+                        metricsdata31,metricsdata32,metricsdata33,metricsdata34,metricsdata35,metricsdata36,metricsdata37,metricsdata38,metricsdata39,metricsdata40,
+                        metricsdata41,metricsdata42,metricsdata43,metricsdata44,metricsdata45,metricsdata46,metricsdata47,metricsdata48,metricsdata49,metricsdata50,metricsdata51"
+                        style=" border: none;background: 0;">                       
+                <apex:param name="12wbuttonparam" value="12W" assignTo="{!timeperiod}"/>
+                      </apex:commandButton></span>
+                        <span id = "tabcolorchange3" class="tabcolorchange slds-badge slds-theme--shade middle" style="color:#999999;height: 26px;width: 20% !important;"> <apex:commandButton value="YTD" action="{!getCompetitionData}" onClick="changeColor('tabcolorchange3')" 
+                        reRender="metricsdata,metricsdata2,metricsdata3,metricsdata4,metricsdata5,metricsdata6,metricsdata7,metricsdata8,metricsdata9,metricsdata10,
+                        metricsdata11,metricsdata12,metricsdata13,metricsdata14,metricsdata15,metricsdata16,metricsdata17,metricsdata18,metricsdata19,metricsdata20,
+                        metricsdata21,metricsdata22,metricsdata23,metricsdata24,metricsdata25,metricsdata26,metricsdata27,metricsdata28,metricsdata29,metricsdata30,
+                        metricsdata31,metricsdata32,metricsdata33,metricsdata34,metricsdata35,metricsdata36,metricsdata37,metricsdata38,metricsdata39,metricsdata40,
+                        metricsdata41,metricsdata42,metricsdata43,metricsdata44,metricsdata45,metricsdata46,metricsdata47,metricsdata48,metricsdata49,metricsdata50,metricsdata51"
+                        style=" border: none;background: 0;">                       
+                <apex:param name="YTDbuttonparam" value="YTD" assignTo="{!timeperiod}"/>
+                      </apex:commandButton></span>
+                        <span id = "tabcolorchange4" class="tabcolorchange slds-badge last" style="color:white;background-color: #999999;height: 26px;width: 20% !important;"><apex:commandButton value="MAT" action="{!getCompetitionData}" onClick="changeColor('tabcolorchange4')" 
+                        reRender="metricsdata,metricsdata2,metricsdata3,metricsdata4,metricsdata5,metricsdata6,metricsdata7,metricsdata8,metricsdata9,metricsdata10,
+                        metricsdata11,metricsdata12,metricsdata13,metricsdata14,metricsdata15,metricsdata16,metricsdata17,metricsdata18,metricsdata19,metricsdata20,
+                        metricsdata21,metricsdata22,metricsdata23,metricsdata24,metricsdata25,metricsdata26,metricsdata27,metricsdata28,metricsdata29,metricsdata30,
+                        metricsdata31,metricsdata32,metricsdata33,metricsdata34,metricsdata35,metricsdata36,metricsdata37,metricsdata38,metricsdata39,metricsdata40,
+                        metricsdata41,metricsdata42,metricsdata43,metricsdata44,metricsdata45,metricsdata46,metricsdata47,metricsdata48,metricsdata49,metricsdata50,metricsdata51"
+                        style="border: none;background: 0;">                       
+                <apex:param name="MATbuttonparam" value="MAT" assignTo="{!timeperiod}"/>
+                      </apex:commandButton></span>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <table class="slds-table slds-table--bordered" style="font-size: 9px;margin-left: 6px;">
+    
+       
+        <tr class="slds-hint-parent">
+          
+          <td class="firstRow">
+         
+           <img class="setting_icon_logo_FullWidth headerIcon" style="width: 20px;" src="/resource/AIW_Static_Resource/icons/project-specific/icon_graph.png"/>
+          </td>
+          <td class="firstRow">
+          <apex:outputText rendered="{!IF(mapSizeForTable >0 ,true,false)}">
+          <img class="setting_icon_logo" style="width: auto !important;" src="{!USImage}" />
+            </apex:outputText>
+          </td>
+          <td class="firstRow">
+           <apex:outputText rendered="{!IF(mapSizeForTable >1 ,true,false)}">
+          {!compMap[2].Competitor_Brand__c}
+          </apex:outputText>
+          </td>
+          <td class="firstRow">
+           <apex:outputText rendered="{!IF(mapSizeForTable >2 ,true,false)}">
+          {!compMap[3].Competitor_Brand__c}
+           </apex:outputText>
+          </td>
+          <td class="firstRow">
+           <apex:outputText rendered="{!IF(mapSizeForTable >3 ,true,false)}">
+        {!compMap[4].Competitor_Brand__c}
+         </apex:outputText>
+          </td>
+          <td class="firstRow">
+           <apex:outputText rendered="{!IF(mapSizeForTable >4 ,true,false)}">
+          {!compMap[5].Competitor_Brand__c}
+           </apex:outputText>
+          </td>
+    
+    
+        <tr class="slds-hint-parent">
+        <td class="fontBold">
+            Value
+          </td>
+         
+          <td class="">
+          <apex:outputText rendered="{!IF(mapSizeForTable >0 ,true,false)}">
+              <apex:outputPanel id="metricsdata" rendered="{!IF(compMap[1].ValueP__c < 0,'true','false')}">
+                  <table>
+                   <tr><td  class="firstRow">{!ROUND((compMap[1].ValueP__c),1)}%</td></tr>  
+                    <tr><td class="secondRowRed">{!ROUND((compMap[1].Value__c)/1000000,1)}M</td></tr> 
+                 </table>            
+              </apex:outputPanel>
+              <apex:outputPanel id="metricsdata27" rendered="{!IF((compMap[1].ValueP__c > 0) || (compMap[1].ValueP__c = 0) ,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[1].ValueP__c),1)}%</td></tr>  
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[1].Value__c)/1000000,1)}M</td></tr> 
+                 </table>            
+              </apex:outputPanel>  
+            </apex:outputText>
+          </td>
+          <td class=""> 
+           <apex:outputText rendered="{!IF(mapSizeForTable >1 ,true,false)}">
+              <apex:outputPanel id="metricsdata2" rendered="{!IF(compMap[2].ValueP__c < 0,'true','false')}"> 
+                 <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[2].ValueP__c),1)}%</td></tr>  
+                    <tr><td class="secondRowRed">{!ROUND((compMap[2].Value__c)/1000000,1)}M</td></tr> 
+                 </table>
+                 </apex:outputPanel>
+                 <apex:outputPanel id="metricsdata28" rendered="{!IF((compMap[2].ValueP__c > 0) || (compMap[2].ValueP__c = 0) ,'true','false')}"> 
+                 <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[2].ValueP__c),1)}%</td></tr>  
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[2].Value__c)/1000000,1)}M</td></tr> 
+                 </table>
+                 </apex:outputPanel>
+             </apex:outputText>    
+          </td> 
+          <td class=""> 
+           <apex:outputText rendered="{!IF(mapSizeForTable >2 ,true,false)}">
+             <apex:outputPanel id="metricsdata3" rendered="{!IF(compMap[3].ValueP__c < 0,'true','false')}"> 
+                 <table>
+                 <tr><td  class="firstRow">{!ROUND((compMap[3].ValueP__c),1)}%</td></tr>  
+                    <tr><td class="secondRowRed">{!ROUND((compMap[3].Value__c)/1000000,1)}M</td></tr> 
+                 </table>
+                 </apex:outputPanel>
+                 <apex:outputPanel id="metricsdata29" rendered="{!IF((compMap[3].ValueP__c > 0) || (compMap[3].ValueP__c = 0) ,'true','false')}"> 
+                 <table>
+                  <tr><td  class="firstRow">{!ROUND((compMap[3].ValueP__c),1)}%</td></tr>  
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[3].Value__c)/1000000,1)}M</td></tr> 
+                 </table>
+                 </apex:outputPanel>
+                 </apex:outputText>
+          </td> 
+          <td class=""> 
+           <apex:outputText rendered="{!IF(mapSizeForTable >3,true,false)}">
+              <apex:outputPanel id="metricsdata4" rendered="{!IF(compMap[4].ValueP__c < 0,'true','false')}"> 
+                 <table>
+                   <tr><td  class="firstRow">{!ROUND((compMap[4].ValueP__c),1)}%</td></tr>  
+                    <tr><td class="secondRowRed">{!ROUND((compMap[4].Value__c)/1000000,1)}M</td></tr> 
+                 </table>
+                 </apex:outputPanel>
+                  <apex:outputPanel id="metricsdata30" rendered="{!IF((compMap[4].ValueP__c > 0) || (compMap[4].ValueP__c = 0) ,'true','false')}"> 
+                 <table>
+                   <tr><td  class="firstRow">{!ROUND((compMap[4].ValueP__c),1)}%</td></tr>  
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[4].Value__c)/1000000,1)}M</td></tr> 
+                 </table>
+                 </apex:outputPanel>
+                 </apex:outputText>
+          </td> 
+          
+          <td class=""> 
+           <apex:outputText rendered="{!IF(mapSizeForTable>4,true,false)}">
+             <apex:outputPanel id="metricsdata5" rendered="{!IF(compMap[5].ValueP__c < 0,'true','false')}"> 
+                 <table>
+                  <tr><td  class="firstRow">{!ROUND((compMap[5].ValueP__c),1)}%</td></tr>  
+                    <tr><td class="secondRowRed">{!ROUND((compMap[5].Value__c)/1000000,1)}M</td></tr> 
+                 </table>
+                 </apex:outputPanel>
+                 <apex:outputPanel id="metricsdata31" rendered="{!IF((compMap[5].ValueP__c > 0) || (compMap[5].ValueP__c = 0) ,'true','false')}"> 
+                 <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[5].ValueP__c),1)}%</td></tr>  
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[5].Value__c)/1000000,1)}M</td></tr>  
+                 </table>
+                 </apex:outputPanel>
+                 </apex:outputText>
+          </td> 
+        </tr>
+        
+        <tr class="slds-hint-parent">
+        <td class="fontBold">
+            Volume
+          </td>
+          <td class="">
+           <apex:outputText rendered="{!IF(mapSizeForTable >0 ,true,false)}">
+              <apex:outputPanel id="metricsdata6"  rendered="{!IF(compMap[1].VolumeP__c < 0,'true','false')}">
+                  <table>
+                 <tr><td  class="firstRow">{!ROUND((compMap[1].VolumeP__c),1)}%</td></tr>     
+                    <tr><td class="secondRowRed">{!ROUND((compMap[1].Volume__c)/1000000,1)}M</td></tr>  
+                 </table>
+               </apex:outputPanel> 
+               <apex:outputPanel id="metricsdata32" rendered="{!IF((compMap[1].VolumeP__c> 0) || (compMap[1].VolumeP__c= 0) ,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[1].VolumeP__c),1)}%</td></tr>     
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[1].Volume__c)/1000000,1)}M</td></tr>  
+                 </table>
+               </apex:outputPanel> 
+               </apex:outputText>
+          </td>
+        
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>1,true,false)}">
+             <apex:outputPanel id="metricsdata7" rendered="{!IF(compMap[2].VolumeP__c < 0,'true','false')}">
+                  <table>
+                   <tr><td  class="firstRow">{!ROUND((compMap[2].VolumeP__c),1)}%</td></tr>     
+                    <tr><td class="secondRowRed">{!ROUND((compMap[2].Volume__c)/1000000,1)}M</td></tr>  
+                 </table> 
+              </apex:outputPanel> 
+              
+              <apex:outputPanel id="metricsdata33" rendered="{!IF((compMap[2].VolumeP__c > 0) || (compMap[2].VolumeP__c = 0) ,'true','false')}">
+                  <table>
+                   <tr><td  class="firstRow">{!ROUND((compMap[2].VolumeP__c),1)}%</td></tr>     
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[2].Volume__c)/1000000,1)}M</td></tr>  
+                 </table> 
+              </apex:outputPanel> 
+              </apex:outputText>
+          </td>
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>2,true,false)}">
+              <apex:outputPanel id="metricsdata8" rendered="{!IF(compMap[3].VolumeP__c < 0,'true','false')}">
+                  <table>
+                 <tr><td  class="firstRow">{!ROUND((compMap[3].VolumeP__c),1)}%</td></tr>     
+                    <tr><td class="secondRowRed">{!ROUND((compMap[3].Volume__c)/1000000,1)}M</td></tr>  
+                 </table>          
+                     
+                  </apex:outputPanel> 
+                   <apex:outputPanel id="metricsdata34" rendered="{!IF((compMap[3].VolumeP__c > 0) || (compMap[3].VolumeP__c = 0) ,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[3].VolumeP__c),1)}%</td></tr>     
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[3].Volume__c)/1000000,1)}M</td></tr>  
+                 </table>  
+               </apex:outputPanel> 
+               </apex:outputText> 
+          </td>
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>3,true,false)}">
+             <apex:outputPanel id="metricsdata9" rendered="{!IF(compMap[4].VolumeP__c < 0,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[4].VolumeP__c),1)}%</td></tr>     
+                    <tr><td class="secondRowRed">{!ROUND((compMap[4].Volume__c)/1000000,1)}M</td></tr>  
+                 </table>          
+                     
+                  </apex:outputPanel> 
+                   <apex:outputPanel id="metricsdata35" rendered="{!IF((compMap[4].VolumeP__c > 0) || (compMap[4].VolumeP__c = 0) ,'true','false')}">
+                  <table>
+                   <tr><td  class="firstRow">{!ROUND((compMap[4].VolumeP__c),1)}%</td></tr>     
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[4].Volume__c)/1000000,1)}M</td></tr>  
+                 </table>
+             </apex:outputPanel> 
+             </apex:outputText> 
+          </td>
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>4,true,false)}">
+              <apex:outputPanel id="metricsdata10" rendered="{!IF(compMap[5].VolumeP__c < 0,'true','false')}">
+                  <table>
+                 <tr><td  class="firstRow">{!ROUND((compMap[5].VolumeP__c),1)}%</td></tr>     
+                    <tr><td class="secondRowRed">{!ROUND((compMap[5].Volume__c)/1000000,1)}M</td></tr>  
+                 </table>          
+                     
+                  </apex:outputPanel> 
+                  <apex:outputPanel id="metricsdata36" rendered="{!IF((compMap[5].VolumeP__c > 0) || (compMap[5].VolumeP__c = 0) ,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[5].VolumeP__c),1)}%</td></tr>     
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[5].Volume__c)/1000000,1)}M</td></tr>  
+                 </table>  
+              </apex:outputPanel>  
+              </apex:outputText>
+          </td>
+    
+        </tr>
+        <tr class="slds-hint-parent">
+        <td class="fontBold">
+            Price KG/L
+          </td>
+          <td class="">
+           <apex:outputText rendered="{!IF(mapSizeForTable >0 ,true,false)}">
+             <apex:outputPanel id="metricsdata11" rendered="{!IF(compMap[1].PriceKG_L_P__c < 0,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[1].PriceKG_L_P__c),1)}%</td></tr>
+                    <tr><td class="secondRowRed">£{!ROUND((compMap[1].PriceKG_L__c),2)}</td></tr> 
+                 </table> 
+            </apex:outputPanel> 
+            <apex:outputPanel id="metricsdata37" rendered="{!IF((compMap[1].PriceKG_L_P__c > 0) || (compMap[1].PriceKG_L_P__c = 0) ,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[1].PriceKG_L_P__c),1)}%</td></tr>
+                    <tr><td class="secondRowGreen">£{!ROUND((compMap[1].PriceKG_L__c),2)}</td></tr> 
+                 </table> 
+            </apex:outputPanel>  
+            </apex:outputText>
+          </td>
+        
+       <td class="">
+        <apex:outputText rendered="{!IF(mapSizeForTable>1,true,false)}">
+               <apex:outputPanel id="metricsdata12" rendered="{!IF(compMap[2].PriceKG_L_P__c < 0,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[2].PriceKG_L_P__c),1)}%</td></tr>
+                    <tr><td class="secondRowRed">£{!ROUND((compMap[2].PriceKG_L__c),2)}</td></tr> 
+                 </table>
+                </apex:outputPanel> 
+                <apex:outputPanel id="metricsdata38" rendered="{!IF((compMap[2].PriceKG_L_P__c > 0) || (compMap[2].PriceKG_L_P__c = 0) ,'true','false')}">
+                  <table>
+                   <tr><td  class="firstRow">{!ROUND((compMap[2].PriceKG_L_P__c),1)}%</td></tr>
+                    <tr><td class="secondRowGreen">£{!ROUND((compMap[2].PriceKG_L__c),2)}</td></tr> 
+                 </table>
+                </apex:outputPanel>  
+                </apex:outputText>
+          </td>
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>2,true,false)}">
+              <apex:outputPanel id="metricsdata13" rendered="{!IF(compMap[3].PriceKG_L_P__c < 0,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[3].PriceKG_L_P__c),1)}%</td></tr>
+                    <tr><td class="secondRowRed">£{!ROUND((compMap[3].PriceKG_L__c),2)}</td></tr> 
+                 </table>   
+              </apex:outputPanel> 
+              <apex:outputPanel id="metricsdata39" rendered="{!IF((compMap[3].PriceKG_L_P__c > 0) || (compMap[3].PriceKG_L_P__c = 0) ,'true','false')}">
+                  <table>
+                     <tr><td  class="firstRow">{!ROUND((compMap[3].PriceKG_L_P__c),1)}%</td></tr>
+                    <tr><td class="secondRowGreen">£{!ROUND((compMap[3].PriceKG_L__c),2)}</td></tr> 
+                 </table>   
+              </apex:outputPanel> 
+              </apex:outputText>
+          </td>
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>3,true,false)}">
+              <apex:outputPanel id="metricsdata14" rendered="{!IF(compMap[4].PriceKG_L_P__c < 0,'true','false')}">
+                  <table>
+                   <tr><td  class="firstRow">{!ROUND((compMap[4].PriceKG_L_P__c),1)}%</td></tr>
+                    <tr><td class="secondRowRed">£{!ROUND((compMap[4].PriceKG_L__c),2)}</td></tr> 
+                 </table>   
+                </apex:outputPanel> 
+                <apex:outputPanel id="metricsdata40" rendered="{!IF((compMap[4].PriceKG_L_P__c > 0) || (compMap[4].PriceKG_L_P__c = 0) ,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[4].PriceKG_L_P__c),1)}%</td></tr>
+                    <tr><td class="secondRowGreen">£{!ROUND((compMap[4].PriceKG_L__c),2)}</td></tr> 
+                 </table>   
+                </apex:outputPanel> 
+                </apex:outputText>
+          </td>
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>4,true,false)}">
+               <apex:outputPanel id="metricsdata15" rendered="{!IF(compMap[5].PriceKG_L_P__c < 0,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[5].PriceKG_L_P__c),1)}%</td></tr>
+                    <tr><td class="secondRowRed">£{!ROUND((compMap[5].PriceKG_L__c),2)}</td></tr> 
+                 </table>   
+              </apex:outputPanel> 
+              <apex:outputPanel id="metricsdata41" rendered="{!IF((compMap[5].PriceKG_L_P__c > 0) || (compMap[5].PriceKG_L_P__c = 0) ,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[5].PriceKG_L_P__c),1)}%</td></tr>
+                    <tr><td class="secondRowGreen">£{!ROUND((compMap[5].PriceKG_L__c),2)}</td></tr> 
+                 </table>   
+              </apex:outputPanel> 
+              </apex:outputText>
+          </td>
+    
+        </tr>
+        <tr class="slds-hint-parent">
+         <td class="fontBold">
+            TDPs
+          </td>
+          <td class="">
+           <apex:outputText rendered="{!IF(mapSizeForTable >0 ,true,false)}">
+               <apex:outputPanel id="metricsdata16" rendered="{!IF(compMap[1].TDPS_P__c < 0,'true','false')}">
+                  <table>
+                   <tr><td  class="firstRow">{!ROUND((compMap[1].TDPS_P__c),1)}%</td></tr>   
+                    <tr><td class="secondRowRed">{!ROUND((compMap[1].TDPS__c),0)}</td></tr>
+                 </table>  
+              </apex:outputPanel> 
+              <apex:outputPanel id="metricsdata42" rendered="{!IF((compMap[1].TDPS_P__c > 0) || (compMap[1].TDPS_P__c = 0) ,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[1].TDPS_P__c),1)}%</td></tr>   
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[1].TDPS__c),0)}</td></tr>
+                 </table>  
+              </apex:outputPanel> 
+              </apex:outputText>
+          </td>
+       
+       <td class="">
+        <apex:outputText rendered="{!IF(mapSizeForTable>1,true,false)}">
+              <apex:outputPanel id="metricsdata17" rendered="{!IF(compMap[2].TDPS_P__c < 0,'true','false')}">
+                  <table>
+                  <tr><td  class="firstRow">{!ROUND((compMap[2].TDPS_P__c),1)}%</td></tr>   
+                    <tr><td class="secondRowRed">{!ROUND((compMap[2].TDPS__c),0)}</td></tr>
+                 </table>    
+              </apex:outputPanel> 
+              <apex:outputPanel id="metricsdata43" rendered="{!IF((compMap[2].TDPS_P__c > 0) || (compMap[2].TDPS_P__c = 0) ,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[2].TDPS_P__c),1)}%</td></tr>   
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[2].TDPS__c),0)}</td></tr>
+                 </table>    
+              </apex:outputPanel>  
+              </apex:outputText>
+          </td>
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>2,true,false)}">
+               <apex:outputPanel id="metricsdata18" rendered="{!IF(compMap[3].TDPS_P__c < 0,'true','false')}">
+                  <table>
+                     <tr><td  class="firstRow">{!ROUND((compMap[3].TDPS_P__c),1)}%</td></tr>   
+                    <tr><td class="secondRowRed">{!ROUND((compMap[3].TDPS__c),0)}</td></tr>
+                 </table>   
+              </apex:outputPanel> 
+              <apex:outputPanel id="metricsdata44" rendered="{!IF((compMap[3].TDPS_P__c > 0) || (compMap[3].TDPS_P__c = 0) ,'true','false')}">
+                  <table>
+                     <tr><td  class="firstRow">{!ROUND((compMap[3].TDPS_P__c),1)}%</td></tr>   
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[3].TDPS__c),0)}</td></tr>
+                 </table>   
+              </apex:outputPanel> 
+              </apex:outputText> 
+          </td>
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>3,true,false)}">
+             <apex:outputPanel id="metricsdata19" rendered="{!IF(compMap[4].TDPS_P__c < 0,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[4].TDPS_P__c),1)}%</td></tr>   
+                    <tr><td class="secondRowRed">{!ROUND((compMap[4].TDPS__c),0)}</td></tr>
+                 </table>  
+               </apex:outputPanel> 
+               <apex:outputPanel id="metricsdata45" rendered="{!IF((compMap[4].TDPS_P__c > 0) || (compMap[4].TDPS_P__c = 0) ,'true','false')}">
+                  <table>
+                  <tr><td  class="firstRow">{!ROUND((compMap[4].TDPS_P__c),1)}%</td></tr>   
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[4].TDPS__c),0)}</td></tr>
+                 </table>  
+               </apex:outputPanel>
+               </apex:outputText>
+          </td>
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>4,true,false)}">
+              <apex:outputPanel id="metricsdata20" rendered="{!IF(compMap[5].TDPS_P__c < 0,'true','false')}">
+                  <table>
+                  <tr><td  class="firstRow">{!ROUND((compMap[5].TDPS_P__c),1)}%</td></tr>   
+                    <tr><td class="secondRowRed">{!ROUND((compMap[5].TDPS__c),0)}</td></tr>
+                 </table>   
+              </apex:outputPanel> 
+              <apex:outputPanel id="metricsdata46" rendered="{!IF((compMap[5].TDPS_P__c > 0) || (compMap[5].TDPS_P__c = 0) ,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[5].TDPS_P__c),1)}%</td></tr>   
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[5].TDPS__c),0)}</td></tr>
+                 </table>   
+              </apex:outputPanel>
+              </apex:outputText> 
+          </td>
+    
+        </tr>
+        <tr class="slds-hint-parent">
+         <td class="fontBold">
+            MS %
+          </td>
+          <td class="">
+            <apex:outputText rendered="{!IF(mapSizeForTable >0 ,true,false)}">
+              <apex:outputPanel id="metricsdata21" rendered="{!IF(compMap[1].MS__c< 0,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[1].MS__c),1)}%</td></tr> 
+                    <tr><td class="secondRowRed">{!ROUND((compMap[1].MS_P__c),0)}bps</td></tr>
+                 </table>          
+             </apex:outputPanel> 
+             <apex:outputPanel id="metricsdata47" rendered="{!IF((compMap[1].MS__c> 0) || (compMap[1].MS__c= 0) ,'true','false')}">
+                  <table>
+                   <tr><td  class="firstRow">{!ROUND((compMap[1].MS__c),1)}%</td></tr> 
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[1].MS_P__c),0)}bps</td></tr>
+                 </table>          
+             </apex:outputPanel> 
+             </apex:outputText>
+          </td>
+       
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>1,true,false)}">
+              <apex:outputPanel id="metricsdata22" rendered="{!IF(compMap[2].MS__c< 0,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[2].MS__c),1)}%</td></tr> 
+                    <tr><td class="secondRowRed">{!ROUND((compMap[2].MS_P__c),0)}bps</td></tr>
+                 </table> 
+              </apex:outputPanel> 
+              <apex:outputPanel id="metricsdata48" rendered="{!IF((compMap[2].MS__c> 0) || (compMap[2].MS__c= 0) ,'true','false')}">
+                  <table>
+                       <tr><td  class="firstRow">{!ROUND((compMap[2].MS__c),1)}%</td></tr> 
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[2].MS_P__c),0)}bps</td></tr>
+                 </table> 
+              </apex:outputPanel> 
+              </apex:outputText>
+          </td>
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>2,true,false)}">
+              <apex:outputPanel id="metricsdata23" rendered="{!IF(compMap[3].MS__c< 0,'true','false')}">
+                  <table>
+                    <tr><td  class="firstRow">{!ROUND((compMap[3].MS__c),1)}%</td></tr> 
+                    <tr><td class="secondRowRed">{!ROUND((compMap[3].MS_P__c),0)}bps</td></tr>
+                 </table> 
+              </apex:outputPanel> 
+              <apex:outputPanel id="metricsdata49" rendered="{!IF((compMap[3].MS__c> 0) || (compMap[3].MS__c= 0) ,'true','false')}">
+                  <table>
+                   <tr><td  class="firstRow">{!ROUND((compMap[3].MS__c),1)}%</td></tr> 
+                    <tr><td class="secondRowGreen">{!ROUND((compMap[3].MS_P__c),0)}bps</td></tr>
+                 </table> 
+              </apex:outputPanel> 
+              </apex:outputText>
+          </td>
+        <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>3,true,false)}">
+              <apex:outputPanel id="metricsdata24" rendered="{!IF(compMap[4].MS__c< 0,'true','false')}">
+                  <table>
+                 <tr><td  class="firstRow">{!ROUND((compMap[4].MS__c),1)}%</td></tr> 
+                 <tr><td class="secondRowRed">{!ROUND((compMap[4].MS_P__c),0)}bps</td></tr>
+                 </table>          
+              </apex:outputPanel> 
+              <apex:outputPanel id="metricsdata50" rendered="{!IF((compMap[4].MS__c> 0) || (compMap[4].MS__c= 0) ,'true','false')}">
+                  <table>
+                 <tr><td  class="firstRow">{!ROUND((compMap[4].MS__c),1)}%</td></tr> 
+                 <tr><td class="secondRowGreen">{!ROUND((compMap[4].MS_P__c),0)}bps</td></tr>
+                 </table>          
+              </apex:outputPanel> 
+              </apex:outputText>
+          </td>
+         <td class="">
+         <apex:outputText rendered="{!IF(mapSizeForTable>4,true,false)}">
+             <apex:outputPanel id="metricsdata25" rendered="{!IF(compMap[5].MS__c< 0,'true','false')}">
+                  <table>
+                  <tr><td  class="firstRow">{!ROUND((compMap[5].MS__c),1)}%</td></tr> 
+                        <tr><td class="secondRowRed">{!ROUND((compMap[5].MS_P__c),0)}bps</td></tr>
+                 </table>          
+                     
+                  </apex:outputPanel> 
+                  <apex:outputPanel id="metricsdata51" rendered="{!IF((compMap[5].MS__c> 0) || (compMap[5].MS__c= 0) ,'true','false')}">
+                      <table>
+                        <tr><td  class="firstRow">{!ROUND((compMap[5].MS__c),1)}%</td></tr> 
+                        <tr><td class="secondRowGreen">{!ROUND((compMap[5].MS_P__c),0)}bps</td></tr>
+                     </table>
+                </apex:outputPanel> 
+                </apex:outputText> 
+          </td>
+        </tr>
+       
+       </tr>
+     
+    </table>
+    
+    </div>
+    
+    <c:brands_modal_vfc rp="aiwcompetition" tp="{!timeperiod}"/>
+    <c:brands_modal_aiwsocial_alert />
+    
+    <script type="text/javascript">
+        function showModal(){
+        
+            $('#myModal').modal('show').css("display","block");
+           // $('#myModal').css("display","block");
+        }
+        function showSocial(){
+           CallApexMethodSocial();    
+        }
+    
+    function showSocialAlert(){
+    //alert('Social Data is only available at Brand - Category levels.');
+    $('#myModalalert').modal('show').css("display","block");
+        }
+        
+        function changeColor(id) {    
+            var tabs = document.getElementsByClassName('tabcolorchange')
+            for (var i = 0; i < tabs.length; ++i) {
+                var item = tabs[i];
+                item.style.color = (item.id == id) ? "white" : "#999999";
+                item.style.backgroundColor = (item.id == id) ? "#999999" : "white";
+            }
+        }
+         changeColorName('{!timeperiod}');
+        function changeColorName(timePeriodSelected) {
+        if(timePeriodSelected=='4W'){
+            changeColor('tabcolorchange1');
+        }
+        else if(timePeriodSelected=='12W'){
+            changeColor('tabcolorchange2');
+        }
+        else if(timePeriodSelected=='YTD'){
+            changeColor('tabcolorchange3');
+        }  
+        else{
+            changeColor('tabcolorchange4');
+        }  
+            
+        }
+    </script>
+    <script src="/resource/AIW_Static_Resource_New/AIW_Static_Resource2/modal/js/jquery.min.js"></script>
+    <script src="/resource/AIW_Static_Resource_New/AIW_Static_Resource2/modal/js/bootstrap-modal.min.js"></script>
+    </body>
+    </apex:form>
+    </apex:page>

@@ -1,0 +1,93 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal"><b><span style="font-size:10.0pt;line-height:107%;
+font-family:&quot;Arial&quot;,sans-serif;color:red;background:white">Hello,
+{!FAU_Participant__c.FAU_First_Name__c} {!FAU_Participant__c.FAU_Last_Name__c}&nbsp;</span></b><b><span style="font-size:10.0pt;line-height:107%;font-family:
+&quot;Arial&quot;,sans-serif;color:red">has requested you to fill in the registration
+form for this program.</span></b><span style="font-size:10.0pt;line-height:
+107%"><o:p></o:p></span></p>]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p class="MsoNormal" align="center" style="margin-bottom: 0.0001pt; text-align: center;"><b><span style="font-size:10.0pt;
+font-family:&quot;Arial&quot;,sans-serif;mso-fareast-font-family:&quot;Times New Roman&quot;;
+color:red">This is a reminder for a need for information.</span></b><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">On behalf of Four Acres
+and your Leadership Team, I am delighted to confirm that you have been
+nominated by your respective management to take part in an ambitious
+leadership&nbsp;program, {!FAU_Participant__c.FAU_Program_Type__c}.</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><i><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></i><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">About
+the&nbsp;{!FAU_Participant__c.FAU_Program_Type__c}:</span></b><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">The&nbsp;{!FAU_Participant__c.FAU_Program_Type__c}&nbsp;is
+a multi-faceted experience, including robust feedback, Individual Development
+Planning, self-led assignments, executive coaching, intimate dialogues with
+senior Unilever leaders and&nbsp;residential&nbsp;module(s).&nbsp;&nbsp;The
+first residential module will be held from&nbsp;<b>{!FAU_Participant__c.FAU_Module_1_Start_Date__c}
+to&nbsp;{!FAU_Participant__c.FAU_Module_1_End_Date__c}.</b></span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;<br>
+Program fee:&nbsp;{!FAU_Participant__c.FAU_Program_Fee__c}</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><i><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></i><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Immediate Action
+Required:</span></b><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Please confirm
+participation on the programme by&nbsp;filling up&nbsp;<a href="https://docs.google.com/forms/d/1t_XNjO2y4uoBEurmPIB5-8-cq9QeD7IrTWpF0Jlfsx4/viewform"><b><span style="color:blue">{!FAU_Participant__c.FAU_Invitation_Link__c}</span></b></a><b>&nbsp;</b>on
+or before&nbsp;{!FAU_Participant__c.FAU_RSVP_Deadline__c}.</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">This link takes you to
+a&nbsp;<a href="http://salesforce.com/"><span style="color:blue">salesforce.com</span></a>&nbsp;login
+page. Enter your Unilever email address and password.</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">This program experience
+will be facilitated by the Four Acres team and supported by your Leadership
+Development team, as well as your HRBP.&nbsp;&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Congratulations again on
+your nomination and we look forward to hearing from you.</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">To see your progress
+check out your {!FAU_Participant__c.FAU_Participants_Workbook__c}.</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!FAU_Participant__c.FAU_Video_Introduction__c}</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Kind regards,</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;"><br></span></p>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[<div style="color: rgb(0, 0, 0); font-family: arial;"><table class="MsoNormalTable" border="0" cellspacing="5" cellpadding="0" width="600" style="width:6.25in;mso-cellspacing:3.7pt;mso-yfti-tbllook:1184;mso-padding-alt:
+ 3.75pt 3.75pt 3.75pt 3.75pt">
+ <tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;mso-yfti-lastrow:yes;
+  height:37.5pt">
+  <td valign="top" style="border:dashed blue 1.0pt;mso-border-alt:dashed blue .75pt;
+  background:white;padding:3.75pt 3.75pt 3.75pt 3.75pt;height:37.5pt">
+  <p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!FAU_Participant__c.OwnerFullName}<o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!FAU_Participant__c.OwnerTitle}<o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+  <p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Ph:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;{!FAU_Participant__c.OwnerPhone}<o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Email:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;{!FAU_Participant__c.OwnerEmail}<o:p></o:p></span></p>
+  <p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+  <p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;"><a href="http://www.unilever.com/"><b><span style="color:blue">www.unilever.com</span></b></a><b>&nbsp;|&nbsp;</b><a href="http://www.facebook.com/unilever"><b><span style="color:blue">www.facebook.com/unilever</span></b></a><o:p></o:p></span></p>
+  </td>
+ </tr>
+</tbody></table></div>]]></td>
+</tr>
+</table>

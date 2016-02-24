@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Envio de Pedido de Serviço de Estafeta para a ViaDireta</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CEC_Unilever_Portugal_Internal</letterhead>
+    <name>Unilever JM - Portugal - Pedido de Serviço de Estafeta ViaDireta</name>
+    <style>freeForm</style>
+    <subject>Processo_{!Case.CaseNumber}_Pedido de Serviço de Estafeta para a Unilever JM</subject>
+    <textOnly>Exmos Senhores,
+Vimos por este meio solicitar o serviço descrito em baixo e para o qual requer, com a maior brevidade, a vossa melhor atenção.
+Aguardamos confirmação pela mesma via da receção do mesmo e a sua execução.
+Muito obrigado
+Cumprimentos
+
+{!User.Name}
+
+-----------------------
+
+Requisição de Serviço de Estafeta
+
+
+Dados do Requisitante
+
+Nome do Colaborador
+
+{!User.Name}
+
+
+
+Foods
+
+IceCream
+
+HomeCare
+
+PersonalCare
+
+N.º de Cliente
+
+2139
+
+3251
+
+2970
+
+2994
+
+Centro de Custo
+
+U 153101061
+
+U 453101061
+
+U 253101061
+
+U 353101061
+
+Autorizado por
+
+{!User.Name}
+
+Serviço a Efetuar
+
+Data
+
+27/04 de tarde
+
+Mota
+
+X
+
+Carro
+
+X
+
+Furgão
+
+
+Tipo de Serviço
+
+Diário
+
+
+Origem
+
+
+Recolher
+
+Produto/Material
+
+Local de recolha
+
+Nome:
+
+{!Contact.FirstName} {!Contact.LastName}
+
+Morada:
+
+{!Contact.MailingStreet}
+
+{!Contact.MailingPostalCode}
+
+{!Contact.MailingCity}
+
+
+Telef.: {!Contact.MobilePhone} / {!Contact.Phone}
+
+Notas Importantes
+
+Não esquecer de classificar a embalagem nº {!Case.CaseNumber}
+
+
+Entregar
+
+
+Morada
+
+Fábrica Fima de Santa Iria da Azóia
+
+Nome (a/c):
+
+Material a Transportar
+
+
+
+AVISO DE CONFIDENCIALIDADE: Esta mensagem e a informação nela contida ou anexada são privadas e confidenciais, encontram-se protegidas por segredo profissional e dirigem-se exclusivamente ao seu destinatário.</textOnly>
+    <type>html</type>
+</EmailTemplate>

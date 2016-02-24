@@ -1,0 +1,469 @@
+<apex:page showHeader="false" controller="UtkarshRatingController">
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+<style>
+.pc-star-rating {
+    text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.pc-star-rating2 {
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.pc-star-rating3 {                
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.pc-star-rating4 {
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+
+.ppc-star-rating {
+    text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.ppc-star-rating2 {
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.ppc-star-rating3 {                
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.ppc-star-rating4 {
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+
+.ca-star-rating {
+    text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.ca-star-rating2 {
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.ca-star-rating3 {                
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.ca-star-rating4 {
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+
+.pc-time-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image : url({!$Resource.Amr_transgreystar}); 
+    background-size: contain;
+    z-index : 1;
+}
+.pc-cost-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_transgreystar}); 
+    background-size: contain;
+    z-index : 1;
+}
+.pc-process-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_transgreystar}); 
+    background-size: contain;
+    z-index : 1;
+}
+.pc-output-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_transgreystar}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ppc-time-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image : url({!$Resource.Amr_transgreystar}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ppc-cost-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_transgreystar}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ppc-process-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_transgreystar}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ppc-output-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_transgreystar}); 
+    background-size: contain;
+    z-index : 1;
+}
+
+.ca-time-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image : url({!$Resource.Amr_transgreystar}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ca-cost-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_transgreystar}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ca-process-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_transgreystar}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ca-output-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_transgreystar}); 
+    background-size: contain;
+    z-index : 1;
+}
+
+.changeColor{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image : url({!$Resource.Amr_transyellowstar}); 
+    background-size: contain;
+}
+.changeColorHover{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image : url({!$Resource.Amr_transyellowstar}); 
+    background-size: contain;
+}
+.categoryStyle{
+    margin-top : 10px;
+    text-align : center;
+     width : 150px;
+     height : 70px;
+     font-size : 18px;
+    background-color: #ccccff;
+}
+.main-container{
+    width : 100%; 
+}
+.category-container{
+    width : 300px;
+    float : left;
+    position : relative;
+}
+.holder-class{
+  
+}
+
+
+</style>
+<script>
+   $(function(){
+
+      
+      
+      $('.holder-class span.common').click(function(){
+           var num = $(this).attr('rel');  
+         //  $(this).removeClass('changeColor');
+           $(this).parent().find('span').removeClass('changeColor');
+           
+           var jq;
+           for(var i = 1; i<=num; i++){
+                     
+            jq = $(this).parent().children('span[rel='+i+']');
+            jq.addClass('changeColor');                
+           }
+           $('.hel').text(num);
+           var data_id = $(this).closest('.holder-class').attr('data-id');    
+          
+            var fnstring = data_id;
+            var fnparams = [num];
+        
+            var fn = window[fnstring];
+        
+            if (typeof fn === "function") 
+                fn.apply(null, fnparams);
+               
+       });
+       
+       
+       
+       $(".holder-class span").hover(function(){
+        var num = $(this).attr('rel');
+        $(this).parent().find('span').removeClass('changeColorHover');
+        var jq;
+        for(var i = 1; i<=num; i++){
+            jq = $(this).parent().children('span[rel='+i+']');
+            jq.addClass('changeColorHover'); 
+        }
+           
+       });
+       
+       $('.holder-class div').mouseleave(function() {          
+           $(this).find('span').removeClass('changeColorHover');       
+       });
+       
+      
+      //end modified
+      
+       
+   }); 
+</script>
+<apex:form >
+    <div class = "main-container" id="mainclass">
+        <div class = "category-container">
+            <label style ="font-size:20px; font-weight:bold;"> PC Appraisal </label>
+            <div class="holder-class" data-id="sendPcTimeMangCategory">
+                <div class="categoryStyle"><label>Time Management  </label>
+                </div>
+                <div class="pc-star-rating">
+                    <span class="common pc-time-cat" rel= "1"></span>
+                    <span class="common pc-time-cat" rel= "2"><i></i></span>
+                    <span class="common pc-time-cat" rel= "3"><i></i></span>
+                    <span class="common pc-time-cat" rel= "4"><i></i></span>
+                    <span class="common pc-time-cat" rel= "5"></span>  
+                </div>
+            </div>   
+            <div class="holder-class" data-id="sendPcCostMangCategory">
+                <div class="categoryStyle"><label>Cost Management  </label>
+                </div>
+                <div class="pc-star-rating2">
+                    <span class="common pc-cost-cat" rel= "1"></span>
+                    <span class="common pc-cost-cat" rel= "2"><i></i></span>
+                    <span class="common pc-cost-cat" rel= "3"><i></i></span>
+                    <span class="common pc-cost-cat" rel= "4"><i></i></span>
+                    <span class="common pc-cost-cat" rel= "5"></span>      
+                </div>
+            </div>   
+            <div class="holder-class" data-id="sendPcProcessMangCategory"> 
+                <div class="categoryStyle"><label>Process Management</label>
+                </div>
+                <div class="pc-star-rating3">
+                    <span class="common pc-process-cat" rel= "1"></span>
+                    <span class="common pc-process-cat" rel= "2"><i></i></span>
+                    <span class="common pc-process-cat" rel= "3"><i></i></span>
+                    <span class="common pc-process-cat" rel= "4"><i></i></span>
+                    <span class="common pc-process-cat" rel= "5"></span>      
+                </div>
+            </div>
+            <div class="holder-class" data-id="sendPcOutputQualityCategory">    
+                <div class="categoryStyle"><label>Output Quality </label>
+                </div>
+                <div class="pc-star-rating4">
+                    <span class="common pc-output-cat" rel= "1"></span>
+                    <span class="common pc-output-cat" rel= "2"><i></i></span>
+                    <span class="common pc-output-cat" rel= "3"><i></i></span>
+                    <span class="common pc-output-cat" rel= "4"><i></i></span>
+                    <span class="common pc-output-cat" rel= "5"></span>      
+                </div>  
+            </div>   
+        </div> 
+        <div class = "category-container">
+            <label style ="font-size:20px; font-weight:bold;"> PPC Appraisal </label>
+            <div class="holder-class" data-id="sendPpcTimeMangCategory">
+                <div class="categoryStyle"><label>Time Management </label>
+                </div>
+                <div class="ppc-star-rating">
+                    <span class="common ppc-time-cat" rel= "1"></span>
+                    <span class="common ppc-time-cat" rel= "2"><i></i></span>
+                    <span class="common ppc-time-cat" rel= "3"><i></i></span>
+                    <span class="common ppc-time-cat" rel= "4"><i></i></span>
+                    <span class="common ppc-time-cat" rel= "5"></span>  
+                </div>
+              </div>
+              <div class="holder-class" data-id="sendPpcCostMangCategory"> 
+                    <div class="categoryStyle"><label>Cost Management  </label>
+                    </div>
+                    <div class="ppc-star-rating2">
+                        <span class="common ppc-cost-cat" rel= "1"></span>
+                        <span class="common ppc-cost-cat" rel= "2"><i></i></span>
+                        <span class="common ppc-cost-cat" rel= "3"><i></i></span>
+                        <span class="common ppc-cost-cat" rel= "4"><i></i></span>
+                        <span class="common ppc-cost-cat" rel= "5"></span>      
+                    </div>
+               </div>
+               <div class="holder-class" data-id="sendPpcProcessMangCategory"> 
+                    <div class="categoryStyle"><label>Process Management</label>
+                    </div>
+                    <div class="ppc-star-rating3">
+                        <span class="common ppc-process-cat" rel= "1"></span>
+                        <span class="common ppc-process-cat" rel= "2"><i></i></span>
+                        <span class="common ppc-process-cat" rel= "3"><i></i></span>
+                        <span class="common ppc-process-cat" rel= "4"><i></i></span>
+                        <span class="common ppc-process-cat" rel= "5"></span>      
+                    </div>
+                </div>
+                <div class="holder-class" data-id="sendPpcOutputQualityCategory">
+                    <div class="categoryStyle"><label>Output Quality </label>
+                    </div>
+                    <div class="ppc-star-rating4">
+                        <span class="common ppc-output-cat" rel= "1"></span>
+                        <span class="common ppc-output-cat" rel= "2"><i></i></span>
+                        <span class="common ppc-output-cat" rel= "3"><i></i></span>
+                        <span class="common ppc-output-cat" rel= "4"><i></i></span>
+                        <span class="common ppc-output-cat" rel= "5"></span>      
+                    </div>
+                </div>   
+            </div>
+    
+        <div class = "category-container">
+            <label style ="font-size:20px; font-weight:bold;"> CA Appraisal </label>
+            <div class="holder-class" data-id="sendCaTimeMangCategory">
+                <div class="categoryStyle"><label>Time Management </label>
+                </div>
+                <div class="ca-star-rating">
+                    <span class="common ca-time-cat" rel= "1"></span>
+                    <span class="common ca-time-cat" rel= "2"><i></i></span>
+                    <span class="common ca-time-cat" rel= "3"><i></i></span>
+                    <span class="common ca-time-cat" rel= "4"><i></i></span>
+                    <span class="common ca-time-cat" rel= "5"></span>  
+                </div>
+             </div>
+             <div class="holder-class" data-id="sendCaCostMangCategory">  
+                <div class="categoryStyle"><label>Cost Management</label>
+                </div>
+                <div class="ca-star-rating2">
+                    <span class="common ca-cost-cat" rel= "1"></span>
+                    <span class="common ca-cost-cat" rel= "2"><i></i></span>
+                    <span class="common ca-cost-cat" rel= "3"><i></i></span>
+                    <span class="common ca-cost-cat" rel= "4"><i></i></span>
+                    <span class="common ca-cost-cat" rel= "5"></span>      
+                </div>
+            </div>
+            <div class="holder-class" data-id="sendCaProcessMangCategory">
+                <div class="categoryStyle"><label>Process Management</label>
+                </div>
+                <div class="ca-star-rating3">
+                    <span class="common ca-process-cat" rel= "1"></span>
+                    <span class="common ca-process-cat" rel= "2"><i></i></span>
+                    <span class="common ca-process-cat" rel= "3"><i></i></span>
+                    <span class="common ca-process-cat" rel= "4"><i></i></span>
+                    <span class="common ca-process-cat" rel= "5"></span>      
+                </div>
+            </div>
+            <div class="holder-class" data-id="sendCaOutputQualityCategory">
+            
+                <div class="categoryStyle"><label>Output Quality</label>
+                </div>
+                <div class="ca-star-rating4">
+                    <span class="common ca-output-cat" rel= "1"></span>
+                    <span class="common ca-output-cat" rel= "2"><i></i></span>
+                    <span class="common ca-output-cat" rel= "3"><i></i></span>
+                    <span class="common ca-output-cat" rel= "4"><i></i></span>
+                    <span class="common ca-output-cat" rel= "5"></span>      
+                </div>
+            
+        </div>   
+    </div>
+
+</div>
+<strong class="choice">Choose a rating</strong>
+<span style="margin-left:30px;"><b>Star Choosen <i class="hel"></i></b></span>
+<span style="margin-left:30px;"><b>Star Choosen <i class="hell"></i></b></span>
+<apex:commandLink action="{!allValues}" value="All The Values" reRender="mainclass"/>
+  
+<apex:actionFunction name="sendPcTimeMangCategory" action="{!getPcTimeMangCategory}" reRender="mainclass">
+   <apex:param id="pccattimename" assignTo="{!pcTimeMangCategoryValue}" name="sendPcTimeMangCategory"  value="{!pcTimeMangCategoryValue}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPcCostMangCategory" action="{!getPcTimeMangCategory}" reRender="view">
+   <apex:param id="pccatcostname" assignTo="{!pcCostMangCategoryValue}" name="sendPcCostMangCategory"  value="{!pcCostMangCategoryValue}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPcProcessMangCategory" action="{!getPcTimeMangCategory}" reRender="view">
+   <apex:param id="pccatprocessname" assignTo="{!pcProcessMangCategoryValue}"  name="sendPcProcessMangCategory" value="{!pcProcessMangCategoryValue}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPcOutputQualityCategory" action="{!getPcTimeMangCategory}" reRender="view">
+   <apex:param id="pccatoutput" assignTo="{!pcOutputQualityCategoryValue}" name="sendPcOutputQualityCategory"  value="{!pcOutputQualityCategoryValue}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPpcTimeMangCategory" action="{!getPcTimeMangCategory}" reRender="view">
+   <apex:param id="pcccattimename" assignTo="{!pccTimeMangCategoryValue}" name="sendPpcTimeMangCategory" value="{!pccTimeMangCategoryValue}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPpcCostMangCategory" action="{!getPcTimeMangCategory}" reRender="view">
+   <apex:param id="pcccatcostname" assignTo="{!pccCostMangCategoryValue }"  name="sendPpcCostMangCategory" value="{!pccCostMangCategoryValue }" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPpcProcessMangCategory" action="{!getPcTimeMangCategory}" reRender="view">
+   <apex:param id="pcccatprocessname" assignTo="{!pccProcessMangCategoryValue}"  name="sendPpcProcessMangCategory" value="{!pccProcessMangCategoryValue}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPpcOutputQualityCategory" action="{!getPcTimeMangCategory}" reRender="view">
+   <apex:param id="pcccatoutput" assignTo="{!pccOutputQualityCategoryValue }" name="sendPpcOutputQualityCategory"   value="{!pccOutputQualityCategoryValue }" />
+</apex:actionFunction>
+
+
+<apex:actionFunction name="sendCaTimeMangCategory" action="{!getPcTimeMangCategory}" reRender="view">
+   <apex:param id="cacattimename" assignTo="{!caTimeMangCategoryValue}" name="sendCaTimeMangCategory" value="{!caTimeMangCategoryValue}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendCaCostMangCategory" action="{!getPcTimeMangCategory}" reRender="view">
+   <apex:param id="cacatcostname" assignTo="{!caCostMangCategoryValue}" name="sendCaCostMangCategory"  value="{!caCostMangCategoryValue}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendCaProcessMangCategory" action="{!getPcTimeMangCategory}" reRender="view">
+   <apex:param id="cacatprocessname" assignTo="{!caProcessMangCategoryValue}" name="sendCaProcessMangCategory"  value="{!caProcessMangCategoryValue}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendCaOutputQualityCategory" action="{!getPcTimeMangCategory}" reRender="view">
+   <apex:param id="cacatoutput" assignTo="{!caOutputQualityCategoryValue }"  name="sendCaOutputQualityCategory" value="{!caOutputQualityCategoryValue}" />
+</apex:actionFunction>
+
+</apex:form>
+
+</apex:page>

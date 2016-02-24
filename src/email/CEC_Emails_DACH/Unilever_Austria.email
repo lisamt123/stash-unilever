@@ -1,0 +1,21 @@
+<font face="Arial" size = "2" color="#000000"> Mit freundlichen Grüßen   <br/><br/>
+Ihr Konsumentenservice <br/>
+{!User.FirstName}  <span> {!User.LastName} <br/><br/><{!if(Case.Case_Brand__c="","Unilever","")}  {!Case.Case_Brand__c}></b>
+<br/>
+
+
+ <img src={!IF(ISBLANK(Case.External_Image_Address__c),"https://unilever--c.na9.content.force.com/servlet/servlet.ImageServer?id=015E0000005HwhT&oid=00DE0000000bbLj&lastMod=1418309606000",Case.External_Image_Address__c)} alt="Logo"/>
+
+<br>
+
+
+
+<font face="Arial"  style="font-size:13px" color="#000000"><b>Unilever Austria GmbH </b><br/>
+Stella-Klein-Löw-Weg 13<br/>
+1023 Wien <br/>
+ <a href="www.unilever.at"> <font face = "Arial" style="font-size:12px" color = "#0099FF" > <b>www.unilever.at</b> </font></a><br/><br/>
+
+Firmenbuchgericht und Sitz Wien<br/>
+Firmenbuch Nr. 197.801i<br/></font><br/>
+<font face="Trebuchet MS"  style="font-size:10px" color="#B6B6B4">
+The information contained in this message (including any attachments) is confidential and may be legally privileged or otherwise <br/>protected from disclosure. This message is intended solely for the addressee(s). If you are not the intended recipient, please notify<br/> the sender by return e-mail and delete this message from your system. Any unauthorized use, reproduction, or dissemination of this<br/> message is strictly prohibited. Unilever shall not be liable for the improper or incomplete transmission of the information contained<br/> in this communication, nor shall it be liable for any delay in its receipt.<br/></font>

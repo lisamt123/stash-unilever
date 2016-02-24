@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Agency_Roster</letterhead>
+    <name>AR Application Rejected at Initial Review</name>
+    <style>freeForm</style>
+    <subject>{!ar_Application__c.Company_Name__c} application is rejected</subject>
+    <textOnly>Dear {!ar_Application__c.First_Name__c}
+
+Thank you for applying to become one of Unilever’s preferred creative partners.
+
+Unfortunately, in this instance your submission has not been successful.
+ 
+Should you feel your situation has changed, we would encourage you to apply again in a year’s time.
+
+With Kindest Regards,
+
+Dennis Furniss</textOnly>
+    <type>html</type>
+</EmailTemplate>

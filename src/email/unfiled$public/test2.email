@@ -1,0 +1,9 @@
+<messaging:emailTemplate subject="TestSubject" recipientType="User" relatedToType="Amr_Job_Details__c">
+<messaging:plainTextEmailBody >
+<b> fgdfgdfgd</b>
+
+
+<apex:outputtext > value="{!relatedTo.00N18000000IZ7w}" escape="true"></apex:outputtext>
+
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

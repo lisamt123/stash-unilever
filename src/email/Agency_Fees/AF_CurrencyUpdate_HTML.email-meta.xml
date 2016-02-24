@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>This Template is used to notify that a new Currency Update is Required</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Agency_Fees_Letterhead</letterhead>
+    <name>AF_CurrencyUpdate</name>
+    <style>freeForm</style>
+    <subject>Action Required: New currency file required</subject>
+    <textOnly>Dear Super User
+
+Its now time to Update the Currency File.
+Please email the latest currency file to :
+
+Martin.O&apos;connell@cognizant.com
+Reetha.joseph@cognizant.com
+Sairam.Gogula@cognizant.com
+
+
+Agency Fees</textOnly>
+    <type>html</type>
+</EmailTemplate>

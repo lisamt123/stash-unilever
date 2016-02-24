@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>CEC: Template for safety alerts</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>SafetyAlert01</name>
+    <style>none</style>
+    <subject>SAFETY ALERT - Threshold Breach</subject>
+    <type>text</type>
+</EmailTemplate>

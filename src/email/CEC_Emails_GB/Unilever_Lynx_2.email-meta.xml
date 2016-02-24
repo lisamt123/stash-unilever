@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>CeC UK Lynx template</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CEC_Unilever_Lynx</letterhead>
+    <name>Unilever - Lynx 2</name>
+    <style>freeForm</style>
+    <subject>Case # {!Case.CaseNumber}</subject>
+    <textOnly>Hello From {!if(Case.Case_Brand__c=&quot;&quot;,&quot;Unilever&quot;,Case.Case_Brand__c)}
+
+
+
+Thank you for your recent [channel description].
+
+
+
+
+
+Thank you again for contacting us. If you have any further enquiries please feel free to contact us from 8am to 6pm Monday to Friday toll free on 0800585204.
+
+
+
+Yours sincerely,
+
+
+
+{!User.Name}
+
+Lynx Consumer Engagement Advisor
+
+Ps. Lynx teamed up with CALM to help make a real difference in men&apos;s lives.
+
+* Please note that we can only accept attachments under 4 megabytes on this email address * Unilever UK Limited Registered in England &amp; Wales; Company No 334527 Registered Office: Unilever House, Springfield Drive, Leatherhead, KT22 7GR Unilever Ireland Registered Office: 20 Riverwalk, National Digital Park, Citywest Business Campus, Dublin 24</textOnly>
+    <type>html</type>
+</EmailTemplate>

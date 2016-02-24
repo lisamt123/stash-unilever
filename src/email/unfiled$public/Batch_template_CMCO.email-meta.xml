@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Batch template CMCO</name>
+    <style>none</style>
+    <subject>Regarding Last year BrandEstimate records</subject>
+    <textOnly>Hi,
+
+We have created last year Brand Estimate Records with current year. Please check once</textOnly>
+    <type>custom</type>
+</EmailTemplate>

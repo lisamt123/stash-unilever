@@ -1,0 +1,5 @@
+Dear User
+
+Creative agency fee estimates are required to be entered in the tool for "{!AF_Brand_Estimate__c.AF_Fiscal_Year__c}" financial year. 
+
+Please log into the Agency Fees application, using the link below, and enter your overall estimate for Brand {!AF_Brand_Estimate__c.Brand__c}

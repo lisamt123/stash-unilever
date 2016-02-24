@@ -1,0 +1,61 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal"><span style="font-size: 10pt; line-height: 107%; font-family: Arial, sans-serif;">Dear {!FAU_Participant__c.FAU_First_Name__c}
+{!FAU_Participant__c.FAU_Last_Name__c},</span><span style="font-size:
+10.0pt;line-height:107%"><o:p></o:p></span></p>]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p1"><font size="2">On behalf of Four Acres and your Leadership Team, I am delighted to confirm that you have been nominated by your respective management to take part in an ambitious talent acceleration program, <i>eXcel-rator for WL3</i>, designed for WL3 key talent demonstrating promise for growth in Unilever.&nbsp;</font></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p1"><i><font size="2">&nbsp;</font></i></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p2"><b><font size="2">About eXcel-rator WL3:</font></b></p>
+<p class="p1"><font size="2"><font face="arial">The eXcel-rator is multi-faceted 9-month experience, including robust feedback, Individual Development Planning, self-led assignments, executive coaching, intimate dialogues with senior Unilever leaders and </font><span style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="s1">two residential</span><span style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="s2"> </span><span style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="s1">modules</span><font face="arial"> to be held at Four Acres in {!FAU_Participant__c.FAU_Program_Location__c}. The first residential module will be on from&nbsp;</font><span class="s1"><b><font color="#ff0000"><font face="arial">{!FAU_Participant__c.FAU_Module_1_Start_Date__c} to&nbsp;</font></font></b></span><font color="#ff0000" face="arial"><b>{!FAU_Participant__c.FAU_Module_1_End_Date__c}</b></font><b><font color="#ff0000"><font color="#000000" face="arial">.</font></font></b></font></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p1"><font size="2">&nbsp;</font></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p1"><font size="2">Here’s a 3-minute video introduction to the program: <a href="https://www.youtube.com/watch?v=sRYem0TNjMQ"><span class="s3">https://www.youtube.com/watch?v=sRYem0TNjMQ</span></a></font></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p1"><i><font size="2">&nbsp;</font></i></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p2"><b><font size="2">Immediate Action Required:</font></b></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p1"><font size="2"><font face="arial">Please review the </font><b style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)">attached</b><font face="arial"> and </font><b style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)">confirm participation on the programme by</b><span style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="s2"><b> </b></span><b style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)">filling up</b><span style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="s2"><b> </b><a href="https://docs.google.com/forms/d/1t_XNjO2y4uoBEurmPIB5-8-cq9QeD7IrTWpF0Jlfsx4/viewform"><span class="s4">{!FAU_Participant__c.FAU_Invitation_Link__c}</span></a></span><b style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)"> </b><span style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="s5"><b>on or before&nbsp;</b></span><font face="arial"><b>{!FAU_Participant__c.FAU_RSVP_Deadline__c}</b></font></font></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p3"><font size="2">*This link will take you&nbsp;to a Salesforce.com login page. Enter your Unilever email address and intranet password&nbsp;</font></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p3"><font size="2"></font>&nbsp;</p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p1"><b><font size="2">What’s coming next:</font></b></p>
+<ul style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="ul1">
+<li class="li1"><font size="2">You will receive a detailed participant kit outlining key program components and pre-work</font> 
+</li><li class="li2"><font size="2">You will also receive an email from <span class="s1">a YSC Associate to begin scheduling for the first phase of this program: </span>an assessment and feedback process into your drivers, strengths, and development opportunities.&nbsp;</font> </li></ul>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p1"><font size="2">&nbsp;</font></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p1"><font size="2"><b>Lastly, this program experience will be facilitated by the Four Acres team– and supported by your Leadership Development team, as well as your HRBP.&nbsp;&nbsp;</b></font></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p4"><font size="2">&nbsp;</font></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p1"><font size="2">Congratulations again on your nomination and we look forward to hearing from you.</font></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p1"><font size="2">&nbsp;</font></p>
+<p style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)" class="p1"><font size="2">Kind regards,</font></p>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[<div style="FONT-FAMILY: arial; COLOR: rgb(0,0,0)"><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Darlene Uy<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Four Acres<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Ph:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;12345<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Four Acres Singapore<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">18 Nepal Park, Singapore
+139407<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Tel: +65 6933 5000<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;&nbsp;<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Unilever Asia Private
+Limited<br>
+#06-22 Mapletree Business City, 20 Pasir Panjang Road, Singapore, 117439<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;"><a href="http://www.unilever.com/"><b><span style="color:blue">www.unilever.com</span></b></a><b>&nbsp;|&nbsp;</b><a href="http://www.facebook.com/unilever"><b><span style="color:blue">www.facebook.com/unilever</span></b></a><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-size:10.0pt;line-height:107%">&nbsp;</span></p></div>]]></td>
+</tr>
+</table>

@@ -1,0 +1,58 @@
+<center><img src="https://unilever--c.na9.content.force.com/servlet/servlet.ImageServer?id=015E0000006BjEu&oid=00DE0000000bbLj&lastMod=1432891642000" alt ="Logo"/> </center><br/>
+
+
+<table width="200" border="0" cellpadding="0" cellspacing="0" align="right">
+<tr>
+<td valign="top" style="padding:0 0 0 0 ; font-family : New Athena; font-weight : bold;  font-size:9px; color:#000099" > Unilever Magyarország Kft.</td></tr>
+<tr>
+<td valign="top" style="padding:0 0 0 0 ; font-family : New Athena; font-weight : bold;  font-size:9px; color:#000099" >Fogyasztói Kapcsolatok o.</td></tr>
+<tr>
+<td valign="top" style="padding:0 0 0 0 ; font-family : New Athena; font-weight : bold;  font-size:9px; color:#000099" >H-1138 Budapest, Váci út 182.</td></tr>
+<tr>
+<td valign="top" style="padding:0 0 0 0 ; font-family : New Athena; font-weight : bold;  font-size:9px; color:#000099" >Tel: 06 40 400 400 (helyi tarifa) </td></tr>
+<tr>
+<td valign="top" style="padding:0 0 0 0 ; font-family : New Athena; font-weight : bold;  font-size:9px; color:#000099" >Fax:(36-1)4659587</td></tr>
+<tr>
+<td valign="top" style="padding:0 0 0 0 ; font-family : New Athena; font-weight : bold;  font-size:9px; color:#000099" >cégbejegyzési szám:01-09078247</td></tr></table><br><br><br><br>
+
+<center><font face="New Athena"  style="font-size:18px" color="black"> <b>JEGYZŐKÖNYV</b> </center> <br/>
+<br/>
+<br/>
+
+
+<font face="New Athena"  style="font-size:15px" color="black"> 1.	Esetszám : {!Case.CaseNumber}.  <br/>
+<br/>
+
+<font face="New Athena"  style="font-size:15px" color="black"> 2.	A fogyasztó adatai: {!Case.Contact}, {!Account.PersonMailingAddress}, {!Account.PersonEmail}, {!Account.Phone} <br/>
+<br/>
+
+<font face="New Athena"  style="font-size:15px" color="black"> 3.	A panasz előterjesztésének ideje, módja, helye: {!Case.CreatedDate}, {!Case.Origin}  <br/>
+&nbsp; &nbsp; Unilever Magyarország Kft. Fogyasztó Kapcsolatok iroda   <br/>
+<br/>
+
+<font face="New Athena"  style="font-size:15px" color="black"> 4.	A fogyasztó panaszának részletes leírása: <br/>
+&nbsp; &nbsp;  {!Case.Description}  <br/>
+<br/>
+
+<font face="New Athena"  style="font-size:15px" color="black"> 5.	A fogyasztó által bemutatott iratok, dokumentumok és egyéb bizonyítékok jegyzéke: <br/>
+<br/>
+&nbsp; &nbsp; A termék adatai : min. meg : {!Case.Production_Code__c} <br/>
+<br/>
+
+<font face="New Athena"  style="font-size:15px" color="black"> 6.	A  jegyzőkönyv felvételének helye, ideje: <br/>
+&nbsp; &nbsp; Unilever Magyarország Kft. 1138 Budapest, Váci út 182.  {!Case.CreatedDate}
+<br/>
+<br/>
+
+<font face="New Athena"  style="font-size:15px" color="black"> 7.	A jegyzőkönyvet felvevő személy neve: <br/>
+&nbsp; &nbsp; {!Case.OwnerFullName} <br/>
+&nbsp; &nbsp; Aláírás : <br/>
+<br/>
+&nbsp; &nbsp; Az illetékes hatóság levelezési címe: Nemzeti Fogyasztóvédelmi Hatóság, 1088 Budapest, József krt. 6.   <br/>
+&nbsp; &nbsp; A vállalkozásunk székhelye szerinti békéltető testület levelezési címe: Budapest Békéltető Testület, 1016  <br/>
+&nbsp; &nbsp; Budapest, Krisztina krt. 99. <br/>
+<br/>
+<br/>
+&nbsp; &nbsp;  {!Today}
+
+<br/>

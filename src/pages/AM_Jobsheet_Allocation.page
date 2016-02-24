@@ -1,0 +1,61 @@
+<apex:page controller="Amr_JobSheetController" sidebar="false">
+<apex:pagemessages id="msgs"></apex:pagemessages>   
+     <apex:form >
+    
+    
+
+<html>
+    <head>
+    <title>
+        Job Allocation
+    </title>
+    <style>
+        .header {
+        font-size:17px;
+        font-weight:bold;
+        color: #214278;
+        }
+        .allocation-main {
+        margin:100px;
+        }
+        .allocation-sub{
+        padding:8px;
+        }
+    </style>
+    </head>
+    <body>
+        <div class='allocation-main'>
+            <div class='allocation-sub'>
+                <span class='header'>Job Allocation</span>
+            </div>
+            <div class='allocation-sub' style="color:#214278;">
+                Allocate responsibility for this job to a RAP by selecting a name from the list.
+            </div>
+            <div class='allocation-sub'>
+                An Automated email notification will be sent to the appointed RAP requesting their acceptance.
+            </div>
+            <div class='allocation-sub'>
+                 <apex:outputLabel value="Re - Allocate" style="font-weight:bold;"/><br/><br/><br/><br/>
+                           <apex:selectList label="Select the user Name" multiselect="false" size="1" value="{!selectusername}">
+                <apex:selectOptions value="{!usernam}"></apex:selectOptions></apex:selectList>
+                <apex:commandLink value="Cancel this job" action="{!cancelJob}" reRender="msgs"/>
+            </div>
+            <div class='allocation-sub'>
+                <apex:commandButton value="Submit" action="{!Reallocate}"  reRender="pgbt,msgs"/>
+            </div>
+            <div class='allocation-sub' style='margin-top:30px;'>
+            <!-----   < <input type='checkbox'/>
+                Click to confirm that the production activity has been checked and is correct for the scope of the project. ---->
+            </div>
+        </div>
+    </body>
+</html>
+
+    
+    </apex:form>
+
+
+ 
+   
+
+</apex:page>

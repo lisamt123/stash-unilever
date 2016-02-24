@@ -1,0 +1,241 @@
+<apex:page id="thePage">
+   <apex:tabPanel switchType="client" selectedTab="job_sheet" id="theTabPanel">
+      <apex:tab label="Job Sheet" name="job_sheet" id="job_sheet">
+         <!-- start of 1 -->
+         <apex:form >
+         
+         
+         <apex:component >
+              <apex:inputTextarea />
+         </apex:component>
+         
+         
+            <b>
+               <apex:outputLabel >Job Sheet</apex:outputLabel>
+            </b>            
+            <br/><br/>
+            <apex:pageBlock >
+               <apex:pageBlockSection collapsible="true" title="Allocation Options">                  
+                  <apex:pageBlockSection collapsible="true" title="Job Reallocation">                    
+                     <apex:selectList multiselect="false" size="1">
+                        <apex:selectOption itemValue="JOB1" itemLabel="JOB1"/>
+                        <apex:selectOption itemValue="JOB234353535353" itemLabel="JOB23435353535323333"/>
+                        <apex:selectOption itemValue="JOB3" itemLabel="JOB3"/>
+                     </apex:selectList>
+                     <apex:selectList multiselect="false" size="1">
+                        <apex:selectOption itemValue="RAP1" itemLabel="RAP1"/>
+                        <apex:selectOption itemValue="RAP236363633633" itemLabel="RAP23636363363333333"/>
+                        <apex:selectOption itemValue="RAP3" itemLabel="RAP3"/>
+                     </apex:selectList>
+                     <apex:commandButton value="Submit"/>
+                  </apex:pageBlockSection>
+                  <br/>
+                  <apex:pageBlockSection collapsible="true" title="Job Cancellation">
+                     <apex:selectList multiselect="false" size="1">
+                        <apex:selectOption itemValue="" itemLabel="Select a Job"/>
+                        <apex:selectOption itemValue="JOB2" itemLabel="JOB2"/>
+                        <apex:selectOption itemValue="JOB3" itemLabel="JOB3"/>
+                     </apex:selectList>
+                     <br/>
+                     <apex:commandButton value="Submit"/>
+                  </apex:pageBlockSection>                  
+               </apex:pageBlockSection>
+            </apex:pageBlock>
+            <br/><br/>
+            <apex:pageBlock >
+               <apex:pageBlockSection collapsible="true" title="Opening Job Sheet">
+               </apex:pageBlockSection>
+            </apex:pageBlock>
+            <br/><br/>
+            <apex:pageBlock >
+               <apex:pageBlockSection collapsible="true" title="Comments" columns="1">
+                  <apex:selectList multiselect="false" size="1">
+                       <apex:selectOption itemValue="" itemLabel="Select a Job"/>
+                       <apex:selectOption itemValue="JOB2" itemLabel="JOB2"/>
+                       <apex:selectOption itemValue="JOB3" itemLabel="JOB3"/>
+                  </apex:selectList>
+                  <apex:inputTextarea rows="5" cols="50"/>
+                  <apex:commandButton value="Submit"/>                  
+               </apex:pageBlockSection>
+               <apex:pageBlockSection collapsible="true" title="Creative Docs" columns="1" >
+                   <apex:selectList multiselect="false" size="1">
+                      <apex:selectOption itemValue="" itemLabel="Select a Job"/>
+                      <apex:selectOption itemValue="JOB2" itemLabel="JOB2"/>
+                      <apex:selectOption itemValue="JOB3" itemLabel="JOB3"/>
+                  </apex:selectList>
+                  <apex:inputText />
+                  <apex:commandButton value="Upload"/>
+                  List of previous docs
+               </apex:pageBlockSection>
+            </apex:pageBlock>
+            <br/><br/>
+            <apex:pageBlock >
+               <apex:pageBlockSection title="New Saving line" columns="1" collapsible="false">
+                  <table cellpadding="20" border="1">
+                     <tr>
+                        <td>production type</td>
+                        <td>No of assets created</td>
+                        <td>No of shoot days</td>
+                        <td>File Upload</td>
+                        <td></td>
+                     </tr>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="Submit" value="Upload" /></td>
+                        <td>+</td>
+                     </tr>
+                  </table>
+               </apex:pageBlockSection>
+               <apex:pageBlockSection title="Submitted Savings" columns="1" collapsible="true">
+                  <table cellpadding="20" border="1">
+                     <tr>
+                        <td>production type</td>
+                        <td>No of assets created</td>
+                        <td>No of shoot days</td>
+                        <td>File Upload</td>
+                     </tr>
+                     <tr>
+                        <td>ABC</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>doc</td>
+                     </tr>
+                  </table>
+               </apex:pageBlockSection>
+            </apex:pageBlock>
+         </apex:form>
+         <!-- end of 1 -->
+      </apex:tab>
+      <apex:tab label="Job Portfolio" name="job_portfolio" id="job_portfolio">
+         <apex:form >
+            <style>
+               .grey{
+               background-color:red;
+               }
+            </style>
+            <b>
+               <apex:outputLabel >CAP Portfolio Landing Page</apex:outputLabel>
+            </b>
+            <br/><br/>
+            <b>
+               <apex:outputLabel >Dashboard</apex:outputLabel>
+            </b>
+            <br/><br/>
+            <apex:pageBlock >
+               <br/>
+               <b>Search And Filters</b>
+               <br/><br/>
+               <table style='width:700px;'>
+                  <tr>
+                     <td>Start Date</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>End Date</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Category/Brand Positioning/Brand Name</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Location of Project Leader (Market Cluster/Country)</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Lead/Creative Agency name </td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Broadcast Market</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Stage Logged</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Job Accepted – yes/no</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Job Started – data entered or not</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Job Reported – data entered or not</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Job Shared – yes/no</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>ADManager Number</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td> “UL Project Leader” Email</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>Project Name</td>
+                     <td>
+                        <apex:inputText />
+                     </td>
+                  </tr>
+               </table>
+            </apex:pageBlock>
+            <br/><br/>
+            <apex:pageBlock >
+               <apex:pageBlockSection collapsible="True" title="Job List" >
+                  <apex:pageBlockSection collapsible="True" title="Pending Jobs" >
+                     Pending jobs list     
+                  </apex:pageBlockSection>
+                  <br/>
+                  <apex:pageBlockSection collapsible="True" title="Priority Jobs" >
+                     Priority jobs list
+                  </apex:pageBlockSection>
+                  <br/>
+                  <apex:pageBlockSection collapsible="True" title="Live Jobs" >
+                     Live jobs list
+                  </apex:pageBlockSection>
+                  <br/>
+                  <apex:pageBlockSection collapsible="True" title="Dormant Jobs" >
+                     Dormant jobs list
+                  </apex:pageBlockSection>
+               </apex:pageBlockSection>
+            </apex:pageBlock>
+            
+         </apex:form>
+      </apex:tab>
+   </apex:tabPanel>
+</apex:page>

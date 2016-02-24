@@ -1,0 +1,31 @@
+<p><span style="font-family:arial,helvetica,sans-serif"><small><strong>Case ID:</strong> {!Case.CaseNumber}&nbsp;</small></span></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif"><small><strong>Consumer Name: </strong>{!Case.Account}</small></span></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif"><small><strong>Address:</strong> {!Account.PersonMailingAddress}&nbsp;</small></span></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif"><small><strong>Requestor:</strong> {!Case.OwnerFullName}&nbsp;</small></span></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif"><small><strong>STERLING Amount</strong>:                                                          &nbsp;</small></span></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif"><small><strong>EURO Amount</strong>:                                                          &nbsp;</small></span></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif"><small><strong>BACS Amount:</strong>                                                          &nbsp;</small></span></p>
+
+<p><strong><span style="font-family:arial,helvetica,sans-serif"><small>CHAPS Amount:                                                          &nbsp;</small></span></strong></p>
+
+<p><strong><span style="font-family:arial,helvetica,sans-serif"><small>Reason for Pay:                                                                                                                                         
+
+
+
+&nbsp;</small></span></strong></p>
+
+<p><span style="font-family:arial,helvetica,sans-serif"><small><strong><span style="color:#00FF00">Approve</span>/<span style="color:#FF0000">Reject</span>:                                                 </strong>&nbsp;</small></span></p>
+
+<p><strong><span style="font-family:arial,helvetica,sans-serif"><small><span style="color:#FF0000">Reason for Rejection</span>:
+
+
+
+
+
+</small></span></strong></p>

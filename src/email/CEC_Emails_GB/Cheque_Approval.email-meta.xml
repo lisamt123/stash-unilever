@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>To be used for cheque approvals/rejections</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Cheque Approval</name>
+    <style>none</style>
+    <subject>Please Approve/Reject Cheque</subject>
+    <textOnly>Case ID: {!Case.Id}  
+
+Consumer Name: {!Case.Account}  
+
+Address: {!Account.PersonMailingAddress}  
+
+Requestor: {!Case.OwnerFullName}  
+
+EURO Amount:  
+
+BACS Amount:  
+
+CHAPS Amount:  
+
+Reason for Pay:  
+
+
+
+Approve/Reject:  
+
+Reason for Rejection:</textOnly>
+    <type>custom</type>
+</EmailTemplate>

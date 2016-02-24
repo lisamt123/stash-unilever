@@ -3,10 +3,19 @@
     <defaultLandingTab>standard-home</defaultLandingTab>
     <description>This app will provide access to Chatter Only user of Unilever</description>
     <label>Unilever Chatter Only</label>
-    <logo>Communications_Planner/Unilever_Logo_for_App.gif</logo>
     <tab>standard-UserProfile</tab>
     <tab>standard-Chatter</tab>
     <tab>standard-CollaborationGroup</tab>
     <tab>standard-OtherUserProfile</tab>
     <tab>standard-File</tab>
+    <tab>EA_Team_Member__c</tab>
+    <tab>AIW</tab>
+    <tab>Amr_Job_Details__c</tab>
+    <tab>Recordshare</tab>
+    <tab>CPA_HLE_Request__c</tab>
+    <tab>Amr_Summary_Plan__c</tab>
+    <tab>Saving_Summary</tab>
+    <tab>All_Themes__c</tab>
+    <tab>Attendee__c</tab>
+    <tab>test_feed</tab>
 </CustomApplication>

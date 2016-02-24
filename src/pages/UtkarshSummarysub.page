@@ -1,0 +1,1886 @@
+<apex:page controller="UtkarshSavingSub" sidebar="false" standardStylesheets="false">
+<apex:include pageName="amr_common_final" />
+<head>
+<style type="text/css">
+.inner_heading_sub_section h4 {
+    background: #3399cc !important;
+    clear:both;
+    display:block;
+ }
+ .inner_section {
+     clear:both;
+ }
+ .commonPCEuroAmount,.commonPCEuroAmountNew,.commonPPCEuroAmount,.commonPPCEuroAmountNew,.TotalAcceptedFinalCostAccepted,.commonCAEuroAmount,.commonCAEuroAmountNew,.PPCEuroAmountAccepted,.PCEuroAmountAccepted,.CAEuroAmountAccepted{
+    background-color:lightgrey;
+}
+
+.sendPcTimeMangCategory {
+    text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.sendPcCostMangCategory {
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.sendPcProcessMangCategory {                
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.sendPcOutputQualityCategory {
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+
+.sendPpcTimeMangCategory {
+    text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.sendPpcCostMangCategory {
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.sendPpcProcessMangCategory {                
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.sendPpcOutputQualityCategory {
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+
+.sendCaTimeMangCategory {
+    text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.sendCaCostMangCategory {
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.sendCaProcessMangCategory {                
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+.sendCaOutputQualityCategory {
+     text-align : center;
+     width : 150px;
+     height : 40px;
+     background-color:#e5e5ff;
+}
+
+.pc-time-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image : url({!$Resource.Amr_starimage}); 
+    background-size: contain;
+    z-index : 1;
+}
+.pc-cost-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_starimage}); 
+    background-size: contain;
+    z-index : 1;
+}
+.pc-process-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_starimage}); 
+    background-size: contain;
+    z-index : 1;
+}
+.pc-output-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_starimage}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ppc-time-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image : url({!$Resource.Amr_starimage}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ppc-cost-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_starimage}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ppc-process-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_starimage}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ppc-output-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_starimage}); 
+    background-size: contain;
+    z-index : 1;
+}
+
+.ca-time-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image : url({!$Resource.Amr_starimage}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ca-cost-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_starimage}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ca-process-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_starimage}); 
+    background-size: contain;
+    z-index : 1;
+}
+.ca-output-cat{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+     background-image : url({!$Resource.Amr_starimage}); 
+    background-size: contain;
+    z-index : 1;
+}
+
+.changeColor{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image : url({!$Resource.Amr_redstarimage}); 
+    background-size: contain;
+}
+.changeColorHover{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-image : url({!$Resource.Amr_redstarimage}); 
+    background-size: contain;
+}
+.categoryStyle{
+    margin-top : 10px;
+    text-align : center;
+     width : 150px;
+     height : 70px;
+     font-size : 18px;
+    background-color: #ccccff;
+}
+.main-container{
+    width : 100%; 
+}
+.category-container{
+    width : 300px;
+    float : left;
+    position : relative;
+}
+.holder-class{
+  
+}
+
+}
+
+
+
+</style>
+
+<script>
+   $j(function(){
+
+        // auto star selection
+        
+        var data = {!SelectedRatingStar};
+         //  $j('.star-rating span').addClass('changeColor');
+ 
+        var divclass; 
+       for(var i = 0; i<data.length;i++ ){
+       var savingId = data[i].Id;
+           divclass = data[i].Pc_Time_Manage_Star__c;
+           for(var j=1;j<=data[i].PC_Appraisal_Time_Management__c;j++){   
+              
+           $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
+                       
+           }
+           divclass = data[i].Pc_Cost_Manage_Star__c;
+           for(var j=1;j<=data[i].PC_Appraisal_Cost_Management__c ;j++){   
+            $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
+                       
+           }
+           divclass = data[i].Pc_Proces_Manage_Star__c;
+           for(var j=1;j<=data[i].PC_Appraisal_Process_Management__c ;j++){   
+           $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
+                       
+           }
+           divclass = data[i].Pc_Output_Quality_Star__c;
+           for(var j=1;j<=data[i].PC_Appraisal_Output_Quality__c;j++){   
+           $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
+                       
+           }
+           divclass = data[i].Ppc_Time_Manage_Star__c;
+           for(var j=1;j<=data[i].PPC_Appraisal_Time_Management__c;j++){   
+           $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
+                       
+           }
+           divclass = data[i].Ppc_Cost_Manage_Star__c;
+           for(var j=1;j<=data[i].PPC_Appraisal_Cost_Management__c;j++){   
+           $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
+                       
+           }
+           divclass = data[i].Ppc_Process_Manage_Star__c;
+           for(var j=1;j<=data[i].PC_Appraisal_Process_Management__c;j++){   
+           $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
+                       
+           }
+           divclass = data[i].Ppc_Output_Quality_Star__c;
+           for(var j=1;j<=data[i].PPC_Appraisal_Output_Quality__c;j++){   
+           $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
+                       
+           }
+           divclass = data[i].Ca_Time_Manage_Star__c;
+           for(var j=1;j<=data[i].CA_Appraisal_Time_Management__c;j++){   
+            $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
+                       
+           }
+           divclass = data[i].Ca_Cost_Manage_Star__c;
+           for(var j=1;j<=data[i].CA_Appraisal_Cost_Management__c;j++){   
+            $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
+                       
+           }
+           divclass = data[i].Ca_Process_Manage_Star__c;
+           for(var j=1;j<=data[i].CA_Appraisal_Process_Management__c ;j++){   
+            $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
+                       
+           }
+            divclass = data[i].Ca_Output_Quality_Star__c;
+           for(var j=1;j<=data[i].CA_Appraisal_Output_Quality__c ;j++){  
+            $j('.'+divclass+ savingId  +' span[rel='+j +']').addClass('changeColor');
+                       
+           }
+
+       }
+
+      
+    
+      $j('.holder-class span.common').click(function(){
+           var num = $j(this).attr('rel');  
+         //  $(this).removeClass('changeColor');
+           $j(this).parent().find('span').removeClass('changeColor');
+           
+           var jq;
+           for(var i = 1; i<=num; i++){
+                     
+            jq = $j(this).parent().children('span[rel='+i+']');
+            jq.addClass('changeColor');                
+           }
+           $j('.hel').text(num);
+           var data_id = $j(this).closest('.holder-class').attr('data-id');    
+          
+            var fnstring = data_id;
+            var fnparams = [num,data_id];
+           //  var fnparams1 = [];
+            
+        
+            var fn = window[fnstring];
+        
+            if (typeof fn === "function") 
+                fn.apply(null, fnparams);
+               
+       });
+       
+       
+       
+       $j(".holder-class span").hover(function(){
+        var num = $j(this).attr('rel');
+        $j(this).parent().find('span').removeClass('changeColorHover');
+        var jq;
+        for(var i = 1; i<=num; i++){
+            jq = $j(this).parent().children('span[rel='+i+']');
+            jq.addClass('changeColorHover'); 
+        }
+           
+       });
+       
+       $j('.holder-class div').mouseleave(function() {          
+           $j(this).find('span').removeClass('changeColorHover');       
+       });
+       
+      
+      //end modified
+      
+       
+   }); 
+   
+</script>
+
+
+<script>
+function EditFun(id) {
+         
+          EditSavingActionFun(id);
+           
+        } 
+        
+        function EditFunForQuote(Id){
+       
+            EditForQuoteActionFun(Id);
+             
+        }
+        function EditFunForAccQuote(Id) {
+
+ 
+         editAccActionFun(Id);
+       alert(Id);
+        }
+        
+       
+
+</script>
+<script>
+    function isNumber(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+        }
+                return true;
+       }
+        
+        
+    function PCEuroAmountAccepted(){
+          var stringArray = JSON.parse('{!lstcov }');
+          var PCCurrency = $j('.PCCurrencyAccepted').val();
+          var PCLocalAmount = $j('.PCLocalAmountAccepted').val();
+          alert('inside'+PCLocalAmount);
+          alert('PCCurrency'+PCLocalAmount);
+          for(var i=0;i<stringArray.length;i++){
+                   
+                    if(stringArray[i].Currency_Unit__c == PCCurrency ){
+                         console.debug('inside'+PCLocalAmount);
+                          if(PCLocalAmount !=='0' && PCLocalAmount !==null && PCLocalAmount !==""){
+                             if(PCLocalAmount !==null && PCLocalAmount !==""){
+                                  PCLocalAmount = parseInt(PCLocalAmount);
+                                 $j('.PCEuroAmountAccepted').val(stringArray[i].Currency_Unit_To_Euro__c/PCLocalAmount);
+                             }         
+                          }else{
+                          
+                               $j('.PCEuroAmountAccepted').val(0);
+                          }
+                    }
+                    
+            }
+            
+            var PPCEuroAmount = $j('.PPCEuroAmountAccepted').val();
+           
+            
+            
+            var CAEuroAmount = $j('.CAEuroAmountAccepted').val();
+           
+           
+             
+            var PCEuroAmount = $j('.PCEuroAmountAccepted').val();
+            
+           
+            
+            if(PCEuroAmount !== "" && PPCEuroAmount !=="" && CAEuroAmount!== ""){
+                  PPCEuroAmount = parseFloat(PPCEuroAmount);
+                  CAEuroAmount = parseFloat(CAEuroAmount);
+                  PCEuroAmount =  parseFloat(PCEuroAmount);
+                  var total = PCEuroAmount+PPCEuroAmount+CAEuroAmount;
+                 
+                  total = total.toFixed(4);
+                  console.debug('===>'+total );
+                 $j('.TotalAcceptedFinalCostAccepted').val(total);
+            }
+          
+      }
+      
+      function PPCEuroAmountAccepted(){
+         var stringArray = JSON.parse('{!lstcov }');
+          var PPCCurrency = $j('.PPCCurrencyAccepted').val();
+          var PPCLocalAmount = $j('.PPCLocalAmountAccepted').val();
+         
+          
+          for(var i=0;i<stringArray.length;i++){
+                   
+                    if(stringArray[i].Currency_Unit__c == PPCCurrency){
+                         console.debug('inside');
+                          if(PPCLocalAmount!=='0' && PPCLocalAmount!==null && PPCLocalAmount!==""){
+                             if(PPCLocalAmount!==null && PPCLocalAmount!==""){
+                                  PPCLocalAmount = parseInt(PPCLocalAmount);
+                                 $j('.PPCEuroAmountAccepted').val(stringArray[i].Currency_Unit_To_Euro__c/PPCLocalAmount);
+                             }         
+                          }else{
+                          
+                               $j('.PPCEuroAmountAccepted').val(0);
+                          }
+                    }
+                    
+            }
+            
+            var PPCEuroAmount = $j('.PPCEuroAmountAccepted').val();
+           
+            
+            
+            var CAEuroAmount = $j('.CAEuroAmountAccepted').val();
+            
+           
+             
+            var PCEuroAmount = $j('.PCEuroAmountAccepted').val();
+           
+           
+            
+            if(PCEuroAmount !== "" && PPCEuroAmount !=="" && CAEuroAmount!== ""){
+                 PPCEuroAmount = parseFloat(PPCEuroAmount);
+                 CAEuroAmount = parseFloat(CAEuroAmount);
+                 PCEuroAmount =  parseFloat(PCEuroAmount);
+                 
+                 var total = PCEuroAmount+PPCEuroAmount+CAEuroAmount;
+                 
+                  total = total.toFixed(4);
+                  console.debug('===>'+total );
+                 $j('.TotalAcceptedFinalCostAccepted').val(total);
+            }
+          
+      }
+      
+      function CAEuroAmountAccepted(){
+          var stringArray = JSON.parse('{!lstcov }');
+          var CACurrency = $j('.CACurrencyAccepted').val();
+          var CALocalAmount = $j('.CALocalAmountAccepted').val();
+          
+          
+          for(var i=0;i<stringArray.length;i++){
+                   
+                    if(stringArray[i].Currency_Unit__c == CACurrency){
+                         console.debug('inside');
+                          if(CALocalAmount !=='0' && CALocalAmount !==null && CALocalAmount !==""){
+                             if(CALocalAmount !==null && CALocalAmount !==""){
+                                  CALocalAmount = parseInt(CALocalAmount);
+                                 $j('.CAEuroAmountAccepted').val(stringArray[i].Currency_Unit_To_Euro__c/CALocalAmount );
+                             }         
+                          }else{
+                          
+                               $j('.CAEuroAmountAccepted').val(0);
+                          }
+                    }
+                    
+            }
+            
+            var PPCEuroAmount = $j('.PPCEuroAmountAccepted').val();
+           
+            
+            var CAEuroAmount = $j('.CAEuroAmountAccepted').val();
+            
+           
+             
+            var PCEuroAmount = $j('.PCEuroAmountAccepted').val();
+           
+           
+            
+            if(PCEuroAmount !== "" && PPCEuroAmount !=="" && CAEuroAmount!== ""){
+                   PPCEuroAmount = parseFloat(PPCEuroAmount);
+                   CAEuroAmount = parseFloat(CAEuroAmount);
+                   PCEuroAmount =  parseFloat(PCEuroAmount);
+                  var total = PCEuroAmount+PPCEuroAmount+CAEuroAmount;
+                 
+                  total = total.toFixed(4);
+                  console.debug('===>'+total );
+                 j$('.TotalAcceptedFinalCostAccepted').val(total);
+            }
+          
+      }
+      
+       function commonCurrencyRelatedNew(){
+       
+        var stringArray = JSON.parse('{!lstcov }');
+         
+                       var PCLocalAmountNew = $j('.PCLocalAmountNew').val();
+                       var PCEuroAmountNew = $j('.PCEuroAmountNew').val();
+                       var  PCCurrencyNew = $j('.commonCurrencyRelatedNew').val();
+                        alert(PCLocalAmountNew);
+                       alert(PCEuroAmountNew);
+                        alert(PCCurrencyNew);
+                       for(var i=0;i<stringArray.length;i++){
+                            //alert('from backEnd'+stringArray[i].Currency_Unit__c);
+                            if(stringArray[i].Currency_Unit__c == PCCurrencyNew ){
+                               console.debug('Pc Currency==>'+PCCurrencyNew);
+                                 if(PCLocalAmountNew !=='0' && PCLocalAmountNew !==null && PCLocalAmountNew !=="" ){
+                                
+                                     if(PCLocalAmountNew !==null && PCLocalAmountNew !==""){
+                                          PCLocalAmountNew = parseInt(PCLocalAmountNew);
+                                         $j('.PCEuroAmountNew').val(stringArray[i].Currency_Unit_To_Euro__c/PCLocalAmountNew);
+                                     }  
+                                            
+                                 }else{
+                              
+                                   $j('.PCEuroAmountNew').val(0);    }
+                            }
+                       }
+                        
+       }
+       
+         
+                       
+                       function commonCurrencyRelatedPPCNewFun(){
+                       
+                       var stringArray = JSON.parse('{!lstcov }');
+                       
+                       var PPCLocalAmountNew = $j('.PPCLocalAmountNew').val();
+                       var PPCEuroAmountNew = $j('.PPCEuroAmountNew').val();
+                       var PPCCurrencyNew = $j('.commonCurrencyRelatedPPCNew').val();
+                      alert(PPCLocalAmountNew );
+                       alert(PPCEuroAmountNew);
+                    alert(PPCCurrencyNew);
+                       for(var i=0;i<stringArray.length;i++){
+                           
+                            if(stringArray[i].Currency_Unit__c == PPCCurrencyNew ){
+                               
+                                 if(PPCLocalAmountNew !=='0' && PPCLocalAmountNew !==null && PPCLocalAmountNew !==""){
+                                
+                                     if(PPCLocalAmountNew !==null && PPCLocalAmountNew !==""){
+                                          PPCLocalAmountNew = parseInt(PPCLocalAmountNew);
+                                         $j('.PPCEuroAmountNew').val(stringArray[i].Currency_Unit_To_Euro__c/PPCLocalAmountNew);
+                                     }         
+                                 }else{
+                              
+                                   $j('.PPCEuroAmountNew').val(0);
+                                 }
+                            }
+                       }
+                        
+                    }
+                    
+                    
+                     
+                    
+                     
+                     
+                       
+                       function commonCurrencyRelatedCANewFun(){
+                       
+                       var stringArray = JSON.parse('{!lstcov }');
+                       
+                       var CALocalAmountNew= $j('.CALocalAmountNew').val();
+                       var CAEuroAmountNew = $j('.CAEuroAmountNew').val();
+                       var CACurrencyNew = $j('.commonCurrencyRelatedCANew').val();
+                        alert(CALocalAmountNew);
+                        alert(CAEuroAmountNew);
+                        alert(CACurrencyNew);
+                       for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == CACurrencyNew ){
+                               console.debug('pPc Currency==>'+CACurrencyNew );
+                                 if(CALocalAmountNew !=='0' && CALocalAmountNew !==null && CALocalAmountNew !=="" ){
+                                 alert('inside!!'+CALocalAmountNew);
+                                     if(CALocalAmountNew !==null && CALocalAmountNew !==""){
+                                          CALocalAmountNew = parseInt(CALocalAmountNew);
+                                         $j('.CAEuroAmountNew').val(stringArray[i].Currency_Unit_To_Euro__c/CALocalAmountNew);
+                                     }         
+                                 }else{
+                              
+                                   $j('.CAEuroAmountNew').val(0);
+                                 }
+                            }
+                       }
+                        
+                    }
+                    
+                    
+                    
+                
+       
+</script>
+   
+</head>
+<apex:form >
+
+ <apex:actionRegion >
+ <apex:actionFunction name="EditSavingActionFun" action="{!editSaving}" ReRender="savingData1">
+                <apex:param name="one" value="" assignTo="{!saveRecordValue}"/>    
+        </apex:actionFunction>
+        <apex:actionFunction name="EditForQuoteActionFun" action="{!editQuote}" ReRender="quoteData">
+                <apex:param name="two" value="" assignTo="{!saveRecordValueForQuote}"/>    
+        </apex:actionFunction>
+          <apex:actionFunction name="editAccActionFun" action="{!editAcceptedQuote}" ReRender="quoteDataAcc">
+                <apex:param name="tthr" value="" assignTo="{!saveRecordValueForAccQuote}"/>    
+        </apex:actionFunction>
+     
+     </apex:actionRegion>
+<apex:pageBlock >
+<apex:pageMessages id="msgId"></apex:pageMessages>
+<apex:outputPanel id="pageBlockId">
+  <apex:repeat value="{!quoteList}" var="obj" >
+     
+<div class="inner_section">
+                       <h4>
+             {!obj.Production_Type__c}
+                <div class="minusclass commonall" data-id="radio-selected">
+                 </div>
+               </h4> 
+               </div>
+          <apex:actionRegion >   
+               <apex:commandLink value="Add Quote" action="{!addRowQuote}" reRender="quoteSection,msgId" status="actStatusIdQuote">
+                <apex:param name="param12" value="{!obj.Id}" assignTo="{!savingId}"/>
+                </apex:commandLink> 
+        <apex:actionStatus id="actStatusIdQuote" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+         </apex:actionStatus>
+         <apex:commandLink value="Delete" action="{!deleteSaving}" reRender="savingData" status="actStatusIdDelete">
+                <apex:param name="paramSav" value="{!obj.Id}" assignTo="{!savingId}"/>
+         </apex:commandLink> 
+        <apex:actionStatus id="actStatusIdDelete" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+         </apex:actionRegion>                                 
+        <apex:commandLink value="Edit"  onclick="EditFun('{!obj.id}');return Null;"/>
+         <apex:outputLink target="_blank" value="Am_DownloadFiles_bhupendra?id={!obj.id}">Download</apex:outputLink>
+         <apex:outputLink target="_blank" value="Amr_multiple_document_upload_bhupendra?id={!obj.id}">Upload More File</apex:outputLink>
+            
+        <apex:outputPanel styleClass="radio-selected" > 
+        <apex:pageBlock id="savingData">  
+        <apex:outputPanel id="savingData1">
+          <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                   AdManager Number                                                                                                  
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:outputText value="{!adManagerNumber}" />
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>  
+           
+             
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                    No Of Masters                                                                                                      
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.No_of_Masters__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                      <apex:outputField value="{!obj.No_of_Masters__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>    
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                    Duration Of Masters                                                                                                    
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Duration_of_Masters__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                       <apex:outputText value="{!obj.Duration_of_Masters__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>   
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                   No of additional films                                                                                               
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.No_of_Additional_Films__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                      <apex:outputText value="{!obj.No_of_Additional_Films__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>   
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                   Duration of additional films                                                                                              
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Duration_of_Additional_Films__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                      <apex:outputText value="{!obj.Duration_of_Additional_Films__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>   
+       <!--  <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                  Total Number Of films                                                                                            
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Total_no_of_films__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                      <apex:outputText value="{!obj.Total_no_of_films__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> -->
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                  No Of Shoot Days                                                                                        
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.No_of_shoot_days__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                     <apex:outputText value="{!obj.No_of_shoot_days__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+         
+         <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                 Shoot Location                                                                                     
+                             </div>
+                             <div class="subrightfield">
+                                    <!-- <apex:inputField value="{!obj.Shoot_Location__c}"   />-->
+                             <apex:outputText value="{!obj.Shoot_Location__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             <apex:selectList value="{!selectedCountry}" multiselect="true" size="5" label="Shoot Location" rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}">
+                              <apex:selectOptions value="{!shootLocation}"/>
+                            </apex:selectList>
+                             
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                 Script Title                                                                                     
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Script_Title__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                     <apex:outputText value="{!obj.Script_Title__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                Scope re-Brief                                                                                    
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Scope_re_brief__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                      <apex:outputText value="{!obj.Scope_re_brief__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                Folder                                                                                   
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Folder_Name__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                      <apex:outputText value="{!obj.Folder_Name__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                    Production Type                                                                                                        
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Production_Type__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                        <apex:outputText value="{!obj.Production_Type__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                                 <!-- <apex:selectList value="{!selectedProductionType}" multiselect="true" size="5" >
+                  <apex:selectOptions value="{!productionType}"/>
+            </apex:selectList>-->     
+           
+                             </div>
+                             
+       </div>  
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                  Stage RAP Engaged                                                                                        
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Stage_RAP_engaged__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                    <apex:outputText value="{!obj.Stage_RAP_engaged__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+                           
+    <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                                                                                                     
+                             </div>
+                             
+                             <div class="clear">
+                             </div>
+       </div>
+       </apex:outputPanel> 
+       <div class="subrightfield">
+                            
+                                    <apex:inputFile value="{!fileBody}" filename="{!document.name}" id="test" />
+                             
+                             </div>
+       
+        
+   <apex:actionRegion >    
+
+    <apex:commandlink action="{!submitData}" value="Save"   status="actStatusIdQuote1" >
+                                <apex:param name="param" value="{!obj.Id}" assignTo="{!savingId}"/> 
+                                <apex:param name="param2" value="{!document.body}" /> 
+                                </apex:commandlink>
+   
+    <apex:actionStatus id="actStatusIdQuote1" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                              
+    </apex:actionRegion>  
+    
+        </apex:pageBlock>
+
+
+
+      
+<apex:pageBlock id="savingData2">
+
+<!--<script type="text/javascript">
+               var stringArray = JSON.parse('{!lstcov }');
+                            
+                    
+                    $j('.1commonCurrencyRelatedNew').on('change',function(){
+                      // alert('Inside!!'); 
+                        var a = $j(this).val();
+                        var data_id = $j(this).attr('data-id');
+                        alert('data-id'+data_id);
+                       var PCLocalAmountNew = $j('.PCLocalAmountNew'+data_id).val();
+                       var PCEuroAmountNew = $j('.PCEuroAmountNew'+data_id).val();
+                       var  PCCurrencyNew = $j('.commonCurrencyRelatedNew').val();
+                        alert(PCLocalAmountNew);
+                        alert(PCEuroAmountNew);
+                        alert(PCCurrencyNew);
+                       for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == PCCurrencyNew ){
+                               console.debug('Pc Currency==>'+PCCurrencyNew);
+                                 if(PCLocalAmountNew !==0){
+                                     if(PCLocalAmountNew !==null && PCLocalAmountNew !==""){
+                                          PCLocalAmountNew = parseInt(PCLocalAmountNew);
+                                         $j('.PCEuroAmountNew'+data_id).val(stringArray[i].Currency_Unit_To_Euro__c/PCLocalAmountNew);
+                                     }         
+                                 }else{
+                              
+                                   $j('.PCEuroAmountNew'+data_id).val(0);
+                                 }
+                            }
+                       }
+                        
+                    });
+                    
+                    $j('.commonPCLocalAmountNew').on('change',function(){
+                        //var a = $j(this).closest('.adMangerNo').attr('number-id');
+                        var a = $j(this).parent().find('.commonCurrencyRelatedNew').val();
+                        var data_id = $j(this).parent().find('.commonCurrencyRelatedNew').attr('data-id');
+                        alert('data-id'+data_id);
+                        var PCLocalAmountNew  = $j('.PCLocalAmountNew'+data_id).val();
+                        var PCEuroAmountNew = $j('.PCEuroAmountNew'+data_id).val();
+                        var PCCurrencyNew = $j('.commonCurrencyRelatedNew').val();
+                       
+                       // alert(PCCurrencyNew);
+                       // alert(PCLocalAmountNew);
+                       // alert(PCEuroAmountNew);
+                        
+                        for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == PCCurrencyNew ){
+                               console.debug('Pc Currency==>'+PCCurrencyNew);
+                                 if(PCLocalAmountNew !==0){
+                                     if(PCLocalAmountNew !==null && PCLocalAmountNew !==""){
+                                          PCLocalAmountNew = parseInt(PCLocalAmountNew );
+                                         $j('.PCEuroAmountNew'+data_id).val(stringArray[i].Currency_Unit_To_Euro__c/PCLocalAmountNew );
+                                     }         
+                                 }else{
+                              
+                                   $j('.PCEuroAmountNew'+data_id).val(0);
+                                 }
+                            }
+                       }
+                       
+                    });
+                    
+                    
+                    $j('.commonCurrencyRelatedPPCNew').on('change',function(){
+                       
+                        var a = $j(this).val();
+                        var data_id = $j(this).attr('data-id');
+                       
+                       var PPCLocalAmountNew = $j('.PPCLocalAmountNew'+data_id).val();
+                       var PPCEuroAmountNew = $j('.PPCEuroAmountNew'+data_id).val();
+                       var PPCCurrencyNew = $j('.commonCurrencyRelatedPPCNew').val();
+                       // alert(PPCLocalAmountNew );
+                      //  alert(PPCEuroAmountNew);
+                      //  alert(PPCCurrencyNew);
+                       for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == PPCCurrencyNew ){
+                               console.debug('pPc Currency==>'+PPCCurrencyNew);
+                                 if(PPCLocalAmountNew !==0){
+                                     if(PPCLocalAmountNew !==null && PPCLocalAmountNew !==""){
+                                          PPCLocalAmountNew = parseInt(PPCLocalAmountNew);
+                                         $j('.PPCEuroAmountNew'+data_id).val(stringArray[i].Currency_Unit_To_Euro__c/PPCLocalAmountNew);
+                                     }         
+                                 }else{
+                              
+                                   $j('.PPCEuroAmountNew'+data_id).val(0);
+                                 }
+                            }
+                       }
+                        
+                    });
+                    
+                     $j('.commonPPCLocalAmountNew').on('change',function(){
+                       
+                        var a = $j(this).val();
+                       var data_id = $j(this).parent().find('.commonCurrencyRelatedPPCNew').attr('data-id');
+                       alert(data_id);
+                       var PPCLocalAmountNew = $j('.PPCLocalAmountNew '+data_id).val();
+                       var PPCEuroAmountNew = $j('.PPCEuroAmountNew'+data_id).val();
+                       var PPCCurrencyNew = $j('.commonCurrencyRelatedPPCNew').val();
+                        //alert(PPCLocalAmountNew );
+                      //  alert(PPCEuroAmountNew);
+                      //  alert(PPCCurrencyNew);
+                       for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == PPCCurrencyNew ){
+                               console.debug('pPc Currency==>'+PPCCurrencyNew);
+                                 if(PPCLocalAmountNew !==0){
+                                     if(PPCLocalAmountNew !==null && PPCLocalAmountNew !==""){
+                                          PPCLocalAmountNew = parseInt(PPCLocalAmountNew);
+                                         $j('.PPCEuroAmountNew'+data_id).val(stringArray[i].Currency_Unit_To_Euro__c/PPCLocalAmountNew);
+                                     }         
+                                 }else{
+                              
+                                   $j('.PPCEuroAmountNew'+data_id).val(0);
+                                 }
+                            }
+                       }
+                        
+                     });
+                     
+                     
+                     $j('.commonCurrencyRelatedCANew').on('change',function(){
+                       
+                        var a = $j(this).val();
+                        var data_id = $j(this).attr('data-id');
+                       
+                       var CALocalAmountNew= $j('.CALocalAmountNew'+data_id).val();
+                       var CAEuroAmountNew = $j('.CAEuroAmountNew'+data_id).val();
+                       var CACurrencyNew = $j('.commonCurrencyRelatedCANew').val();
+                       // alert(CALocalAmountNew);
+                       // alert(CAEuroAmountNew);
+                      //  alert(CACurrencyNew);
+                       for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == CACurrencyNew ){
+                               console.debug('pPc Currency==>'+CACurrencyNew );
+                                 if(CALocalAmountNew !==0){
+                                     if(CALocalAmountNew !==null && CALocalAmountNew !==""){
+                                          CALocalAmountNew = parseInt(CALocalAmountNew);
+                                         $j('.CAEuroAmountNew'+data_id).val(stringArray[i].Currency_Unit_To_Euro__c/CALocalAmountNew);
+                                     }         
+                                 }else{
+                              
+                                   $j('.CAEuroAmountNew'+data_id).val(0);
+                                 }
+                            }
+                       }
+                        
+                    });
+                    
+                    
+                    $j('.commonCALocalAmountNew').on('change',function(){
+                       
+                        var a = $j(this).val();
+                        var data_id = $j(this).parent().find('.commonCurrencyRelatedCANew').attr('data-id');
+                       
+                       var CALocalAmountNew = $j('.CALocalAmountNew'+data_id).val();
+                       var CAEuroAmountNew = $j('.CAEuroAmountNew'+data_id).val();
+                       var CACurrencyNew = $j('.commonCurrencyRelatedCANew').val();
+                       // alert(CALocalAmountNew );
+                      //  alert(CAEuroAmountNew);
+                      //  alert(CACurrencyNew);
+                       for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == CACurrencyNew){
+                               console.debug('pPc Currency==>'+CACurrencyNew);
+                                 if(CALocalAmountNew !==0){
+                                     if(CALocalAmountNew !==null && CALocalAmountNew !==""){
+                                          CALocalAmountNew = parseInt(CALocalAmountNew );
+                                         $j('.CAEuroAmountNew'+data_id).val(stringArray[i].Currency_Unit_To_Euro__c/CALocalAmountNew );
+                                     }         
+                                 }else{
+                              
+                                   $j('.CAEuroAmountNew'+data_id).val(0);
+                                 }
+                            }
+                       }
+                        
+                    });
+                    
+                    
+                    
+                    
+                }); 
+                
+                            
+     </script>-->
+     
+     
+     
+ <apex:repeat value="{!quoteRelatedToSavingList}" var="quotObj">
+ <apex:outputPanel rendered="{!IF(quotObj.Saving__c == obj.Id , true,false)}">
+ 
+ 
+ 
+ <div class="inner_heading_sub_section">
+                       <h4 style="display:block;background:#3399cc;clear:both;">
+           <apex:inputField value="{!quotObj.Is_Accepted__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" /> 
+           <apex:outputField value="{!quotObj.Is_Accepted__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/> Quote: {!quotObj.Quote_Number__c}
+               
+                <div class="minusclass commonall" data-id="radio-selected1">
+                 </div>
+               </h4> 
+               </div>
+         <apex:actionRegion >   
+               <apex:commandLink value="Delete" action="{!deleteQuote}" reRender="quoteSection" status="actStatusIdQuote7">
+                <apex:param name="param123" value="{!quotObj.Id}" assignTo="{!quoteId}"/>
+                </apex:commandLink> 
+        <apex:actionStatus id="actStatusIdQuote7" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+         </apex:actionRegion>  
+               
+             <apex:outputLink target="_blank" value="Am_DownloadFiles_bhupendra?id={!quotObj.id}">Download</apex:outputLink>
+            
+      <apex:commandLink value="--EditThere--" onclick="EditFunForQuote('{!quotObj.Id}');return Null;"   />
+      <apex:outputLink target="_blank" value="Amr_multiple_document_upload_bhupendra?id={!quotObj.id}">Upload More File</apex:outputLink>
+      
+               
+    <apex:outputPanel styleClass="radio-selected1">
+    <apex:pageBlock id="quoteData">
+     <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                Is PC part of the Roster ?                                                                                    
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Is_PC_part_of_the_Roster__c}"   rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.Is_PC_part_of_the_Roster__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               PC Name                                                                                   
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.PC_name__c}"  rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" />
+                                      <apex:outputText value="{!quotObj.PC_name__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               PC Country                                                                                
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.PC_Country__c}"  rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" />
+                                      <apex:outputText value="{!quotObj.PC_Country__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Service Company Name                                                                                
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Service_Company_Name__c}"  rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" />
+                                      <apex:outputText value="{!quotObj.Service_Company_Name__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Local Currency Of PC Cost                                                                               
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Local_Currency_of_PC_Costs__c}"  styleclass="commonCurrencyRelatedNew" onchange="commonCurrencyRelatedNew()" html-data-id="{!quotObj.Quote_Number__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.Local_Currency_of_PC_Costs__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Local Amount Of PC                                                                            
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Local_Amount_of_PC__c}"    onkeyup="commonCurrencyRelatedNew()" onkeypress="return isNumber(event)" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" styleclass="commonPCLocalAmountNew PCLocalAmountNew"/>
+                                      <apex:outputText value="{!quotObj.Local_Amount_of_PC__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+          <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               PC Costs (Euro Amount)                                                                              
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputText value="{!quotObj.PC_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"  styleclass="commonPCEuroAmountNew PCEuroAmountNew"  html-readonly="true"/>
+                                      <apex:outputText value="{!quotObj.PC_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Is PPC part of the Roster?                                                                             
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Is_the_PPC_part_of_the_Roster__c}"  rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" />
+                                      <apex:outputText value="{!quotObj.Is_the_PPC_part_of_the_Roster__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               PPC Name                                                                            
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.PPC_Name__c}"  rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" />
+                                      <apex:outputText value="{!quotObj.PPC_Name__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               PPC Country                                                                         
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.PPC_Country__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"  />
+                                      <apex:outputText value="{!quotObj.PPC_Country__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Local Currency of PPC Costs                                                                        
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Local_Currency_of_PPC_Costs__c}"  rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" onchange="commonCurrencyRelatedPPCNewFun()" styleclass="commonCurrencyRelatedPPCNew" html-data-id="{!quotObj.Quote_Number__c}"/>
+                                      <apex:outputText value="{!quotObj.Local_Currency_of_PPC_Costs__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+         <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Local Amount of PPC                                                                       
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Local_Amount_of_PPC__c}"  onkeyup="commonCurrencyRelatedPPCNewFun()" onkeypress="return isNumber(event)" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" styleclass="commonPPCLocalAmountNew PPCLocalAmountNew"/>
+                                      <apex:outputText value="{!quotObj.Local_Amount_of_PPC__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               PPC Costs(Euro Amount)                                                                      
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputText value="{!quotObj.PPC_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" styleclass="commonPPCEuroAmountNew PPCEuroAmountNew"  html-readonly="true"/>
+                                      <apex:outputText value="{!quotObj.PPC_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               CA/Additional agency Name                                                                    
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.CA_Additional_agency_Name__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.CA_Additional_agency_Name__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+          <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               CA Location                                                                 
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.CA_Location__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.CA_Location__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Local Currency of CA Costs                                                              
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Local_Currency_of_CA_Costs__c}"  rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" onchange="commonCurrencyRelatedCANewFun()" styleclass="commonCurrencyRelatedCANew" html-data-id="{!quotObj.Quote_Number__c}"/>
+                                      <apex:outputText value="{!quotObj.Local_Currency_of_CA_Costs__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Local Amount of CA                                                             
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Local_Amount_of_CA__c}"   onkeyup="commonCurrencyRelatedCANewFun()" onkeypress="return isNumber(event)" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" styleclass="commonCALocalAmountNew CALocalAmountNew"/>
+                                      <apex:outputText value="{!quotObj.Local_Amount_of_CA__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                           CA Costs(Euro Amount)                                                            
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputText value="{!quotObj.CA_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" styleclass="commonCAEuroAmountNew CAEuroAmountNew"  html-readonly="true"/>
+                                      <apex:outputText value="{!quotObj.CA_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                           folder                                                          
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Folder__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.Folder__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="subrightfield">
+                            
+                                    <apex:inputFile value="{!fileBody}" filename="{!document.name}" id="test" />
+                             
+                             </div>
+        <apex:actionRegion >    
+
+    <apex:commandlink action="{!submitDataQuote}" value="Save"   status="actStatusIdQuote2" >
+                                <apex:param name="param" value="{!quotObj.Id}" assignTo="{!quoteId}"/> 
+                                <apex:param name="param2" value="{!document.body}" /> 
+                                </apex:commandlink>
+   
+    <apex:actionStatus id="actStatusIdQuote2" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                              
+    </apex:actionRegion>  
+       </apex:pageBlock>
+       
+</apex:outputPanel>
+
+
+ </apex:outputPanel> 
+  </apex:repeat>
+
+  </apex:pageBlock>
+  
+   <apex:pageBlock id="quoteSection">
+   
+   
+   <script type="text/javascript">
+               var stringArray = JSON.parse('{!lstcov }');
+                $j(function(){
+                   
+                    
+                    $j('.commonCurrencyRelated').on('change',function(){
+                        //var a = $j(this).closest('.adMangerNo').attr('number-id');
+                        var a = $j(this).val();
+                        var data_id = $j(this).attr('data-id');
+                        alert('data-id'+data_id);
+                       var PCLocalAmount = $j('.PCLocalAmount'+data_id).val();
+                       var PCEuroAmount = $j('.PCEuroAmount'+data_id).val();
+                       var  PCCurrency = $j('.commonCurrencyRelated').val();
+                        //alert(PCLocalAmount);
+                       // alert(PCEuroAmount);
+                       // alert(PCCurrency);
+                       for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == PCCurrency ){
+                               console.debug('Pc Currency==>'+PCCurrency);
+                                 if(PCLocalAmount !=='0' && PCLocalAmount !==null && PCLocalAmount !==""){
+                                     if(PCLocalAmount !==null && PCLocalAmount !==""){
+                                          PCLocalAmount = parseInt(PCLocalAmount);
+                                         $j('.PCEuroAmount'+data_id).val(stringArray[i].Currency_Unit_To_Euro__c/PCLocalAmount);
+                                     }         
+                                 }else{
+                              
+                                   $j('.PCEuroAmount'+data_id).val(0);
+                                 }
+                            }
+                       }
+                        
+                    });
+                    
+                    $j('.commonPCLocalAmount').on('change',function(){
+                        //var a = $j(this).closest('.adMangerNo').attr('number-id');
+                        var a = $j(this).parent().find('.commonCurrencyRelated').val();
+                        var data_id = $j(this).parent().find('.commonCurrencyRelated').attr('data-id');
+                        alert('data-id'+data_id);
+                        var PCLocalAmount = $j('.PCLocalAmount'+data_id).val();
+                        var PCEuroAmount = $j('.PCEuroAmount'+data_id).val();
+                        var PCCurrency = $j('.commonCurrencyRelated').val();
+                       
+                       // alert(PCCurrency);
+                       // alert(PCLocalAmount);
+                       // alert(PCEuroAmount);
+                        
+                        for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == PCCurrency ){
+                               console.debug('Pc Currency==>'+PCCurrency);
+                                 if(PCLocalAmount !=='0' && PCLocalAmount !==null && PCLocalAmount !==""){
+                                     if(PCLocalAmount !==null && PCLocalAmount !==""){
+                                          PCLocalAmount = parseInt(PCLocalAmount);
+                                         $j('.PCEuroAmount'+data_id).val(stringArray[i].Currency_Unit_To_Euro__c/PCLocalAmount);
+                                     }         
+                                 }else{
+                              
+                                   $j('.PCEuroAmount'+data_id).val(0);
+                                 }
+                            }
+                       }
+                       
+                    });
+                    
+                    
+                    $j('.commonCurrencyRelatedPPC').on('change',function(){
+                       
+                        var a = $j(this).val();
+                        var data_id = $j(this).attr('data-id');
+                       
+                       var PPCLocalAmount = $j('.PPCLocalAmount'+data_id).val();
+                       var PPCEuroAmount = $j('.PPCEuroAmount'+data_id).val();
+                       var PPCCurrency = $j('.commonCurrencyRelatedPPC').val();
+                       // alert(PPCLocalAmount);
+                      //  alert(PPCEuroAmount);
+                      //  alert(PPCCurrency);
+                       for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == PPCCurrency ){
+                               console.debug('pPc Currency==>'+PPCCurrency);
+                                 if(PPCLocalAmount !=='0' && PPCLocalAmount !==null && PPCLocalAmount !==""){
+                                     if(PPCLocalAmount !==null && PPCLocalAmount !==""){
+                                          PPCLocalAmount = parseInt(PPCLocalAmount);
+                                         $j('.PPCEuroAmount'+data_id).val(stringArray[i].Currency_Unit_To_Euro__c/PPCLocalAmount);
+                                     }         
+                                 }else{
+                              
+                                   $j('.PPCEuroAmount'+data_id).val(0);
+                                 }
+                            }
+                       }
+                        
+                    });
+                    
+                     $j('.commonPPCLocalAmount').on('change',function(){
+                       
+                        var a = $j(this).val();
+                       var data_id = $j(this).parent().find('.commonCurrencyRelatedPPC').attr('data-id');
+                       alert(data_id);
+                       var PPCLocalAmount = $j('.PPCLocalAmount'+data_id).val();
+                       var PPCEuroAmount = $j('.PPCEuroAmount'+data_id).val();
+                       var PPCCurrency = $j('.commonCurrencyRelatedPPC').val();
+                        //alert(PPCLocalAmount);
+                      //  alert(PPCEuroAmount);
+                      //  alert(PPCCurrency);
+                       for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == PPCCurrency ){
+                               console.debug('pPc Currency==>'+PPCCurrency);
+                                 if(PPCLocalAmount !=='0' && PPCLocalAmount !==null && PPCLocalAmount !==""){
+                                     if(PPCLocalAmount !==null && PPCLocalAmount !==""){
+                                          PPCLocalAmount = parseInt(PPCLocalAmount);
+                                         $j('.PPCEuroAmount'+data_id).val(stringArray[i].Currency_Unit_To_Euro__c/PPCLocalAmount);
+                                     }         
+                                 }else{
+                              
+                                   $j('.PPCEuroAmount'+data_id).val(0);
+                                 }
+                            }
+                       }
+                        
+                     });
+                     
+                     
+                     $j('.commonCurrencyRelatedCA').on('change',function(){
+                       
+                        var a = $j(this).val();
+                        var data_id = $j(this).attr('data-id');
+                       
+                       var CALocalAmount = $j('.CALocalAmount'+data_id).val();
+                       var CAEuroAmount = $j('.CAEuroAmount'+data_id).val();
+                       var CACurrency = $j('.commonCurrencyRelatedCA').val();
+                        alert(CALocalAmount);
+                        alert(CAEuroAmount);
+                        alert(CACurrency);
+                       for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == CACurrency ){
+                               console.debug('pPc Currency==>'+CACurrency);
+                                 if(CALocalAmount !=='0' && CALocalAmount !==null && CALocalAmount !==""){
+                                     if(CALocalAmount !==null && CALocalAmount !==""){
+                                          CALocalAmount = parseInt(CALocalAmount);
+                                         $j('.CAEuroAmount'+data_id).val(stringArray[i].Currency_Unit_To_Euro__c/CALocalAmount);
+                                     }         
+                                 }else{
+                              
+                                   $j('.CAEuroAmount'+data_id).val(0);
+                                 }
+                            }
+                       }
+                        
+                    });
+                    
+                    
+                    $j('.commonCALocalAmount').on('change',function(){
+                       
+                        var a = $j(this).val();
+                        var data_id = $j(this).parent().find('.commonCurrencyRelatedCA').attr('data-id');
+                       
+                       var CALocalAmount = $j('.CALocalAmount'+data_id).val();
+                       var CAEuroAmount = $j('.CAEuroAmount'+data_id).val();
+                       var CACurrency = $j('.commonCurrencyRelatedCA').val();
+                        alert(CALocalAmount);
+                        alert(CAEuroAmount);
+                        alert(CACurrency);
+                       for(var i=0;i<stringArray.length;i++){
+                            console.debug('from backEnd'+stringArray[i]);
+                            if(stringArray[i].Currency_Unit__c == CACurrency ){
+                               console.debug('pPc Currency==>'+CACurrency);
+                                 if(CALocalAmount !=='0' && CALocalAmount !==null && CALocalAmount !==""){
+                                     if(CALocalAmount !==null && CALocalAmount !==""){
+                                          CALocalAmount = parseInt(CALocalAmount);
+                                         $j('.CAEuroAmount'+data_id).val(stringArray[i].Currency_Unit_To_Euro__c/CALocalAmount);
+                                     }         
+                                 }else{
+                              
+                                   $j('.CAEuroAmount'+data_id).val(0);
+                                 }
+                            }
+                       }
+                        
+                    });
+                    
+                    
+                    
+                    
+                }); 
+                
+                            
+     </script>
+     
+     
+          
+                    <apex:repeat value="{!docAndQuoteLst}" var="docAndQuoteObj" >
+                  <apex:outputPanel rendered="{!IF(docAndQuoteObj.quoteObj.Saving__c == obj.Id , true,false)}">
+                        <div class="radio-selected">
+                             <div class="inner_section">
+                                 <h4>                             
+                                    <apex:inputField value="{!docAndQuoteObj.quoteObj.Is_Accepted__c}"/>     Quote :   {!docAndQuoteObj.quoteObj.Quote_Number__c}                              
+                                 </h4> 
+                            </div>
+                        
+                            <div class="quote-related{!docAndQuoteObj.quoteObj.Quote_Number__c}">
+                            <div class="left">Is PC Part Of The Roster?</div><div class="left"><apex:inputField value="{!docAndQuoteObj.quoteObj.Is_PC_part_of_the_Roster__c}"/></div>
+                            
+                            PC Name<apex:inputField value="{!docAndQuoteObj.quoteObj.PC_name__c}"/>
+                            PC Country Location<apex:inputField value="{!docAndQuoteObj.quoteObj.PC_Country__c}"/>
+                            Service Company Name<apex:inputField value="{!docAndQuoteObj.quoteObj.Service_Company_Name__c}" />
+                            PC Costs Only (Local Currency)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_PC_Costs__c}" styleclass="commonCurrencyRelated" html-data-id="{!docAndQuoteObj.quoteObj.Quote_Number__c}"/>
+                            PC Costs Only (Local Amount) <apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_PC__c}" onkeypress="return isNumber(event)" styleclass="commonPCLocalAmount PCLocalAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"/>
+                            PC Costs Only (Euro Amount)<apex:inputText value="{!docAndQuoteObj.quoteObj.PC_Costs_Euro_Amount__c}" styleclass="commonPCEuroAmount PCEuroAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"  html-readonly="true"/>
+                            Is the PPC part of the Roster?<apex:inputField value="{!docAndQuoteObj.quoteObj.Is_the_PPC_part_of_the_Roster__c}" />
+                            PPC Name <apex:inputField value="{!docAndQuoteObj.quoteObj.PPC_Name__c}" />
+                            PPC Country Location<apex:inputField value="{!docAndQuoteObj.quoteObj.PPC_Country__c}" />
+                            PPC Costs Only (Local Currency)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_PPC_Costs__c}" styleclass="commonCurrencyRelatedPPC" html-data-id="{!docAndQuoteObj.quoteObj.Quote_Number__c}"/>
+                            PPC Costs Only (Local Amount)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_PPC__c}" onkeypress="return isNumber(event)" styleclass="commonPPCLocalAmount PPCLocalAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"/>
+                           PPC Costs Only (Euro Amount)<apex:inputtext value="{!docAndQuoteObj.quoteObj.PPC_Costs_Euro_Amount__c}" styleclass="commonPPCEuroAmount PPCEuroAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"  html-readonly="true"/>
+                            CA/Additional agency Name<apex:inputtext value="{!docAndQuoteObj.quoteObj.CA_Additional_agency_Name__c}"/>
+                            CA Location<apex:inputField value="{!docAndQuoteObj.quoteObj.CA_Location__c}" />
+                            CA Costs Only (Local Currency)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_CA_Costs__c}" styleclass="commonCurrencyRelatedCA" html-data-id="{!docAndQuoteObj.quoteObj.Quote_Number__c}"/>
+                            CA Costs Only (Local Amount)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_CA__c}" onkeypress="return isNumber(event)" styleclass="commonCALocalAmount CALocalAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"/>
+                            CA Costs Only (Euro Amount)<apex:inputText value="{!docAndQuoteObj.quoteObj.CA_Costs_Euro_Amount__c}" styleclass="commonCAEuroAmount CAEuroAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"  html-readonly="true"/>
+                            Folder <apex:inputField value="{!docAndQuoteObj.quoteObj.Folder__c}" />
+                         
+                             <apex:inputFile value="{!docAndQuoteObj.attachmentObj.body}" filename="{!docAndQuoteObj.attachmentObj.name}"/>
+                            </div>
+                          <apex:actionregion >
+                                <apex:commandlink action="{!SaveNewQuote}" value="Save"   status="actStatusIdQuote3" >
+                                <apex:param name="param" value="{!obj.Id}" assignTo="{!savingId}"/> 
+                                 <apex:param name="param12" value="{!docAndQuoteObj.quoteObj.Quote_Number__c}" assignTo="{!QuoteNumber}"/>
+                                </apex:commandlink>
+                                
+                                 <apex:actionStatus id="actStatusIdQuote3" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                </apex:actionStatus>
+                                        
+                            </apex:actionregion>
+                       </div>
+                      </apex:outputPanel>
+                    </apex:repeat>
+            
+         
+      </apex:pageBlock>
+      
+       <apex:pageBlock id="quoteDataAcc">
+         <apex:repeat value="{!quoteRelatedToSavingList}" var="acceptedQuote">
+             <apex:outputPanel rendered="{!IF(acceptedQuote.Saving__c == obj.Id , true,false) && (acceptedQuote.Is_Accepted__c== true)}">
+         <apex:pageBlockSection title="Accepted Quote" columns="2" collapsible="false">
+         
+         Quote :{!acceptedQuote.Quote_Number__c}
+         
+          <apex:commandLink value="Edit" onclick="EditFunForAccQuote('{!acceptedQuote.Id}');return Null;"   />
+         
+           <apex:inputfield label="Accepted Final Cost - PC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Currency__c}" styleclass="PCCurrencyAccepted" onchange="PCEuroAmountAccepted()" rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+          <apex:outputText label="Accepted Final Cost - PC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Currency__c}" rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"/>
+           <apex:inputfield label="Accepted Final Cost - PC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Local_Amo__c}" styleclass="PCLocalAmountAccepted" onkeypress="return isNumber(event)" onchange="PCEuroAmountAccepted()"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+          <apex:outputText label="Accepted Final Cost - PC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_only_Local_Amo__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText>
+           <apex:inputtext label="Accepted Final Cost - PC only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c}" styleclass="PCEuroAmountAccepted" html-readonly="true"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+           <apex:outputText label="Accepted Final Cost - PC only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText>  
+             <apex:inputfield label="Accepted Final Cost - PPC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Currency__c}" styleclass="PPCCurrencyAccepted" onchange="PPCEuroAmountAccepted()"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/> 
+           <apex:outputText label="Accepted Final Cost - PPC only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Currency__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText>
+             <apex:inputfield label="Accepted Final Cost - PPC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Local_Am__c}" styleclass="PPCLocalAmountAccepted" onkeypress="return isNumber(event)" onchange="PPCEuroAmountAccepted()"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+           <apex:outputText label="Accepted Final Cost - PPC only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_only_Local_Am__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText>
+             <apex:inputtext label="Accepted Final Cost - PPC only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c}" styleclass="PPCEuroAmountAccepted" html-readonly="true"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+            <apex:outputText label="Accepted Final Cost - PPC only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText> 
+             <apex:inputfield label="Accepted Final Cost - CA only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_CA_only_Currency__c}" styleclass="CACurrencyAccepted"  onchange="CAEuroAmountAccepted()"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/> 
+           <apex:outputText label="Accepted Final Cost - CA only (Currency)" value="{!acceptedQuote.Accepted_Final_Cost_CA_only_Currency__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText>
+             <apex:inputfield label="Accepted Final Cost - CA only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Local_Amount__c}" styleclass="CALocalAmountAccepted" onkeypress="return isNumber(event)" onchange="CAEuroAmountAccepted()"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/> 
+           <apex:outputText label="Accepted Final Cost - CA only (Local Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Local_Amount__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText> 
+              <apex:inputtext label="Accepted Final Cost - CA only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c}" styleclass="CAEuroAmountAccepted" html-readonly="true"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+           <apex:outputText label="Accepted Final Cost - CA only (Euro Amount)" value="{!acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText>  
+             <apex:inputfield label="Accepted Final Cost - Editors name" value="{!acceptedQuote.Accepted_Final_Cost_Editors_name__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+           <apex:outputText label="Accepted Final Cost - Editors name" value="{!acceptedQuote.Accepted_Final_Cost_Editors_name__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText> 
+             <apex:inputfield label="Accepted Final Cost - Total editing cost" value="{!acceptedQuote.Accepted_Final_Cost_Total_editing_cost__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+          <apex:outputText label="Accepted Final Cost - Total editing cost" value="{!acceptedQuote.Accepted_Final_Cost_Total_editing_cost__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText>
+             <apex:inputfield label="Accepted Final Cost - Sound Studio Name" value="{!acceptedQuote.Accepted_Final_Cost_Sound_Studio_Name__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+          <apex:outputText label="Accepted Final Cost - Sound Studio Name" value="{!acceptedQuote.Accepted_Final_Cost_Sound_Studio_Name__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText>
+             <apex:inputfield label="Accepted Final Cost - Total Sound Studio costs" value="{!acceptedQuote.Accepted_Final_Cost_Total_Sound_Studio__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+           <apex:outputText label="Accepted Final Cost - Total Sound Studio costs" value="{!acceptedQuote.Accepted_Final_Cost_Total_Sound_Studio__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText>
+             <apex:inputfield label="Accepted Final Cost - Travel Costs" value="{!acceptedQuote.Accepted_Final_Cost_Travel_Costs__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+           <apex:outputText label="Accepted Final Cost - Travel Costs" value="{!acceptedQuote.Accepted_Final_Cost_Travel_Costs__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText>
+             <apex:inputfield label="Accepted Final Cost - Value of props & wardrobe (paid for)" value="{!acceptedQuote.Accepted_Final_Cost_props_wardrobe__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+           <apex:outputText label="Accepted Final Cost - Value of props & wardrobe (paid for)" value="{!acceptedQuote.Accepted_Final_Cost_props_wardrobe__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText>
+             <apex:inputText label="Total Accepted Final Cost (CA/PC/PPC) Euro Amount" value="{!acceptedQuote.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}" styleclass="TotalAcceptedFinalCostAccepted" html-readonly="true"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/>
+           <apex:outputText label="Total Accepted Final Cost (CA/PC/PPC) Euro Amount" value="{!acceptedQuote.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText> 
+             <apex:inputfield label="What type of Savings is this?" value="{!acceptedQuote.Saving_Type__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,true,false) && (editedAcceptedQuote==true)}"/> 
+           <apex:outputText label="What type of Savings is this?" value="{!acceptedQuote.Saving_Type__c}"  rendered="{!if(saveRecordValueForAccQuote == acceptedQuote.Id,false,true) && (viewAcceptedQuote == true)}"></apex:outputText>  
+             <apex:commandButton action="{!UpdateAcceptedQuote}" value="Save"/>
+         </apex:pageBlockSection>
+         </apex:outputPanel>
+         </apex:repeat>
+      </apex:pageBlock> 
+      
+      <apex:commandButton value="Submit"  action="{!SubmitWholeSaving}"/>
+      
+  </apex:outputPanel>  
+    <!-- Appraisal  -->
+    
+    <apex:pageBlock >
+        <apex:pageBlockSection title="Appraisal" collapsible="false">
+              <div class = "main-container" id="mainclass">
+        <div class = "category-container">
+            <label style ="font-size:20px; font-weight:bold;"> PC Appraisal </label>
+            <div class="holder-class" data-id="sendPcTimeMangCategory">
+                <div class="categoryStyle"><label>Time Management  </label>
+                </div>
+                <div class="sendPcTimeMangCategory sendPcTimeMangCategory{!obj.Id}"  >
+                    <span class="common pc-time-cat" rel= "1"></span>
+                    <span class="common pc-time-cat" rel= "2"><i></i></span>
+                    <span class="common pc-time-cat" rel= "3"><i></i></span>
+                    <span class="common pc-time-cat" rel= "4"><i></i></span>
+                    <span class="common pc-time-cat" rel= "5"></span>  
+                </div>
+            </div>   
+            <div class="holder-class" data-id="sendPcCostMangCategory">
+                <div class="categoryStyle"><label>Cost Management  </label>
+                </div>
+                <div class="sendCaOutputQualityCategory sendPcCostMangCategory{!obj.Id}">
+                    <span class="common pc-cost-cat" rel= "1"></span>
+                    <span class="common pc-cost-cat" rel= "2"><i></i></span>
+                    <span class="common pc-cost-cat" rel= "3"><i></i></span>
+                    <span class="common pc-cost-cat" rel= "4"><i></i></span>
+                    <span class="common pc-cost-cat" rel= "5"></span>      
+                </div>
+            </div>   
+            <div class="holder-class" data-id="sendPcProcessMangCategory"> 
+                <div class="categoryStyle"><label>Process Management</label>
+                </div>
+                <div class="sendCaOutputQualityCategory sendPcProcessMangCategory{!obj.Id}">
+                    <span class="common pc-process-cat" rel= "1"></span>
+                    <span class="common pc-process-cat" rel= "2"><i></i></span>
+                    <span class="common pc-process-cat" rel= "3"><i></i></span>
+                    <span class="common pc-process-cat" rel= "4"><i></i></span>
+                    <span class="common pc-process-cat" rel= "5"></span>      
+                </div>
+            </div>
+            <div class="holder-class" data-id="sendPcOutputQualityCategory">    
+                <div class="categoryStyle"><label>Output Quality </label>
+                </div>
+                <div class="sendCaOutputQualityCategory sendPcOutputQualityCategory{!obj.Id}">
+                    <span class="common pc-output-cat" rel= "1"></span>
+                    <span class="common pc-output-cat" rel= "2"><i></i></span>
+                    <span class="common pc-output-cat" rel= "3"><i></i></span>
+                    <span class="common pc-output-cat" rel= "4"><i></i></span>
+                    <span class="common pc-output-cat" rel= "5"></span>      
+                </div>  
+            </div>   
+        </div> 
+        <div class = "category-container">
+            <label style ="font-size:20px; font-weight:bold;"> PPC Appraisal </label>
+            <div class="holder-class" data-id="sendPpcTimeMangCategory">
+                <div class="categoryStyle"><label>Time Management </label>
+                </div>
+                <div class=" sendCaOutputQualityCategory sendPpcTimeMangCategory{!obj.Id}">
+                    <span class="common ppc-time-cat" rel= "1"></span>
+                    <span class="common ppc-time-cat" rel= "2"><i></i></span>
+                    <span class="common ppc-time-cat" rel= "3"><i></i></span>
+                    <span class="common ppc-time-cat" rel= "4"><i></i></span>
+                    <span class="common ppc-time-cat" rel= "5"></span>  
+                </div>
+              </div>
+              <div class="holder-class" data-id="sendPpcCostMangCategory"> 
+                    <div class="categoryStyle"><label>Cost Management  </label>
+                    </div>
+                    <div class="sendCaOutputQualityCategory sendPpcCostMangCategory{!obj.Id}">
+                        <span class="common ppc-cost-cat" rel= "1"></span>
+                        <span class="common ppc-cost-cat" rel= "2"><i></i></span>
+                        <span class="common ppc-cost-cat" rel= "3"><i></i></span>
+                        <span class="common ppc-cost-cat" rel= "4"><i></i></span>
+                        <span class="common ppc-cost-cat" rel= "5"></span>      
+                    </div>
+               </div>
+               <div class="holder-class" data-id="sendPpcProcessMangCategory"> 
+                    <div class="categoryStyle"><label>Process Management</label>
+                    </div>
+                    <div class="sendCaOutputQualityCategory sendPpcProcessMangCategory{!obj.Id}">
+                        <span class="common ppc-process-cat" rel= "1"></span>
+                        <span class="common ppc-process-cat" rel= "2"><i></i></span>
+                        <span class="common ppc-process-cat" rel= "3"><i></i></span>
+                        <span class="common ppc-process-cat" rel= "4"><i></i></span>
+                        <span class="common ppc-process-cat" rel= "5"></span>      
+                    </div>
+                </div>
+                <div class="holder-class" data-id="sendPpcOutputQualityCategory">
+                    <div class="categoryStyle"><label>Output Quality </label>
+                    </div>
+                    <div class="sendCaOutputQualityCategory sendPpcOutputQualityCategory{!obj.Id}">
+                        <span class="common ppc-output-cat" rel= "1"></span>
+                        <span class="common ppc-output-cat" rel= "2"><i></i></span>
+                        <span class="common ppc-output-cat" rel= "3"><i></i></span>
+                        <span class="common ppc-output-cat" rel= "4"><i></i></span>
+                        <span class="common ppc-output-cat" rel= "5"></span>      
+                    </div>
+                </div>   
+            </div>
+    
+        <div class = "category-container">
+            <label style ="font-size:20px; font-weight:bold;"> CA Appraisal </label>
+            <div class="holder-class" data-id="sendCaTimeMangCategory">
+                <div class="categoryStyle"><label>Time Management </label>
+                </div>
+                <div class="sendCaOutputQualityCategory sendCaTimeMangCategory{!obj.Id}">
+                    <span class="common ca-time-cat" rel= "1"></span>
+                    <span class="common ca-time-cat" rel= "2"><i></i></span>
+                    <span class="common ca-time-cat" rel= "3"><i></i></span>
+                    <span class="common ca-time-cat" rel= "4"><i></i></span>
+                    <span class="common ca-time-cat" rel= "5"></span>  
+                </div>
+             </div>
+             <div class="holder-class" data-id="sendCaCostMangCategory">  
+                <div class="categoryStyle"><label>Cost Management</label>
+                </div>
+                <div class="sendCaOutputQualityCategory sendCaCostMangCategory{!obj.Id}">
+                    <span class="common ca-cost-cat" rel= "1"></span>
+                    <span class="common ca-cost-cat" rel= "2"><i></i></span>
+                    <span class="common ca-cost-cat" rel= "3"><i></i></span>
+                    <span class="common ca-cost-cat" rel= "4"><i></i></span>
+                    <span class="common ca-cost-cat" rel= "5"></span>      
+                </div>
+            </div>
+            <div class="holder-class" data-id="sendCaProcessMangCategory">
+                <div class="categoryStyle"><label>Process Management</label>
+                </div>
+                <div class="sendCaOutputQualityCategory sendCaProcessMangCategory{!obj.Id}">
+                    <span class="common ca-process-cat" rel= "1"></span>
+                    <span class="common ca-process-cat" rel= "2"><i></i></span>
+                    <span class="common ca-process-cat" rel= "3"><i></i></span>
+                    <span class="common ca-process-cat" rel= "4"><i></i></span>
+                    <span class="common ca-process-cat" rel= "5"></span>      
+                </div>
+            </div>
+            <div class="holder-class" data-id="sendCaOutputQualityCategory">
+            
+                <div class="categoryStyle"><label>Output Quality</label>
+                </div>
+                <div class="sendCaOutputQualityCategory sendCaOutputQualityCategory{!obj.Id}">
+                    <span class="common ca-output-cat" rel= "1"></span>
+                    <span class="common ca-output-cat" rel= "2"><i></i></span>
+                    <span class="common ca-output-cat" rel= "3"><i></i></span>
+                    <span class="common ca-output-cat" rel= "4"><i></i></span>
+                    <span class="common ca-output-cat" rel= "5"></span>      
+                </div>
+            
+        </div>   
+    </div>
+
+</div>
+
+
+        </apex:pageBlockSection>
+      </apex:pageBlock>
+      <apex:actionRegion >
+        <apex:commandLink action="{!allValues}" value="All The Values" status="actStatusIdQuote3" ReRender="mainclass">
+         <apex:param name="param" value="{!obj.Id}" assignTo="{!savingId}"/> 
+        </apex:commandLink>
+       <apex:actionStatus id="actStatusIdQuote3" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+   </apex:actionRegion>
+
+<br/><br/><apex:outputLink value="Amr_NewSaving?id={!jobId}">Submit</apex:outputLink>
+  
+</apex:repeat>
+
+  </apex:outputPanel>
+</apex:pageBlock>
+
+ <apex:actionRegion >
+<apex:actionFunction name="sendPcTimeMangCategory" action="{!getCaProcessMangCategory}" reRender="mainclass">
+   <apex:param id="pccattimename" assignTo="{!pcTimeMangCategoryValue}" name="sendPcTimeMangCategory"  value="{!pcTimeMangCategoryValue}" />
+   <apex:param id="pccattimeclass" assignTo="{!pcTimeMangCategoryClass}" name="pcTimeMangCategoryClass"  value="{!pcTimeMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPcCostMangCategory" action="{!getCaProcessMangCategory}" reRender="view">
+   <apex:param id="pccatcostname" assignTo="{!pcCostMangCategoryValue}" name="sendPcCostMangCategory"  value="{!pcCostMangCategoryValue}" />
+   <apex:param id="pccattcostclass" assignTo="{!pcCostMangCategoryClass }" name="pcCostMangCategoryClass "  value="{!pcCostMangCategoryClass }" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPcProcessMangCategory" action="{!getCaProcessMangCategory}" reRender="view">
+   <apex:param id="pccatprocessname" assignTo="{!pcProcessMangCategoryValue}"  name="sendPcProcessMangCategory" value="{!pcProcessMangCategoryValue}" />
+   <apex:param id="pccatprocssclass" assignTo="{!pcProcessMangCategoryClass}" name="pcProcessMangCategoryClass"  value="{!pcProcessMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPcOutputQualityCategory" action="{!getCaProcessMangCategory}" reRender="view">
+   <apex:param id="pccatoutput" assignTo="{!pcOutputQualityCategoryValue}" name="sendPcOutputQualityCategory"  value="{!pcOutputQualityCategoryValue}" />
+   <apex:param id="pccatoutputclass" assignTo="{!pcOutputQualityCategoryClass}" name="pcOutputQualityCategoryClass"  value="{!pcOutputQualityCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPpcTimeMangCategory" action="{!getCaProcessMangCategory}" reRender="view">
+   <apex:param id="pcccattimename" assignTo="{!pccTimeMangCategoryValue}" name="sendPpcTimeMangCategory" value="{!pccTimeMangCategoryValue}" />
+   <apex:param id="pcttimeclass" assignTo="{!pccTimeMangCategoryClass}" name="pccTimeMangCategoryClass"  value="{!pccTimeMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPpcCostMangCategory" action="{!getCaProcessMangCategory}" reRender="view">
+   <apex:param id="pcccatcostname" assignTo="{!pccCostMangCategoryValue }"  name="sendPpcCostMangCategory" value="{!pccCostMangCategoryValue }" />
+   <apex:param id="pcccatcostclass" assignTo="{!pccCostMangCategoryClass}" name="pccCostMangCategoryClass"  value="{!pccCostMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPpcProcessMangCategory" action="{!getCaProcessMangCategory}" reRender="view">
+   <apex:param id="pcccatprocessname" assignTo="{!pccProcessMangCategoryValue}"  name="sendPpcProcessMangCategory" value="{!pccProcessMangCategoryValue}" />
+   <apex:param id="pcccatprocessclass" assignTo="{!pccProcessMangCategoryClass}" name="pccProcessMangCategoryClass"  value="{!pccProcessMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendPpcOutputQualityCategory" action="{!getCaProcessMangCategory}" reRender="view">
+   <apex:param id="pcccatoutput" assignTo="{!pccOutputQualityCategoryValue }" name="sendPpcOutputQualityCategory"   value="{!pccOutputQualityCategoryValue }" />
+   <apex:param id="pcccatoutputclass" assignTo="{!pccOutputQualityCategoryClass}" name="pccOutputQualityCategoryClass"  value="{!pccOutputQualityCategoryClass}" />
+</apex:actionFunction>
+
+
+<apex:actionFunction name="sendCaTimeMangCategory" action="{!getCaProcessMangCategory}" reRender="view">
+   <apex:param id="cacattimename" assignTo="{!caTimeMangCategoryValue}" name="sendCaTimeMangCategory" value="{!caTimeMangCategoryValue}" />
+   <apex:param id="cacattimeclass" assignTo="{!caTimeMangCategoryClass}" name="caTimeMangCategoryClass"  value="{!caTimeMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendCaCostMangCategory" action="{!getCaProcessMangCategory}" reRender="view">
+   <apex:param id="cacatcostname" assignTo="{!caCostMangCategoryValue}" name="sendCaCostMangCategory"  value="{!caCostMangCategoryValue}" />
+   <apex:param id="cacatcostclass" assignTo="{!caCostMangCategoryClass }" name="caCostMangCategoryClass "  value="{!caCostMangCategoryClass }" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendCaProcessMangCategory" action="{!getCaProcessMangCategory}" reRender="view">
+   <apex:param id="cacatprocessname" assignTo="{!caProcessMangCategoryValue}" name="sendCaProcessMangCategory"  value="{!caProcessMangCategoryValue}" />
+   <apex:param id="cacatprocessclass" assignTo="{!caProcessMangCategoryClass}" name="caProcessMangCategoryClass"  value="{!caProcessMangCategoryClass}" />
+</apex:actionFunction>
+
+<apex:actionFunction name="sendCaOutputQualityCategory" action="{!getCaProcessMangCategory}" reRender="view">
+   <apex:param id="cacatoutput" assignTo="{!caOutputQualityCategoryValue }"  name="sendCaOutputQualityCategory" value="{!caOutputQualityCategoryValue}" />
+   <apex:param id="cacatoutputclass" assignTo="{!caOutputQualityCategoryClass}" name="caOutputQualityCategoryClass"  value="{!caOutputQualityCategoryClass}" />
+</apex:actionFunction>
+
+</apex:actionRegion>
+      
+
+</apex:form>  
+</apex:page>

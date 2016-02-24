@@ -1,0 +1,26 @@
+<apex:page controller="Amr_RAPJobPortfolioController" sidebar="false" >
+<script>
+ function testing(abc){
+ 
+ alert(abc);
+ }
+
+</script>
+ <apex:form >
+ <apex:outputPanel id="pbId">
+ <apex:pageBlock >
+     <apex:pageBlockSection >
+         
+         <apex:inputField value="{!jobDetails.Broadcast_Market__c}" id="rwar"/>
+        
+     </apex:pageBlockSection>
+ </apex:pageBlock>
+  <apex:commandlink action="{!getJobDetailSearch}"  onclick="testing('{!jobDetails.Broadcast_Market__c}')" value="Apply"  styleClass="btn" style="color:white;text-decoration:none"  reRender="pbId">
+         <apex:param name="param1" value="{!jobDetails.Broadcast_Market__c}"  assignTo="{!testing}"/>
+         <apex:outputtext value="{!testing}"></apex:outputtext>/>
+         </apex:commandlink>
+         
+         <apex:outputPanel ></apex:outputPanel>
+         </apex:outputPanel>
+ </apex:form>
+</apex:page>

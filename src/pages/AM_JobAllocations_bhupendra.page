@@ -1,0 +1,736 @@
+<apex:page controller="Amr_JobSheetController" sidebar="false" id="pageId"> 
+<!--<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/> -->
+	<apex:include pageName="amr_common" />
+    <!-- Start Popup Functionality -->
+    <script>
+        $j(function(){
+          var strArr = {!CategoryList};
+            var newOp;
+            for(var j=0;j<strArr.length;j++){
+               // console.log(strArr[j]);
+                newOp = '<option value="'+strArr[j]+'">'+strArr[j]+'</option>';             
+                $j('#categoryList').append(newOp);
+            }
+
+       
+        });
+
+         function transferCategoryValue(categoryValue){
+          alert(categoryValue);
+            sendCategory(categoryValue);
+            $j('.loading').show();
+           
+        }
+    </script>
+    <apex:form >        
+    <div class="allocation-main margin-btwn-container12">
+       <!---  alert section  --> 
+    <div class= "alert-popup" >    
+                      <div class = "alert_div" style="margin-top:4px;height:{!if(alert.size = 0, 0,41)}" >
+                                          
+                                               <apex:pageBlock >
+                                                   <div>
+                                                       <apex:outputLabel value="Alert"/>
+                                                   </div>
+                                                   <br/><br/>
+                                                   <div>
+                                                       <apex:outputLabel >Add a new alert</apex:outputLabel>
+                                                   </div>
+                                                   <div>
+                                                   <span>    <apex:inputField value="{!alertObj.New_Alert__c}" /> </span>
+                                                   <span>    <apex:inputField value="{!alertObj.Alert_Message__c}" /> </span>
+                                                   <span>    <apex:commandButton action="{!addNewAlert}" value="Add" reRender="alertList" /> </span>
+                                                   </div>
+                                                   <br/>
+                                                   <br/>
+                                                   <apex:outputPanel id="alertList">
+                                                   <apex:outputLabel >List of alerts</apex:outputLabel> <br/><br/>
+                                                        <apex:pageBlockTable value="{!alert}" var="alertVar">
+                                                            
+                                                            <apex:column value="{!alertVar.New_Alert__c}" >
+                                                                 <apex:facet name="header">Date</apex:facet>
+                                                                 
+                                                            </apex:column>
+                                                            <apex:column >
+                                                            <apex:commandLink value="{!alertVar.job_Id__r.AdManagerText__c}"  action="{!jobSheetPageTransfer}"  target="_blank">
+                                                                      <apex:param name="chosenId" value="{!alertVar.Job_Id__c}" assignTo="{!chosenId}"/>
+                                                                 </apex:commandLink>
+                                                                <apex:facet name="header">AD-ID</apex:facet>
+                                                             </apex:column>
+                                                            <apex:column value="{!alertVar.Alert_Message__c}">
+                                                                <apex:facet name="header">Alert Message</apex:facet>
+                                                             </apex:column>
+                                                            <apex:column >
+                                                                <apex:facet name="header">Action</apex:facet>
+                                                                <span><img src="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/close.png')}" class="hide-alert" alt="number"/>
+                                                                      <input type = "Hidden" value = "{!alertVar.id}" />  
+                                                                </span>  
+                                                            </apex:column>
+                                                        </apex:pageBlockTable>
+                                                   </apex:outputPanel>
+                                                        <div class="right">
+                                                            <apex:commandButton styleClass="cancel-alert-popup commonbtn"  value="Cancel"/>
+                                                        </div>
+                                                       
+                                           </apex:pageBlock>         
+                      </div> 
+                 </div> 
+        <!--  End ALERT SEction  -->
+        <!-- start of CAP section -->
+        <div id="newDiv" style="display:{!IF(permissionSetName != 'CAP' , 'None', '')}">                        
+            <div class="box_content filteralert jobsallocation allocation-id">
+                <div class="subbox" style="height:64px;">
+                    <div class="subbox-first" style="float: left;margin-top: 23px;width: 370px;" >
+                        <span style=" font-size: 15px;margin-right: 8px;margin-top: 10px;">
+                        Allocate this job to
+                        </span>
+                        <apex:selectList label="Select the user Name"  size="1" value="{!selectedRAPUser}">
+                            <apex:selectOptions value="{!selectUsername}"></apex:selectOptions>
+                        </apex:selectList>
+                    </div>
+                    <div class="subbox-second" style="float:left;margin-top:16px;font-size: 15px;">
+                        <apex:commandButton styleClass="commonbtn" value="Allocate" action="{!Reallocate}"  reRender="msgs"/>
+                    </div>
+                    <div class="subbox-third" style="float:left;margin-top:17px; margin-left:16px;">                                    
+                        <apex:commandButton value="Cancel" action="{!cancelJob}" reRender="msgs" styleClass="commonbtn" />
+                    </div>
+                </div>
+            </div>
+        </div>      
+        <!-- End of CAP section -->
+        
+        <!-- Start of RAP section -->
+        <div id="rapDivNew" style="display:{!IF(permissionSetName != 'RAP' , 'None', '')}">
+            <div>
+                <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
+                    <apex:commandButton styleClass="commonbtn left margin-right12" value="Accept this job" action="{!acceptJob}" />
+                </div>
+                <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
+                    <apex:commandButton styleClass="show-allocate-popup commonbtn left margin-right12"  value="Re-allocate" />
+                </div>                                                 
+                <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
+                    <apex:commandButton styleClass="commonbtn left margin-right12" value="Decline this job" action="{!cancelRapJob}"/>
+                </div>              
+                <div style="display:{!IF( jobStatus == 'Accepted', '', 'None')}" >                              
+                    <apex:commandButton styleClass="show-all-detail-button commonbtn left" value="Job Allocation"/>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            
+            <div class="allocation-id">
+                <div>
+                    <div class="rellocate-popup" style="display:none;">                     
+                        <div class="margin-btwn-container12">
+                            <div class="left popup-header">
+                                Re-Allocate
+                            </div>
+                            <div class="right popup-close">                                
+                                <apex:commandLink styleClass="cancel-allocation-popup"  >
+                                    <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Ico_ClosePopup.png" />
+                                </apex:commandLink>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>                                              
+                        <div  class="margin-btwn-inner-container entire-width">                                                               
+                            <apex:selectList label="Select the user Name"  size="1" value="{!selectedRapName}" >
+                                <apex:selectOptions value="{!selectUsername}" />
+                            </apex:selectList>
+                        </div>    
+                        <div class="right">    
+                            <div class="left">
+                                <apex:commandButton styleClass="cancel-allocation-popup commonbtn"  value="Cancel"/>
+                            </div>
+                            <div class="left margin-left20">
+                                <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!reAllocateRAP}" value="Apply"/>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class= "show-all-detail" style="display:none;">
+                        <div class="margin-btwn-container12">
+                            <div class="left popup-header">
+                                Job Allocation
+                            </div>                            
+                            <div class="right popup-close">                                
+                                <apex:commandLink styleClass="cancel-allocation-popup"  >
+                                    <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Ico_ClosePopup.png" />
+                                </apex:commandLink>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="margin-btwn-inner-container">
+                            <div class="margin-bottom4">
+                                Share this job with
+                            </div>
+                            
+                            <div class="left sharewith">                                                                          
+                                <apex:selectList id="sel12" value="{!listOfRAPSelected}" multiselect="true" size="4">
+                                    <apex:selectOptions value="{!selectusername}"/>
+                                </apex:selectList>
+                            </div>                                                      
+                            <div class="right">
+                                <apex:commandButton action="{!recordShare}" value="Share" styleClass="rellocate-apply commonbtn-blue" />
+                            </div>
+                            <div class="clear">
+                            </div>                            
+                        </div>
+                        <div class="margin-btwn-inner-container">
+                            <div class="">
+                                Shared With
+                            </div>
+                            <div style="display:{!if( jobStatus != 'Accepted', 'None', if(sharedListSize  == 0,'none', '') )}">                                
+                                <div class="width:100%">
+                                    <apex:repeat value="{!jobSharedList}" var="jbList">
+                                        <div class="left bg-g1 relative share-absolute">
+                                            <apex:outputLabel value="{!jbList.User__r.Name}" />
+                                            <span class="unshare">
+                                                <img src="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/Ico_RemoveShared.png')}"  alt="number" class="absolute unshare-img" />
+                                                <input type="hidden" value = "{!jbList.User__c}" />
+                                            </span> 
+                                        </div>
+                                    </apex:repeat>
+                                </div>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>                        
+                        <div class="margin-btwn-inner-container">
+                            <div class="margin-bottom4">
+                                Re-allocate
+                            </div>
+                            <div class="left reallocatepopup">                                                                          
+                                <apex:selectList label="Select the user Name"  size="1" value="{!selectedRapName}" >
+                                    <apex:selectOptions value="{!selectUsername}" />
+                                </apex:selectList>
+                            </div> 
+                            <div class="right">
+                                <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!reAllocateRAP}" value="Apply" />
+                            </div>
+                            <div class="clear">                         
+                            </div>                            
+                        </div>
+                        <div class="margin-btwn-inner-container">
+                            <div class="margin-bottom4">
+                                Set status
+                            </div>
+                            <div class="left reallocatepopup">                                                         
+                                <apex:inputField value="{!jobList.Job_Status__c}"/>
+                            </div> 
+                            <div class="right">
+                                <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!changePriority}" value="Apply" />
+                            </div>
+                            <div class="clear">                         
+                            </div>                            
+                        </div>
+                        <div class="right">
+                            <apex:commandButton styleClass="cancel-all-popup commonbtn"  value="Cancel" />
+                        </div>
+                    </div>
+                </div>
+                <div class="rapsubDivNew" style="background:#fff;display:none;">
+                    <apex:outputPanel >
+                        <apex:outputLabel value="Cancel" style="font-weight:bold;" />
+                        
+                        <apex:commandButton value="Submit" action="{!cancelRapJob}"  styleClass="allocationbtn commonbtn" reRender="msgs"/>
+                    </apex:outputPanel>
+                    <div>                                
+                    </div>
+                </div>
+            </div>
+            
+            <div class="clear">
+            
+            </div>
+            
+            
+        </div>
+        <!-- End of CAP section -->
+        
+    </div>          
+    <apex:actionFunction name="unshareRapJob" action="{!jobUnShare}" reRender="view">
+        <apex:param id="aname" assignTo="{!selectedUnshareRapName }" name="selectedUnshareRapName " value="{!selectedUnshareRapName }" />
+    </apex:actionFunction>
+</apex:form>
+    <!-- End Popup functionality -->
+    <div class="main_inner_section margin-btwn-container12 bg-g1 clear">
+        <h4 class="main_inner_sectionh4">
+            Job Details
+            <div data-id="job_detail_main" class="commonall openclass">                                     
+            </div>
+        </h4>
+        <div class="submain_inner_section job_detail_main hide">
+            <apex:form >
+                <div class="inner_section">
+                    <div class="savings_file_download inner_sub_section" style="display: block;">
+                        <div class="inner_sub2_section">
+                            <div class="jobsection jobsection-id">
+                                <div class="before inner_heading_sub_section margin-btwn-inner-container">
+                                    <h4>Before you start</h4>
+                                    <!-- Amr_Jobsheet.page -->
+                                </div>
+                                <div class="form-field">
+                                    <p>Have you checked with with the CMI if there is an existing asset in the Millward Brown TV add Vitality bank that could be utilised for this JTBD?</p>
+                                </div>
+                                <div class="clear">                                
+                                </div>
+                                <div class="dropdown cmi_class">
+                                    <!--  <apex:inputField value="{!joblist.Check_With_CMI__c}" /> -->
+                                    <div class="float-left width252 radio-label">
+                                        <apex:selectRadio value="{!joblist.Check_With_CMI__c}" styleClass="radio-label">
+                                            <apex:selectOption itemValue="Yes" itemLabel="Yes " />
+                                            <apex:selectOption itemValue="No" itemLabel="No " />
+                                            <apex:selectOption itemValue="Not Applicable" itemLabel="Not Applicable" />
+                                        </apex:selectRadio>
+                                    </div>
+                                </div>
+                                <div class="before inner_heading_sub_section margin-bottom10">
+                                    <h4>Uniliver information</h4>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Your Email Address
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Your_Email_Address__c}"   styleClass="your_email_address" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Unilever project leader email (if different)
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Unilever_Project_Leader_Email__c}"   styleClass="your_email_address" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Location of Unilever project leader
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Project_Leader_Cluster__c}" />
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Project_Leader_Country__c}" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Unilever finance member email
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Unilever_Finance_Member_Email__c}" html-placeholder="Email Address" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Final approver of material email                     
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Final_Approver_Of_Material_Email__c}" html-placeholder="Email Address" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Which function are you part of (BD/BB/Other)
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Function_You_Are_Part__c}" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Budget responsibility (BD, BB, Other)
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Budget_Responsibility__c}" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Budget allocated for this activity (enter all digits)
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:selectList value="{!selectedCountry }" size="1" id="selectedId" onchange="Calculate()" styleClass="selectedIdClass">
+                                        <apex:selectOptions value="{!currencyRecords }" />
+                                    </apex:selectList>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Budget_Allocated_Input_Value__c}" styleClass="agencypick inputIdClass" onkeypress="return isNumber(event)" onkeyup="Calculate()" />
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Allocated_Budget_euro__c}" styleClass="agencypick outputIdClass"/>
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Category > Brand Positioning > Brand
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:actionRegion >
+                                       <!-- <apex:selectList value="{!categoryName}" size="1">
+                                            <apex:actionSupport event="onchange" reRender="brandPosPick"  status="actStatusId"/>
+                                            <apex:selectOptions value="{!CategoryList}" />
+                                        </apex:selectList> -->
+                                        <select id="categoryList" size="1" style="width: 300px;" onchange="transferCategoryValue(this.value)" reRender="brandPosPick"  class="categorySelected"></select>
+                                    </apex:actionRegion>
+                                    <div style="width :100%; align:center;" >
+                                        
+                                        <apex:actionStatus id="actStatusId" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                    </div>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:actionRegion >
+                                        <apex:selectList id="brandPosPick" value="{!selectedBrandPosName}"
+                                            size="1">
+                                            <apex:selectOptions value="{!listOfBrandPosition}" />
+                                            <apex:actionSupport event="onchange" reRender="brandPick" status="actStatusId1" />
+                                        </apex:selectList>
+                                    </apex:actionRegion>
+                                    <div style="width :100%; align:center;" >
+                                        
+                                        <apex:actionStatus id="actStatusId1" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                    </div>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:actionRegion >
+                                        <apex:selectList id="brandPick" value="{!brandNameFromPage}"
+                                            size="1">
+                                            <apex:selectOptions value="{!BrandList}" />
+                                        </apex:selectList>
+                                    </apex:actionRegion>
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="before inner_heading_sub_section margin-bottom10">
+                                    <h4>Agency Information</h4>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Lead Agency Name
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Lead_Creative_Agency_name__c}" styleClass="agencypick" style="display:{!if(joblist.Lead_Agency_Name_Other__c != '','none','')}"/>
+                                    <apex:inputField value="{!joblist.Lead_Agency_Name_Other__c}" styleClass="agencytext" html-placeholder="New Agency" style="display:{!if(joblist.Lead_Agency_Name_Other__c == '','none','')}"/>
+                                </div>
+                                <div class="form-field2 widthautocomp" style="margin-top:13px;">
+                                    <a class="agencyother" rel = 'select' href="#" style= "display:{!if(joblist.Lead_Agency_Name_Other__c != '','none','')}"> Other </a>
+                                    <a href = "#" id="projectother"  class="agencycancel" rel = 'text' style= "display:{!if(joblist.Lead_Agency_Name_Other__c == '','none','')}"> Cancel </a>
+                                </div>
+                                <div class='clear'>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Lead Agency Location
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Lead_Agency_Location_Cluster__c}" />
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Lead_Agency_Location_Country__c}" />
+                                </div>
+                                <div class='clear'>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Agency contact or account director email
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Agency_Contact_Account_Director_Email__c}"  />
+                                </div>
+                                <div class='clear'>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Digital Agency Name (if applicable)                            
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Digital_Agency_Name__c}"  />
+                                </div>
+                                <div class='clear'>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Any other agencies involved?                            
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Any_other_agencies_involved__c}" />
+                                </div>
+                                <div class='clear'>
+                                </div>
+                                <div class="before inner_heading_sub_section margin-bottom10">
+                                    <h4>Overview of Project</h4>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Project name (e.g. Apollo)    
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <select id="projectList" size="1" style="display:{!if(joblist.Project_Name_Other__c != '','none','')}"  onchange="transferValue(this.value)" class="projectpick" ></select> 
+                                    <apex:actionRegion >
+                                        <apex:inputField value="{!joblist.Project_Details__c}" id="projDetailId" styleClass="projecttextProjDetail hide"/>
+                                        <apex:inputField value="{!joblist.Project_Name_Other__c}" id="projDetailIdOther" styleClass="projecttext" html-data-id="projecttext" style="display:{!if(joblist.Project_Name_Other__c == '','none','')}" />
+                                    </apex:actionRegion>
+                                </div>
+                                <div class="form-field2 widthautocomp" style="margin-top:13px;">
+                                    <a href = "#" id="projectother" class="projectotherClass" rel = 'select' style= "display:{!if(joblist.Project_Name_Other__c != '','none','')}"> Other </a>
+                                    <a href = "#" id="projectother" class="projectcancelClass" rel = 'text' style= "display:{!if(joblist.Project_Name_Other__c == '','none','')}"> Cancel </a>
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Project Location
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Project_Location_Cluster__c}" />
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Project_Location_Country__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Broadcast Market
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Brodcast_Market__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        What type of activity will this production support?
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Production_Activity_Type__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Project Description
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2" style="width: 71%;">
+                                    <!--  <apex:inputField value="{!joblist.Project_Description__c}" />-->
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Campaign name (e.g. Nothing beats an astronaut) if known
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Campaign_Name__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Execution name (e.g. Lifeguard or Fireman) if known 
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Execution_Name__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Target air date (i.e. when will material be released)
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Target_Air_Date__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="before inner_heading_sub_section margin-bottom10">
+                                    <h4>Production Activity Detail</h4>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel style="padding:0;">Do you anticipate that your production will require Music?</apex:outputLabel>
+                                </div>
+                                <div class="form-field2-radio">
+                                    <apex:selectRadio value="{!joblist.Require_Music__c}">
+                                        <apex:selectOption itemValue="Yes" itemLabel="Yes" />
+                                        <apex:selectOption itemValue="No" itemLabel="No" />
+                                    </apex:selectRadio>
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel style="padding:0;">Do you anticipate that your production will require Celebrity Talent?</apex:outputLabel>
+                                </div>
+                                <div class="form-field2-radio">
+                                    <apex:selectRadio value="{!joblist.Require_Celebrity_Talent__c}" dir="RTL">
+                                        <apex:selectOption itemValue="Yes" itemLabel="Yes"  />
+                                        <apex:selectOption itemValue="No" itemLabel="No" />
+                                    </apex:selectRadio>
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >Current stage of your production activity</apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Stage_of_Production_Activity__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="right">                                    
+                                    <apex:commandButton value="Update" action="{!UpdateJob}" onclick="enableText()" styleClass="commonbtn" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </apex:form>
+        </div>
+    </div>
+    <div class="main_inner_section margin-btwn-container12 bg-g1">
+        <h4 class="main_inner_sectionh4">
+            Notes
+            <div data-id="job_notes" class="commonall openclass">                                       
+            </div>
+        </h4>
+        <div class="submain_inner_section job_notes hide" style="">
+            <div class="inner_section">
+                <div class="savings_file_download inner_sub_section" style="display: block;">
+                    <div class="inner_sub2_section">
+                        <apex:form >
+                            <div class="inner-content">
+                                <div class="before inner_heading_sub_section margin-btwn-inner-container">
+                                    <h4>
+                                        Add Note                                         
+                                    </h4>
+                                </div>                                
+                                <div style="width:100%;">
+                                    <apex:inputField value="{!joblist.Job_Notes__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="right margin-top18">                                        
+                                    <apex:commandButton value="Save" action="{!updateJobForNotes}" onclick="enableText()" styleClass="commonbtn"/>
+                                </div>
+                                <div class="clear">
+                                </div>                                
+                            </div>
+                        </apex:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main_inner_section margin-btwn-container12 bg-g1">
+        <h4 class="main_inner_sectionh4">
+            Creative Docs
+            <div data-id="job_creative_docs" class="commonall foldclass">                                       
+            </div>
+        </h4>
+        <div class="submain_inner_section job_creative_docs" style="">
+            <div class="inner_section">
+                <div class="savings_file_download inner_sub_section" style="display: block;">
+                    <div class="inner_sub2_section">
+                        <apex:form >
+                            <div class="inner-content">
+                                <div class="before inner_heading_sub_section margin-btwn-inner-container">
+                                    <h4>
+                                        Upload                                         
+                                    </h4>
+                                </div>
+                                <div class="margin-btwn-inner-container">
+                                    <div class="left" style="margin-left:12px;">
+                                        <apex:inputFile value="{!document.body}"  filename="{!document.name}" />
+                                    </div>
+                                    <div class="right">
+                                        <apex:commandButton action="{!uploadDocument}" value="Upload" styleClass="commonbtn" style="width: 100px;" status="actStatusIdDoc"/>
+                                        <apex:actionStatus id="actStatusIdDoc" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                    </div>
+                                    <div class="clear">
+                                    </div>
+                                </div>
+                                <div class="before inner_heading_sub_section margin-btwn-container12">
+                                    <h4>
+                                        Creative Docs - List                                         
+                                    </h4>
+                                </div>
+                                <div class="margin-btwn-inner-container">
+                                    <apex:pageBlock >
+                                        <apex:pageBlockSection columns="1">
+                                            <apex:pageBlockTable value="{!documentList}" var="doc" rendered="{!if(documentList.size>0,true,false)}" columnswidth="500px,100px">
+                                                <apex:column value="{!doc.ContentFileName}" headerValue="File Name"/>
+                                                <apex:column headerValue="Date">
+                                                    <apex:outputText value="{0,date,MM/dd/yy}">
+                                                        <apex:param value="{!doc.createdDate}" />
+                                                    </apex:outputText>
+                                                </apex:column>
+                                                <apex:column headerValue="Remove">
+                                                    <apex:commandLink value="Remove"  action="{!deleteDocuments}" >
+                                                        <apex:param name="recordId"  assignTo="{!chosenDocId}" value="{!doc.id}"/>
+                                                    </apex:commandLink>
+                                                </apex:column>
+                                            </apex:pageBlockTable>
+                                        </apex:pageBlockSection>
+                                    </apex:pageBlock>
+                                </div>
+                            </div>
+                            <apex:actionFunction name="sendCategory" action="{!brandPositionListData}" reRender="brandPosPick" oncomplete="closeloading()">
+                                 <apex:param id="catname" assignTo="{!selectedCategory}" name="categoryName" value="{!selectedCategory}" />
+                             </apex:actionFunction>
+                        </apex:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</apex:page>

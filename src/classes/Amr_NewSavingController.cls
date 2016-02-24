@@ -186,6 +186,11 @@ public with sharing class Amr_NewSavingController {
                 upsert quoteToInsert;
                 system.debug('quoteToInsert====>'+quoteToInsert);
                 
+                quoteToInsert = [select Total_Cost__c,Is_Accepted__c ,Local_Currency_of_PC_Costs__c ,
+                Local_Amount_of_PC__c,PC_Costs_Euro_Amount__c,Local_Currency_of_PPC_Costs__c,Local_Amount_of_PPC__c,
+                PPC_Costs_Euro_Amount__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c
+                from Amr_Quote__c where Is_Accepted__c = true AND Saving__c = :savingObj.id AND id = :quoteToInsert.id];
+                
                 if(quoteToInsert.Is_Accepted__c == true){
                        system.debug('inside true==>');
                         quoteToInsert.Accepted_Final_Cost_PC_only_Currency__c = quoteToInsert.Local_Currency_of_PC_Costs__c;

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email to Cat Finance users on the 1st of January informing them that they must submit the brand base fee estimate and splits for all Brand/Agency combinations for which they are responsible</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AF_Email_CatFinance</name>
+    <style>none</style>
+    <subject>Action Required: Creative Agency Fee Estimates</subject>
+    <type>text</type>
+</EmailTemplate>

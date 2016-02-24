@@ -1,0 +1,68 @@
+<html>
+<body leftmargin="0" marginwidth="0" marginheight="0" offset="0">
+
+
+<table width="100%" bgcolor="#ffffff" cellpadding="10" cellspacing="0">
+	<tr valign="top" align="center">
+		<td>
+			<table width="500" cellpadding="0" cellspacing="0" border="0" bordercolorlight="#EE2A4D" bgcolor="#3D0301">
+				<tr>
+					<td>
+					<img src="http://test.salesforce.com/servlet/servlet.ImageServer?id=015c0000000AzOG&oid=00Dc0000003tSLI&lastMod=1412584062000" alt="Magnum Careline">
+					</td>
+				</tr>
+
+				<tr style="background-color:#BF5520">
+					<td style="padding:15px; bordercolor=#FFFFFF;" bgcolor="#3D0301" >
+<p style="color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; padding:10px 0 0 5px;">{!IF(ISPICKVAL(Account.Gender__c,"Male"),"Dear Mr.", IF(ISPICKVAL(Account.Gender__c,"Female"),"Dear Ms.","Dear Sir/Madam"))} {!Account.LastName} ,</p>
+<p style="color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; padding-left:5px">Thank you for your recent Blackberry text. I was sorry to hear that you had a problem with your IT department.</p>
+
+<p style="color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; padding-left:5px">We take all consumer complaints very seriously and I would like to examine the gremlin in more detail.</p>
+
+<p style="color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; padding-left:5px">Please complete our <a href="" style="text-decoration:none; font-weight:bold; color:#FFFFFF;">Adverse Reaction Questionaire</a> and then post back the gremlin in the packaging wih the pre-paid label I just mailed to you. Once we receive the form and your returned item we will investigate and I will let you know the outcome. This process should take 14 days from when we receive the item but I will let you know if it is likely to take longer.</p>
+
+<p style="color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; padding-left:5px">Thank you for making us aware of this incident. I am sorry for the inconvenience we've caused and will be in contact again once we have the results of our investigation.</p>
+
+<p style="color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; padding-left:5px">Kind regards<br />
+<em>Mr. M. Iagi</em> <br />
+Careline Karate Advisor</p>
+<p><a href="http://twitter.com/unileverbrands" alt="Follow Unilever brands on Twitter" title="Follow Unilever Brands on Twitter" style="text-decoration:none; border:none"><img src="images/follow-me-button.gif" width="117" height="39" border="0"></a></p>
+</td>
+
+				</tr>
+				<tr><td><div align="center"><a href="http://test.salesforce.com/servlet/servlet.ImageServer?id=015c0000000AzPE&oid=00Dc0000003tSLI&lastMod=1412601825000" alt="More Magnum Moments" border="0"></a></div>
+				  </img></tr>
+				<table cellpadding="0" cellspacing="0" bgcolor="#3D0301" width="500" border="0">
+				<tr valign="top" align="left">
+				<td><p style="color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size:9px; padding:5px 0 10px 15px;">Unilever UK Limited<br>
+Registered in England & Wales<br>
+number.334527. Registered Office:<br>
+Unilever House, Springfield Drive<br>
+Leatherhead, KT22 7GR</p></td>
+
+				<td><p style="color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size:9px; padding-top:5px; padding-left:5px">Magnum Consumer Care<br>
+250 Gunnersbury Avenue<br>
+LONDON<br>
+W4 5QB</p></td>
+
+				<td><p style="color: #FFFFFF; font-family: Arial, Helvetica, sans-serif; font-size:9px; padding-top:5px;padding-left:5px">We are open Monday to Friday<br>
+8am - 6pm<br>
+Phone: 0800 7311507<br>
+<a href="mailto:magnum@unileverconsumerlink.co.uk" style="text-decoration:none; color: #FFFFFF">magnum@unileverconsumerlink.co.uk</a></p></td>
+
+			  </tr>
+
+			    </table>
+		  </table>
+	  </tr>
+			</table>
+		</td>
+	<tr>
+</table>
+
+
+
+
+
+</body>
+</html>

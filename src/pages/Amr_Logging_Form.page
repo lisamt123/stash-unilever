@@ -1,0 +1,362 @@
+<apex:page showHeader="false" controller="LoggingConFormSetting" action="{!LoggingConFormSetting}">
+<head>
+<title>
+    Logging Form
+</title>
+<style type="text/css">  
+        .imgclass:hover{  
+            background-image: url(/img/help/helpOrbs.gif);  
+            background-repeat: no-repeat;  
+            width: 16px;  
+            height: 15px;     
+            background-position: right;  
+         
+        }  
+        .imgclass{  
+            background-image: url(/img/help/helpOrbs.gif);  
+            background-repeat: no-repeat;  
+            width: 16px;  
+            height: 15px;  
+        }  
+    </style>  
+
+
+<style>
+.mainBody {
+width: 60%;
+margin: 15px auto;
+}
+
+.subMiddleBody section {
+margin-top:25px;
+}
+section h2, section h3 {
+    background: #214278 none repeat scroll 0% 0%;
+    display: block;
+    color: #FFF;
+    font-size: 1.1em;
+    padding: 14px 10px 14px 20px;
+}
+h1{
+font-size:16px;
+font-weight:bold;
+}
+
+#submit.disabled {
+    background: transparent url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/submit_disabled.png')}") no-repeat scroll 0% 0%;
+    cursor: auto;
+    filter: none;
+    width:188px;
+    height:68px;
+    text-indent: -9999px;
+    margin: 10px 2px 0;
+    float:right;
+}
+#header-admanager {
+    background-image: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/header.jpg')}");
+}
+strong {
+    display: block;
+    background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/reqd.png')}") center no-repeat;
+    width: 15px;
+    height: 1px;
+    position: absolute;
+    top: 2px;
+    padding-top: 18px;
+    overflow: hidden;
+}
+.relative {
+position: relative;
+}
+}
+</style>
+</head>
+
+<header id="header-admanager" style='height:110px;'>
+</header>
+
+<div class='mainBody'>
+<div class='subTopBody'>
+
+    <apex:repeat value="{!Setting}" var="hbm" rendered="true">
+        <apex:outputText value="{!hbm.Introduction__c}" escape="false" />
+    </apex:repeat>
+
+</div>
+<div class='subMiddleBody'>
+<section>
+    <h2>Before you start..</h2>
+    <br/>
+    <br/>
+    <table>
+        <tr>
+            <td width='200'>Have you checked with CMI if there is an existing asset in the Millward Brown TV Ad Vitality Bank that could be utilised for this JTBD?</td>
+            <td width='15' class='relative'><strong>required</strong></td>
+            <td width='200' style="text-align:right;">
+            Yes <input type='radio' name='is_cmi'/>
+            No <input type='radio' name='is_cmi'/>
+            Not Applicable <input type='radio' name='is_cmi' />
+            </td>
+        </tr>
+    </table>
+</section>
+<section>
+    <h2>Unilever Informatation</h2>
+    <br/>
+    <br/>
+    <table cellpadding='4'>
+    <tr>
+        <td width='200'>Your email address</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td><input type='text'/></td>
+    </tr>
+    <tr>
+        <td width='200'>Unilever project leader email (if different)</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td><input type='text'/></td>
+    </tr>
+    <tr>
+        <td width='200'>Location of Unilever project leader</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <select>
+                <option value="">Select Cluster</option>
+            </select>
+            <select disabled='disabled'>
+                <option value="">Select Country</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Unilever finance member email</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td><input type='text'/></td>
+    </tr>
+    <tr>
+        <td width='200'>Final approver of material email</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td><input type='text'/></td>
+    </tr>
+    <tr>
+        <td width='200'>Which function are you part of (BD/BB/Other)</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <select>
+                <option value="">Select Function</option>
+                <option value="">Need values here</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Budget responsibility (BD, BB, Other)</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <select>
+                <option value="">Select Responsibility</option>
+                <option value="">Need values here</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Budget allocated for this activity (enter all digits)</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <select>
+                <option value="">Select Local Currency</option>
+                <option value="">Need values here</option>
+            </select>
+            <select disabled='disabled'>
+                <option value="">Local Amount</option>
+                <option value="">Need values here</option>
+            </select>
+            <select disabled='disabled'>
+                <option value="">Auto calc to Euros</option>
+                <option value="">Need values here</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Category > Brand Positioning > Brand</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <select>
+                <option value="">Category</option>
+                <option value="">Need values here</option>
+            </select>
+            <select disabled='disabled'>
+                <option value="">Brand Positioning</option>
+                <option value="">Need values here</option>
+            </select>
+            <select disabled='disabled'>
+                <option value="">Brand</option>
+                <option value="">Need values here</option>
+            </select>
+        </td>
+    </tr>
+    </table>
+</section>
+<section>
+    <h2>Agency Information</h2>
+    <table cellpadding='4'>
+    <tr>
+        <td width='200'>Lead/creative agency name</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <select>
+                <option value="">Agency</option>
+                <option value="">Need values here</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Lead/creative agency location</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <select>
+                <option value="">Select Cluster</option>
+                <option value="">Need values here</option>
+            </select>
+            <select disabled='disabled'>
+                <option value="">Select Country</option>
+                <option value="">Need values here</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Agency contact or account director email</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td><input type='text'/></td>
+    </tr>
+    </table>
+</section>
+<section>
+    <h2>Overview Of the project</h2>
+    <table cellpadding='4'>
+    <tr>
+        <td width='200'>Project name (e.g. Apollo)</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <select>
+                <option value="">Select Project</option>
+                <option value="">Need values here</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Project location</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <select>
+                <option value="">Select Cluster</option>
+                <option value="">Need values here</option>
+            </select>
+            <select>
+                <option value="" disabled='disabled'>Select Country</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>What type of activity will this production support</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <select>
+                <option value="">Select Market Place Activity</option>
+                <option value="">Need values here</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Project description</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <textarea rows="5" cols="50"></textarea>
+         </td>
+    </tr>
+    <tr>
+        <td width='200'>Campaign name (e.g. Nothing beats an astronaut) if known</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <input type='text'/>
+         </td>
+    </tr>
+    <tr>
+        <td width='200'>Execution name (e.g. Lifeguard or Fireman) if known</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+        <textarea rows="5" cols="50"></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Target air date (i.e. when will material be released)</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td><input type='text'/></td>
+    </tr>
+    </table>
+</section>
+<section>
+    <h2>Production Activity Detail</h2>
+    <table cellpadding='4'>
+    <tr>
+        <td width='200'>Production activity type (select one or more)</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+            <input type='checkbox' value='tv-cinema'/>TV/Cinema<br/>
+            <input type='checkbox' value='tv-cinema'/>Radio<br/>
+            <input type='checkbox' value='tv-cinema'/>Print / Outdoor / Key Visual<br/>
+            <input type='checkbox' value='tv-cinema'/>Video Production (Internal Comms)<br/>
+            <input type='checkbox' value='tv-cinema'/>Digital (advertising content not website construction)<br/>
+            <input type='checkbox' value='tv-cinema'/>Language Adaptation (non-UniAdapt)<br/>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Do you anticipate that your production will require Music?</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+        Yes<input type='radio' name='is_music'/>
+        No<input type='radio' name='is_music'/>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Do you anticipate that your production will require Celebrity Talent?</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td width='4'>
+            Yes<input type='radio' name='is_talent'/>
+            No<input type='radio' name='is_talent'/>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Current stage of your production activity</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+             <select>
+                <option value="">Select Stage</option>
+                <option value="">Need values here</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td width='200'>Is this related to a previous job?</td>
+        <td width='15' class='relative'><strong>required</strong></td>
+        <td>
+        Yes<input type='radio' name='is_previous'/>
+        No<input type='radio' name='is_previous'/>
+        </td>
+        <td> <apex:outputPanel >  
+                        <apex:outputlabel value="Enter Account Name"/>                                          
+                        <img src="/s.gif" Class="imgclass" title="Your help text" />  
+                    </apex:outputPanel></td>
+    </tr>
+    </table>
+     
+ </section>
+</div>
+<button name="submit" id="submit" type="submit" class="button disabled">Submit</button>
+
+<div style='clear:both;margin-top:25px;'>
+<apex:repeat value="{!Setting}" var="hbm" rendered="true">
+        <apex:outputText value="{!hbm.Footer__c}" escape="false" />
+    </apex:repeat>
+</div>
+
+</div>
+</apex:page>

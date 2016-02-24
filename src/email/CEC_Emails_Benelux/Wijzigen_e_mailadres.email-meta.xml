@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Wijzigen e-mailadres in database</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CEC_Unilever_Netherlands</letterhead>
+    <name>Wijzigen e-mailadres</name>
+    <style>formalLetter</style>
+    <subject>Vraag adreswijziging in database - Case {!Case.CaseNumber}</subject>
+    <textOnly>Beste collega,
+
+Wij hebben op de consumenten service afdeling onderstaand verzoek ontvangen.
+Willen jullie dit verder afhandelen?
+Dit bericht versturen naar: 
+CCC@GROUPM.COM
+CC: Sabine.Finsy@mindshareworld.com
+
+Oorspronkelijk bericht:
+Contact gegevens:
+Oud:
+Nieuw:
+
+Met vriendelijke groet,
+Unilever Consumentenservice</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Unilever Hungary Protocol</name>
+    <style>none</style>
+    <subject>Case # {!Case.CaseNumber}</subject>
+    <textOnly>Unilever Magyarország Kft.
+Fogyasztói Kapcsolatok o.
+H-1138 Budapest, Váci út 182.
+Tel: 06 40 400 400 (helyi tarifa)
+Fax:(36-1)4659587
+cégbejegyzési szám:01-09078247
+
+
+
+
+
+JEGYZŐKÖNYV
+
+
+1.	Esetszám : {!Case.CaseNumber}.
+
+2.	A fogyasztó adatai: {!Case.Contact}, {!Account.PersonMailingAddress}, {!Account.PersonEmail}, {!Account.Phone}
+
+3.	A panasz előterjesztésének ideje, módja, helye: {!Case.CreatedDate}, {!Case.Origin}
+Unilever Magyarország Kft. Fogyasztó Kapcsolatok iroda
+
+4.	A fogyasztó panaszának részletes leírása:
+{!Case.Description}
+
+5.	A fogyasztó által bemutatott iratok, dokumentumok és egyéb bizonyítékok jegyzéke:
+
+A termék adatai : min. meg : {!Case.Production_Code__c}
+
+6.	A  jegyzőkönyv felvételének helye, ideje:
+Unilever Magyarország Kft. 1138 Budapest, Váci út 182.  {!Case.CreatedDate}
+
+7.	A jegyzőkönyvet felvevő személy neve:
+{!Case.OwnerFullName}
+Aláírás :
+
+Az illetékes hatóság levelezési címe: Nemzeti Fogyasztóvédelmi Hatóság, 1088 Budapest, József krt. 6.
+A vállalkozásunk székhelye szerinti békéltető testület levelezési címe: Budapest Békéltető Testület, 1016
+Budapest, Krisztina krt. 99.
+
+
+{!Today}</textOnly>
+    <type>custom</type>
+</EmailTemplate>

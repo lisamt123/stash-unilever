@@ -1,0 +1,7 @@
+Dear {!Event_Member__c.Name}
+ 
+You are due to attend {!Event_Member__c.Event__c}.
+ 
+In order to maximise the value from your conference attendance, Unilever is keen to promote the sharing of insights and knowledge across the organisation. Therefore please ensure you use the Conferencing app to share your conference real time updates, photos and any material you gather from before, during and after the conference. This is all done through our enterprise wide social tool Chatter!
+ 
+The conferencing app works both through the Salesforce1 mobile app and via your desktop.

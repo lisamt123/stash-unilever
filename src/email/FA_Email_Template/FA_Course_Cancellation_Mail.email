@@ -1,0 +1,37 @@
+<!-- The Visual Email Template is used to send the Cancellation Mail to the Participants who are registered to a Course -->
+<messaging:emailTemplate subject="Cancellation of Course" recipientType="User" relatedToType="FA_Occurence_Member__c">
+<messaging:htmlEmailBody >
+    <!-- Displaying the Coure Logo in the Course Cancellation Mail Template -->
+ <apex:image value="{!relatedTo.FA_Course_Occurence__r.FA_Course__r.FA_Course_Logo__c}" width="80px" height="80px"/>
+ 
+ <td>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+ </td>  
+ 
+   <!-- Displaying the Company Logo in the Course Cancellation MailTemplate -->
+ <apex:image id="Logo" value="https://unilever--adfs--c.cs14.content.force.com/servlet/servlet.ImageServer?id=015c0000000E92z&oid=00Dc0000001KMA0&lastMod=1366034146000"
+ width="80px" height="80px" />  
+ 
+ <font face="Calibri" size="3"> 
+
+<!--  Displays the Content appeared in the body of the Cancellation Mail -->
+<p>Dear &nbsp;<b> <apex:outputtext value=" {!relatedTo.FA_Participant_Instructor__r.Name}" escape="false"></apex:outputtext>,</b></p> 
+ <p>This is Reference to your invitation to the Course : &nbsp; <b><apex:outputtext value="{!relatedTo.FA_Course_Occurence__r.FA_Course__r.Name}" escape="false"></apex:outputtext></b>.</p> 
+<p>Due to some Unseen Circumstances the Course &nbsp;<b> <apex:outputtext value="{!relatedTo.FA_Course_Occurence__r.FA_Course__r.Name}" escape="false"></apex:outputtext></b> which needs to 
+conducted on &nbsp;<b> <apex:outputtext value="{!relatedTo.FA_Course_Occurence__r.FA_Start_Date_Time__c}" escape="false"></apex:outputtext></b> at Venue &nbsp;
+<b><apex:outputtext value="{!relatedTo.FA_Course_Occurence__r.FA_Training_Venue__r.Name}" escape="false"></apex:outputtext></b> has been Cancelled. </p>
+
+Thanking you,
+<p><b> Course Administrator </b></p>
+</font> 
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

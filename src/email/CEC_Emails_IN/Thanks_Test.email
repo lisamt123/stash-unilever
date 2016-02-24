@@ -1,0 +1,7 @@
+Dear {!Contact.FirstName},
+
+You ticket number {!Case.Id}
+
+
+REgards,
+CEC Srilanka

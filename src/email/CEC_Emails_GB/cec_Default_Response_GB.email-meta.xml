@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>CEC: default response template</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>cec Default Response - GB</name>
+    <style>none</style>
+    <subject>Ref: {!Case.CaseNumber} - {!Case.Subject}</subject>
+    <type>custom</type>
+</EmailTemplate>

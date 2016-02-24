@@ -1,0 +1,3 @@
+<apex:page showHeader="false" sidebar="false">
+<apex:outputLink value="/sfc/servlet.shepherd/version/download/068180000008WFB" target="_top">Download Video</apex:outputLink>
+</apex:page>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>AF_Sendemail</name>
+    <style>none</style>
+    <subject>Create New Currency Records for New Financial year</subject>
+    <textOnly>Hi,  Please create new currency records for new financial year. Please find the following link for upload the records.  Click Here</textOnly>
+    <type>custom</type>
+</EmailTemplate>

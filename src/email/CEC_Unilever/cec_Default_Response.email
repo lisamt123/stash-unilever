@@ -1,0 +1,20 @@
+<messaging:emailTemplate subject="Regarding Case number : {!relatedTo.CaseNumber}" recipientType="Contact" relatedToType="Case">
+<messaging:HTMLEmailBody >
+
+<p>
+<apex:image id="BrandLogo" value="{!relatedTo.Case_Brand_Mapping__r.External_Image_Address__c}" />
+<br></br><br></br></p>
+
+<p contenteditable="true">
+
+    <p>Dear {!relatedTo.Contact}},</p>
+
+    <p>START
+    </p>
+
+    <p>Thank you,<br></br>
+    CEC Carlines</p>
+</p>
+
+</messaging:HTMLEmailBody>
+</messaging:emailTemplate>

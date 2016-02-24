@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FAU Fill Biography Invitation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FAU_eXcel_rator</letterhead>
+    <name>FAU Fill Biography Invitation</name>
+    <style>formalLetter</style>
+    <subject>RESPONSE REQUIRED: Please fill your Bio for {!FAU_Participant__c.FAU_Program_Name__c}</subject>
+    <textOnly>Dear {!FAU_Participant__c.FAU_First_Name__c},
+{!FAU_Participant__c.FAU_Program_Name__c}
+
+Prepare Biography
+
+
+
+On behalf of Four Acres we hope you found our webinar informative and are looking forward to your leadership journey, which includes robust feedback, self-led assignments and face-to-face modules.
+
+The first residential module will be from {!FAU_Participant__c.FAU_Module_1_Start_Date__c} to {!FAU_Participant__c.FAU_Module_1_End_Date__c}.
+
+
+To make the experience more enjoyable we would like you to help us prepare a short biography .
+
+
+Immediate Action Required:
+
+For participants to get to know each other, please prepare a short biography by clicking on this hyperlink {!FAU_Participant__c.FAU_Bio_Page_Link__c} on or before {!FAU_Participant__c.FAU_Biography_Deadline__c}.
+
+
+What’s coming next:
+
+After you fill your Biographical Details, you will be asked for travel details.
+
+
+
+Congratulations again on your nomination and we look forward to seeing you soon.
+
+
+
+To see your progress check out your: {!FAU_Participant__c.FAU_Participants_Workbook__c}
+
+Chatter group : {!FAU_Participant__c.FAU_Chatter_Group__c}
+
+
+Kind regards,
+{!FAU_Participant__c.OwnerFullName}
+{!FAU_Participant__c.OwnerTitle}
+
+Ph: {!FAU_Participant__c.OwnerPhone}
+Email: {!FAU_Participant__c.OwnerEmail}
+
+
+
+www.unilever.com | www.facebook.com/unilever</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -1,0 +1,16 @@
+<table border="0" cellpadding="5" width="550" cellspacing="5" height="400" >
+<tr valign="top" height="400" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; bEditID:r3st1; color:#000000; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="p1" style="font-size: 12pt;">Hello From&nbsp;{!if(Case.Case_Brand__c="","Unilever",Case.Case_Brand__c)}</p>
+<p class="p2" style="font-size: 12pt;"><br></p>
+<p class="p1" style="font-size: 12pt;">Thank you for your recent [channel description].</p>
+<p class="p2" style="font-size: 12pt;"><br></p>
+<p class="p2" style="font-size: 12pt;"><br></p>
+<p class="p2" style="font-size: 12pt;">Thank you again for contacting us. If you have any further enquiries please feel free to contact us from 8am to 6pm Monday to Friday toll free on&nbsp;<span style="font-size: 12pt;">0800585204.</span></p>
+<p class="p2" style="font-size: 12pt;"><br></p>
+<p class="p1" style="font-size: 12pt;">Yours sincerely,</p>
+<p class="p2" style="font-size: 12pt;"><br></p>
+<p class="p1" style="font-size: 12pt;">{!User.Name}</p>
+<p class="p1" style="font-size: 12pt;">Lynx Consumer Engagement Advisor</p><p class="p1"><font size="2">Ps. Lynx <a href="https://www.thecalmzone.net/sponsors/lynx/">teamed up with CALM</a> to help make a real difference in men's lives.</font></p><p class="p1"><font size="2"><br></font></p><p class="p1"><font size="2"><br></font></p><p class="p1"><span style="font-size: x-small; background-color: rgb(255, 255, 255);">* Please note that we can only accept attachments under 4 megabytes on this email address * Unilever UK Limited Registered in England &amp; Wales; Company No 334527 Registered Office: Unilever House, Springfield Drive, Leatherhead, KT22 7GR Unilever Ireland Registered Office: 20 Riverwalk, National Digital Park, Citywest Business Campus, Dublin 24</span></p>]]></td>
+</tr>
+</table>

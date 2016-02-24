@@ -1,0 +1,34 @@
+<apex:page standardController="CPA_TNF__c"> <!-- extensions="CPA_TNF_CancelReasonController" sidebar="false" showHeader="false" >
+
+ <style>
+    input {
+        padding-top: 0;
+        width: 100%;
+    }
+    table.detailList {
+        width: 50% !important;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    </style>
+
+
+
+
+<apex:form >
+ <apex:pageBlock >
+ <apex:pageMessages />
+ <apex:pageBlockSection columns="2">
+ <div style="text-align: center;">
+        <span style="margin-right: 10px;">Reason for Cancellation:   <apex:inputTextarea value="{!strReason}" required="true"/></span >
+            
+     </div>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection >
+             <apex:commandButton value="Save" action="{!SaveCancelReason}"/> 
+               <apex:commandButton value="Cancel"  action="{!CancelReason}"/> 
+            </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:form>-->
+</apex:page>

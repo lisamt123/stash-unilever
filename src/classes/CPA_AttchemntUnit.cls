@@ -335,7 +335,9 @@ public static void ReadFile(Attachment att)    {
                     
                     nameFile =att.body.toString();
                      
-                    
+                    system.debug('att--->'+att);
+                 system.debug('att.ParentId--->'+att.ParentId);
+                
                     //Now sepatate every row of the excel file
                     filelines = nameFile.split('\n');
                     
@@ -384,6 +386,7 @@ public static void ReadFile(Attachment att)    {
                             a.num_Value__c =0;
                         }
                         string srtTemp = att.ParentId;
+                        system.debug('srtTemp--->'+srtTemp);
                         if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger)){
                             a.Project_Work_Order__c = att.ParentId;
                         }else if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_CR)){

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email Template: Used by BOTH Local and Global Events to notify Planner Owners dates have been modified</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Blue_Comms_Planner</letterhead>
+    <name>Notify Planner Owners of Date Changes</name>
+    <style>freeForm</style>
+    <subject>Planner event activation dates have changed</subject>
+    <textOnly>The following activation dates have changed 
+
+Event Name: {!cp_Event__c.Name}
+
+Project Lead: {!cp_Event__c.Project_Lead__c}
+
+Proposed Start Date: {!cp_Event__c.StartDate__c}
+
+Proposed End Date: {!cp_Event__c.EndDate__c}
+
+Confirmed Dates?: {!cp_Event__c.Are_Dates_Guarenteed__c}
+ 
+
+For full event Information please click on the following link: {!cp_Event__c.Link}</textOnly>
+    <type>html</type>
+</EmailTemplate>

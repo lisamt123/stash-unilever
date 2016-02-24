@@ -1,0 +1,14 @@
+Tracking Name: {!cec_Alert_Tracker__c.Name} 
+{!cec_Alert_Tracker__c.Link} 
+
+Rule: {!cec_Alert_Tracker__c.Alert_Rule_Id__c} 
+Product: {!cec_Alert_Tracker__c.Product_No_Size__c} 
+L5 Reason code: {!cec_Alert_Tracker__c.L5_Reason_Code__c} 
+
+Rule Threshold: {!cec_Alert_Tracker__c.Alert_Threshold__c} 
+Current tracked count: {!cec_Alert_Tracker__c.Current_Threshold__c} 
+
+Case Details: 
+------------------ 
+
+{!cec_Alert_Tracker__c.caseList}

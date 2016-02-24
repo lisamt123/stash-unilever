@@ -9,11 +9,8 @@
     </customApplicationComponents>
     <defaultLandingTab>standard-home</defaultLandingTab>
     <detailPageRefreshMethod>autoRefresh</detailPageRefreshMethod>
-    <enableCustomizeMyTabs>false</enableCustomizeMyTabs>
     <enableKeyboardShortcuts>true</enableKeyboardShortcuts>
-    <enableListViewReskin>true</enableListViewReskin>
     <enableMultiMonitorComponents>true</enableMultiMonitorComponents>
-    <enablePinTabs>true</enablePinTabs>
     <isServiceCloudConsole>true</isServiceCloudConsole>
     <keyboardShortcuts>
         <defaultShortcut>
@@ -161,11 +158,6 @@
             <active>false</active>
             <keyCommand>Z</keyCommand>
         </defaultShortcut>
-        <defaultShortcut>
-            <action>REOPEN_LAST_TAB</action>
-            <active>false</active>
-            <keyCommand>SHIFT+C</keyCommand>
-        </defaultShortcut>
     </keyboardShortcuts>
     <label>CEC Console</label>
     <listPlacement>
@@ -191,12 +183,49 @@
     <tab>cec_Store__c</tab>
     <tab>User_Default_Setting__c</tab>
     <tab>CEC_ChequeBook_Detail__c</tab>
+    <tab>EA_Team_Member__c</tab>
+    <tab>AIW</tab>
+    <tab>Amr_Job_Details__c</tab>
+    <tab>Recordshare</tab>
+    <tab>CPA_HLE_Request__c</tab>
+    <tab>Amr_Summary_Plan__c</tab>
+    <tab>Saving_Summary</tab>
+    <tab>All_Themes__c</tab>
+    <tab>Attendee__c</tab>
+    <tab>test_feed</tab>
     <workspaceMappings>
+        <mapping>
+            <tab>AIW</tab>
+        </mapping>
+        <mapping>
+            <tab>All_Themes__c</tab>
+        </mapping>
+        <mapping>
+            <tab>Amr_Job_Details__c</tab>
+        </mapping>
+        <mapping>
+            <tab>Amr_Summary_Plan__c</tab>
+        </mapping>
         <mapping>
             <tab>Article__c</tab>
         </mapping>
         <mapping>
+            <tab>Attendee__c</tab>
+        </mapping>
+        <mapping>
             <tab>CEC_ChequeBook_Detail__c</tab>
+        </mapping>
+        <mapping>
+            <tab>CPA_HLE_Request__c</tab>
+        </mapping>
+        <mapping>
+            <tab>EA_Team_Member__c</tab>
+        </mapping>
+        <mapping>
+            <tab>Recordshare</tab>
+        </mapping>
+        <mapping>
+            <tab>Saving_Summary</tab>
         </mapping>
         <mapping>
             <tab>User_Default_Setting__c</tab>
@@ -245,6 +274,9 @@
         </mapping>
         <mapping>
             <tab>standard-report</tab>
+        </mapping>
+        <mapping>
+            <tab>test_feed</tab>
         </mapping>
     </workspaceMappings>
 </CustomApplication>

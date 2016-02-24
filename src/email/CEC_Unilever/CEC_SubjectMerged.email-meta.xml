@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>for user story US027 POC</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>New_Issue_Alert</letterhead>
+    <name>CEC_SubjectMerged</name>
+    <style>freeForm</style>
+    <subject>Description of case :- {!Case.CaseNumber}</subject>
+    <textOnly>Hi User,
+
+    This is test mail to check merge field in subject line for case  {!Case.CaseNumber}  .
+
+Cheers,
+{!Case.OwnerFullName}</textOnly>
+    <type>html</type>
+</EmailTemplate>

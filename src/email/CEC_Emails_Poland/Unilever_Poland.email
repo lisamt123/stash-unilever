@@ -1,0 +1,18 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<font face="Arial"  style="font-size:13px" color="#000099"><b>Zwyrazami szacunku, </b><br/><br/><br/>
+<font face="Arial" size = "2" color="#000099"><b>{!User.FirstName} <span> {!User.LastName},</b><br/>
+<b>Serwis Konsumenta <span>{!Case.Case_Brand__c}  ,</b><br/><br/></font>
+
+
+ <img src={!IF(ISBLANK(Case.External_Image_Address__c),"https://unilever--c.na9.content.force.com/servlet/servlet.ImageServer?id=015E0000005HwhT&oid=00D180000008e54&lastMod=1418309606000",Case.External_Image_Address__c)} alt="Logo"/>
+
+
+<br>
+<font face="Arial"  style="font-size:10px" color="DimGray">Unilever Polska Sp. z o.o.<br/>
+Skr. Poczt. 315<br/>
+00-987 Warszawa<br/>
+<a href="www.unilever.pl"> <font face = "Arial" style="font-size:10px" color = "#0099FF" > <b>www.unilever.pl</b> </font></a><br/><br/></font>

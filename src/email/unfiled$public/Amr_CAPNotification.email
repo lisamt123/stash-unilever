@@ -1,0 +1,116 @@
+<div style="float:left;">
+	<img src="https://unilever--chazwa.cs23.my.salesforce.com/servlet/servlet.ImageServer?id=01518000000Ew5d&oid=00D180000008e54" />
+</div>
+
+<div style="float:right">
+	<img src="https://unilever--chazwa.cs23.my.salesforce.com/servlet/servlet.ImageServer?id=01518000000Ew5Y&oid=00D180000008e54" />	
+</div>
+
+<div style="clear:both">
+</div>
+
+<div style=" text-align:center;margin:30px 0;">A new Production Project has been created, with the following details:</div> 
+
+<div style="padding:0 40px;">
+<div style="margin-bottom:20px;">
+<span style="font-weight:bold;color:red;">AdManager Number : </span>  <span>{!Amr_Job_Details__c.AdManagerText__c}</span>
+</div>
+<div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Have you checked with CMI: </span><span>{!Amr_Job_Details__c.Check_With_CMI__c}</span>
+</div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Your email address: </span><span>{!Amr_Job_Details__c.Your_Email_Address__c} </span> </div>
+<div>
+<span style="font-weight:bold;">Unilever project leader email: </span><span>{!Amr_Job_Details__c.Unilever_Project_Leader_Email__c} </span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Location of Unilever project leader: </span><span>{!Amr_Job_Details__c.Project_Leader_Cluster__c}  --  {!Amr_Job_Details__c.Project_Leader_Country__c}</span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Unilever finance member email: </span><span>{!Amr_Job_Details__c.Unilever_Finance_Member_Email__c}	</span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Final approver of material email: </span><span>{!Amr_Job_Details__c.Final_Approver_Of_Material_Email__c} </span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Which function are you part of (BD/BB/Other): </span><span>{!Amr_Job_Details__c.Function_You_Are_Part__c} </span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Budget responsibility (BD, BB, Other): </span><span>{!Amr_Job_Details__c.Budget_Responsibility__c} </span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Budget allocated for this activity: </span><span>{!Amr_Job_Details__c.Allocated_Budget_euro__c} </span> </div>
+
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Category > Brand Positioning > Brand: </span><span>{!Amr_Job_Details__c.ProductCategory__c} --  {!Amr_Job_Details__c.Brand_Position__c} -- 
+{!Amr_Job_Details__c.Brand_Final__c}</span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Lead agency name: </span><span>{!Amr_Job_Details__c.Lead_Creative_Agency_name__c}  
+{!Amr_Job_Details__c.Lead_Agency_Name_Other__c}
+</span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Lead agency location: </span><span>{!Amr_Job_Details__c.Lead_Agency_Location_Cluster__c} --  {!Amr_Job_Details__c.Lead_Agency_Location_Country__c}</span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Agency contact or account director email: </span></span>{!Amr_Job_Details__c.Agency_Contact_Account_Director_Email__c}</span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Digital Agency Name (if applicable): </span></span>{!Amr_Job_Details__c.Digital_Agency_Name__c}</span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Any other agencies involved?: </span><span>{!Amr_Job_Details__c.Any_other_agencies_involved__c}</span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Project name: </span><span style="font-weight:bold;">
+{!Amr_Job_Details__c.Project_Details__c} {!Amr_Job_Details__c.Project_Name_Other__c} </span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Project location: </span><span>{!Amr_Job_Details__c.Project_Location_Cluster__c} --   {!Amr_Job_Details__c.Project_Location_Country__c}</span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Broadcast market: </span><span>{!Amr_Job_Details__c.Brodcast_Market__c}</span></div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">What type of activity will this production support: </span><span>{!Amr_Job_Details__c.Production_Activity_Type__c}</span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Project description: </span><span>{!Amr_Job_Details__c.Project_Description__c} </span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Campaign name: </span><span>{!Amr_Job_Details__c.Campaign_Name__c} </span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Execution name: </span><span>{!Amr_Job_Details__c.Execution_Name__c} </span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Target air date: </span><span>{!Amr_Job_Details__c.Target_Air_Date__c} </span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Production activity type: </span></div>
+<div style="padding:4px 0;">
+<div style="margin-left:30px;">
+<span>{!Amr_Job_Details__c.ProductionActivityTextArea__c}</span> </div>
+<div style="padding:4px 0;">
+<span style="font-weight:bold;">Do you anticipate that your production will require Music?: </span><span>{!Amr_Job_Details__c.Require_Music__c }</span> </div>
+<div>
+<span style="font-weight:bold;">Do you anticipate that your production will require Celebrity Talent?: </span></span>{!Amr_Job_Details__c.Require_Celebrity_Talent__c }</span> </div>
+<div>
+<span style="font-weight:bold;">Current stage of your production activity: </span><span>{!Amr_Job_Details__c.Stage_of_Production_Activity__c} </span> </div>
+</div>
+<div style="margin-top:30px;">
+https://unilever--chazwa.cs23.my.salesforce.com/apex/AM_JobSheet?id={!Amr_Job_Details__c.Id}
+</div>
+<div style="margin:30px 0;">
+	<div style="float:left;">
+		<img src="https://unilever--chazwa.cs23.my.salesforce.com/servlet/servlet.ImageServer?id=01518000000Ew5n&oid=00D180000008e54" />
+	</div>
+	<div style="float:left;">
+		<img src="https://unilever--chazwa.cs23.my.salesforce.com/servlet/servlet.ImageServer?id=01518000000Ew5x&oid=00D180000008e54" />
+	</div>
+	<div style="float:left;">
+		<img src="https://unilever--chazwa.cs23.my.salesforce.com/servlet/servlet.ImageServer?id=01518000000Ew5O&oid=00D180000008e54" />
+	</div>
+	<div style="float:left;">
+		<img src="https://unilever--chazwa.cs23.my.salesforce.com/servlet/servlet.ImageServer?id=01518000000Ew5J&oid=00D180000008e54" />
+	</div>
+	<div style="float:left;">
+		<img src="https://unilever--chazwa.cs23.my.salesforce.com/servlet/servlet.ImageServer?id=01518000000Ew5s&oid=00D180000008e54" />
+	</div>
+	<div style="float:left;">
+		<img src="https://unilever--chazwa.cs23.my.salesforce.com/servlet/servlet.ImageServer?id=01518000000Ew5T&oid=00D180000008e54" />
+	</div>
+	<div style="float:left;">
+		<img src="https://unilever--chazwa.cs23.my.salesforce.com/servlet/servlet.ImageServer?id=01518000000Ew62&oid=00D180000008e54" />
+	</div>
+	<div style="float:left;">
+		<img src="https://unilever--chazwa.cs23.my.salesforce.com/servlet/servlet.ImageServer?id=01518000000Ew5i&oid=00D180000008e54" />
+	</div>
+	<div style="clear:both;">		
+	</div>
+</div>
+<div style="margin-bottom:30px;">
+Please contact <a href="mailto:Advertising.Production@unilever.com">Advertising.Production@unilever.com</a> if you require any further assistance or visit <a href="http://adproduction.unilever.com/" target="_blank">http://adproduction.unilever.com/</a> for supporting documentation.
+</div>

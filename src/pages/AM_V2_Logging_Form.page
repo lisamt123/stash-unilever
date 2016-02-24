@@ -1,0 +1,2848 @@
+<apex:page standardStylesheets="false" showHeader="false">
+   <head>
+      <title>Unilever AdManager - Add a Job</title>
+      <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+      <script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'>
+      </script>
+      <script type="text/javascript">
+         
+         var Masterflag = true;
+         var SubMasterflag = true; 
+         var idName;
+         $ = jQuery.noConflict();
+         
+         $(document).ready(function(){
+                             
+             $('input.sub-master').click(function() {
+                 SubMasterflag = true;
+                 $('input.sub-master').each(function() {
+                     if(this.checked) {
+                         SubMasterflag = false;      
+                     }
+                 });
+                 
+                 if(true == SubMasterflag ) {
+                     $('.sub-master-detail').addClass('hide');
+                     $('.additional').prop('checked', false);
+                     $('.submasterdetaildiv input:checkbox').prop('checked', false);
+                 } else {
+                     $('.sub-master-detail').removeClass('hide'); 
+                 }
+             });
+                         
+             $('input.original_master').click(function() {
+                  if (this.checked) {
+                     $('input.other_master').prop('checked', false);
+                     $('.master-detail').removeClass('hide');
+                     $('.additional').prop('checked', false);
+                     $('.submasterdetaildiv input:checkbox').prop('checked', false);
+                 } else {
+                     $('input.other_master').prop('checked', false);
+                     $('.master-detail').addClass('hide');
+                     $('.sub-master-detail').addClass('hide');
+                 }
+             });
+             
+             $('input.other_master').click(function() {
+                 Masterflag = true;
+                  if (this.checked) {
+                     $('input.original_master').prop('checked', false);
+                     $('.master-detail').removeClass('hide');
+                     $('.additional').prop('checked', false);
+                     $('.submasterdetaildiv input:checkbox').prop('checked', false);
+                 } else {
+                     $('input.other_master').each(function() {
+                         if (this.checked) {
+                             Masterflag = false;
+                             $('.master-detail').removeClass('hide');
+                         }
+                     });
+                     if( true == Masterflag ) {
+                         //$('input.original_master').removeAttr('disabled','disabled');
+                         $('.master-detail').addClass('hide');
+                         $('.sub-master-detail').addClass('hide');
+                     }
+                 }
+             });
+             
+             $('.additional').click(function() {
+                 idName = $(this).attr('id');
+                 if(this.checked) {    
+                     $('.'+idName).prop('checked', true);
+                 } else {
+                     $('.'+idName).prop('checked', false);
+                 }
+             });
+             
+         });
+      </script>
+      <style type="text/css">
+      
+         * {
+         outline: none
+         }
+         body {
+         margin:0;
+         display:block;
+         font-family: Verdana, Arial, sans-serif;
+         font-size: 11px;
+         overflow-x: hidden;
+         padding:0;
+         }
+         .col1, .col2, .col3, .col4, .col4_5, .col5, .col6, .col7, .col8, .col9, .col10, .col11, .col12 {
+         display:inline;
+         float:left;
+         margin-left:10px;
+         margin-right:10px;
+         margin-bottom:20px;
+         }
+         header {
+         background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/header.jpg')}") no-repeat scroll center top #C0D4EC;
+         height: 110px;
+         }
+         header #branding,
+         header #account {
+         display: none;
+         }
+         #main-content {
+         margin: 0 auto;
+         overflow: hidden;
+         padding: 0 20px;
+         width: 940px;
+         }
+         #main-content header {
+         height: auto;
+         background: #dce8f2;
+         color: #1668a7;
+         padding: 10px;
+         margin-bottom: 1px;
+         }
+         #main-content form {
+         color: #888;
+         }
+         input[type="text"],
+         input[type="password"],
+         button,
+         select,
+         textarea {
+         box-sizing:border-box;
+         -moz-box-sizing:border-box;
+         -webkit-box-sizing:border-box;
+         width: 200px;
+         color: #0B2F4D;
+         border: 1px solid #c6d9e9;
+         padding: 2px 2px 2px 4px;
+         background: #ffffff;
+         background: -moz-linear-gradient(top,  #ffffff 0%, #f2f2f2 100%);
+         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f2f2f2));
+         background: -webkit-linear-gradient(top,  #ffffff 0%,#f2f2f2 100%);
+         background: -o-linear-gradient(top,  #ffffff 0%,#f2f2f2 100%);
+         background: -ms-linear-gradient(top,  #ffffff 0%,#f2f2f2 100%);
+         background: linear-gradient(top,  #ffffff 0%,#f2f2f2 100%);
+         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f2f2f2',GradientType=0 );
+         }
+         .scroll-content input[type="text"],
+         .scroll-content input[type="password"],
+         .scroll-content button,
+         .scroll-content select,
+         .scroll-content textarea {
+         width: 197px
+         }
+         input[type="text"][disabled],
+         button[disabled],
+         select[disabled],
+         select[disabled] option,
+         textarea[disabled],
+         div.selector.disabled span {
+         color: #ccc;
+         }
+         .focused input,.focused input.datepicker {
+         background: none;
+         background-color: #fff;
+         color: #58749e;
+         transition: none;
+         }
+         .focused input, .focused select, .focused input.datepicker {
+         zoom: 1;
+         filter: progid:DXImageTransform.Microsoft.Shadow(color='#c6d9e9', Direction= 135, Strength=2)
+         progid:DXImageTransform.Microsoft.Shadow(color='#c6d9e9', Direction= 0, Strength=2)
+         progid:DXImageTransform.Microsoft.Shadow(color='#c6d9e9', Direction= 90, Strength=2)
+         progid:DXImageTransform.Microsoft.Shadow(color='#c6d9e9', Direction= 270, Strength=2);
+         position/*\**/: relative\9;
+         top /*\**/: -2px\9;
+         left /*\**/: -2px\9;
+         color: #58749E!important;
+         box-shadow: 0 0 4px 1px #c6d9e9;
+         -webkit-box-shadow: 0 0 4px 1px #c6d9e9;
+         -o-box-shadow: 0 0 4px 1px #c6d9e9;
+         -ms-box-shadow: 0 0 4px 1px #c6d9e9
+         }
+         .focused input.datepicker {
+         background: #ffffff url("/images/backgrounds/ie_dateBg.png") no-repeat scroll 0px -1px;
+         }
+         .focused input[type="checkbox"] {
+         filter: none;
+         background-color: transparent;
+         box-shadow: none
+         }
+         #user_id {
+         margin: 5px 0 7px 0; 
+         width: 210px;
+         }
+         option {
+         background: none;
+         }
+         input[type="text"], input[type="password"] {
+         padding: 2px 2px 2px 3px;
+         margin: 1px 0;
+         }
+         #savings_group input {
+         }
+         div.form-field input.button.add-new,
+         div.form-field input.button.delete,
+         section.additionalCostSubform .form-field  #additional_cost-template-save {
+         text-indent: -99999px;
+         cursor: pointer;
+         border: none;
+         border-radius: 0;
+         padding: 0;
+         display: block;
+         }
+         div.form-field input.button.add-new {
+         width: 62px;
+         height: 27px;
+         background: transparent url("/images/icons/BtnAddOn.png") left no-repeat;
+         }
+         div.form-field.disabled input.button.add-new {
+         background: transparent url("/images/icons/BtnAddOff.png") left no-repeat;
+         cursor: auto;
+         }
+         div.form-field input.button.delete {
+         width: 72px;
+         height: 27px;
+         background: transparent url("/images/icons/BtnDeleteOn.png") left no-repeat;
+         }
+         div.form-field.disabled input.button.delete {
+         background: transparent url("/images/icons/BtnDeleteOff.png") left no-repeat;
+         cursor: auto;
+         }
+         section.additionalCostSubform .form-field  #additional_cost-template-save {
+         background: transparent url("/images/icons/BtnSaveOn.png") left no-repeat;
+         width: 72px;
+         height: 27px;
+         margin: 0 25px 0 0;
+         }
+         section.additionalCostSubform .form-field.disabled #additional_cost-template-save {
+         background: transparent url("/images/icons/BtnSaveOff.png") left no-repeat;
+         cursor: auto;
+         }
+         input[type="submit"],
+         a.button {
+         width: auto;
+         background: url(/images/backgrounds/button.png) left repeat-x;
+         border: 1px solid #ccc;
+         border-bottom-color: #aaa;
+         padding: 5px 15px;
+         behavior: url(/css/PIE.htc);
+         border-radius: 2px 2px 2px 2px;
+         -moz-border-radius: 2px;
+         -webkit-border-radius: 2px;
+         }
+         #toolbox ul li form input[type="submit"]:disabled,
+         .job-actions li input[type="submit"]:disabled {
+         cursor: auto;
+         }
+         #save_cost_group_template {
+         float: right;
+         border-bottom: none;
+         }
+         select:disabled {
+         background: #f5f5f5;
+         }
+         div.form-field {
+         float: left;
+         padding: 10px;
+         }
+         div.button-actions {
+         float: right;
+         margin-right: -10px;
+         }
+         adcc
+         section.production-activity-section {
+         padding: 0 0 15px 0;
+         }
+         #related-group {
+         border: 0;
+         clear: none;
+         height: 60px;
+         margin: 15px 0 15px 0;
+         }
+         #related-group span {
+         top: 12px;
+         padding-left: 0px;
+         }
+         div.related-to-previous {
+         width: 930px;
+         height: 50px;
+         margin: 0;
+         padding-right: 10px;
+         }
+         div.related-to-previous .form-field  {
+         float: none;
+         text-align: right;
+         }
+         div.related-to-previous label {
+         float: none;
+         padding: 0;
+         top: 0;  
+         margin: 0 5px 0 0;
+         }
+         div.related-to-previous label.radio-group {
+         margin: 0 8px 0 0;
+         padding: 0 20px 0 0;
+         }
+         div.related-to-previous input {
+         display: inline;
+         margin: 0 10px 0 0;
+         }
+         div.related-to-previous strong {
+         display: block;
+         height: 1px;
+         overflow: hidden;
+         padding-top: 10px;
+         position: absolute;
+         right: 5px;
+         top: -1px;
+         width: 15px;
+         }
+         section {
+         overflow: hidden;
+         padding: 0 0 30px;
+         position: relative;
+         }
+         section h2, section h3 {
+         background: #214278;
+         display: block;
+         color: #fff;
+         font-size: 1.1em;
+         padding: 14px 10px 14px 20px;
+         }
+         section h3 {
+         background: #e2e2e2;
+         color: #214278;
+         font-size: 1em;
+         padding: 8px 20px;
+         }
+         fieldset {
+         background: #fff;
+         border-bottom: 1px solid #e5e5e5;
+         clear: left;
+         position: relative;
+         }
+         fieldset span.field-status {
+         display: block;
+         position: absolute;
+         width: 15px;
+         height: 15px;
+         top: 14px;
+         right: 10px;
+         cursor: pointer;
+         }
+         fieldset.valid span.field-status {
+         background: url(/images/icons/tick.png) center no-repeat;
+         }
+         fieldset.invalid span.field-status {
+         background: url(/images/icons/error_red.png) center no-repeat;
+         }
+         fieldset.loading span.field-status {
+         background: transparent url(/images/icons/saving.gif) no-repeat center center;
+         }
+         .invalid input, .invalid select, .invalid input.datepicker {
+         zoom: 1;
+         margin: 0px 0 0 -1px;
+         color: #0B2F4D!important;
+         border: 2px solid #f00;
+         }
+         fieldset.highlight option {
+         background: #fff;
+         }
+         label {
+         clear: left;
+         width: 190px;
+         padding: 4px 60px 4px 0;
+         display: inline;
+         float: left;
+         margin: 0;
+         text-align: right;
+         position: relative;
+         color: #0B2F4D;
+         line-height: 1.5em;
+         }
+         fieldset .form-field > span {
+         float: right;
+         padding: 4px 0;
+         line-height: 1.5em;
+         }
+         label strong {
+         display: block;
+         background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/reqd.png')}") center no-repeat;
+         width: 15px;
+         height: 1px;
+         position: absolute;
+         top: 2px;
+         right: 15px;
+         padding-top: 18px;
+         overflow: hidden;
+         }
+         .star {
+         display: block;
+         background: url(images/reqd.png) left no-repeat;
+         float: left;
+         padding-left:20px;
+         }
+         .openingjobsheet, .main-content, .form {
+         margin-top: -20px;
+         }
+         .openingjobsheet, .secondary-heading {
+         margin-bottom: 10px;
+         }
+         #reportMessage {
+         height: 50px; 
+         color: #454545;
+         padding: 10px;
+         background-color: #dddddd;
+         margin: 0 0 15px 0;
+         }
+         #reportMessage .messageTitle {
+         font-weight: bold;
+         font-size: 16px;
+         margin: 0 0 8px 0;
+         }
+         label div {
+         background: url(/images/icons/question.png) center no-repeat;
+         width: 15px;
+         height:15px;
+         position: absolute;
+         bottom: 4px;
+         right: 40px;
+         padding-top: 18px;
+         overflow: hidden;
+         cursor: pointer;
+         }
+         footer {
+         clear: both;
+         }
+         footer p {
+         float: left;
+         padding: 0 0 30px;
+         width: 100%;
+         }
+         a {
+         color: #000;
+         }
+         #locationofunilevergroup label[for="location_of_unilever_project_leader_countries"],
+         #budgetgroup label[for="local_amount"],
+         #budgetgroup label[for="amount_in_euros_text"],
+         #brandgroup label[for="brand_name"],
+         #creativeagencylocationgroup label[for="lead_creative_agency_country_location"],
+         #ipmgroup label[for="ipm_project_name"] {
+         margin: 0 -20px 0 0;
+         padding: 0;
+         width: 12px;
+         height: 15px;
+         left: -12px;
+         top: 2px;
+         }
+         #budgetgroup label[for="amount_in_euros_text"] {
+         top: 4px;
+         }
+         #locationofunilevergroup label[for="location_of_unilever_project_leader_countries"] strong,
+         #budgetgroup label[for="local_amount"] strong,
+         #budgetgroup label[for="amount_in_euros_text"],
+         #brandgroup label[for="brand_name"] strong,
+         #creativeagencylocationgroup label[form="lead_creative_agency_country_location"] strong,
+         #ipmgroup label[for="ipm_project_name"] strong, .strongArrow strong  {
+         display: block;
+         right: 0;
+         background: url(/images/hierarchical.png) center no-repeat;
+         }
+         .currency-convertor .form-field:first-child label {
+         clear: left;
+         display: inline;
+         float: left;
+         margin: 0;
+         padding: 4px 60px 4px 0;
+         position: relative;
+         text-align: right;
+         width: 190px;
+         left: 0;
+         height: auto
+         }
+         .currency-convertor .form-field label {
+         margin: 0 -20px 0 0;
+         padding: 0;
+         width: 12px;
+         height: 15px;
+         left: -12px;
+         top: 2px;
+         }
+         .radio-label {
+         clear: none;
+         float: none;
+         padding: 0 8px 0 16px;
+         top: 2px;
+         width: auto;
+         }
+         fieldset.currency-convertor label strong,
+         fieldset.currency-convertor .form-field:first-child + .form-field label  {
+         content: " ";
+         display: block;
+         right: 0;
+         background: url(/images/hierarchical.png) center no-repeat;
+         vertical-align: middle;
+         }
+         .currency-convertor .form-field:first-child label strong {
+         display: none;
+         }
+         .currency-convertor .form-field:first-child label strong {
+         display: block;
+         background: url("/images/icons/reqd.png") no-repeat scroll center center transparent;
+         right: 40px;
+         }
+         .conditional-required .form-field:first-child label strong {
+         display: block
+         }
+         .conditional-required fieldset[disabled] .form-field:first-child label strong {
+         display: none
+         }
+         #productionactivitytypegroup>div {
+         float: left;
+         margin-right: 20px;
+         padding: 14px 20px 14px 10px;
+         text-align: right;
+         }
+         #productionactivitytypegroup ul {
+         float: left;
+         list-style-type: none;
+         padding: 0 10px 10px 0;
+         width: 630px;
+         }
+         #productionactivitytypegroup ul li {
+         background: url(/images/dashed-line-vertical.png) 10px 25px no-repeat;
+         margin-bottom: 10px;
+         }
+         #productionactivitytypegroup ul li:after {
+         visibility: hidden;
+         display: block;
+         font-size: 0;
+         content: " ";
+         clear: both;
+         height: 0;
+         }
+         #productionactivitytypegroup ul li label {
+         width: auto;
+         text-align: left;
+         padding: 0;
+         margin: 3px 0 5px;
+         color: #0B2F4D;
+         }
+         #productionactivitytypegroup label input {
+         width: auto;
+         display: inline;
+         margin-right: 10px;
+         }
+         #productionactivitytypegroup .checkbox-group {
+         display: none;
+         padding: 5px 0 5px 20px;
+         clear: left;
+         }
+         #productionactivitytypegroup .checkbox-group label {
+         display: inline;
+         float: none;
+         clear: none;
+         padding: 4px 10px 4px 0;
+         margin-bottom: 0;
+         float: left;
+         color: #888;
+         }
+         #lead_creative_agency_name_type_switcher, .other_switcher {
+         display: block;
+         float: left;
+         margin: 16px 10px;
+         color: #0B2F4D
+         }
+         input.datepicker {
+         padding-left: 20px;
+         filter: none;
+         background: url(/images/backgrounds/ie_dateBg.png) 0px -1px no-repeat;
+         }
+         #ui-datepicker-div {
+         display: none;
+         }
+         ul.errors {
+         margin: 0;
+         padding: 0;
+         list-style-type: none;
+         text-align: left;
+         }
+         ul.errors label {
+         width: auto;
+         padding: .2em 0;
+         margin: 0;
+         color: #333;
+         text-align: left;
+         }
+         .ui-tooltip,
+         .ui-tooltip .ui-tooltip-content {
+         border-color: #58749e;
+         background: #fff url(/images/backgrounds/tooltip.png) bottom repeat-x;
+         color: #0B2F4D;
+         }
+         /* error tooltip */
+         .ui-tooltip.error,
+         .ui-tooltip.error .ui-tooltip-content {
+         border-color: #f2acac;
+         background: #fff url(/images/backgrounds/tooltip-error.png) bottom repeat-x;
+         }
+         .ui-tooltip-content ul {
+         list-style-type: none;
+         }
+         .ui-tooltip-content ul li {
+         margin: 0em 0;
+         }
+         section.description, section.success-message section.failure-message {
+         color: #0B2F4D;
+         background: none;
+         margin: 20px 0 25px;
+         padding: 10px;
+         line-height: 1.6em;
+         }
+         section.description h1 {
+         font-size: 1.4em;
+         padding: 0 0 10px;
+         }
+         section.description ul li {
+         margin: 0 0 0 1.4em;
+         }
+         section.success-message {
+         background-color: #EDFAD4;
+         margin: 0 0 16px;
+         padding: 16px;
+         }
+         section.success-message h1 {
+         color: #16A768;
+         }
+         section.success-message span {
+         display:none;
+         }
+         section.failure-message {
+         background: #F5A9A9;
+         }
+         section.failure-message h1 {
+         color: #B40404;
+         }
+         section.failure-message span {
+         display:none;
+         }
+         /* job title */
+         .job-title {
+         border-bottom: 1px solid #E5E5E5;
+         height: 70px;
+         margin: 0 0 30px;
+         position: relative;
+         }
+         .job-title h1 {
+         color: #0B2F4D;
+         display: block;
+         float: left;
+         font-size: 1.8em;
+         font-weight: 400;
+         overflow: hidden;
+         padding: 33px 0 16px;
+         }
+         .job-title h1 span {
+         font-size: 0.8em
+         }
+         #user-details {
+         text-align: right;
+         margin: 5px 0;
+         }
+         #user-details span {
+         color: #0B2F4D;
+         }
+         #dashboard-toggle {
+         float: right;
+         background: url("/images/backgrounds/dashboard-toggle-off.png") center no-repeat;
+         height: 12px;
+         margin: 10px 0;
+         width: 98px;
+         z-index: 99999;
+         padding: 10px 45px 10px 5px;
+         text-align: center;
+         text-decoration: none;
+         color: #9ab;
+         }
+         #dashboard-toggle.toggled {
+         background: url("/images/backgrounds/dashboard-toggle-on.png") center no-repeat;
+         }
+         #admin-dropdown {
+         float: right;
+         position: relative;
+         }
+         #admin-dropdown a {
+         color: #9ab;
+         text-decoration: none;
+         display: block;
+         }
+         #admin-dropdown>a {
+         background: url("/images/backgrounds/admin-toggle-off.png") center no-repeat;
+         height: 12px;
+         margin: 10px 0 10px 10px;
+         width: 98px;
+         z-index: 99999;
+         padding: 10px 45px 10px 5px;
+         text-align: center;
+         }
+         #admin-dropdown>a:hover {
+         background: url("/images/backgrounds/admin-toggle-on.png") center no-repeat;
+         }
+         #admin-dropdown ul.dropdown-list {
+         border: 1px solid #d7d7d7;
+         background: #f3f3f3;
+         list-style: none;
+         position: absolute;
+         right: 0;
+         top: 43px;
+         width: 146px;
+         z-index: 1;
+         }
+         #admin-dropdown ul.dropdown-list.hidden {
+         display: none
+         }
+         #admin-dropdown ul.dropdown-list a {
+         padding: 5px 10px;
+         }
+         input[type="file"] {
+         color: #0B2F4D;
+         font-size: 12px;
+         }
+         #admin-dropdown ul.dropdown-list li a:hover {
+         background-color: #dfdfdf
+         }
+         /* navigation */
+         #job-navigation {
+         display: none;
+         }
+         #job-navigation, .job-content {
+         display: block;
+         overflow: hidden;
+         width: 100%;
+         border: 1px solid #214278;
+         border-radius: 10px 10px 0px 0px;     
+         }
+         #job-navigation ul {
+         width: 100%;
+         display: table;
+         }
+         #job-navigation li {
+         background: url("/images/backgrounds/navLiBg.png") repeat-x scroll center bottom transparent;
+         border-left: 1px solid #D3DAE5;
+         display: table-cell;
+         height: 37px;
+         line-height: 37px;
+         min-width: 100px;
+         text-align: center;
+         }
+         #job-navigation li.current-page {
+         background: transparent url(/images/backgrounds/navLiBg.png) top repeat-x;
+         border-left: 1px solid #214278
+         }
+         #job-navigation li:first-child {
+         border: none;
+         }
+         #job-navigation li a {
+         display: block;
+         font: bold 10px/37px Verdana,Geneva,Arial,Helvetica,sans-serif;
+         text-decoration: none;
+         color: #90a0bb;
+         }
+         #job-navigation li.mandatory a {
+         background: transparent url(/images/icons/pencils.png) 6px 3px no-repeat;
+         }
+         #job-navigation li.mandatory.current-page a  {
+         background: transparent url(/images/icons/pencils.png) 6px -108px no-repeat;
+         color: #fff;
+         }
+         #job-navigation li.mandatory a.completed {
+         background: transparent url(/images/icons/pencils.png) 6px -71px no-repeat;
+         }
+         #job-navigation li.mandatory a.incomplete {
+         background: transparent url(/images/icons/pencils.png) 6px -34px no-repeat;
+         }
+         #job-navigation li.current-page a {
+         color: #fff;
+         }
+         #job-navigation li.loading a {
+         background: transparent url(/images/icons/saving.gif) no-repeat 2px 2px;
+         }
+         #job-navigation li.current-page.loading a {
+         background: transparent url(/images/icons/saving_white.gif) no-repeat 2px 2px;
+         }
+         #job-navigation #nav-dashboard {
+         min-width: 50px;
+         }
+         #job-navigation #nav-dashboard a {
+         background: url(/images/icons/dashboard.png) center no-repeat;
+         text-indent: -9999em;
+         }
+         #job-navigation #nav-dashboard.current-page a {
+         background-image: url(/images/icons/dashboard_white.png);
+         }
+         #job-navigation #nav-archives {
+         min-width: 50px;
+         }
+         #job-navigation #nav-archives a {
+         background: url(/images/icons/archives.png) 52% 45% no-repeat;
+         color: #fff;
+         }
+         #job-navigation #nav-archives.current-page a {
+         background-image: url(/images/icons/archives_white.png);
+         color: #214278;
+         }
+         .extIconLink {
+         background: url("/images/icons/Xls.png") no-repeat scroll right center transparent;
+         float: right;
+         line-height: 30px;
+         margin: 8px 20px 0 0;
+         padding: 0 45px 0 0;
+         text-decoration: none;
+         }
+         .extIconLink:hover {
+         text-decoration: underline;
+         }
+         .scroll-content {
+         height: 520px;
+         overflow-y: scroll;
+         border: 1px solid #214278;
+         border-top: 0;
+         width: 100%;
+         }
+         /* toolbox */
+         .action-box {
+         border-left: 1px solid #214278;
+         border-right: 1px solid #214278;
+         width: 100%;
+         position: relative;
+         height: 40px
+         }
+         .action-box a.expandForm {
+         position: absolute;
+         right: 5px;
+         top: 8px;
+         background: url("/images/backgrounds/expand.png") no-repeat scroll center top transparent;
+         width: 16px;
+         height: 16px;
+         text-indent: -9999999px;
+         outline: none
+         }
+         .action-box a.expandForm.expanded {
+         background-position: center -16px
+         }
+         .action-box a.toggleToolbox {
+         background: url("/images/backgrounds/allocation.png") no-repeat scroll left center transparent;
+         color: #FFFFFF;
+         display: block;
+         font-size: 10px;
+         height: 32px;
+         left: -8px;
+         line-height: 24px;
+         padding: 0 0 0 12px;
+         position: absolute;
+         text-decoration: none;
+         text-indent: 0;
+         text-shadow: 1px 1px #214278;
+         top: 8px;
+         width: 165px;
+         }
+         #toolbox {
+         width: 100%;
+         display: block;
+         clear: both
+         }
+         #toolbox.hidden {
+         display: none
+         }
+         #toolbox ul {
+         display: block;
+         list-style: none
+         }
+         #toolbox ul li {
+         display: block;
+         float: left;
+         width: 276px;
+         padding: 0 15px 20px 16px;
+         background: url(/images/backgrounds/toolboxBorder.png) left center no-repeat;
+         height: 180px;
+         position: relative;
+         }
+         #toolbox ul li:first-child {
+         background: none;
+         }
+         #toolbox ul li.hidden {
+         display: none;
+         }
+         #toolbox ul li form input[type=submit],
+         .job-actions li .button {
+         background: url("/images/icons/done.png") no-repeat scroll 4px center transparent;
+         border-radius: 10px 10px 10px 10px;
+         behavior: url(/css/PIE.htc);
+         color: #FFFFFF;
+         cursor: pointer;
+         font-size: 11px;
+         font-weight: 500;
+         position: relative;
+         zoom: 1;
+         margin: 0;
+         padding: 4px 4px 4px 20px;
+         border-radius: 10px 10px 10px 10px;
+         -moz-border-radius: 10px 10px 10px 10px;
+         -webkit-border-radius: 10px 10px 10px 10px;
+         -o-border-radius: 10px 10px 10px 10px;
+         outline: none;
+         font-family: Verdana,Arial,sans-serif;
+         }
+         #toolbox ul li .input-wrapper,
+         .job-actions li .input-wrapper
+         {
+         float: left;
+         zoom:1;
+         position: relative;
+         behavior: url(/css/PIE.htc);
+         margin: 2px 0 20px 0;
+         font-family: Verdana,Arial,sans-serif;
+         }
+         #loginform .input-wrapper {
+         float: right;
+         }
+         #toolbox ul li form {
+         margin-top: 5px;
+         width: 92%;
+         }
+         #toolbox ul li h3 {
+         font-size: 18px;
+         font-weight: 400
+         }
+         #toolbox ul li h4 {
+         font-size: 10px;
+         font-weight: 400;
+         margin: 0 0 5px 0
+         }
+         #toolbox ul li p {
+         font-size: 10px;
+         color: #707070;
+         }
+         #toolbox ul li h3, #toolbox ul li h4, #toolbox ul li p {
+         line-height: 1.5em
+         }
+         .acceptBox h4, .acceptBox h3{
+         color: #00a651
+         }
+         .reallocateBox h4, .reallocateBox h3{
+         color: #7da7d9
+         }
+         #toolbox .reallocateBox .input-wrapper {
+         background: none;
+         margin: 2px 24px 12px 0;
+         border: 0 none;
+         float: none;
+         position: relative;
+         behavior: url(/css/PIE.htc);
+         }
+         #toolbox .input-wrapper #submit {
+         color: #fff;
+         border: 0 none;
+         margin-bottom: 5px;
+         background: url('/images/icons/BtnSubmitOn.png') 0 0 no-repeat;
+         text-indent: -1000px;
+         width: 82px;
+         height: 27px;
+         }
+         #toolbox #form-sharewithuser .input-wrapper #submit,
+         #toolbox #form-rap-reallocation .input-wrapper #submit {
+         background: url('/images/icons/BtnSubmitOff.png') 0 0 no-repeat;
+         }
+         .shareBox h4, .shareBox h3{
+         color: #005e20
+         }
+         .reminderNotesBox h3,
+         .reminderNotesBox h4 {
+         color: #00a99d;
+         }
+         .reminderNotesBox fieldset {
+         border: none;
+         }
+         .reminderNotesBox fieldset div.form-field {
+         padding: 5px 10px 10px 0;
+         }
+         .reminderNotesBox fieldset:first-child div.form-field {
+         padding: 10px 10px 5px 0;
+         }
+         .reminderNotesBox textarea {
+         width: 250px;
+         height: 6em;
+         padding-left: 10px;
+         }
+         /* job content */
+         .job-content {
+         border: 0 none;
+         border-radius: 0 0 0 0;
+         position: relative;
+         behavior: url(/css/PIE.htc);
+         margin-top: 10px;
+         padding-top: 10px;
+         }
+         .job-content section.description {
+         margin:0
+         }
+         .job-content .form {
+         width: 100%;
+         }
+         .job-content #scope_confirmedgroup {
+         background: url(../images/backgrounds/confirmation.png) center repeat;
+         }
+         .job-content #scope_confirmedgroup input {
+         margin: 3px 3px 3px 10px;
+         }
+         .job-content #scope_confirmedgroup label {
+         float: none;
+         margin-left: 5px;
+         }
+         .job-content #productionactivitytypegroup > div {
+         margin-right: 0
+         }
+         .hide-div {
+         background: url(../images/backgrounds/formOverlay.png) repeat;
+         display: none;
+         height: 100%;
+         position: absolute;
+         top: 0;
+         width: 100%;
+         z-index: 5;
+         }
+         .disabled .hide-div {
+         display: block;
+         }
+         .job-content h1 {
+         font-size: 1.2em;
+         color: #0c2f4b;
+         margin: 10px;
+         }
+         .job-content .job-archives {
+         margin: 10px;
+         width: 98%;
+         }
+         .job-content .job-archives thead {
+         background: #0c2f4d;
+         color: #fff;
+         }
+         .job-content .job-archives thead th {
+         padding: 10px;
+         }
+         .job-content .job-archives tbody tr {
+         border-bottom: 1px solid #f5f5f5;
+         }
+         .job-content .job-archives tbody tr:hover {
+         background: #f5f5f5;
+         }
+         .job-content .job-archives td {
+         padding: 10px;
+         text-align: center;
+         vertical-align: middle;
+         }
+         .job-content .job-archives td a {
+         text-decoration: none;
+         }
+         /* job actions */
+         .decorative {
+         background: url("../images/backgrounds/finalJobStripe.png") no-repeat scroll center top transparent;
+         clear: both;
+         color: #FFFFFF;
+         height: 30px;
+         left: -7px;
+         line-height: 24px;
+         position: relative;
+         text-align: center;
+         top: -1px;
+         width: 954px;
+         z-index: 1;
+         text-shadow: 1px 1px #214278;
+         }
+         .job-actions {
+         list-style: none;
+         overflow: hidden;
+         margin-top: -7px;
+         border: 1px solid transparent;
+         }
+         .job-actions.saveCosts li {
+         background-color: #F4F6F8;
+         display: block;
+         float: left;
+         height: 280px;
+         margin-left: 7px;
+         overflow: hidden;
+         padding: 14px 14px 20px;
+         width: 280px;
+         position: relative;
+         }
+         .job-actions.saveCosts li .input-wrapper.done .button
+         {
+         width: 66px;
+         height: 27px;
+         border: 0;
+         overflow: hidden;
+         text-indent: -1000px;
+         }
+         .job-actions.saveCosts li .input-wrapper.done {
+         background: none;
+         }
+         .job-actions.saveCosts .cancel .input-wrapper {
+         width: 53px;
+         width: 64px\9;
+         }
+         .job-actions.saveCosts li div.input-wrapper.disabled input:hover,
+         .job-actions.saveCosts li div.input-wrapper.disabled a:hover{
+         cursor:default;
+         }
+         .job-actions.saveCosts li div.input-wrapper{
+         margin-top: 10px;
+         width: 58px;
+         width: 64px\9;
+         float:none;
+         }
+         .job-actions li h3 {
+         font-size: 18px;
+         color: #fff;
+         margin: 0 0 8px;
+         }
+         .job-actions li p {
+         color: #FFFFFF;
+         font-size: 10px;
+         line-height: 1.4em;
+         margin: 0 0 14px;
+         }
+         .job-actions li span.error{
+         font-weight: bold;
+         color: #f00;
+         }
+         .job-actions.saveCosts .cancel {
+         background:url("../images/backgrounds/finalJob1.png") no-repeat  bottom #1b6a6a;
+         }
+         .job-actions.saveCosts .save {
+         background:url("../images/backgrounds/finalJob2.png") no-repeat  bottom #086297;
+         }
+         .job-actions.saveCosts .submit {
+         background:url("../images/backgrounds/finalJob3.png") no-repeat  bottom #00a652;
+         }
+         .job-actions form {
+         position: absolute;
+         bottom: 7px
+         }
+         .job-actions form label,
+         .job-actions form input[type=radio] {
+         width: auto;
+         padding: 0;
+         line-height: 10px;
+         color: #fff; 
+         }
+         input[type=radio] {
+         background: none;
+         filter: none;
+         box-shadow: none;
+         }
+         .job-actions li:first-child {
+         margin-left: 0
+         }
+         .job-actions.saveCosts fieldset {
+         background: none repeat scroll 0 0 transparent;
+         border: medium none;
+         }
+         .job-actions.saveCosts label {
+         color: #FFFFFF;
+         float:none;
+         margin: 0 16px 0 0 ;
+         padding: 0;
+         text-align: left;
+         font-size: 10px;
+         width: auto;
+         top: 4px\9
+         }
+         .job-actions.saveCosts li .input-wrapper {
+         margin: -5px 0 0;
+         margin: 0\9
+         }
+         .job-actions.saveCosts input,
+         .job-actions.saveCosts li select {
+         margin: 0 2px 0 0;
+         }
+         .job-actions.saveCosts li select {
+         width: 280px;
+         background-color: #FFF;
+         }
+         .job-actions.saveCosts li .button {
+         text-decoration: none;
+         padding: 4px 5px 4px 20px;
+         padding: 6px 9px 6px 23px\9;
+         line-height: 11px;
+         font-size: 11px;
+         }
+         .job-actions li select {
+         width: 135px;
+         margin-top: -5px;
+         margin-top: 0\9;
+         }
+         /* flyout menu */
+         #flyout-menu {
+         width: 300px;
+         position: absolute;
+         z-index: 100;
+         left: -275px;
+         top: 223px;
+         }
+         #flyout-menu>form {
+         margin: 0;
+         padding: 0;
+         height: 25px;
+         }
+         #flyout-menu>form fieldset {
+         width: 274px;
+         background: url(/images/backgrounds/flyout-header.png) left repeat-x;
+         margin: 0;
+         padding: 1px 2px;
+         height: 23px;
+         border: none;
+         }
+         #flyout-menu>form a#tab {
+         position: absolute;
+         right: 0;
+         top: 0;
+         width: 22px;
+         height: 25px;
+         background: url(/images/flyout-tab.png);
+         }
+         #flyout-menu>form input {
+         border: none;
+         height: 19px;
+         }
+         #flyout-menu>form input[type="text"] {
+         width: 245px;
+         margin: 2px;
+         }
+         #flyout-menu>form input[type="button"] {
+         background: url(/images/icons/flyout-filter.png) center no-repeat;
+         }
+         #flyout-menu>ul {
+         width: 270px;
+         margin: 0;
+         padding: 3px 3px 3px 0;
+         border: 1px solid #214278;
+         border-top:none;
+         background:#fff;
+         height: 570px;
+         overflow-y: auto;
+         }
+         #flyout-menu>ul li {
+         margin: 0;
+         padding: 0;
+         clear: left;
+         position: relative;
+         background-repeat: no-repeat;
+         background-position: 3px center;
+         display: block!important;
+         }
+         #flyout-menu>ul>li>a {
+         margin-right: 0 !important;
+         }
+         #flyout-menu>ul ul {
+         list-style-type: none;
+         display: none;
+         }
+         #flyout-menu li.expanded>ul {
+         display: block;
+         }
+         #flyout-menu ul li a {
+         display: block;
+         padding: 5px 5px 5px 15px;
+         margin-bottom: 2px;
+         margin-right: 32px;
+         text-decoration: none;
+         background-repeat: no-repeat;
+         background-position: 3px center;
+         color: #214278;
+         overflow: hidden;
+         white-space: pre;
+         }
+         #flyout-menu ul li a.toggle-child {
+         font-weight: bold;
+         color: #0b2f4d;
+         }
+         #flyout-menu ul li span {
+         position: absolute;
+         right: 0;
+         top: 0;
+         display: block;
+         padding: 5px 10px;
+         border-left: 2px solid #fff;
+         background: #fff url(/images/backgrounds/flyout-item.png) right no-repeat;
+         color: #214278;
+         }
+         #flyout-menu ul ul li.found,
+         #flyout-menu ul ul li.found>span {
+         background-color: #eef1f5;
+         }
+         #flyout-menu ul ul li.current,
+         #flyout-menu ul ul li.current>span {
+         background-color: #58749e;
+         }
+         #flyout-menu ul ul li.current>a,
+         #flyout-menu ul ul li.current>span{
+         color: #fff;
+         }
+         #flyout-menu>ul>li>a.toggle-child {
+         background-color: #214278;
+         color: #fff;
+         }
+         #flyout-menu ul ul>li>a {
+         padding-left: 35px;
+         background-position: 18px center;
+         }
+         #flyout-menu>ul>li>a.toggle-child {
+         background-image: url(/images/icons/toggle_white_closed.png);
+         }
+         #flyout-menu>ul>li.expanded>a.toggle-child {
+         background-image: url(/images/icons/toggle_white_open.png);
+         }
+         #flyout-menu ul ul>li>a.toggle-child {
+         background-image: url(/images/icons/toggle_closed.png);
+         }
+         #flyout-menu ul ul>li.expanded>a.toggle-child {
+         background-image: url(/images/icons/toggle_open.png);
+         }
+         #flyout-menu ul ul ul>li>a {
+         padding-left: 35px;
+         }
+         #flyout-menu ul ul ul>li>a.toggle-child {
+         padding-left: 55px;
+         background-position: 38px center;
+         }
+         #flyout-menu ul ul ul ul>li>a {
+         padding-left: 55px;
+         }
+         #flyout-menu ul ul ul ul>li>a.toggle-child {
+         padding-left: 75px;
+         background-position: 58px center;
+         }
+         #flyout-menu ul ul ul ul ul>li>a {
+         padding-left: 75px;
+         }
+         #flyout-menu ul ul ul ul ul>li>a.toggle-child {
+         padding-left: 95px;
+         background-position: 78px center;
+         }
+         #flyout-menu ul ul ul ul ul ul>li>a {
+         padding-left: 95px;
+         }
+         #flyout-menu ul ul ul ul ul ul>li>a.toggle-child {
+         padding-left: 115px;
+         background-position: 98px center;
+         }
+         #flyout-menu ul li.unassigned {
+         background-position: 87% center;
+         background-image: url(/images/icons/flyout-item-unassigned.png);
+         }
+         #flyout-menu ul li.unassigned a {
+         margin-right: 50px;
+         }
+         #flyout-menu ul li.assigned {
+         background-position: 87% center;
+         background-image: url(/images/icons/flyout-item-assigned.png);
+         }
+         #flyout-menu ul li.assigned a {
+         margin-right: 50px;
+         }
+         #flyout-menu ul li.search.assigned,
+         #flyout-menu ul li.search.unassigned
+         {
+         background:none;
+         }
+         /* generic classes */
+         .clone-total {
+         border-bottom: 1px solid #214278;
+         }
+         .cloned {
+         border-bottom: 1px solid #214278;
+         position: relative;
+         }
+         .cloned .clonedNo {
+         background-color: #214278;
+         color: #FFFFFF;
+         float: left;
+         left: 0;
+         padding: 2px 3px 3px 2px;
+         position: absolute;
+         top: 0;
+         z-index: 10;
+         }
+         div.copy {
+         border: none;
+         background: url("/images/icons/copyIcon.png") no-repeat center center;
+         color: black;
+         overflow: hidden;
+         float: left;
+         left: 10px;
+         padding: 0px 3px;
+         position: absolute;
+         top: 0;
+         text-indent: -99999999px;
+         z-index: 10;
+         height: 16px;
+         width: 14px;
+         cursor: pointer;
+         }
+         div.copy.shoot{
+         left: 0;
+         top: 42px;
+         }
+         div.copy.disabled,
+         div.copy.shoot.disabled {
+         background: url("/images/icons/copyIconDisabled.png") no-repeat center center;
+         cursor: default;
+         }
+         div.copy.clicked,
+         div.copy.shoot.clicked {
+         background : url("/images/icons/saving.gif") no-repeat center center;
+         }
+         .cloned .clonedNo.inverted {
+         background-color: #fff;
+         color: #214278
+         }
+         .cloned:first-child {
+         border-top: none
+         }
+         .hidden, .hidden_field {
+         display: none
+         }
+         /* file uploader */
+         #file_group {
+         color: #fff;
+         border-bottom: none;
+         }
+         #file_group+fieldset label {
+         margin: 10px 0 10px 10px;
+         }
+         .uploadify {
+         float: left;
+         }
+         .uploadify-button {
+         float: right;
+         margin: 2px 0 20px 0;
+         padding-top: 7px;
+         background: url("/images/icons/BtnBrowseOn.png") 0 0 no-repeat;
+         width: 85px;
+         height: 27px;
+         text-indent: -1000px;
+         behavior: url(/css/PIE.htc);
+         }
+         .uploadify-button .uploadify-button-text {
+         margin: 0;
+         behavior: url(/css/PIE.htc);
+         cursor: pointer;
+         }
+         .uploadify-queue {
+         clear: both;
+         position: relative;
+         margin: 40px 0 0 250px;
+         }
+         .uploadify-queue-item {
+         clear: left;
+         width: 410px;
+         margin: 0 0 1em;
+         color: #000;
+         }
+         .uploadify-queue-item:before,
+         .uploadify-queue-item:after {
+         content:"";
+         display:table;
+         }
+         .uploadify-queue-item:after {
+         clear:both;
+         }
+         /* IE 6/7 */
+         .uploadify-queue-item {
+         *zoom:1;
+         }
+         .uploadify-queue-item .cancel {
+         display: none;
+         }
+         .uploadify-queue-item .fileName {
+         width: 200px;
+         float: left;
+         margin-right: 10px;
+         }
+         .uploadify-queue-item .uploadify-progress {
+         border: 1px solid #b1b9c0;
+         background-color: #f5f5f5;
+         width: 132px;
+         padding: 1px;
+         float: left;
+         margin: 0 10px;
+         }
+         .uploadify-queue-item .uploadify-progress-bar {
+         background-color: #637380;
+         height: 9px;
+         width: 1px;
+         }
+         .uploadify-queue-item.complete .uploadify-progress-bar {
+         background-color: #00a651;
+         }
+         .uploadify-queue-item.complete .data {
+         background: url(/images/icons/tick.png) center no-repeat;
+         text-indent: -9999em;
+         float: right;
+         width: 18px;
+         }
+         .file-list {
+         float: left;
+         list-style-type: none;
+         width: 420px;
+         padding: 4px 0;
+         }
+         .file-list li {
+         padding: 10px 10px 10px 0;
+         clear: both;
+         color: #0B2F4D;
+         }
+         .file-list a.delete-file {
+         float: right;
+         background: url('/images/icons/bin.png') 0 0 no-repeat;
+         height: 16px;
+         text-indent: -9999px;
+         width: 16px;
+         }
+         #uploaded_files_heading_group {
+         color: #fff;
+         }
+         #document_store-file_checklist_group {
+         color: #fff;
+         float: right;
+         width: 200px;
+         margin-left: 10px;
+         padding: 10px;
+         border-bottom: none;
+         }
+         #document_store-file_checklist_group label {
+         padding: 10px 0;
+         float: none;
+         font-weight: bold;
+         }
+         #document_store-file_checklist_group div.form-field {
+         float:none;
+         padding: 10px 0;
+         }
+         #document_store-file_checklist_group div.form-field label {
+         padding: .2em 0;
+         display: block;
+         text-align: left;
+         font-weight: normal
+         }
+         /* login page */
+         #loginform {
+         border: 2px solid #fbfbfb;
+         border-radius: 20px 20px 20px 20px;
+         box-shadow: 4px 4px #E2E2E2;
+         margin: 42px auto 10px;
+         width: 530px;
+         behavior: url(/css/PIE.htc);
+         -webkit-border-radius: 20px 20px 20px 20px;
+         -o-border-radius: 20px 20px 20px 20px;
+         -ms-border-radius: 20px 20px 20px 20px;
+         }
+         #loginform  h1 {
+         background: url("/images/icons/login_ic.png") no-repeat scroll 465px center #ffffff;
+         color: #014ea0;
+         font-size: 32px;
+         display: block;
+         behavior: url(/css/PIE.htc);
+         display: block;
+         position: relative;
+         padding: 12px 20px;
+         border-radius: 13px 13px 0 0;
+         -webkit-border-radius: 13px 13px 0 0;
+         -o-border-radius: 13px 13px 0 0;
+         -ms-border-radius: 13px 13px 0 0;
+         -moz-border-radius: 13px 13px 0 0;
+         }
+         #loginform hr {
+         position: relative;
+         border-color: #014ea0;
+         width: 484px;
+         margin: 0 22px;
+         align: center;
+         }
+         #loginform .form-field {
+         margin: 18px 22px 12px 22px;
+         padding: 0;
+         width: 220px;
+         }
+         #loginform label {
+         clear: none;
+         color: #014ea0;
+         display: block;
+         font-size: 1.4em;
+         /*font-weight: 600;*/
+         padding: 6px 0;
+         width: auto;
+         }
+         #loginform input {
+         width: 100%;
+         }
+         #loginform .input-wrapper {
+         background: none;
+         margin: 0 24px 12px 0;
+         border: 0 none;
+         position: relative;
+         behavior: url(/css/PIE.htc);
+         }
+         #loginform #login-submit {
+         color: #fff;
+         float: right;
+         border: 0 none;
+         background: url('/images/icons/BtnLoginOn.png') 0 0 no-repeat;
+         position: relative;
+         text-indent: -1000px;
+         width: 72px;
+         height: 27px;
+         behavior: url(/css/PIE.htc);
+         }
+         #loginform span {
+         margin-left:287px;
+         }
+         #loginform span a {
+         color: #014ea0;
+         text-decoration: none;
+         /*color:#214278;*/
+         }
+         /* Dashboard */
+         #totals-jobs,
+         #totals-savings {
+         border: 1px solid #d7d7d7;
+         border-radius: 20px 20px 20px 20px;
+         width: 452px;
+         float: left;
+         list-style-type: none;
+         position: relative;
+         behavior: url(/css/PIE.htc);
+         height: 128px;
+         }
+         #totals-jobs {
+         margin: 10px 5px 10px 10px;
+         }
+         #totals-savings {
+         margin: 10px 10px 10px 5px;
+         }
+         #totals-jobs li,
+         #totals-savings li {
+         position: absolute;
+         padding: 15px;
+         color: #9ab;
+         line-height: 12px;
+         }
+         #totals-jobs span,
+         #totals-savings span {
+         font-weight: bold;
+         line-height: 1;
+         }
+         #totals-savings #savings-this-month span {
+         margin-top: 5px;
+         }
+         #totals-jobs span,
+         #totals-savings span {
+         font-size: 24px;
+         display: block;
+         overflow: hidden;
+         padding-left: 30px;
+         text-transform: none;
+         margin-top: 5px;
+         }
+         li#total-jobs {
+         width: 120px;
+         height: 103px;
+         top: 0;
+         left: 0;
+         padding-top: 30px;
+         font-size: 85%;
+         }
+         #total-jobs span {
+         color: #214278;
+         font-size: 54px;
+         padding-left: 0;
+         }
+         li#open-jobs {
+         width: 120px;
+         height: 44px;
+         top: 0;
+         left: 152px;
+         padding-bottom: 5px;
+         background: #dee2eb url(/images/backgrounds/dashboard-totals-arrow-1.png) top left no-repeat;
+         font-size: 85%;
+         }
+         #open-jobs span {
+         color: #007236;
+         background: url(/images/icons/dashboard/totals-open-jobs.png) left no-repeat;
+         }
+         li#complete-jobs {
+         width: 120px;
+         height: 44px;
+         top: 64px;
+         left: 152px;
+         padding-top: 5px;
+         background: #dee2eb url(/images/backgrounds/dashboard-totals-arrow-1.png) bottom left no-repeat;
+         font-size: 85%;
+         }
+         #complete-jobs span {
+         color: #00a74d;
+         background: url(/images/icons/dashboard/totals-complete-jobs.png) left no-repeat;
+         }
+         li#jobs-to-accept {
+         width: 120px;
+         height: 44px;
+         top: 0;
+         left: 302px;
+         padding-bottom: 5px;
+         background: #e8ebf0 url(/images/backgrounds/dashboard-totals-arrow-2.png) top left no-repeat;
+         border-radius: 0px 20px 0px 0px;
+         behavior: url(/css/PIE.htc);
+         font-size: 85%;
+         }
+         #jobs-to-accept span {
+         color: #726459;
+         background: url(/images/icons/dashboard/totals-jobs-to-accept.png) left no-repeat;
+         }
+         li#jobs-to-allocate {
+         width: 120px;
+         height: 44px;
+         top: 64px;
+         left: 302px;
+         padding-top: 5px;
+         background: #e8ebf0 url(/images/backgrounds/dashboard-totals-arrow-2.png) bottom left no-repeat;
+         border-radius: 0px 0px 20px 0px;
+         behavior: url(/css/PIE.htc);
+         font-size: 85%;
+         }
+         #jobs-to-allocate span {
+         color: #01a99c;
+         background: url(/images/icons/dashboard/totals-jobs-to-allocate.png) left no-repeat;
+         }
+         li#total-savings {
+         height: 98px;
+         left: 0;
+         padding-top: 27px;
+         top: 0;
+         width: 260px;
+         font-size: 95%;
+         }
+         #total-savings span {
+         color: #8782bc;
+         font-size: 54px;
+         padding-left: 0;
+         }
+         li#total-savings span.negative {
+         color: #d83f3a;
+         font-size: 50px
+         }
+         #total-savings span:first-child {
+         font-size: 11px;
+         color: #00a74d;
+         display: inline;
+         }
+         li#completed-jobs {
+         background: url("/images/backgrounds/dashboard-totals-arrow-3.png") no-repeat scroll left bottom #EDECF4;
+         border-radius: 0px 0px 20px 0px;
+         height: 50px;
+         left: 292px;
+         padding-top: 8px;
+         padding-bottom: 12px;
+         top: 58px;
+         width: 130px;
+         behavior: url(/css/PIE.htc);
+         font-size: 85%;
+         }
+         #completed-jobs span {
+         color: #00a74d;
+         background: url(/images/icons/dashboard/totals-completed-jobs.png) left no-repeat;
+         }
+         li#savings-this-month {
+         background: url("/images/backgrounds/dashboard-totals-arrow-3.png") no-repeat scroll left top #EDECF4;
+         border-radius: 0px 20px 0px 0px;
+         height: 45px;
+         left: 292px;
+         padding-top: 8px;
+         top: 0;
+         width: 130px;
+         behavior: url(/css/PIE.htc);   
+         font-size: 85%;
+         }
+         #savings-this-month span {
+         color: #8781bd;
+         background: url(/images/icons/dashboard/totals-savings-this-month.png) left no-repeat;
+         }
+         #savings-this-month span.negative {
+         font-size: 18px;
+         }
+         #dashboard-container {
+         border: 1px solid #214278;
+         }
+         #dashboard-container form {
+         clear: left;
+         border-top: 1px solid #d7d7d7;
+         }
+         #dashboard-container form:before,
+         #dashboard-container form:after {
+         content: " ";
+         display: table;
+         }
+         /* For IE 6/7 only */
+         #dashboard-container form {
+         *zoom: 1;
+         }
+         #dashboard-container form div.form-field {
+         padding: 10px 10px 10px 0;
+         }
+         #dashboard-container form input[type="submit"] {
+         background: #37497b url("/images/icons/done.png") 3px center no-repeat;
+         border-radius: 10px 10px 10px 10px;
+         color: #FFFFFF;
+         cursor: pointer;
+         font-size: 11px;
+         behavior: url(/css/PIE.htc);
+         font-weight: 500;
+         margin: 0;
+         padding: 4px 4px 4px 20px;
+         border-radius: 10px 10px 10px 10px;
+         -moz-border-radius: 10px 10px 10px 10px;
+         -webkit-border-radius: 10px 10px 10px 10px;
+         -o-border-radius: 10px 10px 10px 10px;
+         outline: none;
+         font-family: Verdana,Arial,sans-serif;
+         }
+         #dashboard-container form label {
+         width: 8em;
+         padding: 4px 4px 4px 0;
+         margin: 2px .5em 2px 10px;
+         }
+         #dashboard-container form select {
+         width: 80px;
+         }
+         #dashboard-tabs {
+         clear: both;
+         }
+         #dashboard-tabs ul.tabs {
+         display: table;
+         list-style-type: none;
+         width: 100%;
+         border-spacing: 10px;
+         }
+         #dashboard-tabs ul.tabs li {
+         position:relative;
+         width: 20%;
+         display: table-cell;
+         text-align: center;
+         background: #f6f5fa;
+         padding: 10px 10px 10px 50px;
+         margin: 0 5px 0;
+         border-radius: 20px 20px 0px 0px;
+         border-bottom: 10px solid #fff;
+         z-index: 5;
+         /*behavior: url(/css/PIE.htc);*/
+         background-position: 10px 50%;
+         background-repeat: no-repeat;
+         vertical-align: middle;
+         }
+         #dashboard-tabs ul.tabs li#job-breakdown {
+         background-image: url(/images/icons/dashboard/job-breakdown.png);
+         }
+         #dashboard-tabs ul.tabs li#category-breakdown {
+         background-image: url(/images/icons/dashboard/category-breakdown.png);
+         }
+         #dashboard-tabs ul.tabs li#rap-overview {
+         background-image: url(/images/icons/dashboard/rap-overview.png);
+         }
+         #dashboard-tabs ul.tabs li#savings {
+         background-image: url(/images/icons/dashboard/savings.png);
+         }
+         #dashboard-tabs ul.tabs li#unibeam {
+         background-image: url(/images/icons/dashboard/unibeam.png);
+         }
+         #dashboard-tabs ul.tabs li.current {
+         border: 1px solid #d7d7d7;
+         background-color: #fff;
+         background-position: 10px 30%;
+         border-bottom: none;
+         padding-bottom: 20px;
+         z-index: 15;
+         }
+         #dashboard-tabs ul.tabs li a {
+         text-decoration: none;
+         color: #9ab;
+         font-weight: bold;
+         text-transform: uppercase;
+         text-shadow: #fff 2px 2px 2px;
+         }
+         #dashboard-tabs-content {
+         position: relative;
+         margin: -11px 10px 10px;
+         padding: 10px;
+         border: 1px solid #d7d7d7;
+         background: #fff;
+         z-index: 10;
+         }
+         #dashboard-tabs-content h2 {
+         background: #0c2f4d;
+         color: #fff;
+         padding: 8px;
+         margin: 10px 0;
+         }
+         #dashboard-tabs-content table.pie-key {
+         width: 50%;
+         }
+         #dashboard-tabs-content table.pie-key tr {
+         border-bottom: 1px solid #e7e7e7
+         }
+         #dashboard-tabs-content table.pie-key th,
+         #dashboard-tabs-content table.pie-key td {
+         font-weight: normal;
+         padding: 8px 5px;
+         text-align: left;
+         }
+         #dashboard-tabs-content table.pie-key td {
+         width: 2em;
+         text-align: center;
+         color: #fff;
+         }
+         #dashboard-tabs-content table.pie-key td div {
+         padding: 4px
+         }
+         #dashboard-tabs-content table.pie-key strong {
+         margin-right: 1em;
+         }
+         /* charts */
+         #dashboard-tabs-content {
+         overflow: hidden;
+         }
+         #dashboard-tabs-content table {
+         float: left;
+         }
+         #dashboard-tabs-content table.jqplot-table-legend {
+         width: auto;
+         float: none;
+         margin: 0
+         }
+         #dashboard-tabs-content h2 {
+         clear: both;
+         }
+         #pie0, #pie1 {
+         width: 50%;
+         float: right;
+         margin-top: -10px;
+         height: 220px;
+         }
+         #pie1 {
+         height: 250px;
+         }
+         .jqplot-data-label {
+         color: #fff
+         }
+         #dashboard-tabs-content table td div.jqplot-table-legend-swatch-outline {
+         border: none
+         }
+         #dashboard-tabs-content table.jqplot-table-legend {
+         display: block;
+         background-color: #fff;
+         right: 10px!important
+         }
+         #dashboard-tabs-content table.jqplot-table-legend td {
+         font-size: 11px;
+         padding: 3px !important;
+         vertical-align: middle;
+         }
+         #dashboard-tabs-content table.jqplot-table-legend tr.jqplot-table-legend {
+         position: relative;
+         border: none
+         }
+         #dashboard-tabs-content table.jqplot-table-legend td.jqplot-table-legend-label {
+         color: #0B2F4D;
+         text-align: left
+         }
+         #dashboard-container .stats-table {
+         width: 100%;
+         color: #0C2F4D;
+         font-size: 10px;
+         }
+         #dashboard-container .stats-table th {
+         font-weight: bold;
+         }
+         #dashboard-container .stats-table th,
+         #dashboard-container .stats-table td
+         {
+         padding: 8px 5px;
+         text-align: center;
+         background-image: none;
+         background-position: right center;
+         background-repeat: no-repeat;
+         }
+         #dashboard-container .sortable th {
+         cursor: pointer;
+         }
+         #dashboard-container .stats-table th.headerSortUp{
+         padding-right: 10px;
+         background-image: url('/images/icons/sort_arrow_asc.png');
+         }
+         #dashboard-container .stats-table th.headerSortDown{
+         padding-right: 10px;
+         background-image: url('/images/icons/sort_arrow_desc.png');
+         }
+         #dashboard-container .stats-table tr.region
+         {
+         background-color: #0C2F4D;
+         color: #fff;
+         font-weight: bold;
+         }
+         #dashboard-container .stats-table td.name,
+         #dashboard-container .stats-table td.month
+         {
+         text-align: left;
+         }
+         #dashboard-container .stats-table td.savings
+         {
+         color: #8782BC;
+         font-weight: bold;
+         text-align: right;
+         }
+         #dashboard-container .stats-table tr.region td.savings
+         {
+         color: #fff;
+         }
+         #dashboard-container .stats-table td.total
+         {
+         font-weight: bold;
+         width: 4em;
+         text-align: right;
+         }
+         #dashboard-container .stats-table td.savings {
+         text-align: center
+         }
+         #dashboard-container .stats-table.savings-table td.savings {
+         text-align: right
+         }
+         #dashboard-tabs-content h2.purpleish {
+         background-color: #b1afc5;
+         margin-bottom: 0;
+         }
+         #productionactivitytypegroup .or-divide {
+         text-align: left;
+         }
+         .project-description {
+         height: 90px;
+         width: 420px;
+         }
+         .execution-name {
+         height: 90px;
+         width: 420px;
+         }
+         #dashboard-container .stats-table.savings-table thead th{
+         background-color: #0c2f4d;
+         color: #fff;
+         border-right:1px solid #fff;
+         }
+         #dashboard-container .stats-table.savings-table thead th.month{
+         width: 10%;
+         }
+         #dashboard-container .stats-table.savings-table thead th.costs{
+         width: 22%;
+         }
+         #dashboard-container .stats-table.savings-table tbody td.month,
+         #dashboard-container .stats-table.savings-table thead th{
+         font-weight: bold;
+         }
+         #dashboard-container .stats-table.savings-table thead th,
+         #dashboard-container .stats-table.savings-table td{
+         text-align: left;
+         }
+         #dashboard-container .stats-table.savings-table tr.even{
+         background-color: #f7f7f9;
+         }
+         #dashboard-container .stats-table.savings-table td.count span{
+         background-color: #efeff3;
+         padding:5px 0px;
+         width: 25px;
+         }
+         #dashboard-container .stats-table.savings-table td.count{
+         background-color: #efeff3;
+         padding:8px 2px;
+         text-align: center;
+         width: 3%;
+         }
+         #dashboard-container .stats-table.savings-table td.savings-amount{
+         text-indent: 10px;
+         }
+         #dashboard-container .stats-table.savings-table tr.last-row td {
+         border-bottom: 1px solid #0c2f4d;
+         }
+         #dashboard-container .stats-table.savings-table tfoot td {
+         text-indent: 10px;
+         color: #8782bc;
+         font-weight: bold;
+         }
+         #dashboard-container .stats-table.savings-table tfoot td.final-saving {
+         font-size: 16px;
+         }
+         #dashboard-container .stats-table.savings-table tfoot td.count span,
+         #dashboard-container .stats-table.savings-table tfoot td.count{
+         background-color: #fff;
+         font-weight: bold;
+         color: #000;
+         text-indent: 0px;
+         }
+         #dashboard-container .stats-table.savings-table tbody td.total-savings{
+         background-color: #dddde1;
+         color: #8782bc;
+         border-bottom: 1px solid #fff;
+         font-weight: bold;
+         }
+         #dashboard-container .stats-table.savings-table th.headerSortUp{
+         padding-right: 10px;
+         background: url('/images/icons/sort_arrow_asc_white.png') no-repeat 95% center #0c2f4d;
+         }
+         #dashboard-container .stats-table.savings-table th.headerSortDown{
+         padding-right: 10px;
+         background: url('/images/icons/sort_arrow_desc_white.png') no-repeat 95% center #0c2f4d;
+         }
+         #dashboard-tabs-content h2.savings-page {
+         background-color: transparent;
+         color: #0c2f4d;
+         padding-left: 0px;
+         }
+         #dashboard-container #go {
+         color: #fff;
+         border: 0 none;
+         background: url('/images/icons/BtnGoOn.png') 0 -1px no-repeat;
+         padding: 0;
+         margin: 0;
+         text-indent: -1000px;
+         width: 54px;
+         height: 27px;
+         behavior: url(/css/PIE.htc);
+         }
+         img.csv-example {
+         margin:0 auto;
+         border:1px dashed;
+         }
+         img.csv-example.hidden {
+         display:none;
+         }
+         img.csv-example.show {
+         display:block;
+         }
+         #report-generation-form .related {
+         display: none;
+         }
+         .maintenance-message {
+         background-color: #f2f2f2;
+         font-family: Verdana,Arial,?sans-serif;
+         font-size: 12px;
+         left: 0;
+         line-height: 20px;
+         padding: 20px 10px;
+         position: absolute;
+         top: 110px;
+         width: 100%;
+         text-align: center;
+         display: none;
+         }
+         .allocation-submitbtn {
+         background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/submit_blue_button.png')}") no-repeat rgba(0, 0, 0, 0);
+         color: #fff;
+         overflow: hidden;
+         width:191px;
+         height:72px;
+         }
+         .allocation-submitbtn  p{text-align:center; margin-left: 30px;margin-top: 20px;font-size: 24px;}
+         .hide{
+         display:none;
+         }
+         .other_master_parent {
+         height:30px;
+         }
+         .master-detail{
+         float:left;
+         width:85px;
+         height:400px;
+         }
+         .sub-master-detail{
+         float:left;
+         width:400px;
+         height:400px;
+         }
+         .masterdetaildiv {
+         height:50px;
+         line-height:50px;
+         width: 105px;
+         margin: 0 auto;
+         }
+         .submasterdetaildiv {
+         height:50px;
+         line-height:50px;
+         width: 300px;
+         margin: 0 auto;
+         }
+         
+         .imgclass {
+        background-image: url("/img/help/helpOrbs.gif");
+        background-repeat: no-repeat;
+        height: 15px;
+        width: 16px;
+        }
+        
+         .imgclass {
+        background-image: url("/img/help/helpOrbs.gif");
+        background-repeat: no-repeat;
+        height: 15px;
+        width: 16px;
+        }
+        
+        .imgclass:hover {
+        background-image: url("/img/help/helpOrbs.gif");
+        background-position: right center;
+        background-repeat: no-repeat;
+        height: 15px;
+        width: 16px;
+        }
+        
+        img {
+            border: 0 none;
+        }
+         
+      </style>
+   </head>
+   <body id="openingjobsheet" class="no-js">
+      <header>
+         <div id="branding">
+            <h1>Beam<a href="/">Go to homepage</a></h1>
+            <h2>Admanager</h2>
+         </div>
+      </header>
+      <div id="main-content">
+         <div class="maintenance-message">
+            Admanager will be down for planned maintenance from:
+            <br/>
+            Thursday 21st May 09:00 - 11:00 BST
+            <br/>
+            For any urgent enquiries please contact <a href="mailto:support@beam.tv">support@beam.tv</a>
+         </div>
+         <section class="description">
+            <h1>What defines 'one AdManager number' (or a 'single job') in AdManager?</h1>
+            <p class="secondary-heading">If this is a Master TV Production then it is defined as follows:</p>
+            <ul>
+               <li>There is one shoot/creation date (more than one shoot within a campaign = multiple jobs)</li>
+               <li>There is one production company and director (or director duo)</li>
+               <li>There can be multiple cultural versions on the same shoot eg for Sweden &amp; for Saudi Arabia</li>
+               <li>There can be multiple executions eg 'Man in Car' and 'Girl on Swing' and multiple durations eg 30" and 15"</li>
+            </ul>
+            <br />
+            <p>Modifications to existing material (eg a further cutdown edit) will also be a 'single job' ie if a job has been completed (ie final film delivered and invoiced) and a modification is then required, this is regarded as a new job to be logged pre-production and requires a new AdManager Number</p>
+            <br />
+            <p class="star"><img src="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/reqd.png')}"/> Indicates fields are mandatory.</p>
+         </section>
+         <!-- Print success message if user is coming back to the form having successfully saved something -->
+         <section class="form">
+            <form action="" method="post" enctype="application/x-www-form-urlencoded" id="opening_jobsheet" data-validation-url="/openingjobsheet/ontheflyvalidation">
+               <section></section>
+               <section>
+                  <h2>Before you start..</h2>
+                  <fieldset id="beforeyoustart" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="tv_ad_vitality_bank" class="radio-group">
+                           Have you checked with CMI if there is an existing asset in the Millward Brown TV Ad Vitality Bank that could be utilised for this JTBD? <strong>(required)</strong>
+                           <div><img title="For more information on the Millward Brown TV Ad Vitality Bank speak to your CMI business partner" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <label class="radio-label" for="tv_ad_vitality_bank-yes">Yes</label>
+                        <input type="radio" name="tv_ad_vitality_bank" id="tv_ad_vitality_bank-yes" value="yes" class="radio"/><label class="radio-label" for="tv_ad_vitality_bank-no">No</label>
+                        <input type="radio" name="tv_ad_vitality_bank" id="tv_ad_vitality_bank-no" value="no" class="radio"/><label class="radio-label" for="tv_ad_vitality_bank-na">Not Applicable</label>
+                        <input type="radio" name="tv_ad_vitality_bank" id="tv_ad_vitality_bank-na" value="na" class="radio"/>
+                     </div>
+                  </fieldset>
+               </section>
+               <section>
+                  <h2>Unilever Information</h2>
+                  <fieldset id="emailgroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="marketing_project_leader_email">
+                           Your email address 
+                           <div><img title="The person completing this registration" src="/s.gif" class="imgclass"/></div>
+                           <strong>(required)</strong>
+                        </label>
+                        <input id="marketing_project_leader_email" class="text" type="text" name="marketing_project_leader_email" value=""/>
+                     </div>
+                  </fieldset>
+                  <fieldset id="unileverprojectleaderemailgroup" class="">
+                     <div class="form-field">
+                        <label for="unilever_project_leader_email">
+                           Unilever project leader email (if different)
+                           <div><img title="The person managing this project/activity" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <input id="unilever_project_leader_email" class="text" type="text" name="unilever_project_leader_email" value=""/>
+                     </div>
+                  </fieldset>
+                  <fieldset id="locationofunilevergroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="location_of_unilever_project_leader">
+                           Location of Unilever project leader <strong>(required)</strong>
+                           <div><img title="The location of the person managing this project/activity" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <select name="location_of_unilever_project_leader" id="location_of_unilever_project_leader" data-select="parent" data-parent-of="location_of_unilever_project_leader_countries">
+                           <option value="">Select Cluster</option>
+                           <option value="Africa">Africa</option>
+                           <option value="Europe">Europe</option>
+                           <option value="Latin America">Latin America</option>
+                           <option value="NAMET &amp; RUB">NAMET &amp; RUB</option>
+                           <option value="North America">North America</option>
+                           <option value="North Asia">North Asia</option>
+                           <option value="SEAA">SEAA</option>
+                           <option value="South Asia">South Asia</option>
+                        </select>
+                     </div>
+                     <div class="form-field">
+                        <select name="location_of_unilever_project_leader_countries" id="location_of_unilever_project_leader_countries" data-select="child">
+                           <option value="" label="Select Country" data-parentfield="ALL">Select Country</option>
+                           <option value="North Asia|China|CN" label="China" data-parentfield="North Asia">China</option>
+                           <option value="North Asia|Guam|GU" label="Guam" data-parentfield="North Asia">Guam</option>
+                           <option value="SEAA|Tuvalu|TV" label="Tuvalu" data-parentfield="SEAA">Tuvalu</option>
+                           <option value="SEAA|Vanuatu|VU" label="Vanuatu" data-parentfield="SEAA">Vanuatu</option>
+                           <option value="SEAA|Viet Nam|VN" label="Viet Nam" data-parentfield="SEAA">Viet Nam</option>
+                           <option value="SEAA|Wallis and Futuna|WF" label="Wallis and Futuna" data-parentfield="SEAA">Wallis and Futuna</option>
+                        </select>
+                     </div>
+                  </fieldset>
+                  <fieldset id="unilever_finance_member_email" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="unilever_finance_member_email">
+                           Unilever finance member email <strong>(required)</strong>
+                           <div><img title="The person who has financial approval on this project/activity" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <input id="unilever_finance_member_email" class="text" type="text" name="unilever_finance_member_email" value=""/>
+                     </div>
+                  </fieldset>
+                  <fieldset id="vporfinaldecisionmakeremailgroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="vp_or_final_decision_maker_email">
+                           Final approver of material email <strong>(required)</strong>
+                           <div><img title="The senior manager who has overall responsibility for this material" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <input id="vp_or_final_decision_maker_email" class="text" type="text" name="vp_or_final_decision_maker_email" value=""/>
+                     </div>
+                  </fieldset>
+                  <fieldset id="selectfunctiongroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="select_function">
+                           Which function are you part of (BD/BB/Other) <strong>(required)</strong>
+                           <div><img title="BD, BB, Other (any other function, comms etc…)" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <select name="select_function" id="select_function">
+                           <option value="">Select Function</option>
+                           <option value="BB">BB</option>
+                           <option value="BD">BD</option>
+                           <option value="Other">Other</option>
+                        </select>
+                     </div>
+                  </fieldset>
+                  <fieldset id="budgetresponsibilitygroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="budget_responsibility">
+                           Budget responsibility (BD, BB, Other) <strong>(required)</strong>
+                           <div><img title="BD,BB, Other (any other function, comms etc…)" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <select name="budget_responsibility" id="budget_responsibility">
+                           <option value="">Select Responsibility</option>
+                           <option value="BB">BB</option>
+                           <option value="BD">BD</option>
+                           <option value="Other">Other</option>
+                        </select>
+                     </div>
+                  </fieldset>
+                  <fieldset id="budgetgroup" class="currency-convertor required-fieldset">
+                     <div class="form-field">
+                        <label for="budget_allocated_local_currency">
+                           Budget allocated for this activity (enter all digits) <strong>(required)</strong>
+                               <div><img title="The money set aside in your budget for completing this project/activity" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <select name="budget_allocated_local_currency" id="budget_allocated_local_currency">
+                           <option value="" label="Select Local Currency">Select Local Currency</option>
+                           <option value="£ (UK)" label="£ (UK)" data-exchangerate="0.80714">£ (UK)</option>
+                           <option value="Euro (Euro)" label="Euro (Euro)" data-exchangerate="1">Euro (Euro)</option>
+                           <option value="US $ (Ecuador)" label="US $ (Ecuador)" data-exchangerate="1.33354">US $ (Ecuador)</option>
+                           <option value="US $ (USA)" label="US $ (USA)" data-exchangerate="1.33354">US $ (USA)</option>
+                           <option value="US $ (Zimbabwe)" label="US $ (Zimbabwe)" data-exchangerate="1.33354">US $ (Zimbabwe)</option>
+                           <option value="empty" label=" " disabled="disabled"> </option>
+                           <option value="A $ (Australia)" label="A $ (Australia)" data-exchangerate="1.46988">A $ (Australia)</option>
+                           <option value="A Guilder (Netherland Ant)" label="A Guilder (Netherland Ant)" data-exchangerate="2.34578">A Guilder (Netherland Ant)</option>
+                           <option value="Algerian Dinar (Algeria)" label="Algerian Dinar (Algeria)" data-exchangerate="106.90255">Algerian Dinar (Algeria)</option>
+                           <option value="Baht (Thailand)" label="Baht (Thailand)" data-exchangerate="43.26976">Baht (Thailand)</option>
+                           <option value="Balboa (Panama)" label="Balboa (Panama)" data-exchangerate="1.33354">Balboa (Panama)</option>
+                           <option value="Ber $ (Bermuda)" label="Ber $ (Bermuda)" data-exchangerate="1.33354">Ber $ (Bermuda)</option>
+                           <option value="Birr (Ethiopia)" label="Birr (Ethiopia)" data-exchangerate="26.18583">Birr (Ethiopia)</option>
+                           <option value="Boliviano (Bolivia)" label="Boliviano (Bolivia)" data-exchangerate="9.17611">Boliviano (Bolivia)</option>
+                           <option value="CFA Franc (French Africa)" label="CFA Franc (French Africa)" data-exchangerate="655.957">CFA Franc (French Africa)</option>
+                           <option value="Can $ (Canada)" label="Can $ (Canada)" data-exchangerate="1.46809">Can $ (Canada)</option>
+                           <option value="Cedi (Ghana)" label="Cedi (Ghana)" data-exchangerate="39890">Cedi (Ghana)</option>
+                           <option value="Colon (Costa Rica)" label="Colon (Costa Rica)" data-exchangerate="716.10681">Colon (Costa Rica)</option>
+                           <option value="Colon (Salvador)" label="Colon (Salvador)" data-exchangerate="11.66486">Colon (Salvador)</option>
+                           <option value="Congo Franc (Congo (Dem.Rep))" label="Congo Franc (Congo (Dem.Rep))" data-exchangerate="1229.98847">Congo Franc (Congo (Dem.Rep))</option>
+                           <option value="D Krone (Denmark)" label="D Krone (Denmark)" data-exchangerate="7.45584">D Krone (Denmark)</option>
+                           <option value="Dinar (Bahrain)" label="Dinar (Bahrain)" data-exchangerate="0.50267">Dinar (Bahrain)</option>
+                           <option value="Dinar (Iraq)" label="Dinar (Iraq)" data-exchangerate="1557">Dinar (Iraq)</option>
+                           <option value="Dinar (Kuwait)" label="Dinar (Kuwait)" data-exchangerate="0.37914">Dinar (Kuwait)</option>
+                           <option value="Dinar (Tunisia)" label="Dinar (Tunisia)" data-exchangerate="2.24728">Dinar (Tunisia)</option>
+                           <option value="Dirham (Morocco)" label="Dirham (Morocco)" data-exchangerate="11.17628">Dirham (Morocco)</option>
+                           <option value="Dong (Vietnam)" label="Dong (Vietnam)" data-exchangerate="28260">Dong (Vietnam)</option>
+                           <option value="Fiji $ (Fiji)" label="Fiji $ (Fiji)" data-exchangerate="2.49534">Fiji $ (Fiji)</option>
+                           <option value="Forint (Hungary)" label="Forint (Hungary)" data-exchangerate="308.43273">Forint (Hungary)</option>
+                           <option value="Franc (Rwanda)" label="Franc (Rwanda)" data-exchangerate="908.90582">Franc (Rwanda)</option>
+                           <option value="Fuerte (Parallel) (Venezuela)" label="Fuerte (Parallel) (Venezuela)" data-exchangerate="12.93532">Fuerte (Parallel) (Venezuela)</option>
+                           <option value="Gold Cordoba (Nicaragua)" label="Gold Cordoba (Nicaragua)" data-exchangerate="34.35676">Gold Cordoba (Nicaragua)</option>
+                           <option value="Guarani (Paraguay)" label="Guarani (Paraguay)" data-exchangerate="5939">Guarani (Paraguay)</option>
+                           <option value="HK $ (Hong Kong)" label="HK $ (Hong Kong)" data-exchangerate="10.34103">HK $ (Hong Kong)</option>
+                           <option value="Hryvna (Ukraine)" label="Hryvna (Ukraine)" data-exchangerate="15.27676">Hryvna (Ukraine)</option>
+                           <option value="Jamaican $ (Jamaica)" label="Jamaican $ (Jamaica)" data-exchangerate="147.34528">Jamaican $ (Jamaica)</option>
+                           <option value="Yuan (China)" label="Yuan (China)" data-exchangerate="8.2095">Yuan (China)</option>
+                           <option value="Zloty (Poland)" label="Zloty (Poland)" data-exchangerate="4.18099">Zloty (Poland)</option>
+                        </select>
+                     </div>
+                     <div class="form-field"><label for="local_amount"> <strong>(required)</strong></label>
+                        <input id="local_amount" class="text localAmount" type="text" name="local_amount" value="" placeholder="Local Amount"/>
+                     </div>
+                     <div class="form-field"><label for="amount_in_euros_text"></label>
+                        <input id="amount_in_euros_text" class="text amountInEurosText" type="text" name="amount_in_euros_text" value="" placeholder="Auto Calc to Euros" disabled="disabled"/>
+                     </div>
+                     <input type="hidden" name="amount_in_euros" value="" class="amountInEuros" id="amount_in_euros"/>
+                     <input type="hidden" name="exchange_rate" value="1" id="exchange_rate"/>
+                  </fieldset>
+                  <fieldset id="category_brandpos_brand_group" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="category">
+                           Category > Brand Positioning > Brand <strong>(required)</strong>
+                           <div>
+                           <img title="Unilever PCAT Category or Non Category Specific, Please select The Standard Unilever PCAT Brand hierarchy" src="/s.gif" class="imgclass"/>
+                             
+                           </div>
+                        </label>
+                        <select name="category" id="category" data-parent-of="brand_positioning">
+                           <option value="">Select Category</option>
+                           <option value="_Cross-Category">_Cross-Category</option>
+                           <option value="_Non-Category Specific">_Non-Category Specific</option>
+                           <option value="empty" disabled="disabled"></option>
+                           <option value="Coffee &amp; Snacks">Coffee &amp; Snacks</option>
+                           <option value="Deodorants &amp; Fragrances">Deodorants &amp; Fragrances</option>
+                           <option value="Desserts Category">Desserts Category</option>
+                           <option value="Dressings">Dressings</option>
+                           <option value="Edible Fats &amp; Oils">Edible Fats &amp; Oils</option>
+                           <option value="Fabric Conditioners">Fabric Conditioners</option>
+                           <option value="Fabrics Cleaning">Fabrics Cleaning</option>
+                           <option value="Frozen Foods">Frozen Foods</option>
+                           <option value="Hair Care">Hair Care</option>
+                           <option value="Household Care">Household Care</option>
+                           <option value="Ice Cream">Ice Cream</option>
+                           <option value="Non Corporate Home Care Category">Non Corporate Home Care Category</option>
+                           <option value="Non Corporate Personal Care Category">Non Corporate Personal Care Category</option>
+                           <option value="Oral Care">Oral Care</option>
+                           <option value="Other Misc Foods">Other Misc Foods</option>
+                           <option value="Savoury">Savoury</option>
+                           <option value="Skin Care">Skin Care</option>
+                           <option value="Skin Cleansing">Skin Cleansing</option>
+                           <option value="Spreads">Spreads</option>
+                           <option value="Tea and Soy &amp; Fruit Beverages">Tea and Soy &amp; Fruit Beverages</option>
+                           <option value="Vitality Shots">Vitality Shots</option>
+                           <option value="Water Purification Category">Water Purification Category</option>
+                           <option value="Weight Management">Weight Management</option>
+                        </select>
+                     </div>
+                     <div class="form-field">
+                        <select name="brand_positioning" id="brand_positioning" data-select="child" data-parent-of="brand_name">
+                           <option value="" label="Select Brand Positioning" data-parentfield="ALL">Select Brand Positioning</option>
+                           <option value="_Cross-Category|_Multiple Brands" label="_Multiple Brands" data-parentfield="_Cross-Category">_Multiple Brands</option>
+                           <option value="_Non-Category Specific|_Multiple Brands" label="_Multiple Brands" data-parentfield="_Non-Category Specific">_Multiple Brands</option>
+                           <option value="_Cross-Category|_Non-Brand Specific" label="_Non-Brand Specific" data-parentfield="_Cross-Category">_Non-Brand Specific</option>
+                           <option value="_Non-Category Specific|_Non-Brand Specific" label="_Non-Brand Specific" data-parentfield="_Non-Category Specific">_Non-Brand Specific</option>
+                           <option value="Weight Management|SlimFast" label="SlimFast" data-parentfield="Weight Management">SlimFast</option>
+                        </select>
+                     </div>
+                     <div class="form-field">
+                        <select name="brand_name" id="brand_name" data-select="child">
+                           <option value="" label="Select Brand" data-parentfield="ALL">Select Brand</option>
+                           <option value="_Cross-Category|_Multiple Brands|_Multiple Brands" label="_Multiple Brands" data-parentfield="_Cross-Category|_Multiple Brands">_Multiple Brands</option>
+                           <option value="_Non-Category Specific|_Multiple Brands|_Multiple Brands" label="_Multiple Brands" data-parentfield="_Non-Category Specific|_Multiple Brands">_Multiple Brands</option>
+                           <option value="Weight Management|SlimFast|Slim*Fast" label="Slim*Fast" data-parentfield="SlimFast">Slim*Fast</option>
+                        </select>
+                     </div>
+                  </fieldset>
+               </section>
+               <section>
+                  <h2>Agency Information</h2>
+                  <fieldset id="creativeagencygroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="lead_creative_agency_name">
+                           Lead Agency Name <strong>(required)</strong>
+                           <div><img title="The name of the Agency managing this project/activity" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <select name="lead_creative_agency_name" id="lead_creative_agency_name" data-other-field="lead_creative_agency_name_text">
+                           <option value="">Select Agency</option>
+                           <option value="BBH">BBH</option>
+                           <option value="DDB">DDB</option>
+                           <option value="JWT">JWT</option>
+                           <option value="Lowe">Lowe</option>
+                           <option value="McCann">McCann</option>
+                           <option value="Ogilvy">Ogilvy</option>
+                        </select>
+                     </div>
+                     <div class="form-field hidden_field">
+                        <label for="lead_creative_agency_name_text">
+                           Lead Agency Name <strong>(required)</strong>
+                          <div><img title="The name of the Agency managing this project/activity" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <input id="lead_creative_agency_name_text" class="text" type="text" name="lead_creative_agency_name_text" value=""/>
+                     </div>
+                     <a id="lead_creative_agency_name_text" class="other_switcher" href="#" data-dropdown="lead_creative_agency_name">
+                     Other</a>
+                  </fieldset>
+                  <fieldset id="creativeagencylocationgroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="lead_creative_agency_location">
+                           Lead Agency Location <strong>(required)</strong>
+                          <div><img title="The location of the Agency managing this project/activity" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <select name="lead_creative_agency_location" id="lead_creative_agency_location" data-parent-of="lead_creative_agency_country_location">
+                           <option value="">Select Cluster</option>
+                           <option value="Africa">Africa</option>
+                           <option value="Europe">Europe</option>
+                           <option value="Latin America">Latin America</option>
+                           <option value="NAMET &amp; RUB">NAMET &amp; RUB</option>
+                           <option value="North America">North America</option>
+                           <option value="North Asia">North Asia</option>
+                           <option value="SEAA">SEAA</option>
+                           <option value="South Asia">South Asia</option>
+                        </select>
+                     </div>
+                     <div class="form-field">
+                        <select name="lead_creative_agency_country_location" id="lead_creative_agency_country_location" data-select="child">
+                           <option value="" label="Select Country" data-parentfield="ALL">Select Country</option>
+                           <option value="North Asia|China|CN" label="China" data-parentfield="North Asia">China</option>
+                           <option value="North Asia|Guam|GU" label="Guam" data-parentfield="North Asia">Guam</option>
+                           <option value="SEAA|Viet Nam|VN" label="Viet Nam" data-parentfield="SEAA">Viet Nam</option>
+                           <option value="SEAA|Wallis and Futuna|WF" label="Wallis and Futuna" data-parentfield="SEAA">Wallis and Futuna</option>
+                        </select>
+                     </div>
+                  </fieldset>
+                  <fieldset id="agencycontactoraccountdirectoremailgroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="agency_contact_or_account_director_email">
+                           Agency contact or account director email <strong>(required)</strong>
+                           <div><img title="The Agency person managing this project/activity" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <input id="agency_contact_or_account_director_email" class="text" type="text" name="agency_contact_or_account_director_email" value=""/>
+                     </div>
+                  </fieldset>
+                  <fieldset id="agencycontactoraccountdirectoremailgroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="Digital_Agency_Name"> 
+                        Digital Agency Name (if applicable)<img src="/s.gif" Class="imgclass" title="{!$ObjectType.Job_Details__c.fields.Digital_Agency_Name__c.inlineHelpText}" />
+                        <strong>(required)</strong></label>
+                        <input id="Digital_Agency_Name__c" class="text" type="text" name="Digital_Agency_Name__c" value=""/>
+                     </div>
+                  </fieldset>
+                  <fieldset id="agencycontactoraccountdirectoremailgroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="Any_other_agencies_involved__c"> 
+                        Any other agencies involved?<img src="/s.gif" Class="imgclass" title="{!$ObjectType.Job_Details__c.fields.Any_other_agencies_involved__c.inlineHelpText}" />
+                        <strong>(required)</strong></label>
+                        <input id="Any_other_agencies_involved__c" class="text" type="text" name="Any_other_agencies_involved__c" value=""/>
+                     </div>
+                  </fieldset>
+               </section>
+               <section>
+                  <h2>Overview of Project</h2>
+                  <fieldset id="projectnamegroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="project_name">
+                           Project name (e.g. Apollo) <strong>(required)</strong>
+                          <div><img title="Select your IPM project name from the drop down list. If it's not related to an IPM project please select Other and enter a project name." src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <select name="project_name" id="project_name" data-other-field="project_name_text">
+                           <option value="">Select Project</option>
+                           <option value="5TH AVENUE">5TH AVENUE</option>
+                           <option value="A CRANBERRY_AFR">A CRANBERRY_AFR</option>
+                           <option value="ZUMBA">ZUMBA</option>
+                           <option value="ZUMBA_IN18_LA">ZUMBA_IN18_LA</option>
+                           <option value="ZWEISTEIN">ZWEISTEIN</option>
+                        </select>
+                     </div>
+                     <div class="form-field hidden_field">
+                        <label for="project_name_text">
+                           Project name (e.g. Apollo) <strong>(required)</strong>
+                           <div><img title="Name of your project as per your CIP budgets (e.g. Apollo)" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <input id="project_name_text" class="text" type="text" name="project_name_text" value=""/>
+                     </div>
+                     <a id="project_name_text" class="other_switcher" href="#" data-dropdown="project_name">
+                     Other</a>
+                  </fieldset>
+                  <fieldset id="projectlocationgroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="project_location">
+                           Project location <strong>(required)</strong>
+                          <div><img title="The location of project" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <select name="project_location" id="project_location" data-select="parent" data-parent-of="project_country_location">
+                           <option value="">Select Cluster</option>
+                           <option value="Africa">Africa</option>
+                           <option value="Europe">Europe</option>
+                           <option value="Latin America">Latin America</option>
+                           <option value="NAMET &amp; RUB">NAMET &amp; RUB</option>
+                           <option value="North America">North America</option>
+                           <option value="North Asia">North Asia</option>
+                           <option value="SEAA">SEAA</option>
+                           <option value="South Asia">South Asia</option>
+                        </select>
+                     </div>
+                     <div class="form-field">
+                        <select name="project_country_location" id="project_country_location" data-select="child">
+                           <option value="" label="Select Country" data-parentfield="ALL">Select Country</option>
+                           <option value="North Asia|China|CN" label="China" data-parentfield="North Asia">China</option>
+                           <option value="SEAA|Wallis and Futuna|WF" label="Wallis and Futuna" data-parentfield="SEAA">Wallis and Futuna</option>
+                        </select>
+                     </div>
+                  </fieldset>
+                  
+                  <fieldset id="typeofbroadcastmarket" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="type_of_activity">
+                              Broadcast Market<strong>(required)</strong>
+                          <div><img title="Used to identify the Market Cluster that the ad will be broadcast into.  Must be able to select multiple options" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <select name="type_of_activity" id="type_of_activity">
+                           <option value="">Select Country</option>
+                        </select>
+                     </div>
+                  </fieldset>
+                  
+                  
+                  <fieldset id="typofactivitytgroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="type_of_activity">
+                           What type of activity will this production support <strong>(required)</strong>
+                          <div><img title="For more information visit the IPM team site" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <select name="type_of_activity" id="type_of_activity">
+                           <option value="">Select Market Place Activity</option>
+                           <option value="1">Innovation/Renovation</option>
+                           <option value="2">Promotion</option>
+                           <option value="3">Brand Equity/BLG</option>
+                           <option value="4">None of the above</option>
+                        </select>
+                     </div>
+                  </fieldset>
+                  <fieldset id="projectdescriptiongroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="project_description">
+                           Project description <strong>(required)</strong>
+                           <div><img title="Brief description of the market place activity or project" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <textarea name="project_description" class="project-description" rows="24" cols="80"></textarea>
+                     </div>
+                  </fieldset>
+                  <fieldset id="campaignnamegroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="campaign_name">
+                           Campaign name (e.g. Nothing beats an astronaut) if known <strong>(required)</strong>
+                           <div><img title="Campaign name and/or creative idea created by the agency (e.g. Nothing beats an astronaut)" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <input id="campaign_name" class="text" type="text" name="campaign_name" value=""/>
+                     </div>
+                  </fieldset>
+                  <fieldset id="executionnamegroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="execution_name">
+                           Execution name (e.g. Lifeguard or Fireman) if known <strong>(required)</strong>
+                          <div><img title="Name of the individual executions (e.g. Lifeguard or Fireman)" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <textarea name="execution_name" class="execution-name" rows="24" cols="80"></textarea>
+                     </div>
+                  </fieldset>
+                  <fieldset id="targetairdategroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="target_air_date">
+                           Target air date (i.e. when will material be released) <strong>(required)</strong>
+                           <div><img title="The date when the material will first be put to use" src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        <input id="target_air_date" class="text datepicker" type="text" name="target_air_date" value=""/>
+                     </div>
+                  </fieldset>
+               </section>
+               <section class = "production-activity-section">
+                  <h2>Production Activity Detail</h2>
+                  <fieldset class="required-fieldset">
+                     
+                        <!-- putting below -->
+                        
+                        <div class="form-field">
+                        <label for="production_activity_types-master-tvcinemaproductionexcludinglanguageadaptation-TVCinemaProductionexcludingLanguageAdaptation">
+                           Production activity type (select one or more)<strong>(required)</strong>
+                          <div><img title="Please select one or more options based on the scope of the project/activity. Please note your selection should be based on this registration only and should be based on one shoot/creation date as outlined above."  src="/s.gif" class="imgclass"/></div>
+                        </label>
+                        </div>
+                        
+                        <div style="clear:both;">
+  &nbsp;
+</div>
+                        
+                <div class="form-field" style="text-align:left !important;">                     
+                        <div style="float:left;width:400px;">
+                           <div style="height:100px;line-height:100px;">
+                              <div>
+                                 <input type='checkbox' class="master original_master" /> New Original Master
+                              </div>
+                           </div>
+                           <div style="height:160px;">
+                              <div class="other_master_parent">
+                                 <input type='checkbox' class="master other_master" /> Language Adaptation of Master
+                              </div>
+                              <div class="other_master_parent">
+                                 <input type='checkbox' class="master other_master" /> Additional Supplementary New Material
+                              </div>
+                              <div class="other_master_parent">
+                                 <input type='checkbox' class="master other_master" /> Rework Existing Material 
+                              </div>
+                              <div class="other_master_parent">
+                                 <input type='checkbox' class="master other_master" /> Buyouts - Talent
+                              </div>
+                              <div class="other_master_parent">
+                                 <input type='checkbox' class="master other_master" /> Buyouts - Music
+                              </div>
+                           </div>
+                        </div>
+                        <div class='master-detail hide'>
+                           <div style="">
+                              <div class="masterdetaildiv">
+                                 <input type='checkbox' class="sub-master additional" id='defaultTv' /> TV
+                              </div>
+                              <div class="masterdetaildiv">
+                                 <input type='checkbox' class="sub-master additional" id='defaultCinema' /> Cinema
+                              </div>
+                              <div class="masterdetaildiv">
+                                 <input type='checkbox' class="sub-master additional" id='defaultRadio' /> Radio
+                              </div>
+                              <div class="masterdetaildiv">
+                                 <input type='checkbox' class="sub-master additional" id='defaultPrint' /> Print
+                              </div>
+                              <div class="masterdetaildiv">
+                                 <input type='checkbox' class="sub-master" /> Out of home
+                              </div>
+                              <div class="masterdetaildiv">
+                                 <input type='checkbox' class="sub-master" /> In Store
+                              </div>
+                              <div class="masterdetaildiv">
+                                 <input type='checkbox' class="sub-master" /> Digital
+                              </div>
+                              <div class="masterdetaildiv">
+                                 <input type='checkbox' class="sub-master additional" id='defaultInternalVideo' /> Internal Video
+                              </div>
+                           </div>
+                        </div>
+                        <div style="float:left;width:400px;" class="sub-master-detail hide">
+                           <div style="">
+                              <div class="submasterdetaildiv" >
+                                 <input type='checkbox' class="defaultTv" /> Moving Image <br/>
+                              </div>
+                              <div class="submasterdetaildiv" >
+                                 <input type='checkbox' class="defaultCinema" /> Moving Image <br/>
+                              </div>
+                              <div class="submasterdetaildiv" >
+                                 <input type='checkbox' class="defaultRadio" /> Audio
+                              </div>
+                              <div class="submasterdetaildiv" >
+                                 <input type='checkbox' class="defaultPrint" /> Still Image <br/>
+                              </div>
+                              <div class="submasterdetaildiv">
+                                 <input type='checkbox' /> Moving Image &nbsp;&nbsp; <input type='checkbox' /> Still Image &nbsp;&nbsp; <input type='checkbox' /> Audio
+                              </div>
+                              <div class="submasterdetaildiv">
+                                 <input type='checkbox' /> Moving Image &nbsp;&nbsp; <input type='checkbox' /> Still Image &nbsp;&nbsp; <input type='checkbox' /> Audio
+                              </div>
+                              <div class="submasterdetaildiv">
+                                 <input type='checkbox' /> Moving Image &nbsp;&nbsp; <input type='checkbox' /> Still Image &nbsp;&nbsp; <input type='checkbox' /> Audio
+                              </div>
+                              <div class="submasterdetaildiv" >
+                                 <input type='checkbox' class="defaultInternalVideo"/> Moving Image <br/>
+                              </div>
+                           </div>
+                        </div>
+                     </div> 
+                        <!-- putting above -->
+                        
+                    
+                  </fieldset>
+                  <fieldset id="requiresmusicproductionactivitygroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="production_requires_music" class="radio-group">Do you anticipate that your production will require Music? <strong>(required)</strong></label>
+                        <label class="radio-label" for="production_requires_music-yes">Yes</label><input type="radio" name="production_requires_music" id="production_requires_music-yes" value="yes" class="radio"/><label class="radio-label" for="production_requires_music-no">No</label><input type="radio" name="production_requires_music" id="production_requires_music-no" value="no" class="radio"/>
+                     </div>
+                  </fieldset>
+                  <fieldset id="requirescelebrityproductionactivitygroup" class="required-fieldset">
+                     <div class="form-field"><label for="require_celebrity_talent" class="radio-group">Do you anticipate that your production will require Celebrity Talent? <strong>(required)</strong></label>
+                        <label class="radio-label" for="require_celebrity_talent-yes">Yes</label>
+                        <input type="radio" name="require_celebrity_talent" id="require_celebrity_talent-yes" value="yes" class="radio"/>
+                        <label class="radio-label" for="require_celebrity_talent-no">No</label>
+                        <input type="radio" name="require_celebrity_talent" id="require_celebrity_talent-no" value="no" class="radio"/>
+                     </div>
+                  </fieldset>
+                  <fieldset id="currentstageofyourproductionactivitygroup" class="required-fieldset">
+                     <div class="form-field">
+                        <label for="current_stage_of_your_production_activity">
+                           Current stage of your production activity <strong>(required)</strong>
+                            <div><img title="If your registation is across multiple Production Activity types then please select based on the timing of the 1st activity.  If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cutdown, Re-edit) your timing selection is based on the individual activity NOT based on if the master has been previously aired."  src="/s.gif" class="imgclass"/></div>
+                          
+                        </label>
+                        <select name="current_stage_of_your_production_activity" id="current_stage_of_your_production_activity">
+                           <option value="">Select Stage</option>
+                           <option value="1">Before briefing the agency</option>
+                           <option value="2">Before getting a response to the brief (eg storyboard)</option>
+                           <option value="3">Before getting quotations</option>
+                           <option value="4">Before final selection of the supplier/production company</option>
+                           <option value="5">Before physical production (eg shoot, contract)</option>
+                           <option value="6">After completion</option>
+                        </select>
+                     </div>
+                  </fieldset>
+                  <div style="float:right;margin-top:30px;">
+                     <article class="allocation-submitbtn">
+                        <p>Submit</p>
+                     </article>
+                  </div>
+                  <div style="clear:both">
+                  </div>
+               </section>
+               <footer>
+                  <p>If your brand does not appear in the picklist or if you require further assistance please contact <a href="mailto:advertising.production@unilever.com">advertising.production@unilever.com</a> </p>
+               </footer>
+            </form>
+         </section>
+      </div>
+   </body>
+</apex:page>

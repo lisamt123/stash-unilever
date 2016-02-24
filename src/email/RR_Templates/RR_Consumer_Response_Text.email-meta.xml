@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Ratings and Reviews Response to consumer email template (Text version)</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>RR Consumer Response (Text)</name>
+    <style>none</style>
+    <subject>Your review for {!01IE0000000yNO6.00NE0000004gqC9} - {!01IE0000000yNO6.00NE0000004gqCD}</subject>
+    <type>text</type>
+</EmailTemplate>

@@ -1,0 +1,496 @@
+<apex:page controller="Amr_JobSheetPageController_anjali">		
+	<style>
+		.rich-tabpanel-content {
+			font-family: 'dinOffPro', sans-serif;
+			font-size: 13px;
+		}
+		.bPageBlock .detailList .data2Col {
+			font-family: 'dinOffPro', sans-serif;
+			font-size: 13px;
+		}		
+		.alert-content table {
+			border: none;
+		}
+		.alert-content table td {
+			border: none;
+		}
+		.saving-label {			
+			padding-right: 26px;
+		    padding-top: 15px;
+		    text-align: right;
+		    width: 185px;
+		}
+		.saving-label-margin {
+			margin-left: 50px;
+		}
+		
+		.production-type img {
+			width:24px !important;
+		}
+		.production-type select{
+			min-width: 114px;
+		}
+		.job_savings_add {
+			display:none;
+		}
+		.addlicon {
+			cursor:pointer;
+		}
+		.job_savings_list td{
+			min-width:80px;
+		}
+		
+		.Before_briefing_the_creative_agency {
+			background-color:green;		
+		}
+		.Before_getting_a_response_to_the_brief_eg_storyboard {
+			background-color:lightgreen;			
+		}				
+		
+		.Before_getting_quotations {
+			background-color:yellow;		
+		}
+		.Before_final_selection_of_the_supplier_production_company {
+			background-color:lightyellow;		
+		}
+		.Before_physical_production_eg_shoot_contract {
+			background-color:lightred;		
+		}
+		.After_completion {
+			background-color:red;			
+		}
+		
+		.Before_briefing_the_creative_agency:after {			
+			content: "1";
+			font-weight:bold;
+			padding-left:30px;
+		}
+		.Before_getting_a_response_to_the_brief_eg_storyboard:after {		
+			content: "2";
+			font-weight:bold;
+			padding-left:30px;
+		}				
+		
+		.Before_getting_quotations:after {		
+			content: "3";
+			font-weight:bold;
+			padding-left:30px;
+		}
+		.Before_final_selection_of_the_supplier_production_company:after {			
+			content: "4";
+			font-weight:bold;
+			padding-left:30px;
+		}
+		.Before_physical_production_eg_shoot_contract:after {			
+			content: "5";
+			font-weight:bold;
+			padding-left:30px;
+		}
+		.After_completion:after {		
+			content: "6";
+			font-weight:bold;
+			padding-left:30px;
+		}
+		
+	</style> 
+	<script>
+		
+		$j = jQuery.noConflict();			
+		
+		function Edit(id) {
+			//alert(id);
+			EditSaving(id);
+		}
+		
+		function save(id, Production) {
+			// alert('hello'+id);
+			// alert('hello'+Production);
+		
+			SaveData(id, Production);
+		}
+		
+		function Delete(id) {
+			alert(id);
+			DeleteSaving(id);
+		}
+	</script>
+	<apex:form >
+		<apex:actionFunction name="EditSaving" action="{!SaveUpdatedData}"
+			ReRender="submittedData">
+			<apex:param name="one" value="" assignTo="{!IdValue}" />
+		</apex:actionFunction>
+		<apex:actionFunction name="DeleteSaving" action="{!deleteQuote}"
+			ReRender="submittedData">
+			<apex:param name="one" value="" assignTo="{!IdDeleted}" />
+		</apex:actionFunction>
+		<apex:actionFunction name="SaveData" action="{!SaveNewData}"
+			ReRender="submittedData">
+			<apex:param name="one" value="" assignTo="{!IdNeedToUpdate}" />
+			<apex:param name="two" value="" assignTo="{!productionType}" />
+		</apex:actionFunction>
+	</apex:form>
+	<apex:form >
+		<div class="subcontainer">
+			<div class="filter_section width30">
+				<div class="filters width20">
+					<div style="">
+						<div class="filter_section">
+							<h4>
+								{!$Label.Amr_Job_Savings}
+								<!--  
+								<span><img
+									src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Subtract.png"
+									class="addlicon" alt="number" data-id='job_savings_add'/></span>
+									-->
+								<div class="plusclass commonall" data-id="job_savings_add">                                		
+                            	</div>
+							</h4>
+						</div>
+					</div>
+					<div class="alert-content job_savings_add">
+						<div>
+							<div class="alert_date saving-sub" style="">
+								<div class="saving-label alert-left">
+									{!$Label.Amr_AdManager_No}
+								</div>
+								<div class="alert-input alert-left">
+									<apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+										styleClass="tableClass" rowClasses="odd,even" border="1"
+										cellspacing="5" cellpadding="5">
+										<apex:column >
+											<apex:outputText value="{!adManagerNumber}" />
+										</apex:column>
+									</apex:dataTable>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="alert-input saving-sub production-type" style="">
+								<div class="saving-label alert-left">
+									{!$Label.Amr_Production_Type}
+								</div>
+								<div class="alert-input alert-left">
+									<apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+										styleClass="tableClass" rowClasses="odd,even" border="1"
+										cellspacing="5" cellpadding="5">
+										<apex:column >
+											<apex:inputField value="{!QuoteObj.Production_Type__c}" />
+										</apex:column>
+									</apex:dataTable>
+								</div>
+							</div>
+							<div class="clear"></div>
+							<div class="alert_date saving-sub" style="">
+								<div class="saving-label alert-left">
+									{!$Label.Amr_No_Of_Masters}
+								</div>
+								<div class="alert-input alert-left">
+									<apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+										styleClass="tableClass" rowClasses="odd,even" border="1"
+										cellspacing="5" cellpadding="5">
+										<apex:column >
+											<apex:inputField value="{!QuoteObj.No_of_Masters__c}" />
+										</apex:column>
+									</apex:dataTable>
+								</div>
+								
+								<div class="saving-label alert-left saving-label-margin">
+									{!$Label.Amr_Duration_of_Masters}
+								</div>
+								<div class="alert-input alert-left">
+									<apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+										styleClass="tableClass" rowClasses="odd,even" border="1"
+										cellspacing="5" cellpadding="5">
+										<apex:column >
+											<apex:inputField value="{!QuoteObj.Duration_of_Masters__c}" />
+										</apex:column>
+									</apex:dataTable>
+								</div>
+								
+								<div class="clear"></div>
+							</div>
+							
+							<div class="clear"></div>
+							<div class="alert_date saving-sub" style="">
+								<div class="saving-label alert-left">
+									{!$Label.Amr_No_of_Additional_Films}
+								</div>
+								<div class="alert-input alert-left">
+									<apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+										styleClass="tableClass" rowClasses="odd,even" border="1"
+										cellspacing="5" cellpadding="5">
+										<apex:column >
+											<apex:inputField value="{!QuoteObj.No_of_Additional_Films__c}" />
+										</apex:column>
+									</apex:dataTable>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="alert-input saving-sub" style="">
+								<div class="saving-label alert-left">
+									{!$Label.Amr_Duration_Of_Additional_Films}
+								</div>
+								<div class="alert-input alert-left">
+									<apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+										styleClass="tableClass" rowClasses="odd,even" border="1"
+										cellspacing="5" cellpadding="5">
+										<apex:column >
+											<apex:inputField value="{!QuoteObj.Duration_of_Additional_Films__c}" />
+										</apex:column>
+									</apex:dataTable>
+								</div>
+								
+								<div class="saving-label alert-left saving-label-margin">
+									{!$Label.Amr_No_of_Shoot_Days}
+								</div>
+								<div class="alert-input alert-left">
+									<apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+										styleClass="tableClass" rowClasses="odd,even" border="1"
+										cellspacing="5" cellpadding="5">
+										<apex:column >
+											<apex:inputField value="{!QuoteObj.No_of_shoot_days__c}" />
+										</apex:column>
+									</apex:dataTable>
+								</div>
+								
+							</div>
+							<div class="clear"></div>							
+							<div class="alert-input saving-sub" style="">
+								<div class="saving-label alert-left">
+									{!$Label.Amr_Stage_RAP_engaged}
+								</div>
+								<div class="alert-input alert-left">
+									<apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+										styleClass="tableClass" rowClasses="odd,even" border="1"
+										cellspacing="5" cellpadding="5">
+										<apex:column >
+											<apex:inputField value="{!QuoteObj.Stage_RAP_engaged__c}" />
+										</apex:column>
+									</apex:dataTable>
+								</div>
+								
+								
+								<div class="saving-label alert-left saving-label-margin">
+									{!$Label.Amr_Script_Title}
+								</div>
+								<div class="alert-input alert-left">
+									<apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+										styleClass="tableClass" rowClasses="odd,even" border="1"
+										cellspacing="5" cellpadding="5">
+										<apex:column >
+											<apex:inputField value="{!QuoteObj.Script_Title__c}" />
+										</apex:column>
+									</apex:dataTable>
+								</div>																								
+								
+							</div>
+							<div class="clear"></div>
+							
+							<div class="alert-input saving-sub" style="">
+								<div class="saving-label alert-left">
+									{!$Label.Amr_Shoot_Location}
+								</div>
+								<div class="alert-input alert-left">
+									<apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+										styleClass="tableClass" rowClasses="odd,even" border="1"
+										cellspacing="5" cellpadding="5">
+										<apex:column >
+											<apex:selectList value="{!selectedCountry}"
+												multiselect="true" size="5">
+												<apex:selectOptions value="{!shootLocation}" />
+											</apex:selectList>
+										</apex:column>
+									</apex:dataTable>
+								</div>
+								
+								<div class="saving-label alert-left saving-label-margin">
+									{!$Label.Amr_scope_rebrief}
+								</div>
+								<div class="alert-input alert-left">
+									<apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+										styleClass="tableClass" rowClasses="odd,even" border="1"
+										cellspacing="5" cellpadding="5">
+										<apex:column >
+											<apex:inputField value="{!QuoteObj.Scope_re_brief__c}" />
+										</apex:column>
+									</apex:dataTable>
+								</div>
+								
+							</div>
+							<div class="clear"></div>							
+							<div class="alert-input saving-sub" style="">
+								<div class="saving-label alert-left">{!$Label.Amr_File}</div>
+								<div class="alert-input alert-left">
+									<apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+										styleClass="tableClass" rowClasses="odd,even" border="1"
+										cellspacing="5" cellpadding="5">
+										<apex:column >
+											<apex:inputFile value="{!document.body}"
+												filename="{!document.name}" />
+											<apex:commandLink value="Click Here to upload Document"
+												action="{!redirectNewPage}" target="_blank" />
+										</apex:column>
+									</apex:dataTable>
+								</div>
+							</div>
+							<div class="clear"></div>
+							<div class="alert-input saving-sub" style="">
+								<div>
+									<apex:commandButton value="Save" action="{!addRowSavingLine}" styleClass="allocationbtn btn1 acceptedLike applybtn" style="width: 100px;" />
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>						
+			
+		</div>
+		
+		<div class="filter_section">
+			<h4>
+				Saving Summary List
+				<!--  <span><img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Subtract.png" class="addlicon" alt="number" data-id='job_savings_list'/></span> -->
+				<div class="minusclass commonall" data-id="job_savings_list">                                		
+                </div>
+			</h4>
+		</div>
+		<div style="margin-top: 20px;overflow-x: scroll;" class="job_savings_list">
+				<apex:actionRegion >
+					<apex:pageBlock >
+						<apex:pageBlockSection title="Submitted Savings" columns="1"
+							collapsible="true">
+							<apex:pageblockTable value="{!quoteList}" var="quoteObj"
+								cellpadding="20" border="1" id="submittedData">
+								<!-- <apex:column > 
+									{!quoteObj.id}
+									<apex:facet name="header"></apex:facet>
+									 <apex:inputhidden value="{!quoteObj.id}" id="theField1"/>
+									 <apex:inputFile value="{!document.body}" filename="{!document.name}"  onclick="test()"/>
+									 
+									 
+									<apex:commandButton action="{!uploadDocument}" value="Upload" >
+									
+									</apex:commandButton>
+									</apex:column>  -->
+								<apex:column >
+									<apex:facet name="header">{!$Label.Amr_Enter_Quote}</apex:facet>
+									<apex:outputLink target="_blank"
+										value="Amr_SavingQuote?id={!quoteObj.id}">{!$Label.Amr_Quote}</apex:outputLink>
+								</apex:column>
+								<apex:column >
+									<apex:facet name="header">Actions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</apex:facet>
+									<apex:commandLink rendered="{!if(IdValue == quoteObj.id ,false,true) ||(  isEdit  == true && isSave  == false)}"
+										onclick="Edit('{!quoteObj.id}');return Null;">{!$Label.Amr_Edit}</apex:commandLink>
+									
+									<apex:commandLink rendered="{!if(IdValue == quoteObj.id ,true,false) && ( isSave  == true && isEdit  == false)}"
+										action="{!SaveNewData}">{!$Label.Amr_Save}</apex:commandLink>
+										&nbsp;&nbsp;									
+									<apex:commandLink onclick="Delete('{!quoteObj.id}');return Null;"
+										rendered="{!if(IdValue == quoteObj.id ,false,true) ||(  isEdit  == true && isSave  == false)}">&nbsp;{!$Label.Amr_Delete}</apex:commandLink>
+								</apex:column>
+								<!--<apex:column headervalue="Month Submitted">
+									<apex:outputText value="{!quoteObj.Job_Details__c}" />
+									</apex:column>-->
+								<apex:column headervalue="{!$Label.Amr_AdManager_No}">
+									<apex:outputText value="{!quoteObj.Job_Details__r.AdManagerText__c}" />
+								</apex:column>
+								<!-- Production_Type -->
+								<apex:column rendered="{!if(IdValue == quoteObj.id,true,false)&& ( isSave  == true && isEdit  == false && display == false)}"
+									headerValue="{!$Label.Amr_Production_Type}">
+									<apex:inputField value="{!quoteObj.Production_Type__c}" />
+								</apex:column>
+								<apex:column headervalue="{!$Label.Amr_Production_Type}"
+									value="{!quoteObj.Production_Type__c}"
+									rendered="{!if(IdValue == quoteObj.id,false,true)||(  isEdit  == true && isSave  == false) || (display == true)}"
+									id="prodtype" />
+								<!-- No Of Masters -->
+								<apex:outputText value="{!isSave}">{!isSave}</apex:outputText>
+								<apex:column rendered="{!if(IdValue == quoteObj.id,true,false) && ( isSave  == true && isEdit  == false && display == false)}"
+									headerValue="{!$Label.Amr_No_Of_Masters}">
+									<apex:inputField value="{!quoteObj.No_of_Masters__c}" />
+								</apex:column>
+								<apex:column headervalue="{!$Label.Amr_No_Of_Masters}"
+									value="{!quoteObj.No_of_Masters__c}"
+									rendered="{!if(IdValue == quoteObj.id,false,true)||(  isEdit  == true && isSave  == false) || (display == true)}" />
+								<!-- Duration of Masters-->
+								<apex:column rendered="{!if(IdValue == quoteObj.id,true,false)&& ( isSave  == true && isEdit  == false && display == false) }"
+									headerValue="{!$Label.Amr_Duration_of_Masters}">
+									<apex:inputField value="{!quoteObj.Duration_of_Masters__c}" />
+								</apex:column>
+								<apex:column headervalue="{!$Label.Amr_Duration_of_Masters}"
+									value="{!quoteObj.Duration_of_Masters__c}"
+									rendered="{!if(IdValue == quoteObj.id,false,true)||(  isEdit  == true && isSave  == false) || (display == true)}" />
+								<!-- No of Additional Films-->
+								<apex:column rendered="{!if(IdValue == quoteObj.id,true,false)&& ( isSave  == true && isEdit  == false && display == false)}"
+									headerValue="{!$Label.Amr_No_of_Additional_Films}">
+									<apex:inputField value="{!quoteObj.No_of_Additional_Films__c}" />
+								</apex:column>
+								<apex:column headervalue="{!$Label.Amr_No_of_Additional_Films}"
+									value="{!quoteObj.No_of_Additional_Films__c}"
+									rendered="{!if(IdValue == quoteObj.id,false,true)||(  isEdit  == true && isSave  == false) || (display == true)}" />
+								<!-- Duration Of Additional Films-->
+								<apex:column rendered="{!if(IdValue == quoteObj.id,true,false)&& ( isSave  == true && isEdit  == false && display == false)}"
+									headerValue="{!$Label.Amr_Duration_Of_Additional_Films}">
+									<apex:inputField value="{!quoteObj.Duration_of_Additional_Films__c}" />
+								</apex:column>
+								<apex:column headervalue="{!$Label.Amr_Duration_Of_Additional_Films}"
+									value="{!quoteObj.Duration_of_Additional_Films__c}"
+									rendered="{!if(IdValue == quoteObj.id,false,true)||(  isEdit  == true && isSave  == false) || (display == true)}" />
+								<!-- Total No of Films-->
+								<apex:column rendered="{!if(IdValue == quoteObj.id,true,false)&& ( isSave  == true && isEdit  == false && display == false)}"
+									headerValue="{!$Label.Amr_Total_No_of_Films}">
+									<apex:inputField value="{!quoteObj.Total_no_of_films__c}" />
+								</apex:column>
+								<apex:column headervalue="{!$Label.Amr_Total_No_of_Films}"
+									value="{!quoteObj.Total_no_of_films__c}"
+									rendered="{!if(IdValue == quoteObj.id,false,true)||(  isEdit  == true && isSave  == false) || (display == true)}" />
+								<!--No of Shoot Days-->
+								<apex:column rendered="{!if(IdValue == quoteObj.id,true,false)&& ( isSave  == true && isEdit  == false && display == false)}"
+									headerValue="{!$Label.Amr_No_of_Shoot_Days}">
+									<apex:inputField value="{!quoteObj.No_of_shoot_days__c}" />
+								</apex:column>
+								<apex:column headervalue="{!$Label.Amr_No_of_Shoot_Days}"
+									value="{!quoteObj.No_of_shoot_days__c}"
+									rendered="{!if(IdValue == quoteObj.id,false,true)||(  isEdit  == true && isSave  == false) || (display == true)}" />
+								<!--Stage RAP engaged-->
+								<apex:column rendered="{!if(IdValue == quoteObj.id,true,false)&& ( isSave  == true && isEdit  == false && display == false)}"
+									headerValue="{!$Label.Amr_Stage_RAP_engaged}">									
+									<apex:inputField value="{!quoteObj.Stage_RAP_engaged__c}" />
+								</apex:column>
+								<apex:column styleclass="contentclass {!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(quoteObj.Stage_RAP_engaged__c, ' ', '_'),'(',''),')',''),',',''),'/','')}" headervalue="{!$Label.Amr_Stage_RAP_engaged}" rendered="{!if(IdValue == quoteObj.id,false,true)||(  isEdit  == true && isSave  == false) || (display == true)}" />
+								<!--Shoot Location-->
+								<apex:column rendered="{!if(IdValue == quoteObj.id,true,false)&& ( isSave  == true && isEdit  == false && display == false)}"
+									headerValue="{!$Label.Amr_Shoot_Location}">
+									<!--<apex:inputField value="{!quoteObj.Shoot_Location__c}" />-->
+									<apex:selectList value="{!selectedCountry}" multiselect="true"
+										size="5">
+										<apex:selectOptions value="{!shootLocation}" />
+									</apex:selectList>
+								</apex:column>
+								<apex:column headervalue="{!$Label.Amr_Shoot_Location}"
+									value="{!quoteObj.Shoot_Location__c}"
+									rendered="{!if(IdValue == quoteObj.id,false,true)||(  isEdit  == true && isSave  == false) || (display == true)}" />
+								<!--Script Title-->
+								<apex:column rendered="{!if(IdValue == quoteObj.id,true,false)&& ( isSave  == true && isEdit  == false && display == false)}"
+									headerValue="{!$Label.Amr_Script_Title}">
+									<apex:inputField value="{!quoteObj.Script_Title__c}" />
+								</apex:column>
+								<apex:column headervalue="{!$Label.Amr_Script_Title}"
+									value="{!quoteObj.Script_Title__c}"
+									rendered="{!if(IdValue == quoteObj.id,false,true)||(  isEdit  == true && isSave  == false) || (display == true)}" />
+								<apex:column rendered="{!if(IdValue == quoteObj.id,true,false)&& ( isSave  == true && isEdit  == false && display == false)}"
+									headerValue="{!$Label.Amr_scope_rebrief}">
+									<apex:inputField value="{!quoteObj.Scope_re_brief__c}" />
+								</apex:column>
+								<apex:column headervalue="{!$Label.Amr_scope_rebrief}"
+									value="{!quoteObj.Scope_re_brief__c}"
+									rendered="{!if(IdValue == quoteObj.id,false,true)||(  isEdit  == true && isSave  == false) || (display == true)}" />
+							</apex:pageblockTable>
+						</apex:pageBlockSection>
+					</apex:pageBlock>
+				</apex:actionRegion>
+			</div>
+		
+	</apex:form>
+</apex:page>

@@ -1,0 +1,13 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[Dear User
+<br>
+<br>A submission has been made by "{!AF_OOPS_Actual__c.AF_Agency_lk__c}"
+ for "{!AF_OOPS_Actual__c.AF_Quarter__c}  
+{!AF_OOPS_Actual__c.AF_Fiscal_year__c}" OOPs Back-up for Brand 
+{!AF_OOPS_Actual__c.AF_Brand__c}. 
+<br>
+<br>Please log in to the tool, using the link below, to review the submission.<br>{!AF_OOPS_Actual__c.AF_Internal_Link__c}<br>]]></td>
+</tr>
+</table>

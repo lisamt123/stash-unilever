@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>HTML_PreWork Task Reminder</name>
+    <style>none</style>
+    <subject>Reminder: Pre-Work Task &apos;{!FA_Pre_Work_Task__c.FA_Task_Name__c}&apos; is due for completion by {!FA_Pre_Work_Task__c.FA_Due_Date__c}</subject>
+    <type>custom</type>
+</EmailTemplate>

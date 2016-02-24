@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Envio de sugestões dos consumidores internamente</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CEC_Unilever_Portugal_Internal</letterhead>
+    <name>Unilever JM - Portugal_Internal_Sugestões</name>
+    <style>freeForm</style>
+    <subject>Case # {!Case.CaseNumber} / {!Case.Case_Brand__c}</subject>
+    <textOnly>Colega,
+
+
+
+No âmbito da informação recolhida junto dos nossos Consumidores, vimos comunicar a mesma para o que acharem relevante.
+
+
+
+{!Case.Case_Brand__c}
+
+----------------------------------------------------------------------------------------------------------
+
+{!Case.Subject}
+
+
+
+----------------------------------------------------------------------------------------------------------
+
+{!Case.Description}
+
+
+
+----------------------------------------------------------------------------------------------------------
+
+
+Com os melhores cumprimentos,
+
+{!Case.OwnerFullName}
+
+
+
+Largo Monterroio Mascarenhas, 1 1099-081 Lisboa
+
+]]&gt;</textOnly>
+    <type>html</type>
+</EmailTemplate>

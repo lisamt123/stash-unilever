@@ -1,0 +1,21 @@
+<font face="Arial" size = "2" color="#000099"> <b>Ystävällisin terveisin  </b>  <br/>
+<br/>
+<br/>
+<b>{!User.FirstName}  </b> <br/>
+<b>Kuluttajapalvelu,  {!if(Case.Case_Brand__c="","Unilever","")}{!Case.Case_Brand__c}. </b> </font> <br/>
+<br/>
+
+
+
+
+ <img src={!IF(ISBLANK(Case.External_Image_Address__c),"https://unilever--c.na9.content.force.com/servlet/servlet.ImageServer?id=015E0000005HwhT&oid=00D180000008e54&lastMod=1418309606000",Case.External_Image_Address__c)} alt="Logo"/>
+
+<br>
+
+
+
+
+<font face="Arial"  style="font-size:11px" color="DimGray"> Unilever Finland OY  <br/>
+PL 254   <br/>
+SF-00101 Helsinki   </font>  <br/>
+ <a href="http://www.unilever.com"> <font face = "Arial" style="font-size:11px" color = "#0099FF"> <b>www.unilever.com </b></font> </a>

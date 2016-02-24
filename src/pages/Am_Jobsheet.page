@@ -1,0 +1,354 @@
+<apex:page controller="Amr_JobSheetController" sidebar="false" id="pageId" >
+    <style type="text/css">
+        @font-face {
+        font-family: 'dinOffPro';
+        src: url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro.ttf')}"); /* IE9 Compat Modes */
+        }
+        @font-face {
+        font-family: 'dinOffPro-Bold';
+        src: url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Bold.ttf')}"); /* IE9 Compat Modes */
+        }
+        @font-face {
+        font-family: 'dinOffPro-BoldIta';
+        src: url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-BoldIta.ttf')}"); /* IE9 Compat Modes */
+        }
+        @font-face {
+        font-family: 'dinOffPro-Ita';
+        src: url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Ita.ttf')}"); /* IE9 Compat Modes */
+        }
+        body{background:#fff;font-family: 'dinOffPro', 'Open Sans', sans-serif !important;margin:0 auto;}
+        .container{
+        font-family: 'dinOffPro', 'Open Sans', sans-serif;
+        }
+        /* Ad Main section CSS */
+        .container{width:1170px; margin: 0 auto;}
+        .navbar-header{background:#F6F6F6;}
+        .navbar-header img{float:left;}
+        .clear{clear:both;}
+        .form-control { border-radius: 30px 0 0 30px;padding: 0 100px 0 8px; height: 25px;border:2px solid #dcdcdc;}
+        .form-groupright {padding: 20px;float:left;padding: 20px 0 20px 150px;}
+        .form-groupright input[type="text"] {
+        border: 1px solid #efefef;
+        margin: 10px 1px 0 0;
+        width: 100px;
+        }
+        .btn {border-radius: 30px;}
+        .btn-default {background-color:#fbf9fc;border: medium none;border-bottom-left-radius: 0;border-top-left-radius: 0;color: #1796BF;padding: 5px 10px 5px 0;font-weight:bold;font-size:12px;}
+        #myNavbar{float:right;display:inline;}
+        #myNavbar a{text-decoration:none;padding: 20px 15px 0px 20px;display:block;color:#1796bf;}
+        #myNavbar ul li {display: inline-block;list-style-type:none;color:#1796BF;font-size:12px;font-weight:bold;}
+        .caret{border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px dashed;
+        display: inline-block;
+        float: right;
+        height: 0;
+        margin-left: 5px;vertical-align: middle;
+        width: 0;position: relative;top: 6px;}
+        .admanager_text a{color:#fff !important;background: #1796bf none repeat scroll 0 0;border-radius: 30px;padding: 5px 30px 5px 5px !important;}
+        .caret1{color:#fff;margin: 0 -21px 0 20px;}
+        .subsection{background:#e1f0f5; border-bottom:solid #20b0b9 2px; padding-left:10px; padding-top: 10px;}
+        .subsection > ul {margin: 0; padding:0px}
+        .subsection ul li{display: inline-block;list-style-type:none;}
+        .subsection a{text-decoration:none;display:block;color:#1796BF;padding:2px 8px; font-size: 13px; border-top-left-radius:10px; border-top-right-radius:10px;}
+        .subsection .active a{color:#fff; background: none repeat scroll 0 0 #20b0b9;}
+        #myNavbar > ul {padding: 0 30px 0 0;}
+        /* filters section */
+        .nav-tabssection ul li{
+        display: inline-block;
+        list-style-type: none;
+        margin-left: -5px;}
+        .nav-tabssection a{text-decoration:none;color:#555;
+        font-size: 18px;
+        text-decoration: none; padding: 10px 30px;
+        border:solid #aaa 1px; display:block; background:#F8F8F8;border-bottom:none;}
+        .nav-tabssection > ul {
+        margin: 0 0 -1px;
+        padding: 0 0 0 21px;
+        }
+        .nav-tabssection {
+        border-bottom: 1px solid #ddd;
+        padding-top: 10px;
+        } 
+        .nav-tabs > li.active > a{
+        background:#fff;
+        border-bottom: 1px solid #fff;
+        }
+        .width20 {
+        border: 1px solid #e6e6e6;
+        border-radius: 10px;
+        margin: 20px 0;
+        overflow: hidden;
+        }
+        .box_header {
+        background: none repeat scroll 0 0 #e6e6e6;
+        border-bottom: 1px solid #e6e6e6;
+        padding: 10px;
+        }
+        .box_header h3 {
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+        font-family: 'dinOffPro', 'Open Sans', sans-serif;
+        }
+        .box_content {
+        background: none repeat scroll 0 0 #f8f8f8;
+        padding: 15px;
+        }
+        .subbox input[type="text"] {
+        border: 1px solid #efefef;
+        border-radius: 5px;
+        padding: 10px 0 10px 15px !important;
+        width: 220px !important;
+        }
+        .canceltxt a{padding-left: 20px;color:#4344FD;font-size:13px;font-weight: bold;}
+        .filterbtn{margin-top:10px;}
+        .form-group {
+        padding: 10px;
+        }
+        .form-inline .form-group1 {
+        display: inline-block;
+        margin-bottom: 0;
+        vertical-align: middle;
+        }
+        .form-group1 label {
+        display: inline-block;
+        max-width: 100%;
+        margin-bottom: 5px;
+        color: #7d92b1;
+        font-size:13px;
+        }
+        .form-group label {
+        color: #7d92b1;
+        line-height: 1.5em;
+        font-size:15px;         
+        font-family: 'dinOffPro', 'Open Sans', sans-serif;
+        }
+        .form-inline .form-contrt {width: auto;
+        vertical-align: middle;
+        }
+        .form-inline{       
+        margin-left: 0px;
+        }
+        .starttxt h3{background: #edf2f5 none repeat scroll 0 0;
+        display: block;
+        font-size: 14px;
+        padding: 10px;
+        width: 98%;
+        font-family: 'dinOffPro', 'Open Sans', sans-serif;
+        }
+        .starttxt p{font-size:14px;color: #7d92b1;}
+        .starttxt input[type="text"] ,select,textarea{ border: 1px solid #dcdcdc;
+        border-radius: 7px;
+        box-sizing: border-box;
+        color: #0b2f4d;
+        font-size: 14px;
+        padding: 10px 0 10px 12px;
+        width: 327px; font-size: 14px;
+        //font-weight: bold;
+        margin: 10px 1px 0 0;}
+        .form-group input[type="text"]{border-radius: 7px;
+        box-sizing: border-box;
+        color: #0b2f4d;
+        font-size: 14px;
+        padding: 10px 0 10px 12px;
+        width: 327px;border: 1px solid #efefef;margin: 10px 1px 0 0;font-size: 14px;
+        //font-weight: bold;
+        }
+        .bottom_border{border-bottom: 1px solid #e0e0e0;}
+        .canel {
+        background: none repeat scroll 0 0 #c8c8c8;
+        color: #fff;
+        font-weight: bold;
+        }
+        .paratext{color: #7d92b1;font-size:15px;font-family: 'dinOffPro', 'Open Sans', sans-serif;}
+        .filterbtn {
+        margin: 20px 0 -3px;
+        text-align: right;
+        font-size:16px;
+        }
+        .fbtn {
+        border-radius: 6px;
+        padding: 2px 25px;
+        }
+        .apply {
+        background: none repeat scroll 0 0 #20aeb8 !important;
+        color: #fff !important;
+        font-weight: bold !important;
+        padding: 2px 13px !important;
+        }
+        .form-contrt{width:327px !important;}
+        .allocationbtn{
+        background: none repeat scroll 0 0 #20aeb8 !important;
+        color: #fff !important;
+        font-weight: bold;padding: 4px 15px; border-radius: 6px !important;
+        padding:4px 19px !important;
+        margin:1px !important;
+        }
+        .caret2 {
+        border-bottom: 12px dashed;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        color: #646464;
+        display: inline-block;
+        float: right;
+        height: 0;
+        margin-left: 5px;
+        vertical-align: middle;
+        width: 0;
+        }
+        .admangersheet h2{color:#20AEB8;font-size:18px;font-family: 'dinOffPro', 'Open Sans', sans-serif;}
+        .project-description{width: 690px !important;height:90px;}  
+        .subbox select{width: 200px !important;}
+        .condition_text{width:130px !important;}
+        .country_text{width:150px !important;} 
+        .date_text{padding:0px 20px 0px 30px !important} 
+        .starimg{
+        background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/star.png')}") no-repeat scroll left center rgba(0, 0, 0, 0);
+        display: inline-block;
+        height: 1px;
+        overflow: hidden;
+        padding-top: 15px;
+        width: 15px;
+        }
+        .form-group span a{color: #4344fd;
+        font-size: 13px;
+        font-weight: bold;
+        padding-left:20px;} 
+        .jobportpoliosection h1{
+        font-size: 32px;            
+        padding: 16px 0;
+        font-family: 'dinOffPro', 'Open Sans', sans-serif;
+        }
+        .admangersheet{
+        margin: 23px 0 17px;
+        }
+        .jobportpoliosection{
+        margin-top:7px;
+        }
+        
+        .coming_soon{
+        border: 1px solid red;
+        font-size: 14px;
+        padding: 14px;
+        }
+        .production-activity-type-sub{
+        background: #73c0d9 none repeat scroll 0 0;
+        color: #fff;
+        font-size: 13px;
+        font-weight: bold;
+        margin-bottom: 21px;
+        padding: 10px;
+        width: 127px;
+        }
+        .masterdetaildiv {
+        height:50px;
+        line-height:50px;                     
+        }
+        .submasterdetaildiv {
+        height:50px;              
+        }
+        .other_master_parent{
+        height:30px;
+        }
+    </style>
+    <style>
+        .alloc_table tr td{
+        border: 1px solid;
+        border-color: #20aeb8;
+        border-radius:20px;
+        }
+        .radio_pick tr td{
+        text-align:left;
+        border:0px none;
+        }
+    </style>    
+        <apex:form >
+            <div class="container">
+                <div class="filter_section width30">
+                <div class="filters width20">
+                    <div id = "newDiv" style="display:{!IF(profileName != 'CAP' , 'None', '')}">
+                        <div class="box_header">
+                            <h3>Allocation<span class="caret2"></span></h3>
+                        </div>
+                        <div class="box_content filteralert">
+                            <div class="subbox" style="height:64px;">
+                                <div class="subbox-first" style="float:left;width:221px;" >
+                                    <apex:selectList label="Select the user Name"  size="1" value="{!selectedRAPUser}"  onchange="alert('Hell -> ' + {!selectedRAPUser});">
+                                        <apex:selectOptions value="{!selectUsername}"></apex:selectOptions>
+                                    </apex:selectList>
+                                </div>
+                                <div class="subbox-second" style="float:left;margin-top:14px;font-size: 15px;">
+                                    <apex:commandButton styleClass="allocationbtn" value="Allocate" action="{!Reallocate}"  reRender="msgs"/>
+                                </div>
+                                <div class="subbox-third" style="float:left;margin-top:17px;">
+                                    <span class="canceltxt">
+                                        <apex:commandLink value="Cancel this job" action="{!cancelJob}" reRender="msgs" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="rapDiv" style="display:{!IF(proFileName != 'RAP' , 'None', '')}">
+                        <apex:pageBlock >
+                            <table class = "alloc_table" width = "100%" style="text-align:center">
+                                <tr>
+                                    <td style="display:{!IF(jobStatus == 'Accepted' , 'None', '')}">
+                                        <apex:outputPanel >
+                                            <apex:outputLabel value="Accept" style="font-weight:bold;"/>
+                                            <br/><br/><br/><br/><br/><br/>
+                                            <apex:commandButton styleClass="allocationbtn" value="Accept" action="{!acceptJob}" />
+                                        </apex:outputPanel>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel >
+                                            <apex:outputLabel value="Re - Allocate" style="font-weight:bold;"/>
+                                            <br/><br/>
+                                            <apex:selectList label="Select the user Name"  size="1" value="{!selectedRapName}" >
+                                                <apex:selectOptions value="{!selectUsername}"></apex:selectOptions>
+                                            </apex:selectList>
+                                            <br/>
+                                            <apex:commandButton value="Re Allocate" styleClass="allocationbtn" action="{!reallocateRAP}" reRender="pgbt,msgs"/>
+                                        </apex:outputPanel>
+                                    </td>
+                                    <td  style="display:{!IF(jobStatus != 'Accepted' , 'None', '')}">
+                                        <!-- display:{!IF(jobStatus != 'Accepted' , 'None', '')} -->
+                                        <apex:outputPanel >
+                                            <apex:outputLabel value="Record Share" style="font-weight:bold;"/>
+                                            <br/>
+                                            <apex:selectList id="sel1" value="{!listOfRAPSelected}" multiselect="true" style="width:150px" size="1">
+                                                <apex:selectOptions value="{!Selectusername}"/>
+                                            </apex:selectList>
+                                            <br/>
+                                            <apex:commandButton action="{!recordShare}" value="Share" styleClass="allocationbtn"  reRender="msgs" />
+                                        </apex:outputPanel>
+                                    </td>
+                                    <td  style="display:{!IF(primaryRap != true , 'None', '')}">
+                                        <apex:outputPanel >
+                                            <apex:outputLabel value="Cancel" style="font-weight:bold;" />
+                                            <br/><br/><br/><br/><br/><br/>
+                                            <apex:commandButton value="Submit" action="{!cancelRapJob}"  styleClass="allocationbtn" reRender="msgs"/>
+                                        </apex:outputPanel>
+                                    </td>
+                                    <td>
+                                        <apex:outputPanel >
+                                            <apex:outputLabel value="Priority" style="font-weight:bold;"/>
+                                            <br/>
+                                            <apex:selectRadio layout="pageDirection" styleClass="radio_pick" value="{!priority}">
+                                                <apex:selectOption itemLabel="Priority" itemValue="Priority"   />
+                                                <apex:selectOption itemLabel="Pending" itemValue="Pending" />
+                                                <apex:selectOption itemLabel="Live" itemValue="Live" />
+                                                <apex:selectOption itemLabel="Dormant" itemValue="Dormant" />
+                                            </apex:selectRadio>
+                                            <apex:commandButton value="Submit" styleClass="allocationbtn" action="{!changePriority}"/>
+                                        </apex:outputPanel>
+                                    </td>
+                                </tr>
+                            </table>
+                        </apex:pageBlock>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </apex:form>
+</apex:page>

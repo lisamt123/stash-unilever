@@ -43,18 +43,6 @@
                 <behavior>Required</behavior>
                 <field>Country__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Total_Inventory_Quantity__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Total_Used_Quantity__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Enclosure_Quantity__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -95,13 +83,23 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Quantity__c</fields>
-        <relatedList>CEC_Enclosure_Inventory__c.Enclosure_Id__c</relatedList>
+        <relatedList>cec_Fulfilment__c.Enclosure1__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Quantity__c</fields>
-        <relatedList>CEC_Fulfilment_Enclosure__c.Enclosure_Id__c</relatedList>
+        <relatedList>cec_Fulfilment__c.Enclosure2__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>cec_Fulfilment__c.Enclosure3__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>cec_Fulfilment__c.Enclosure4__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>cec_Fulfilment__c.Enclosure5__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
@@ -109,7 +107,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hE0000007olap</masterLabel>
+        <masterLabel>00hc0000000VQXc</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

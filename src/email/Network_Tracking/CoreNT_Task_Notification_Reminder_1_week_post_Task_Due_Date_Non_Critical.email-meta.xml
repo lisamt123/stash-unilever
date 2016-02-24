@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Reminder Alert on Post Task Due date for Non-Critical Tasks</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CoreNT Task Notification Reminder 1 week post Task Due Date (Non-Critical)</name>
+    <style>none</style>
+    <subject>Task Due Past Reminder - {!CORE_NT_Task__c.ProjectId__c} : {!CORE_NT_Task__c.Name}</subject>
+    <textOnly>Escalation Alert
+
+Dear   {!CORE_NT_Task__c.Assigned_To__c}, The task {!CORE_NT_Task__c.Name} assigned to you for {!CORE_NT_Task__c.ProjectId__c} project has reached its Due Date on {!CORE_NT_Task__c.Due_Date__c}. Please complete the task and the mark the Task as Completed.
+
+Please login to Network Tracking  for further details of the task.
+
+Copyright © 2012 Unilever Way, All rights reserved.</textOnly>
+    <type>custom</type>
+</EmailTemplate>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>REMINDER : Communication for FAU eXcel-rator</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FAU_eXcel_rator</letterhead>
+    <name>FAU_eXcel-rator Invitation Reminder</name>
+    <style>formalLetter</style>
+    <subject>REMINDER RESPONSE REQUIRED: Invite to {!FAU_Participant__c.FAU_Program_Name__c}</subject>
+    <textOnly>Dear {!FAU_Participant__c.FAU_First_Name__c},
+This is a reminder for a need for information.
+
+
+
+On behalf of Four Acres and your Leadership Team, I am delighted to confirm that you have been nominated by your respective management to take part in an ambitious leadership program, {!FAU_Participant__c.FAU_Program_Type__c}.
+
+
+About the {!FAU_Participant__c.FAU_Program_Type__c}:
+
+The {!FAU_Participant__c.FAU_Program_Type__c} is a multi-faceted experience, including robust feedback, Individual Development Planning, self-led assignments, executive coaching, intimate dialogues with senior Unilever leaders and residential module(s).  The first residential module will be held from {!FAU_Participant__c.FAU_Module_1_Start_Date__c} to {!FAU_Participant__c.FAU_Module_1_End_Date__c}.
+
+
+Program fee: {!FAU_Participant__c.FAU_Program_Fee__c}
+
+
+
+Immediate Action Required:
+
+Please confirm participation on the programme by filling up {!FAU_Participant__c.FAU_Invitation_Link__c} on or before {!FAU_Participant__c.FAU_RSVP_Deadline__c}.
+
+This link takes you to a salesforce.com login page. Enter your Unilever email address and password.
+
+
+This program experience will be facilitated by the Four Acres team and supported by your Leadership Development team, as well as your HRBP.
+
+
+Congratulations again on your nomination and we look forward to hearing from you.
+
+
+
+To see your progress check out your {!FAU_Participant__c.FAU_Participants_Workbook__c}.
+
+{!FAU_Participant__c.FAU_Video_Introduction__c}
+
+
+Kind regards,
+{!FAU_Participant__c.OwnerFullName}
+{!FAU_Participant__c.OwnerTitle}
+
+Ph: {!FAU_Participant__c.OwnerPhone}
+Email: {!FAU_Participant__c.OwnerEmail}
+
+
+
+www.unilever.com | www.facebook.com/unilever</textOnly>
+    <type>html</type>
+</EmailTemplate>

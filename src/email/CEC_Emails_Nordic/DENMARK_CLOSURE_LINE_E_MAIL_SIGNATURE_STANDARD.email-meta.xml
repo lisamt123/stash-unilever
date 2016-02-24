@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>DENMARK CLOSURE LINE/E-MAIL SIGNATURE, STANDARD</name>
+    <style>none</style>
+    <subject>Case # {!Case.CaseNumber}</subject>
+    <textOnly>Med venlig hilsen
+
+
+{!User.FirstName}
+Forbrugerkontakt,  {!if(Case.Case_Brand__c=&quot;&quot;,&quot;Unilever&quot;,&quot;&quot;)}{!Case.Case_Brand__c}.
+
+{!if(Case.External_Image_Address__c=&quot;&quot;, , )}   Unilever Danmark A/S
+Ørestads Boulevard 73
+DK-2300 København S
+www.unilever.com</textOnly>
+    <type>custom</type>
+</EmailTemplate>

@@ -1,0 +1,243 @@
+<apex:page controller="amr_gksubmittedSaving" sidebar="false" standardStylesheets="true">
+<head>
+<style type="text/css">
+.inner_heading_sub_section h4 {
+    background: red !important;
+    clear:both;
+    display:block;
+ }
+ .inner_section {
+     clear:both;
+ }
+</style>
+<script>
+function EditFun(id) {
+         
+          EditSavingActionFun(id);
+           
+        } 
+        
+        function EditFunForQuote(Id){
+       
+            EditForQuoteActionFun(Id);
+             
+        }
+        function onCompleteHandler(Id) {
+
+ 
+         submitActionFun(Id);
+        alert(Id);
+}
+
+</script>
+</head>
+<apex:include pageName="amr_common_final" />
+<apex:form id="testiD">
+<apex:actionRegion > 
+  <apex:actionFunction name="EditSavingActionFun" action="{!editSaving}" ReRender="savingData1">
+                <apex:param name="one" value="" assignTo="{!saveRecordValue}"/>    
+        </apex:actionFunction>
+      </apex:actionRegion>
+<apex:pageBlock >
+<apex:outputPanel id="pageBlockId">
+  <apex:repeat value="{!quoteList}" var="obj" >
+    
+<div class="inner_section">
+                       <h4>
+             {!obj.Production_Type__c}
+                <div class="minusclass commonall" data-id="radio-selected">
+                 </div>
+               </h4> 
+               </div>
+               
+               
+        <apex:actionStatus id="actStatusIdQuote" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+         <apex:actionRegion >      
+        <!--  onclick="EditFun('{!obj.id}');return Null;"    -->               
+       
+        <apex:commandLink value="Edit"  onclick="EditFun('{!obj.id}'); return null;" reRender="savingData" >
+       <!--  <apex:param name="param" value="{!obj.Id}" assignTo="{!savingId}"/>--> 
+        </apex:commandlink>
+        </apex:actionRegion>
+            
+        <apex:outputPanel styleClass="radio-selected" > 
+        <apex:pageBlock id="savingData">  
+        <apex:outputPanel id="savingData1">
+          <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                   AdManager Number                                                                                                  
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:outputText value="{!adManagerNumber}" />
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>  
+           
+             
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                    No Of Masters                                                                                                      
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.No_of_Masters__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                      <apex:outputField value="{!obj.No_of_Masters__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>    
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                    Duration Of Masters                                                                                                    
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Duration_of_Masters__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                       <apex:outputText value="{!obj.Duration_of_Masters__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>   
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                   No of additional films                                                                                               
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.No_of_Additional_Films__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                      <apex:outputText value="{!obj.No_of_Additional_Films__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>   
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                   Duration of additional films                                                                                              
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Duration_of_Additional_Films__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                      <apex:outputText value="{!obj.Duration_of_Additional_Films__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>   
+         <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                  Total Number Of films                                                                                            
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Total_no_of_films__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                      <apex:outputText value="{!obj.Total_no_of_films__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                  No Of Shoot Days                                                                                        
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.No_of_shoot_days__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                     <apex:outputText value="{!obj.No_of_shoot_days__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+         
+         <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                 Shoot Location                                                                                     
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Shoot_Location__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                      <apex:outputText value="{!obj.Shoot_Location__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                 Script Title                                                                                     
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Script_Title__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                     <apex:outputText value="{!obj.Script_Title__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                Scope re-Brief                                                                                    
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Scope_re_brief__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                      <apex:outputText value="{!obj.Scope_re_brief__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                    Production Type                                                                                                        
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Production_Type__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                        <apex:outputText value="{!obj.Production_Type__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                                 <!-- <apex:selectList value="{!selectedProductionType}" multiselect="true" size="5" >
+                  <apex:selectOptions value="{!productionType}"/>
+            </apex:selectList>-->     
+           
+                             </div>
+                             
+       </div>  
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                  Stage RAP Engaged                                                                                        
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Stage_RAP_engaged__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                    <apex:outputText value="{!obj.Stage_RAP_engaged__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                                                                                                     
+                             </div>
+                             
+                             <div class="clear">
+                             </div>
+       </div>
+       </apex:outputPanel> 
+       <div class="subrightfield">
+                            
+                                    <apex:inputFile value="{!document.body}" filename="{!document.name}" id="test" />
+                             
+                             </div>
+    
+  <!--  onclick="onCompleteHandler('{!obj.Id}')"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"  -->
+  <apex:actionRegion >
+   <apex:commandlink value="Submit" action="{!submitData}" > 
+       <apex:param name="param" value="{!obj.Id}" assignTo="{!savingId}" />
+
+    </apex:commandlink>  
+         
+  </apex:actionRegion>
+    
+        </apex:pageBlock>
+ 
+</apex:outputPanel>
+
+</apex:repeat>
+
+</apex:outputPanel>
+</apex:pageBlock>
+
+       
+
+</apex:form>  
+</apex:page>

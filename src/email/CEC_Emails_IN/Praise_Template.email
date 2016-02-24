@@ -1,0 +1,11 @@
+Dear {!Contact.Salutation} {!Contact.LastName},
+
+Thank you for contacting Lever Care.
+We appreciate the effort taken by you in giving your valuable feedback. We will share this feedback with our relevant team 
+Thank you for your interest in our brand  / product.
+
+Sincerely,
+
+{!Contact.OwnerFullName}
+
+Hindustan Unilever Limited

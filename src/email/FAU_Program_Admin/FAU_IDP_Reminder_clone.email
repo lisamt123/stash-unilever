@@ -1,0 +1,70 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal"><span style="font-size: 10pt; line-height: 107%; font-family: Arial, sans-serif;">Dear {!FAU_Participant__c.FAU_First_Name__c}
+{!FAU_Participant__c.FAU_Last_Name__c},</span><span style="font-size:
+10.0pt;line-height:107%"><o:p></o:p></span></p>]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p class="MsoNormal" align="center" style="margin-bottom: 0.0001pt; text-align: center;"><b><u><span style="font-size: 10pt; font-family: Arial, sans-serif;"><br>
+{!FAU_Participant__c.FAU_Program_Name__c}</span></u></b><span style="font-size: 10pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" align="center" style="margin-bottom: 0.0001pt; text-align: center;"><b><u><span style="font-size: 10pt; font-family: Arial, sans-serif;">IDP Reminder</span></u></b><span style="font-size: 10pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">We have noticed in our
+records that you have IDP tasks outstanding.<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Could you please follow
+up on them as soon as possible.<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">To see your progress
+check &nbsp;out your: {!FAU_Participant__c.FAU_Participants_Workbook__c} and
+update details if needed.<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Chatter group
+:&nbsp;{!FAU_Participant__c.FAU_Chatter_Group__c}<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Kind regards,<o:p></o:p></span></p><p class="p1" style="font-size: 12pt; text-align: center;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal"><span style="font-size:10.0pt;line-height:107%">&nbsp;</span></p>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[<div style="color: rgb(0, 0, 0); font-family: arial;"><font size="2">{!FAU_Participant__c.OwnerFullName}</font></div><div><font face="arial" size="2">{!FAU_Participant__c.OwnerTitle}</font></div><div style="color: rgb(0, 0, 0); font-family: arial;"><font size="2"><br></font></div><div><font size="2"><font face="arial" style="color: rgb(0, 0, 0); font-family: arial;"><b>Ph:</b>&nbsp;</font><font face="arial">{!FAU_Participant__c.OwnerPhone}</font></font></div><div style="color: rgb(0, 0, 0); font-family: arial;"><font face="arial" size="2"><b>Email:</b>&nbsp;{!FAU_Participant__c.OwnerEmail}</font></div><div style="color: rgb(0, 0, 0); font-family: arial;"><font face="arial" size="2"><br></font><div>
+
+
+
+
+
+
+
+<p class="p1"><font size="2">Four Acres Singapore</font></p>
+<p class="p1"><font size="2">18 Nepal Park, Singapore 139407</font></p>
+<p class="p1"><font size="2">Tel: +65 6933 5000</font></p>
+<p class="p1"><font size="2">&nbsp;&nbsp;</font></p>
+<p class="p2"><font size="2">Unilever Asia Private Limited<span class="s1"><br>
+</span>#06-22 Mapletree Business City, 20 Pasir Panjang Road, Singapore, 117439</font></p>
+<p class="p3"><font size="2"><a href="http://www.unilever.com/"><b>www.unilever.com</b></a><span class="s1"><b> </b></span><span class="s2"><b>| </b><a href="http://www.facebook.com/unilever"><span class="s3"><b>www.facebook.com/unilever</b></span></a></span></font></p></div></div>]]></td>
+</tr>
+</table>

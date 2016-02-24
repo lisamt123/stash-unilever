@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Envio de questionário de satisfação aos consumidores</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CEC_Unilever_Portugal</letterhead>
+    <name>Unilever JM - Portugal_External_Survey</name>
+    <style>freeForm</style>
+    <subject>Case # {!Case.CaseNumber} / {!Case.Case_Brand__c}</subject>
+    <textOnly>Exm. {!Contact.Salutation} {!Contact.FirstName} {!Contact.LastName},
+
+
+
+No seguimento do seu contacto para o Serviço de Atendimento ao Consumidor da Unilever Jerónimo Martins, vimos solicitar o preenchimento de um breve questionário acerca da sua opinião sobre o serviço que lhe foi prestado pela nossa equipa.
+
+
+
+Por favor clique no link que lhe enviamos para aceder ao questionário e no final do mesmo carregue no botão “Enviar”:
+
+
+
+http://survey.surve.com/a/survey/go.jsp?iv=3mwwpifdujte7
+
+
+
+A sua opinião é muito importante para nós.
+
+
+
+Muito obrigado.
+
+
+Com os melhores cumprimentos,
+
+Serviço de Atendimento ao Consumidor
+
+
+
+Largo Monterroio Mascarenhas, 1 1099-081 Lisboa
+
+
+www.unilever-jm.com</textOnly>
+    <type>html</type>
+</EmailTemplate>

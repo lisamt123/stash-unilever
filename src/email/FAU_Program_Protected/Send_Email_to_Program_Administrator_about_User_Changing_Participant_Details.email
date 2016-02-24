@@ -1,0 +1,55 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal"><span style="font-size: 10pt; line-height: 107%; font-family: Arial, sans-serif;">Dear {!FAU_Participant__c.FAU_First_Name__c}
+{!FAU_Participant__c.FAU_Last_Name__c},</span></p>]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p class="MsoNormal" align="center" style="margin-bottom: 0.0001pt; text-align: center;"><b><u><span style="font-size: 10pt; font-family: Arial, sans-serif;"><br>
+{!FAU_Participant__c.FAU_Program_Name__c}</span></u></b><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" align="center" style="margin-bottom: 0.0001pt; text-align: center;"><b><u><span style="font-size: 10pt; font-family: Arial, sans-serif;">User Changes Details</span></u></b><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif; background: white;">{!FAU_Participant__c.FAU_First_Name__c}
+{!FAU_Participant__c.FAU_Last_Name__c} has changed participant details.</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Could you please follow
+up on them as soon as possible .</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">To see your record click
+here:&nbsp;<span style="background:white">{!FAU_Participant__c.FAU_Link__c}</span></span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Kind regards,</span><span style="font-size: 10pt; font-family: 'Times New Roman', serif;"><o:p></o:p></span></p>
+
+<span style="font-size: 10pt; line-height: 107%; font-family: 'Times New Roman', serif;">&nbsp;</span>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[<div style="color: rgb(0, 0, 0); font-family: arial;"><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!FAU_Participant__c.OwnerFullName}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!FAU_Participant__c.OwnerTitle}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Ph:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;{!FAU_Participant__c.OwnerPhone}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Email:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;{!FAU_Participant__c.OwnerEmail}<o:p></o:p></span></p>
+
+<span style="font-size: 10pt; line-height: 107%; font-family: Arial, sans-serif;"><a href="http://www.unilever.com/"><b><span style="color:blue">www.unilever.com</span></b></a><b>&nbsp;|&nbsp;</b><a href="http://www.facebook.com/unilever"><b><span style="color:blue">www.facebook.com/unilever</span></b></a></span></div><div style="color: rgb(0, 0, 0); font-family: arial;"><div></div></div>]]></td>
+</tr>
+</table>

@@ -1,0 +1,20 @@
+<apex:page controller="Amr_Rapsummarycontrol"> 
+    <apex:pageBlock title="Submitted Saving"> 
+        <apex:pageBlockTable value="{!Records}" var="Record"> 
+            <apex:column > 
+                <apex:facet name="header">ADManager Number</apex:facet> 
+                <apex:outputText value="{!Record.AdManagerText__c}"/> 
+            </apex:column> 
+            <apex:column > 
+                <apex:facet name="header">Prod. Type</apex:facet> 
+                <apex:outputText value="{!Record.Production_Activity__c}"/> 
+            </apex:column> 
+             <apex:column > 
+                <apex:facet name="header">No. Of Master</apex:facet> 
+                <apex:outputText value="{!Record.NewOriginalMaster__c}"/> 
+            </apex:column>
+             
+           
+        </apex:pageBlockTable> 
+    </apex:pageBlock> 
+</apex:page>

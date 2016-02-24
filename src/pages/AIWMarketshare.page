@@ -1,0 +1,617 @@
+<apex:page docType="html-5.0" showHeader="false" controller="AIW_Market_Share" action="{!getShares}">
+<apex:form >
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<title>Title of the document</title>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system.css"/>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system-ltng.css"/>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system-scoped.css"/>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system-vf.css"/>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource_New/AIW_Static_Resource2/modal/css/bootstrap-modal.css"/>
+
+
+</head>
+<style>
+.slds-page-header{
+    background: #1766A6 !important;
+}
+.user_icon{
+    margin-left: 3.7em !important;
+    height: 33px !important;
+}
+.slds-media__figure{
+    margin-left: 19.5em;
+}
+.setting_icon{
+    width: 70%;
+}
+.slds-grid
+{
+    margin-left: -1em !important;
+}
+.slds-dropdown-trigger
+{
+    margin-top: -6px;
+}
+.sub-header{
+    height: 2.2em;
+}
+.sub-header{
+    background-color: #104774;
+    color: white;
+}
+.sub-header .slds-badge{
+    width: 23%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 15px;
+}
+.tabBadges .slds-badge{
+    width: 23%;
+    text-align: center;
+    background-color: white;
+    border: 1px solid #f2f2f2 !important;
+}
+.sub-header .slds-grid
+{
+    padding-top: 0.5em;
+    padding-left: 1.5em;
+}
+.heart_icon{
+    width: 7%;
+    margin-left: 11em;
+}
+.edit_icon{
+    width: 7%;
+    border-radius: 6px;
+    border: 0px solid #1766A6;
+    background: #1766A6;
+    margin-left: 1em;
+}
+.tabBadges .middle{
+    margin-left: 0em !important;
+    border-radius: 2px;
+    border: 1px solid white;
+    height: 22px;
+    margin-top: 1px;
+}
+.tabBadges .last{
+    margin-left: 0em !important;
+    margin-top: 1px;
+    color: white;
+    border-radius: 0px 240px 240px 0px;
+   
+}
+.tabBadges .top{
+    margin-top: 1px;
+    margin-left: 0.5em;
+    border-radius: 240px 0px 0px 240px;
+}
+.tabBadges .slds-media
+{
+    padding-right: 5em;
+    padding-top: 0.7em;
+}
+.slds-table
+{
+    border-radius: 12px;
+    margin-left: 0.7em;
+    font-size: 11.5px;
+    margin-top: 0em;
+    margin-right: 0.5em;
+    width: 95% !important;
+}
+.slds-table .firstRow
+{
+    border-top-color: transparent !important;
+}
+.slds-table .lastRow
+{
+    border-bottom: 1px solid transparent !important;
+}
+.slds-hint-parent
+{
+    height: 4em;
+    border: 4px solid #f2f2f2
+}
+.bigFont{
+    font-size: 22px !important;
+}
+.boldFont{
+    font-weight:bold;
+}
+.greenFont{
+    color: #4AB471;
+}
+.redFont{
+    color: red;
+    float: right;
+    margin-right: 13px;
+}
+.smallFont
+{
+    font-size: 9px;
+}
+.arrowLeft_icon{
+    width: 7%;
+    margin-left: 1em;
+}
+.arrowRight_icon{
+    width: 7%;
+    float: right;
+    margin-right: 1em;
+}
+.customise{
+    height: 2.2em !important;
+    background-color: #e0e5ee !important;
+    border: none !important;
+    color: black !important;
+    width: 89%;
+    margin-left: 1em !important;
+}
+.footerIcon{
+    height: 22px !important;
+    margin-top: -1em;
+}
+.footerSection span{
+    font-size: 11px;
+    color: white;
+    margin-left: 18px;
+    margin-top: 12px;
+}
+.footerSection div{
+    margin-top: -0.3em;
+}
+.sub-branding{
+    font-size: 10.5px;
+    margin-top: 1px;
+   margin-left: 2px;
+}
+.sub-header-change{
+    color: #2A94D6;
+    font-size: 13px;
+    margin-top: 0px; <!--4/11-->   
+}
+.main-branding{
+    padding-left: 0.75em;
+    font-size: 19px;
+    padding-right: 0.5em;
+}
+.thirdColumn{
+    padding-left: 1em !important;
+    font-weight: bold;
+}
+.weekEnding{
+    margin-top: 1.5em;
+    margin-left: 10em;
+    font-size: 11px;
+    width: 100%;
+}
+.headerBadges .top
+{
+    margin-left: 3em;
+    width: 85%;
+    margin-top: 1.6em;
+}
+.headerBadges .slds-badge
+{
+    background-color: #1766A6;
+    color: white;
+}
+.slds.container
+{
+overflow-x: hidden;
+}
+
+@font-face {
+  font-family: 'dinOffPro';
+  src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.eot'); /* IE9 Compat Modes */
+  src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+@font-face {
+  font-family: 'dinOffProBold';
+  src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.eot'); /* IE9 Compat Modes */
+  src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+body {
+  font-family: 'dinOffPro',sans-serif;
+  background-color: #f2f2f2;
+}
+.slds.container{
+  font-family: 'dinOffPro',sans-serif !important;
+}
+.slds td{
+  font-family: 'dinOffPro',sans-serif !important;
+}
+.setting_icon_logo{
+    width: 9% !important;
+    margin-top: -0.5em;
+    border-radius: 10px;
+    z-index: 1;
+    height:31px;
+}
+.info_icon{
+    width: 6%;
+    margin-left: 28px;
+    margin-top: 2px;
+}
+rect {
+    display: inline !important;
+}
+.actualChart{
+    background-color: white;
+    margin-left: 10px !important;
+    border-radius: 10px;
+margin-right: 10px !important;
+}
+th{
+    border-top: none !important;
+}
+.buttonBlock{
+    height: 4em;
+    background-color: white;
+    margin-top: 0.5em;
+    width: 95%;
+    margin-left: 0.6em;
+    border-radius: 10px;
+    padding-top: 12px;
+    margin-bottom: 1em;
+}
+.disabled{
+    opacity: 0.5 !important;
+}
+.slds .slds-page-header {
+    padding: 18px 24px 12px !important;
+}
+.arrow-img-height-width{
+    width:30px;
+    height:30px;
+    align:right;
+}
+
+.slds .slds-table:not(.slds-no-row-hover) tbody tr:hover > td, .slds .slds-table:not(.slds-no-row-hover) tbody tr:hover > th{
+    background-color: white;
+}
+*:focus {
+    outline: 0;
+    border-bottom: none !important;
+}
+.MSchange{
+margin-right: 16px;
+}
+<!-- All big screen phones -->
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) 
+{ 
+   .slds.container{
+   max-width: 100%;
+   }
+   .setting_icon_logo{
+   width:9% !important;
+   height:31px !important;
+   }
+   .sub-header-change{
+    margin-top: 2px; <!--4/11-->
+    }
+    .truncate {
+  width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: -2px;
+}
+    .other-slds-media{
+        margin-left:5em;
+}
+#kandar-arrow
+{
+width: 4%;
+    margin-left: 292px !important;
+    margin-top: -55px !important;
+    height: 10px;
+}
+.MStitle{
+margin-left: -12px;
+}
+<!-- iphone6 -->
+@media only screen and (min-device-width: 375px) and (max-device-width: 568px) 
+ { 
+   .slds.container{
+   max-width: 375px;
+   }
+   .setting_icon_logo{
+   height:31px !important;
+   width:8% !important;
+   }
+   .sub-header-change{
+    margin-top: 2px; <!--4/11-->
+    }
+    .truncate {
+  width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: -2px;
+}
+#kandar-arrow
+{
+width: 4%;
+    margin-left: -32px !important;
+    margin-top: -1px !important;
+    height: 10px;
+}
+    .other-slds-media{
+        margin-left: 5em;
+}
+.MStitle{
+margin-left: -12px;
+}
+}
+<!-- iphone5 -->
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) 
+and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) { 
+   .slds.container{
+   max-width: 320px;
+   }
+   .setting_icon_logo{
+   width:9%;
+   }
+   .sub-header-change{
+    margin-top: 2px; <!--4/11-->
+}
+.truncate {
+  width: 230px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0px;
+  margin-top: -2px;
+}
+#kandar-arrow
+{
+width: 4%;
+    margin-left: -22px !important;
+    margin-top: -1px !important;
+    height: 10px;
+}
+    .other-slds-media{
+        margin-left: 3em;
+}
+.blueFont{
+    margin-left: 3.5em !important;
+}
+#slider
+{
+margin-left:275px;
+}
+.MStitle{
+margin-left: -7px;
+}
+
+}
+</style>
+
+<body>
+<div class="slds container">
+    <div class="sub-header" role="banner">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+               <div class="slds-media" style="position: relative;"  onclick="showModal();">
+                    <img class="setting_icon_logo" src="{!USImage}" />
+                    <div class="truncate">
+                    <span class="sub-branding"  style="padding-left:6px;">{!USCategory},</span>
+                    <span class="sub-branding">{!USlevel1},</span>
+                    <span class="sub-branding">{!USlevel2}</span>
+                    </div>
+                    <span class="sub-header-change">
+                      <!--<apex:commandButton value="Change" action="{!openBrandSwitching}" style="border: none;background: 0;"/>-->
+                        <a href="javascript:void(0);" class="modal-btn-change" style="font-size:10.5px; position: absolute;right: 5px;border: none;background:0;" onclick="showModal();">Change</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navigationSection">
+        <div class="slds-page-header footerSection" role="banner" style="height: 4.4em;">
+        <div class="slds-grid">
+            <div style="margin-left: -13px;">
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/standard/user_60.png" action="{!openHBM}" style="margin-bottom: -14px;opacity:0.5; border: none;background: 0;width: 2.3em;margin-top: -1em;margin-left: 3em;padding-bottom: 0px;"/>
+                <span id="keys" style="margin-left: 35px;" class="disabled">My Profile</span>
+            </div>
+            <div>
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_heartbeat.png" action="{!openHBM}" style="margin-bottom: -8px; border: none;background: 0;width: 1.7em;margin-top: -0.8em;margin-left: 2em;padding-bottom: 0px;"/>
+                <span id="heartbeat">Heartbeat</span>
+            </div>
+            <div>
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_competition.png" action="{!openCompetition}"  style="margin-bottom: -8px;opacity:0.5; border: none;background: 0;width: 1.7em;margin-top: -0.5em;margin-left: 2.6em;padding-bottom: 0px;" />
+                <span id="competition" class="disabled">Competition</span>
+            </div>
+             <div>
+             <apex:outputText rendered="{!IF(level1 == 'All' && level2 =='All',true,false)}" >
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_trending.png" action="{!openSocial}" style="margin-bottom: -5px;opacity:0.5; border: none;background: 0;width: 1.5em;margin-top: -0.3em;margin-left: 1.7em;padding-bottom: 0px;"/>
+                <span id="trending" class="disabled">Social</span>
+               </apex:outputText> 
+                <apex:outputText rendered="{!IF(level1 != 'All' || level2 != 'All',true,false)}" >
+               <div id="an" style="margin-top: 0px;">
+                  <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_trending.png" onclick="showSocialAlert()" reRender="an" style="margin-bottom: -5px;opacity:0.5; border: none;background: 0;width: 1.5em;margin-top: -0.3em;margin-left: 1.7em;padding-bottom: 0px;"/>
+                <span id="trending" class="disabled" onclick="showSocialAlert()">Social</span>
+                </div>
+            </apex:outputText> 
+              
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="tabBadges" role="banner" style="margin-bottom: 15px;">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media other-slds-media"  style="width:28em;">
+                <span  id = "tabcolorchange1" class="tabcolorchange  slds-badge slds-theme--shade top"  style="color:#999999;height: 26px;width: 20% !important;"><apex:commandButton value="4W" action="{!getShares}" onClick="changeColor('tabcolorchange1')"   reRender="metricsdata,metricsgraph,msdata" style="vertical-align: middle;border: none;background: 0;">                       
+            <apex:param name="4wbuttonparam" value="4W" assignTo="{!timeperiod}"/>
+                  </apex:commandButton></span>
+                    <span id = "tabcolorchange2" class="tabcolorchange slds-badge slds-theme--shade middle" style="color:#999999;height: 26px;width: 20% !important;"> <apex:commandButton value="12W" action="{!getShares}" onClick="changeColor('tabcolorchange2')"   reRender="metricsdata,metricsgraph,msdata" style="vertical-align: middle;border: none;background: 0;">                       
+            <apex:param name="12wbuttonparam" value="12W" assignTo="{!timeperiod}"/>
+                  </apex:commandButton></span>
+                    <span id = "tabcolorchange3" class="tabcolorchange slds-badge slds-theme--shade middle" style="color:#999999;height: 26px;width: 20% !important;"> <apex:commandButton value="YTD" action="{!getShares}" onClick="changeColor('tabcolorchange3')"   reRender="metricsdata,metricsgraph,msdata"  style="vertical-align: middle;border: none;background: 0;">                       
+            <apex:param name="YTDbuttonparam" value="YTD" assignTo="{!timeperiod}"/>
+                  </apex:commandButton></span>
+                    <span id = "tabcolorchange4" class="tabcolorchange slds-badge last" style="color:white;background-color: #999999;height: 26px;width: 20% !important;"><apex:commandButton value="MAT" action="{!getShares}" onClick="changeColor('tabcolorchange4')"   reRender="metricsdata,metricsgraph,msdata"  style="vertical-align: middle;border: none;background: 0;">                       
+            <apex:param name="MATbuttonparam" value="MAT" assignTo="{!timeperiod}"/>
+                  </apex:commandButton></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="arrowRow" style="margin-top: -7px;">
+    <apex:outputPanel id="msdata" style="margin-top:5px;">
+    <table style="margin-left: 4px;"><tr>
+        <td><apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_back.png" action="{!openHBM}"  style="width: 1.7em;font-weight: bolder; color: #1766A6; border: none;background: 0;margin-top: 5px;"/></td>
+        <td><div class="MStitle" style="width: 7em;font-weight: bolder;font-size: 16px;color: #1766A6;">Market Share</div></td>
+        <td style="text-align: right;"><div  class="MSvalue" style="color:black;font-size: 15px;font-weight: bold;">{!ROUND((MSvalue),1)}%</div></td>
+        <td style="text-align: right;"><apex:outputText rendered="{!IF(MSchange < 0,'true','false')}">
+        <div class="redFont" style="font-size: 15px;font-weight: bold;">{!ROUND((MSchange),0)}bps</div>
+        </apex:outputText>
+        <apex:outputText rendered="{!IF(MSchange > 0 || MSchange = 0 ,'true','false')}">
+        <div class="greenFont MSchange" style="font-size: 15px;font-weight: bold;">{!ROUND((MSchange),0)}bps</div>
+        </apex:outputText></td>
+        </tr></table>
+    </apex:outputPanel> 
+    </div>
+    <div class="actualChart" style="margin-top: 5px;">
+        <div class="header">
+            <span class="blueFont" style="margin-top: 8px;margin-left: 5em;font-size: 14px;float:left;text-align: left;color: black;font-weight: bold;padding-bottom:5px;">
+                Impact on Total Coverage Share
+            </span>
+        </div>  
+      <apex:outputPanel id="metricsgraph">      
+         <apex:chart height="200" width="300" data="{!TCData}" theme="Green" colorSet="#6BAE4A,#FF9123,#6BAE4A,#424242,#A4A4A4">     
+        <apex:axis type="Category" position="left" fields="name"  />                        
+        <apex:axis type="Numeric" position="bottom" fields="data" maximum="{!tcmax}" />    
+        <apex:barSeries orientation="horizontal" axis="left" xField="data" yField="name" colorSet="{!colorSet}" colorsProgressWithinSeries="true">
+                
+         </apex:barSeries>                          
+      </apex:chart>   
+         
+   </apex:outputPanel>
+   </div>  
+    <br/>        
+    <apex:outputPanel id="metricsdata">
+    <table class="slds-table slds-table--bordered">
+    <tr>
+    <td width="45%" style="border-top: 1px solid transparent !important;"></td>
+    <td width="15%" style="border-top: 1px solid transparent !important;font-weight: bold; padding-left:15px;text-align:center;"><span style="margin-right: -11px;">MS %</span></td>
+    <td width="40%" style="border-top: 1px solid transparent !important;font-weight: bold; padding-left:30px;text-align:center;">MS Change</td>
+    </tr>
+    
+    <apex:repeat value="{!mkList}" var="mk" rendered="true" id="commandButton1Controller">
+    
+        
+            <tr class="slds-hint-parent">
+            <td width="55%" class="thirdColumn" style="padding:0;"><span>{!mk.Channel__c}</span></td>
+            <td width="15%" class="thirdColumn" style="padding:0;text-align:right;"><span>{!ROUND((mk.MS__c),1)}%</span></td>
+            <td width="30%" class="thirdColumn" style="padding:0;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="border-top:none;text-align:right;padding:0;width: 60%;">
+                        <span style="text-align: right;">
+                {!ROUND((mk.MSchg__c ),0)} bps</span> 
+                        </td>
+                        <td style="border-top:none; padding:0;"><apex:outputPanel id="uparrow" rendered="{!(mk.MSchg__c > 0)}">
+                    <apex:image url="{!URLFOR($Resource.AIW_Static_Resource, 'icons/project-specific/icon_arrow_up.png')}" styleClass="arrow-img-height-width"/>
+                </apex:outputpanel>
+
+                <apex:outputPanel id="downarrow" rendered="{!(mk.MSchg__c < 0)}">
+                     <apex:image url="{!URLFOR($Resource.AIW_Static_Resource, 'icons/project-specific/icon_arrow_down.png')}" styleClass="arrow-img-height-width"/>
+                </apex:outputpanel>
+                </td>
+                
+
+                    </tr>
+                </table>
+                
+             </td> 
+            </tr>
+              
+    </apex:repeat>
+    
+    </table> 
+    </apex:outputPanel>
+    <div class="buttonBlock">   
+    <apex:outputText rendered="{!IF(showKantarbtn == false,true,false)}" >
+    <apex:commandButton value="Nielsen Tree" action="{!openKantar}" disabled="true" style="border: 1px solid #cccccc;height: 32px;border-radius: 6px;width: 40%;color: #1766A6;opacity:0.5;font-weight: bold;margin-left: 1.5em;margin-right: 1.5em;" ></apex:commandButton>
+    <apex:commandButton value="Kantar Tree" action="{!openKantar}" disabled="{!showKantarbtn}" style="border: 1px solid #cccccc;height: 32px;border-radius: 6px;width: 40%;color: #1766A6;font-weight: bold;"  >
+    <img src="/resource/AIW_Static_Resource/icons/project-specific/chevronright_60.png"  id="kandar-arrow" />
+    </apex:commandButton>
+    </apex:outputText>
+    <apex:outputText rendered="{!IF(showKantarbtn == true,true,false)}" >
+    <apex:commandButton value="Nielsen Tree" action="{!openKantar}" disabled="true" style="border: 1px solid #cccccc;height: 32px;border-radius: 6px;width: 40%;color: #1766A6;opacity:0.5;font-weight: bold;margin-left: 1.5em;margin-right: 1.5em;" ></apex:commandButton>
+    <apex:commandButton value="Kantar Tree" action="{!openKantar}" disabled="{!showKantarbtn}" style="border: 1px solid #cccccc;height: 32px;border-radius: 6px;width: 40%;color: #1766A6;opacity:0.5;font-weight: bold;"  >
+    <img src="/resource/AIW_Static_Resource/icons/project-specific/chevronright_60.png"  id="kandar-arrow" />
+    </apex:commandButton>
+    </apex:outputText>    
+    </div>
+    
+</div>
+
+<c:brands_modal_vfc rp="AIWMarketshare" tp="{!timeperiod}"/>
+<c:brands_modal_aiwsocial_alert />
+
+<script type="text/javascript">
+
+    function showModal(){
+    
+        $('#myModal').modal('show').css("display","block");
+       // $('#myModal').css("display","block");
+    }
+    function showSocial(){
+           CallApexMethodSocial();
+          
+     }
+    
+    function showSocialAlert(){
+     //alert('Social Data is only available at Brand - Category levels.');     
+     $('#myModalalert').modal('show').css("display","block");
+     
+         
+    
+    }
+    
+    function changeColor(id) {    
+        var tabs = document.getElementsByClassName('tabcolorchange')
+        for (var i = 0; i < tabs.length; ++i) {
+            var item = tabs[i];
+            item.style.color = (item.id == id) ? "white" : "#999999";
+            item.style.backgroundColor = (item.id == id) ? "#999999" : "white";
+        }
+    }
+//    alert('Hey = '+'{!timeperiod}');
+    changeColorName('{!timeperiod}');
+    function changeColorName(timePeriodSelected) {
+    if(timePeriodSelected=='4W'){
+        changeColor('tabcolorchange1');
+    }
+    else if(timePeriodSelected=='12W'){
+        changeColor('tabcolorchange2');
+    }
+    else if(timePeriodSelected=='YTD'){
+        changeColor('tabcolorchange3');
+    }  
+    else{
+        changeColor('tabcolorchange4');
+    }  
+        
+    }
+</script>
+<script src="/resource/AIW_Static_Resource_New/AIW_Static_Resource2/modal/js/jquery.min.js"></script>
+<script src="/resource/AIW_Static_Resource_New/AIW_Static_Resource2/modal/js/bootstrap-modal.min.js"></script>
+</body>
+</apex:form>
+ 
+</apex:page>

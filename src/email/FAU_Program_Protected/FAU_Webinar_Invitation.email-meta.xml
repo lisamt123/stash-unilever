@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>FAU_Webinar_Invitation</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>FAU_eXcel_rator</letterhead>
+    <name>FAU_Webinar_Invitation</name>
+    <style>formalLetter</style>
+    <subject>Webinar Invitation for {!FAU_Participant__c.FAU_Program_Name__c}</subject>
+    <textOnly>Webinar Invitation
+Dear {!FAU_Participant__c.FAU_First_Name__c},
+
+You are invited to attend a webinar:
+Name: {!FAU_Webinar__c.FAU_Title__c}
+Start time: {!FAU_Webinar__c.FAU_Start_Time__c}
+End Time: {!FAU_Webinar__c.FAU_End_Time__c}
+
+Description: {!FAU_Webinar__c.FAU_Description__c}
+
+To see your progress check out your: {!FAU_Participant__c.FAU_Participants_Workbook__c}
+
+Chatter group : {!FAU_Participant__c.FAU_Chatter_Group__c}
+
+
+Kind regards,
+{!FAU_Participant__c.OwnerFullName}
+{!FAU_Participant__c.OwnerTitle}
+
+Ph: {!FAU_Participant__c.OwnerPhone}
+Email: {!FAU_Participant__c.OwnerEmail}
+
+
+
+www.unilever.com | www.facebook.com/unilever</textOnly>
+    <type>html</type>
+</EmailTemplate>

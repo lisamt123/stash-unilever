@@ -1,0 +1,55 @@
+<style>
+@font-face
+{
+font-family:"DINProFont";
+src: url('{!URLFOR($Resource.TestDINProFontEOT,'FF_DIN_Regular/FF_DIN_Regular.eot')}'); 
+src: local('☺'), url('{!URLFOR($Resource.TestDINProFontEOT,'FF_DIN_Regular/FF_DIN_Regular.woff')}') format('woff'), url('{!URLFOR($Resource.TestDINProFontEOT,'FF_DIN_Regular/FF_DIN_Regular.ttf')}') format('truetype');
+}
+</style>
+<table width = "100%">
+	<tr align="center">
+		<td align="left">
+			<p style="font-family:Calibri; color:#00498b; font-size:40px; font-weight:bold;">{!FA_Pre_Work_Task__c.FA_OccurenceOM__c}</p>
+			<p style="font-family:Calibri; font-size:30px; font-weight:bold;">Pre-programme Assignments</p>
+		</td>
+		<td align="right">
+			<img id="Logo" src="https://unilever--c.na9.content.force.com/servlet/servlet.ImageServer?id=015E0000003E17F&oid=00DE0000000bbLj&lastMod=1389937847000" />
+		</td>
+	</tr>
+</table>
+  
+<!--  Displays the Content appeared in the body of the Pre Work Task 
+Reminder Mail -->
+<div style="font-family:Calibri;font-size:15px;">
+<p>Dear &nbsp;<b> {!FA_Pre_Work_Task__c.FA_OccMember__c},</b></p> 
+ <p>This is regarding the Pre-Work task &nbsp;<b>{!FA_Pre_Work_Task__c.FA_Task_Name__c}</b>&nbsp; for the Programme &nbsp; <b>{!FA_Pre_Work_Task__c.FA_OccurenceOM__c}</b>.</p> 
+<p>The task is due for your completion by &nbsp;<b>{!FA_Pre_Work_Task__c.FA_Due_Date__c}</b>.<br/>
+Please plan to complete the task before the due date specified.<br/>
+Kindly ignore if you have already completed.
+</p>
+
+Thank you<br/><br/>
+Jonathan Donner<br/><br/>
+
+Vice President – Global Learning and Capability Development<br/>
+<b>Global HR Expertise</b><br/><br/>
+
+Four Acres London<br/>
+T: +44 (0) 20 7822 6535 (direct)<br/>
+M: +44 (0) 7770 701842 (mobile)<br/><br/>
+
+Four Acres Singapore<br/>
+T: +65 6933 5011 (direct)<br/>
+M: +65 9478 6310 (mobile)<br/>
+<br/><br/>
+</div>
+<table width = "100%">
+	<tr align="center">
+		<td align="left" style="width:20%">
+			<img id="Left_footer" src="https://unilever--c.na9.content.force.com/servlet/servlet.ImageServer?id=015E0000003E17D&oid=00DE0000000bbLj&lastMod=1389937847000" style="float:left;">
+		</td>
+		<td align="right" style="width:80%">
+			<img id="Right_footer" src="https://unilever--c.na9.content.force.com/servlet/servlet.ImageServer?id=015E0000003E17E&oid=00DE0000000bbLj&lastMod=1389937847000" style="float:right;">
+		</td>
+	</tr>
+</table>

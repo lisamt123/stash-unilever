@@ -32,22 +32,22 @@ public with sharing class Amr_RAPJobPortfolioController{
     
         //Navigation variables
         public Integer counterForPriorityJobs = 0;//TO track the number of records parsed
-        public Integer limitSizeForPriorityJobs = 40;//Number of records to be displayed
+        public Integer limitSizeForPriorityJobs = 100;//Number of records to be displayed
         public Integer totalSizeForPriorityJobs =0; //To Store the total number of records available
         public Integer counterForPendingJobs = 0;
-        public Integer limitSizeForPendingJobs = 40;        
+        public Integer limitSizeForPendingJobs = 100;        
         public Integer totalSizeForPendingJobs =0;
         public Integer counterForDormantJobs = 0;
-        public Integer limitSizeForDormantJobs = 40;
+        public Integer limitSizeForDormantJobs = 100;
         public Integer totalSizeForDormantJobs =0;
         public Integer counterForLiveJobs = 0;
         public Integer limitSizeForLiveJobs = 100;
         public Integer totalSizeForLiveJobs =0;
         public Integer TotalJobs {get; set;}
-        public Integer TotalPendingJobs {get; set;}
-        public Integer TotalLiveJobs {get; set;}
-        public Integer TotalPriorityJobs {get; set;}
-        public Integer TotalDormantJobs  {get; set;}
+        public Integer TotalOpenJobs {get; set;}
+        public Integer TotalJobsAccepted {get; set;}
+        public Integer TotalJobstoAccept {get; set;}
+        public Integer TotalClosedJob  {get; set;}
         public Integer TotalSavingsJobs  {get; set;}
          public Integer totalAlertCount  {get; set;}
         
@@ -141,10 +141,10 @@ public with sharing class Amr_RAPJobPortfolioController{
        
        
        
-        public decimal dormant  {get;set;}
-        public decimal Live {get;set;}
-        public decimal pending {get;set;}
-        public decimal Priority {get;set;}
+        public Integer closedJob  {get;set;}
+        public Integer openJobs {get;set;}
+        public Integer totalJobAccepted {get;set;}
+        public Integer jobtoAccept {get;set;}
         
         
         public decimal savingSubmitted {get;set;}
@@ -159,10 +159,10 @@ public with sharing class Amr_RAPJobPortfolioController{
         public void getTotalJobs() {
             try{
             
-            decimal totalJobAccepted  = 0;
-         decimal openJobs  = 0;
-        decimal closedJob  = 0;
-        decimal jobtoAccept  = 0;
+             totalJobAccepted  = 0;
+         openJobs  = 0;
+        closedJob  = 0;
+         jobtoAccept  = 0;
         
             TotalJobs = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null];
             
@@ -174,23 +174,23 @@ public with sharing class Amr_RAPJobPortfolioController{
             
                 if(TotalJobs != 0){
                     Decimal totalJobsNew = 0;
-                    /*TotalPendingJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId) AND (AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Priority OR AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Live) AND  Job_Status__c != 'Cancelled'];
-                    pending = (TotalPendingJobs * 100)/TotalJobs;
+                    /*TotalOpenJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId) AND (AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Priority OR AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Live) AND  Job_Status__c != 'Cancelled'];
+                    pending = (TotalOpenJobs * 100)/TotalJobs;
                     
                     
-                    TotalLiveJobs     = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Live AND  Job_Status__c != 'Cancelled' ];
-                    Live = (TotalLiveJobs * 100)/TotalJobs;
+                    TotalJobsAccepted     = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Live AND  Job_Status__c != 'Cancelled' ];
+                    Live = (TotalJobsAccepted * 100)/TotalJobs;
                   
                     
-                    TotalPriorityJobs = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Priority AND  Job_Status__c != 'Cancelled'];
-                    Priority = (TotalPriorityJobs * 100)/TotalJobs;
+                    TotalJobstoAccept = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Priority AND  Job_Status__c != 'Cancelled'];
+                    Priority = (TotalJobstoAccept * 100)/TotalJobs;
                     
-                    TotalPendingJobs = 0;
-                    TotalPendingJobs = TotalLiveJobs + TotalPriorityJobs;
-                     pending = (TotalPendingJobs * 100)/TotalJobs;
+                    TotalOpenJobs = 0;
+                    TotalOpenJobs = TotalJobsAccepted + TotalJobstoAccept;
+                     pending = (TotalOpenJobs * 100)/TotalJobs;
                      
-                    TotalDormantJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Dormant AND  Job_Status__c != 'Cancelled'];
-                    dormant = (TotalDormantJobs * 100)/TotalJobs;
+                    TotalClosedJob  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Dormant AND  Job_Status__c != 'Cancelled'];
+                    dormant = (TotalClosedJob * 100)/TotalJobs;
                    
                     totalJobsNew = pending + Live+ dormant + Priority;
                     system.debug('****pending***'+pending);
@@ -213,24 +213,24 @@ public with sharing class Amr_RAPJobPortfolioController{
                     closedJob  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and AM_Job_Detail__r.Job_Status__c = 'Dormant'];
                     jobtoAccept  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and ( Job_Status__c != 'Accepted' or Job_Status__c != 'Cancelled')];
                     
-                    TotalDormantJobs = Integer.valueOf( closedJob);
-                    TotalPendingJobs = Integer.valueOf(openJobs);
-                    TotalLiveJobs = Integer.valueOf(totalJobAccepted);
-                    TotalPriorityJobs = Integer.valueOf(jobtoAccept);
+                    TotalClosedJob = Integer.valueOf( closedJob);
+                    TotalOpenJobs = Integer.valueOf(openJobs);
+                    TotalJobsAccepted = Integer.valueOf(totalJobAccepted);
+                    TotalJobstoAccept = Integer.valueOf(jobtoAccept);
                     
-                    pending = (totalJobAccepted * 100)/TotalJobs;
-                    Live = (openJobs * 100)/TotalJobs;
-                    dormant = (closedJob * 100)/TotalJobs;
-                    Priority = (jobtoAccept * 100)/TotalJobs;
+                    totalJobAccepted = (totalJobAccepted * 100)/TotalJobs;
+                    openJobs = (openJobs * 100)/TotalJobs;
+                    closedJob = (closedJob * 100)/TotalJobs;
+                    jobtoAccept = (jobtoAccept * 100)/TotalJobs;
                     
-                     totalJobsNew = pending + Live+ dormant + Priority;
+                     totalJobsNew = totalJobAccepted + openJobs+ closedJob + jobtoAccept;
                      
-                    pending = (pending * 100)/totalJobsNew;
+                    totalJobAccepted = Integer.valueOf((totalJobAccepted * 100)/totalJobsNew);
                     
-                    Live = (Live * 100)/totalJobsNew;
-                    dormant = (dormant * 100)/totalJobsNew;
+                    openJobs = Integer.valueOf((openJobs * 100)/totalJobsNew);
+                    closedJob = Integer.valueOf((closedJob * 100)/totalJobsNew);
                     
-                    Priority = (Priority * 100)/totalJobsNew;
+                    jobtoAccept = Integer.valueOf((jobtoAccept * 100)/totalJobsNew);
                     AggregateResult[] groupedResults
                                                      = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId];
                     Object avgAmount = groupedResults[0].get('averQuote');

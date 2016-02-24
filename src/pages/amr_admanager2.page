@@ -1,0 +1,38 @@
+<apex:page controller="Amr_AdManagerController" title="AdManager" sidebar="false" action="{!Redirect}" tabStyle="AD_Manager__tab" >
+	<a href="/sfc/servlet.shepherd/version/download/06818000000D61i">
+		<embed src="/sfc/servlet.shepherd/version/download/06818000000D61i" style="width:100px; height:100px;">
+		</embed>
+	</a>
+	<a href="/sfc/servlet.shepherd/version/download/06818000000D6N0">
+		<embed src="/sfc/servlet.shepherd/version/download/06818000000D6N0" style="width:100px; height:100px;">
+		</embed>
+	</a>
+	<embed src="{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/images/yellow-star-trans.png')}" style="width:100px; height:100px;">
+	</embed>
+	<embed src="{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/other/Admanagersketch.pdf')}" style="width:100px; height:100px;">
+	</embed>
+	<div id="dpvPreviewWrapper1" align="center">
+		<h2 class="filePreviewHeading">Preview</h2>
+		<div class="chatterFileViewerPanel" id="chatterFileViewerPane1l">
+			<a href="/sfc/servlet.shepherd/version/download/06818000000D61i">
+				<embed src="/DocViewer.swf"  id="renditionLarge" quality="high" bgcolor="#f3f3f3" name="renditionLarge" allowscriptaccess="sameDomain" allowfullscreen="true" pluginspage="http://www.adobe.com/go/getflashplayer" wmode="opaque" type="application/x-shockwave-flash" align="middle" height="700px" width="800px"/>
+			</a>
+			<noembed>
+				<p>Flash file preview</p>
+			</noembed>
+		</div>
+		<script>insertFlexComponent('/_swf/121310/sfc/flex/DocViewer', 'shepherd_prefix=/sfc/servlet.shepherd&v=06818000000D61i&mode=chatterfilepreview&in_tests=false', '700px', '400px', '#f3f3f3', 'chatterFileViewerPanel', 'renditionLarge', false, { adobeFlashVersionLbl : 'You must enable or download Adobe Flash Player version 9.0.115 or later to use this feature.', downloadAdobeLbl : 'Download Adobe Flash Player', downloadAdobeLinkLbl : 'Click the link below to download the Adobe Flash Player:', closeDialogLbl : 'Cancel'}); Ninja.Flex.ContentStaticResourcesBase = '/_swf/121310/sfc';Ninja.Flex.ShepherdController = '/sfc/servlet.shepherd';</script>
+	</div>
+<div id="dpvPreviewWrapper" align="center">
+	<h2 class="filePreviewHeading">Preview</h2>
+	<div class="chatterFileViewerPanel" id="chatterFileViewerPanel">
+		<a href="/sfc/servlet.shepherd/version/download/06818000000D6N0">
+			<embed src="/DocViewer.swf"  id="renditionLarge" quality="high" bgcolor="#f3f3f3" name="renditionLarge" allowscriptaccess="sameDomain" allowfullscreen="true" pluginspage="http://www.adobe.com/go/getflashplayer" wmode="opaque" type="application/x-shockwave-flash" align="middle" height="700px" width="800px"/>
+		</a>
+		<noembed>
+			<p>Flash file preview</p>
+		</noembed>
+	</div>
+	<script>insertFlexComponent('/_swf/121310/sfc/flex/DocViewer', 'shepherd_prefix=/sfc/servlet.shepherd&v=06818000000D6N0&mode=chatterfilepreview&in_tests=false', '700px', '400px', '#f3f3f3', 'chatterFileViewerPanel', 'renditionLarge', false, { adobeFlashVersionLbl : 'You must enable or download Adobe Flash Player version 9.0.115 or later to use this feature.', downloadAdobeLbl : 'Download Adobe Flash Player', downloadAdobeLinkLbl : 'Click the link below to download the Adobe Flash Player:', closeDialogLbl : 'Cancel'}); Ninja.Flex.ContentStaticResourcesBase = '/_swf/121310/sfc';Ninja.Flex.ShepherdController = '/sfc/servlet.shepherd';</script>
+</div>
+</apex:page>

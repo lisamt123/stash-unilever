@@ -1,0 +1,319 @@
+<apex:page controller="Amr_JobSheetController" sidebar="false" id="pageId" >
+    <apex:form >
+        <div class="subcontainer margin-btwn-inner-container">
+            <div class="filter_section width30">
+                <div class="filters width20">
+                    <div id = "newDiv" style="display:{!IF(permissionSetName != 'CAP' , 'None', '')}">
+                        <div class="filter_section">
+                            <h4><a href = "Am_CAPJobportfolio"> Jobs Portfolio </a>
+                            <!--  <span><img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Subtract.png" class="addlicon" data-id="allocation-id" alt="number"/></span>-->
+                            <div class="minusclass commonall" data-id="allocation-id">                                      
+                            </div>
+                            </h4>
+                        </div>
+                        <div class="box_content filteralert jobsallocation allocation-id">
+                            <div class="subbox" style="height:64px;">
+                                <div class="subbox-first" style="float: left;margin-top: 23px;width: 370px;" >
+                                    <span style=" font-size: 15px;margin-right: 8px;margin-top: 10px;">
+                                    Allocate this job to
+                                    </span>
+                                    <apex:selectList label="Select the user Name"  size="1" value="{!selectedRAPUser}">
+                                        <apex:selectOptions value="{!selectUsername}"></apex:selectOptions>
+                                    </apex:selectList>
+                                </div>
+                                <div class="subbox-second" style="float:left;margin-top:16px;font-size: 15px;">
+                                    <apex:commandButton styleClass="allocationbtn btn1 accepted" value="Allocate" action="{!Reallocate}"  reRender="msgs"/>
+                                </div>
+                                <div class="subbox-third" style="float:left;margin-top:17px; margin-left:16px;">
+                                    <!--  
+                                        <span class="canceltxt">
+                                            <apex:commandLink value="Cancel this job" action="{!cancelJob}" reRender="msgs" />
+                                        </span>
+                                        -->
+                                    <apex:commandButton value="Cancel" action="{!cancelJob}" reRender="msgs" styleClass="btn allocationbtn btn1 acceptedLike decline" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="rapDivNew" style="display:{!IF(permissionSetName != 'RAP' , 'None', '')}">
+                        <div class="filter_section">
+                             <a href = "Am_JobPortfolio"> Jobs Portfolio  </a> >  {!addManagerNumber}
+                            <!--  
+                            <span><img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Subtract.png" class="addlicon" alt="number" data-id="allocation-id" /></span>
+                            -->                        
+                          
+                             <span   style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
+                                <apex:commandButton styleClass="commonbtn" value="Decline this job" action="{!cancelRapJob}" style="float:left;margin-right: 12px;" />
+                            </span>
+                            
+                            <span  style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
+                              <apex:commandButton styleClass="show-allocate-popup commonbtn"  value="Re-allocate" style="float:left;margin-right: 12px;" />
+                            </span>
+                            
+                             <span style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
+                                <apex:commandButton style="margin-right: 12px; float: left;" styleClass="commonbtn" value="Accept this job" action="{!acceptJob}" />
+                            </span>
+  
+                             <span style="display:{!IF( jobStatus == 'Accepted', '', 'None')}" > <!--  -->
+                                <apex:commandButton styleClass="show-all-detail-button commonbtn" value="Job Allocation "  style="float: left;"/>
+                            </span>
+                        </div>
+                        <div class="allocation-id"> 
+
+                        <div class="formgroup" > 
+                           <div class = "rellocate-popup" style="display:none;">
+                               <div class="formgroup">
+                                   Re - Allocate
+                                   <span style="float : right;">
+                                       <apex:commandButton styleClass="cancel-allocation-popup"  value="X" style=""/>
+                                   </span>
+                               </div>
+                                <div class="form-field" > <!-- style="display:{!IF(!primaryRap , 'None', '')}" -->
+                                    <label>
+                                        Re-allocate
+                                    </label>
+                                    <apex:selectList label="Select the user Name"  size="1" value="{!selectedRapName}" >
+                                        <apex:selectOptions value="{!selectUsername}" />
+                                    </apex:selectList>
+                                    <br/><br/>
+                                    <hr/>
+                                   <span style="margin-left:10px">
+                                       <apex:commandButton styleClass="cancel-allocation-popup"  value="Cancel" style="float:none;width:115px"/>
+                                   </span>
+
+                                   <span style="margin-left:10px">
+                                       <apex:commandButton styleClass="rellocate-apply" action="{!reAllocateRAP}" value="Apply" style="float:none;width:115px"/>
+                                   </span>
+                                </div>
+                           </div>
+                          
+                         
+                         
+                         
+                          <div class= "show-all-detail" style="display:none;">
+                              <div class="formgroup">
+                                   Job Allocation
+                                   <span style="float : right;">
+                                       <apex:commandButton styleClass="cancel-allocation-popup"  value="X" style=""/>
+                                   </span>
+                               </div>
+                              <div class="formgroup">
+                                  <div class="form-field" > <!--  style="display:{!IF(jobStatus != 'Accepted' , 'None', '')}"  --> 
+                                      <label>
+                                            Share this job with
+                                      </label>
+                                      <apex:selectList id="sel12" value="{!listOfRAPSelected}" multiselect="true" style="width:197px" size="4">
+                                          <apex:selectOptions value="{!selectusername}"/>
+                                      </apex:selectList>
+                                    &nbsp;                                                      
+                                      <span style="margin-left:10px">
+                                            <apex:commandButton action="{!recordShare}" value="Share" styleClass="rellocate-apply" />
+                                     </span>
+                                 </div>
+                             </div>
+                            <div class="formgroup">  
+                                 <div class="form-field" style="display:{!if( jobStatus != 'Accepted', 'None', if(sharedListSize  == 0,'none', '') )}">
+                                    <label>
+                                        Shared With
+                                    </label>
+                                    <div style="width:530px">  
+                                        <apex:repeat value="{!jobSharedList}" var="jbList">
+                                         
+                                            <div style="background-color:silver;font-size:15px; width:120px;height:27px;margin-left: 10px; margin-top: 10px;float:left;position:relative;">
+                                                <apex:outputLabel value="{!jbList.User__r.Name}" />
+                                            
+                                                <span class="unshare">
+                                                    <img src="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/close.png')}"  alt="number" style="height:25px;width:25px;position:absolute;top:0;right:0;" />
+                                                    <input type="hidden" value = "{!jbList.User__c}" />
+                                                </span> 
+                                           </div>
+                                        </apex:repeat>
+                                  </div>
+                               </div>
+                          </div>
+                           <div class="formgroup">
+                               
+                               <div class="form-field" > <!-- style="display:{!IF(!primaryRap , 'None', '')}" -->
+                                    <label>
+                                        Re-allocate
+                                    </label>
+                                    <apex:selectList label="Select the user Name"  size="1" value="{!selectedRapName}" >
+                                        <apex:selectOptions value="{!selectUsername}" />
+                                    </apex:selectList> &nbsp; 
+                                   <span style="margin-left:10px">
+                                       <apex:commandButton styleClass="rellocate-apply" action="{!reAllocateRAP}" value="Apply" style="float:none;width:115px"/>
+                                   </span>
+                              </div>
+                           </div>
+                            <div class="formgroup">   
+                               <div class="form-field">
+                                    <label>
+                                    Set status </label>                         
+                                    <apex:inputField value="{!jobList.Job_Status__c}"/> &nbsp; 
+                                    <span style="margin-left:10px">
+                                        <apex:commandButton styleClass="rellocate-apply" action="{!changePriority}" value="Apply" style="float:none;width:115px"/>
+                                    </span> 
+                               </div>
+                            </div> 
+                                 <span style="margin-left:10px">
+                                        <apex:commandButton styleClass="cancel-all-popup"  value="Cancel" style="float:none;width:115px"/>
+                                 </span>
+                          </div>
+                          
+                           
+                        </div>
+
+                        <div class="rapsubDivNew" style="background:#fff;display:none;">
+                            <apex:outputPanel >
+                                <apex:outputLabel value="Cancel" style="font-weight:bold;" />
+                                <br/><br/><br/><br/><br/><br/>
+                                <apex:commandButton value="Submit" action="{!cancelRapJob}"  styleClass="allocationbtn" reRender="msgs"/>
+                            </apex:outputPanel>
+                            <!--     <apex:outputPanel >
+                                <apex:outputLabel value="Re - Allocate" style="font-weight:bold;"/>
+                                <br/><br/>
+                                <apex:selectList label="Select the user Name"  size="1" value="{!selectedRapName}" >
+                                    <apex:selectOptions value="{!selectUsername}"></apex:selectOptions>
+                                </apex:selectList>
+                                <br/>
+                                <apex:commandButton value="Re Allocate" styleClass="allocationbtn" action="{!reallocateRAP}" reRender="pgbt,msgs"/>
+                                </apex:outputPanel>  -->
+                            <!--       <apex:outputPanel >
+                                <apex:outputLabel value="Priority" style="font-weight:bold;"/>
+                                <br/>
+                                <apex:selectRadio layout="pageDirection" styleClass="radio_pick" value="{!priority}">
+                                    <apex:selectOption itemLabel="Priority" itemValue="Priority"   />
+                                    <apex:selectOption itemLabel="Pending" itemValue="Pending" />
+                                    <apex:selectOption itemLabel="Live" itemValue="Live" />
+                                    <apex:selectOption itemLabel="Dormant" itemValue="Dormant" />
+                                </apex:selectRadio>
+                                <apex:commandButton value="Submit" styleClass="allocationbtn" action="{!changePriority}"/>
+                                </apex:outputPanel> -->
+                            <div>
+                                <!-- display:{!IF(jobStatus != 'Accepted' , 'None', '')} -->
+                                <!--      <apex:outputPanel >
+                                    <apex:outputLabel value="Record Share" style="font-weight:bold;"/>
+                                    <br/>
+                                    <apex:selectList id="sel1" value="{!listOfRAPSelected}" multiselect="true" style="width:150px" size="1">
+                                        <apex:selectOptions value="{!Selectusername}"/>
+                                    </apex:selectList>
+                                    <br/>
+                                    <apex:commandButton action="{!recordShare}" value="Share" styleClass="allocationbtn"  reRender="msgs" />
+                                    </apex:outputPanel>  -->
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!--  
+                        <div id="rapDiv" style="display:{!IF(permissionSetName != 'RAP' , 'None', '')}">
+                            <apex:pageBlock >
+                                <table class = "alloc_table" width = "100%" style="text-align:center">
+                                    <tr>
+                                        <td style="display:{!IF(jobStatus == 'Accepted' , 'None', '')}">
+                                            <apex:outputPanel >
+                                                <apex:outputLabel value="Accept" style="font-weight:bold;"/>
+                                                <br/><br/><br/><br/><br/><br/>
+                                                <apex:commandButton styleClass="allocationbtn" value="Accept" action="{!acceptJob}" />
+                                            </apex:outputPanel>
+                                        </td>
+                                        <td>
+                                            <apex:outputPanel >
+                                                <apex:outputLabel value="Re - Allocate" style="font-weight:bold;"/>
+                                                <br/><br/>
+                                                <apex:selectList label="Select the user Name"  size="1" value="{!selectedRapName}" >
+                                                    <apex:selectOptions value="{!selectUsername}"></apex:selectOptions>
+                                                </apex:selectList>
+                                                <br/>
+                                                <apex:commandButton value="Re Allocate" styleClass="allocationbtn" action="{!reallocateRAP}" reRender="pgbt,msgs"/>
+                                            </apex:outputPanel>
+                                        </td>
+                                        <td  style="display:{!IF(jobStatus != 'Accepted' , 'None', '')}">
+                                            
+                                            <apex:outputPanel >
+                                                <apex:outputLabel value="Record Share" style="font-weight:bold;"/>
+                                                <br/>
+                                                <apex:selectList id="sel1" value="{!listOfRAPSelected}" multiselect="true" style="width:150px" size="1">
+                                                    <apex:selectOptions value="{!Selectusername}"/>
+                                                </apex:selectList>
+                                                <br/>
+                                                <apex:commandButton action="{!recordShare}" value="Share" styleClass="allocationbtn"  reRender="msgs" />
+                                            </apex:outputPanel>
+                                        </td>
+                                        <td  style="display:{!IF(primaryRap != true , 'None', '')}">
+                                            <apex:outputPanel >
+                                                <apex:outputLabel value="Cancel" style="font-weight:bold;" />
+                                                <br/><br/><br/><br/><br/><br/>
+                                                <apex:commandButton value="Submit" action="{!cancelRapJob}"  styleClass="allocationbtn" reRender="msgs"/>
+                                            </apex:outputPanel>
+                                        </td>
+                                        <td>
+                                            <apex:outputPanel >
+                                                <apex:outputLabel value="Priority" style="font-weight:bold;"/>
+                                                <br/>
+                                                <apex:selectRadio layout="pageDirection" styleClass="radio_pick" value="{!priority}">
+                                                    <apex:selectOption itemLabel="Priority" itemValue="Priority"   />
+                                                    <apex:selectOption itemLabel="Pending" itemValue="Pending" />
+                                                    <apex:selectOption itemLabel="Live" itemValue="Live" />
+                                                    <apex:selectOption itemLabel="Dormant" itemValue="Dormant" />
+                                                </apex:selectRadio>
+                                                <apex:commandButton value="Submit" styleClass="allocationbtn" action="{!changePriority}"/>
+                                            </apex:outputPanel>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </apex:pageBlock>
+                        </div>
+                        -->
+                </div> 
+            </div>
+        </div>
+        <apex:actionFunction name="unshareRapJob" action="{!jobUnShare}" reRender="view">
+            <apex:param id="aname" assignTo="{!selectedUnshareRapName }" name="selectedUnshareRapName " value="{!selectedUnshareRapName }" />
+        </apex:actionFunction>
+    </apex:form>
+    <head>
+     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <script>
+       
+         $j(document).ready(function() {
+        //     alert('jq Run');
+             $j('.rellocate-popup').hide();
+             $j('.show-all-detail').hide();
+             $j('.unshare').click( function() {
+                 var id = $j(this).find('input').val();
+                 $j(this).parent().hide();
+                 unshareRapJob(id);                
+            });
+        
+           $j('.cancel-allocation-popup').click(function(e){ 
+               e.preventDefault();
+               $j('.rellocate-popup').hide();
+               $j('.show-all-detail').hide();
+               $j("div").remove('.mask');
+          });
+           $j('.cancel-all-popup').click(function(e){
+               e.preventDefault();
+               $j('.show-all-detail').hide();
+               $j("div").remove('.mask');
+          });
+    
+        $j('.show-allocate-popup').click(function(e){ 
+          e.preventDefault();
+           $j('.rellocate-popup').show();
+           $j("body").append('<div class="mask">');
+      });
+      
+       $j('.show-all-detail-button').click(function(e){ 
+          e.preventDefault();
+           $j('.show-all-detail').show();
+           $j("body").append('<div class="mask">');
+      });
+       $j('.rellocate-apply').click(function(e){ 
+               $j("div").remove('.mask');
+               $j('.rellocate-popup').hide();
+               $j('.show-all-detail').hide();
+          });
+    });
+      </script>
+     </head>
+</apex:page>

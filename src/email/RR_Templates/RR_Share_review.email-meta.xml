@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>share a review on Chatter or R&amp;R Chatter Group</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>RR Share review</name>
+    <style>none</style>
+    <subject>I shared a review with you</subject>
+    <type>text</type>
+</EmailTemplate>

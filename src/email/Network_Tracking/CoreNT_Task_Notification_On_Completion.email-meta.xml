@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Notification on Task Completion</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CoreNT Task Notification On Completion</name>
+    <style>none</style>
+    <subject>Task Completed - {!CORE_NT_Task__c.ProjectId__c} : {!CORE_NT_Task__c.Name}</subject>
+    <textOnly>Task Completion
+
+Dear     {!CORE_NT_Task__c.OwnerFullName}, The task {!CORE_NT_Task__c.Name} assigned to {!CORE_NT_Task__c.Assigned_To__c} for {!CORE_NT_Task__c.ProjectId__c} project has been completed.
+
+Task Category : Non-Critical
+
+Please login to Network Tracking  to see the details of the task.
+
+Copyright © 2012 Unilever Way, All rights reserved.</textOnly>
+    <type>custom</type>
+</EmailTemplate>

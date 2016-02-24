@@ -1,0 +1,136 @@
+<!--  
+<apex:page controller="Amr_NewSavingController">
+    <apex:include pageName="amr_common_final" />
+    <script type="text/javascript"> 
+    $j(function(){
+    $j('.helloall').click(function(){
+        $j('body').append('<div class="there" style="cursor:pointer;border:1px solid red;height:100px;width:100px;">there</div>');
+    });
+    
+    $j('.there').on('click',function(){
+        alert('hi');
+    });
+    })
+    </script>
+      <div class="helloall">
+      Test      
+      </div>
+</apex:page>
+
+-->
+
+
+<apex:page controller="Amr_NewSavingController">
+    <apex:include pageName="amr_common_final" />
+    <script type="text/javascript">
+        
+        
+        
+    </script>
+    <apex:form >
+       <apex:pageBlock >
+        <apex:pageBlockSection title="New Saving line" columns="2" collapsible="false">
+            <apex:outputText value="{!adManagerNumber}" label="AdManager Number"/>
+            <apex:selectList value="{!selectedProductionType}" multiselect="true" size="5" label="Production Type">
+                  <apex:selectOptions value="{!productionType}"/>
+            </apex:selectList>
+            <apex:inputField value="{!savingObj.No_of_Masters__c}" />
+            <apex:inputField value="{!savingObj.Duration_of_Masters__c}" />
+            <apex:inputField value="{!savingObj.No_of_Additional_Films__c}" />
+            <apex:inputField value="{!savingObj.Duration_of_Additional_Films__c}" />
+            <apex:inputField value="{!savingObj.No_of_shoot_days__c}" />
+            <apex:inputField value="{!savingObj.Stage_RAP_engaged__c}" />
+            <apex:selectList value="{!selectedCountry}" multiselect="true" size="5" label="Shoot Location">
+                  <apex:selectOptions value="{!shootLocation}"/>
+            </apex:selectList>
+            <apex:inputField value="{!savingObj.Script_Title__c}" />
+            <apex:inputField value="{!savingObj.Scope_re_brief__c}" />
+            <!--  <apex:inputFile value="{!document.body}" filename="{!document.name}"/>
+             <input type="file" value="'{!document.body}'" />-->
+        </apex:pageBlockSection>
+      </apex:pageBlock>
+      
+      
+  
+      <apex:pageBlock >
+        <apex:commandLink value="Add Quote" action="{!addRowQuote}" reRender="quoteSection" status="actStatusIdQuote"   />
+        <apex:actionStatus id="actStatusIdQuote" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+     </apex:pageBlock>
+        <apex:pageBlock id="quoteSection">
+                <script type="text/javascript">
+                $j(function(){
+                    $j('.commonCurrencyRelated').on('change',function(){
+                        //var a = $j(this).closest('.adMangerNo').attr('number-id');
+                        var a = $j(this).val();
+                        var data_id = $j(this).attr('data-id');
+                        alert('data-id'+data_id);
+                        var PCLocalAmount = $j('.PCLocalAmount'+data_id).val();
+                        var PCEuroAmount = $j('.PCEuroAmount'+data_id).val();
+                        var PCCurrency = $j('.commonCurrencyRelated').val();
+                        alert(PCLocalAmount);
+                        alert(PCEuroAmount);
+                        alert(PCCurrency);
+                    });
+                    
+                    $j('.commonPCLocalAmount').on('keypress',function(){
+                        //var a = $j(this).closest('.adMangerNo').attr('number-id');
+                        var a = $j(this).parent().find('.commonCurrencyRelated').val();
+                        var data_id = $j(this).parent().find('.commonCurrencyRelated').attr('data-id');
+                        alert('data-id'+data_id);
+                        var PCLocalAmount = $j('.PCLocalAmount'+data_id).val();
+                        var PCEuroAmount = $j('.PCEuroAmount'+data_id).val();
+                        alert(PCLocalAmount);
+                        alert(PCEuroAmount);
+                    });
+                    
+                    
+                });             
+              </script>
+                    
+                    <apex:repeat value="{!docAndQuoteLst}" var="docAndQuoteObj" >
+                        <div class="radio-selected alliswell">
+                             <div class="inner_section">
+                                 <h4>                             
+                                    <apex:inputField value="{!docAndQuoteObj.quoteObj.Is_Accepted__c}"/>     Quote : {!docAndQuoteObj.quoteObj.Quote_Number__c} - quote-related{!docAndQuoteObj.quoteObj.Quote_Number__c}                                   
+                                 </h4> 
+                            </div>
+                        
+                            <div class="adMangerNo quote-related{!docAndQuoteObj.quoteObj.Quote_Number__c}" number-id="{!docAndQuoteObj.quoteObj.Quote_Number__c}">
+                            <div class="left">Is PC Part Of The Roster?</div><div class="left"><apex:inputField value="{!docAndQuoteObj.quoteObj.Is_PC_part_of_the_Roster__c}"/></div>
+                            
+                            PC Name<apex:inputField value="{!docAndQuoteObj.quoteObj.PC_name__c}"/>
+                            PC Country Location<apex:inputField value="{!docAndQuoteObj.quoteObj.PC_Country__c}"/>
+                            Service Company Name<apex:inputField value="{!docAndQuoteObj.quoteObj.Service_Company_Name__c}" />
+                            PC Costs Only (Local Currency)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_PC_Costs__c}" styleclass="commonCurrencyRelated" html-data-id="{!docAndQuoteObj.quoteObj.Quote_Number__c}" />
+                            PC Costs Only (Local Amount) <apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_PC__c}" styleclass="commonPCLocalAmount PCLocalAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}" />
+                            PC Costs Only (Euro Amount)<apex:inputText value="{!docAndQuoteObj.quoteObj.PC_Costs_Euro_Amount__c}" styleclass="PCEuroAmount{!docAndQuoteObj.quoteObj.Quote_Number__c}"/>
+                            Is the PPC part of the Roster?<apex:inputField value="{!docAndQuoteObj.quoteObj.Is_the_PPC_part_of_the_Roster__c}" />
+                            PPC Name <apex:inputField value="{!docAndQuoteObj.quoteObj.PPC_Name__c}" />
+                            PPC Country Location<apex:inputField value="{!docAndQuoteObj.quoteObj.PPC_Country__c}" />
+                            PPC Costs Only (Local Currency)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_PPC_Costs__c}"/>
+                            PPC Costs Only (Local Amount)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_PPC__c}"/>
+                            CA/Additional agency Name<apex:inputtext value="{!docAndQuoteObj.quoteObj.PPC_Costs_Euro_Amount__c}"/>
+                            CA Location<apex:inputField value="{!docAndQuoteObj.quoteObj.CA_Location__c}" />
+                            CA Costs Only (Local Currency)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_CA_Costs__c}"/>
+                            CA Costs Only (Local Amount)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_CA__c}"/>
+                            CA Costs Only (Euro Amount)<apex:inputText value="{!docAndQuoteObj.quoteObj.CA_Costs_Euro_Amount__c}" />
+                            Folder <apex:inputField value="{!docAndQuoteObj.quoteObj.Folder__c}" />
+                         
+                            <!--  <input type="file" value="{!docAndQuoteObj.attachmentObj.body}" name="{!docAndQuoteObj.attachmentObj.name}" id="file" > </input>-->
+                            </div>
+                          <!--  value="{!docAndQuoteObj.attachmentObj.body}" -->
+                       </div>
+                    </apex:repeat>
+                    
+        
+      </apex:pageBlock>
+         <apex:commandButton action="{!SaveAllData}" value="Save" id="theButton"/>
+   </apex:form>
+ 
+    
+
+</apex:page>

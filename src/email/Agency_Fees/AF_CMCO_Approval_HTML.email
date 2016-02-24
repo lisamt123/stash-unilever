@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[Dear Category Finance<br><br>Brand {!AF_Brand_Estimate__c.Brand__c} "{!AF_Brand_Estimate__c.AF_Basefee_Estimate_Initial_Quarter__c}" Base Fee Estimate has been approved by CMCO and is now ready for a Purchase Order to be issued to the agency.<br><br>Please log into the Agency Fees Application and run your Purchase Order report. This will include essential details required for raising your Purchase Order in Ariba.<br>{!AF_Brand_Estimate__c.AF_Internal_Link__c}<br>]]></td>
+</tr>
+</table>

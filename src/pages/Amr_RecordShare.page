@@ -1,0 +1,19 @@
+<apex:page controller="Amr_Sharecontroler" > 
+    <apex:form >
+        <apex:pageBlock >       
+        
+         
+              <apex:outputLabel value="Record Share" style="font-weight:bold;"/><br/>
+               <apex:panelGrid columns="3" id="abcd">
+            <apex:selectList id="sel1" value="{!leftselected}" multiselect="true" style="width:150px" size="5">
+                <apex:selectOptions value="{!selectoptions}"/>
+            </apex:selectList>
+            </apex:panelGrid>
+            <apex:pageBlockButtons location="bottom">
+            
+             <apex:commandButton action="{!recordShare}" value="Share"  Styleclass="btn btn-small"/>
+             
+           </apex:pageBlockButtons>  
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

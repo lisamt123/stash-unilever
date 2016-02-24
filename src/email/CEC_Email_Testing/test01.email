@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<font face="arial"><span style="font-size: 12pt;">Hello&nbsp;{!Case.Account}</span></font><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;">Your Case:</div><div><ul><li><font face="arial">Case Number: {!Case.CaseNumber}</font></li><li><font face="arial">Date Created:&nbsp;{!Case.CreatedDate}</font></li></ul><div><font face="arial">thank you....</font></div><div><font face="arial"><br></font></div><div><font face="arial">...</font></div><div><font face="arial">..</font></div><div><font face="arial"><br></font></div><div><font face="arial"><br></font></div><div><font face="arial">Yours sincerely,</font></div><div><font face="arial"><br></font></div><div><font face="arial">{!Case.OwnerFullName}</font></div><div><font face="arial"><b><i>Carelines Advisor</i></b></font></div><div><font face="arial"><br></font></div><div><font face="arial">Your previous email:</font></div></div><div><font face="arial">{!Case.Email_Thread}</font></div>]]></td>
+</tr>
+</table>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Pedido de informação internamente</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CEC_Unilever_Portugal_Internal</letterhead>
+    <name>Unilever JM - Portugal - Pedido de Informação_</name>
+    <style>freeForm</style>
+    <subject>Pedido de Informação_{!Case.CaseNumber}_{!Case.Case_Brand__c}_{!Case.Reason_L5_desc__c}</subject>
+    <textOnly>Colega,
+
+No âmbito dos níveis de qualidade prestados aos nossos Consumidores, vimos solicitar com a maior brevidade o vosso parecer/resposta sobre o assunto exposto pelo consumidor em baixo e para qual requer a vossa melhor atenção.
+
+
+
+{!Case.Case_Brand__c}  / {!Case.L5_Product_Category__c}
+
+___________________________________________________________________________________
+
+{!Case.Global_Reason_L5_desc__c}
+
+___________________________________________________________________________________
+
+{!Case.Subject}
+
+___________________________________________________________________________________
+
+{!Case.Description}
+
+___________________________________________________________________________________
+
+VOSSA RESPOSTA:
+
+
+
+
+___________________________________________________________________________________
+
+Cumprimentos
+
+{!User.Name}</textOnly>
+    <type>html</type>
+</EmailTemplate>

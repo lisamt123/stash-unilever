@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email alert for issue reporter, it&apos;s reviewed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>New_Issue_Alert</letterhead>
+    <name>Issue Reviewed</name>
+    <style>freeForm</style>
+    <subject>CIMT flag: {!im_Issue__c.Name}</subject>
+    <textOnly>CIMT flag ...
+
+The Issue &apos;{!im_Issue__c.Name}&apos; is reviewed
+
+
+Created Date: {!im_Issue__c.CreatedDate}
+Issue Reporter: {!im_Issue__c.OwnerFullName}
+Related Global Issue: {!im_Issue__c.Related_Global_Issue__c} 
+Issue Subject Group: {!im_Issue__c.Issue_Subject_Group__c}
+Description: 
+{!im_Issue__c.Issue_Description__c}
+
+
+Issue Profile
+
+Severity: {!im_Issue__c.Issue_Severity__c}
+
+Issue Source: {!im_Issue__c.Issue_Source__c}
+
+
+To review and/or amend this issue click the link {!im_Issue__c.Link}</textOnly>
+    <type>html</type>
+</EmailTemplate>

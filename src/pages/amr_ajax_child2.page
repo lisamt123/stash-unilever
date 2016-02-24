@@ -1,0 +1,28 @@
+<apex:page controller="Amr_NewSavingController" sidebar="false" id="pageId">
+	<apex:form >
+	<apex:pageBlock >
+        <apex:pageBlockSection title="New Saving line" columns="2" collapsible="false">
+            <apex:outputText value="{!adManagerNumber}" label="AdManager Number"/>
+            <apex:inputField value="{!savingObj.Production_Type__c}"/>
+            <apex:inputField value="{!savingObj.No_of_Masters__c}" />
+            <apex:inputField value="{!savingObj.Duration_of_Masters__c}" />
+            <apex:inputField value="{!savingObj.No_of_Additional_Films__c}" />
+            <apex:inputField value="{!savingObj.Duration_of_Additional_Films__c}" />
+            <apex:inputField value="{!savingObj.No_of_shoot_days__c}" />
+            <apex:inputField value="{!savingObj.Stage_RAP_engaged__c}" />
+            <apex:selectList value="{!selectedCountry}" multiselect="true" size="5" label="Shoot Location">
+                  <apex:selectOptions value="{!shootLocation}"/>
+            </apex:selectList>
+            <apex:inputField value="{!savingObj.Script_Title__c}" />
+            <apex:inputField value="{!savingObj.Scope_re_brief__c}" />
+            <apex:inputField value="{!savingObj.Folder_Name__c}" />
+            <apex:inputFile value="{!document.body}" filename="{!document.name}" id="test"/>
+        </apex:pageBlockSection>
+        
+         <apex:actionRegion >
+            <apex:commandButton value="save" action="{!SaveSaving}"/>
+         </apex:actionRegion>
+         
+      </apex:pageBlock>
+      </apex:form>
+</apex:page>

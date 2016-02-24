@@ -1,0 +1,6 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[Dear {!Case.SuppliedName},<div><br></div><div>Thank you for contacting us.</div><div>We have registered case&nbsp;<span style="font-size: 12pt;">{!Case.CaseNumber} to address your concern.</span></div><div><span style="font-size: 12pt;"><br></span></div><div><span style="font-size: 12pt;">One of our advisors will get back to you shortly.</span></div><div><span style="font-size: 12pt;"><br></span></div><div><br></div><div><br></div><div><span style="font-size: 12pt;">Thank you,</span></div><div><span style="font-size: 12pt;">CEC Unilever India</span></div><div><br></div>]]></td>
+</tr>
+</table>

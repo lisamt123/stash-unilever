@@ -11,9 +11,8 @@
         <apex:define name="body">
         <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>            
             <apex:form >
-                <div class='cust-overlay'></div> 
                 <apex:pageMessages />
-                    <div class="gradientbg">  
+                    <div class="gradientbg"> 
                             <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument" />  
                     </div>
                 
@@ -61,7 +60,7 @@
                                             {!projectDoc.IPM_GateDocuments__c} {!$Label.IPM_Document}
                                         </h2>
                                         <div class="SecFillProgress">
-                                            <div class="fillProgress"><apex:outputText Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText><span>%</span></div>
+                                            <div class="fillProgress"><apex:outputText Value="{!IF(projectDoc.IPM_Document_Status__c='Not Started',filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText><span>%</span></div>
                                             <div class="fillProgressTxt"> {!$Label.IPM_FILLED_IN}</div>
                                         </div>
                                         <div class="SecFillProgress olderDocLink" modalTitle="Older Gate Documents" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_GateDocAttchList}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_VIEW_OLDER_GATE_DOC}">
@@ -126,7 +125,7 @@
                                                  </apex:actionFunction> 
                                              <!---Design Idea:GateDocument Refactor Ends Here---->
                                                      
-                                            <apex:outputPanel rendered="{!IF(OR(AND(projectDoc.IPM_Document_Status__c='Approved'&& project.IPM_Phase__c='Market Deployment' && project.IPMProject_Span__c='Local'), AND (project.IPM_Phase__c='Market Ready' && project.IPM_Project_Type__c = 'Operational')),True,False)}">
+                                            <apex:outputPanel rendered="{!IF(OR(AND(projectDoc.IPM_Document_Status__c='Approved'&& project.IPM_Phase__c='Market Deployment'), AND (project.IPM_Phase__c='Market Ready' && project.IPM_Project_Type__c = 'Operational')),True,False)}">
                                                 
                                                 <div class="SecStatusUpdate dstatusButton shipTrade" data-toggle="modal" data-target="#shipToPLE"  data-backdrop="static" data-keyboard="false">
                                                     <input type="button" class="ipmButton" value="{!$Label.IPM_Ship_To_Trade_Button}" />
@@ -346,7 +345,8 @@
                                        
                                     </div>
                                 </div>
-                                <div class="col-sm-10 rightContentBlock pull-right tempWrapper noPadleft noPadright">                                   
+                                <div class="col-sm-10 rightContentBlock pull-right tempWrapper noPadleft noPadright">
+                                    <div class='cust-overlay'></div>                                    
                                     <div class="row secDisMsg clearfix">
                                         <apex:outputPanel layout="block" rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved',isReadable=false),true,false)}">
                                             <div class="col-sm-2 pull-left openModal" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddManageSections}?id={!project.Id}&DocType={!projectDoc.IPM_GateDocuments__c}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_Add_Manage_Sections}" modalTitle="{!$Label.IPM_Add_Manage_Sections}">
@@ -378,8 +378,7 @@
                                                                         <div class="col-sm-8 innerHead">
                                                                             <span class="user"><apex:outputText value="{!projectDoc.IPM_Updated_User_By__r.Name}"/></span>
                                                                             <apex:outputText value="{!projectDoc.IPM_Document_Status__c}"/>
-                                                                            <span class="status-date">On </span>
-                                                                            <apex:outputfield value="{!projectDoc.IPM_Approval_Date__c}"/>
+                                                                            <span class="status-date">On <apex:outputfield value="{!projectDoc.IPM_Approval_Date__c}"/></span>
                                                                         </div>
                                                                         <div class="col-sm-4 txtRight updateStatus">                                   
                                                                             
@@ -410,8 +409,7 @@
                                                                                 <apex:outputText value="{!projectDoc.LastModifiedBy.Name}"/> </span> 
                                                                             <span class="action-txt"><apex:outputText value="{!IF(OR(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Postponement_Date__c!=null),'Postponed',projectDoc.IPM_Document_Status__c)}"/>
                                                                             </span>
-                                                                            <span class="status-date">On </span>
-                                                                            <apex:outputfield value="{!projectDoc.IPM_Postponement_Date__c}"/>
+                                                                            <span class="status-date">On <apex:outputfield value="{!projectDoc.IPM_Postponement_Date__c}"/></span>
                                                                             
                                                                         </div>
                                                                         <div class="col-sm-4 txtRight updateStatus">                                
@@ -479,7 +477,7 @@
                                                         <apex:outputPanel styleClass="ipmAcrdnExpand" layout="block">
                                                         <apex:outputPanel id="sectionContent" layout="block">
                                                             <apex:repeat value="{!projSubSectionList}" var="sub">   
-                                                                <apex:outputPanel layout="block" styleClass="aHead" rendered="{!IF (AND(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,sub.IPM_Default_Section__c=true),True,False)}">    
+                                                                <apex:outputPanel layout="block" styleClass="aHead" rendered="{!IF (AND(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,sub.IPM_Default_Section__c=true,IF(AND(psl.IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c = 'BLG',sub.IPM_Section__r.IPM_Section_Sequence__c='5.3'), FALSE, TRUE)),True,False)}">    
                                                                 
                                                                  <span class='expico fa fa-minus' id="{!sub.IPM_Section__c}" onclick="fetchSubSection('{!sub.IPM_Section__c}','{!sub.Id}');"> </span>
                                                                     
@@ -545,8 +543,8 @@
                                                                     </apex:repeat> 
                                                                     
                                                                     <!-- Special 1st Level Sections-->
-                                                                    <c:IPM_Financial_ActionStandards gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!sub.Id}" rendered="{!AND(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',AND(project.IPM_Project_Type__c!='Rollout',project.IPMProject_Span__c!='Local'))}" > </c:IPM_Financial_ActionStandards>
-                                                                    <c:IPM_FinGate projId="{!projectId}" rendered="{!OR(sub.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',AND(project.IPM_Project_Type__c=='Rollout',project.IPMProject_Span__c=='Local',sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'))}" ></c:IPM_FinGate>
+                                                                    <c:IPM_Financial_ActionStandards isEditable="false" projId="{!projectId}" secId="{!sub.Id}" rendered="{!AND(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPM_Project_Type__c != 'Operational')}" > </c:IPM_Financial_ActionStandards>
+                                                                    <c:IPM_FinGate projId="{!projectId}" rendered="{!OR(sub.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',sub.IPM_Master_Section_External_Id__c='Country_Business_Case')}" ></c:IPM_FinGate>
                                                                     <c:IPM_GateKeeperListView setEdit="false" getDocType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!sub.IPM_Master_Section_External_Id__c='Gate_Keeper_Checklist'}"></c:IPM_GateKeeperListView>
                                                                     <c:IPM_OTIFStatusTableView otfType="Table" getSectionId="{!sub.Id}" rendered="{!sub.IPM_Master_Section_External_Id__c='OTIF_Status'}"></c:IPM_OTIFStatusTableView>
                                                                     <c:IPM_RND_QuestionsView rendered="{!if(OR(sub.IPM_Master_Section_External_Id__c=='R&D_Initial_Outline_Product_Pack',sub.IPM_Master_Section_External_Id__c=='R&D_Technical_Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" RNDEdit="False"></c:IPM_RND_QuestionsView>
@@ -601,9 +599,9 @@
                                                                 <c:IPM_Consumer_Evidence gate="{!projectDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" Editable="false" getSecid="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Consumer_Evidence_Concept'}"></c:IPM_Consumer_Evidence>
                                                                 <c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!apxSec.Id}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact'}" />
                                                                 <c:IPM_Customer_Channels gdpage="true" getProjectID="{!projectId}" getSecid="{!apxSec.Id}" CCEdit="false" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Customers_Channels'}"></c:IPM_Customer_Channels>
-                                                                <c:IPM_Risk_QuestionnaireView getProjectId="{!if(AND(project.IPMProject_Span__c=='Local',project.IPM_Project_Type__c=='Rollout'),project.IPM_Parent_Project__c,projectId)}" getProjectSectionId="{!apxSec.Id}" editSection="false" gateType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Risk'}"></c:IPM_Risk_QuestionnaireView>
-                                                                <c:IPM_Gate_RollOuts span="{!project.IPMProject_Span__c}" projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans',project.IPM_Project_Type__c!='Operational')}"></c:IPM_Gate_RollOuts>
-                                                                <c:IPM_MilestoneList_PDF pId="{!projectId}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" gateDocStatus="{!projectDoc.IPM_Document_Status__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Milestones'}"></c:IPM_MilestoneList_PDF>
+                                                                <c:IPM_Risk_QuestionnaireView getProjectId="{!projectId}" getProjectSectionId="{!apxSec.Id}" editSection="false" gateType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Risk'}"></c:IPM_Risk_QuestionnaireView>
+                                                                <c:IPM_Gate_RollOuts projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans',project.IPM_Project_Type__c!='Operational')}"></c:IPM_Gate_RollOuts>
+                                                                <c:IPM_MilestoneList_PDF pId="{!projectId}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Milestones'}"></c:IPM_MilestoneList_PDF>
                                                                 <c:IPM_Country_Feedback rendered="{!apxSec.IPM_Master_Section_External_Id__c='Country_Feedback_Requirements'}" > </c:IPM_Country_Feedback>
                                                                 <c:IPM_CMIGateSection secId="{!apxSec.Id}" projId="{!projectId}"  gate="{!projectDoc.IPM_GateDocuments__c}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards'}"></c:IPM_CMIGateSection>
                                                                 <c:IPM_Assumptions projId="{!projectId}" gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!apxSec.Id}" rendered="{!if(apxSec.IPM_Master_Section_External_Id__c=='Assumptions',true,false)}" isEditable="false"></c:IPM_Assumptions>
@@ -648,10 +646,7 @@
                                                         </div> 
                                                     </apex:outputPanel>
                                                     <div class="pull-left noPadright"> 
-                                                        <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}&suggestedMembersButton=true&createBET=true'" styleClass="ipmButton primary" rendered="{!project.IPM_Phase__c='Ideas'}">
-                                                            <apex:param name="approveDocumentStatus" value="Approved" assignTo="{!projectDoc.IPM_Document_Status__c}"/>
-                                                        </apex:commandButton>
-                                                        <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}'" styleClass="ipmButton primary" rendered="{!project.IPM_Phase__c!='Ideas'}">
+                                                        <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}&suggestedMembersButton=true&createBET=true'" styleClass="ipmButton primary">
                                                             <apex:param name="approveDocumentStatus" value="Approved" assignTo="{!projectDoc.IPM_Document_Status__c}"/>
                                                         </apex:commandButton>
                                                     </div> 

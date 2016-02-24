@@ -1,0 +1,9 @@
+<table height="400" width="550" cellpadding="5" border="0" cellspacing="5" >
+<tr height="400" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<font size="5" color="#000099" style="font-family: arial;">Dear&nbsp; {!ar_Application__c.First_Name__c}</font><font face="arial" size="3">,</font><br>
+<br><font face="arial" size="3">Thank you for submitting the application to be part of the Unilever Agency List.
+</font><br>
+<br><font face="arial" size="3">Our procurement team will review your company's details in next few weeks.</font><br><br><font face="arial" size="3">We&nbsp;</font><font face="arial">endeavour</font><font face="arial" size="3">&nbsp;to get back to you as soon as possible.</font><br><font face="arial" size="3"><span style="font-weight: bold;"></span></font><br><font face="arial" size="3">Kind regards</font><br><font face="arial" size="3">Unilever</font><br>]]></td>
+</tr>
+</table>

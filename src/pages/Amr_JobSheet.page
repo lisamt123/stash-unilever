@@ -1,0 +1,2120 @@
+<apex:page controller="Amr_JobSheetController" sidebar="false" id="pageId" tabStyle="{!IF(strTabName<>null,strTabName,'RAP_Jobs_Portfolio__tab')}" docType="html-5.0">
+    <apex:include pageName="amr_common" />
+    <apex:includeScript value="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/js/production-activity.js')}"/>
+    <script type="text/javascript">
+    	function enableText() {                         
+          $j('.outputIdClass').removeAttr('disabled');             
+          $j('.defaultTv').removeAttr('disabled');
+          $j('.defaultCinema').removeAttr('disabled');
+          $j('.defaultRadio').removeAttr('disabled');
+          $j('.defaultPrint').removeAttr('disabled');
+          $j('.defaultInternalVideo').removeAttr('disabled');
+         } 
+               
+        $j(document).ready(function() {  
+            
+            var tab = setTab('tab');
+            if(tab) {
+                $j('.main_inner_sectionh4[hashId='+tab+']').find('div').attr('class','commonall foldclass');
+                var data_id_selected = $j('.main_inner_sectionh4[hashId='+tab+']').find('div').attr('data-id');
+                if(data_id_selected) {
+                    $j('.'+data_id_selected).show();
+                }                           
+            }           
+               
+             hideOnPageLoad();
+            $j('.unshare').click( function() {
+                var id = $j(this).find('input').val();
+                $j(this).parent().hide();
+                unshareRapJob(id);                
+            });
+            
+             
+              $j('.show-allocate-popup').click(function(e){ 
+                e.preventDefault();
+                $j('.rellocate-popup').show();
+                $j("body").append('<div class="mask">');
+            });
+            
+            $j('.cancel-change-status-popup').click(function(e){ 
+                e.preventDefault();
+                $j('.change-status-popup').hide();
+              //  $j('.show-all-detail').hide();
+                $j("div").remove('.mask');
+            });
+            $j('.cancel-allocation-popup').click(function(e){ 
+                e.preventDefault();
+                $j('.rellocate-popup').hide();
+                $j('.show-all-detail').hide();
+                $j("div").remove('.mask');
+            });
+            $j('.cancel-all-popup').click(function(e){
+                e.preventDefault();
+                $j('.show-all-detail').hide();
+                $j("div").remove('.mask');
+            });
+            
+
+            
+            $j('.show-change-status-popup').click(function(e){ 
+                e.preventDefault();
+                $j('.change-status-popup').show();
+                $j("body").append('<div class="mask">');
+            });
+            
+            $j('.show-all-detail-button').click(function(e){ 
+                e.preventDefault();
+                $j('.show-all-detail').show();
+                $j("body").append('<div class="mask">');
+            });
+            $j('.rellocate-apply').click(function(e){ 
+                $j("div").remove('.mask');
+                $j('.rellocate-popup').hide();
+                $j('.show-all-detail').hide();
+            });
+             $j('#showAlertPopup').click(function(e){ 
+                 $j("body").append('<div class="mask">');
+                $j('.alert-popup').show();
+            });
+             $j('.cancel-alert-popup').click(function(e){
+               e.preventDefault();
+               $j("div").remove('.mask');
+               $j('.alert-popup').hide();
+           }); 
+           
+           var strArr = {!CategoryList};
+           var newOp;
+           //alert('{!selectedCategory}');
+            console.debug('category data'+strArr);
+             for(var j=0;j<strArr.length;j++){
+                 //console.log('{!selectedCategory}' +'inside=='+strArr[j]);
+                if('{!selectedCategory}' == strArr[j] && '{!selectedCategory}' !== null){
+                    newOp = $j('<option value="'+strArr[j]+'">'+strArr[j]+'</option>');
+                    $j('#categoryList').append(newOp);
+                   // alert('inside match');
+                }
+               
+             }
+             
+             var none = $j('<option value="none">--None--</option>');
+             $j('#categoryList').append(none);
+             
+            for(var j=0;j<strArr.length;j++){
+                
+                if('{!selectedCategory}' == strArr[j]){
+                 j = j+1;
+                }
+                 newOp = $j('<option value="'+strArr[j]+'">'+strArr[j]+'</option>');
+              
+                 $j('#categoryList').append(newOp);
+              
+              
+            }
+           
+            
+            
+           var stringArray = JSON.parse('{!MethodToPassProjectNames}');
+           var newOption;
+           
+          
+          // alert(stringArray.length);
+            for(var i=0;i<stringArray.length;i++){
+            //console.log(stringArray);
+               
+                newOption = $j('<option value="'+stringArray[i]+'">'+stringArray[i]+'</option>');
+                // alert(newOption);
+                 $j('#projectList').append(newOption);
+            }
+              // console.log('options'+newOption );
+           
+        });
+        
+        function transferCategoryValue(categoryValue){
+          //alert(categoryValue);
+            sendCategory(categoryValue);
+            $j('.loading').show();
+           
+        }
+        
+          function transferValue(projName)
+        {
+     //   alert('inside function'+projName);
+          
+              if(projName!=="--None--") {  
+            
+        $j('.projecttextProjDetail').attr('value', projName);
+        //   alert('Hi---'+$j('.projecttextProjDetail').val());
+          } 
+            // alert(projName);
+           //  sendProject(projName);
+        }
+        
+         if( $j('.projecttextProjDetail').val().length>0){
+                    var projDeatVal =$j('.projecttextProjDetail').val();
+                     $j('.projectpick').val(projDeatVal);
+                } 
+                
+                $j('.projectotherClass, .projectcancelClass').click(function(e) {
+                    e.preventDefault(); 
+                    var currPage = $j(this).attr('rel');                   
+                    if(currPage == 'select'){                   
+                        $j('.projectpick').hide();
+                        $j('.projectpick option').prop('selected', false);
+                        $j('.projecttext').show();
+                        $j('.projectotherClass').hide(); 
+                        $j('.projectcancelClass').show();
+                        projectFlag = false;
+                    }else{
+                      $j('.projecttext').val('');
+                      $j('.projecttext').hide();
+                      $j('.projectpick').show(); 
+                      $j('.projectcancelClass').hide();
+                      $j('.projectotherClass').show();
+                      projectFlag = true;
+                     }
+                });   
+        
+    </script>   
+    <script>
+        
+        function hideOnPageLoad(){
+            
+            $j('.rellocate-popup').hide();
+            $j('.show-all-detail').hide(); 
+            $j('.change-status-popup').hide();
+            $j('.alert-popup').hide();
+        }
+       
+        
+    </script>
+    <style type="text/css">
+        body {
+            overflow-y:scroll;
+        }
+        .inner-content {
+            background: #fff none repeat scroll 0 0 !important;
+            font-family: "dinOffPro",sans-serif !important;
+            font-size: 12px !important;         
+        }
+        .bPageBlock {
+            background:none !important;
+        }
+        .data2Col {
+            padding:0 !important;
+        }
+        textarea {
+            border-radius: 6px;
+            border: 1px solid #e5e5e5;
+            height: 80px;
+            padding: 6px 10px;
+            width: 98.5%;
+        }
+        div.form-field2 {
+            float: left;
+            padding: 10px;
+            width:24%;
+        }
+        .form-field2 label {
+            clear: left;
+            display: inline;
+            font-size: 12px;
+            line-height: 1.5em;
+            /*padding: 4px 0px 4px 0;*/
+            padding: 8px 0;
+            position: relative;
+            text-align: right;
+            width: 100%;
+        }
+        label {
+            color: #0b2f4d;
+            float: left;
+            margin: 0;
+            width: 150px;
+        }
+        
+        .before {
+            margin-top:15px;
+            font-family: "dinOffProBold",sans-serif !important;
+        }
+        
+        .before:first-child {
+            margin-top:0px;
+        }
+        
+        .form-field2-radio label {
+            clear: left;
+            display: inline;
+            float: none !important;
+            font-size: 12px;
+            line-height: 1.5em;
+            padding: 4px 10px 4px 0;
+            position: relative;
+            text-align: right;
+            width: 40px;
+        }
+        
+        .cmi_class label {
+            float: none !important;
+            font-size: 12px;
+            padding: 4px 10px 4px 0;
+            width: 40px;
+        }
+        
+        .unshare{
+            cursor:pointer;
+        } 
+        .rellocate-popup{
+            border:1px solid #333333 !important;
+            background: #FFFFFF;              
+            left: 38%;
+            padding: 10px;
+            position: fixed;
+            z-index: 9999;
+            width: 330px;
+            top: 30%; 
+            border-radius:6px;           
+            }   
+             .change-status-popup{                          
+            left: 38%;            
+            position: fixed;
+            z-index: 9999;
+            width: 330px;
+            top: 30%;                       
+            }     
+        .show-all-detail{
+            background: #FFFFFF;
+            border: 1px solid #333333;            
+            left: 30%;            
+            position: fixed;
+            z-index: 9999;
+            width: 500px;
+            top: 30%;
+            border-radius:6px;
+
+            }    
+        .mask{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            background-color: rgba(0,0,0,0.3);            
+            }
+         .list td {
+            border-bottom: 1px solid #ededed !important;
+         }
+         
+         /*
+            page related css
+         */
+         
+         tr.headerRow th div {
+            max-width:100% !important
+         }
+         
+         .container a{
+            color:#3399CC;
+         }
+         
+         .entire-width select {
+            width:100% !important;
+         }
+         .sharewith {
+            width:75% !important;
+         }
+         .sharewith select{
+            height:auto !important;
+            width:100% !important;
+         }
+         .reallocatepopup {
+            width:75% !important;
+         }
+         .reallocatepopup select{           
+            width:100% !important;
+         }
+         .share-absolute {
+            border-radius: 6px;
+                    height: 25px;
+                    margin-right: 4px;
+                    margin-top: 4px;
+                    width: 31%;
+         }
+         .share-absolute label{
+            font-size: 14px !important;
+                    overflow: hidden !important;
+                    padding: 3px 14px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap !important;
+                    width: 75% !important;
+         }
+        .unshare-img {
+                /*height: 22px;*/
+                    position: absolute;
+                    right: 10px;
+                    top: 8px;
+        }        
+        .alert-popup{                        
+            left: 25%;                                    
+            width: 800px;
+            top: 20%;
+            max-height : 450px;            
+            }   
+            
+        .alertlist-popup {
+            max-height:250px;
+            overflow-y:auto;
+        }
+        
+        .master-detail{
+            border-left: 1px solid #1796BE;
+            float: left;
+            height: 430px;
+            padding-left: 20px;
+            width: 190px;
+            }
+            .sub-master-detail{
+            float:left;
+            width:400px;
+            height:430px;
+            //border-left:1px solid #1796BE;
+            padding-left:20px;
+            }            
+            .mediamasterdiv {               
+            height: 35px;            
+            padding-top: 10px;
+            width: 230px;           
+            padding-left:12px;
+            }
+            .mediamasterdiv-selected {
+            background-color: #73c0d9;
+            border: 1px solid #fff;     
+            border-radius:8px;   
+            }
+            .mediamasterdiv-selected label{             
+            color: #FFFFFF !important;              
+            font-family: "dinOffProBold",Verdana,"Open Sans",sans-serif !important;
+            border-radius: 10px;
+            }
+            .submediamasterdiv {
+            height:35px;            
+            width: 420px;
+            padding-left:12px;
+            padding-top:10px;         
+            }                 
+            .mediamasterdiv label {
+            float:none !important;
+            padding:0px !important;
+            width:auto !important;
+            }
+            .submediamasterdiv label {
+            float:none !important;
+            padding-right: 6px !important; //it was 0 earlier, need to check
+            width:auto !important;
+            }
+            .form-production-activity-type label{
+            float:none !important;
+            }
+            .other_master_parent{
+            min-height:45px;
+            }
+            .form-production-activity-type {
+            margin-left:38px;
+            }
+            
+             .form-production-activity-type label{
+            padding:0px !important;
+            }
+            .media-master{
+            float:left;
+            width:300px;            
+            }
+            .medium-master {
+            float:left;
+            width:330px;
+            border-left: 1px solid #1796be;
+            }
+            .media-master label{
+            cursor:pointer;
+            }
+            .sub-master-detail{
+            display:none;
+            }
+            .production-activity-detail {
+            display:none;
+            }
+            .master_parent label {
+            cursor:pointer;            
+            }
+            .summary-detail{                            
+            /*border:1px solid #FFF;*/
+            padding:5px 0 0 20px;              
+            font-weight:bold;
+            font-family: "dinOffProBold",Verdana,"Open Sans",sans-serif !important;
+            }
+            .summary-detail1{                                               
+            /*border:1px solid #FFF;*/
+            padding: 5px 0 0 20px;                              
+            margin: 0 5px 10px 0;
+            font-family: "dinOffPro",Verdana,"Open Sans",sans-serif !important;
+            }
+            .summary-title {
+            background: #e6e6e6 none repeat scroll 0 0;
+            font-family: "dinOffProBold",Verdana,"Open Sans",sans-serif !important;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 5px 20px;
+            }
+            .summary {                                              
+                border-bottom: 1px solid #e6e6e6;
+                font-size: 12px;
+                margin-bottom: 20px;
+                margin-top: 35px;
+                 margin-left: 20px;
+                width: 77%;                            
+            }
+            .summary span {              
+            }
+            .master_parent {
+            padding: 5px;
+            width:92%;              
+            }
+            .secondary-parent {             
+            float: left;
+            width: 60%;
+            }
+            .production-activity-section label{
+                float:none !important;
+                width:auto !important;
+            }
+            .amr-media-channel-master {
+            float:left;             
+            width:43%;
+            }
+                        
+            label dfn {
+                font-style: normal;
+            }
+            label div{
+                background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/questionmark.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);
+            }
+            label strong {
+                background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/star.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);
+                display: block;
+			    height: 1px;
+			    overflow: hidden;
+			    padding-top: 18px;
+			    position: absolute;
+			    right: -12px;
+			    top: 2px;
+			    width: 15px;
+            }
+            .production-activity-type-sub{
+            /*background: #2fa2c6 none repeat scroll 0 0;*/
+            background: #3399CC none repeat scroll 0 0;
+            color: #fff;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            padding: 8px 10px;            
+            border-radius:6px;
+            height:20px;
+            font-family:"dinOffProBold",Verdana,"Open Sans",sans-serif !important;
+            }
+            th.th_cd_filename_header {
+                width:80%;
+                border-bottom: 1px solid #ededed !important;
+            }
+            tr.dataRow.highlight th.th_cd_filename_header {
+                background-color:#f8f8f8 !important;
+            }
+            .form-field-multiselect select {
+                 height: 108px;
+                 width: 266px !important;
+            }
+            div.form-field-multiselect {
+                 padding: 0px 10px 5px 10px;
+            }
+            input[type="checkbox"] {
+			    vertical-align: sub;
+			}
+			.orclass {                
+	            color: #333333;
+	            font-size: 12px;
+	            font-weight: bold;
+	            height: 20px;
+	            margin: 0 auto;
+	            padding: 20px 0 15px 0;
+	            width: 92%;
+            }
+            .job_saving_details .rich-tabpanel-content {
+            	background-color: #F8F8F8;
+            }
+    </style>
+   
+    <apex:pagemessages id="msgs"></apex:pagemessages>
+    <!---Ad Main section---->
+    
+    <div class="container">
+   
+        <div class="outer_section">
+            <div class="title">
+                <div class="title-header-breadcrumb left">
+                 <!--   <a href="/apex/am_CAPJobportfolio2" >Job Portfolio</a> > -->
+                     <apex:form >
+                    <apex:commandLink action="{!getPage}" value="Job Portfolio"/>&nbsp;&gt;&nbsp;<span class="arrow-after">{!jobList.AdManagerText__c}</span>
+                     </apex:form>
+                </div>
+                <div class="right padding10-10-0-0 pointer" id="showAlertPopup" style="display:{!IF(strTabName<>null,'none','')}">                  
+                    <div class="left bold bell-text-label">
+                        {!totalAlertCount}
+                    </div>
+                    <div class="left">
+                        <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Ico_alert.png" />
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="clear">             
+                </div>
+            </div>
+            <!-- Start of main-innner-section -->
+                         
+            <!--  <apex:include pageName="AM_JobAllocations_bhupendra" /> -->
+            
+            
+            
+                <apex:form >    
+       
+       <div class="alert-popup popup-window hide">  
+           <apex:pageMessages id="showalert"></apex:pageMessages>            
+            <div class="margin-btwn-container12">
+                <div class="left popup-header">
+                    Alert
+                </div>
+                <div class="right popup-close">                                
+                    <apex:commandLink styleClass="cancel-alert-popup"  >
+                        <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Ico_ClosePopup.png" />
+                    </apex:commandLink>
+                </div>
+                <div class="clear">
+                </div>
+            </div>            
+            <apex:outputPanel id="alertList">   
+            
+                <script type="text/javascript">
+                    $j(function(){
+                        $j('.hide-alert').click(function(){
+                           var selectedInput = $j(this).parent().find('input');
+                           var id =  selectedInput.val();
+                          // alert(id);             
+                           hideAlert(id);
+                           $j(this).parent().parent().remove();
+                       });                    
+                    });                
+                </script>
+                <div  class="margin-btwn-inner-container entire-width" >                                                                             
+                    <div class="left popup-date-width margin-right12">                    
+                        <apex:inputField value="{!alertObj.New_Alert__c}" html-placeholder="Date" />
+                    </div>
+                    <div class="left popup-message-width">                    
+                        <apex:inputField value="{!alertObj.Alert_Message__c}" html-placeholder="Message" />
+                    </div>
+                    <div class="right">
+                        <apex:commandButton styleclass="commonbtn-blue" action="{!addNewAlert}" value="Add"   reRender="alertList,showalert">
+                       <!-- <apex:param name="chosenId1" value="{!alertObj.Alert_Message__c}" assignTo="{!alertmessage}"/> -->
+                        
+                        </apex:commandButton>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div  class="margin-btwn-inner-container entire-width" >
+                    <div>
+                        <apex:outputLabel styleclass="bold fs14">List of alerts</apex:outputLabel>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear">                    
+                    </div>
+                    <div class="alertlist-popup">
+                        <apex:pageBlock >
+                                <apex:outputPanel >                        
+                                     <apex:pageBlockTable value="{!alert}" var="alertVar">                                       
+                                         <apex:column value="{!alertVar.New_Alert__c}" >
+                                              <apex:facet name="header">Date</apex:facet>                                             
+                                         </apex:column>
+                                         <apex:column >
+                                         <apex:commandLink value="{!alertVar.job_Id__r.AdManagerText__c}"  action="{!jobSheetPageTransfer}"  target="_blank">
+                                                   <apex:param name="chosenId" value="{!alertVar.Job_Id__c}" assignTo="{!chosenId}"/>
+                                              </apex:commandLink>
+                                             <apex:facet name="header">AD-ID</apex:facet>
+                                          </apex:column>
+                                         <apex:column value="{!alertVar.Alert_Message__c}">
+                                             <apex:facet name="header">Alert Message</apex:facet>
+                                          </apex:column>
+                                         <apex:column >
+                                             <apex:facet name="header">Action</apex:facet>                                     
+                                                <a class="hide-alert" href="#">Remove</a>                                     
+                                                <input type = "Hidden" value = "{!alertVar.id}" />                                                                              
+                                         </apex:column>
+                                     </apex:pageBlockTable>
+                                </apex:outputPanel>                                 
+                        </apex:pageBlock>
+                    </div>
+                    <div class="clear">            
+                    </div>
+                </div>
+                <div class="right">
+                    <apex:commandButton styleClass="cancel-alert-popup commonbtn"  value="Cancel"/>
+                </div>              
+            </apex:outputPanel>
+        </div>
+                
+                
+                    
+    <div class="allocation-main margin-btwn-container12">
+       
+        <!-- start of CAP section -->
+        <div id="newDiv" style="display:{!IF(permissionSetName != 'CAP' , 'None', '')}">                        
+            <div class="box_content filteralert jobsallocation allocation-id">
+                <div class="subbox margin-btwn-container12">
+                    <div class="subbox-first left margin-right12" >
+                        <span style=" font-size: 15px;margin-right: 8px;margin-top: 10px;">
+                        Allocate this job to
+                        </span>
+                        <apex:selectList label="Select the user Name"  size="1" value="{!selectedRAPUser}">
+                            <apex:selectOptions value="{!selectUsername}"></apex:selectOptions>
+                        </apex:selectList>
+                    </div>
+                    <div class="subbox-second left margin-right12">
+                        <apex:commandButton styleClass="commonbtn" value="Allocate" action="{!Reallocate}"  reRender="msgs"/>
+                    </div>
+                    <div class="subbox-third left">                                    
+                        <apex:commandButton value="Cancel Job" action="{!cancelJob}" reRender="msgs" styleClass="commonbtn" onclick="return confirm('Are you sure you want to cancel this job?')" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>      
+        <!-- End of CAP section -->
+        
+        <!-- Start of RAP section -->
+        <div id="rapDivNew" style="display:{!IF(permissionSetName != 'RAP' , 'None', '')}">
+            <div>
+                <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
+                    <apex:commandButton styleClass="commonbtn left margin-right12" value="Accept" action="{!acceptJob}" />
+                </div>
+                <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
+                    <apex:commandButton styleClass="show-allocate-popup commonbtn left margin-right12"  value="Re-allocate" />
+                </div>                                                 
+                <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
+                    <apex:commandButton styleClass="commonbtn left margin-right12" value="Cancel Job" action="{!cancelRapJob}" onclick="return confirm('Are you sure you want to cancel this job?')"/>
+                </div>              
+                <div style="display:{!IF( jobStatus == 'Accepted', '', 'None')}" >                              
+                    <apex:commandButton styleClass="show-all-detail-button commonbtn left margin-right12" value="Job Allocation"/>
+                </div>
+                 <div>                              
+                    <apex:commandButton styleClass="show-change-status-popup commonbtn left" value="Set Status"/>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            
+            <div class="allocation-id">
+                <div>
+                    <div class="rellocate-popup" style="display:none;">                     
+                        <div class="margin-btwn-container12">
+                            <div class="left popup-header">
+                                Re-Allocate
+                            </div>
+                            <div class="right popup-close">                                
+                                <apex:commandLink styleClass="cancel-allocation-popup"  >
+                                    <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Ico_ClosePopup.png" />
+                                </apex:commandLink>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>                                             
+                        <div  class="margin-btwn-inner-container entire-width">                                                               
+                            <apex:selectList label="Select the user Name"  size="1" value="{!selectedRapName}" >
+                                <apex:selectOptions value="{!selectUsername}" />
+                            </apex:selectList>
+                        </div>  
+                        <div class="right">    
+                            <div class="left">
+                                <apex:commandButton styleClass="cancel-allocation-popup commonbtn"  value="Cancel"/>
+                            </div>
+                            <div class="left margin-left20">
+                                <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!reAllocateRAP}" value="Apply"/>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+
+                    <div class= "show-all-detail popup-window hide">
+                        <div class="margin-btwn-container12">
+                            <div class="left popup-header">
+                                Job Allocation
+                            </div>                            
+                            <div class="right popup-close">                                
+                                <apex:commandLink styleClass="cancel-allocation-popup"  >
+                                    <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Ico_ClosePopup.png" />
+                                </apex:commandLink>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="margin-btwn-inner-container">
+                            <div class="margin-bottom4">
+                                Share this job with
+                            </div>
+                            
+                            <div class="left sharewith">                                                                          
+                                <apex:selectList id="sel12" value="{!listOfRAPSelected}" multiselect="true" size="4">
+                                    <apex:selectOptions value="{!selectusername}"/>
+                                </apex:selectList>
+                            </div>                                                      
+                            <div class="right">
+                                <apex:commandButton action="{!recordShare}" value="Share" styleClass="rellocate-apply commonbtn-blue" />
+                            </div>
+                            <div class="clear">
+                            </div>                            
+                        </div>
+                        <div class="margin-btwn-inner-container">
+                            <div style="display:{!if( jobStatus != 'Accepted', 'None', if(sharedListSize  == 0,'none', '') )}">
+                                Shared With
+                            </div>
+                            <div style="display:{!if( jobStatus != 'Accepted', 'None', if(sharedListSize  == 0,'none', '') )}">                                
+                                <div class="width:100%">
+                                    <apex:repeat value="{!jobSharedList}" var="jbList">
+                                        <div class="left bg-g1 relative share-absolute">
+                                            <apex:outputLabel value="{!jbList.User__r.Name}" />
+                                            <span class="unshare">
+                                                <img src="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/Ico_RemoveShared.png')}"  alt="number" class="absolute unshare-img" />
+                                                <input type="hidden" value = "{!jbList.User__c}" />
+                                            </span> 
+                                        </div>
+                                    </apex:repeat>
+                                </div>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>                     
+                        <div class="margin-btwn-inner-container">
+                            <div class="margin-bottom4">
+                                Re-allocate
+                            </div>
+                            <div class="left reallocatepopup">                                                                          
+                                <apex:selectList label="Select the user Name"  size="1" value="{!selectedSecRapName}" >
+                                    <apex:selectOptions value="{!selectUsername}" />
+                                </apex:selectList>
+                            </div> 
+                            <div class="right">
+                                <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!reAllocateSecRAP}" value="Apply" />
+                            </div>
+                            <div class="clear">                         
+                            </div>                            
+                        </div>  
+                        <!--  
+                        <div class="margin-btwn-inner-container">
+                            <div class="margin-bottom4">
+                                Set status
+                            </div>
+                            <div class="left reallocatepopup">                                                         
+                                <apex:inputField value="{!jobList.Job_Status__c}"/>
+                            </div> 
+                            <div class="right">
+                                <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!changePriority}" value="Apply" />
+                            </div>
+                            <div class="clear">                         
+                            </div>                            
+                        </div>
+                        -->
+                        <div class="right">
+                            <apex:commandButton styleClass="cancel-all-popup commonbtn"  value="Cancel" />
+                        </div>
+                    </div>
+                </div>
+                <div class="rapsubDivNew" style="background:#fff;display:none;">
+                    <apex:outputPanel >
+                        <apex:outputLabel value="Cancel" style="font-weight:bold;" />
+                        
+                        <apex:commandButton value="Submit" action="{!cancelRapJob}"  styleClass="allocationbtn commonbtn" reRender="msgs"/>
+                    </apex:outputPanel>
+                    <div>                                
+                    </div>
+                </div>
+            </div>
+            
+            <div class="clear">
+            
+            </div>
+            
+            
+        </div>
+        
+        <!-- End of CAP section -->
+            
+    </div>     
+    <!--- Change Status -->
+    <div class="change-status-popup popup-window hide">
+    	<div class="margin-btwn-container12">
+            <div class="left popup-header">
+                Set status
+            </div>
+            <div class="right popup-close">                                
+                <apex:commandLink styleClass="cancel-alert-popup"  >
+                    <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Ico_ClosePopup.png" />
+                </apex:commandLink>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+	    <div class="margin-btwn-inner-container">                            
+	         <div class="left reallocatepopup">                                                         
+	             <apex:inputField value="{!jobList.Job_Status__c}"/>
+	         </div>
+	         <div class="clear">                         
+	         </div> 	                                   
+	    </div>
+	    <div>	          
+	         <div class="right">
+	             <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!changePriority}" value="Apply" />
+	         </div>                             
+	         <div class="right margin-right20">
+	 			<apex:commandButton styleClass="cancel-change-status-popup commonbtn"  value="Cancel"/>
+			</div>
+			<div class="clear">                         
+	         </div>                           
+	    </div>
+  </div>      
+       <!--- End Of Change Status --->      
+    <apex:actionFunction name="unshareRapJob" action="{!jobUnShare}" reRender="view">
+        <apex:param id="aname" assignTo="{!selectedUnshareRapName }" name="selectedUnshareRapName " value="{!selectedUnshareRapName }" />
+    </apex:actionFunction>
+</apex:form>
+    <!-- End Popup functionality -->
+    <div class="main_inner_section margin-btwn-container12 bg-g1 clear">
+        <h4 class="main_inner_sectionh4" hashId="job-details">
+            Job Details
+            <div data-id="job_detail_main" class="commonall openclass">                                     
+            </div>
+        </h4>
+        <div class="submain_inner_section job_detail_main hide">
+            <apex:form >
+                <div class="inner_section">
+                    <div class="savings_file_download inner_sub_section" style="display: block;">
+                        <div class="inner_sub2_section">
+                            <div class="jobsection jobsection-id">
+                            <span style="font-weight:bold;">Date Logged:</span>&nbsp;
+                            <apex:outputText value="{0,date,MM/dd/yy}">
+                                   <apex:param value="{!jobList.CreatedDate}" />
+                           </apex:outputText><br/><br/>
+                           
+                           <span style="font-weight:bold;">RAP Allocated:</span>&nbsp;
+                           <apex:repeat value="{!listOfUserToDisplay}" var="job">
+                           <apex:outputText value="{!job.User__r.Name}"></apex:outputText><br/>
+                           </apex:repeat>
+                                <div class="before inner_heading_sub_section margin-btwn-inner-container">
+                                    <h4>Before you start</h4>
+                                    <!-- Amr_Jobsheet.page -->
+                                </div>
+                                <div class="form-field padding0-12">
+                                    <p>Have you checked with with the CMI if there is an existing asset in the Millward Brown TV add Vitality bank that could be utilised for this JTBD?</p>
+                                </div>
+                                <div class="clear">                                
+                                </div>
+                                <div class="dropdown cmi_class">
+                                    <!--  <apex:inputField value="{!joblist.Check_With_CMI__c}" /> -->
+                                    <div class="float-left width252 radio-label">
+                                        <apex:selectRadio value="{!joblist.Check_With_CMI__c}" styleClass="radio-label">
+                                            <apex:selectOption itemValue="Yes" itemLabel="Yes " />
+                                            <apex:selectOption itemValue="No" itemLabel="No " />
+                                            <apex:selectOption itemValue="Not Applicable" itemLabel="Not Applicable" />
+                                        </apex:selectRadio>
+                                    </div>
+                                </div>
+                                <div class="before inner_heading_sub_section margin-bottom10">
+                                    <h4>Uniliver information</h4>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Your Email Address
+                                        <strong></strong>                                        
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Your_Email_Address__c}"   styleClass="your_email_address" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Unilever project leader email (if different)
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Unilever_Project_Leader_Email__c}"   styleClass="your_email_address" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Location of Unilever project leader
+                                        <strong></strong>
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Project_Leader_Cluster__c}" />
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Project_Leader_Country__c}" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Unilever finance member email
+                                        <strong></strong>
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Unilever_Finance_Member_Email__c}" html-placeholder="Email Address" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Final approver of material email                     
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Final_Approver_Of_Material_Email__c}" html-placeholder="Email Address" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Which function are you part of (BD/BB/Other)
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Function_You_Are_Part__c}" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Budget responsibility (BD, BB, Other)
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Budget_Responsibility__c}" />
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Budget allocated for this activity (enter all digits)
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:selectList value="{!selectedCountry }" size="1" id="selectedId" onchange="Calculate()" styleClass="selectedIdClass">
+                                        <apex:selectOptions value="{!currencyRecords }" />
+                                    </apex:selectList>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Budget_Allocated_Input_Value__c}" styleClass="agencypick inputIdClass" onkeypress="return isNumber(event)" onkeyup="Calculate()" />
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Allocated_Budget_euro__c}" styleClass="agencypick outputIdClass"/>
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Category > Brand Positioning > Brand
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:actionRegion >
+                                       <!-- <apex:selectList value="{!categoryName}" size="1">
+                                            <apex:actionSupport event="onchange" reRender="brandPosPick"  status="actStatusId"/>
+                                            <apex:selectOptions value="{!CategoryList}" />
+                                        </apex:selectList> -->
+                                        <select id="categoryList" size="1" onchange="transferCategoryValue(this.value)" reRender="brandPosPick,brandPick"  class="categorySelected"></select>
+                                    </apex:actionRegion>
+                                    <div style="width :100%; align:center;" >
+                                        
+                                        <apex:actionStatus id="actStatusId" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                    </div>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:actionRegion >
+                                        <apex:selectList id="brandPosPick" value="{!selectedBrandPosName}"
+                                            size="1">
+                                            <apex:selectOptions value="{!listOfBrandPosition}" />
+                                            <apex:actionSupport event="onchange" reRender="brandPick" status="actStatusId1" />
+                                        </apex:selectList>
+                                       
+                                    </apex:actionRegion>
+                                    <div style="width :100%; align:center;" >
+                                        
+                                        <apex:actionStatus id="actStatusId1" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                    </div>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:actionRegion >
+                                        <apex:selectList id="brandPick" value="{!brandNameFromPage}"
+                                            size="1">
+                                            <apex:selectOptions value="{!BrandList}" />
+                                        </apex:selectList>
+                                    </apex:actionRegion>
+                                </div>
+                                <div class="clear">                  
+                                </div>
+                                <div class="before inner_heading_sub_section margin-bottom10">
+                                    <h4>Agency Information</h4>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Lead Agency Name
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Lead_Creative_Agency_name__c}" styleClass="agencypick" style="display:{!if(joblist.Lead_Agency_Name_Other__c != '','none','')}"/>
+                                    <apex:inputField value="{!joblist.Lead_Agency_Name_Other__c}" styleClass="agencytext" html-placeholder="New Agency" style="display:{!if(joblist.Lead_Agency_Name_Other__c == '','none','')}"/>
+                                </div>
+                                <div class="form-field2 widthautocomp" style="margin-top:13px;">
+                                    <a class="agencyother" rel = 'select' href="#" style= "display:{!if(joblist.Lead_Agency_Name_Other__c != '','none','')}"> Other </a>
+                                    <a href = "#" id="projectother"  class="agencycancel" rel = 'text' style= "display:{!if(joblist.Lead_Agency_Name_Other__c == '','none','')}"> Cancel </a>
+                                </div>
+                                <div class='clear'>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Lead Agency Location
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Lead_Agency_Location_Cluster__c}" />
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Lead_Agency_Location_Country__c}" />
+                                </div>
+                                <div class='clear'>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Agency contact or account director email
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Agency_Contact_Account_Director_Email__c}"  />
+                                </div>
+                                <div class='clear'>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Digital Agency Name (if applicable)                            
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Digital_Agency_Name__c}"  />
+                                </div>
+                                <div class='clear'>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Any other agencies involved?                            
+                                    </apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Any_other_agencies_involved__c}" />
+                                </div>
+                                <div class='clear'>
+                                </div>
+                                <div class="before inner_heading_sub_section margin-bottom10">
+                                    <h4>Overview of Project</h4>
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Project name (e.g. Apollo)    
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <select id="projectList" size="1" style="display:{!if(joblist.Project_Name_Other__c != '','none','')}"  onchange="transferValue(this.value)" class="projectpick" ></select> 
+                                    <apex:actionRegion >
+                                        <apex:inputField value="{!joblist.Project_Details__c}" id="projDetailId" styleClass="projecttextProjDetail hide"/>
+                                        <apex:inputField value="{!joblist.Project_Name_Other__c}" id="projDetailIdOther" styleClass="projecttext" html-data-id="projecttext" style="display:{!if(joblist.Project_Name_Other__c == '','none','')}" />
+                                    </apex:actionRegion>
+                                </div>
+                                <div class="form-field2 widthautocomp" style="margin-top:13px;">
+                                    <a href = "#" id="projectother" class="projectotherClass" rel = 'select' style= "display:{!if(joblist.Project_Name_Other__c != '','none','')}"> Other </a>
+                                    <a href = "#" id="projectother" class="projectcancelClass" rel = 'text' style= "display:{!if(joblist.Project_Name_Other__c == '','none','')}"> Cancel </a>
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Project Location
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Project_Location_Cluster__c}" />
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Project_Location_Country__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Broadcast Market
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp form-field-multiselect">
+                                    <apex:inputField value="{!joblist.Brodcast_Market__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        What type of activity will this production support?
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Production_Activity_Type__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Project Description
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2" style="width: 71%;">
+                                   <apex:inputField value="{!joblist.Project_Description__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Campaign name (e.g. Nothing beats an astronaut) if known
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Campaign_Name__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Execution name (e.g. Lifeguard or Fireman) if known 
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Execution_Name__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >
+                                        Target air date (i.e. when will material be released)
+                                    <strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Target_Air_Date__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="before inner_heading_sub_section margin-bottom10">
+                                    <h4>Production Activity Detail</h4>
+                                </div>
+                                <div class="production-activity-section">    
+                                    <!--  <h2 class="margintop25" style="margin-bottom:10px;">Production Activity Detail</h2> -->
+                    <div class="production-activity-sub-section" style="margin-left:20px;margin-bottom:15px;">
+                        <div id="productionactivitytypegroup">
+                            <div class="form-field" style="padding:5px 0">
+                                <label style="text-align:left;position:relative;">
+                                    Production activity type (select one or more)
+                                    <strong style="top:-8px;"></strong>
+                                    <div style="right:43px;" title="Please select one or more options based on the scope of the project/activity.  Please note your selection should be based on this registration only and should be based on one shoot/creation date as outlined above."></div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <div class="amr_production_activity_parent">
+                            <div style="float:left; width:26%;">
+                                <div class="production-activity-type-sub" style="width: 90%;">Production Activity</div>
+                                <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select either New Original Master or multiple others)</span>
+                                
+                                <div style="height:50px;margin-top:20px;">
+                                    <div class="new_original_master_parent master_parent">
+                                        <apex:inputfield html-data-id="main-new-original-master" styleClass="master original_master" value="{!joblist.NewOriginalMaster__c}"/>
+                                        <apex:outputLabel ><dfn class="">New Original Master</dfn><br/><span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(incl. multiple executions/cutdowns within project)</span></apex:outputLabel>
+                                    </div>
+                                </div>
+                                <div class="bold orclass">
+                                    OR
+                                </div>
+                                <div style="height:258px;">
+                                    <div class="other_master_parent master_parent">
+                                        <apex:inputfield html-data-id="main-new-language-master" styleClass="master other_master"  value="{!joblist.LanguageAdaptionMaster__c}"/>
+                                        <apex:outputLabel > <dfn class="">Language Adaptation of Master</dfn><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:12px;">(non-UniAdapt Model)</span></apex:outputLabel>
+                                    </div>
+                                    <div class="other_master_parent master_parent">
+                                        <apex:inputfield html-data-id="main-new-additional-material-master" styleClass="master other_master"  value="{!joblist.Create_Additional_Material__c}"/>
+                                        <apex:outputLabel ><dfn class="">Additional Supplementary New Material</dfn><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:12px;">(create additional material eg tag-on, pack, modify message)</span></apex:outputLabel>
+                                    </div>
+                                    <div class="other_master_parent master_parent">
+                                        <apex:inputfield html-data-id="main-new-existing-material-master" styleClass="master other_master"  value="{!joblist.ReworkExistingMaterial__c}"/>
+                                        <apex:outputLabel ><dfn class="">Rework Exisiting Material</dfn><br/><span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(create different length/size version or simple re-edit)</span></apex:outputLabel>
+                                    </div>
+                                    <div class="other_master_parent master_parent">
+                                        <apex:inputfield html-data-id="main-new-talent-master" styleClass="master other_master"  value="{!joblist.BuyoutsTalent__c}"/>
+                                        <apex:outputLabel ><dfn class="">Buyouts - Talent</dfn><br/><span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(includes key talent &amp; celebrity)</span></apex:outputLabel>
+                                    </div>
+                                    <div class="other_master_parent master_parent">
+                                        <apex:inputfield html-data-id="main-new-music-master" styleClass="master other_master"  value="{!joblist.BuyoutsMusic__c}"/>
+                                        <apex:outputLabel ><dfn class="">Buyouts - Music</dfn></apex:outputLabel>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- start of secondary div -->
+                            <div class="main-new-original-master secondary-parent" style="float:left;display:none;" summaryText="New Original Master">
+                                <div class="amr-media-channel-master" >
+                                    <div class="production-activity-type-sub" style="width:90%">Media Channel</div>
+                                    <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select multiple)</span>
+                                    
+                                    
+                                    <div class="mediamasterdiv margintop-15">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultTv" html-media="Tv" html-summary-text="Tv-Moving Image" value="{!joblist.NewOriginalMasterTv__c}"/>
+                                        <apex:outputLabel >TV</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultCinema" html-media="Cinema" value="{!joblist.NewOriginalMasterCinema__c}" style="margin-top: -16px;" html-summary-text="Cinema-Moving Image" />
+                                        <apex:outputLabel >Cinema</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultRadio" html-media="Radio" value="{!joblist.NewOriginalMasterRadio__c}"    html-summary-text="Radio-Audio Only"/>
+                                        <apex:outputLabel >Radio</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultPrint" html-media="Print" value="{!joblist.NewOriginalMasterPrint__c}" html-summary-text="Print-Still Image Only"/>
+                                        <apex:outputLabel >Print</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.NewOriginalMasterOutofHome__c}" html-media="Out_Of_Home"  style=""/>
+                                        <apex:outputLabel > Out of Home</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.NewOriginalMasterInStore__c}" html-media="In_Store" style=""/>
+                                        <apex:outputLabel > In Store</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.NewOriginalMasterDigital__c}" html-media="Digital" />
+                                        <apex:outputLabel > Digital </apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv" style="height:41px;">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultInternalVideo" value="{!joblist.NewOriginalMasterInternalVideo__c}" html-media="Internal_video" html-summary-text="Internal Video - Moving Image"/>
+                                        <apex:outputLabel > Internal Video <br/> <span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(internal comms videos and guides)</span> </apex:outputLabel>
+                                    </div>
+                                </div>
+                                <div class="amr-media-master" style="float:left;">
+                                    <div style="width: 83%;" class="production-activity-type-sub">Medium</div>
+                                    <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select multiple but some are default)</span>
+                                    
+                                    <div class="submediamasterdiv margintop-15">
+                                        <apex:inputfield styleClass="defaultTv" value="{!joblist.NewOriginalMasterTvMovingImage__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultCinema" value="{!joblist.NewOriginalMasterCinemaMovingImage__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultRadio" value="{!joblist.NewOriginalMasterRadioAudio__c}" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultPrint" value="{!joblist.NewOriginalMasterPrintStillImage__c}" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentOut_Of_Home">
+                                        <apex:inputfield value="{!joblist.NewOriginalMasterOutofHomeMovingImage__c}" html-labelText="Out Of Home - Moving Image" />
+                                        <apex:outputLabel >Moving Image </apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.NewOriginalMasterOutofHomeAudio__c}" html-labelText="Out Of Home - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.NewOriginalMasterOutofHomeStillImage__c}" html-labelText="Out Of Home - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentIn_Store">
+                                        <apex:inputfield value="{!joblist.NewOriginalMasterInStoreMovingImage__c}" html-labelText="In Store - Moving Image" />
+                                        <apex:outputLabel >Moving Image </apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.NewOriginalMasterInStoreAudio__c}" html-labelText="In Store - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.NewOriginalMasterInStoreStillImage__c}" html-labelText="In Store - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentDigital">
+                                        <apex:inputfield value="{!joblist.NewOriginalMasterDigitalMovingImage__c}" html-labelText="Digital - Moving Image"/>
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.NewOriginalMasterDigitalAudio__c}" html-labelText="Digital - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.NewOriginalMasterDigitalStillImage__c}" html-labelText="Digital - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.New_Original_Master_Digital_ED__c}" html-labelText="Digital - Editorial" />
+                                        <apex:outputLabel >Editorial</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultInternalVideo" value="{!joblist.NewOriginalMasterInternalVdoMovingImage__c}"/>
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                        <!-- need to change -->
+                                    </div>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <!-- end of secondary div -->                        
+                            <!-- start of secondary div -->
+                            <div class="main-new-language-master secondary-parent" style="float:left;display:none;" summaryText="Language Adaptation of Master">
+                                <div class="amr-media-channel-master" >
+                                    <div class="production-activity-type-sub" style="width:90%">Media Channel</div>
+                                    <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select multiple)</span>
+                                    
+                                    <div class="mediamasterdiv margintop-15">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultTv" html-media="Tv" html-summary-text="Tv-Moving Image" value="{!joblist.LanguageAdaptionMasterTv__c}"/>
+                                        <apex:outputLabel >TV</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultCinema" html-media="Cinema" value="{!joblist.LanguageAdaptionMasterCinema__c}" style="margin-top: -16px;" html-summary-text="Cinema-Moving Image" />
+                                        <apex:outputLabel >Cinema</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultRadio" html-media="Radio" value="{!joblist.LanguageAdaptionMasterRadio__c}"    html-summary-text="Radio-Audio Only"/>
+                                        <apex:outputLabel >Radio</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultPrint" html-media="Print" value="{!joblist.LanguageAdaptionMasterPrint__c}" html-summary-text="Print-Still Image Only"/>
+                                        <apex:outputLabel >Print</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.LanguageAdaptionMasterOutofHome__c}" html-media="Out_Of_Home"  style=""/>
+                                        <apex:outputLabel > Out of Home</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.LanguageAdaptionMasterInStore__c}" html-media="In_Store" style=""/>
+                                        <apex:outputLabel > In Store</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.LanguageAdaptionMasterDigital__c}" html-media="Digital" />
+                                        <apex:outputLabel > Digital </apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv" style="height:41px;">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultInternalVideo" value="{!joblist.LanguageAdaptionMasterInternalVideo__c}" html-media="Internal_video" html-summary-text="Internal Video - Moving Image"/>
+                                        <apex:outputLabel > Internal Video <br/> <span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(internal comms videos and guides)</span> </apex:outputLabel>
+                                    </div>
+                                </div>
+                                <div class="amr-media-master" style="float:left;">
+                                    <div style="width: 83%;" class="production-activity-type-sub">Medium</div>
+                                    <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select multiple but some are default)</span>
+                                    
+                                    <div class="submediamasterdiv margintop-15">
+                                        <apex:inputfield styleClass="defaultTv" value="{!joblist.LanguageAdaptionMasterTvMovingImage__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultCinema" value="{!joblist.Cinema_Moving_Image__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultRadio" value="{!joblist.LanguageAdaptionMasterRadioAudio__c}" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultPrint" value="{!joblist.LanguageAdaptionMasterPrintStillImage__c}" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentOut_Of_Home">
+                                        <apex:inputfield value="{!joblist.LanguageAdaptionMasterOutHomeMovingImage__c}" html-labelText="Out Of Home - Moving Image" />
+                                        <apex:outputLabel >Moving Image </apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.LanguageAdaptionMasterOutofHomeAudio__c}" html-labelText="Out Of Home - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.LanguageAdaptionMasterOutHomeStillImage__c}" html-labelText="Out Of Home - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentIn_Store">
+                                        <apex:inputfield value="{!joblist.LanguageAdaptionMasterInStoreMovingImage__c}" html-labelText="In Store - Moving Image" />
+                                        <apex:outputLabel >Moving Image </apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.LanguageAdaptionMasterInStoreAudio__c}" html-labelText="In Store - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.LanguageAdaptionMasterInStoreStillImage__c}" html-labelText="In Store - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentDigital">
+                                        <apex:inputfield value="{!joblist.LanguageAdaptionMasterDigitalMovingImage__c}" html-labelText="Digital - Moving Image"/>
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.LanguageAdaptionMasterDigitalAudio__c}" html-labelText="Digital - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.LanguageAdaptionMasterDigitalStillImage__c}" html-labelText="Digital - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.Language_Adaptation_of_Master_Digital_ED__c}" html-labelText="Digital - Editorial" />
+                                        <apex:outputLabel >Editorial</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultInternalVideo" value="{!joblist.LanguageAdaptionMasterInternalVdoMvngImg__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <!-- end of secondary div -->
+                            <!-- start of secondary div -->
+                            <div class="main-new-existing-material-master secondary-parent" style="float:left;display:none;" summaryText="Rework Exisiting Material">
+                                <div class="amr-media-channel-master" >
+                                    <div class="production-activity-type-sub" style="width:90%">Media Channel</div>
+                                    <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select multiple)</span>
+                                    
+                                    <div class="mediamasterdiv margintop-15">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultTv" html-media="Tv" html-summary-text="Tv-Moving Image" value="{!joblist.ReworkExistingMaterialTv__c}"/>
+                                        <apex:outputLabel >TV</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultCinema" html-media="Cinema" value="{!joblist.ReworkExistingMaterialCinema__c}" style="margin-top: -16px;" html-summary-text="Cinema-Moving Image" />
+                                        <apex:outputLabel >Cinema</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultRadio" html-media="Radio" value="{!joblist.ReworkExistingMaterialRadio__c}"    html-summary-text="Radio-Audio Only"/>
+                                        <apex:outputLabel >Radio</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultPrint" html-media="Print" value="{!joblist.ReworkExistingMaterialPrint__c}" html-summary-text="Print-Still Image Only"/>
+                                        <apex:outputLabel >Print</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.ReworkExistingMaterialOutofHome__c}" html-media="Out_Of_Home"  style=""/>
+                                        <apex:outputLabel > Out of Home</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.ReworkExistingMaterialInStore__c}" html-media="In_Store" style=""/>
+                                        <apex:outputLabel > In Store</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.ReworkExistingMaterialDigital__c}" html-media="Digital" />
+                                        <apex:outputLabel > Digital </apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv" style="height:41px;">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultInternalVideo" value="{!joblist.ReworkExistingMaterialInternalVideo__c}" html-media="Internal_video" html-summary-text="Internal Video - Moving Image"/>
+                                        <apex:outputLabel > Internal Video <br/> <span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(internal comms videos and guides)</span> </apex:outputLabel>
+                                    </div>
+                                </div>
+                                <div class="amr-media-master" style="float:left;">
+                                    <div style="width: 83%;" class="production-activity-type-sub">Medium</div>
+                                    <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select multiple but some are default)</span>
+                                    
+                                    <div class="submediamasterdiv margintop-15">
+                                        <apex:inputfield styleClass="defaultTv" value="{!joblist.ReworkExistingMaterialTvMovingImage__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultCinema" value="{!joblist.ReworkExistingMaterialCinemaMovingImage__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultRadio" value="{!joblist.ReworkExistingMaterialRadioAudio__c}" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultPrint" value="{!joblist.ReworkExistingMaterialPrintStillImage__c}" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentOut_Of_Home">
+                                        <apex:inputfield value="{!joblist.ReworkExistingMaterialOutHomeMovingImage__c}" html-labelText="Out Of Home - Moving Image" />
+                                        <apex:outputLabel >Moving Image </apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.ReworkExistingMaterialOutofHomeAudio__c}" html-labelText="Out Of Home - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.ReworkExistingMaterialOutHomeStillImage__c}" html-labelText="Out Of Home - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentIn_Store">
+                                        <apex:inputfield value="{!joblist.ReworkExistingMaterialInStoreMovingImage__c}" html-labelText="In Store - Moving Image" />
+                                        <apex:outputLabel >Moving Image </apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.ReworkExistingMaterialInStoreAudio__c}" html-labelText="In Store - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.In_Store_Still_Image__c}" html-labelText="In Store - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentDigital">
+                                        <apex:inputfield value="{!joblist.ReworkExistingMaterialDigitalMovingImage__c}" html-labelText="Digital - Moving Image"/>
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.ReworkExistingMaterialDigitalAudio__c}" html-labelText="Digital - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.ReworkExistingMaterialDigitalStillImage__c}" html-labelText="Digital - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.Rework_Exisiting_Material_Digital_ED__c}" html-labelText="Digital - Editorial" />
+                                        <apex:outputLabel >Editorial</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultInternalVideo" value="{!joblist.ReworkExistingMaterialInternalVdoMovImg__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <!-- end of secondary div -->
+                            <!-- start of secondary div -->
+                            <div class="main-new-additional-material-master secondary-parent" style="float:left;display:none;" summaryText="Additional Supplementary New Material">
+                                <div class="amr-media-channel-master" >
+                                    <div class="production-activity-type-sub" style="width:90%">Media Channel</div>
+                                    <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select multiple)</span>
+                                    
+                                    <div class="mediamasterdiv margintop-15">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultTv" html-media="Tv" html-summary-text="Tv-Moving Image" value="{!joblist.AdditionalSupplementaryNewMaterialTv__c}"/>
+                                        <apex:outputLabel >TV</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultCinema" html-media="Cinema" value="{!joblist.AdditionalSupplementaryNewMaterialCinema__c}" style="margin-top: -16px;" html-summary-text="Cinema-Moving Image" />
+                                        <apex:outputLabel >Cinema</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultRadio" html-media="Radio" value="{!joblist.AdditionalSupplementaryNewMaterialRadio__c}"    html-summary-text="Radio-Audio Only"/>
+                                        <apex:outputLabel >Radio</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultPrint" html-media="Print" value="{!joblist.AdditionalSupplementaryNewMaterialPrint__c}" html-summary-text="Print-Still Image Only"/>
+                                        <apex:outputLabel >Print</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.AdditionalSupplementaryNewMaterialOOH__c}" html-media="Out_Of_Home"  style=""/>
+                                        <apex:outputLabel > Out of Home</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.AdditionalSupplementaryNewMaterialStore__c}" html-media="In_Store" style=""/>
+                                        <apex:outputLabel > In Store</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.AdditionalSupplementaryNewMaterialDigi__c}" html-media="Digital" />
+                                        <apex:outputLabel > Digital </apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv" style="height:41px;">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultInternalVideo" value="{!joblist.AdditionalSupplementaryNewMaterialIVideo__c}" html-media="Internal_video" html-summary-text="Internal Video - Moving Image"/>
+                                        <apex:outputLabel > Internal Video <br/> <span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(internal comms videos and guides)</span> </apex:outputLabel>
+                                    </div>
+                                </div>
+                                <div class="amr-media-master" style="float:left;">
+                                    <div style="width: 83%;" class="production-activity-type-sub">Medium</div>
+                                    <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select multiple but some are default)</span>
+                                    
+                                    <div class="submediamasterdiv margintop-15">
+                                        <apex:inputfield styleClass="defaultTv" value="{!joblist.AdditionalSupplementaryNewMaterialTvMI__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultCinema" value="{!joblist.AdditionalSupplementaryNewMaterialCinMI__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultRadio" value="{!joblist.AdditionalSupplementaryNewMaterialRA__c}" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultPrint" value="{!joblist.AdditionalSupplementaryNewMaterialPSI__c}" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentOut_Of_Home">
+                                        <apex:inputfield value="{!joblist.AdditionalSupplementaryNewMaterialOofHMI__c}" html-labelText="Out Of Home - Moving Image" />
+                                        <apex:outputLabel >Moving Image </apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.AdditionalSupplementaryNewMaterialOofHA__c}" html-labelText="Out Of Home - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.AdditionalSupplementaryNewMaterialOofHSI__c}" html-labelText="Out Of Home - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentIn_Store">
+                                        <apex:inputfield value="{!joblist.AdditionalSupplementaryNewMaterialInSMI__c}" html-labelText="In Store - Moving Image" />
+                                        <apex:outputLabel >Moving Image </apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.AdditionalSupplementaryNewMaterialInSA__c}" html-labelText="In Store - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.AdditionalSupplementaryNewMaterialInSSI__c}" html-labelText="In Store - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentDigital">
+                                        <apex:inputfield value="{!joblist.AdditionalSupplementaryNewMaterialDigiMI__c}" html-labelText="Digital - Moving Image"/>
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                        <!--  <apex:inputfield value="{!joblist.AdditionalSupplementaryNewMaterialDigiA__c}" html-labelText="Digital - Audio" />-->
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.AdditionalSupplementaryNewMaterialDigiSI__c}" html-labelText="Digital - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.Additional_Supplementary_NM_Digital_ED__c}" html-labelText="Digital - Editorial" />
+                                        <apex:outputLabel >Editorial</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultInternalVideo" value="{!joblist.ReworkExistingMaterialInternalVdoMovImg__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <!-- end of secondary div -->
+                            <!-- start of secondary div -->
+                            <div class="main-new-talent-master secondary-parent" style="float:left;display:none;" summaryText="Buyouts - Talent">
+                                <div class="amr-media-channel-master" >
+                                    <div class="production-activity-type-sub" style="width:90%">Media Channel</div>
+                                    <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select multiple)</span>
+                                    
+                                    <div class="mediamasterdiv margintop-15">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultTv" html-media="Tv" html-summary-text="Tv-Moving Image" value="{!joblist.BuyoutsTalentTv__c}"/>
+                                        <apex:outputLabel >TV</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultCinema" html-media="Cinema" value="{!joblist.BuyoutsTalentCinema__c}" style="margin-top: -16px;" html-summary-text="Cinema-Moving Image" />
+                                        <apex:outputLabel >Cinema</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultRadio" html-media="Radio" value="{!joblist.BuyoutsTalentRadio__c}"    html-summary-text="Radio-Audio Only"/>
+                                        <apex:outputLabel >Radio</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultPrint" html-media="Print" value="{!joblist.BuyoutsTalentPrint__c}" html-summary-text="Print-Still Image Only"/>
+                                        <apex:outputLabel >Print</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.BuyoutsTalentOutofHome__c}" html-media="Out_Of_Home"  style=""/>
+                                        <apex:outputLabel > Out of Home</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.BuyoutsTalentInStore__c}" html-media="In_Store" style=""/>
+                                        <apex:outputLabel > In Store</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.BuyoutsTalentDigital__c}" html-media="Digital" />
+                                        <apex:outputLabel > Digital </apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv" style="height:41px;">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultInternalVideo" value="{!joblist.BuyoutsTalentInternalVideo__c}" html-media="Internal_video" html-summary-text="Internal Video - Moving Image"/>
+                                        <apex:outputLabel > Internal Video <br/> <span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(internal comms videos and guides)</span> </apex:outputLabel>
+                                    </div>
+                                </div>
+                                <div class="amr-media-master" style="float:left;">
+                                    <div style="width: 83%;" class="production-activity-type-sub">Medium</div>
+                                    <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select multiple but some are default)</span>
+                                    
+                                    <div class="submediamasterdiv margintop-15">
+                                        <apex:inputfield styleClass="defaultTv" value="{!joblist.BuyoutsTalentTvMovingImage__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultCinema" value="{!joblist.BuyoutsTalentCinemaMovingImage__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultRadio" value="{!joblist.BuyoutsTalentRadioAudio__c}" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultPrint" value="{!joblist.Print_Still_Image__c}" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentOut_Of_Home">
+                                        <apex:inputfield value="{!joblist.BuyoutsTalentOutofHomeMovingImage__c}" html-labelText="Out Of Home - Moving Image" />
+                                        <apex:outputLabel >Moving Image </apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.BuyoutsTalentOutofHomeAudio__c}" html-labelText="Out Of Home - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.BuyoutsTalentOutofHomeStillImage__c}" html-labelText="Out Of Home - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentIn_Store">
+                                        <apex:inputfield value="{!joblist.BuyoutsTalentInStoreMovingImage__c}" html-labelText="In Store - Moving Image" />
+                                        <apex:outputLabel >Moving Image </apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.BuyoutsTalentInStoreAudio__c}" html-labelText="In Store - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.BuyoutsTalentInStoreStillImage__c}" html-labelText="In Store - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentDigital">
+                                        <apex:inputfield value="{!joblist.BuyoutsTalentDigitalMovingImage__c}" html-labelText="Digital - Moving Image"/>
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.BuyoutsTalentDigitalAudio__c}" html-labelText="Digital - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.BuyoutsTalentDigitalStillImage__c}" html-labelText="Digital - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.Buyouts_Talent_Digital_ED__c}" html-labelText="Digital - Editorial" />
+                                        <apex:outputLabel >Editorial</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultInternalVideo" value="{!joblist.BuyoutsTalentInternalVideoMovingImage__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <!-- end of secondary div -->
+                            <!-- start of secondary div -->
+                            <div class="main-new-music-master secondary-parent" style="float:left;display:none;" summaryText="Buyouts - Music">
+                                <div class="amr-media-channel-master" >
+                                    <div class="production-activity-type-sub" style="width:90%">Media Channel</div>
+                                    <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select multiple)</span>
+                                    
+                                    <div class="mediamasterdiv margintop-15">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultTv" html-media="Tv" html-summary-text="Tv-Moving Image" value="{!joblist.BuyoutsMusicTv__c}"/>
+                                        <apex:outputLabel >TV</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultCinema" html-media="Cinema" value="{!joblist.BuyoutsMusicCinema__c}" style="margin-top: -16px;" html-summary-text="Cinema-Moving Image" />
+                                        <apex:outputLabel >Cinema</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultRadio" html-media="Radio" value="{!joblist.BuyoutsMusicRadio__c}"    html-summary-text="Radio-Audio Only"/>
+                                        <apex:outputLabel >Radio</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultPrint" html-media="Print" value="{!joblist.BuyoutsMusicPrint__c}" html-summary-text="Print-Still Image Only"/>
+                                        <apex:outputLabel >Print</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.BuyoutsMusicOutofHome__c}" html-media="Out_Of_Home"  style=""/>
+                                        <apex:outputLabel > Out of Home</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.BuyoutsMusicInStore__c}" html-media="In_Store" style=""/>
+                                        <apex:outputLabel > In Store</apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv">
+                                        <apex:inputfield styleClass="sub-master additional2" value="{!joblist.BuyoutsMusicDigital__c}" html-media="Digital" />
+                                        <apex:outputLabel > Digital </apex:outputLabel>
+                                    </div>
+                                    <div class="mediamasterdiv" style="height:41px;">
+                                        <apex:inputfield styleClass="sub-master additional" html-data-id="defaultInternalVideo" value="{!joblist.BuyoutsMusicInternalVideo__c}" html-media="Internal_video" html-summary-text="Internal Video - Moving Image"/>
+                                        <apex:outputLabel > Internal Video <br/> <span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(internal comms videos and guides)</span> </apex:outputLabel>
+                                    </div>
+                                </div>
+                                <div class="amr-media-master" style="float:left;">
+                                    <div style="width: 83%;" class="production-activity-type-sub">Medium</div>
+                                    <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select multiple but some are default)</span>
+                                    
+                                    <div class="submediamasterdiv margintop-15">
+                                        <apex:inputfield styleClass="defaultTv" value="{!joblist.BuyoutsMusicTvMovingImage__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultCinema" value="{!joblist.BuyoutsMusicCinemaMovingImage__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultRadio" value="{!joblist.BuyoutsMusicRadioAudio__c}" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultPrint" value="{!joblist.BuyoutsMusicPrintStillImage__c}" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentOut_Of_Home">
+                                        <apex:inputfield value="{!joblist.BuyoutsMusicOutofHomeMovingImage__c}" html-labelText="Out Of Home - Moving Image" />
+                                        <apex:outputLabel >Moving Image </apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.BuyoutsMusicOutofHomeAudio__c}" html-labelText="Out Of Home - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.BuyoutsMusicOutofHomeStillImage__c}" html-labelText="Out Of Home - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentIn_Store">
+                                        <apex:inputfield value="{!joblist.BuyoutsMusicInStoreMovingImage__c}" html-labelText="In Store - Moving Image" />
+                                        <apex:outputLabel >Moving Image </apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.BuyoutsMusicInStoreAudio__c}" html-labelText="In Store - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.BuyoutsMusicInStoreStillImage__c}" html-labelText="In Store - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv dependentDigital">
+                                        <apex:inputfield value="{!joblist.BuyoutsMusicDigitalMovingImage__c}" html-labelText="Digital - Moving Image"/>
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.BuyoutsMusicDigitalAudio__c}" html-labelText="Digital - Audio" />
+                                        <apex:outputLabel >Audio Only</apex:outputLabel>
+                                        <apex:inputfield value="{!joblist.BuyoutsMusicDigitalStillImage__c}" html-labelText="Digital - Still Image" />
+                                        <apex:outputLabel >Still Image Only</apex:outputLabel>
+                                        <!--  <apex:inputfield value="{!joblist.Digital_Editorial__c}" html-labelText="Digital - Editorial" /> -->
+                                        <apex:outputLabel >Editorial</apex:outputLabel>
+                                    </div>
+                                    <div class="submediamasterdiv">
+                                        <apex:inputfield styleClass="defaultInternalVideo" value="{!joblist.BuyoutsMusicInternalVideoMovingImage__c}" />
+                                        <apex:outputLabel >Moving Image</apex:outputLabel>
+                                    </div>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <!-- end of secondary div -->
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                                    
+                                </div>
+                                
+                                <div class="summary" style="visibility:none;border-bottom:1px solid #E6E6E6;">
+                                </div>
+                    
+                                <div class="form-field2">
+                                    <apex:outputLabel style="padding:0;">Do you anticipate that your production will require Music?<strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2-radio">
+                                    <apex:selectRadio value="{!joblist.Require_Music__c}">
+                                        <apex:selectOption itemValue="Yes" itemLabel="Yes" />
+                                        <apex:selectOption itemValue="No" itemLabel="No" />
+                                    </apex:selectRadio>
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel style="padding:0;">Do you anticipate that your production will require Celebrity Talent?<strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2-radio">
+                                    <apex:selectRadio value="{!joblist.Require_Celebrity_Talent__c}" dir="RTL">
+                                        <apex:selectOption itemValue="Yes" itemLabel="Yes"  />
+                                        <apex:selectOption itemValue="No" itemLabel="No" />
+                                    </apex:selectRadio>
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="form-field2">
+                                    <apex:outputLabel >Current stage of your production activity<strong></strong></apex:outputLabel>
+                                </div>
+                                <div class="form-field2 widthautocomp">
+                                    <apex:inputField value="{!joblist.Stage_of_Production_Activity__c}" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="right">                                    
+                                    <apex:commandButton value="Update" action="{!UpdateJob}" onclick="enableText()" styleClass="commonbtn" />
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </apex:form>
+        </div>
+    </div>
+    <div class="main_inner_section margin-btwn-container12 bg-g1">
+        <h4 class="main_inner_sectionh4" hashId="notes">
+            Notes
+            <div data-id="job_notes" class="commonall openclass">                                       
+            </div>
+        </h4>
+        <div class="submain_inner_section job_notes hide" style="">
+            <div class="inner_section">
+                <div class="savings_file_download inner_sub_section" style="display: block;">
+                    <div class="inner_sub2_section">
+                        <apex:form >
+                            <div class="inner-content">
+                                <div class="before inner_heading_sub_section margin-btwn-inner-container">
+                                    <h4>
+                                        Add Comment                                         
+                                    </h4>
+                                </div>                                
+                                <div style="width:100%;">
+                                    <apex:inputField value="{!joblist.Job_Notes__c}" html-placeholder="Deliverables, Budget, timings etc "/>
+                                </div>
+                                <div class="clear">
+                                </div>
+                                <div class="right margin-top18">                                        
+                                    <apex:commandButton value="Save" action="{!updateJobForNotes}" onclick="enableText()" styleClass="commonbtn"/>
+                                </div>
+                                <div class="clear">
+                                </div>                                
+                            </div>
+                        </apex:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main_inner_section margin-btwn-container12 bg-g1">
+        <h4 class="main_inner_sectionh4" hashId="creative-docs">
+            Creative Docs
+            <div data-id="job_creative_docs" class="commonall openclass">                                       
+            </div>
+        </h4>
+        <div class="submain_inner_section job_creative_docs hide">
+            <div class="inner_section">
+                <div class="savings_file_download inner_sub_section" style="display: block;">
+                    <div class="inner_sub2_section">
+                        <apex:form >
+                            <div class="inner-content">
+                                <div class="before inner_heading_sub_section margin-btwn-inner-container">
+                                    <h4>
+                                        Upload                                         
+                                    </h4>
+                                </div>
+                                <div class="margin-btwn-inner-container">
+                                    <div class="left" style="margin-left:12px;">
+                                        <apex:inputFile value="{!document.body}"  filename="{!document.name}" />
+                                    </div> 
+                                    <div class="right">
+                                        <apex:commandButton action="{!uploadDocument}" value="Upload" styleClass="commonbtn" style="width: 100px;" status="actStatusIdDoc"/>
+                                        <apex:actionStatus id="actStatusIdDoc" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                    </div>
+                                    <div class="clear">
+                                    </div>
+                                </div>
+                                <div class="before inner_heading_sub_section margin-btwn-container12">
+                                    <h4>
+                                        Creative Docs - List                                         
+                                    </h4>
+                                </div>
+                                <div class="margin-btwn-inner-container">
+                                    <apex:pageBlock >
+                                        <apex:pageBlockSection columns="1">
+                                            <apex:pageBlockTable value="{!documentList}" var="doc" rendered="{!if(documentList.size>0,true,false)}" columnswidth="500px,100px">
+                                                <apex:column value="{!doc.ContentFileName}" headerValue="File Name"  styleclass="th_cd_filename_header" />
+                                                <apex:column headerValue="Date">
+                                                    <apex:outputText value="{0,date,MM/dd/yy}">
+                                                        <apex:param value="{!doc.createdDate}" />
+                                                    </apex:outputText>
+                                                </apex:column>
+                                                <apex:column headerValue="Remove">
+                                                    <apex:commandLink value="Remove"  action="{!deleteDocuments}" >
+                                                        <apex:param name="recordId"  assignTo="{!chosenDocId}" value="{!doc.id}"/>
+                                                    </apex:commandLink>
+                                                </apex:column>
+                                            </apex:pageBlockTable>
+                                        </apex:pageBlockSection>
+                                    </apex:pageBlock>
+                                </div>
+                            </div>
+                            <apex:actionRegion >
+                                <apex:actionFunction name="sendCategory" action="{!brandPositionListData}" reRender="brandPosPick,brandPick" oncomplete="closeloading()">
+                                    <apex:param id="catname" assignTo="{!selectedCategory}" name="categoryName" value="{!selectedCategory}" />
+                                 </apex:actionFunction>
+                                 <!-- <apex:actionFunction name="sendProject" action="{!ProjectData}" reRender="projectList" >
+                                    <apex:param id="projectValue" assignTo="{!projNameFromPage}" name="projectValue" value="{!projNameFromPage}" />
+                                 </apex:actionFunction> -->
+                                 <apex:actionFunction name="hideAlert" action="{!alertHide}" reRender="view">
+                                        <apex:param id="aname" assignTo="{!selectedAlert}" name="selectedAlert" value="{!selectedAlert}" />
+                                 </apex:actionFunction>
+                            </apex:actionRegion>
+                        </apex:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>            
+            <div class="main_inner_section margin-btwn-container bg-g1">
+                <h4 class="main_inner_sectionh4" hashId="saving-details">
+                    Saving Details
+                    <div data-id="job_saving_details" class="commonall openclass">                                      
+                    </div>
+                </h4>
+                
+                <div class="submain_inner_section job_saving_details hide">
+                    <div class="inner_section">
+                        <div class="tabsection">
+                            <apex:tabPanel switchType="client" >
+                                <apex:tab label="Savings" name="savings" id="saving_input"> <!-- rerender="refreshCTP" -->
+									   <apex:outputPanel id="refreshCTP">
+									        <apex:include pageName="Amr_NewSaving"/>
+									   </apex:outputPanel>
+                                </apex:tab>
+                                <apex:tab label="Submitted Savings" name="saving_submitted" id="saving_submitted" >
+   
+									<apex:pageBlock >
+									<apex:pageBlockTable value="{!quoteList}"  var="obj">
+									<apex:column headerValue="AdManager No">
+									 <apex:outputText value="{!adManagerNumber}" />
+									</apex:column>
+									<apex:column headerValue="No Of Masters ">
+									<apex:outputField value="{!obj.No_of_Masters__c}"/>
+									</apex:column>
+									<apex:column headerValue="Duration Of Masters">
+									<apex:outputText value="{!obj.Duration_of_Masters__c}" />
+									</apex:column>
+									<apex:column headerValue="No of additional films">
+									<apex:outputText value="{!obj.No_of_Additional_Films__c}"/>
+									</apex:column>
+									<apex:column headerValue="Duration of additional films">
+									<apex:outputText value="{!obj.Duration_of_Additional_Films__c}"/>
+									</apex:column>
+									<apex:column headerValue="Total Number Of films">
+									<apex:outputText value="{!obj.Total_no_of_films__c}" />
+									</apex:column>
+									<apex:column headerValue="No Of Shoot Days">
+									<apex:outputText value="{!obj.No_of_shoot_days__c}"/>
+									</apex:column>
+									<apex:column headerValue="Shoot Location">
+									<apex:outputText value="{!obj.Shoot_Location__c}" />
+									</apex:column>
+									<apex:column headerValue="Script Title">
+									<apex:outputText value="{!obj.Script_Title__c}"/>
+									</apex:column>
+									<apex:column headerValue="Scope re-Brief">
+									<apex:outputText value="{!obj.Scope_re_brief__c}"/>
+									</apex:column>
+									<apex:column headerValue="Folder">
+									 <apex:outputText value="{!obj.Folder_Name__c}"/>
+									</apex:column>
+									<apex:column headerValue="Production Type">
+									<apex:outputText value="{!obj.Production_Type__c}"/>
+									</apex:column>
+									<apex:column headerValue="Stage RAP Engaged">
+									<apex:outputText value="{!obj.Stage_RAP_engaged__c}"/>
+									</apex:column>
+									
+									<apex:column headerValue="€ Saving - Average of Quotes">
+									<apex:outputText value="{!obj.Saving_Average_of_Quotes__c}"/>
+									</apex:column>
+									<apex:column headerValue="% Saving - Average of Quotes">
+									<apex:outputText value="{!obj.Percentage_Saving_Average_of_Quotes__c}"/>
+									</apex:column>
+									<apex:column headerValue="€ Saving - Accepted Quote">
+									<apex:outputText value="{!obj.Euro_Saving_Average_of_Quotes__c}"/>
+									</apex:column>
+									<apex:column headerValue="% Saving - Accepted Quote">
+									<apex:outputText value="{!obj.Percentage_Saving_Accepted_Quote__c}"/>
+									</apex:column>
+									<apex:column headerValue="Cost Per Master">
+									<apex:outputText value="{!obj.Cost_Per_Master__c}"/>
+									</apex:column>
+									<apex:column headerValue="Cost per master per shoot day">
+									<apex:outputText value="{!obj.Cost_per_master_per_shoot_day__c}"/>
+									</apex:column>
+									
+									
+									<apex:column headerValue="View">
+									<apex:outputlink target="_blank" value="Amr_SubmittedSaving?id={!obj.id}">View</apex:outputlink>
+									</apex:column>
+									
+									</apex:pageBlockTable>
+									 </apex:pageBlock>                                                                      
+                                </apex:tab>
+                            </apex:tabPanel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        
+    </div>
+   
+</apex:page>

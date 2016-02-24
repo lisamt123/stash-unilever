@@ -1,0 +1,46 @@
+<!-- Email Template for Feedback Invitation to the Participants who are attended to the course registered  -->
+<messaging:emailTemplate subject="Feedback on the Course Attended" recipientType="User" relatedToType="FA_Occurence_Member__c">
+<messaging:htmlEmailBody >
+ 
+  <!-- Displaying the Coure Logo in the Left top most of the Course Inviitation Mail -->
+<apex:image value="{!relatedTo.FA_Course_Occurence__r.FA_Course__r.FA_Course_Logo__c}" width="80px" height="80px"/>
+ 
+ <td>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+ </td>      
+ 
+ <!-- Displaying the Company Logo in the Right top most of the Course Inviitation Mail -->                                              
+ <apex:image id="Logo" value="https://unilever--adfs--c.cs14.content.force.com/servlet/servlet.ImageServer?id=015c0000000E92z&oid=00Dc0000001KMA0&lastMod=1366034146000"
+ width="80px" height="80px" />  
+ 
+ <font face="Calibri" size="3"> 
+
+<p>Dear &nbsp; <apex:outputtext value=" {!relatedTo.FA_Participant_Instructor__r.Name}" escape="false"></apex:outputtext>,</p> 
+ 
+ <!--  Content to be appeared in the Mail Template -->
+     <p> We would like to thank your participation for the &nbsp;<b><apex:outputtext value="{!relatedTo.FA_Course_Occurence__r.FA_Course__r.Name}" escape="false"></apex:outputtext></b> Training Event conducted at &nbsp;
+      <b><apex:outputtext value="{!relatedTo.FA_Course_Occurence__r.FA_Training_Venue__r.Name}" escape="false"></apex:outputtext></b> 
+      on &nbsp; <b><apex:outputText value="{0,date,dd-MMM-yyyy}"><apex:param value="{!relatedTo.FA_Course_Occurence__r.FA_Start_Date_Time__c}"> </apex:param> </apex:outputtext>,</b></p>
+ <p>  We would like to obtain your views on the program and in relation to falls generally.  We would greatly appreciate you taking the time to complete the feedback. </p>
+
+<p>The data collected during feedback will contribute to a better understanding of the appropriate direction of future development in the training program and information necessary for the development and implementation of a cumulative effects monitoring program.</p> 
+
+<p>Please remember that any data pertaining to you as an individual participant will be kept confidential.</p>
+
+<p>If you have any questions regarding the survey process or experience any technical difficulties, please contact us.</p>
+
+Thanking you,
+<p><b>Course Administrator</b></p>
+</font> 
+
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

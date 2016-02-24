@@ -1,0 +1,18 @@
+<font face="Arial" size = "2" color="#000099"> <b>Üdvözlettel  </b>  <br/>
+<br/>
+<br/>
+<b>{!Case.OwnerFullName} </b> <br/>
+<b>Fogyasztói Kapcsolatok osztálya, {!Case.Case_Brand__c}</b> </font> <br/>
+<br/>
+
+
+ <img src={!IF(ISBLANK(Case.External_Image_Address__c),"https://unilever--c.na9.content.force.com/servlet/servlet.ImageServer?id=015E0000005HwhT&oid=00D180000008e54&lastMod=1418309606000",Case.External_Image_Address__c)} alt="Logo"/>
+
+<br>
+
+
+
+<font face="Arial"  style="font-size:11px" color="DimGray"> Unilever Magyarország Kft.  <br/>
+1138 Budapest Váci út 182.   <br/>  </font> 
+ <a href="http://www.unilever.hu"> <font face = "Arial" style="font-size:11px" color = "#0099FF"> <b>www.unilever.hu </b></font> </a> &nbsp; 
+ <a href="http://www.unileverjatek.hu"> <font face = "Arial" style="font-size:11px" color = "#0099FF"> <b>www.unileverjatek.hu </b></font> </a>

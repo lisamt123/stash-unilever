@@ -1,0 +1,32 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="p1"><span style="font-size: 10pt; line-height: 107%; font-family: Arial, sans-serif;">Dear {!FAU_Participant__c.FAU_First_Name__c},</span></p>]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p class="MsoNormal" align="center" style="margin-bottom: 0.0001pt; text-align: center;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" align="center" style="margin-bottom: 0.0001pt; text-align: center;"><b><u><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!FAU_Participant__c.FAU_Program_Name__c}</span></u></b><span style="font-size: 10pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" align="center" style="margin-bottom: 0.0001pt; text-align: center;"><b><u><span style="font-size: 10pt; font-family: Arial, sans-serif;">Coaching Reminder</span></u></b><span style="font-size: 10pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">We have noticed in our
+records that your Coaching tasks outstanding.<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Could you please follow
+up on them as soon as possible.<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">To see your progress
+check &nbsp;out your: {!FAU_Participant__c.FAU_Participants_Workbook__c}&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Chatter group
+:&nbsp;{!FAU_Participant__c.FAU_Chatter_Group__c}<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-family: Arial, sans-serif; font-size: 10pt; line-height: 107%; text-align: center;"><br></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-family: Arial, sans-serif; font-size: 10pt; line-height: 107%; text-align: center;">Kind regards,</span></p>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[<div style="color: rgb(0, 0, 0);"><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!FAU_Participant__c.OwnerFullName}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!FAU_Participant__c.OwnerTitle}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Ph:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;{!FAU_Participant__c.OwnerPhone}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Email:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;{!FAU_Participant__c.OwnerEmail}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;"><a href="http://www.unilever.com/"><b><span style="color:blue">www.unilever.com</span></b></a><b>&nbsp;|&nbsp;</b><a href="http://www.facebook.com/unilever"><b><span style="color:blue">www.facebook.com/unilever</span></b></a><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-size:10.0pt;line-height:107%">&nbsp;</span></p></div>]]></td>
+</tr>
+</table>

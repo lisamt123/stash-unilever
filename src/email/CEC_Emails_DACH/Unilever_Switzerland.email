@@ -1,0 +1,16 @@
+<font face="Arial" size = "2" color="#000000"> Mit freundlichen Grüßen   <br/><br/>
+Ihr Konsumentenservice <br/>
+{!User.FirstName}  <span> {!User.LastName} <br/><br/><{!if(Case.Case_Brand__c="","Unilever","")}  {!Case.Case_Brand__c}></b>
+<br/>
+
+
+ <img src={!IF(ISBLANK(Case.External_Image_Address__c),"https://unilever--c.na9.content.force.com/servlet/servlet.ImageServer?id=015E0000005HwhT&oid=00DL0000005tjMU&lastMod=1418309606000",Case.External_Image_Address__c)} alt="Logo"/>
+
+<br>
+
+
+
+<font face="Arial"  style="font-size:13px" color="#000000"><b>Unilever Schweiz GmbH </b><br/></font>
+<font face="Arial"  style="font-size:11px" color="#000000">Bahnhofstrasse 19<br/>
+8240 Thayngen <br/></font>
+ <a href="www.unilever.ch"> <font face = "Arial" style="font-size:11px" color = "#0099FF" > <b>www.unilever.ch</b> </font></a><br/><br/>

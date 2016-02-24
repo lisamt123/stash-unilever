@@ -1,0 +1,14 @@
+<table height="400" width="600" cellpadding="5" border="0" cellspacing="5" >
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<font color="#3366ff"><font style="font-family: arial; font-size: 12pt;"><font style="font-family: arial; font-size: 12pt;">Hello From&nbsp;</font></font><span style="font-size: 15.5555562973022px;">{!if(Case.Brand__c="","Unilever","")}{!Case.Brand__c}</span></font>]]></td>
+</tr>
+<tr height="300" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r2" locked="0" aEditID="c1r2" >
+<![CDATA[<font color="#3366ff" style="font-family: arial; font-size: 12pt;">Thank you for your recent [channel description]</font><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><br></div><div style="color: rgb(0, 0, 0); font-family: arial; font-size: 12pt;"><div style="font-size: 15.5555562973022px;"><span style="color: rgb(51, 102, 255); font-size: 15.5555562973022px;">Yours sincerely</span></div><div style="font-size: 15.5555562973022px;"><span style="color: rgb(51, 102, 255); font-size: 15.5555562973022px;"><br></span></div><span style="font-size: 15.5555562973022px; color: rgb(51, 102, 255);">{!User.Name}</span><div style="font-size: 15.5555562973022px;"><span style="color: rgb(51, 102, 255); font-size: 15.5555562973022px;"><b>Careline Advisor</b></span></div></div>]]></td>
+</tr>
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r3" locked="1" aEditID="c1r3" >
+<![CDATA[]]></td>
+</tr>
+</table>

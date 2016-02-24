@@ -1,0 +1,140 @@
+<apex:page controller="Amr_DownloadSavingFilesController" sidebar="false" id="pageId">
+    <!--  
+    <apex:include pageName="amr_common2" />
+    <apex:pagemessages id="msgs"></apex:pagemessages>
+    
+    <div class="container">
+        <div class="outer_section">
+            <div class="main_inner_section">
+                <h4 class="main_inner_sectionh4">Downloads &lt;AdManager No&gt;</h4>
+                <div class="submain_inner_section" style="">
+                    <div class="inner_section">
+                        <h4>
+                            Download Files                          
+                            <div data-id="savings_file_download" class="commonall minusclass">                                      
+                            </div>
+                        </h4>
+                        <div class="savings_file_download inner_sub_section" style="display: block;">
+                            <div class="inner_sub2_section">
+                                <apex:form >
+                                    <apex:actionFunction name="downloadSelectedFiles" action="{!downloadFile}" reRender="file,msg">
+                                        <apex:param name="one" value="" assignTo="{!folderselected}"/>
+                                    </apex:actionFunction>
+                                    <apex:pageBlock >
+                                        <div class="inner_heading_sub_section">
+                                            <h4>Please Select Folder</h4>
+                                        </div>
+                                        <div class="inner_content_sub_section">
+                                            <apex:pageBlocksection >
+                                                <apex:inputField value="{!savingObj.Folder_Name__c}" onchange="SelectedFolder()" styleClass="FolderSelected"/>
+                                            </apex:pageBlocksection>
+                                        </div>
+                                        <apex:outputPanel id="file">
+                                            <div class="inner_heading_sub_section" style="display:{!if(DisplayList.size>0,'','none')}">
+                                                <h4>{!folderselected}</h4>
+                                            </div>
+                                            <div class="inner_content_sub_section">
+                                                <apex:pageBlocksection >
+                                                    <apex:pageBlockTable value="{!DisplayList}" var="fileObj" rendered="{!if(DisplayList.size>0,true,false)}" columns="1">
+                                                        <apex:column headervalue="Link To downLoad">
+                                                            <apex:outputLink value="/sfc/servlet.shepherd/version/download/{!fileObj.RelatedRecordId}" >{!fileObj.Title}</apex:outputLink>
+                                                        </apex:column>
+                                                    </apex:pageBlockTable>
+                                                </apex:pageBlocksection>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:pageBlock>
+                                </apex:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+    
+    <apex:include pageName="amr_common" />
+    <style type="text/css">
+        .pbBody {
+            background: #fff none repeat scroll 0 0 !important;
+            margin: 0 !important;
+        }       
+        input {
+            margin-top: 5px;
+            padding-top: 0;
+        }
+        select {
+            border: 1px solid #E6E6E6;
+            border-radius: 6px;
+            min-width: 150px;
+        }
+        .inner_content_sub_section {
+            padding: 12px 0 0 0 !important;
+        }
+        tr.headerRow th div {
+            max-width:90% !important;
+        }
+        .apexp .detailList .list td {
+            border:1px solid #E6E6E6;
+        }
+        .select_folder .pbSubsection  {
+            width:20%;
+        }
+    </style>
+    <apex:pagemessages id="msgs"></apex:pagemessages>
+    <div class="container">
+        <div class="outer_section">
+            <div class="main_inner_section margin-btwn-container bg-g1">
+                <h4 class="main_inner_sectionh4">
+                    Downloads &lt;{!adManagerNumber}&gt;                    
+                </h4>
+                <div class="submain_inner_section">
+                    <div class="inner_section">
+                        <div class="inner_sub_section" style="display: block;">
+                            <div class="inner_sub2_section">
+                                <div>                                   
+                                    <div>
+                                        <apex:form >
+                                            <apex:actionFunction name="downloadSelectedFiles" action="{!downloadFile}" reRender="file,msg">
+                                                <apex:param name="one" value="" assignTo="{!folderselected}"/>
+                                            </apex:actionFunction>
+                                            <apex:pageBlock >
+                                                <div class="inner_heading_sub_section">
+                                                    <h4>Please Select Folder</h4>
+                                                </div>
+                                                <div class="inner_content_sub_section margin-btwn-container select_folder">
+                                                    <apex:pageBlocksection >
+                                                        <apex:inputField value="{!savingObj.Folder_Name__c}" onchange="SelectedFolder()" styleClass="FolderSelected"/>
+                                                    </apex:pageBlocksection>
+                                                </div>
+                                                <apex:outputPanel id="file">
+                                                    <script type="text/javascript">
+                                                        $j('.empty').remove();
+                                                    </script>
+                                                    <div class="inner_heading_sub_section" style="display:{!if(DisplayList.size>0,'','none')}">
+                                                        <h4>{!folderselected}</h4>
+                                                    </div>
+                                                    <div class="inner_content_sub_section">
+                                                        <apex:pageBlocksection >
+                                                            <apex:pageBlockTable value="{!DisplayList}" var="fileObj" rendered="{!if(DisplayList.size>0,true,false)}" columns="1">
+                                                                <apex:column headervalue="Link To downLoad">
+                                                                    <apex:outputLink value="/sfc/servlet.shepherd/version/download/{!fileObj.RelatedRecordId}" >{!fileObj.Title}</apex:outputLink>
+                                                                </apex:column>
+                                                            </apex:pageBlockTable>
+                                                        </apex:pageBlocksection>
+                                                    </div>
+                                                </apex:outputPanel>
+                                            </apex:pageBlock>
+                                        </apex:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+    
+</apex:page>

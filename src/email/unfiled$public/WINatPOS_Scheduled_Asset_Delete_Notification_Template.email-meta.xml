@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>WINatPOS Scheduled Asset Delete Notification Template</name>
+    <style>none</style>
+    <subject>WIN@POS Scheduled Asset Delete Notification</subject>
+    <type>custom</type>
+</EmailTemplate>

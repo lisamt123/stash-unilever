@@ -1,0 +1,8 @@
+Alert Rule Name {!cec_Alert_Rule__c.Name}
+
+Level 5 code {!cec_Alert_Tracker__c.L5_Reason_Code__c}
+Product{!cec_Alert_Tracker__c.Product_No_Size__c}
+Store Name{!cec_Store__c.Name}
+Day Code{!cec_Alert_Tracker__c.DayCode__c}
+Case ID{!Case.Id}
+Description{!Case.Description}

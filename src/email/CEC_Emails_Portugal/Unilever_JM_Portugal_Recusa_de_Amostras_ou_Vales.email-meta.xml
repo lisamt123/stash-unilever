@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Modelo para envio de resposta recusando amostras ou vales</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CEC_Unilever_Portugal</letterhead>
+    <name>Unilever JM - Portugal - Recusa de Amostras ou Vales</name>
+    <style>freeForm</style>
+    <subject>Case # {!Case.CaseNumber} / {!Case.Case_Brand__c}</subject>
+    <textOnly>Exm. {!Contact.Salutation} {!Contact.FirstName} {!Contact.LastName},
+
+
+
+Agradecemos o seu contacto para {!Case.Case_Brand__c}.
+
+
+
+Relativamente ao assunto do seu e-mail, em que nos solicita itens promocionais dos nossos produtos, informamos que não os dispomos regularmente.
+
+
+
+As amostras, os vales, os brindes ou outros, apenas existem periodicamente, como oferta ao Consumidor a quando da divulgação de novos produtos ou em campanhas promocionais.
+
+
+
+Assim, não nos é possível satisfazer o seu pedido.
+
+
+
+
+Ficamos ao seu dispor para qualquer outro assunto que de futuro entenda necessário.
+
+Com os melhores cumprimentos,
+
+{!User.Name}
+
+
+
+Serviço de Atendimento ao Consumidor
+
+Unilever Jerónimo Martins
+
+Largo Monterroio Mascarenhas, 1 1099-081 Lisboa
+
+www.unilever-jm.com
+
+]]&gt;</textOnly>
+    <type>html</type>
+</EmailTemplate>

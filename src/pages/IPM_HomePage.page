@@ -6,7 +6,7 @@
 *@Copyright Â© 2015  Unilever    
 ******************************************************************************************************************
 -->
-<apex:page controller="IPM_HomePageController" sidebar="false" standardStylesheets="false"  extensions="IPM_GetHelpDoc">     
+<apex:page controller="IPM_HomePageController" sidebar="false" standardStylesheets="false" readOnly="true" extensions="IPM_GetHelpDoc">     
    
     <apex:pageMessages />
     <div class="row negMargin {!if(alertscount >= 1,'homeboxShow','homeboxhide')}" >

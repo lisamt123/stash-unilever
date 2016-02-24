@@ -1,0 +1,751 @@
+<apex:page docType="html-5.0" showHeader="false" controller="AIW_Kantar_QA" action="{!getKantarData}">
+<apex:form >
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<title>Title of the document</title>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system.css"/>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system-ltng.css"/>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system-scoped.css"/>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system-vf.css"/>
+
+</head>
+<style>
+.slds-page-header{
+    background: #1766A6 !important;
+}
+.user_icon{
+    margin-left: 3.7em !important;
+    height: 33px !important;
+}
+.slds-media__figure{
+    margin-left: 19.5em;
+}
+.setting_icon{
+    width: 70%;
+}
+.slds-grid
+{
+    margin-left: -1em !important;
+}
+.slds-dropdown-trigger
+{
+    margin-top: -6px;
+}
+.sub-header{
+    height: 2.2em;
+}
+.sub-header{
+    background-color: #104774;
+    color: white;
+}
+.sub-header .slds-badge{
+    width: 23%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 15px;
+}
+.tabBadges .slds-badge{
+    width: 23%;
+    text-align: center;
+    background-color: white;
+    border: 1px solid #f2f2f2 !important;
+}
+.sub-header .slds-grid
+{
+    padding-top: 0.5em;
+    padding-left: 1.5em;
+}
+.heart_icon{
+    width: 7%;
+    margin-left: 11em;
+}
+.edit_icon{
+    width: 7%;
+    border-radius: 6px;
+    border: 0px solid #1766A6;
+    background: #1766A6;
+    margin-left: 1em;
+}
+.tabBadges .middle{
+    margin-left: 0em !important;
+    border-radius: 2px;
+    border: 1px solid white;
+    height: 22px;
+    margin-top: 1px;
+}
+.tabBadges .last{
+    margin-left: 0em !important;
+    margin-top: 1px;
+    color: black;
+    border-radius: 0px 240px 240px 0px;
+}
+.tabBadges .top{
+    margin-top: 1px;
+    margin-left: 0.5em;
+    border-radius: 240px 0px 0px 240px;
+}
+.tabBadges .slds-media
+{
+    padding-right: 5em;
+    padding-top: 0.7em;
+}
+.slds-table
+{
+    border-radius: 12px;
+    margin-left: 0.7em;
+    font-size: 11.5px;
+    margin-top: 0em;
+    margin-right: 0.5em;
+    width: 95% !important;
+}
+.slds-table.firstRow
+{
+    border-top-color: white !important;
+}
+.slds-hint-parent
+{
+    height: 4em;
+   // border-top: 4px solid #f2f2f2
+}
+.bigFont{
+    font-size: 22px !important;
+}
+.boldFont{
+    font-weight:bold;
+}
+.greenFont{
+    color: #4AB471;
+}
+.redFont{
+    color: red;
+}
+.smallFont
+{
+    font-size: 9px;
+}
+.arrowRight_icon{
+    width: 27px;
+    zoom: 15;
+}
+.customise{
+    height: 2.2em !important;
+    background-color: #e0e5ee !important;
+    border: none !important;
+    color: black !important;
+    width: 89%;
+    margin-left: 1em !important;
+}
+.footerIcon{
+    height: 22px !important;
+    margin-top: -1em;
+}
+.footerSection span{
+    font-size: 11px;
+    color: white;
+    margin-left: 18px;
+    margin-top: 12px;
+}
+.footerSection div{
+    margin-top: -0.3em;
+}
+.sub-branding{
+    font-size: 13px;
+    margin-top: 1px;
+    margin-left: 2px;
+}
+.sub-header-change{
+    color: #2A94D6;
+    font-size: 13px;
+    margin-top: 0px; <!--4/11-->
+     margin-left: 7.3em; <!--4/11-->
+ }
+.main-branding{
+    padding-left: 0.75em;
+    font-size: 19px;
+    padding-right: 0.5em;
+}
+.thirdColumn{
+    padding-left: 2em !important;
+    font-weight: bold;
+}
+.weekEnding{
+    margin-top: 1.5em;
+    margin-left: 10em;
+    font-size: 11px;
+    width: 100%;
+}
+.headerBadges .top
+{
+    margin-left: 3em;
+    width: 85%;
+    margin-top: 1.6em;
+}
+.headerBadges .slds-badge
+{
+    background-color: #1766A6;
+    color: white;
+}
+.slds.container
+{
+overflow-x: hidden;
+}
+
+@font-face {
+  font-family: 'dinOffPro';
+  src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.eot'); /* IE9 Compat Modes */
+  src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+@font-face {
+  font-family: 'dinOffProBold';
+  src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.eot'); /* IE9 Compat Modes */
+  src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+body {
+  font-family: 'dinOffPro',sans-serif;
+  background-color: #f2f2f2;
+}
+.slds.container{
+  font-family: 'dinOffPro',sans-serif !important;
+}
+.slds td{
+  font-family: 'dinOffPro',sans-serif !important;
+}
+.setting_icon_logo{
+    width: 9%;
+    margin-top: -0.5em;
+    border-radius: 10px;
+    z-index: 1;
+    height:31px !important;
+    width:9% !important;
+    
+}
+.info_icon{
+    width: 8%;
+    margin-left: 1em;
+    }
+.shopperExpenditure, .shopperExpenditureChange{
+    border: none;
+    height: 10em;
+    width: 94%;
+    margin-left: 10px;
+    margin-top: 1em;
+    background-color: white;
+    border-radius: 11px;
+    padding-top: 6px;
+}
+.expenditureChange{
+    height: 4.2em;
+    width: 94%;
+    margin-left: 1.2em;
+    margin-top: -0.5em;
+    background-color: white;
+    border-radius: 7px;
+    padding-top: 6px;
+    border: none;
+    padding-top:1.1em;
+}
+.backButton{
+    width: 6%;
+    margin-left: -5em;
+}
+.blueFont{
+    color: #1766A6;;
+}
+.disabled{
+    opacity: 0.5 !important;
+}
+.arrow_up{
+    width: 6%;
+    border-radius: 8px;
+    background-color: lightgreen;
+    margin-left: 0em;
+    margin-top: -6px;
+}
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+ rect {
+    display: inline !important;
+}
+.slds .slds-page-header {
+    padding: 18px 24px 12px !important;
+}
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0;
+    padding-right: 0;
+}
+.slds .slds-table:not(.slds-no-row-hover) tbody tr:hover > td, .slds .slds-table:not(.slds-no-row-hover) tbody tr:hover > th{
+    background-color: white;
+}
+*:focus {
+    outline: 0 !important;
+}
+ol.carousel-indicators {
+    top:2px !important;
+    left:62px !important;
+}
+.carousel-indicators{
+        height: 16px;
+}
+.carousel-indicators .active {
+    background-color:#1766A6!important;
+    height:10px !important;
+    width:10px !important;
+    
+}
+.carousel-indicators li{
+    background-color:#cccccc !important;
+    margin: 0px !important;
+}
+td:nth-child(2) {
+    text-align: center !important;
+}
+td:nth-child(3) {
+    text-align: center !important;
+}
+.Arrow{
+height: 23px !important;
+}
+.rightText
+{
+font-size: 11px;
+}
+.leftText{
+    font-size: 10px;
+}
+<!-- All big screen phones -->
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) 
+{ 
+   .slds.container{
+   max-width: 100%;
+   }
+   .setting_icon_logo{
+   width:9% !important;
+   height:31px !important;
+   }
+   .sub-header-change{
+    margin-top: 2px; <!--4/11-->
+    }
+    .truncate {
+  width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top:-2px !important;
+}
+.other-slds-media{
+        margin-left: 63px !important;
+}
+#slider
+{
+margin-left:305px;
+}
+.blueFont
+{
+margin-left: 5px;
+}
+.rightText
+{
+margin-top: 4px;
+font-size: 12px;
+}
+.Arrow{
+height: 28px !important;
+margin-top: -5px;
+}
+.leftText{
+    margin-top: 2px;
+}
+}
+<!-- iphone6 -->
+@media only screen and (min-device-width: 375px) and (max-device-width: 568px) 
+ { 
+   .slds.container{
+   max-width: 375px;
+   }
+   .setting_icon_logo{
+   height:31px !important;
+   width:8% !important;
+   }
+   .sub-header-change{
+    margin-top: 2px; <!--4/11-->
+    }
+    .truncate {
+  width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top:-2px !important;
+}
+.other-slds-media{
+        margin-left: 63px !important;
+}
+#slider
+{
+margin-left:320px !important;
+}
+.blueFont
+{
+margin-left: 5px;
+}
+.rightText
+{
+margin-top: 5px;
+    font-size: 12px;
+}
+.Arrow{
+height: 28px !important;
+margin-top: -4px;
+}
+.leftText{
+    margin-top: 4px;
+}
+}
+<!-- iphone5 -->
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) 
+and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) { 
+   .slds.container{
+   max-width: 320px;
+   }
+   .setting_icon_logo{
+   width:9% !important;
+   }
+   .sub-header-change{
+    margin-top: 2px; <!--4/11-->
+}
+.truncate {
+  width: 230px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top:-2px !important;
+}
+.other-slds-media{
+        margin-left: 3em !important;
+}
+.expenditureChange-Right
+{
+margin-top:0px;
+}
+.blueFont
+{
+margin-left: 5px;
+}
+#slider
+{
+margin-left:280px !important;
+}
+.rightText
+{
+margin-top: 5px;
+    font-size: 11px;
+}
+.Arrow{
+height: 27px !important;
+margin-top: -3px;
+}
+.leftText{
+    margin-top: 1px;
+}
+}
+
+               
+
+</style>
+
+<body>
+<div class="slds container" style="height: 51em;">
+    <div class="sub-header" role="banner">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+              <div class="slds-media" style="position: relative;"  onclick="showModal();">
+                    <img class="setting_icon_logo" src="{!USImage}" />
+                    
+                  
+<div class="truncate">
+                            <span class="sub-branding" style="padding-left: 6px;" >{!USCategory},</span>
+                            <span class="sub-branding">{!USlevel1},</span>
+                            <span class="sub-branding">{!USlevel2}</span>
+                            </div>
+                    <span class="sub-header-change">
+                          <!--  <apex:commandButton value="Change" action="{!openBrandSwitching}" style="border: none;background: 0;"/> -->
+                <a href="javascript:void(0);" class="modal-btn-change" style="font-size:10.5px; position: absolute;right: 5px;border: none;background:0;" onclick="showModal();">Change</a>
+                    </span>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navigationSection">
+        <div class="slds-page-header footerSection" role="banner" style="height: 4.4em;">
+        <div class="slds-grid">
+            <div style="margin-left: -13px;">
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/standard/user_60.png" action="{!openHBM}" style="margin-bottom: -14px;opacity:0.5; border: none;background: 0;width: 2.3em;margin-top: -1em;margin-left: 3em;padding-bottom: 0px;"/>
+                <span id="keys" style="margin-left: 35px;" class="disabled">My Profile</span>
+            </div>
+            <div>
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_heartbeat.png" action="{!openHBM}" style="margin-bottom: -8px; border: none;background: 0;width: 1.7em;margin-top: -0.8em;margin-left: 2em;padding-bottom: 0px;"/>
+                <span id="heartbeat">Heartbeat</span>
+            </div>
+            <div>
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_competition.png" action="{!openCompetition}"  style="margin-bottom: -8px;opacity:0.5; border: none;background: 0;width: 1.7em;margin-top: -0.5em;margin-left: 2.6em;padding-bottom: 0px;" />
+                <span id="competition" class="disabled">Competition</span>
+            </div>
+            <div>
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_trending.png" action="{!openSocial}" style="margin-bottom: -5px;opacity:0.5; border: none;background: 0;width: 1.5em;margin-top: -0.3em;margin-left: 1.7em;padding-bottom: 0px;"/>
+                <span id="trending" class="disabled">Social</span>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="tabBadges" role="banner" style="margin-bottom: 12px;">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media other-slds-media" style="width:28em;">
+                    <span id = "tabcolorchange1" class="tabcolorchange slds-badge slds-theme--shade top" style="color:#999999;height: 26px;width: 20% !important;"><apex:commandButton value="4W" action="{!getKantarData}"  onClick="changeColor('tabcolorchange1')" reRender="metricsdata,metricsdata2,metricsdata3,metricsdata4" style=" border: none;background: 0;">                       
+            <apex:param name="4wbuttonparam" value="4W" assignTo="{!timeperiod}"/>
+                  </apex:commandButton></span>
+                    <span id = "tabcolorchange2" class="tabcolorchange slds-badge slds-theme--shade middle" style="color:#999999;height: 26px;width: 20% !important;"> <apex:commandButton value="12W" action="{!getKantarData}" onClick="changeColor('tabcolorchange2')" reRender="metricsdata,metricsdata2,metricsdata3,metricsdata4" style=" border: none;background: 0;">                       
+            <apex:param name="12wbuttonparam" value="12W" assignTo="{!timeperiod}"/>
+                  </apex:commandButton></span>
+                    <span id = "tabcolorchange3" class="tabcolorchange slds-badge slds-theme--shade middle" style="color:#999999;height: 26px;width: 20% !important;"> <apex:commandButton value="YTD" action="{!getKantarData}"  onClick="changeColor('tabcolorchange3')" reRender="metricsdata,metricsdata2,metricsdata3,metricsdata4"  style=" border: none;background: 0;">                       
+            <apex:param name="YTDbuttonparam" value="YTD" assignTo="{!timeperiod}"/>
+                  </apex:commandButton></span>
+                    <span id = "tabcolorchange4" class="tabcolorchange slds-badge last" style="color:white;background-color: #999999;height: 26px;width: 20% !important;"><apex:commandButton value="MAT" action="{!getKantarData}"  onClick="changeColor('tabcolorchange4')" reRender="metricsdata,metricsdata2,metricsdata3,metricsdata4"  style=" border: none;background: 0;">                       
+            <apex:param name="MATbuttonparam" value="MAT" assignTo="{!timeperiod}"/>
+                  </apex:commandButton></span>
+                </div>
+            </div>
+        </div>
+    </div>
+   <apex:outputPanel id="metricsdata">
+     <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_back.png" action="{!openMKS}"  style="  width: 1.65em;font-weight: bolder; color: #1766A6; border: none;background: 0;margin-left: 7px; margin-top: 0px;"/>
+        <div style="width: 23em;margin-top: -29px;margin-left: 2em;font-weight: bolder;font-size: 16px;color: #1766A6;">
+            Shopper Expenditure<span style='font-size:12px;'> (Kantar)</span>
+        </div>
+     <div class="buttonBlock">  
+            <apex:commandButton value="All Channels" disabled="true" style="font-size: 13px;height: 36px;border:1px solid light-grey;text-align: left;padding-left: 12px;background: white !important;border-radius: 6px;width: 93.6%;color: #1766A6;font-weight: bold;margin-left: 10px;margin-right: 2.5em;margin-top: 10px;"/>
+            <img src="/resource/AIW_Static_Resource/icons/project-specific/icon_dropdown_arrow.png" id="slider" style="width: 10%;margin-top: -57px;border-radius: 6px;"/>
+    </div>
+    <div class="expenditureChange" style="font-size: 10px;font-weight: bold; padding-left: 0.5em;">
+        <div class="expenditureChange-Left" style="padding-left: 5px;font-size: 13px;float:left;text-align: left;color: #1766A6;font-weight: bold;width: 50%;">
+            Expenditure Change 
+        </div>
+        <div class="expenditureChange-Right" style="float:right;">
+        <div style="margin-top: 3px;width: 6em;float:left;margin-left: -28px;padding-left:20px;">
+            <apex:outputPanel rendered="{!IF (expchange < 0,'true','false')}">
+                <div class="leftText redFont">{!ROUND((expchange),1)} %</div>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!IF (expchange > 0 || expchange = 0,'true','false')}">
+                <div class="leftText greenFont">{!ROUND((expchange),1)}%</div>
+            </apex:outputPanel>
+        </div>
+        <div style="font-weight: bold;font-size: 13px;float:left;margin-top: 0px;">  
+            <apex:outputPanel rendered="{!IF (expvalue < 0,'true','false')}">
+                <div class="rightText redFont">{!ROUND((expvalue),1)}<span style='font-size:9px;color:grey;'>(£K)</span></div>
+                
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!IF (expvalue> 0 || expvalue = 0,'true','false')}">
+                <div class="rightText greenFont">+{!ROUND((expvalue),1)}(£K)</div>
+                
+            </apex:outputPanel>
+        </div>
+         <apex:outputPanel rendered="{!IF (expvalue < 0, 'true','false')}">
+            <div style='float:right;    '><!--user_icon arrow_up-->
+                  <img class="Arrow" src="/resource/AIW_Static_Resource/icons/project-specific/icon_arrow_down.png"/>
+            </div>
+         </apex:outputPanel> 
+         
+         <apex:outputPanel rendered="{!IF (expvalue > 0 || expvalue = 0, 'true','false')}">
+            <div style='float:left;'><!--user_icon arrow_up-->
+                  <img class="Arrow" src="/resource/AIW_Static_Resource/icons/project-specific/icon_arrow_up.png"/>
+            </div>
+         </apex:outputPanel> 
+              
+                
+        <div style='clear:both;'></div>
+      </div><!--end of right div-->
+      <div style='clear:both;'></div>
+    </div>
+    </apex:outputPanel>
+     
+    <apex:outputPanel id="metricsdata2">
+    <div class="shopperExpenditureChange" style="height: 19.5em;">
+    
+        <div class="header" style="padding-left: 0.5em;">
+            <span class="blueFont" style="font-size: 13px;float:left;padding-bottom:21px;color: #1766A6;font-weight: bold;padding-top: 2px;">
+                Drivers of Shopper Expenditure Change
+            </span>
+        </div>
+        <div class="container">
+  <br />
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+       
+       <div class="item active">
+             <apex:chart height="200" width="300" data="{!VCdata}" theme="Green" colorSet="#6BAE4A,#FF9123,#6BAE4A,#424242,#A4A4A4">         
+                   <apex:axis type="Category" position="left" fields="name" />                        
+                    <apex:axis type="Numeric" position="bottom" fields="data" maximum="{!tcmax}"/>    
+                    <apex:barSeries orientation="horizontal" axis="left" xField="data" yField="name" colorSet="{!colorSet}" colorsProgressWithinSeries="true"> 
+                   <apex:chartTips height="20" width="120"/>
+  </apex:barSeries>  
+          </apex:chart> 
+      </div>
+
+      <div class="item" style='width:98%; padding-left: 7px;'>
+  
+ 
+ <table class="slds-table slds-table--bordered" style="padding-right:50px;padding-left:10px;border:0;">
+  
+  <tr>
+ 
+ <td style="width:60%;border-top:0 !important;"> </td>
+ <td style="font-weight:bold;width:20%;border-top:0 !important;text-align: left !important;padding-left: 4px;">Value</td>
+ <td style="font-weight:bold;width:20%;border-top:0 !important;text-align: left !important;">% Change</td>
+</tr>
+
+ <apex:repeat value="{!kantarList}" var="kantar" rendered="true"> 
+  <tr class="slds-hint-parent">
+    <apex:outputText rendered="{!IF(kantar.Measures__c = 'Penetration','true','false')}">
+    <td width="40%" style="font-weight:bold;"><span>{!kantar.Measures__c}</span></td>
+      
+    <td width="30%" style="font-weight:bold;"><span>{!ROUND((kantar.Value__c),1)}%</span></td>
+ </apex:outputText>
+ 
+ <apex:outputText rendered="{!IF(kantar.Measures__c = 'Price per pack','true','false')}">
+    <td width="40%" style="font-weight:bold;"><span>{!kantar.Measures__c}</span></td>
+      
+    <td width="30%" style="font-weight:bold;"><span>£{!ROUND((kantar.Value__c),1)}</span></td>
+ </apex:outputText>
+ 
+ <apex:outputText rendered="{!IF(kantar.Measures__c != 'Penetration' && kantar.Measures__c != 'Price per pack','true','false')}">
+    <td width="40%" style="font-weight:bold;"><span>{!kantar.Measures__c}</span></td>
+      
+    <td width="30%" style="font-weight:bold;"><span>{!ROUND((kantar.Value__c),1)}</span></td>
+ </apex:outputText>
+     
+     <apex:outputText rendered="{!IF(kantar.Change__c < 0,'true','false')}">
+       <td width="30%" class="redFont" style="font-weight:bold;"><span>{!ROUND((kantar.Change__c),1)}%</span></td>
+       </apex:outputText> 
+       <apex:outputText rendered="{!IF(kantar.Change__c > 0 || kantar.Change__c = 0,'true','false')}">
+       <td width="30%" class="greenFont" style="font-weight:bold;"><span>{!ROUND((kantar.Change__c),1)}%</span></td>
+       </apex:outputText>  
+  </tr>
+</apex:repeat>
+  </table>
+
+
+      </div>
+    
+     
+    </div>
+ 
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" style="display:none">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next" style="display:none">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+    </div>
+ </apex:outputpanel>
+    
+  
+    <div class="shopperExpenditure">
+        <div class="header">
+            <span class="blueFont" style="margin-left: 0.6em;font-size: 13px;float:left;text-align: left;color: #1766A6;font-weight: bold;padding-bottom:5px;">
+                Shopper Expenditure (£K)
+            </span>
+        </div>
+         <apex:outputPanel id="metricsdata3">
+        <div class="SEChart">        
+        <apex:chart height="100" width="250" data="{!TCData}" theme="Blue" colorSet="#6495ED,#4169E1" >         
+        <apex:axis type="Category" position="left" fields="name" />                        
+        <apex:axis type="Numeric" position="bottom" fields="data" />    
+        <apex:barSeries orientation="horizontal" axis="left" xField="data" yField="name" colorsProgressWithinSeries="true">    
+       </apex:barSeries>                     
+        </apex:chart> 
+        
+        </div>
+        </apex:outputpanel>
+    </div>
+</div>
+
+<c:brands_modal_aiwkantar_QA rp="AIWKantar" tp="{!timeperiod}"/>
+
+<apex:includeScript value="{!URLFOR($Resource.AIW_Static_Resource, 'js/jquery-1.11.3.min.js')}"/>
+   <apex:includeScript value="{!URLFOR($Resource.AIW_Static_Resource, 'js/jquery.mobile.custom.min.js')}"/>
+<!--BootStrap -->
+<apex:includeScript value="{!URLFOR($Resource.AIW_Static_Resource, 'js/bootstrap.min.js')}"/>
+   <apex:stylesheet value="{!URLFOR($Resource.AIW_Static_Resource, 'styles/bootstrap.min.css')}"/>
+<script type="text/javascript">
+
+  function showModal(){
+    
+        $('#myModal').modal('show').css("display","block");
+       
+  }
+    
+  $(document).ready(function() {
+           
+         $("#myCarousel").swiperight(function() {  
+              $(this).carousel('prev');  
+                });  
+           $("#myCarousel").swipeleft(function() {  
+              $(this).carousel('next');  
+       });  
+    });  
+    function changeColor(id) {    
+        var tabs = document.getElementsByClassName('tabcolorchange')
+        for (var i = 0; i < tabs.length; ++i) {
+            var item = tabs[i];
+            item.style.color = (item.id == id) ? "white" : "#999999";
+            item.style.backgroundColor = (item.id == id) ? "#999999" : "white";
+        }
+    }
+    changeColorName('{!timeperiod}');
+    function changeColorName(timePeriodSelected) {
+    if(timePeriodSelected=='4W'){
+        changeColor('tabcolorchange1');
+    }
+    else if(timePeriodSelected=='12W'){
+        changeColor('tabcolorchange2');
+    }
+    else if(timePeriodSelected=='YTD'){
+        changeColor('tabcolorchange3');
+    }  
+    else{
+        changeColor('tabcolorchange4');
+    }  
+        
+    }
+     
+</script>
+</body>
+</apex:form>
+</apex:page>

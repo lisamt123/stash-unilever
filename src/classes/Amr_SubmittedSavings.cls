@@ -322,7 +322,9 @@ public with sharing class Amr_SubmittedSavings {
                        
             upsert lstquoteItem;
             
+           
             for( Amr_Quote__c quoteObj :  lstquoteItem){
+                quoteObj.recalculateFormulas();
                 Document doc = mapQuoteNumnerSavingId.get(quoteObj .Quote_Number__c+''+quoteObj .Saving__c);
                 FeedItem FI = new FeedItem();
                 FI.ParentId = quoteObj .id;
@@ -361,6 +363,9 @@ public with sharing class Amr_SubmittedSavings {
             }
             
            update lstquoteItem;
+           for( Amr_Quote__c quoteObj :  lstquoteItem){
+                    quoteObj.recalculateFormulas();
+           }
            system.debug('updated with accepted lstquoteItem !!'+lstquoteItem);
             
          }

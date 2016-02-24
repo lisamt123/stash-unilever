@@ -1,0 +1,531 @@
+<apex:page controller="Amr_SubmittedSavings" sidebar="false" standardStylesheets="true">
+<head>
+<style type="text/css">
+.inner_heading_sub_section h4 {
+    background: red !important;
+    clear:both;
+    display:block;
+ }
+ .inner_section {
+     clear:both;
+ }
+</style>
+<script>
+function EditFun(id) {
+         
+          EditSavingActionFun(id);
+           
+        } 
+        
+        function EditFunForQuote(Id){
+       
+            EditForQuoteActionFun(Id);
+             
+        }
+        function onCompleteHandler(Id) {
+
+ 
+         submitActionFun(Id);
+        alert(Id);
+}
+
+</script>
+</head>
+<apex:include pageName="amr_common_final" />
+<apex:form >
+ <apex:actionRegion >
+ <apex:actionFunction name="EditSavingActionFun" action="{!editSaving}" ReRender="savingData1">
+                <apex:param name="one" value="" assignTo="{!saveRecordValue}"/>    
+        </apex:actionFunction>
+        <apex:actionFunction name="EditForQuoteActionFun" action="{!editQuote}" ReRender="quoteData">
+                <apex:param name="two" value="" assignTo="{!saveRecordValueForQuote}"/>    
+        </apex:actionFunction>
+       
+     
+     </apex:actionRegion>
+<apex:pageBlock >
+<apex:outputPanel id="pageBlockId">
+  <apex:repeat value="{!quoteList}" var="obj" >
+     
+<div class="inner_section">
+                       <h4>
+             {!obj.Production_Type__c}
+                <div class="minusclass commonall" data-id="radio-selected">
+                 </div>
+               </h4> 
+               </div>
+               
+               <apex:commandLink value="Add Quote" action="{!addRowQuote}" reRender="quoteSection" status="actStatusIdQuote"/>
+        <apex:actionStatus id="actStatusIdQuote" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                        
+        <apex:commandLink value="Edit"  onclick="EditFun('{!obj.id}');return Null;"/>
+        
+            
+        <apex:outputPanel styleClass="radio-selected" > 
+        <apex:pageBlock id="savingData">  
+        <apex:outputPanel id="savingData1">
+          <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                   AdManager Number                                                                                                  
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:outputText value="{!adManagerNumber}" />
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>  
+           
+             
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                    No Of Masters                                                                                                      
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.No_of_Masters__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                      <apex:outputField value="{!obj.No_of_Masters__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>    
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                    Duration Of Masters                                                                                                    
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Duration_of_Masters__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                       <apex:outputText value="{!obj.Duration_of_Masters__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>   
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                   No of additional films                                                                                               
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.No_of_Additional_Films__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                      <apex:outputText value="{!obj.No_of_Additional_Films__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>   
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                   Duration of additional films                                                                                              
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Duration_of_Additional_Films__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                      <apex:outputText value="{!obj.Duration_of_Additional_Films__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>   
+         <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                  Total Number Of films                                                                                            
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Total_no_of_films__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                      <apex:outputText value="{!obj.Total_no_of_films__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                  No Of Shoot Days                                                                                        
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.No_of_shoot_days__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                     <apex:outputText value="{!obj.No_of_shoot_days__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+         
+         <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                 Shoot Location                                                                                     
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Shoot_Location__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                      <apex:outputText value="{!obj.Shoot_Location__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                 Script Title                                                                                     
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Script_Title__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                     <apex:outputText value="{!obj.Script_Title__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                Scope re-Brief                                                                                    
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Scope_re_brief__c}"  rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}" />
+                                      <apex:outputText value="{!obj.Scope_re_brief__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                    Production Type                                                                                                        
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Production_Type__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                        <apex:outputText value="{!obj.Production_Type__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                                 <!-- <apex:selectList value="{!selectedProductionType}" multiselect="true" size="5" >
+                  <apex:selectOptions value="{!productionType}"/>
+            </apex:selectList>-->     
+           
+                             </div>
+                             
+       </div>  
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                  Stage RAP Engaged                                                                                        
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!obj.Stage_RAP_engaged__c}"   rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                                    <apex:outputText value="{!obj.Stage_RAP_engaged__c}" rendered="{!if(saveRecordValue == obj.id,false,true) && (viewSavingMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                                                                                                     
+                             </div>
+                             <div class="subrightfield">
+                            
+                                    <apex:inputFile value="{!document.body}" filename="{!document.name}" id="test" rendered="{!if(saveRecordValue == obj.id,true,false) && (editedSavingMode == true)}"/>
+                             
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       </apex:outputPanel> 
+   <apex:actionRegion >    
+   
+    <apex:commandlink action="{!submitData}" value="Save"   status="actStatusIdQuote1" >
+                                <apex:param name="param" value="{!obj.Id}" assignTo="{!savingId}"/> 
+                                </apex:commandlink>
+   
+    <apex:actionStatus id="actStatusIdQuote1" >
+                                            <apex:facet name="start" >
+                                                <img src="/img/loading.gif" />                    
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                              
+    </apex:actionRegion>  
+    
+        </apex:pageBlock>
+       
+<apex:pageBlock >
+ <apex:repeat value="{!quoteRelatedToSavingList}" var="quotObj">
+ <apex:outputPanel rendered="{!IF(quotObj.Saving__c == obj.Id , true,false)}">
+ <div class="inner_heading_sub_section">
+                       <h4 style="display:block;background:#3399cc;clear:both;">
+           <apex:inputField value="{!quotObj.Is_Accepted__c}"/> Quote: {!quotObj.Quote_Number__c}
+                <div class="minusclass commonall" data-id="radio-selected1">
+                 </div>
+               </h4> 
+               </div>
+      <apex:commandLink value="Edit" onclick="EditFunForQuote('{!quotObj.Id}');return Null;" reRender="savingData"  />
+               
+    <apex:outputPanel styleClass="radio-selected1">
+    <apex:pageBlock id="quoteData">
+     <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                                Is PC part of the Roster ?                                                                                    
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Is_PC_part_of_the_Roster__c}"   rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.Is_PC_part_of_the_Roster__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               PC Name                                                                                   
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.PC_name__c}"  rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" />
+                                      <apex:outputText value="{!quotObj.PC_name__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               PC Country                                                                                
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.PC_Country__c}"  rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" />
+                                      <apex:outputText value="{!quotObj.PC_Country__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Service Company Name                                                                                
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Service_Company_Name__c}"  rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" />
+                                      <apex:outputText value="{!quotObj.Service_Company_Name__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Local Currency Of PC Cost                                                                               
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Local_Currency_of_PC_Costs__c}" onchange="PCCurrencyJson()" styleclass="PCLocalcurrency" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.Local_Currency_of_PC_Costs__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Local Amount Of PC                                                                            
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Local_Amount_of_PC__c}"  onchange="PCCurrencyJson()"  onkeypress="return isNumber(event)" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.Local_Amount_of_PC__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div> 
+          <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               PC Costs (Euro Amount)                                                                              
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.PC_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"  />
+                                      <apex:outputText value="{!quotObj.PC_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Is PPC part of the Roster?                                                                             
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Is_the_PPC_part_of_the_Roster__c}"  rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" />
+                                      <apex:outputText value="{!quotObj.Is_the_PPC_part_of_the_Roster__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               PPC Name                                                                            
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.PPC_Name__c}"  rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}" />
+                                      <apex:outputText value="{!quotObj.PPC_Name__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               PPC Country                                                                         
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.PPC_Country__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"  />
+                                      <apex:outputText value="{!quotObj.PPC_Country__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Local Currency of PPC Costs                                                                        
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Local_Currency_of_PPC_Costs__c}" onchange="PPCJson()" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.Local_Currency_of_PPC_Costs__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+         <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Local Amount of PPC                                                                       
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Local_Amount_of_PPC__c}" onchange="PPCJson()"  onkeypress="return isNumber(event)" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.Local_Amount_of_PPC__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               PPC Costs(Euro Amount)                                                                      
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.PPC_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.PPC_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               CA/Additional agency Name                                                                    
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.CA_Additional_agency_Name__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.CA_Additional_agency_Name__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+          <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               CA Location                                                                 
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.CA_Location__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.CA_Location__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Local Currency of CA Costs                                                              
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Local_Currency_of_CA_Costs__c}" onchange="CACurrencyJson()" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.Local_Currency_of_CA_Costs__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                               Local Amount of CA                                                             
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Local_Amount_of_CA__c}" onchange="CACurrencyJson()"  onkeypress="return isNumber(event)" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.Local_Amount_of_CA__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+        <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                            Local Currency of CA Costs                                                               
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.CA_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.CA_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                           CA Costs(Euro Amount                                                            
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.CA_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.CA_Costs_Euro_Amount__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       <div class="mainleftfield">
+                             <div class="subleftfield">                                                                                                        
+                           folder                                                          
+                             </div>
+                             <div class="subrightfield">
+                                     <apex:inputField value="{!quotObj.Folder__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,true,false) && (editedQuoteMode == true)}"/>
+                                      <apex:outputText value="{!quotObj.Folder__c}" rendered="{!if(saveRecordValueForQuote == quotObj.Id,false,true) && (viewQuoteMode == true)}"/>
+                             </div>
+                             <div class="clear">
+                             </div>
+       </div>
+       </apex:pageBlock>
+       
+</apex:outputPanel>
+
+
+ </apex:outputPanel> 
+  </apex:repeat>
+
+  </apex:pageBlock>
+  
+   <apex:pageBlock id="quoteSection">
+            
+                    <apex:repeat value="{!docAndQuoteLst}" var="docAndQuoteObj" >
+                        <div class="radio-selected">
+                             <div class="inner_section">
+                                 <h4>                             
+                                    <apex:inputField value="{!docAndQuoteObj.quoteObj.Is_Accepted__c}"/>     Quote : {!docAndQuoteObj.quoteObj.Quote_Number__c} - quote-related{!docAndQuoteObj.quoteObj.Quote_Number__c}                                   
+                                 </h4> 
+                            </div>
+                        
+                            <div class="quote-related{!docAndQuoteObj.quoteObj.Quote_Number__c}">
+                            <div class="left">Is PC Part Of The Roster?</div><div class="left"><apex:inputField value="{!docAndQuoteObj.quoteObj.Is_PC_part_of_the_Roster__c}"/></div>
+                            
+                            PC Name<apex:inputField value="{!docAndQuoteObj.quoteObj.PC_name__c}"/>
+                            PC Country Location<apex:inputField value="{!docAndQuoteObj.quoteObj.PC_Country__c}"/>
+                            Service Company Name<apex:inputField value="{!docAndQuoteObj.quoteObj.Service_Company_Name__c}" />
+                            PC Costs Only (Local Currency)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_PC_Costs__c}"/>
+                            PC Costs Only (Local Amount) <apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_PC__c}"/>
+                            PC Costs Only (Euro Amount)<apex:inputText value="{!docAndQuoteObj.quoteObj.PC_Costs_Euro_Amount__c}"/>
+                            Is the PPC part of the Roster?<apex:inputField value="{!docAndQuoteObj.quoteObj.Is_the_PPC_part_of_the_Roster__c}" />
+                            PPC Name <apex:inputField value="{!docAndQuoteObj.quoteObj.PPC_Name__c}" />
+                            PPC Country Location<apex:inputField value="{!docAndQuoteObj.quoteObj.PPC_Country__c}" />
+                            PPC Costs Only (Local Currency)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_PPC_Costs__c}"/>
+                            PPC Costs Only (Local Amount)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_PPC__c}"/>
+                            CA/Additional agency Name<apex:inputtext value="{!docAndQuoteObj.quoteObj.PPC_Costs_Euro_Amount__c}"/>
+                            CA Location<apex:inputField value="{!docAndQuoteObj.quoteObj.CA_Location__c}" />
+                            CA Costs Only (Local Currency)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Currency_of_CA_Costs__c}"/>
+                            CA Costs Only (Local Amount)<apex:inputField value="{!docAndQuoteObj.quoteObj.Local_Amount_of_CA__c}"/>
+                            CA Costs Only (Euro Amount)<apex:inputText value="{!docAndQuoteObj.quoteObj.CA_Costs_Euro_Amount__c}" />
+                            Folder <apex:inputField value="{!docAndQuoteObj.quoteObj.Folder__c}" />
+                         
+                            <input type="file" value="'{!docAndQuoteObj.docObj.body}'"/>
+                            </div>
+                           <apex:commandButton action="{!SaveQuote}" value="Save" id="theButton"/>
+                       </div>
+                    </apex:repeat>
+                    
+        
+      </apex:pageBlock>
+  </apex:outputPanel>  
+
+  
+</apex:repeat>
+
+  </apex:outputPanel>
+</apex:pageBlock>
+
+       
+
+</apex:form>  
+</apex:page>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Agency_Roster</letterhead>
+    <name>AR Application Rejected At Final Stage</name>
+    <style>freeForm</style>
+    <subject>{!ar_Application__c.Company_Name__c} application is rejected</subject>
+    <textOnly>Dear {!ar_Application__c.First_Name__c}
+
+Thank you for your recent application to become one of Unilever’s creative partners.
+
+Having reviewed your submission, we regret to inform that we will not be progressing your submission further.
+
+{!ApprovalRequest.Comments}
+
+We thank you for your time and effort, and would encourage you to apply again in 6 months time.
+
+With Kindest Regards,
+
+Dennis Furniss</textOnly>
+    <type>html</type>
+</EmailTemplate>

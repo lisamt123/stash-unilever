@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>false</available>
+    <description>Factory Investigation Survey Letter</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>CEC_Unilever_GB</letterhead>
+    <name>Factory Investigation Survey</name>
+    <style>formalLetter</style>
+    <subject>Factory Investigation Survey</subject>
+    <textOnly>Dear,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Kind Regards</textOnly>
+    <type>html</type>
+</EmailTemplate>

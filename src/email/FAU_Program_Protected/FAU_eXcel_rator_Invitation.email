@@ -1,0 +1,71 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal"><span style="font-size: 10pt; line-height: 107%; font-family: Arial, sans-serif;">Dear {!FAU_Participant__c.FAU_First_Name__c},</span><span style="font-size:10.0pt;line-height:107%"><o:p></o:p></span></p>]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">On behalf of Four Acres
+and your Leadership Team, I am delighted to confirm that you have been
+nominated by your respective management to take part in an ambitious leadership&nbsp;program,
+{!FAU_Participant__c.FAU_Program_Type__c}.<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><i><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></i><span style="font-size: 10pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">About
+the&nbsp;{!FAU_Participant__c.FAU_Program_Type__c}:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">The&nbsp;{!FAU_Participant__c.FAU_Program_Type__c}&nbsp;is
+a multi-faceted experience, including robust feedback, Individual Development
+Planning, self-led assignments, executive coaching, intimate dialogues with
+senior Unilever leaders and&nbsp;residential&nbsp;module(s).&nbsp;&nbsp;The
+first residential module will be held from&nbsp;<b>{!FAU_Participant__c.FAU_Module_1_Start_Date__c}
+to&nbsp;{!FAU_Participant__c.FAU_Module_1_End_Date__c}.</b><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Program fee:&nbsp;{!FAU_Participant__c.FAU_Program_Fee__c}<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Immediate Action
+Required:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Please confirm
+participation on the programme by&nbsp;filling up&nbsp;<a href="https://docs.google.com/forms/d/1t_XNjO2y4uoBEurmPIB5-8-cq9QeD7IrTWpF0Jlfsx4/viewform"><b><span style="color:blue">{!FAU_Participant__c.FAU_Invitation_Link__c}</span></b></a><b>&nbsp;</b>on
+or before&nbsp;{!FAU_Participant__c.FAU_RSVP_Deadline__c}.<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">This link takes you to
+a&nbsp;<a href="http://salesforce.com/"><span style="color:blue">salesforce.com</span></a>&nbsp;login
+page. Enter your Unilever email address and password.<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">This program experience
+will be facilitated by the Four Acres team and supported by your Leadership
+Development team, as well as your HRBP.<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Congratulations again on
+your nomination and we look forward to hearing from you.<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">To see your progress
+check out your {!FAU_Participant__c.FAU_Participants_Workbook__c}.<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!FAU_Participant__c.FAU_Video_Introduction__c}<o:p></o:p></span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Kind regards,<o:p></o:p></span></p><p class="p1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal"><span style="font-size:10.0pt;line-height:107%">&nbsp;</span></p>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[<div style="color: rgb(0, 0, 0); font-family: arial;"><font size="2">{!FAU_Participant__c.OwnerFullName}</font></div><div><font face="arial" size="2">{!FAU_Participant__c.OwnerTitle}</font></div><div style="color: rgb(0, 0, 0); font-family: arial;"><font size="2"><br></font></div><div><font size="2"><font style="color: rgb(0, 0, 0); font-family: arial;" face="arial"><b>Ph:</b>&nbsp;</font><font face="arial">{!FAU_Participant__c.OwnerPhone}</font></font></div><div style="color: rgb(0, 0, 0); font-family: arial;"><font face="arial" size="2"><b>Email:</b>&nbsp;{!FAU_Participant__c.OwnerEmail}</font><div><p class="p1"><br></p>
+<p class="p3"><font size="2"><a href="http://www.unilever.com/"><b>www.unilever.com</b></a><span class="s1"><b> </b></span><span class="s2"><b>| </b><a href="http://www.facebook.com/unilever"><span class="s3"><b>www.facebook.com/unilever</b></span></a></span></font></p></div></div>]]></td>
+</tr>
+</table>

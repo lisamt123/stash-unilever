@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Envio internamente Reclamações Amarelas</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CEC_Unilever_Portugal_Internal</letterhead>
+    <name>Unilever JM - Portugal - Reclamação ABERTURA - Amarelo</name>
+    <style>freeForm</style>
+    <subject>ABERTURA_AMARELO_Case_{!Case.CaseNumber}_{!Case.Product_Code__c}_{!Case.Reason_L5_desc__c}</subject>
+    <textOnly>Junto envio informação relativa à Reclamação AMARELA {!Case.CaseNumber}, para a qual requer, com a maior brevidade, o vosso parecer/resposta sobre o assunto exposto pelo consumidor.
+
+__________________________________________________________________________
+
+O consumidor refere:
+
+
+__________________________________________________________________________
+
+Objetos/Ameaças/Reputação/Saúde:
+
+
+__________________________________________________________________________
+
+Ficou acordado:
+
+
+
+__________________________________________________________________________
+Case Information
+
+
+
+Number: {!Case.CaseNumber} // Origin: {!Case.Origin} // Status: {!Case.Status}
+
+Date Case Created: {!Case.CreatedDate} // Last modification: {!Case.LastModifiedDate}
+
+Adviser Name: {!User.Name}
+Product: {!Case.Product_Code__c}
+Reason: {!Case.Reason_L5_desc__c}
+Production Code: {!Case.Production_Code__c}
+EAN Code: {!Case.Product_UPC__c}
+Verbatim: {!Case.Subject}
+Description:
+{!Case.Description}
+End of Description ---------------------------------
+Store and Location: {!Case.Store__c}, {!Case.Store_Location__c}
+
+
+Cumprimentos
+
+{!User.Name}</textOnly>
+    <type>html</type>
+</EmailTemplate>

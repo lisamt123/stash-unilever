@@ -1,0 +1,828 @@
+<apex:page docType="html-5.0" controller="AIW_Heartbeat_Metrics" showHeader="false" action="{!getMatrixtime}">
+<apex:form >
+<head>
+<meta name="viewport" content="width=device-width; initial-scale=1.0, user-scalable=no"/>
+<title>Title of the document</title>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system.css"/>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system-ltng.css"/>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system-scoped.css"/>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource/styles/salesforce-lightning-design-system-vf.css"/>
+<link rel="stylesheet" type="text/css" href="/resource/AIW_Static_Resource_New/AIW_Static_Resource2/modal/css/bootstrap-modal.css"/>
+
+</head>
+<style>
+.slds-page-header{
+    background: #1766A6 !important;
+}
+
+.user_icon{
+    margin-left: 3.7em !important;
+    height: 33px !important;
+}
+.slds-media__figure{
+    margin-left: 19.5em;
+}
+.setting_icon{
+    width: 70%;
+}
+.slds-grid
+{
+    margin-left: -1em !important;
+}
+.slds-dropdown-trigger
+{
+    margin-top: -6px;
+}
+.sub-header{
+    height: 2.2em;
+}
+.sub-header{
+    background-color: #104774;
+    color: white;
+}
+.sub-header .slds-badge{
+    width: 23%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 15px;
+}
+.tabBadges .slds-badge{
+    width: 23%;
+    text-align: center;
+    background-color: white;
+    border: 1px solid #f2f2f2 !important;
+}
+.sub-header .slds-grid
+{
+    padding-top: 0.5em;
+    padding-left: 1.5em;
+}
+.heart_icon{
+    width: 7%;
+    margin-left: 11em;
+}
+.edit_icon{
+    width: 7%;
+    border-radius: 6px;
+    border: 0px solid #1766A6;
+    background: #1766A6;
+    margin-left: 1em;
+}
+.tabBadges .middle{
+    margin-left: 0em !important;
+    border-radius: 2px;
+    border: 1px solid white;
+    height: 22px;
+    margin-top: 1px;
+}
+.tabBadges .last{
+    margin-left: 0em !important;
+    margin-top: 1px;
+    color: black;
+    border-radius: 0px 240px 240px 0px;
+    
+}
+.tabBadges .top{
+    margin-top: 1px;
+    margin-left: 0.5em;
+    border-radius: 240px 0px 0px 240px;
+}
+.tabBadges .slds-media
+{
+    padding-right: 5em;
+    padding-top: 0.7em;
+}
+.slds-table
+{
+    border-radius: 22px;
+    margin-left: 0.6em;
+    font-size: 13px;
+    margin-top: 0em;
+    margin-right: 0.5em;
+    width: 95% !important;
+}
+.slds-table .firstRow
+{
+    border-top-color: transparent !important;
+}
+.slds-table .lastRow
+{
+    border-bottom: 1px solid transparent !important;
+}
+.slds-hint-parent
+{
+    height: 56px;
+    border: 4px solid #f2f2f2
+}
+.bigFont{
+    font-size: 14px !important;
+    margin-right: 17px !important;
+}
+.greenFont{
+    color: #4AB471;
+}
+.redFont{
+    color: red;
+}
+.smallFont
+{
+    font-size: 11px;
+}
+.customise{
+    height: 2.2em !important;
+    background-color: white !important;
+    border: none !important;
+    color: #1766A6 !important;
+    width: 80%;
+    margin-left: 2.2em !important;
+    margin-top: 1em !important;
+    font-weight: bold;
+    border: 1px solid #cccccc !important;
+}
+.footerIcon{
+    height: 22px !important;
+    margin-top: -1em;
+}
+.footerSection span{
+    font-size: 11px;
+    color: white;
+    margin-left: 18px;
+    margin-top: 12px;
+}
+.footerSection div{
+    margin-top: -0.3em;
+}
+.sub-branding{
+    font-size: 10.5px;
+    margin-top: 1px;
+    margin-left: 2px;
+}
+.sub-header-change{
+    color: #2A94D6;
+    font-size: 13px;
+    margin-top: -2px; <!--4/11-->
+}
+.main-branding{
+    padding-left: 0.75em;
+    font-size: 19px;
+    padding-right: 0.5em;
+}
+.thirdColumn{
+    padding-left: 2em !important;
+    font-weight: bold;
+}
+.weekEnding{
+    margin-top: 1.5em;
+    margin-left: 10em;
+    font-size: 11px;
+    width: 100%;
+}
+.headerBadges .top
+{
+    margin-left: 3em;
+    width: 85%;
+    margin-top: 1.6em;
+}
+.headerBadges .slds-badge
+{
+    background-color: #1766A6;
+    color: white;
+}
+.slds.container
+{
+overflow-x: hidden;
+}
+
+@font-face {
+  font-family: 'dinOffPro';
+  src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.eot'); /* IE9 Compat Modes */
+  src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+@font-face {
+  font-family: 'dinOffProBold';
+  src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.eot'); /* IE9 Compat Modes */
+  src: url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/resource/AIW_Static_Resource/fonts/UnileverDINOffcPro-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+body {
+  font-family: 'dinOffPro',sans-serif;
+  background-color: #f2f2f2;
+}
+.slds.container{
+  font-family: 'dinOffPro',sans-serif !important;
+}
+.slds td{
+  font-family: 'dinOffPro',sans-serif !important;
+}
+.setting_icon_logo{
+    border-radius: 10px;
+    z-index: 1;
+    width:9% !important;
+    margin-top: -0.5em;
+    height:31px !important;
+}
+.info_icon{
+    width: 6%;
+    margin-left: 28px;
+    margin-top: 2px;
+    }
+.tr{
+    border: 4px solid #f2f2f2 !important;
+}
+.disabled{
+    opacity: 0.5 !important;
+}
+.slds .slds-table tr > th:last-child, .slds .slds-table tr > td:last-child {
+    padding-right: 0px;
+}
+td:nth-child(2) {
+    text-align: center !important;
+    padding-left: 1.5em;
+}
+td:nth-child(3) {
+    text-align: center !important;
+}
+.slds .slds-page-header {
+    padding: 18px 24px 12px !important;
+}
+.slds .slds-table:not(.slds-no-row-hover) tbody tr:hover > td, .slds .slds-table:not(.slds-no-row-hover) tbody tr:hover > th{
+    background-color: white;
+}
+.notAvailable{
+    font-size: 10px;
+    color: grey;
+}
+*:focus {
+    outline: 0;
+}
+.slds .slds-table tr > th:first-child, .slds .slds-table tr > td:first-child {
+    padding-left: 9px;
+}
+.ml72{
+    text-align: center !important;
+}
+<!-- All big screen phones -->
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) 
+{ 
+   .slds.container{
+   max-width: 100%;
+   }
+   .setting_icon_logo{
+   width:9% !important;
+   height:31px !important;
+   }
+   .sub-header-change{
+    margin-top: 2px; <!--4/11-->
+    }
+    .truncate {
+  width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: -2px;
+}
+    .other-slds-media{
+        margin-left: 19px;
+}
+}
+<!-- iphone6 -->
+@media only screen and (min-device-width: 375px) and (max-device-width: 568px) 
+ { 
+   .slds.container{
+   max-width: 375px;
+   }
+   .setting_icon_logo{
+   height:31px !important;
+   width:8% !important;
+   }
+   .sub-header-change{
+    margin-top: 2px; <!--4/11-->
+    }
+    .truncate {
+  width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: -2px;
+}
+.other-slds-media{
+        margin-left: 24px;
+}
+}
+<!-- iphone5 -->
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) 
+and (-webkit-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) { 
+   .slds.container{
+   max-width: 320px;
+   }
+   .setting_icon_logo{
+   width:9%;
+   }
+   .sub-header-change{
+    margin-top: 2px; <!--4/11-->
+}
+.truncate {
+  width: 230px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+    .other-slds-media{
+        margin-left: 0px;
+}
+}
+
+
+</style>
+
+<body>
+<div class="slds container" style="overflow-y: hidden; background-color: #f2f2f2;height: 56em;">
+    <div class="sub-header" role="banner">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media" style="position: relative;"  onclick="showModal();">
+                        <img class="setting_icon_logo" src="{!USImage}" />
+                            <div class="truncate">
+                            <span class="sub-branding" style="padding-left: 6px;" >{!USCategory},</span>
+                            <span class="sub-branding">{!USlevel1},</span>
+                            <span class="sub-branding">{!USlevel2}</span>
+                            </div>
+                       <div class="sub-header-change">
+                             <!-- <apex:commandButton value="Change" action="{!openBrandSwitching}" style="font-size:10.5px; position: absolute;right: 5px;border: none;background: 0;"/> -->
+                         <a href="javascript:void(0);" class="modal-btn-change" style="font-size:10.5px; position: absolute;right: 5px;border: none;background:0;margin-top:0px;" onclick="showModal();">Change</a>
+                       </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navigationSection">
+        <div class="slds-page-header footerSection" role="banner" style="height: 4.4em;">
+        <div class="slds-grid">
+            <div style="margin-left: -13px;">
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/standard/user_60.png" action="{!openSocial}" style="margin-bottom: -14px;opacity:0.5; border: none;background: 0;width: 2.3em;margin-top: -1em;margin-left: 3em;padding-bottom: 0px;"/>
+                <span id="keys" style="margin-left: 35px;" class="disabled">My Profile</span>
+            </div>
+            <div>
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_heartbeat.png" action="{!openHBM}" style="margin-bottom: -8px; border: none;background: 0;width: 1.7em;margin-top: -0.8em;margin-left: 2em;padding-bottom: 0px;"/>
+                <span id="heartbeat">Heartbeat</span>
+            </div>
+            <div>
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_competition.png" action="{!openCompetition}"  style="opacity:0.5;margin-bottom: -8px; border: none;background: 0;width: 1.7em;margin-top: -0.5em;margin-left: 2.6em;padding-bottom: 0px;" />
+                <span id="competition" class="disabled">Competition</span>
+            </div>
+            <div>
+             <apex:outputText rendered="{!IF(level1 == 'All' && level2 =='All',true,false)}" >
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_trending.png" action="{!openSocial}" style="margin-bottom: -5px;opacity:0.5; border: none;background: 0;width: 1.5em;margin-top: -0.3em;margin-left: 1.7em;padding-bottom: 0px;"/>
+                <span id="trending" class="disabled">Social</span>
+               </apex:outputText> 
+                <apex:outputText rendered="{!IF(level1 != 'All' || level2 != 'All',true,false)}" >
+                <div id="an" style="margin-top: 0px;">
+                  <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_trending.png" onclick="showSocialAlert()" reRender="an" style="margin-bottom: -5px;opacity:0.5; border: none;background: 0;width: 1.5em;margin-top: -0.3em;margin-left: 1.7em;padding-bottom: 0px;"/>
+                <span id="trending" class="disabled" onclick="showSocialAlert()">Social</span>
+                </div>
+            </apex:outputText> 
+              
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="tabBadges" role="banner" style="margin-bottom: 6px;">
+        <div class="slds-grid">
+            <div class="slds-col slds-has-flexi-truncate">
+                <div class="slds-media other-slds-media"  style="width:28em">
+                <apex:commandButton image="/resource/AIW_Static_Resource/icons/project-specific/icon_info.png" action="{!openHBMInfo}" style="  border: none;background: 0;width: 2em;margin-left: 28px; margin-top: -1px;"/>
+                    <span  id = "tabcolorchange1" class="tabcolorchange slds-badge slds-theme--shade top" style="color:#999999;height: 26px;width: 20% !important;"><apex:commandButton value="4W" action="{!getMatrixtime}" onClick="changeColor('tabcolorchange1')"  
+                    reRender="metricsdata" style=" vertical-align: middle;border: none;background: 0;">                       
+            <apex:param name="4wbuttonparam" value="4W" assignTo="{!timeperiod}"/>
+                  </apex:commandButton></span>
+                    <span id = "tabcolorchange2" class="tabcolorchange slds-badge slds-theme--shade middle" style="color:#999999;height: 26px;width: 20% !important;"> <apex:commandButton value="12W" action="{!getMatrixtime}" onClick="changeColor('tabcolorchange2')"  
+                   reRender="metricsdata,test" style=" vertical-align: middle;border: none;background: 0;">                       
+            <apex:param name="12wbuttonparam" value="12W" assignTo="{!timeperiod}"/>
+                  </apex:commandButton></span>
+                    <span id = "tabcolorchange3" class="tabcolorchange slds-badge slds-theme--shade middle" style="color:#999999;height: 26px;width: 20% !important;"> <apex:commandButton value="YTD" action="{!getMatrixtime}" onClick="changeColor('tabcolorchange3')"  
+                   reRender="metricsdata,test" style=" vertical-align: middle;border: none;background: 0;">                       
+            <apex:param name="YTDbuttonparam" value="YTD" assignTo="{!timeperiod}"/>
+                  </apex:commandButton></span>
+                    <span id = "tabcolorchange4" class="tabcolorchange slds-badge last" style="color:white;background-color: #999999;height: 26px;width: 20% !important;"><apex:commandButton value="MAT" action="{!getMatrixtime}" onClick="changeColor('tabcolorchange4')"  
+                  reRender="metricsdata,test" style=" vertical-align: middle;border: none;background: 0;">                       
+            <apex:param name="MATbuttonparam" value="MAT" assignTo="{!timeperiod}"/>
+                  </apex:commandButton></span>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+  <apex:outputPanel id="metricsdata"> 
+  <apex:outputPanel >
+     <apex:actionFunction name="CallApexMethodSocial" action="{!openSocial}"/>
+   <apex:actionFunction name="CallApexMethod" action="{!openMarketShare}"/>
+ 
+ <apex:repeat value="{!hbmList}" var="hbm" rendered="true" id="commandButton1Controller">
+ <table class="slds-table slds-table--bordered">
+ <tbody>
+ 
+  <tr class="slds-hint-parent" onclick = 'showMarketShare()' style = "cursor:pointer">
+ 
+      <td>Market Share</td>
+      <apex:outputText rendered="{!IF(hbm.MarketShareChange__c == null,true,false)}" >
+       <td><div class="ml72">-</div></td>
+       </apex:outputText>
+       <apex:outputText rendered="{!IF(hbm.MarketShareChange__c != null,true,false)}">
+         <apex:outputText rendered="{!IF(hbm.MarketShareChange__c < 0,'true','false')}">
+      <td><div class="smallFont ml72">{!ROUND((hbm.MarketShareChange__c),0)} bps</div></td>
+          </apex:outputText>
+           <apex:outputText rendered="{!IF(hbm.MarketShareChange__c > 0 || hbm.MarketShareChange__c = 0,'true','false')}">
+      <td><div class="smallFont ml72">+{!ROUND((hbm.MarketShareChange__c),0)} bps</div></td>
+          </apex:outputText>
+      </apex:outputText>
+      
+    
+      <td class="thirdColumn" id="testingId">
+      
+       <apex:outputText rendered="{!IF(hbm.Market_Share__c == null,true,false)}">
+       <td><div class="notAvailable">Not<br />Available</div></td>
+       </apex:outputText> 
+       <apex:outputText rendered="{!IF(hbm.Market_Share__c != null,true,false)}">
+       
+       <apex:outputText rendered="{!IF(hbm.Market_Share__c < 0,'true','false')}">
+        <div class="redFont bigFont" style="margin-bottom: -21px; margin-left: -6px;">{!ROUND((hbm.Market_Share__c),1)}%</div>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.Market_Share__c > 0 || hbm.Market_Share__c = 0  ,'true','false')}">
+        <div class="greenFont bigFont" style="margin-bottom: -21px; margin-left: -6px;">{!ROUND((hbm.Market_Share__c),1)}%</div>
+       </apex:outputText>
+         </apex:outputText>
+        <apex:image url="/resource/AIW_Static_Resource/icons/project-specific/chevronright_60.png" style="width: 18%;margin-bottom: 0px;border: none;background: 0; margin-top: 0px;margin-right: -35px;"/> 
+     
+      </td>
+     
+    </tr>
+    
+    <tr class="slds-hint-parent">
+      <td>USG %</td>
+  
+       <apex:outputText rendered="{!IF(hbm.USGOld__c == null,true,false)}">
+       <td><div class="ml72">-</div></td>
+       </apex:outputText>
+       
+       <apex:outputText rendered="{!IF(hbm.USGOld__c != null,true,false)}">
+      <td><div class="smallFont ml72">{!hbm.USGOld__c}</div></td>
+      </apex:outputText>
+      
+       <apex:outputText rendered="{!IF(hbm.USG__c == null,true,false)}">
+       <td><div class="notAvailable">Not<br />Available</div></td>
+       </apex:outputText>
+       
+     <apex:outputText rendered="{!IF(hbm.USG__c!= null,true,false)}">
+     
+       <apex:outputText rendered="{!IF(hbm.USG__c < 0,'true','false')}">
+          <td class="thirdColumn"><div class="redFont bigFont">{!hbm.USG__c}</div></td> 
+       </apex:outputText>
+       <apex:outputText rendered="{!IF(hbm.USG__c > 0 || hbm.USG__c = 0,'true','false')}">
+          <td class="thirdColumn"><div class="greenFont bigFont">{!hbm.USG__c}</div></td> 
+       </apex:outputText>
+    </apex:outputText>
+
+    </tr>
+    
+    <tr class="slds-hint-parent">
+      <td>UVG %</td>
+       <apex:outputText rendered="{!IF(hbm.UVGOld__c == null,true,false)}">
+       <td><div class="ml72">-</div></td>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.UVGOld__c != null,true,false)}">
+      <td><div class="smallFont ml72">{!hbm.UVGOld__c}</div></td>
+        </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.UVG__c == null,true,false)}">
+       <td><div class="notAvailable">Not<br />Available</div></td>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.UVG__c!= null,true,false)}">
+     
+       <apex:outputText rendered="{!IF(hbm.UVG__c < 0,'true','false')}">
+          <td class="thirdColumn"><div class="redFont bigFont">{!hbm.UVG__c}</div></td> 
+       </apex:outputText>
+       <apex:outputText rendered="{!IF(hbm.UVG__c > 0 || hbm.UVG__c = 0,'true','false')}">
+          <td class="thirdColumn"><div class="greenFont bigFont">{!hbm.UVG__c}</div></td> 
+       </apex:outputText>
+    </apex:outputText>
+       
+    </tr>
+    
+    <tr class="slds-hint-parent">
+        <td>Tot. Distribution Pts.</td>
+        <apex:outputText rendered="{!IF(hbm.Distribution__c == null,true,false)}">
+       <td><div class="ml72">-</div></td>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.Distribution__c != null,true,false)}">
+         <apex:outputText rendered="{!IF(hbm.Distribution__c < 0,'true','false')}">
+      <td><div class="smallFont ml72">{!ROUND((hbm.Distribution__c),0)}</div></td>
+         </apex:outputText>
+         <apex:outputText rendered="{!IF(hbm.Distribution__c > 0 || hbm.Distribution__c = 0,'true','false')}">
+      <td><div class="smallFont ml72">+{!ROUND((hbm.Distribution__c),0)}</div></td>
+         </apex:outputText>
+       </apex:outputText>
+      
+      <apex:outputText rendered="{!IF(hbm.DistributionC__c != null,true,false)}">
+     
+       <apex:outputText rendered="{!IF(hbm.DistributionC__c < 0,'true','false')}">
+          <td class="thirdColumn"><div class="redFont bigFont">{!ROUND((hbm.DistributionC__c),1)}%</div></td> 
+       </apex:outputText>
+       <apex:outputText rendered="{!IF(hbm.DistributionC__c > 0 || hbm.DistributionC__c = 0,'true','false')}">
+          <td class="thirdColumn"><div class="greenFont bigFont">+{!ROUND((hbm.DistributionC__c),1)}%</div></td> 
+       </apex:outputText>
+    </apex:outputText>
+    
+       
+    </tr>
+    
+    <tr class="slds-hint-parent">
+      <td>Penetration %</td>    
+      <apex:outputText rendered="{!IF(hbm.PenetrationChange__c == null,true,false)}">
+       <td><div class="ml72">-</div></td>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.PenetrationChange__c != null,true,false)}">
+        <apex:outputText rendered="{!IF(hbm.PenetrationChange__c < 0,'true','false')}">
+      <td><div class="smallFont ml72">{!ROUND((hbm.PenetrationChange__c ),1)} PTS</div></td>
+      </apex:outputText>
+      <apex:outputText rendered="{!IF(hbm.PenetrationChange__c > 0 || hbm.PenetrationChange__c = 0,'true','false')}">
+      <td><div class="smallFont ml72">+{!ROUND((hbm.PenetrationChange__c ),1)} PTS</div></td>
+      </apex:outputText>
+       </apex:outputText>
+        
+     <apex:outputText rendered="{!IF(hbm.Penetration__c == null,true,false)}">
+       <td><div class="notAvailable">Not<br />Available</div></td>
+       </apex:outputText>
+       
+       <apex:outputText rendered="{!IF(hbm.Penetration__c != null,true,false)}">
+       <apex:outputText rendered="{!IF(hbm.Penetration__c < 0,'true','false')}"> 
+       <td class="thirdColumn"><div class="redFont bigFont">{!ROUND((hbm.Penetration__c),1)}%</div></td>   
+       </apex:outputText>
+       
+       <apex:outputText rendered="{!IF(hbm.Penetration__c > 0 || hbm.Penetration__c = 0,'true','false')}">
+       <td class="thirdColumn"><div class="greenFont bigFont">{!ROUND((hbm.Penetration__c),1)}%</div></td>   
+       </apex:outputText>   
+        </apex:outputText>  
+    </tr>
+    
+    <tr class="slds-hint-parent">
+      <td>Sustainability Index</td>
+       <apex:outputText rendered="{!IF(hbm.SustainabilityIndexOld__c == null,true,false)}">
+       <td><div class="ml72">-</div></td>
+       </apex:outputText>
+      <apex:outputText rendered="{!IF(hbm.SustainabilityIndexOld__c != null,true,false)}">
+         <td style="text-align: center !important;">
+          <apex:image id="theImagegoldO" value="/resource/AIW_Static_Resource/icons/project-specific/icon_gold_small.png" style="width:50%;" rendered="{!if(hbm.SustainabilityIndexOld__c=='Gold',true,false)}"/>
+          <apex:image id="theImagesilverO" value="/resource/AIW_Static_Resource/icons/project-specific/icon_silver_small.png"  style="width:50%;" rendered="{!if(hbm.SustainabilityIndexOld__c=='Silver',true,false)}"/>
+          <apex:image id="theImagebronzeO" value="/resource/AIW_Static_Resource/icons/project-specific/icon_bronze_small.png"  style="width:50%;" rendered="{!if(hbm.SustainabilityIndexOld__c=='Bronze',true,false)}"/>
+         </td>
+     </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.Sustainability_Index__c == null,true,false)}">
+       <td><div class="notAvailable">Not<br />Available</div></td>
+       </apex:outputText>
+       <apex:outputText rendered="{!IF(hbm.Sustainability_Index__c != null,true,false)}">
+      <td style=" padding-bottom: 0 !important; padding-top: 0 !important;">
+      <apex:image id="theImagegold" value="/resource/AIW_Static_Resource/icons/project-specific/icon_gold_large.png"  style="margin-left: 11px; width:40%; margin-right: 15px;" rendered="{!if(hbm.Sustainability_Index__c=='Gold',true,false)}"/>
+      <apex:image id="theImagesilver" value="/resource/AIW_Static_Resource/icons/project-specific/icon_silver_large.png" style="margin-left: 11px; width:40%;  margin-right: 15px;"  rendered="{!if(hbm.Sustainability_Index__c=='Silver',true,false)}"/>
+      <apex:image id="theImagebronze" value="/resource/AIW_Static_Resource/icons/project-specific/icon_bronze_large.png"  style="margin-left: 11px; width:40%;  margin-right: 15px;" rendered="{!if(hbm.Sustainability_Index__c=='Bronze',true,false)}"/>
+      </td> 
+      </apex:outputText>
+    </tr>
+       <apex:outputText rendered="{!IF(level1 == 'All' && level2 =='All',true,false)}">
+       <tr class="slds-hint-parent" onclick = "showSocial()" style = "cursor:pointer">
+        <td class="firstRow">Talk-ability Index</td>
+        <apex:outputText rendered="{!IF(hbm.TalkabilityIndexOld__c == null,true,false)}">
+       <td><div class="ml72">-</div></td>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.TalkabilityIndexOld__c != null,true,false)}">   
+        <td class="firstRow ml72"><div class="smallFont" style="text-align: center;">{!ROUND((hbm.TalkabilityIndexOld__c),0)}</div></td>
+        </apex:outputText>
+        <td class="thirdColumn">
+        <apex:outputText rendered="{!IF(hbm.Talk_ability_Index__c == null,true,false)}">
+          <div class="notAvailable" style="margin-bottom: -26px;margin-left: -25px;font-weight: 100;">Not<br />Available</div>
+        </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.Talk_ability_Index__c != null,true,false)}">
+         <apex:outputText rendered="{!IF(hbm.Talk_ability_Index__c < 0 ,'true','false')}"> 
+        <div class = "redFont bigFont" style="margin-bottom: -21px; margin-left: -6px;font-weight: bold;">{!ROUND((hbm.Talk_ability_Index__c),0)}</div>
+        </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.Talk_ability_Index__c > 0 || hbm.Talk_ability_Index__c = 0 ,'true','false')}">
+        <div class = "greenFont bigFont" style="margin-bottom: -21px; margin-left: -6px;font-weight: bold;">{!ROUND((hbm.Talk_ability_Index__c),0)}</div>
+        </apex:outputText>
+        </apex:outputText>
+        <apex:image url="/resource/AIW_Static_Resource/icons/project-specific/chevronright_60.png" style="width: 18%;margin-bottom: 0px;border: none;background: 0; margin-top: 0px;margin-right: -35px;"/> 
+            
+         </td>
+     
+    </tr>
+    </apex:outputText>
+    <apex:outputText rendered="{!IF(level1 != 'All' || level2 !='All',true,false)}">
+       <tr class="slds-hint-parent" onclick = "showSocialAlert()" style = "cursor:pointer">
+        <td class="firstRow">Talk-ability Index</td>
+        <apex:outputText rendered="{!IF(hbm.TalkabilityIndexOld__c == null,true,false)}">
+       <td><div class="ml72">-</div></td>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.TalkabilityIndexOld__c != null,true,false)}">
+        <td class="firstRow ml72"><div class="smallFont" style="text-align: center;">{!ROUND((hbm.TalkabilityIndexOld__c),0)}</div></td>
+        </apex:outputText>
+        <td class="thirdColumn">
+            <apex:outputText rendered="{!IF(hbm.Talk_ability_Index__c == null,true,false)}">
+                <div class="notAvailable" style="margin-bottom: -26px;margin-left: -25px;font-weight: 100;">Not<br />Available</div>
+            </apex:outputText>
+            <apex:outputText rendered="{!IF(hbm.Talk_ability_Index__c != null,true,false)}">
+                <apex:outputText rendered="{!IF(hbm.Talk_ability_Index__c < 0 ,'true','false')}">
+                    <div class = "redFont bigFont" style="margin-bottom: -21px; margin-left: -6px;font-weight: bold;">{!ROUND((hbm.Talk_ability_Index__c),0)}</div>
+                </apex:outputText>
+                <apex:outputText rendered="{!IF(hbm.Talk_ability_Index__c > 0 || hbm.Talk_ability_Index__c = 0 ,'true','false')}">
+                    <div class = "greenFont bigFont" style="margin-bottom: -21px; margin-left: -6px;font-weight: bold;">{!ROUND((hbm.Talk_ability_Index__c),0)}</div>
+                </apex:outputText>
+            </apex:outputText>
+            <apex:image url="/resource/AIW_Static_Resource/icons/project-specific/chevronright_60.png" style="width: 18%;margin-bottom: 0px;border: none;background: 0; margin-top: 0px;margin-right: -35px;"/> 
+            </td>
+    </tr>
+    </apex:outputText>
+    <tr class="slds-hint-parent">
+      <td>Brand Equity 2.0</td>
+       <apex:outputText rendered="{!IF(hbm.bec__c== null,true,false)}">
+       <td><div class="ml72">-</div></td>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.bec__c != null,true,false)}">
+        <apex:outputText rendered="{!IF(hbm.bec__c < 0,true,false)}">
+          <td><div class="smallFont ml72">{!ROUND((hbm.bec__c),1)}</div></td>
+        </apex:outputText>
+        
+        <apex:outputText rendered="{!IF(hbm.bec__c > 0 || hbm.bec__c = 0,true,false)}">
+          <td><div class="smallFont ml72">+{!ROUND((hbm.bec__c),1)}</div></td>
+        </apex:outputText>
+      </apex:outputText>
+      
+        <apex:outputText rendered="{!IF(hbm.BrandEquity20__c == null,true,false)}">
+          <td><div class="notAvailable">Not<br />Available</div></td>
+         </apex:outputText>
+         
+         <apex:outputText rendered="{!IF(hbm.BrandEquity20__c != null,true,false)}">
+            <apex:outputText rendered="{!IF(hbm.BrandEquity20__c < 0 ,'true','false')}">
+        <td class="firstRow"><div class = "redFont bigFont" style="margin-left: 17px;font-weight: bold;">{!ROUND((hbm.BrandEquity20__c),1)}</div></td>
+        </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.BrandEquity20__c > 0 || hbm.BrandEquity20__c = 0 ,'true','false')}">
+        <td class="firstRow"><div class = "greenFont bigFont" style="margin-left: 17px;font-weight: bold;">{!ROUND((hbm.BrandEquity20__c),1)}</div></td>
+        </apex:outputText>
+          </apex:outputText>
+    </tr>
+    
+    
+      
+     <tr class="slds-hint-parent">
+      <td>Share of Voice</td>
+       <apex:outputText rendered="{!IF(hbm.ShareofVoiceOld__c == null,true,false)}">
+       <td><div class="ml72">-</div></td>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.ShareofVoiceOld__c != null,true,false)}">
+      <td><div class="smallFont ml72">{!hbm.ShareofVoiceOld__c}</div></td>
+       </apex:outputText>
+       
+       <apex:outputText rendered="{!IF(hbm.ShareofVoice__c == null,true,false)}">
+           <td><div class="notAvailable">Not<br />Available</div></td>
+       </apex:outputText>
+       
+       <apex:outputText rendered="{!IF(hbm.ShareofVoice__c != null,true,false)}">
+       
+       <apex:outputText rendered="{!IF(hbm.ShareofVoice__c < 0,'true','false')}">
+       <td class="thirdColumn"><div class="redFont bigFont">{!hbm.ShareofVoice__c}</div></td>   
+       </apex:outputText>
+       
+       <apex:outputText rendered="{!IF(hbm.ShareofVoice__c > 0 || hbm.ShareofVoice__c = 0,'true','false')}">
+       <td class="thirdColumn"><div class="greenFont bigFont">{!hbm.ShareofVoice__c}</div></td>   
+       </apex:outputText>   
+        </apex:outputText>  
+        
+      
+    </tr>
+    
+    <tr class="slds-hint-parent">
+      <td>Gross Margin %</td>
+      <apex:outputText rendered="{!IF(hbm.ProfitMarginOld__c == null,true,false)}">
+       <td><div class="ml72">-</div></td>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.ProfitMarginOld__c != null,true,false)}">
+      <td><div class="smallFont ml72">{!hbm.ProfitMarginOld__c}</div></td>
+       </apex:outputText>
+       
+    <apex:outputText rendered="{!IF(hbm.Profit_Margin__c == null,true,false)}">
+       <td><div class="notAvailable">Not<br />Available</div></td>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.Profit_Margin__c != null,true,false)}">
+        
+         <apex:outputText rendered="{!IF(hbm.Profit_Margin__c < 0,'true','false')}">
+       <td class="thirdColumn"><div class="redFont bigFont">{!hbm.Profit_Margin__c}</div></td>   
+       </apex:outputText>
+       
+       <apex:outputText rendered="{!IF(hbm.Profit_Margin__c > 0 || hbm.Profit_Margin__c = 0,'true','false')}">
+       <td class="thirdColumn"><div class="greenFont bigFont">{!hbm.Profit_Margin__c}</div></td>   
+       </apex:outputText>   
+        
+       </apex:outputText>
+       
+     
+    </tr>
+    <tr class="slds-hint-parent">
+      <td>BBTOT</td>
+       <apex:outputText rendered="{!IF(hbm.BBTOT_Old__c == null,true,false)}">
+       <td><div class="ml72">-</div></td>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.BBTOT_Old__c != null,true,false)}">
+      <td><div class="smallFont ml72">{!hbm.BBTOT_Old__c}</div></td>
+       </apex:outputText>
+       
+     <apex:outputText rendered="{!IF(hbm.BBTOT__c == null,true,false)}">
+       <td><div class="notAvailable">Not<br />Available</div></td>
+       </apex:outputText>
+        <apex:outputText rendered="{!IF(hbm.BBTOT__c != null,true,false)}">
+        
+         <apex:outputText rendered="{!IF(hbm.BBTOT__c < 0,'true','false')}">
+       <td class="thirdColumn"><div class="redFont bigFont">{!hbm.BBTOT__c}</div></td>   
+       </apex:outputText>
+       
+       <apex:outputText rendered="{!IF(hbm.BBTOT__c > 0 || hbm.BBTOT__c = 0,'true','false')}">
+       <td class="thirdColumn"><div class="greenFont bigFont">{!hbm.BBTOT__c}</div></td>   
+       </apex:outputText>   
+        
+       </apex:outputText>
+    </tr>
+   
+    
+    </tbody>
+ </table>
+ </apex:repeat>
+  </apex:outputPanel>
+  </apex:outputPanel>
+ 
+</div>
+
+<c:brands_modal_vfc rp="heartbeatmetrics" tp="{!timeperiod}"/>
+<c:brands_modal_aiwsocial_alert />
+
+<script type="text/javascript">
+    function showModal(){
+    
+       
+       $('#myModal').modal('show').css("display","block");
+       
+    }
+    
+    function showMarketShare(){
+    
+       CallApexMethod();
+    
+    }
+    function showSocial(){
+           CallApexMethodSocial();
+          
+     }
+    
+    function showSocialAlert(){
+      //alert($Label.AIW_Social_Alert);  
+    //alert('Social Data is only available at Brand - Category levels.');
+    $('#myModalalert').modal('show').css("display","block");
+    
+    }
+    function changeColor(id) {    
+        var tabs = document.getElementsByClassName('tabcolorchange')
+        for (var i = 0; i < tabs.length; ++i) {
+            var item = tabs[i];
+            //item.style.color = (item.id == id) ? "white" : "#999999";
+            //item.style.backgroundColor = (item.id == id) ? "#999999" : "white";
+            if(item.id == id){$(item).css({"color":"white"})}
+            else{$(item).css({"color":"#999999"})}
+            
+            if(item.id == id){$(item).css({"background-color":"#999999"})}
+            else{$(item).css({"background-color":"white"})}
+        }
+    }
+    changeColorName('{!timeperiod}');
+    function changeColorName(timePeriodSelected) {
+    if(timePeriodSelected=='4W'){
+        changeColor('tabcolorchange1');
+    }
+    else if(timePeriodSelected=='12W'){
+        changeColor('tabcolorchange2');
+    }
+    else if(timePeriodSelected=='YTD'){
+        changeColor('tabcolorchange3');
+    }  
+    else{
+        changeColor('tabcolorchange4');
+    }  
+        
+    }
+    
+</script>
+<script src="/resource/AIW_Static_Resource_New/AIW_Static_Resource2/modal/js/jquery.min.js"></script>
+<script src="/resource/AIW_Static_Resource_New/AIW_Static_Resource2/modal/js/bootstrap-modal.min.js"></script>
+</body>
+</apex:form>
+</apex:page>

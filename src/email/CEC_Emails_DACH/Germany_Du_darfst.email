@@ -1,0 +1,15 @@
+<font face="Arial" size = "2" color="#000000"> Mit freundlichen Grüßen   <br/><br/>
+Ihr Du darfst Verbraucherservice<br/>
+{!User.FirstName}  <span> {!User.LastName} <br/><br/><{!if(Case.Case_Brand__c="","Unilever","")}  {!Case.Case_Brand__c}></b>
+<br/>
+
+
+ <img src={!IF(ISBLANK(Case.External_Image_Address__c),"https://unilever--cgdev--c.cs15.content.force.com/servlet/servlet.ImageServer?id=015e0000000M430&oid=00De0000005UoG9&lastMod=1428560739000",Case.External_Image_Address__c)} alt="Logo"/>
+
+<br>
+
+
+
+<font face="Arial"  style="font-size:10px" color="#000000">Du darfst Verbraucherservice - Pflichtangaben gemäß § 35a GmbHG / § 125a HGB können über folgenden Link abgerufen werden: <br/>
+
+ <a href="http://www.du-darfst.de/SiteUtilities/Pflichtangaben"> <font face = "Arial" style="font-size:10px" color = "#000000" > http://www.du-darfst.de/SiteUtilities/Pflichtangaben </font></a><br/><br/>

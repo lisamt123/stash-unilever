@@ -1,0 +1,10 @@
+Hi,
+
+Below Case has violated the Rule.
+
+            Case Number     -     {!Case.CaseNumber}
+            Product Name    -     {!Case.Product_Code__c}
+            Reason Code     -     {!Case.CEC_Reason_Code__c}
+
+Regards,
+Unilever

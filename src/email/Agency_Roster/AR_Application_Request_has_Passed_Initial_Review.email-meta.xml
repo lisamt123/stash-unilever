@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Agency_Roster</letterhead>
+    <name>AR Application Request has Passed Initial Review</name>
+    <style>freeForm</style>
+    <subject>{!ar_Application__c.Company_Name__c} - application is passed initial accept</subject>
+    <textOnly>Dear {!ar_Application__c.First_Name__c},
+
+Thank you for applying to become one of Unilever’s creative partners.
+
+Your submission has passed our initial review, and has been added to our shortlist for consideration for our next review of our XXX(portfolio) partners. This will likely take place within the next 6 – 12 months.
+ 
+Again, many thanks for taking the time to complete your submission.
+ 
+With Kindest Regards,</textOnly>
+    <type>html</type>
+</EmailTemplate>

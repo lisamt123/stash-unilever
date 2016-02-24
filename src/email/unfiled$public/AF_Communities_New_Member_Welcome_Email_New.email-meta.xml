@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Agency Fees Community Portal Welcome Email</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Agency_Fees_Letterhead</letterhead>
+    <name>AF Communities: New Member Welcome Email New</name>
+    <style>freeForm</style>
+    <subject>Welcome to {!Community_Name}</subject>
+    <textOnly>Hi {!Receiving_User.FirstName},
+
+Welcome to the {!Community_Name}!
+
+To get started, please follow this link {!Community_Url} and bookmark the page. This link is to the main access page for the system.
+
+Your credentials will arrive shortly in the form of a &quot;password reset&quot; email. Please follow the link provided in the body of the email to change your password and access the system for the first time. After your first access, going forward you will login through the page you have bookmarked.
+
+Please note - for the best experience please use Google Chrome browser.
+
+If you have any issues getting access please respond to this email. Once you have access to the system if you have any issues please report them under the &quot;Issue Log&quot; tab - again if you need help with doing this reply to this email for assistance.
+
+You are reminded that access to Agency Fees Online is subject to the terms and conditions of the confidentiality agreements you have accepted with Unilever. Please take appropriate steps to ensure the security of Unilever business data.
+
+Thanks and good luck using the platform.
+
+{!Organization.Name}</textOnly>
+    <type>html</type>
+</EmailTemplate>

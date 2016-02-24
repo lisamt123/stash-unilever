@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Modelo para envio de resposta ao consumidor solicitar dados para registo e investigação</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CEC_Unilever_Portugal</letterhead>
+    <name>Unilever JM - Portugal - Resposta ao Consumidor_Solicitar dados para registo</name>
+    <style>freeForm</style>
+    <subject>Case # {!Case.CaseNumber} / {!Case.Case_Brand__c}</subject>
+    <textOnly>Exm. {!Contact.Salutation} {!Contact.FirstName} {!Contact.LastName},
+
+
+
+Agradecemos o seu contacto para {!Case.Case_Brand__c}.
+
+
+
+Relativamente ao assunto que nos expôs, temos todo o interesse em averiguar a situação que descreve.
+
+Para tal, necessitamos de um conjunto de informações essenciais para uma investigação detalhada por parte do nosso departamento técnico.
+
+Neste sentido, agradecemos que nos informe os seguintes dados:
+
+
+
+Nome:
+
+{!Contact.FirstName} {!Contact.LastName}
+
+
+
+Morada:
+
+{!Contact.MailingStreet}
+
+{!Contact.MailingPostalCode}
+
+{!Contact.MailingCity}
+
+
+
+Telemóvel
+
+{!Contact.MobilePhone}
+
+{!Contact.Phone}
+
+
+
+Marca:
+
+{!Case.Case_Brand__c}
+
+
+
+Produto/Variedade/formato:
+
+{!Case.Product_Code__c}
+
+
+
+Lote do produto:
+
+{!Case.Production_Code__c}
+
+
+
+Código Barras:
+
+{!Case.Product_UPC__c}
+
+
+
+Data de validade:
+
+{!Case.Expiry_Date__c}
+
+
+
+Loja onde comprou:
+
+{!Case.Store__c}
+
+
+
+Localidade da Loja:
+
+{!Case.Store_Location__c}
+
+
+
+Data da compra:
+
+{!Case.Purchase_Date__c}
+
+
+
+Ficamos ao seu dispor qualquer esclarecimento que entenda necessário.
+
+
+Com os melhores cumprimentos,
+
+{!User.Name}
+
+
+
+Serviço de Atendimento ao Consumidor
+
+Unilever Jerónimo Martins
+
+Largo Monterroio Mascarenhas, 1 1099-081 Lisboa
+
+www.unilever-jm.com
+
+]]&gt;</textOnly>
+    <type>html</type>
+</EmailTemplate>

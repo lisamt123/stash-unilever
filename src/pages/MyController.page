@@ -1,0 +1,5 @@
+<apex:page CONtroller="PworfSubmitController" ACtion="checkAndRedirect()" >
+
+<!-- rest of page -->
+
+</apex:page>

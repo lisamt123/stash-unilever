@@ -1,0 +1,6 @@
+<apex:page controller="tabs" id="page">
+ 
+<apex:tabPanel switchType="client">
+<apex:tab label="Admin" name="Admin" id="page" rendered="{!perset.size==0}"/>
+</apex:tabPanel>
+</apex:page>

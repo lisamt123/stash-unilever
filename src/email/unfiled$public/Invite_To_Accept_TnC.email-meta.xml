@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Invite To Accept TnC</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>Invite To Accept TnC</name>
+    <style>freeForm</style>
+    <subject>Must Accept UW Terms and Conditions before Accessing Chatter</subject>
+    <textOnly>You have been granted access to the Unilever Way Collaboration Group {!uw_Terms_Conditions__c.Bet_Name__c} by {!uw_Terms_Conditions__c.OwnerFullName}.
+
+Please follow the link below to view the terms and conditions before accessing the system. Upon acceptance you will be sent you login credentials.
+
+http://uwsites.dev.cs14.force.com/TermsAndConditions?token={!uw_Terms_Conditions__c.Invite_Token__c}
+
+This invite will expire on {!uw_Terms_Conditions__c.Invite_Expires__c}</textOnly>
+    <type>custom</type>
+</EmailTemplate>

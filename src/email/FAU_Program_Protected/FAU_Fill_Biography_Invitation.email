@@ -1,0 +1,86 @@
+<table border="0" cellpadding="5" width="600" cellspacing="5" height="400" >
+<tr valign="top" height="50" >
+<td tEditID="c1r1" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r1" locked="0" >
+<![CDATA[<p class="MsoNormal"><span style="font-size: 10pt; line-height: 107%; font-family: Arial, sans-serif;">Dear {!FAU_Participant__c.FAU_First_Name__c},</span><span style="font-size:10.0pt;line-height:107%"><o:p></o:p></span></p>]]></td>
+</tr>
+<tr valign="top" height="300" >
+<td tEditID="c1r2" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r2" locked="0" >
+<![CDATA[<p class="p1" align="center" style="margin:0in;margin-bottom:.0001pt;text-align:
+center"><b><u><span style="font-size: 10pt; font-family: Arial, sans-serif;"><br>
+{!FAU_Participant__c.FAU_Program_Name__c}</span></u></b><span style="font-size: 10pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="p1" align="center" style="margin: 0in 0in 0.0001pt; text-align: center;"><b><u><span style="font-size: 10pt; font-family: Arial, sans-serif;">Prepare Biography&nbsp;</span></u></b><span style="font-size: 10pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="p1" align="center" style="margin: 0in 0in 0.0001pt; text-align: center;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">On behalf
+of Four Acres we hope you found our webinar informative and are looking forward
+to your leadership journey, which includes robust feedback, self-led
+assignments and<span class="s1">&nbsp;face-to-face</span><span class="s2">&nbsp;</span><span class="s1">modules</span>.<span class="apple-converted-space">&nbsp;</span><o:p></o:p></span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">The first
+residential module will be from&nbsp;<span class="s1"><b>{!FAU_Participant__c.FAU_Module_1_Start_Date__c}
+to&nbsp;</b></span><b>{!FAU_Participant__c.FAU_Module_1_End_Date__c}.</b><o:p></o:p></span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">To make the
+experience more enjoyable we would like you to help us prepare a short
+biography .<o:p></o:p></span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><i><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></i><span style="font-size: 10pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="p2" style="margin: 0in 0in 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Immediate
+Action Required:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">For
+participants to get to know each other, please prepare a short
+biography&nbsp;by clicking on this hyperlink<span class="apple-converted-space">&nbsp;</span><u>{!FAU_Participant__c.FAU_Bio_Page_Link__c}</u><b>&nbsp;<span class="s5">on or before&nbsp;</span>{!FAU_Participant__c.FAU_Biography_Deadline__c}.</b><o:p></o:p></span></p><p class="p3" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">What’s
+coming next:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;"><o:p></o:p></span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">After you
+fill your Biographical Details, you will be asked for travel details.<b>&nbsp;&nbsp;</b><o:p></o:p></span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Congratulations
+again on your nomination and we look forward to seeing you soon.<o:p></o:p></span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">To see your
+progress check out your: {!FAU_Participant__c.FAU_Participants_Workbook__c}<o:p></o:p></span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Chatter
+group : {!FAU_Participant__c.FAU_Chatter_Group__c}<o:p></o:p></span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;<o:p></o:p></span></p><p class="p1" style="margin: 0in 0in 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">Kind
+regards,<o:p></o:p></span></p><p class="p1" style="text-align: center;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p><p class="MsoNormal"><span style="font-size:10.0pt;line-height:107%">&nbsp;</span></p>]]></td>
+</tr>
+<tr valign="top" height="50" >
+<td tEditID="c1r3" style=" background-color:#FFFFFF; color:#000000; bEditID:r3st1; bLabel:main; font-size:12pt; font-family:arial;" aEditID="c1r3" locked="0" >
+<![CDATA[<div style="color: rgb(0, 0, 0);"><p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!FAU_Participant__c.OwnerFullName}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">{!FAU_Participant__c.OwnerTitle}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Ph:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;{!FAU_Participant__c.OwnerPhone}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><b><span style="font-size: 10pt; font-family: Arial, sans-serif;">Email:</span></b><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;{!FAU_Participant__c.OwnerEmail}<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;">&nbsp;</span></p>
+
+<p class="MsoNormal" style="margin-bottom: 0.0001pt;"><span style="font-size: 10pt; font-family: Arial, sans-serif;"><a href="http://www.unilever.com/"><b><span style="color:blue">www.unilever.com</span></b></a><b>&nbsp;|&nbsp;</b><a href="http://www.facebook.com/unilever"><b><span style="color:blue">www.facebook.com/unilever</span></b></a><o:p></o:p></span></p>
+
+<p class="MsoNormal"><span style="font-size:10.0pt;line-height:107%">&nbsp;</span></p></div>]]></td>
+</tr>
+</table>

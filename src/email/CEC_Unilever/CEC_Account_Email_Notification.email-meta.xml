@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>CEC: Used to send the email when account gets created with ownerid: Mulesoft</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CEC Account Email Notification</name>
+    <style>none</style>
+    <subject>[ERR004] Default Account Owner is not populated/Inactive</subject>
+    <type>text</type>
+</EmailTemplate>

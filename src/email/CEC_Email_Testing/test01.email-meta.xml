@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>CEC</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CEC_Marmite_GB</letterhead>
+    <name>test01</name>
+    <style>freeForm</style>
+    <subject>Test email</subject>
+    <type>html</type>
+</EmailTemplate>

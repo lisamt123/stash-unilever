@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Agency_Fees_Letterhead</letterhead>
+    <name>OOPS Actual Rejected_HTML</name>
+    <style>freeForm</style>
+    <subject>OOPS Actual Reject - {!AF_OOPS_Actual__c.Name}</subject>
+    <textOnly>Dear User
+Your {!AF_OOPS_Actual__c.Name} Out of Pocket Expense submission for {!AF_OOPS_Actual__c.AF_Brand__c} ({!AF_OOPS_Actual__c.AF_Rejected_Quarter__c}) has been declined by Category Finance.
+
+Rejection comment: {!AF_OOPS_Actual__c.AF_Active_Rejection_Comment__c}
+
+Please log in to the Agency Fees application, using the link below, to review.
+{!AF_OOPS_Actual__c.AF_Community_Link__c}</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -29,13 +29,13 @@ global class CPA_ContractInformationController {
       //  List<CPA_project_work_order__c> listPriPWO = [Select ID,PWORF_ID__c from CPA_project_work_order__c where id =: pwoRecId AND chk_First_PWO__c= true];
         Map<string,CPA_Status_Msg__c> customSettingStatusMsg = CPA_Status_Msg__c.getAll();
             
-           if(customSettingStatusMsg.get(pwoRec.pkl_Status__c).PWO_Status_Msg__c != null && callFromVF && (pwoRec.CNF_Status__c == null || pwoRec.CNF_Status__c == 'Saved') && (pwoRec.TNF_Status__c == null || pwoRec.TNF_Status__c == 'Saved')){
+           if(customSettingStatusMsg.get(pwoRec.pkl_Status__c).PWO_Status_Msg__c != null && callFromVF && (pwoRec.CNF_Status__c == null) && (pwoRec.TNF_Status__c == null)){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.get(pwoRec.pkl_Status__c).PWO_Status_Msg__c));
             } 
-            if(pwoRec.CNF_Status__c!=null && customSettingStatusMsg.get(pwoRec.CNF_Status__c).CNF_Status_Msg__c != null && callFromVF && (pwoRec.CNF_Status__c != null && pwoRec.CNF_Status__c != 'Saved')){
+            if(pwoRec.CNF_Status__c!=null && customSettingStatusMsg.get(pwoRec.CNF_Status__c).CNF_Status_Msg__c != null && callFromVF && (pwoRec.CNF_Status__c != null)){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.get(pwoRec.CNF_Status__c).CNF_Status_Msg__c));
             }
-            else if(pwoRec.TNF_Status__c!= null && customSettingStatusMsg.get(pwoRec.TNF_Status__c).TNF_Status_Msg__c != null && callFromVF && (pwoRec.TNF_Status__c != null && pwoRec.TNF_Status__c != 'Saved')){
+            else if(pwoRec.TNF_Status__c!= null && customSettingStatusMsg.get(pwoRec.TNF_Status__c).TNF_Status_Msg__c != null && callFromVF && (pwoRec.TNF_Status__c != null)){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.get(pwoRec.TNF_Status__c).TNF_Status_Msg__c));
             }           
         if(pwoRec.RecordTypeid == label.Lbl_PWO_RecordTypeId || pwoRec.RecordTypeid == label.Lbl_Standalone_PWO_RecordTypeId ){            

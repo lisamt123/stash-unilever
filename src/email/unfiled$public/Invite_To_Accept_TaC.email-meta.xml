@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Invite To Accept TaC</name>
+    <style>none</style>
+    <subject>Must Accept the Unilever Way Terms and Conditions before Accessing Chatter</subject>
+    <type>custom</type>
+</EmailTemplate>

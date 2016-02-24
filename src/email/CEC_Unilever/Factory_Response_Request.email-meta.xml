@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>CEC: factory response template</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CEC_Unilever_GB</letterhead>
+    <name>Factory Response Request</name>
+    <style>formalLetter</style>
+    <subject>Factory Response Required - Case {!Case.CaseNumber}</subject>
+    <type>html</type>
+</EmailTemplate>

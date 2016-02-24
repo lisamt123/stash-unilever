@@ -9,7 +9,6 @@
 
 <apex:page sidebar="false" standardStylesheets="false" controller="IPM_ProjDocumentSectionHstryController" extensions="IPM_ProjectOverviewCtrl,IPM_GetHelpDoc">
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ProjectOverview.css')}"/>
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_CreateBet.css')}"/>
     <apex:form >   
     <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
     <apex:composition template="IPM_TemplateRevamp">
@@ -22,10 +21,10 @@
 
                         <apex:actionFunction name="movePLE" action="{!moveToPLE}" reRender="" oncomplete="location.reload();"/>
                         <!-- <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> -->
-                        <c:IPM_ProjectDetails project="{!project}" activeItem="overview" phasechangeInProgress="{!bPhaseChangeInProgress}" />
+                        <c:IPM_ProjectDetails project="{!project}" activeItem="overview"/>
 
             </div>
-            <apex:outputPanel rendered="{!bShowAlertsBar}">            
+            <apex:outputPanel rendered="{!(noOfNotifications != null && noOfNotifications >= 1) || (alertscount != null && alertscount >=1)}">            
 
             <div class="col-sm-12 negMargin" >
                 <i class="minus fa fa-plus alertAccordian"></i>
@@ -124,30 +123,20 @@
                         <div class="col-sm-3">
                         <div class="topheader">{!$Label.IPM_KeyProjectDetails}</div>
                         <div class="greyborder"></div>
-                        <div class="globeContainer projOverview">
-                            <span class="keyTitle pull-left">{!project.IPM_Project_Name__c} | </span> 
-                            <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Original'}">
-                                 <span class="orgIcon"></span>
-                             </apex:outputPanel>
-                             <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Operational'}">
-                                 <span class="oprtnIcon"></span>
-                             </apex:outputPanel>
-                             <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Rollout'}">
-                                 <span class="rollIcon"></span>
-                             </apex:outputPanel>
-                            <span class="grentxt">{!project.IPMProject_Span__c}</span>
+                        <div class="globeContainer">
+                            <span class="keyTitle pull-left">{!project.IPM_Project_Name__c} | </span><span class="headerglb"></span><span class="grentxt">{!project.IPMProject_Span__c}</span>
                         </div>
                          <div class="SecButtonSet" >
-                                <apex:outputPanel rendered="{! AND (NOT(bPhaseChangeInProgress) , isProjLeader)}">
+                                <apex:outputPanel rendered="{!isProjLeader}">
                                 <a class="icoButton edit1 editTaskBtn"  href="apex/IPM_CoreParameters?id={!projectId}" ></a>
                                 </apex:outputPanel>
                          </div>
                         
                         <p class="clearfix">{!project.IPM_Brand_Positioning__c} | {!project.IPM_Project_Type__c}</p>
                         <p class="keycontent">{!project.IPM_Brand__c} | {!project.IPM_Category_Text__c}</p>
-                        <div class="greyborder"></div>
+                        
                         <apex:outputPanel rendered="{!project.IPM_Fast_Track_Project__c && project.IPM_Project_Type__c != 'Operational'}">
-                            
+                            <div class="greyborder"></div>
                             <div class="row">
                                 <apex:outputPanel layout="block" rendered="{!project.IPM_Fast_Track_Project__c}" styleClass="col-sm-2 pr0">
                                     <div><img src="{!URLFOR($Resource.IPM_Resource, 'images/flag_homescreen.svg')}" alt="Fast Track" class="fasttrack"/></div>
@@ -157,19 +146,17 @@
                                  </apex:outputPanel>
                                
                             </div>
-							<div class="greyborder"></div>
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!project.IPM_White_Space_Project__c && project.IPM_Project_Type__c != 'Operational'}">
-                            
+                            <div class="greyborder"></div>
                             <div class="row">
                                <apex:outputPanel layout="block" styleClass="whiteSpaceContainer" rendered="{!project.IPM_White_Space_Project__c}" >
                                     <p class="keycontent">{!$Label.IPM_White_Space_Project}</p>
                                 </apex:outputPanel>  
                             </div>
-							<div class="greyborder"></div>
                         </apex:outputPanel> 
                             <apex:outputPanel rendered="{!NOT(ISNULL(project.IPM_Clustering__r.Name))}">
-                                
+                                <div class="greyborder"></div>
                                 <apex:outputPanel styleClass="greyborder" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}"></apex:outputPanel>
                                 <div class="row">
                                     <div class="col-sm-4 pr0">
@@ -179,11 +166,9 @@
                                         <div class="dueDate clusterAns"><apex:outputField value="{!project.IPM_Clustering__r.Name}" /></div>
                                     </div>
                                 </div>
-				<apex:outputPanel styleClass="greyborder" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}"></apex:outputPanel>
                             </apex:outputPanel>
-			    
-			    <apex:outputPanel layout="block" rendered="{!IF(AND(project.IPM_Phase__c!='PLE', currGateToDisplay != null),true,false)}">
-                            
+                            <div class="greyborder"></div>
+                            <apex:outputPanel layout="block" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}">
                                 <div class="row">
                                     <div class="col-sm-7 pr0">
                                         <div class="keycontent">
@@ -191,14 +176,12 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
-                                        <div class="percentage"><a href="{!$Page.IPM_GateDocument}?id={!project.Id}&printDoc={!currGate}"><apex:outputText Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText>%</a></div>
+                                        <div class="percentage"><a href="{!$Page.IPM_GateDocument}?id={!project.Id}"><apex:outputText Value="{!IF(projectDoc.IPM_Document_Status__c='Not Started',filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText>%</a></div>
                                     </div>
                                 </div>
-                            
+                            </apex:outputPanel>
                             <apex:outputPanel layout="block" styleClass="greyborder" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}"></apex:outputPanel>
-			    </apex:outputPanel>
                             <apex:outputPanel layout="block"  styleClass="" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}">
-                            
                                 <div class="row">
 
                                 
@@ -207,37 +190,28 @@
                                         {!$Label.IPM_CURRENT_DOCUMENT_STATUS} 
                                     </div>
                                 </div>
+                                <div class="documentStatus pl0">
+                                    <div class="{!projectDocStatusStyleClass}">{!projectDoc.IPM_Document_Status__c}</div>
+                                </div>
                                 
-                                <apex:outputPanel rendered="{!bPhaseChangeInProgress}">
-                                    <div class="documentStatus pl0">
-                                        <div class="{!projectDocStatusStyleClass}"> {!$Label.IPM_PHASECHAGE_INPROGRESS} </div>
+                                <apex:outputPanel rendered="{!IF(OR(AND(projectDoc.IPM_Document_Status__c='Approved'&& project.IPM_Phase__c='Market Deployment'), AND (project.IPM_Phase__c='Market Ready' && project.IPM_Project_Type__c = 'Operational')),True,False)}">
+                                    <div class="SecStatusUpdate dstatusButton shipTrade" data-toggle="modal" data-target="#shipToPLE"  data-backdrop="static" data-keyboard="false">
+                                        <input type="button" class="ipmButton" value="{!$Label.IPM_Ship_To_Trade_Button}" />
                                     </div>
                                 </apex:outputPanel>
-                                
-                                <apex:outputPanel rendered="{!NOT(bPhaseChangeInProgress)}">                    
-                                    <div class="documentStatus pl0">
-                                        <div class="{!projectDocStatusStyleClass}">{!projectDoc.IPM_Document_Status__c}</div>
+
+                                <apex:outputPanel rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved' && projectDoc.IPM_Document_Status__c!='Approved with Edits' && projectDoc.IPM_Document_Status__c!='Not Started' && projectDoc.IPM_Document_Status__c!='Stopped' && project.IPM_Phase__c!='PLE',IsUpdateStatus=true),True,False)}">
+                                    <div class="openModal SecStatusUpdate dstatusButton" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="Update Status">
+                                        <input type="button" class="ipmButton" value="Change status"/>
                                     </div>
-                                    
-                                    <apex:outputPanel rendered="{!bShowShipToTradeButton}">
-                                        <div class="SecStatusUpdate dstatusButton shipTrade" data-toggle="modal" data-target="#shipToPLE"  data-backdrop="static" data-keyboard="false">
-                                            <input type="button" class="ipmButton" value="{!$Label.IPM_Ship_To_Trade_Button}" />
-                                        </div>
-                                    </apex:outputPanel>
-    
-                                    <apex:outputPanel rendered="{!bShowChangeStatusButton}">
-                                        <div class="openModal SecStatusUpdate dstatusButton" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="Update Status">
-                                            <input type="button" class="ipmButton" value="Change status"/>
-                                        </div>
-                                    </apex:outputPanel>
-    
-                                    <apex:outputPanel layout="block" styleClass="col-sm-12 SecButtonSet" rendered="{!projectDoc.IPM_Document_Status__c='Approved with Edits'}">
-                                            <apex:actionFunction name="movePLE" action="{!moveToPLE}" reRender=""/>
-                                            <!-- <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> -->
-                                            <div class="SecStatusUpdate removebutton statusButton" data-toggle="modal" data-target="#ipmMoveFeasibility"  data-backdrop="static" data-keyboard="false">
-                                                <span class="ipmButton Primary">{!$Label.IPM_Move_To} {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}</span>
-                                            </div>     
-                                    </apex:outputPanel>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel layout="block" styleClass="col-sm-12 SecButtonSet" rendered="{!projectDoc.IPM_Document_Status__c='Approved with Edits'}">
+                                        <apex:actionFunction name="movePLE" action="{!moveToPLE}" reRender=""/>
+                                        <!-- <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> -->
+                                        <div class="SecStatusUpdate removebutton statusButton" data-toggle="modal" data-target="#ipmMoveFeasibility"  data-backdrop="static" data-keyboard="false">
+                                            <span class="ipmButton Primary">{!$Label.IPM_Move_To} {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}</span>
+                                        </div>     
                                 </apex:outputPanel>
                             </div>
                             
@@ -245,8 +219,8 @@
                             </apex:outputPanel>
                             <apex:outputPanel layout="block" styleClass="charterApprover" rendered="{! rolloutProjectRecentMilestone != NULL && rolloutProjectRecentMilestone.size > 0}">
                                 <a href="{!$Page.IPM_ProjectOverview}?id={!rolloutProjectRecentMilestone[0].IPM_Project__c}">{!rolloutProjectRecentMilestone[0].IPM_Project__r.Name}</a> {!gateDueDateMessage} &nbsp;<apex:outputField value="{!rolloutProjectRecentMilestone[0].IPM_Due_Date__c}" />
-                                                       
-			    </apex:outputPanel>
+                            </apex:outputPanel>
+                            <div class="greyborder"></div>
                             <div class="row">
                                 <div class="col-sm-8 pr0">
                                     <div class="keycontent">{!$Label.IPM_TARGET_LAUNCH_DATE}</div>
@@ -287,32 +261,19 @@
                                 
                             </apex:outputPanel>
                             
+                            <apex:outputpanel >
                             <div class="greyborder"></div>
-                            <apex:outputpanel rendered="{!project.IPM_Project_Type__c!='Operational'}">
-                            
                             <div class="row">
                                 <div class="col-sm-8 pr0">
                                     <div class="keycontent">{!$Label.IPM_BusinessImpact}</div>
                                 </div>
                                 <div class="col-sm-3 pl0">
-                                    {!globalbusinessImpactStr}
+                                    &euro;{!globalbusinessImpactStr}<!--{!IF(project.IPMProject_Span__c=='Global',globalbusinessImpactStr,regionalORlocalBusinessImpactStr)}-->
                                 </div>
                             </div>
                             <div class="greyborder"></div>
                             </apex:outputpanel>
                             
-                            <apex:outputpanel rendered="{!projectPriority != null}">
-                                <div class="row">
-                                    <div class="col-sm-8 pr0">
-                                        <div class="keycontent">{!$Label.IPM_ProjectPriority}</div>
-                                    </div>
-                                    <div class="col-sm-3 pl0">
-                                        {!projectPriority}
-                                    </div>
-                                </div>
-                                <div class="greyborder"></div>
-                            </apex:outputpanel>
-
                             <div class="row mt20">
                                 <div class="col-sm-2">                        
                                     <img class="cirimg" alt="Project Leader" src="{!project.IPM_Project_Leader__r.SmallPhotoUrl}"/>
@@ -408,7 +369,7 @@
                             <!-- ------Ship To trade Modal ends here  -->
                             
                     <!-- IPM_ProjectOverviewComp Ends-->                  
-                    <apex:outputPanel rendered="{! AND( !bPhaseChangeInProgress, project.IPM_Phase__c!='PLE')}">                    
+                    <apex:outputPanel rendered="{!project.IPM_Phase__c!='PLE'}">                    
                         <apex:outputPanel rendered="{!if(project.Is_Archieved__c==true,false,true)}" >
                             <div class="col-sm-3">
                                 <div class="topheader">{!$Label.IPM_MY_SECTIONS_IN} {!currGateToDisplay}</div>
@@ -419,39 +380,33 @@
                                 <apex:outputPanel rendered="{!projectSections != NULL && projectSections.size > 0}" >    
                                     <div class="">
                                         <div class="fl">
-                                            <div class="fl submitted mr10"></div> 
-                                            <apex:outputPanel rendered="{! if( $User.Id == project.IPM_Project_Leader__c , true, false)}" >      
-                                            	<span class="f12 pr10">{!$Label.IPM_FILLED_IN}</span>
-                                            </apex:outputPanel>
-                                            
-                                            <apex:outputPanel rendered="{! if($User.Id != project.IPM_Project_Leader__c , true, false)}"  >         
-                                            	<span class="f12 pr10">{!$Label.IPM_STARTED}</span>
-                                            </apex:outputPanel>	
-                                            
+                                            <div class="fl submitted mr10"></div> <span class="f12 pr10">{!$Label.IPM_FILLED_IN}</span>
                                         </div>
                                         <div class="fl">
                                             <div class="fl notsubmitted mr10"></div> <span class="f12">{!$Label.IPM_NOT_STARTED}</span>
                                         </div>           
                                         <apex:repeat value="{!projectSections}" var="pS">
                                             <div class="pb3 pt10 clearfix">                       
-                                                    <apex:outputPanel rendered="{! if( $User.Id == project.IPM_Project_Leader__c , true, false)}" >       
-                                                        <div class="{!IF(pS.IPM_Section_Status__c='Filled-in', 'secblock', 'secnofill')}">
-                                                            <span><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}" >
-                                                                {!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
+
+                                                <apex:outputPanel rendered="{! if( $User.Id == project.IPM_Project_Leader__c , true, false)}" >       
+                                                    <div class="{!IF(pS.IPM_Section_Status__c='Filled-in', 'secblock', 'secnofill')}">
+                                                        <span><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}" >
+                                                            {!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
                                                             </a></span>
-                                                        </div>
-                                                    </apex:outputPanel>  
+                                                    </div>
+                                                </apex:outputPanel>  
                                                  
-                                                    <apex:outputPanel rendered="{! if($User.Id != project.IPM_Project_Leader__c , true, false)}"  >       
-                                                        <div class="{!IF(pS.IPM_Functional_Input_Status__c='Started', 'secblock', 'secnofill')}">
-                                                            <span><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}" >
-                                                                {!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
+                                                 <apex:outputPanel rendered="{! if($User.Id != project.IPM_Project_Leader__c , true, false)}"  >       
+                                                    <div class="{!IF(pS.IPM_Functional_Input_Status__c='Filled-in', 'secblock', 'secnofill')}">
+                                                        <span><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}" >
+                                                            {!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
                                                             </a></span>
-                                                        </div>
-                                                    </apex:outputPanel>         
-                                             </div>                
+                                                    </div>
+                                                </apex:outputPanel>         
+                                                
+                                            </div>                
                                         </apex:repeat>
-                                    </div>
+                                </div>
                                 </apex:outputPanel>
                             </div>
                         </apex:outputPanel>                     
@@ -522,16 +477,14 @@
                             </apex:actionFunction>
                     </apex:outputPanel>                   
                 </apex:outputPanel>
-                
-                <apex:outputPanel rendered="{! AND(!bPhaseChangeInProgress , project.IPM_Phase__c='PLE')}">                          
+                <apex:outputPanel rendered="{!project.IPM_Phase__c='PLE'}">                          
                     <div class="col-sm-6 text-center" id="stopsection">
                         <div><img src="{!URLFOR($Resource.IPM_Resource, 'images/img_ple.png')}" alt="PLE" /></div>                                   
                         <div class="successStyle">{!$Label.IPM_ProjectLaunchMeassage}</div>
                         <div class="launchDate">on&nbsp;<apex:outputField value="{!projectDoc.IPM_Approval_Date__c }"/></div>                                   
                     </div>
-                </apex:outputPanel>  
-                                     
-                <apex:outputPanel rendered="{! AND(!bPhaseChangeInProgress , if(project.Is_Archieved__c==true,true,false))}">            
+                </apex:outputPanel>                       
+                <apex:outputPanel rendered="{!if(project.Is_Archieved__c==true,true,false)}">            
                     <div class="col-sm-6 text-center" id="stopsection">
                         <div><img src="{!URLFOR($Resource.IPM_Resource, 'images/img_g.png')}" alt="Stop" /></div>        
                         <div>{!$Label.IPM_PROJECT_STOPPED}</div>
@@ -542,13 +495,6 @@
                         </div>
                     </div>
                 </apex:outputPanel>
-                
-                <apex:outputPanel rendered="{!bPhaseChangeInProgress}">                        
-                    <div class="col-sm-6 text-center" id="stopsection">
-                       <div class="successStyle">{!$Label.IPM_PhaseChangeInProgressMsg}</div>
-                    </div>
-                </apex:outputPanel> 
-                
                 <!-- BET component Section Begins -->
                 <apex:outputPanel >
                     <div class="col-sm-3">
@@ -558,7 +504,7 @@
                         <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
                     </apex:outputPanel>
                 
-                    <apex:outputPanel rendered="{!showBET}">
+    <apex:outputPanel rendered="{!showBET}">
                     <div class="topheader">{!$Label.IPM_BETLabel}</div>                    
                     <div class="greyborder"></div> 
                     <apex:outputPanel layout="block" styleClass="changeBetLnk" rendered="{!isProjLeader && isOriginal}">
@@ -567,7 +513,7 @@
                     <apex:outputPanel rendered="{!betInformationMessage != ''}" styleClass="infoMsg">
                     <apex:outputText value="{!betInformationMessage}" escape="false"/>
                     </apex:outputPanel>                    
-                    <apex:outputpanel rendered="{!BETId!= null}">
+                    <apex:outputpanel rendered="{!BETId != null}">
                         <div class="row">
                             <div class="col-xs-3 headerlogo">
                                 <apex:image value="{!$Resource.IPM_BET_Logo}" />
@@ -616,7 +562,8 @@
                             </div>
                          </div>
                          <div class="greyborder"></div>
-                   	</apex:outputpanel>
+                         <apex:commandLink value="{!$Label.IPM_AccessBET}" status="teamDelete" action="/{!BETId}"  rendered="{!(BETId!=null && isIdeasPhase && hasBETAccess != $Label.IPM_BETRequestPending && hasBETAccess != $Label.IPM_BETRequestNo && hasBETAccess !='')}" styleclass="ipmButton primary" target="_blank"/>
+                    </apex:outputpanel>
                     <apex:outputPanel rendered="{!!isIdeasPhase}" id="betButtonSection">
                         <apex:outputpanel rendered="{!hasBETAccess == $Label.IPM_BETRequestPending}">
                             <div class="row">
@@ -634,7 +581,7 @@
                             </div>
                         </apex:outputpanel>  
                           <apex:commandLink value="{!$Label.IPM_AccessBET}" status="teamDelete" action="/{!BETId}"  rendered="{!(BETId!=null && hasBETAccess != $Label.IPM_BETRequestPending && hasBETAccess != $Label.IPM_BETRequestNo && hasBETAccess !='')}" styleclass="ipmButton primary" target="_blank"/>
-                        <apex:outputPanel rendered="{!(BETId!=null && hasBETAccess ==$Label.IPM_BETRequestNo && !(!isOriginal  && betWrapper.status == $Label.IPM_BETStatus_Unreleased)&& isAcessDuetoTeam)}">
+                        <apex:outputPanel rendered="{!(BETId!=null && hasBETAccess ==$Label.IPM_BETRequestNo && !(!isOriginal  && betWrapper.status == $Label.IPM_BETStatus_Unreleased))}">
                             <input type="button" class="ipmButton primary" value="{!$Label.IPM_RequestAccess}" onClick="requestBETAccess();"/>
                          </apex:outputPanel>
                         <apex:outputPanel rendered="{!(isOriginal && isProjLeader && !isIdeasPhase && toolkitOption != $Label.IPM_BET_NoBET)}">
@@ -658,7 +605,7 @@
                                             <div class="modal-title">{!if(showSuggestedMembers && !memberCallFromURL,$Label.IPM_AddBETMembers,$Label.IPM_CreateNewBETTitle)}</div>
                                         </div>
                                     <div class="createNewBrandExp">
-                                        <div class="italicTxt">{!if(showSuggestedMembers && memberCallFromURL,'',$Label.IPM_BETComponentMessage)}</div>
+                                        <div><strong>{!$Label.IPM_welcomeToFeasibility}</strong>{!if(showSuggestedMembers && memberCallFromURL,'',$Label.IPM_BETComponentMessage)}</div>
                                         <div id="ipmGetStartedTab" class="modal-body">
                                         
                                         <apex:outputpanel rendered="{!!showSuggestedMembers}" >   
@@ -668,8 +615,8 @@
                                             </ul> 
                                             
                                                                                         
-                                            <div class="panel-body removePadd" id="betdetails">
-                                                <div class="container-fluid paddTB15">
+                                            <div class="panel-body" id="betdetails">
+                                                <div class="container-fluid">
                                                     <div class="row">    
                                                         <div class="col-sm-12">
                                                             <span class="skipDesc">
@@ -681,6 +628,7 @@
                                             </div>
                                        </apex:outputpanel>
                                        <apex:outputpanel rendered="{!showSuggestedMembers}">
+                                       <apex:outputText value="sample render text"/>
                                             <apex:outputpanel rendered="{!memberCallFromURL}">
                                                 <ul class="ipmStartedTabs">
                                                     <li class="betdetails tabOdd "><a href="#betdetails"  >{!$Label.IPM_BETDetails}</a></li>
@@ -695,7 +643,7 @@
                                                     <div class="row"> 
                                                         <div class="col-sm-12">
                                                             <span class="skipDesc">                                                         
-                                                                    <c:BET_SuggestMembers BetID="{!IF(BETId!=null,BETId,requestedBETId)}" ProjectID="{!ProjectId}" Callback="{!URLFOR('/apex/ipm_projectoverview?id=' +project.id)}" Suggested_Members="{!suggestedMembersList}" User_buckets="{!memberBucketList}" Suggested_Managers="{!suggestedManagerList}" usedInPopup="true"/>
+                                                                    <c:BET_SuggestMembers BetID="{!BETId}" ProjectID="{!ProjectId}" Callback="{!URLFOR('/apex/ipm_projectoverview?id=' +project.id)}" Suggested_Members="{!suggestedMembersList}" User_buckets="{!memberBucketList}" Suggested_Managers="{!suggestedManagerList}" usedInPopup="true"/>
                                                             </span>
                                                         </div>            
                                                     </div>  
@@ -759,11 +707,9 @@
             <c:IPM_ModalHeaderDiv />
         </div> 
         <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript"></script>
-        <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script>
         <apex:outputPanel id="compScript">
             <script>         
-                var jq=jQuery.noConflict(); 
-                jq('.searchModal .form-control').clearSearch();        
+                var jq=jQuery.noConflict();          
                 jq('.ipmCheckbox > input[type=checkbox].selected').each(function(){
                     jq(this).attr("checked", true);
                 });
@@ -795,7 +741,7 @@
 </apex:form>
 <script>
 
-var IPMApp = {showSuggestedMembers:'{!showSuggestedMembers}', ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}', DocumentStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}'};
+var IPMApp = {showSuggestedMembers:{!showSuggestedMembers}, ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}', DocumentStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}'};
 
 </script>
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectOverview.js')}" type="text/javascript"></script>   

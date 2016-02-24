@@ -1,0 +1,301 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+        <title>Terms and Conditions</title>
+		<style type="text/css">
+			
+			#outlook a{padding:0;} 
+			body{width:100% !important;} .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} 
+			body{-webkit-text-size-adjust:none;} 
+
+			
+			body{margin:0; padding:0;}
+			img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+			table td{border-collapse:collapse;}
+			#backgroundTable{height:100% !important; margin:0; padding:0; width:100% !important;}
+
+			
+			body, #backgroundTable{
+				/*e*/ background-color:#FAFAFA;
+			}
+
+			
+			#templateContainer{
+				/*e*/ border: 1px solid #DDDDDD;
+			}
+
+			
+			h1, .h1{
+				/*e*/color:#202020;
+				display:block;
+				/*e*/ font-family:Arial;
+				/*e*/ font-size:34px;
+				/*e*/ font-weight:bold;
+				/*e*/ line-height:100%;
+				margin-top:0;
+				margin-right:0;
+				margin-bottom:10px;
+				margin-left:0;
+				/*e*/ text-align:left;
+			}
+
+			
+			h2, .h2
+			{
+			    color: #336699;
+                font-size:medium;
+				
+				display:block;
+				/*e*/ font-family:Arial;
+			    font-family: "Georgia", serif;
+				/*e*/ font-weight:bold;
+				/*e*/ line-height:100%;
+				margin-top:0;
+				margin-right:0;
+				margin-bottom:10px;
+				margin-left:0;
+				/*e*/ text-align:left;
+			}
+
+		
+			h3, .h3{
+				/*e*/ color:#202020;
+				display:block;
+				/*e*/ font-family:Arial;
+				/*e*/ font-size:26px;
+				/*e*/ font-weight:bold;
+				/*e*/ line-height:100%;
+				margin-top:0;
+				margin-right:0;
+				margin-bottom:10px;
+				margin-left:0;
+				/*e*/ text-align:left;
+			}
+
+			h4, .h4{
+				/*e*/ color:#202020;
+				display:block;
+				/*e*/ font-family:Arial;
+				/*e*/ font-size:22px;
+				/*e*/ font-weight:bold;
+				/*e*/ line-height:100%;
+				margin-top:0;
+				margin-right:0;
+				margin-bottom:10px;
+				margin-left:0;
+				/*e*/ text-align:left;
+			}
+
+		
+			#templateHeader{
+				/*e*/ background-color:#FFFFFF;
+				/*e*/ border-bottom:0;
+			}
+
+		
+			.headerContent{
+				/*e*/ color:#202020;
+				/*e*/ font-family:Arial;
+				/*e*/ font-size:34px;
+				/*e*/ font-weight:bold;
+				/*e*/ line-height:100%;
+				/*e*/ padding:0;
+				/*e*/ text-align:center;
+				/*e*/ vertical-align:middle;
+			}
+
+			
+			.headerContent a:link, .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .yshortcuts /* Yahoo! Mail Override */{
+				/*e*/ color:#336699;
+				/*e*/ font-weight:normal;
+				/*e*/ text-decoration:underline;
+			}
+
+			#headerImage{
+				height:auto;
+				max-width:600px !important;
+			}
+
+			
+			#templateContainer, .bodyContent{
+				/*e*/ background-color:#FFFFFF;
+			}
+
+		
+			.bodyContent div{
+				color:#505050;
+				font-family:Arial;
+				font-size:14px;
+				line-height:100%;
+				text-align:left;
+			}
+
+			
+			.bodyContent div a:link, .bodyContent div a:visited, /* Yahoo! Mail Override */ .bodyContent div a .yshortcuts /* Yahoo! Mail Override */{
+				color:#336699;
+				font-weight:normal;
+				text-decoration:underline;
+			}
+
+		
+			.templateButton{
+				-moz-border-radius:3px;
+				-webkit-border-radius:3px;
+				background-color:#336699;
+				border:0;
+				border-collapse:separate !important;
+				border-radius:3px;
+			}
+
+		
+			.templateButton, .templateButton a:link, .templateButton a:visited, /* Yahoo! Mail Override */ .templateButton a .yshortcuts /* Yahoo! Mail Override */{
+				color:#FFFFFF;
+				font-family:Arial;
+				font-size:15px;
+				font-weight:bold;
+				letter-spacing:-.5px;
+				line-height:100%;
+				text-align:center;
+				text-decoration:none;
+			}
+
+			.bodyContent img{
+				display:inline;
+				height:auto;
+			}
+
+		
+			#templateFooter{
+				/*e*/ background-color:#FFFFFF;
+				/*e*/ border-top:0;
+			}
+
+			.footerContent div{
+				/*e*/ color:#707070;
+				/*e*/ font-family:Arial;
+				/*e*/ font-size:12px;
+				/*e*/ line-height:125%;
+				/*e*/ text-align:center;
+			}
+
+			
+			.footerContent div a:link, .footerContent div a:visited, /* Yahoo! Mail Override */ .footerContent div a .yshortcuts /* Yahoo! Mail Override */{
+				/*e*/ color:#336699;
+				/*e*/ font-weight:normal;
+				/*e*/ text-decoration:underline;
+			}
+
+			.footerContent img{
+				display:inline;
+			}
+
+			#utility{
+				/*e*/ background-color:#FFFFFF;
+				/*e*/ border:0;
+			}
+
+		
+			#utility div{
+				/*e*/ text-align:center;
+			}
+
+			#monkeyRewards img{
+				max-width:190px;
+			}
+		    
+		</style>
+	</head>
+    <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+    	<center>
+        	<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable">
+            	<tr>
+                	<td align="center" valign="top" style="padding-top:20px;">
+                    	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer">
+                        	<tr>
+                            	<td align="center" valign="top">
+                                    <!-- // Begin Template Header \\ -->
+                                	<table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader">
+                                        <tr>
+                                            <td class="headerContent">
+                                             <img src="http://uwsites.force.com/servlet/servlet.ImageServer?id=015E0000001JzMT&oid=00DE0000000bbLj&lastMod=1352458476000"  width="600px"/>                                            	
+                                                </td>
+                                        </tr>
+                                    </table>
+                                    <!-- // End Template Header \\ -->
+                                </td>
+                            </tr>
+                        	<tr>
+                            	<td align="center" valign="top">
+                                    <!-- // Begin Template Body \\ -->
+                                	<table border="0" cellpadding="0" cellspacing="0" width="675" id="templateBody">
+                                    	<tr>
+                                            <td valign="top">
+                                
+                                                <!-- // Begin Module: Standard Content \\ -->
+                                                <table border="0" cellpadding="20" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td valign="top">
+                                                            <div>
+                                                                <h2>Welcome to the Unilever Way!</h2>
+                                                               Thank you for taking the final step to sign the Terms and Conditions.<br></br><br></br>
+
+You now have access to {!uw_Terms_Conditions__c.Bet_Name__c}. 
+Use <a href="https://login.salesforce.com?un={!uw_Terms_Conditions__c.Sent_to_Email_Address__c}">login.salesforce.com </a> to login – don’t forget to bookmark this page!
+                                                                
+                                                            </div>
+														</td>
+                                                    </tr>
+                                                    <tr>
+                                                    	<td align="center" valign="top" style="padding-top:0;">
+                                                        	<table border="0" cellpadding="15" cellspacing="0" class="templateButton">
+                                                            	<tr>
+                                                                
+                                                                	                                                                
+                                                                </tr>
+                                                            </table>
+                                                            <br />
+                                                           </td>
+                                                    </tr>
+                                                </table>
+                                                
+                                                
+                                            </td>
+                                        </tr>
+                                    </table>
+                                   
+                                </td>
+                            </tr>
+                        	<tr>
+                            	<td align="center" valign="top">
+                                    <!-- // Begin Template Footer \\ -->
+                                	<table border="0" cellpadding="10" cellspacing="0" width="600" id="templateFooter">
+                                    	<tr>
+                                        	<td valign="top" class="footerContent">
+                                            
+                                                <!-- // Begin Module: Transactional Footer \\ -->
+                                                <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td valign="top">
+                                                            <div>
+																<em>Copyright &copy; 2012 Unilever Way, All rights reserved.</em> </div>
+                                                        </td>
+                                                    </tr>
+                                                   
+                                                </table>
+                                                <!-- // End Module: Transactional Footer \\ -->
+                                            
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- // End Template Footer \\ -->
+                                </td>
+                            </tr>
+                        </table>
+                        <br />
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </body>
+</html>

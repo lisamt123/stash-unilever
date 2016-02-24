@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Vergoedingen desk via IBAN</description>
+    <encodingKey>UTF-8</encodingKey>
+    <letterhead>CEC_Unilever_Netherlands</letterhead>
+    <name>Vergoeding Desk - IBAN</name>
+    <style>formalLetter</style>
+    <subject>Vergoeding via IBAN - Case {!Case.CaseNumber}</subject>
+    <textOnly>Beste collega,
+
+Zouden jullie onderstaande handmatige vergoeding in orde kunnen maken? Alvast bedankt.
+Dit bericht versturen naar: unilever@consumercare.info
+NAAM CONSUMENT:
+ADRES:
+POSTCODE WOONPLAATS:
+REKENINGNUMMER:
+TEN NAME VAN:
+MERK:
+BEDRAG:
+
+Met vriendelijke groet,
+Unilever Consumentenservice</textOnly>
+    <type>html</type>
+</EmailTemplate>

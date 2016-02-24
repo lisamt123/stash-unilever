@@ -1,0 +1,34 @@
+<img src ="https://unilever--preprodsb--c.cs8.content.force.com/servlet/servlet.ImageServer?id=015L0000000Kl1W&oid=00DL0000005tKb8" alt="Logo" align = "Center"/> <br/>
+<br/>
+<br/>
+Référence de votre demande: {!Case.CaseNumber}
+<br/>
+<br/>
+<br/>
+<br/>
+Bonjour {!Contact.FirstName}  {!Contact.LastName},
+<br/>
+<br/>
+Nous vous remercions de l'intérêt que vous portez à T.O by Lipton.
+<br/>
+<br/>
+Nos conseillers répondront à votre demande dans les plus brefs délais. 
+<br/>
+<br/>
+En attendant, nous vous souhaitons de belles dégustations et vous remercions de votre confiance.
+<br/>
+<br/>
+A bientôt, 
+<br/>
+<br/>
+Service client T.O by Lipton
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+Cet email est généré automatiquement, merci de ne pas y répondre
+<br/>
+<br/>
+<img src = "https://unilever--c.na9.content.force.com/servlet/servlet.ImageServer?id=015E0000007B4Ku&oid=00DE0000000bbLj&lastMod=1442240916000" alt ="Logo" align = "center"/>

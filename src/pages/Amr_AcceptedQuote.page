@@ -1,0 +1,228 @@
+<apex:page controller="Amr_AcceptedQuoteController">
+<!--
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
+    
+    <style>
+        .PPCEuroAmount,.CAEuroAmount,.PCEuroAmount,.TotalAcceptedFinalCost{
+            background-color:lightgrey;
+        }
+    
+    </style>
+    
+    <script type="text/javascript">
+      
+      $ = jQuery.noConflict();
+      var stringArray = JSON.parse('{!lstcov }');
+      
+      function PCEuroAmount(){
+ 
+          var PCCurrency = $('.PCCurrency').val();
+          var PCLocalAmount = $('.PCLocalAmount').val();
+          console.debug('inside'+PCLocalAmount);
+          
+          for(var i=0;i<stringArray.length;i++){
+                   
+                    if(stringArray[i].Currency_Unit__c == PCCurrency ){
+                         console.debug('inside'+PCLocalAmount);
+                          if(PCLocalAmount !==0){
+                             if(PCLocalAmount !==null && PCLocalAmount !==""){
+                                  PCLocalAmount = parseInt(PCLocalAmount);
+                                 $('.PCEuroAmount').val(stringArray[i].Currency_Unit_To_Euro__c/PCLocalAmount);
+                             }         
+                          }else{
+                          
+                               $('.PCEuroAmount').val(0);
+                          }
+                    }
+                    
+            }
+            
+            var PPCEuroAmount = $('.PPCEuroAmount').val();
+           
+            
+            
+            var CAEuroAmount = $('.CAEuroAmount').val();
+           
+           
+             
+            var PCEuroAmount = $('.PCEuroAmount').val();
+            
+           
+            
+            if(PCEuroAmount !== "" && PPCEuroAmount !=="" && CAEuroAmount!== ""){
+                  PPCEuroAmount = parseFloat(PPCEuroAmount);
+                  CAEuroAmount = parseFloat(CAEuroAmount);
+                  PCEuroAmount =  parseFloat(PCEuroAmount);
+                  var total = PCEuroAmount+PPCEuroAmount+CAEuroAmount;
+                 
+                  total = total.toFixed(4);
+                  console.debug('===>'+total );
+                 $('.TotalAcceptedFinalCost').val(total);
+            }
+          
+      }
+      
+      function PPCEuroAmount(){
+ 
+          var PPCCurrency = $('.PPCCurrency').val();
+          var PPCLocalAmount = $('.PPCLocalAmount').val();
+         
+          
+          for(var i=0;i<stringArray.length;i++){
+                   
+                    if(stringArray[i].Currency_Unit__c == PPCCurrency){
+                         console.debug('inside');
+                          if(PPCLocalAmount!=="0"){
+                             if(PPCLocalAmount!==null && PPCLocalAmount!==""){
+                                  PPCLocalAmount = parseInt(PPCLocalAmount);
+                                 $('.PPCEuroAmount').val(stringArray[i].Currency_Unit_To_Euro__c/PPCLocalAmount);
+                             }         
+                          }else{
+                          
+                               $('.PPCEuroAmount').val(0);
+                          }
+                    }
+                    
+            }
+            
+            var PPCEuroAmount = $('.PPCEuroAmount').val();
+           
+            
+            
+            var CAEuroAmount = $('.CAEuroAmount').val();
+            
+           
+             
+            var PCEuroAmount = $('.PCEuroAmount').val();
+           
+           
+            
+            if(PCEuroAmount !== "" && PPCEuroAmount !=="" && CAEuroAmount!== ""){
+                 PPCEuroAmount = parseFloat(PPCEuroAmount);
+                 CAEuroAmount = parseFloat(CAEuroAmount);
+                 PCEuroAmount =  parseFloat(PCEuroAmount);
+                 
+                 var total = PCEuroAmount+PPCEuroAmount+CAEuroAmount;
+                 
+                  total = total.toFixed(4);
+                  console.debug('===>'+total );
+                 $('.TotalAcceptedFinalCost').val(total);
+            }
+          
+      }
+      
+      function CAEuroAmount(){
+ 
+          var CACurrency = $('.CACurrency').val();
+          var CALocalAmount = $('.CALocalAmount').val();
+          
+          
+          for(var i=0;i<stringArray.length;i++){
+                   
+                    if(stringArray[i].Currency_Unit__c == CACurrency){
+                         console.debug('inside');
+                          if(CALocalAmount !=="0"){
+                             if(CALocalAmount !==null && CALocalAmount !==""){
+                                  CALocalAmount = parseInt(CALocalAmount);
+                                 $('.CAEuroAmount').val(stringArray[i].Currency_Unit_To_Euro__c/CALocalAmount );
+                             }         
+                          }else{
+                          
+                               $('.CAEuroAmount').val(0);
+                          }
+                    }
+                    
+            }
+            
+            var PPCEuroAmount = $('.PPCEuroAmount').val();
+           
+            
+            var CAEuroAmount = $('.CAEuroAmount').val();
+            
+           
+             
+            var PCEuroAmount = $('.PCEuroAmount').val();
+           
+           
+            
+            if(PCEuroAmount !== "" && PPCEuroAmount !=="" && CAEuroAmount!== ""){
+                   PPCEuroAmount = parseFloat(PPCEuroAmount);
+                   CAEuroAmount = parseFloat(CAEuroAmount);
+                   PCEuroAmount =  parseFloat(PCEuroAmount);
+                  var total = PCEuroAmount+PPCEuroAmount+CAEuroAmount;
+                 
+                  total = total.toFixed(4);
+                  console.debug('===>'+total );
+                 $('.TotalAcceptedFinalCost').val(total);
+            }
+          
+      }
+      
+       function isNumber(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                return true;
+       }
+      
+    </script>
+  
+  <apex:pageMessages id="msg"/>
+  <apex:form >  
+
+    <apex:pageBlock >
+    
+          <apex:pageBlockSection title="Accept Quote" columns="2"
+                        collapsible="true">
+                
+             <apex:inputfield label="Accepted Final Cost - PC only (Currency)" value="{!quoteObj.Accepted_Final_Cost_PC_only_Currency__c}" styleclass="PCCurrency" onchange="PCEuroAmount()"/>
+             <apex:inputfield label="Accepted Final Cost - PC only (Local Amount)" value="{!quoteObj.Accepted_Final_Cost_PC_only_Local_Amo__c}" styleclass="PCLocalAmount" onchange="PCEuroAmount()"  onkeypress="return isNumber(event)"/>
+             <apex:inputText label="Accepted Final Cost - PC only (Euro Amount)" value="{!quoteObj.Accepted_Final_Cost_PC_Euro_Amou__c}" styleclass="PCEuroAmount" html-readonly="true"/>
+             
+             <apex:inputfield label="Accepted Final Cost - PPC only (Currency)" value="{!quoteObj.Accepted_Final_Cost_PPC_only_Currency__c}" styleclass="PPCCurrency" onchange="PPCEuroAmount()"/> 
+             <apex:inputfield label="Accepted Final Cost - PPC only (Local Amount)" value="{!quoteObj.Accepted_Final_Cost_PPC_only_Local_Am__c}" styleclass="PPCLocalAmount" onchange="PPCEuroAmount()" onkeypress="return isNumber(event)"/>
+             <apex:inputText label="Accepted Final Cost - PPC only (Euro Amount)" value="{!quoteObj.Accepted_Final_Cost_PPC_Euro_Amount__c}" styleclass="PPCEuroAmount" html-readonly="true"/>
+             
+             <apex:inputfield label="Accepted Final Cost - CA only (Currency)" value="{!quoteObj.Accepted_Final_Cost_CA_only_Currency__c}" styleclass="CACurrency" onchange="CAEuroAmount()"/> 
+             <apex:inputfield label="Accepted Final Cost - CA only (Local Amount)" value="{!quoteObj.Accepted_Final_Cost_CA_Local_Amount__c}" styleclass="CALocalAmount" onchange="CAEuroAmount()" onkeypress="return isNumber(event)"/> 
+             <apex:inputtext label="Accepted Final Cost - CA only (Euro Amount)" value="{!quoteObj.Accepted_Final_Cost_CA_Euro_Amount__c}" styleclass="CAEuroAmount" html-readonly="true"/>
+             
+             <apex:inputfield label="Accepted Final Cost - Editors name" value="{!quoteObj.Accepted_Final_Cost_Editors_name__c}" />
+             <apex:inputfield label="Accepted Final Cost - Total editing costs" value="{!quoteObj.Accepted_Final_Cost_Total_editing_cost__c}" />
+             <apex:inputfield label="Accepted Final Cost - Sound Studio Name" value="{!quoteObj.Accepted_Final_Cost_Sound_Studio_Name__c}" />
+             <apex:inputfield label="Accepted Final Cost - Total Sound Studio costs" value="{!quoteObj.Accepted_Final_Cost_Total_Sound_Studio__c}" />
+             <apex:inputfield label="Accepted Final Cost - Travel Costs" value="{!quoteObj.Accepted_Final_Cost_Travel_Costs__c}" />
+             <apex:inputfield label="Accepted Final Cost - Value of props & wardrobe (paid for)" value="{!quoteObj.Accepted_Final_Cost_props_wardrobe__c}" />
+             <apex:inputText label="Total Accepted Final Cost (CA/PC/PPC) Euro Amount" value="{!quoteObj.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}" styleclass="TotalAcceptedFinalCost" html-readonly="true"/>
+             <apex:inputfield label="What type of Savings is this?" value="{!quoteObj.Saving_Type__c}" /> 
+             <apex:inputfield label="Is Accepted?" value="{!quoteObj.Is_Accepted__c}" />   
+              
+              <apex:inputfield label="PC Appraisal - Time Management" value="{!quoteObj.PC_Appraisal_Time_Management__c}" />
+              <apex:inputfield label="PC Appraisal - Cost Management" value="{!quoteObj.PC_Appraisal_Cost_Management__c}" />
+              <apex:inputfield label="PC Appraisal - Process Management" value="{!quoteObj.PC_Appraisal_Process_Management__c}" />
+              <apex:inputfield label="PC Appraisal - Output Quality" value="{!quoteObj.PC_Appraisal_Output_Quality__c}" />
+              
+              <apex:inputfield label="PPC Appraisal - Time Management" value="{!quoteObj.PPC_Appraisal_Time_Management__c}" />
+              <apex:inputfield label="PPC Appraisal - Cost Management" value="{!quoteObj.PPC_Appraisal_Cost_Management__c}" />
+              <apex:inputfield label="PPC Appraisal - Process Management" value="{!quoteObj.PPC_Appraisal_Process_Management__c}" />
+              <apex:inputfield label="PPC Appraisal - Output Quality" value="{!quoteObj.PPC_Appraisal_Output_Quality__c}" />
+              
+              <apex:inputfield label="CA Appraisal - Time Management" value="{!quoteObj.CA_Appraisal_Time_Management__c}" />
+              <apex:inputfield label="CA Appraisal - Cost Management" value="{!quoteObj.CA_Appraisal_Cost_Management__c}" />
+              <apex:inputfield label="CA Appraisal - Process Management" value="{!quoteObj.CA_Appraisal_Process_Management__c}" />
+              <apex:inputfield label="CA Appraisal - Output Quality" value="{!quoteObj.CA_Appraisal_Output_Quality__c }" /> 
+              
+               <apex:inputField value="{!QuoteObj.Folder__c}"   />
+            <apex:inputFile value="{!document.body}" filename="{!document.name}" />
+         </apex:pageBlockSection>       
+         
+               <apex:commandButton value="Save" action="{!UpdateQuote}"/>
+               <apex:commandButton value="Cancel" action="{!Cancel}"/>
+               
+        
+      </apex:pageBlock>
+  </apex:form>  -->
+</apex:page>

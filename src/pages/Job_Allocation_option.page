@@ -1,0 +1,93 @@
+<apex:page standardStylesheets="true">
+<head>
+    <title>
+        Job Allocation option
+    </title>
+<style> body {margin:0 20px;padding:0;font-family: Verdana, Arial, sans-serif;font-size: 11px;}
+ #Allocationmain_section{border: 2px solid #41719c;
+    border-radius: 20px;
+    padding: 20px;
+    width: 960px;}
+ .Allocationsub_section h1{margin: 8px 20px; font-size: 22px;}
+  .Accepttxt,.Realloctetxt,.Sharetxt,.canceltxt,.priortytxt,.navsection {border:2px solid #41719c;border-radius:20px;}
+ .Aspchar{font-size: 24px;color: #a6a6a6;}
+ .width20per{width:19%;margin-right:1%;}
+ .floatleft{float:left;}
+ .clear{clear:both;}
+ .primarytext{margin-top:15px;margin-left:12px;}
+ .Allocationmid_section{width:100%;display:inline-flex;height: 225px;}
+ .priortytxt{margin-right:0px;} 
+ .raptxt{padding-left: 15px;
+  border: 1px solid #41719c;
+    width: 128px; text-align: center;padding-right: 16px;background:#41719c;color: #fff;position: relative;top: 10px;left: 30px;}
+    .btn{ background: none repeat scroll 0 0 #41719c;
+    border: 1px solid #41719c;
+    border-radius: 12px;
+    color: #fff;
+   margin: 129px 48px;
+    padding: 8px 0;
+   text-align: center;
+   }
+   .leftnav ul li{list-style-type:circle;}
+   .btn2,.btn3{background: none repeat scroll 0 0 #41719c;
+    border: 1px solid #41719c;
+    border-radius: 12px;
+    color: #fff;
+   margin: 89px 48px;
+    padding: 8px 0;
+   text-align: center;}
+   .btn4{background: none repeat scroll 0 0 #41719c;
+    border: 1px solid #41719c;
+    border-radius: 12px;
+    color: #fff;
+   margin: 80px 48px;
+    padding: 8px 0;
+   text-align: center;}
+ 
+</style>
+</head> 
+    <body>
+        <article id="Allocationmain_section">
+                <article class="Allocationsub_section">
+                   <h1><span class="Aspchar">-/+ </span>Allocation  Options</h1>
+                      </article>
+                      <article class="Allocationmid_section">
+                      <article class="Accepttxt width20per floatleft">
+                      <p class="primarytext">Accept</p>
+                      <p class="btn2" style="margin-top:118px;">Submit</p>
+                      </article>
+                      <article class="Realloctetxt width20per floatleft">
+                      <p class="primarytext">Re-allocate</p>
+                          <select class='raptxt'>
+                             <option>RAP User1</option>
+                             <option>RAP User2</option>
+                         </select>
+                      <p class="btn2">Apply</p>
+                      </article>
+                      <article class="Sharetxt width20per floatleft">
+                      <p class="primarytext">Share</p>
+                          <select class='raptxt'>
+                             <option>RAP User 1</option>
+                             <option>RAP User 2</option>
+                         </select>
+                      <p class="btn2">Apply</p>
+                      </article>
+                      <article class="canceltxt width20per floatleft">
+                      <p class="primarytext">Cancel</p>
+                      <p class="btn2" style="margin-top:118px;">Apply</p>
+                      </article>
+                      <article class="priortytxt width20per floatleft">
+                      <p class="primarytext">Priority</p>
+                         <select class='raptxt'>
+                             <option>Live</option>
+                             <option>Dormant</option>
+                         </select>
+                      <p class="btn4">click</p>
+                      
+                      </article>
+                      <div class="clear"></div>
+                      
+                      </article>
+                      </article>
+    </body>
+</apex:page>
