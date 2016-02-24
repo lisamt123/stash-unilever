@@ -30,6 +30,16 @@
         <relationshipLabel><!-- ChequeBook Details --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- Textual version of decimal currency, e.g. CENTS --></help>
+        <label><!-- Currency Decimal Text --></label>
+        <name>Currency_Decimal_Text__c</name>
+    </fields>
+    <fields>
+        <help><!-- Textual version of currency, e.g. DOLLARS --></help>
+        <label><!-- Currency Text --></label>
+        <name>Currency_Text__c</name>
+    </fields>
+    <fields>
         <label><!-- Currency --></label>
         <name>Currency__c</name>
         <picklistValues>

@@ -3841,6 +3841,18 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_CampaignAddAssetController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_CampaignAddAssetController_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_CampaignCreateHelper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_CampaignStageController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -3973,6 +3985,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_PermissionHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_ProjectHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -4018,6 +4034,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_SWOPparentController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_SWOPredirectController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -4090,6 +4110,18 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_TestUtils</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_UserPermissionHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_UserPermissionHandlerLogic</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_UserPermissionHandlerTest</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -9783,6 +9815,21 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset_Scoring__c.Asset_Option_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset_Scoring__c.Asset_Option__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset_Scoring__c.Asset_name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Asset_Scoring__c.Description__c</field>
         <readable>true</readable>
@@ -10420,6 +10467,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CEC_ChequeBook_Detail__c.Country_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_ChequeBook_Detail__c.Currency_Decimal_Text__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_ChequeBook_Detail__c.Currency_Text__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23243,6 +23300,26 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Agency_SOW_Approver_Name_2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Agency_SOW_Approver_Name_3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Agency_SOW_Approver_Name_4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Agency_SOW_Approver_Name_5__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Marketing_SOW__c.Agency_SOW_Approver_Name__c</field>
         <readable>true</readable>
@@ -23251,6 +23328,11 @@
         <editable>true</editable>
         <field>Marketing_SOW__c.Allocated_Budget_K__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Approval_Submitter__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -23299,8 +23381,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_SOW__c.OblixTotalAdaptFees__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_SOW__c.OblixTotalCampaignCalculatedTotalFee__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.OblixTotalDigitalFees__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -23316,6 +23408,11 @@
         <editable>false</editable>
         <field>Marketing_SOW__c.OblixTotalOtherItemsFees__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.OblixTotalProjectsFees__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -23345,6 +23442,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Percentage_of_Total_Fee_Non_Campaign__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.SOW_Creator_is_Approver__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23381,6 +23483,26 @@
         <editable>true</editable>
         <field>Marketing_SOW__c.Unilever_Lead__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Unilever_SOW_Approver_Name_2__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Unilever_SOW_Approver_Name_3__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Unilever_SOW_Approver_Name_4__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.Unilever_SOW_Approver_Name_5__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -24973,6 +25095,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Selected_Countries__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Should_legal_review_this_project__c</field>
         <readable>true</readable>
@@ -25036,6 +25163,36 @@
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Value_to_be_paid_in_Current_FY__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_User_Permission__c.Brand_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_User_Permission__c.CategoryBrand_id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_User_Permission__c.Category_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_User_Permission__c.Level_of_Access__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_User_Permission__c.User_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_User_Permission__c.User_id__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -34479,6 +34636,17 @@
         <layout>Oblix_SOW_Projects__c-Agency Projects Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Oblix_User_Permission__c-SWOP User Permission Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Oblix_User_Permission__c-SWOP User Permission Layout</layout>
+        <recordType>Oblix_User_Permission__c.Oblix_Agency_User</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Oblix_User_Permission__c-SWOP User Permission Layout</layout>
+        <recordType>Oblix_User_Permission__c.Oblix_Unilever_User</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Opportunity-Opportunity Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -36722,6 +36890,15 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>Oblix_User_Permission__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>Opportunity</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -38736,6 +38913,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>Oblix_SWOPredirect</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Oblix_VF01DeepCloneSOW</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -39823,6 +40004,16 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Oblix_User_Permission__c.Oblix_Agency_User</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Oblix_User_Permission__c.Oblix_Unilever_User</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Order.UID_Primary_Sales</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -40217,6 +40408,10 @@
     <tabVisibilities>
         <tab>OV_ShelfTileReport__c</tab>
         <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Oblix_User_Permission__c</tab>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>One_View</tab>

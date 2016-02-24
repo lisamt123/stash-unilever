@@ -174,10 +174,6 @@
                 <field>Manual_Retention_Override__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Case_Brand_Mapping__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>PII_Data_Check__c</field>
             </layoutItems>
@@ -434,10 +430,10 @@
     </miniLayout>
     <quickActionList>
         <quickActionListItems>
-            <quickActionName>FeedItem.TextPost</quickActionName>
+            <quickActionName>Case.ONE_Correspond_Email</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Case.ONE_Correspond_Email</quickActionName>
+            <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>Case.Email</quickActionName>
@@ -546,6 +542,14 @@
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedCaseContactRoleList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>Name</fields>
+        <fields>Owner</fields>
+        <fields>StartTime</fields>
+        <fields>EndTime</fields>
+        <fields>Status</fields>
+        <relatedList>RelatedLiveChatTranscriptList</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
