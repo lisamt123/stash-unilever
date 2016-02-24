@@ -5,6 +5,7 @@ public with sharing class Amr_JobSheetController{
     }*/
 
 public String docUploaded{get;set;}
+    public String projNameFromPage{get;set;}
     public String alertmessage{get;set;}
     public Date alertDate{get;set;}
     public String adManagerNumber{get;set;}
@@ -69,6 +70,7 @@ public String docUploaded{get;set;}
     public String jobStatus{get;set;}
    // public List<selectoption> userName{get;set;}
     public String selectedRapName{get;set;}
+    public String selectedSecRapName{get;set;}
     public List<PermissionSetAssignment> userData {get;set;}
     public String profileName {get;set;}
     public String permissionSetName {get;set;}
@@ -97,9 +99,10 @@ public String docUploaded{get;set;}
    public String priority{get;set;}
    public String selectedRAPUser{get;set;} 
    public String addManagerNumber{get;set;}
+   public List<Amr_Job_Allocation__c> listOfUserToDisplay {get;set;}
    public ID abc{get;set;}
    public Boolean primaryRap{get;set;}
-   public Amr_Job_Allocation__c jobAlloc;
+   public Amr_Job_Allocation__c jobAlloc{get;set;}
    public Id jobId{get;set;}
    public static boolean rapAllocateCheck;
    public List <Amr_Job_Allocation__c > jobSharedList {get;set;}
@@ -134,6 +137,7 @@ public String docUploaded{get;set;}
         categoryString = new list<string>();
         Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
         System.debug('CAteLisgt' + categorylst);
+        listOfUserToDisplay = new List<Amr_Job_Allocation__c>();
         for(MDO_Category__c mdCat : categorylst){
             categoryString.add(mdCat.name);
         }
@@ -142,8 +146,8 @@ public String docUploaded{get;set;}
         selectUsername= new list<selectoption>();
         jobIdFromPage = ApexPages.currentPage().getParameters().get('id');
        
-         alert = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND New_Alert__c = today];          
-         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND New_Alert__c = today];
+         alert = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];          
+         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];
         getDocuments();
         
         try{
@@ -195,16 +199,46 @@ public String docUploaded{get;set;}
         System.debug('pRofile ->' + permissionSetName);      
     
       //  AND Is_Primary__c = True
-    
       try{
             if(permissionSetName == Label.Amr_CAP){
-                jobAlloc = [Select id,User__c, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId limit 1];
+                jobAlloc = [Select id,User__r.Name, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId limit 1];
+                        listOfUserToDisplay = [Select User__r.Name  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
+                                                
             }
             else{
-                jobAlloc = [Select id,User__c, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId  AND user__c =: userInfo.getUserId() Limit 1 ];
+                jobAlloc = [Select id,User__r.Name, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId  AND user__c =: userInfo.getUserId() Limit 1 ];
+                        listOfUserToDisplay.add(jobAlloc);
             }
             //Project_Description__c
-            jobList=[select Project_Details__r.name,id,Job_Notes__c,Currency_Conversion_Country_List__c,Lead_Agency_Name_Other__c,OwnerId,Job_Cancelled__c,Job_Status__c,Tv_Moving_Image__c,AdManagerText__c,Brand_Final__c,Brand_Final__r.name, Cinema_Moving_Image__c, Radio_Audio__c, Print_Still_Image__c, Out_Of_Home_Moving_Image__c, Out_Of_Home_Still_Image__c, Out_Of_Home_Audio__c, In_Store_Moving_Image__c, In_Store_Still_Image__c, In_Store_Audio__c, Digital_Moving_Image__c, Digital_Still_Image__c, Digital_Audio__c, Internal_Video_Moving_Image__c, Tv__c,Cinema__c, Radio__c, Print__c, Out_Of_Home__c, In_Store__c, Digital__c, Internal_Video__c, ProductCategory__c,ProductCategory__r.name,Rework_Exisiting_Material__c,BuyoutsTalent__c,BuyoutsMusic__c,New_Original_Master__c,Create_Additional_Material__c,Language_Adaptation_Of_Master__c,Require_Music__c,Require_Celebrity_Talent__c,Stage_of_Production_Activity__c,Check_With_CMI__c,Production_Activity_Type__c,Project_Description__c,Target_Air_Date__c,Execution_Name__c,Campaign_Name__c,Your_Email_Address__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Unilever_Finance_Member_Email__c,Final_Approver_Of_Material_Email__c,Function_You_Are_Part__c,Budget_Responsibility__c,Budget_Allocated_Input_Value__c,Allocated_Budget_euro__c,Brand_Position__c,Brand_Position__r.name,Lead_Creative_Agency_name__c,Lead_Agency_Location_Cluster__c,Lead_Agency_Location_Country__c,Agency_Contact_Account_Director_Email__c,Digital_Agency_Name__c,Any_other_agencies_involved__c,Project_Name__c,Project_Name_Other__c,Project_Location_Cluster__c,Project_Location_Country__c,Project_Details__c,Brodcast_Market__c from Amr_Job_Details__c where id=: jobId];       
+            jobList=[select ReworkExistingMaterial__c,NewOriginalMaster__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
+                    NewOriginalMasterInternalVideo__c,NewOriginalMasterTvMovingImage__c,NewOriginalMasterCinemaMovingImage__c,NewOriginalMasterRadioAudio__c,NewOriginalMasterPrintStillImage__c,NewOriginalMasterOutofHomeMovingImage__c,
+                    NewOriginalMasterOutofHomeAudio__c,NewOriginalMasterOutofHomeStillImage__c,NewOriginalMasterInStoreMovingImage__c,NewOriginalMasterInStoreAudio__c,NewOriginalMasterInStoreStillImage__c,NewOriginalMasterDigitalMovingImage__c,
+                    NewOriginalMasterDigitalAudio__c,NewOriginalMasterDigitalStillImage__c,NewOriginalMasterInternalVdoMovingImage__c,  New_Original_Master_Digital_ED__c,
+                    LanguageAdaptionMaster__c,LanguageAdaptionMasterTv__c,LanguageAdaptionMasterCinema__c,LanguageAdaptionMasterRadio__c,LanguageAdaptionMasterPrint__c,LanguageAdaptionMasterOutofHome__c,LanguageAdaptionMasterInStore__c,
+                    LanguageAdaptionMasterDigital__c,LanguageAdaptionMasterInternalVideo__c,LanguageAdaptionMasterTvMovingImage__c,LanguageAdaptionMasterRadioAudio__c,LanguageAdaptionMasterPrintStillImage__c,
+                    LanguageAdaptionMasterOutHomeMovingImage__c,LanguageAdaptionMasterOutofHomeAudio__c,LanguageAdaptionMasterOutHomeStillImage__c,LanguageAdaptionMasterInStoreMovingImage__c,
+                    LanguageAdaptionMasterInStoreAudio__c,LanguageAdaptionMasterInStoreStillImage__c    ,LanguageAdaptionMasterDigitalMovingImage__c,LanguageAdaptionMasterDigitalAudio__c,
+                    LanguageAdaptionMasterDigitalStillImage__c,LanguageAdaptionMasterInternalVdoMvngImg__c,Language_Adaptation_of_Master_Digital_ED__c,
+                    AdditionalSupplementaryNewMaterialTv__c,AdditionalSupplementaryNewMaterialCinema__c,AdditionalSupplementaryNewMaterialRadio__c,AdditionalSupplementaryNewMaterialPrint__c,
+                    AdditionalSupplementaryNewMaterialOOH__c,AdditionalSupplementaryNewMaterialStore__c,AdditionalSupplementaryNewMaterialDigi__c,AdditionalSupplementaryNewMaterialIVideo__c,
+                    AdditionalSupplementaryNewMaterialTvMI__c,AdditionalSupplementaryNewMaterialCinMI__c,AdditionalSupplementaryNewMaterialRA__c,AdditionalSupplementaryNewMaterialPSI__c,
+                    AdditionalSupplementaryNewMaterialOofHMI__c,AdditionalSupplementaryNewMaterialOofHA__c,AdditionalSupplementaryNewMaterialOofHSI__c,AdditionalSupplementaryNewMaterialInSMI__c,
+                    AdditionalSupplementaryNewMaterialInSA__c,AdditionalSupplementaryNewMaterialInSSI__c,AdditionalSupplementaryNewMaterialDigiMI__c,AdditionalSupplementaryNewMaterialDigiSI__c,
+                    ReworkExistingMaterialTv__c,ReworkExistingMaterialCinema__c,ReworkExistingMaterialRadio__c,ReworkExistingMaterialPrint__c,ReworkExistingMaterialOutofHome__c,
+                    ReworkExistingMaterialInStore__c,ReworkExistingMaterialDigital__c,ReworkExistingMaterialInternalVideo__c,ReworkExistingMaterialTvMovingImage__c,
+                    ReworkExistingMaterialCinemaMovingImage__c,ReworkExistingMaterialRadioAudio__c,ReworkExistingMaterialPrintStillImage__c,ReworkExistingMaterialOutHomeMovingImage__c,
+                    ReworkExistingMaterialOutofHomeAudio__c,ReworkExistingMaterialOutHomeStillImage__c,ReworkExistingMaterialInStoreMovingImage__c,ReworkExistingMaterialInStoreAudio__c,
+                    ReworkExistingMaterialDigitalMovingImage__c,ReworkExistingMaterialDigitalAudio__c,ReworkExistingMaterialDigitalStillImage__c,Rework_Exisiting_Material_Digital_ED__c,ReworkExistingMaterialInternalVdoMovImg__c,
+                    BuyoutsTalentTv__c,BuyoutsTalentCinema__c,BuyoutsTalentRadio__c,BuyoutsTalentPrint__c,BuyoutsTalentOutofHome__c,BuyoutsTalentInStore__c,BuyoutsTalentDigital__c,BuyoutsTalentInternalVideo__c,
+                    BuyoutsTalentTvMovingImage__c,BuyoutsTalentCinemaMovingImage__c,BuyoutsTalentRadioAudio__c,BuyoutsTalentOutofHomeMovingImage__c,BuyoutsTalentOutofHomeAudio__c,
+                    BuyoutsTalentOutofHomeStillImage__c,BuyoutsTalentInStoreMovingImage__c,BuyoutsTalentInStoreAudio__c,BuyoutsTalentInStoreStillImage__c,BuyoutsTalentDigitalMovingImage__c,
+                    BuyoutsTalentDigitalAudio__c,BuyoutsTalentDigitalStillImage__c,Buyouts_Talent_Digital_ED__c,BuyoutsTalentInternalVideoMovingImage__c,
+                    BuyoutsMusicTv__c,BuyoutsMusicCinema__c,BuyoutsMusicRadio__c,BuyoutsMusicPrint__c,BuyoutsMusicOutofHome__c,BuyoutsMusicInStore__c,BuyoutsMusicDigital__c,BuyoutsMusicInternalVideo__c,
+                    BuyoutsMusicTvMovingImage__c,BuyoutsMusicCinemaMovingImage__c,BuyoutsMusicRadioAudio__c,BuyoutsMusicPrintStillImage__c,BuyoutsMusicOutofHomeMovingImage__c,BuyoutsMusicOutofHomeAudio__c,
+                    BuyoutsMusicOutofHomeStillImage__c,BuyoutsMusicInStoreMovingImage__c,BuyoutsMusicInStoreAudio__c,BuyoutsMusicInStoreStillImage__c   ,BuyoutsMusicDigitalMovingImage__c,
+                    BuyoutsMusicDigitalAudio__c,BuyoutsMusicDigitalStillImage__c,Additional_Supplementary_NM_Digital_ED__c,BuyoutsMusicInternalVideoMovingImage__c,                 
+                    createdDate,Project_Details__r.name,id,Job_Notes__c,Currency_Conversion_Country_List__c,Lead_Agency_Name_Other__c,OwnerId,Job_Cancelled__c,Job_Status__c,Tv_Moving_Image__c,AdManagerText__c,Brand_Final__c,Brand_Final__r.name, Cinema_Moving_Image__c, Radio_Audio__c, Print_Still_Image__c, Out_Of_Home_Moving_Image__c, Out_Of_Home_Still_Image__c, Out_Of_Home_Audio__c, In_Store_Moving_Image__c, In_Store_Still_Image__c, In_Store_Audio__c, Digital_Moving_Image__c, Digital_Still_Image__c, Digital_Audio__c, Internal_Video_Moving_Image__c, Tv__c,Cinema__c, Radio__c, Print__c, Out_Of_Home__c, In_Store__c, Digital__c, Internal_Video__c, ProductCategory__c,ProductCategory__r.name,Rework_Exisiting_Material__c,BuyoutsTalent__c,BuyoutsMusic__c,New_Original_Master__c,Create_Additional_Material__c,Language_Adaptation_Of_Master__c,Require_Music__c,Require_Celebrity_Talent__c,Stage_of_Production_Activity__c,Check_With_CMI__c,Production_Activity_Type__c,Project_Description__c,Target_Air_Date__c,Execution_Name__c,Campaign_Name__c,Your_Email_Address__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Unilever_Finance_Member_Email__c,Final_Approver_Of_Material_Email__c,Function_You_Are_Part__c,Budget_Responsibility__c,Budget_Allocated_Input_Value__c,Allocated_Budget_euro__c,Brand_Position__c,Brand_Position__r.name,Lead_Creative_Agency_name__c,Lead_Agency_Location_Cluster__c,Lead_Agency_Location_Country__c,Agency_Contact_Account_Director_Email__c,Digital_Agency_Name__c,Any_other_agencies_involved__c,Project_Name__c,Project_Name_Other__c,Project_Location_Cluster__c,Project_Location_Country__c,Project_Details__c,Brodcast_Market__c from Amr_Job_Details__c where id=: jobId];       
+            
             if(jobList != null){
                 system.debug('category---'+jobList.ProductCategory__r.name);
                  system.debug('Brand---'+jobList.Brand_Position__r.name);
@@ -291,8 +325,8 @@ public String docUploaded{get;set;}
         addManagerNumber = jobList.AdManagerText__c;
         jobCancelled = jobList.Job_Cancelled__c;
         ownerIdOfSelectedJob = jobList.OwnerId;
-       
-       
+       selectedSecRapName = jobAlloc.User__r.Name;
+       selectedRapName = jobAlloc.User__r.Name;
                try{
         editedSavingMode = false;
         viewSavingMode = true;
@@ -313,7 +347,9 @@ public String docUploaded{get;set;}
                         system.debug('========>selectedCountry '+selectedCountry );
              userId = userinfo.getuserid();
              updateData();
-        }catch(Exception e){}
+        }catch(Exception ex){
+        	System.debug('Exception -> '+ ex.getmessage());
+        }
          
          
      }
@@ -395,8 +431,8 @@ public String docUploaded{get;set;}
               
             }
       
-        }catch(exception e){
-          system.debug('inside Excetion==>');
+        }catch(exception ex){
+          System.debug('Exception -> '+ ex.getmessage());
         }
     }
    
@@ -469,7 +505,9 @@ public String docUploaded{get;set;}
           return null;
           
         }   
-        }catch(Exception e){} 
+        }catch(Exception ex){
+        	System.debug('Exception -> '+ ex.getmessage());
+        } 
           return null;
     }
      
@@ -568,7 +606,8 @@ public String docUploaded{get;set;}
             
          }
         }
-       }catch(Exception e){
+       }catch(Exception ex){
+       	System.debug('Exception -> '+ ex.getmessage());
        
        }
        //  pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+jobid);page.setRedirect(true); return page ;
@@ -700,8 +739,9 @@ public String docUploaded{get;set;}
     system.debug('quoteList!!3333'+quoteList);
     pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobid);page.setRedirect(true); return page ;
   
-    }catch(Exception e){
+    }catch(Exception ex){
     system.debug('inside saving submit data exception');
+    System.debug('Exception -> '+ ex.getmessage());
       }
         return null;
     } 
@@ -729,7 +769,8 @@ public String docUploaded{get;set;}
         
         
         pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobid);page.setRedirect(true); return page ;
-        }catch(Exception e){
+        }catch(Exception ex){
+        	System.debug('Exception -> '+ ex.getmessage());
         }
         
         
@@ -756,9 +797,10 @@ public String docUploaded{get;set;}
         try{
             update quoteRelatedToSavingList;
             
-        }catch(Exception e){
+        }catch(Exception ex){
                 
             system.debug('delete Exception');
+            System.debug('Exception -> '+ ex.getmessage());
         }
     }
     
@@ -1213,11 +1255,11 @@ public String docUploaded{get;set;}
             jobShareObj.UserOrGroupId = selectedRap ;               
             jobShareObj.AccessLevel = 'Edit';
             
-    /*
+    
             User userList = [Select id, email from User where Id = :selectedRap];
             if(!String.isBlank(userList.Email)){
                  jobDet.JobAllocated_Email__c = userList.email;   
-            } */
+            } 
         /*    List<Amr_Job_Details__Share> jobShare1 = new List<Amr_Job_Details__Share>();
             jobShare1 = [Select Id from Amr_Job_Details__Share where id = :jobId and UserOrGroupId =:selectedRap  ];
                
@@ -1250,16 +1292,20 @@ public String docUploaded{get;set;}
     public pagereference cancelJob(){
        
         if(String.isBlank(jobID)){
+
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIdNotFound));
             return null;
         }
         else{
             if(jobList.Job_Cancelled__c){
+  
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobAlreadyCancelled));  
                 return null;
            } 
            else{
+
                jobCancellation(jobList, jobId, jobAlloc);
+               System.debug('And Here');
                PageReference navPage = Page.Amr_CAPJobPortfolio;
                navPage.setRedirect(true);
                return navPage;
@@ -1272,14 +1318,23 @@ public String docUploaded{get;set;}
        
         System.debug('Job Details Object ->'+ jobDetail + ' Job ID -> ' + jobId );
         List<String> toEmailAddress = new List<String>();
-        Amr_Job_Allocation__c jbAlloc = [select Id,Name,User__c,Job_Status__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = TRUE ];
+        List<Amr_Job_Allocation__c> jbAlloc  = [select Id,Name,User__c,Job_Status__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = TRUE ];
         jobDetail.Job_Cancelled__c = TRUE;
-        jbAlloc.Job_Status__c = Label.Amr_Job_Cancelled;
-        update jbAlloc;
+        if(jbAlloc != null && !jbAlloc.isEmpty() ){
+        jbAlloc[0].Job_Status__c = Label.Amr_Job_Cancelled;
+            update jbAlloc;
+        }
         List<Amr_Job_Allocation__c> canceledJobList = [select id, Is_Primary__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId And Is_Primary__c = false];
         System.debug('CANCELL LIST ->  ' + canceledJobList );
+        List<Amr_Job_Allocation__c> jbAllocCancel = new List<Amr_Job_Allocation__c> ();
         if(!canceledJobList.isEmpty()){
-            delete canceledJobList;
+            for(Amr_Job_Allocation__c obj : canceledJobList){
+                obj.Job_Status__c = Label.Amr_Job_Cancelled;
+                jbAllocCancel.add(obj);
+                
+            }
+             update jbAllocCancel;
+            //delete canceledJobList;
         }
         List<Amr_Job_Details__Share> cancelShareList = [Select Id from Amr_Job_Details__Share where id = :jobId AND  UserOrGroupId != :ownerIdOfSelectedJob];
         System.debug('HELLO ->' + cancelShareList);
@@ -1347,6 +1402,7 @@ public String docUploaded{get;set;}
        
     public PageReference reAllocateRAP() {
        
+      
         if(String.isBlank(jobID)){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIdNotFound));
             return null;
@@ -1362,7 +1418,8 @@ public String docUploaded{get;set;}
                        update jobAlloc;
                      return null; 
            }
-           
+        
+
             jobReAllocate(selectedRapName, jobId, jobList); 
            if(rapAllocateCheck &&  !jobList.Job_Cancelled__c){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,Label.Amr_Error_JobAlreadyAllocated));
@@ -1379,7 +1436,14 @@ public String docUploaded{get;set;}
       }    
         
     }
-        
+     public PageReference reAllocateSecRAP(){
+     
+         selectedRapName = selectedSecRapName;
+         reAllocateRAP();
+         PageReference landingPage = Page.Amr_RAPJobPortfolio;
+         return landingPage;
+     
+     }    
         
     public PageReference changePriority(){
       
@@ -1486,6 +1550,11 @@ public String docUploaded{get;set;}
         return null;
 
     }
+    
+    public void ProjectData(){
+        system.debug('project-------->'+projNameFromPage);
+    
+    }
      /*
     public List<SelectOption> getBrandList(){      
        
@@ -1539,6 +1608,27 @@ public String docUploaded{get;set;}
     public Pagereference updateJob(){
         List<MDO_BrandPositions__c> MDOBrandPositionslst =[select  brand_position_id__c,product_category_id__c,brand_id__c from MDO_BrandPositions__c where product_category_id__r.name = :categoryName AND brand_position_id__r.name = :brandPosName AND brand_id__r.name = :brandNameFromPage];
         system.debug('===list MDO'+MDOBrandPositionslst);
+        
+        if(categoryString == null){
+                categoryString = new list<string>();
+                Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+                Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
+                System.debug('CAteLisgt' + categorylst);
+                for(MDO_Category__c mdCat : categorylst){
+                    categoryString.add(mdCat.name);
+                }
+        }
+        /*if(projNameList == null){
+                 projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
+                 listString= new list<string>();
+                 
+                 listString.add('--None--');
+                 For(Amr_Project_Details__c i : projNameList){
+                    
+                        listString.add(i.name);
+                    
+                 }
+        }*/
         if(MDOBrandPositionslst.size()>0){
                         if(categoryName !='--None--'){
                                 system.debug('===list MDO Category'+MDOBrandPositionslst[0].product_category_id__c );
@@ -1698,7 +1788,7 @@ public String docUploaded{get;set;}
           system.debug('List  ->  ' + jobSharedList );
       
    //  ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,Label.Amr_Success_JobShared)); 
-  //   Amr_EmailSendingClass.emailSending(jobId, emailAddress, 'Amr_RAPSharedJob', new List<id>());
+    Amr_EmailSendingClass.emailSending(jobId, emailAddress, 'Amr_RAPSharedJob', new List<id>());
  
       PageReference pageRef = Page.amr_jobsheet;
      pageRef.getParameters().put('id',jobId);
@@ -1723,7 +1813,7 @@ public String docUploaded{get;set;}
            delete listOfSharedJob;
        }
        new Amr_JobSheetController();
-       PageReference pageRef = Page.AM_JobAllocations_bhupendra;
+       PageReference pageRef = Page.amr_jobsheet;
      pageRef.getParameters().put('id',jobId);
      pageRef.setRedirect(true);
      return PageRef;
@@ -1861,32 +1951,278 @@ public String docUploaded{get;set;}
        okayToSave =false;
         }
         
-      /*  if(jobDetails.Tv__c == false && jobDetails.Cinema__c == false && jobDetails.Radio__c==false && jobDetails.Print__c==false && jobDetails.Out_Of_Home__c==false && jobDetails.In_Store__c==false && jobDetails.Digital__c==false &&jobDetails.Internal_Video__c==false ){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : at least one option must be selected'));
-       okayToSave =false;
+      if(jobList.NewOriginalMaster__c == false && jobList.LanguageAdaptionMaster__c == false && jobList.Create_Additional_Material__c==false && jobList.ReworkExistingMaterial__c==false && jobList.BuyoutsTalent__c==false && jobList.BuyoutsMusic__c==false ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : at least one option must be selected'));
+            okayToSave =false;
         }
         
-        if(jobDetails.Out_Of_Home__c == true){
-         if(jobDetails.Out_Of_Home_Moving_Image__c == false && jobDetails.Out_Of_Home_Audio__c==false && jobDetails.Out_Of_Home_Still_Image__c==false){
-                system.debug('inside!!!');
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : select at least one media for selected media channel'));
-             okayToSave =false;
-            }
+        if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterCinema__c == false && jobList.NewOriginalMasterTv__c==false && 
+            jobList.NewOriginalMasterRadio__c==false && jobList.NewOriginalMasterPrint__c==false && jobList.NewOriginalMasterOutofHome__c==false &&
+                jobList.NewOriginalMasterInStore__c==false && jobList.NewOriginalMasterDigital__c==false && jobList.NewOriginalMasterInternalVideo__c==false ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Media Channel must be selected'));
+            okayToSave =false;
         }
-        if(jobDetails.In_Store__c==true){
-        if(jobDetails.In_Store_Moving_Image__c == false && jobDetails.In_Store_Audio__c==false && jobDetails.In_Store_Still_Image__c==false){
-            system.debug('inside!!!');
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : select at least one media for selected media channel'));
-             okayToSave =false;
-            }
+        
+       
+        
+         if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterOutofHome__c == true && jobList.NewOriginalMasterOutofHomeMovingImage__c==false && 
+            jobList.NewOriginalMasterOutofHomeAudio__c==false && jobList.NewOriginalMasterOutofHomeStillImage__c==false  ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Out of Home'));
+            okayToSave =false; 
         }
-          if(jobDetails.Digital__c==true){
-         if(jobDetails.Digital_Moving_Image__c == false && jobDetails.Digital_Audio__c == false && jobDetails.Digital_Still_Image__c==false && jobDetails.Digital_Editorial__c == false){
-                system.debug('inside!!!');
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : select at least one media for selected media channel'));
-             okayToSave =false;
-            }
-        }*/
+        
+        
+        if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterInStore__c == true && jobList.NewOriginalMasterInStoreMovingImage__c==false && 
+            jobList.NewOriginalMasterInStoreAudio__c==false && jobList.NewOriginalMasterInStoreStillImage__c==false  ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to In Store'));
+            okayToSave =false;
+        }
+        
+           
+        if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterCinema__c == false && jobList.NewOriginalMasterTv__c==false && 
+            jobList.NewOriginalMasterRadio__c==false && jobList.NewOriginalMasterPrint__c==false && jobList.NewOriginalMasterOutofHome__c==false &&
+                jobList.NewOriginalMasterInStore__c==false && jobList.NewOriginalMasterDigital__c==false && jobList.NewOriginalMasterInternalVideo__c==false ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Media Channel must be selected'));
+            okayToSave =false;
+        }
+        
+        
+      
+         if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterOutofHome__c == true && jobList.NewOriginalMasterOutofHomeMovingImage__c==false && 
+            jobList.NewOriginalMasterOutofHomeAudio__c==false && jobList.NewOriginalMasterOutofHomeStillImage__c==false  ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Out of Home'));
+            okayToSave =false;
+        }
+        
+        
+        if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterInStore__c == true && jobList.NewOriginalMasterInStoreMovingImage__c==false && 
+            jobList.NewOriginalMasterInStoreAudio__c==false && jobList.NewOriginalMasterInStoreStillImage__c==false  ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to In Store'));
+            okayToSave =false;
+        }
+        
+          if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterDigital__c == true && jobList.NewOriginalMasterDigitalMovingImage__c==false && 
+            jobList.NewOriginalMasterDigitalAudio__c==false && jobList.NewOriginalMasterDigitalStillImage__c==false  
+            && jobList.New_Original_Master_Digital_ED__c==false){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Digital'));
+            okayToSave =false;
+        }
+        
+        if(jobList.NewOriginalMaster__c == false && jobList.LanguageAdaptionMaster__c == true && jobList.LanguageAdaptionMasterTv__c==false && 
+            jobList.LanguageAdaptionMasterCinema__c==false && jobList.LanguageAdaptionMasterRadio__c==false  
+            && jobList.LanguageAdaptionMasterPrint__c==false && 
+                jobList.LanguageAdaptionMasterOutofHome__c==false && 
+                jobList.LanguageAdaptionMasterInStore__c==false && 
+                jobList.LanguageAdaptionMasterDigital__c==false &&
+                jobList.LanguageAdaptionMasterInternalVideo__c ==false){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected'));
+            okayToSave =false;
+        }
+        
+    
+    
+        
+         if(jobList.NewOriginalMaster__c == false && jobList.LanguageAdaptionMaster__c == true && jobList.LanguageAdaptionMasterOutofHome__c==true && 
+            jobList.LanguageAdaptionMasterOutofHomeAudio__c==false && 
+            jobList.LanguageAdaptionMasterOutHomeStillImage__c==false && 
+            jobList.LanguageAdaptionMasterOutHomeMovingImage__c==false 
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to Out of Home'));
+            okayToSave =false;
+        }
+        
+         if(jobList.NewOriginalMaster__c == false && jobList.LanguageAdaptionMaster__c == true && jobList.LanguageAdaptionMasterInStore__c==true && 
+            jobList.LanguageAdaptionMasterInStoreAudio__c==false && 
+            jobList.LanguageAdaptionMasterInStoreMovingImage__c==false && 
+            jobList.LanguageAdaptionMasterInStoreStillImage__c==false  
+            
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to In Store'));
+            okayToSave =false;
+        }
+        
+        if(jobList.NewOriginalMaster__c == false && jobList.LanguageAdaptionMaster__c == true && jobList.LanguageAdaptionMasterDigital__c==true && 
+            jobList.LanguageAdaptionMasterDigitalAudio__c==false && 
+            jobList.LanguageAdaptionMasterDigitalMovingImage__c==false && 
+            jobList.LanguageAdaptionMasterDigitalStillImage__c==false && jobList.Language_Adaptation_of_Master_Digital_ED__c ==false
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to Digital'));
+            okayToSave =false;
+        }
+        
+        
+        
+        if(jobList.NewOriginalMaster__c == false && jobList.Create_Additional_Material__c == true && jobList.AdditionalSupplementaryNewMaterialOOH__c==true && 
+            jobList.AdditionalSupplementaryNewMaterialOofHMI__c==false && 
+            jobList.AdditionalSupplementaryNewMaterialOofHSI__c==false && 
+            jobList.AdditionalSupplementaryNewMaterialOofHA__c==false  
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to Out of Home'));
+            okayToSave =false;
+        }
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.Create_Additional_Material__c == true && jobList.AdditionalSupplementaryNewMaterialStore__c==true && 
+            jobList.AdditionalSupplementaryNewMaterialInSMI__c==false && 
+            jobList.AdditionalSupplementaryNewMaterialInSA__c==false && 
+            jobList.AdditionalSupplementaryNewMaterialInSSI__c==false  
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to In Store'));
+            okayToSave =false;
+        }
+        
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.Create_Additional_Material__c == true && jobList.AdditionalSupplementaryNewMaterialDigi__c==true && 
+            jobList.AdditionalSupplementaryNewMaterialDigiMI__c==false && 
+            jobList.AdditionalSupplementaryNewMaterialDigiA__c==false && 
+            jobList.AdditionalSupplementaryNewMaterialDigiSI__c==false  &&
+            jobList.Digital_Editorial__c==false  
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to Digital'));
+            okayToSave =false;
+        }
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.Create_Additional_Material__c == true &&  
+            jobList.AdditionalSupplementaryNewMaterialStore__c==false && 
+            jobList.AdditionalSupplementaryNewMaterialDigi__c==false &&
+            jobList.AdditionalSupplementaryNewMaterialTv__c == false &&
+            jobList.AdditionalSupplementaryNewMaterialCinema__c == false &&
+            jobList.AdditionalSupplementaryNewMaterialRadio__c == false &&
+            jobList.AdditionalSupplementaryNewMaterialOOH__c == false &&
+            jobList.AdditionalSupplementaryNewMaterialIVideo__c== false
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Media Channel must be selected'));
+            okayToSave =false;
+        }
+        
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.ReworkExistingMaterial__c == true && jobList.ReworkExistingMaterialOutofHome__c==true && 
+            jobList.ReworkExistingMaterialOutHomeMovingImage__c==false && 
+            jobList.ReworkExistingMaterialOutofHomeAudio__c==false && 
+            jobList.ReworkExistingMaterialOutHomeStillImage__c==false 
+            
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to Out of Home'));
+            okayToSave =false;
+        }
+        
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.ReworkExistingMaterial__c == true && jobList.ReworkExistingMaterialInStore__c==true && 
+            jobList.ReworkExistingMaterialInStoreMovingImage__c==false && 
+            jobList.ReworkExistingMaterialInStoreAudio__c==false && 
+            jobList.In_Store_Still_Image__c==false  
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to In Store'));
+            okayToSave =false;
+        }
+        
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.ReworkExistingMaterial__c == true && jobList.ReworkExistingMaterialDigital__c==true && 
+            jobList.ReworkExistingMaterialDigitalMovingImage__c==false && 
+            jobList.ReworkExistingMaterialDigitalAudio__c==false && 
+            jobList.ReworkExistingMaterialDigitalStillImage__c==false  &&
+            jobList.Rework_Exisiting_Material_Digital_ED__c==false  
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to Digital'));
+            okayToSave =false;
+        }
+        
+        if(jobList.NewOriginalMaster__c == false && jobList.ReworkExistingMaterial__c == true &&            jobList.ReworkExistingMaterialOutofHome__c==false && 
+            jobList.ReworkExistingMaterialInStore__c==false && 
+            jobList.ReworkExistingMaterialDigital__c==false 
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Media Channel must be selected'));
+            okayToSave =false;
+        }
+        
+        
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsTalent__c == true && jobList.BuyoutsTalentOutofHome__c==true && 
+            jobList.BuyoutsTalentOutofHomeMovingImage__c==false && 
+            jobList.BuyoutsTalentOutofHomeAudio__c==false && 
+            jobList.BuyoutsTalentOutofHomeStillImage__c==false 
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to Out of Home'));
+            okayToSave =false;
+        }
+        
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsTalent__c == true && jobList.BuyoutsTalentInStore__c==true && 
+            jobList.BuyoutsTalentInStoreMovingImage__c==false && 
+            jobList.BuyoutsTalentInStoreAudio__c==false && 
+            jobList.BuyoutsTalentInStoreStillImage__c==false 
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to In Store' ));
+            okayToSave =false;
+        }
+        
+        
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsTalent__c == true && jobList.BuyoutsTalentDigital__c==true && 
+            jobList.BuyoutsTalentDigitalMovingImage__c==false && 
+            jobList.BuyoutsTalentDigitalAudio__c==false && 
+            jobList.BuyoutsTalentDigitalStillImage__c==false  &&
+            jobList.Buyouts_Talent_Digital_ED__c==false  
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to Digital'));
+            okayToSave =false;
+        }
+        
+          if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsTalent__c == true &&               jobList.BuyoutsTalentOutofHome__c==false && 
+            jobList.BuyoutsTalentInStore__c==false && 
+            jobList.BuyoutsTalentDigital__c==false 
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Media Channel must be selected'));
+            okayToSave =false;
+        }
+        
+        
+        
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsMusic__c == true && jobList.BuyoutsMusicOutofHome__c==true && 
+            jobList.BuyoutsMusicOutofHomeMovingImage__c==false && 
+            jobList.BuyoutsMusicOutofHomeAudio__c==false && 
+            jobList.BuyoutsMusicOutofHomeStillImage__c==false 
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to Out of Home'));
+            okayToSave =false;
+        }
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsMusic__c == true && jobList.BuyoutsMusicInStore__c==false && 
+            jobList.BuyoutsMusicDigital__c==false && 
+            jobList.BuyoutsMusicTv__c == false &&
+            jobList.BuyoutsMusicCinema__c == false &&
+            jobList.BuyoutsMusicRadio__c == false &&
+            jobList.BuyoutsMusicInternalVideo__c == false &&
+            jobList.BuyoutsMusicOutofHome__c == false
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Media Channel must be selected'));
+            okayToSave =false;
+        }
+        
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsMusic__c == true && jobList.BuyoutsMusicInStore__c==true && 
+            jobList.BuyoutsMusicInStoreMovingImage__c==false && 
+            jobList.BuyoutsMusicInStoreAudio__c==false && 
+            jobList.BuyoutsMusicInStoreStillImage__c==false 
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to In Store'));
+            okayToSave =false;
+        }
+        
+        
+        
+            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsMusic__c == true && jobList.BuyoutsMusicDigital__c==true && 
+            jobList.BuyoutsMusicDigitalMovingImage__c==false && 
+            jobList.BuyoutsMusicDigitalAudio__c==false && 
+            jobList.BuyoutsMusicDigitalStillImage__c==false  &&
+            jobList.Buyouts_Music_Digital_ED__c==false  
+            ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to Digital'));
+            okayToSave =false;
+        }
+        
+
+       
         
         if(okayToSave) {
                 validateSuccess = true;
@@ -1944,12 +2280,19 @@ public String docUploaded{get;set;}
 
          alertObj.Job_Id__c  = jobIdFromPage ;
         System.debug('Alert -> ' + alertObj);
-        if(alertObj.New_Alert__c != null && alertObj.Alert_Message__c != null){
-            insert alertObj;
+        if(alertObj.New_Alert__c == null || alertObj.Alert_Message__c == null){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter both alert date and alert message'));
+            
         }
-         alert = [SELECT Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c FROM Amr_Alert__c where New_Alert__c = today and hide__c = :false AND ownerId = :userInfo.getUserID() order by New_Alert__c desc];
-         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND New_Alert__c = today];
-       alertObj = new Amr_Alert__c();   
+        if(alertObj.New_Alert__c < Date.today()){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Alert date must be greater than or equal to today\'s date'));
+        }
+        else{
+         insert alertObj;
+         alert = [SELECT Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c FROM Amr_Alert__c where hide__c = :false AND Job_Id__c  = :jobIdFromPage AND ownerId = :userInfo.getUserID() order by New_Alert__c desc];
+         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];
+       alertObj = new Amr_Alert__c();
+       }   
     //    return null;
     }
      public void alertHide(){
@@ -1965,8 +2308,8 @@ public String docUploaded{get;set;}
             }
             update alertHideList;
            }
-           alert = [SELECT Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c FROM Amr_Alert__c where New_Alert__c = today and hide__c = :false AND ownerId = :userInfo.getUserID() order by New_Alert__c desc];
-         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND New_Alert__c = today];
+           alert = [SELECT Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c FROM Amr_Alert__c where Job_Id__c  = :jobIdFromPage and hide__c = :false AND ownerId = :userInfo.getUserID() order by New_Alert__c desc];
+         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];
         }
 
     public PageReference jobSheetPageTransfer(){

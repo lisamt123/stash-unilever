@@ -55,6 +55,7 @@ public with sharing class Amr_SubmittedSavings {
     public String caOutputQualityCategoryClass {get;set;}
     public Amr_Quote__c quoteObj{get;set;}
     public Amr_Saving__c savObj {get;set;}
+    public Amr_Saving__c savObjNum {get;set;}
     
     
     //public  Amr_Quote__c acceptedQuote {get;set;}
@@ -118,7 +119,9 @@ public with sharing class Amr_SubmittedSavings {
                         system.debug('========>selectedCountry '+selectedCountry );
              userId = userinfo.getuserid();
              updateData();
-        }catch(Exception e){}
+        }catch(Exception ex){
+        	System.debug('Exception -> '+ ex.getmessage());
+        }
          
     //  getSelectedRatingStar();       
   }
@@ -153,7 +156,7 @@ public with sharing class Amr_SubmittedSavings {
                                            Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,PC_Costs_Euro_Amount__c,
                                            Total_Cost__c,id,Folder__c from Amr_Quote__c where Saving__c =:savingIdFromPage ORDER BY Quote_Number__c];             //
                
-               Amr_Saving__c savObjNum = [select Job_Details__r.AdManagerText__c from Amr_Saving__c where Id =:savingIdFromPage limit 1];
+               savObjNum = [select Job_Details__r.AdManagerText__c from Amr_Saving__c where Id =:savingIdFromPage limit 1];
                adManagerNumber = savObjNum.Job_Details__r.AdManagerText__c;
                 
                system.debug('adManagerNumber!!'+adManagerNumber);   
@@ -321,7 +324,9 @@ public with sharing class Amr_SubmittedSavings {
                        
             upsert lstquoteItem;
             
+           
             for( Amr_Quote__c quoteObj :  lstquoteItem){
+               
                 Document doc = mapQuoteNumnerSavingId.get(quoteObj .Quote_Number__c+''+quoteObj .Saving__c);
                 FeedItem FI = new FeedItem();
                 FI.ParentId = quoteObj .id;
@@ -360,6 +365,9 @@ public with sharing class Amr_SubmittedSavings {
             }
             
            update lstquoteItem;
+          // for( Amr_Quote__c quoteObj :  lstquoteItem){
+                   
+        //   }
            system.debug('updated with accepted lstquoteItem !!'+lstquoteItem);
             
          }
@@ -373,8 +381,10 @@ public with sharing class Amr_SubmittedSavings {
     public void SaveQuote(){}
     public PageReference editSaving(){
          system.debug('saveRecordValue !!'+saveRecordValue );
+        
         if(saveRecordValue !=null){
         editedSavingMode = true;
+    
           system.debug('editedSavingMode !!'+editedSavingMode );
         }
        
@@ -450,16 +460,19 @@ public with sharing class Amr_SubmittedSavings {
             
      if(savingId!=null){     
     Amr_Saving__c savingObj = [select Folder_Name__c,Shoot_Location__c from Amr_Saving__c where Id =:savingId];  
-     
+      Set<String> setlocation = new Set<String>();
      system.debug('savingObj'+savingObj + 'selected' +selectedCountry );
-   if(selectedCountry.size()>0){   
-    for(String str : selectedCountry){
-                if(savingObj.Shoot_Location__c == null){
-                    savingObj.Shoot_Location__c = str ;
-                }else{
-                    savingObj.Shoot_Location__c += ','+str;
+    if(selectedCountry.size()>0){   
+        for(String str : selectedCountry){
+            if(!setlocation.contains(str) && !setlocation.contains('Test')){}
+                    if(savingObj.Shoot_Location__c == null){
+                        savingObj.Shoot_Location__c = str ;
+                    }else{
+                        savingObj.Shoot_Location__c += ','+str;
+                    }
+                    setlocation.add(str);
                 }
-            }
+                }
      update savingObj;  
      system.debug('document outside!!'+savingObj+'8888888888'+fileBody );     
     }
@@ -516,9 +529,10 @@ public with sharing class Amr_SubmittedSavings {
                 }
             }
     // update savingObj;  
-     update savObj;
-     system.debug('document outside!!'+savObj+'8888888888'+fileBody );     
+          
     }
+    update savObj;
+     system.debug('document outside!!'+savObj+'8888888888'+fileBody );
      //updatedata();
     
      document.body =  fileBody ;
@@ -605,7 +619,8 @@ public with sharing class Amr_SubmittedSavings {
         
         
         pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+savingIdFromPage);page.setRedirect(true); return page ;
-        }catch(Exception e){
+        }catch(Exception ex){
+        	System.debug('Exception -> '+ ex.getmessage());
         }
         
         
@@ -618,8 +633,9 @@ public with sharing class Amr_SubmittedSavings {
             if(savingId != null){
         Amr_Saving__c savingObj = [select Id from Amr_Saving__c where Id =:savingId limit 1];   
         delete savingObj;}
-        pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+savingIdFromPage);page.setRedirect(true); return page ;
-        }catch(Exception e){
+        pagereference page = new PageReference('/apex/Amr_JobSheet?id='+savObjNum.Job_Details__c);page.setRedirect(true); return page ;
+        }catch(Exception ex){
+        	System.debug('Exception -> '+ ex.getmessage());
         }
         
         
@@ -632,9 +648,10 @@ public with sharing class Amr_SubmittedSavings {
         try{
             update quoteRelatedToSavingList;
             
-        }catch(Exception e){
+        }catch(Exception ex){
                 
             system.debug('delete Exception');
+            System.debug('Exception -> '+ ex.getmessage());
         }
     }
     

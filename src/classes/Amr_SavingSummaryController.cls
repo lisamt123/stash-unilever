@@ -10,6 +10,12 @@ public with sharing class Amr_SavingSummaryController{
     public String jobId ;
     public String films{get;set;}
     public Id chosenId {get; set;}
+     public  String[]  categoryString{get;set;}
+     public String categoryName{get;set;}
+    public String brandPosName{get;set;}
+    public String brandNameFromPage{get;set;} 
+    public List<SelectOption> listOfBrandPosition{get;set;}
+    public List<SelectOption> listOfBrand{get;set;}
    // public  AggregateResult[] groupedSubmissionResultCurrentMonth {get;set;}
     public  AggregateResult[] groupedSubmissionResultsYearToDate  {get;set;}
     public  AggregateResult[] groupedSubmissionResultsPrevYear  {get;set;}
@@ -22,13 +28,14 @@ public with sharing class Amr_SavingSummaryController{
     public  List<SelectOption> listOfSortOptions{get;set;}
     public String selectedSortJobsOption{get;set;}
     public Integer totalSizeForSummaryJobs =0;
-    public Integer limitSizeForSummaryJobs=Integer.valueOf(System.Label.Amr_LimitValue);
+    public Integer limitSizeForSummaryJobs=100; //Integer.valueOf(System.Label.Amr_LimitValue);
     public Integer counterForSummaryJobs=0;
     public Boolean showPageButtonForSummary {get;set;}
     public List<Amr_Saving__c>summaryJobsToShow{get;set;}
     
     public Amr_SavingSummaryController(){
         
+       Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
         savingObject = new Amr_Saving__c();
         jobId = ApexPages.currentPage().getParameters().get('id');
         userId = userinfo.getuserid();
@@ -40,6 +47,13 @@ public with sharing class Amr_SavingSummaryController{
              shootLocation.add(new SelectOption(countryObj.Country__c,countryObj.Country__c));
             }
            getJobSearchDetails();
+           categoryString = new list<string>();
+         Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
+        for(MDO_Category__c mdCat : categorylst){
+            categoryString.add(mdCat.name);
+        }
+        listOfBrandPosition = new List<SelectOption>();
+        listOfBrandPosition.add(new selectOption('--None--','--None--'));
            
     }
     public List<SelectOption> getSortOptions(){  
@@ -114,11 +128,11 @@ public with sharing class Amr_SavingSummaryController{
      }
      if(setFlag == false){
       getDashboardDataForRAP();
-      soql = 'select Job_Details__r.AdManagerText__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById from Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId )';
+      soql = 'select Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Percentage_Saving_Average_of_Quote__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById from Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId )';
       
      } else{
      getDashboardDataForCAP();
-      soql = 'select Job_Details__r.AdManagerText__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c ,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById from Amr_Saving__c where CreatedDate!=null';
+      soql = 'select Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Percentage_Saving_Average_of_Quote__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c ,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById from Amr_Saving__c where CreatedDate!=null';
      
      }
       system.debug('soql !!'+soql);
@@ -154,14 +168,14 @@ public with sharing class Amr_SavingSummaryController{
            
            system.debug('soql01'+soql);
     }
-    /*
+   
     if(String.isNotBlank(savingObject.Production_Type__c)){
       
     soql += ' and Production_Type__c = \''+String.escapeSingleQuotes(savingObject.Production_Type__c)+'\'';
    
            system.debug('soql4'+soql);
      }
-     */
+   
       if(String.isNotBlank(String.valueOf(savingObject.No_of_Masters__c))){
     
     Double noOfMaster = savingObject.No_of_Masters__c;  
@@ -235,10 +249,15 @@ public with sharing class Amr_SavingSummaryController{
         String str = '';
           for(String s:selectedCountry){
             //str= s+ ';'+str;
-            str+='\''+s+'\''+',';
+          //  str+='\''+s+'\''+';';
+              str += s+ ',';
           }
+          String shLocString = '\'' + str.subString(0,str.length()-1) + '\'';
+        //  System.debug('Shoot LOCATEN -> ' + shLocString);
         //str= str = str.substring(0, str.length()-1);
-        soql += ' and Shoot_Location_Multiselect__c includes ('+str.subString(0,str.length()-1)+')';
+        soql += ' and Shoot_Location__c IN ('+shLocString+')';
+        System.debug('Str -> ' + shLocString);
+        System.debug('SOQL -> ' + soql);
      }
      try{
     List<AMR_Saving__c> tempLst = new List<AMR_Saving__c>();
@@ -259,6 +278,7 @@ public with sharing class Amr_SavingSummaryController{
     }
     }
     catch(Exception Ex){
+    	System.debug('Exception -> '+ ex.getmessage());
         throw Ex;
     }
     
@@ -432,12 +452,103 @@ public with sharing class Amr_SavingSummaryController{
      
      public PageReference jobSheetPageTransfer(){
       
-       PageReference pageRef = new PageReference('/apex/AM_JobAllocations_bhupendra');
+       PageReference pageRef = new PageReference('/apex/amr_jobsheet');
        pageRef.getParameters().put('id',chosenId);
        pageRef.setRedirect(true);
        return pageRef;
    }
    
- 
+      public String getCategoryList(){ 
+        System.debug('cATE ->' +  JSON.serialize(categoryString));
+        return JSON.serialize(categoryString);
+    }
+     public PageReference  brandPositionListData(){    
+        System.debug('BBBBBBRANDDD ->'+ categoryName);  
+        Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+        Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
+
+        system.debug('brandPositionListttoo----->'+brandPositionlst );
+
+   //     listOfBrandPosition = new List<SelectOption>();
+     //   listOfBrandPosition.add(new selectOption('--None--','--None--'));
+        Set<String> brnadPosNameSet = new Set<String>();
+        for(MDO_BrandPositions__c bps : brandPositionlst){
+
+            if(!brnadPosNameSet.contains(bps.brand_position_id__r.name)){
+                listOfBrandPosition.add(new selectOption(bps.brand_position_id__r.name,bps.brand_position_id__r.name));
+
+                brnadPosNameSet.add(bps.brand_position_id__r.name);
+            }
+        }
+
+        system.debug('brandPositionListtt----->'+listOfBrandPosition);
+        return null;
+
+    }
+    public List<SelectOption> getBrandList(){      
+        listOfBrand = new List<SelectOption>();
+        system.debug('========>'+brandPosName+'category name=====>'+categoryName);
+
+        listOfBrand.add(new selectOption('--None--','--None--'));
+
+        //Set<String> brandlst = new Set<String>();
+        Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+        Set<MDO_BrandPositions__c> brandlst = utiltyObj.brandValues(categoryName,brandPosName);
+        Set<String> brnadNameSet = new Set<String>();
+        for(MDO_BrandPositions__c bps : brandlst){
+
+            if(!brnadNameSet.contains(bps.brand_id__r.name)){
+                listOfBrand.add(new selectOption(bps.brand_id__r.name,bps.brand_id__r.name));
+
+                brnadNameSet.add(bps.brand_id__r.name);
+            }
+        }
+
+        return listOfBrand;
+    }
+    
+       public List<PieWedgeData> getPieDataRAP() 
+        {  
+            List<PieWedgeData> data = new List<PieWedgeData>();
+            Date startOfMonth = Date.today().toStartOfMonth();
+            Date startOfNextMonth = startOfMonth.addMonths(1);
+            Date currentDay = Date.today();
+            
+    
+    
+     groupedSavingResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+     //groupedSubmissionResultCurrentMonth = [SELECT count(Id) FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+     
+     
+     groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+    // groupedSavingResultsYearToDate  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+     
+     groupedSubmissionResultsPrevYear  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+     //groupedSavingResultsPrevYear  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+     
+     data.add(new PieWedgeData('Current Month',Integer.valueOf(groupedSavingResultsCurrentMonth[0].get('savCurrentMonth'))));
+     data.add(new PieWedgeData('YTD',Integer.valueOf(groupedSubmissionResultsYearToDate[0].get('savCurrentYearToDate'))));
+     data.add(new PieWedgeData('Prev Year',Integer.valueOf(groupedSubmissionResultsPrevYear[0].get('savCurrentPrevYear'))));
+     
+     
+     
+      return data;  
+    }
+    
+    
+                // Wrapper class  
+         public class PieWedgeData 
+         {  
+          public string name { get; set; }  
+          public Integer data { get; set; }  
+          
+          public PieWedgeData(string name, integer data) 
+          {  
+           this.name = name;  
+           this.data = data;  
+          }  
+         }
+         
+        
 
 }
