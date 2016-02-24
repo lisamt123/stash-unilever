@@ -333,6 +333,11 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>OOH</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Other</fullName>
                 <controllingFieldValues>Adaptation</controllingFieldValues>
                 <controllingFieldValues>Adaptations and Reedits</controllingFieldValues>
@@ -1164,6 +1169,10 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>OOH</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>OOH Adaptation</fullName>
                 <default>false</default>
             </values>
@@ -1340,6 +1349,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Static Imagery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stimulus Materials - Research requirements</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2369,6 +2382,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Narration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOH</fullName>
                 <default>false</default>
             </values>
             <values>

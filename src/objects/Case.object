@@ -3455,10 +3455,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC North America Suave</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Axe1</fullName>
-        <booleanFilter>1 AND 4 AND 5 AND (2 OR 3 OR 6 OR 7)</booleanFilter>
+        <booleanFilter>1 AND 4 AND (2 OR 3 OR 5 OR 6)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -3482,13 +3487,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
             <operation>equals</operation>
-            <value>Baking Cooking and Spreading</value>
+            <value>New</value>
         </filters>
         <filters>
             <field>Brand__c</field>
@@ -3502,6 +3502,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC North America Baking Cooking &amp; Sprea</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Axe2</fullName>
@@ -3529,15 +3534,20 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
+            <operation>equals</operation>
+            <value>New</value>
         </filters>
         <label>CEC North America Dove</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Baking_Cooking_Sprea</fullName>
-        <booleanFilter>1 AND 4 AND 5 AND (2 OR 3 OR 6 OR 7)</booleanFilter>
+        <booleanFilter>1 AND 4 AND (2 OR 3 OR 5 OR 6)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -3561,13 +3571,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
             <operation>equals</operation>
-            <value>Ice Cream</value>
+            <value>New</value>
         </filters>
         <filters>
             <field>Brand__c</field>
@@ -3581,6 +3586,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC North America Ice Cream</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Brand_Queue_Case</fullName>
@@ -3592,15 +3602,22 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Brand Queue</label>
         <language>en_US</language>
         <queue>CEC_North_America_Brand_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Claims_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
         <columns>Country__c</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -3612,12 +3629,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
         <queue>CEC_North_America_Claims_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Coffee_Snacks</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -3641,29 +3660,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
             <operation>equals</operation>
-            <value>Coffee &amp; Snacks</value>
+            <value>New</value>
         </filters>
         <label>CEC North America Coffee &amp; Snacks</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Creative_Solutions_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC North America Creative Solutions</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Creative_Solutions</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Deodorants_Fragrance</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -3687,20 +3709,20 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
             <operation>equals</operation>
-            <value>Deodorants &amp; Fragrances</value>
+            <value>New</value>
         </filters>
         <label>CEC North America Deodorants &amp; Fragrance</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Dressings</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -3724,20 +3746,20 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
             <operation>equals</operation>
-            <value>Dressings</value>
+            <value>New</value>
         </filters>
         <label>CEC North America Dressings</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Food_Solutions</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -3761,29 +3783,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
             <operation>equals</operation>
-            <value>Food Solutions</value>
+            <value>New</value>
         </filters>
         <label>CEC North America Food Solutions</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Frequent_Caller_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC North America  Frequent Caller Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Frequent_Caller_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Hair_Care</fullName>
-        <booleanFilter>1 AND 4 AND 5 AND (2 OR 3)</booleanFilter>
+        <booleanFilter>1 AND 4 AND (2 OR 3)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -3807,29 +3832,33 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
             <operation>equals</operation>
-            <value>Hair Care</value>
+            <value>New</value>
         </filters>
         <label>CEC North America Hair Care</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Helpdesk_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC North America Helpdesk Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Helpdesk_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Household_Care</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -3853,16 +3882,16 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
             <operation>equals</operation>
-            <value>Household Care</value>
+            <value>New</value>
         </filters>
         <label>CEC North America Household Care</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_IVR</fullName>
@@ -3879,6 +3908,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>contains</operation>
             <value>IVR</value>
         </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
         <label>CEC North America IVR</label>
         <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
@@ -3890,7 +3924,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ice_Cream</fullName>
-        <booleanFilter>1 AND 4 AND 5 AND (2 OR 3 OR 6 OR 7)</booleanFilter>
+        <booleanFilter>1 AND 4 AND (2 OR 3 OR 5 OR 6)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -3916,11 +3950,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CASES.STATUS</field>
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
-            <operation>equals</operation>
-            <value>Savoury</value>
         </filters>
         <filters>
             <field>Brand__c</field>
@@ -3934,28 +3963,40 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC North America Savoury</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Mexico_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC North America Mexico Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Mexico_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Orders_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC North America Orders Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Orders_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Other_Foods</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -3982,16 +4023,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
         </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
-            <operation>equals</operation>
-            <value>Other Foods</value>
-        </filters>
         <label>CEC North America Other Foods</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Queue_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -4008,8 +4056,42 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_North_America_Ratings_and_Reviews</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Default_From_Address__c</field>
+            <operation>equals</operation>
+            <value>customer.review@unilever.com</value>
+        </filters>
+        <filters>
+            <field>Default_From_Address__c</field>
+            <operation>equals</operation>
+            <value>consumer.review@unilever.com</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <label>CEC North America Ratings and Reviews</label>
+        <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_North_America_Savoury</fullName>
-        <booleanFilter>1 AND 4 AND 5 AND (2 OR 3 OR 6 OR 7)</booleanFilter>
+        <booleanFilter>1 AND 4 AND (2 OR 3 OR 5 OR 6)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -4035,11 +4117,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CASES.STATUS</field>
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
-            <operation>equals</operation>
-            <value>Tea and Soy &amp; Fruit Beverages</value>
         </filters>
         <filters>
             <field>Brand__c</field>
@@ -4053,10 +4130,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC North America Tea and Soy &amp; Fruit Be</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Skin</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -4083,17 +4165,70 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
         </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
-            <operation>equals</operation>
-            <value>Non Corporate Personal Care Cat</value>
-        </filters>
         <label>CEC North America Non Corporate Personal</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_Social_Canada</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Default_From_Address__c</field>
+            <operation>equals</operation>
+            <value>cec.facebook@unilever.com</value>
+        </filters>
+        <filters>
+            <field>Default_From_Address__c</field>
+            <operation>equals</operation>
+            <value>Consumer-Services.Canada@unilever.com</value>
+        </filters>
+        <label>CEC North America Social Canada</label>
+        <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_Social_Media_Follow_Up</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Default_From_Address__c</field>
+            <operation>equals</operation>
+            <value>Consumer.Services@unilever.com</value>
+        </filters>
+        <label>CEC North America Social Media Follow Up</label>
+        <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Suave</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>ACCOUNT.NAME</columns>
         <columns>Country_Name__c</columns>
@@ -4120,16 +4255,16 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>L2_Product_Category__c</field>
             <operation>equals</operation>
-            <value>Skin</value>
+            <value>New</value>
         </filters>
         <label>CEC North America Skin</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Suave1</fullName>
@@ -4157,19 +4292,27 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
+            <operation>equals</operation>
+            <value>New</value>
         </filters>
         <label>CEC North America Axe</label>
         <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Supervisor_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC North America Supervisor Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Supervisor_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -4729,7 +4872,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>CEC UKI Escalation Queue,mlatter,RThornhi,SDouglas</value>
         </filters>
-        <label>My teams open cases</label>
+        <label>My teams open cases - UK</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_UK</role>
@@ -4775,6 +4918,37 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Review_Needed</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Review Needed</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>United Kingdom</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>notEqual</operation>
+            <value>CEC UKI Escalation Queue,mlatter,RThornhi,SDouglas</value>
+        </filters>
+        <label>Review Needed</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_UK</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>TO_France_Escalation_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -4808,7 +4982,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Vacation_Queue_DACH</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -4846,6 +5020,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>Anlasser</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>bfric</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>

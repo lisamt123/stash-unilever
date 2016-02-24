@@ -552,8 +552,10 @@
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Queue_cec_Alert_Rule</fullName>
+        <columns>NAME</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

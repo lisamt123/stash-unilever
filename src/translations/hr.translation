@@ -4361,7 +4361,7 @@
         <name>IPM_Milestone_DueDate_Validation</name>
     </customLabels>
     <customLabels>
-        <label><!-- Postponed Past Date Validation --></label>
+        <label><!-- Milestone Due Date --></label>
         <name>IPM_Milestone_Due_Date</name>
     </customLabels>
     <customLabels>
