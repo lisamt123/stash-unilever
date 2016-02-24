@@ -95,8 +95,11 @@
                 </div>
             </apex:outputPanel>          
             <apex:outputPanel id="assortListdropdown2" layout="block" styleClass="col-sm-12">
-                <div class="inputField col-sm-6 nopadLeft nopadLeft">
+                <div class="inputField col-sm-6 nopadLeft nopadLeft infoDivv">
                     <label class="bsFieldLabel">{!$Label.IPM_CUS}</label>
+                    <span class="SecButtonSet infoMarTop">
+   <a class="icoButton info smalllinfo" title="{!$Label.IPM_PLEASE_TYPE_IN_THE_CU}"></a>
+ </span>
                     <apex:outputPanel rendered="{!isEditable}">
                         <apex:inputField id="cusinput" value="{!ipmProdocContent.IPM_Incumbent_CUs__c}" styleClass="chCusValue" >
                         </apex:inputField>

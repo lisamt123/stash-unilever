@@ -59,7 +59,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown completedFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="fa filterIcon icoButton filter"></a>
+                                                    <a class="{!IF(isCompleteTasks != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a>
                                                 </div>
                                                 <ul class="dropdown-menu pull-right complete" role="menu">
                                                     <li>
@@ -98,7 +98,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown projectFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="fa filterIcon icoButton filter"></a> 
+                                                    <a class="{!IF(projectName != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a> 
                                                 </div>
                                                 <ul class="dropdown-menu pull-right project" role="menu">
                                                     <li>
@@ -149,7 +149,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown brandFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="fa filterIcon icoButton filter"></a> 
+                                                    <a class="{!IF(brandName != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a> 
                                                 </div>
                                                 <ul class="dropdown-menu pull-right brand" role="menu">
                                                     <apex:repeat value="{!brandlist}" var="phs">
@@ -184,7 +184,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown categoryFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="fa filterIcon icoButton filter"></a> 
+                                                    <a class="{!IF(categoryName != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a> 
                                                 </div>
                                                 <ul class="dropdown-menu pull-right category" role="menu">
                                                     <apex:repeat value="{!CategoryList}" var="phs">
@@ -218,7 +218,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown phaseFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="fa filterIcon icoButton filter"></a> 
+                                                    <a class="{!IF(phase != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a> 
                                                 </div>
                                                 <ul class="dropdown-menu pull-right phase" role="menu">
                                                     <apex:repeat value="{!phasesList}" var="phs">

@@ -70,6 +70,9 @@
                             <div class="col-sm-12 coreBg coreCheckrow noPadleft">
                                 <apex:outputPanel layout="Block" rendered="{!coreConfig.IPM_FastTrack__c}">
                                     <div class="fastTrackBox">
+                                      <span class="SecButtonSet infoMarTop">
+                                        <a class="icoButton info smallllinfo" title="{!$Label.IPM_FAST_TRACK_WHITE_SPACE}"></a>
+                                            </span>
                                        <apex:inputCheckbox styleClass="fastTrackcheck" disabled="true" value="{!IPM_Coreparameter.IPM_Fast_Track_Project__c}"/>
                                         <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
                                     </div>

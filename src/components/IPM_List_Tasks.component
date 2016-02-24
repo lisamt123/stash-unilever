@@ -19,7 +19,11 @@
                 <apex:outputPanel id="statsPanel">
                      
                          <div class="row ipmTaskRow">
-                            <div class="pull-left heading3 toDoborder blue ipmPanelHeading">{!$Label.IPM_ToDosLabel}</div>
+                            <div class="pull-left heading3 toDoborder blue ipmPanelHeading">{!$Label.IPM_ToDosLabel}
+                            <span class="SecButtonSet infoMarTop">
+                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_TO_DO_ARE_THE_SET}"></a>
+                            </span>
+                            </div>
                             <apex:outputPanel rendered="{!projectObj.IPM_PM_Approach__c='Internal'}"> 
                             <div class="pull-left ipmStatistics">
                                 <c:IPM_Statistic colorClass="green" kpiValue="{!closedTasks}" kpi="Completed" />
@@ -74,7 +78,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown completedFilter completedFilterT ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="fa filterIcon icoButton filter"></a> 
+                                                    <a class="{!IF(isCompleteTasks != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a> 
                                                 </div>
                                                 <ul class="dropdown-menu pull-right complete" role="menu">
                                                     <li>
@@ -138,7 +142,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown phaseFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="fa filterIcon icoButton filter"></a> 
+                                                    <a class="{!IF(phase != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a> 
                                                 </div>
                                             </div>
                                         </div>
@@ -176,7 +180,7 @@
                                         <div class="keep-open  btn-group">
                                             <div class="dropdown userFilter ipmDropDown">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
-                                                    <a class="fa filterIcon icoButton filter"></a> 
+                                                    <a class="{!IF(user != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter')}"></a> 
                                                 </div>
                                             </div>
                                         </div>

@@ -133,7 +133,7 @@
                                                            		  <c:IPM_GateCMI_Consolidated getGate="{!projDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" getSectionId="{!projDocSec.Id}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards',OR(project.IPMProject_Span__c='Global',project.IPMProject_Span__c='Local'))}"></c:IPM_GateCMI_Consolidated>
                                                         		</apex:outputPanel>
                                                         		                                                        		
-                                                        		 <c:IPM_CU_Complexity gateType="{!projDoc.IPM_GateDocuments__c}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}" getSectionId="{!projDocSec.Id}" isEdit="{!IsCRRTEditable}" rendered="{!AND(project.IPM_Project_Type__c!='Operational',projDocSec.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas'))}">                                   </c:IPM_CU_Complexity>
+                                                        		 <c:IPM_CU_Complexity gateType="{!projDoc.IPM_GateDocuments__c}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}" getSectionId="{!projDocSec.Id}" isEdit="{!IsCRRTEditable}" rendered="{!OR(AND(project.IPM_Project_Type__c==$Label.IPM_Operational,projDocSec.IPM_Master_Section_External_Id__c=$Label.IPM_CU_And_Complexity,project.IPM_Phase__c!=$Label.IPM_Ideas),AND(project.IPM_Project_Type__c!=$Label.IPM_Operational,projDocSec.IPM_Master_Section_External_Id__c=$Label.IPM_CU_And_Complexity,OR(project.IPMProject_Span__c=$Label.IPM_Regional,project.IPMProject_Span__c=$Label.IPM_Local,project.IPM_Phase__c=$Label.IPM_Ideas)))}">                                   </c:IPM_CU_Complexity>
                                                   				 <c:IPM_CU_Complexity_Consolidated getGateType="{!projDoc.IPM_GateDocuments__c}" isGateDoc="false" getProjId="{!project.Id}" rendered="{!AND(project.IPM_Project_Type__c!='Operational',project.IPMProject_Span__c='Global',projDocSec.IPM_Master_Section_External_Id__c='CU_And_Complexity')}" /> 
                                                         		    
                                                             </div>
@@ -166,7 +166,7 @@
                                                                                 <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
                                                                                     <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                 </apex:commandLink>
-                                                                                <apex:commandLink styleClass="ipmButton primary gatesectionButton" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
+                                                                                <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton primary gatesectionButton" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
                                                                                     <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                     <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                 </apex:commandLink>
@@ -253,7 +253,7 @@
                                                                             <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
                                                                                 <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                             </apex:commandLink>
-                                                                            <apex:commandLink styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
+                                                                            <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
                                                                                 <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                 <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                             </apex:commandLink>
@@ -303,7 +303,7 @@
                                                                                         <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
-                                                                                        <apex:commandLink styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
+                                                                                        <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
                                                                                             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                         </apex:commandLink>
@@ -397,7 +397,7 @@
                                                                                         <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
-                                                                                        <apex:commandLink styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
+                                                                                        <apex:commandLink title="{!$Label.IPM_ON_CLICK_OF_SAVE_NOTIFY}" styleClass="ipmButton gatesectionButton primary" value="{!$Label.IPM_SAVE_AND_NOTIFY}" action="{!save}" >
                                                                                             <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                             <apex:param assignTo="{!isChecked}" name="IsCheck" value="Checked"/>
                                                                                         </apex:commandLink>
