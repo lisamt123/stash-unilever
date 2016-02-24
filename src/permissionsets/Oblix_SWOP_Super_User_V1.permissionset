@@ -3805,6 +3805,18 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_CampaignAddAssetController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_CampaignAddAssetController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_CampaignCreateHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_CampaignStageController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -3937,6 +3949,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_PermissionHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_ProjectHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -3982,6 +3998,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_SWOPparentController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_SWOPredirectController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -4055,6 +4075,18 @@
     <classAccesses>
         <apexClass>Oblix_TestUtils</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_UserPermissionHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_UserPermissionHandlerLogic</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Oblix_UserPermissionHandlerTest</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_Utils</apexClass>
@@ -9747,6 +9779,21 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset_Scoring__c.Asset_Option_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset_Scoring__c.Asset_Option__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset_Scoring__c.Asset_name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Asset_Scoring__c.Description__c</field>
         <readable>true</readable>
@@ -9757,12 +9804,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset_Scoring__c.Sub_Category__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Asset_Scoring__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -10384,6 +10431,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CEC_ChequeBook_Detail__c.Country_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_ChequeBook_Detail__c.Currency_Decimal_Text__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_ChequeBook_Detail__c.Currency_Text__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22659,32 +22716,32 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_CategoryBrands__c.brand_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_CategoryBrands__c.brand_mdm_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_CategoryBrands__c.mdm_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_CategoryBrands__c.product_Category_Id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_CategoryBrands__c.product_category_mdm_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>MDO_CategoryBrands__c.status__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -23203,12 +23260,37 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Marketing_SOW__c.Agency_SOW_Approver_Name_2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Marketing_SOW__c.Agency_SOW_Approver_Name_3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Marketing_SOW__c.Agency_SOW_Approver_Name_4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Marketing_SOW__c.Agency_SOW_Approver_Name_5__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Marketing_SOW__c.Agency_SOW_Approver_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Marketing_SOW__c.Allocated_Budget_K__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Marketing_SOW__c.Approval_Submitter__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23258,7 +23340,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Marketing_SOW__c.OblixTotalAdaptFees__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Marketing_SOW__c.OblixTotalCampaignCalculatedTotalFee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.OblixTotalDigitalFees__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23274,6 +23366,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.OblixTotalOtherItemsFees__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Marketing_SOW__c.OblixTotalProjectsFees__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23304,6 +23401,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Percentage_of_Total_Fee_Non_Campaign__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Marketing_SOW__c.SOW_Creator_is_Approver__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -23339,6 +23441,26 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Marketing_SOW__c.Unilever_Lead__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Marketing_SOW__c.Unilever_SOW_Approver_Name_2__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Marketing_SOW__c.Unilever_SOW_Approver_Name_3__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Marketing_SOW__c.Unilever_SOW_Approver_Name_4__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Marketing_SOW__c.Unilever_SOW_Approver_Name_5__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -24933,6 +25055,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Oblix_SOW_Projects__c.Selected_Countries__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Oblix_SOW_Projects__c.Should_legal_review_this_project__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -24994,6 +25121,36 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Value_to_be_paid_in_Current_FY__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_User_Permission__c.Brand_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Oblix_User_Permission__c.CategoryBrand_id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_User_Permission__c.Category_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Oblix_User_Permission__c.Level_of_Access__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Oblix_User_Permission__c.User_Email__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Oblix_User_Permission__c.User_id__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -33443,6 +33600,15 @@
         <allowEdit>false</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
+        <object>MDO_CategoryBrands__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>MDO_Category__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -33507,6 +33673,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Oblix_SOW_Projects__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Oblix_User_Permission__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
@@ -34615,11 +34790,11 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_OuterPageTemplate</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_PermissionDenied</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_SOWCreate</apexPage>
@@ -34635,6 +34810,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_SOWNonCampaignCreate</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_SWOPredirect</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -35547,7 +35726,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Marketing_SOW__c.ChildSowMarketing</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Marketing_SOW__c.ParentSowMarketing</recordType>
@@ -35595,6 +35774,14 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Oblix_Project_Assets__c.Stimulus_Materials_Research_requirements</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Oblix_User_Permission__c.Oblix_Agency_User</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>Oblix_User_Permission__c.Oblix_Unilever_User</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -36239,7 +36426,7 @@
     </tabSettings>
     <tabSettings>
         <tab>Oblix_Calculator__c</tab>
-        <visibility>Available</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Oblix_Marketing_SOW_Project_Splits__c</tab>
@@ -36251,7 +36438,11 @@
     </tabSettings>
     <tabSettings>
         <tab>Oblix_SOW_Projects__c</tab>
-        <visibility>Available</visibility>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Oblix_User_Permission__c</tab>
+        <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
         <tab>One_View</tab>

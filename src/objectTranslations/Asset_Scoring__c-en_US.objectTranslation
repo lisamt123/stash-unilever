@@ -9,6 +9,18 @@
         <value>SWOP Asset  Scoring</value>
     </caseValues>
     <fields>
+        <label><!-- Asset Option Description --></label>
+        <name>Asset_Option_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Option --></label>
+        <name>Asset_Option__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset name --></label>
+        <name>Asset_name__c</name>
+    </fields>
+    <fields>
         <label><!-- Asset Description --></label>
         <name>Description__c</name>
     </fields>

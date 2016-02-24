@@ -15,6 +15,24 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     public Oblix_CampaignStageLogic stage_identifier{get;set;}
     public Map<String, String> mapTurnoverToSize;
 
+    public Boolean can_edit_campaign{
+        get{
+            return Oblix_PermissionHandler.canManageCampaign(selected_sow.SOW_Status__c, selected_sow.Id);
+        }
+    }
+    public Boolean can_adjust_fee{
+        get{
+            return Oblix_PermissionHandler.canAdjustFee(selected_sow.SOW_Status__c, selected_sow.Id);
+        }
+    }
+
+    public Boolean can_manage_asset{
+        get{
+            return Oblix_PermissionHandler.canManageAssetBasket(selected_sow.SOW_Status__c, selected_sow.Id);
+        }
+    }
+
+
     public String project_id{get;set;}
     public Oblix_SOW_Projects__c selected_project {get;set;}
     public List<Attachment> liso_attachments {get;set;}
@@ -39,7 +57,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         
         if (NULL!=selected_project && NULL!=selected_project.Financial_Year__c){
             // query the selected sow in scope
-            selected_sow = getSOW(selected_project.Financial_Year__c,new List<String>{'Name','OwnerId'}, null);
+            selected_sow = getSOW(selected_project.Financial_Year__c,new List<String>{'Name','OwnerId','SOW_Status__c'}, null);
         }
         
         //if (NULL == selected_project || NULL == selected_sow){
@@ -49,16 +67,6 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         if (NULL != selected_project && NULL!= selected_sow){
             // get related stage identifier for the given selected project Id
             stage_identifier = new Oblix_CampaignStageLogic(selected_project,hasEditAccess, hasEditAccess);
-            
-            // S.M - US51 
-            // Check if the connected user is the Owner of the SOW
-            // or if the user has superuser permission set assigned
-            // or if the user is the owner of the record and has UL1 / UL2 assigned
-            // or if the user is system admin
-            // *** UL1 and UL2 can only see their own records so no need to check for that below ***
-            if(selected_sow.OwnerId == UserInfo.getUserId() || isSystemAdmin || hasUL1permissionSet || hasUL2permissionSet || hasULSuperUserPermissionSet){
-                is_enable_Adjust = true;
-            }
         }
 
     }

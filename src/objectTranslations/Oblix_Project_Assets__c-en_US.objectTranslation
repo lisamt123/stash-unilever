@@ -240,6 +240,10 @@
             <translation><!-- Narration --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>OOH</masterLabel>
+            <translation><!-- OOH --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>OOH Adaptation</masterLabel>
             <translation><!-- OOH Adaptation --></translation>
         </picklistValues>

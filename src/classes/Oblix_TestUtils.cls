@@ -28,6 +28,15 @@ public with sharing class Oblix_TestUtils {
         return brand;
     }
 
+    public static String createCountries(Integer numberOfCountriesToCreate){
+        String returnedString = '';
+        for(Integer counter = 0; counter < numberOfCountriesToCreate; counter++){
+            returnedString += 'Country ' + counter + ',';
+        }
+        returnedString = returnedString.removeEnd(',');
+        return returnedString;
+    }
+
     public static Marketing_SOW__c createTestMarketingSow(String name, String status, Id brandId){
         Marketing_SOW__c marketingSow = new Marketing_SOW__c();
         marketingSow.Active__c = true;

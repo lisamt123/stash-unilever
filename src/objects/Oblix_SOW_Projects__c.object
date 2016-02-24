@@ -301,7 +301,67 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+        <displayedFields>
+            <field>Selected_Countries__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>Oblix_Campaign_Summary</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>Oblix_Fields_Editable_By_Agencies</fullName>
+        <description>The list of fields which agencies are able to edit</description>
+        <displayedFields>
+            <field>Budget_Burnt_to_date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Completion_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Finish_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Project_Start_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Date_for_Assets_to_be_in_BET__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>First_Air_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Live_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Live_date_Asset_delivery__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Preview_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Production_Completion_Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Oblix_Fields_Editable_By_Agencies</label>
     </fieldSets>
     <fields>
         <fullName>Agency_Percentage_of_Fees_to_this_FY__c</fullName>
@@ -1077,7 +1137,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Global campaign/s suitable for  &gt;15 number of markets</fullName>
+                <fullName>Global campaign (all market clusters)</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1242,6 +1302,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Selected_Countries__c</fullName>
+        <description>Updated by Apex, to remove starting &apos;/&apos;, NOT to be used otherwise - ONLY APEX</description>
+        <externalId>false</externalId>
+        <label>Selected Countries</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Should_legal_review_this_project__c</fullName>

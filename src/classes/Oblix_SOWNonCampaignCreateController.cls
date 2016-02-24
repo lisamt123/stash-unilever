@@ -1,5 +1,31 @@
 public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWOPparentController {
 
+    public Boolean can_manage_non_campaign{
+        get{
+            return Oblix_PermissionHandler.canManageNonCampaign(selected_sow.SOW_Status__c, selected_sow.Id);
+        }
+    }
+
+    public Marketing_SOW__c selected_sow{
+        get{
+            if(selected_sow == null){
+                selected_sow = getSOW(sowId, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
+            }
+            return selected_sow;
+        }
+        set;
+    }
+
+    public Id sowId  {
+        get{
+            if(sowid == null){
+                sowid = ApexPAges.currentPage().getParameters().get('sowId');
+            }
+            return sowId;
+        }
+        set;
+    }
+
 	public Oblix_NonCampaignWrapper activity {get;set;} 
     public Oblix_NonCampaignWrapper resource {get;set;}
 
@@ -30,7 +56,6 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
 
     public String preSelectedName { get; set; }
         
-    public  id sowId  {get;set;}
     public List<Marketing_Basics__c> newItems  {get;set;}
     public Marketing_SOW__c marketing_SOW  { get; set; }           
 
@@ -69,7 +94,6 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
         rtResource = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Dedicated Resource').getRecordTypeId();
         rtCountry = Schema.SObjectType.Oblix_Calculator__c.getRecordTypeInfosByName().get('Role Rate').getRecordTypeId();
         
-        sowId = ApexPAges.currentPage().getParameters().get('sowId');
         preSelectedName = ApexPAges.currentPage().getParameters().get('preSelectedName');
         System.DEBUG('preselectedName : ' + preSelectedName);
         reRenderSOW();
