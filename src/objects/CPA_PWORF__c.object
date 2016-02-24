@@ -1076,6 +1076,17 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>dt_Date_Of_Acceptance__c</fullName>
+        <description>Date when the vendor accepted the PWORF manually</description>
+        <externalId>false</externalId>
+        <label>Date Of Acceptance</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>dt_Date_Of_Request__c</fullName>
         <description>Date when the PWORF was created.</description>
         <externalId>false</externalId>
@@ -1139,6 +1150,18 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <externalId>false</externalId>
         <formula>lkp_Unilever_project_manager__r.FirstName + &apos; &apos;+lkp_Unilever_project_manager__r.LastName</formula>
         <label>Unilever Project Manager Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ftxt_VDM__c</fullName>
+        <externalId>false</externalId>
+        <formula>VDM__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>VDM</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1347,6 +1370,19 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>num_PWORF_Age__c</fullName>
+        <externalId>false</externalId>
+        <label>PWORF Age</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>per_Budget_Expenses_of_Resource_Cost__c</fullName>
@@ -2164,7 +2200,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <fullName>txta_Reason_for_Return__c</fullName>
         <externalId>false</externalId>
-        <label>Reason for Return</label>
+        <label>Reason for Withhold</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2261,7 +2297,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <description>Title of the Project</description>
         <externalId>false</externalId>
         <inlineHelpText>Please enter name of Project as it appears in Clarity.</inlineHelpText>
-        <label>PWORF Title*</label>
+        <label>Title*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2307,10 +2343,14 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <columns>txta_Acceptance_Criteria__c</columns>
         <columns>Analyse_sessions_expected__c</columns>
         <columns>txta_Application_infrastructure__c</columns>
+        <columns>pkl_Status__c</columns>
         <filterScope>Queue</filterScope>
         <label>VDM</label>
         <language>en_US</language>
         <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CPA_SMT_CPA_PWORF</fullName>
@@ -3348,6 +3388,10 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         </picklistValues>
     </recordTypes>
     <searchLayouts>
+        <customTabListAdditionalFields>txt_Clarity_ID__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>pkl_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>txta_Title__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
         <searchResultsAdditionalFields>txt_Clarity_ID__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>pkl_Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>txta_Title__c</searchResultsAdditionalFields>
@@ -3398,7 +3442,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <validationRules>
         <fullName>CPA_PWORF_Name_cant_be_changed</fullName>
         <active>true</active>
-        <errorConditionFormula>IF(AND(OR(ISPICKVAL( pkl_Status__c , &quot;Answered&quot;),ISPICKVAL( pkl_Status__c , &quot;Accepted&quot;),ISPICKVAL( pkl_Status__c , &quot;Auto Accepted&quot;)), ISCHANGED(Name)),true,false )</errorConditionFormula>
+        <errorConditionFormula>IF(AND (!ISNEW(),ISCHANGED(Name)),true,false )</errorConditionFormula>
         <errorMessage>PWORF Name cant be changed after it get Accepted</errorMessage>
     </validationRules>
     <validationRules>
@@ -3619,6 +3663,14 @@ Is required</description>
         <errorMessage>Mandatory, If Other is selected in Process Office area E2E.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Other_Project_Phases</fullName>
+        <active>false</active>
+        <description>If Other is selected in Project Phases then Other -Project Phases filed will be required.</description>
+        <errorConditionFormula>AND((OR((ISPICKVAL(   pkl_Status__c , &apos;Submitted&apos;)),(ISPICKVAL(   pkl_Status__c , &apos;Resubmitted&apos;)))), (RecordType.DeveloperName =&apos;All&apos;), (IF(INCLUDES(mpkl_Project_Phases__c, &quot;Other (provide free text to enter)&quot;), True,false)), (ISBLANK( txt_OtherProjectPhases__c )))</errorConditionFormula>
+        <errorDisplayField>txt_OtherProjectPhases__c</errorDisplayField>
+        <errorMessage>Mandatory, If Other is selected in Project Phases.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Other_Request_Type</fullName>
         <active>false</active>
         <description>If Other is selected in Request Type then Other-Request_Type filed will be required.</description>
@@ -3689,6 +3741,14 @@ Is required</description>
         <errorConditionFormula>AND(( ISBLANK(txta_Project_Description__c) ),OR(ISPICKVAL(pkl_Status__c , &apos;Submitted&apos;),ISPICKVAL(pkl_Status__c , &apos;Resubmitted&apos;)))</errorConditionFormula>
         <errorDisplayField>txta_Project_Description__c</errorDisplayField>
         <errorMessage>Mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Project_Phases</fullName>
+        <active>false</active>
+        <description>Mandatory</description>
+        <errorConditionFormula>AND( (OR((ISPICKVAL(   pkl_Status__c , &apos;Submitted&apos;)),(ISPICKVAL(   pkl_Status__c , &apos;Resubmitted&apos;)))),RecordType.DeveloperName =&apos;All&apos;,( ISBLANK(mpkl_Project_Phases__c)))</errorConditionFormula>
+        <errorDisplayField>mpkl_Project_Phases__c</errorDisplayField>
+        <errorMessage>You must Select a Project Phase</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Project_Repository_Location</fullName>
@@ -3928,6 +3988,7 @@ soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssig
 var result = sforce.connection.query(soql);
 var records1 = result.getArray(&apos;records&apos;);
 var permissionSetName = records1[0].PermissionSet.Name;
+//alert(permissionSetName);
 
 if( permissionSetName == &quot;CPA_SMT&quot; || permissionSetName == &quot;CPA_ULPM&quot;){ 
 

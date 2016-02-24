@@ -139,7 +139,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                                     else if(objPWORFTemp.pkl_Project_Scale__c == 'Large Project (>2000 days)') 
                                     {system.debug('objPWORFTemp.pkl_Project_Scale__c'+objPWORFTemp.pkl_Project_Scale__c);
                                     objPWo.mpkl_Project_Classification__c = 'Complex';
-                                    system.debug('objPWo.mpkl_Project_Classification__c'+objPWo.mpkl_Project_Classification__c);
+                                    system.debug('objPWo.mpkl_Project_Classification__c'+objPWo.mpkl_Project_Classification__c); 
                                     }
                                     else if(objPWORFTemp.pkl_Project_Scale__c == 'Low Complexity Project (50 - 500 days)' ) objPWo.mpkl_Project_Classification__c = 'Low Complexity';
                                     else if(objPWORFTemp.pkl_Project_Scale__c == 'Standard Project (500 - 2000 days)') objPWo.mpkl_Project_Classification__c = 'Standard';
@@ -267,8 +267,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
         }
         system.debug('End UpdateTATObj<<<<<<<<<<');
     }
-
-    /** Method Name : getInternalPWOIDFromPWORF
+     /** Method Name : getInternalPWOIDFromPWORF
     * Parameter   : newPWO
     * Return type : None
     * Author      : Dinesh Girase  
@@ -363,9 +362,8 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
             strPWOID = 'PWO-' + string.valueof(intIncrementNum);
         return strPWOID;
     }*/
-    
-    
-      /**   Method Name : DontDelete
+
+     /**   Method Name : DontDelete
     * Parameter   : OldMap
     * Return type : void
     * Author      : JP
@@ -378,8 +376,8 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
             break;
         }
     }
-     
-     /**   Method Name : setFirstPWO
+    
+        /**   Method Name : setFirstPWO
     * Parameter   : OldMap
     * Return type : void
     * Author      : JP
@@ -397,7 +395,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
              }
         }
     }
-/**   Method Name : newPWO
+ /**   Method Name : newPWO
     * Parameter   : newmap
     * Return type : void
     * Author      : Pooja Kanani
@@ -405,12 +403,12 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     */
     /*public static void newPWO(list<CPA_project_work_order__c> newPWO){
         //system.debug('Pooja testing');
-		List<CPA_PWORF__c> lstTemp= new List<CPA_PWORF__c>();
+        List<CPA_PWORF__c> lstTemp= new List<CPA_PWORF__c>();
         set<ID> pworfID = new set<ID>();
         map<ID,ID>pworfmap = new map<ID,ID>();
-         for(CPA_project_work_order__c obj :newPWO){			
+         for(CPA_project_work_order__c obj :newPWO){            
                     pworfID.add(obj.PWORF_ID__c);
-                    pworfmap.put(obj.PWORF_ID__c,obj.id);		
+                    pworfmap.put(obj.PWORF_ID__c,obj.id);       
         }
         //system.debug('pworfID>>>'+ pworfID);
         //system.debug('pworfmap>>>'+ pworfmap);
@@ -430,7 +428,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                 update lstTemp; 
             }
             //system.debug('lstTemp>>pooja'+lstTemp);
-    	}
+        }
     }*/
 /**   Method Name : latestPWOStatus
     * Parameter   : newmap
@@ -438,29 +436,30 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     * Author      : Pooja Kanani
     * Description : This method is used to update PWORF with the latest PWO status
     */
-   /* public static void latestPWOStatus(list<CPA_project_work_order__c> newPWO){
-      	map<ID,String>pworfUpdate = new map<ID,String>();
+    /*public static void latestPWOStatus(list<CPA_project_work_order__c> newPWO){
+        map<ID,String>pworfUpdate = new map<ID,String>();
         set<ID> pworfID = new set<ID>();
-		set<ID> pwoID = new set<ID>();
-		List<CPA_PWORF__c> pworfListToBeUpdated = new List<CPA_PWORF__c>();
+        set<ID> pwoID = new set<ID>();
+        List<CPA_PWORF__c> pworfListToBeUpdated = new List<CPA_PWORF__c>();
         for(CPA_project_work_order__c obj :newPWO){
             pworfID.add(obj.PWORF_ID__c);
         }
-		List<CPA_PWORF__c> pworfList = [select ID,LatestPWOID__c from CPA_PWORF__c where id in:pworfID];
-		for(CPA_PWORF__c pworf : pworfList ){
-			if(pworf.LatestPWOID__c !=null){
-				pwoID.add(pworf.LatestPWOID__c);
-			}
-		}
+        List<CPA_PWORF__c> pworfList = [select ID,LatestPWOID__c from CPA_PWORF__c where id in:pworfID];
+        for(CPA_PWORF__c pworf : pworfList ){
+            if(pworf.LatestPWOID__c !=null){
+                pwoID.add(pworf.LatestPWOID__c);
+            }
+        }
         List<CPA_project_work_order__c> listPriPWO = [Select ID,PWORF_ID__c,pkl_Status__c from CPA_project_work_order__c where ID in:pwoID];  
         for(CPA_project_work_order__c obj :listPriPWO){    
-        	pworfUpdate.put(obj.PWORF_ID__c,obj.pkl_Status__c);
+            pworfUpdate.put(obj.PWORF_ID__c,obj.pkl_Status__c);
         }
-		for(CPA_PWORF__c pworf : pworfList){
-			pworf.Latest_PWO_Status__c = pworfUpdate.get(pworf.ID);
-			pworfListToBeUpdated.add(pworf);
-		}
-		update pworflist;  
+        for(CPA_PWORF__c pworf : pworfList){
+            pworf.Latest_PWO_Status__c = pworfUpdate.get(pworf.ID);
+            pworfListToBeUpdated.add(pworf);
+        }
+        update pworflist;  
         //system.debug('pworflist>>>pooja'+pworflist);
     }*/
+
 }

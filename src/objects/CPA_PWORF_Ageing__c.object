@@ -140,6 +140,15 @@
         <unique>false</unique>
     </fields>
     <label>CPA PWORF Ageing</label>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_PWORF_Ageing</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA VDM Queue</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>PA-{0000}</displayFormat>
         <label>CPA PWORF Aging Name</label>

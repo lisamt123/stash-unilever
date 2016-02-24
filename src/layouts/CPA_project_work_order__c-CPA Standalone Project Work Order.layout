@@ -325,6 +325,7 @@
         <relatedList>RelatedProcessHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
+        <customButtons>New_CR</customButtons>
         <fields>NAME</fields>
         <fields>pkl_Status__c</fields>
         <fields>CREATEDBY_USER</fields>
@@ -336,7 +337,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h18000000Ekzr</masterLabel>
+        <masterLabel>00h56000000IywE</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

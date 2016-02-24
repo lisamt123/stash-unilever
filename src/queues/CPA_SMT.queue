@@ -3,6 +3,9 @@
     <doesSendEmailToMembers>true</doesSendEmailToMembers>
     <name>CPA SMT</name>
     <queueSobject>
+        <sobjectType>CAP_User_Defined_Attribute__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
         <sobjectType>CPA_CNF__c</sobjectType>
     </queueSobject>
     <queueSobject>
@@ -21,6 +24,9 @@
         <sobjectType>CPA_PWO__c</sobjectType>
     </queueSobject>
     <queueSobject>
+        <sobjectType>CPA_Project_Approver__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
         <sobjectType>CPA_Queries__c</sobjectType>
     </queueSobject>
     <queueSobject>
@@ -34,5 +40,14 @@
     </queueSobject>
     <queueSobject>
         <sobjectType>CPA_project_work_order__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>PWORFKey_Contacts__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Requirements_and_Deliverables__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>Risk_Assessment_and_Mitigation__c</sobjectType>
     </queueSobject>
 </Queue>

@@ -772,6 +772,17 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>fur_Unilever_Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>PWORF_ID__r.txta_Title__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unilever Project Name</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>lkp_CNF_Unilever_budget_approver__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -1186,7 +1197,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
     <fields>
         <fullName>num_CNF_Planned_fees_inclusive_of_discou__c</fullName>
         <externalId>false</externalId>
-        <label>CNF Planned Fees (Inclusive of Disct) *</label>
+        <label>CNF Planned Fees (Inclusive of Disc) *</label>
         <precision>14</precision>
         <required>false</required>
         <scale>0</scale>
@@ -1357,7 +1368,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
     <fields>
         <fullName>num_TNF_Variance_in_charges__c</fullName>
         <externalId>false</externalId>
-        <label>TNF Variance in Charges</label>
+        <label>TNF Variance in Charges *</label>
         <precision>14</precision>
         <required>false</required>
         <scale>0</scale>
@@ -2152,13 +2163,60 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <fullName>All</fullName>
         <columns>NAME</columns>
         <columns>pkl_Status__c</columns>
-        <columns>CNF_Status__c</columns>
-        <columns>TNF_Status__c</columns>
         <columns>fml_Clarity_ID__c</columns>
         <columns>CREATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_project_work_order</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>CNF_Status__c</columns>
+        <columns>TNF_Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Queue</filterScope>
+        <label>ULPM</label>
+        <language>en_US</language>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <group>CAP_ULPM_group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_project_work_order</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>CNF_Status__c</columns>
+        <columns>TNF_Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <language>en_US</language>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <group>CAP_ULPM_group</group>
+            <group>CAP_VDM_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_project_work_order</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>CNF_Status__c</columns>
+        <columns>TNF_Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <language>en_US</language>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CPA_SMT_PWO</fullName>
@@ -2173,6 +2231,22 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <queue>CPA_SMT</queue>
         <sharedTo>
             <group>CAP_SMT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>PWO_Created_by_me</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>fml_Clarity_ID__c</columns>
+        <columns>CNF_Status__c</columns>
+        <columns>TNF_Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Mine</filterScope>
+        <label>PWO Created by me</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_VDM_Group</group>
         </sharedTo>
     </listViews>
     <nameField>
@@ -4774,7 +4848,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
             </values>
             <values>
                 <fullName>Saved</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Sent for Signature</fullName>
@@ -5347,7 +5421,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
             </values>
             <values>
                 <fullName>Saved</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Sent for Signature</fullName>
@@ -6368,7 +6442,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
             </values>
             <values>
                 <fullName>Saved</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Sent for Signature</fullName>
@@ -8310,7 +8384,6 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         </picklistValues>
     </recordTypes>
     <searchLayouts>
-        <customTabListAdditionalFields>txt_Accenture_Project_Manager__c</customTabListAdditionalFields>
         <searchResultsAdditionalFields>fml_Pworf_Clarity_ID__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>pkl_Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
@@ -8336,6 +8409,22 @@ ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Saved&quot;)))</errorConditionFormul
         <errorConditionFormula>AND(ISNEW() ,AND(RecordType.DeveloperName !=&quot;PWO&quot;,RecordType.DeveloperName !=&quot;Standalone PWO&quot;))</errorConditionFormula>
         <errorMessage>For new PWO Please , GO back and Select &quot;PWO&quot; record type only</errorMessage>
     </validationRules>
+    <validationRules>
+        <fullName>PWO_Canat_be_created</fullName>
+        <active>false</active>
+        <errorConditionFormula>OR(
+ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Submitted&quot;),
+ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Cancelled&quot;),
+ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Resubmitted&quot;),
+ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Withhold&quot;),
+ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Returned&quot;),
+ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Rejected&quot;),
+ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Saved&quot;)
+
+
+)</errorConditionFormula>
+        <errorMessage>PWO cant be created because, PWORF is not Answered / Accepted / Auto Accepted</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>New_PW</fullName>
         <availability>online</availability>
@@ -8354,18 +8443,11 @@ ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Saved&quot;)))</errorConditionFormul
         <availability>online</availability>
         <displayType>link</displayType>
         <encodingKey>UTF-8</encodingKey>
-        <hasMenubar>false</hasMenubar>
-        <hasScrollbars>true</hasScrollbars>
-        <hasToolbar>false</hasToolbar>
         <height>600</height>
-        <isResizable>true</isResizable>
         <linkType>url</linkType>
         <masterLabel>New Standard PWO</masterLabel>
-        <openType>newWindow</openType>
-        <position>none</position>
+        <openType>noSidebar</openType>
         <protected>false</protected>
-        <showsLocation>false</showsLocation>
-        <showsStatus>false</showsStatus>
         <url>/a9G/e?RecordType=012180000000AtZAAU&amp;retURL=a00</url>
     </webLinks>
     <webLinks>
@@ -8405,9 +8487,9 @@ try {
 
 	if( permissionSetName == &quot;CPA_SMT&quot;){  
 		if(p.CNF_Status__c == &apos;Cancelled&apos; ){ 
-			alert(&quot;Can not Cancel as CNF is already Cancelled&quot;); 
+			alert(&quot;Cannot Cancel as CNF is already Cancelled&quot;); 
 		} else if(p.CNF_Status__c == &apos;Signed&apos; ){ 
-			alert(&quot;Can not Cancel as CNF is already Signed&quot;); 
+			alert(&quot;Cannot Cancel as CNF is already Signed&quot;); 
 		} else{ 
 			window.open(&apos;/apex/CPA_PwoCnfTnf_Cancel_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
 		} 
@@ -8484,10 +8566,10 @@ try {
 
 	if( permissionSetName == &quot;CPA_SMT&quot;){  
 		if(p.TNF_Status__c == &quot;Signed&quot;){ 
-			alert(&quot;Can not Cancel as TNF is already Signed&quot;); 
+			alert(&quot;Cannot Cancel as TNF is already Signed&quot;); 
 		} 
 		else if(p.TNF_Status__c == &quot;Cancelled&quot;){ 
-			alert(&quot;Can not Cancel as TNF is already Cancelled&quot;); 
+			alert(&quot;Cannot Cancel as TNF is already Cancelled&quot;); 
 		}else { 
 			window.open(&apos;/apex/CPA_PwoCnfTnf_Cancel_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
 		}
@@ -8643,11 +8725,78 @@ result = sforce.connection.update([p]);
 location.reload(true); 
 } 
 else if(p.pkl_Status__c == &quot;Signed&quot; &amp;&amp; crRecords.length != 0){
-alert(&quot;PWO can not be Delivered as CR is not yet Delivered&quot;);
+alert(&quot;PWO cannot be Delivered as CR is not yet Delivered&quot;);
 }
 else {
-alert(&quot;PWO can not be Delivered,Concern Administrator&quot;);
+alert(&quot;PWO cannot be Delivered,Concern Administrator&quot;);
 }
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_Request_for_Termination_PWO</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Request for Termination PWO</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/33.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/33.0/apex.js&quot;)}
+
+//ULPM/SMT can initiate termination of a PWO if neither the PWO nor its associated CRs have been delivered
+
+var p = new sforce.SObject(&apos;CPA_project_work_order__c&apos;);
+p.id = &quot;{!CPA_project_work_order__c.Id}&quot;;
+p.pkl_Status__c = &quot;{!CPA_project_work_order__c.pkl_Status__c }&quot;;
+
+
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;);
+var permissionSetName = records1[0].PermissionSet.Name;
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName);
+
+if( permissionSetName == &quot;CPA_SMT&quot; ||  permissionSetName == &quot;CPA_ULPM&quot;){ 
+
+	result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c = &apos;Delivered&apos;&quot;);
+	//alert(result);
+	var crRecords = result.getArray(&quot;records&quot;);
+
+	if(p.pkl_Status__c == &quot;Delivered&quot; || crRecords.length &gt;0){
+		alert(&apos;Request for Termination can not be raised, because PWO is already Delivered or associated CR(s) is/are Delivered&apos;);
+	}
+	else if(p.pkl_Status__c == &quot;Signed&quot;){
+		var CPATR = new sforce.SObject(&quot;CPA_Termination_Requested__c&quot;);
+		//accnt.Id = &apos;{!Account.Id}&apos;;
+		CPATR.Reason_for_Termination__c = &quot;{CPA_Termination_Requested__c.Reason_for_Termination__c}&quot;;
+		CPATR.PWO__c = &quot;{CPA_Termination_Requested__c.PWO__c}&quot;;
+		CPATR.Reason_for_Termination__c= prompt(&apos;Enter Reason for Termination&apos;);
+		CPATR.PWO__c = p.id;
+
+		var result = sforce.connection.create([CPATR]);
+		if(result[0].getBoolean(&quot;success&quot;))
+		{
+			p.pkl_Status__c = &quot;Request For Termination&quot;;
+			//var result1 = sforce.connection.update([p]);
+			alert(&apos;Request for Termination submitted successfully&apos;);
+			window.location.reload();
+		}
+		else{
+			alert(&apos;Error : &apos;+result);
+		}
+	}else if(p.pkl_Status__c == &quot;Request For Termination&quot;){
+
+	alert(&apos;PWO is already Requested for Termination&apos;);
+	} else if(p.pkl_Status__c == &quot;Closed&quot;){
+	alert(&apos;Request for Termination can not be raised, because PWO is already Closed&apos;);
+	}
+	else {
+	alert(&apos;PWO cannot be requested for Termination at this stage, please raise a query for Cancellation&apos;);
+	}
+}
+else{
+	alert(&quot;You are not authorized to perform this action.&quot;);	
 }</url>
     </webLinks>
     <webLinks>
@@ -8831,15 +8980,15 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	result = sforce.connection.update([p]);	
 	location.reload(true); 
 	}else if(p.CNF_Status__c == &quot;Saved&quot; || p.CNF_Status__c == &quot;Submitted&quot; || p.CNF_Status__c == &quot;Resubmitted&quot;){ 
-	alert(&quot;CNF can not be Sent for Signature as it is not yet Accepted&quot;); 
+	alert(&quot;CNF cannot be Sent for Signature as it is not yet Accepted&quot;); 
 	}else if(p.CNF_Status__c == &quot;Cancelled&quot;){ 
-	alert(&quot;CNF can not be Sent for Signature as it is Cancelled&quot;); 
+	alert(&quot;CNF cannot be Sent for Signature as it is Cancelled&quot;); 
 	}else if(p.CNF_Status__c == &quot;Returned&quot;){ 
-	alert(&quot;CNF can not be Sent for Signature as it is Returned&quot;); 
+	alert(&quot;CNF cannot be Sent for Signature as it is Returned&quot;); 
 	}else if(p.CNF_Status__c == &quot;Sent for Signature&quot;){ 
 	alert(&quot;CNF is already Sent for Signature&quot;); 
 	}else if(p.CNF_Status__c == &quot;Signed&quot; || p.CNF_Status__c == &quot;Delivered&quot;){ 
-	alert(&quot;CNF is can not be Signed as it is yet to Sent for Signature&quot;); 
+	alert(&quot;CNF is cannot be Signed as it is yet to Sent for Signature&quot;); 
 	}
 }else{ 
 alert(&quot;You are not authorized to perform this action.&quot;); 
@@ -8875,19 +9024,19 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	location.reload(true); 
 	} 
 	else if(p.pkl_Status__c == &quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; || p.pkl_Status__c == &quot;Saved&quot;){ 
-	alert(&quot;PWO can not be Send for Signature, if it is in Submitted/Resubmitted/Saved. It should be in Accepted status.&quot;); 
+	alert(&quot;PWO cannot be Send for Signature, if it is in Submitted/Resubmitted/Saved. It should be in Accepted status.&quot;); 
 	} 
 	else if(p.pkl_Status__c == &quot;Delivered&quot; || p.pkl_Status__c == &quot;Terminated&quot; || p.pkl_Status__c == &quot;Sent For Termination&quot; || p.pkl_Status__c == &quot;Closed&quot; || p.pkl_Status__c == &quot;Sent For Closure&quot; || p.pkl_Status__c == &quot;Request For Termination&quot;){ 
-	alert(&quot;PWO can not be Send for Signature, if it is Delivered/Terminated/Sent For Termination/Request For Termination/Closed/Sent For Closure. It should be in Accepted status.&quot;); 
+	alert(&quot;PWO cannot be Send for Signature, if it is Delivered/Terminated/Sent For Termination/Request For Termination/Closed/Sent For Closure. It should be in Accepted status.&quot;); 
 	} 
 	else if(p.pkl_Status__c == &quot;Sent for Signature&quot; || p.pkl_Status__c == &quot;Signed&quot;){ 
-	alert(&quot;PWO can not be Send for Signature, as it is already Sent/Signed.&quot;); 
+	alert(&quot;PWO cannot be Send for Signature, as it is already Sent/Signed.&quot;); 
 	} 
 	else if(p.pkl_Status__c == &quot;Cancelled&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
-	alert(&quot;PWO can not be Send for Signature, if it is Cancelled/Returned. It should be in Accepted status.&quot;); 
+	alert(&quot;PWO cannot be Send for Signature, if it is Cancelled/Returned. It should be in Accepted status.&quot;); 
 	} 
 	else{ 
-	alert(&quot;PWO can not be Send for Signature, as it is not Accepted.&quot;); 
+	alert(&quot;PWO cannot be Send for Signature, as it is not Accepted.&quot;); 
 	} 
 
 }else{ 
@@ -8920,7 +9069,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		result = sforce.connection.update([p]); 
 		location.reload(true); 
 	}else{ 
-		alert(&quot;TNF Can not be Sent for Signature as it is not yet Accepted&quot;); 
+		alert(&quot;TNF cannot be Sent for Signature as it is not yet Accepted&quot;); 
 	} 
 }else{ 
 	alert(&quot;You are not authorized to perform this action.&quot;); 
@@ -8953,11 +9102,11 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		result = sforce.connection.update([p]); 
 		location.reload(true); 
 	}else if(p.CNF_Status__c == &quot;Saved&quot; || p.CNF_Status__c == &quot;Submitted&quot; || p.CNF_Status__c == &quot;Resubmitted&quot; || p.CNF_Status__c == &quot;Accepted&quot;){ 
-		alert(&quot;CNF can not be Signed as it is not yet Sent for Signature&quot;); 
+		alert(&quot;CNF cannot be Signed as it is not yet Sent for Signature&quot;); 
 	}else if(p.CNF_Status__c == &quot;Cancelled&quot;){ 
-		alert(&quot;CNF can not be Signed as it is Cancelled&quot;); 
+		alert(&quot;CNF cannot be Signed as it is Cancelled&quot;); 
 	}else if(p.CNF_Status__c == &quot;Returned&quot;){ 
-		alert(&quot;CNF can not be Signed as it is Returned&quot;); 
+		alert(&quot;CNF cannot be Signed as it is Returned&quot;); 
 	}else if(p.CNF_Status__c == &quot;Signed&quot;){ 
 		alert(&quot;CNF is already Signed&quot;); 
 	}else if(p.CNF_Status__c == &quot;Delivered&quot;){ 
@@ -8993,7 +9142,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		result = sforce.connection.update([p]); 
 		location.reload(true); 
 	}else{ 
-		alert(&quot;PWO Can not be Signed as it is not yet Sent for Signature&quot;); 
+		alert(&quot;PWO cannot be Signed as it is not yet Sent for Signature&quot;); 
 	} 
 }else{ 
 	alert(&quot;You are not authorized to perform this action.&quot;); 
@@ -9026,7 +9175,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		result = sforce.connection.update([p]); 
 		location.reload(true);
 	}else{
-		alert(&quot;TNF Can not be Signed as it is not yet Sent for Signature&quot;); 
+		alert(&quot;TNF cannot be Signed as it is not yet Sent for Signature&quot;); 
 	}
 }else{
 	alert(&quot;You are not authorized to perform this action.&quot;); 
@@ -9132,49 +9281,50 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 		if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot; || p.pkl_Status__c == &quot;Request For Termination&quot;){ 
 			p.pkl_Status__c = &quot;Resubmitted&quot;; 
 			result = sforce.connection.update([p]); 
+			
 			location.reload(true); 
 
 		} 	else if(p.pkl_Status__c ==&quot;Saved&quot;){ 
 			p.pkl_Status__c = &quot;Submitted&quot;; 
 			result = sforce.connection.update([p]); 
-	//alert(result);
+	
 			location.reload(true); 
 		} 
 		else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
 			alert(&quot;PWO is already submitted&quot;); 
 		} 
 		else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
-			alert(&quot;PWO can not be Submitted as it is already Delivered&quot;); 
+			alert(&quot;PWO cannot be Submitted as it is already Delivered&quot;); 
 		}
 		else if(p.pkl_Status__c == &quot;Termination Requested&quot; || p.pkl_Status__c == &quot;Sent For Termination&quot; || p.pkl_Status__c == &quot;Terminated&quot;){ 
-			alert(&quot;PWO can not be submitted as it is Terminated/Sent For Termination/Termination Requested&quot;); 
+			alert(&quot;PWO cannot be submitted as it is Terminated/Sent For Termination/Termination Requested&quot;); 
 		}
 		else	if(p.pkl_Status__c == &quot;Signed&quot;){ 
-			alert(&quot;PWO can not be submitted as it is already Signed&quot;); 
+			alert(&quot;PWO cannot be submitted as it is already Signed&quot;); 
 		}
 		else	if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
-			alert(&quot;PWO can not be submitted as it is already Sent for Signature&quot;); 
+			alert(&quot;PWO cannot be submitted as it is already Sent for Signature&quot;); 
 		}
 		else if(p.pkl_Status__c == &quot;Sent For Closure&quot; || p.pkl_Status__c == &quot;Closed&quot;){ 
-			alert(&quot;PWO can not be submitted as it is already Closed/Sent For Closure&quot;); 
+			alert(&quot;PWO cannot be submitted as it is already Closed/Sent For Closure&quot;); 
 		}
 		else	if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
-			alert(&quot;PWO can not be submitted as it is already Cancelled&quot;); 
+			alert(&quot;PWO cannot be submitted as it is already Cancelled&quot;); 
 		}
 		else	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
-			alert(&quot;PWO can not be submitted as it is already Accepted&quot;); 
+			alert(&quot;PWO cannot be submitted as it is already Accepted&quot;); 
 		}else{
-			alert(&quot;PWO can not be submitted, Concern Administrator&quot;); 
+			alert(&quot;PWO cannot be submitted, Concern Administrator&quot;); 
 		}
 
 	} 
 	else { 
-	alert(&quot;PWO can not be submitted, as Required fields are missing.&quot;); 
+	alert(&quot;PWO cannot be submitted, as Required fields are missing.&quot;); 
 
 	}
 	
 }else{
-alert(&quot;You are not authorized to perform this action.&quot;);
+alert(&quot;You are not authorized to perform this action&quot;);
 }</url>
     </webLinks>
     <webLinks>

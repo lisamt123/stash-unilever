@@ -79,6 +79,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Fees__c</fullName>
+        <externalId>false</externalId>
+        <formula>num_Rate__c  *  num_Efforts__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fees</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Fees_del__c</fullName>
         <description>This field created for reporting purpose.</description>
         <externalId>false</externalId>
@@ -280,6 +293,15 @@
         <unique>false</unique>
     </fields>
     <label>Commercial Details</label>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_Commercial_Details</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA VDM Queue</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>Commercial Detail Name</label>
         <type>Text</type>

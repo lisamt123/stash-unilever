@@ -36,7 +36,7 @@
         </assignedApprover>
         <description>Project work order Approval after submit</description>
         <entryCriteria>
-            <booleanFilter>(1 OR 2 ) AND 3</booleanFilter>
+            <booleanFilter>1 OR 2</booleanFilter>
             <criteriaItems>
                 <field>CPA_project_work_order__c.CNF_Status__c</field>
                 <operation>equals</operation>
@@ -46,11 +46,6 @@
                 <field>CPA_project_work_order__c.CNF_Status__c</field>
                 <operation>equals</operation>
                 <value>Resubmitted</value>
-            </criteriaItems>
-            <criteriaItems>
-                <field>CPA_project_work_order__c.RecordType</field>
-                <operation>equals</operation>
-                <value>CPA PWO CNF</value>
             </criteriaItems>
         </entryCriteria>
         <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
@@ -74,21 +69,16 @@
     <emailTemplate>CPA_Email_Template/CPA_CNF_Resubmitted</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
-        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <booleanFilter>1 OR 2</booleanFilter>
         <criteriaItems>
-            <field>CPA_project_work_order__c.RecordType</field>
+            <field>CPA_project_work_order__c.CNF_Status__c</field>
             <operation>equals</operation>
-            <value>CPA PWO CNF</value>
+            <value>Resubmitted</value>
         </criteriaItems>
         <criteriaItems>
             <field>CPA_project_work_order__c.CNF_Status__c</field>
             <operation>equals</operation>
             <value>Submitted</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>CPA_project_work_order__c.CNF_Status__c</field>
-            <operation>equals</operation>
-            <value>Resubmitted</value>
         </criteriaItems>
     </entryCriteria>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>

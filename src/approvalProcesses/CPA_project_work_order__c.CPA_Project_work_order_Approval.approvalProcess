@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
     <active>true</active>
-    <allowRecall>true</allowRecall>
+    <allowRecall>false</allowRecall>
     <allowedSubmitters>
         <submitter>CAP_VDM_Group</submitter>
         <type>group</type>
@@ -25,10 +25,6 @@
                 <name>CPA_Project_Work_Order_Accepted_date</name>
                 <type>FieldUpdate</type>
             </action>
-            <action>
-                <name>CPA_PWO_Owner_is_ULPM</name>
-                <type>FieldUpdate</type>
-            </action>
         </approvalActions>
         <assignedApprover>
             <approver>
@@ -38,7 +34,7 @@
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <entryCriteria>
-            <booleanFilter>(1 OR 2)</booleanFilter>
+            <booleanFilter>1 OR 2</booleanFilter>
             <criteriaItems>
                 <field>CPA_project_work_order__c.pkl_Status__c</field>
                 <operation>equals</operation>
@@ -88,11 +84,10 @@
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <entryCriteria>
-            <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+            <booleanFilter>1 AND( 2 OR 3)</booleanFilter>
             <criteriaItems>
-                <field>CPA_project_work_order__c.pkl_Status__c</field>
-                <operation>equals</operation>
-                <value>Delivered</value>
+                <field>CPA_project_work_order__c.num_CNF_Planned_man_days__c</field>
+                <operation>notEqual</operation>
             </criteriaItems>
             <criteriaItems>
                 <field>CPA_project_work_order__c.CNF_Status__c</field>
@@ -192,16 +187,6 @@
         </action>
     </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
-    <initialSubmissionActions>
-        <action>
-            <name>CPA_Project_Work_Order_Submitted_Email_Alert</name>
-            <type>Alert</type>
-        </action>
-        <action>
-            <name>CPA_Record_type_CPA_PWO_Submitted</name>
-            <type>FieldUpdate</type>
-        </action>
-    </initialSubmissionActions>
     <label>CPA Project work order Approval</label>
     <recallActions>
         <action>

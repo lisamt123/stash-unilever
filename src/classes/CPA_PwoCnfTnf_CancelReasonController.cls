@@ -62,6 +62,8 @@ public Class CPA_PwoCnfTnf_CancelReasonController{
         }
         
         update pwoRec;
+        system.debug(' pwoRec.CNF_Status__c>>>>'+  pwoRec.CNF_Status__c + '  pwoRec.chk_isCNFcancelled__c>>> ' + pwoRec.chk_isCNFcancelled__c);
+        system.debug('pwoRec.TNF_Status__c>>>>'+ pwoRec.TNF_Status__c + '  pwoRec.chk_isTNFcancelled__c>>> ' + pwoRec.chk_isTNFcancelled__c);
         system.debug('Sattus now ->>'+pwoRec.pkl_Status__c);
         if(crRec != null && crRec.size() > 0)
             crCancel(crRec);                

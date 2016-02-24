@@ -24,7 +24,7 @@ global with sharing class CPA_PWORFInformationController {
         objectMap = new Map<String,String>();
         Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll(); 
         mandatoryStringFlag = null;
-        pworfRec = [select id,VDM__c,pkl_Status__c,Business_Case__c,pkl_Business_Area__c ,In_Scope__c,txta_Acceptance_Criteria__c,Analyse_sessions_expected__c,Will_this_project_require_an_LOI_for_Wor__c,RecordTypeid,Out_of_Scope__c,Overall_purpose_or_function_of_the_proje__c,Stakeholder_Expectations__c,txta_Title__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,lkp_Unilever_Finance_BP_Contact__c,lkp_Unilever_project_manager__c,txta_Application_infrastructure__c,txta_Business_critical_milestones__c,Expected_Business_Go_live_date__c,dt_Expected_go_live_date__c,dt_Expected_start_date__c,Expected_Start_Date_for_DBTD_PWO__c,Expected_Start_Date_for_Plan_and_Analyse__c,Impact_if_expected_business_go_live_date__c,Planning_sessions_expected__c,Project_Dependencies__c,Summary_of_requirements_and_deliverables__c,Travel_Arrangements__c,Who_will_support_this_service_once_live__c,pkl_Cost_Centre_Details__c,txt_Cost_Centre__c,txt_ICC_Number__c,pkl_Landscape__c,pkl_Request_Type__c,txta_Other_Request_Type__c,pkl_Pricing_Model__c,pkl_Region__c,dat_Revised_Submission_Date__c,Does_this_project_change_Core_Business_M__c,Does_this_Project_involve_Unilever_conf__c,Governance_Risk_and_Compliance__c,Has_W_R_been_discussed_with_Supplier_Per__c,Interface_to_the_system__c,Interface_to_the_system_Detail__c,Is_Project__c,Is_Project_Require__c,Is_this_a_new_or_re_worked_Integration_R__c,pkl_Is_this_Project_Invasive_in_nature__c,pkl_Process_Office_Area_E2E__c,mpkl_Project_Phases__c,pkl_Project_Scale__c,Role_or_System_Authorisation__c,txta_Project_Invasive_in_nature__c,txta_Role_or_System_Authorisation_detail__c,txta_Project_Require_Performance_Testing__c,Project_Require_Data_Specific_Testing__c,txt_OtherProjectPhases__c,txt_otherProcessOfficeAreaE2E__c,isValidated__c,txt_Role_Level_1_13__c,txt_Resource_Location__c,per_Budget_Expenses_of_Resource_Cost__c,dat_Indicative_timeline_End_date__c,dat_Indicative_timeline_Start_date__c,How_many_man_days_do_you_think_you_requi__c,txta_Why_is_Work_at_risk_required__c,txta_What_specific_roles_do_you_require__c,txta_ITC_Resources_Utilisation__c,Which_BP_Innovation_director_has_approve__c ,pkl_Phases_covered_by_the_WAR__c,txta_PWO_linked_to_CR__c,When_do_you_require_the_Work_at_Risk_to__c from CPA_PWORF__c where id =:pworfRecId];
+       pworfRec = [select id,VDM__c,pkl_Status__c,Business_Case__c,pkl_Business_Area__c ,In_Scope__c,txta_Acceptance_Criteria__c,Analyse_sessions_expected__c,Will_this_project_require_an_LOI_for_Wor__c,RecordTypeid,Out_of_Scope__c,Overall_purpose_or_function_of_the_proje__c,Stakeholder_Expectations__c,txta_Title__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,lkp_Unilever_Finance_BP_Contact__c,lkp_Unilever_project_manager__c,txta_Application_infrastructure__c,txta_Business_critical_milestones__c,Expected_Business_Go_live_date__c,dt_Expected_go_live_date__c,dt_Expected_start_date__c,Expected_Start_Date_for_DBTD_PWO__c,Expected_Start_Date_for_Plan_and_Analyse__c,Impact_if_expected_business_go_live_date__c,Planning_sessions_expected__c,Project_Dependencies__c,Summary_of_requirements_and_deliverables__c,Travel_Arrangements__c,Who_will_support_this_service_once_live__c,pkl_Cost_Centre_Details__c,txt_Cost_Centre__c,txt_ICC_Number__c,pkl_Landscape__c,pkl_Request_Type__c,txta_Other_Request_Type__c,pkl_Pricing_Model__c,pkl_Region__c,dat_Revised_Submission_Date__c,Does_this_project_change_Core_Business_M__c,Does_this_Project_involve_Unilever_conf__c,Governance_Risk_and_Compliance__c,Has_W_R_been_discussed_with_Supplier_Per__c,Interface_to_the_system__c,Interface_to_the_system_Detail__c,Is_Project__c,Is_Project_Require__c,Is_this_a_new_or_re_worked_Integration_R__c,pkl_Is_this_Project_Invasive_in_nature__c,pkl_Process_Office_Area_E2E__c,mpkl_Project_Phases__c,pkl_Project_Scale__c,Role_or_System_Authorisation__c,txta_Project_Invasive_in_nature__c,txta_Role_or_System_Authorisation_detail__c,txta_Project_Require_Performance_Testing__c,Project_Require_Data_Specific_Testing__c,txt_OtherProjectPhases__c,txt_otherProcessOfficeAreaE2E__c,isValidated__c,txt_Role_Level_1_13__c,txt_Resource_Location__c,per_Budget_Expenses_of_Resource_Cost__c,dat_Indicative_timeline_End_date__c,dat_Indicative_timeline_Start_date__c,How_many_man_days_do_you_think_you_requi__c,When_do_you_require_the_Work_at_Risk_to__c,txta_Why_is_Work_at_risk_required__c,txta_What_specific_roles_do_you_require__c,txta_ITC_Resources_Utilisation__c,Which_BP_Innovation_director_has_approve__c ,pkl_Phases_covered_by_the_WAR__c,txta_PWO_linked_to_CR__c from CPA_PWORF__c where id =:pworfRecId];
         CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(pworfRec.pkl_Status__c); 
         
         if(customSettingStatusMsg.Status_Message__c != null && callFromVF){
@@ -110,7 +110,7 @@ global with sharing class CPA_PWORFInformationController {
                 if(pworfRec.Travel_Arrangements__c ==null)
                     objectMap.put('Travel Arrangements' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Who_will_support_this_service_once_live__c ==null)
-                    objectMap.put('Post Go-Live Support Service' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Post Go-Live Support Service?' ,ConstantsForContractingAppClasses.MANDATORY);
                 if( pworfRec.Does_this_project_change_Core_Business_M__c =='Select' || pworfRec.Does_this_project_change_Core_Business_M__c ==null)   
                     objectMap.put('Does this project change Core Business M' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Does_this_Project_involve_Unilever_conf__c =='Select' || pworfRec.Does_this_Project_involve_Unilever_conf__c ==null) 
@@ -138,7 +138,7 @@ global with sharing class CPA_PWORFInformationController {
                 if(pworfRec.Is_this_a_new_or_re_worked_Integration_R__c =='Select' || pworfRec.Is_this_a_new_or_re_worked_Integration_R__c ==null)   
                     objectMap.put('Is this a new or re-worked Integration R' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.pkl_Is_this_Project_Invasive_in_nature__c  =='Select' || pworfRec.pkl_Is_this_Project_Invasive_in_nature__c  ==null)    
-                    objectMap.put('Is this ‘Project’ Invasive in nature?' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Is this â€˜Projectâ€™ Invasive in nature?' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.pkl_Process_Office_Area_E2E__c =='Other' && pworfRec.txt_otherProcessOfficeAreaE2E__c == null )  
                     objectMap.put('Other Process Office area E2E' ,'Mandatory, If Other is selected in Process Office area E2E.');
                 if(pworfRec.mpkl_Project_Phases__c =='Other' && pworfRec.txt_OtherProjectPhases__c == null ) 
@@ -172,6 +172,7 @@ global with sharing class CPA_PWORFInformationController {
                     if(pworfRec.Which_BP_Innovation_director_has_approve__c  == null) objectMap.put('Which BP/Innovation director has approve' ,'Mandatory,If this Project require LOI');
                     if(pworfRec.pkl_Phases_covered_by_the_WAR__c  == null && pworfRec.pkl_Phases_covered_by_the_WAR__c  == 'Select') objectMap.put('Phases covered by the WAR' ,'Mandatory,If this Project require LOI');
                 }
+                
                 if(pworfRec.dt_Expected_go_live_date__c  != null && pworfRec.dt_Expected_go_live_date__c  < pworfRec.dt_Expected_start_date__c )
                        objectMap.put('Expected go-live date','Expected go-live date canot be before Expected start date');
                 Boolean user_has_permission = false;                
@@ -185,7 +186,6 @@ global with sharing class CPA_PWORFInformationController {
                         break;
                     }
                 }
-                System.debug('user_has_permission' +user_has_permission);
                 if(!user_has_permission){                    
                     if(pworfRec.dt_Expected_start_date__c  != null && pworfRec.dt_Expected_start_date__c  < date.today() )
                        objectMap.put('Expected start date','Expected start date canot be past date');

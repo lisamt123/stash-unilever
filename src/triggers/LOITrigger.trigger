@@ -14,7 +14,7 @@ trigger LOITrigger on CPA_LOI__c (before insert, after insert, before update, af
     CPA_LOI_TriggerUtil.checkforCancel(trigger.new);
     CPA_LOI_TriggerUtil.checklistValueOfLOI(trigger.new);
     //added by dinesh to generate internal LOI ID and internal PWO ID
-    //CPA_LOI_TriggerUtil.internalLIOID(trigger.new); commented by Dinesh on 16/02
+    CPA_LOI_TriggerUtil.internalLIOID(trigger.new);
     //Below line added by Dinesh [16/02]
     CPA_LOI_TriggerUtil.getInternalPWOIDFromPWORF(trigger.new);
     }
@@ -23,9 +23,8 @@ trigger LOITrigger on CPA_LOI__c (before insert, after insert, before update, af
         //added by dinesh
         //CPA_LOI_TriggerUtil.internalLIOID(trigger.new);
     }
-    
-     if(Trigger.isDelete && Trigger.isBefore){ //for before delete trigger
+    if(Trigger.isDelete && Trigger.isBefore){ //for before delete trigger
+        trigger.old[0].addError('LOI cant be deleted');   
         CPA_LOI_TriggerUtil.DontDelete(trigger.old);        
     }
-    
 }

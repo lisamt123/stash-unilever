@@ -122,7 +122,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
                 setPWO.add(objnewCR.CPA_Project_Work_Order__c);
             }
         }
-        if(  setPWO !=null && setPWO.size()>0){  
+        if(setPWO.size()>0 && setPWO !=null){  
             for(CPA_project_work_order__c objPwo : [select id, txt_Unilever_Reference__c,fml_Unilever_Project_Name_on_PWORF__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,mpkl_Project_Phases__c,pkl_Region__c from CPA_project_work_order__c where ID  IN: setPWO]){
                     mapPWO.put(objPwo.Id,objPwo);
                 }

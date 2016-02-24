@@ -203,6 +203,16 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_LOI_Approval_Submitted_at_ULPM</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CPA_SMT</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CPA LOI Approval Submitted at ULPM</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_LOI_Cancelled_Date</fullName>
         <field>dat_Cancelled_Date__c</field>
         <formula>TODAY()</formula>
@@ -222,6 +232,16 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_LOI_Owner_Chage</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CAP_VDM_Queue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CPA LOI Owner Chage</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_LOI_Owner_Update_to_SMT</fullName>

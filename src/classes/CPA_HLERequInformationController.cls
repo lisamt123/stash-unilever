@@ -39,8 +39,8 @@ global class CPA_HLERequInformationController {
                  RequiredFieldMap.put('AAL Contact Number',ConstantsForContractingAppClasses.MANDATORY);
              
              
-            //if(hleRec.dt_Date_raised__c == null || hleRec.dt_Date_raised__c < system.today()) 
-              //   RequiredFieldMap.put('Date raised','It is Mandatory and should not be before today date');
+            if(hleRec.dt_Date_raised__c == null || hleRec.dt_Date_raised__c < system.today()) 
+                 RequiredFieldMap.put('Date raised','It is Mandatory and should not be before today date');
             if(hleRec.txt_Dependencies__c  == null) 
                  RequiredFieldMap.put('Dependencies',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.eml_UBPR_Email__c  == null) 

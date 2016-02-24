@@ -116,7 +116,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>chk_PDF_Attached__c</field>
+                <field>txta_reason_for_additiona_PWO__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -138,10 +138,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>txt_Unilever_Reference__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>chk_Excel_Attached__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -368,6 +364,7 @@
         <relatedList>CPA_Queries__c.CPA_Project_Work_Order__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>pkl_Status__c</fields>
         <fields>CREATEDBY_USER</fields>
@@ -379,7 +376,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h18000000EkkI</masterLabel>
+        <masterLabel>00h56000000IyHW</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

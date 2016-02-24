@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>CAP_Email_PWORF_is_Submitted</fullName>
+        <description>CAP Email PWORF is Submitted</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CPA_Email_Template/CPA_PWORF_Submitted_by_ULPM</template>
+    </alerts>
+    <alerts>
         <fullName>CAP_Email_after_PWORF_is_Accepted</fullName>
         <description>CAP Email after PWORF is Accepted</description>
         <protected>false</protected>
@@ -328,6 +339,26 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CAP_Owner_Update_to_VDM</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CAP_VDM_Queue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CAP Owner Update to VDM</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CAP_PWORF_Recall</fullName>
+        <field>pkl_Status__c</field>
+        <literalValue>Withhold</literalValue>
+        <name>CAP PWORF Recall</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CAP_PWORF_Withhold_Resubmitted_date</fullName>
         <field>dat_Resubmitted_Date__c</field>
         <name>CAP PWORF Withhold_Resubmitted date</name>
@@ -388,6 +419,16 @@
         <name>CPA Breach Applicable</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_Change_the_Owner_to_ULPM_after_Withh</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CAP_ULPM</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CPA Change the Owner to ULPM after Withh</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -596,11 +637,49 @@ null)</formula>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_Reason_for_Cancellation</fullName>
+        <field>ltxt_Reason_for_Cancellation__c</field>
+        <name>CPA Reason for Cancellation</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_Status_Saved</fullName>
         <description>When PWORF is cloned/Created, STATUS is kept Saved.</description>
         <field>pkl_Status__c</field>
         <literalValue>Saved</literalValue>
         <name>CPA Status Saved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_Update_Owner</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CAP_ULPM</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CPA Update Owner</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_uncheck_IScancel</fullName>
+        <field>isCancelled__c</field>
+        <literalValue>0</literalValue>
+        <name>CPA uncheck IScancel</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_uncheck_Validate</fullName>
+        <field>isValidated__c</field>
+        <literalValue>0</literalValue>
+        <name>CPA uncheck Validate</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -757,7 +836,19 @@ null)</formula>
     <rules>
         <fullName>CPA PWORF Cloned%2FCreated</fullName>
         <actions>
+            <name>CPA_Reason_for_Cancellation</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CPA_Status_Saved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_uncheck_IScancel</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_uncheck_Validate</name>
             <type>FieldUpdate</type>
         </actions>
         <actions>
@@ -882,6 +973,21 @@ null)</formula>
     </rules>
     <rules>
         <fullName>CPA PWORF submitted</fullName>
+        <actions>
+            <name>CPA_PWORF_Submitted_Email_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_PWORF__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </criteriaItems>
+        <description>This workflow will fire after the status for PWORF will be Submitted update the date fields.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA PWORF submitted1</fullName>
         <actions>
             <name>CPA_PWORF_Submitted_Email_Alert</name>
             <type>Alert</type>

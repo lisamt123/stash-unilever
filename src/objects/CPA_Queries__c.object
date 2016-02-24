@@ -202,11 +202,34 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Lookup_Project_Work_Order_Query__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Project Work Order</label>
+        <referenceTo>CPA_project_work_order__c</referenceTo>
+        <relationshipLabel>Project Work Order Queries</relationshipLabel>
+        <relationshipName>ProjectWorkOrderQueries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>PWO_ID__c</fullName>
         <externalId>false</externalId>
         <formula>CPA_Project_Work_Order__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>PWO ID</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Work_Order_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Lookup_Project_Work_Order_Query__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Work Order ID</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -297,6 +320,15 @@
         <filterScope>Queue</filterScope>
         <label>CPA ULPM</label>
         <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_Queries</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA VDM Queue</label>
+        <queue>CAP_VDM_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

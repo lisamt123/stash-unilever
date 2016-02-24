@@ -29,11 +29,9 @@ global class CPA_CRInformationController {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.CR_Status_Msg__c));
         }
         if((crRec.pkl_Status__c == 'Saved')|| !callFromVF){
-            //if(crRec.chk_Contract_Excel_Attached__c  != true)  
-            if(!crRec.chk_Contract_Excel_Attached__c)
+            if(crRec.chk_Contract_Excel_Attached__c  != true)  
                  RequiredFieldMap.put( 'Please attach Commercial CSV , with filename prefix with Commercial' ,ConstantsForContractingAppClasses.MANDATORY);
-             //if(crRec.chk_Contract_Attached__c  != true)
-             if(!crRec.chk_Contract_Attached__c)
+             if(crRec.chk_Contract_Attached__c  != true)
                  RequiredFieldMap.put( 'Please attach Contract PDF , with filename prefix with CR' ,ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txt_Accenture_Project_Manager__c  == null)  
                  RequiredFieldMap.put( 'Accenture Project Manager' ,ConstantsForContractingAppClasses.MANDATORY);
@@ -65,8 +63,8 @@ global class CPA_CRInformationController {
                  RequiredFieldMap.put( 'Phase change record raised' ,ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.pkl_Project_Phases__c  == null)  
                  RequiredFieldMap.put( 'Project Phases' ,ConstantsForContractingAppClasses.MANDATORY);
-            if(crRec.PWO_number__c  == null)  
-                 RequiredFieldMap.put( 'PWO number' ,ConstantsForContractingAppClasses.MANDATORY);
+           /* if(crRec.PWO_number__c  == null)  
+                 RequiredFieldMap.put( 'PWO number' ,ConstantsForContractingAppClasses.MANDATORY);*/
             if(crRec.Region_impacted__c  == null)  
                  RequiredFieldMap.put( 'Region impacted' ,ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.pkl_Status__c  == null)  
@@ -75,8 +73,8 @@ global class CPA_CRInformationController {
                  RequiredFieldMap.put( 'Target Blend Rate' ,ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txt_Title_of_change__c  == null)  
                  RequiredFieldMap.put( 'Title of change' ,ConstantsForContractingAppClasses.MANDATORY);
-            if(crRec.num_Total_charge_of_CR__c  == null)  
-                 RequiredFieldMap.put( 'Total charge of CR' ,ConstantsForContractingAppClasses.MANDATORY);
+           /* if(crRec.num_Total_charge_of_CR__c  == null)  
+                 RequiredFieldMap.put( 'Total charge of CR' ,ConstantsForContractingAppClasses.MANDATORY);*/  // Commentd by Shreyas M on 22nf Feb 2016, This filed is Read Only and value will be populated after Submitaion of CR
             if(crRec.lkp_Unilever_budget_approver__c  == null)  
                  RequiredFieldMap.put( 'Unilever budget approver' ,ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.lkp_Unilever_content_approver__c  == null)  

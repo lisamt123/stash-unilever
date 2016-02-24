@@ -128,6 +128,19 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>PWO_ID__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PWO ID</label>
+        <referenceTo>CPA_PWO__c</referenceTo>
+        <relationshipLabel>CR</relationshipLabel>
+        <relationshipName>CR</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>PWO_number__c</fullName>
         <description>PWO ID</description>
         <externalId>false</externalId>
@@ -184,7 +197,7 @@
         <fullName>chk_Contract_Attached__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>Contract Attached</label>
+        <label>Contract_Attached</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -193,7 +206,7 @@
         <fullName>chk_Contract_Excel_Attached__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>Contract Excel Attached</label>
+        <label>Contract_Excel_Attached</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -316,6 +329,18 @@
         <formula>CPA_Project_Work_Order__r.PWORF_ID__r.txt_Clarity_ID__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Pworf Clarity ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fur_PWO_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>CPA_Project_Work_Order__r.txt_PWO_number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PWO Number</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -951,7 +976,8 @@
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
-        <columns>CPA_Project_Work_Order__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>pkl_Status__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
@@ -964,6 +990,21 @@
         <queue>CAP_ULPM</queue>
         <sharedTo>
             <group>CAP_ULPM_group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_CR</fullName>
+        <columns>NAME</columns>
+        <columns>PWO_ID__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <language>en_US</language>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <group>CAP_VDM_Group</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -984,6 +1025,17 @@
         <queue>CPA_SMT</queue>
         <sharedTo>
             <group>CAP_SMT_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CR_Created_by_me</fullName>
+        <columns>NAME</columns>
+        <filterScope>Mine</filterScope>
+        <label>CR&apos;s Created by me</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+            <group>CAP_VDM_Group</group>
         </sharedTo>
     </listViews>
     <nameField>
@@ -1935,7 +1987,8 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 	if(p.pkl_Status__c == &quot;Signed&quot; &amp;&amp; (pwoRecords[0].pkl_Status__c != &quot;Terminated&quot; || pwoRecords[0].pkl_Status__c != &quot;Sent For Termination&quot; || pwoRecords[0].pkl_Status__c != &quot;Request For Termination&quot;)){ 
 	p.pkl_Status__c = &quot;Delivered&quot;;	
 	p.dat_Actual_End_Date__c = today; 
-	result = sforce.connection.update([p]); 
+	result = sforce.connection.update([p]);
+// alert(result);
 	location.reload(true); 
 	} 
 	else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
@@ -1960,7 +2013,7 @@ alert(&quot;You are not authorized to perform this action.&quot;);
         <height>600</height>
         <linkType>url</linkType>
         <masterLabel>New CR</masterLabel>
-        <openType>sidebar</openType>
+        <openType>noSidebar</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
         <url>/apex/CreatePWO?id={!CPA_project_work_order__c.Id}</url>
@@ -1985,16 +2038,15 @@ soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssig
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
-//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
 
-//alert(p.pkl_Status__c); 
 if(permissionSetName == &quot;CPA_ADM&quot;){ 
 	var isValidateFlag = sforce.apex.execute(&quot;CPA_CRInformationController&quot;,&quot;checkIsValidated&quot;,{crId:p.id});
-	//if(p.isValidated__c == &quot;1&quot; ){ 
+	
 	if(isValidateFlag == &apos;true&apos;){ 
 		if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
 			p.pkl_Status__c = &quot;Resubmitted&quot;; 
 			result = sforce.connection.update([p]); 
+
 			location.reload(true); 
 
 		} 
@@ -2010,7 +2062,7 @@ if(permissionSetName == &quot;CPA_ADM&quot;){
 		else{ 
 			p.pkl_Status__c = &quot;Submitted&quot;; 
 			result = sforce.connection.update([p]); 
-	//alert(result);
+	
 			location.reload(true); 
 		} 
 	} 
@@ -2053,8 +2105,16 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	else{ 
 		window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;); 
 	} 
-} else{ 
-alert(&quot;You are not authorized to perform this action.&quot;); 
+}else if(permissionSetName == &quot;CPA_ADM&quot;){
+	if(p.pkl_Status__c == &apos;Saved&apos;){ 
+		window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;);  
+	}else {
+		
+		alert(&quot;You are not authorized to perform this action,Please raise Query for cancellation &quot;);
+	}
+}
+ else	{ 
+	alert(&quot;You are not authorized to perform this action,&quot;); 
 }</url>
     </webLinks>
     <webLinks>

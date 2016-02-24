@@ -218,9 +218,7 @@ public class CPA_LOI_TriggerUtil{
                 system.debug('objLoi.pkl_Status__c >>>>>>>>'+objLoi.pkl_Status__c );
                 ListnewLOI.add(objLoi);
             }
-        if(ListnewLOI.size()>0){
         update ListnewLOI;
-        }
     }
     
     /** Method Name : getInternalPWOIDFromPWORF
@@ -231,14 +229,13 @@ public class CPA_LOI_TriggerUtil{
     * Description : This method gets internal PWO ID from PWORF and maps it to LOI. Calling from before insert trigger
     */
     public static void getInternalPWOIDFromPWORF(List<CPA_LOI__c> newLOI){
-            List<CPA_PWORF__c> pworfs = [SELECT txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newLOI[0].lkp_PWORF__c];
-            if(pworfs!=null && pworfs.size()>0 && pworfs[0] !=null && pworfs[0].txt_Internal_PWO_ID__c != null){
-                System.debug('Internal PWO ID present on PWORF @@@@@######## : ' + pworfs[0].txt_Internal_PWO_ID__c);
-                newLOI[0].txt_Internal_PWO_ID__c = pworfs[0].txt_Internal_PWO_ID__c;
-            }else{
-                System.debug('PWO ID not present on PWORF @@@@@######## : ');
-            }
-       // }
+        List<CPA_PWORF__c> pworfs = [SELECT txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newLOI[0].lkp_PWORF__c];
+        if(pworfs!=null && pworfs.size()>0 && pworfs[0] !=null && pworfs[0].txt_Internal_PWO_ID__c != null){
+            System.debug('Internal PWO ID present on PWORF @@@@@######## : ' + pworfs[0].txt_Internal_PWO_ID__c);
+            newLOI[0].txt_Internal_PWO_ID__c = pworfs[0].txt_Internal_PWO_ID__c;
+        }else{
+            System.debug('PWO ID not present on PWORF @@@@@######## : ');
+        }
     }
     
     /** Method Name : internalLIOID
@@ -314,7 +311,7 @@ public class CPA_LOI_TriggerUtil{
     * Author      : jp
     * Description : This method dont allow CR to be deleted
     */
-    public static void DOntDelete(list<CPA_LOI__c> lstLOI){
+    public static void DontDelete(list<CPA_LOI__c> lstLOI){
         
         for(CPA_LOI__c obj :lstLOI ){
             obj.addError('LOI cant be deleted');

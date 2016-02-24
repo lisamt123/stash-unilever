@@ -67,7 +67,7 @@ public with sharing class SelectRecordTypeController {
     CPA_PWORF__c Rs= [Select Id,Name From CPA_PWORF__c Where Id=:pworfId];
     
          
-    UrlLink = '/a9G/e?retURL=a00&RecordType='+recordtypeId+Label.CPA_PWORF_Name_Filed_Id+'='+Rs.Name+Label.CPA_PWORF_Name_Filed_Id+'_lkid='+Rs.Id;
+    UrlLink = '/'+Label.CAP_ParentId_For_Attachment_trigger+'/e?retURL=a00&RecordType='+recordtypeId+Label.CPA_PWORF_Name_Filed_Id+'='+Rs.Name+Label.CPA_PWORF_Name_Filed_Id+'_lkid='+Rs.Id;
    
    } if(objName =='CPA_PWORF__c' && flagState =='Loi') {
     
@@ -80,7 +80,7 @@ public with sharing class SelectRecordTypeController {
     
      CPA_project_work_order__c Rscr= [Select Id,Name From CPA_project_work_order__c Where Id=:pworfId];
       
-      UrlLink = '/a8Q/e?retURL=a00&RecordType='+recordtypeId+Label.CPA_PWO_Name_Field_Id+'='+Rscr.Name+Label.CPA_PWO_Name_Field_Id+'_lkid='+Rscr.Id;
+      UrlLink = '/'+Label.CAP_ParentId_For_Attachment_CR+'/e?retURL=a00&RecordType='+recordtypeId+Label.CPA_PWO_Name_Field_Id+'='+Rscr.Name+Label.CPA_PWO_Name_Field_Id+'_lkid='+Rscr.Id;
     }
     system.debug('Hi'+UrlLink); 
         PageReference massPageUrl = new PageReference(UrlLink);

@@ -119,6 +119,10 @@
                 <behavior>Readonly</behavior>
                 <field>txt_Accenture_Project_Manager__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txta_reason_for_additiona_PWO__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -273,6 +277,8 @@
         <relatedList>CPA_Queries__c.CPA_Project_Work_Order__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <customButtons>New_CR</customButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>pkl_Status__c</fields>
         <fields>CREATEDBY_USER</fields>
@@ -284,7 +290,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h18000000Ekjj</masterLabel>
+        <masterLabel>00h56000000IyHZ</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

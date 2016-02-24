@@ -249,7 +249,7 @@ public class CPA_testClass_util {
         update  objPWORF;
         
         objLOI.txt_Accenture_Project_Manager__c = ConstantsForContractingAppClasses.TEST;
-      
+        objLOI.lkp_PWORF__c=objPWORF.id;
         objLOI.pkl_Currency__c = ConstantsForContractingAppClasses.TEST;
         objLOI.num_Expense_charges_of_LOI__c = 2;
         objLOI.num_If_applicable_please_specify_the__c = 4;

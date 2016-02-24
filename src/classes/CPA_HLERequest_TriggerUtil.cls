@@ -165,4 +165,18 @@ public class CPA_HLERequest_TriggerUtil{
         }                                       
       }
     }
+    
+    
+    /**   Method Name : DOntDelete
+    * Parameter   : OldMap
+    * Return type : void
+    * Author      : JP
+    * Description : This method dont allow HLE to be deleted
+    */
+    public static void DontDelete(list<CPA_HLE_Request__c> lstHleReq){
+        
+        for(CPA_HLE_Request__c obj :lstHleReq ){
+            obj.addError('HLE Request cant be deleted');
+        }
+    }
 }

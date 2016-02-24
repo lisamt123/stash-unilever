@@ -217,6 +217,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_CR_Submitted</fullName>
@@ -245,6 +246,17 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_Update_Owner1</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CPA_SMT</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CPA Update Owner</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_Update_Status_of_CR</fullName>
@@ -351,6 +363,26 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>CPA CR Returned Saved</fullName>
+        <actions>
+            <name>CPA_CR_Saved_returned</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>CPA_CR__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Saved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_CR__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Returned</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>CPA CR Signed</fullName>
         <actions>
             <name>CPA_CR_Delivered_Record_type</name>
@@ -377,6 +409,30 @@
             <value>CPA Standalone CR</value>
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA CR Submitted%2C Resubmitted</fullName>
+        <actions>
+            <name>CPA_CR_SMT_Send_for_Signature</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_CR_Submitted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>CPA_CR__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_CR__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Resubmitted</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>CPA Delivered%2CCancel</fullName>

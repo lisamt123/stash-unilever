@@ -1,4 +1,4 @@
-trigger HLERequest on CPA_HLE_Request__c (before insert, after insert, before update, after update) {
+trigger HLERequest on CPA_HLE_Request__c (before insert, after insert, before update, after update, before Delete) {
 
     if(Trigger.isUpdate && Trigger.isBefore){ //for before update trigger 
         CPA_HLERequest_TriggerUtil.unlockrecord(trigger.old,trigger.new);//to perform recall Approval process
@@ -16,5 +16,9 @@ trigger HLERequest on CPA_HLE_Request__c (before insert, after insert, before up
    //if(Trigger.isInsert && Trigger.isAfter){ //for after insert trigger
          
    // }
+   
+   if(Trigger.isDelete && Trigger.isBefore){ //for before delete trigger
+        CPA_HLERequest_TriggerUtil.DontDelete(trigger.old);     
+    }
     
 }

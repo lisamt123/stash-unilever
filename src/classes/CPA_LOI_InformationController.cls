@@ -50,9 +50,8 @@ boolean callFromVF = false;
                  RequiredFieldMap.put('W@R € spend approved at MC Rates',ConstantsForContractingAppClasses.MANDATORY); 
              if(LoiRec.cur_Total_value_in_Euro_being_requested__c == null)
                  RequiredFieldMap.put('Total value in Euro being requested',ConstantsForContractingAppClasses.MANDATORY);    
-             //if(LoiRec.chk_Contract_Attached__c != true)
-             if(!LoiRec.chk_Contract_Attached__c)
-                  RequiredFieldMap.put('Contract has not been attached. Attach the contract and append the file name with a prefix - LOI',ConstantsForContractingAppClasses.MANDATORY);
+             if(!LoiRec.chk_Contract_Attached__c )
+                  RequiredFieldMap.put('Contract pdf Not attached, Please attach Contract PDF , with filename prefix with LOI',ConstantsForContractingAppClasses.MANDATORY);
              if(LoiRec.mpkl_Phases_covered_by_WAR__c == null)
                  RequiredFieldMap.put('Phases covered by WAR',ConstantsForContractingAppClasses.MANDATORY);          
              if(LoiRec.txt_PWO_number__c == null)
@@ -71,7 +70,7 @@ boolean callFromVF = false;
                 RequiredFieldMap.put('LOI End date','LOI End Date is mandatory');
             if(LoiRec.dt_LOI_End_date__c != null &&  LoiRec.dt_LOI_End_date__c < LoiRec.dt_LOI_Start_Date__c)
                  RequiredFieldMap.put('LOI End date','LOI End Date cannot before Start date');
-             if(LoiRec.mpkl_Phases_covered_by_WAR__c!=null && LoiRec.mpkl_Phases_covered_by_WAR__c.contains('Other') && LoiRec.txt_Other_Phases_Covered_by_W_R__c== null)
+              if(LoiRec.mpkl_Phases_covered_by_WAR__c!=null && LoiRec.mpkl_Phases_covered_by_WAR__c.contains('Other') && LoiRec.txt_Other_Phases_Covered_by_W_R__c== null)
                  RequiredFieldMap.put('Other Phases Covered by W@R','If Other Phase covered is selected then this field is mandatory');
              System.debug('Building Map Done!! ' );
              System.debug('RequiredFieldMap >> ' + RequiredFieldMap);   

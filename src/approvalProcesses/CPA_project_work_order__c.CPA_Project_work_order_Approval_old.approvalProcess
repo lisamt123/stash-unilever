@@ -99,7 +99,7 @@
         </action>
     </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
-    <label>CPA Project work order Approval_old</label>
+    <label>CPA Project  work order Approval_old</label>
     <recallActions>
         <action>
             <name>Approval_Comment_Required_for_Contracts</name>

@@ -188,6 +188,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CAP_VDM_Queue_CPA_Query_comment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA VDM Queue</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CPA_SMT_CPA_Query_comment</fullName>
         <filterScope>Queue</filterScope>
         <label>CPA SMT</label>

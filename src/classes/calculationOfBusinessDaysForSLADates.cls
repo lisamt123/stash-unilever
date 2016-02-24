@@ -99,7 +99,7 @@ public class calculationOfBusinessDaysForSLADates{
     * Description : This method creates Internal PWO ID, if not present on PWORF. This logic will work only when PWORF is
     *    status is Accepted
     */
-    /*public static void forSearch(List<CPA_PWORF__c> oldPWORFList, List<CPA_PWORF__c> newPWORFList){
+   /* public static void forSearch(List<CPA_PWORF__c> oldPWORFList, List<CPA_PWORF__c> newPWORFList){
         //if(oldPWORFList[0].pkl_Status__c != null && newPWORFList[0].pkl_Status__c != null){
         if(newPWORFList[0].pkl_Status__c != null && newPWORFList[0].pkl_Status__c.equalsIgnoreCase('Accepted')){
             System.debug('oldPWORFList @@@@@######## : ' + oldPWORFList[0].pkl_Status__c);

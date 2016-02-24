@@ -130,7 +130,6 @@
         <description>HLE Request Id Auto number</description>
         <displayFormat>HLEReq-{0000}</displayFormat>
         <externalId>true</externalId>
-        <inlineHelpText>HLE Request Id Auto number</inlineHelpText>
         <label>HLE Request ID</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -193,7 +192,7 @@ null)))</formula>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>No</fullName>
@@ -207,7 +206,7 @@ null)))</formula>
     </fields>
     <fields>
         <fullName>Unilever_Project_Manager_Name__c</fullName>
-        <description>This field will be used for Email Template</description>
+        <description>This filed will be used for Email Template</description>
         <externalId>false</externalId>
         <formula>lkp_Unilever_project_manager__r.FirstName + &apos; &apos;+lkp_Unilever_project_manager__r.LastName</formula>
         <label>Unilever Project Manager Name</label>
@@ -437,7 +436,7 @@ null)))</formula>
         <picklist>
             <picklistValues>
                 <fullName>IPIX</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Regional</fullName>
@@ -564,7 +563,7 @@ null)))</formula>
         <picklist>
             <picklistValues>
                 <fullName>Supply chain</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Information &amp; Analytics</fullName>
@@ -607,7 +606,7 @@ null)))</formula>
         <picklist>
             <picklistValues>
                 <fullName>PA</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>PADBTD</fullName>
@@ -675,6 +674,17 @@ null)))</formula>
         <inlineHelpText>Name/details of area lead</inlineHelpText>
         <label>Name*</label>
         <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Accenture_Project_Manager__c</fullName>
+        <externalId>false</externalId>
+        <label>Accenture Project Manager</label>
+        <length>250</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -751,9 +761,7 @@ null)))</formula>
     </fields>
     <fields>
         <fullName>txt_BPE_Title__c</fullName>
-        <description>Title/description for the project.</description>
         <externalId>false</externalId>
-        <inlineHelpText>Title/description for the project.</inlineHelpText>
         <label>BPE Title*</label>
         <length>255</length>
         <required>false</required>
@@ -1001,6 +1009,26 @@ null)))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_SLA1__c</fullName>
+        <description>Capture SLA1 in the background from custom settings.</description>
+        <externalId>false</externalId>
+        <label>SLA1</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>txt_SLA2__c</fullName>
+        <description>Capture SLA2 in the background from custom settings.</description>
+        <externalId>false</externalId>
+        <label>SLA2</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>txt_Software_Licensing_requirements__c</fullName>
         <description>Indicate whether this project may require the provision of additional software or licenses either by Unilever or by Accenture (or both)</description>
         <externalId>false</externalId>
@@ -1117,6 +1145,7 @@ null)))</formula>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
         <columns>dt_Planned_start_date__c</columns>
         <columns>dt_Planned_end_date__c</columns>
         <columns>txt_Project_type__c</columns>
@@ -1147,15 +1176,12 @@ null)))</formula>
     </listViews>
     <listViews>
         <fullName>CPA_SMT_CPA_HLE_Request</fullName>
-        <columns>NAME</columns>
-        <columns>txt_HLE_PB_Name__c</columns>
-        <columns>CREATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>SMT</label>
         <language>en_US</language>
         <queue>CPA_SMT</queue>
         <sharedTo>
-            <group>CAP_SMT_Group</group>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <nameField>
@@ -1188,14 +1214,14 @@ null)))</formula>
             </values>
             <values>
                 <fullName>Yes</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
             <picklist>mpkl_PFS_If_yes_what_is_the_source__c</picklist>
             <values>
                 <fullName>IPIX</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Other</fullName>
@@ -1238,7 +1264,7 @@ null)))</formula>
             </values>
             <values>
                 <fullName>Supply chain</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Workplace</fullName>
@@ -1253,7 +1279,7 @@ null)))</formula>
             </values>
             <values>
                 <fullName>PA</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>PADBTD</fullName>
@@ -2512,35 +2538,35 @@ else{ alert(&quot;You are not authorized to perform this action.&quot;); }</url>
         <masterLabel>Submit Estimates</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
-{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)}
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)} 
 
-var p = new sforce.SObject(&apos;CPA_HLE_Request__c&apos;);
-p.id = &quot;{!CPA_HLE_Request__c.Id}&quot;;
-p.Estimates_Status__c = &quot;{!CPA_HLE_Request__c.Estimates_Status__c }&quot;;
-p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;;
-var isValidateFlag = sforce.apex.execute(&quot;CPA_HLERequInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id});
+var p = new sforce.SObject(&apos;CPA_HLE_Request__c&apos;); 
+p.id = &quot;{!CPA_HLE_Request__c.Id}&quot;; 
+p.Estimates_Status__c = &quot;{!CPA_HLE_Request__c.Estimates_Status__c }&quot;; 
+p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;; 
+var isValidateFlag = sforce.apex.execute(&quot;CPA_HLERequInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id}); 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
-var result = sforce.connection.query(soql);
-var records1 = result.getArray(&apos;records&apos;);
-var permissionSetName = records1[0].PermissionSet.Name;
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
 //alert(permissionSetName);
 //alert(isValidateFlag);
-if( permissionSetName == &quot;CPA_ADM&quot;){
-if(isValidateFlag == &apos;true&apos;){
-if(p.Estimates_Status__c != &quot;Submitted&quot;){
-p.Estimates_Status__c = &quot;Submitted&quot;;
-p.pkl_Status__c = &quot;Answered&quot;;
-//alert(p.Estimates_Status__c);
-result = sforce.connection.update([p]);
-//alert(result);
-location.reload(true);
-}else {alert(&quot;Estimates are already submitted&quot;); }
-}else {
-alert(&quot;Estimates can not be submitted, Due to Required fields are missing&quot;);
-}
-}
+if( permissionSetName == &quot;CPA_ADM&quot;){ 
+	if(isValidateFlag == &apos;true&apos;){ 
+		if(p.Estimates_Status__c != &quot;Submitted&quot;){ 
+			p.Estimates_Status__c = &quot;Submitted&quot;; 
+			p.pkl_Status__c = &quot;Answered&quot;;
+			//alert(p.Estimates_Status__c);
+			result = sforce.connection.update([p]); 
+			//alert(result);
+			location.reload(true); 
+		}else {alert(&quot;Estimates are already submitted&quot;); } 
+	}else { 
+	alert(&quot;Estimates can not be submitted, Due to Required fields are missing&quot;); 
+	} 
+} 
 else{ alert(&quot;You are not authorized to perform this action.&quot;); }</url>
     </webLinks>
     <webLinks>

@@ -96,6 +96,15 @@
         <type>Lookup</type>
     </fields>
     <label>CPA TAT</label>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_TAT</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA VDM Queue</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>TAT-{0000}</displayFormat>
         <label>TAT Name</label>

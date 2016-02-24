@@ -26,7 +26,7 @@ global class CPA_ContractInformationController {
          
         pwoRec = [select chk_First_PWO__c,PWORF_ID__c,txta_reason_for_additiona_PWO__c,id,chk_Excel_Attached__c,chk_PDF_Attached__c,pkl_Status__c,txt_PWO_number__c,pkl_Region__c ,txt_PWO_title__c,mpkl_Project_Classification__c,txt_Unilever_Project_Name__c,mpkl_Unilever_Innovation_Area__c,pkl_Billing_Details__c,txt_Accenture_Project_Manager__c,dt_Date_PWORF_accepted__c,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,lkp_Unilever_Finance_BP_Contact__c,dt_Project_Initiation_Date__c,dt_Expected_Start_Date__c,dt_Expected_End_date__c,mpkl_Project_Phases__c,pkl_Pricing_Model__c,num_Target_Blend_Rate__c,num_Varied_Target_Blend_Rate__c,pec_Variance__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,pec_Expense__c,num_Expense_charges_of_work_order__c,num_Total_work_order_charge__c,Currency__c,txt_Unilever_Reference__c,fml_Clarity_ID__c,pkl_TNF_Currency__c,txt_TNF_Unilever_Clarity_ID__c,txt_TNF_Approved_by__c,dt_TNF_TD_Date_Notified__c,dt_TNF_TD_Effective_Date__c,txt_TNF_Reason_for_termination__c,txt_TNF_Relocation_of_resources__c,txt_TNF_Comments__c,num_TNF_Variance_in_charges__c,num_TNF_Variance_in_effort__c,num_TNF_Planned_charges__c,num_TNF_Actual_charges__c,txt_TNF_Actual_effort_in_days__c,num_TNF_Planned_effort_in_days__c,txt_TNF_TD_Notice_Required__c,pkl_TNF_Terminated_by__c,txt_TNF_Accenture_Contact__c,lkp_TNF_Unilever_Contact__c,txt_TNF_Other_Currency__c,txt_CNF_Accenture_Project_Manager__c,num_CNF_Actual_Day_rate__c,num_CNF_Actual_expenses__c,num_CNF_Actual_fees_inclusive_of_discoun__c,num_CNF_Actual_man_days__c,num_CNF_Actual_PMO_tax__c,dt_CNF_Actual_PWO_End_Date__c,num_CNF_Actual_total_charges__c,num_CNF_Planned_Day_rate__c,num_CNF_Planned_expenses__c,num_CNF_Planned_fees_inclusive_of_discou__c,num_CNF_Planned_man_days__c,num_CNF_Planned_PMO_tax__c,dt_CNF_Planned_PWO_End_Date__c,num_CNF_Planned_total_charges__c,lkp_CNF_Unilever_budget_approver__c,txt_CNF_Unilever_Clarity_ID__c,lkp_CNF_Unilever_content_approver__c,num_CNF_Variance_number_in_man_days__c,CNF_Status__c,TNF_Status__c,RecordTypeid,mpkl_CNF_Currency__c,chk_isStandalone_PWO__c, txt_Other_Project_Phases__c, txt_Other_Innovation_Area__c, txt_Other_Billing_Details__c,txt_Other_Currency__c  from CPA_project_work_order__c where id =:pwoRecId];
         
-      //  List<CPA_project_work_order__c> listPriPWO = [Select ID,PWORF_ID__c from CPA_project_work_order__c where id =: pwoRecId AND chk_First_PWO__c= true];
+        //List<CPA_project_work_order__c> listPriPWO = [Select ID,PWORF_ID__c from CPA_project_work_order__c where PWORF_ID__c =:pwoRec.PWORF_ID__c ];
         Map<string,CPA_Status_Msg__c> customSettingStatusMsg = CPA_Status_Msg__c.getAll();
             
            if(customSettingStatusMsg.get(pwoRec.pkl_Status__c).PWO_Status_Msg__c != null && callFromVF && (pwoRec.CNF_Status__c == null) && (pwoRec.TNF_Status__c == null)){
@@ -59,9 +59,11 @@ global class CPA_ContractInformationController {
                 if(pwoRec.pkl_Billing_Details__c == 'Other' && pwoRec.txt_Other_Billing_Details__c == null){
                     RequiredFieldMap.put( 'Other Billing Details' ,'It is mandatory if Billing Details is OTHER');
             }
-                if(pwoRec.chk_First_PWO__c != true && pwoRec.txta_reason_for_additiona_PWO__c == null){
+                
+                 if(pwoRec.chk_First_PWO__c != true && pwoRec.txta_reason_for_additiona_PWO__c == null){
                     RequiredFieldMap.put( 'Reason For Additional PWO' ,'Mandatory');
                 }
+                
                 
                 if(pwoRec.txt_Accenture_Project_Manager__c == null)
                     RequiredFieldMap.put( 'Accenture Project Manager' ,'Mandatory');
@@ -133,7 +135,7 @@ global class CPA_ContractInformationController {
                 if(pwoRec.num_CNF_Actual_PMO_tax__c== null) RequiredFieldMap.put('Actual PMO tax','Mandatory');
                 if(pwoRec.dt_CNF_Actual_PWO_End_Date__c== null) RequiredFieldMap.put('Actual PWO End Date','Mandatory');
                 if(pwoRec.num_CNF_Actual_total_charges__c== null) RequiredFieldMap.put('Actual total charges','Mandatory');
-                if(pwoRec.mpkl_CNF_Currency__c== null) RequiredFieldMap.put('Currency','Mandatory');
+                //if(pwoRec.mpkl_CNF_Currency__c== null) RequiredFieldMap.put('Currency','Mandatory');
                 if(pwoRec.num_CNF_Planned_Day_rate__c== null) RequiredFieldMap.put('Planned Day rate','Mandatory');
                 if(pwoRec.num_CNF_Planned_expenses__c== null) RequiredFieldMap.put('Planned expenses','Mandatory');
                 if(pwoRec.num_CNF_Planned_fees_inclusive_of_discou__c== null) RequiredFieldMap.put('Planned fees (inclusive of discount)','Mandatory');
@@ -181,8 +183,8 @@ global class CPA_ContractInformationController {
                     RequiredFieldMap.put('Accenture Contact','Mandatory');
                 if(pwoRec.lkp_TNF_Unilever_Contact__c == null)
                     RequiredFieldMap.put('Unilever Contact','Mandatory');
-                if(pwoRec.txt_TNF_Other_Currency__c == null && pwoRec.pkl_TNF_Currency__c == 'Other') 
-                    RequiredFieldMap.put('Other Currency','Mandatory');
+              //  if(pwoRec.txt_TNF_Other_Currency__c == null && pwoRec.pkl_TNF_Currency__c == 'Other') 
+                 //   RequiredFieldMap.put('Other Currency','Mandatory');
             }
         }
         

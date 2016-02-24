@@ -153,6 +153,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_Closure_Notification_Form_Cancel_Sta</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>CPA_PWO_Delivered</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>CPA Closure Notification Form Cancel Sta</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_Closure_Notification_Form_Return</fullName>
         <field>CNF_Status__c</field>
         <literalValue>Returned</literalValue>
@@ -315,6 +325,14 @@
         <name>CPA Project Work order Owner update</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_Project_work_order_Singed</fullName>
+        <field>CNF_Status__c</field>
+        <name>CPA Project  work order Singed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -536,6 +554,20 @@
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
+        <fullName>CPA Closure Notification Form Cancel Status</fullName>
+        <actions>
+            <name>CPA_Closure_Notification_Form_Cancel_Sta</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.CNF_Status__c</field>
+            <operation>equals</operation>
+            <value>Cancelled</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>CPA Closure Notification Form Signed</fullName>
         <actions>
             <name>CPA_Project_Work_Order_Closed</name>
@@ -745,6 +777,10 @@
             <type>Alert</type>
         </actions>
         <actions>
+            <name>CPA_Project_work_order_Singed</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CPA_Record_type_CPA_PWO_Signed</name>
             <type>FieldUpdate</type>
         </actions>
@@ -754,6 +790,11 @@
             <operation>equals</operation>
             <value>Signed</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.chk_isStandalone_CR__c</field>
+            <operation>notEqual</operation>
+            <value>True</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -762,12 +803,16 @@
             <name>CPA_Project_Work_Order_Submitted_Email_Alert</name>
             <type>Alert</type>
         </actions>
+        <actions>
+            <name>CPA_Record_type_CPA_PWO_Submitted</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <booleanFilter>1</booleanFilter>
         <criteriaItems>
             <field>CPA_project_work_order__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Accepted,Sent for Signature</value>
+            <value>Submitted,Resubmitted,Accepted,Sent for Signature</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
