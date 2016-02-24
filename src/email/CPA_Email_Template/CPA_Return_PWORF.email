@@ -1,0 +1,12 @@
+<messaging:emailTemplate subject="PWORF: {!RelatedTo.auto_PWORF_ID__c} returned by {!RelatedTo.VDM__r.Name}" recipientType="User" relatedToType="CPA_PWORF__c">
+<messaging:htmlEmailBody >
+    Hi, <br/><br/>
+    A PWORF with ID: {!RelatedTo.auto_PWORF_ID__c}  is returned by {!RelatedTo.VDM__r.Name} on {!RelatedTo.dat_VDM_Request_return_Date__c} . <br/><br/>
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!$Label.CPA_Default_URL}{!RelatedTo.Id} </a> <br/><br/>
+
+Regards, <br/><br/>
+
+Automation Contract System
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

@@ -1,0 +1,28 @@
+<messaging:emailTemplate subject="PWO with ID {!RelatedTo.Name} is Sent for Signature by {!RelatedTo.LastModifiedBy.Name}" recipientType="User" relatedToType="CPA_PWO__c">
+<messaging:htmlEmailBody >
+    Hi, <br/><br/>
+    A PWO with ID {!RelatedTo.Name} is Sent for Signature by {!RelatedTo.LastModifiedBy.Name} on {!RelatedTo.dat_Sent_for_Signature_Date__c}. <br/><br/>
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+
+Regards, <br/><br/>
+
+Automation Contract System
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
+
+
+
+<!---
+Sub: <Contract> with ID <Contract ID> is Sent for Signature by <SMT Name>
+
+Body:
+"Hi,
+
+A <Contract> with ID <Contract ID> is Sent for Signature by <SMT Name> on <Date & Time>.
+You can access it from here: <URL to PWORF/System>
+
+Regards,
+Automation Contract System"
+
+-->

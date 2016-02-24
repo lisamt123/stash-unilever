@@ -1,0 +1,12 @@
+<messaging:emailTemplate subject="HLE Request with ID: {!RelatedTo.Name} is pending to be accepted by Accenture" recipientType="User" relatedToType="CPA_HLE_Request__c">
+<messaging:htmlEmailBody >
+    Hi, <br/><br/>
+    A HLE Request with ID: {!RelatedTo.HLE_Request_ID__c} is pending to be accepted by Accenture and the due date is {!RelatedTo.HLE_Request_SLA1_end_Date__c} . <br/><br/>
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!$Label.CPA_Default_URL}{!RelatedTo.Id} </a> <br/><br/>
+
+Regards, <br/><br/>
+
+Automation Contract System
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
