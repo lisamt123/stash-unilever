@@ -1,6 +1,7 @@
 public with sharing class Amr_AdManagerController{
 
     public Amr_Job_Details__c jobDetails{get;set;}
+    public static final String STR_NONE = '--None--';
     public Amr_Logging_Form_Setting__c r  {get; set;}
     //public List<Amr_CurrencyConversionRate__c> currencyConversion {get;set;}
     public String selectedCountry {get;set;}
@@ -10,7 +11,7 @@ public with sharing class Amr_AdManagerController{
         get {
             List<selectOption> options = new List<selectOption>();
             List<selectOption> optionsNew = new List<selectOption>();
-            options.add(new SelectOption('--None--','--None--'));
+            options.add(new SelectOption(STR_NONE,STR_NONE));
             List<Amr_CurrencyConversionRate__c> lstcov = Amr_CurrencyConversionRate__c.getAll().values();
             System.debug('Currency List Size --> ' + lstcov.size());
             lstcov.sort();
@@ -62,7 +63,7 @@ public with sharing class Amr_AdManagerController{
 
         listString = new list<string>();
         categoryString = new list<string>();
-        listString.add('--None--');
+        listString.add(STR_NONE);
         for(Amr_Project_Details__c i : projNameList){
             listString.add(i.name);
         }
@@ -72,7 +73,7 @@ public with sharing class Amr_AdManagerController{
         }
 
         listOfBrandPosition = new List<SelectOption>();
-        listOfBrandPosition.add(new selectOption('--None--','--None--'));
+        listOfBrandPosition.add(new selectOption(STR_NONE,STR_NONE));
         system.debug('mdString !!'+categoryString);
         system.debug('listString!!'+listString);
         System.debug('Project Name Size -> ' + projNameList.size());
@@ -89,7 +90,7 @@ public with sharing class Amr_AdManagerController{
     /*public List<SelectOption> getCategoryList(){      
          listOfCategory = new List<SelectOption>();
 
-         listOfCategory.add(new selectOption('--None--','--None--'));
+         listOfCategory.add(new selectOption(STR_NONE,STR_NONE));
          Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
 
          Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
@@ -117,7 +118,7 @@ public with sharing class Amr_AdManagerController{
          Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
 
          listOfBrandPosition = new List<SelectOption>();
-         listOfBrandPosition.add(new selectOption('--None--','--None--'));
+         listOfBrandPosition.add(new selectOption(STR_NONE,STR_NONE));
          for(MDO_BrandPositions__c bps : brandPositionlst){
              listOfBrandPosition.add(new selectOption(bps.brand_position_id__r.name,bps.brand_position_id__r.name));
          }
@@ -136,7 +137,7 @@ public with sharing class Amr_AdManagerController{
         system.debug('brandPositionListttoo----->'+brandPositionlst );
 
    //     listOfBrandPosition = new List<SelectOption>();
-     //   listOfBrandPosition.add(new selectOption('--None--','--None--'));
+     //   listOfBrandPosition.add(new selectOption(STR_NONE,STR_NONE));
         Set<String> brnadPosNameSet = new Set<String>();
         for(MDO_BrandPositions__c bps : brandPositionlst){
 
@@ -156,7 +157,7 @@ public with sharing class Amr_AdManagerController{
         listOfBrand = new List<SelectOption>();
         system.debug('========>'+brandPosName+'category name=====>'+categoryName);
 
-        listOfBrand.add(new selectOption('--None--','--None--'));
+        listOfBrand.add(new selectOption(STR_NONE,STR_NONE));
 
         //Set<String> brandlst = new Set<String>();
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
@@ -207,7 +208,7 @@ public with sharing class Amr_AdManagerController{
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Final approver of material email : must follow the standard format of an email address, e.g. txt@txt.com'));
             okayToSave =false;
         }
-        if((String.isBlank(selectedCountry)|| selectedCountry == '--None--')){
+        if((String.isBlank(selectedCountry)|| selectedCountry == STR_NONE)){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget allocated for this activity (enter all digits) : option must be selected from drop down'));
             okayToSave =false;
         }
@@ -217,16 +218,16 @@ public with sharing class Amr_AdManagerController{
             okayToSave =false;
         }
 
-        if(categoryName == '--None--'){
+        if(categoryName == STR_NONE){
             system.debug('inside category'+categoryName);
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
             okayToSave =false;
         }
-        if(brandPosName == '--None--'){
+        if(brandPosName == STR_NONE){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
             okayToSave =false;
         }
-        if(brandNameFromPage == '--None--'){
+        if(brandNameFromPage == STR_NONE){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
             okayToSave =false;
         }
@@ -315,7 +316,13 @@ public with sharing class Amr_AdManagerController{
             okayToSave =false;
         }
 
-        if(jobDetails.NewOriginalMaster__c == false && jobDetails.LanguageAdaptionMaster__c == false && jobDetails.Create_Additional_Material__c==false && jobDetails.ReworkExistingMaterial__c==false && jobDetails.BuyoutsTalent__c==false && jobDetails.BuyoutsMusic__c==false ){
+        /*
+          if(jobDetails.NewOriginalMaster__c == false && jobDetails.LanguageAdaptionMaster__c == false && jobDetails.Create_Additional_Material__c==false && jobDetails.ReworkExistingMaterial__c==false && jobDetails.BuyoutsTalent__c==false && jobDetails.BuyoutsMusic__c==false ){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : at least one option must be selected'));
+            okayToSave =false;
+        }*/
+        
+        if(!jobDetails.NewOriginalMaster__c && !jobDetails.LanguageAdaptionMaster__c  && !jobDetails.Create_Additional_Material__c && !jobDetails.ReworkExistingMaterial__c && !jobDetails.BuyoutsTalent__c && !jobDetails.BuyoutsMusic__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : at least one option must be selected'));
             okayToSave =false;
         }
@@ -650,10 +657,10 @@ public with sharing class Amr_AdManagerController{
         automaticJobAllocation(obj);
 
         jobDetails = new Amr_Job_Details__c();
-        selectedCountry ='--None--';
-        categoryName ='--None--';
-        brandPosName ='--None--';
-        brandNameFromPage ='--None--';
+        selectedCountry =STR_NONE;
+        categoryName =STR_NONE;
+        brandPosName =STR_NONE;
+        brandNameFromPage =STR_NONE;
         
        
 
