@@ -8,7 +8,6 @@
     <aura:attribute name="showsilver2" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="showgold" type="boolean" default="false"></aura:attribute>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
-   <!-- <aura:handler name="init" value="{!this}" action="{!c.removeCSS}"/>-->
     <aura:attribute name="NewBee_badge" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="Bronze_badge" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="Silver_badge" type="boolean" default="false"></aura:attribute>
@@ -32,8 +31,6 @@
 .progress_bar img  {
   
   width: 280px;
-  margin-left:5px;
-
 }
 .slds .slds-tabs--scoped {
     border: solid;
@@ -88,7 +85,6 @@ border-color:green;
 .profile_Image {
   width: 60px;
   height: 60px;
-  margin-left: 10px;
 }
         
         </style>
@@ -101,7 +97,7 @@ border-color:green;
       
   
     <div class="slds-box">
-          
+          <div class="main_image_content">
              <aura:iteration items="{!v.userDetail}" var="user">
              <div class="main_badge">
           <div class="main_badge_image">       
@@ -109,10 +105,10 @@ border-color:green;
 
                        <img aura:id="NewBeebadge" class="user_badge-New" src="{!user.userPhotoUrl}" ></img> 
                  </span>
-<aura:if isTrue="{!v.NewBee_badge}"><img style="margin-left: 5px;width: 100px;" src="/resource/EA_Badges/NewBee.svg" /></aura:if>
-<aura:if isTrue="{!v.Bronze_badge}"><img style="margin-left: 5px;width: 100px;" src="/resource/EA_Badges/Bronze.svg" /></aura:if>
-<aura:if isTrue="{!v.Silver_badge}"><img style="margin-left: 5px;width: 100px;" src="/resource/EA_Badges/Silver.svg" /></aura:if>
-<aura:if isTrue="{!v.Gold_badge}"><img 	style="margin-left: 5px;width: 100px;" src="/resource/EA_Badges/Gold.svg" /></aura:if>              
+<aura:if isTrue="{!v.NewBee_badge}"><img style="width: 100px;" src="/resource/EA_Badges/NewBee.svg" /></aura:if>
+<aura:if isTrue="{!v.Bronze_badge}"><img style="width: 100px;" src="/resource/EA_Badges/Bronze.svg" /></aura:if>
+<aura:if isTrue="{!v.Silver_badge}"><img style="width: 100px;" src="/resource/EA_Badges/Silver.svg" /></aura:if>
+<aura:if isTrue="{!v.Gold_badge}"><img 	style="width: 100px;" src="/resource/EA_Badges/Gold.svg" /></aura:if>              
                    
                  </div></div>
         </aura:iteration>     
@@ -121,32 +117,28 @@ border-color:green;
       
         <div class="progress_bar">
             <aura:if isTrue="{!v.shownewbee1}">
-                <img class="prg_image" src="/resource/EA_Badges/newbee1.svg"></img>     
+                <img src="/resource/EA_Badges/newbee1.svg"></img>     
             </aura:if>
                <aura:if isTrue="{!v.shownewbee2}">
-             <img class="prg_image" src="/resource/EA_Badges/newbee2.svg"></img>      
+             <img src="/resource/EA_Badges/newbee2.svg"></img>      
             </aura:if>
                <aura:if isTrue="{!v.showbronz1}">
-              <img class="prg_image" src="/resource/EA_Badges/bronz1.svg"></img>     
+              <img src="/resource/EA_Badges/bronz1.svg"></img>     
             </aura:if>
                <aura:if isTrue="{!v.showbronz2}">
-              <img class="prg_image" src="/resource/EA_Badges/bronz2.svg"></img>     
+              <img src="/resource/EA_Badges/bronz2.svg"></img>     
             </aura:if>
                <aura:if isTrue="{!v.showsilver1}">
-             <img class="prg_image" src="/resource/EA_Badges/silver1.svg"></img>
+             <img src="/resource/EA_Badges/silver1.svg"></img>
             </aura:if>
                <aura:if isTrue="{!v.showsilver2}">
-            <img class="prg_image" src="/resource/EA_Badges/silver2.svg"></img>
+            <img src="/resource/EA_Badges/silver2.svg"></img>
             </aura:if>
                <aura:if isTrue="{!v.showgold}">
-            <img class="prg_image" src="/resource/EA_Badges/gold1.svg"></img>
+            <img src="/resource/EA_Badges/gold1.svg"></img>
             </aura:if>
             
-        </div>
-       <!-- <ui:outputText value="{!user.userName}"/><br />
-        
-         <ui:outputText value="{!user.activity_points}"/><br /> -->
-      
+              </div></div>
      </div>
      </div>  
       <div class="actionTitle">My Actions</div>

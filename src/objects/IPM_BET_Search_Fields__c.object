@@ -31,4 +31,5 @@
         <type>Checkbox</type>
     </fields>
     <label>IPM BET Search Fields</label>
+    <visibility>Public</visibility>
 </CustomObject>

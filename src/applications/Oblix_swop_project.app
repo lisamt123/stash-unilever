@@ -8,4 +8,5 @@
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
     <tab>SWOP</tab>
+    <tab>Oblix_User_Permission__c</tab>
 </CustomApplication>

@@ -4,7 +4,7 @@ public class isll_ChatterGroupSearchControllerTest {
 	static testMethod void testIsll_ChatterGroupSearchController()
 	{
 		// Create collaboration group
-		insert isll_TestData.createChatterGroup('Test Group'+System.now());
+		insert isll_TestData.createChatterGroup('Test Group');
 
 		isll_ChatterGroupSearchController testCon = new isll_ChatterGroupSearchController();
 

@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>THis is used in IPM to store Project documents</description>
@@ -429,5 +430,6 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
         <type>Text</type>
     </nameField>
     <pluralLabel>IPM Project Documents</pluralLabel>
+    <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

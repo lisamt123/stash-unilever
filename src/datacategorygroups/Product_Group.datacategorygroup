@@ -110,6 +110,98 @@
             <label>Foods</label>
             <name>Foods</name>
         </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <label>Country Crock</label>
+                <name>Country_Crock</name>
+            </dataCategory>
+            <dataCategory>
+                <label>House of Caress</label>
+                <name>House_of_Caress</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Vaseline</label>
+                <name>Vaseline</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Good Humor</label>
+                <name>Good_Humor</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Hellmann&apos;s</label>
+                <name>Hellmann_s</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Knorr</label>
+                <name>Knorr</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Lipton Tea</label>
+                <name>Lipton_Tea</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Magnum</label>
+                <name>Magnum</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Nexxus</label>
+                <name>Nexxus</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Ponds</label>
+                <name>Ponds</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Popsicle</label>
+                <name>Popsicle</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Simple</label>
+                <name>Simple</name>
+            </dataCategory>
+            <dataCategory>
+                <label>St. Ives</label>
+                <name>St_Ives</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Suave</label>
+                <name>Suave</name>
+            </dataCategory>
+            <dataCategory>
+                <label>TRESemme</label>
+                <name>TRESemme</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Best Foods</label>
+                <name>Best_Foods</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Breyers</label>
+                <name>Breyers</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Clear</label>
+                <name>Clear</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Degree</label>
+                <name>Degree</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Dove</label>
+                <name>Dove</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Dove Men</label>
+                <name>Dove_Men</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Fruttare</label>
+                <name>Fruttare</name>
+            </dataCategory>
+            <label>Unilever</label>
+            <name>Unilever</name>
+        </dataCategory>
         <label>All Product Groups</label>
         <name>All_Product_Groups</name>
     </dataCategory>

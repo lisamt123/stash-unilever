@@ -75,6 +75,33 @@
         <template>Oblix_SOW_Email/SOW_returned_to_Marketeer_by_Agency</template>
     </alerts>
     <fieldUpdates>
+        <fullName>Approved_by_GVP</fullName>
+        <field>SOW_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Approved by GVP</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>OblixFU_UniqueName</fullName>
+        <field>Oblix_tec_Unique_Name__c</field>
+        <formula>Name</formula>
+        <name>OblixFU_UniqueName</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>OblixReturned_By_GVP</fullName>
+        <field>SOW_Status__c</field>
+        <literalValue>Draft - with Unilever</literalValue>
+        <name>Returned By GVP</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_SOW_Status_Awaiting_Agency_tbc</fullName>
         <field>SOW_Status__c</field>
         <literalValue>Pending Agency Approval</literalValue>

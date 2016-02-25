@@ -1,0 +1,23 @@
+<apex:page standardcontroller="Case" sidebar="false"  showHeader="false">
+<head>
+
+</head>
+<body onload="selectArea();resizeTo(350,200);moveTo(400,300)">
+
+<textarea id="ResponseURL" cols="50" rows="5" oncopy="copied()">
+{!Case.Social_Response_Survey_URL__c}</textarea>
+
+<p align="center" id="confirmCopy">Ctrl + c to copy</p>
+
+<script>
+function copied(){
+     document.getElementById("confirmCopy").innerHTML = "Survey text copied";
+}
+function selectArea() {
+    document.getElementById("ResponseURL").select();
+
+}
+</script>
+
+</body>
+</apex:page>

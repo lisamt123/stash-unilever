@@ -14,6 +14,10 @@
         <name>Agency_Percentage_of_Fees_to_this_FY__c</name>
     </fields>
     <fields>
+        <label><!-- Asset Deliverables --></label>
+        <name>Asset_Deliverables__c</name>
+    </fields>
+    <fields>
         <help><!-- BET first release date --></help>
         <label><!-- BET first release --></label>
         <name>BET_first_release__c</name>
@@ -68,8 +72,16 @@
         <name>Budget_Burnt_to_date__c</name>
     </fields>
     <fields>
+        <label><!-- Campaign Countries --></label>
+        <name>Campaign_Countries__c</name>
+    </fields>
+    <fields>
         <label><!-- Campaign Fees Total --></label>
         <name>Campaign_Fees_Total__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign Hub Summary --></label>
+        <name>Campaign_Hub_Summary__c</name>
     </fields>
     <fields>
         <help><!-- Strategic and creative requirement to develop a new CAMPAIGN IDEA (based on existing brand campaign idea BCI) --></help>
@@ -87,6 +99,18 @@
             <masterLabel>New – One channel</masterLabel>
             <translation><!-- New – One channel --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Campaign Points --></label>
+        <name>Campaign_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign Score --></label>
+        <name>Campaign_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign Splits Total --></label>
+        <name>Campaign_Splits_Total__c</name>
     </fields>
     <fields>
         <help><!-- Please select if this project has been started or is on hold --></help>
@@ -153,6 +177,14 @@
     <fields>
         <label><!-- Description --></label>
         <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enforce Trigger Update --></label>
+        <name>Enforce_Trigger_Update__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fees To Be Paid Next Financial Year --></label>
+        <name>Fees_To_Be_Paid_Next_Financial_Year__c</name>
     </fields>
     <fields>
         <help><!-- Enter the the date for final release --></help>
@@ -230,6 +262,10 @@
         <help><!-- Enter the Live date / Asset delivery date --></help>
         <label><!-- Live date / Asset delivery --></label>
         <name>Live_date_Asset_delivery__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Agency Hub Splits --></label>
+        <name>Number_of_Agency_Hub_Splits__c</name>
     </fields>
     <fields>
         <help><!-- Enter the number of markets the previews will appear in --></help>
@@ -341,8 +377,8 @@
         <label><!-- Campaign Scale 1: Geographic coverage --></label>
         <name>Project_Scale_1__c</name>
         <picklistValues>
-            <masterLabel>Global campaign/s suitable for  &gt;15 number of markets</masterLabel>
-            <translation><!-- Global campaign/s suitable for  &gt;15 number of markets --></translation>
+            <masterLabel>Global campaign (all market clusters)</masterLabel>
+            <translation><!-- Global campaign (all market clusters) --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Local / regional campaign, mutiple languages (5)</masterLabel>
@@ -481,6 +517,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Selected Countries --></label>
+        <name>Selected_Countries__c</name>
+    </fields>
+    <fields>
         <help><!-- Should legal review this project? --></help>
         <label><!-- Should legal review this project? --></label>
         <name>Should_legal_review_this_project__c</name>
@@ -513,6 +553,10 @@
         <name>Total_Adapt_Fees__c</name>
     </fields>
     <fields>
+        <label><!-- Total Asset Deliverables --></label>
+        <name>Total_Asset_Deliverables__c</name>
+    </fields>
+    <fields>
         <label><!-- Total Digital Fee --></label>
         <name>Total_Digital_Fee__c</name>
     </fields>
@@ -521,12 +565,20 @@
         <name>Total_Fees_for_Project__c</name>
     </fields>
     <fields>
+        <label><!-- Total Locations --></label>
+        <name>Total_Locations__c</name>
+    </fields>
+    <fields>
         <label><!-- Total Project Score --></label>
         <name>Total_Project_Score__c</name>
     </fields>
     <fields>
         <label><!-- Total Value Driver Score --></label>
         <name>Total_Value_Driver__c</name>
+    </fields>
+    <fields>
+        <label><!-- Value To BePaid Manual Override --></label>
+        <name>Value_To_BePaid_Manual_Override__c</name>
     </fields>
     <fields>
         <label><!-- Fees To Be Paid In Current FY --></label>
@@ -556,4 +608,8 @@
         </sections>
     </layouts>
     <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Total % for Agency Hub splits should add up to 100 --></errorMessage>
+        <name>Oblix_Campaign_Splits_Should_Add_To_100</name>
+    </validationRules>
 </CustomObjectTranslation>

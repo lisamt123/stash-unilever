@@ -56,7 +56,7 @@ public string Msg {get;set;}
 public string strMsg {get;set;}
 public NewsArticleFeedController(){
     
-    if( CORE_NEWS_ARTICLE__c.getInstance('MAINTENANCE_ALERT').Checkbox_Value__c == true){
+    if( CORE_NEWS_ARTICLE__c.getInstance('MAINTENANCE_ALERT').Checkbox_Value__c ){
         maintenanceMsg=true;
         strMsg = CORE_NEWS_ARTICLE__c.getInstance('MAINTENANCE_ALERT').Text_Value__c;
     }

@@ -249,12 +249,12 @@
             <translation><!-- Excluded --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Filled-in</masterLabel>
-            <translation><!-- Filled-in --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Not Started</masterLabel>
             <translation><!-- Not Started --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Started</masterLabel>
+            <translation><!-- Started --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -432,6 +432,10 @@
     <fields>
         <label><!-- IPM Status Icon --></label>
         <name>IPM_Status_Icon__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Summary Character Remaining --></label>
+        <name>IPM_Summary_Character_Remaining__c</name>
     </fields>
     <fields>
         <label><!-- IPM User Id --></label>

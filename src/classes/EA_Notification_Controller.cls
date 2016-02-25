@@ -16,45 +16,30 @@ public with sharing class EA_Notification_Controller {
               Everyday_Activity__c actObj = EA_Utils.getActivitydetails(activityId);
               String actName=actObj.name;
                // String actName=teamList.Everyday_Activity__c;
-                List<User> userList = [SELECT id, Name FROM User Where id =: userinfo.getUserID()];                   
+                List<User> userList = [SELECT id, Name FROM User Where id =: userinfo.getUserID()];                                
                 String participantName=userList[0].name;
                // string msgLabel=responseText ;
                 string msgLabel='';
                 
                 if(responseText == EA_Constants.INVITATION_STATUS_ACCEPTED){
-                     msgLabel += ' - your invitation to do ';
-                     msgLabel +='"'+actName+'"';
-                     msgLabel += ' activity has been ';
-                     msgLabel +=  System.Label.EA_Activity_Accepted;
-                     msgLabel += ' by ';
+                     msgLabel += 'Your invitation to do ';
+                     msgLabel +='"'+actName+'" ';
+                     msgLabel += ' activity has been accepted by ';                     
                      msgLabel += participantName;
                      msgLabel += '.';
                      
                 }      
                 if(responseText == EA_Constants.INVITATION_STATUS_DECLINED){
-                     msgLabel += ' your invitation to do ';
-                     msgLabel +='"'+actName+'"';
-                     msgLabel += ' activity has been ';
-                     msgLabel +=  System.Label.EA_Activity_Declined;
-                     msgLabel += ' by ';
+                     msgLabel += 'Your invitation to do ';
+                     msgLabel +='"'+actName+'" ';
+                     msgLabel += ' activity has been declined by ';                    
                      msgLabel += participantName;
                      msgLabel += '.';
                 }
 
-				String chatterSupportUserID = '';
-                
-	            if(Test.isRunningTest()){
-					 
-						User userObj = [SELECT id, Name FROM User WHERE Name =: 'Chatter Support'];
-						chatterSupportUserID = userObj.id;
-				}
-				else{
-						
-						chatterSupportUserID = EA_ReportingGA__c.getInstance('EA_System_User_ID').Text_Value__c;
-					}
-				
+								
                 if(String.isNotBlank(actName) && String.isNotBlank(participantName)&& String.isNotBlank(msgLabel)){               
-                    EA_Utils.postCommentAtUserFeed(activityId,chatterSupportUserID, teamList.Invited_By__c, msgLabel);
+                    EA_Utils.postOnChatter(teamList.Invited_By__c, msgLabel);
                     updateParticipantResponse(activityId, teamList.Participant__c, responseText);
                // }
            // }
