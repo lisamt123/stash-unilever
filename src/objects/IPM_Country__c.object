@@ -2438,6 +2438,15 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004WmA_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ALMATI REVOLUT</label>
+        <queue>IPM_a7IE00000004WmA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>

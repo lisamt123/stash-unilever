@@ -129,7 +129,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Cut downs and Tags</fullName>
+                <fullName>Cut Downs and Tags</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -173,11 +173,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Experiential - Promotional Ideas Origination</fullName>
+                <fullName>Experiential - Promotional ideas ORIGINATION</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Experiential - Promotional Ideas Adaptation</fullName>
+                <fullName>Experiential - Promotional ideas ADAPTATION</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -330,7 +330,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cut downs and Tags</fullName>
+                <fullName>Cut Downs and Tags</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -346,11 +346,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Experiential - Promotional Ideas Adaptation</fullName>
+                <fullName>Experiential - Promotional ideas ADAPTATION</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Experiential - Promotional Ideas Origination</fullName>
+                <fullName>Experiential - Promotional ideas ORIGINATION</fullName>
                 <default>false</default>
             </values>
             <values>
