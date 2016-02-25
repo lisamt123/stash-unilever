@@ -3450,8 +3450,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
+            <operation>equals</operation>
+            <value>New</value>
         </filters>
         <label>CEC North America Suave</label>
         <language>en_US</language>
@@ -3948,8 +3948,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
+            <operation>equals</operation>
+            <value>New</value>
         </filters>
         <filters>
             <field>Brand__c</field>
@@ -3971,12 +3971,31 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Mexico_Queue_Case</fullName>
-        <filterScope>Queue</filterScope>
+        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>North America</value>
+        </filters>
+        <filters>
+            <field>Country__c</field>
+            <operation>equals</operation>
+            <value>Mexico</value>
+        </filters>
+        <filters>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Mexico</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
         <label>CEC North America Mexico Queue</label>
         <language>en_US</language>
-        <queue>CEC_North_America_Mexico_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
@@ -4020,8 +4039,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
+            <operation>equals</operation>
+            <value>New</value>
         </filters>
         <label>CEC North America Other Foods</label>
         <language>en_US</language>
@@ -4053,6 +4072,34 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_Queue_GH</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>CASES.ORIGIN</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>North America</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <label>CEC North America Queue GH</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -4115,8 +4162,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
+            <operation>equals</operation>
+            <value>New</value>
         </filters>
         <filters>
             <field>Brand__c</field>
@@ -4162,8 +4209,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <filters>
             <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
+            <operation>equals</operation>
+            <value>New</value>
         </filters>
         <label>CEC North America Non Corporate Personal</label>
         <language>en_US</language>
