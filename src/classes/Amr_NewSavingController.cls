@@ -178,13 +178,19 @@ public with sharing class Amr_NewSavingController {
                 }
                 
                 if(quoteToInsert.Saving__c == null ){
+                	System.debug(savingObj.id+'===saving id assign'+quoteToInsert.Saving__c);
                     quoteToInsert.Saving__c = savingObj.id;
                 }
                 
             
                 
                 upsert quoteToInsert;
-                system.debug('quoteToInsert====>'+quoteToInsert);
+                system.debug('quoteToInsert====>'+quoteToInsert.Saving__c);
+                
+                quoteToInsert = [select Total_Cost__c,Is_Accepted__c ,Local_Currency_of_PC_Costs__c ,
+                Local_Amount_of_PC__c,PC_Costs_Euro_Amount__c,Local_Currency_of_PPC_Costs__c,Local_Amount_of_PPC__c,
+                PPC_Costs_Euro_Amount__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c,Folder__c
+                from Amr_Quote__c where Saving__c = :savingObj.id AND id = :quoteToInsert.id];
                 
                 if(quoteToInsert.Is_Accepted__c == true){
                        system.debug('inside true==>');
@@ -205,7 +211,7 @@ public with sharing class Amr_NewSavingController {
                         
                         List<Amr_Quote__c> acceptedQuotelst = [select Quote_Number__c,id,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,
                                                                       Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_Editors_name__c,
-                                                                      Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,
+                                                                      Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Folder__c,
                                                                       Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Saving_Type__c,Is_Accepted__c  from Amr_Quote__c where Is_Accepted__c = true AND Saving__c = :savingObj.id AND id = :quoteToInsert.id];
                         
                        system.debug('accepted ==>'+acceptedQuotelst);
@@ -348,6 +354,7 @@ public with sharing class Amr_NewSavingController {
     }
     
     public void test(){
+    	system.debug('here');
     }
     
      public void UpdateAcceptedQuote(){
@@ -388,18 +395,18 @@ public with sharing class Amr_NewSavingController {
     
     public PageReference AllValues(){
         
-        System.debug('Pc TIME MANAGEMENT  ->  '+ pcTimeMangCategoryValue + ' CLASSS -> ' +  pcTimeMangCategoryClass );
-        System.debug('PC COST MANAGE MENT -> '+ pcCostMangCategoryValue + ' CLASSS -> ' + pcCostMangCategoryClass );
-        System.debug(' PC PROCESS MANAGEMNT -> '+ pcProcessMangCategoryValue  + ' CLASSS -> ' + pcProcessMangCategoryClass );
-        System.debug('PC OUTPUT -> '+ pcOutputQualityCategoryValue  + ' CLASSS -> ' + pcOutputQualityCategoryClass);
-        System.debug('PPC TIME MAN --> ' +  pccTimeMangCategoryValue  + ' CLASSS -> ' + pccTimeMangCategoryClass );
-        System.debug('PPC COST -> ' + pccCostMangCategoryValue  + ' CLASSS -> ' + pccCostMangCategoryClass );
-        System.debug('PPC PROCESS MANG -> '+ pccProcessMangCategoryValue  + ' CLASSS -> ' + pccProcessMangCategoryClass);
-        System.debug('PPC OUTPUT -> ' + pccOutputQualityCategoryValue  + ' CLASSS -> ' + pccOutputQualityCategoryClass );
-        System.debug('CA TIME MANG ->'+ caTimeMangCategoryValue  + ' CLASSS -> ' + caTimeMangCategoryClass );
-        System.debug('CA COST MANG -> '+ caCostMangCategoryValue   + ' CLASSS -> ' + caCostMangCategoryClass );
-        System.debug('CA PROCESS MANG -> ' + caProcessMangCategoryValue  + ' CLASSS -> ' + caProcessMangCategoryClass);
-        System.debug('CA OUTPUR -> '+ caOutputQualityCategoryValue  + ' CLASSS -> ' + caOutputQualityCategoryClass );
+        System.debug('Pc TIME MANAGEMENT  ->  '+ pcTimeMangCategoryValue + ' CLASSS -> 1' +  pcTimeMangCategoryClass );
+        System.debug('PC COST MANAGE MENT -> '+ pcCostMangCategoryValue + ' CLASSS -> 2' + pcCostMangCategoryClass );
+        System.debug(' PC PROCESS MANAGEMNT -> '+ pcProcessMangCategoryValue  + ' CLASSS ->3 ' + pcProcessMangCategoryClass );
+        System.debug('PC OUTPUT -> '+ pcOutputQualityCategoryValue  + ' CLASSS -> 4' + pcOutputQualityCategoryClass);
+        System.debug('PPC TIME MAN --> ' +  pccTimeMangCategoryValue  + ' CLASSS ->5 ' + pccTimeMangCategoryClass );
+        System.debug('PPC COST -> ' + pccCostMangCategoryValue  + ' CLASSS -> 6' + pccCostMangCategoryClass );
+        System.debug('PPC PROCESS MANG -> '+ pccProcessMangCategoryValue  + ' CLASSS ->7 ' + pccProcessMangCategoryClass);
+        System.debug('PPC OUTPUT -> ' + pccOutputQualityCategoryValue  + ' CLASSS ->8 ' + pccOutputQualityCategoryClass );
+        System.debug('CA TIME MANG ->'+ caTimeMangCategoryValue  + ' CLASSS ->9 ' + caTimeMangCategoryClass );
+        System.debug('CA COST MANG -> '+ caCostMangCategoryValue   + ' CLASSS -> 10' + caCostMangCategoryClass );
+        System.debug('CA PROCESS MANG -> ' + caProcessMangCategoryValue  + ' CLASSS ->11 ' + caProcessMangCategoryClass);
+        System.debug('CA OUTPUR -> '+ caOutputQualityCategoryValue  + ' CLASSS -> 12' + caOutputQualityCategoryClass );
         
         if(savingObj.id != null){
             //pc appraisal

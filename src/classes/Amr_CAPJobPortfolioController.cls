@@ -32,7 +32,7 @@ global with sharing class Amr_CAPJobPortfolioController{
     public List<Amr_Job_Allocation__c>activeJobsToShow{get;set;}
     public List<WrapperClass>cancelJobsToShow{get;set;}
     public Integer totalSizeForActiveJobs =0;
-    public Integer limitSizeForActiveJobs=30;
+    public Integer limitSizeForActiveJobs=100;
     public Integer counterForActiveJobs=0;
     public Integer totalSizeForCancelJobs =0;
     public Integer limitSizeForCancelJobs=30;

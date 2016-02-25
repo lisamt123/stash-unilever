@@ -14,6 +14,7 @@ public with sharing class Amr_SavingSummaryController{
      public String categoryName{get;set;}
     public String brandPosName{get;set;}
     public String brandNameFromPage{get;set;} 
+    public static final String NONE ='--None--';
     public List<SelectOption> listOfBrandPosition{get;set;}
     public List<SelectOption> listOfBrand{get;set;}
    // public  AggregateResult[] groupedSubmissionResultCurrentMonth {get;set;}
@@ -21,10 +22,16 @@ public with sharing class Amr_SavingSummaryController{
     public  AggregateResult[] groupedSubmissionResultsPrevYear  {get;set;}
     
     public  AggregateResult[] groupedSavingResultsCurrentMonth  {get;set;}
+    
+     public  AggregateResult[] groupedSubmissionResultsYearToDate1  {get;set;}
+    public  AggregateResult[] groupedSubmissionResultsPrevYear1  {get;set;}
+    
+    public  AggregateResult[] groupedSavingResultsCurrentMonth1  {get;set;}
+    
    // public  AggregateResult[] groupedSavingResultsYearToDate  {get;set;}
   //  public  AggregateResult[] groupedSavingResultsPrevYear  {get;set;}
     
-    
+   // public  List<PieWedgeData>  pieSavingDataRap{get;set;}
     public  List<SelectOption> listOfSortOptions{get;set;}
     public String selectedSortJobsOption{get;set;}
     public Integer totalSizeForSummaryJobs =0;
@@ -53,13 +60,13 @@ public with sharing class Amr_SavingSummaryController{
             categoryString.add(mdCat.name);
         }
         listOfBrandPosition = new List<SelectOption>();
-        listOfBrandPosition.add(new selectOption('--None--','--None--'));
+        listOfBrandPosition.add(new selectOption(NONE,NONE));
            
     }
     public List<SelectOption> getSortOptions(){  
          
          listOfSortOptions = new List<SelectOption>();
-          listOfSortOptions.add(new selectOption('--None--','--None--'));
+          listOfSortOptions.add(new selectOption(NONE,NONE));
          listOfSortOptions.add(new selectOption('Job_Details__r.AdManagerText__c','ADManager Number'));
          listOfSortOptions.add(new selectOption('CreatedDate','Date Savings Submitted'));
          listOfSortOptions.add(new selectOption('No_of_Masters__c','No Of Masters'));
@@ -72,7 +79,7 @@ public with sharing class Amr_SavingSummaryController{
          listOfSortOptions.add(new selectOption('Script_Title__c','Script Title'));
          listOfSortOptions.add(new selectOption('Scope_re_brief__c','Scope Re Brief'));
          listOfSortOptions.add(new selectOption('Folder_Name__c','Folder Name'));
-         listOfSortOptions.add(new selectOption('Shoot_Location_Multiselect__c','Shoot Location'));
+        
          
          return listOfSortOptions;
      }
@@ -128,11 +135,11 @@ public with sharing class Amr_SavingSummaryController{
      }
      if(setFlag == false){
       getDashboardDataForRAP();
-      soql = 'select Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Percentage_Saving_Average_of_Quote__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById from Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId )';
+      soql = 'select Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Percentage_Saving_Accepted_Quote__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Percentage_Saving_Average_of_Quote__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =true) from Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId )';
       
      } else{
      getDashboardDataForCAP();
-      soql = 'select Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Percentage_Saving_Average_of_Quote__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c ,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById from Amr_Saving__c where CreatedDate!=null';
+      soql = 'select Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Percentage_Saving_Accepted_Quote__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Percentage_Saving_Average_of_Quote__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c ,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c = true) from Amr_Saving__c where CreatedDate!=null';
      
      }
       system.debug('soql !!'+soql);
@@ -152,7 +159,7 @@ public with sharing class Amr_SavingSummaryController{
            soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
          
            
-           system.debug('soql0'+soql);
+           system.debug('soql created date'+soql);
     }
     if (String.isNotBlank(endDate)){
     //end date creation
@@ -166,14 +173,14 @@ public with sharing class Amr_SavingSummaryController{
      
            soql += ' and createdDate ' +  ' < '+ endDateDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
            
-           system.debug('soql01'+soql);
+           system.debug('soql end date'+soql);
     }
    
     if(String.isNotBlank(savingObject.Production_Type__c)){
       
     soql += ' and Production_Type__c = \''+String.escapeSingleQuotes(savingObject.Production_Type__c)+'\'';
    
-           system.debug('soql4'+soql);
+           system.debug('soql prod type'+soql);
      }
    
       if(String.isNotBlank(String.valueOf(savingObject.No_of_Masters__c))){
@@ -181,67 +188,67 @@ public with sharing class Amr_SavingSummaryController{
     Double noOfMaster = savingObject.No_of_Masters__c;  
     soql += ' and No_of_Masters__c = :noOfMaster ';
    
-           system.debug('soql4'+soql);
+           system.debug('soql no of masters'+soql);
      }
      if(String.isNotBlank(String.valueOf(savingObject.Duration_of_Masters__c))){
       Double durationOfMasters = savingObject.Duration_of_Masters__c;
     soql += ' and Duration_of_Masters__c = :durationOfMasters ';
    
-           system.debug('soql4'+soql);
+           system.debug('soql duration of masters'+soql);
      }
       if(String.isNotBlank(String.valueOf(savingObject.No_of_Additional_Films__c))){
     
     Double noOfAdditionalFields = savingObject.No_of_Additional_Films__c;  
     soql += ' and No_of_Additional_Films__c = :noOfAdditionalFields ';
    
-           system.debug('soql4'+soql);
+           system.debug('soql no of additional films'+soql);
      }
      if(String.isNotBlank(String.valueOf(savingObject.Duration_of_Additional_Films__c))){
       
      Double durationOfAdditionalFilms = savingObject.Duration_of_Additional_Films__c;
     soql += ' and Duration_of_Additional_Films__c = :durationOfAdditionalFilms ';
    
-           system.debug('soql4'+soql);
+           system.debug('soql duration of additional films'+soql);
      }
       if(String.isNotBlank(String.valueOf(savingObject.No_of_shoot_days__c))){
     
     Double noOfShootDays= savingObject.No_of_shoot_days__c;  
     soql += ' and No_of_shoot_days__c= :noOfShootDays';
    
-           system.debug('soql4'+soql);
+           system.debug('soql no of shoot days'+soql);
      }
      
      if(String.isNotBlank(savingObject.Stage_RAP_engaged__c)){
       
     soql += ' and Stage_RAP_engaged__c= \''+String.escapeSingleQuotes(savingObject.Stage_RAP_engaged__c)+'\'';
    
-           system.debug('soql4'+soql);
+           system.debug('soql stage RAP engaged'+soql);
      }
      
      if(String.isNotBlank(savingObject.Script_Title__c)){
       
     soql += ' and Script_Title__c LIKE \''+String.escapeSingleQuotes(savingObject.Script_Title__c)+'%\'';
    
-           system.debug('soql4'+soql);
+           system.debug('soql script title'+soql);
      }
      
       if(String.isNotBlank(savingObject.Scope_re_brief__c)){
       
     soql += ' and Scope_re_brief__c= \''+String.escapeSingleQuotes(savingObject.Scope_re_brief__c)+'\'';
    
-           system.debug('soql4'+soql);
+           system.debug('soql scope rebrief'+soql);
      }
       if(String.isNotBlank(savingObject.Folder_Name__c)){
       
     soql += ' and Folder_Name__c= \''+String.escapeSingleQuotes(savingObject.Folder_Name__c)+'\'';
    
-           system.debug('soql4'+soql);
+           system.debug('soql folder name'+soql);
      }
       if(String.isNotBlank(films)){
       Double noOfFilms= double.valueOf(films);  
     soql += ' and Total_no_of_films__c =:noOfFilms';
    
-           system.debug('soql4'+soql);
+           system.debug('soql total no of films'+soql);
      }
      system.debug('soql before'+soql);
       if(selectedCountry.size()>0){
@@ -278,11 +285,10 @@ public with sharing class Amr_SavingSummaryController{
     }
     }
     catch(Exception Ex){
-    	System.debug('Exception -> '+ ex.getmessage());
         throw Ex;
     }
     
-    if(String.isNotBlank(selectedSortJobsOption) && selectedSortJobsOption!='--None--'){
+    if(String.isNotBlank(selectedSortJobsOption) && selectedSortJobsOption!=NONE){
         
          soql += ' ORDER BY '+String.escapeSingleQuotes(selectedSortJobsOption)+' ASC';
            
@@ -294,69 +300,7 @@ public with sharing class Amr_SavingSummaryController{
     paginationMethodForSummaryJobs(savingSummaryList);
      return null;
      }
-    //---------------------------------------------------------------------------------------- 
-    /* public ApexPages.StandardSetController con {
-        get {
-            if(con == null) {
-                
-                con = new ApexPages.StandardSetController(savingSummaryList);
-                // sets the number of records in each page set
-                con.setPageSize(5);
-            }
-            return con;
-        }
-        set;
-    }
-    
-     public Boolean hasNext {
-        get {
-            return con.getHasNext();
-        }
-        set;
-    }
-
-    // indicates whether there are more records before the current page set.
-    public Boolean hasPrevious {
-        get {
-            return con.getHasPrevious();
-        }
-        set;
-    }
-
-    // returns the page number of the current page set
-    public Integer pageNumber {
-        get {
-            return con.getPageNumber();
-        }
-        set;
-    }
-
-    // returns the first page of records
-     public void first() {
-         con.first();
-     }
-
-     // returns the last page of records
-     public void last() {
-         con.last();
-     }
-
-     // returns the previous page of records
-     public void previous() {
-         con.previous();
-     }
-
-     // returns the next page of records
-     public void next() {
-         con.next();
-     }
-
-     // returns the PageReference of the original page, if known, or the home page.
-     public void cancel() {
-         con.cancel();
-     }*/
-    
-       
+        
     //----------------------------------------------------------------------------------------
         public void paginationMethodForSummaryJobs(List<Amr_Saving__c> jobListToDisplay){
        summaryJobsToShow = new list<Amr_Saving__c>();
@@ -470,7 +414,7 @@ public with sharing class Amr_SavingSummaryController{
         system.debug('brandPositionListttoo----->'+brandPositionlst );
 
    //     listOfBrandPosition = new List<SelectOption>();
-     //   listOfBrandPosition.add(new selectOption('--None--','--None--'));
+     //   listOfBrandPosition.add(new selectOption(NONE,NONE));
         Set<String> brnadPosNameSet = new Set<String>();
         for(MDO_BrandPositions__c bps : brandPositionlst){
 
@@ -489,7 +433,7 @@ public with sharing class Amr_SavingSummaryController{
         listOfBrand = new List<SelectOption>();
         system.debug('========>'+brandPosName+'category name=====>'+categoryName);
 
-        listOfBrand.add(new selectOption('--None--','--None--'));
+        listOfBrand.add(new selectOption(NONE,NONE));
 
         //Set<String> brandlst = new Set<String>();
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
@@ -510,6 +454,7 @@ public with sharing class Amr_SavingSummaryController{
        public List<PieWedgeData> getPieDataRAP() 
         {  
             List<PieWedgeData> data = new List<PieWedgeData>();
+           // pieSavingDataRap = new List<PieWedgeData>();
             Date startOfMonth = Date.today().toStartOfMonth();
             Date startOfNextMonth = startOfMonth.addMonths(1);
             Date currentDay = Date.today();
@@ -520,21 +465,54 @@ public with sharing class Amr_SavingSummaryController{
      //groupedSubmissionResultCurrentMonth = [SELECT count(Id) FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
      
      
-     groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+     groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
     // groupedSavingResultsYearToDate  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
      
-     groupedSubmissionResultsPrevYear  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+     groupedSubmissionResultsPrevYear  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
      //groupedSavingResultsPrevYear  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
      
      data.add(new PieWedgeData('Current Month',Integer.valueOf(groupedSavingResultsCurrentMonth[0].get('savCurrentMonth'))));
      data.add(new PieWedgeData('YTD',Integer.valueOf(groupedSubmissionResultsYearToDate[0].get('savCurrentYearToDate'))));
      data.add(new PieWedgeData('Prev Year',Integer.valueOf(groupedSubmissionResultsPrevYear[0].get('savCurrentPrevYear'))));
      
-     
+    
      
       return data;  
     }
     
+    
+     public List<PieWedgeData> getpieSavingDataRaps() 
+        {  
+            List<PieWedgeData> data = new List<PieWedgeData>();
+            
+            Date startOfMonth = Date.today().toStartOfMonth();
+            Date startOfNextMonth = startOfMonth.addMonths(1);
+            Date currentDay = Date.today();
+            
+    
+    
+     groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+     //groupedSubmissionResultCurrentMonth = [SELECT count(Id) FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+     
+     
+     groupedSubmissionResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+    // groupedSavingResultsYearToDate  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+     
+     groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+     //groupedSavingResultsPrevYear  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+     
+     Integer aa = 0;
+     aa = Integer.valueOf(groupedSubmissionResultsPrevYear1[0].get('savCostPrevYear')) != null ? Integer.valueOf(groupedSubmissionResultsPrevYear1[0].get('savCostPrevYear')): aa;
+     
+     System.debug('*****groupedSavingResultsCurrentMonth1*****'+groupedSavingResultsCurrentMonth1[0].get('savCostmonth'));
+     data.add(new PieWedgeData('Current Month',Integer.valueOf(groupedSavingResultsCurrentMonth1[0].get('savCostmonth'))));
+     data.add(new PieWedgeData('YTD',Integer.valueOf(groupedSubmissionResultsYearToDate1[0].get('savCurrentCostYTD'))));
+     data.add(new PieWedgeData('Prev Year',aa));
+     
+     System.debug('*****data1*****'+data);
+    
+      return data;  
+    }
     
                 // Wrapper class  
          public class PieWedgeData 
@@ -548,6 +526,8 @@ public with sharing class Amr_SavingSummaryController{
            this.data = data;  
           }  
          }
+         
+           
          
         
 

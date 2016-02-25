@@ -316,80 +316,67 @@ public with sharing class Amr_AdManagerController{
             okayToSave =false;
         }
 
-        /*
-          if(jobDetails.NewOriginalMaster__c == false && jobDetails.LanguageAdaptionMaster__c == false && jobDetails.Create_Additional_Material__c==false && jobDetails.ReworkExistingMaterial__c==false && jobDetails.BuyoutsTalent__c==false && jobDetails.BuyoutsMusic__c==false ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : at least one option must be selected'));
-            okayToSave =false;
-        }*/
-        
+       
         if(!jobDetails.NewOriginalMaster__c && !jobDetails.LanguageAdaptionMaster__c  && !jobDetails.Create_Additional_Material__c && !jobDetails.ReworkExistingMaterial__c && !jobDetails.BuyoutsTalent__c && !jobDetails.BuyoutsMusic__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : at least one option must be selected'));
             okayToSave =false;
         }
         
-        if(jobDetails.NewOriginalMaster__c == true && jobDetails.NewOriginalMasterCinema__c == false && jobDetails.NewOriginalMasterTv__c==false && 
-            jobDetails.NewOriginalMasterRadio__c==false )
-            {
-             if(jobDetails.NewOriginalMasterPrint__c==false && jobDetails.NewOriginalMasterOutofHome__c==false &&
-                jobDetails.NewOriginalMasterInStore__c==false && jobDetails.NewOriginalMasterDigital__c==false && jobDetails.NewOriginalMasterInternalVideo__c==false ){
-                
+        if(jobDetails.NewOriginalMaster__c && !jobDetails.NewOriginalMasterCinema__c && !jobDetails.NewOriginalMasterTv__c && !jobDetails.NewOriginalMasterRadio__c && !jobDetails.NewOriginalMasterPrint__c && !jobDetails.NewOriginalMasterOutofHome__c &&
+                !jobDetails.NewOriginalMasterInStore__c && !jobDetails.NewOriginalMasterDigital__c && !jobDetails.NewOriginalMasterInternalVideo__c ){                
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Media Channel must be selected'));
             okayToSave =false;
         }
-      }  
+       
        //utkarsh
         
-         if(jobDetails.NewOriginalMaster__c == true && jobDetails.NewOriginalMasterOutofHome__c == true && jobDetails.NewOriginalMasterOutofHomeMovingImage__c==false && 
-            jobDetails.NewOriginalMasterOutofHomeAudio__c==false && jobDetails.NewOriginalMasterOutofHomeStillImage__c==false  ){
+         if(!jobDetails.NewOriginalMaster__c  && jobDetails.NewOriginalMasterOutofHome__c && !jobDetails.NewOriginalMasterOutofHomeMovingImage__c && 
+            !jobDetails.NewOriginalMasterOutofHomeAudio__c && !jobDetails.NewOriginalMasterOutofHomeStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Out of Home'));
             okayToSave =false; 
         }
         
         
-        if(jobDetails.NewOriginalMaster__c == true && jobDetails.NewOriginalMasterInStore__c == true && jobDetails.NewOriginalMasterInStoreMovingImage__c==false && 
-            jobDetails.NewOriginalMasterInStoreAudio__c==false && jobDetails.NewOriginalMasterInStoreStillImage__c==false  ){
+        if(jobDetails.NewOriginalMaster__c && jobDetails.NewOriginalMasterInStore__c && !jobDetails.NewOriginalMasterInStoreMovingImage__c && 
+            !jobDetails.NewOriginalMasterInStoreAudio__c && !jobDetails.NewOriginalMasterInStoreStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
         }
         
            
-        if(jobDetails.NewOriginalMaster__c == true && jobDetails.NewOriginalMasterCinema__c == false && jobDetails.NewOriginalMasterTv__c==false && 
-            jobDetails.NewOriginalMasterRadio__c==false && jobDetails.NewOriginalMasterPrint__c==false ){
-            if(jobDetails.NewOriginalMasterOutofHome__c==false &&
-                jobDetails.NewOriginalMasterInStore__c==false && jobDetails.NewOriginalMasterDigital__c==false && jobDetails.NewOriginalMasterInternalVideo__c==false ){
+        if(!jobDetails.NewOriginalMaster__c && !jobDetails.NewOriginalMasterCinema__c && !jobDetails.NewOriginalMasterTv__c && 
+            !jobDetails.NewOriginalMasterRadio__c && !jobDetails.NewOriginalMasterPrint__c && !jobDetails.NewOriginalMasterOutofHome__c &&
+                !jobDetails.NewOriginalMasterInStore__c && !jobDetails.NewOriginalMasterDigital__c && !jobDetails.NewOriginalMasterInternalVideo__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Media Channel must be selected'));
             okayToSave =false;
         }
-      }  //utkarsh  
+       
         
       
-         if(jobDetails.NewOriginalMaster__c == true && jobDetails.NewOriginalMasterOutofHome__c == true && jobDetails.NewOriginalMasterOutofHomeMovingImage__c==false && 
-            jobDetails.NewOriginalMasterOutofHomeAudio__c==false && jobDetails.NewOriginalMasterOutofHomeStillImage__c==false  ){
+         if(jobDetails.NewOriginalMaster__c && jobDetails.NewOriginalMasterOutofHome__c && !jobDetails.NewOriginalMasterOutofHomeMovingImage__c && 
+            !jobDetails.NewOriginalMasterOutofHomeAudio__c && !jobDetails.NewOriginalMasterOutofHomeStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Out of Home'));
             okayToSave =false;
         }
         
         
-        if(jobDetails.NewOriginalMaster__c == true && jobDetails.NewOriginalMasterInStore__c == true && jobDetails.NewOriginalMasterInStoreMovingImage__c==false && 
-            jobDetails.NewOriginalMasterInStoreAudio__c==false && jobDetails.NewOriginalMasterInStoreStillImage__c==false  ){
+        if(jobDetails.NewOriginalMaster__c && jobDetails.NewOriginalMasterInStore__c && !jobDetails.NewOriginalMasterInStoreMovingImage__c && 
+            !jobDetails.NewOriginalMasterInStoreAudio__c && !jobDetails.NewOriginalMasterInStoreStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
         }
         
-          if(jobDetails.NewOriginalMaster__c == true && jobDetails.NewOriginalMasterDigital__c == true && jobDetails.NewOriginalMasterDigitalMovingImage__c==false && 
-            jobDetails.NewOriginalMasterDigitalAudio__c==false && jobDetails.NewOriginalMasterDigitalStillImage__c==false  
-            && jobDetails.New_Original_Master_Digital_ED__c==false){
+          if(jobDetails.NewOriginalMaster__c && jobDetails.NewOriginalMasterDigital__c && !jobDetails.NewOriginalMasterDigitalMovingImage__c && 
+            !jobDetails.NewOriginalMasterDigitalAudio__c && !jobDetails.NewOriginalMasterDigitalStillImage__c  
+            && !jobDetails.New_Original_Master_Digital_ED__c){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
         }
         
-        if(jobDetails.NewOriginalMaster__c == false && jobDetails.LanguageAdaptionMaster__c == true && jobDetails.LanguageAdaptionMasterTv__c==false && 
-            jobDetails.LanguageAdaptionMasterCinema__c==false && jobDetails.LanguageAdaptionMasterRadio__c==false  
-            && jobDetails.LanguageAdaptionMasterPrint__c==false && 
-                jobDetails.LanguageAdaptionMasterOutofHome__c==false && 
-                jobDetails.LanguageAdaptionMasterInStore__c==false && 
-                jobDetails.LanguageAdaptionMasterDigital__c==false &&
-                jobDetails.LanguageAdaptionMasterInternalVideo__c ==false){
+        if(!jobDetails.NewOriginalMaster__c && jobDetails.LanguageAdaptionMaster__c && !jobDetails.LanguageAdaptionMasterTv__c && 
+            !jobDetails.LanguageAdaptionMasterCinema__c && !jobDetails.LanguageAdaptionMasterRadio__c && !jobDetails.LanguageAdaptionMasterPrint__c && 
+               !jobDetails.LanguageAdaptionMasterOutofHome__c && !jobDetails.LanguageAdaptionMasterInStore__c && !jobDetails.LanguageAdaptionMasterDigital__c &&
+                !jobDetails.LanguageAdaptionMasterInternalVideo__c){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected'));
             okayToSave =false;
         }
@@ -397,29 +384,29 @@ public with sharing class Amr_AdManagerController{
     
     
         
-         if(jobDetails.NewOriginalMaster__c == false && jobDetails.LanguageAdaptionMaster__c == true && jobDetails.LanguageAdaptionMasterOutofHome__c==true && 
-            jobDetails.LanguageAdaptionMasterOutofHomeAudio__c==false && 
-            jobDetails.LanguageAdaptionMasterOutHomeStillImage__c==false && 
-            jobDetails.LanguageAdaptionMasterOutHomeMovingImage__c==false 
+         if(!jobDetails.NewOriginalMaster__c && jobDetails.LanguageAdaptionMaster__c && jobDetails.LanguageAdaptionMasterOutofHome__c && 
+            !jobDetails.LanguageAdaptionMasterOutofHomeAudio__c && 
+            !jobDetails.LanguageAdaptionMasterOutHomeStillImage__c && 
+            !jobDetails.LanguageAdaptionMasterOutHomeMovingImage__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to Out of Home'));
             okayToSave =false;
         }
         
-         if(jobDetails.NewOriginalMaster__c == false && jobDetails.LanguageAdaptionMaster__c == true && jobDetails.LanguageAdaptionMasterInStore__c==true && 
-            jobDetails.LanguageAdaptionMasterInStoreAudio__c==false && 
-            jobDetails.LanguageAdaptionMasterInStoreMovingImage__c==false && 
-            jobDetails.LanguageAdaptionMasterInStoreStillImage__c==false  
+         if(!jobDetails.NewOriginalMaster__c && jobDetails.LanguageAdaptionMaster__c && jobDetails.LanguageAdaptionMasterInStore__c && 
+            !jobDetails.LanguageAdaptionMasterInStoreAudio__c && 
+            !jobDetails.LanguageAdaptionMasterInStoreMovingImage__c && 
+            !jobDetails.LanguageAdaptionMasterInStoreStillImage__c 
             
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
         }
         
-        if(jobDetails.NewOriginalMaster__c == false && jobDetails.LanguageAdaptionMaster__c == true && jobDetails.LanguageAdaptionMasterDigital__c==true && 
-            jobDetails.LanguageAdaptionMasterDigitalAudio__c==false && 
-            jobDetails.LanguageAdaptionMasterDigitalMovingImage__c==false && 
-            jobDetails.LanguageAdaptionMasterDigitalStillImage__c==false && jobDetails.Language_Adaptation_of_Master_Digital_ED__c ==false
+        if(!jobDetails.NewOriginalMaster__c && jobDetails.LanguageAdaptionMaster__c && jobDetails.LanguageAdaptionMasterDigital__c && 
+            !jobDetails.LanguageAdaptionMasterDigitalAudio__c && 
+            !jobDetails.LanguageAdaptionMasterDigitalMovingImage__c && 
+            !jobDetails.LanguageAdaptionMasterDigitalStillImage__c && !jobDetails.Language_Adaptation_of_Master_Digital_ED__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
@@ -427,53 +414,53 @@ public with sharing class Amr_AdManagerController{
         
         
         
-        if(jobDetails.NewOriginalMaster__c == false && jobDetails.Create_Additional_Material__c == true && jobDetails.AdditionalSupplementaryNewMaterialOOH__c==true && 
-            jobDetails.AdditionalSupplementaryNewMaterialOofHMI__c==false && 
-            jobDetails.AdditionalSupplementaryNewMaterialOofHSI__c==false && 
-            jobDetails.AdditionalSupplementaryNewMaterialOofHA__c==false  
+        if(!jobDetails.NewOriginalMaster__c && jobDetails.Create_Additional_Material__c && jobDetails.AdditionalSupplementaryNewMaterialOOH__c && 
+            !jobDetails.AdditionalSupplementaryNewMaterialOofHMI__c && 
+            !jobDetails.AdditionalSupplementaryNewMaterialOofHSI__c && 
+            !jobDetails.AdditionalSupplementaryNewMaterialOofHA__c  
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to Out of Home'));
             okayToSave =false;
         }
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.Create_Additional_Material__c == true && jobDetails.AdditionalSupplementaryNewMaterialStore__c==true && 
-            jobDetails.AdditionalSupplementaryNewMaterialInSMI__c==false && 
-            jobDetails.AdditionalSupplementaryNewMaterialInSA__c==false && 
-            jobDetails.AdditionalSupplementaryNewMaterialInSSI__c==false  
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.Create_Additional_Material__c && jobDetails.AdditionalSupplementaryNewMaterialStore__c && 
+            !jobDetails.AdditionalSupplementaryNewMaterialInSMI__c && 
+            !jobDetails.AdditionalSupplementaryNewMaterialInSA__c && 
+            !jobDetails.AdditionalSupplementaryNewMaterialInSSI__c  
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
         }
         
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.Create_Additional_Material__c == true && jobDetails.AdditionalSupplementaryNewMaterialDigi__c==true && 
-            jobDetails.AdditionalSupplementaryNewMaterialDigiMI__c==false && 
-            jobDetails.AdditionalSupplementaryNewMaterialDigiA__c==false && 
-            jobDetails.AdditionalSupplementaryNewMaterialDigiSI__c==false  &&
-            jobDetails.Digital_Editorial__c==false  
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.Create_Additional_Material__c && jobDetails.AdditionalSupplementaryNewMaterialDigi__c && 
+            !jobDetails.AdditionalSupplementaryNewMaterialDigiMI__c && 
+            !jobDetails.AdditionalSupplementaryNewMaterialDigiA__c && 
+            !jobDetails.AdditionalSupplementaryNewMaterialDigiSI__c  &&
+            !jobDetails.Digital_Editorial__c  
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
         }
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.Create_Additional_Material__c == true &&  
-            jobDetails.AdditionalSupplementaryNewMaterialStore__c==false && 
-            jobDetails.AdditionalSupplementaryNewMaterialDigi__c==false &&
-            jobDetails.AdditionalSupplementaryNewMaterialTv__c == false &&
-            jobDetails.AdditionalSupplementaryNewMaterialCinema__c == false &&
-            jobDetails.AdditionalSupplementaryNewMaterialRadio__c == false &&
-            jobDetails.AdditionalSupplementaryNewMaterialOOH__c == false &&
-            jobDetails.AdditionalSupplementaryNewMaterialIVideo__c== false
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.Create_Additional_Material__c &&  
+            !jobDetails.AdditionalSupplementaryNewMaterialStore__c && 
+            !jobDetails.AdditionalSupplementaryNewMaterialDigi__c &&
+            !jobDetails.AdditionalSupplementaryNewMaterialTv__c &&
+            !jobDetails.AdditionalSupplementaryNewMaterialCinema__c &&
+            !jobDetails.AdditionalSupplementaryNewMaterialRadio__c &&
+            !jobDetails.AdditionalSupplementaryNewMaterialOOH__c &&
+            !jobDetails.AdditionalSupplementaryNewMaterialIVideo__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Media Channel must be selected'));
             okayToSave =false;
         }
         
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.ReworkExistingMaterial__c == true && jobDetails.ReworkExistingMaterialOutofHome__c==true && 
-            jobDetails.ReworkExistingMaterialOutHomeMovingImage__c==false && 
-            jobDetails.ReworkExistingMaterialOutofHomeAudio__c==false && 
-            jobDetails.ReworkExistingMaterialOutHomeStillImage__c==false 
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.ReworkExistingMaterial__c && jobDetails.ReworkExistingMaterialOutofHome__c && 
+            !jobDetails.ReworkExistingMaterialOutHomeMovingImage__c && 
+            !jobDetails.ReworkExistingMaterialOutofHomeAudio__c && 
+            !jobDetails.ReworkExistingMaterialOutHomeStillImage__c 
             
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to Out of Home'));
@@ -481,29 +468,29 @@ public with sharing class Amr_AdManagerController{
         }
         
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.ReworkExistingMaterial__c == true && jobDetails.ReworkExistingMaterialInStore__c==true && 
-            jobDetails.ReworkExistingMaterialInStoreMovingImage__c==false && 
-            jobDetails.ReworkExistingMaterialInStoreAudio__c==false && 
-            jobDetails.In_Store_Still_Image__c==false  
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.ReworkExistingMaterial__c && jobDetails.ReworkExistingMaterialInStore__c && 
+            !jobDetails.ReworkExistingMaterialInStoreMovingImage__c && 
+            !jobDetails.ReworkExistingMaterialInStoreAudio__c && 
+            !jobDetails.In_Store_Still_Image__c  
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
         }
         
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.ReworkExistingMaterial__c == true && jobDetails.ReworkExistingMaterialDigital__c==true && 
-            jobDetails.ReworkExistingMaterialDigitalMovingImage__c==false && 
-            jobDetails.ReworkExistingMaterialDigitalAudio__c==false && 
-            jobDetails.ReworkExistingMaterialDigitalStillImage__c==false  &&
-            jobDetails.Rework_Exisiting_Material_Digital_ED__c==false  
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.ReworkExistingMaterial__c && jobDetails.ReworkExistingMaterialDigital__c && 
+            !jobDetails.ReworkExistingMaterialDigitalMovingImage__c && 
+            !jobDetails.ReworkExistingMaterialDigitalAudio__c && 
+            !jobDetails.ReworkExistingMaterialDigitalStillImage__c  &&
+            !jobDetails.Rework_Exisiting_Material_Digital_ED__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
         }
         
-        if(jobDetails.NewOriginalMaster__c == false && jobDetails.ReworkExistingMaterial__c == true &&            jobDetails.ReworkExistingMaterialOutofHome__c==false && 
-            jobDetails.ReworkExistingMaterialInStore__c==false && 
-            jobDetails.ReworkExistingMaterialDigital__c==false 
+        if(!jobDetails.NewOriginalMaster__c && jobDetails.ReworkExistingMaterial__c && !jobDetails.ReworkExistingMaterialOutofHome__c && 
+            !jobDetails.ReworkExistingMaterialInStore__c && 
+            !jobDetails.ReworkExistingMaterialDigital__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Media Channel must be selected'));
             okayToSave =false;
@@ -511,20 +498,20 @@ public with sharing class Amr_AdManagerController{
         
         
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.BuyoutsTalent__c == true && jobDetails.BuyoutsTalentOutofHome__c==true && 
-            jobDetails.BuyoutsTalentOutofHomeMovingImage__c==false && 
-            jobDetails.BuyoutsTalentOutofHomeAudio__c==false && 
-            jobDetails.BuyoutsTalentOutofHomeStillImage__c==false 
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.BuyoutsTalent__c && jobDetails.BuyoutsTalentOutofHome__c && 
+            !jobDetails.BuyoutsTalentOutofHomeMovingImage__c && 
+            !jobDetails.BuyoutsTalentOutofHomeAudio__c && 
+            !jobDetails.BuyoutsTalentOutofHomeStillImage__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to Out of Home'));
             okayToSave =false;
         }
         
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.BuyoutsTalent__c == true && jobDetails.BuyoutsTalentInStore__c==true && 
-            jobDetails.BuyoutsTalentInStoreMovingImage__c==false && 
-            jobDetails.BuyoutsTalentInStoreAudio__c==false && 
-            jobDetails.BuyoutsTalentInStoreStillImage__c==false 
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.BuyoutsTalent__c && jobDetails.BuyoutsTalentInStore__c && 
+            !jobDetails.BuyoutsTalentInStoreMovingImage__c && 
+            !jobDetails.BuyoutsTalentInStoreAudio__c && 
+            !jobDetails.BuyoutsTalentInStoreStillImage__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to In Store' ));
             okayToSave =false;
@@ -532,19 +519,19 @@ public with sharing class Amr_AdManagerController{
         
         
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.BuyoutsTalent__c == true && jobDetails.BuyoutsTalentDigital__c==true && 
-            jobDetails.BuyoutsTalentDigitalMovingImage__c==false && 
-            jobDetails.BuyoutsTalentDigitalAudio__c==false && 
-            jobDetails.BuyoutsTalentDigitalStillImage__c==false  &&
-            jobDetails.Buyouts_Talent_Digital_ED__c==false  
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.BuyoutsTalent__c && jobDetails.BuyoutsTalentDigital__c && 
+            !jobDetails.BuyoutsTalentDigitalMovingImage__c && 
+            !jobDetails.BuyoutsTalentDigitalAudio__c && 
+            !jobDetails.BuyoutsTalentDigitalStillImage__c  &&
+            !jobDetails.Buyouts_Talent_Digital_ED__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
         }
         
-          if(jobDetails.NewOriginalMaster__c == false && jobDetails.BuyoutsTalent__c == true &&               jobDetails.BuyoutsTalentOutofHome__c==false && 
-            jobDetails.BuyoutsTalentInStore__c==false && 
-            jobDetails.BuyoutsTalentDigital__c==false 
+          if(!jobDetails.NewOriginalMaster__c && jobDetails.BuyoutsTalent__c && !jobDetails.BuyoutsTalentOutofHome__c && 
+            !jobDetails.BuyoutsTalentInStore__c && 
+            !jobDetails.BuyoutsTalentDigital__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Media Channel must be selected'));
             okayToSave =false;
@@ -553,32 +540,32 @@ public with sharing class Amr_AdManagerController{
         
         
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.BuyoutsMusic__c == true && jobDetails.BuyoutsMusicOutofHome__c==true && 
-            jobDetails.BuyoutsMusicOutofHomeMovingImage__c==false && 
-            jobDetails.BuyoutsMusicOutofHomeAudio__c==false && 
-            jobDetails.BuyoutsMusicOutofHomeStillImage__c==false 
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.BuyoutsMusic__c && jobDetails.BuyoutsMusicOutofHome__c && 
+            !jobDetails.BuyoutsMusicOutofHomeMovingImage__c && 
+            !jobDetails.BuyoutsMusicOutofHomeAudio__c && 
+            !jobDetails.BuyoutsMusicOutofHomeStillImage__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to Out of Home'));
             okayToSave =false;
         }
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.BuyoutsMusic__c == true && jobDetails.BuyoutsMusicInStore__c==false && 
-            jobDetails.BuyoutsMusicDigital__c==false && 
-            jobDetails.BuyoutsMusicTv__c == false &&
-            jobDetails.BuyoutsMusicCinema__c == false &&
-            jobDetails.BuyoutsMusicRadio__c == false &&
-            jobDetails.BuyoutsMusicInternalVideo__c == false &&
-            jobDetails.BuyoutsMusicOutofHome__c == false
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.BuyoutsMusic__c && !jobDetails.BuyoutsMusicInStore__c && 
+            !jobDetails.BuyoutsMusicDigital__c && 
+            !jobDetails.BuyoutsMusicTv__c &&
+            !jobDetails.BuyoutsMusicCinema__c &&
+            !jobDetails.BuyoutsMusicRadio__c  &&
+            !jobDetails.BuyoutsMusicInternalVideo__c &&
+            !jobDetails.BuyoutsMusicOutofHome__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Media Channel must be selected'));
             okayToSave =false;
         }
         
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.BuyoutsMusic__c == true && jobDetails.BuyoutsMusicInStore__c==true && 
-            jobDetails.BuyoutsMusicInStoreMovingImage__c==false && 
-            jobDetails.BuyoutsMusicInStoreAudio__c==false && 
-            jobDetails.BuyoutsMusicInStoreStillImage__c==false 
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.BuyoutsMusic__c && jobDetails.BuyoutsMusicInStore__c && 
+            !jobDetails.BuyoutsMusicInStoreMovingImage__c && 
+            !jobDetails.BuyoutsMusicInStoreAudio__c && 
+            !jobDetails.BuyoutsMusicInStoreStillImage__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
@@ -586,29 +573,16 @@ public with sharing class Amr_AdManagerController{
         
         
         
-            if(jobDetails.NewOriginalMaster__c == false && jobDetails.BuyoutsMusic__c == true && jobDetails.BuyoutsMusicDigital__c==true && 
-            jobDetails.BuyoutsMusicDigitalMovingImage__c==false && 
-            jobDetails.BuyoutsMusicDigitalAudio__c==false && 
-            jobDetails.BuyoutsMusicDigitalStillImage__c==false  &&
-            jobDetails.Buyouts_Music_Digital_ED__c==false  
+            if(!jobDetails.NewOriginalMaster__c && jobDetails.BuyoutsMusic__c && jobDetails.BuyoutsMusicDigital__c && 
+            !jobDetails.BuyoutsMusicDigitalMovingImage__c && 
+            !jobDetails.BuyoutsMusicDigitalAudio__c && 
+            !jobDetails.BuyoutsMusicDigitalStillImage__c  &&
+            !jobDetails.Buyouts_Music_Digital_ED__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
         }
-        
-
-       
-        
-
-
-        
-    
-        
-        
-        
-        
-
-       
+     
 
         if( !okayToSave ) {
             return null;

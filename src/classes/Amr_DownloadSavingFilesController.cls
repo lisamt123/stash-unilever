@@ -2,6 +2,7 @@ public with sharing class Amr_DownloadSavingFilesController {
     public Amr_Saving__c savingObj{get;set;}
     public String folderselected{get;set;}
     public String folerName{get;set;}
+    public String adManagerNumber{get;set;}
     
     public List<FeedItem> DisplayList{
         get{
@@ -26,6 +27,22 @@ public with sharing class Amr_DownloadSavingFilesController {
          string userId = userinfo.getuserid();
          List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name = :Label.Amr_CAP order by Assignee.name];
          boolean flag = false;
+         
+        Boolean flagNum = false;
+        List<Amr_Saving__c> savObjList = [select Id from Amr_Saving__c];
+        for(Amr_Saving__c obj:savObjList){
+        	if(SavingObjId == obj.Id){
+        		flagNum = true;
+        	}
+        }
+        if(flagNum == true){
+        Amr_Saving__c savObjNum = [select Job_Details__r.AdManagerText__c from Amr_Saving__c where Id =:SavingObjId limit 1];
+        adManagerNumber = savObjNum.Job_Details__r.AdManagerText__c;
+        }else{
+        Amr_Quote__c quoteObjNum =[select Saving__r.Job_Details__r.AdManagerText__c from Amr_Quote__c where Id =:SavingObjId limit 1];
+        adManagerNumber = quoteObjNum.Saving__r.Job_Details__r.AdManagerText__c;
+        }    
+        system.debug('adManagerNumber!!'+adManagerNumber);
         // boolean flagUser = false;
          for(PermissionSetAssignment permissionObj:PermissionSetAssignmentList){
              if(userId == permissionObj.Assignee.id){

@@ -2,8 +2,10 @@ public with sharing class Amr_RAPJobPortfolioController{
     
         public List<Amr_Alert__c> alert  {get; set;}
         public Amr_Job_Details__c jobDetails {get;set;}
+        public Amr_Job_Allocation__c advSearchjobDet {get;set;}
         public Amr_Job_Allocation__c jobAlloc {get;set;}
         public list<Amr_Job_Allocation__c> jobDetailList{get;set;} 
+        public String testNumber{get;set;}
         public String projLeaderCluster{get;set; }
         public String projLeaderCountry{get;set; }
         public String agencyName{get;set;}
@@ -35,7 +37,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         public Integer limitSizeForPriorityJobs = 100;//Number of records to be displayed
         public Integer totalSizeForPriorityJobs =0; //To Store the total number of records available
         public Integer counterForPendingJobs = 0;
-        public Integer limitSizeForPendingJobs = 40;        
+        public Integer limitSizeForPendingJobs = 100;        
         public Integer totalSizeForPendingJobs =0;
         public Integer counterForDormantJobs = 0;
         public Integer limitSizeForDormantJobs = 100;
@@ -44,10 +46,10 @@ public with sharing class Amr_RAPJobPortfolioController{
         public Integer limitSizeForLiveJobs = 100;
         public Integer totalSizeForLiveJobs =0;
         public Integer TotalJobs {get; set;}
-        public Integer TotalPendingJobs {get; set;}
-        public Integer TotalLiveJobs {get; set;}
-        public Integer TotalPriorityJobs {get; set;}
-        public Integer TotalDormantJobs  {get; set;}
+        public Integer TotalOpenJobs {get; set;}
+        public Integer TotalJobsAccepted {get; set;}
+        public Integer TotalJobstoAccept {get; set;}
+        public Integer TotalClosedJob  {get; set;}
         public Integer TotalSavingsJobs  {get; set;}
          public Integer totalAlertCount  {get; set;}
         
@@ -57,7 +59,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         public list<Amr_Job_Allocation__c>liveJobsToShow{get;set;}
         
         public List<Amr_Job_Allocation__c> lstLiveJobsNew {get;set;}
-        public List<Amr_Job_Allocation__c> lstPendingJobsNew {get;set;}
+        public  List<Amr_Job_Allocation__c> lstPendingJobsNew {get;set;}
         public List<Amr_Job_Allocation__c> lstpriorityJobsNew {get;set;}
         public List<Amr_Job_Allocation__c> lstDormantJobsNew {get;set;}
            
@@ -99,6 +101,7 @@ public with sharing class Amr_RAPJobPortfolioController{
           try{
             loggedInUserId = UserInfo.getUserId();
             jobDetails  = new Amr_Job_Details__c();
+            advSearchjobDet = new Amr_Job_Allocation__c();
             jobAlloc = new Amr_Job_Allocation__c();
             alertList = new List<Amr_Alert__c>();
             alertListForUnhide= new List<Amr_Alert__c>();
@@ -141,14 +144,15 @@ public with sharing class Amr_RAPJobPortfolioController{
        
        
        
-        public decimal dormant  {get;set;}
-        public decimal Live {get;set;}
-        public decimal pending {get;set;}
-        public decimal Priority {get;set;}
+        public Integer closedJob  {get;set;}
+        public Integer openJobs {get;set;}
+        public Integer totalJobAccepted {get;set;}
+        public Integer jobtoAccept {get;set;}
         
         
         public decimal savingSubmitted {get;set;}
         public decimal savingSubmittedMonth {get;set;}
+         public decimal savingSubmittedAll {get;set;}
         transient set<id> jobDetailsId = new set<id> ();
             
       
@@ -159,12 +163,12 @@ public with sharing class Amr_RAPJobPortfolioController{
         public void getTotalJobs() {
             try{
             
-            decimal totalJobAccepted  = 0;
-         decimal openJobs  = 0;
-        decimal closedJob  = 0;
-        decimal jobtoAccept  = 0;
+             totalJobAccepted  = 0;
+         openJobs  = 0;
+        closedJob  = 0;
+         jobtoAccept  = 0;
         
-            TotalJobs = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null];
+            TotalJobs = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'];
             
              for(Amr_Job_Allocation__c objJobAlloction : [SELECT AM_Job_Detail__c FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null]){
                 
@@ -174,23 +178,23 @@ public with sharing class Amr_RAPJobPortfolioController{
             
                 if(TotalJobs != 0){
                     Decimal totalJobsNew = 0;
-                    /*TotalPendingJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId) AND (AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Priority OR AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Live) AND  Job_Status__c != 'Cancelled'];
-                    pending = (TotalPendingJobs * 100)/TotalJobs;
+                    /*TotalOpenJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId) AND (AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Priority OR AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Live) AND  Job_Status__c != 'Cancelled'];
+                    pending = (TotalOpenJobs * 100)/TotalJobs;
                     
                     
-                    TotalLiveJobs     = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Live AND  Job_Status__c != 'Cancelled' ];
-                    Live = (TotalLiveJobs * 100)/TotalJobs;
+                    TotalJobsAccepted     = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Live AND  Job_Status__c != 'Cancelled' ];
+                    Live = (TotalJobsAccepted * 100)/TotalJobs;
                   
                     
-                    TotalPriorityJobs = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Priority AND  Job_Status__c != 'Cancelled'];
-                    Priority = (TotalPriorityJobs * 100)/TotalJobs;
+                    TotalJobstoAccept = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Priority AND  Job_Status__c != 'Cancelled'];
+                    Priority = (TotalJobstoAccept * 100)/TotalJobs;
                     
-                    TotalPendingJobs = 0;
-                    TotalPendingJobs = TotalLiveJobs + TotalPriorityJobs;
-                     pending = (TotalPendingJobs * 100)/TotalJobs;
+                    TotalOpenJobs = 0;
+                    TotalOpenJobs = TotalJobsAccepted + TotalJobstoAccept;
+                     pending = (TotalOpenJobs * 100)/TotalJobs;
                      
-                    TotalDormantJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Dormant AND  Job_Status__c != 'Cancelled'];
-                    dormant = (TotalDormantJobs * 100)/TotalJobs;
+                    TotalClosedJob  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Dormant AND  Job_Status__c != 'Cancelled'];
+                    dormant = (TotalClosedJob * 100)/TotalJobs;
                    
                     totalJobsNew = pending + Live+ dormant + Priority;
                     system.debug('****pending***'+pending);
@@ -208,29 +212,29 @@ public with sharing class Amr_RAPJobPortfolioController{
                     
                     //New Dashboard 
                     
-                      totalJobAccepted  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Accepted'];
-                    openJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Accepted'  and Started__c = 'Yes'];
-                    closedJob  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and AM_Job_Detail__r.Job_Status__c = 'Dormant'];
-                    jobtoAccept  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and ( Job_Status__c != 'Accepted' or Job_Status__c != 'Cancelled')];
+                      totalJobAccepted  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Accepted' and AM_Job_Detail__r.Job_Status__c != 'Dormant' and AM_Job_Detail__r.Job_Cancelled__c = false];
+                    openJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Accepted'  and Started__c = 'Yes'  and AM_Job_Detail__r.Job_Status__c != 'Dormant' and AM_Job_Detail__r.Job_Cancelled__c = false ];
+                    closedJob  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and AM_Job_Detail__r.Job_Status__c = 'Dormant' and AM_Job_Detail__r.Job_Cancelled__c = false];
+                    jobtoAccept  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and ( Job_Status__c != 'Accepted' or Job_Status__c != 'Cancelled' ) and AM_Job_Detail__r.Job_Status__c != 'Dormant' and AM_Job_Detail__r.Job_Cancelled__c = false ];
                     
-                    TotalDormantJobs = Integer.valueOf( closedJob);
-                    TotalPendingJobs = Integer.valueOf(openJobs);
-                    TotalLiveJobs = Integer.valueOf(totalJobAccepted);
-                    TotalPriorityJobs = Integer.valueOf(jobtoAccept);
+                    TotalClosedJob = Integer.valueOf( closedJob);
+                    TotalOpenJobs = Integer.valueOf(openJobs);
+                    TotalJobsAccepted = Integer.valueOf(totalJobAccepted);
+                    TotalJobstoAccept = Integer.valueOf(jobtoAccept);
                     
-                    pending = (totalJobAccepted * 100)/TotalJobs;
-                    Live = (openJobs * 100)/TotalJobs;
-                    dormant = (closedJob * 100)/TotalJobs;
-                    Priority = (jobtoAccept * 100)/TotalJobs;
+                    totalJobAccepted = (totalJobAccepted * 100)/TotalJobs;
+                    openJobs = (openJobs * 100)/TotalJobs;
+                    closedJob = (closedJob * 100)/TotalJobs;
+                    jobtoAccept = (jobtoAccept * 100)/TotalJobs;
                     
-                     totalJobsNew = pending + Live+ dormant + Priority;
+                    totalJobsNew = totalJobAccepted + openJobs+ closedJob + jobtoAccept;
                      
-                    pending = (pending * 100)/totalJobsNew;
+                    totalJobAccepted = Integer.valueOf((totalJobAccepted * 100)/totalJobsNew);
                     
-                    Live = (Live * 100)/totalJobsNew;
-                    dormant = (dormant * 100)/totalJobsNew;
+                    openJobs = Integer.valueOf((openJobs * 100)/totalJobsNew);
+                    closedJob = Integer.valueOf((closedJob * 100)/totalJobsNew);
                     
-                    Priority = (Priority * 100)/totalJobsNew;
+                    jobtoAccept = Integer.valueOf((jobtoAccept * 100)/totalJobsNew);
                     AggregateResult[] groupedResults
                                                      = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId];
                     Object avgAmount = groupedResults[0].get('averQuote');
@@ -291,9 +295,16 @@ public with sharing class Amr_RAPJobPortfolioController{
                     savingSubmitted = Decimal.valueOf(String.valueOf(groupedResults[0].get('averQuote')));
                     savingSubmittedMonth = Decimal.valueOf(String.valueOf(groupedResults[0].get('acceptQuote')));
                     }
-                    
+             
+              AggregateResult[] groupedResultsAll = [SELECT Sum(Euro_Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c ];
+              savingSubmittedAll = 0;
+              if(groupedResultsAll[0].get('averQuote') != null &&  groupedResultsAll[0].get('acceptQuote') != null){
+                    savingSubmittedAll = Decimal.valueOf(String.valueOf(groupedResultsAll[0].get('averQuote')));
+              }
             data.add(new PieWedgeData('Total Saving Submitted(Euro)',Integer.valueOf(savingSubmitted)));
-            //data.add(new PieWedgeData('Total Saving -  Month',Integer.valueOf(savingSubmittedMonth)));
+             
+            //data.add(new PieWedgeData('Your YTD total savings',Integer.valueOf(savingSubmitted)));
+           //data.add(new PieWedgeData('Global Team ',Integer.valueOf(savingSubmittedAll)));
               
             return data;  
         }  
@@ -754,6 +765,102 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
        
        }
        
+       public PageReference getAdvancedSearchDetail(){
+       
+         projLeaderCluster = jobDetails.Project_Leader_Cluster__c;
+        projLeaderCountry = jobDetails.Project_Leader_Country__c;
+        agencyName = jobDetails.Lead_Creative_Agency_name__c;
+        stageLogged = jobDetails.Stage_of_Production_Activity__c;
+        jobStared = jobDetails.Job_Started__c;
+        jobReported = jobDetails.Job_Reported__c;
+        jobShared = jobDetails.Job_Shared__c;
+        jobAccepted = jobDetails.Job_Accepted__c;
+        addNumber = jobDetails.AdManagerText__c;
+        projEmail = jobDetails.Unilever_Project_Leader_Email__c;
+        projectName = jobDetails.Project_Details__c;
+        
+          System.debug('IN MENSTHOD');
+  
+  //    try{
+  system.debug('*****ADMANAGER NU string  ******  '+ addNumber );
+      system.debug('*****ADMANAGER NU ******  '+ jobDetails.AdManagerText__c);
+      
+       string advSoql ='select AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c ,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__c,AM_Job_Detail__r.Brand_Position__c,AM_Job_Detail__r.Brand_Final__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where Name!=null and AM_Job_Detail__r.Job_Cancelled__c = false';
+       
+       if (String.isNotBlank(addNumber)){
+         
+               advSoql += ' and AM_Job_Detail__r.AdManagerText__c = \''+String.escapeSingleQuotes(addNumber)+'\'';
+              
+        }
+         jobDetailList = Database.query(advSoql );
+        system.debug('*****soql ******'+advSoql );
+         system.debug('*** My List values ' + jobDetailList);
+         /*
+        if (String.isNotBlank(jobDetails.Project_Leader_Cluster__c)){
+         
+               advSoql += ' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(projLeaderCluster)+'\'';
+              
+        } */  /*ut
+        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Unilever_Project_Leader_Email__c)){
+         
+               advSoql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c = \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Unilever_Project_Leader_Email__c)+'\'';
+              
+        }
+        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.ProductCategory__r.Name)){
+         
+               advSoql += ' and AM_Job_Detail__r.ProductCategory__r.Name = \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.ProductCategory__r.Name)+'\'';
+              
+        }
+        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Brand_Final__r.Name)){
+         
+               advSoql += ' and AM_Job_Detail__r.Brand_Final__r.Name= \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Brand_Final__r.Name)+'\'';
+              
+        }
+        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Project_Details__r.Name)){
+         
+               advSoql += ' and AM_Job_Detail__r.Project_Details__r.Name= \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Project_Details__r.Name)+'\'';
+              
+        }
+        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Lead_Creative_Agency_name__c)){
+         
+               advSoql += ' and AM_Job_Detail__r.Lead_Creative_Agency_name__c= \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Lead_Creative_Agency_name__c)+'\'';
+              
+        } /*
+        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Allocated_Budget_euro__c)){
+         
+               advSoql += ' and AM_Job_Detail__r.Allocated_Budget_euro__c = \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Allocated_Budget_euro__c)+'\'';
+              
+        } */  /* ut
+        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Production_Activity_Type__c)){
+         
+               advSoql += ' and AM_Job_Detail__r.Production_Activity_Type__c = \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Production_Activity_Type__c)+'\'';
+              
+        }
+        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Campaign_Name__c)){
+         
+               advSoql += ' and AM_Job_Detail__r.Campaign_Name__c = \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Campaign_Name__c)+'\'';
+              
+        }
+        
+       jobDetailList = Database.query(advSoql );
+         
+         system.debug('*****soql ******'+advSoql );
+         system.debug('*** My List values ' + jobDetailList);
+        
+            getPriorityJobs();
+            getPendingJobs();
+            getDormantJobs();
+            getLiveJobs();
+        }
+        catch(exception ex){
+            
+                system.debug('ex---'+ex.getmessage());
+                return null;
+       }    
+       */
+       return null;
+       } 
+       
        public Void getPriorityJobs(){
            List<Amr_Job_Allocation__c> priorityJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>priorityJobIds = new Set<Id>();
@@ -792,13 +899,13 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
            List<Amr_Job_Allocation__c> pendingJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>pendingJobIds = new Set<Id>();
            for(Amr_Job_Allocation__c jobId:jobDetailList){
-               if(jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Priority || jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Live){
+               if( (jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Priority || jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Live) && jobId.Job_Status__c != 'Accepted' && jobId.Job_Status__c != 'Cancelled'){
                    pendingJobIds.add(jobId.AM_Job_Detail__r.Id);
                }
            }
          // String accepted = 'Accepted';
          // String cancelled = 'Cancelled';
-          String pendingSoql ='select AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:pendingJobIds  and ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) ' ;
+          String pendingSoql ='select AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:pendingJobIds  and ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) and ( Job_Status__c != \'Accepted\' or Job_Status__c != \'Cancelled \')' ;
           
           system.debug('pendingSoql !!!'+pendingSoql );
           if(String.isNotBlank(selectedSortPendingOption) && selectedSortPendingOption !=NONE){
@@ -817,6 +924,127 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
             getPendingJobs();
             return null;
         }
+        
+              //pagination for pending jobs starts here
+       public void paginationMethodForPendingJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
+           pendingJobsToShow = new list<Amr_Job_Allocation__c>();
+           lstPendingJobsNew = new List<Amr_Job_Allocation__c>();
+           totalSizeForPendingJobs = jobListToDisplay.size();
+           if(limitSizeForPendingJobs < totalSizeForPendingJobs){
+           showPageButtonForPending = true;
+           }else{
+           showPageButtonForPending = false;
+           }
+                 
+            if(!jobListToDisplay.isEmpty()){
+              List<Amr_Job_Allocation__c> lstPending = new List<Amr_Job_Allocation__c>();
+              lstPending = jobListToDisplay;
+              pendingJobsToShow = new List<Amr_Job_Allocation__c>();
+              removeduplicatePending(lstPending);
+              lstPendingJobsNew= pendingJobsToShow;
+              totalSizeForPendingJobs = pendingJobsToShow.size();
+            }
+            pendingJobsToShow = new List<Amr_Job_Allocation__c>();
+            
+              //Intial adding
+            //check the total records are more than limitSizeForPriorityJobs and assign the records
+            if((counterForPendingJobs+limitSizeForPendingJobs) <= totalSizeForPendingJobs){
+                for(Integer i=0;i<limitSizeForPendingJobs;i++){
+                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
+                }
+            }else{
+                for(Integer i=0;i<totalSizeForPendingJobs;i++){
+                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
+                }
+            }
+                system.debug('pendingJobsToShow!!'+pendingJobsToShow.size()+'lstPendingJobsNew!!'+lstPendingJobsNew.size());
+          }
+            
+        public void beginningForPendingJobs(){
+            
+          
+            pendingJobsToShow.clear();
+        
+            counterForPendingJobs=0;
+            if((counterForPendingJobs + limitSizeForPendingJobs) <= totalSizeForPendingJobs){
+                for(Integer i=0;i<limitSizeForPendingJobs;i++){
+                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
+                }   
+            }else{
+                for(Integer i=0;i<totalSizeForPendingJobs;i++){
+                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
+                }       
+            }
+        }
+       
+        public void nextForPendingJobs(){
+          /*
+              List<Amr_Job_Allocation__c> lstPending = new List<Amr_Job_Allocation__c>();
+             String pendingSoql ='select AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) and ( Job_Status__c != \'Accepted\' or Job_Status__c != \'Cancelled \')' ;
+            lstPending =  Database.query(pendingSoql);
+             removeduplicatePending(lstPending);
+              lstPendingJobsNew = pendingJobsToShow;*/
+              pendingJobsToShow = new List<Amr_Job_Allocation__c>();
+            //pendingJobsToShow.clear();
+              system.debug('lstPendingJobsNew22222'+lstPendingJobsNew.size()+'pendingJobsToShow2222'+pendingJobsToShow.size());
+             counterForPendingJobs = counterForPendingJobs+limitSizeForPendingJobs;
+             system.debug('counterForPendingJobs'+counterForPendingJobs+'limitSizeForPendingJobs'+limitSizeForPendingJobs);
+            if((counterForPendingJobs+limitSizeForPendingJobs) <= totalSizeForPendingJobs){
+                system.debug('counterForPendingJobs'+counterForPendingJobs);
+                system.debug('limitSizeForPendingJobs'+limitSizeForPendingJobs);
+                
+                system.debug('totalSizeForPendingJobs'+totalSizeForPendingJobs);
+                
+                for(Integer i=counterForPendingJobs;i<(counterForPendingJobs+limitSizeForPendingJobs);i++){
+                    system.debug('pendingJobsToShow11111'+pendingJobsToShow.size());
+                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
+                    system.debug('pendingJobsToShow2222'+pendingJobsToShow.size());
+                    
+                }
+            } else{
+                for(Integer i=counterForPendingJobs;i<totalSizeForPendingJobs;i++){
+                system.debug('pendingJobsToShow3333'+pendingJobsToShow.size());
+                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
+                    system.debug('pendingJobsToShow4444'+pendingJobsToShow.size());
+                }
+            }
+        }
+       
+        public void previousForPendingJobs(){
+          
+            pendingJobsToShow.clear();
+            counterForPendingJobs=counterForPendingJobs-limitSizeForPendingJobs;       
+                for(Integer i=counterForPendingJobs;i<(counterForPendingJobs+limitSizeForPendingJobs); i++){
+                pendingJobsToShow.add(lstPendingJobsNew.get(i));
+            }
+        }
+    
+        public void lastForPendingJobs (){
+            pendingJobsToShow.clear();
+            if(math.mod(totalSizeForPendingJobs , limitSizeForPendingJobs) == 0){
+                counterForPendingJobs = limitSizeForPendingJobs * ((totalSizeForPendingJobs/limitSizeForPendingJobs)-1);
+            } else if (math.mod(totalSizeForPendingJobs , limitSizeForPriorityJobs) != 0){
+                counterForPendingJobs = limitSizeForPendingJobs * ((totalSizeForPendingJobs/limitSizeForPendingJobs));
+            }
+            for(Integer i=counterForPendingJobs-1;i<totalSizeForPendingJobs-1;i++){
+                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
+            }
+          }
+       
+        public Boolean getDisableNextForPendingJobs(){
+            if((counterForPendingJobs + limitSizeForPendingJobs) >= totalSizeForPendingJobs )
+                return true ;
+            else
+                return false ;
+        }
+       
+        public Boolean getDisablePreviousForPendingJobs(){
+            if(counterForPendingJobs == 0)
+                return true ;
+            else
+                return false ;
+        } 
+       
        
        public void getDormantJobs(){
            List<Amr_Job_Allocation__c> dormantJobList = new List<Amr_Job_Allocation__c>();
@@ -826,7 +1054,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                    dormantJobIds.add(jobId.AM_Job_Detail__r.Id);
                }
            }
-           String dormantSoql ='select AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:dormantJobIds  and ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) ';
+           String dormantSoql ='select AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:dormantJobIds  and AM_Job_Detail__r.Job_Cancelled__c = false and ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) ';
            system.debug('dormantSoql!!!'+dormantSoql);
           
           if(String.isNotBlank(selectedSortDormantOption) && selectedSortDormantOption !=NONE){
@@ -978,107 +1206,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
         //pagination for priority jobs ends here
         
         
-           //pagination for pending jobs starts here
-       public void paginationMethodForPendingJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
-           pendingJobsToShow = new list<Amr_Job_Allocation__c>();
-           lstPendingJobsNew = new List<Amr_Job_Allocation__c>();
-           totalSizeForPendingJobs = jobListToDisplay.size();
-           if(limitSizeForPendingJobs < totalSizeForPendingJobs){
-           showPageButtonForPending = true;
-           }else{
-           showPageButtonForPending = false;
-           }
-                 
-            if(!jobListToDisplay.isEmpty()){
-              List<Amr_Job_Allocation__c> lstPending = new List<Amr_Job_Allocation__c>();
-              lstPending = jobListToDisplay;
-              pendingJobsToShow = new List<Amr_Job_Allocation__c>();
-              removeduplicatePending(lstPending);
-              lstPendingJobsNew= pendingJobsToShow;
-              totalSizeForPendingJobs = pendingJobsToShow.size();
-            }
-            pendingJobsToShow = new List<Amr_Job_Allocation__c>();
-            
-              //Intial adding
-            //check the total records are more than limitSizeForPriorityJobs and assign the records
-            if((counterForPendingJobs+limitSizeForPendingJobs) <= totalSizeForPendingJobs){
-                for(Integer i=0;i<limitSizeForPendingJobs;i++){
-                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
-                }
-            }else{
-                for(Integer i=0;i<totalSizeForPendingJobs;i++){
-                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
-                }
-            }
-             
-          }
-            
-        public void beginningForPendingJobs(){
-            
-            system.debug('limitSizeForPendingJobs!!'+limitSizeForPendingJobs+'totalSizeForPendingJobs!!'+totalSizeForPendingJobs);
-            pendingJobsToShow.clear();
-            counterForPendingJobs=0;
-            if((counterForPendingJobs + limitSizeForPendingJobs) <= totalSizeForPendingJobs){
-                for(Integer i=0;i<limitSizeForPendingJobs;i++){
-                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
-                }   
-            }else{
-                for(Integer i=0;i<totalSizeForPendingJobs;i++){
-                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
-                }       
-            }
-        }
-       
-        public void nextForPendingJobs(){
-            //lstPendingJobsNew = new List<Amr_Job_Allocation__c>();
-            //lstPendingJobsNew= pendingJobsToShow;
-            pendingJobsToShow.clear();
-            counterForPendingJobs = counterForPendingJobs+limitSizeForPendingJobs;
-            if((counterForPendingJobs+limitSizeForPendingJobs) <= totalSizeForPendingJobs){
-                for(Integer i=counterForPendingJobs;i<(counterForPendingJobs+limitSizeForPendingJobs);i++){
-                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
-                }
-            } else{
-                for(Integer i=counterForPendingJobs;i<totalSizeForPendingJobs;i++){
-                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
-                }
-            }
-        }
-       
-        public void previousForPendingJobs(){
-            pendingJobsToShow.clear();
-            counterForPendingJobs=counterForPendingJobs-limitSizeForPendingJobs;       
-                for(Integer i=counterForPendingJobs;i<(counterForPendingJobs+limitSizeForPendingJobs); i++){
-                pendingJobsToShow.add(lstPendingJobsNew.get(i));
-            }
-        }
-    
-        public void lastForPendingJobs (){
-            pendingJobsToShow.clear();
-            if(math.mod(totalSizeForPendingJobs , limitSizeForPendingJobs) == 0){
-                counterForPendingJobs = limitSizeForPendingJobs * ((totalSizeForPendingJobs/limitSizeForPendingJobs)-1);
-            } else if (math.mod(totalSizeForPendingJobs , limitSizeForPriorityJobs) != 0){
-                counterForPendingJobs = limitSizeForPendingJobs * ((totalSizeForPendingJobs/limitSizeForPendingJobs));
-            }
-            for(Integer i=counterForPendingJobs-1;i<totalSizeForPendingJobs-1;i++){
-                    pendingJobsToShow.add(lstPendingJobsNew.get(i));
-            }
-          }
-       
-        public Boolean getDisableNextForPendingJobs(){
-            if((counterForPendingJobs + limitSizeForPendingJobs) >= totalSizeForPendingJobs )
-                return true ;
-            else
-                return false ;
-        }
-       
-        public Boolean getDisablePreviousForPendingJobs(){
-            if(counterForPendingJobs == 0)
-                return true ;
-            else
-                return false ;
-        } 
-       
+     
       
         
         //pagination for dormant jobs starts here

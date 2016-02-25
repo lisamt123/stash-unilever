@@ -5,11 +5,12 @@ public with sharing class Amr_LoggingFormController{
     //public List<Amr_CurrencyConversionRate__c> currencyConversion {get;set;}
     public String selectedCountry {get;set;}
     public String projectNameFromPage{get;set;}
+    public static final String NONE = '--None--';
 
     public List<selectOption> currencyRecords {
         get {
             List<selectOption> options = new List<selectOption>();
-            options.add(new SelectOption('--None--','--None--'));
+            options.add(new SelectOption(NONE,NONE));
             List<Amr_CurrencyConversionRate__c> lstcov = Amr_CurrencyConversionRate__c.getAll().values();
             System.debug('Currency List Size --> ' + lstcov.size());
             //lstcov.sort();
@@ -47,7 +48,7 @@ public with sharing class Amr_LoggingFormController{
 
         listString = new list<string>();
         categoryString = new list<string>();
-        listString.add('--None--');
+        listString.add(NONE);
         for(Amr_Project_Details__c i : projNameList){
             listString.add(i.name);
         }
@@ -57,7 +58,7 @@ public with sharing class Amr_LoggingFormController{
         }
 
         listOfBrandPosition = new List<SelectOption>();
-        listOfBrandPosition.add(new selectOption('--None--','--None--'));
+        listOfBrandPosition.add(new selectOption(NONE,NONE));
         system.debug('mdString !!'+categoryString);
         system.debug('listString!!'+listString);
         System.debug('Project Name Size -> ' + projNameList.size());
@@ -74,7 +75,7 @@ public with sharing class Amr_LoggingFormController{
     /*public List<SelectOption> getCategoryList(){      
          listOfCategory = new List<SelectOption>();
 
-         listOfCategory.add(new selectOption('--None--','--None--'));
+         listOfCategory.add(new selectOption(NONE,NONE));
          Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
 
          Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
@@ -102,7 +103,7 @@ public with sharing class Amr_LoggingFormController{
          Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
 
          listOfBrandPosition = new List<SelectOption>();
-         listOfBrandPosition.add(new selectOption('--None--','--None--'));
+         listOfBrandPosition.add(new selectOption(NONE,NONE));
          for(MDO_BrandPositions__c bps : brandPositionlst){
              listOfBrandPosition.add(new selectOption(bps.brand_position_id__r.name,bps.brand_position_id__r.name));
          }
@@ -121,7 +122,7 @@ public with sharing class Amr_LoggingFormController{
         system.debug('brandPositionListttoo----->'+brandPositionlst );
 
    //     listOfBrandPosition = new List<SelectOption>();
-     //   listOfBrandPosition.add(new selectOption('--None--','--None--'));
+     //   listOfBrandPosition.add(new selectOption(NONE,NONE));
         Set<String> brnadPosNameSet = new Set<String>();
         for(MDO_BrandPositions__c bps : brandPositionlst){
 
@@ -141,7 +142,7 @@ public with sharing class Amr_LoggingFormController{
         listOfBrand = new List<SelectOption>();
         system.debug('========>'+brandPosName+'category name=====>'+categoryName);
 
-        listOfBrand.add(new selectOption('--None--','--None--'));
+        listOfBrand.add(new selectOption(NONE,NONE));
 
         //Set<String> brandlst = new Set<String>();
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
@@ -189,7 +190,7 @@ public with sharing class Amr_LoggingFormController{
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Final approver of material email : must follow the standard format of an email address, e.g. txt@txt.com'));
             okayToSave =false;
         }
-        if((String.isBlank(selectedCountry)|| selectedCountry == '--None--')){
+        if((String.isBlank(selectedCountry)|| selectedCountry == NONE)){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget allocated for this activity (enter all digits) : option must be selected from drop down'));
             okayToSave =false;
         }
@@ -199,16 +200,16 @@ public with sharing class Amr_LoggingFormController{
             okayToSave =false;
         }
 
-        if(categoryName == '--None--'){
+        if(categoryName == NONE){
             system.debug('inside category'+categoryName);
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
             okayToSave =false;
         }
-        if(brandPosName == '--None--'){
+        if(brandPosName == NONE){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
             okayToSave =false;
         }
-        if(brandNameFromPage == '--None--'){
+        if(brandNameFromPage == NONE){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
             okayToSave =false;
         }
@@ -372,10 +373,10 @@ public with sharing class Amr_LoggingFormController{
         automaticJobAllocation(obj);
 
         jobDetails = new Amr_Job_Details__c();
-        selectedCountry ='--None--';
-        categoryName ='--None--';
-        brandPosName ='--None--';
-        brandNameFromPage ='--None--';
+        selectedCountry =NONE;
+        categoryName =NONE;
+        brandPosName =NONE;
+        brandNameFromPage =NONE;
 
         PageReference pageRef = new PageReference('/apex/Amr_AdManager');
 
@@ -533,8 +534,8 @@ public with sharing class Amr_LoggingFormController{
             }else{
                 Integer num = integer.valueOf(adNumber)+1;
                 String numStr =string.valueof(num);
-                Integer i;
-                for(i=0;numStr.length()<5;i++){
+                
+                for(Integer i=0;numStr.length()<5;i++){
                     numstr='0'+numStr;
                     system.debug('num string!!'+numStr); 
                 }

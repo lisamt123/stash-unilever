@@ -164,8 +164,8 @@ public with sharing class Amr_SubmittedSavings {
               
             
       
-        }catch(exception e){
-          system.debug('inside Excetion==>');
+        }catch(exception ex){
+         System.debug('Exception -> '+ ex.getmessage());
         }
     }
    
@@ -174,7 +174,7 @@ public with sharing class Amr_SubmittedSavings {
     public PageReference addRowQuote(){
         
         try{
-         system.debug('savingId!!'+savingId);
+        
         Amr_Quote__c[] quoteNumberList  = [select Quote_Number__c from Amr_Quote__c where Saving__c =:savingId ORDER BY Quote_Number__c DESC];
       
                    
@@ -238,7 +238,9 @@ public with sharing class Amr_SubmittedSavings {
           return null;
           
         }   
-        }catch(Exception e){} 
+        }catch(Exception ex){
+        System.debug('Exception -> '+ ex.getmessage());
+        } 
           return null;
     }
     
@@ -257,14 +259,12 @@ public with sharing class Amr_SubmittedSavings {
     }
     
      public PageReference SaveNewQuote(){
+     	try{ 
         system.debug('==========>quoteObj'+docAndQuoteLst);
         system.debug('==========>fileBody'+fileBody);
         system.debug('==========>QuoteNumber'+QuoteNumber);
-        system.debug('savingId!!'+savingId);
+        system.debug('savingId in savenewquote!!'+savingId);
         
-        
-        
-       try{ 
         
         if(savingId != null && docAndQuoteLst.size()>0){
              
@@ -372,13 +372,13 @@ public with sharing class Amr_SubmittedSavings {
             
          }
         }
-       }catch(Exception e){
-       
+       }catch(Exception ex){
+       System.debug('Exception -> '+ ex.getmessage());
        }
        //  pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+jobid);page.setRedirect(true); return page ;
         return null;
     }
-    public void SaveQuote(){}
+    
     public PageReference editSaving(){
          system.debug('saveRecordValue !!'+saveRecordValue );
         
@@ -447,72 +447,16 @@ public with sharing class Amr_SubmittedSavings {
         updateData();
         pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+savingIdFromPage);page.setRedirect(true); return page ;
          system.debug('quoteRelatedToSavingList!!'+quoteRelatedToSavingList);
-         }catch(Exception e){
-         system.debug('inside quote submit data exception');
+         }catch(Exception ex){
+       System.debug('Exception -> '+ ex.getmessage());
          }   
     return null;
     }
     
-  /*  public PageReference submitData(){
-    system.debug('savingId!!'+savingId);
-     
-      try{
-            
-     if(savingId!=null){     
-    Amr_Saving__c savingObj = [select Folder_Name__c,Shoot_Location__c from Amr_Saving__c where Id =:savingId];  
-      Set<String> setlocation = new Set<String>();
-     system.debug('savingObj'+savingObj + 'selected' +selectedCountry );
-    if(selectedCountry.size()>0){   
-        for(String str : selectedCountry){
-            if(!setlocation.contains(str) && !setlocation.contains('Test')){}
-                    if(savingObj.Shoot_Location__c == null){
-                        savingObj.Shoot_Location__c = str ;
-                    }else{
-                        savingObj.Shoot_Location__c += ','+str;
-                    }
-                    setlocation.add(str);
-                }
-                }
-     update savingObj;  
-     system.debug('document outside!!'+savingObj+'8888888888'+fileBody );     
-    }
-    update quoteList;
-    document.body =  fileBody ;
-     system.debug('document outside!!'+fileBody +'document.body!!'+document.body);
-            if(document.body!=null && savingId!=null){
-                  
-            system.debug(document+'--------document Body'+document.body );        
-            FeedItem FI = new FeedItem();
-            FI.ParentId = savingId;
-            FI.Body = 'Attachment added';
-            FI.ContentData = document.body;
-          
-            FI.ContentFileName = document.Name +'*'+savingObj.Folder_Name__c;
-            insert FI;
   
-            document = new document();
-            }
-      }
-         
-        
-   
-    editedSavingMode = false;
-    updateData();
-    system.debug('quoteList!!'+quoteList);
-    pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+jobid);page.setRedirect(true); return page ;
-  
-    }catch(Exception e){
-    system.debug('inside saving submit data exception');
-      }
-        return null;
-    } 
-    
-    */
-    
     
     public PageReference submitData(){
-    system.debug('savingId!!'+savingId);
-     
+        
      try{
             
      if(savingId!=null){     
@@ -561,8 +505,8 @@ public with sharing class Amr_SubmittedSavings {
     system.debug('quoteList!!3333'+quoteList);
     pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+savingIdFromPage);page.setRedirect(true); return page ;
   
-    }catch(Exception e){
-    system.debug('inside saving submit data exception');
+    }catch(Exception ex){
+   System.debug('Exception -> '+ ex.getmessage());
       }
         return null;
     } 
@@ -628,7 +572,7 @@ public with sharing class Amr_SubmittedSavings {
     }
     
     public PageReference deleteSaving(){
-    system.debug('savingId!!'+savingId);
+  
         try{
             if(savingId != null){
         Amr_Saving__c savingObj = [select Id from Amr_Saving__c where Id =:savingId limit 1];   
@@ -663,40 +607,26 @@ public with sharing class Amr_SubmittedSavings {
     }
     
     public PageReference SubmitWholeSaving(){
+    	try{
         AllValues();
         pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+savingIdFromPage);
         page.setRedirect(true); 
         return page ;
-       
+    	}catch(Exception ex){
+    	System.debug('Exception -> '+ ex.getmessage());
+    	}  
     
     return null;
     }
-    /*
-     public void getPcTimeMangCategory(){   
-      System.debug('Pc TIME MANAGEMENT  ->  '+ pcTimeMangCategoryValue);
-    }
-    public void getPcCostMangCategory(){ 
-    }
-    public void getPcProcessMangCategory(){  
-    }
-    public void getPcOutputQualityCategory(){  
-    }
-    public void getPpcTimeMangCategory(){    
-    }
-    public void getPpcCostMangCategory(){
-    }
-    public void getPpcProcessMangCategory(){  
-    }
-    public void getPpcOutputQualityCategory(){
-    }
-    public void getCaTimeMangCategory(){ 
-    } */
-    public void getCaCostMangCategory(){}
-    public void getCaProcessMangCategory(){}
     
-    public void getCaOutputQualityCategory(){}
+   
+    public void getCaProcessMangCategory(){
+    system.debug('here');
+    }
+    
     
     public void AllValues(){
+    	try{
      Amr_Saving__c savingObj = [select Folder_Name__c,Shoot_Location__c,PC_Appraisal_Time_Management__c, 
                                 PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,
                                  PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c, PPC_Appraisal_Process_Management__c,PPC_Appraisal_Cost_Management__c,
@@ -907,11 +837,14 @@ public with sharing class Amr_SubmittedSavings {
               caCostMangCategoryValue = null;
               
         }
+    	}catch(Exception ex){
+    	System.debug('Exception -> '+ ex.getmessage());
+    	}
        
     }
     
     public String getSelectedRatingStar(){
-        
+        try{
       list<Amr_Saving__c> lstsavingObj = [Select PC_Appraisal_Time_Management__c, 
                                 PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,
                                  PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c, PPC_Appraisal_Process_Management__c,PPC_Appraisal_Cost_Management__c,
@@ -924,6 +857,9 @@ public with sharing class Amr_SubmittedSavings {
        System.debug('DAGTA -->  ' + JSON.Serialize(lstsavingObj ));
        
        return JSON.Serialize(lstsavingObj );
+        }catch(Exception ex){
+        System.debug('Exception -> '+ ex.getmessage());
+        }
        return null;
     }
    

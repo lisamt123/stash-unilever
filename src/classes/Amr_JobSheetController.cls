@@ -131,7 +131,7 @@ public String docUploaded{get;set;}
     public List<FeedItem> documentList{get;set;}
    
     public Amr_JobSheetController(){
-    
+    try{
          Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
          alertObj = new Amr_Alert__c();
         categoryString = new list<string>();
@@ -149,7 +149,9 @@ public String docUploaded{get;set;}
          alert = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];          
          totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];
         getDocuments();
-        
+    }catch(Exception ex){
+    System.debug('Exception -> '+ ex.getmessage());
+    } 
         try{
             jobId = ApexPages.CurrentPage().getParameters().get('id'); 
        }
@@ -394,16 +396,16 @@ public String docUploaded{get;set;}
            
             if(jobId != null){
                  if(flag == true){
-                      quoteList = [select PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
+                      quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
                                No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
-                               Average_Total_Opening_Quotes__c,Percentage_Saving_Average_of_Quote__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c from Amr_Saving__c where Job_Details__r.id = :jobId];
+                               Average_Total_Opening_Quotes__c,Percentage_Saving_Average_of_Quote__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =:true) from Amr_Saving__c where Job_Details__r.id = :jobId];
                       system.debug('inside Cap List========>'+quoteList );
                       
                       
                  }else{
-                   quoteList = [select PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
+                   quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
                                No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
-                               Average_Total_Opening_Quotes__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quote__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c from Amr_Saving__c where Job_Details__r.id = :jobId AND (CreatedById = :userId OR LastModifiedById = :userId )];
+                               Average_Total_Opening_Quotes__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quote__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =:true) from Amr_Saving__c where Job_Details__r.id = :jobId AND (CreatedById = :userId OR LastModifiedById = :userId )];
                       system.debug('inside Rap List========>'+quoteList );
                      
                  }            
@@ -632,9 +634,10 @@ public String docUploaded{get;set;}
     }
     
     public PageReference submitDataQuote(){
+    	try{
         system.debug('quoteId!!'+quoteId);
         system.debug('document outside quote!!'+fileBody);
-         try{
+        
     document.body =  fileBody ;
     update quoteRelatedToSavingList;
     if(quoteRelatedToSavingList.size()>0){
@@ -680,7 +683,8 @@ public String docUploaded{get;set;}
         pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobid);page.setRedirect(true); return page ;
          system.debug('quoteRelatedToSavingList!!'+quoteRelatedToSavingList);
          }catch(Exception e){
-         system.debug('inside quote submit data exception');
+         system.debug('Exception ->'+e.getmessage());
+        
          }   
     return null;
     }
@@ -740,7 +744,7 @@ public String docUploaded{get;set;}
     pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobid);page.setRedirect(true); return page ;
   
     }catch(Exception ex){
-    system.debug('inside saving submit data exception');
+    
     System.debug('Exception -> '+ ex.getmessage());
       }
         return null;
@@ -785,6 +789,7 @@ public String docUploaded{get;set;}
         delete savingObj;}
         pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobid);page.setRedirect(true); return page ;
         }catch(Exception e){
+       	System.debug('Exception -> '+ e.getmessage());
         }
         
         
@@ -793,13 +798,13 @@ public String docUploaded{get;set;}
     }
     
      public void UpdateAcceptedQuote(){
-        system.debug('!!'+quoteRelatedToSavingList);
+       
         try{
             update quoteRelatedToSavingList;
             
         }catch(Exception ex){
                 
-            system.debug('delete Exception');
+          
             System.debug('Exception -> '+ ex.getmessage());
         }
     }
@@ -812,11 +817,13 @@ public String docUploaded{get;set;}
     }
     
     public PageReference SubmitWholeSaving(){
-        
+        try{
         pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobid);
         page.setRedirect(true); 
         return page ;
-       
+        }catch(Exception e){
+        system.debug('Exception ->'+e.getmessage());
+        }
     
     return null;
     }
@@ -828,6 +835,7 @@ public String docUploaded{get;set;}
     public void getCaOutputQualityCategory(){}
     
     public void AllValues(){
+    	try{
      Amr_Saving__c savingObj = [select Folder_Name__c,Shoot_Location__c,PC_Appraisal_Time_Management__c, 
                                 PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,
                                  PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c, PPC_Appraisal_Process_Management__c,PPC_Appraisal_Cost_Management__c,
@@ -1038,11 +1046,14 @@ public String docUploaded{get;set;}
               caProcessMangCategoryValue = null;
               caCostMangCategoryValue = null;
         }
+    	}catch(Exception e){
+    	system.debug('Exception ->'+e.getmessage());
+    	}
        
     }
     
     public String getSelectedRatingStar(){
-        
+        try{
       list<Amr_Saving__c> lstsavingObj = [Select id, PC_Appraisal_Time_Management__c, 
                                 PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,
                                  PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c, PPC_Appraisal_Process_Management__c,PPC_Appraisal_Cost_Management__c,
@@ -1055,6 +1066,11 @@ public String docUploaded{get;set;}
        System.debug('DAGTA -->  ' + JSON.Serialize(lstsavingObj ));
        
        return JSON.Serialize(lstsavingObj );
+        }catch(Exception e){
+       	system.debug('Exception ->'+e.getmessage());
+       	return null;
+       }
+       
     }
    
    
@@ -1128,6 +1144,7 @@ public String docUploaded{get;set;}
   }
          
          public String getMethodToPassProjectNames(){
+         	try{
          projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
          String ProjectName;
          if(jobId !=null){
@@ -1146,10 +1163,14 @@ public String docUploaded{get;set;}
         }
         system.debug('serialize!!'+JSON.serialize(listString));
         return JSON.serialize(listString);
+         	}catch(Exception e){
+         	system.debug('Exception ->'+e.getmessage());
+         	return null;
+         	}
     }
     
     public void sharedOption(List<Amr_Job_Allocation__c> jobSharedList ){
-           
+           try{
             sharedRapOption = new List<SelectOption>();     
             sharedListSize = jobSharedList.size();
             if(!jobSharedList.IsEmpty()){
@@ -1158,9 +1179,12 @@ public String docUploaded{get;set;}
                     sharedRapOption.add(obj);
                 }
            }
+           }catch(Exception e){
+           	system.debug('Exception ->'+e.getmessage());
+           }
         }
     public pageReference getPage(){
-        
+        try{
         userData = [select PermissionSet.Name from PermissionSetAssignment  where Assignee.id = :userinfo.getUserId()];
         Set<String> userNameSet = new Set<String>();
         for(PermissionSetAssignment permission : userData){
@@ -1179,13 +1203,16 @@ public String docUploaded{get;set;}
              pageRef.setRedirect(true);
              return pageRef;
         }
-        
+        }catch(Exception e){
+        	system.debug('Exception ->'+e.getmessage());
+        	return null;
+        }
       
         
     }
         
      public PageReference reAllocate() {
-        
+        try{
              if(String.isBlank(jobID)){
                  ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIdNotFound));
                  return null;
@@ -1214,10 +1241,14 @@ public String docUploaded{get;set;}
                     return null;
                 }
             } 
+        }catch(Exception e){
+        	system.debug('Exception ->'+e.getmessage());
+        	return null;
+        }
     }
         
     public static void jobReAllocate(String selectedRap, Id jobId, Amr_Job_Details__c jobDet){
-        
+        try{
         System.debug('List Of RAP ->'+ selectedRap + ' Job ID -> ' + jobId );
         System.debug('jobDet' + jobDet );
         List<Amr_Job_Allocation__c> jobAllocList = [select Id,Name,User__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = TRUE ]; // AND User__c = :userInfo.getUserId()
@@ -1286,11 +1317,15 @@ public String docUploaded{get;set;}
             
            // Amr_EmailSendingClass.emailSending(jobId , emailAddress, 'Amr_RAPAllocatedJob', new List<Id>());  
          }  
+        }catch(Exception e){
+        system.debug('Exception ->'+e.getmessage());
+      
+        }
     }
         
          
     public pagereference cancelJob(){
-       
+       try{
         if(String.isBlank(jobID)){
 
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIdNotFound));
@@ -1311,11 +1346,15 @@ public String docUploaded{get;set;}
                return navPage;
           }
        }
+       }catch(Exception e){
+       	system.debug('Exception ->'+e.getmessage());
+       	 return null;
+       }
     }
        
        
     public void jobCancellation(Amr_Job_Details__c jobDetail, String jobId, Amr_Job_Allocation__c jobAlloc ){
-       
+       try{
         System.debug('Job Details Object ->'+ jobDetail + ' Job ID -> ' + jobId );
         List<String> toEmailAddress = new List<String>();
         List<Amr_Job_Allocation__c> jbAlloc  = [select Id,Name,User__c,Job_Status__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = TRUE ];
@@ -1350,12 +1389,15 @@ public String docUploaded{get;set;}
         toEmailAddress.add(jobDetail.Your_Email_Address__c); */
         update jobDetail;
      //   Amr_EmailSendingClass.emailSending(jobId,toEmailAddress, 'Amr_JobCancellation', new List<Id>() );
-     
+       }catch(Exception e){
+       system.debug('Exception ->'+e.getmessage());
+       
+       }
     }
        
       
     public PageReference acceptJob(){
-       
+       try{
         if(jobStatus == Label.Amr_Job_Accepted) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobAlreadyAccepted)); 
             return null;
@@ -1382,6 +1424,10 @@ public String docUploaded{get;set;}
            ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,Label.Amr_JobAccepted));             
            return null;
        }  
+       }catch(Exception e){
+       	system.debug('Exception ->'+e.getmessage());
+       	 return null;
+       }
     }  
  
     public PageReference cancelRapJob(){
