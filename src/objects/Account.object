@@ -2522,11 +2522,8 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     <listViews>
         <fullName>AllAccounts</fullName>
         <columns>ACCOUNT.NAME</columns>
-        <columns>ACCOUNT.ADDRESS1_STATE</columns>
-        <columns>ACCOUNT.PHONE1</columns>
-        <columns>ACCOUNT.TYPE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Demandware_ID__c</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>Tous les comptes</label>
         <language>fr</language>
@@ -2617,6 +2614,27 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         </filters>
         <label>Primary Account View</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Recently_Created_Records</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>PC_ADDRESS2_CITY</columns>
+        <columns>PC_ADDRESS2_COUNTRY</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <label>Recently Created Records</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Global_Head</roleAndSubordinatesInternal>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>SUPPORT_Accounts_Check</fullName>
