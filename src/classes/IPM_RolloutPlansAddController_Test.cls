@@ -373,7 +373,7 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0,TASK_NOT_CREATED);
+                System.assert(!regionalProject.Tasks__r.isEmpty(),TASK_NOT_CREATED);
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
@@ -381,7 +381,7 @@ public class IPM_RolloutPlansAddController_Test{
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0, MILESTONES_NOT_CREATED);
+                System.assert(!regionalProject.IPM_Milestones__r.isEmpty(), MILESTONES_NOT_CREATED);
                 
                 // Once project is created , Consolidated financials are getting generated.
                 System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,FINANCIAL_NOT_CREATED); // One for Global consolidated Financials and 2 for individual Rollouts
@@ -638,7 +638,7 @@ public class IPM_RolloutPlansAddController_Test{
           //******************************************************************
           
           
-          if(regionalProjects.size()>0){
+          if(!regionalProjects.isEmpty()){
             PageReference pRefRegional = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+regionalProjects[0].Id);
             Test.setCurrentPageReference(pRefRegional); 
           }
@@ -812,7 +812,7 @@ public class IPM_RolloutPlansAddController_Test{
           
           test.StopTest();
           pageMessages = ApexPages.getMessages();
-          System.assertEquals(0, pageMessages.size(),'Error messages generated');
+          System.assertEquals(true, pageMessages.isEmpty(),'Error messages generated');
            
         }
         
@@ -1023,7 +1023,7 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0,TASK_NOT_CREATED);
+                System.assert(!regionalProject.Tasks__r.isEmpty(),TASK_NOT_CREATED);
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
@@ -1031,7 +1031,7 @@ public class IPM_RolloutPlansAddController_Test{
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0,MILESTONES_NOT_CREATED);
+                System.assert(!regionalProject.IPM_Milestones__r.isEmpty(),MILESTONES_NOT_CREATED);
                 
                 // Once project is created , Consolidated financials are getting generated.
                 System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,FINANCIAL_NOT_CREATED); // One for Global consolidated Financials and 2 for individual Rollouts
@@ -1283,7 +1283,7 @@ public class IPM_RolloutPlansAddController_Test{
           
           //******************************************************************
 
-          if(regionalProjects.size()>0){
+          if(!regionalProjects.isEmpty()){
             PageReference pRefRegional = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+regionalProjects[0].Id);
             Test.setCurrentPageReference(pRefRegional); 
           }
@@ -1517,7 +1517,7 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0,TASK_NOT_CREATED);
+                System.assert(!regionalProject.Tasks__r.isEmpty(),TASK_NOT_CREATED);
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
@@ -1525,7 +1525,7 @@ public class IPM_RolloutPlansAddController_Test{
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0,MILESTONES_NOT_CREATED);
+                System.assert(!regionalProject.IPM_Milestones__r.isEmpty(),MILESTONES_NOT_CREATED);
                 
                 // Once project is created , Consolidated financials are getting generated.
                 System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,FINANCIAL_NOT_CREATED); // One for Global consolidated Financials and 2 for individual Rollouts
@@ -1619,7 +1619,7 @@ public class IPM_RolloutPlansAddController_Test{
           
           dmlLimit = Limits.getDMLStatements();
           
-          if(regionalProjects.size()>0){
+          if(!regionalProjects.isEmpty()){
             PageReference pRefRegional = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+regionalProjects[0].Id);
             Test.setCurrentPageReference(pRefRegional); 
           }
@@ -1810,7 +1810,7 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0,TASK_NOT_CREATED);
+                System.assert(!regionalProject.Tasks__r.isEmpty(),TASK_NOT_CREATED);
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
@@ -1818,7 +1818,7 @@ public class IPM_RolloutPlansAddController_Test{
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0,MILESTONES_NOT_CREATED);
+                System.assert(!regionalProject.IPM_Milestones__r.isEmpty(),MILESTONES_NOT_CREATED);
                 
                 // Once project is created , Consolidated financials are getting generated.
                 System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,FINANCIAL_NOT_CREATED); // One for Global consolidated Financials and 2 for individual Rollouts
@@ -1919,7 +1919,7 @@ public class IPM_RolloutPlansAddController_Test{
           
           dmlLimit = Limits.getDMLStatements();
     
-      if(regionalProjects.size()>0){
+      if(!regionalProjects.isEmpty()){
             PageReference pRefRegional = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+regionalProjects[0].Id);
             Test.setCurrentPageReference(pRefRegional); 
           }
@@ -2111,7 +2111,7 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0,TASK_NOT_CREATED);
+                System.assert(!regionalProject.Tasks__r.isEmpty(),TASK_NOT_CREATED);
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
@@ -2119,7 +2119,7 @@ public class IPM_RolloutPlansAddController_Test{
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0,MILESTONES_NOT_CREATED);
+                System.assert(!regionalProject.IPM_Milestones__r.isEmpty(),MILESTONES_NOT_CREATED);
                 
                 // Once project is created , Consolidated financials are getting generated.
                 System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,FINANCIAL_NOT_CREATED); // One for Global consolidated Financials and 2 for individual Rollouts
@@ -2219,7 +2219,7 @@ public class IPM_RolloutPlansAddController_Test{
           
           dmlLimit = Limits.getDMLStatements();
           
-          if(regionalProjects.size()>0){
+          if(!regionalProjects.isEmpty()){
             PageReference pRefRegional = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+regionalProjects[0].Id);
             Test.setCurrentPageReference(pRefRegional); 
           }

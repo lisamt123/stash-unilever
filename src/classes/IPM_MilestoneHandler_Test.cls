@@ -7,10 +7,9 @@
   @reference : IPM_MilestoneHandler
 */
 @isTest
-private with sharing class IPM_MilestoneHandler_Test {
+private with sharing class IPM_MilestoneHandler_Test 
       
-    private static User stdUserForMilestone;
-    
+{
    /**
         *  Used for Setting test Data for Project Creation . 
         *  @name projectSetUp

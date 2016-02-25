@@ -290,6 +290,10 @@ public class IPM_ProjectOverviewCtrl_Test
         }
         update projDocSecList;
         
+       
+        
+        System.assertEquals('CMI', projDocSecList[0].IPM_FunctionalRole__c,'Functional role CMI is created');//cr0347
+        
         for(Integer i=0 ; i<20 ; i++ ){
             tskList[i].IPM_Task_Name__c='Task Name'+i;
         }
@@ -727,7 +731,7 @@ public class IPM_ProjectOverviewCtrl_Test
         
         IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
         IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
-        System.assert(overCtrl1.lstFinTLDAlertMessage.size() > 0);
+        System.assert(!overCtrl1.lstFinTLDAlertMessage.isEmpty(),true);
         Test.stopTest();
         }
     }

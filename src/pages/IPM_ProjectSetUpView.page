@@ -164,7 +164,7 @@
                                                                     <span class="SecButtonSet infoMarTop">
                                                                         <a class="icoButton info" title="{!$Label.IPM_ProjectNameHelpText}"></a>
                                                                     </span>
-                                                                    <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox" onblur="hideSuggetion();"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;return false};dupProjectName();"  maxlength="14" rendered="{!isEditable}" >
+                                                                    <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox" html-onpaste="return false"  onblur="hideSuggetion();" onkeypress="return invalidChar(event);"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;return false};dupProjectName();"  maxlength="14" rendered="{!isEditable}" >
                                                                     </apex:inputText>
                                                                     <apex:actionfunction name="dupProjectName" action="{!searchDuplicateProject}" rerender="refreshProjectName"/>
                                                                     <apex:actionfunction name="hideSuggetion" action="{!hideProjectSuggetion}" rerender="refreshProjectName"/>
@@ -266,6 +266,11 @@
                                                                     <apex:outputPanel id="BrandPositionPanel" layout="block" styleClass="inputField">
                                                                        
                                                                         <apex:outputLabel value="{!$Label.IPM_BRAND_POSITIONING}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span>
+                                                                        <span class="SecButtonSet infoMarTop">
+                                                                        	<apex:outputPanel rendered="{!projectMetadata.IPM_MultipleBrandPosApplicable__c}">
+                                                                        		<a class="icoButton info" title="{!$Label.IPM_BrandPositioningHelpText}"></a>
+                                                                        	</apex:outputPanel>
+                                                                    	</span>
                                                                         <apex:actionStatus startText="" id="refreshPos" startStyleClass="proInit"/>    
                                                                         <apex:outputPanel id="SingleBrandPanel" rendered="{!NOT(projectMetadata.IPM_MultipleBrandPosApplicable__c)}">
                                                                             <label class="ipmSelect custSelectWidth"> 
@@ -382,6 +387,9 @@
                                                                     <apex:outputPanel id="WhiteSpaceFastTrackPanel">
                                                                         <apex:outputPanel rendered="{!OR(projectMetadata.IPM_FastTrackApplicable__c,projectMetadata.IPM_WhiteSpaceApplicable__c)}"> 
                                                                             <div class="col-sm-12 yellowBox noPadleft">
+                                                                                <span class="SecButtonSet infoMarTop pull-left">
+                                                                                <a class="icoButton info smalllinfo" title="{!$Label.IPM_FAST_TRACK_WHITE_SPACE}"></a>
+                                                                            </span>
                                                                                 <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox"  >
                                                                                     <apex:outputPanel rendered="{!projectMetadata.IPM_FastTrackApplicable__c}">
                                                                                     <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!!isEditable}"/>

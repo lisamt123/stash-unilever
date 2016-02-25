@@ -196,6 +196,9 @@
                                             <div class="inputField">
                                                 <apex:outputLabel value="{!$Label.IPM_COMPANY_CARD}" styleClass="bsFieldLabel" />
                                                 <span class="mandatorycolor">{!$Label.IPM_Bosscard_Mandatory}</span>
+                                                 <span class="SecButtonSet infoMarTop">
+                                                 <a class="icoButton info smalllinfo" title="{!$Label.IPM_THIS_WILL_DESCRIBE}"></a>
+                                             </span>
                                                 <label class="ipmSelect">
                                                     <apex:selectList size="1" value="{!selectedCompany}" styleClass="compC" onchange="CCchange(this.value)" disabled="{!isBosscardEdit}" >
                                                         <apex:selectOptions value="{!Allcompanycard}"/>
@@ -226,7 +229,9 @@
                                              
                                             <div class="inputField">
                                                 <apex:outputLabel value="{!$Label.IPM_TARGET_LAUNCH_PERIOD}" styleClass="bsFieldLabel" />                                               
-                                                
+                                                <span class="SecButtonSet infoMarTop">
+                                                 <a class="icoButton info smalllinfo" title="{!$Label.IPM_YOUR_ESTIMATE}"></a>
+                                             </span>
                                                 <apex:inputText value="{!expectedTLD}" id="pos1" styleClass="quarterForward calendar" disabled="{!isBosscardEdit}" />
                                                 <span class="fieldnote"><span class="">{!$Label.IPM_Bosscard_Mandatory}</span> {!$Label.IPM_MARKED_FIELDS_MANDATORY}</span>
                                             </div>
@@ -250,7 +255,10 @@
                                                  </apex:outputPanel>
                                             </div>                                     
                                             <div class="inputField">
-                                                <apex:outputLabel value="{!$Label.IPM_APPROVER}" styleClass="bsFieldLabel clrBoth" />
+                                                <apex:outputLabel value="{!$Label.IPM_APPROVER}" styleClass="bsFieldLabel" />
+                                                <span class="SecButtonSet infoMarTop">
+                                                 <a class="icoButton info smalllinfo" title="{!$Label.IPM_SELECT_THE_APPROVER}"></a>
+                                             </span>
                                                 <apex:outputPanel styleClass="approvContainer" id="deltappr">  
                                                     <apex:outputPanel styleClass="selectContainer" html-value="{!$Page.IPM_ApproverList}?Id={!bosscard.id}" html-data-target="#editApprover" layout="block" rendered="{!isAddApprover}">
                                                         <apex:outputpanel rendered="{!if(bosscard.IPM_Bosscard_Status__c='In Progress',true,false)}">

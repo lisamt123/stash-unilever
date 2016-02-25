@@ -9,7 +9,6 @@ public with sharing class IPM_FunnelController_Test {
     private static user testUser;
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static List<user>userList=new List<user>();
-    private static string projectId;
     
     
     private static void initializeData(){
@@ -33,7 +32,6 @@ public with sharing class IPM_FunnelController_Test {
         projectList.add(projectRecord);
         List<IPM_Project__c> projlList=[SELECT ID,Name,IPM_CompanyCardText__c,IPM_Phase__c,IPM_Project_Name__c,IPM_Complexity__c,IPM_GateKeeping_Model__c, IPM_SourceProjectType__c, IPM_Project_Type__c FROM IPM_Project__c WHERE ID=:projectRecord.ID LIMIT 1];
         project=projlList[0];
-        projectId=projlList[0].Id;
         System.assertEquals(projlList[0].id,projectRecord.id);
         
         

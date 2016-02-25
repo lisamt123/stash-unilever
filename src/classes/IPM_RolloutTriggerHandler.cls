@@ -373,7 +373,7 @@ public with sharing class IPM_RolloutTriggerHandler
             }
         }
            
-        if(updatedRollouts.size()>0) 
+        if(!updatedRollouts.isEmpty()) 
         {
             IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
             syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
@@ -449,7 +449,7 @@ public with sharing class IPM_RolloutTriggerHandler
             updateAsyncJobIdRolloutMap.put(rolloutId,projectRollout);
         }
         
-        if(updateAsyncJobIdRolloutMap.size() > 0)
+        if(!updateAsyncJobIdRolloutMap.isEmpty())
         {
             SKIP_TRIGGER_EXECUTION = true;
             update updateAsyncJobIdRolloutMap.values();

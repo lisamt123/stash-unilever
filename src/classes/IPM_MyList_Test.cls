@@ -55,8 +55,10 @@ public class IPM_MyList_Test{
          System.runAs(platformUser)
          {
            insert projectList;
-         }  
-         system.assertEquals(9 , [Select id from IPM_Project__c limit 1000].size(),'Projects are created');
+         }
+         List<IPM_Project__c> projectDBList = [Select id from IPM_Project__c limit 1000];
+           
+         system.assertEquals(9 , projectDBList.size(),'Projects are created');
       }
       
       
@@ -288,7 +290,7 @@ public class IPM_MyList_Test{
             { 
                 insertTask = getTaskList();
                 
-                system.assertEquals(insertTask.size()>0,true,'tasks inserted');
+                system.assertEquals(!insertTask.isEmpty(),true,'tasks inserted');
          		
          			
                 list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
@@ -395,7 +397,7 @@ public class IPM_MyList_Test{
             { 
                 insertTask = getTaskList();
                 
-                system.assertEquals(insertTask.size()>0,true,'tasks inserted');
+                system.assertEquals(!insertTask.isEmpty(),true,'tasks inserted');
          		
                 list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
                                         FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet];
@@ -463,7 +465,7 @@ public class IPM_MyList_Test{
             { 
                 insertTask = getTaskList();
                 
-                system.assertEquals(insertTask.size()>0,true,'tasks inserted');
+                system.assertEquals(!insertTask.isEmpty(),true,'tasks inserted');
          		
                 list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
                                         FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet];

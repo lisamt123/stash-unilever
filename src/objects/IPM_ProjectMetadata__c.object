@@ -12,6 +12,13 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_DefaultCharterQuestionAnswer__c</fullName>
+        <label>Default Charter Question Answer</label>
+        <length>100</length>
+        <type>Text</type>
+    </fields> 
+         
+    <fields>
         <fullName>IPM_ApplicableCompanyCard__c</fullName>
         <externalId>false</externalId>
         <label>Applicable Company Card</label>

@@ -140,7 +140,7 @@
         </displayedFields>
         <label>IPM_BETProjectLeaders</label>
     </fieldSets>
-<fieldSets>
+    <fieldSets>
         <fullName>IPM_Project_Fields_EcoDesign</fullName>
         <description>Contains fields to sync to EcoDesign from IPM</description>
         <displayedFields>
@@ -2697,7 +2697,7 @@ OwnerId))</formula>
     <pluralLabel>IPM Projects</pluralLabel>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
-        <recordTypes>
+    <recordTypes>
         <fullName>Clustering</fullName>
         <active>true</active>
         <label>Clustering</label>
@@ -3157,7 +3157,7 @@ OwnerId))</formula>
             </values>
         </picklistValues>
     </recordTypes>
-        <recordTypes>
+    <recordTypes>
         <fullName>IPM_Cluster_Layout</fullName>
         <active>true</active>
         <label>IPM Cluster Layout</label>
@@ -3566,7 +3566,7 @@ OwnerId))</formula>
                 <fullName>None</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>
+           </picklistValues>
         <picklistValues>
             <picklist>IPM_Temporary_Phase__c</picklist>
             <values>

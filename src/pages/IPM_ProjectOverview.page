@@ -417,7 +417,11 @@
                     <apex:outputPanel rendered="{! AND( !bPhaseChangeInProgress, project.IPM_Phase__c!='PLE')}">                    
                         <apex:outputPanel rendered="{!if(project.Is_Archieved__c==true,false,true)}" >
                             <div class="col-sm-3">
-                                <div class="topheader">{!$Label.IPM_MY_SECTIONS_IN} {!currGateToDisplay}</div>
+                                <div class="topheader">{!$Label.IPM_MY_SECTIONS_IN} {!currGateToDisplay}
+                                <span class="SecButtonSet infoMarTop">
+                                                 <a class="icoButton info smalllinfo" data-original-title="{!$Label.IPM_BELOW_ARE_QUICK}" data-placement="bottom" data-toggle="tooltip"></a>
+                                             </span>
+                                </div>
                                 <div class="greyborder"></div>
                                 <apex:outputPanel layout="block" styleClass="overviewGreyBg" rendered="{!projectSections != NULL && projectSections.size ==  0 }" >
                                     {!$Label.IPM_NoGateDocSecMesg}
@@ -466,7 +470,11 @@
                             <div class="col-sm-3">
                                 <apex:outputPanel id="headPnl">
                                     
-                                        <div class="topheader">{!$Label.IPM_MY_TO_DOs_IN} {!currGateToDisplay}<span class="mlr5px greytxt">|</span>{! If(project.IPM_PM_Approach__c='Internal',allIncompleteTasks,'')}</div>
+                                        <div class="topheader">{!$Label.IPM_MY_TO_DOs_IN} {!currGateToDisplay}<span class="mlr5px greytxt">|</span>{! If(project.IPM_PM_Approach__c='Internal',allIncompleteTasks,'')}
+                                        <span class="SecButtonSet infoMarTop">
+                                                 <a class="icoButton info smalllinfo" data-original-title="{!$Label.IPM_BELOW_ARE_THE_TYPICAL}" data-placement="bottom" data-toggle="tooltip"></a>
+                                             </span>
+                                        </div>
                                     
                                 </apex:outputPanel>    
                                 <div class="greyborder"></div>
@@ -769,6 +777,7 @@
         <apex:outputPanel id="compScript">
             <script>         
                 var jq=jQuery.noConflict(); 
+                jq("[data-toggle=tooltip]").tooltip();
                 jq('.searchModal .form-control').clearSearch();        
                 jq('.ipmCheckbox > input[type=checkbox].selected').each(function(){
                     jq(this).attr("checked", true);
@@ -801,7 +810,7 @@
 </apex:form>
 <script>
 
-var IPMApp = {showSuggestedMembers:'{!showSuggestedMembers}', ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}', DocumentStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}'};
+var IPMApp = {showSuggestedMembers:{!showSuggestedMembers}, ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}', DocumentStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}'};
 
 </script>
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectOverview.js')}" type="text/javascript"></script>   

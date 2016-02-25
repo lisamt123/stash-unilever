@@ -293,9 +293,9 @@ public with sharing class IPM_ProjectResourceTriggerHandler
              projidset.add(projres.IPM_Project__c);
            }
        } //FOR END       
-       if(projidset != null && projidset.size()>0){
+       if(projidset != null && !projidset.isEmpty()){
          projectmap = new Map<id,IPM_Project__c>([SELECT id,IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Global_Project_Id__c,IPM_Parent_Project__c FROM IPM_Project__c WHERE id IN:projidset or IPM_Parent_Project__c IN:projidset or IPM_Parent_Project__r.IPM_Parent_Project__c IN:projidset LIMIT 1000]);
-         if(projectmap != null && projectmap.size()>0){ 
+         if(projectmap != null && !projectmap.isEmpty()){ 
            for(IPM_Project__c proj:projectmap.values()){
              projglobalidset.add(proj.IPM_Global_Project_Id__c); 
              projglobalidset.add(proj.id);
@@ -306,11 +306,11 @@ public with sharing class IPM_ProjectResourceTriggerHandler
                 projglobalidset.add(proj.IPM_Parent_Project__r.IPM_Parent_Project__c);   
              }
            }
-           if(projglobalidset != null && projglobalidset.size()>0){
+           if(projglobalidset != null && !projglobalidset.isEmpty()){
              projectGlobalmap = new Map<id,IPM_Project__c>([select id from IPM_Project__c where id IN: projglobalidset]);  
            }      
          }
-         if(projectGlobalmap != null && projectGlobalmap.size()>0){  
+         if(projectGlobalmap != null && !projectGlobalmap.isEmpty()){  
               IPM_GroupManagement.groupmemberupdate(projectGlobalmap.keySet());  
          }
         }        

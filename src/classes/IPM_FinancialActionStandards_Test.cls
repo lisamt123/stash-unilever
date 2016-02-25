@@ -99,7 +99,7 @@ public class  IPM_FinancialActionStandards_Test {
             List<IPM_Project_Document_Section_Content__c> ipmProjectDocSectContentList = [Select Id, IPM_Payback_Action_Standard_Charter_Cmts__c, IPM_Inov_Value_Share_Action_Charter_Cmts__c, IPM_Inc_Val_Share_Action_Charter_Cmts__c, IPM_gTO_Action_Standard_Charter_Cmts__c, IPM_iTo_Action_Standard_Charter_Cmts__c, 
                                                                                                 IPM_GM_Action_Standards_Charter_Cmts__c, IPM_NPV_Action_Standard_Charter_Cmts__c, IPM_IRR_Action_Standard_Charter_Cmts__c from IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c IN : ipmProjDocSectionList limit 1];
             
-            System.assertEquals(true, ipmProjectDocSectContentList.size() > 0, 'content list is null ');
+            System.assertEquals(true, !ipmProjectDocSectContentList.isEmpty(), 'content list is null ');
             
             //Test.startTest();
             
@@ -389,11 +389,11 @@ public class  IPM_FinancialActionStandards_Test {
         User globalUser = [Select Id from User where Email ='globalUser@unilever.test.com' limit 1]; 
         System.runAs(globalUser) {
             List<IPM_Project__c>  projectList = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
-            System.assert(projectList.size()>0);
+            System.assertEquals(!projectList.isEmpty(),true);
             projectList[0].IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
             update projectList[0];
             projectList = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
-            System.assert(projectList.size()>0);
+            System.assertEquals(!projectList.isEmpty(),true);
             System.assertEquals(projectList[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_CAPABILITY);
             
             Set<Id> projDocIdSet = new Set<Id>();
@@ -410,7 +410,7 @@ public class  IPM_FinancialActionStandards_Test {
             List<IPM_Project_Document_Section_Content__c> ipmProjectDocSectContentList = [Select Id, IPM_Payback_Action_Standard_Charter_Cmts__c, IPM_Inov_Value_Share_Action_Charter_Cmts__c, IPM_Inc_Val_Share_Action_Charter_Cmts__c, IPM_gTO_Action_Standard_Charter_Cmts__c, IPM_iTo_Action_Standard_Charter_Cmts__c, 
                                                                                                 IPM_GM_Action_Standards_Charter_Cmts__c, IPM_NPV_Action_Standard_Charter_Cmts__c, IPM_IRR_Action_Standard_Charter_Cmts__c from IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c IN : ipmProjDocSectionList limit 1];
             
-            System.assertEquals(true, ipmProjectDocSectContentList.size() > 0, 'content list is null ');
+            System.assertEquals(true, !ipmProjectDocSectContentList.isEmpty(), 'content list is null ');
             
             //Test.startTest();
             
@@ -433,11 +433,11 @@ public class  IPM_FinancialActionStandards_Test {
         User globalUser = [Select Id from User where Email ='globalUser@unilever.test.com' limit 1]; 
         System.runAs(globalUser) {
             List<IPM_Project__c>  projectList = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
-            System.assert(projectList.size()>0);
+            System.assertEquals(!projectList.isEmpty(),true);
             projectList[0].IPM_Phase__c=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;
             update projectList[0];
             projectList = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
-            System.assert(projectList.size()>0);
+            System.assertEquals(!projectList.isEmpty(),true);
             System.assertEquals(projectList[0].IPM_Phase__c,IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE);
             
             Set<Id> projDocIdSet = new Set<Id>();
@@ -454,7 +454,7 @@ public class  IPM_FinancialActionStandards_Test {
             List<IPM_Project_Document_Section_Content__c> ipmProjectDocSectContentList = [Select Id, IPM_Payback_Action_Standard_Charter_Cmts__c, IPM_Inov_Value_Share_Action_Charter_Cmts__c, IPM_Inc_Val_Share_Action_Charter_Cmts__c, IPM_gTO_Action_Standard_Charter_Cmts__c, IPM_iTo_Action_Standard_Charter_Cmts__c, 
                                                                                                 IPM_GM_Action_Standards_Charter_Cmts__c, IPM_NPV_Action_Standard_Charter_Cmts__c, IPM_IRR_Action_Standard_Charter_Cmts__c from IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c IN : ipmProjDocSectionList limit 1];
             
-            System.assertEquals(true, ipmProjectDocSectContentList.size() > 0, 'content list is null ');
+            System.assertEquals(true, !ipmProjectDocSectContentList.isEmpty(), 'content list is null ');
             
             //Test.startTest();
             

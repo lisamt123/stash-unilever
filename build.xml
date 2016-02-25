@@ -231,6 +231,7 @@
 	<runTest>IPM_EcoDesignSection_Test</runTest>
 	<runTest>IPM_FileUploadController_Test</runTest>
 	<runTest>IPM_FinancialActionStandards_Test</runTest>
+	<runTest>IPM_FinancialController_Currency_Test</runTest>
 	<runTest>IPM_FinancialController_Test</runTest>
 	<runTest>IPM_FinancialCopyPasteGrid_Test</runTest>
 	<runTest>IPM_FinancialTriggerHandler_Test</runTest>
@@ -257,6 +258,7 @@
 	<runTest>IPM_Milestone_Test</runTest>
 	<runTest>IPM_MyList_Test</runTest>
 	<runTest>IPM_MyProjects_Test</runTest>
+	<runTest>IPM_MyTaskList_Test</runTest>
 	<runTest>IPM_NewTask_Test</runTest>
 	<runTest>IPM_NotifyUsersRoleChanged_Test</runTest>
 	<runTest>IPM_ObjHistoryComponentController_Test</runTest>

@@ -80,13 +80,27 @@
                                                                     <div></div>
                                                                 </th>
                                                                 <th width="20%">
-                                                                    <div class="noborder">{!$Label.IPM_Rollout_AS} <div>{!$Label.IPM_PART_MCO}</div></div>
+                                                                    <div class="noborder">{!$Label.IPM_Rollout_AS} 
+                                                                    <div>{!$Label.IPM_PART_MCO}
+                                                                    </div>
+                                                                    </div>
+                                                                    <span class="SecButtonSet infoMarTop">
+                                                                          <a class="icoButton info smalllinfo" data-original-title="{!$Label.IPM_THE_BELOW_SELECTED_COUNTRIES}" data-placement="bottom" data-toggle="tooltip"></a>
+                                                                        </span>
                                                                 </th>
                                                                 <th width="20%">
-                                                                    <div>{!$Label.IPM_Rollout_AS}<div>{!$Label.IPM_SEPERATE_COUNTRY}</div></div>
+                                                                    <div>{!$Label.IPM_Rollout_AS}<div>{!$Label.IPM_SEPERATE_COUNTRY}
+                                                                    </div>
+                                                                    </div>
+                                                                     <span class="SecButtonSet infoMarTop">
+                                                                        <a class="icoButton info smalllinfo1" data-original-title="{!$Label.IPM_BELOW_SELECTED_COUNTRIES_INNOVATION}" data-placement="bottom" data-toggle="tooltip"></a>
+                                                                    </span>
                                                                 </th>
                                                                 <th width="20%">
                                                                     <div>{!$Label.IPM_NO_ROLLOUT}</div>
+                                                                    <span class="SecButtonSet infoMarTop">
+                                                                        <a class="icoButton info smalllinfo2" data-original-title="{!$Label.IPM_BELOW_SELECTED_COUNTRIES_EXCLUDED}" data-placement="bottom" data-toggle="tooltip"></a>
+                                                                     </span> 
                                                                 </th>            
                                                             </tr>
                                                             <apex:repeat value="{!lstCountryWrappers}" var="country">

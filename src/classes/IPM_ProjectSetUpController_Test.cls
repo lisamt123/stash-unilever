@@ -185,7 +185,12 @@ private class IPM_ProjectSetUpController_Test {
             sic.projectMetadata.IPM_FastTrackApplicable__c=false;
             sic.projectMetadata.IPM_WhiteSpaceApplicable__c=false;
             System.assertEquals(sic.project.IPM_White_Space_Project__c,false);    
-            System.assertEquals(sic.project.IPM_Fast_Track_Project__c,false);    
+            System.assertEquals(sic.project.IPM_Fast_Track_Project__c,false);  
+            
+            if(sic.project.IPM_GateKeepingModel__c.equals(IPM_Utils.GATE_KEEPING_MODEL_1) || sic.project.IPM_GateKeepingModel__c.equals(IPM_Utils.GATE_KEEPING_MODEL_2))
+            	{
+            		System.assertEquals(sic.project.IPM_Approver_of_Charter__c, sic.projectMetadata.IPM_DefaultCharterQuestionAnswer__c);
+            	} 
 			sic.processProjectSave();
         }
         

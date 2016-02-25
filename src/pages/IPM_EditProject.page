@@ -79,7 +79,7 @@
                                         <span class="SecButtonSet infoMarTop">
                                             <a class="icoButton info" title="{!$Label.IPM_ProjectNameHelpText}"></a>        
                                         </span>
-                                        <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete proNameBox"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;};dupProjectName();"  maxlength="14" rendered="{!AND(isEditable,OR(project.IPM_Phase__c=null,project.IPM_Phase__c='',project.IPM_Phase__c!='PLE'),project.IPM_Project_Type__c!=isRollout)}" />
+                                        <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete proNameBox" html-onpaste="return false" onkeypress="return invalidChar(event);" onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;};dupProjectName();"  maxlength="14" rendered="{!AND(isEditable,OR(project.IPM_Phase__c=null,project.IPM_Phase__c='',project.IPM_Phase__c!='PLE'),project.IPM_Project_Type__c!=isRollout)}" />
                                         <apex:actionfunction name="dupProjectName" action="{!searchDuplicateProject}" rerender="refreshProjectName"/>
                                         <apex:outputpanel id="refreshProjectName" >
                                             <apex:outputpanel layout="block" styleClass="autoContainer" rendered="{!!isProjectNameBlank}">
@@ -304,6 +304,9 @@
                                         <apex:outputPanel id="WhiteSpaceFastTrackPanel">
                                         <apex:outputPanel rendered="{!OR(projectMetadata.IPM_FastTrackApplicable__c,projectMetadata.IPM_WhiteSpaceApplicable__c)}"> 
                                         <div class="col-sm-12 yellowBox noPadleft">
+                                         <span class="SecButtonSet infoMarTop pull-left">
+                                                                                <a class="icoButton info smalllinfo" title="{!$Label.IPM_FAST_TRACK_WHITE_SPACE}"></a>
+                                                                            </span>
                                             <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox" >
                                                 <apex:outputPanel rendered="{!projectMetadata.IPM_FastTrackApplicable__c}" > 
                                                     <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability')),true,false)}"/>

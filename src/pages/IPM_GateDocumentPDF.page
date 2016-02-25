@@ -43,6 +43,17 @@
                  background-position: 20px 40px;
              }
         }
+        *
+        {
+           font-size:10px !important;
+        }
+        table tr th, 
+        table tr td, 
+        table thead tr th,
+        table tbody tr th,
+        {
+           font-size:10px !important
+        }
          body, table{font-family:Arial Unicode MS; font-size:14px;color: rgb(102, 102, 102);border-collapse:collapse}
          table td {text-align:left; vertical-align:top;}
          .bold {font-weight: bold; font-family: sans-serif;}

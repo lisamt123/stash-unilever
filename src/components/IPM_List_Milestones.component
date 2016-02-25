@@ -127,7 +127,7 @@
                                 <div class="keep-open  btn-group">
                                     <div class="dropdown completedFilter completedFilterM ipmDropDown">
                                         <div class="dropdown-toggle" data-toggle="dropdown">
-                                            <a class="fa filterIcon icoButton filter"></a>
+                                            <a class="{!IF(isCompleteMilestones != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter calfilt')}"></a>
                                         </div>
                                         <ul class="dropdown-menu pull-right completeM" role="menu">
                                             <li>
@@ -202,7 +202,7 @@
                                     <div class="keep-open  btn-group">
                                     <div class="dropdown phaseMFilter ipmDropDown">
                                         <div class="dropdown-toggle" data-toggle="dropdown">
-                                            <a class="fa filterIcon icoButton filter"></a> 
+                                            <a class="{!IF(phaseM != null,'fa filterIcon icoButton filter-selected','fa filterIcon icoButton filter calfilt2')}"></a> 
                                         </div>
                                     </div>
                                 </div>

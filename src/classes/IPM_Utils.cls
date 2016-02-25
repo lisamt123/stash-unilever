@@ -4,6 +4,20 @@
     @Date: Sep 2014
     Generic class used to access IPM specific custom setting data, hence kept as Without Sharing.
 */
+
+/* 
+This class is running in without sharing because these classes contain various generic methods that are not depending on the user and need access to all fields and records across organisation.
+This class covers the below functionality :
+
+1) Get field specific fieldset information for Preparing SOQL 
+2) Trigger Skip Logic
+3) Financial External Id creation
+4) IPM Framework specific methods which make use of Custom Setting for getting Project specific attributes.
+5) User specific information and permission access.
+6) Generic implementation for Creating SOQL using schema methods.
+7) OTIF and Copy Over Custom Setting information.
+8) Methods for getting project hierarchy invoked from Queueable Interface. 
+*/
 public without sharing class IPM_Utils {
 
     //IPM_ProjectUtility
@@ -1215,7 +1229,7 @@ public without sharing class IPM_Utils {
         // Get the source Project Type and Source Company card to identify the Phase Sequence.
         for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
         {
-        	
+            
             if(projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c && projectMetadata.IPM_Project_Type__c == strProjectType)
             {
                 selectedProjectMetadata = projectMetadata;
@@ -1317,5 +1331,67 @@ public without sharing class IPM_Utils {
             }
             
         }
+    }
+    
+    /*******************************************************************************************************
+    * @description          Method to get Financial Year
+    * @param Set<String>    Local Project Name
+    * @return               Map of Financial Year
+    */
+    public static Map<String,IPM_Financial_Year__c> getRelatedY1InnovationYear(Set<String> externalIdSet) {
+        Map<String,IPM_Financial_Year__c> financialYearMap = new Map<String,IPM_Financial_Year__c>(); 
+        for(IPM_Financial_Year__c financialYear : [Select Id, Turnover_Regional__c, GM_of_TO_Regional__c, Financial_External_Id__c,
+                                                    Global_External_Id__c,External_Id__c
+                                             from IPM_Financial_Year__c
+                                             where Year__c =: IPM_ConstantUtils.INTRODUCTION_HEADER_SEQUENCE 
+                                             AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION
+                                             AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_INCREMENTAL 
+                                             AND Financial_External_Id__c IN: externalIdSet]) {
+            financialYearMap.put(financialYear.Financial_External_Id__c,financialYear);                                     
+        }
+        return financialYearMap;
+    }
+    
+    /*******************************************************************************************************
+    * @description              Method to get Financial Year
+    * @param fieldSet Name      Name of the field set
+    * @param object name        Name of object from where we need to get fields
+    * @param object name        Name of object from where we need get records
+    * @return                   Concatinated string with set of fields from FieldSet
+    */
+    public static String getSOQLQueryFromFieldSet(String fieldSetName,String fieldSetSobjectName,String FromsObject){
+        String queryString = IPM_ConstantUtils.BLANK;
+        if(FromsObject == null || String.isBlank(FromsObject)) {
+            FromsObject = fieldSetSobjectName;
+        }
+        
+        Map<String,Schema.SobjectType> globalDescribeMap = Schema.getGlobalDescribe();
+        Schema.FieldSet targetFieldSetObject = null;
+        if(globalDescribeMap.containsKey(fieldSetSobjectName)) {
+            Schema.DescribeSObjectResult sobjectDescResult = globalDescribeMap.get(fieldSetSobjectName).getDescribe(); 
+            Map<String, Schema.FieldSet> associatedFieldSetMap = sobjectDescResult.fieldSets.getMap();
+            if(associatedFieldSetMap.containsKey(fieldSetName)) {
+                targetFieldSetObject = associatedFieldSetMap.get(fieldSetName); 
+                
+            }
+        }
+        if(targetFieldSetObject != null) {
+            queryString = 'SELECT ';
+            for(Schema.FieldSetMember targetField : targetFieldSetObject.getFields()) {
+                if(targetField.getFieldPath() != IPM_ConstantUtils.SF_ID) {
+                    if((targetField.getFieldPath() != 'MCO_Name__c' && targetField.getFieldPath() != 'TargetLaunchDate__c' && FromsObject == 'IPM_MarketPerformanceBreakdown__c') || FromsObject == 'IPM_MarketPerformance__c') {
+                        queryString += targetField.getFieldPath();
+                        queryString += ','; 
+                    }
+                }
+            }
+            if(FromsObject == 'IPM_MarketPerformanceBreakdown__c'){
+                queryString += 'Id,External_Id__c,Period__c FROM '+FromsObject;
+            }
+            else{
+                queryString += 'Id,External_Id__c FROM '+FromsObject;
+            }
+        }   
+        return queryString;
     }
 }

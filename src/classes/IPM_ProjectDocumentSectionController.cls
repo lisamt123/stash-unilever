@@ -216,11 +216,17 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         projSectionList=new list<IPM_Project_Document_Section__c>();
         
         if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+        {
             countOfCountries=[SELECT count() FROM IPM_Country__c WHERE isActive__c=true AND IPM_Project__c=:project.id];
+        }
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+        {
             countOfCountries=[SELECT count() FROM IPM_Country__c WHERE isActive__c=true AND IPM_Regional_Project__c=:project.id];
+        }
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+        {
             countOfCountries=0;
+        }
         
         charcterCount();
         /* Added for Eco Design */
@@ -536,7 +542,9 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 }
             }
             if(String.IsNotBlank(projDocSec.IPM_PDP_Document_Summary__c) && projDocSec.IPM_PDP_Document_Summary__c.length() >=15)
+            {
                 projDocSec.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_STARTED;
+            }
             
             update projDocSec;
             IPM_Project_Document_Section__c testSection1 = [Select id, IPM_Gate_Document_Summary__c from IPM_Project_Document_Section__c where id =: projDocSec.Id];
@@ -657,7 +665,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,
                 IPM_Completed__c,IPM_Task_Type__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,LastModifiedBy.Name 
                 FROM IPM_Task__c 
-                WHERE IPM_Project__c=:projectId AND IPM_Project_Document_Section__r.IPM_Section_Name__c=:sectionName AND IPM_Function__c=:Frole AND IPM_Active__c = true order by IPM_Completed__c desc ];
+                WHERE IPM_Project__c=:projectId AND IPM_Project_Document_Section__r.IPM_Section_Name__c=:sectionName AND IPM_Function__c=:Frole AND IPM_Active__c = true order by IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c ASC ];
         countOfTask =  [SELECT count() FROM IPM_Task__c WHERE IPM_Project__c=:projectId and IPM_Project_Document_Section__r.IPM_Section_Name__c=:sectionName and IPM_Project_Document_Section__r.IPM_Negotiable__c=true];                                      
     }
 

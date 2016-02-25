@@ -44,8 +44,10 @@ public class IPM_MyProjects_Test{
                 updateProjectList.add(proj);
             }
            insert updateProjectList;
-         }  
-         system.assertEquals(5, [Select Id from IPM_Project__c limit 5].size(),'Projects are created');
+         }
+         List<IPM_Project__c> projectDBList = [Select id from IPM_Project__c limit 5];
+           
+         system.assertEquals(5, projectDBList.size(),'Projects are created');
          
       }
     
@@ -94,7 +96,10 @@ public class IPM_MyProjects_Test{
             ipmMileStoneTestList[i].IPM_Phase__c = projectDetailList[i].IPM_Phase__c;
         }
         insert ipmMileStoneTestList;
-        system.assertEquals(5, [Select Id from IPM_Milestone__c limit 5].size(),'Milestones are created');
+        
+        List<IPM_Milestone__c> milestoneList = [Select id from IPM_Milestone__c limit 5];
+        
+        system.assertEquals(5, milestoneList.size(),'Milestones are created');
         
     }
     

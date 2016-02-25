@@ -75,6 +75,9 @@
                                         <div class="col-sm-4 countrybg">
                                             <div class="subheader">
                                                 {!$Label.IPM_COUNTRY}
+                                                 <span class="SecButtonSet infoMarTop infoFloatR">
+                                                 <a class="icoButton info" title="{!$Label.IPM_KEY_MCO_NEEDS}"></a>
+                                             </span>
                                                 <span class="btext pull-right">
                                                     {!$Label.IPM_MARK_THIS_MCO_AS_KEY}
                                                     <div class="btm2 ipmCheckbox">
@@ -143,7 +146,7 @@
                     <apex:param name="p3" assignTo="{!previouselectedMCO}" value=""/>
                     <apex:param name="p4" assignTo="{!selectedKey}" value=""/>
                 </apex:actionFunction>      
-                          
+                <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script>           
                 <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script> 
                 <apex:outputPanel id="scriptPanel">
                     <script>
@@ -231,6 +234,7 @@
                                                jq('#ipmAddMemberModal .modal-title').html(mtitle);
                                            });
                                 scriptPanelLoad();  
+                                hilightTaskScript();  
                                     
                             });
                             
@@ -271,6 +275,12 @@
                                    window.top.location = '{!URLFOR($Page.IPM_RolloutPlans)}?Id={!projectId}&EditMode=false';
                                }
                            }
+                           function hilightTaskScript(){
+                                jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+                                jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});    
+                                jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
+                                jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
+                             }
                     </script>
                  </apex:outputPanel>
              </apex:outputPanel>

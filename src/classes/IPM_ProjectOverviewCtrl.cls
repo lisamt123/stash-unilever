@@ -353,7 +353,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         IPM_Project__c
         FROM Tasks__r 
         WHERE IPM_Assignee__c = :UserInfo.getUserId() AND IPM_Phase__c = :currPhase AND IPM_Active__c=TRUE
-        ORDER BY IPM_Due_Date1__c limit 10000),
+        ORDER BY IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c limit 10000),
         (SELECT id,name,IPM_Project__c from IPM_Countries__r limit 10000),
         (SELECT IPM_Project__c ,IPM_Project_Template__r.IPM_Template_Complexity__c,LastModifiedBy.Name,IPM_GateDocuments__c,
         IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,IPM_Approval_Date__c,
@@ -370,18 +370,24 @@ public with sharing class IPM_ProjectOverviewCtrl {
                              WHERE Id =:projectId];
                             
          if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && project.IPMProject_Span__c == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL && !project.IPM_Financials_Local__r.isEmpty())
+         {
             projectPriority = project.IPM_Financials_Local__r[0].ipm_cpp_local__c;
-
+         }
 
          projResCompleteList = project.IPM_Project_Resources__r;
+        Set<String> functionalRoleSet = new Set<String>();
          for(IPM_Project_Resource__c res : projResCompleteList){
             if(res.IPM_User__c == UserInfo.getUserId()){
                 projResList.add(res);
                 isAcessDuetoTeam=true;
             }   
-         }
-         //projResList =  project.IPM_Project_Resources__r;      
-           if(project.IPM_Projects__r != NULL && project.IPM_Projects__r.size() > 0){          
+        
+        	functionalRoleSet.add(res.IPM_Role_Type__c); // IPM_Role_Type__c will give functional role 
+        }
+        
+              
+        //projResList =  project.IPM_Project_Resources__r;      
+        if(project.IPM_Projects__r != NULL && !project.IPM_Projects__r.isEmpty()){          
             rolloutProjectRecentMilestone = [SELECT Id, IPM_Project__c, IPM_Project__r.Name, IPM_Type_of_gate__c, IPM_Due_Date__c 
                                                                   from IPM_Milestone__c
                                                                   where IPM_Project__r.IPM_Parent_Project__c =: projectId 
@@ -408,7 +414,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         
         //DEF3195-Earliest Target Launch is not displayed on overview page
         list<IPM_Project_Rollout__c> ro = [select Target_Launch_Date__c from IPM_Project_Rollout__c where IPM_Regional_Rollout_Status__c=:IPM_ConstantUtils.ROLLOUT_LEADER and (IPM_Project__c=:project.id or Regional_Project__c=:project.id)];
-        if(ro!=null && ro.size()>0){
+        if(ro!=null && !ro.isEmpty()){
             if(ro[0].Target_Launch_Date__c!=null){
                 earliestTLD = ro[0].Target_Launch_Date__c.format();
             }           
@@ -890,7 +896,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
                 if(eachRec.IPM_Due_Date__c != NULL && project.IPM_Target_Launch_Dates__c != NULL){
                     DateValue = Date.valueOf(eachRec.IPM_Due_Date__c).daysBetween(Date.valueOf(project.IPM_Target_Launch_Dates__c)) ;
                 }
-                if( ( countryLst != null && countryLst.size()  ==1 && DateValue< 180) || (project.IPM_Countries__r!= null && project.IPM_Countries__r.size() > 0 && DateValue<120 ) || ((project.IPM_Countries__r).isEmpty() && dateValue < 180 )){
+                if( ( countryLst != null && countryLst.size()  ==1 && DateValue< 180) || (project.IPM_Countries__r!= null && !project.IPM_Countries__r.isEmpty() && DateValue<120 ) || ((project.IPM_Countries__r).isEmpty() && dateValue < 180 )){
                     additionalAlertMessages.add(system.label.IPM_AlertMsgOutsideOTIF);
                     alertscount++;      
                 }

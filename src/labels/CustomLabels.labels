@@ -3830,7 +3830,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ABOUT_IN_PROGRESS_STATE</shortDescription>
-        <value>In progress means that you are working on the Gate document and it is not ready to be proposed.</value>
+        <value>“In Progress” means that a gate document is being written in anticipation of a gate proposal. Select “Proposed” to check the completeness of the document; when all requirements have been met, click “Change” to activate the status change. To archive a project, select “Stopped”, then “Change”.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_PROJECT</fullName>
@@ -3844,7 +3844,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ABOUT_PROPOSED_STATE</shortDescription>
-        <value>Proposed means that the Gate document is ready to be submitted for Gate meeting. You won&apos;t be able to update any section after proposing the document.</value>
+        <value>“Proposed” means that the gate document is ready to be presented for a gate decision. If your proposal has met all requirements, click the “Change” button to activate the status change. The document will be sealed from further edits, unless the status changes to “Approved with Edits” or “Postpone Gate&quot;.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_STOPPED_STATE</fullName>
@@ -3935,7 +3935,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ADD_EDIT_ROLLOUTS</shortDescription>
-        <value>Add Rollouts</value>
+        <value>Manage Rollouts</value>
     </labels>
     <labels>
         <fullName>IPM_ADD_MANAGE_SEC</fullName>
@@ -4636,6 +4636,34 @@ Which Communications team do you represent? You must be associated to one Planne
         <protected>false</protected>
         <shortDescription>BD Marketing</shortDescription>
         <value>Brand Development Marketing (BD Marketing)</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BELOW_ARE_QUICK</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BELOW_ARE_QUICK</shortDescription>
+        <value>Below are the quick links to the sections which require your input. Please click on link to jump to the appropriate section.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BELOW_ARE_THE_TYPICAL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BELOW_ARE_THE_TYPICAL</shortDescription>
+        <value>Below are the typical things to be done in order to provide input to the sections. Tick the correspondent box, if you have completed them.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BELOW_SELECTED_COUNTRIES_EXCLUDED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BELOW_SELECTED_COUNTRIES_EXCLUDED</shortDescription>
+        <value>The below selected countries, will be excluded from this Innovation/Renovation/BLG</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BELOW_SELECTED_COUNTRIES_INNOVATION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BELOW_SELECTED_COUNTRIES_INNOVATION</shortDescription>
+        <value>The below selected countries, will receive innovation as a separate rollout project, with its own timmings</value>
     </labels>
     <labels>
         <fullName>IPM_BETAccessMsgRegionalLocal</fullName>
@@ -7226,7 +7254,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ExternalToDosMessage</shortDescription>
-        <value>The To-do&apos;s and due dates for this project are being managed externally. Please get in touch With project Leader for more details.</value>
+        <value>The To-do&apos;s and due dates for this project are being managed externally. Please get in touch with the Project Leader for more details</value>
     </labels>
     <labels>
         <fullName>IPM_External_Char_Limit</fullName>
@@ -7276,6 +7304,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_FAST_TRACK_COLON</shortDescription>
         <value>Fast Track:</value>
+    </labels>
+    <labels>
+        <fullName>IPM_FAST_TRACK_WHITE_SPACE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_FAST_TRACK_WHITE_SPACE</shortDescription>
+        <value>Fast track = No limitations in time between Market Ready Gate and Launch. White space = Expansion of Category/Brand in a New market</value>
     </labels>
     <labels>
         <fullName>IPM_FEASIBILITY</fullName>
@@ -8146,6 +8181,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>IE=9</value>
     </labels>
     <labels>
+        <fullName>IPM_IMAGE_SIZE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_IMAGE_SIZE</shortDescription>
+        <value>The project logo is too large - it must be less than 50KB in size. Please go to the help page for more information on how to optimise your logo.</value>
+    </labels>
+    <labels>
         <fullName>IPM_IN</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -8459,6 +8501,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_KEY</shortDescription>
         <value>Key</value>
+    </labels>
+    <labels>
+        <fullName>IPM_KEY_MCO_NEEDS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_KEY_MCO_NEEDS</shortDescription>
+        <value>KEY MCO needs detailed financial information before Charter. NON-KEY MCO&apos;s need to be grouped together into one business case per market cluster. For Post Charter, every MCO needs to have detailed finance information</value>
     </labels>
     <labels>
         <fullName>IPM_KPI</fullName>
@@ -8924,6 +8973,13 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <value>Milestones and Tasks:</value>
     </labels>
     <labels>
+        <fullName>IPM_MiniMilestone_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM MiniMilestone Msg</shortDescription>
+        <value>Please select a mini milestone or cancel.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Mix_Char_Limit</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9383,6 +9439,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Once you have changed the status, you cannot undo it.</value>
     </labels>
     <labels>
+        <fullName>IPM_ON_CLICK_OF_SAVE_NOTIFY</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ON_CLICK_OF_SAVE_&amp;NOTIFY</shortDescription>
+        <value>On click, Save &amp; Notify button will send an email notification to the Project leader and respective functional team members</value>
+    </labels>
+    <labels>
         <fullName>IPM_OPP</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9689,6 +9752,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_PLEASE_NAVIGATE_TO</shortDescription>
         <value>Please navigate to</value>
+    </labels>
+    <labels>
+        <fullName>IPM_PLEASE_TYPE_IN_THE_CU</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_PLEASE_TYPE_IN_THE_CU</shortDescription>
+        <value>Please type in the CU. At this moment in time there is no connection between the CU&apos;s in this field and CU&apos;s from table 3.3.3 in Market Ready Gate</value>
     </labels>
     <labels>
         <fullName>IPM_POINT_OF_PURCHASE</fullName>
@@ -11190,6 +11260,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Please select sustainability period for this project. Please note that you will be able to select this ONLY ONCE.</value>
     </labels>
     <labels>
+        <fullName>IPM_SELECT_THE_APPROVER</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_SELECT_THE_APPROVER</shortDescription>
+        <value>Select the approver of this Bosscard. It may be the Gatekeeper ( Global category leader ), or Global Brand VP, Regional category VP. The approver can be different from the Gatekeeper of the project itself.</value>
+    </labels>
+    <labels>
         <fullName>IPM_SELECT_TLD</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11743,11 +11820,81 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Test</value>
     </labels>
     <labels>
+        <fullName>IPM_TEXT_SHOWN_HERE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TEXT_SHOWN_HERE</shortDescription>
+        <value>The text shown here has been copied from Project description. Editing this text will not modify the project description of the IPM Navigator project. This change will only affect the description field of your BET project</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THE_BELOW_SELECTED_COUNTRIES</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THE_BELOW_SELECTED_COUNTRIES</shortDescription>
+        <value>The below selected countries, will be created as a grouped local rollout project</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THE_SELECTION_HERE_DOES_NOT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THE_SELECTION_HERE_DOES_NOT</shortDescription>
+        <value>The selections here does not change the rollout plan, it only indicates to which country the below financials are related to and only applies to Charter</value>
+    </labels>
+    <labels>
         <fullName>IPM_THIS_CANNOT_BE_PROPOSED_YET</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_THIS_CANNOT_BE_PROPOSED_YET</shortDescription>
         <value>Sorry! this cannot be proposed yet. The non-negotiable sections and few other details listed below are incomplete. Please go back and fill them in.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_PARAMETER_WILL_HELP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_PARAMETER_WILL_HELP</shortDescription>
+        <value>This parameter will help you to classify the project correctly for reporting purposes.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_SHOWS_BUSINESS_CASE_BY_LOCAL_FINANCE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_SHOWS_BUSINESS_CASE_BY_LOCAL_FINANCE</shortDescription>
+        <value>This shows the Business case(s) specified by the Local Finance teams for local rollouts of this project. In case of misalignment, this tab will show BB&apos;s view.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_SHOWS_THE_BUSINESS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_SHOWS_THE_BUSINESS</shortDescription>
+        <value>This shows the Business case as captured during charter approval and it is only for reference, therefore read-only.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_SHOWS_THE_FULL_BUSINESS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_SHOWS_THE_FULL_BUSINESS</shortDescription>
+        <value>This shows the full business case as submitted by the Financial BD</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_SHOWS_THE_FULL_BUSINESS_BB</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_SHOWS_THE_FULL_BUSINESS_BB</shortDescription>
+        <value>This shows the full business case as submitted by the Financial BB</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_VIEW_SHOWS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_VIEW_SHOWS</shortDescription>
+        <value>This view shows the full business case as submitted by Financial BD. In case of misalignment this tab shows BD&apos;s view</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_WILL_DESCRIBE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_WILL_DESCRIBE</shortDescription>
+        <value>This will describe which part of the organisation you work for and, what type of project and related options will be driven from this selection</value>
     </labels>
     <labels>
         <fullName>IPM_TIMINGS</fullName>
@@ -11848,6 +11995,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Total &apos;000 Units</value>
     </labels>
     <labels>
+        <fullName>IPM_TO_DO_ARE_THE_SET</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TO_DO_ARE_THE_SET</shortDescription>
+        <value>To-Do&apos;s are the set of recommended activities ipm navigator suggests to be performed, however they are not mandatory nor being tracked. To-Do&apos;s are phase, section and role specific. PL can add/remove To-Do&apos;s.</value>
+    </labels>
+    <labels>
         <fullName>IPM_TO_DOs</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11874,6 +12028,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_TO_Do</shortDescription>
         <value>To-do</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TO_EDIT_YOUR_NUMBERS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TO_EDIT_YOUR_NUMBERS</shortDescription>
+        <value>To edit your numbers, please navigate to Essentials &gt; Financials</value>
     </labels>
     <labels>
         <fullName>IPM_TRADEMARK_QUESTIONS</fullName>
@@ -12104,7 +12265,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_UPDATE_STATUS</shortDescription>
-        <value>Update Status</value>
+        <value>Click here for options to change the status of the project, e.g. to Proposed, Approved, or Stopped. From here you may check a gate document for completeness and preview next steps before confirming or cancelling a status change.</value>
     </labels>
     <labels>
         <fullName>IPM_UPDATE_YOUR_DUE_DATE</fullName>
@@ -12413,6 +12574,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_YES</shortDescription>
         <value>Yes</value>
+    </labels>
+    <labels>
+        <fullName>IPM_YOUR_ESTIMATE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_YOUR_ESTIMATE</shortDescription>
+        <value>Your estimate of when this project will go to Market. This will be copied over and editable when you set up your project.</value>
     </labels>
     <labels>
         <fullName>IPM_YOU_HAVE_ALERT</fullName>

@@ -74,7 +74,7 @@ public with sharing class IPM_ProjectCountryDetails{
                     if(mapProjIsDeveloped.get(proj.Id)){//isDeveloped Calculated for the project is true
                         // if Delete-- make it Developing n emerging
                         if(isDelete){
-                            if(isDevelopedPresentMap.size() == 0 && IsDevelopingPresentMap.size()== 0){//Deleting last country
+                            if(isDevelopedPresentMap.isEmpty() && IsDevelopingPresentMap.isEmpty()){//Deleting last country
                                 proj.IPM_Market_Type__c = IPM_ConstantUtils.MARKETTYPE_DEVELOPED;
                                 lstUpdateProjects.add(proj);
                             }
@@ -92,7 +92,7 @@ public with sharing class IPM_ProjectCountryDetails{
                     else{
                         // if Delete-- make it Developing n emerging
                         if(isDelete){
-                            if(isDevelopedPresentMap.size() == 0 && IsDevelopingPresentMap.size()== 0){//deleting last country
+                            if(isDevelopedPresentMap.isEmpty() && IsDevelopingPresentMap.isEmpty()){//deleting last country
                                 proj.IPM_Market_Type__c = IPM_ConstantUtils.MARKETTYPE_DEVELOPED;
                                 lstUpdateProjects.add(proj);
                             }
