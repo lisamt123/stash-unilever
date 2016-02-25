@@ -65,6 +65,7 @@ public String docUploaded{get;set;}
     public String caOutputQualityCategoryClass {get;set;}
     public Amr_Quote__c quoteObj{get;set;}
     public Integer totalAlertCount{get; set;}
+    public static final String NONE ='--None--';
     
     
     public String jobStatus{get;set;}
@@ -150,7 +151,7 @@ public String docUploaded{get;set;}
          totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];
         getDocuments();
     }catch(Exception ex){
-    System.debug('Exception -> '+ ex.getmessage());
+    System.debug('Exception -> 1 '+ ex.getmessage());
     } 
         try{
             jobId = ApexPages.CurrentPage().getParameters().get('id'); 
@@ -167,7 +168,7 @@ public String docUploaded{get;set;}
         }
          
         String message = '' + ApexPages.CurrentPage().GetParameters().Get('message');
-        String pageHeaderReferer = ApexPages.currentPage().getHeaders().get('Referer'); 
+        //String pageHeaderReferer = ApexPages.currentPage().getHeaders().get('Referer'); 
 
         if(message != 'null')
         {
@@ -298,7 +299,7 @@ public String docUploaded{get;set;}
         projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
          listString= new list<string>();
          
-         listString.add('--None--');
+         listString.add(NONE);
         For(Amr_Project_Details__c i : projNameList){
             
                 listString.add(i.name);
@@ -348,735 +349,14 @@ public String docUploaded{get;set;}
             system.debug('========>jobId'+jobId);
                         system.debug('========>selectedCountry '+selectedCountry );
              userId = userinfo.getuserid();
-             updateData();
+            
         }catch(Exception ex){
-        	System.debug('Exception -> '+ ex.getmessage());
+        	System.debug('Exception -> 2'+ ex.getmessage());
         }
          
          
      }
-     
-           
-    public void updateData(){
-        try{
-            
-           
-            
-            
-            List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='CAP' order by Assignee.name];
-            boolean flag = false;
-            for(PermissionSetAssignment permissionObj:PermissionSetAssignmentList){
-                 if(userId == permissionObj.Assignee.id){
-                   
-                    flag = true;
-                    system.debug('inside cap User===>');
-                    break;
-                 }
-             }
-             if(jobId!=null){
-            jobDetailObj = [select id,AdManagerText__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,
-                                                     NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
-                                                     NewOriginalMasterInternalVideo__c,LanguageAdaptionMasterTv__c,LanguageAdaptionMasterCinema__c,LanguageAdaptionMasterRadio__c,
-                                                     LanguageAdaptionMasterPrint__c,LanguageAdaptionMasterOutofHome__c,LanguageAdaptionMasterInStore__c,LanguageAdaptionMasterDigital__c,
-                                                     LanguageAdaptionMasterInternalVideo__c,AdditionalSupplementaryNewMaterialTv__c,AdditionalSupplementaryNewMaterialCinema__c,
-                                                     AdditionalSupplementaryNewMaterialRadio__c,AdditionalSupplementaryNewMaterialPrint__c,AdditionalSupplementaryNewMaterialOOH__c,
-                                                     AdditionalSupplementaryNewMaterialStore__c,AdditionalSupplementaryNewMaterialDigi__c,AdditionalSupplementaryNewMaterialIVideo__c,
-                                                     ReworkExistingMaterialTv__c,ReworkExistingMaterialCinema__c,ReworkExistingMaterialRadio__c,ReworkExistingMaterialPrint__c,
-                                                     ReworkExistingMaterialOutofHome__c,ReworkExistingMaterialInStore__c,ReworkExistingMaterialDigital__c,ReworkExistingMaterialInternalVideo__c,
-                                                     BuyoutsTalentTv__c,BuyoutsTalentCinema__c,BuyoutsTalentInStore__c,BuyoutsTalentRadio__c,BuyoutsTalentPrint__c,BuyoutsTalentOutofHome__c,
-                                                     BuyoutsTalentDigital__c,BuyoutsTalentInternalVideo__c,BuyoutsMusicTv__c,BuyoutsMusicCinema__c,BuyoutsMusicRadio__c,BuyoutsMusicPrint__c,
-                                                     BuyoutsMusicOutofHome__c,BuyoutsMusicInStore__c,BuyoutsMusicDigital__c,BuyoutsMusicInternalVideo__c 
-                                                      
-                                                     from Amr_Job_Details__c where id = :jobId];
-            
-           
-           
-         }
-        
-           
-            if(jobId != null){
-                 if(flag == true){
-                      quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
-                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
-                               Average_Total_Opening_Quotes__c,Percentage_Saving_Average_of_Quote__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =:true) from Amr_Saving__c where Job_Details__r.id = :jobId];
-                      system.debug('inside Cap List========>'+quoteList );
-                      
-                      
-                 }else{
-                   quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
-                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
-                               Average_Total_Opening_Quotes__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quote__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =:true) from Amr_Saving__c where Job_Details__r.id = :jobId AND (CreatedById = :userId OR LastModifiedById = :userId )];
-                      system.debug('inside Rap List========>'+quoteList );
-                     
-                 }            
-                  Set<Id>savingIds=new Set<Id>();
-                      for(Amr_Saving__c saving:quoteList){
-                        savingIds.add(saving.Id);
-                      }
-                      quoteRelatedToSavingList = [select Saving_Type__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Accepted_Final_Cost_props_wardrobe__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,
-                                           Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,PPC_Costs_Euro_Amount__c,
-                                           Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,
-                                           Local_Currency_of_PPC_Costs__c,Local_Amount_of_PPC__c,CA_Costs_Euro_Amount__c,
-                                           CA_Additional_agency_Name__c,CA_Location__c,Is_Accepted__c,
-                                           Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,PC_Costs_Euro_Amount__c,
-                                           Total_Cost__c,id,Folder__c from Amr_Quote__c where Saving__c IN :savingIds ORDER BY Quote_Number__c];             //
-               
-              //  quoteJobId = jobId;
-                if(quoteList.size()>0){
-                        adManagerNumber = quoteList[0].Job_Details__r.AdManagerText__c;
-                }else{
-                   Amr_Job_Details__c jobObj = [select AdManagerText__c from Amr_Job_Details__c where id = :jobId];
-                   adManagerNumber = jobObj.AdManagerText__c;
-                }
-                  
-                         
-              
-            }
       
-        }catch(exception ex){
-          System.debug('Exception -> '+ ex.getmessage());
-        }
-    }
-   
-    integer i = 1;
-  
-    public PageReference addRowQuote(){
-        
-        try{
-         system.debug('savingId!!'+savingId);
-        Amr_Quote__c[] quoteNumberList  = [select Quote_Number__c from Amr_Quote__c where Saving__c =:savingId ORDER BY Quote_Number__c DESC];
-      
-                   
-        system.debug('savingId!!'+savingId+'quoteNumberList.size()!!'+quoteNumberList.size()+'quoteNumberList!!'+quoteNumberList);
-       
-        if(quoteNumberList.size()<5){
-             system.debug('11111!11111  -> '+docAndQuoteLst.size());
-            Amr_Quote__c quoteObj = new  Amr_Quote__c();
-              if(quoteNumberList.size()>0){
-                    system.debug('1333333331'+quoteNumberList.size() );
-                    if((quoteNumberList.size()-1 > 5) || (docAndQuoteLst.size()-1 > 5) || (docAndQuoteLst.size() + quoteNumberList.size()) > 4){
-                     system.debug('errorr!!');
-                     
-                     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'No more docs can be added'));
-                     
-                      return null;
-                      
-                    } 
-                        
-                      if(docAndQuoteLst != null && !docAndQuoteLst.isEmpty()){
-                        
-                        quoteObj.Saving__c = savingId;
-                        quoteObj.Quote_Number__c = (docAndQuoteLst.size());
-                        docAndQuoteLst.add(new InnerSavingClass(Integer.valueof(quoteNumberList.size()+quoteObj.Quote_Number__c+1),false,quoteObj));
-                        system.debug('Iam in first loop Bhupi');
-                    }
-                    else{
-                        quoteObj.Saving__c = savingId;
-                        quoteObj.Quote_Number__c = (quoteNumberList.size()) +1;
-                        docAndQuoteLst.add(new InnerSavingClass(Integer.valueof(quoteObj.Quote_Number__c),false,quoteObj));
-                        System.debug(' DAta List -- > ' + docAndQuoteLst);
-                    }
-                    
-              }
-              else{
-                   // quoteObj.Quote_Number__c =1;
-                  // quoteObj.Saving__c = savingId;
-                   // docAndQuoteLst.add(new InnerSavingClass(Integer.valueof(quoteObj.Quote_Number__c),true,quoteObj));
-                   
-                    if(docAndQuoteLst != null && !docAndQuoteLst.isEmpty()){
-                        
-                        quoteObj.Saving__c = savingId;
-                        quoteObj.Quote_Number__c = (docAndQuoteLst.size());
-                        docAndQuoteLst.add(new InnerSavingClass(Integer.valueof(quoteObj.Quote_Number__c+1 ),false,quoteObj));
-                        System.debug(' DAta List -- > ' + docAndQuoteLst);
-                    }
-                    else{
-                        quoteObj.Saving__c = savingId;
-                        quoteObj.Quote_Number__c = (quoteNumberList.size()) +1;
-                        docAndQuoteLst.add(new InnerSavingClass(Integer.valueof(quoteObj.Quote_Number__c),true,quoteObj));
-                        system.debug('Iam in second loop Bhupi');
-                    }
-            }
-             
-                system.debug(quoteNumberList.size());
-        }else if(quoteNumberList.size() > 5 || docAndQuoteLst.size() > 5 || (docAndQuoteLst.size() + quoteNumberList.size()) > 5){
-         system.debug('errorr!!');
-         
-         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'No more docs can be added'));
-         
-          return null;
-          
-        }   
-        }catch(Exception ex){
-        	System.debug('Exception -> '+ ex.getmessage());
-        } 
-          return null;
-    }
-     
-     
-      public PageReference SaveNewQuote(){
-        system.debug('==========>quoteObj'+docAndQuoteLst);
-        system.debug('==========>fileBody'+fileBody);
-        system.debug('==========>QuoteNumber'+QuoteNumber);
-        system.debug('savingId!!'+savingId);
-        
-        
-        
-       try{ 
-        
-        if(savingId != null && docAndQuoteLst.size()>0){
-             
-         Amr_Quote__c[] quoteNumberList  = [select Quote_Number__c from Amr_Quote__c where Saving__c =:savingId ORDER BY Quote_Number__c DESC];             //
-         integer counter = docAndQuoteLst.size()-1;
-            
-            if(docAndQuoteLst.size()>1 && docAndQuoteLst[counter-1].quoteObj.id == null && docAndQuoteLst[counter-1].quoteObj.Quote_Number__c != QuoteNumber){
-                system.debug('inside quote error msg=========>');
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Save Previous Quote'));
-                return null;
-            }   else{ 
-             
-             List<FeedItem>   lstFeedItem = new    List<FeedItem> ();   
-              List<Amr_Quote__c >   lstquoteItem = new    List<Amr_Quote__c > ();     
-            for(InnerSavingClass innerObj:docAndQuoteLst){
-                system.debug('---inside for'+innerObj);
-                    Document doc = new Document();
-                    Amr_Quote__c quoteToInsert = new Amr_Quote__c();
-                    system.debug('inside quote Number====>'+innerObj.quoteObj);
-                    quoteToInsert = innerObj.quoteObj;
-                    doc = innerObj.attachmentObj;
-                   // innerObj.attachmentObj = NULL;
-                    
-                     if(quoteToInsert.Saving__c == null){
-                        quoteToInsert.Saving__c = savingId;
-                        }
-                  /*  if(quoteNumberList.size()>0){
-                    quoteToInsert.Quote_Number__c = quoteNumberList[0].Quote_Number__c +1;
-                    }else{
-                    quoteToInsert.Quote_Number__c =1;
-                    }*/
-                    
-                    if(doc != null &&  doc.body!=null && quoteToInsert.id !=null){    
-              
-                         Amr_Quote__c quoteObj = [select Folder__c from Amr_Quote__c where Id =:quoteToInsert.id];
-              
-                        system.debug(document+'--------document Body'+doc.body);        
-                        FeedItem FI = new FeedItem();
-                        FI.ParentId = quoteToInsert.id;
-                        FI.Body = 'Attachment added';
-                        FI.ContentData = doc.body;
-                      
-                        FI.ContentFileName = doc.Name +'*'+quoteObj.Folder__c;
-                        lstFeedItem.add(FI);
-                       // doc = new document();
-                    
-                    }
-                    lstquoteItem.add(quoteToInsert);
-            }
-           
-            
-                       
-            upsert lstquoteItem;
-            
-            insert lstFeedItem;
-            lstFeedItem = new List<FeedItem> ();   
-            lstFeedItem = null;
-            system.debug('lstquoteItem====>'+lstquoteItem);
-            
-            if(lstquoteItem.size()>0){
-                for(Amr_Quote__c quote:lstquoteItem){
-                    if(quote.Is_Accepted__c == true){
-                        quote.Accepted_Final_Cost_PC_only_Currency__c = quote.Local_Currency_of_PC_Costs__c;
-                        quote.Accepted_Final_Cost_PC_only_Local_Amo__c = quote.Local_Amount_of_PC__c;
-                        quote.Accepted_Final_Cost_PC_Euro_Amou__c = String.ValueOf(quote.PC_Costs_Euro_Amount__c);
-                        
-                        quote.Accepted_Final_Cost_PPC_only_Currency__c = quote.Local_Currency_of_PPC_Costs__c;
-                        quote.Accepted_Final_Cost_PPC_only_Local_Am__c = quote.Local_Amount_of_PPC__c;
-                        quote.Accepted_Final_Cost_PPC_Euro_Amount__c =quote.PPC_Costs_Euro_Amount__c;
-                        
-                        quote.Accepted_Final_Cost_CA_only_Currency__c = quote.Local_Currency_of_CA_Costs__c;
-                        quote.Accepted_Final_Cost_CA_Local_Amount__c = quote.Local_Amount_of_CA__c;
-                        quote.Accepted_Final_Cost_CA_Euro_Amount__c = String.ValueOf(quote.CA_Costs_Euro_Amount__c);
-                        
-                        quote.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c = quote.Total_Cost__c;
-                    }
-                }
-            
-            }
-            
-           update lstquoteItem;
-           system.debug('updated with accepted lstquoteItem !!'+lstquoteItem);
-            
-         }
-        }
-       }catch(Exception ex){
-       	System.debug('Exception -> '+ ex.getmessage());
-       
-       }
-       //  pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+jobid);page.setRedirect(true); return page ;
-        return null;
-    }
-    public void SaveQuote(){}
-    public PageReference editSaving(){
-        
-        if(saveRecordValue!=null){
-        editedSavingMode = true;
-        }
-       
-        return null;
-    }
-    
-    public PageReference editQuote(){
-        
-    system.debug('saveRecordValueForQuote!!'+saveRecordValueForQuote);
-        editedQuoteMode = true;
-        
-        return null;
-    }
-    
-    public PageReference submitDataQuote(){
-    	try{
-        system.debug('quoteId!!'+quoteId);
-        system.debug('document outside quote!!'+fileBody);
-        
-    document.body =  fileBody ;
-    update quoteRelatedToSavingList;
-    if(quoteRelatedToSavingList.size()>0){
-        for(Amr_Quote__c quote:quoteRelatedToSavingList){
-            if(quote.Is_Accepted__c == true){
-                        quote.Accepted_Final_Cost_PC_only_Currency__c = quote.Local_Currency_of_PC_Costs__c;
-                        quote.Accepted_Final_Cost_PC_only_Local_Amo__c = quote.Local_Amount_of_PC__c;
-                        quote.Accepted_Final_Cost_PC_Euro_Amou__c = String.ValueOf(quote.PC_Costs_Euro_Amount__c);
-                        
-                        quote.Accepted_Final_Cost_PPC_only_Currency__c = quote.Local_Currency_of_PPC_Costs__c;
-                        quote.Accepted_Final_Cost_PPC_only_Local_Am__c = quote.Local_Amount_of_PPC__c;
-                        quote.Accepted_Final_Cost_PPC_Euro_Amount__c =quote.PPC_Costs_Euro_Amount__c;
-                        
-                        quote.Accepted_Final_Cost_CA_only_Currency__c = quote.Local_Currency_of_CA_Costs__c;
-                        quote.Accepted_Final_Cost_CA_Local_Amount__c = quote.Local_Amount_of_CA__c;
-                        quote.Accepted_Final_Cost_CA_Euro_Amount__c = String.ValueOf(quote.CA_Costs_Euro_Amount__c);
-                        
-                        quote.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c = quote.Total_Cost__c;
-                    }
-        }
-    
-    }
-     update quoteRelatedToSavingList;
-     system.debug('updated with accepted quote on click of edit'+quoteRelatedToSavingList);
-    if(document.body!=null && quoteId!=null){
-    Amr_Quote__c quoteObj = [select Folder__c from Amr_Quote__c where Id =:quoteId];
-    
-       
-              
-            system.debug(document+'--------document Body'+document.body );        
-            FeedItem FI = new FeedItem();
-            FI.ParentId = quoteId;
-            FI.Body = 'Attachment added';
-            FI.ContentData = document.body;
-          
-            FI.ContentFileName = document.Name +'*'+quoteObj.Folder__c;
-            insert FI;
-  system.debug('FI!!'+FI+'quoteObj!!'+quoteObj);
-            document = new document();
-        }
-        editedQuoteMode = false;
-        updateData();
-        pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobid);page.setRedirect(true); return page ;
-         system.debug('quoteRelatedToSavingList!!'+quoteRelatedToSavingList);
-         }catch(Exception e){
-         system.debug('Exception ->'+e.getmessage());
-        
-         }   
-    return null;
-    }
-    
-    
-      
-    public PageReference submitData(){
-    system.debug('savingId!!'+savingId);
-     
-     try{
-            
-     if(savingId!=null){     
-     if(quoteList != null && !quoteList.isEmpty()){
-        update quoteList;
-        system.debug('document quoteList!!'+quoteList);
-    }
-    Amr_Saving__c savingObj  = new Amr_Saving__c ( Id = savingId);  
-    
-     system.debug('savingObj'+savingObj + 'selected' +selectedCountry1 );
-    if(selectedCountry1.size()>0){   
-    for(String str : selectedCountry1){
-                if(savingObj.Shoot_Location__c == null){
-                    savingObj.Shoot_Location__c = str ;
-                }else{
-                    savingObj.Shoot_Location__c += ','+str;
-                }
-            }
-     update savingObj;  
-     system.debug('document outside!!'+savingObj+'8888888888'+fileBody );     
-    }
-     //updatedata();
-    
-     document.body =  fileBody ;
-            
-    system.debug('document outside!!'+fileBody +'document.body!!'+document.body);
-    
-            if(document != null && document.body !=null && savingId !=null){
-                   
-            FeedItem FI = new FeedItem();
-            FI.ParentId = savingId;
-            FI.Body = 'Attachment added';
-            FI.ContentData = document.body;
-          
-            FI.ContentFileName = document.Name +'*'+savingObj.Folder_Name__c;
-            insert FI;
-  system.debug('FI!!'+FI);
-            document = new document();
-            }
-      }
-         
-      
-   
-    editedSavingMode = false;
-    system.debug('quoteList!!'+quoteList);
-    
-    system.debug('quoteList!!3333'+quoteList);
-    pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobid);page.setRedirect(true); return page ;
-  
-    }catch(Exception ex){
-    
-    System.debug('Exception -> '+ ex.getmessage());
-      }
-        return null;
-    } 
-    
-     public PageReference deleteQuote(){
-        system.debug('quoteId!!'+quoteId);
-        try{
-            if(quoteId != null){
-        Amr_Quote__c quoteObj = [select Id,Saving__c from Amr_Quote__c where Id =:quoteId limit 1]; 
-        String savingIdFromQuoteId = quoteObj.Saving__c;
-        system.debug('savingIdFromQuoteId!!'+savingIdFromQuoteId);
-        delete quoteObj;
-            
-        List<Amr_Quote__c> quoteList =[select Id,Quote_Number__c from Amr_Quote__c where Saving__c =:savingIdFromQuoteId ORDER BY Quote_Number__c ASC ];
-        Integer i=1;
-                for(Amr_Quote__c quote:quoteList){
-                    quote.Quote_Number__c = i;
-                    i=i+1;
-                }
-                update quoteList;
-                system.debug('New Quote List with arranged numbers!!'+quoteList);
-            
-        
-        }
-        
-        
-        pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobid);page.setRedirect(true); return page ;
-        }catch(Exception ex){
-        	System.debug('Exception -> '+ ex.getmessage());
-        }
-        
-        
-        return null;
-    }
-    
-    public PageReference deleteSaving(){
-    system.debug('savingId!!'+savingId);
-        try{
-            if(savingId != null){
-        Amr_Saving__c savingObj = [select Id from Amr_Saving__c where Id =:savingId limit 1];   
-        delete savingObj;}
-        pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobid);page.setRedirect(true); return page ;
-        }catch(Exception e){
-       	System.debug('Exception -> '+ e.getmessage());
-        }
-        
-        
-        return null;
-    
-    }
-    
-     public void UpdateAcceptedQuote(){
-       
-        try{
-            update quoteRelatedToSavingList;
-            
-        }catch(Exception ex){
-                
-          
-            System.debug('Exception -> '+ ex.getmessage());
-        }
-    }
-    
-    public PageReference editAcceptedQuote(){
-        system.debug('saveRecordValueForAccQuote!!'+savingId);
-    editedAcceptedQuote =true;
-   
-    return null;
-    }
-    
-    public PageReference SubmitWholeSaving(){
-        try{
-        pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobid);
-        page.setRedirect(true); 
-        return page ;
-        }catch(Exception e){
-        system.debug('Exception ->'+e.getmessage());
-        }
-    
-    return null;
-    }
-    
-    
-     public void getCaCostMangCategory(){}
-    public void getCaProcessMangCategory(){}
-    
-    public void getCaOutputQualityCategory(){}
-    
-    public void AllValues(){
-    	try{
-     Amr_Saving__c savingObj = [select Folder_Name__c,Shoot_Location__c,PC_Appraisal_Time_Management__c, 
-                                PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,
-                                 PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c, PPC_Appraisal_Process_Management__c,PPC_Appraisal_Cost_Management__c,
-                                CA_Appraisal_Time_Management__c, CA_Appraisal_Output_Quality__c, CA_Appraisal_Process_Management__c,CA_Appraisal_Cost_Management__c,
-                                 Pc_Time_Manage_Star__c,  Pc_Output_Quality_Star__c,     Pc_Proces_Manage_Star__c,Pc_Cost_Manage_Star__c ,Ppc_Time_Manage_Star__c,
-                                 Ppc_Output_Quality_Star__c,Ppc_Process_Manage_Star__c,Ppc_Cost_Manage_Star__c,Ca_Time_Manage_Star__c,Ca_Output_Quality_Star__c,
-                                 Ca_Process_Manage_Star__c,Ca_Cost_Manage_Star__c
-                                 from Amr_Saving__c where Id =:savingId];
-        
-        System.debug('Pc TIME MANAGEMENT  ->  '+ pcTimeMangCategoryValue);
-        System.debug('PC COST MANAGE MENT -> '+ pcCostMangCategoryValue);
-        System.debug(' PC PROCESS MANAGEMNT -> '+ pcProcessMangCategoryValue );
-        System.debug('PC OUTPUT -> '+ pcOutputQualityCategoryValue );
-        System.debug('PPC TIME MAN --> ' +  pccTimeMangCategoryValue);
-        System.debug('PPC COST -> ' + pccCostMangCategoryValue );
-        System.debug('PPC PROCESS MANG -> '+ pccProcessMangCategoryValue);
-        System.debug('PPC OUTPUT -> ' + pccOutputQualityCategoryValue  );
-        System.debug('CA TIME MANG ->'+ caTimeMangCategoryValue);
-        System.debug('CA COST MANG -> '+ caCostMangCategoryValue );
-        System.debug('CA PROCESS MANG -> ' + caProcessMangCategoryValue);
-        System.debug('CA OUTPUR -> '+ caOutputQualityCategoryValue );
-       
-        if(savingObj.id != null){
-            
-            // blank Check Pc
-            
-            if(String.isBlank(String.valueOf(pcTimeMangCategoryValue)) || String.isBlank(String.valueOf(pcTimeMangCategoryClass))) {
-                if(!String.isBlank(savingObj.PC_Appraisal_Time_Management__c)){
-                    pcTimeMangCategoryValue = Integer.valueOf(savingObj.PC_Appraisal_Time_Management__c);
-                }
-                else
-                {
-                    pcTimeMangCategoryValue = 0;
-                }
-                pcTimeMangCategoryClass = savingObj.Pc_Time_Manage_Star__c;
-            }
-            if(String.isBlank(String.valueOf(pcOutputQualityCategoryValue)) || String.isBlank(String.valueOf(pcOutputQualityCategoryClass))) {
-                if(!String.isBlank(savingObj.PC_Appraisal_Output_Quality__c)){
-                    pcOutputQualityCategoryValue = Integer.valueOf(savingObj.PC_Appraisal_Output_Quality__c);
-                }
-                else
-                {
-                    pcOutputQualityCategoryValue = 0;
-                }
-                
-                pcOutputQualityCategoryClass = savingObj.Pc_Output_Quality_Star__c;
-            }
-            if(String.isBlank(String.valueOf(pcProcessMangCategoryValue)) || String.isBlank(String.valueOf(pcProcessMangCategoryClass))) {
-                 if(!String.isBlank(savingObj.PC_Appraisal_Process_Management__c)){
-                    pcProcessMangCategoryValue= Integer.valueOf(savingObj.PC_Appraisal_Process_Management__c);
-                }
-                else
-                {
-                    pcProcessMangCategoryValue = 0;
-                }
-                
-                pcProcessMangCategoryClass = savingObj.Pc_Proces_Manage_Star__c;
-            }
-            if(String.isBlank(String.valueOf(pcCostMangCategoryValue)) || String.isBlank(String.valueOf(pcCostMangCategoryClass))) {
-                 if(!String.isBlank(savingObj.PC_Appraisal_Cost_Management__c)){
-                    pcCostMangCategoryValue= Integer.valueOf(savingObj.PC_Appraisal_Cost_Management__c);
-                }
-                else
-                {
-                    pcCostMangCategoryValue = 0;
-                }
-                
-                pcCostMangCategoryClass= savingObj.Pc_Cost_Manage_Star__c ;
-            }
-            
-            // blank Check PPc
-            
-            if(String.isBlank(String.valueOf(pccTimeMangCategoryValue)) || String.isBlank(String.valueOf(pccTimeMangCategoryClass ))) {
-                if(!String.isBlank(savingObj.PPC_Appraisal_Output_Quality__c)){
-                    pccTimeMangCategoryValue = Integer.valueOf(savingObj.PPC_Appraisal_Output_Quality__c);
-                }
-                else
-                {
-                    pccTimeMangCategoryValue = 0;
-                }
-                
-                pccTimeMangCategoryClass = savingObj.Ppc_Time_Manage_Star__c;
-            }
-            if(String.isBlank(String.valueOf(pccOutputQualityCategoryValue)) || String.isBlank(String.valueOf(pccOutputQualityCategoryClass ))) {
-                 if(!String.isBlank(savingObj.PPC_Appraisal_Output_Quality__c )){
-                     pccOutputQualityCategoryValue = Integer.valueOf(savingObj.PPC_Appraisal_Output_Quality__c );
-                }
-                else
-                {
-                    pccOutputQualityCategoryValue = 0;
-                }
-               
-                pccOutputQualityCategoryClass = savingObj.Ppc_Output_Quality_Star__c;
-            }
-            if(String.isBlank(String.valueOf(pccProcessMangCategoryValue)) || String.isBlank(String.valueOf(pccProcessMangCategoryClass))) {
-                if(!String.isBlank(savingObj.PPC_Appraisal_Process_Management__c)){
-                     pccProcessMangCategoryValue= Integer.valueOf(savingObj.PPC_Appraisal_Process_Management__c);
-                }
-                else
-                {
-                    pccProcessMangCategoryValue= 0;
-                }   
-                pccProcessMangCategoryClass= savingObj.Ppc_Process_Manage_Star__c;
-            }
-            if(String.isBlank(String.valueOf(pccCostMangCategoryValue)) || String.isBlank(String.valueOf(pccCostMangCategoryClass ))) {
-                if(!String.isBlank(savingObj.PPC_Appraisal_Cost_Management__c )){
-                     pccCostMangCategoryValue= Integer.valueOf(savingObj.PPC_Appraisal_Cost_Management__c );
-                }
-                else
-                {
-                    pccCostMangCategoryValue = 0;
-                }               
-                pccCostMangCategoryClass = savingObj.Ppc_Cost_Manage_Star__c;
-            }
-            
-             // blank Check CA
-            
-            if(String.isBlank(String.valueOf(caTimeMangCategoryValue)) || String.isBlank(String.valueOf(caTimeMangCategoryClass ))) {
-                if(!String.isBlank(savingObj.CA_Appraisal_Time_Management__c  )){
-                caTimeMangCategoryValue = Integer.valueOf(savingObj.CA_Appraisal_Time_Management__c );
-                }
-                else
-                {
-                    caTimeMangCategoryValue = 0;
-                } 
-                caTimeMangCategoryClass = savingObj.Ca_Time_Manage_Star__c;
-            }
-            if(String.isBlank(String.valueOf(caOutputQualityCategoryValue )) || String.isBlank(String.valueOf(caOutputQualityCategoryClass ))) {
-                if(!String.isBlank(savingObj.CA_Appraisal_Output_Quality__c)){
-                caOutputQualityCategoryValue = Integer.valueOf(savingObj.CA_Appraisal_Output_Quality__c);
-                }
-                else
-                {
-                    caOutputQualityCategoryValue = 0;
-                }
-                
-                caOutputQualityCategoryClass = savingObj.Ca_Output_Quality_Star__c;
-            }
-            if(String.isBlank(String.valueOf(caProcessMangCategoryValue)) || String.isBlank(String.valueOf(caProcessMangCategoryClass))) {
-                if(!String.isBlank(savingObj.CA_Appraisal_Process_Management__c )){
-                caProcessMangCategoryValue= Integer.valueOf(savingObj.CA_Appraisal_Process_Management__c );
-                }
-                else
-                {
-                    caProcessMangCategoryValue = 0;
-                }
-                
-                caProcessMangCategoryClass= savingObj.Ca_Process_Manage_Star__c;
-            }
-            if(String.isBlank(String.valueOf(caCostMangCategoryValue )) || String.isBlank(String.valueOf(caCostMangCategoryClass ))) {
-                if(!String.isBlank(savingObj.PPC_Appraisal_Cost_Management__c )){
-                    caCostMangCategoryValue = Integer.valueOf(savingObj.PPC_Appraisal_Cost_Management__c );
-                }
-                else
-                {
-                    caCostMangCategoryValue = 0;
-                }
-                
-                caCostMangCategoryClass = savingObj.Ca_Cost_Manage_Star__c;
-            }
-
-            
-            
-            //pc appraisal
-              savingObj.PC_Appraisal_Time_Management__c = String.valueOf(pcTimeMangCategoryValue);
-              savingObj.PC_Appraisal_Output_Quality__c = String.valueOf(pcOutputQualityCategoryValue);
-              savingObj.PC_Appraisal_Process_Management__c = String.valueOf(pcProcessMangCategoryValue);
-              savingObj.PC_Appraisal_Cost_Management__c = String.valueOf(pcCostMangCategoryValue);
-             //PPC Appraisal
-              savingObj.PPC_Appraisal_Time_Management__c = String.valueOf(pccTimeMangCategoryValue);
-              savingObj.PPC_Appraisal_Output_Quality__c = String.valueOf(pccOutputQualityCategoryValue);
-              savingObj.PPC_Appraisal_Process_Management__c = String.valueOf(pccProcessMangCategoryValue);
-              savingObj.PPC_Appraisal_Cost_Management__c = String.valueOf(pccCostMangCategoryValue);
-             //CA Appraisal
-              savingObj.CA_Appraisal_Time_Management__c = String.valueOf(caTimeMangCategoryValue);
-              savingObj.CA_Appraisal_Output_Quality__c = String.valueOf(caOutputQualityCategoryValue );
-              savingObj.CA_Appraisal_Process_Management__c = String.valueOf(caProcessMangCategoryValue);
-              savingObj.CA_Appraisal_Cost_Management__c = String.valueOf(caCostMangCategoryValue );
-              
-             
-              
-                 //pc appraisal class
-              savingObj.Pc_Time_Manage_Star__c = String.valueOf(pcTimeMangCategoryClass );
-              savingObj.Pc_Output_Quality_Star__c= String.valueOf(pcOutputQualityCategoryClass);
-              savingObj.Pc_Proces_Manage_Star__c= String.valueOf(pcProcessMangCategoryClass );
-              savingObj.Pc_Cost_Manage_Star__c = String.valueOf(pcCostMangCategoryClass);
-             //PPC Appraisal Class
-              savingObj.Ppc_Time_Manage_Star__c= String.valueOf(pccTimeMangCategoryClass );
-              savingObj.Ppc_Output_Quality_Star__c= String.valueOf(pccOutputQualityCategoryClass );
-              savingObj.Ppc_Process_Manage_Star__c= String.valueOf(pccProcessMangCategoryClass);
-              savingObj.Ppc_Cost_Manage_Star__c= String.valueOf(pccCostMangCategoryClass );
-             //CA Appraisal classs
-              savingObj.Ca_Time_Manage_Star__c= String.valueOf(caTimeMangCategoryClass );
-              savingObj.Ca_Output_Quality_Star__c= String.valueOf(caOutputQualityCategoryClass );
-              savingObj.Ca_Process_Manage_Star__c= String.valueOf(caProcessMangCategoryClass);
-              savingObj.Ca_Cost_Manage_Star__c= String.valueOf(caCostMangCategoryClass );
-              update savingObj;
-              
-               pcTimeMangCategoryValue = null;
-              pcOutputQualityCategoryValue= null;
-              pcProcessMangCategoryValue= null;
-              pcCostMangCategoryValue= null;
-              pccOutputQualityCategoryValue= null;
-              pccProcessMangCategoryValue= null;
-              pccCostMangCategoryValue= null;
-              caTimeMangCategoryValue= null;
-              caOutputQualityCategoryValue = null;
-              caProcessMangCategoryValue = null;
-              caCostMangCategoryValue = null;
-        }
-    	}catch(Exception e){
-    	system.debug('Exception ->'+e.getmessage());
-    	}
-       
-    }
-    
-    public String getSelectedRatingStar(){
-        try{
-      list<Amr_Saving__c> lstsavingObj = [Select id, PC_Appraisal_Time_Management__c, 
-                                PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,
-                                 PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c, PPC_Appraisal_Process_Management__c,PPC_Appraisal_Cost_Management__c,
-                                CA_Appraisal_Time_Management__c, CA_Appraisal_Output_Quality__c, CA_Appraisal_Process_Management__c,CA_Appraisal_Cost_Management__c,
-                                 Pc_Time_Manage_Star__c,  Pc_Output_Quality_Star__c,     Pc_Proces_Manage_Star__c,Pc_Cost_Manage_Star__c ,Ppc_Time_Manage_Star__c,
-                                 Ppc_Output_Quality_Star__c,Ppc_Process_Manage_Star__c,Ppc_Cost_Manage_Star__c,Ca_Time_Manage_Star__c,Ca_Output_Quality_Star__c,
-                                 Ca_Process_Manage_Star__c,Ca_Cost_Manage_Star__c
-                                 from Amr_Saving__c where Job_Details__c =:jobId];
-                                 
-       System.debug('DAGTA -->  ' + JSON.Serialize(lstsavingObj ));
-       
-       return JSON.Serialize(lstsavingObj );
-        }catch(Exception e){
-       	system.debug('Exception ->'+e.getmessage());
-       	return null;
-       }
-       
-    }
-   
-   
-   
-   
-   
       
     //public  Amr_Quote__c acceptedQuote {get;set;}
     public  Document document {
@@ -1155,7 +435,7 @@ public String docUploaded{get;set;}
          if(ProjectName !=null){
           listString.add(ProjectName);
          }
-         listString.add('--None--');
+         listString.add(NONE);
         For(Amr_Project_Details__c i : projNameList){
             if(ProjectName != i.name){
                 listString.add(i.name);
@@ -1164,7 +444,7 @@ public String docUploaded{get;set;}
         system.debug('serialize!!'+JSON.serialize(listString));
         return JSON.serialize(listString);
          	}catch(Exception e){
-         	system.debug('Exception ->'+e.getmessage());
+         	system.debug('Exception ->15'+e.getmessage());
          	return null;
          	}
     }
@@ -1180,7 +460,7 @@ public String docUploaded{get;set;}
                 }
            }
            }catch(Exception e){
-           	system.debug('Exception ->'+e.getmessage());
+           	system.debug('Exception ->16'+e.getmessage());
            }
         }
     public pageReference getPage(){
@@ -1204,7 +484,7 @@ public String docUploaded{get;set;}
              return pageRef;
         }
         }catch(Exception e){
-        	system.debug('Exception ->'+e.getmessage());
+        	system.debug('Exception ->17'+e.getmessage());
         	return null;
         }
       
@@ -1242,7 +522,7 @@ public String docUploaded{get;set;}
                 }
             } 
         }catch(Exception e){
-        	system.debug('Exception ->'+e.getmessage());
+        	system.debug('Exception ->18'+e.getmessage());
         	return null;
         }
     }
@@ -1318,7 +598,7 @@ public String docUploaded{get;set;}
            // Amr_EmailSendingClass.emailSending(jobId , emailAddress, 'Amr_RAPAllocatedJob', new List<Id>());  
          }  
         }catch(Exception e){
-        system.debug('Exception ->'+e.getmessage());
+        system.debug('Exception ->19'+e.getmessage());
       
         }
     }
@@ -1347,7 +627,7 @@ public String docUploaded{get;set;}
           }
        }
        }catch(Exception e){
-       	system.debug('Exception ->'+e.getmessage());
+       	system.debug('Exception ->20'+e.getmessage());
        	 return null;
        }
     }
@@ -1390,7 +670,7 @@ public String docUploaded{get;set;}
         update jobDetail;
      //   Amr_EmailSendingClass.emailSending(jobId,toEmailAddress, 'Amr_JobCancellation', new List<Id>() );
        }catch(Exception e){
-       system.debug('Exception ->'+e.getmessage());
+       system.debug('Exception ->21'+e.getmessage());
        
        }
     }
@@ -1425,7 +705,7 @@ public String docUploaded{get;set;}
            return null;
        }  
        }catch(Exception e){
-       	system.debug('Exception ->'+e.getmessage());
+       	system.debug('Exception ->22'+e.getmessage());
        	 return null;
        }
     }  
@@ -1509,7 +789,7 @@ public String docUploaded{get;set;}
         
          listOfCategory = new List<SelectOption>();
          
-         listOfCategory.add(new selectOption('--None--','--None--'));
+         listOfCategory.add(new selectOption(NONE,NONE));
          Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
          
          for(String cat: utiltyObj.categoryBrandPositionMap.keySet()){
@@ -1529,7 +809,7 @@ public String docUploaded{get;set;}
         
          listOfProjectName = new List<SelectOption>();
          List<Amr_Project_Details__c> ProjectNameList= [Select id,Name from Amr_Project_Details__c order by name limit 500];
-         listOfProjectName .add(new selectOption('--None--','--None--'));
+         listOfProjectName .add(new selectOption(NONE,NONE));
          for(Amr_Project_Details__c cat : ProjectNameList){
              listOfProjectName.add(new selectOption(cat.Id,cat.Name));
          }
@@ -1552,7 +832,7 @@ public String docUploaded{get;set;}
          }
          
          listOfBrandPosition = new List<SelectOption>();
-         listOfBrandPosition.add(new selectOption('--None--','--None--'));
+         listOfBrandPosition.add(new selectOption(NONE,NONE));
          for(String bps : brandPositionlst){
              listOfBrandPosition.add(new selectOption(bps,bps));
          }
@@ -1579,7 +859,7 @@ public String docUploaded{get;set;}
         system.debug('brandPositionListttoo----->'+brandPositionlst );
 
         listOfBrandPosition = new List<SelectOption>();
-        listOfBrandPosition.add(new selectOption('--None--','--None--'));
+        listOfBrandPosition.add(new selectOption(NONE,NONE));
         Set<String> brnadPosNameSet = new Set<String>();
         for(MDO_BrandPositions__c bps : brandPositionlst){
 
@@ -1590,7 +870,7 @@ public String docUploaded{get;set;}
             }
         }
          listOfBrand = new List<SelectOption>();
-         listOfBrand.add(new selectOption('--None--','--None--'));
+         listOfBrand.add(new selectOption(NONE,NONE));
         system.debug('brandPositionListtt----->'+listOfBrandPosition);
         system.debug('brand----->'+listOfBrand);
         return null;
@@ -1607,7 +887,7 @@ public String docUploaded{get;set;}
          listOfBrand = new List<SelectOption>();
          system.debug('========>'+brandPosName);
          
-         listOfBrand.add(new selectOption('--None--','--None--'));
+         listOfBrand.add(new selectOption(NONE,NONE));
          
          Set<String> brandlst = new Set<String>();
          Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
@@ -1633,7 +913,7 @@ public String docUploaded{get;set;}
         listOfBrand = new List<SelectOption>();
         system.debug('========>  '+selectedBrandPosName+' category name=====>'+selectedCategory);
 
-        listOfBrand.add(new selectOption('--None--','--None--'));
+        listOfBrand.add(new selectOption(NONE,NONE));
 
         //Set<String> brandlst = new Set<String>();
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
@@ -1668,7 +948,7 @@ public String docUploaded{get;set;}
                  projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
                  listString= new list<string>();
                  
-                 listString.add('--None--');
+                 listString.add(NONE);
                  For(Amr_Project_Details__c i : projNameList){
                     
                         listString.add(i.name);
@@ -1676,13 +956,13 @@ public String docUploaded{get;set;}
                  }
         }*/
         if(MDOBrandPositionslst.size()>0){
-                        if(categoryName !='--None--'){
+                        if(categoryName !=NONE){
                                 system.debug('===list MDO Category'+MDOBrandPositionslst[0].product_category_id__c );
                         jobList.ProductCategory__c = MDOBrandPositionslst[0].product_category_id__c ;}
-                        if(brandPosName!='--None--'){
+                        if(brandPosName!=NONE){
                                 system.debug('===list MDO brand Post'+MDOBrandPositionslst[0].brand_position_id__c);
                         jobList.Brand_Position__c = MDOBrandPositionslst[0].brand_position_id__c ;}
-                        if(brandNameFromPage!='--None--'){
+                        if(brandNameFromPage!=NONE){
                                 system.debug('===list MDO brand'+MDOBrandPositionslst[0].brand_position_id__c);
                         jobList.Brand_Final__c = MDOBrandPositionslst[0].brand_id__c ;
                         updateAdManagerText();
@@ -1897,16 +1177,16 @@ public String docUploaded{get;set;}
        okayToSave =false;
         }
         
-         if( jobList.ProductCategory__c == null || categoryName == '--None--'){
+         if( jobList.ProductCategory__c == null || categoryName == NONE){
         
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
         okayToSave =false;
         }
-         if( jobList.Brand_Position__c == null || brandPosName == '--None--'){
+         if( jobList.Brand_Position__c == null || brandPosName == NONE){
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
         okayToSave =false;
         }
-         if(jobList.Brand_Final__c == null || brandNameFromPage == '--None--'){
+         if(jobList.Brand_Final__c == null || brandNameFromPage == NONE){
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
         okayToSave =false;
         }
@@ -1997,70 +1277,70 @@ public String docUploaded{get;set;}
        okayToSave =false;
         }
         
-      if(jobList.NewOriginalMaster__c == false && jobList.LanguageAdaptionMaster__c == false && jobList.Create_Additional_Material__c==false && jobList.ReworkExistingMaterial__c==false && jobList.BuyoutsTalent__c==false && jobList.BuyoutsMusic__c==false ){
+      if(!jobList.NewOriginalMaster__c && !jobList.LanguageAdaptionMaster__c && !jobList.Create_Additional_Material__c && !jobList.ReworkExistingMaterial__c && !jobList.BuyoutsTalent__c && !jobList.BuyoutsMusic__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : at least one option must be selected'));
             okayToSave =false;
         }
         
-        if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterCinema__c == false && jobList.NewOriginalMasterTv__c==false && 
-            jobList.NewOriginalMasterRadio__c==false && jobList.NewOriginalMasterPrint__c==false && jobList.NewOriginalMasterOutofHome__c==false &&
-                jobList.NewOriginalMasterInStore__c==false && jobList.NewOriginalMasterDigital__c==false && jobList.NewOriginalMasterInternalVideo__c==false ){
+        if(jobList.NewOriginalMaster__c && !jobList.NewOriginalMasterCinema__c && !jobList.NewOriginalMasterTv__c && 
+            !jobList.NewOriginalMasterRadio__c && !jobList.NewOriginalMasterPrint__c && !jobList.NewOriginalMasterOutofHome__c &&
+                !jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterDigital__c && !jobList.NewOriginalMasterInternalVideo__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Media Channel must be selected'));
             okayToSave =false;
         }
         
        
         
-         if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterOutofHome__c == true && jobList.NewOriginalMasterOutofHomeMovingImage__c==false && 
-            jobList.NewOriginalMasterOutofHomeAudio__c==false && jobList.NewOriginalMasterOutofHomeStillImage__c==false  ){
+         if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterOutofHome__c && !jobList.NewOriginalMasterOutofHomeMovingImage__c && 
+            !jobList.NewOriginalMasterOutofHomeAudio__c && !jobList.NewOriginalMasterOutofHomeStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Out of Home'));
             okayToSave =false; 
         }
         
         
-        if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterInStore__c == true && jobList.NewOriginalMasterInStoreMovingImage__c==false && 
-            jobList.NewOriginalMasterInStoreAudio__c==false && jobList.NewOriginalMasterInStoreStillImage__c==false  ){
+        if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterInStoreMovingImage__c && 
+            !jobList.NewOriginalMasterInStoreAudio__c && !jobList.NewOriginalMasterInStoreStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
         }
         
            
-        if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterCinema__c == false && jobList.NewOriginalMasterTv__c==false && 
-            jobList.NewOriginalMasterRadio__c==false && jobList.NewOriginalMasterPrint__c==false && jobList.NewOriginalMasterOutofHome__c==false &&
-                jobList.NewOriginalMasterInStore__c==false && jobList.NewOriginalMasterDigital__c==false && jobList.NewOriginalMasterInternalVideo__c==false ){
+        if(jobList.NewOriginalMaster__c && !jobList.NewOriginalMasterCinema__c && !jobList.NewOriginalMasterTv__c && 
+            !jobList.NewOriginalMasterRadio__c && !jobList.NewOriginalMasterPrint__c && !jobList.NewOriginalMasterOutofHome__c &&
+                !jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterDigital__c && !jobList.NewOriginalMasterInternalVideo__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Media Channel must be selected'));
             okayToSave =false;
         }
         
         
       
-         if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterOutofHome__c == true && jobList.NewOriginalMasterOutofHomeMovingImage__c==false && 
-            jobList.NewOriginalMasterOutofHomeAudio__c==false && jobList.NewOriginalMasterOutofHomeStillImage__c==false  ){
+         if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterOutofHome__c && !jobList.NewOriginalMasterOutofHomeMovingImage__c && 
+            !jobList.NewOriginalMasterOutofHomeAudio__c && !jobList.NewOriginalMasterOutofHomeStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Out of Home'));
             okayToSave =false;
         }
         
         
-        if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterInStore__c == true && jobList.NewOriginalMasterInStoreMovingImage__c==false && 
-            jobList.NewOriginalMasterInStoreAudio__c==false && jobList.NewOriginalMasterInStoreStillImage__c==false  ){
+        if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterInStoreMovingImage__c && 
+            !jobList.NewOriginalMasterInStoreAudio__c && !jobList.NewOriginalMasterInStoreStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
         }
         
-          if(jobList.NewOriginalMaster__c == true && jobList.NewOriginalMasterDigital__c == true && jobList.NewOriginalMasterDigitalMovingImage__c==false && 
-            jobList.NewOriginalMasterDigitalAudio__c==false && jobList.NewOriginalMasterDigitalStillImage__c==false  
-            && jobList.New_Original_Master_Digital_ED__c==false){
+          if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterDigital__c && !jobList.NewOriginalMasterDigitalMovingImage__c && 
+            !jobList.NewOriginalMasterDigitalAudio__c && !jobList.NewOriginalMasterDigitalStillImage__c  
+            && !jobList.New_Original_Master_Digital_ED__c){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
         }
         
-        if(jobList.NewOriginalMaster__c == false && jobList.LanguageAdaptionMaster__c == true && jobList.LanguageAdaptionMasterTv__c==false && 
-            jobList.LanguageAdaptionMasterCinema__c==false && jobList.LanguageAdaptionMasterRadio__c==false  
-            && jobList.LanguageAdaptionMasterPrint__c==false && 
-                jobList.LanguageAdaptionMasterOutofHome__c==false && 
-                jobList.LanguageAdaptionMasterInStore__c==false && 
-                jobList.LanguageAdaptionMasterDigital__c==false &&
-                jobList.LanguageAdaptionMasterInternalVideo__c ==false){
+        if(!jobList.NewOriginalMaster__c && jobList.LanguageAdaptionMaster__c && !jobList.LanguageAdaptionMasterTv__c && 
+            !jobList.LanguageAdaptionMasterCinema__c && !jobList.LanguageAdaptionMasterRadio__c 
+            && !jobList.LanguageAdaptionMasterPrint__c && 
+                !jobList.LanguageAdaptionMasterOutofHome__c && 
+                !jobList.LanguageAdaptionMasterInStore__c && 
+                !jobList.LanguageAdaptionMasterDigital__c &&
+                !jobList.LanguageAdaptionMasterInternalVideo__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected'));
             okayToSave =false;
         }
@@ -2068,29 +1348,29 @@ public String docUploaded{get;set;}
     
     
         
-         if(jobList.NewOriginalMaster__c == false && jobList.LanguageAdaptionMaster__c == true && jobList.LanguageAdaptionMasterOutofHome__c==true && 
-            jobList.LanguageAdaptionMasterOutofHomeAudio__c==false && 
-            jobList.LanguageAdaptionMasterOutHomeStillImage__c==false && 
-            jobList.LanguageAdaptionMasterOutHomeMovingImage__c==false 
+         if(!jobList.NewOriginalMaster__c && jobList.LanguageAdaptionMaster__c && jobList.LanguageAdaptionMasterOutofHome__c && 
+            !jobList.LanguageAdaptionMasterOutofHomeAudio__c && 
+            !jobList.LanguageAdaptionMasterOutHomeStillImage__c && 
+            !jobList.LanguageAdaptionMasterOutHomeMovingImage__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to Out of Home'));
             okayToSave =false;
         }
         
-         if(jobList.NewOriginalMaster__c == false && jobList.LanguageAdaptionMaster__c == true && jobList.LanguageAdaptionMasterInStore__c==true && 
-            jobList.LanguageAdaptionMasterInStoreAudio__c==false && 
-            jobList.LanguageAdaptionMasterInStoreMovingImage__c==false && 
-            jobList.LanguageAdaptionMasterInStoreStillImage__c==false  
+         if(!jobList.NewOriginalMaster__c && jobList.LanguageAdaptionMaster__c && jobList.LanguageAdaptionMasterInStore__c && 
+            !jobList.LanguageAdaptionMasterInStoreAudio__c && 
+            !jobList.LanguageAdaptionMasterInStoreMovingImage__c && 
+            !jobList.LanguageAdaptionMasterInStoreStillImage__c 
             
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
         }
         
-        if(jobList.NewOriginalMaster__c == false && jobList.LanguageAdaptionMaster__c == true && jobList.LanguageAdaptionMasterDigital__c==true && 
-            jobList.LanguageAdaptionMasterDigitalAudio__c==false && 
-            jobList.LanguageAdaptionMasterDigitalMovingImage__c==false && 
-            jobList.LanguageAdaptionMasterDigitalStillImage__c==false && jobList.Language_Adaptation_of_Master_Digital_ED__c ==false
+        if(!jobList.NewOriginalMaster__c && jobList.LanguageAdaptionMaster__c && jobList.LanguageAdaptionMasterDigital__c && 
+            !jobList.LanguageAdaptionMasterDigitalAudio__c && 
+            !jobList.LanguageAdaptionMasterDigitalMovingImage__c && 
+            !jobList.LanguageAdaptionMasterDigitalStillImage__c && !jobList.Language_Adaptation_of_Master_Digital_ED__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
@@ -2098,53 +1378,53 @@ public String docUploaded{get;set;}
         
         
         
-        if(jobList.NewOriginalMaster__c == false && jobList.Create_Additional_Material__c == true && jobList.AdditionalSupplementaryNewMaterialOOH__c==true && 
-            jobList.AdditionalSupplementaryNewMaterialOofHMI__c==false && 
-            jobList.AdditionalSupplementaryNewMaterialOofHSI__c==false && 
-            jobList.AdditionalSupplementaryNewMaterialOofHA__c==false  
+        if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c && jobList.AdditionalSupplementaryNewMaterialOOH__c && 
+            !jobList.AdditionalSupplementaryNewMaterialOofHMI__c && 
+            !jobList.AdditionalSupplementaryNewMaterialOofHSI__c && 
+            !jobList.AdditionalSupplementaryNewMaterialOofHA__c  
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to Out of Home'));
             okayToSave =false;
         }
         
-            if(jobList.NewOriginalMaster__c == false && jobList.Create_Additional_Material__c == true && jobList.AdditionalSupplementaryNewMaterialStore__c==true && 
-            jobList.AdditionalSupplementaryNewMaterialInSMI__c==false && 
-            jobList.AdditionalSupplementaryNewMaterialInSA__c==false && 
-            jobList.AdditionalSupplementaryNewMaterialInSSI__c==false  
+            if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c && jobList.AdditionalSupplementaryNewMaterialStore__c && 
+            !jobList.AdditionalSupplementaryNewMaterialInSMI__c && 
+            !jobList.AdditionalSupplementaryNewMaterialInSA__c && 
+            !jobList.AdditionalSupplementaryNewMaterialInSSI__c  
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
         }
         
         
-            if(jobList.NewOriginalMaster__c == false && jobList.Create_Additional_Material__c == true && jobList.AdditionalSupplementaryNewMaterialDigi__c==true && 
-            jobList.AdditionalSupplementaryNewMaterialDigiMI__c==false && 
-            jobList.AdditionalSupplementaryNewMaterialDigiA__c==false && 
-            jobList.AdditionalSupplementaryNewMaterialDigiSI__c==false  &&
-            jobList.Digital_Editorial__c==false  
+            if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c && jobList.AdditionalSupplementaryNewMaterialDigi__c && 
+            !jobList.AdditionalSupplementaryNewMaterialDigiMI__c && 
+            !jobList.AdditionalSupplementaryNewMaterialDigiA__c && 
+            !!jobList.AdditionalSupplementaryNewMaterialDigiSI__c  &&
+            !jobList.Digital_Editorial__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
         }
         
-            if(jobList.NewOriginalMaster__c == false && jobList.Create_Additional_Material__c == true &&  
-            jobList.AdditionalSupplementaryNewMaterialStore__c==false && 
-            jobList.AdditionalSupplementaryNewMaterialDigi__c==false &&
-            jobList.AdditionalSupplementaryNewMaterialTv__c == false &&
-            jobList.AdditionalSupplementaryNewMaterialCinema__c == false &&
-            jobList.AdditionalSupplementaryNewMaterialRadio__c == false &&
-            jobList.AdditionalSupplementaryNewMaterialOOH__c == false &&
-            jobList.AdditionalSupplementaryNewMaterialIVideo__c== false
+            if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c &&  
+            !jobList.AdditionalSupplementaryNewMaterialStore__c && 
+            !jobList.AdditionalSupplementaryNewMaterialDigi__c &&
+            !jobList.AdditionalSupplementaryNewMaterialTv__c &&
+            !jobList.AdditionalSupplementaryNewMaterialCinema__c &&
+            !jobList.AdditionalSupplementaryNewMaterialRadio__c &&
+            !jobList.AdditionalSupplementaryNewMaterialOOH__c &&
+            !jobList.AdditionalSupplementaryNewMaterialIVideo__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Media Channel must be selected'));
             okayToSave =false;
         }
         
         
-            if(jobList.NewOriginalMaster__c == false && jobList.ReworkExistingMaterial__c == true && jobList.ReworkExistingMaterialOutofHome__c==true && 
-            jobList.ReworkExistingMaterialOutHomeMovingImage__c==false && 
-            jobList.ReworkExistingMaterialOutofHomeAudio__c==false && 
-            jobList.ReworkExistingMaterialOutHomeStillImage__c==false 
+            if(!jobList.NewOriginalMaster__c && jobList.ReworkExistingMaterial__c && jobList.ReworkExistingMaterialOutofHome__c && 
+            !jobList.ReworkExistingMaterialOutHomeMovingImage__c && 
+            !jobList.ReworkExistingMaterialOutofHomeAudio__c && 
+            !jobList.ReworkExistingMaterialOutHomeStillImage__c
             
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to Out of Home'));
@@ -2152,29 +1432,29 @@ public String docUploaded{get;set;}
         }
         
         
-            if(jobList.NewOriginalMaster__c == false && jobList.ReworkExistingMaterial__c == true && jobList.ReworkExistingMaterialInStore__c==true && 
-            jobList.ReworkExistingMaterialInStoreMovingImage__c==false && 
-            jobList.ReworkExistingMaterialInStoreAudio__c==false && 
-            jobList.In_Store_Still_Image__c==false  
+            if(!jobList.NewOriginalMaster__c && jobList.ReworkExistingMaterial__c && jobList.ReworkExistingMaterialInStore__c && 
+            !jobList.ReworkExistingMaterialInStoreMovingImage__c && 
+            !jobList.ReworkExistingMaterialInStoreAudio__c && 
+            !jobList.In_Store_Still_Image__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
         }
         
         
-            if(jobList.NewOriginalMaster__c == false && jobList.ReworkExistingMaterial__c == true && jobList.ReworkExistingMaterialDigital__c==true && 
-            jobList.ReworkExistingMaterialDigitalMovingImage__c==false && 
-            jobList.ReworkExistingMaterialDigitalAudio__c==false && 
-            jobList.ReworkExistingMaterialDigitalStillImage__c==false  &&
-            jobList.Rework_Exisiting_Material_Digital_ED__c==false  
+            if(!jobList.NewOriginalMaster__c && jobList.ReworkExistingMaterial__c && jobList.ReworkExistingMaterialDigital__c && 
+            !jobList.ReworkExistingMaterialDigitalMovingImage__c && 
+            !jobList.ReworkExistingMaterialDigitalAudio__c && 
+            !jobList.ReworkExistingMaterialDigitalStillImage__c  &&
+            !jobList.Rework_Exisiting_Material_Digital_ED__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
         }
         
-        if(jobList.NewOriginalMaster__c == false && jobList.ReworkExistingMaterial__c == true &&            jobList.ReworkExistingMaterialOutofHome__c==false && 
-            jobList.ReworkExistingMaterialInStore__c==false && 
-            jobList.ReworkExistingMaterialDigital__c==false 
+        if(!jobList.NewOriginalMaster__c && jobList.ReworkExistingMaterial__c && !jobList.ReworkExistingMaterialOutofHome__c && 
+            !jobList.ReworkExistingMaterialInStore__c && 
+            !jobList.ReworkExistingMaterialDigital__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Media Channel must be selected'));
             okayToSave =false;
@@ -2182,20 +1462,20 @@ public String docUploaded{get;set;}
         
         
         
-            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsTalent__c == true && jobList.BuyoutsTalentOutofHome__c==true && 
-            jobList.BuyoutsTalentOutofHomeMovingImage__c==false && 
-            jobList.BuyoutsTalentOutofHomeAudio__c==false && 
-            jobList.BuyoutsTalentOutofHomeStillImage__c==false 
+            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsTalent__c && jobList.BuyoutsTalentOutofHome__c && 
+            !jobList.BuyoutsTalentOutofHomeMovingImage__c && 
+            !jobList.BuyoutsTalentOutofHomeAudio__c && 
+            !jobList.BuyoutsTalentOutofHomeStillImage__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to Out of Home'));
             okayToSave =false;
         }
         
         
-            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsTalent__c == true && jobList.BuyoutsTalentInStore__c==true && 
-            jobList.BuyoutsTalentInStoreMovingImage__c==false && 
-            jobList.BuyoutsTalentInStoreAudio__c==false && 
-            jobList.BuyoutsTalentInStoreStillImage__c==false 
+            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsTalent__c && jobList.BuyoutsTalentInStore__c && 
+            !jobList.BuyoutsTalentInStoreMovingImage__c && 
+            !jobList.BuyoutsTalentInStoreAudio__c && 
+            !jobList.BuyoutsTalentInStoreStillImage__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to In Store' ));
             okayToSave =false;
@@ -2203,19 +1483,19 @@ public String docUploaded{get;set;}
         
         
         
-            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsTalent__c == true && jobList.BuyoutsTalentDigital__c==true && 
-            jobList.BuyoutsTalentDigitalMovingImage__c==false && 
-            jobList.BuyoutsTalentDigitalAudio__c==false && 
-            jobList.BuyoutsTalentDigitalStillImage__c==false  &&
-            jobList.Buyouts_Talent_Digital_ED__c==false  
+            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsTalent__c && jobList.BuyoutsTalentDigital__c && 
+            !jobList.BuyoutsTalentDigitalMovingImage__c && 
+            !jobList.BuyoutsTalentDigitalAudio__c && 
+            !jobList.BuyoutsTalentDigitalStillImage__c &&
+            !jobList.Buyouts_Talent_Digital_ED__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
         }
         
-          if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsTalent__c == true &&               jobList.BuyoutsTalentOutofHome__c==false && 
-            jobList.BuyoutsTalentInStore__c==false && 
-            jobList.BuyoutsTalentDigital__c==false 
+          if(!jobList.NewOriginalMaster__c && jobList.BuyoutsTalent__c && !jobList.BuyoutsTalentOutofHome__c && 
+            !jobList.BuyoutsTalentInStore__c && 
+            !jobList.BuyoutsTalentDigital__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Media Channel must be selected'));
             okayToSave =false;
@@ -2224,32 +1504,32 @@ public String docUploaded{get;set;}
         
         
         
-            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsMusic__c == true && jobList.BuyoutsMusicOutofHome__c==true && 
-            jobList.BuyoutsMusicOutofHomeMovingImage__c==false && 
-            jobList.BuyoutsMusicOutofHomeAudio__c==false && 
-            jobList.BuyoutsMusicOutofHomeStillImage__c==false 
+            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsMusic__c && jobList.BuyoutsMusicOutofHome__c && 
+            !jobList.BuyoutsMusicOutofHomeMovingImage__c && 
+            !jobList.BuyoutsMusicOutofHomeAudio__c && 
+            !jobList.BuyoutsMusicOutofHomeStillImage__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to Out of Home'));
             okayToSave =false;
         }
         
-            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsMusic__c == true && jobList.BuyoutsMusicInStore__c==false && 
-            jobList.BuyoutsMusicDigital__c==false && 
-            jobList.BuyoutsMusicTv__c == false &&
-            jobList.BuyoutsMusicCinema__c == false &&
-            jobList.BuyoutsMusicRadio__c == false &&
-            jobList.BuyoutsMusicInternalVideo__c == false &&
-            jobList.BuyoutsMusicOutofHome__c == false
+            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsMusic__c && !jobList.BuyoutsMusicInStore__c && 
+            !jobList.BuyoutsMusicDigital__c && 
+            !jobList.BuyoutsMusicTv__c &&
+            !jobList.BuyoutsMusicCinema__c &&
+            !jobList.BuyoutsMusicRadio__c &&
+            !jobList.BuyoutsMusicInternalVideo__c &&
+            !jobList.BuyoutsMusicOutofHome__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Media Channel must be selected'));
             okayToSave =false;
         }
         
         
-            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsMusic__c == true && jobList.BuyoutsMusicInStore__c==true && 
-            jobList.BuyoutsMusicInStoreMovingImage__c==false && 
-            jobList.BuyoutsMusicInStoreAudio__c==false && 
-            jobList.BuyoutsMusicInStoreStillImage__c==false 
+            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsMusic__c && jobList.BuyoutsMusicInStore__c && 
+            !jobList.BuyoutsMusicInStoreMovingImage__c && 
+            !jobList.BuyoutsMusicInStoreAudio__c && 
+            !jobList.BuyoutsMusicInStoreStillImage__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
@@ -2257,11 +1537,11 @@ public String docUploaded{get;set;}
         
         
         
-            if(jobList.NewOriginalMaster__c == false && jobList.BuyoutsMusic__c == true && jobList.BuyoutsMusicDigital__c==true && 
-            jobList.BuyoutsMusicDigitalMovingImage__c==false && 
-            jobList.BuyoutsMusicDigitalAudio__c==false && 
-            jobList.BuyoutsMusicDigitalStillImage__c==false  &&
-            jobList.Buyouts_Music_Digital_ED__c==false  
+            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsMusic__c && jobList.BuyoutsMusicDigital__c && 
+            !jobList.BuyoutsMusicDigitalMovingImage__c && 
+            !jobList.BuyoutsMusicDigitalAudio__c && 
+            !jobList.BuyoutsMusicDigitalStillImage__c  &&
+            !jobList.Buyouts_Music_Digital_ED__c
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
