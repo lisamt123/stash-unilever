@@ -9,12 +9,27 @@ public with sharing class Amr_AdManagerController{
     public List<selectOption> currencyRecords {
         get {
             List<selectOption> options = new List<selectOption>();
+            List<selectOption> optionsNew = new List<selectOption>();
             options.add(new SelectOption('--None--','--None--'));
             List<Amr_CurrencyConversionRate__c> lstcov = Amr_CurrencyConversionRate__c.getAll().values();
             System.debug('Currency List Size --> ' + lstcov.size());
-            //lstcov.sort();
-            for (Amr_CurrencyConversionRate__c cc: lstcov)
-                options.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+'-'+cc.Currency_Unit__c));
+            lstcov.sort();
+            
+            Map<String,String> mapAmountToCurrency = new Map<String,String>();
+        
+            for (Amr_CurrencyConversionRate__c cc: lstcov){
+                if( (cc.Name+'-'+cc.Currency_Unit__c == 'USA-US $') ||  (cc.Name+'-'+cc.Currency_Unit__c == 'UK-£' ) || (cc.Name+'-'+cc.Currency_Unit__c == 'EEC-Euro' )){
+                    mapAmountToCurrency.put(cc.Name+'-'+cc.Currency_Unit__c , String.valueOf(cc.Currency_Unit_To_Euro__c));
+                    options.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+'-'+cc.Currency_Unit__c));
+                    continue;
+                }   
+                else{
+                    optionsNew.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+'-'+cc.Currency_Unit__c));
+                }
+                //€ (EEC), £(UK), $(US)
+            }
+             options.addAll(optionsNew);
+            
             return options;
 
         }
@@ -162,16 +177,18 @@ public with sharing class Amr_AdManagerController{
 
 
     public Pagereference getSubmitForm(){
-
+        
         Boolean okayToSave = true;
 
         system.debug('hii!!'+categoryName+'!!'+brandPosName+'!!'+brandNameFromPage);
         system.debug('job detail checkboxes=======>'+jobDetails.Project_Details__c  );
         system.debug('projectNameFromPage=======>'+projectNameFromPage);
         system.debug('selectedCountry=======>'+selectedCountry);
-        system.debug('productionActivityData!!'+productionActivityData);
+        system.debug('CC!'+productionActivityData);
+        jobDetails.ProductionActivityTextArea__c = productionActivityData;
         //----   
         system.debug('jobDetails.Check_With_CMI__c!!'+jobDetails.Check_With_CMI__c);
+       
         if(jobDetails.Check_With_CMI__c == null){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Have you checked with CMI if there is an existing asset in the Millward Brown TV Ad Vitality Bank that could be utilised for this JTBD? : a radio button must be selected'));
             okayToSave =false;
@@ -230,7 +247,7 @@ public with sharing class Amr_AdManagerController{
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Target air date : a date must be selected from the calendar'));
             okayToSave =false;
         }
-        //----     
+            
 
 
         if(jobDetails.Project_Leader_Cluster__c == null || jobDetails.Project_Leader_Country__c == null){
@@ -304,13 +321,16 @@ public with sharing class Amr_AdManagerController{
         }
         
         if(jobDetails.NewOriginalMaster__c == true && jobDetails.NewOriginalMasterCinema__c == false && jobDetails.NewOriginalMasterTv__c==false && 
-            jobDetails.NewOriginalMasterRadio__c==false && jobDetails.NewOriginalMasterPrint__c==false && jobDetails.NewOriginalMasterOutofHome__c==false &&
+            jobDetails.NewOriginalMasterRadio__c==false )
+            {
+             if(jobDetails.NewOriginalMasterPrint__c==false && jobDetails.NewOriginalMasterOutofHome__c==false &&
                 jobDetails.NewOriginalMasterInStore__c==false && jobDetails.NewOriginalMasterDigital__c==false && jobDetails.NewOriginalMasterInternalVideo__c==false ){
+                
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Media Channel must be selected'));
             okayToSave =false;
         }
-        
-       
+      }  
+       //utkarsh
         
          if(jobDetails.NewOriginalMaster__c == true && jobDetails.NewOriginalMasterOutofHome__c == true && jobDetails.NewOriginalMasterOutofHomeMovingImage__c==false && 
             jobDetails.NewOriginalMasterOutofHomeAudio__c==false && jobDetails.NewOriginalMasterOutofHomeStillImage__c==false  ){
@@ -327,12 +347,13 @@ public with sharing class Amr_AdManagerController{
         
            
         if(jobDetails.NewOriginalMaster__c == true && jobDetails.NewOriginalMasterCinema__c == false && jobDetails.NewOriginalMasterTv__c==false && 
-            jobDetails.NewOriginalMasterRadio__c==false && jobDetails.NewOriginalMasterPrint__c==false && jobDetails.NewOriginalMasterOutofHome__c==false &&
+            jobDetails.NewOriginalMasterRadio__c==false && jobDetails.NewOriginalMasterPrint__c==false ){
+            if(jobDetails.NewOriginalMasterOutofHome__c==false &&
                 jobDetails.NewOriginalMasterInStore__c==false && jobDetails.NewOriginalMasterDigital__c==false && jobDetails.NewOriginalMasterInternalVideo__c==false ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Media Channel must be selected'));
             okayToSave =false;
         }
-        
+      }  //utkarsh  
         
       
          if(jobDetails.NewOriginalMaster__c == true && jobDetails.NewOriginalMasterOutofHome__c == true && jobDetails.NewOriginalMasterOutofHomeMovingImage__c==false && 
@@ -350,7 +371,7 @@ public with sharing class Amr_AdManagerController{
         
           if(jobDetails.NewOriginalMaster__c == true && jobDetails.NewOriginalMasterDigital__c == true && jobDetails.NewOriginalMasterDigitalMovingImage__c==false && 
             jobDetails.NewOriginalMasterDigitalAudio__c==false && jobDetails.NewOriginalMasterDigitalStillImage__c==false  
-            && jobDetails.Digital_Editorial__c==false){
+            && jobDetails.New_Original_Master_Digital_ED__c==false){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
         }
@@ -365,18 +386,7 @@ public with sharing class Amr_AdManagerController{
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected'));
             okayToSave =false;
         }
-        /*
-         if(jobDetails.NewOriginalMaster__c == false && jobDetails.LanguageAdaptionMaster__c == true && jobDetails.LanguageAdaptionMasterTv__c==false && 
-            jobDetails.LanguageAdaptionMasterCinema__c==false && jobDetails.LanguageAdaptionMasterRadio__c==false  
-            && jobDetails.LanguageAdaptionMasterPrint__c==false && 
-                jobDetails.LanguageAdaptionMasterOutofHome__c==false && 
-                jobDetails.LanguageAdaptionMasterInStore__c==false && 
-                jobDetails.LanguageAdaptionMasterDigital__c==false &&
-                jobDetails.LanguageAdaptionMasterInternalVideo__c ==false){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to Language Adaption Master'));
-            okayToSave =false;
-        }
-        */
+        
     
     
         
@@ -402,7 +412,7 @@ public with sharing class Amr_AdManagerController{
         if(jobDetails.NewOriginalMaster__c == false && jobDetails.LanguageAdaptionMaster__c == true && jobDetails.LanguageAdaptionMasterDigital__c==true && 
             jobDetails.LanguageAdaptionMasterDigitalAudio__c==false && 
             jobDetails.LanguageAdaptionMasterDigitalMovingImage__c==false && 
-            jobDetails.LanguageAdaptionMasterDigitalStillImage__c==false  
+            jobDetails.LanguageAdaptionMasterDigitalStillImage__c==false && jobDetails.Language_Adaptation_of_Master_Digital_ED__c ==false
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
@@ -478,7 +488,7 @@ public with sharing class Amr_AdManagerController{
             jobDetails.ReworkExistingMaterialDigitalMovingImage__c==false && 
             jobDetails.ReworkExistingMaterialDigitalAudio__c==false && 
             jobDetails.ReworkExistingMaterialDigitalStillImage__c==false  &&
-            jobDetails.Digital_Editorial__c==false  
+            jobDetails.Rework_Exisiting_Material_Digital_ED__c==false  
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
@@ -519,7 +529,7 @@ public with sharing class Amr_AdManagerController{
             jobDetails.BuyoutsTalentDigitalMovingImage__c==false && 
             jobDetails.BuyoutsTalentDigitalAudio__c==false && 
             jobDetails.BuyoutsTalentDigitalStillImage__c==false  &&
-            jobDetails.Digital_Editorial__c==false  
+            jobDetails.Buyouts_Talent_Digital_ED__c==false  
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
@@ -573,14 +583,14 @@ public with sharing class Amr_AdManagerController{
             jobDetails.BuyoutsMusicDigitalMovingImage__c==false && 
             jobDetails.BuyoutsMusicDigitalAudio__c==false && 
             jobDetails.BuyoutsMusicDigitalStillImage__c==false  &&
-            jobDetails.Digital_Editorial__c==false  
+            jobDetails.Buyouts_Music_Digital_ED__c==false  
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
         }
         
 
-        //Common ERROR 
+       
         
 
 
@@ -645,6 +655,7 @@ public with sharing class Amr_AdManagerController{
         brandPosName ='--None--';
         brandNameFromPage ='--None--';
         
+       
 
         PageReference pageRef = new PageReference('/apex/Amr_AdManager');
 
