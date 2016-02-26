@@ -15,12 +15,6 @@
         <actionType>apex</actionType>
         <inputParameters>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>newRollouts</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>SObject</stringValue>
@@ -30,6 +24,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>newRollouts</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
