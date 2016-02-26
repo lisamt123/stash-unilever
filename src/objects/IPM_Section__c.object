@@ -68,6 +68,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>ID_from_Production__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>For Data load purpose</description>
+        <externalId>true</externalId>
+        <label>ID from Production</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Character_Limit__c</fullName>
         <description>To store the character count limit per section</description>
         <externalId>false</externalId>
@@ -108,6 +121,7 @@
     </fields>
     <fields>
         <fullName>IPM_FunctionalRole__c</fullName>
+        <description>contains the section functional role</description>
         <externalId>false</externalId>
         <label>IPM_FunctionalRole</label>
         <picklist>
@@ -160,8 +174,19 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_IS_Default_Section__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>To display the section in gate document</description>
+        <externalId>false</externalId>
+        <label>Default Section</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Negotiable__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Describing section negotiable or not</description>
         <externalId>false</externalId>
         <label>Negotiable?</label>
         <trackHistory>false</trackHistory>
@@ -171,6 +196,7 @@
     <fields>
         <fullName>IPM_Parent_Section__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Self relationship for parent section</description>
         <externalId>false</externalId>
         <label>IPM Parent Section</label>
         <referenceTo>IPM_Section__c</referenceTo>
@@ -194,6 +220,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Label_Type__c</fullName>
+        <description>Describe the type of section label</description>
         <externalId>false</externalId>
         <label>Section Label Type</label>
         <picklist>
@@ -217,6 +244,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Name__c</fullName>
+        <description>To store section name</description>
         <externalId>false</externalId>
         <label>Section Name</label>
         <length>80</length>
@@ -240,6 +268,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_Type__c</fullName>
+        <description>Describes section type</description>
         <externalId>false</externalId>
         <label>Section Type</label>
         <picklist>
@@ -284,6 +313,7 @@
     <fields>
         <fullName>Is_IPM_Global_Consolidated__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>For displaying global consolidated components</description>
         <externalId>false</externalId>
         <label>Is IPM Global Consolidated</label>
         <trackHistory>false</trackHistory>
@@ -315,6 +345,32 @@
         <type>MultiselectPicklist</type>
         <visibleLines>3</visibleLines>
     </fields>
+    <fields>
+        <fullName>Unique_FF__c</fullName>
+        <description>Stores section name with complexity</description>
+        <externalId>false</externalId>
+        <formula>IPM_Section_Sequence__c&amp;&quot; &quot; &amp; IPM_Section_Name__c &amp;&quot; &quot; &amp;  text(IPM_Document_Template__r.IPM_Document_Type__c)&amp;&quot; &quot; &amp; text(IPM_Document_Template__r.IPM_Project_Template__r.IPM_Project_Type__c)&amp;&quot; &quot; &amp; text( IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unique FF</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unique_Key_Text__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>For data load purpose</description>
+        <externalId>true</externalId>
+        <label>Unique Key Text</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
     <label>IPM Section</label>
     <listViews>
         <fullName>All</fullName>
@@ -329,9 +385,15 @@
         <columns>IPM_Document_Template__c</columns>
         <columns>IPM_FunctionalRole__c</columns>
         <columns>IPM_Parent_Section__c</columns>
+        <columns>IPM_IS_Default_Section__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
     </listViews>
     <nameField>
         <displayFormat>S-{0000}</displayFormat>

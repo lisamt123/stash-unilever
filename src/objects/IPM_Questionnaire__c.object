@@ -58,6 +58,7 @@
     <fields>
         <fullName>External_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
+        <description>To capture the external id.</description>
         <externalId>true</externalId>
         <label>External Id</label>
         <length>100</length>
@@ -77,6 +78,7 @@
     </fields>
     <fields>
         <fullName>IPM_Charter_Comments__c</fullName>
+        <description>To capture the charter comments.</description>
         <externalId>false</externalId>
         <label>IPM Charter Comments</label>
         <length>32768</length>
@@ -86,6 +88,7 @@
     </fields>
     <fields>
         <fullName>IPM_Charter_Score__c</fullName>
+        <description>To store the charter score.</description>
         <externalId>false</externalId>
         <label>IPM Charter Score</label>
         <precision>2</precision>
@@ -97,7 +100,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comments__c</fullName>
-        <description>To capture teh comments agains each question</description>
+        <description>To capture the comments against each question</description>
         <externalId>false</externalId>
         <label>IPM Comments</label>
         <length>32768</length>
@@ -107,6 +110,7 @@
     </fields>
     <fields>
         <fullName>IPM_Contract_Comments__c</fullName>
+        <description>To capture the contract comments.</description>
         <externalId>false</externalId>
         <label>IPM Contract Comments</label>
         <length>32768</length>
@@ -116,6 +120,7 @@
     </fields>
     <fields>
         <fullName>IPM_Contract_Score__c</fullName>
+        <description>To store the contract score.</description>
         <externalId>false</externalId>
         <label>IPM Contract Score</label>
         <precision>2</precision>
@@ -124,6 +129,38 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_GK_Answers_Multiselect__c</fullName>
+        <description>This field is used to display answers to questionnaire questions on visualforce pages .</description>
+        <externalId>false</externalId>
+        <label>IPM_GK_Answers_Multiselect</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes~Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partly~Partly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No~No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NA~Not Applicable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dontknow~Dontknow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>IPM_GK_Answers__c</fullName>
@@ -195,6 +232,7 @@
     <fields>
         <fullName>IPM_Is_Added_Question__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To capture if the Questions are added</description>
         <externalId>false</externalId>
         <label>IPM Is Added Question</label>
         <trackTrending>false</trackTrending>
@@ -202,6 +240,7 @@
     </fields>
     <fields>
         <fullName>IPM_Market_Deployment_Comments__c</fullName>
+        <description>To capture the market deployment comments.</description>
         <externalId>false</externalId>
         <label>IPM Market Deployment Comments</label>
         <length>32768</length>
@@ -211,6 +250,7 @@
     </fields>
     <fields>
         <fullName>IPM_Market_Deployment_Score__c</fullName>
+        <description>To store the market deployment score.</description>
         <externalId>false</externalId>
         <label>IPM Market Deployment Score</label>
         <precision>2</precision>
@@ -222,6 +262,7 @@
     </fields>
     <fields>
         <fullName>IPM_Market_Ready_Comments__c</fullName>
+        <description>To capture the market ready comments.</description>
         <externalId>false</externalId>
         <label>IPM Market Ready Comments</label>
         <length>32768</length>
@@ -231,6 +272,7 @@
     </fields>
     <fields>
         <fullName>IPM_Market_Ready_Score__c</fullName>
+        <description>To store the market ready score.</description>
         <externalId>false</externalId>
         <label>IPM Market Ready Score</label>
         <precision>2</precision>
@@ -324,6 +366,7 @@
     </fields>
     <fields>
         <fullName>IPM_Questionnaire_Type__c</fullName>
+        <description>To capture the type of questionnaire.</description>
         <externalId>false</externalId>
         <label>IPM Questionnaire Type</label>
         <length>80</length>
@@ -361,6 +404,7 @@
     </fields>
     <fields>
         <fullName>IPM_RQS_Question_Type__c</fullName>
+        <description>The question types for Risk Quick Scan (RQS).</description>
         <externalId>false</externalId>
         <label>IPM RQS Question Type</label>
         <picklist>
@@ -427,6 +471,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_External_Id__c</fullName>
+        <description>To capture the section external id.</description>
         <externalId>false</externalId>
         <label>IPM Section External Id</label>
         <length>255</length>
@@ -498,6 +543,11 @@
         </filters>
         <label>All</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
     </listViews>
     <listViews>
         <fullName>Corporate_Risk</fullName>
@@ -657,6 +707,29 @@
         <active>true</active>
         <label>Corporate Risk</label>
         <picklistValues>
+            <picklist>IPM_GK_Answers_Multiselect__c</picklist>
+            <values>
+                <fullName>Dontknow%7EDontknow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA%7ENot Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%7ENo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly%7EPartly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%7EYes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
                 <fullName>Yes</fullName>
@@ -762,6 +835,29 @@
         <active>true</active>
         <description>To capture all the Gatekeeping Cheklist Questions</description>
         <label>GateKeeperChecklist</label>
+        <picklistValues>
+            <picklist>IPM_GK_Answers_Multiselect__c</picklist>
+            <values>
+                <fullName>Dontknow%7EDontknow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA%7ENot Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%7ENo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly%7EPartly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%7EYes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
@@ -881,6 +977,29 @@
         <description>To categorise the POS questions</description>
         <label>POS Questionnaire</label>
         <picklistValues>
+            <picklist>IPM_GK_Answers_Multiselect__c</picklist>
+            <values>
+                <fullName>Dontknow%7EDontknow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA%7ENot Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%7ENo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly%7EPartly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%7EYes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -990,6 +1109,29 @@
         <active>true</active>
         <description>TO capture the RND questions</description>
         <label>RNDQuestion</label>
+        <picklistValues>
+            <picklist>IPM_GK_Answers_Multiselect__c</picklist>
+            <values>
+                <fullName>Dontknow%7EDontknow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA%7ENot Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%7ENo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly%7EPartly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%7EYes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
@@ -1105,6 +1247,29 @@
         <description>To categorise the RQS questions</description>
         <label>RQS Questionnaire</label>
         <picklistValues>
+            <picklist>IPM_GK_Answers_Multiselect__c</picklist>
+            <values>
+                <fullName>Dontknow%7EDontknow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA%7ENot Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%7ENo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly%7EPartly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%7EYes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1213,6 +1378,29 @@
         <fullName>R_D_Feasibility</fullName>
         <active>true</active>
         <label>R&amp;D Feasibility</label>
+        <picklistValues>
+            <picklist>IPM_GK_Answers_Multiselect__c</picklist>
+            <values>
+                <fullName>Dontknow%7EDontknow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA%7ENot Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%7ENo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly%7EPartly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%7EYes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
@@ -1331,6 +1519,29 @@
         <active>true</active>
         <label>Supply Chain Feasibility</label>
         <picklistValues>
+            <picklist>IPM_GK_Answers_Multiselect__c</picklist>
+            <values>
+                <fullName>Dontknow%7EDontknow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA%7ENot Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%7ENo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly%7EPartly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%7EYes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1448,6 +1659,29 @@
         <active>true</active>
         <description>TO capture the trademark questions</description>
         <label>TradeMark</label>
+        <picklistValues>
+            <picklist>IPM_GK_Answers_Multiselect__c</picklist>
+            <values>
+                <fullName>Dontknow%7EDontknow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA%7ENot Applicable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No%7ENo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partly%7EPartly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes%7EYes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
         <picklistValues>
             <picklist>IPM_GK_Answers__c</picklist>
             <values>

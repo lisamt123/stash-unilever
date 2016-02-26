@@ -76,6 +76,7 @@
     </fieldSets>
     <fields>
         <fullName>Added_At_Stage__c</fullName>
+        <description>This is field stores the phase when the financial was associated to the project.</description>
         <externalId>false</externalId>
         <label>Added At Stage</label>
         <picklist>
@@ -113,6 +114,7 @@
     <fields>
         <fullName>BIC_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>BIC value at charter is stored in this field.</description>
         <externalId>false</externalId>
         <label>BIC Charter</label>
         <precision>18</precision>
@@ -126,6 +128,7 @@
     <fields>
         <fullName>BIC_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>BIC Value at contract is saved in this field for future reference.</description>
         <externalId>false</externalId>
         <label>BIC Contract</label>
         <precision>18</precision>
@@ -138,6 +141,7 @@
     </fields>
     <fields>
         <fullName>BIC_Difference__c</fullName>
+        <description>This field is the difference between BIC regional and BIC local.</description>
         <externalId>false</externalId>
         <formula>IF(BIC_Regional__c &lt;&gt; 0, 
 	IF((ABS(BIC_Regional__c - BIC_Local__c)/BIC_Regional__c) &gt; 0.05, 
@@ -158,6 +162,7 @@
     <fields>
         <fullName>BIC_Global__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores BIC when project span is at global.</description>
         <externalId>false</externalId>
         <label>BIC Global</label>
         <precision>18</precision>
@@ -171,6 +176,7 @@
     <fields>
         <fullName>BIC_Local__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores BIC when project span is at Local.</description>
         <externalId>false</externalId>
         <label>BIC Local</label>
         <precision>18</precision>
@@ -184,6 +190,7 @@
     <fields>
         <fullName>BIC_MD__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores BIC value at Market deployment.</description>
         <externalId>false</externalId>
         <label>BIC MD</label>
         <precision>18</precision>
@@ -197,6 +204,7 @@
     <fields>
         <fullName>BIC_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores BIC value at Market ready.</description>
         <externalId>false</externalId>
         <label>BIC MR</label>
         <precision>18</precision>
@@ -210,6 +218,7 @@
     <fields>
         <fullName>BIC_Regional__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This field stores BIC value when project span is Regional.</description>
         <externalId>false</externalId>
         <label>BIC Regional</label>
         <precision>18</precision>
@@ -290,7 +299,698 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <type>Text</type>
         <unique>false</unique>
     </fields>
-     <fields>
+    <fields>
+        <fullName>CAPEX_Charter__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value at Charter.</description>
+        <externalId>false</externalId>
+        <label>CAPEX Charter</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CAPEX_Contract__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value at Contract.</description>
+        <externalId>false</externalId>
+        <label>CAPEX Contract</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CAPEX_Difference__c</fullName>
+        <description>This captures difference between Regional and local CAPEX field.</description>
+        <externalId>false</externalId>
+        <formula>IF(CAPEX_Regional__c &lt;&gt; 0, 
+	IF((ABS(CAPEX_Regional__c - CAPEX_Local__c)/CAPEX_Regional__c) &gt; 0.05, 
+		ABS(CAPEX_Regional__c - CAPEX_Local__c), 
+		0
+	), 
+	ABS(CAPEX_Regional__c - CAPEX_Local__c)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CAPEX Difference</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CAPEX_Global__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value when project span is Global.</description>
+        <externalId>false</externalId>
+        <label>CAPEX Global</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CAPEX_Local__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value when project span is Local.</description>
+        <externalId>false</externalId>
+        <label>CAPEX Local</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CAPEX_MD__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value at Market deployment.</description>
+        <externalId>false</externalId>
+        <label>CAPEX MD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CAPEX_MR__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value at Market Ready.</description>
+        <externalId>false</externalId>
+        <label>CAPEX MR</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CAPEX_Regional__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field stores CAPEX value when project span is Regional.</description>
+        <externalId>false</externalId>
+        <label>CAPEX Regional</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Charter_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check box to know if charter is approved.</description>
+        <externalId>false</externalId>
+        <label>Charter Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Charter_Locked__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check box to know if charter is locked</description>
+        <externalId>false</externalId>
+        <label>Charter Locked</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check box to know if contract is approved.</description>
+        <externalId>false</externalId>
+        <label>Contract Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Locked__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check box to know if contract is locked.</description>
+        <externalId>false</externalId>
+        <label>Contract Locked</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Copy_Global_to_Local__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox is used to copy global fields to local fields with help of a workflow.</description>
+        <externalId>false</externalId>
+        <label>Copy Global to Local</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Copy_Global_to_Regional__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox is used to copy global fields to regional fields with help of a workflow.</description>
+        <externalId>false</externalId>
+        <label>Copy Global to Regional</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Copy_Local_to_Regional__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox is used to copy local fields to Regional fields with help of a workflow.</description>
+        <externalId>false</externalId>
+        <label>Copy Local to Regional</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Copy_Regional_to_Local__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This checkbox is used to copy Regional fields to Local fields with help of a workflow.</description>
+        <externalId>false</externalId>
+        <label>Copy Regional to Local</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Display_Name__c</fullName>
+        <description>Financial Display Name</description>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS(Financial_External_ID__c , &apos;CONSOLIDATED&apos;), 
+    SUBSTITUTE(Financial_External_ID__c, &apos;_CONSOLIDATED&apos;, &apos; (Consolidated)&apos;), 
+    IF(CONTAINS(Financial_External_ID__c , &apos;NONKEY&apos;), 
+        SUBSTITUTE(Financial_External_ID__c, &apos;_NONKEY&apos;, &apos; (Non Key)&apos;), 
+        Financial_External_ID__c
+    )
+)</formula>
+        <label>Display Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Financial_Countries__c</fullName>
+        <description>List of countries to be shown for the particular financial on the page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>List of countries to be shown for the particular financial on the page</inlineHelpText>
+        <label>Financial Countries</label>
+        <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Financial_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Financial External Id.</description>
+        <externalId>true</externalId>
+        <label>Financial External ID</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>GM_Y1_bps_vs_DNDS_Charter__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>GM Y1 bps vs DNDS Charter</description>
+        <externalId>false</externalId>
+        <label>GM Y1 bps vs DNDS Charter</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GM_Y1_bps_vs_DNDS_Contract__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>GM Y1 bps vs DNDS Contract</description>
+        <externalId>false</externalId>
+        <label>GM Y1 bps vs DNDS Contract</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GM_Y1_bps_vs_DNDS_Difference__c</fullName>
+        <description>GM Y1 bps vs DNDS Difference</description>
+        <externalId>false</externalId>
+        <formula>IF(GM_Y1_bps_vs_DNDS_Regional__c &lt;&gt; 0, 
+	IF((ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c)/GM_Y1_bps_vs_DNDS_Regional__c) &gt; 0.05, 
+		ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c), 
+		0
+	), 
+	ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>GM Y1 bps vs DNDS Difference</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GM_Y1_bps_vs_DNDS_Global__c</fullName>
+        <description>GM Y1 bps vs DNDS Global</description>
+        <externalId>false</externalId>
+        <formula>(
+  IF(Gross_Y1_Turnover_Global__c = 0, 0, Gross_Y1_Gross_Profit_Global__c / Gross_Y1_Turnover_Global__c)
+    - 
+  IF((Gross_Y1_Turnover_Global__c - Incremental_Y1_Turnover_Global__c) = 0, 0, (Gross_Y1_Gross_Profit_Global__c - Incremental_Y1_Gross_Profit_Global__c)/(Gross_Y1_Turnover_Global__c - Incremental_Y1_Turnover_Global__c))
+) * 10000</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>GM Y1 bps vs DNDS Global</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GM_Y1_bps_vs_DNDS_Local__c</fullName>
+        <description>GM Y1 bps vs DNDS Local</description>
+        <externalId>false</externalId>
+        <formula>(
+  IF(Gross_Y1_Turnover_Local__c = 0, 0, Gross_Y1_Gross_Profit_Local__c / Gross_Y1_Turnover_Local__c)
+    - 
+  IF((Gross_Y1_Turnover_Local__c - Incremental_Y1_Turnover_Local__c) = 0, 0, (Gross_Y1_Gross_Profit_Local__c - Incremental_Y1_Gross_Profit_Local__c)/(Gross_Y1_Turnover_Local__c - Incremental_Y1_Turnover_Local__c))
+) * 10000</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>GM Y1 bps vs DNDS Local</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GM_Y1_bps_vs_DNDS_MD__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>GM Y1 bps vs DNDS MD</description>
+        <externalId>false</externalId>
+        <label>GM Y1 bps vs DNDS MD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GM_Y1_bps_vs_DNDS_MR__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>GM Y1 bps vs DNDS MR</description>
+        <externalId>false</externalId>
+        <label>GM Y1 bps vs DNDS MR</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GM_Y1_bps_vs_DNDS_Regional__c</fullName>
+        <description>GM Y1 bps vs DNDS Market ready</description>
+        <externalId>false</externalId>
+        <formula>(
+  IF(Gross_Y1_Turnover_Regional__c = 0, 0, Gross_Y1_Gross_Profit_Regional__c / Gross_Y1_Turnover_Regional__c)
+    - 
+  IF((Gross_Y1_Turnover_Regional__c - Incremental_Y1_Turnover_Regional__c) = 0, 0, (Gross_Y1_Gross_Profit_Regional__c - Incremental_Y1_Gross_Profit_Regional__c)/(Gross_Y1_Turnover_Regional__c - Incremental_Y1_Turnover_Regional__c))
+) * 10000</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>GM Y1 bps vs DNDS Regional</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Global_External_Id__c</fullName>
+        <description>This field is used to store the Global project external id.</description>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.IPM_Project_Name__c, IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c, IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Global External Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Global_Project_Id__c</fullName>
+        <description>Associated Global Project Id.</description>
+        <externalId>false</externalId>
+        <formula>IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.Id, IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.Id,IF(NOT(ISBLANK(Local_Project__c)),Local_Project__r.Id,IPM_Project_Rollout__r.IPM_Project__c)))</formula>
+        <label>Global Project Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Gross_Y1_Gross_Profit_Global__c</fullName>
+        <description>Gross Y1 Gross Profit Global</description>
+        <externalId>false</externalId>
+        <label>Gross Y1 Gross Profit Global</label>
+        <summarizedField>IPM_Financial_Year__c.Gross_Profit_Global__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year_Type__c</field>
+            <operation>equals</operation>
+            <value>Innovation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.PL_Type__c</field>
+            <operation>equals</operation>
+            <value>Gross</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Gross_Y1_Gross_Profit_Local__c</fullName>
+        <description>Gross Y1 Gross Profit Local</description>
+        <externalId>false</externalId>
+        <label>Gross Y1 Gross Profit Local</label>
+        <summarizedField>IPM_Financial_Year__c.Gross_Profit_Local__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year_Type__c</field>
+            <operation>equals</operation>
+            <value>Innovation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.PL_Type__c</field>
+            <operation>equals</operation>
+            <value>Gross</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Gross_Y1_Gross_Profit_Regional__c</fullName>
+        <description>Gross Y1 Gross Profit Regional</description>
+        <externalId>false</externalId>
+        <label>Gross Y1 Gross Profit Regional</label>
+        <summarizedField>IPM_Financial_Year__c.Gross_Profit_Regional__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year_Type__c</field>
+            <operation>equals</operation>
+            <value>Innovation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.PL_Type__c</field>
+            <operation>equals</operation>
+            <value>Gross</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Gross_Y1_Profit_Before_Overheads_Global__c</fullName>
+        <description>Gross Y1 Profit Before Overheads Global</description>
+        <externalId>false</externalId>
+        <label>Gross Y1 Profit Before Overheads Global</label>
+        <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Global__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year_Type__c</field>
+            <operation>equals</operation>
+            <value>Innovation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.PL_Type__c</field>
+            <operation>equals</operation>
+            <value>Gross</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Gross_Y1_Profit_Before_Overheads_Local__c</fullName>
+        <description>Gross Y1 Profit Before Overheads Local</description>
+        <externalId>false</externalId>
+        <label>Gross Y1 Profit Before Overheads Local</label>
+        <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Local__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year_Type__c</field>
+            <operation>equals</operation>
+            <value>Innovation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.PL_Type__c</field>
+            <operation>equals</operation>
+            <value>Gross</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Gross_Y1_Profit_Before_Overheads_Regiona__c</fullName>
+        <description>Gross Y1 Profit Before Overheads Regional</description>
+        <externalId>false</externalId>
+        <label>Gross Y1 Profit Before Overheads Regiona</label>
+        <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Regional__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year_Type__c</field>
+            <operation>equals</operation>
+            <value>Innovation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.PL_Type__c</field>
+            <operation>equals</operation>
+            <value>Gross</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Gross_Y1_Turnover_Global__c</fullName>
+        <description>Gross Y1 Turnover Global</description>
+        <externalId>false</externalId>
+        <label>Gross Y1 Turnover Global</label>
+        <summarizedField>IPM_Financial_Year__c.Turnover_Global__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year_Type__c</field>
+            <operation>equals</operation>
+            <value>Innovation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.PL_Type__c</field>
+            <operation>equals</operation>
+            <value>Gross</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Gross_Y1_Turnover_Local__c</fullName>
+        <description>Gross Y1 Turnover Local</description>
+        <externalId>false</externalId>
+        <label>Gross Y1 Turnover Local</label>
+        <summarizedField>IPM_Financial_Year__c.Turnover_Local__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year_Type__c</field>
+            <operation>equals</operation>
+            <value>Innovation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.PL_Type__c</field>
+            <operation>equals</operation>
+            <value>Gross</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Gross_Y1_Turnover_Regional__c</fullName>
+        <description>Gross Y1 Turnover Regional</description>
+        <externalId>false</externalId>
+        <label>Gross Y1 Turnover Regional</label>
+        <summarizedField>IPM_Financial_Year__c.Turnover_Regional__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year_Type__c</field>
+            <operation>equals</operation>
+            <value>Innovation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.PL_Type__c</field>
+            <operation>equals</operation>
+            <value>Gross</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Auto_Aligned_Fin_TLD__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Auto Aligned Fin TLD</description>
+        <externalId>false</externalId>
+        <label>IPM Auto Aligned Fin TLD</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_BD_BB_Feedback__c</fullName>
+        <description>captures the BD BB Feedback</description>
+        <externalId>false</externalId>
+        <label>IPM BD-BB Feedback</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Business_Case_Confirmed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To capture if BB is confirming the Local Business Case</description>
+        <externalId>false</externalId>
+        <label>Business Case Confirmed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Business_Impact_Charter__c</fullName>
         <description>To store the Business Impact Value after charter Approved</description>
         <externalId>false</externalId>
@@ -343,660 +1043,8 @@ IF( OR(Year_3_iTO_Global__c=0.00, ISNULL(Year_3_iTO_Global__c)),
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>CAPEX_Charter__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>CAPEX Charter</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>CAPEX_Contract__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>CAPEX Contract</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>CAPEX_Difference__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(CAPEX_Regional__c &lt;&gt; 0, 
-	IF((ABS(CAPEX_Regional__c - CAPEX_Local__c)/CAPEX_Regional__c) &gt; 0.05, 
-		ABS(CAPEX_Regional__c - CAPEX_Local__c), 
-		0
-	), 
-	ABS(CAPEX_Regional__c - CAPEX_Local__c)
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>CAPEX Difference</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>CAPEX_Global__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>CAPEX Global</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>CAPEX_Local__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>CAPEX Local</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>CAPEX_MD__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>CAPEX MD</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>CAPEX_MR__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>CAPEX MR</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>CAPEX_Regional__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>CAPEX Regional</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
-    </fields>
-    <fields>
-        <fullName>Charter_Approved__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Charter Approved</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Charter_Locked__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Charter Locked</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Contract_Approved__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Contract Approved</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Contract_Locked__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Contract Locked</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Copy_Global_to_Local__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Copy Global to Local</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Copy_Global_to_Regional__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Copy Global to Regional</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Copy_Local_to_Regional__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Copy Local to Regional</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Copy_Regional_to_Local__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Copy Regional to Local</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Display_Name__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(CONTAINS(Financial_External_ID__c , &apos;CONSOLIDATED&apos;), 
-    SUBSTITUTE(Financial_External_ID__c, &apos;_CONSOLIDATED&apos;, &apos; (Consolidated)&apos;), 
-    IF(CONTAINS(Financial_External_ID__c , &apos;NONKEY&apos;), 
-        SUBSTITUTE(Financial_External_ID__c, &apos;_NONKEY&apos;, &apos; (Non Key)&apos;), 
-        Financial_External_ID__c
-    )
-)</formula>
-        <label>Display Name</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Financial_Countries__c</fullName>
-        <description>List of countries to be shown for the particular financial on the page</description>
-        <externalId>false</externalId>
-        <inlineHelpText>List of countries to be shown for the particular financial on the page</inlineHelpText>
-        <label>Financial Countries</label>
-        <length>131072</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>5</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Financial_External_ID__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <externalId>true</externalId>
-        <label>Financial External ID</label>
-        <length>100</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
-    </fields>
-    <fields>
-        <fullName>GM_Y1_bps_vs_DNDS_Charter__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>GM Y1 bps vs DNDS Charter</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GM_Y1_bps_vs_DNDS_Contract__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>GM Y1 bps vs DNDS Contract</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GM_Y1_bps_vs_DNDS_Difference__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(GM_Y1_bps_vs_DNDS_Regional__c &lt;&gt; 0, 
-	IF((ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c)/GM_Y1_bps_vs_DNDS_Regional__c) &gt; 0.05, 
-		ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c), 
-		0
-	), 
-	ABS(GM_Y1_bps_vs_DNDS_Regional__c - GM_Y1_bps_vs_DNDS_Local__c)
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>GM Y1 bps vs DNDS Difference</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GM_Y1_bps_vs_DNDS_Global__c</fullName>
-        <externalId>false</externalId>
-        <formula>(
-  IF(Gross_Y1_Turnover_Global__c = 0, 0, Gross_Y1_Gross_Profit_Global__c / Gross_Y1_Turnover_Global__c)
-    - 
-  IF((Gross_Y1_Turnover_Global__c - Incremental_Y1_Turnover_Global__c) = 0, 0, (Gross_Y1_Gross_Profit_Global__c - Incremental_Y1_Gross_Profit_Global__c)/(Gross_Y1_Turnover_Global__c - Incremental_Y1_Turnover_Global__c))
-) * 10000</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>GM Y1 bps vs DNDS Global</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GM_Y1_bps_vs_DNDS_Local__c</fullName>
-        <externalId>false</externalId>
-        <formula>(
-  IF(Gross_Y1_Turnover_Local__c = 0, 0, Gross_Y1_Gross_Profit_Local__c / Gross_Y1_Turnover_Local__c)
-    - 
-  IF((Gross_Y1_Turnover_Local__c - Incremental_Y1_Turnover_Local__c) = 0, 0, (Gross_Y1_Gross_Profit_Local__c - Incremental_Y1_Gross_Profit_Local__c)/(Gross_Y1_Turnover_Local__c - Incremental_Y1_Turnover_Local__c))
-) * 10000</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>GM Y1 bps vs DNDS Local</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GM_Y1_bps_vs_DNDS_MD__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>GM Y1 bps vs DNDS MD</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GM_Y1_bps_vs_DNDS_MR__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>GM Y1 bps vs DNDS MR</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GM_Y1_bps_vs_DNDS_Regional__c</fullName>
-        <externalId>false</externalId>
-        <formula>(
-  IF(Gross_Y1_Turnover_Regional__c = 0, 0, Gross_Y1_Gross_Profit_Regional__c / Gross_Y1_Turnover_Regional__c)
-    - 
-  IF((Gross_Y1_Turnover_Regional__c - Incremental_Y1_Turnover_Regional__c) = 0, 0, (Gross_Y1_Gross_Profit_Regional__c - Incremental_Y1_Gross_Profit_Regional__c)/(Gross_Y1_Turnover_Regional__c - Incremental_Y1_Turnover_Regional__c))
-) * 10000</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>GM Y1 bps vs DNDS Regional</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Global_External_Id__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.IPM_Project_Name__c, IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c, IPM_Project_Rollout__r.IPM_Project__r.IPM_Project_Name__c))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Global External Id</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Global_Project_Id__c</fullName>
-        <externalId>false</externalId>
-        <formula>IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.Id, IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.Id,IF(NOT(ISBLANK(Local_Project__c)),Local_Project__r.Id,IPM_Project_Rollout__r.IPM_Project__c)))</formula>
-        <label>Global Project Id</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Gross_Y1_Gross_Profit_Global__c</fullName>
-        <externalId>false</externalId>
-        <label>Gross Y1 Gross Profit Global</label>
-        <summarizedField>IPM_Financial_Year__c.Gross_Profit_Global__c</summarizedField>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year_Type__c</field>
-            <operation>equals</operation>
-            <value>Innovation</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.PL_Type__c</field>
-            <operation>equals</operation>
-            <value>Gross</value>
-        </summaryFilterItems>
-        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>Gross_Y1_Gross_Profit_Local__c</fullName>
-        <externalId>false</externalId>
-        <label>Gross Y1 Gross Profit Local</label>
-        <summarizedField>IPM_Financial_Year__c.Gross_Profit_Local__c</summarizedField>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year_Type__c</field>
-            <operation>equals</operation>
-            <value>Innovation</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.PL_Type__c</field>
-            <operation>equals</operation>
-            <value>Gross</value>
-        </summaryFilterItems>
-        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>Gross_Y1_Gross_Profit_Regional__c</fullName>
-        <externalId>false</externalId>
-        <label>Gross Y1 Gross Profit Regional</label>
-        <summarizedField>IPM_Financial_Year__c.Gross_Profit_Regional__c</summarizedField>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year_Type__c</field>
-            <operation>equals</operation>
-            <value>Innovation</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.PL_Type__c</field>
-            <operation>equals</operation>
-            <value>Gross</value>
-        </summaryFilterItems>
-        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>Gross_Y1_Profit_Before_Overheads_Global__c</fullName>
-        <externalId>false</externalId>
-        <label>Gross Y1 Profit Before Overheads Global</label>
-        <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Global__c</summarizedField>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year_Type__c</field>
-            <operation>equals</operation>
-            <value>Innovation</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.PL_Type__c</field>
-            <operation>equals</operation>
-            <value>Gross</value>
-        </summaryFilterItems>
-        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>Gross_Y1_Profit_Before_Overheads_Local__c</fullName>
-        <externalId>false</externalId>
-        <label>Gross Y1 Profit Before Overheads Local</label>
-        <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Local__c</summarizedField>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year_Type__c</field>
-            <operation>equals</operation>
-            <value>Innovation</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.PL_Type__c</field>
-            <operation>equals</operation>
-            <value>Gross</value>
-        </summaryFilterItems>
-        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>Gross_Y1_Profit_Before_Overheads_Regiona__c</fullName>
-        <externalId>false</externalId>
-        <label>Gross Y1 Profit Before Overheads Regiona</label>
-        <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Regional__c</summarizedField>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year_Type__c</field>
-            <operation>equals</operation>
-            <value>Innovation</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.PL_Type__c</field>
-            <operation>equals</operation>
-            <value>Gross</value>
-        </summaryFilterItems>
-        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>Gross_Y1_Turnover_Global__c</fullName>
-        <externalId>false</externalId>
-        <label>Gross Y1 Turnover Global</label>
-        <summarizedField>IPM_Financial_Year__c.Turnover_Global__c</summarizedField>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year_Type__c</field>
-            <operation>equals</operation>
-            <value>Innovation</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.PL_Type__c</field>
-            <operation>equals</operation>
-            <value>Gross</value>
-        </summaryFilterItems>
-        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>Gross_Y1_Turnover_Local__c</fullName>
-        <externalId>false</externalId>
-        <label>Gross Y1 Turnover Local</label>
-        <summarizedField>IPM_Financial_Year__c.Turnover_Local__c</summarizedField>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year_Type__c</field>
-            <operation>equals</operation>
-            <value>Innovation</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.PL_Type__c</field>
-            <operation>equals</operation>
-            <value>Gross</value>
-        </summaryFilterItems>
-        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>Gross_Y1_Turnover_Regional__c</fullName>
-        <externalId>false</externalId>
-        <label>Gross Y1 Turnover Regional</label>
-        <summarizedField>IPM_Financial_Year__c.Turnover_Regional__c</summarizedField>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.Year_Type__c</field>
-            <operation>equals</operation>
-            <value>Innovation</value>
-        </summaryFilterItems>
-        <summaryFilterItems>
-            <field>IPM_Financial_Year__c.PL_Type__c</field>
-            <operation>equals</operation>
-            <value>Gross</value>
-        </summaryFilterItems>
-        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
-        <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Summary</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Auto_Aligned_Fin_TLD__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Auto Aligned Fin TLD</description>
-        <externalId>false</externalId>
-        <label>IPM Auto Aligned Fin TLD</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>IPM_BD_BB_Feedback__c</fullName>
-        <externalId>false</externalId>
-        <label>IPM BD-BB Feedback</label>
-        <length>32768</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Html</type>
-        <visibleLines>25</visibleLines>
-    </fields>
-    <fields>
-        <fullName>IPM_Business_Case_Confirmed__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>To capture if BB is confirming the Local Business Case</description>
-        <externalId>false</externalId>
-        <label>Business Case Confirmed</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>IPM_CPP_Local__c</fullName>
+        <description>Project Priority Local</description>
         <externalId>false</externalId>
         <formula>IF( OR(ISBLANK(OpCo__c), OpCo__c=0),&quot; NA&quot;,
 IF(AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (OpCo__c *0.005) ),
@@ -1044,6 +1092,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>IPM_Financial_Postfix__c</fullName>
+        <description>Financial Postfix</description>
         <externalId>false</externalId>
         <label>IPM Financial Postfix</label>
         <picklist>
@@ -1082,6 +1131,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>IPM_Key_Financial__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To mark the key Financial</description>
         <externalId>false</externalId>
         <label>Key Financial</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1089,10 +1139,10 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
-    
     <fields>
         <fullName>IPM_Project_Rollout__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Regional Rollout associated to financial.</description>
         <externalId>false</externalId>
         <label>Regional Rollout</label>
         <referenceTo>IPM_Project_Rollout__c</referenceTo>
@@ -1104,8 +1154,9 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
-     <fields>
+    <fields>
         <fullName>IPM_Project_Type__c</fullName>
+        <description>Associated Project Type</description>
         <externalId>false</externalId>
         <formula>IF(NOT(ISBLANK(Parent_Project__c)),  TEXT(Parent_Project__r.IPM_Project_Type__c), IF(NOT(ISBLANK(Regional_Project__c)), TEXT(Regional_Project__r.IPM_Project_Type__c),TEXT(Local_Project__r.IPM_Project_Type__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -1119,6 +1170,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>IRR_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This fields holds IRR value at charter.</description>
         <externalId>false</externalId>
         <label>IRR Charter</label>
         <precision>18</precision>
@@ -1132,6 +1184,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>IRR_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This fields holds IRR value at Contract.</description>
         <externalId>false</externalId>
         <label>IRR Contract</label>
         <precision>18</precision>
@@ -1144,6 +1197,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>IRR_Difference__c</fullName>
+        <description>This field holds IRR  difference between value of IRR regional and local fields.</description>
         <externalId>false</externalId>
         <formula>IF(IRR_Regional__c &lt;&gt; 0, 
 	IF((ABS(IRR_Regional__c - IRR_Local__c)/IRR_Regional__c) &gt; 0.05, 
@@ -1164,6 +1218,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>IRR_Global__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This fields holds IRR value when project is at Global span.</description>
         <externalId>false</externalId>
         <label>IRR Global</label>
         <precision>18</precision>
@@ -1177,6 +1232,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>IRR_Local__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This fields holds IRR value when project is at Local span.</description>
         <externalId>false</externalId>
         <label>IRR Local</label>
         <precision>18</precision>
@@ -1203,6 +1259,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>IRR_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This fields holds IRR value at Market Ready.</description>
         <externalId>false</externalId>
         <label>IRR MR</label>
         <precision>18</precision>
@@ -1216,6 +1273,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>IRR_Regional__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>This fields holds IRR value when project is at Regional span.</description>
         <externalId>false</externalId>
         <label>IRR Regional</label>
         <precision>18</precision>
@@ -1228,6 +1286,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Gross_Profit_Global__c</fullName>
+        <description>Incremental Y1 Gross Profit Global</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Gross Profit Global</label>
         <summarizedField>IPM_Financial_Year__c.Gross_Profit_Global__c</summarizedField>
@@ -1254,6 +1313,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Gross_Profit_Local__c</fullName>
+        <description>Incremental Y1 Gross Profit Local</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Gross Profit Local</label>
         <summarizedField>IPM_Financial_Year__c.Gross_Profit_Local__c</summarizedField>
@@ -1280,6 +1340,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Gross_Profit_Regional__c</fullName>
+        <description>Incremental Y1 Gross Profit Regional</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Gross Profit Regional</label>
         <summarizedField>IPM_Financial_Year__c.Gross_Profit_Regional__c</summarizedField>
@@ -1306,6 +1367,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Profit_Before_Overheads_G__c</fullName>
+        <description>Incremental Y1 Profit Before Overheads Global</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Profit Before Overheads G</label>
         <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Global__c</summarizedField>
@@ -1332,6 +1394,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Profit_Before_Overheads_L__c</fullName>
+        <description>Incremental Y1 Profit Before Overheads Local</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Profit Before Overheads L</label>
         <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Local__c</summarizedField>
@@ -1358,6 +1421,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Profit_Before_Overheads_R__c</fullName>
+        <description>Incremental Y1 Profit Before Overheads Rregional</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Profit Before Overheads R</label>
         <summarizedField>IPM_Financial_Year__c.Profit_Before_Overheads_Regional__c</summarizedField>
@@ -1384,6 +1448,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Turnover_Global__c</fullName>
+        <description>Incremental Y1 Turnover Global</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Turnover Global</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Global__c</summarizedField>
@@ -1410,6 +1475,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Turnover_Local__c</fullName>
+        <description>Incremental Y1 Turnover Local</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Turnover Local</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Local__c</summarizedField>
@@ -1436,6 +1502,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Incremental_Y1_Turnover_Regional__c</fullName>
+        <description>Incremental Y1 Turnover Regional</description>
         <externalId>false</externalId>
         <label>Incremental Y1 Turnover Regional</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Regional__c</summarizedField>
@@ -1461,8 +1528,20 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>Is_BC_Confirmed_Capability__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To capture the Business Case Confirmation at Capability Phase</description>
+        <externalId>false</externalId>
+        <label>Is BC Confirmed Capability</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Last_Saved_By_Global__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field saves the user who saved the Global fields.</description>
         <externalId>false</externalId>
         <label>Last Saved By (Global)</label>
         <referenceTo>User</referenceTo>
@@ -1477,6 +1556,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Last_Saved_By_Local__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field saves the user who saved the local fields.</description>
         <externalId>false</externalId>
         <label>Last Saved By (Local)</label>
         <referenceTo>User</referenceTo>
@@ -1491,6 +1571,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Last_Saved_By_Regional__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field saves the user who saved the Regional fields.</description>
         <externalId>false</externalId>
         <label>Last Saved By (Regional)</label>
         <referenceTo>User</referenceTo>
@@ -1505,6 +1586,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Last_Saved_Global__c</fullName>
         <defaultValue>NOW()</defaultValue>
+        <description>Last when global fields were saved.</description>
         <externalId>false</externalId>
         <label>Last Saved (Global)</label>
         <required>false</required>
@@ -1516,6 +1598,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Last_Saved_Local__c</fullName>
         <defaultValue>NOW()</defaultValue>
+        <description>When the _Local fields were last saved.</description>
         <externalId>false</externalId>
         <label>Last Saved (Local)</label>
         <required>false</required>
@@ -1527,6 +1610,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Last_Saved_Regional__c</fullName>
         <defaultValue>NOW()</defaultValue>
+        <description>When the _Regional fields were last saved.</description>
         <externalId>false</externalId>
         <label>Last Saved (Regional)</label>
         <required>false</required>
@@ -1538,6 +1622,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Local_Project__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
+        <description>Local Project associated with the financial.</description>
         <externalId>false</externalId>
         <label>Local Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
@@ -1552,6 +1637,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>MD_Approved__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicated that Market Deployment was approved.</description>
         <externalId>false</externalId>
         <label>MD Approved</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1562,6 +1648,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>MD_Locked__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicates that Market Deployment is locked.</description>
         <externalId>false</externalId>
         <label>MD Locked</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1572,6 +1659,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>MR_Approved__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicates that Market Deployment was approved.</description>
         <externalId>false</externalId>
         <label>MR Approved</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1582,6 +1670,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>MR_Locked__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Indicated that Market ready phase is locked.</description>
         <externalId>false</externalId>
         <label>MR Locked</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1591,6 +1680,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Misaligned_Date__c</fullName>
+        <description>This captures the date when financial business cases were misaligned..</description>
         <externalId>false</externalId>
         <label>Misaligned Date</label>
         <required>false</required>
@@ -1601,6 +1691,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Misaligned__c</fullName>
+        <description>This shows the misalignment between regional and local business case.</description>
         <externalId>false</externalId>
         <formula>IF(
 ( Volume_Unit_Difference__c +  
@@ -1618,6 +1709,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>MisalignmentDateTime__c</fullName>
+        <description>This captures the date and time when financial business cases were misaligned..</description>
         <externalId>false</externalId>
         <label>MisalignmentDateTime</label>
         <required>false</required>
@@ -1629,6 +1721,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Value of NPV at charter.</description>
         <externalId>false</externalId>
         <label>NPV Charter</label>
         <precision>18</precision>
@@ -1642,6 +1735,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Value of NPV at Contract..</description>
         <externalId>false</externalId>
         <label>NPV Contract</label>
         <precision>18</precision>
@@ -1654,6 +1748,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>NPV_Difference__c</fullName>
+        <description>Difference between NPV regional and local NPV&apos;s.</description>
         <externalId>false</externalId>
         <formula>IF(NPV_Regional__c &lt;&gt; 0, 
 	IF((ABS(NPV_Regional__c - NPV_Local__c)/NPV_Regional__c) &gt; 0.05, 
@@ -1674,6 +1769,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_Global__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>NPV field value when at Project span Global.</description>
         <externalId>false</externalId>
         <label>NPV Global</label>
         <precision>18</precision>
@@ -1687,6 +1783,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_Local__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>NPV field value when at Project span Local.</description>
         <externalId>false</externalId>
         <label>NPV Local</label>
         <precision>18</precision>
@@ -1700,6 +1797,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_MD__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>NPV at Market deployment.</description>
         <externalId>false</externalId>
         <label>NPV MD</label>
         <precision>18</precision>
@@ -1713,6 +1811,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>NPV at Market Ready phase of the project.</description>
         <externalId>false</externalId>
         <label>NPV MR</label>
         <precision>18</precision>
@@ -1726,6 +1825,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>NPV_Regional__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>NPV value when project span is regional.</description>
         <externalId>false</externalId>
         <label>NPV Regional</label>
         <precision>18</precision>
@@ -1738,6 +1838,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>OpCo__c</fullName>
+        <description>This field holds the Local Project&apos;s Company Card Total_OpCo_Turnover__c</description>
         <externalId>false</externalId>
         <formula>Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -1753,6 +1854,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>PBO Y1 bps vs DNDS Charter</description>
         <externalId>false</externalId>
         <label>PBO Y1 bps vs DNDS Charter</label>
         <precision>18</precision>
@@ -1767,6 +1869,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>PBO Y1 bps vs DNDS Contract</description>
         <externalId>false</externalId>
         <label>PBO Y1 bps vs DNDS Contract</label>
         <precision>18</precision>
@@ -1780,6 +1883,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Difference__c</fullName>
+        <description>PBO Y1 bps vs DNDS Difference</description>
         <externalId>false</externalId>
         <formula>IF(PBO_Y1_bps_vs_DNDS_Regional__c &lt;&gt; 0, 
 	IF((ABS(PBO_Y1_bps_vs_DNDS_Regional__c - PBO_Y1_bps_vs_DNDS_Local__c)/PBO_Y1_bps_vs_DNDS_Regional__c) &gt; 0.05, 
@@ -1800,6 +1904,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Global__c</fullName>
+        <description>PBO Y1 bps vs DNDS Global</description>
         <externalId>false</externalId>
         <formula>(
   IF(Gross_Y1_Turnover_Global__c = 0, 0, Gross_Y1_Profit_Before_Overheads_Global__c / Gross_Y1_Turnover_Global__c)
@@ -1818,6 +1923,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Local__c</fullName>
+        <description>PBO Y1 bps vs DNDS Local</description>
         <externalId>false</externalId>
         <formula>(
   IF(Gross_Y1_Turnover_Local__c = 0, 0, Gross_Y1_Profit_Before_Overheads_Local__c / Gross_Y1_Turnover_Local__c)
@@ -1837,6 +1943,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_MD__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>PBO Y1 bps vs DNDS Market deployment</description>
         <externalId>false</externalId>
         <label>PBO Y1 bps vs DNDS MD</label>
         <precision>18</precision>
@@ -1851,6 +1958,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>PBO Y1 bps vs DNDS Market ready</description>
         <externalId>false</externalId>
         <label>PBO Y1 bps vs DNDS MR</label>
         <precision>18</precision>
@@ -1864,6 +1972,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>PBO_Y1_bps_vs_DNDS_Regional__c</fullName>
+        <description>PBO Y1 bps vs DNDS Regional</description>
         <externalId>false</externalId>
         <formula>(
   IF(Gross_Y1_Turnover_Regional__c = 0, 0, Gross_Y1_Profit_Before_Overheads_Regiona__c / Gross_Y1_Turnover_Regional__c)
@@ -1883,6 +1992,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Parent_Project__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>Project Parent associated with financial</description>
         <externalId>false</externalId>
         <label>Parent Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
@@ -1897,6 +2007,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback at charter.</description>
         <externalId>false</externalId>
         <label>Payback Charter</label>
         <precision>18</precision>
@@ -1911,6 +2022,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback value before contract when approved.</description>
         <externalId>false</externalId>
         <label>Payback Contract</label>
         <precision>18</precision>
@@ -1924,6 +2036,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Payback_Difference__c</fullName>
+        <description>Payback_Regional - payback_Local = payback_Difference.</description>
         <externalId>false</externalId>
         <formula>IF(Payback_Regional__c &lt;&gt; 0, 
 	IF((ABS(Payback_Regional__c - Payback_Local__c)/Payback_Regional__c) &gt; 0.05, 
@@ -1945,6 +2058,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_Global__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback Value when project span is Global</description>
         <externalId>false</externalId>
         <label>Payback Global</label>
         <precision>18</precision>
@@ -1959,6 +2073,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_Local__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback Value when project span is Global</description>
         <externalId>false</externalId>
         <label>Payback Local</label>
         <precision>18</precision>
@@ -1973,6 +2088,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_MD__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback Value when market deployment is approved.</description>
         <externalId>false</externalId>
         <label>Payback MD</label>
         <precision>18</precision>
@@ -1987,6 +2103,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback Value when market ready is approved.</description>
         <externalId>false</externalId>
         <label>Payback MR</label>
         <precision>18</precision>
@@ -2001,6 +2118,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Payback_Regional__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Payback Value when project span is Regional.</description>
         <externalId>false</externalId>
         <label>Payback Regional</label>
         <precision>18</precision>
@@ -2015,6 +2133,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Project_Sustainability_Period__c</fullName>
         <defaultValue>&quot;3&quot;</defaultValue>
+        <description>Project Span associated to Financial.</description>
         <externalId>false</externalId>
         <label>Project Sustainability Period</label>
         <length>10</length>
@@ -2027,6 +2146,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Regional_External_Id__c</fullName>
+        <description>Regional Project External Id associated with the financial.</description>
         <externalId>false</externalId>
         <formula>IF(NOT(ISBLANK(Regional_Project__c)),  Regional_Project__r.IPM_Project_Name__c ,  IPM_Project_Rollout__r.IPM_Rollout_Project__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -2039,6 +2159,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Regional_Market_Cluster_Name__c</fullName>
+        <description>Market cluster name of the Regional Project asociated.</description>
         <externalId>false</externalId>
         <formula>IF(NOT(ISBLANK(Regional_Project__c)), Regional_Project__r.Market_Cluster_Name__c , IPM_Project_Rollout__r.Market_Cluster_Name__c )</formula>
         <label>Regional Market Cluster Name</label>
@@ -2051,6 +2172,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Regional_Project__c</fullName>
         <deleteConstraint>Restrict</deleteConstraint>
+        <description>Lookup to associated Regional Project.</description>
         <externalId>false</externalId>
         <label>Regional Project</label>
         <referenceTo>IPM_Project__c</referenceTo>
@@ -2064,6 +2186,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Sorting_Order__c</fullName>
+        <description>This field is used in query for sorting records.</description>
         <externalId>false</externalId>
         <formula>IF(CONTAINS(Financial_External_ID__c, &apos;NONKEY&apos;), 99, 0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -2078,6 +2201,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Status__c</fullName>
+        <description>Status of financial.</description>
         <externalId>false</externalId>
         <label>Status</label>
         <picklist>
@@ -2102,6 +2226,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Target_Launch_Date_Updated_From__c</fullName>
+        <description>Updated Target launch date.</description>
         <externalId>false</externalId>
         <label>Target Launch Date Updated From</label>
         <picklist>
@@ -2126,6 +2251,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Target_Launch_Date__c</fullName>
+        <description>Project Target Launch date.</description>
         <externalId>false</externalId>
         <label>Target Launch Date</label>
         <required>true</required>
@@ -2136,6 +2262,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Threshold_Status_Global__c</fullName>
+        <description>Copies Global Project threshold.</description>
         <externalId>false</externalId>
         <formula>IF( Year_3_iTO_Global__c &gt;  Threshold__c, 
 	&quot;Above Threshold&quot;, 
@@ -2160,6 +2287,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Threshold_Status_Local__c</fullName>
+        <description>Copies Local Project threshold.</description>
         <externalId>false</externalId>
         <formula>IF( Year_3_iTO_Local__c &gt;  Threshold__c, 
 	&quot;Above Threshold&quot;, 
@@ -2184,6 +2312,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Threshold_Status_Regional__c</fullName>
+        <description>Copies Regional Project threshold.</description>
         <externalId>false</externalId>
         <formula>IF( Year_3_iTO_Regional__c &gt;  Threshold__c, 
 	&quot;Above Threshold&quot;, 
@@ -2208,6 +2337,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Threshold__c</fullName>
+        <description>Project category threshold.</description>
         <externalId>false</externalId>
         <formula>CASE(IF(NOT(ISBLANK(Parent_Project__c)), Parent_Project__r.IPM_Category_Text__c, Regional_Project__r.IPM_Category_Text__c), 
 	&quot;Laundry&quot;, 3000,
@@ -2225,6 +2355,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Total_FY_Difference__c</fullName>
+        <description>total Financial year difference of all the _difference fields.</description>
         <externalId>false</externalId>
         <label>Total FY Difference</label>
         <summarizedField>IPM_Financial_Year__c.Total_Difference__c</summarizedField>
@@ -2236,6 +2367,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_Charter__c</fullName>
+        <description>unit at Charter.</description>
         <externalId>false</externalId>
         <label>Volume Unit Charter</label>
         <length>100</length>
@@ -2248,6 +2380,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_Contract__c</fullName>
+        <description>Volume unit at contract.</description>
         <externalId>false</externalId>
         <label>Volume Unit Contract</label>
         <length>100</length>
@@ -2260,6 +2393,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_Difference__c</fullName>
+        <description>Regional-local difference of Volume unit.</description>
         <externalId>false</externalId>
         <formula>IF(TEXT(Volume_Unit_Regional__c) == TEXT(Volume_Unit_Local__c), 0, 1)</formula>
         <label>Volume Unit Difference</label>
@@ -2273,6 +2407,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_Global__c</fullName>
+        <description>Volume unit when project span is global.</description>
         <externalId>false</externalId>
         <label>Volume Unit Global</label>
         <picklist>
@@ -2297,6 +2432,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_Local__c</fullName>
+        <description>Volume unit when project span is Local.</description>
         <externalId>false</externalId>
         <label>Volume Unit Local</label>
         <picklist>
@@ -2321,6 +2457,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_MD__c</fullName>
+        <description>Volume unit when project phase is market deployment..</description>
         <externalId>false</externalId>
         <label>Volume Unit MD</label>
         <length>100</length>
@@ -2333,6 +2470,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_MR__c</fullName>
+        <description>Volume unit when project phase is market ready..</description>
         <externalId>false</externalId>
         <label>Volume Unit MR</label>
         <length>100</length>
@@ -2345,6 +2483,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit_Regional__c</fullName>
+        <description>Volume unit when project span is regional.</description>
         <externalId>false</externalId>
         <label>Volume Unit Regional</label>
         <picklist>
@@ -2369,6 +2508,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Volume_Unit__c</fullName>
+        <description>Volume unit picklist.</description>
         <externalId>false</externalId>
         <label>Volume Unit</label>
         <picklist>
@@ -2431,6 +2571,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Year_3_iTO_Charter__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Year 3 ITO at Charter</description>
         <externalId>false</externalId>
         <label>Year 3 iTO Charter</label>
         <precision>18</precision>
@@ -2444,6 +2585,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Year_3_iTO_Contract__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Year 3 ITO at Contract</description>
         <externalId>false</externalId>
         <label>Year 3 iTO Contract</label>
         <precision>18</precision>
@@ -2456,6 +2598,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Year_3_iTO_Global__c</fullName>
+        <description>Year 3 ITO when project span was global</description>
         <externalId>false</externalId>
         <label>Year 3 iTO Global</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Global__c</summarizedField>
@@ -2482,6 +2625,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Year_3_iTO_Local__c</fullName>
+        <description>Year 3 ITO when project span is local</description>
         <externalId>false</externalId>
         <label>Year 3 iTO Local</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Local__c</summarizedField>
@@ -2509,6 +2653,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Year_3_iTO_MD__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Year 3 ITO at Market Deployment</description>
         <externalId>false</externalId>
         <label>Year 3 iTO MD</label>
         <precision>18</precision>
@@ -2522,6 +2667,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>Year_3_iTO_MR__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>Year 3 ITO at Market Ready.</description>
         <externalId>false</externalId>
         <label>Year 3 iTO MR</label>
         <precision>18</precision>
@@ -2534,6 +2680,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     </fields>
     <fields>
         <fullName>Year_3_iTO_Regional__c</fullName>
+        <description>Year 3 ITO when project span is regional</description>
         <externalId>false</externalId>
         <label>Year 3 iTO Regional</label>
         <summarizedField>IPM_Financial_Year__c.Turnover_Regional__c</summarizedField>
@@ -2570,19 +2717,9 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Is_BC_Confirmed_Capability__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>To capture the Business Case Confirmation at Capability Phase</description>
-        <externalId>false</externalId>
-        <label>Is BC Confirmed Capability</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>isGateSubmissionDue__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check if the Gate Submission date is due</description>
         <externalId>false</externalId>
         <label>isGateSubmissionDue</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2679,7 +2816,915 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <label>Finder-Regional Projects</label>
         <language>en_US</language>
     </listViews>
-    
+    <listViews>
+        <fullName>IPM_a7I180000009855_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTPROJ15FEB</label>
+        <queue>IPM_a7I180000009855</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000986P_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE TESTCR0292</label>
+        <queue>IPM_a7I18000000986P</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000986U_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTMINIMILESN</label>
+        <queue>IPM_a7I18000000986U</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000986Z_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SDSDS</label>
+        <queue>IPM_a7I18000000986Z</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000986e_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE TESTETS</label>
+        <queue>IPM_a7I18000000986e</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000986j_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTCOMPLEXITY</label>
+        <queue>IPM_a7I18000000986j</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000986t_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ABCMILE</label>
+        <queue>IPM_a7I18000000986t</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000986y_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTFEB161</label>
+        <queue>IPM_a7I18000000986y</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000987S_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ABCOP</label>
+        <queue>IPM_a7I18000000987S</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000989E_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE CR0292</label>
+        <queue>IPM_a7I18000000989E</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098C8_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PRAJAKTACR0010</label>
+        <queue>IPM_a7I1800000098C8</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098Cr_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE TESTALL</label>
+        <queue>IPM_a7I1800000098Cr</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098DB_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTMINIMS</label>
+        <queue>IPM_a7I1800000098DB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098DG_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_GPLLAKHAN</label>
+        <queue>IPM_a7I1800000098DG</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098DQ_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTSECTION347</label>
+        <queue>IPM_a7I1800000098DQ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098Da_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE TESTALLPHA</label>
+        <queue>IPM_a7I1800000098Da</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098Df_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTFEB162</label>
+        <queue>IPM_a7I1800000098Df</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098Dz_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_GLOBALLAKHAN</label>
+        <queue>IPM_a7I1800000098Dz</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098EJ_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTFEB164_NA</label>
+        <queue>IPM_a7I1800000098EJ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098EO_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTFEB165_NA</label>
+        <queue>IPM_a7I1800000098EO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098ET_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TEST16GBL</label>
+        <queue>IPM_a7I1800000098ET</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098Fv_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TT0294</label>
+        <queue>IPM_a7I1800000098Fv</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098G0_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TEST1602</label>
+        <queue>IPM_a7I1800000098G0</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098GA_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE TESTTASKS</label>
+        <queue>IPM_a7I1800000098GA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098GP_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TT0294OP</label>
+        <queue>IPM_a7I1800000098GP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098GZ_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_16FEBTESTING</label>
+        <queue>IPM_a7I1800000098GZ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098Go_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTING16FEB_AFR</label>
+        <queue>IPM_a7I1800000098Go</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098Gy_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I1800000098Gy</label>
+        <queue>IPM_a7I1800000098Gy</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098Hm_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_T0294N2</label>
+        <queue>IPM_a7I1800000098Hm</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098bt_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_RATAJDJDJ</label>
+        <queue>IPM_a7I1800000098bt</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098by_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTFEB171</label>
+        <queue>IPM_a7I1800000098by</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098c3_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTFEB172_NA</label>
+        <queue>IPM_a7I1800000098c3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098c81_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTLOCAL</label>
+        <queue>IPM_a7I1800000098c81</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098cN_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTROLLLABEL_AFR</label>
+        <queue>IPM_a7I1800000098cN</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098cS_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_CR347RUN1</label>
+        <queue>IPM_a7I1800000098cS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098fV1_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_0294TT</label>
+        <queue>IPM_a7I1800000098fV1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098g4_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTPROJE17FEB</label>
+        <queue>IPM_a7I1800000098g4</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098hR_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TT0294C</label>
+        <queue>IPM_a7I1800000098hR</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098v2_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTFEB173_NA</label>
+        <queue>IPM_a7I1800000098v2</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098vC_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTFEB174_NA</label>
+        <queue>IPM_a7I1800000098vC</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098vq_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I1800000098vq</label>
+        <queue>IPM_a7I1800000098vq</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098wy_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTPLELE</label>
+        <queue>IPM_a7I1800000098wy</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098x3_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTPLELEARNIN</label>
+        <queue>IPM_a7I1800000098x3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098yL_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_FINAL0294</label>
+        <queue>IPM_a7I1800000098yL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000098yQ_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_17FEB1601</label>
+        <queue>IPM_a7I1800000098yQ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000996K_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I18000000996K</label>
+        <queue>IPM_a7I18000000996K</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000996P_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_16THFLOOROPERA</label>
+        <queue>IPM_a7I18000000996P</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000996Z_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_CR0352_AFR</label>
+        <queue>IPM_a7I18000000996Z</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000996o_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_LOCALOPERATION</label>
+        <queue>IPM_a7I18000000996o</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000996t_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_BCCDOC</label>
+        <queue>IPM_a7I18000000996t</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000996y_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TSTGKM</label>
+        <queue>IPM_a7I18000000996y</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000997X_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PRAJAKTA18FEB1</label>
+        <queue>IPM_a7I18000000997X</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009986_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_COREPPP</label>
+        <queue>IPM_a7I180000009986</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000998B_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DWADWQD_AFR</label>
+        <queue>IPM_a7I18000000998B</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I18000000998L_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_CR316</label>
+        <queue>IPM_a7I18000000998L</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000099tY_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTFEB221_AFR</label>
+        <queue>IPM_a7I1800000099tY</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000099vb_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I1800000099vb</label>
+        <queue>IPM_a7I1800000099vb</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000099vq_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I1800000099vq</label>
+        <queue>IPM_a7I1800000099vq</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I1800000099yk_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I1800000099yk</label>
+        <queue>IPM_a7I1800000099yk</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009A4f_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE TESTASKS</label>
+        <queue>IPM_a7I180000009A4f</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009AAF_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE TESTLOCALC</label>
+        <queue>IPM_a7I180000009AAF</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009AIw_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_NEWPROJECT22F</label>
+        <queue>IPM_a7I180000009AIw</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009AJ1_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DSDSSDXCXCV</label>
+        <queue>IPM_a7I180000009AJ1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009AJ6_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE TESTTEST</label>
+        <queue>IPM_a7I180000009AJ6</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009AJL_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_RAJESHHEHEHD</label>
+        <queue>IPM_a7I180000009AJL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009AQm_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_LAKHAND_AFR</label>
+        <queue>IPM_a7I180000009AQm</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009ARR_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTLAKHANC_AFR</label>
+        <queue>IPM_a7I180000009ARR</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009AUV_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SAD_AFR</label>
+        <queue>IPM_a7I180000009AUV</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009Ajr_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTSJAGSJAHSJ</label>
+        <queue>IPM_a7I180000009Ajr</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009AkB_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I180000009AkB</label>
+        <queue>IPM_a7I180000009AkB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009AkQ_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I180000009AkQ</label>
+        <queue>IPM_a7I180000009AkQ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009ApB_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I180000009ApB</label>
+        <queue>IPM_a7I180000009ApB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009Apz_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEF3249_AFR</label>
+        <queue>IPM_a7I180000009Apz</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009BgB_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTHELPTEXT</label>
+        <queue>IPM_a7I180000009BgB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009BpQ_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_CR0294F1</label>
+        <queue>IPM_a7I180000009BpQ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009COl_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTCR82_AFR</label>
+        <queue>IPM_a7I180000009COl</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009CQ1_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTCR082</label>
+        <queue>IPM_a7I180000009CQ1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009CUm_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I180000009CUm</label>
+        <queue>IPM_a7I180000009CUm</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009CVV_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I180000009CVV</label>
+        <queue>IPM_a7I180000009CVV</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009CWJ_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTCR00822_AFR</label>
+        <queue>IPM_a7I180000009CWJ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009CXX_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTCR00822789_AFR</label>
+        <queue>IPM_a7I180000009CXX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009Cba_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTCR00909123_AFR</label>
+        <queue>IPM_a7I180000009Cba</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009Ce5_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE TESTDEFECT</label>
+        <queue>IPM_a7I180000009Ce5</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009CfD_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_GKM1</label>
+        <queue>IPM_a7I180000009CfD</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009CfN_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_RAJESH25THFEB</label>
+        <queue>IPM_a7I180000009CfN</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009Cjf_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_VBVCBCV</label>
+        <queue>IPM_a7I180000009Cjf</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009Cjs_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I180000009Cjs</label>
+        <queue>IPM_a7I180000009Cjs</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009Cl0_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I180000009Cl0</label>
+        <queue>IPM_a7I180000009Cl0</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009D7j_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I180000009D7j</label>
+        <queue>IPM_a7I180000009D7j</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009D88_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE GKM5</label>
+        <queue>IPM_a7I180000009D88</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009D8f_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE GKM5</label>
+        <queue>IPM_a7I180000009D8f</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009D8u_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE GKM6</label>
+        <queue>IPM_a7I180000009D8u</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009D9E_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_DEE GKM6_AFR</label>
+        <queue>IPM_a7I180000009D9E</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009D9d_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_GKM4_AFR</label>
+        <queue>IPM_a7I180000009D9d</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009DAl_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I180000009DAl</label>
+        <queue>IPM_a7I180000009DAl</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009DAv_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TEST26FEB</label>
+        <queue>IPM_a7I180000009DAv</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009DB0_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_FEB26TEST</label>
+        <queue>IPM_a7I180000009DB0</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009DBK_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_KUMARS PROJ_AFR</label>
+        <queue>IPM_a7I180000009DBK</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009DCD_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I180000009DCD</label>
+        <queue>IPM_a7I180000009DCD</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009DCN_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7I180000009DCN</label>
+        <queue>IPM_a7I180000009DCN</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7I180000009DCS_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PROJECTCR_AFR</label>
+        <queue>IPM_a7I180000009DCS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>FIN-{0000}</displayFormat>
         <label>Name</label>
