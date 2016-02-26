@@ -761,14 +761,7 @@
         <apexClass>IPM_UserProfileHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler_Test</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
+
     <classAccesses>
         <apexClass>IPM_Utils</apexClass>
         <enabled>true</enabled>
