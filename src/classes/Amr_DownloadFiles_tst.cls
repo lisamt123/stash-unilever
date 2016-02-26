@@ -5,7 +5,7 @@ public with sharing class Amr_DownloadFiles_tst {
 		
 		Profile p = [SELECT Id FROM Profile WHERE Name='AMR']; 
         User u = new User(Alias = 'stan21', Email='standuser21@testorg.com', 
-            EmailEncodingKey='UTF-8', LastName='Testing21', LanguageLocaleKey='en_US', 
+            EmailEncodingKey='UTF-8', LastName='Testing21', LanguageLocaleKey='en_Uk', 
             LocaleSidKey='en_US', ProfileId = p.Id, 
             TimeZoneSidKey='America/Los_Angeles', UserName='standuser@org.com');
         insert u;
@@ -26,7 +26,7 @@ public with sharing class Amr_DownloadFiles_tst {
                                   
         insert savingObj;
         
-        Amr_Quote__c  QuoteObj = new Amr_Quote__c(Saving__c = savingObj.id, Name =  'test1');
+        Amr_Quote__c  QuoteObj = new Amr_Quote__c(Saving__c = savingObj.id, Name =  'testQuote1');
         
         insert QuoteObj;
         
@@ -37,8 +37,8 @@ public with sharing class Amr_DownloadFiles_tst {
         
 	        ApexPages.currentPage().getParameters().put('id',savingObj.id);
 	        Amr_DownloadFilesController controller = new Amr_DownloadFilesController();
-	        controller.folderselected = 'Brief';
-	        controller.folerName = 'Brief';
+	        controller.folderselected = 'Opening Quotes';
+	        controller.folerName = 'Opening Quotes';
 	        controller.attachedList.add(feedObject);
 	        controller.downloadFile();
 	        controller.DisplayList.add(feedObject);
@@ -52,7 +52,7 @@ public with sharing class Amr_DownloadFiles_tst {
 		
 		Profile p = [SELECT Id FROM Profile WHERE Name='AMR']; 
         User u = new User(Alias = 'stan21', Email='standuser21@testorg.com', 
-            EmailEncodingKey='UTF-8', LastName='Testing21', LanguageLocaleKey='en_US', 
+            EmailEncodingKey='UTF-8', LastName='Testing21', LanguageLocaleKey='en_Uk', 
             LocaleSidKey='en_US', ProfileId = p.Id, 
             TimeZoneSidKey='America/Los_Angeles', UserName='standuser@org.com');
         insert u;
@@ -61,7 +61,7 @@ public with sharing class Amr_DownloadFiles_tst {
 		insert permission; 
 		
 		System.runAs(u){
-		Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
+		Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(name = 'test3',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
                                             Digital_Agency_Name__c = 'test',Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
                                             Any_other_agencies_involved__c = 'abc',Budget_Allocated_Input_Value__c = 5,Campaign_Name__c = 'xyz',
                                             Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com'
@@ -73,7 +73,7 @@ public with sharing class Amr_DownloadFiles_tst {
                                   
         insert savingObj;
         
-        Amr_Quote__c  QuoteObj = new Amr_Quote__c(Saving__c = savingObj.id, Name =  'test1');
+        Amr_Quote__c  QuoteObj = new Amr_Quote__c(Saving__c = savingObj.id, Name =  'testQuote2');
         
         insert QuoteObj;
         
@@ -100,7 +100,7 @@ public with sharing class Amr_DownloadFiles_tst {
 		
 		Profile p = [SELECT Id FROM Profile WHERE Name='AMR']; 
         User u = new User(Alias = 'stan21', Email='standuser21@testorg.com', 
-            EmailEncodingKey='UTF-8', LastName='Testing21', LanguageLocaleKey='en_US', 
+            EmailEncodingKey='UTF-8', LastName='Testing21', LanguageLocaleKey='en_Uk', 
             LocaleSidKey='en_US', ProfileId = p.Id, 
             TimeZoneSidKey='America/Los_Angeles', UserName='standuser@org.com');
         insert u;
@@ -109,7 +109,7 @@ public with sharing class Amr_DownloadFiles_tst {
 		insert permission; 
 		
 		System.runAs(u){
-		Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
+		Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(name = 'test2',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
                                             Digital_Agency_Name__c = 'test',Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
                                             Any_other_agencies_involved__c = 'abc',Budget_Allocated_Input_Value__c = 5,Campaign_Name__c = 'xyz',
                                             Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com'
@@ -121,7 +121,7 @@ public with sharing class Amr_DownloadFiles_tst {
                                   
         insert savingObj;
         
-        Amr_Quote__c  QuoteObj = new Amr_Quote__c(Saving__c = savingObj.id, Name =  'test1');
+        Amr_Quote__c  QuoteObj = new Amr_Quote__c(Saving__c = savingObj.id, Name =  'testQuote');
         
         insert QuoteObj;
         
@@ -133,7 +133,7 @@ public with sharing class Amr_DownloadFiles_tst {
 	        ApexPages.currentPage().getParameters().put('id',savingObj.id);
 	        Amr_DownloadFilesController controller = new Amr_DownloadFilesController();
 	        controller.folderselected = NULL;
-	        controller.folerName = 'Brief';
+	        controller.folerName = 'Closing Quotes';
 	        controller.attachedList.add(feedObject);
 	        controller.downloadFile();
 	        controller.DisplayList.add(feedObject);

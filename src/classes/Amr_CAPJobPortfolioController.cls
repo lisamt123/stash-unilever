@@ -35,13 +35,15 @@ global with sharing class Amr_CAPJobPortfolioController{
     public Integer limitSizeForActiveJobs=100;
     public Integer counterForActiveJobs=0;
     public Integer totalSizeForCancelJobs =0;
-    public Integer limitSizeForCancelJobs=30;
+    public Integer limitSizeForCancelJobs=100;
     public Integer counterForCancelJobs=0;
     public Boolean showPageButtonForCancel {get;set;}
     public Boolean showPageButtonForActive {get;set;}
     public List<Amr_Alert__c> alertList{get;set;}
     public Amr_Alert__c hideAlertObj{get;set;}
     public List<Amr_Alert__c>unHideAlertList{get;set;}
+    public static final String NONE = '--None--';
+    public static final String Percentage_str = '%\'';
   //  public boolean showUnhideRecords{get;set;}
   //  public boolean flagForButtons{get;set;}
     public Id loggedInUserId {get;set;}
@@ -57,9 +59,10 @@ global with sharing class Amr_CAPJobPortfolioController{
         public Integer CurrentActivePageNumber {get;set;}   
     transient  String[]  listString{get;set;}
     transient  String[]  categoryString{get;set;}
-    public static final String NONE = '--None--';
+    
    
     public Amr_CAPJobPortfolioController(){
+        try{
         jobAllocation =new Amr_Job_Allocation__c();
         jobDetails =new Amr_Job_Details__c();
         broadMarket='';
@@ -83,14 +86,16 @@ global with sharing class Amr_CAPJobPortfolioController{
         }
         
         listOfBrandPosition = new List<SelectOption>();
-        listOfBrandPosition.add(new selectOption('--None--','--None--'));
+        listOfBrandPosition.add(new selectOption(NONE,NONE));
         
      //getAlertRecords();
     getJobSearchDetails();
      getTotalJobs();     
     
     //cancellation
-   
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+        }
     }
     /*
     public List<SelectOption> getCategoryList(){      
@@ -111,7 +116,8 @@ global with sharing class Amr_CAPJobPortfolioController{
         return JSON.serialize(categoryString);
     }
      
-     public List<SelectOption> getBrandPositioningList(){  
+     public List<SelectOption> getBrandPositioningList(){ 
+        try{ 
          system.debug('categoryName!!'+categoryName);
          Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
          Set<String> brandPositionlst = new Set<String>();
@@ -131,10 +137,15 @@ global with sharing class Amr_CAPJobPortfolioController{
  
         system.debug('brandPositionList----->'+listOfBrandPosition);
         return listOfBrandPosition;
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+            return null;
+        }
          
      } 
      
-       public PageReference  brandPositionListData(){    
+       public PageReference  brandPositionListData(){  
+        try{  
         System.debug('BBBBBBRANDDD ->'+ categoryName);  
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
         Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
@@ -142,7 +153,7 @@ global with sharing class Amr_CAPJobPortfolioController{
         system.debug('brandPositionListttoo----->'+brandPositionlst );
 
         listOfBrandPosition = new List<SelectOption>();
-        listOfBrandPosition.add(new selectOption('--None--','--None--'));
+        listOfBrandPosition.add(new selectOption(NONE,NONE));
         Set<String> brnadPosNameSet = new Set<String>();
         for(MDO_BrandPositions__c bps : brandPositionlst){
 
@@ -154,12 +165,15 @@ global with sharing class Amr_CAPJobPortfolioController{
         }
 
         system.debug('brandPositionListtt----->'+listOfBrandPosition);
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+        }
         return null;
 
     }
     
     public pageReference getPage(){
-        
+        try{
         userData = [select PermissionSet.Name from PermissionSetAssignment  where Assignee.id = :userinfo.getUserId()];
         Set<String> userNameSet = new Set<String>();
         for(PermissionSetAssignment permission : userData){
@@ -178,7 +192,10 @@ global with sharing class Amr_CAPJobPortfolioController{
              pageRef.setRedirect(true);
              return pageRef;
         }
-        
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+            return null;
+        }
       
         
     }
@@ -209,11 +226,12 @@ global with sharing class Amr_CAPJobPortfolioController{
      } */
      
      
-       public List<SelectOption> getBrandList(){      
+       public List<SelectOption> getBrandList(){   
+        try{   
         listOfBrand = new List<SelectOption>();
      //   system.debug('========>'+brandPosName+'category name=====>'+categoryName);
 
-        listOfBrand.add(new selectOption('--None--','--None--'));
+        listOfBrand.add(new selectOption(NONE,NONE));
 
         //Set<String> brandlst = new Set<String>();
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
@@ -229,12 +247,17 @@ global with sharing class Amr_CAPJobPortfolioController{
         }
 
         return listOfBrand;
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+            return null;
+        }
     }
      
      public List<SelectOption> getUserList(){
+        try{
      listOfUser = new List<SelectOption>();
      listOfUser.add(new selectOption(NONE,NONE));
-     List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='RAP' order by Assignee.name];
+     List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='RAP' order by Assignee.name limit 50000];
     if(PermissionSetAssignmentList.size()>0){
  
      for(PermissionSetAssignment permissionObj:PermissionSetAssignmentList){
@@ -244,12 +267,17 @@ global with sharing class Amr_CAPJobPortfolioController{
       }
     system.debug('listOfUser!!'+listOfUser);
          return listOfUser;
+         }catch(Exception ex){
+            system.debug(ex.getMessage());
+            return null;
+        }
      
      }
         public String getMethodToPassProjectNames(){
            return JSON.serialize(listString);
     }
     public void getTotalJobs() {
+        try{
         TotalJobs = [SELECT count()  FROM  Amr_Job_Details__c ];
         
         system.debug('Value is !!'+TotalJobs); 
@@ -260,6 +288,9 @@ global with sharing class Amr_CAPJobPortfolioController{
         TotalPriorityJobs = [SELECT count()  FROM  Amr_Job_Details__c where  Amr_Job_Details__c.Job_Status__c = :Label.Amr_Status_Pending ];
         TotalDormantJobs  = [SELECT count()  FROM  Amr_Job_Details__c where  Amr_Job_Details__c.Job_Status__c = :Label.Amr_Status_Dormant ];
         TotalSavingsJobs  = [SELECT count() from Amr_Saving__c];
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+        }
     }
     
     
@@ -351,6 +382,7 @@ global with sharing class Amr_CAPJobPortfolioController{
      }
     
     public Pagereference getJobSearchDetails(){
+        try{
     system.debug('categoryName!!'+categoryName);
     //job list
     jobDetailList = new list<Amr_Job_Allocation__c>();
@@ -426,8 +458,8 @@ global with sharing class Amr_CAPJobPortfolioController{
      }
 
       if(String.isNotBlank(jobDetails.Brodcast_Market__c)){
-    soql += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(jobDetails.Brodcast_Market__c)+'%\'';
-    soqlForCancel += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(jobDetails.Brodcast_Market__c)+'%\'';
+    soql += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(jobDetails.Brodcast_Market__c)+Percentage_str ;
+    soqlForCancel += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(jobDetails.Brodcast_Market__c)+Percentage_str;
 }
     if(String.isNotBlank(jobDetails.Stage_of_Production_Activity__c)){
     soql += ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(jobDetails.Stage_of_Production_Activity__c)+'\'';
@@ -436,13 +468,13 @@ global with sharing class Amr_CAPJobPortfolioController{
      }
    
     if(String.isNotBlank(jobDetails.AdManagerText__c)){
-    soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+String.escapeSingleQuotes(jobDetails.AdManagerText__c)+'%\'';
-    soqlForCancel += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+String.escapeSingleQuotes(jobDetails.AdManagerText__c)+'%\'';
+    soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+String.escapeSingleQuotes(jobDetails.AdManagerText__c)+Percentage_str;
+    soqlForCancel += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+String.escapeSingleQuotes(jobDetails.AdManagerText__c)+Percentage_str;
           
      }
      if(String.isNotBlank(jobDetails.Unilever_Project_Leader_Email__c)){
-    soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(jobDetails.Unilever_Project_Leader_Email__c)+'%\'';
-    soqlForCancel += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(jobDetails.Unilever_Project_Leader_Email__c)+'%\'';
+    soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(jobDetails.Unilever_Project_Leader_Email__c)+Percentage_str;
+    soqlForCancel += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(jobDetails.Unilever_Project_Leader_Email__c)+Percentage_str;
      }
      if(String.isNotBlank(jobDetails.Project_Details__c)){
         system.debug('***jobDetails.Project_Details__c****'+jobDetails.Project_Details__c);
@@ -490,8 +522,8 @@ global with sharing class Amr_CAPJobPortfolioController{
      }
       if(String.isNotBlank(jobDetails.Campaign_Name__c)){
             
-     soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+'%\'';
-    soqlForCancel += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+'%\'';
+     soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Percentage_str;
+    soqlForCancel += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Percentage_str;
       }
      
      if(String.isNotBlank(selectedSortJobsOption) && selectedSortJobsOption!=NONE){
@@ -503,11 +535,11 @@ global with sharing class Amr_CAPJobPortfolioController{
            
      }
      if(String.isNotBlank(addNumber)){
-        soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+'%\'';
+        soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+Percentage_str;
               
          }
          if(String.isNotBlank(projEmail)){
-        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+'%\'';
+        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+Percentage_str;
               
          }
          if(String.isNotBlank(projectName)){
@@ -519,7 +551,7 @@ global with sharing class Amr_CAPJobPortfolioController{
               
          }
          if(String.isNotBlank(jobDetails.Campaign_Name__c)){
-        soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+'%\'';
+        soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Percentage_str;
             
          }
          if (String.isNotBlank(startDate)){
@@ -533,7 +565,7 @@ global with sharing class Amr_CAPJobPortfolioController{
                Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
          
-               soql += ' and DateValue(createdDate)'+  ' = '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
+               soql += ' and createdDate'+  ' = '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
              
                
                system.debug('soql created date'+soql);
@@ -543,7 +575,8 @@ global with sharing class Amr_CAPJobPortfolioController{
           soqlForCancel += ' ORDER BY '+String.escapeSingleQuotes(selectedSortCancelOption)+' ASC';
            
      }*/
-     
+     soql+=' limit 50000';
+     soqlForCancel+=' limit 50000';
      system.debug('soql !!'+soql +'soqlForCancel!!'+soqlForCancel);
      
     //jobDetailList = Database.query(soql);
@@ -574,6 +607,9 @@ global with sharing class Amr_CAPJobPortfolioController{
      }
          //sortBySelected();     //return WrapperList;
     paginationMethodForCancelJobs(WrapperList);
+    }catch(Exception ex){
+            system.debug(ex.getMessage());
+    }
     return null;
        
     }
@@ -641,6 +677,7 @@ global with sharing class Amr_CAPJobPortfolioController{
     */
            // To call Cancel button on VF Page
        Public PageReference changwrapperClasseStatus(){
+        try{
           List<Amr_Job_Allocation__c> selectList = New List<Amr_Job_Allocation__c>();
           List<Amr_Job_Details__c> selectJobDetailList = New List<Amr_Job_Details__c>();
           for(wrapperclass wc:WrapperList){
@@ -681,10 +718,15 @@ global with sharing class Amr_CAPJobPortfolioController{
              ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please select any value'));
                 return null;
           } 
+          }catch(Exception ex){
+            system.debug(ex.getMessage());
+            return null;
+        }
      }
     //////
       //pagination for active jobs starts here
    public void paginationMethodForActiveJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
+    try{
        activeJobsToShow = new list<Amr_Job_Allocation__c>();
        totalSizeForActiveJobs = jobListToDisplay.size();
        if(limitSizeForActiveJobs < totalSizeForActiveJobs ){
@@ -713,10 +755,13 @@ global with sharing class Amr_CAPJobPortfolioController{
          system.debug('Bhupi pages are'+TotalActiveJobPages);
         
         //getTotalActiveJobPages(totalSizeForActiveJobs/limitSizeForActiveJobs);
-        
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+        }
       }
         
     public void beginningForActiveJobs(){
+        try{
         activeJobsToShow.clear();
         counterForActiveJobs=0;
         if((counterForActiveJobs + limitSizeForActiveJobs) <= totalSizeForActiveJobs ){
@@ -731,9 +776,13 @@ global with sharing class Amr_CAPJobPortfolioController{
         
         TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+        }
     }
    
     public void nextForActiveJobs(){
+        try{
         activeJobsToShow.clear();
         counterForActiveJobs=counterForActiveJobs+limitSizeForActiveJobs;
         system.debug('limitSizeForActiveJobs-----'+limitSizeForActiveJobs);
@@ -756,10 +805,13 @@ global with sharing class Amr_CAPJobPortfolioController{
          system.debug('activeJobsToShow-----'+activeJobsToShow);
          system.debug('no of page -----'+TotalActiveJobPages);
          system.debug('current page -----'+CurrentActivePageNumber);
-         
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+        } 
     }
    
     public void previousForActiveJobs(){
+        try{
         activeJobsToShow.clear();
         counterForActiveJobs=counterForActiveJobs-limitSizeForActiveJobs;       
             for(Integer i=counterForActiveJobs;i<(counterForActiveJobs+limitSizeForActiveJobs); i++){
@@ -768,10 +820,13 @@ global with sharing class Amr_CAPJobPortfolioController{
         
         TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
-        
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+        }
     }
 
     public void lastForActiveJobs (){
+        try{
         activeJobsToShow.clear();
         if(math.mod(totalSizeForActiveJobs , limitSizeForActiveJobs) == 0){
             counterForActiveJobs = limitSizeForActiveJobs* ((totalSizeForActiveJobs /limitSizeForActiveJobs)-1);
@@ -784,7 +839,9 @@ global with sharing class Amr_CAPJobPortfolioController{
         
         TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
-        
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+        }
       }
    
     public Boolean getDisableNextForActiveJobs(){
@@ -804,6 +861,7 @@ global with sharing class Amr_CAPJobPortfolioController{
     
       //pagination for active jobs starts here
    public void paginationMethodForCancelJobs(List<WrapperClass> jobListToDisplay){
+    try{
        cancelJobsToShow = new list<WrapperClass>();
        totalSizeForCancelJobs = jobListToDisplay.size();
        if(limitSizeForCancelJobs< totalSizeForCancelJobs ){
@@ -824,9 +882,13 @@ global with sharing class Amr_CAPJobPortfolioController{
            
         }
          system.debug('cancelJobsToShow!!'+cancelJobsToShow);
+         }catch(Exception ex){
+            system.debug(ex.getMessage());
+        }
       }
         
     public void beginningForCancelJobs(){
+        try{
         cancelJobsToShow.clear();
         counterForCancelJobs =0;
         if((counterForCancelJobs + limitSizeForCancelJobs) <= totalSizeForCancelJobs ){
@@ -838,9 +900,13 @@ global with sharing class Amr_CAPJobPortfolioController{
                 cancelJobsToShow.add(WrapperList.get(i));
             }       
         }
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+        }
     }
    
     public void nextForCancelJobs(){
+        try{
         cancelJobsToShow.clear();
         counterForCancelJobs =counterForCancelJobs +limitSizeForCancelJobs;
         if((counterForCancelJobs +limitSizeForCancelJobs) <= totalSizeForCancelJobs ){
@@ -852,17 +918,25 @@ global with sharing class Amr_CAPJobPortfolioController{
                 cancelJobsToShow.add(WrapperList.get(i));
             }
         }
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+        }
     }
    
     public void previousForCancelJobs(){
+        try{
         cancelJobsToShow.clear();
         counterForCancelJobs  =counterForCancelJobs -limitSizeForCancelJobs;       
             for(Integer i=counterForCancelJobs;i<(counterForCancelJobs +limitSizeForCancelJobs); i++){
             cancelJobsToShow.add(WrapperList.get(i));
         }
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
+        }
     }
 
     public void lastForCancelJobs (){
+        try{
         cancelJobsToShow.clear();
         if(math.mod(totalSizeForCancelJobs , limitSizeForCancelJobs) == 0){
             counterForCancelJobs = limitSizeForCancelJobs* ((totalSizeForCancelJobs /limitSizeForCancelJobs)-1);
@@ -871,6 +945,9 @@ global with sharing class Amr_CAPJobPortfolioController{
         }
         for(Integer i=counterForCancelJobs -1;i<totalSizeForCancelJobs -1;i++){
                 cancelJobsToShow.add(WrapperList.get(i));
+        }
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
         }
       }
    
@@ -890,11 +967,15 @@ global with sharing class Amr_CAPJobPortfolioController{
     //pagination for Cancel jobs ends here
     
      public PageReference jobSheetPageTransfer(){
-      
+      try{
        PageReference pageRef = new PageReference('/apex/Amr_JobSheet');
        pageRef.getParameters().put('id',chosenId);
        pageRef.setRedirect(true);
        return pageRef;
+       }catch(Exception ex){
+            system.debug(ex.getMessage());
+            return null;
+        }
    }
    
    

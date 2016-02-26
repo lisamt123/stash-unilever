@@ -39,31 +39,39 @@ public with sharing class Amr_SavingSummaryController{
     public Integer counterForSummaryJobs=0;
     public Boolean showPageButtonForSummary {get;set;}
     public List<Amr_Saving__c>summaryJobsToShow{get;set;}
-    public Integer totalAcceptedFinalCost {get;set;} 
-    public Integer savingAverageOfQuotes {get;set;}
-    public Integer savingAcceptedQuotes {get;set;}
+    public String totalAcceptedFinalCost {get;set;} 
+    public String savingAverageOfQuotes {get;set;}
+    public String savingAcceptedQuotes {get;set;}
+    public Amr_Job_Details__c jobDetailObj {get;set;}
+    public final double defaultValue = 0.0;
     
     public Amr_SavingSummaryController(){
-        try{
+        System.debug('HELLO00000000000');
+        
+      try{
        Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
         savingObject = new Amr_Saving__c();
+        jobDetailObj = new Amr_Job_Details__c();
         jobId = ApexPages.currentPage().getParameters().get('id');
         userId = userinfo.getuserid();
-        System.debug('IIDD  -> ' + userId);
-        selectedCountry = new List<String> ();
+        
+        System.debug('IIDD  -> ' + userId); 
+        selectedCountry = new List<String> (); 
+        getJobSearchDetails();
+        
         List<Amr_Country_Cluster__c> countrylst=  Amr_Country_Cluster__c.getall().values();
             shootLocation = new List<SelectOption>();
             for(Amr_Country_Cluster__c countryObj:countrylst){
              shootLocation.add(new SelectOption(countryObj.Country__c,countryObj.Country__c));
             }
-           getJobSearchDetails();
+           
            categoryString = new list<string>();
          Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
         for(MDO_Category__c mdCat : categorylst){
             categoryString.add(mdCat.name);
         }
         listOfBrandPosition = new List<SelectOption>();
-        listOfBrandPosition.add(new selectOption(NONE,NONE));
+        listOfBrandPosition.add(new selectOption(NONE,NONE));   
         }catch(Exception e){
         system.debug(e.getMessage());
         }
@@ -92,8 +100,11 @@ public with sharing class Amr_SavingSummaryController{
     
   
      public Pagereference getJobSearchDetails(){
+     System.debug('HELLO');
+    
      try{
-     String addNumber = savingObject.Job_Details__r.AdManagerText__c;
+  System.debug('total ->  '+ totalAcceptedFinalCost  + 'SAv ->  ' + savingAverageOfQuotes +'SAVE ->   ' + savingAcceptedQuotes );
+     String addNumber = jobDetailObj.AdManagerText__c;
      System.debug('Start Date -> ' + startDate + 'END Date -> ' + endDate + 'SAVING OBJ ->  ' + savingObject + 'Add Number -> ' + addNumber);
      savingSummaryList = new List<Amr_Saving__c>();
      Boolean setFlag = false;
@@ -109,11 +120,11 @@ public with sharing class Amr_SavingSummaryController{
      }
      if(setFlag == false){
      
-      soql = 'select Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Percentage_Saving_Accepted_Quote__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Percentage_Saving_Average_of_Quote__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =true) from Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId )';
+      soql = 'select Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =true) from Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId )';
       
      } else{
     
-      soql = 'select Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Percentage_Saving_Accepted_Quote__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Percentage_Saving_Average_of_Quote__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c ,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c = true) from Amr_Saving__c where CreatedDate!=null';
+      soql = 'select Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c ,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c = true) from Amr_Saving__c where CreatedDate!=null';
      
      }
       system.debug('soql !!'+soql);
@@ -271,15 +282,33 @@ public with sharing class Amr_SavingSummaryController{
      if(String.isNotBlank(addNumber)){
         soql += ' and Job_Details__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+'%\'';
               
+       } 
+     if(String.isNotBlank(totalAcceptedFinalCost) ){
+         List<String> splittedValue = totalAcceptedFinalCost.split(',');
+         String finalTotalString;
+         System.debug(splittedValue);
+         for(String totalVal : splittedValue){
+             finalTotalString += totalVal;
          }
+        soql += ' and Total_Accepted_FinalCost__c = '+ Double.valueOf(finalTotalString);          // ''+'%'+ String.valueOf(totalAcceptedFinalCost)+'%\'';
+              
+       }
+        if(String.isNotBlank(savingAverageOfQuotes)){
+        soql += ' and Saving_Average_of_Quotes__c = '+ Double.valueOf(savingAverageOfQuotes);        //  \''+'%'+ String.valueOf(savingAverageOfQuotes) +'%\'';  
+              
+       }
+        if(String.isNotBlank(savingAcceptedQuotes)){
+        soql += ' and Saving_Accepted_Quote_Euro__c = '+ Double.valueOf(savingAcceptedQuotes);        //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\''; 
+              
+       } 
      
       system.debug('soql after'+soql);
     savingSummaryList = Database.query(soql);
     system.debug('savingSummaryList !!'+savingSummaryList );
     
-    paginationMethodForSummaryJobs(savingSummaryList);
+    paginationMethodForSummaryJobs(savingSummaryList);  
      }catch(Exception e){
-    system.debug( e.getMessage());
+    system.debug( e.getMessage() + 'Stack trace -> ' + e.getCause() + ' STACK ->  ' +e.getTypeName()  );
      }
      return null;
      }

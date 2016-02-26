@@ -257,7 +257,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         
         
         public List<SelectOption> getTypes(){
-        	try{
+            try{
             Schema.sObjectType sobject_type = Amr_Job_Details__c.getSObjectType();
 
             Schema.DescribeSObjectResult sobject_describe = sobject_type.getDescribe();
@@ -273,14 +273,14 @@ public with sharing class Amr_RAPJobPortfolioController{
           }
                 return options;
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
-          	return null;
+            system.debug(ex.getMessage());
+            return null;
           }
         }
  
        
          public List<PieWedgeData> getPieData(){  
-         	try{
+            try{
             List<PieWedgeData> data = new List<PieWedgeData>();
             Integer amrJobDetails = 0;
             Integer amrJobDetailsUserCount = 0;
@@ -290,7 +290,7 @@ public with sharing class Amr_RAPJobPortfolioController{
             amrJobDetailsUserCount = [SELECT count() FROM  Amr_Job_Allocation__c Where (AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId];
             
             //i = (amrJobDetailsUserCount * 100)/amrJobDetails;
-            AggregateResult[] groupedResults = [SELECT Sum(Euro_Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId];
+            AggregateResult[] groupedResults = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId];
                     //Object avgAmount = groupedResults[0].get('averQuote');
                     //Object acceAmount = groupedResults[0].get('acceptQuote');
                     savingSubmitted = 0;
@@ -300,7 +300,7 @@ public with sharing class Amr_RAPJobPortfolioController{
                     savingSubmittedMonth = Decimal.valueOf(String.valueOf(groupedResults[0].get('acceptQuote')));
                     }
              
-              AggregateResult[] groupedResultsAll = [SELECT Sum(Euro_Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c ];
+              AggregateResult[] groupedResultsAll = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c ];
               savingSubmittedAll = 0;
               if(groupedResultsAll[0].get('averQuote') != null &&  groupedResultsAll[0].get('acceptQuote') != null){
                     savingSubmittedAll = Decimal.valueOf(String.valueOf(groupedResultsAll[0].get('averQuote')));
@@ -312,15 +312,15 @@ public with sharing class Amr_RAPJobPortfolioController{
               
             return data;  
             }catch(Exception ex){
-          	system.debug(ex.getMessage());
-          	return null;
+            system.debug(ex.getMessage());
+            return null;
           }
         }  
         
         
         
          public List<PieWedgeData> getPieDataSaving(){  
-         	try{
+            try{
             List<PieWedgeData> data = new List<PieWedgeData>();
             Integer amrJobDetails = 0;
             Integer amrJobDetailsUserCount = 0;
@@ -332,7 +332,7 @@ public with sharing class Amr_RAPJobPortfolioController{
             //i = (amrJobDetailsUserCount * 100)/amrJobDetails;
             
             Date startOfMonth = Date.today().toStartOfMonth();
-			Date startOfNextMonth = startOfMonth.addMonths(1);
+            Date startOfNextMonth = startOfMonth.addMonths(1);
             AggregateResult[] groupedResults  = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId and  Createddate >= :startOfMonth AND CreatedDate < :startOfNextMonth];
                     //Object avgAmount = groupedResults[0].get('averQuote');
                     //Object acceAmount = groupedResults[0].get('acceptQuote');
@@ -350,8 +350,8 @@ public with sharing class Amr_RAPJobPortfolioController{
            // data.add(new PieWedgeData(selectedUser,amrJobDetailsUserCount));
            return data; 
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
-          	return null;
+            system.debug(ex.getMessage());
+            return null;
           } 
         }  
        
@@ -376,13 +376,13 @@ public with sharing class Amr_RAPJobPortfolioController{
             }
        return JSON.serialize(listString);
        }catch(Exception ex){
-          	system.debug(ex.getMessage());
-          	return null;
+            system.debug(ex.getMessage());
+            return null;
        }
       }
         
         public void getAlertRecords(){
-        	try{
+            try{
             alertList = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today];          
             totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today];
             system.debug('alertList !!'+alertList);
@@ -390,7 +390,7 @@ public with sharing class Amr_RAPJobPortfolioController{
             alertListForUnhide= [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:true];
               system.debug('alertList !!'+alertListForUnhide);
               }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
         
@@ -771,13 +771,13 @@ public with sharing class Amr_RAPJobPortfolioController{
                Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
                Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
-         
-               soql += ' and DateValue(createdDate)'+  ' = '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
-             
+               DateTime refDate2 = startDateFinal.addDays(1);
+               soql += ' and createdDate '+  ' >= '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
+               soql += ' and createdDate '+  '< '+ refDate2.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
                
                system.debug('soql created date'+soql);
     }
-         
+         system.debug('*****soql ******'+soql );
          //soql+=' limit 120';
          jobDetailList = Database.query(soql);
          
@@ -800,8 +800,11 @@ public with sharing class Amr_RAPJobPortfolioController{
        }
        
        public PageReference getAdvancedSearchDetail(){
-       
-         projLeaderCluster = jobDetails.Project_Leader_Cluster__c;
+          
+        try{
+      
+     brodMarket = jobDetails.Brodcast_Market__c;
+       projLeaderCluster = jobDetails.Project_Leader_Cluster__c;
         projLeaderCountry = jobDetails.Project_Leader_Country__c;
         agencyName = jobDetails.Lead_Creative_Agency_name__c;
         stageLogged = jobDetails.Stage_of_Production_Activity__c;
@@ -813,72 +816,128 @@ public with sharing class Amr_RAPJobPortfolioController{
         projEmail = jobDetails.Unilever_Project_Leader_Email__c;
         projectName = jobDetails.Project_Details__c;
         
-          System.debug('IN MENSTHOD');
-  
-  //    try{
-  system.debug('*****ADMANAGER NU string  ******  '+ addNumber );
-      system.debug('*****ADMANAGER NU ******  '+ jobDetails.AdManagerText__c);
-      
-       string advSoql ='select AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c ,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__c,AM_Job_Detail__r.Brand_Position__c,AM_Job_Detail__r.Brand_Final__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where Name!=null and AM_Job_Detail__r.Job_Cancelled__c = false';
-       
-       if (String.isNotBlank(addNumber)){
+        jobDetailList = new list<Amr_Job_Allocation__c>();
          
-               advSoql += ' and AM_Job_Detail__r.AdManagerText__c = \''+String.escapeSingleQuotes(addNumber)+'\'';
-              
+        string soql ='select AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c ,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__c,AM_Job_Detail__r.Brand_Position__c,AM_Job_Detail__r.Brand_Final__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where Name!=null and AM_Job_Detail__r.Job_Cancelled__c = false';
+        if(String.isNotBlank(loggedInUserId)){
+        
+        soql += ' and ((AM_Job_Detail__r.OwnerId = \''+loggedInUserId+'\' AND User__c = \''+loggedInUserId+'\') or  User__c = \''+loggedInUserId+'\')';
+               system.debug('soql loggedInUserId'+soql);
         }
-         jobDetailList = Database.query(advSoql );
-        system.debug('*****soql ******'+advSoql );
-         system.debug('*** My List values ' + jobDetailList);
-         /*
-        if (String.isNotBlank(jobDetails.Project_Leader_Cluster__c)){
-         
-               advSoql += ' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(projLeaderCluster)+'\'';
-              
-        } */  /*ut
-        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Unilever_Project_Leader_Email__c)){
-         
-               advSoql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c = \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Unilever_Project_Leader_Email__c)+'\'';
-              
-        }
-        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.ProductCategory__r.Name)){
-         
-               advSoql += ' and AM_Job_Detail__r.ProductCategory__r.Name = \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.ProductCategory__r.Name)+'\'';
-              
-        }
-        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Brand_Final__r.Name)){
-         
-               advSoql += ' and AM_Job_Detail__r.Brand_Final__r.Name= \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Brand_Final__r.Name)+'\'';
-              
-        }
-        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Project_Details__r.Name)){
-         
-               advSoql += ' and AM_Job_Detail__r.Project_Details__r.Name= \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Project_Details__r.Name)+'\'';
-              
-        }
-        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Lead_Creative_Agency_name__c)){
-         
-               advSoql += ' and AM_Job_Detail__r.Lead_Creative_Agency_name__c= \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Lead_Creative_Agency_name__c)+'\'';
-              
-        } /*
-        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Allocated_Budget_euro__c)){
-         
-               advSoql += ' and AM_Job_Detail__r.Allocated_Budget_euro__c = \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Allocated_Budget_euro__c)+'\'';
-              
-        } */  /* ut
-        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Production_Activity_Type__c)){
-         
-               advSoql += ' and AM_Job_Detail__r.Production_Activity_Type__c = \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Production_Activity_Type__c)+'\'';
-              
-        }
-        if (String.isNotBlank(advSearchjobDet.AM_Job_Detail__r.Campaign_Name__c)){
-         
-               advSoql += ' and AM_Job_Detail__r.Campaign_Name__c = \''+String.escapeSingleQuotes(advSearchjobDet.AM_Job_Detail__r.Campaign_Name__c)+'\'';
+        /*
+       if (String.isNotBlank(String.valueOf(jobDetails.Start_Date__c))){
+            Datetime startdate = jobDetails.Start_Date__c;
+            String dateTimeFormat = startdate.format('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
+            
+             soql += ' and AM_Job_Detail__r.createdDate'+  ' >= '+ dateTimeFormat ;
               
         }
         
-       jobDetailList = Database.query(advSoql );
+        if (String.isNotBlank(String.valueOf(jobDetails.End_Date__c))){ 
+            Datetime endate  = jobDetails.End_Date__c;
+             String dateTimeFormat1 = endate.format('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
+            
+              soql += ' and AM_Job_Detail__r.createdDate ' +  ' < '+ dateTimeFormat1 ;
+             
+        }
+        */
+         if (String.isNotBlank(jobDetails.Project_Leader_Cluster__c)){
          
-         system.debug('*****soql ******'+advSoql );
+               soql += ' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(projLeaderCluster)+'\'';
+              
+        }
+        
+         if(String.isNotBlank(projLeaderCountry)){
+        soql += ' and AM_Job_Detail__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(projLeaderCountry)+'\'';
+               
+        }
+        
+         if(String.isNotBlank(agencyName)){
+        soql += ' and AM_Job_Detail__r.Lead_Creative_Agency_name__c = \''+String.escapeSingleQuotes(agencyName)+'\'';
+               
+         
+         }
+          if(String.isNotBlank(brodMarket)){
+       soql += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(brodMarket)+'%\'';
+               
+         }
+          if(String.isNotBlank(categoryName) && categoryName != NONE){
+          
+        soql += ' and AM_Job_Detail__r.ProductCategory__r.name = \''+String.escapeSingleQuotes(categoryName)+'\'';
+             
+         }
+          if(String.isNotBlank(brandPos) && brandPos != NONE){
+          
+        soql += ' and AM_Job_Detail__r.Brand_Position__r.name = \''+String.escapeSingleQuotes(brandPos)+'\'';
+               
+         }
+          if(String.isNotBlank(brandName) && brandName != NONE){
+        soql += ' and AM_Job_Detail__r.Brand_Final__r.name = \''+String.escapeSingleQuotes(brandName)+'\'';
+              
+         }
+         if(String.isNotBlank(stageLogged)){
+        soql += ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(stageLogged)+'\'';
+              
+         }
+         if(String.isNotBlank(jobAlloc.Job_Status__c)){
+        soql += ' and Job_Status__c = \''+jobAlloc.Job_Status__c+'\'';
+              
+         }
+         if(String.isNotBlank(jobAlloc.Started__c)){
+        soql += ' and Started__c = \''+jobAlloc.Started__c+'\'';
+              
+         }
+         if(String.isNotBlank(jobAlloc.Reported__c)){
+        soql += ' and Reported__c = \''+jobAlloc.Reported__c+'\'';
+              
+         }
+         system.debug('jobAlloc.Job_Shared__c!!'+jobAlloc.Job_Shared__c);
+         if(String.isNotBlank(jobAlloc.Job_Shared__c)){
+        soql += ' and Job_Shared__c = \''+jobAlloc.Job_Shared__c+'\'';
+              
+         }
+         if(String.isNotBlank(addNumber)){
+        soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+'%\'';
+              
+         }
+         if(String.isNotBlank(projEmail)){
+        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+'%\'';
+              
+         }
+         if(String.isNotBlank(projectName)){
+        soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(projectName)+'\'';
+              
+         }
+         if(String.isNotBlank(projectName)){
+        soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
+              
+         }
+         if(String.isNotBlank(jobDetails.Campaign_Name__c)){
+        soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+'%\'';
+            
+         }
+         if (String.isNotBlank(startDate)){
+   //start date creation
+               system.debug('inside start date');
+               String[] startDateSplitQuote = startDate.split(' ');
+               String[] startDateSplitSlash = startDateSplitQuote[0].split('/');
+               Integer myIntDate = integer.valueOf(startDateSplitSlash[1]);
+               Integer myIntMonth = integer.valueOf(startDateSplitSlash[0]);
+               Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
+               Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
+               DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
+               startDateFinal = startDateFinal.addDays(1);
+               DateTime refDate2 = startDateFinal.addDays(1);
+               soql += ' and createdDate '+  ' >= '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
+               soql += ' and createdDate '+  '< '+ refDate2.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
+               
+               system.debug('soql created date'+soql);
+    }
+         system.debug('*****soql ******'+soql );
+         //soql+=' limit 120';
+         jobDetailList = Database.query(soql);
+         
+         system.debug('*****soql ******'+soql );
          system.debug('*** My List values ' + jobDetailList);
         
             getPriorityJobs();
@@ -888,15 +947,15 @@ public with sharing class Amr_RAPJobPortfolioController{
         }
         catch(exception ex){
             
-                system.debug('ex---'+ex.getmessage());
+                system.debug(ex.getmessage());
                 return null;
        }    
-       */
+           
        return null;
        } 
        
        public Void getPriorityJobs(){
-       	try{
+        try{
            List<Amr_Job_Allocation__c> priorityJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>priorityJobIds = new Set<Id>();
            Set<String> priorityStrings = new Set<String>();
@@ -920,8 +979,8 @@ public with sharing class Amr_RAPJobPortfolioController{
            system.debug('priorityJobList !!!'+priorityJobList);
            paginationMethodForPriorityJobs(priorityJobList);
           
-       	}catch(Exception ex){
-          	system.debug(ex.getMessage());
+        }catch(Exception ex){
+            system.debug(ex.getMessage());
           }
         }
         
@@ -934,7 +993,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         }
       
        public void getPendingJobs(){
-       	try{
+        try{
            List<Amr_Job_Allocation__c> pendingJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>pendingJobIds = new Set<Id>();
            for(Amr_Job_Allocation__c jobId:jobDetailList){
@@ -955,7 +1014,7 @@ public with sharing class Amr_RAPJobPortfolioController{
           pendingJobList = Database.query(pendingSoql);
           paginationMethodForPendingJobs(pendingJobList);
           }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
           
        }
@@ -969,7 +1028,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         
               //pagination for pending jobs starts here
        public void paginationMethodForPendingJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
-       	try{
+        try{
            pendingJobsToShow = new list<Amr_Job_Allocation__c>();
            lstPendingJobsNew = new List<Amr_Job_Allocation__c>();
            totalSizeForPendingJobs = jobListToDisplay.size();
@@ -1002,7 +1061,7 @@ public with sharing class Amr_RAPJobPortfolioController{
             }
                 system.debug('pendingJobsToShow!!'+pendingJobsToShow.size()+'lstPendingJobsNew!!'+lstPendingJobsNew.size());
           }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
           }
             
@@ -1022,7 +1081,7 @@ public with sharing class Amr_RAPJobPortfolioController{
                 }       
             }
        }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
        
@@ -1059,7 +1118,7 @@ public with sharing class Amr_RAPJobPortfolioController{
                 }
             }
          }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
        
@@ -1071,12 +1130,12 @@ public with sharing class Amr_RAPJobPortfolioController{
                 pendingJobsToShow.add(lstPendingJobsNew.get(i));
             }
           }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
     
         public void lastForPendingJobs (){
-        	try{
+            try{
             pendingJobsToShow.clear();
             if(math.mod(totalSizeForPendingJobs , limitSizeForPendingJobs) == 0){
                 counterForPendingJobs = limitSizeForPendingJobs * ((totalSizeForPendingJobs/limitSizeForPendingJobs)-1);
@@ -1087,7 +1146,7 @@ public with sharing class Amr_RAPJobPortfolioController{
                     pendingJobsToShow.add(lstPendingJobsNew.get(i));
             }
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
           }
        
@@ -1107,7 +1166,7 @@ public with sharing class Amr_RAPJobPortfolioController{
        
        
        public void getDormantJobs(){
-       	try{
+        try{
            List<Amr_Job_Allocation__c> dormantJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>dormantJobIds = new Set<Id>();
            for(Amr_Job_Allocation__c jobId:jobDetailList){
@@ -1127,7 +1186,7 @@ public with sharing class Amr_RAPJobPortfolioController{
           system.debug('dormantJobList !!!'+dormantJobList);
           paginationMethodForDormantJobs(dormantJobList);
          }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
          }
           
         }
@@ -1141,7 +1200,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         
        
        public void getLiveJobs(){
-       	try{
+        try{
            list<Amr_Job_Allocation__c> liveJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>liveJobIds = new Set<Id>();
            for(Amr_Job_Allocation__c jobId:jobDetailList){
@@ -1160,7 +1219,7 @@ public with sharing class Amr_RAPJobPortfolioController{
           liveJobList = Database.query(liveSoql);
           paginationMethodForLiveJobs(liveJobList);  
        }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
        }
        
        }
@@ -1174,7 +1233,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         
         //pagination for priority jobs starts here
        public void paginationMethodForPriorityJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
-       	try{
+        try{
            priorityJobsToShow = new list<Amr_Job_Allocation__c>();
            lstpriorityJobsNew = new List<Amr_Job_Allocation__c>();
            totalSizeForPriorityJobs = jobListToDisplay.size();
@@ -1209,12 +1268,12 @@ public with sharing class Amr_RAPJobPortfolioController{
             }
              system.debug('******priorityJobsToShow'+priorityJobsToShow);
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
           }
             
         public void beginningForPriorityJobs(){
-        	try{
+            try{
             priorityJobsToShow.clear();
             counterForPriorityJobs=0;
             if((counterForPriorityJobs + limitSizeForPriorityJobs) <= totalSizeForPriorityJobs){
@@ -1227,13 +1286,13 @@ public with sharing class Amr_RAPJobPortfolioController{
                 }       
             }
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
        
      
         public void nextForPriorityJobs(){
-        	try{
+            try{
             priorityJobsToShow.clear();
             counterForPriorityJobs=counterForPriorityJobs+limitSizeForPriorityJobs;
             if((counterForPriorityJobs+limitSizeForPriorityJobs) <= totalSizeForPriorityJobs){
@@ -1246,24 +1305,24 @@ public with sharing class Amr_RAPJobPortfolioController{
                 }
             }
           }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
        
         public void previousForPriorityJobs(){
-        	try{
+            try{
             priorityJobsToShow.clear();
             counterForPriorityJobs=counterForPriorityJobs-limitSizeForPriorityJobs;       
                 for(Integer i=counterForPriorityJobs;i<(counterForPriorityJobs+limitSizeForPriorityJobs); i++){
                 priorityJobsToShow.add(lstpriorityJobsNew.get(i));
             }
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
     
         public void lastForPriorityJobs (){
-        	try{
+            try{
             priorityJobsToShow.clear();
             if(math.mod(totalSizeForPriorityJobs , limitSizeForPriorityJobs) == 0){
                 counterForPriorityJobs = limitSizeForPriorityJobs * ((totalSizeForPriorityJobs/limitSizeForPriorityJobs)-1);
@@ -1274,7 +1333,7 @@ public with sharing class Amr_RAPJobPortfolioController{
                     priorityJobsToShow.add(lstpriorityJobsNew.get(i));
             }
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
           }
        
@@ -1299,7 +1358,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         
         //pagination for dormant jobs starts here
        public void paginationMethodForDormantJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
-       	try{
+        try{
            dormantJobsToShow = new list<Amr_Job_Allocation__c>();
            lstDormantJobsNew = new List<Amr_Job_Allocation__c>();
            totalSizeForDormantJobs = jobListToDisplay.size();
@@ -1331,12 +1390,12 @@ public with sharing class Amr_RAPJobPortfolioController{
                 }
             }
          }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }   
           }
             
         public void beginningForDormantJobs(){
-        	try{
+            try{
             dormantJobsToShow.clear();
             counterForDormantJobs=0;
             if((counterForDormantJobs + limitSizeForDormantJobs) <= totalSizeForDormantJobs){
@@ -1349,12 +1408,12 @@ public with sharing class Amr_RAPJobPortfolioController{
                 }       
             }
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
        
         public void nextForDormantJobs(){
-        	try{
+            try{
             dormantJobsToShow.clear();
             counterForDormantJobs = counterForDormantJobs+limitSizeForDormantJobs;
             if((counterForDormantJobs+limitSizeForDormantJobs) <= totalSizeForDormantJobs){
@@ -1367,24 +1426,24 @@ public with sharing class Amr_RAPJobPortfolioController{
                 }
             }
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
        
         public void previousForDormantJobs(){
-        	try{
+            try{
             dormantJobsToShow.clear();
             counterForDormantJobs=counterForDormantJobs-limitSizeForDormantJobs;       
                 for(Integer i=counterForDormantJobs;i<(counterForDormantJobs+limitSizeForDormantJobs); i++){
                 dormantJobsToShow.add(lstDormantJobsNew.get(i));
             }
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
     
         public void lastForDormantJobs (){
-        	try{
+            try{
             dormantJobsToShow.clear();
             if(math.mod(totalSizeForDormantJobs , limitSizeForDormantJobs) == 0){
                 counterForDormantJobs = limitSizeForDormantJobs * ((totalSizeForDormantJobs/limitSizeForDormantJobs)-1);
@@ -1395,7 +1454,7 @@ public with sharing class Amr_RAPJobPortfolioController{
                     dormantJobsToShow.add(lstDormantJobsNew.get(i));
             }
             }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
           }
        
@@ -1417,7 +1476,7 @@ public with sharing class Amr_RAPJobPortfolioController{
          
             //pagination for live jobs starts here
        public void paginationMethodForLiveJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
-       	try{
+        try{
            liveJobsToShow = new list<Amr_Job_Allocation__c>();
            lstLiveJobsNew = new List<Amr_Job_Allocation__c>();
            totalSizeForLiveJobs = jobListToDisplay.size();
@@ -1452,12 +1511,12 @@ public with sharing class Amr_RAPJobPortfolioController{
                 }
             }
           }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }  
           }
             
         public void beginningForLiveJobs(){
-        	try{
+            try{
             liveJobsToShow.clear();
             counterForLiveJobs=0;
             if((counterForLiveJobs + limitSizeForLiveJobs) <= totalSizeForLiveJobs){
@@ -1470,12 +1529,12 @@ public with sharing class Amr_RAPJobPortfolioController{
                 }       
             }
         }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }    
         }
        
         public void nextForLiveJobs(){
-        	try{
+            try{
             liveJobsToShow.clear();
             counterForLiveJobs = counterForLiveJobs+limitSizeForLiveJobs;
             if((counterForLiveJobs+limitSizeForLiveJobs) <= totalSizeForLiveJobs){
@@ -1488,12 +1547,12 @@ public with sharing class Amr_RAPJobPortfolioController{
                 }
             }
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
        
         public void previousForLiveJobs(){
-        	try{
+            try{
             liveJobsToShow.clear();
             counterForLiveJobs=counterForLiveJobs-limitSizeForLiveJobs;       
                 for(Integer i=counterForLiveJobs;i<(counterForLiveJobs+limitSizeForLiveJobs); i++){
@@ -1501,12 +1560,12 @@ public with sharing class Amr_RAPJobPortfolioController{
                 liveJobsToShow.add(lstLiveJobsNew.get(i));
             }
           }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
     
         public void lastForLiveJobs (){
-        	try{
+            try{
             liveJobsToShow.clear();
             if(math.mod(totalSizeForLiveJobs , limitSizeForLiveJobs) == 0){
                 counterForLiveJobs = limitSizeForLiveJobs * ((totalSizeForLiveJobs/limitSizeForLiveJobs)-1);
@@ -1520,7 +1579,7 @@ public with sharing class Amr_RAPJobPortfolioController{
                     liveJobsToShow.add(lstLiveJobsNew.get(i));
             }
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
           }
        
@@ -1541,7 +1600,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         //pagination for live jobs ends here
         
            public void removeduplicate(List<Amr_Job_Allocation__c> lstPriorityJobsToShow){
-           	try{
+            try{
              List<Amr_Job_Allocation__c> lstremoveduplicate = new  List<Amr_Job_Allocation__c>();
              lstremoveduplicate = lstPriorityJobsToShow;
             // lstPriorityJobsToShow = new  List<Amr_Job_Allocation__c>();
@@ -1556,13 +1615,13 @@ public with sharing class Amr_RAPJobPortfolioController{
                system.debug('******priorityJobsToShow'+priorityJobsToShow);
              }
           }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }  
         }
         
         
          public void removeduplicatePending(List<Amr_Job_Allocation__c> lstPriorityJobsToShow){
-         	try{
+            try{
              List<Amr_Job_Allocation__c> lstremoveduplicate = new  List<Amr_Job_Allocation__c>();
              lstremoveduplicate = lstPriorityJobsToShow;
              //lstPriorityJobsToShow = new  List<Amr_Job_Allocation__c>();
@@ -1575,13 +1634,13 @@ public with sharing class Amr_RAPJobPortfolioController{
                system.debug('******pendingJobsToShow'+pendingJobsToShow);
              }
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           } 
         }
         
         
          public void removeduplicateDormant(List<Amr_Job_Allocation__c> lstPriorityJobsToShow){
-         	try{
+            try{
              List<Amr_Job_Allocation__c> lstremoveduplicate = new  List<Amr_Job_Allocation__c>();
              lstremoveduplicate = lstPriorityJobsToShow;
             // lstPriorityJobsToShow = new  List<Amr_Job_Allocation__c>();
@@ -1596,12 +1655,12 @@ public with sharing class Amr_RAPJobPortfolioController{
                system.debug('******dormantJobsToShow'+dormantJobsToShow);
              }
             }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
         
          public void removeduplicateLive(List<Amr_Job_Allocation__c> lstPriorityJobsToShow){
-         	try{
+            try{
              List<Amr_Job_Allocation__c> lstremoveduplicate = new  List<Amr_Job_Allocation__c>();
              lstremoveduplicate = lstPriorityJobsToShow;
            //  lstPriorityJobsToShow = new  List<Amr_Job_Allocation__c>();
@@ -1615,7 +1674,7 @@ public with sharing class Amr_RAPJobPortfolioController{
                system.debug('******liveJobsToShow'+liveJobsToShow.size());
              }
             }catch(Exception ex){
-          	system.debug(ex.getMessage());
+            system.debug(ex.getMessage());
           }
         }
     
@@ -1626,8 +1685,8 @@ public with sharing class Amr_RAPJobPortfolioController{
            pageRef.setRedirect(true);
            return pageRef;
            }catch(Exception ex){
-          	system.debug(ex.getMessage());
-          	return null;
+            system.debug(ex.getMessage());
+            return null;
           }
        }
     
@@ -1646,8 +1705,8 @@ public with sharing class Amr_RAPJobPortfolioController{
            }
            alertList = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today];          
             totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today];
-       	  }catch(Exception ex){
-          	system.debug(ex.getMessage());
+          }catch(Exception ex){
+            system.debug(ex.getMessage());
           }
         }
     

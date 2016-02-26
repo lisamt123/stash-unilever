@@ -29,7 +29,7 @@ public with sharing class Amr_DownloadSavingFilesController {
          boolean flag = false;
          
         Boolean flagNum = false;
-        List<Amr_Saving__c> savObjList = [select Id from Amr_Saving__c];
+        List<Amr_Saving__c> savObjList = [select Id from Amr_Saving__c limit 50000];
         for(Amr_Saving__c obj:savObjList){
         	if(SavingObjId == obj.Id){
         		flagNum = true;

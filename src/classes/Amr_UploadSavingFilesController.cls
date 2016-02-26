@@ -27,13 +27,14 @@ public with sharing class Amr_UploadSavingFilesController {
        // allFileList.add(new MultipleDocumentInner());
         attachedListToDisplay = new List<FeedItem>();
         Boolean flag = false;
-        List<Amr_Saving__c> savObjList = [select Id from Amr_Saving__c];
+        List<Amr_Saving__c> savObjList = [select Id from Amr_Saving__c limit 50000];
         for(Amr_Saving__c obj:savObjList){
         	if(SavingObjId == obj.Id){
         		flag = true;
         	}
         }
-        if(flag == true){
+        //if(flag == true){
+        if(flag){
         Amr_Saving__c savObjNum = [select Job_Details__r.AdManagerText__c from Amr_Saving__c where Id =:SavingObjId limit 1];
         adManagerNumber = savObjNum.Job_Details__r.AdManagerText__c;
         }else{
