@@ -332,7 +332,10 @@
         <apexClass>IPM_FinancialHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-
+    <classAccesses>
+        <apexClass>IPM_FinancialTriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>IPM_FinancialValueWrapper</apexClass>
         <enabled>true</enabled>

@@ -2820,8 +2820,14 @@
         <apexClass>IPM_FinancialHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-
-    
+    <classAccesses>
+        <apexClass>IPM_FinancialTriggerHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>IPM_FinancialTriggerHandler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>IPM_FinancialValueWrapper</apexClass>
         <enabled>false</enabled>
