@@ -22,7 +22,7 @@ public class Amr_SubmittedSavings_tst {
     insert brand;
     
     
-    Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(OwnerId=u.Id,Start_Date__c=date.newInstance(2015, 11, 21),End_Date__c=date.newInstance(2016, 11, 21),Project_Details__c= projDetail.Id,Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc1@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc2@gmail.com',Unilever_Finance_Member_Email__c='abc3@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc4@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc5@gmail.com',Any_other_agencies_involved__c='Yes',ProductCategory__c = category1.Id,Brand_Position__c =brandPos.brand_position_id__c,Brand_Final__c=brand.Id,Brodcast_Market__c='broadMarket'); 
+    Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(OwnerId=u.Id,Start_Date__c=date.newInstance(2015, 11, 21),End_Date__c=date.newInstance(2016, 11, 21),Project_Details__c= projDetail.Id,Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc1@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='no',Job_Reported__c='no',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc2@gmail.com',Unilever_Finance_Member_Email__c='abc3@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc4@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc5@gmail.com',Any_other_agencies_involved__c='Yes',ProductCategory__c = category1.Id,Brand_Position__c =brandPos.brand_position_id__c,Brand_Final__c=brand.Id,Brodcast_Market__c='broadMarket'); 
     insert jobDetail;
         
      Amr_Saving__c savingObj = new Amr_Saving__c(Duration_of_Additional_Films__c = 12.4,Duration_of_Masters__c = 5,Job_Details__c = jobDetail.id,
@@ -30,9 +30,9 @@ public class Amr_SubmittedSavings_tst {
                                   
     insert savingObj;
         
-    Amr_Quote__c  QuoteObj1 = new Amr_Quote__c(Saving__c = savingObj.id, Name =  'test1',Quote_Number__c = 1,Is_PC_part_of_the_Roster__c = 'Yes',PC_name__c = 'test',
+    Amr_Quote__c  QuoteObj1 = new Amr_Quote__c(Saving__c = savingObj.id, Name =  'test1',Quote_Number__c = 1,Is_PC_part_of_the_Roster__c = 'no',PC_name__c = 'test',
                                     PC_Country__c= 'Aruba' ,Service_Company_Name__c = 'svc' ,Local_Currency_of_PC_Costs__c = 'Peso',Local_Amount_of_PC__c = 1,PPC_Costs_Euro_Amount__c = 5,
-                                    Is_the_PPC_part_of_the_Roster__c = 'Yes',PPC_Name__c = 'testPPC',PPC_Country__c = 'Aruba',Local_Currency_of_PPC_Costs__c = 'Peso',
+                                    Is_the_PPC_part_of_the_Roster__c = 'no',PPC_Name__c = 'testPPC',PPC_Country__c = 'Aruba',Local_Currency_of_PPC_Costs__c = 'Peso',
                                     Local_Amount_of_PPC__c = 3,CA_Costs_Euro_Amount__c = 6,CA_Additional_agency_Name__c = 'testCa',CA_Location__c  = 'Aruba', Is_Accepted__c = true, Local_Currency_of_CA_Costs__c= 'Peso',
                                     Local_Amount_of_CA__c = 5, PC_Costs_Euro_Amount__c= 7, Folder__c= 'Brief');
                                     
@@ -45,7 +45,7 @@ public class Amr_SubmittedSavings_tst {
         Amr_SubmittedSavings submittedSavings = new Amr_SubmittedSavings();
         submittedSavings.addRowQuote();
         submittedSavings.SaveNewQuote();
-        submittedSavings.SaveQuote();
+        //submittedSavings.SaveQuote();
         submittedSavings.editQuote();
         submittedSavings.submitDataQuote();
         submittedSavings.submitData();

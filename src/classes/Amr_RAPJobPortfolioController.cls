@@ -31,7 +31,6 @@ public with sharing class Amr_RAPJobPortfolioController{
         public Boolean showPageButtonForDormant{get;set;}
         public static final String NONE = '--None--';
     
-    
         //Navigation variables
         public Integer counterForPriorityJobs = 0;//TO track the number of records parsed
         public Integer limitSizeForPriorityJobs = 100;//Number of records to be displayed
@@ -133,11 +132,11 @@ public with sharing class Amr_RAPJobPortfolioController{
         }
         
         listOfBrandPosition = new List<SelectOption>();
-             listOfBrandPosition.add(new selectOption('--None--','--None--'));
+             listOfBrandPosition.add(new selectOption(NONE,NONE));
           }
           catch(exception ex){
             
-            system.debug('ex---'+ex.getmessage());
+            system.debug(ex.getmessage());
           }
         
        }
@@ -251,13 +250,14 @@ public with sharing class Amr_RAPJobPortfolioController{
             }
              catch(exception ex){
             
-            system.debug('ex---'+ex.getmessage());
+            system.debug(ex.getmessage());
           }
         
         }
         
         
         public List<SelectOption> getTypes(){
+        	try{
             Schema.sObjectType sobject_type = Amr_Job_Details__c.getSObjectType();
 
             Schema.DescribeSObjectResult sobject_describe = sobject_type.getDescribe();
@@ -272,11 +272,15 @@ public with sharing class Amr_RAPJobPortfolioController{
                       options.add(new selectOption(a.getLabel(), a.getValue()));
           }
                 return options;
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          	return null;
+          }
         }
  
        
-         public List<PieWedgeData> getPieData() 
-        {  
+         public List<PieWedgeData> getPieData(){  
+         	try{
             List<PieWedgeData> data = new List<PieWedgeData>();
             Integer amrJobDetails = 0;
             Integer amrJobDetailsUserCount = 0;
@@ -307,12 +311,16 @@ public with sharing class Amr_RAPJobPortfolioController{
            //data.add(new PieWedgeData('Global Team ',Integer.valueOf(savingSubmittedAll)));
               
             return data;  
+            }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          	return null;
+          }
         }  
         
         
         
-         public List<PieWedgeData> getPieDataSaving() 
-        {  
+         public List<PieWedgeData> getPieDataSaving(){  
+         	try{
             List<PieWedgeData> data = new List<PieWedgeData>();
             Integer amrJobDetails = 0;
             Integer amrJobDetailsUserCount = 0;
@@ -324,9 +332,8 @@ public with sharing class Amr_RAPJobPortfolioController{
             //i = (amrJobDetailsUserCount * 100)/amrJobDetails;
             
             Date startOfMonth = Date.today().toStartOfMonth();
-Date startOfNextMonth = startOfMonth.addMonths(1);
-
-             AggregateResult[] groupedResults  = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId and  Createddate >= :startOfMonth AND CreatedDate < :startOfNextMonth];
+			Date startOfNextMonth = startOfMonth.addMonths(1);
+            AggregateResult[] groupedResults  = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId and  Createddate >= :startOfMonth AND CreatedDate < :startOfNextMonth];
                     //Object avgAmount = groupedResults[0].get('averQuote');
                     //Object acceAmount = groupedResults[0].get('acceptQuote');
                     savingSubmitted = 0;
@@ -341,8 +348,11 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
             
             //data.add(new PieWedgeData('Total',amrJobDetails));
            // data.add(new PieWedgeData(selectedUser,amrJobDetailsUserCount));
-              
-            return data;  
+           return data; 
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          	return null;
+          } 
         }  
        
          // Wrapper class  
@@ -358,22 +368,30 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
       }  
      }
       public String getMethodToPassProjNames(){
-      
+      try{
         listString= new list<string>();
           //   listString.add(NONE);
             for(Amr_Project_Details__c i :[Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000]){
                     listString.add(i.name);
             }
        return JSON.serialize(listString);
+       }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          	return null;
+       }
       }
         
         public void getAlertRecords(){
+        	try{
             alertList = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today];          
             totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today];
             system.debug('alertList !!'+alertList);
             System.debug('ALert COUNT -> ' + totalAlertCount);
             alertListForUnhide= [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:true];
               system.debug('alertList !!'+alertListForUnhide);
+              }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
         
       /*  public PageReference hideAlert(){
@@ -468,10 +486,10 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
         }
             catch(exception ex){
             
-                system.debug('ex---'+ex.getmessage());
+                system.debug(ex.getmessage());
                 return null;
           }
-         return null;
+         
      }
       /*
          public List<SelectOption> getBrandPositioningList(){  
@@ -506,7 +524,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
               system.debug('brandPositionListttoo----->'+brandPositionlst );
              
              listOfBrandPosition = new List<SelectOption>();
-             listOfBrandPosition.add(new selectOption('--None--','--None--'));
+             listOfBrandPosition.add(new selectOption(NONE,NONE));
              Set<String> brnadPosNameSet = new Set<String>();
              for(MDO_BrandPositions__c bps : brandPositionlst){
                  
@@ -521,7 +539,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
          }
             catch(exception ex){
             
-                system.debug('ex---'+ex.getmessage());
+                system.debug(ex.getmessage());
                 return null;
           }
             return null;
@@ -532,7 +550,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
           /*system.debug('brand pos!!'+brandPos);    
              listOfBrand = new List<SelectOption>();
              List<Amr_Brand__c> brandList= [Select id,Name from Amr_Brand__c where Brand_Positioning__c =: brandPos Limit 1];                                     //rem
-             listOfBrand.add(new selectOption('--None--','--None--'));
+             listOfBrand.add(new selectOption(NONE,NONE));
              for(Amr_Brand__c bp : brandList)
                  listOfBrand.add(new selectOption(bp.Id,bp.Name));
              return listOfBrand;*/ /*
@@ -567,7 +585,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
         listOfBrand = new List<SelectOption>();
     //    system.debug('========>'+brandPosName+'category name=====>'+categoryName);
 
-        listOfBrand.add(new selectOption('--None--','--None--'));
+        listOfBrand.add(new selectOption(NONE,NONE));
 
         //Set<String> brandlst = new Set<String>();
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
@@ -584,7 +602,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
         }
         catch(exception ex){
             
-                system.debug('ex---'+ex.getmessage());
+                system.debug(ex.getmessage());
                 return null;
           }
           System.debug(categoryName +'   '+brandPos+ '      '+ listOfBrand);
@@ -595,7 +613,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
          /* public List<SelectOption> getProjectNameList(){      
              listOfProjectName = new List<SelectOption>();
              List<Amr_Project_Details__c> ProjectNameList= [Select id,Name from Amr_Project_Details__c];
-             listOfProjectName .add(new selectOption('--None--','--None--'));
+             listOfProjectName .add(new selectOption(NONE,NONE));
              for(Amr_Project_Details__c cat : ProjectNameList)
                  listOfProjectName.add(new selectOption(cat.Id,cat.Name));
              return listOfProjectName ;
@@ -743,6 +761,22 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
         soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+'%\'';
             
          }
+         if (String.isNotBlank(startDate)){
+   //start date creation
+               system.debug('inside start date');
+               String[] startDateSplitQuote = startDate.split(' ');
+               String[] startDateSplitSlash = startDateSplitQuote[0].split('/');
+               Integer myIntDate = integer.valueOf(startDateSplitSlash[1]);
+               Integer myIntMonth = integer.valueOf(startDateSplitSlash[0]);
+               Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
+               Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
+               DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
+         
+               soql += ' and DateValue(createdDate)'+  ' = '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
+             
+               
+               system.debug('soql created date'+soql);
+    }
          
          //soql+=' limit 120';
          jobDetailList = Database.query(soql);
@@ -757,7 +791,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
         }
         catch(exception ex){
             
-                system.debug('ex---'+ex.getmessage());
+                system.debug(ex.getmessage());
                 return null;
        }    
            
@@ -862,6 +896,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
        } 
        
        public Void getPriorityJobs(){
+       	try{
            List<Amr_Job_Allocation__c> priorityJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>priorityJobIds = new Set<Id>();
            Set<String> priorityStrings = new Set<String>();
@@ -885,6 +920,9 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
            system.debug('priorityJobList !!!'+priorityJobList);
            paginationMethodForPriorityJobs(priorityJobList);
           
+       	}catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
         
        
@@ -896,6 +934,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
         }
       
        public void getPendingJobs(){
+       	try{
            List<Amr_Job_Allocation__c> pendingJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>pendingJobIds = new Set<Id>();
            for(Amr_Job_Allocation__c jobId:jobDetailList){
@@ -915,6 +954,9 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
            system.debug('pendingSoql 01!!!'+pendingSoql );
           pendingJobList = Database.query(pendingSoql);
           paginationMethodForPendingJobs(pendingJobList);
+          }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
           
        }
        
@@ -927,6 +969,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
         
               //pagination for pending jobs starts here
        public void paginationMethodForPendingJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
+       	try{
            pendingJobsToShow = new list<Amr_Job_Allocation__c>();
            lstPendingJobsNew = new List<Amr_Job_Allocation__c>();
            totalSizeForPendingJobs = jobListToDisplay.size();
@@ -958,10 +1001,13 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                 }
             }
                 system.debug('pendingJobsToShow!!'+pendingJobsToShow.size()+'lstPendingJobsNew!!'+lstPendingJobsNew.size());
+          }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
           }
             
         public void beginningForPendingJobs(){
-            
+            try{
           
             pendingJobsToShow.clear();
         
@@ -975,6 +1021,9 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                     pendingJobsToShow.add(lstPendingJobsNew.get(i));
                 }       
             }
+       }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
        
         public void nextForPendingJobs(){
@@ -984,6 +1033,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
             lstPending =  Database.query(pendingSoql);
              removeduplicatePending(lstPending);
               lstPendingJobsNew = pendingJobsToShow;*/
+              try{
               pendingJobsToShow = new List<Amr_Job_Allocation__c>();
             //pendingJobsToShow.clear();
               system.debug('lstPendingJobsNew22222'+lstPendingJobsNew.size()+'pendingJobsToShow2222'+pendingJobsToShow.size());
@@ -1008,18 +1058,25 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                     system.debug('pendingJobsToShow4444'+pendingJobsToShow.size());
                 }
             }
+         }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
        
         public void previousForPendingJobs(){
-          
+          try{
             pendingJobsToShow.clear();
             counterForPendingJobs=counterForPendingJobs-limitSizeForPendingJobs;       
                 for(Integer i=counterForPendingJobs;i<(counterForPendingJobs+limitSizeForPendingJobs); i++){
                 pendingJobsToShow.add(lstPendingJobsNew.get(i));
             }
+          }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
     
         public void lastForPendingJobs (){
+        	try{
             pendingJobsToShow.clear();
             if(math.mod(totalSizeForPendingJobs , limitSizeForPendingJobs) == 0){
                 counterForPendingJobs = limitSizeForPendingJobs * ((totalSizeForPendingJobs/limitSizeForPendingJobs)-1);
@@ -1029,6 +1086,9 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
             for(Integer i=counterForPendingJobs-1;i<totalSizeForPendingJobs-1;i++){
                     pendingJobsToShow.add(lstPendingJobsNew.get(i));
             }
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
           }
        
         public Boolean getDisableNextForPendingJobs(){
@@ -1047,6 +1107,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
        
        
        public void getDormantJobs(){
+       	try{
            List<Amr_Job_Allocation__c> dormantJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>dormantJobIds = new Set<Id>();
            for(Amr_Job_Allocation__c jobId:jobDetailList){
@@ -1065,6 +1126,9 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
           dormantJobList = Database.query(dormantSoql);
           system.debug('dormantJobList !!!'+dormantJobList);
           paginationMethodForDormantJobs(dormantJobList);
+         }catch(Exception ex){
+          	system.debug(ex.getMessage());
+         }
           
         }
        
@@ -1077,6 +1141,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
         
        
        public void getLiveJobs(){
+       	try{
            list<Amr_Job_Allocation__c> liveJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>liveJobIds = new Set<Id>();
            for(Amr_Job_Allocation__c jobId:jobDetailList){
@@ -1094,6 +1159,9 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
            system.debug('liveSoql01!!!'+liveSoql);
           liveJobList = Database.query(liveSoql);
           paginationMethodForLiveJobs(liveJobList);  
+       }catch(Exception ex){
+          	system.debug(ex.getMessage());
+       }
        
        }
        
@@ -1106,6 +1174,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
         
         //pagination for priority jobs starts here
        public void paginationMethodForPriorityJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
+       	try{
            priorityJobsToShow = new list<Amr_Job_Allocation__c>();
            lstpriorityJobsNew = new List<Amr_Job_Allocation__c>();
            totalSizeForPriorityJobs = jobListToDisplay.size();
@@ -1139,9 +1208,13 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                 }
             }
              system.debug('******priorityJobsToShow'+priorityJobsToShow);
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
           }
             
         public void beginningForPriorityJobs(){
+        	try{
             priorityJobsToShow.clear();
             counterForPriorityJobs=0;
             if((counterForPriorityJobs + limitSizeForPriorityJobs) <= totalSizeForPriorityJobs){
@@ -1153,10 +1226,14 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                     priorityJobsToShow.add(lstpriorityJobsNew.get(i));
                 }       
             }
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
        
      
         public void nextForPriorityJobs(){
+        	try{
             priorityJobsToShow.clear();
             counterForPriorityJobs=counterForPriorityJobs+limitSizeForPriorityJobs;
             if((counterForPriorityJobs+limitSizeForPriorityJobs) <= totalSizeForPriorityJobs){
@@ -1168,17 +1245,25 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                     priorityJobsToShow.add(lstpriorityJobsNew.get(i));
                 }
             }
+          }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
        
         public void previousForPriorityJobs(){
+        	try{
             priorityJobsToShow.clear();
             counterForPriorityJobs=counterForPriorityJobs-limitSizeForPriorityJobs;       
                 for(Integer i=counterForPriorityJobs;i<(counterForPriorityJobs+limitSizeForPriorityJobs); i++){
                 priorityJobsToShow.add(lstpriorityJobsNew.get(i));
             }
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
     
         public void lastForPriorityJobs (){
+        	try{
             priorityJobsToShow.clear();
             if(math.mod(totalSizeForPriorityJobs , limitSizeForPriorityJobs) == 0){
                 counterForPriorityJobs = limitSizeForPriorityJobs * ((totalSizeForPriorityJobs/limitSizeForPriorityJobs)-1);
@@ -1188,6 +1273,9 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
             for(Integer i=counterForPriorityJobs-1;i<totalSizeForPriorityJobs-1;i++){
                     priorityJobsToShow.add(lstpriorityJobsNew.get(i));
             }
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
           }
        
         public Boolean getDisableNextForPriorityJobs(){
@@ -1211,6 +1299,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
         
         //pagination for dormant jobs starts here
        public void paginationMethodForDormantJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
+       	try{
            dormantJobsToShow = new list<Amr_Job_Allocation__c>();
            lstDormantJobsNew = new List<Amr_Job_Allocation__c>();
            totalSizeForDormantJobs = jobListToDisplay.size();
@@ -1241,10 +1330,13 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                     dormantJobsToShow.add(lstDormantJobsNew.get(i));
                 }
             }
-            
+         }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }   
           }
             
         public void beginningForDormantJobs(){
+        	try{
             dormantJobsToShow.clear();
             counterForDormantJobs=0;
             if((counterForDormantJobs + limitSizeForDormantJobs) <= totalSizeForDormantJobs){
@@ -1256,9 +1348,13 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                     dormantJobsToShow.add(lstDormantJobsNew.get(i));
                 }       
             }
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
        
         public void nextForDormantJobs(){
+        	try{
             dormantJobsToShow.clear();
             counterForDormantJobs = counterForDormantJobs+limitSizeForDormantJobs;
             if((counterForDormantJobs+limitSizeForDormantJobs) <= totalSizeForDormantJobs){
@@ -1270,17 +1366,25 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                     dormantJobsToShow.add(lstDormantJobsNew.get(i));
                 }
             }
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
        
         public void previousForDormantJobs(){
+        	try{
             dormantJobsToShow.clear();
             counterForDormantJobs=counterForDormantJobs-limitSizeForDormantJobs;       
                 for(Integer i=counterForDormantJobs;i<(counterForDormantJobs+limitSizeForDormantJobs); i++){
                 dormantJobsToShow.add(lstDormantJobsNew.get(i));
             }
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
     
         public void lastForDormantJobs (){
+        	try{
             dormantJobsToShow.clear();
             if(math.mod(totalSizeForDormantJobs , limitSizeForDormantJobs) == 0){
                 counterForDormantJobs = limitSizeForDormantJobs * ((totalSizeForDormantJobs/limitSizeForDormantJobs)-1);
@@ -1290,6 +1394,9 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
             for(Integer i=counterForDormantJobs-1;i<totalSizeForDormantJobs-1;i++){
                     dormantJobsToShow.add(lstDormantJobsNew.get(i));
             }
+            }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
           }
        
         public Boolean getDisableNextForDormantJobs(){
@@ -1310,6 +1417,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
          
             //pagination for live jobs starts here
        public void paginationMethodForLiveJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
+       	try{
            liveJobsToShow = new list<Amr_Job_Allocation__c>();
            lstLiveJobsNew = new List<Amr_Job_Allocation__c>();
            totalSizeForLiveJobs = jobListToDisplay.size();
@@ -1343,10 +1451,13 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                     liveJobsToShow.add(lstLiveJobsNew.get(i));
                 }
             }
-            
+          }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }  
           }
             
         public void beginningForLiveJobs(){
+        	try{
             liveJobsToShow.clear();
             counterForLiveJobs=0;
             if((counterForLiveJobs + limitSizeForLiveJobs) <= totalSizeForLiveJobs){
@@ -1358,10 +1469,13 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                     liveJobsToShow.add(lstLiveJobsNew.get(i));
                 }       
             }
-            
+        }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }    
         }
        
         public void nextForLiveJobs(){
+        	try{
             liveJobsToShow.clear();
             counterForLiveJobs = counterForLiveJobs+limitSizeForLiveJobs;
             if((counterForLiveJobs+limitSizeForLiveJobs) <= totalSizeForLiveJobs){
@@ -1373,18 +1487,26 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                     liveJobsToShow.add(lstLiveJobsNew.get(i));
                 }
             }
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
        
         public void previousForLiveJobs(){
+        	try{
             liveJobsToShow.clear();
             counterForLiveJobs=counterForLiveJobs-limitSizeForLiveJobs;       
                 for(Integer i=counterForLiveJobs;i<(counterForLiveJobs+limitSizeForLiveJobs); i++){
                     system.debug('i!!'+i);
                 liveJobsToShow.add(lstLiveJobsNew.get(i));
             }
+          }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
     
         public void lastForLiveJobs (){
+        	try{
             liveJobsToShow.clear();
             if(math.mod(totalSizeForLiveJobs , limitSizeForLiveJobs) == 0){
                 counterForLiveJobs = limitSizeForLiveJobs * ((totalSizeForLiveJobs/limitSizeForLiveJobs)-1);
@@ -1397,6 +1519,9 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
             for(Integer i=counterForLiveJobs-1;i<totalSizeForLiveJobs-1;i++){
                     liveJobsToShow.add(lstLiveJobsNew.get(i));
             }
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
           }
        
         public Boolean getDisableNextForLiveJobs(){
@@ -1416,6 +1541,7 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
         //pagination for live jobs ends here
         
            public void removeduplicate(List<Amr_Job_Allocation__c> lstPriorityJobsToShow){
+           	try{
              List<Amr_Job_Allocation__c> lstremoveduplicate = new  List<Amr_Job_Allocation__c>();
              lstremoveduplicate = lstPriorityJobsToShow;
             // lstPriorityJobsToShow = new  List<Amr_Job_Allocation__c>();
@@ -1429,11 +1555,14 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                 }
                system.debug('******priorityJobsToShow'+priorityJobsToShow);
              }
-            
+          }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }  
         }
         
         
          public void removeduplicatePending(List<Amr_Job_Allocation__c> lstPriorityJobsToShow){
+         	try{
              List<Amr_Job_Allocation__c> lstremoveduplicate = new  List<Amr_Job_Allocation__c>();
              lstremoveduplicate = lstPriorityJobsToShow;
              //lstPriorityJobsToShow = new  List<Amr_Job_Allocation__c>();
@@ -1445,11 +1574,14 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                 }
                system.debug('******pendingJobsToShow'+pendingJobsToShow);
              }
-            
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          } 
         }
         
         
          public void removeduplicateDormant(List<Amr_Job_Allocation__c> lstPriorityJobsToShow){
+         	try{
              List<Amr_Job_Allocation__c> lstremoveduplicate = new  List<Amr_Job_Allocation__c>();
              lstremoveduplicate = lstPriorityJobsToShow;
             // lstPriorityJobsToShow = new  List<Amr_Job_Allocation__c>();
@@ -1463,10 +1595,13 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                 }
                system.debug('******dormantJobsToShow'+dormantJobsToShow);
              }
-            
+            }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
         
          public void removeduplicateLive(List<Amr_Job_Allocation__c> lstPriorityJobsToShow){
+         	try{
              List<Amr_Job_Allocation__c> lstremoveduplicate = new  List<Amr_Job_Allocation__c>();
              lstremoveduplicate = lstPriorityJobsToShow;
            //  lstPriorityJobsToShow = new  List<Amr_Job_Allocation__c>();
@@ -1479,19 +1614,25 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
                 }
                system.debug('******liveJobsToShow'+liveJobsToShow.size());
              }
-            
+            }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
     
      public PageReference jobSheetPageTransfer(){
-          
+          try{
            PageReference pageRef = new PageReference('/apex/Amr_JobSheet');
            pageRef.getParameters().put('id',chosenId);
            pageRef.setRedirect(true);
            return pageRef;
+           }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          	return null;
+          }
        }
     
         public void alertHide(){
-            
+            try{
             System.debug('Alert Id -> ' + selectedAlert);
             
             List<Amr_Alert__c> alertHideList = new List<Amr_Alert__c>();
@@ -1505,6 +1646,9 @@ Date startOfNextMonth = startOfMonth.addMonths(1);
            }
            alertList = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today];          
             totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today];
+       	  }catch(Exception ex){
+          	system.debug(ex.getMessage());
+          }
         }
     
     }

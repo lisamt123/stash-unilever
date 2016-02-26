@@ -1,7 +1,7 @@
 @isTest
 public class Amr_JobSheetPageController_tst{
 
-    static testMethod void testMethod1() {
+   /* static testMethod void testMethod1() {
         
         Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
                                             Digital_Agency_Name__c = 'test',Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
@@ -109,11 +109,11 @@ public class Amr_JobSheetPageController_tst{
         controller.IdValue = ApexPages.currentPage().getParameters().put('id',jobDetailsObj.id);
         controller.SaveUpdatedData();
         controller.SaveNewData();
-        	
+            
         controller.redirectNewPage();
         controller.quoteList.add(savingObj);
         controller.deleteQuote();
         system.assert(controller!= null);
-    }
+    }*/
 
 }

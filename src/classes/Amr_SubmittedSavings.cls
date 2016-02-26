@@ -120,7 +120,7 @@ public with sharing class Amr_SubmittedSavings {
              userId = userinfo.getuserid();
              updateData();
         }catch(Exception ex){
-        	System.debug('Exception -> '+ ex.getmessage());
+        	System.debug(ex.getmessage());
         }
          
     //  getSelectedRatingStar();       
@@ -165,7 +165,7 @@ public with sharing class Amr_SubmittedSavings {
             
       
         }catch(exception ex){
-         System.debug('Exception -> '+ ex.getmessage());
+         System.debug(ex.getmessage());
         }
     }
    
@@ -239,7 +239,7 @@ public with sharing class Amr_SubmittedSavings {
           
         }   
         }catch(Exception ex){
-        System.debug('Exception -> '+ ex.getmessage());
+        System.debug(ex.getmessage());
         } 
           return null;
     }
@@ -373,7 +373,7 @@ public with sharing class Amr_SubmittedSavings {
          }
         }
        }catch(Exception ex){
-       System.debug('Exception -> '+ ex.getmessage());
+       System.debug(ex.getmessage());
        }
        //  pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+jobid);page.setRedirect(true); return page ;
         return null;
@@ -448,7 +448,7 @@ public with sharing class Amr_SubmittedSavings {
         pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+savingIdFromPage);page.setRedirect(true); return page ;
          system.debug('quoteRelatedToSavingList!!'+quoteRelatedToSavingList);
          }catch(Exception ex){
-       System.debug('Exception -> '+ ex.getmessage());
+       System.debug(ex.getmessage());
          }   
     return null;
     }
@@ -506,7 +506,7 @@ public with sharing class Amr_SubmittedSavings {
     pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+savingIdFromPage);page.setRedirect(true); return page ;
   
     }catch(Exception ex){
-   System.debug('Exception -> '+ ex.getmessage());
+   System.debug(ex.getmessage());
       }
         return null;
     } 
@@ -564,7 +564,7 @@ public with sharing class Amr_SubmittedSavings {
         
         pagereference page = new PageReference('/apex/Amr_SubmittedSaving?id='+savingIdFromPage);page.setRedirect(true); return page ;
         }catch(Exception ex){
-        	System.debug('Exception -> '+ ex.getmessage());
+        	System.debug(ex.getmessage());
         }
         
         
@@ -579,7 +579,7 @@ public with sharing class Amr_SubmittedSavings {
         delete savingObj;}
         pagereference page = new PageReference('/apex/Amr_JobSheet?id='+savObjNum.Job_Details__c);page.setRedirect(true); return page ;
         }catch(Exception ex){
-        	System.debug('Exception -> '+ ex.getmessage());
+        	System.debug(ex.getmessage());
         }
         
         
@@ -595,7 +595,7 @@ public with sharing class Amr_SubmittedSavings {
         }catch(Exception ex){
                 
             system.debug('delete Exception');
-            System.debug('Exception -> '+ ex.getmessage());
+            System.debug(ex.getmessage());
         }
     }
     
@@ -613,7 +613,7 @@ public with sharing class Amr_SubmittedSavings {
         page.setRedirect(true); 
         return page ;
     	}catch(Exception ex){
-    	System.debug('Exception -> '+ ex.getmessage());
+    	System.debug(ex.getmessage());
     	}  
     
     return null;
@@ -838,7 +838,7 @@ public with sharing class Amr_SubmittedSavings {
               
         }
     	}catch(Exception ex){
-    	System.debug('Exception -> '+ ex.getmessage());
+    	System.debug(ex.getmessage());
     	}
        
     }
@@ -858,7 +858,7 @@ public with sharing class Amr_SubmittedSavings {
        
        return JSON.Serialize(lstsavingObj );
         }catch(Exception ex){
-        System.debug('Exception -> '+ ex.getmessage());
+        System.debug(ex.getmessage());
         }
        return null;
     }

@@ -189,6 +189,8 @@ public with sharing class Amr_AdManagerController{
         jobDetails.ProductionActivityTextArea__c = productionActivityData;
         //----   
         system.debug('jobDetails.Check_With_CMI__c!!'+jobDetails.Check_With_CMI__c);
+        System.debug('Check -> ' + jobDetails.NewOriginalMaster__c + 'Check -> ' + jobDetails.NewOriginalMasterOutofHome__c + 'Check -> ' + jobDetails.NewOriginalMasterOutofHomeMovingImage__c + 'Check -> ' +
+            jobDetails.NewOriginalMasterOutofHomeAudio__c + 'Check -> ' + jobDetails.NewOriginalMasterOutofHomeStillImage__c );
        
         if(jobDetails.Check_With_CMI__c == null){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Have you checked with CMI if there is an existing asset in the Millward Brown TV Ad Vitality Bank that could be utilised for this JTBD? : a radio button must be selected'));
@@ -343,8 +345,12 @@ public with sharing class Amr_AdManagerController{
             okayToSave =false;
         }
         
-           
-        if(!jobDetails.NewOriginalMaster__c && !jobDetails.NewOriginalMasterCinema__c && !jobDetails.NewOriginalMasterTv__c && 
+        System.debug('Cecked -> ' + jobDetails.NewOriginalMaster__c +'Cecked -> ' + jobDetails.NewOriginalMasterCinema__c +'Cecked -> ' + jobDetails.NewOriginalMasterTv__c  +'Cecked -> ' +
+            jobDetails.NewOriginalMasterRadio__c +'Cecked -> ' + jobDetails.NewOriginalMasterPrint__c +'Cecked -> ' + jobDetails.NewOriginalMasterOutofHome__c +'Cecked -> ' +
+                jobDetails.NewOriginalMasterInStore__c +'Cecked -> ' + jobDetails.NewOriginalMasterDigital__c +'Cecked -> ' + jobDetails.NewOriginalMasterInternalVideo__c  );
+                
+                
+        if(jobDetails.NewOriginalMaster__c && !jobDetails.NewOriginalMasterCinema__c && !jobDetails.NewOriginalMasterTv__c && 
             !jobDetails.NewOriginalMasterRadio__c && !jobDetails.NewOriginalMasterPrint__c && !jobDetails.NewOriginalMasterOutofHome__c &&
                 !jobDetails.NewOriginalMasterInStore__c && !jobDetails.NewOriginalMasterDigital__c && !jobDetails.NewOriginalMasterInternalVideo__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Media Channel must be selected'));

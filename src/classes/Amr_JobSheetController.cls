@@ -978,7 +978,7 @@ public String docUploaded{get;set;}
         }
        
         validateJobList();
-        if(validateSuccess == true){
+        if(validateSuccess){
         update jobList;
        
          PageReference pageRef = new PageReference('/apex/Amr_JobSheet');

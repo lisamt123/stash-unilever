@@ -364,7 +364,9 @@ global with sharing class Amr_CAPJobPortfolioController{
     system.debug('soqlForCancel !!'+soqlForCancel );
     
     //search
-    
+     String   addNumber = jobDetails.AdManagerText__c;
+       String  projEmail = jobDetails.Unilever_Project_Leader_Email__c;
+       String projectName = jobDetails.Project_Details__c;
    // soqlForCancel = soql;
      
     if (String.isNotBlank(String.valueOf(jobDetails.Start_Date__c))){
@@ -500,6 +502,42 @@ global with sharing class Amr_CAPJobPortfolioController{
           soqlForCancel += ' ORDER BY '+String.escapeSingleQuotes(selectedSortCancelOption)+' ASC';
            
      }
+     if(String.isNotBlank(addNumber)){
+        soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+'%\'';
+              
+         }
+         if(String.isNotBlank(projEmail)){
+        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+'%\'';
+              
+         }
+         if(String.isNotBlank(projectName)){
+        soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(projectName)+'\'';
+              
+         }
+         if(String.isNotBlank(projectName)){
+        soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
+              
+         }
+         if(String.isNotBlank(jobDetails.Campaign_Name__c)){
+        soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+'%\'';
+            
+         }
+         if (String.isNotBlank(startDate)){
+   //start date creation
+               system.debug('inside start date');
+               String[] startDateSplitQuote = startDate.split(' ');
+               String[] startDateSplitSlash = startDateSplitQuote[0].split('/');
+               Integer myIntDate = integer.valueOf(startDateSplitSlash[1]);
+               Integer myIntMonth = integer.valueOf(startDateSplitSlash[0]);
+               Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
+               Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
+               DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
+         
+               soql += ' and DateValue(createdDate)'+  ' = '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
+             
+               
+               system.debug('soql created date'+soql);
+    }
      
     /* if(String.isNotBlank(selectedSortCancelOption) && selectedSortCancelOption!=NONE){
           soqlForCancel += ' ORDER BY '+String.escapeSingleQuotes(selectedSortCancelOption)+' ASC';

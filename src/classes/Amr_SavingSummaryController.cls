@@ -39,9 +39,12 @@ public with sharing class Amr_SavingSummaryController{
     public Integer counterForSummaryJobs=0;
     public Boolean showPageButtonForSummary {get;set;}
     public List<Amr_Saving__c>summaryJobsToShow{get;set;}
+    public Integer totalAcceptedFinalCost {get;set;} 
+    public Integer savingAverageOfQuotes {get;set;}
+    public Integer savingAcceptedQuotes {get;set;}
     
     public Amr_SavingSummaryController(){
-        
+        try{
        Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
         savingObject = new Amr_Saving__c();
         jobId = ApexPages.currentPage().getParameters().get('id');
@@ -61,6 +64,9 @@ public with sharing class Amr_SavingSummaryController{
         }
         listOfBrandPosition = new List<SelectOption>();
         listOfBrandPosition.add(new selectOption(NONE,NONE));
+        }catch(Exception e){
+        system.debug(e.getMessage());
+        }
            
     }
     public List<SelectOption> getSortOptions(){  
@@ -84,43 +90,11 @@ public with sharing class Amr_SavingSummaryController{
          return listOfSortOptions;
      }
     
-    public void getDashboardDataForRAP(){
-    
-    Date startOfMonth = Date.today().toStartOfMonth();
-    Date startOfNextMonth = startOfMonth.addMonths(1);
-    Date currentDay = Date.today();
-    
-    
-     groupedSavingResultsCurrentMonth = [SELECT count(Id),SUM(Sum_Of_Total_Cost__c) FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
-     //groupedSubmissionResultCurrentMonth = [SELECT count(Id) FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
-     
-     groupedSubmissionResultsYearToDate  = [SELECT count(Id),SUM(Sum_Of_Total_Cost__c) FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-    // groupedSavingResultsYearToDate  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-     
-     groupedSubmissionResultsPrevYear  = [SELECT count(Id),SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
-     //groupedSavingResultsPrevYear  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
-    }
-    
-    public void getDashboardDataForCAP(){
-    
-    Date startOfMonth = Date.today().toStartOfMonth();
-    Date startOfNextMonth = startOfMonth.addMonths(1);
-    Date currentDay = Date.today();
-    
-    
-     groupedSavingResultsCurrentMonth = [SELECT  count(Id),SUM(Sum_Of_Total_Cost__c) FROM  Amr_Saving__c where CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
-    // groupedSubmissionResultCurrentMonth = [SELECT count(Id) FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
-    
-     groupedSubmissionResultsYearToDate  = [SELECT count(Id),SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-    // groupedSavingResultsYearToDate  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-     
-     groupedSubmissionResultsPrevYear  = [SELECT count(Id), SUM(Sum_Of_Total_Cost__c) FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
-      //groupedSavingResultsPrevYear  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
-    }
-    
+  
      public Pagereference getJobSearchDetails(){
-     
-     System.debug('Start Date -> ' + startDate + 'END Date -> ' + endDate + 'SAVING OBJ ->  ' + savingObject );
+     try{
+     String addNumber = savingObject.Job_Details__r.AdManagerText__c;
+     System.debug('Start Date -> ' + startDate + 'END Date -> ' + endDate + 'SAVING OBJ ->  ' + savingObject + 'Add Number -> ' + addNumber);
      savingSummaryList = new List<Amr_Saving__c>();
      Boolean setFlag = false;
      String soql;
@@ -134,11 +108,11 @@ public with sharing class Amr_SavingSummaryController{
      }
      }
      if(setFlag == false){
-      getDashboardDataForRAP();
+     
       soql = 'select Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Percentage_Saving_Accepted_Quote__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Percentage_Saving_Average_of_Quote__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =true) from Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId )';
       
      } else{
-     getDashboardDataForCAP();
+    
       soql = 'select Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Percentage_Saving_Accepted_Quote__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Percentage_Saving_Average_of_Quote__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c ,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c = true) from Amr_Saving__c where CreatedDate!=null';
      
      }
@@ -285,7 +259,7 @@ public with sharing class Amr_SavingSummaryController{
     }
     }
     catch(Exception Ex){
-        throw Ex;
+       system.debug(Ex.getMessage());
     }
     
     if(String.isNotBlank(selectedSortJobsOption) && selectedSortJobsOption!=NONE){
@@ -293,11 +267,20 @@ public with sharing class Amr_SavingSummaryController{
          soql += ' ORDER BY '+String.escapeSingleQuotes(selectedSortJobsOption)+' ASC';
            
      }
+     
+     if(String.isNotBlank(addNumber)){
+        soql += ' and Job_Details__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+'%\'';
+              
+         }
+     
       system.debug('soql after'+soql);
     savingSummaryList = Database.query(soql);
     system.debug('savingSummaryList !!'+savingSummaryList );
     
     paginationMethodForSummaryJobs(savingSummaryList);
+     }catch(Exception e){
+    system.debug( e.getMessage());
+     }
      return null;
      }
         
@@ -406,15 +389,12 @@ public with sharing class Amr_SavingSummaryController{
         System.debug('cATE ->' +  JSON.serialize(categoryString));
         return JSON.serialize(categoryString);
     }
+    
      public PageReference  brandPositionListData(){    
-        System.debug('BBBBBBRANDDD ->'+ categoryName);  
+       try{
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
         Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
-
         system.debug('brandPositionListttoo----->'+brandPositionlst );
-
-   //     listOfBrandPosition = new List<SelectOption>();
-     //   listOfBrandPosition.add(new selectOption(NONE,NONE));
         Set<String> brnadPosNameSet = new Set<String>();
         for(MDO_BrandPositions__c bps : brandPositionlst){
 
@@ -426,10 +406,14 @@ public with sharing class Amr_SavingSummaryController{
         }
 
         system.debug('brandPositionListtt----->'+listOfBrandPosition);
+       }catch(Exception e){
+       system.debug(e.getMessage());
+       }
         return null;
 
     }
-    public List<SelectOption> getBrandList(){      
+    public List<SelectOption> getBrandList(){ 
+        try{     
         listOfBrand = new List<SelectOption>();
         system.debug('========>'+brandPosName+'category name=====>'+categoryName);
 
@@ -447,60 +431,88 @@ public with sharing class Amr_SavingSummaryController{
                 brnadNameSet.add(bps.brand_id__r.name);
             }
         }
-
+                
         return listOfBrand;
+        }catch(Exception e){
+       system.debug(e.getMessage());
+       return null;
+       }
     }
     
-       public List<PieWedgeData> getPieDataRAP() 
-        {  
+       public List<PieWedgeData> getPieDataRAP(){ 
+        
+        try{ 
             List<PieWedgeData> data = new List<PieWedgeData>();
            // pieSavingDataRap = new List<PieWedgeData>();
             Date startOfMonth = Date.today().toStartOfMonth();
             Date startOfNextMonth = startOfMonth.addMonths(1);
             Date currentDay = Date.today();
-            
-    
-    
+      Boolean setFlag = false;
+      List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='CAP' order by Assignee.name];
+      if(PermissionSetAssignmentList.size()>0){
+      for(PermissionSetAssignment permissionObj:PermissionSetAssignmentList){
+         if(userId == permissionObj.Assignee.id){
+             setFlag = true;
+             break;
+         }
+     }
+     } 
+     if(setFlag == false){    
      groupedSavingResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
-     //groupedSubmissionResultCurrentMonth = [SELECT count(Id) FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
-     
-     
+          
      groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-    // groupedSavingResultsYearToDate  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-     
+        
      groupedSubmissionResultsPrevYear  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
-     //groupedSavingResultsPrevYear  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
-     
+     }else{
+        groupedSavingResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+          
+     groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+        
+     groupedSubmissionResultsPrevYear  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+     }    
      data.add(new PieWedgeData('Current Month',Integer.valueOf(groupedSavingResultsCurrentMonth[0].get('savCurrentMonth'))));
      data.add(new PieWedgeData('YTD',Integer.valueOf(groupedSubmissionResultsYearToDate[0].get('savCurrentYearToDate'))));
      data.add(new PieWedgeData('Prev Year',Integer.valueOf(groupedSubmissionResultsPrevYear[0].get('savCurrentPrevYear'))));
-     
-    
-     
+          
       return data;  
+      }catch(Exception e){
+       system.debug(e.getMessage());
+       return null;
+       }
     }
     
     
-     public List<PieWedgeData> getpieSavingDataRaps() 
-        {  
+     public List<PieWedgeData> getpieSavingDataRaps() {  
+        
+        try{
             List<PieWedgeData> data = new List<PieWedgeData>();
-            
             Date startOfMonth = Date.today().toStartOfMonth();
             Date startOfNextMonth = startOfMonth.addMonths(1);
             Date currentDay = Date.today();
-            
-    
+      Boolean setFlag = false;
+      List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='CAP' order by Assignee.name];
+      if(PermissionSetAssignmentList.size()>0){
+      for(PermissionSetAssignment permissionObj:PermissionSetAssignmentList){
+         if(userId == permissionObj.Assignee.id){
+             setFlag = true;
+             break;
+         }
+     }
+     }      
+    if(setFlag == false){
     
      groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
-     //groupedSubmissionResultCurrentMonth = [SELECT count(Id) FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
-     
-     
+       
      groupedSubmissionResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-    // groupedSavingResultsYearToDate  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-     
+         
      groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
-     //groupedSavingResultsPrevYear  = [SELECT SUM(Sum_Of_Total_Cost__c)  FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
-     
+    }else{
+     groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+       
+     groupedSubmissionResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+         
+     groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+    }    
      Integer aa = 0;
      aa = Integer.valueOf(groupedSubmissionResultsPrevYear1[0].get('savCostPrevYear')) != null ? Integer.valueOf(groupedSubmissionResultsPrevYear1[0].get('savCostPrevYear')): aa;
      
@@ -510,8 +522,11 @@ public with sharing class Amr_SavingSummaryController{
      data.add(new PieWedgeData('Prev Year',aa));
      
      System.debug('*****data1*****'+data);
-    
-      return data;  
+     return data;  
+     }catch(Exception e){
+         system.debug(e.getMessage());
+         return null;
+       }
     }
     
                 // Wrapper class  
