@@ -3971,7 +3971,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Mexico_Queue_Case</fullName>
-        <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
+        <booleanFilter>(1 AND (2 OR 3) AND 4)</booleanFilter>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -4065,6 +4065,16 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
         </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>notEqual</operation>
+            <value>Bazaar Trigger</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>notEqual</operation>
+            <value>Bazaar Voice</value>
+        </filters>
         <label>CEC North America Queue</label>
         <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
@@ -4104,6 +4114,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ratings_and_Reviews</fullName>
+        <booleanFilter>3 AND (1 OR 2)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -4113,14 +4124,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <filters>
-            <field>Default_From_Address__c</field>
+            <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>customer.review@unilever.com</value>
+            <value>Bazaar Voice</value>
         </filters>
         <filters>
-            <field>Default_From_Address__c</field>
+            <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>consumer.review@unilever.com</value>
+            <value>Bazaar Trigger</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -4231,14 +4242,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <filters>
-            <field>Default_From_Address__c</field>
+            <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>cec.facebook@unilever.com</value>
+            <value>CEC Facebook</value>
         </filters>
         <filters>
-            <field>Default_From_Address__c</field>
+            <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Consumer-Services.Canada@unilever.com</value>
+            <value>WalMart Canada Social</value>
         </filters>
         <label>CEC North America Social Canada</label>
         <language>en_US</language>
@@ -4260,9 +4271,9 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <filters>
-            <field>Default_From_Address__c</field>
+            <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Consumer.Services@unilever.com</value>
+            <value>Social Media</value>
         </filters>
         <label>CEC North America Social Media Follow Up</label>
         <language>en_US</language>

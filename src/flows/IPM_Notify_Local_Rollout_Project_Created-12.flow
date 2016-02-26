@@ -198,12 +198,6 @@ Technical: Contact your IPM Business Partner.</stringValue>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -213,6 +207,12 @@ Technical: Contact your IPM Business Partner.</stringValue>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -229,12 +229,6 @@ Technical: Contact your IPM Business Partner.</stringValue>
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -244,6 +238,12 @@ Technical: Contact your IPM Business Partner.</stringValue>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -260,12 +260,6 @@ Technical: Contact your IPM Business Partner.</stringValue>
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
@@ -273,6 +267,12 @@ Technical: Contact your IPM Business Partner.</stringValue>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
@@ -291,15 +291,21 @@ Technical: Contact your IPM Business Partner.</stringValue>
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -308,22 +314,10 @@ Technical: Contact your IPM Business Partner.</stringValue>
                         <stringValue>GlobalConstant</stringValue>
                     </value>
                 </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>ID</stringValue>
-                    </value>
-                </processMetadataValues>
                 <leftValueReference>myVariable_current.IPM_Parent_Project__c</leftValueReference>
                 <operator>NotEqualTo</operator>
             </conditions>
             <conditions>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
@@ -334,6 +328,12 @@ Technical: Contact your IPM Business Partner.</stringValue>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -355,12 +355,6 @@ Technical: Contact your IPM Business Partner.</stringValue>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -370,6 +364,12 @@ Technical: Contact your IPM Business Partner.</stringValue>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -386,12 +386,6 @@ Technical: Contact your IPM Business Partner.</stringValue>
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -401,6 +395,12 @@ Technical: Contact your IPM Business Partner.</stringValue>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -417,12 +417,6 @@ Technical: Contact your IPM Business Partner.</stringValue>
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -432,6 +426,12 @@ Technical: Contact your IPM Business Partner.</stringValue>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -445,12 +445,6 @@ Technical: Contact your IPM Business Partner.</stringValue>
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -460,6 +454,12 @@ Technical: Contact your IPM Business Partner.</stringValue>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -473,12 +473,6 @@ Technical: Contact your IPM Business Partner.</stringValue>
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -488,6 +482,12 @@ Technical: Contact your IPM Business Partner.</stringValue>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>

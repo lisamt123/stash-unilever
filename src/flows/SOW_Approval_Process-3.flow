@@ -120,13 +120,13 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>leftHandSideType</name>
+                    <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>rightHandSideType</name>
+                    <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
                     </value>
@@ -138,7 +138,7 @@
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>inputDataType</name>
+                    <name>rightHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
                     </value>
@@ -180,15 +180,15 @@
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -238,12 +238,6 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -253,6 +247,12 @@
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -336,12 +336,6 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -351,6 +345,12 @@
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>

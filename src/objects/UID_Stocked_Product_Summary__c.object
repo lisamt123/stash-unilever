@@ -164,6 +164,7 @@
     </fields>
     <fields>
         <fullName>UID_In_Quantity__c</fullName>
+        <defaultValue>0</defaultValue>
         <externalId>false</externalId>
         <label>In Quantity</label>
         <precision>18</precision>
@@ -272,6 +273,7 @@
     </fields>
     <fields>
         <fullName>UID_Net_Quantity__c</fullName>
+        <defaultValue>0</defaultValue>
         <externalId>false</externalId>
         <label>Net Quantity</label>
         <precision>18</precision>
@@ -332,6 +334,7 @@
     </fields>
     <fields>
         <fullName>UID_Stock_Cover__c</fullName>
+        <defaultValue>0</defaultValue>
         <externalId>false</externalId>
         <label>Stock Cover</label>
         <precision>18</precision>

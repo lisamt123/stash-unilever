@@ -90,12 +90,6 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -105,6 +99,12 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -121,12 +121,6 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -136,6 +130,12 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -152,12 +152,6 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
@@ -165,6 +159,12 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
@@ -183,12 +183,6 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -198,6 +192,12 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -211,12 +211,6 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -226,6 +220,12 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -247,12 +247,6 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -262,6 +256,12 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -278,12 +278,6 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -293,6 +287,12 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -309,12 +309,6 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -324,6 +318,12 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -337,12 +337,6 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -352,6 +346,12 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -377,15 +377,15 @@ Project Leader : {!myVariable_current.IPM_Project_Leader__r.FirstName} {!myVaria
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>GlobalConstant</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>operatorDataType</name>
                     <value>
                         <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>GlobalConstant</stringValue>
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_current.IPM_Project_Leader__c</leftValueReference>

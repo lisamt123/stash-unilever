@@ -106,12 +106,6 @@ Phase :Feasibility Phase 
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -121,6 +115,12 @@ Phase :Feasibility Phase 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -137,25 +137,25 @@ Phase :Feasibility Phase 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>rightHandSideType</name>
+                    <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>leftHandSideType</name>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
                     </value>
@@ -168,12 +168,6 @@ Phase :Feasibility Phase 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
@@ -181,6 +175,12 @@ Phase :Feasibility Phase 
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
@@ -207,12 +207,6 @@ Phase :Feasibility Phase 
             <conditionLogic>1 AND 2 AND 7 AND 3 AND 4 AND 5 AND 6</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -222,6 +216,12 @@ Phase :Feasibility Phase 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -238,12 +238,6 @@ Phase :Feasibility Phase 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -253,6 +247,12 @@ Phase :Feasibility Phase 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -269,12 +269,6 @@ Phase :Feasibility Phase 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>String</stringValue>
@@ -282,6 +276,12 @@ Phase :Feasibility Phase 
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>String</stringValue>
                     </value>
@@ -300,13 +300,19 @@ Phase :Feasibility Phase 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
+                    <name>inputDataType</name>
                     <value>
                         <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>inputDataType</name>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>String</stringValue>
                     </value>
@@ -317,22 +323,10 @@ Phase :Feasibility Phase 
                         <stringValue>GlobalConstant</stringValue>
                     </value>
                 </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
                 <leftValueReference>myVariable_current.IPM_Finance_Member__r.FirstName</leftValueReference>
                 <operator>NotEqualTo</operator>
             </conditions>
             <conditions>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
@@ -341,6 +335,12 @@ Phase :Feasibility Phase 
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>String</stringValue>
                     </value>
@@ -359,12 +359,6 @@ Phase :Feasibility Phase 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>String</stringValue>
@@ -372,6 +366,12 @@ Phase :Feasibility Phase 
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>String</stringValue>
                     </value>
@@ -387,12 +387,6 @@ Phase :Feasibility Phase 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -402,6 +396,12 @@ Phase :Feasibility Phase 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>

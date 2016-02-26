@@ -37,6 +37,12 @@ Please approve this SOW
     </actionCalls>
     <actionCalls>
         <processMetadataValues>
+            <name>processSelection</name>
+            <value>
+                <stringValue>Oblix SOW Approval Process v1 - Oblix_SOW_Approval_Process_v1</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
             <name>selectionType</name>
             <value>
                 <stringValue>selectedProcess</stringValue>
@@ -46,12 +52,6 @@ Please approve this SOW
             <name>submitterType</name>
             <value>
                 <stringValue>currentUser</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>processSelection</name>
-            <value>
-                <stringValue>Oblix SOW Approval Process v1 - Oblix_SOW_Approval_Process_v1</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A2</name>
@@ -169,7 +169,7 @@ SOW now approved@{!myVariable_current.OwnerId}</stringValue>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>rightHandSideType</name>
+                    <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
                     </value>
@@ -187,7 +187,7 @@ SOW now approved@{!myVariable_current.OwnerId}</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>inputDataType</name>
+                    <name>rightHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
                     </value>
@@ -223,12 +223,6 @@ SOW now approved@{!myVariable_current.OwnerId}</stringValue>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -238,6 +232,12 @@ SOW now approved@{!myVariable_current.OwnerId}</stringValue>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -299,15 +299,15 @@ SOW now approved@{!myVariable_current.OwnerId}</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>operatorDataType</name>
                     <value>
                         <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_old.SOW_Status__c</leftValueReference>
@@ -385,12 +385,6 @@ SOW now approved@{!myVariable_current.OwnerId}</stringValue>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -400,6 +394,12 @@ SOW now approved@{!myVariable_current.OwnerId}</stringValue>
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>

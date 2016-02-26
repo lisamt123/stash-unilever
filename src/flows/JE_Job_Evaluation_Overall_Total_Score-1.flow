@@ -75,6 +75,12 @@
     <processType>Workflow</processType>
     <recordUpdates>
         <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
             <name>isChildRelationship</name>
             <value>
                 <booleanValue>false</booleanValue>
@@ -84,12 +90,6 @@
             <name>reference</name>
             <value>
                 <stringValue>[JE_Job_Evaluation__c]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>always</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_1_A1</name>
@@ -111,12 +111,6 @@
         </filters>
         <inputAssignments>
             <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>Overall Total Score</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
                 <name>dataType</name>
                 <value>
                     <stringValue>Number</stringValue>
@@ -126,6 +120,12 @@
                 <name>isRequired</name>
                 <value>
                     <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Overall Total Score</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>

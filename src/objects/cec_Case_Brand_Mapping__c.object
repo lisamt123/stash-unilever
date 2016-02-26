@@ -482,6 +482,7 @@
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Queue_cec_Case_Brand_Mapping</fullName>
+        <columns>NAME</columns>
         <columns>Inbound_Email__c</columns>
         <columns>Country__c</columns>
         <columns>Brand__c</columns>

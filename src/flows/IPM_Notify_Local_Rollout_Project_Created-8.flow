@@ -150,12 +150,6 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -165,6 +159,12 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -181,12 +181,6 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -196,6 +190,12 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -224,13 +224,13 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>rightHandSideType</name>
+                    <name>operatorDataType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
+                    <name>rightHandSideType</name>
                     <value>
                         <stringValue>Boolean</stringValue>
                     </value>
@@ -243,12 +243,6 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -258,6 +252,12 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -271,12 +271,6 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -286,6 +280,12 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -307,12 +307,6 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -322,6 +316,12 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -338,12 +338,6 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
@@ -353,6 +347,12 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -369,12 +369,6 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -384,6 +378,12 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -397,12 +397,6 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -412,6 +406,12 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -425,12 +425,6 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -440,6 +434,12 @@ QUESTIONSProject: Contact {!myVariable_current.IPM_Project_Leader__r.FirstName} 
                     <name>leftHandSideType</name>
                     <value>
                         <stringValue>ID</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
