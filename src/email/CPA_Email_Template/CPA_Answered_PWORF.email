@@ -1,0 +1,12 @@
+<messaging:emailTemplate subject="PWORF:  {!RelatedTo.PWO_numbers__c} answered by {!RelatedTo.VDM_Name__c}" recipientType="User" relatedToType="CPA_PWORF__c">
+<messaging:htmlEmailBody >
+    Hi, <br/><br/>
+    A PWO with ID: {!RelatedTo.PWO_numbers__c}  is submitted for PWORF with ID:{!RelatedTo.auto_PWORF_ID__c}  by  {!RelatedTo.VDM_Name__c} on {!RelatedTo.dat_PWORF_Answered_Date__c} . <br/><br/>
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+
+Regards, <br/><br/>
+
+Automation Contract System
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
