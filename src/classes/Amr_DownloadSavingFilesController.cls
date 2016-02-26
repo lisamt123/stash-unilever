@@ -35,7 +35,7 @@ public with sharing class Amr_DownloadSavingFilesController {
         		flagNum = true;
         	}
         }
-        if(flagNum == true){
+        if(flagNum){
         Amr_Saving__c savObjNum = [select Job_Details__r.AdManagerText__c from Amr_Saving__c where Id =:SavingObjId limit 1];
         adManagerNumber = savObjNum.Job_Details__r.AdManagerText__c;
         }else{
@@ -58,7 +58,7 @@ public with sharing class Amr_DownloadSavingFilesController {
              }*/
          }
          system.debug(flag+'======flagvalues==>');
-         if(flag == true){
+         if(flag){
              system.debug('CAP');
              attachedList = [select id,CreatedById,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,LastEditById FROM FeedItem where ParentId =:SavingObjId];
          }else{

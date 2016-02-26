@@ -278,7 +278,7 @@ global with sharing class Amr_CAPJobPortfolioController{
     }
     public void getTotalJobs() {
         try{
-        TotalJobs = [SELECT count()  FROM  Amr_Job_Details__c ];
+        TotalJobs = [SELECT count()  FROM  Amr_Job_Details__c limit 50000 ];
         
         system.debug('Value is !!'+TotalJobs); 
         
@@ -287,7 +287,7 @@ global with sharing class Amr_CAPJobPortfolioController{
         TotalLiveJobs     = [SELECT count()  FROM  Amr_Job_Details__c where  Amr_Job_Details__c.Job_Status__c = :Label.Amr_Status_Live ];
         TotalPriorityJobs = [SELECT count()  FROM  Amr_Job_Details__c where  Amr_Job_Details__c.Job_Status__c = :Label.Amr_Status_Pending ];
         TotalDormantJobs  = [SELECT count()  FROM  Amr_Job_Details__c where  Amr_Job_Details__c.Job_Status__c = :Label.Amr_Status_Dormant ];
-        TotalSavingsJobs  = [SELECT count() from Amr_Saving__c];
+        TotalSavingsJobs  = [SELECT count() from Amr_Saving__c limit 50000];
         }catch(Exception ex){
             system.debug(ex.getMessage());
         }
@@ -570,7 +570,7 @@ global with sharing class Amr_CAPJobPortfolioController{
                
                system.debug('soql created date'+soql);
     }
-     
+     system.debug('soql created date'+soql);
     /* if(String.isNotBlank(selectedSortCancelOption) && selectedSortCancelOption!=NONE){
           soqlForCancel += ' ORDER BY '+String.escapeSingleQuotes(selectedSortCancelOption)+' ASC';
            
@@ -681,8 +681,8 @@ global with sharing class Amr_CAPJobPortfolioController{
           List<Amr_Job_Allocation__c> selectList = New List<Amr_Job_Allocation__c>();
           List<Amr_Job_Details__c> selectJobDetailList = New List<Amr_Job_Details__c>();
           for(wrapperclass wc:WrapperList){
-              if(wc.SelectBox  == true)
-                 selectList.add(wc.sObjRec); 
+              if(wc.SelectBox){
+                 selectList.add(wc.sObjRec); }
           }
           if(selectList.size()>0){
             for(Amr_Job_Allocation__c obj : selectList ){

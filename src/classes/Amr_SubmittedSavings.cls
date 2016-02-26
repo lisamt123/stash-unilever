@@ -345,7 +345,7 @@ public with sharing class Amr_SubmittedSavings {
             
             if(lstquoteItem.size()>0){
                 for(Amr_Quote__c quote:lstquoteItem){
-                    if(quote.Is_Accepted__c == true){
+                    if(quote.Is_Accepted__c){
                         quote.Accepted_Final_Cost_PC_only_Currency__c = quote.Local_Currency_of_PC_Costs__c;
                         quote.Accepted_Final_Cost_PC_only_Local_Amo__c = quote.Local_Amount_of_PC__c;
                         quote.Accepted_Final_Cost_PC_Euro_Amou__c = String.ValueOf(quote.PC_Costs_Euro_Amount__c);
@@ -407,7 +407,7 @@ public with sharing class Amr_SubmittedSavings {
     update quoteRelatedToSavingList;
     if(quoteRelatedToSavingList.size()>0){
         for(Amr_Quote__c quote:quoteRelatedToSavingList){
-            if(quote.Is_Accepted__c == true){
+            if(quote.Is_Accepted__c){
                         quote.Accepted_Final_Cost_PC_only_Currency__c = quote.Local_Currency_of_PC_Costs__c;
                         quote.Accepted_Final_Cost_PC_only_Local_Amo__c = quote.Local_Amount_of_PC__c;
                         quote.Accepted_Final_Cost_PC_Euro_Amou__c = String.ValueOf(quote.PC_Costs_Euro_Amount__c);
