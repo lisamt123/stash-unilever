@@ -243,6 +243,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Company_Priority__c</fullName>
+        <description>To hold Company Priority</description>
+        <externalId>false</externalId>
+        <label>Company Priority</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Company__c</fullName>
         <description>Company Name</description>
         <externalId>false</externalId>
@@ -315,6 +326,7 @@
     </fields>
     <fields>
         <fullName>IPM_Exemptfrom_Threshold__c</fullName>
+        <description>Exempt From Threshold - Formula field (Yes/ NO)</description>
         <externalId>false</externalId>
         <formula>IF(IPM_Exempt_from_Threshold__c = true, &apos;Yes&apos;, &apos;No&apos;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -372,6 +384,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Fast_Track_Project__c</fullName>
+        <description>To indicate Project is Fast Track or Not</description>
+        <externalId>false</externalId>
+        <label>Fast Track</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Finance_Member__c</fullName>
         <description>Name of the Finance Member</description>
         <externalId>false</externalId>
@@ -394,6 +417,7 @@
     </fields>
     <fields>
         <fullName>IPM_Gross_TO_Y0_BD__c</fullName>
+        <description>Gross To BD Year Y0</description>
         <externalId>false</externalId>
         <label>IPM Gross TO Y0(BD)</label>
         <precision>18</precision>
@@ -501,6 +525,7 @@
     </fields>
     <fields>
         <fullName>IPM_IC_NBU__c</fullName>
+        <description>IC/NBU</description>
         <externalId>false</externalId>
         <label>IPM IC NBU</label>
         <length>10</length>
@@ -601,6 +626,7 @@
     </fields>
     <fields>
         <fullName>IPM_Project_Description__c</fullName>
+        <description>Project Description</description>
         <externalId>false</externalId>
         <label>IPM Project Description</label>
         <length>255</length>
@@ -896,6 +922,7 @@
     </fields>
     <fields>
         <fullName>IPM_iTO_Y1_BD__c</fullName>
+        <description>ITO BD Year Y1</description>
         <externalId>false</externalId>
         <label>IPM iTO Y1(BD)</label>
         <precision>18</precision>
