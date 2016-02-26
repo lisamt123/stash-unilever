@@ -1,0 +1,160 @@
+/**
+ * @author        : Dinesh Girase
+ * @date          : 13/01/2016
+ * @description   : This Class is used to add business days to current date for expected SLA date calculation
+ */
+ 
+public class calculationOfBusinessDaysForSLADates{
+
+    //Holiday logic is pending
+    
+   /*
+    * Method Name : isWeekendDay
+    * Parameter   : dateParam
+    * Return type : Boolean
+    * Description : This method identifies week ends and returns true or false
+    */
+    public static Boolean isWeekendDay(Date dateParam)
+    {
+        boolean result     = false;
+        system.debug('dateParam = '+dateParam); 
+        //Recover the day of the week
+        Date startOfWeek   = dateParam.toStartOfWeek();
+        system.debug('startOfWeek = '+startOfWeek);
+        //Integer dayOfWeek  = dateParam.day() - startOfWeek.day();
+        Integer dayOfWeek = startOfWeek.daysBetween(dateParam);
+        system.debug('dayOfWeek = '+dayOfWeek);   
+        result = dayOfWeek == 0 || dayOfWeek == 6 ? true : false;
+        system.debug('result = '+result); 
+        return result;
+    } 
+   
+   
+    public static Date addBusinessDays(Date startDate, integer businessDaysToAdd )
+    {
+        //Add or decrease in businessDaysToAdd days 
+        Date finalDate = startDate;
+        system.debug('finaldate = '+finalDate);
+        integer direction = businessDaysToAdd < 0 ? -1 : 1;
+        system.debug('direction = '+direction);
+        while(businessDaysToAdd != 0)
+        {
+            finalDate = finalDate.AddDays(direction);
+            system.debug('@@@@@ BusinessDaysToAdd = ' + businessDaysToAdd);            
+            system.debug('@@@@@ finaldate = ' + finalDate);
+            if (!isWeekendDay(finalDate))
+            {
+                businessDaysToAdd -= direction;
+               
+            }
+        }
+        
+        return finalDate;
+    }
+   
+    /**   Method Name : generateInternalPWOID
+    * Parameter   : oldPWORFList,newPWORFList
+    * Return type : None
+    * Author      : Dinesh Girase  
+    * Description : This method creates Internal PWO ID when PWORF is Accepted and store it on PWORF.
+    */
+   public static void generateInternalPWOID(List<CPA_PWORF__c> oldPWORFList, List<CPA_PWORF__c> newPWORFList){
+       if(newPWORFList[0].pkl_Status__c != null && (newPWORFList[0].pkl_Status__c.equalsIgnoreCase(ConstantsForContractingAppClasses.ACCEPTED)|| newPWORFList[0].pkl_Status__c=='Auto Accepted')  && (!oldPWORFList[0].pkl_Status__c.equalsIgnoreCase(ConstantsForContractingAppClasses.ACCEPTED)|| oldPWORFList[0].pkl_Status__c!='Auto Accepted')){
+            List<CPA_PWORF__c> pworfs = [SELECT txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newPWORFList[0].ID];
+            newPWORFList[0].txt_Internal_PWO_ID__c = pwoInternalCountLogic(false);           
+        }
+    }
+    public static string  pwoInternalCountLogic(boolean secondPWO){
+        integer count=0;
+        List<CPA_project_work_order__c> pwoCnt = [SELECT id FROM CPA_project_work_order__c];
+        List<CPA_PWORF__c>pworfRecord = [SELECT Id,(select id from PWO11__r) FROM CPA_PWORF__c Where pkl_Status__c='Accepted' or pkl_Status__c='Auto Accepted'];     
+        List<CPA_PWORF__c> pworfsAccepted = [SELECT id FROM CPA_PWORF__c Where pkl_Status__c='Accepted' or pkl_Status__c='Auto Accepted'];
+        for(CPA_PWORF__c pworf : pworfRecord){
+            if(pworf.PWO11__r.size()>0)
+                    count =count+1;
+        }
+        system.debug('count>>>>'+count);
+        Integer maxNo1 = pworfsAccepted.size() - count;
+        system.debug('pworfsAccepted>>>>' +pworfsAccepted);
+        Integer maxNo = 0;
+        String newInternalPWOID = null;
+        if(pwoCnt.size()>0){
+            maxNo = pwoCnt.size();
+            system.debug('maxNo>>>>1>>>>>>' +maxNo);
+            system.debug('maxNo1' +maxNo1);
+            if(secondPWO) 
+                maxNo = maxNo  + maxNo1 + 1;
+            else 
+                maxNo = maxNo  + maxNo1;
+            system.debug('maxNo>>>>2>>>>>>>>' +maxNo);          
+            newInternalPWOID = getInternalPWOID(maxNo);
+        }
+        return newInternalPWOID;
+    }
+    
+    /**   Method Name : forSearch
+    * Parameter   : oldPWORFList,newPWORFList
+    * Return type : None
+    * Author      : Dinesh Girase  
+    * Description : This method creates Internal PWO ID, if not present on PWORF. This logic will work only when PWORF is
+    *    status is Accepted
+    */
+   /* public static void forSearch(List<CPA_PWORF__c> oldPWORFList, List<CPA_PWORF__c> newPWORFList){
+        //if(oldPWORFList[0].pkl_Status__c != null && newPWORFList[0].pkl_Status__c != null){
+        if(newPWORFList[0].pkl_Status__c != null && newPWORFList[0].pkl_Status__c.equalsIgnoreCase('Accepted')){
+            System.debug('oldPWORFList @@@@@######## : ' + oldPWORFList[0].pkl_Status__c);
+            System.debug('newPWORFList @@@@@######## : ' + newPWORFList[0].pkl_Status__c);
+        
+            Integer maxNo=0;
+            List<AggregateResult> maxNum = new List<AggregateResult>();
+            maxNum = [SELECT Max(For_Search_Numeric__c) FROM CPA_PWORF__c];
+           if(maxNum[0].get('expr0') != null){
+                maxNo = Integer.valueOf(maxNum[0].get('expr0') + '');
+                System.debug('maxNum Outside @@@@######## : ' + maxNo);
+            }
+            //System.debug('maxNum Outside @@@@######## : ' + maxNo);
+            for(AggregateResult maxNumber : maxNum){
+                if(maxNumber.get('expr0') != null){
+                    maxNo = Integer.valueOf(maxNumber.get('expr0') + '');
+                    System.debug('maxNum######## : ' + maxNo);
+                }else{
+                    maxNo = 0;
+                    System.debug('else maxNum######## : ' + maxNo);
+                }
+            }
+            List<CPA_PWORF__c> pworfs = [SELECT For_Search__c, For_Search_Numeric__c FROM CPA_PWORF__c Where Id =: newPWORFList[0].ID];
+            if(pworfs[0].For_Search__c == null || pworfs[0].For_Search__c == ''){
+                String newInternalPWOID = getInternalPWOID(maxNo);
+                pworfs[0].For_Search__c = newInternalPWOID;
+                pworfs[0].txt_Internal_PWO_ID__c = newInternalPWOID;
+                pworfs[0].For_Search_Numeric__c = maxNo + 1;
+                System.debug('For_Search__c ######## : ' + newInternalPWOID);
+                update pworfs;
+            } else{
+                System.debug('Else For_Search__c ######## : ' + pworfs[0].For_Search__c);
+            }
+        }
+    }*/
+    
+    /**   Method Name : getInternalPWOID
+    * Parameter   : numSearch
+    * Return type : Strint
+    * Author      : Dinesh Girase  
+    * Description : This method generates incremental Internal PWO ID
+    */
+    public static String getInternalPWOID(Integer numSearch){
+        String strPWOID;
+        integer intIncrementNum = numSearch;//+ 1;
+        if(string.valueof(numSearch).length() == 1)
+            strPWOID = 'PWO-0000' + string.valueof(intIncrementNum);
+        if(string.valueof(numSearch).length() == 2)
+            strPWOID = 'PWO-000' + string.valueof(intIncrementNum);
+        if(string.valueof(numSearch).length() == 3)
+            strPWOID = 'PWO-00' + string.valueof(intIncrementNum);
+        if(string.valueof(numSearch).length() == 4)
+            strPWOID = 'PWO-0' + string.valueof(intIncrementNum);
+        if(string.valueof(numSearch).length() == 5)
+            strPWOID = 'PWO-' + string.valueof(intIncrementNum);
+        return strPWOID;
+    }
+}
