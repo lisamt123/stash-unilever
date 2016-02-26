@@ -181,14 +181,14 @@ This method is being called from CEC_ChequeProcess class which is called from "A
                 result.message = Label.CEC_ChequeBook_DetailsMissing;// No record in ChequeBook for given combination of Brand and Country
                 //System.debug('@@@@ chequeBookQuery @@@@' + fulfilment );
                 
-            } else if ((chequeBookQuery[0].Max_Cheque_Number__c != null ) && (Integer.valueOf(chequeBookQuery[0].Max_Cheque_Number__c) <= (Integer.valueOf(chequeBookQuery[0].Last_Cheque_Number__c) +Integer.valueOf(chequeBookQuery[0].Increment_Number__c)))){
+            } else if ((chequeBookQuery[0].Max_Cheque_Number__c != null ) && (chequeBookQuery[0].Max_Cheque_Number__c <= (chequeBookQuery[0].Last_Cheque_Number__c + chequeBookQuery[0].Increment_Number__c))){
                 result.status = 'E';
                 result.message = Label.CEC_ChequeBook_MaxLimt_reached;//  ChequeBook Max Limit reached for given combination of Brand and Country
             } else {
-                integer newChequeNumber = Integer.valueOf(chequeBookQuery[0].Last_Cheque_Number__c )+ Integer.valueOf(chequeBookQuery[0].Increment_Number__c);
-                chequeBookQuery[0].Last_Cheque_Number__c = newChequeNumber;
+                //integer newChequeNumber = Integer.valueOf(chequeBookQuery[0].Last_Cheque_Number__c )+ Integer.valueOf(chequeBookQuery[0].Increment_Number__c);
+                chequeBookQuery[0].Last_Cheque_Number__c = chequeBookQuery[0].Last_Cheque_Number__c + chequeBookQuery[0].Increment_Number__c;
                 update chequeBookQuery;                
-                fulfilment.Cheque_Number__c   = string.valueof(newChequeNumber); 
+                fulfilment.Cheque_Number__c   = string.valueof(chequeBookQuery[0].Last_Cheque_Number__c);  
                 fulfilment.Refund_Currency__c = chequeBookQuery[0].Currency__c;
                 update fulfilment;                
                 result.status = 'S';
