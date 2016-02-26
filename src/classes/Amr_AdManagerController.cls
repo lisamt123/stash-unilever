@@ -2,6 +2,7 @@ public with sharing class Amr_AdManagerController{
 
     public Amr_Job_Details__c jobDetails{get;set;}
     public static final String STR_NONE = '--None--';
+    public static final String STR_CHECK = 'Check -> ';
     public Amr_Logging_Form_Setting__c r  {get; set;}
     //public List<Amr_CurrencyConversionRate__c> currencyConversion {get;set;}
     public String selectedCountry {get;set;}
@@ -189,8 +190,8 @@ public with sharing class Amr_AdManagerController{
         jobDetails.ProductionActivityTextArea__c = productionActivityData;
         //----   
         system.debug('jobDetails.Check_With_CMI__c!!'+jobDetails.Check_With_CMI__c);
-        System.debug('Check -> ' + jobDetails.NewOriginalMaster__c + 'Check -> ' + jobDetails.NewOriginalMasterOutofHome__c + 'Check -> ' + jobDetails.NewOriginalMasterOutofHomeMovingImage__c + 'Check -> ' +
-            jobDetails.NewOriginalMasterOutofHomeAudio__c + 'Check -> ' + jobDetails.NewOriginalMasterOutofHomeStillImage__c );
+        System.debug(STR_CHECK + jobDetails.NewOriginalMaster__c + STR_CHECK + jobDetails.NewOriginalMasterOutofHome__c + STR_CHECK + jobDetails.NewOriginalMasterOutofHomeMovingImage__c + STR_CHECK +
+            jobDetails.NewOriginalMasterOutofHomeAudio__c + STR_CHECK + jobDetails.NewOriginalMasterOutofHomeStillImage__c );
        
         if(jobDetails.Check_With_CMI__c == null){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Have you checked with CMI if there is an existing asset in the Millward Brown TV Ad Vitality Bank that could be utilised for this JTBD? : a radio button must be selected'));
@@ -345,10 +346,7 @@ public with sharing class Amr_AdManagerController{
             okayToSave =false;
         }
         
-        System.debug('Cecked -> ' + jobDetails.NewOriginalMaster__c +'Cecked -> ' + jobDetails.NewOriginalMasterCinema__c +'Cecked -> ' + jobDetails.NewOriginalMasterTv__c  +'Cecked -> ' +
-            jobDetails.NewOriginalMasterRadio__c +'Cecked -> ' + jobDetails.NewOriginalMasterPrint__c +'Cecked -> ' + jobDetails.NewOriginalMasterOutofHome__c +'Cecked -> ' +
-                jobDetails.NewOriginalMasterInStore__c +'Cecked -> ' + jobDetails.NewOriginalMasterDigital__c +'Cecked -> ' + jobDetails.NewOriginalMasterInternalVideo__c  );
-                
+            
                 
         if(jobDetails.NewOriginalMaster__c && !jobDetails.NewOriginalMasterCinema__c && !jobDetails.NewOriginalMasterTv__c && 
             !jobDetails.NewOriginalMasterRadio__c && !jobDetails.NewOriginalMasterPrint__c && !jobDetails.NewOriginalMasterOutofHome__c &&
@@ -807,8 +805,7 @@ public with sharing class Amr_AdManagerController{
             }else{
                 Integer num = integer.valueOf(adNumber)+1;
                 String numStr =string.valueof(num);
-                Integer i;
-                for(i=0;numStr.length()<5;i++){
+                for(;numStr.length()<5;){
                     numstr='0'+numStr;
                     system.debug('num string!!'+numStr); 
                 }
