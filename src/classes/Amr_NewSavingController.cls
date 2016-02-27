@@ -192,7 +192,7 @@ public with sharing class Amr_NewSavingController {
                 PPC_Costs_Euro_Amount__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c,Folder__c
                 from Amr_Quote__c where Saving__c = :savingObj.id AND id = :quoteToInsert.id];
                 
-                if(quoteToInsert.Is_Accepted__c == true){
+                if(quoteToInsert.Is_Accepted__c){
                        system.debug('inside true==>');
                         quoteToInsert.Accepted_Final_Cost_PC_only_Currency__c = quoteToInsert.Local_Currency_of_PC_Costs__c;
                         quoteToInsert.Accepted_Final_Cost_PC_only_Local_Amo__c = quoteToInsert.Local_Amount_of_PC__c;
@@ -223,6 +223,8 @@ public with sharing class Amr_NewSavingController {
                
                if(quoteToInsert.id !=null){
                     system.debug('====inside Upload doc'+quoteToInsert.id);
+                    
+                    
                     if(uploadQuoteDocument(quoteToInsert,doc)){
                         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Confirm,'Quote Saved Successfully'));
                     }
@@ -235,7 +237,7 @@ public with sharing class Amr_NewSavingController {
     
      public boolean uploadQuoteDocument(Amr_Quote__c quote,Document doc){
         
-        String parentId ;
+        String parentId = null;
             
         if(quote.id != null){
             parentId = quote.Id;
@@ -323,7 +325,7 @@ public with sharing class Amr_NewSavingController {
        
     public boolean uploadDocument(Amr_Saving__c saving){
         
-        String parentId ;
+        String parentId = null ;
             
         if(saving.id != null){
             parentId = saving.Id;
@@ -389,7 +391,9 @@ public with sharing class Amr_NewSavingController {
     public void getCaTimeMangCategory(){ 
     }
     public void getCaCostMangCategory(){} */
-    public void getCaProcessMangCategory(){}
+    public void getCaProcessMangCategory(){
+     system.debug('inside');
+    }
     
 
     

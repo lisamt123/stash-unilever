@@ -30,7 +30,11 @@ public with sharing class Amr_RAPJobPortfolioController{
         public Boolean showPageButtonForLive{get;set;}
         public Boolean showPageButtonForDormant{get;set;}
         public static final String NONE = '--None--';
-    
+        public static final String averageQuote ='averQuote';
+        public static final String acceptQuote = 'acceptQuote';
+        public static final String dateFormat = 'yyyy-MM-dd\'T\'hh:mm:ss\'Z\'';
+        public static final String percent ='%\'';
+        
         //Navigation variables
         public Integer counterForPriorityJobs = 0;//TO track the number of records parsed
         public Integer limitSizeForPriorityJobs = 100;//Number of records to be displayed
@@ -62,10 +66,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         public List<Amr_Job_Allocation__c> lstpriorityJobsNew {get;set;}
         public List<Amr_Job_Allocation__c> lstDormantJobsNew {get;set;}
            
-       // public list<Amr_Job_Allocation__c>priorityJobList{get;set;}
-        //public list<Amr_Job_Allocation__c>pendingJobList{get;set;}
-       // public list<Amr_Job_Allocation__c>dormantJobList{get;set;}
-        //public list<Amr_Job_Allocation__c>liveJobList{get;set;}
+       
         
     
         public List<SelectOption> listOfCategory{get;set;} 
@@ -120,9 +121,9 @@ public with sharing class Amr_RAPJobPortfolioController{
             showUnhideRecords = false;
             flagForButtons = false;
             getTotalJobs();
-            User objUser = [Select name From User Where Id = :loggedInUserId ];
+            User objUser = [Select name From User Where Id = :loggedInUserId limit 50000];
             selectedUser = objUser.Name;
-            //alert = [SELECT Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c FROM Amr_Alert__c where New_Alert__c = today and hide__c = false order by New_Alert__c desc];
+            
             
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
             categoryString = new list<string>();
@@ -167,9 +168,9 @@ public with sharing class Amr_RAPJobPortfolioController{
         closedJob  = 0;
          jobtoAccept  = 0;
         
-            TotalJobs = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'];
+            TotalJobs = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes' limit 50000];
             
-             for(Amr_Job_Allocation__c objJobAlloction : [SELECT AM_Job_Detail__c FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null]){
+             for(Amr_Job_Allocation__c objJobAlloction : [SELECT AM_Job_Detail__c FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null limit 50000] ){
                 
                 jobDetailsId.add(objJobAlloction.AM_Job_Detail__c);
             }
@@ -177,44 +178,17 @@ public with sharing class Amr_RAPJobPortfolioController{
             
                 if(TotalJobs != 0){
                     Decimal totalJobsNew = 0;
-                    /*TotalOpenJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId) AND (AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Priority OR AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Live) AND  Job_Status__c != 'Cancelled'];
-                    pending = (TotalOpenJobs * 100)/TotalJobs;
                     
-                    
-                    TotalJobsAccepted     = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Live AND  Job_Status__c != 'Cancelled' ];
-                    Live = (TotalJobsAccepted * 100)/TotalJobs;
-                  
-                    
-                    TotalJobstoAccept = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Priority AND  Job_Status__c != 'Cancelled'];
-                    Priority = (TotalJobstoAccept * 100)/TotalJobs;
-                    
-                    TotalOpenJobs = 0;
-                    TotalOpenJobs = TotalJobsAccepted + TotalJobstoAccept;
-                     pending = (TotalOpenJobs * 100)/TotalJobs;
-                     
-                    TotalClosedJob  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Dormant AND  Job_Status__c != 'Cancelled'];
-                    dormant = (TotalClosedJob * 100)/TotalJobs;
-                   
-                    totalJobsNew = pending + Live+ dormant + Priority;
-                    system.debug('****pending***'+pending);
-                    system.debug('****Live***'+Live);
-                    system.debug('****dormant***'+dormant);
-                    system.debug('****Priority***'+Priority);
-                    pending = (pending * 100)/totalJobsNew;
-                    
-                    Live = (Live * 100)/totalJobsNew;
-                    dormant = (dormant * 100)/totalJobsNew;
-                    Priority = (Priority * 100)/totalJobsNew;*/
                     
                     TotalSavingsJobs  = 0;
                                    
                     
                     //New Dashboard 
                     
-                      totalJobAccepted  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Accepted' and AM_Job_Detail__r.Job_Status__c != 'Dormant' and AM_Job_Detail__r.Job_Cancelled__c = false];
-                    openJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Accepted'  and Started__c = 'Yes'  and AM_Job_Detail__r.Job_Status__c != 'Dormant' and AM_Job_Detail__r.Job_Cancelled__c = false ];
-                    closedJob  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and AM_Job_Detail__r.Job_Status__c = 'Dormant' and AM_Job_Detail__r.Job_Cancelled__c = false];
-                    jobtoAccept  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and ( Job_Status__c != 'Accepted' or Job_Status__c != 'Cancelled' ) and AM_Job_Detail__r.Job_Status__c != 'Dormant' and AM_Job_Detail__r.Job_Cancelled__c = false ];
+                      totalJobAccepted  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Accepted' and AM_Job_Detail__r.Job_Status__c != 'Dormant' and AM_Job_Detail__r.Job_Cancelled__c = false limit 50000];
+                    openJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Accepted'  and Started__c = 'Yes'  and AM_Job_Detail__r.Job_Status__c != 'Dormant' and AM_Job_Detail__r.Job_Cancelled__c = false limit 50000];
+                    closedJob  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and AM_Job_Detail__r.Job_Status__c = 'Dormant' and AM_Job_Detail__r.Job_Cancelled__c = false limit 50000];
+                    jobtoAccept  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and ( Job_Status__c != 'Accepted' or Job_Status__c != 'Cancelled' ) and AM_Job_Detail__r.Job_Status__c != 'Dormant' and AM_Job_Detail__r.Job_Cancelled__c = false limit 50000];
                     
                     TotalClosedJob = Integer.valueOf( closedJob);
                     TotalOpenJobs = Integer.valueOf(openJobs);
@@ -236,16 +210,14 @@ public with sharing class Amr_RAPJobPortfolioController{
                     jobtoAccept = Integer.valueOf((jobtoAccept * 100)/totalJobsNew);
                     AggregateResult[] groupedResults
                                                      = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId];
-                    Object avgAmount = groupedResults[0].get('averQuote');
-                    Object acceAmount = groupedResults[0].get('acceptQuote');
+                    Object avgAmount = groupedResults[0].get(averageQuote);
+                    Object acceAmount = groupedResults[0].get(acceptQuote);
                     
                     savingSubmitted = Decimal.valueOf(String.valueOf(groupedResults[0].get('avgAmount')));
                     savingSubmittedMonth = Decimal.valueOf(String.valueOf(groupedResults[0].get('acceAmount')));
                                                                     
                                                                     
-                    //savingSubmitted = [Select Saving_Accepted_Quote_Euro__c, Saving_Average_of_Quotes__c from Amr_Saving__c Where  Job_Details__c IN : jobDetailsId ];
-                   // savingSubmitted = decimal.valueOf(avgAmount);
-                  //  savingSubmittedMonth = decimal.valueOf(acceAmount);
+               
                 }
             }
              catch(exception ex){
@@ -283,32 +255,30 @@ public with sharing class Amr_RAPJobPortfolioController{
             try{
             List<PieWedgeData> data = new List<PieWedgeData>();
             Integer amrJobDetails = 0;
-            Integer amrJobDetailsUserCount = 0;
+           // Integer amrJobDetailsUserCount = 0;
             Integer i = 0;
             
-            amrJobDetails   = [SELECT count() FROM  Amr_Job_Details__c ];
-            amrJobDetailsUserCount = [SELECT count() FROM  Amr_Job_Allocation__c Where (AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId];
+            amrJobDetails   = [SELECT count() FROM  Amr_Job_Details__c limit 50000];
+           // amrJobDetailsUserCount = [SELECT count() FROM  Amr_Job_Allocation__c Where (AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId limit 50000];
             
-            //i = (amrJobDetailsUserCount * 100)/amrJobDetails;
+           
             AggregateResult[] groupedResults = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId];
-                    //Object avgAmount = groupedResults[0].get('averQuote');
-                    //Object acceAmount = groupedResults[0].get('acceptQuote');
+                   
                     savingSubmitted = 0;
                     savingSubmittedMonth = 0;
-                    if(groupedResults[0].get('averQuote') != null &&  groupedResults[0].get('acceptQuote') != null){
-                    savingSubmitted = Decimal.valueOf(String.valueOf(groupedResults[0].get('averQuote')));
-                    savingSubmittedMonth = Decimal.valueOf(String.valueOf(groupedResults[0].get('acceptQuote')));
+                    if(groupedResults[0].get(averageQuote) != null &&  groupedResults[0].get(acceptQuote) != null){
+                    savingSubmitted = Decimal.valueOf(String.valueOf(groupedResults[0].get(averageQuote)));
+                    savingSubmittedMonth = Decimal.valueOf(String.valueOf(groupedResults[0].get(acceptQuote)));
                     }
              
-              AggregateResult[] groupedResultsAll = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c ];
+              AggregateResult[] groupedResultsAll = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c];
               savingSubmittedAll = 0;
-              if(groupedResultsAll[0].get('averQuote') != null &&  groupedResultsAll[0].get('acceptQuote') != null){
-                    savingSubmittedAll = Decimal.valueOf(String.valueOf(groupedResultsAll[0].get('averQuote')));
+              if(groupedResultsAll[0].get('averQuote') != null &&  groupedResultsAll[0].get(acceptQuote) != null){
+                    savingSubmittedAll = Decimal.valueOf(String.valueOf(groupedResultsAll[0].get(averageQuote)));
               }
             data.add(new PieWedgeData('Total Saving Submitted(Euro)',Integer.valueOf(savingSubmitted)));
              
-            //data.add(new PieWedgeData('Your YTD total savings',Integer.valueOf(savingSubmitted)));
-           //data.add(new PieWedgeData('Global Team ',Integer.valueOf(savingSubmittedAll)));
+            
               
             return data;  
             }catch(Exception ex){
@@ -322,32 +292,27 @@ public with sharing class Amr_RAPJobPortfolioController{
          public List<PieWedgeData> getPieDataSaving(){  
             try{
             List<PieWedgeData> data = new List<PieWedgeData>();
-            Integer amrJobDetails = 0;
-            Integer amrJobDetailsUserCount = 0;
+            //Integer amrJobDetails = 0;
+            //Integer amrJobDetailsUserCount = 0;
             Integer i = 0;
             
-            //amrJobDetails   = [SELECT count() FROM  Amr_Saving__c ];
-           // amrJobDetailsUserCount = [SELECT count() FROM  Amr_Saving__c Where  CreatedById  = :loggedInUserId or LastModifiedById = : loggedInUserId];
-            
-            //i = (amrJobDetailsUserCount * 100)/amrJobDetails;
+           
             
             Date startOfMonth = Date.today().toStartOfMonth();
             Date startOfNextMonth = startOfMonth.addMonths(1);
             AggregateResult[] groupedResults  = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId and  Createddate >= :startOfMonth AND CreatedDate < :startOfNextMonth];
-                    //Object avgAmount = groupedResults[0].get('averQuote');
-                    //Object acceAmount = groupedResults[0].get('acceptQuote');
+                    
                     savingSubmitted = 0;
                     savingSubmittedMonth = 0;
-                    if(groupedResults[0].get('averQuote') != null &&  groupedResults[0].get('acceptQuote') != null){
-                    savingSubmitted = Decimal.valueOf(String.valueOf(groupedResults[0].get('averQuote')));
-                    savingSubmittedMonth = Decimal.valueOf(String.valueOf(groupedResults[0].get('acceptQuote')));
+                    if(groupedResults[0].get(averageQuote) != null &&  groupedResults[0].get(acceptQuote) != null){
+                    savingSubmitted = Decimal.valueOf(String.valueOf(groupedResults[0].get(averageQuote)));
+                    savingSubmittedMonth = Decimal.valueOf(String.valueOf(groupedResults[0].get(acceptQuote)));
                     }
                     
-            //data.add(new PieWedgeData('Total Saving Submitted',Integer.valueOf(savingSubmitted)));
+            
             data.add(new PieWedgeData('Total Saving -  Month(Euro)',Integer.valueOf(savingSubmittedMonth)));
             
-            //data.add(new PieWedgeData('Total',amrJobDetails));
-           // data.add(new PieWedgeData(selectedUser,amrJobDetailsUserCount));
+           
            return data; 
            }catch(Exception ex){
             system.debug(ex.getMessage());
@@ -370,7 +335,7 @@ public with sharing class Amr_RAPJobPortfolioController{
       public String getMethodToPassProjNames(){
       try{
         listString= new list<string>();
-          //   listString.add(NONE);
+         
             for(Amr_Project_Details__c i :[Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000]){
                     listString.add(i.name);
             }
@@ -383,95 +348,18 @@ public with sharing class Amr_RAPJobPortfolioController{
         
         public void getAlertRecords(){
             try{
-            alertList = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today];          
-            totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today];
+            alertList = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today limit 50000];          
+            totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today limit 50000];
             system.debug('alertList !!'+alertList);
             System.debug('ALert COUNT -> ' + totalAlertCount);
-            alertListForUnhide= [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:true];
+            alertListForUnhide= [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:true limit 50000];
               system.debug('alertList !!'+alertListForUnhide);
               }catch(Exception ex){
             system.debug(ex.getMessage());
           }
         }
         
-      /*  public PageReference hideAlert(){
-        
-        showUnhideRecords = false;
-        flagForButtons = false;
-        
-             system.debug('chosenAlertId !!'+chosenAlertId);
-            hideAlertObj = [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where Id=:chosenAlertId limit 1];
-             system.debug('chosenAlertId!!'+chosenAlertId);
-             For(Amr_Alert__c alert:alertList){
-                 if(alert.Id == hideAlertObj.Id){
-                     alert.Hide__c = true;
-                 }
-             }
-             update alertList;
-             getAlertRecords();
-             system.debug('alertList inside hide alrert!!'+alertList);
-            return null;
-        }
-        
-         public PageReference unHideAlertShow(){
-           
-            unHideAlertList = [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:true];
-            if(unHideAlertList.size()>0){
-            showUnhideRecords = true;
-            flagForButtons = true;
-            }
-            system.debug('unHideAlertList !!'+unHideAlertList );
-            
-            return null;
-        }
-        
-        public PageReference unhideAlert(){ 
-        
-        showUnhideRecords = true;
-        flagForButtons = false;
-        
-             system.debug('chosenAlertId !!'+chosenAlertId);
-            hideAlertObjNew = [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where Id=:chosenUnHideAlertId limit 1];
-             system.debug('chosenAlertId!!'+chosenAlertId);
-             For(Amr_Alert__c alert:unHideAlertList){
-                 if(alert.Id == hideAlertObjNew.Id){
-                     alert.Hide__c = false;
-                 }
-             }
-             update unHideAlertList;
-             getAlertRecords();
-             unHideAlertShow();
-             system.debug('alertList inside  new unhide alrert!!'+alertList);
-            return null;
-        }
-        
-       
-        
-         
-        public PageReference unHideAlertHide(){
-        
-           showUnhideRecords =false;
-           flagForButtons = false;
-           
-                    
-            return null;
-        }*/
-        
-    /*
-      public List<SelectOption> getCategoryList(){      
-            
-             listOfCategory = new List<SelectOption>();
-             
-             listOfCategory.add(new selectOption(NONE,NONE));
-             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-             
-             for(String cat: utiltyObj.categoryBrandPositionMap.keySet()){
-                 listOfCategory.add(new selectOption(cat,cat));
-                 system.debug('inside Category==>'+cat);
-             }
-             return listOfCategory;
-         } */
-         
+   
          
      public String getCategoryList(){ 
         try{
@@ -491,30 +379,7 @@ public with sharing class Amr_RAPJobPortfolioController{
           }
          
      }
-      /*
-         public List<SelectOption> getBrandPositioningList(){  
-             system.debug('categoryName!!'+categoryName);
-             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-             Set<String> brandPositionlst = new Set<String>();
-             
-             for(String cat:utiltyObj.categoryBrandPositionMap.keySet()){
-                if(cat == categoryName){
-                    brandPositionlst = utiltyObj.categoryBrandPositionMap.get(cat);
-                }
-                
-             }
-             
-             listOfBrandPosition = new List<SelectOption>();
-             listOfBrandPosition.add(new selectOption(NONE,NONE));
-             for(String bps : brandPositionlst){
-                 listOfBrandPosition.add(new selectOption(bps,bps));
-             }
      
-            system.debug('brandPositionList----->'+listOfBrandPosition);
-            return listOfBrandPosition;
-             
-         }  */
-         
       public PageReference  brandPositionListData(){    
           try{
              System.debug('BBBBBBRANDDD ->'+ categoryName);  
@@ -545,39 +410,7 @@ public with sharing class Amr_RAPJobPortfolioController{
             return null;
          
      }
-         /*
-          public List<SelectOption> getBrandList(){  
-          /*system.debug('brand pos!!'+brandPos);    
-             listOfBrand = new List<SelectOption>();
-             List<Amr_Brand__c> brandList= [Select id,Name from Amr_Brand__c where Brand_Positioning__c =: brandPos Limit 1];                                     //rem
-             listOfBrand.add(new selectOption(NONE,NONE));
-             for(Amr_Brand__c bp : brandList)
-                 listOfBrand.add(new selectOption(bp.Id,bp.Name));
-             return listOfBrand;*/ /*
-             
-              system.debug('brand pos!!'+brandPos);    
-              listOfBrand = new List<SelectOption>();
-              system.debug('========>'+brandPos+'category name=====>'+categoryName);
-             
-              listOfBrand.add(new selectOption(NONE,NONE));
-             
-              Set<String> brandlst = new Set<String>();
-              Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-             
-              for(String brandPosObj:utiltyObj.BrandPositionAndBrandMap.keySet()){
-                 List<String> postionCategorylist = brandPosObj.split(',');
-                 system.debug('bandPostion and Category====>'+postionCategorylist);
-                 if(postionCategorylist.size()>0){
-                    if(postionCategorylist[0] == brandPos && postionCategorylist[1] == categoryName){
-                        brandlst = utiltyObj.BrandPositionAndBrandMap.get(brandPosObj);
-                    }
-                 }
-             }
-             
-              for(String bps : brandlst)
-                 listOfBrand.add(new selectOption(bps,bps));
-             return listOfBrand;
-         } */
+        
          
          
           public List<SelectOption> getBrandList(){      
@@ -610,14 +443,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         return listOfBrand;
     }
          
-         /* public List<SelectOption> getProjectNameList(){      
-             listOfProjectName = new List<SelectOption>();
-             List<Amr_Project_Details__c> ProjectNameList= [Select id,Name from Amr_Project_Details__c];
-             listOfProjectName .add(new selectOption(NONE,NONE));
-             for(Amr_Project_Details__c cat : ProjectNameList)
-                 listOfProjectName.add(new selectOption(cat.Id,cat.Name));
-             return listOfProjectName ;
-         }*/
+         
          
          //Method to get list in sort options
         public List<SelectOption> getSortOptions(){  
@@ -661,6 +487,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         projEmail = jobDetails.Unilever_Project_Leader_Email__c;
         projectName = jobDetails.Project_Details__c;
         
+        
         jobDetailList = new list<Amr_Job_Allocation__c>();
          
         string soql ='select AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c ,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__c,AM_Job_Detail__r.Brand_Position__c,AM_Job_Detail__r.Brand_Final__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where Name!=null and AM_Job_Detail__r.Job_Cancelled__c = false';
@@ -672,7 +499,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         
        if (String.isNotBlank(String.valueOf(jobDetails.Start_Date__c))){
             Datetime startdate = jobDetails.Start_Date__c;
-            String dateTimeFormat = startdate.format('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
+            String dateTimeFormat = startdate.format(dateFormat);
             
              soql += ' and AM_Job_Detail__r.createdDate'+  ' >= '+ dateTimeFormat ;
               
@@ -680,7 +507,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         
         if (String.isNotBlank(String.valueOf(jobDetails.End_Date__c))){ 
             Datetime endate  = jobDetails.End_Date__c;
-             String dateTimeFormat1 = endate.format('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
+             String dateTimeFormat1 = endate.format(dateFormat);
             
               soql += ' and AM_Job_Detail__r.createdDate ' +  ' < '+ dateTimeFormat1 ;
              
@@ -703,7 +530,7 @@ public with sharing class Amr_RAPJobPortfolioController{
          
          }
           if(String.isNotBlank(brodMarket)){
-       soql += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(brodMarket)+'%\'';
+       soql += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(brodMarket)+percent;
                
          }
           if(String.isNotBlank(categoryName) && categoryName != NONE){
@@ -742,11 +569,11 @@ public with sharing class Amr_RAPJobPortfolioController{
               
          }
          if(String.isNotBlank(addNumber)){
-        soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+'%\'';
+        soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+percent;
               
          }
          if(String.isNotBlank(projEmail)){
-        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+'%\'';
+        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+percent;
               
          }
          if(String.isNotBlank(projectName)){
@@ -758,7 +585,7 @@ public with sharing class Amr_RAPJobPortfolioController{
               
          }
          if(String.isNotBlank(jobDetails.Campaign_Name__c)){
-        soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+'%\'';
+        soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+percent;
             
          }
          if (String.isNotBlank(startDate)){
@@ -772,8 +599,8 @@ public with sharing class Amr_RAPJobPortfolioController{
                Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
                DateTime refDate2 = startDateFinal.addDays(1);
-               soql += ' and createdDate '+  ' >= '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
-               soql += ' and createdDate '+  '< '+ refDate2.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
+               soql += ' and createdDate '+  ' >= '+ startDateFinal.formatGMT(dateFormat) ;
+               soql += ' and createdDate '+  '< '+ refDate2.formatGMT(dateFormat);
                
                system.debug('soql created date'+soql);
     }
@@ -815,7 +642,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         addNumber = jobDetails.AdManagerText__c;
         projEmail = jobDetails.Unilever_Project_Leader_Email__c;
         projectName = jobDetails.Project_Details__c;
-        
+        string euroAmount = String.valueOf(jobDetails.Allocated_Budget_euro__c);
         jobDetailList = new list<Amr_Job_Allocation__c>();
          
         string soql ='select AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c ,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__c,AM_Job_Detail__r.Brand_Position__c,AM_Job_Detail__r.Brand_Final__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where Name!=null and AM_Job_Detail__r.Job_Cancelled__c = false';
@@ -824,23 +651,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         soql += ' and ((AM_Job_Detail__r.OwnerId = \''+loggedInUserId+'\' AND User__c = \''+loggedInUserId+'\') or  User__c = \''+loggedInUserId+'\')';
                system.debug('soql loggedInUserId'+soql);
         }
-        /*
-       if (String.isNotBlank(String.valueOf(jobDetails.Start_Date__c))){
-            Datetime startdate = jobDetails.Start_Date__c;
-            String dateTimeFormat = startdate.format('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
-            
-             soql += ' and AM_Job_Detail__r.createdDate'+  ' >= '+ dateTimeFormat ;
-              
-        }
-        
-        if (String.isNotBlank(String.valueOf(jobDetails.End_Date__c))){ 
-            Datetime endate  = jobDetails.End_Date__c;
-             String dateTimeFormat1 = endate.format('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
-            
-              soql += ' and AM_Job_Detail__r.createdDate ' +  ' < '+ dateTimeFormat1 ;
-             
-        }
-        */
+     
          if (String.isNotBlank(jobDetails.Project_Leader_Cluster__c)){
          
                soql += ' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(projLeaderCluster)+'\'';
@@ -858,7 +669,7 @@ public with sharing class Amr_RAPJobPortfolioController{
          
          }
           if(String.isNotBlank(brodMarket)){
-       soql += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(brodMarket)+'%\'';
+       soql += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(brodMarket)+percent;
                
          }
           if(String.isNotBlank(categoryName) && categoryName != NONE){
@@ -897,11 +708,11 @@ public with sharing class Amr_RAPJobPortfolioController{
               
          }
          if(String.isNotBlank(addNumber)){
-        soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+'%\'';
+        soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+percent;
               
          }
          if(String.isNotBlank(projEmail)){
-        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+'%\'';
+        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+percent;
               
          }
          if(String.isNotBlank(projectName)){
@@ -913,7 +724,15 @@ public with sharing class Amr_RAPJobPortfolioController{
               
          }
          if(String.isNotBlank(jobDetails.Campaign_Name__c)){
-        soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+'%\'';
+        soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+percent;
+            
+         }
+        
+        if(String.isNotBlank(euroAmount)){
+        //euroAmount = euroAmount.replaceAll('(,)?(.)?(,)?(\'€\')?', '');
+         system.debug('*****euroAmount ******'+euroAmount );
+        Decimal abc = Decimal.valueOf(euroAmount);
+        soql += ' and AM_Job_Detail__r.Allocated_Budget_euro__c = '+abc;
             
          }
          if (String.isNotBlank(startDate)){
@@ -928,8 +747,8 @@ public with sharing class Amr_RAPJobPortfolioController{
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
                startDateFinal = startDateFinal.addDays(1);
                DateTime refDate2 = startDateFinal.addDays(1);
-               soql += ' and createdDate '+  ' >= '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
-               soql += ' and createdDate '+  '< '+ refDate2.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
+               soql += ' and createdDate '+  ' >= '+ startDateFinal.formatGMT(dateFormat) ;
+               soql += ' and createdDate '+  '< '+ refDate2.formatGMT(dateFormat);
                
                system.debug('soql created date'+soql);
     }
@@ -1086,12 +905,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         }
        
         public void nextForPendingJobs(){
-          /*
-              List<Amr_Job_Allocation__c> lstPending = new List<Amr_Job_Allocation__c>();
-             String pendingSoql ='select AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) and ( Job_Status__c != \'Accepted\' or Job_Status__c != \'Cancelled \')' ;
-            lstPending =  Database.query(pendingSoql);
-             removeduplicatePending(lstPending);
-              lstPendingJobsNew = pendingJobsToShow;*/
+      
               try{
               pendingJobsToShow = new List<Amr_Job_Allocation__c>();
             //pendingJobsToShow.clear();
@@ -1695,7 +1509,7 @@ public with sharing class Amr_RAPJobPortfolioController{
             System.debug('Alert Id -> ' + selectedAlert);
             
             List<Amr_Alert__c> alertHideList = new List<Amr_Alert__c>();
-            alertHideList = [SELECT Alert_Message__c,Hide__c FROM Amr_Alert__c where id = :selectedAlert];
+            alertHideList = [SELECT Alert_Message__c,Hide__c FROM Amr_Alert__c where id = :selectedAlert limit 50000];
            if(!alertHideList.isEmpty()){
             
             for(Amr_Alert__c alertObj : alertHideList){
@@ -1703,8 +1517,8 @@ public with sharing class Amr_RAPJobPortfolioController{
             }
             update alertHideList;
            }
-           alertList = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today];          
-            totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today];
+           alertList = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today limit 50000];          
+            totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today limit 50000];
           }catch(Exception ex){
             system.debug(ex.getMessage());
           }

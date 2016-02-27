@@ -118,7 +118,7 @@ public with sharing class Amr_SavingSummaryController{
          }
      }
      }
-     if(setFlag == false){
+     if(!setFlag){
      
       soql = 'select Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =true) from Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId )';
       
@@ -229,6 +229,34 @@ public with sharing class Amr_SavingSummaryController{
    
            system.debug('soql folder name'+soql);
      }
+     
+     if(String.isNotBlank(addNumber)){
+        soql += ' and Job_Details__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+'%\'';
+              
+       } 
+     if(String.isNotBlank(totalAcceptedFinalCost) ){
+         String fialTotalVal = totalAcceptedFinalCost.replace(',','');
+        soql += ' and Total_Accepted_FinalCost__c = '+ Double.valueOf(fialTotalVal);          // ''+'%'+ String.valueOf(totalAcceptedFinalCost)+'%\'';
+              
+       }
+        if(String.isNotBlank(savingAverageOfQuotes)){
+        String fialSavingVal = savingAverageOfQuotes.replace(',','');
+        soql += ' and Saving_Average_of_Quotes__c = '+ Double.valueOf(fialSavingVal);        //  \''+'%'+ String.valueOf(savingAverageOfQuotes) +'%\'';  
+              
+       }
+        if(String.isNotBlank(savingAcceptedQuotes)){
+        String fialSavingAcceptedVal = savingAcceptedQuotes.replace(',','');
+        soql += ' and Saving_Accepted_Quote_Euro__c = '+ Double.valueOf(fialSavingAcceptedVal);        //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\''; 
+              
+       } 
+       
+       if(String.isNotBlank(categoryName) && categoryName != '--None--'){
+           soql += ' and Job_Details__r.ProductCategory__r.Name LIKE \''+String.escapeSingleQuotes(categoryName)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+       }
+       
+       if(String.isNotBlank(brandPosName) && brandPosName != '--None--'){
+           soql += ' and Job_Details__r.Brand_Position__r.Name LIKE \''+String.escapeSingleQuotes(brandPosName)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+       }
       if(String.isNotBlank(films)){
       Double noOfFilms= double.valueOf(films);  
     soql += ' and Total_no_of_films__c =:noOfFilms';
@@ -272,35 +300,14 @@ public with sharing class Amr_SavingSummaryController{
     catch(Exception Ex){
        system.debug(Ex.getMessage());
     }
-    
+    System.debug(selectedSortJobsOption);
     if(String.isNotBlank(selectedSortJobsOption) && selectedSortJobsOption!=NONE){
         
          soql += ' ORDER BY '+String.escapeSingleQuotes(selectedSortJobsOption)+' ASC';
-           
+              System.debug(soql); 
      }
      
-     if(String.isNotBlank(addNumber)){
-        soql += ' and Job_Details__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+'%\'';
-              
-       } 
-     if(String.isNotBlank(totalAcceptedFinalCost) ){
-         List<String> splittedValue = totalAcceptedFinalCost.split(',');
-         String finalTotalString;
-         System.debug(splittedValue);
-         for(String totalVal : splittedValue){
-             finalTotalString += totalVal;
-         }
-        soql += ' and Total_Accepted_FinalCost__c = '+ Double.valueOf(finalTotalString);          // ''+'%'+ String.valueOf(totalAcceptedFinalCost)+'%\'';
-              
-       }
-        if(String.isNotBlank(savingAverageOfQuotes)){
-        soql += ' and Saving_Average_of_Quotes__c = '+ Double.valueOf(savingAverageOfQuotes);        //  \''+'%'+ String.valueOf(savingAverageOfQuotes) +'%\'';  
-              
-       }
-        if(String.isNotBlank(savingAcceptedQuotes)){
-        soql += ' and Saving_Accepted_Quote_Euro__c = '+ Double.valueOf(savingAcceptedQuotes);        //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\''; 
-              
-       } 
+     
      
       system.debug('soql after'+soql);
     savingSummaryList = Database.query(soql);
@@ -486,7 +493,7 @@ public with sharing class Amr_SavingSummaryController{
          }
      }
      } 
-     if(setFlag == false){    
+     if(!setFlag){    
      groupedSavingResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
           
      groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
@@ -528,7 +535,7 @@ public with sharing class Amr_SavingSummaryController{
          }
      }
      }      
-    if(setFlag == false){
+    if(!setFlag){
     
      groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
        
