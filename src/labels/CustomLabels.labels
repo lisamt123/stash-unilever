@@ -9276,7 +9276,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PROJECT</shortDescription>
-        <value>project</value>
+        <value>Project</value>
     </labels>
     <labels>
         <fullName>IPM_PROJECTCREATION_INPROGRESS</fullName>
