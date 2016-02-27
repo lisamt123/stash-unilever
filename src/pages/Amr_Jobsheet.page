@@ -1913,7 +1913,7 @@
                                         <apex:outputLabel >Audio Only</apex:outputLabel>
                                         <apex:inputfield value="{!joblist.BuyoutsMusicDigitalStillImage__c}" html-labelText="Digital - Still Image" />
                                         <apex:outputLabel >Still Image Only</apex:outputLabel>
-                                        <!--  <apex:inputfield value="{!joblist.Digital_Editorial__c}" html-labelText="Digital - Editorial" /> -->
+                                        <apex:inputfield value="{!joblist.Buyouts_Music_Digital_ED__c}" html-labelText="Digital - Editorial" /> 
                                         <apex:outputLabel >Editorial</apex:outputLabel>
                                     </div>
                                     <div class="submediamasterdiv">
@@ -2147,7 +2147,7 @@
                                     <apex:outputText value="{!obj.Percentage_Saving_Average_of_Quotes__c}"/>
                                     </apex:column>
                                     <apex:column headerValue="€ Saving - Accepted Quote">
-                                    <apex:outputText value="{!obj.Euro_Saving_Average_of_Quotes__c}"/>
+                                    <apex:outputText value="{!obj.Saving_Average_of_Quotes__c}"/>
                                     </apex:column>
                                     <apex:column headerValue="% Saving - Accepted Quote">
                                     <apex:outputText value="{!obj.Percentage_Saving_Accepted_Quote__c}"/>
