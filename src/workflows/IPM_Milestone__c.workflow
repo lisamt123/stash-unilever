@@ -62,7 +62,7 @@
             <name>IPM_Milestone_Due_Date_in_the_past</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>IPM_Milestone_Due_Date_In_Past__c = true</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
