@@ -15,11 +15,6 @@ global with sharing class Amr_CAPJobPortfolioController{
     public String cancelledString;
     public String selectedSortJobsOption{get;set;}
     public String selectedSortCancelOption{get;set;}
-    
-     public List<PermissionSetAssignment> userData {get;set;}
-    
-    public String permissionSetName {get;set;}
-    
     public List<SelectOption> listOfCategory{get;set;} 
     public List<SelectOption> listOfBrandPosition{get;set;}
     public  List<SelectOption> listOfBrand{get;set;}
@@ -172,7 +167,7 @@ global with sharing class Amr_CAPJobPortfolioController{
 
     }
     
-    public pageReference getPage(){
+   /* public pageReference getPage(){
         try{
         userData = [select PermissionSet.Name from PermissionSetAssignment  where Assignee.id = :userinfo.getUserId()];
         Set<String> userNameSet = new Set<String>();
@@ -198,7 +193,7 @@ global with sharing class Amr_CAPJobPortfolioController{
         }
       
         
-    }
+    }*/
    /*  
       public List<SelectOption> getBrandList(){  
           system.debug('brand pos!!'+brandPos);    
@@ -526,32 +521,32 @@ global with sharing class Amr_CAPJobPortfolioController{
     soqlForCancel += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Percentage_str;
       }
      
-     if(String.isNotBlank(selectedSortJobsOption) && selectedSortJobsOption!=NONE){
-          soql += ' ORDER BY '+String.escapeSingleQuotes(selectedSortJobsOption)+' ASC';
-           
-     }
-     if(String.isNotBlank(selectedSortCancelOption) && selectedSortCancelOption!=NONE){
-          soqlForCancel += ' ORDER BY '+String.escapeSingleQuotes(selectedSortCancelOption)+' ASC';
-           
-     }
+    
      if(String.isNotBlank(addNumber)){
         soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+Percentage_str;
+        soqlForCancel += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+Percentage_str;
               
          }
          if(String.isNotBlank(projEmail)){
         soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+Percentage_str;
+         soqlForCancel += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+Percentage_str;
               
          }
          if(String.isNotBlank(projectName)){
         soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(projectName)+'\'';
+         soqlForCancel += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(projectName)+'\'';
               
          }
-         if(String.isNotBlank(projectName)){
+         System.debug('Project Name -->>>  ' + projectName);
+         if(String.isNotBlank(jobDetails.Project_Name_Other__c)){
         soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
+        soqlForCancel += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
               
          }
+          System.debug('SOQL Till Here -->>>  ' + soql );
          if(String.isNotBlank(jobDetails.Campaign_Name__c)){
         soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Percentage_str;
+        soqlForCancel += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Percentage_str;
             
          }
          if (String.isNotBlank(startDate)){
@@ -564,22 +559,29 @@ global with sharing class Amr_CAPJobPortfolioController{
                Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
                Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
+                DateTime endDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0).addDays(1);
          
-               soql += ' and createdDate'+  ' = '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
+               soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') + ' and createdDate'+  ' < '+ endDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
+               soqlForCancel += ' and createdDate'+  ' = '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
              
                
                system.debug('soql created date'+soql);
     }
-     system.debug('soql created date'+soql);
-    /* if(String.isNotBlank(selectedSortCancelOption) && selectedSortCancelOption!=NONE){
+     if(String.isNotBlank(selectedSortJobsOption) && selectedSortJobsOption!=NONE){
+          soql += ' ORDER BY '+String.escapeSingleQuotes(selectedSortJobsOption)+' ASC';
+           
+     }
+     if(String.isNotBlank(selectedSortCancelOption) && selectedSortCancelOption!=NONE){
           soqlForCancel += ' ORDER BY '+String.escapeSingleQuotes(selectedSortCancelOption)+' ASC';
            
-     }*/
+     }
+     system.debug('soql created date'+soql);
+   
      soql+=' limit 50000';
      soqlForCancel+=' limit 50000';
      system.debug('soql !!'+soql +'soqlForCancel!!'+soqlForCancel);
      
-    //jobDetailList = Database.query(soql);
+    jobDetailList = Database.query(soql);
     system.debug('jobDetailList !!'+jobDetailList );
     Set<String> setJobAllocationId = new Set<String>();
      
@@ -590,7 +592,7 @@ global with sharing class Amr_CAPJobPortfolioController{
                 jobDetailList.add(sObj ) ;
              }
      }
-    
+    System.debug('Final List -->>  ' + jobDetailList);
     //cancellation
     jobDetailCancellationList = Database.query(soqlForCancel);
     system.debug('jobDetailCancellationList !!'+jobDetailCancellationList );
@@ -629,52 +631,9 @@ global with sharing class Amr_CAPJobPortfolioController{
             SelectBox = checkbx;
             sObjRec = sObjRecord;
          }
-         
-       /*  
-           // Implement the compareTo() method
-        public Integer compareTo(Object compareTo) {
-            WrapperClass compareToEmp = (WrapperClass)compareTo;
-            if(Amr_CAPJobPortfolioController.selectedSortJobsOption == 'Amr_Job_Details__r.AdManagerText__c'){
-            if (sObjRec.Amr_Job_Details__r.AdManagerText__c == compareToEmp.sObjRec.Amr_Job_Details__r.AdManagerText__c) return 0;
-            if (sObjRec.Amr_Job_Details__r.AdManagerText__c > compareToEmp.sObjRec.Amr_Job_Details__r.AdManagerText__c) return 1;
-            return -1;      
-           }  
-           return 100;
-        }*/
-       }
-       
-    /*   public void sortBySelected(){
-       
-       
-       List<WrapperClass> tempLst = new List<WrapperClass>();
-       tempLst.addAll(WrapperList);
-       WrapperList.clear();
-       for(WrapperClass wrapper : tempLst){
-            WrapperClass finalSelected = new WrapperClass();
-            for(WrapperClass wrap2 : tempLst){
-                Amr_Job_Allocation__c amrJob = new Amr_Job_Allocation__c();
-                Amr_Job_Allocation__c amrJob2 = new Amr_Job_Allocation__c();
-                amrJob = wrapper.sObjRec;
-                amrJob2 = wrapper.sObjRec;
-                system.debug('---selectedSortCancelOption-----'+selectedSortCancelOption);
-                system.debug('---amrJob.AM_Job_Detail__r.AdManagerText__c-----'+amrJob.AM_Job_Detail__r.AdManagerText__c    );
-                if(selectedSortCancelOption == 'AM_Job_Detail__r.AdManagerText__c'){
-                    if(amrJob.AM_Job_Detail__r.AdManagerText__c.compareTo(amrJob2.AM_Job_Detail__r.AdManagerText__c) < 0){
-                        finalSelected = wrapper;
-                        system.debug('*****wrapper'+wrapper);
-                        
-                    }
-                    else{
-                        finalSelected = wrap2;
-                        system.debug('*****wrap2'+wrap2);
-                    }
-                }
-            }
-            WrapperList.add(finalSelected);
-            system.debug('*****WrapperList'+WrapperList);
-       }
-   }
-    */
+        }
+      
+    
            // To call Cancel button on VF Page
        Public PageReference changwrapperClasseStatus(){
         try{

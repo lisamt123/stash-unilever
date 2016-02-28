@@ -82,6 +82,7 @@
                $j('.alert-popup').hide();
            }); 
            
+           
            var strArr = {!CategoryList};
            var newOp;
            //alert('{!selectedCategory}');
@@ -543,10 +544,10 @@
                 font-style: normal;
             }
             label div{
-                background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/questionmark.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);
+                background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/questionmark.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);
             }
             label strong {
-                background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/star.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);
+                background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/star.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);
                 display: block;
                 height: 1px;
                 overflow: hidden;
@@ -614,7 +615,7 @@
             }
             /**/
     </style>
-   
+       <div class="mask" style="display:{!if(jobList.AdManagerText__c != null,'none','')}"></div>
     <apex:pagemessages id="msgs"></apex:pagemessages>
     <!---Ad Main section---->
     
@@ -633,7 +634,7 @@
                         {!totalAlertCount}
                     </div>
                     <div class="left">
-                        <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Ico_alert.png" alt="alert"/>
+                        <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_alert.png')}" alt="alert"/>
                     </div>
                     <div class="clear">
                     </div>
@@ -657,7 +658,7 @@
                 </div>
                 <div class="right popup-close">                                
                     <apex:commandLink styleClass="cancel-alert-popup"  >
-                        <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Ico_ClosePopup.png" alt="close pop up"/>
+                        <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_ClosePopup.png')}" alt="close pop up"/>
                     </apex:commandLink>
                 </div>
                 <div class="clear">
@@ -706,10 +707,10 @@
                                          <apex:column value="{!alertVar.New_Alert__c}" >
                                               <apex:facet name="header">Date</apex:facet>                                             
                                          </apex:column>
-                                         <apex:column >
-                                         <apex:commandLink value="{!alertVar.job_Id__r.AdManagerText__c}"  action="{!jobSheetPageTransfer}"  target="_blank">
+                                         <apex:column value="{!alertVar.job_Id__r.AdManagerText__c}">
+                                       <!--  <apex:commandLink value="{!alertVar.job_Id__r.AdManagerText__c}"  action="{!jobSheetPageTransfer}"  target="_blank">
                                                    <apex:param name="chosenId" value="{!alertVar.Job_Id__c}" assignTo="{!chosenId}"/>
-                                              </apex:commandLink>
+                                              </apex:commandLink>  -->
                                              <apex:facet name="header">AD-ID</apex:facet>
                                           </apex:column>
                                          <apex:column value="{!alertVar.Alert_Message__c}">
@@ -726,10 +727,10 @@
                     </div>
                     <div class="clear">            
                     </div>
-                </div>
+                </div> <!--
                 <div class="right">
                     <apex:commandButton styleClass="cancel-alert-popup commonbtn"  value="Cancel"/>
-                </div>              
+                </div>          -->     
             </apex:outputPanel>
         </div>
                 
@@ -792,7 +793,7 @@
                             </div>
                             <div class="right popup-close">                                
                                 <apex:commandLink styleClass="cancel-allocation-popup"  >
-                                    <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Ico_ClosePopup.png" alt="close pop up"/>
+                                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_ClosePopup.png')}" alt="close pop up"/>
                                 </apex:commandLink>
                             </div>
                             <div class="clear">
@@ -824,7 +825,7 @@
                             </div>                            
                             <div class="right popup-close">                                
                                 <apex:commandLink styleClass="cancel-allocation-popup"  >
-                                    <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Ico_ClosePopup.png" alt="close pop up"/>
+                                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_ClosePopup.png')}" alt="close pop up"/>
                                 </apex:commandLink>
                             </div>
                             <div class="clear">
@@ -857,7 +858,7 @@
                                         <div class="left bg-g1 relative share-absolute">
                                             <apex:outputLabel value="{!jbList.User__r.Name}" />
                                             <span class="unshare">
-                                                <img src="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/Ico_RemoveShared.png')}"  alt="number" class="absolute unshare-img" />
+                                                <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_RemoveShared.png')}"  alt="number" class="absolute unshare-img" />
                                                 <input type="hidden" value = "{!jbList.User__c}" />
                                             </span> 
                                         </div>
@@ -933,7 +934,7 @@
             </div>
             <div class="right popup-close">                                
                 <apex:commandLink styleClass="cancel-alert-popup"  >
-                    <img src="/resource/1451457838000/Ad_Manager/Ad-Manager/images/Ico_ClosePopup.png" alt="close pop up"/>
+                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_ClosePopup.png')}" alt="close pop up"/>
                 </apex:commandLink>
             </div>
             <div class="clear">

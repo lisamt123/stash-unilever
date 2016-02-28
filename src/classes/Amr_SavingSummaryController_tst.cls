@@ -4,6 +4,7 @@ public Class Amr_SavingSummaryController_tst{
     
     
         static testMethod void methodToGetSortOption(){
+        
         Test.startTest();
         Profile p = [SELECT Id FROM Profile WHERE Name='AMR']; 
         User u = new User(Alias = 'sumSav', Email= 'saving@gml.com', 
@@ -47,123 +48,47 @@ public Class Amr_SavingSummaryController_tst{
             saving.add(savingObj);
         }
             insert saving;
-         
-        Amr_Saving__c savObj = new Amr_Saving__c();
-        savObj.Name = 'Ex Test Saving';
-        savObj.Job_Details__c = jobDetail.id;
-        savObj.Production_Type__c = 'Tv';
-        savObj.No_of_Masters__c = 2;
-        savObj.Duration_of_Masters__c = 3;
-        savObj.No_of_Additional_Films__c = 2;
-        savObj.Duration_of_Additional_Films__c = 1;
-        savObj.No_of_shoot_days__c = 5;
-        savObj.Stage_RAP_engaged__c = 'Before briefing the agency';
-        savObj.Script_Title__c = 'Test Script';
-        savObj.Scope_re_brief__c = 'no';
-        savObj.Folder_Name__c = 'Brief';
-        savObj.Shoot_Location_Multiselect__c = 'None';
-        insert savObj;
+         Amr_SavingSummaryController obj1 = new Amr_SavingSummaryController ();  
+        
+       obj1.savingObject.Name = 'Ex Test Saving';
+       obj1.savingObject.Job_Details__c = jobDetail.id;
+       obj1.savingObject.Production_Type__c = 'Tv';
+       obj1.savingObject.No_of_Masters__c = 2;
+       obj1.savingObject.Duration_of_Masters__c = 3;
+       obj1.savingObject.No_of_Additional_Films__c = 2;
+       obj1.savingObject.Duration_of_Additional_Films__c = 1;
+       obj1.savingObject.No_of_shoot_days__c = 5;
+       obj1.savingObject.Stage_RAP_engaged__c = 'Before briefing the agency';
+       obj1.savingObject.Script_Title__c = 'Test Script';
+       obj1.savingObject.Scope_re_brief__c = 'no';
+       obj1.savingObject.Folder_Name__c = 'Brief';
+       obj1.savingObject.Shoot_Location_Multiselect__c = 'None';
+        insert obj1.savingObject;
         
         Amr_Quote__c quoteObj = new Amr_Quote__c(Name = 'testQuote');
-        quoteObj.Name = 'Test Obj';
-        quoteObj.Saving__c = savObj.id;
+        quoteObj.Name = 'Testobj1';
+        quoteObj.Saving__c =obj1.savingObject.id;
         insert quoteObj;
             
+       Amr_SavingSummaryController obj2 = new Amr_SavingSummaryController ();  
+        PageReference pageRef = Page.Amr_SavingSummary;
+        Test.setCurrentPage(pageRef);
+        obj2.savingObject = obj1.savingObject;
+        obj2.jobDetailObj = jobDetail;
+        obj2.getSortOptions();
+        obj2.beginningForSummaryJobs();
+         obj2.nextForSummaryJobs();
+          obj2.previousForSummaryJobs();
+           obj2.beginningForSummaryJobs();
+              obj2.lastForSummaryJobs();
+               obj2.getCategoryList();
+                obj2.brandPositionListData();
+                   obj2.getBrandList();
+        
         Test.stopTest(); 
         
-        PageReference pageRef = Page.Amr_NewSaving;
-        Test.setCurrentPage(pageRef);
-        ApexPages.currentPage().getParameters().put('id',jobDetail.id); 
-         
-         Amr_NewSavingController savingSummaryObj = new Amr_NewSavingController();   
-         Amr_NewSavingController.InnerSavingClass innerObj  = new Amr_NewSavingController.InnerSavingClass(1, true, quoteObj);
-
-       
-        DateTime startDate =DateTime.now();
-        DateTime endDate = startDate.addMonths(1);
-        String stringDate = String.valueOf(startDate.formatGMT('yyyy/MM/dd hh:mm:ss') );
-        String endDateString = String.valueOf(endDate.formatGMT('yyyy/MM/dd hh:mm:ss') );
       
-       List<Amr_NewSavingController.InnerSavingClass> innerObjList= new  List<Amr_NewSavingController.InnerSavingClass>();
-       innerObjList.add(innerObj); 
-       String listConv = JSON.serialize(Amr_CurrencyConversionRate__c.getAll().values());
-       List<String> selectedCountry = new List<String>();
-       selectedCountry.add('Burundi');
-       Blob bodyData = Blob.valueOf('Test data');
-       
-       Document doc = new Document();
-       doc.body = bodyData;
       
-       List<String> selectedProdType = new List<String>();
-       selectedProdType.add('After Completion');
-       
-       
-       
-       
-     /*  
-       Test.setCurrentPageReference(new PageReference('Page.Amr_NewSaving')); 
-       System.currentPageReference().getParameters().put('id', jobDetail.id); */
-        
-       savingSummaryObj.jobId = jobDetail.id;
-       savingSummaryObj.savingObj = savObj;
-       savingSummaryObj.docAndQuoteLst = innerObjList;
-       savingSummaryObj.lstcov = listConv;
-       savingSummaryObj.adManagerNumber = 'Ego/00018';
-       savingSummaryObj.selectedCountry = selectedCountry;
-       savingSummaryObj.document = doc;
-       savingSummaryObj.jobDetailObj = jobDetail;
-       savingSummaryObj.selectedProductionType = selectedProdType;
-       savingSummaryObj.QuoteNumber = 1;
-       savingSummaryObj.pcTimeMangCategoryValue =3;
-       savingSummaryObj.pcCostMangCategoryValue  = 3;
-       savingSummaryObj.pcProcessMangCategoryValue  = 4;
-       savingSummaryObj.pcOutputQualityCategoryValue =1;
-       savingSummaryObj.pccTimeMangCategoryValue =2;
-       savingSummaryObj.pccCostMangCategoryValue  = 5;
-       savingSummaryObj.pccProcessMangCategoryValue =2;
-       savingSummaryObj.pccOutputQualityCategoryValue =3;
-       savingSummaryObj.caTimeMangCategoryValue = 1;       
-       savingSummaryObj.caCostMangCategoryValue = 5;       
-       savingSummaryObj.caProcessMangCategoryValue = 3;    
-       savingSummaryObj.caOutputQualityCategoryValue = 4;     
-       
-       // Methods Calling 
-       
-       savingSummaryObj.addRowQuote();
-       savingSummaryObj.SaveAllData(); 
-       savingSummaryObj.SaveSaving(); 
-       savingSummaryObj.uploadQuoteDocument(quoteObj, doc);
-       savingSummaryObj.UpdateAcceptedQuote();
-       savingSummaryObj.uploadDocument(savObj);
-       savingSummaryObj.AllValues();
-    /*    
-      //  savingSummaryObj.userId = userinfo.getuserid();
-      //  savingSummaryObj.summaryJobsToShow =  new List<Amr_Saving__c>();
-        savingSummaryObj.summaryJobsToShow= saving;
-        savingSummaryObj.counterForSummaryJobs = 0;
-        savingSummaryObj.limitSizeForSummaryJobs=Integer.valueOf(System.Label.Amr_LimitValue);
-        savingSummaryObj.totalSizeForSummaryJobs = saving.size();
-        savingSummaryObj.startDate = stringDate;
-        savingSummaryObj.endDate = endDateString;
-        savingSummaryObj.chosenId = jobDetail.id;
-        savingSummaryObj.savingObject = savObj;
-        savingSummaryObj.films = '23';
-        
-        savingSummaryObj.getSortOptions();
-        savingSummaryObj.getDashboardDataForRAP();
-        savingSummaryObj.getDashboardDataForCAP();
-        
-        savingSummaryObj.savingSummaryList = saving;
-      
-        savingSummaryObj.beginningForSummaryJobs();
-        savingSummaryObj.nextForSummaryJobs();
-        savingSummaryObj.previousForSummaryJobs();
-        savingSummaryObj.lastForSummaryJobs();
-        savingSummaryObj.paginationMethodForSummaryJobs(saving);
-        savingSummaryObj.getJobSearchDetails();
-        savingSummaryObj.getDisableNextForSummaryJobs();
-        savingSummaryObj.getDisablePreviousForSummaryJobs();
-        savingSummaryObj.jobSheetPageTransfer(); */
        system.assert(quoteObj !=null); 
         
     }

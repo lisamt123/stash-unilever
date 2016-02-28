@@ -323,12 +323,12 @@ public with sharing class Amr_AdManagerController{
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to In Store'));
             okayToSave =false;
         }
-        if(jobDetails.NewOriginalMaster__c && !jobDetails.NewOriginalMasterCinema__c && !jobDetails.NewOriginalMasterTv__c && 
+       /* if(jobDetails.NewOriginalMaster__c && !jobDetails.NewOriginalMasterCinema__c && !jobDetails.NewOriginalMasterTv__c && 
             !jobDetails.NewOriginalMasterRadio__c && !jobDetails.NewOriginalMasterPrint__c && !jobDetails.NewOriginalMasterOutofHome__c &&
                 !jobDetails.NewOriginalMasterInStore__c && !jobDetails.NewOriginalMasterDigital__c && !jobDetails.NewOriginalMasterInternalVideo__c ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Media Channel must be selected'));
             okayToSave =false;
-        }
+        }*/
         if(jobDetails.NewOriginalMaster__c && jobDetails.NewOriginalMasterOutofHome__c && !jobDetails.NewOriginalMasterOutofHomeMovingImage__c && 
             !jobDetails.NewOriginalMasterOutofHomeAudio__c && !jobDetails.NewOriginalMasterOutofHomeStillImage__c  ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Out of Home'));
@@ -399,7 +399,7 @@ public with sharing class Amr_AdManagerController{
             !jobDetails.AdditionalSupplementaryNewMaterialDigiMI__c && 
             !jobDetails.AdditionalSupplementaryNewMaterialDigiA__c && 
             !jobDetails.AdditionalSupplementaryNewMaterialDigiSI__c  &&
-            !jobDetails.Digital_Editorial__c  
+            !jobDetails.Additional_Supplementary_NM_Digital_ED__c  
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;

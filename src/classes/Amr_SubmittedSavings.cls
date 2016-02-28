@@ -465,14 +465,14 @@ public with sharing class Amr_SubmittedSavings {
     
      system.debug('savingObj'+savObj + 'selected' +selectedCountry );
     if(selectedCountry.size()>0){ 
-    	if(savObj.Shoot_Location__c != null){
-    		savObj.Shoot_Location__c = null;
-    	}
+        if(savObj.Shoot_Location__c != null){
+            savObj.Shoot_Location__c = null;
+        }
     for(String str : selectedCountry){
                 if(savObj.Shoot_Location__c == null){
                     savObj.Shoot_Location__c = str ;
                 }else{
-                	
+                    
                     savObj.Shoot_Location__c += ','+str;
                 }
             }
@@ -631,6 +631,7 @@ public with sharing class Amr_SubmittedSavings {
     
     public void AllValues(){
         try{
+        System.debug('SAV ID FROM PAGE ->   ' + savingIdFromPage);
      Amr_Saving__c savingObj = [select Folder_Name__c,Shoot_Location__c,PC_Appraisal_Time_Management__c, 
                                 PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,
                                  PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c, PPC_Appraisal_Process_Management__c,PPC_Appraisal_Cost_Management__c,

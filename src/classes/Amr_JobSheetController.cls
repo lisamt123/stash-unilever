@@ -213,7 +213,7 @@ public String docUploaded{get;set;}
                         listOfUserToDisplay.add(jobAlloc);
             }
             //Project_Description__c
-            jobList=[select ReworkExistingMaterial__c,NewOriginalMaster__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
+            jobList=[select ReworkExistingMaterial__c,Buyouts_Music_Digital_ED__c,NewOriginalMaster__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
                     NewOriginalMasterInternalVideo__c,NewOriginalMasterTvMovingImage__c,NewOriginalMasterCinemaMovingImage__c,NewOriginalMasterRadioAudio__c,NewOriginalMasterPrintStillImage__c,NewOriginalMasterOutofHomeMovingImage__c,
                     NewOriginalMasterOutofHomeAudio__c,NewOriginalMasterOutofHomeStillImage__c,NewOriginalMasterInStoreMovingImage__c,NewOriginalMasterInStoreAudio__c,NewOriginalMasterInStoreStillImage__c,NewOriginalMasterDigitalMovingImage__c,
                     NewOriginalMasterDigitalAudio__c,NewOriginalMasterDigitalStillImage__c,NewOriginalMasterInternalVdoMovingImage__c,  New_Original_Master_Digital_ED__c,
@@ -396,7 +396,7 @@ public String docUploaded{get;set;}
         
            
             if(jobId != null){
-                 if(flag == true){
+                 if(flag){
                       quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
                                No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
                                Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =:true) from Amr_Saving__c where Job_Details__r.id = :jobId];
@@ -507,7 +507,7 @@ public String docUploaded{get;set;}
          public String getMethodToPassProjectNames(){
             try{
          projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
-         String ProjectName;
+         String ProjectName = null;
          if(jobId !=null){
           ProjectName = [select Project_Details__r.name from Amr_Job_Details__c where id=: jobId].Project_Details__r.name;
           system.debug('projectName getMethodToPassProjectNames '+ProjectName);
@@ -1481,7 +1481,7 @@ public String docUploaded{get;set;}
             if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c && jobList.AdditionalSupplementaryNewMaterialDigi__c && 
             !jobList.AdditionalSupplementaryNewMaterialDigiMI__c && 
             !jobList.AdditionalSupplementaryNewMaterialDigiA__c && 
-            !!jobList.AdditionalSupplementaryNewMaterialDigiSI__c  &&
+            !jobList.AdditionalSupplementaryNewMaterialDigiSI__c  &&
             !jobList.Digital_Editorial__c 
             ){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to Digital'));
@@ -1694,7 +1694,10 @@ public String docUploaded{get;set;}
         if(alertObj.New_Alert__c < Date.today()){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Alert date must be greater than or equal to today\'s date'));
         }
-        else{
+        if(alertObj.Alert_Message__c.length()>100){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Alert message should be less than 100 characters'));
+        }
+        if(!String.isBlank(String.valueOf(alertObj.New_Alert__c)) && !String.isBlank(alertObj.Alert_Message__c) && alertObj.New_Alert__c >= Date.today() && alertObj.Alert_Message__c.length()<=100){
          insert alertObj;
          alert = [SELECT Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c FROM Amr_Alert__c where hide__c = :false AND Job_Id__c  = :jobIdFromPage AND ownerId = :userInfo.getUserID() order by New_Alert__c desc];
          totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];

@@ -38,25 +38,67 @@ public class Amr_SubmittedSavings_tst {
                                     
     insert QuoteObj1;
      system.assert(QuoteObj1!=null);   
+        Amr_SubmittedSavings.InnerSavingClass innerObj  = new Amr_SubmittedSavings.InnerSavingClass(1,true,QuoteObj1);
         Document documentObj = new Document(body = Blob.valueOf('test'),name = 'test1');
-         
-        ApexPages.currentPage().getParameters().put('id',jobDetail.id);
-        
+        List<String> selCountry = new List<String>();
+        selCountry.add('Thailand'); 
+        Blob dataContent = Blob.valueOf('Test');
+      // ApexPages.currentPage().getParameters().put('id',savingObj.id);
+         //ApexPages.currentPage().getParameters().put('id',jobDetailsObj.id);
+         Test.setCurrentPageReference(new PageReference('Page.Amr_SubmittedSaving')); 
+        System.currentPageReference().getParameters().put('id', savingObj.id);
         Amr_SubmittedSavings submittedSavings = new Amr_SubmittedSavings();
+        innerObj.attachmentObj = new Document(body = Blob.valueOf('test'),name = 'test1');
+       
+        submittedSavings.saveRecordValue= 'Test Val'; 
+        submittedSavings.document = documentObj;
+        submittedSavings.quoteId = QuoteObj1.id; 
+        submittedSavings.savingId = savingObj.id; 
+        submittedSavings.selectedCountry = selCountry;    
+        submittedSavings.savingIdFromPage =  savingObj.id;
+        submittedSavings.fileBody =  dataContent;
+        submittedSavings.pcTimeMangCategoryValue = 2;
+        submittedSavings.pcCostMangCategoryValue = 1;
+        submittedSavings.pcProcessMangCategoryValue = 3;
+        submittedSavings.pcOutputQualityCategoryValue = 1;
+        submittedSavings.pccTimeMangCategoryValue = 4;
+        submittedSavings.pccCostMangCategoryValue = 5;
+        submittedSavings.pccProcessMangCategoryValue = 1;
+        submittedSavings.pccOutputQualityCategoryValue = 3;
+        submittedSavings.caTimeMangCategoryValue = 2;
+        submittedSavings.caCostMangCategoryValue = 4;
+        submittedSavings.caProcessMangCategoryValue = 1;
+        submittedSavings.caOutputQualityCategoryValue = 3;
+        submittedSavings.pcTimeMangCategoryClass = 'sendPcTimeMangCategory';
+        submittedSavings.pcCostMangCategoryClass = 'sendPcCostMangCategory';
+        submittedSavings.pcProcessMangCategoryClass = 'sendPcProcessMangCategory';
+        submittedSavings.pcOutputQualityCategoryClass = 'sendPcOutputQualityCategory';
+        submittedSavings.pccTimeMangCategoryClass = 'sendPpcTimeMangCategory';
+        submittedSavings.pccCostMangCategoryClass = 'sendPpcCostMangCategory';
+        submittedSavings.pccProcessMangCategoryClass = 'sendPpcProcessMangCategory';
+        submittedSavings.pccOutputQualityCategoryClass = 'sendPpcOutputQualityCategory';
+        submittedSavings.caTimeMangCategoryClass = 'sendCaTimeMangCategory';
+        submittedSavings.caCostMangCategoryClass = 'sendCaCostMangCategory';
+        submittedSavings.caProcessMangCategoryClass = 'sendCaProcessMangCategory';
+        submittedSavings.caOutputQualityCategoryClass = 'sendCaOutputQualityCategory';
         submittedSavings.addRowQuote();
+        submittedSavings.docAndQuoteLst =  new List<Amr_SubmittedSavings.InnerSavingClass>() ;
+        submittedSavings.docAndQuoteLst.add(innerObj);
         submittedSavings.SaveNewQuote();
         //submittedSavings.SaveQuote();
         submittedSavings.editQuote();
-        submittedSavings.submitDataQuote();
+        submittedSavings.submitDataQuote(); 
         submittedSavings.submitData();
-        submittedSavings.deleteQuote();
-        submittedSavings.deleteSaving();
+        submittedSavings.editSaving();
         submittedSavings.UpdateAcceptedQuote();
         submittedSavings.editAcceptedQuote();
         submittedSavings.SubmitWholeSaving();
-        //submittedSavings.AllValues();
+        submittedSavings.AllValues();
         submittedSavings.getSelectedRatingStar();
+        submittedSavings.deleteQuote();
+        submittedSavings.deleteSaving();
         
+        system.assertequals(QuoteObj1.name,'test1');
     }
 
 }

@@ -1,7 +1,7 @@
 @isTest
 public class Amr_JobAllocation_tst {
     
-   /* static testMethod void methodToGetRecords(){
+   static testMethod void methodToGetRecords(){
         
     
         Profile p = [SELECT Id FROM Profile WHERE Name='AMR']; 
@@ -45,13 +45,16 @@ public class Amr_JobAllocation_tst {
         
         Amr_CurrencyConversionRate__c currencyConversion = new Amr_CurrencyConversionRate__c(Name='testName',Currency_Unit__c='testUnit',Currency_Unit_To_Euro__c=1234);
         insert currencyConversion;
-        Amr_Category__c category1 = new Amr_Category__c(Name='testCat');
+        MDO_Category__c category1 = new MDO_Category__c(Name='testCat');
         insert category1;
-        Amr_Brand_Positioning__c brandPos = new Amr_Brand_Positioning__c(Category__c=category1.id,Name='testBrandPos');
+        MDO_BrandPosition__c brandPos = new MDO_BrandPosition__c(Name='testBrandPos');
         insert brandpos;
-        Amr_Brand__c brand = new Amr_Brand__c(Brand_Positioning__c=brandPos.Id,Name='testBrand');
+        MDO_Brand__c brand = new MDO_Brand__c(Name='testBrand');
         insert brand;
-        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',Brodcast_Market__c='broadMarket',Category__c = category1.Id,Brand_Positioning__c =brandPos.Id,Brand__c=brand.Id,ownerId=u.id);
+        
+        MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        
+        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',Brodcast_Market__c='broadMarket',ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id,Job_Notes__c= 'abbbbbcc');
         insert jobDetail;
                         
       
@@ -67,7 +70,7 @@ public class Amr_JobAllocation_tst {
        Test.setCurrentPageReference(new PageReference('Page.AM_Jobsheet_bhupendra')); 
         System.currentPageReference().getParameters().put('id', jobDetail.id);
             
-        Amr_Joballocation_Page jobAllocation = new Amr_Joballocation_Page();
+        Amr_JobSheetController jobAllocation = new Amr_JobSheetController();
         jobAllocation.jobAlloc=jobAllocation1;
         jobAllocation.jobList=jobDetail;
         List<SelectOption> selusers = new List<SelectOption>();
@@ -78,7 +81,7 @@ public class Amr_JobAllocation_tst {
         List<selectOption> options = new List<selectOption>();
         options.add(new SelectOption(String.valueOf(currencyConversion.Currency_Unit_To_Euro__c),currencyConversion.Name+'-'+currencyConversion.Currency_Unit__c));
         
-        Amr_Joballocation_Page.rapAllocateCheck = false;
+        Amr_JobSheetController.rapAllocateCheck = false;
         jobAllocation.jobId=jobDetail.Id;
         jobAllocation.jobSharedList = jobSharedDetailList;
         jobAllocation.selectUsername=selusers;
@@ -89,24 +92,31 @@ public class Amr_JobAllocation_tst {
         jobAllocation.selectedCountry = String.valueOf(currencyConversion.Currency_Unit_To_Euro__c);
         jobAllocation.selectedRapName=selRap;
         jobAllocation.currencyRecords=options;
-        Amr_Joballocation_Page job = new Amr_Joballocation_Page();
+        Amr_JobSheetController job = new Amr_JobSheetController();
         jobAllocation.changePriority();
         jobAllocation.acceptJob();
         jobAllocation.updateJob();
+        jobAllocation.updateJobForNotes();
         jobAllocation.reallocateRAP(); 
         jobAllocation.recordShare();
         jobAllocation.jobUnShare();
-    
+        
+        
       //  jobAllocation.cancelRapJob();    
       //  jobAllocation.cancelJob();
         
       //  jobAllocation.recordShare();
+        
         jobAllocation.getCategoryList();
-        jobAllocation.getBrandPositioningList();
+        jobAllocation.selectedCategory = 'testCat';
+        //jobAllocation.getBrandPositioningList();
+        jobAllocation.brandPositionListData();
+        jobAllocation.selectedBrandPosName = 'testBrandPos';
         jobAllocation.getBrandList();
         jobAllocation.getProjectNameList();
-       jobAllocation.getMethodToPassProjectNames();
-        
+        jobAllocation.getMethodToPassProjectNames();
+        jobAllocation.brandNameFromPage ='testBrand';
+        jobAllocation.updateAdManagerText();
         List<SelectOption>catList=new List<SelectOption>();
         catList.add(new selectOption(category1.Id,category1.Name));
     
@@ -122,7 +132,7 @@ public class Amr_JobAllocation_tst {
        
       //  jobAllocation.listOfSelectedUsername=userStr;
         jobAllocation.reAllocate();
-    
+        jobAllocation.validateJobList();
     }
     }
     
@@ -147,13 +157,15 @@ public class Amr_JobAllocation_tst {
         insert projDetail;
         Amr_CurrencyConversionRate__c currencyConversion = new Amr_CurrencyConversionRate__c(Name='testName',Currency_Unit__c='testUnit',Currency_Unit_To_Euro__c=1234);
         insert currencyConversion;
-        Amr_Category__c category1 = new Amr_Category__c(Name='testCat');
+        MDO_Category__c category1 = new MDO_Category__c(Name='testCat');
         insert category1;
-        Amr_Brand_Positioning__c brandPos = new Amr_Brand_Positioning__c(Category__c=category1.id,Name='testBrandPos');
+        MDO_BrandPosition__c brandPos = new MDO_BrandPosition__c(Name='testBrandPos');
         insert brandpos;
-        Amr_Brand__c brand = new Amr_Brand__c(Brand_Positioning__c=brandPos.Id,Name='CanceltestBrand');
+        MDO_Brand__c brand = new MDO_Brand__c(Name='testBrand');
         insert brand;
-        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',Brodcast_Market__c='broadMarket',Category__c = category1.Id,Brand_Positioning__c =brandPos.Id,Brand__c=brand.Id,ownerId=u.id);
+        
+        MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',Brodcast_Market__c='broadMarket',ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id);
         insert jobDetail;
                         
       
@@ -167,11 +179,11 @@ public class Amr_JobAllocation_tst {
        Test.setCurrentPageReference(new PageReference('Page.AM_Jobsheet_bhupendra')); 
         System.currentPageReference().getParameters().put('id', jobDetail.id);
             
-        Amr_Joballocation_Page jobAllocation = new Amr_Joballocation_Page();   
+        Amr_JobSheetController jobAllocation = new Amr_JobSheetController();   
         
        jobAllocation.jobAlloc=jobAllocation1;
         jobAllocation.jobList=jobDetail;
-        Amr_Joballocation_Page.rapAllocateCheck = false;
+        Amr_JobSheetController.rapAllocateCheck = false;
         jobAllocation.jobId=jobDetail.Id;
         jobAllocation.cancelRapJob();   
     }
@@ -192,13 +204,15 @@ public class Amr_JobAllocation_tst {
         insert projDetail;
         Amr_CurrencyConversionRate__c currencyConversion = new Amr_CurrencyConversionRate__c(Name='testName',Currency_Unit__c='testUnit',Currency_Unit_To_Euro__c=1234);
         insert currencyConversion;
-        Amr_Category__c category1 = new Amr_Category__c(Name='testCat');
+        MDO_Category__c category1 = new MDO_Category__c(Name='testCat');
         insert category1;
-        Amr_Brand_Positioning__c brandPos = new Amr_Brand_Positioning__c(Category__c=category1.id,Name='testBrandPos');
+        MDO_BrandPosition__c brandPos = new MDO_BrandPosition__c(Name='testBrandPos');
         insert brandpos;
-        Amr_Brand__c brand = new Amr_Brand__c(Brand_Positioning__c=brandPos.Id,Name='CAPCanceltestBrand');
+        MDO_Brand__c brand = new MDO_Brand__c(Name='testBrand');
         insert brand;
-        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',Brodcast_Market__c='broadMarket',Category__c = category1.Id,Brand_Positioning__c =brandPos.Id,Brand__c=brand.Id,ownerId=u.id);
+        
+        MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',Brodcast_Market__c='broadMarket',ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id);
         insert jobDetail;
                         
       
@@ -212,12 +226,12 @@ public class Amr_JobAllocation_tst {
        Test.setCurrentPageReference(new PageReference('Page.AM_Jobsheet_bhupendra')); 
         System.currentPageReference().getParameters().put('id', jobDetail.id);
             
-        Amr_Joballocation_Page jobAllocation = new Amr_Joballocation_Page();   
+        Amr_JobSheetController jobAllocation = new Amr_JobSheetController();   
         
        jobAllocation.jobAlloc=jobAllocation1;
         jobAllocation.jobList=jobDetail;
        
-        Amr_Joballocation_Page.rapAllocateCheck = false;
+        Amr_JobSheetController.rapAllocateCheck = false;
         jobAllocation.jobId=jobDetail.Id;
         jobAllocation.cancelJob(); 
     }
@@ -249,14 +263,16 @@ public class Amr_JobAllocation_tst {
         insert projDetail2;
         Amr_CurrencyConversionRate__c currencyConversion = new Amr_CurrencyConversionRate__c(Name='testName',Currency_Unit__c='testUnit',Currency_Unit_To_Euro__c=1234);
         insert currencyConversion;
-        Amr_Category__c category1 = new Amr_Category__c(Name='testCat');
+       MDO_Category__c category1 = new MDO_Category__c(Name='testCat');
         insert category1;
-        Amr_Brand_Positioning__c brandPos = new Amr_Brand_Positioning__c(Category__c=category1.id,Name='testBrandPos');
+        MDO_BrandPosition__c brandPos = new MDO_BrandPosition__c(Name='testBrandPos');
         insert brandpos;
-        Amr_Brand__c brand = new Amr_Brand__c(Brand_Positioning__c=brandPos.Id,Name='CAPCanceltestBrand');
+        MDO_Brand__c brand = new MDO_Brand__c(Name='testBrand');
         insert brand;
-        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = true, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',Brodcast_Market__c='broadMarket',Category__c = category1.Id,Brand_Positioning__c =brandPos.Id,Brand__c=brand.Id,ownerId=u.id);
-         Amr_Job_Details__c jobDetailSec =new Amr_Job_Details__c(Project_Details__c= projDetail2.Id,Job_Cancelled__c = true, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',Brodcast_Market__c='broadMarket',Category__c = category1.Id,Brand_Positioning__c =brandPos.Id,Brand__c=brand.Id,ownerId=u.id);
+        
+        MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = true, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',Brodcast_Market__c='broadMarket',ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id);
+         Amr_Job_Details__c jobDetailSec =new Amr_Job_Details__c(Project_Details__c= projDetail2.Id,Job_Cancelled__c = true, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',Brodcast_Market__c='broadMarket',ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id);
         insert jobDetail;
         insert jobDetailSec;
                         
@@ -271,12 +287,12 @@ public class Amr_JobAllocation_tst {
        Test.setCurrentPageReference(new PageReference('Page.AM_Jobsheet_bhupendra')); 
         System.currentPageReference().getParameters().put('id', jobDetail.id);
             
-        Amr_Joballocation_Page jobAllocation = new Amr_Joballocation_Page();   
+        Amr_JobSheetController jobAllocation = new Amr_JobSheetController();   
         
        jobAllocation.jobAlloc=jobAllocation1;
         jobAllocation.jobList=jobDetail;
        
-        Amr_Joballocation_Page.rapAllocateCheck = false;
+        Amr_JobSheetController.rapAllocateCheck = false;
         jobAllocation.jobId=jobDetail.Id;
         jobAllocation.selectedRAPUser = selectedUser.id;
         jobAllocation.reAllocate();
@@ -307,13 +323,15 @@ public class Amr_JobAllocation_tst {
         insert projDetail2;
         Amr_CurrencyConversionRate__c currencyConversion = new Amr_CurrencyConversionRate__c(Name='testName',Currency_Unit__c='testUnit',Currency_Unit_To_Euro__c=1234);
         insert currencyConversion;
-        Amr_Category__c category1 = new Amr_Category__c(Name='testCat');
+        MDO_Category__c category1 = new MDO_Category__c(Name='testCat');
         insert category1;
-        Amr_Brand_Positioning__c brandPos = new Amr_Brand_Positioning__c(Category__c=category1.id,Name='testBrandPos');
+        MDO_BrandPosition__c brandPos = new MDO_BrandPosition__c(Name='testBrandPos');
         insert brandpos;
-        Amr_Brand__c brand = new Amr_Brand__c(Brand_Positioning__c=brandPos.Id,Name='CAPCanceltestBrand');
+        MDO_Brand__c brand = new MDO_Brand__c(Name='testBrand');
         insert brand;
-        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = true, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',Brodcast_Market__c='broadMarket',Category__c = category1.Id,Brand_Positioning__c =brandPos.Id,Brand__c=brand.Id,ownerId=u.id);
+        
+        MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = true, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',Brodcast_Market__c='broadMarket',ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id);
          
         insert jobDetail;
        
@@ -329,15 +347,15 @@ public class Amr_JobAllocation_tst {
        Test.setCurrentPageReference(new PageReference('Page.AM_Jobsheet_bhupendra')); 
         System.currentPageReference().getParameters().put('id', jobDetail.id);
             
-        Amr_Joballocation_Page jobAllocation = new Amr_Joballocation_Page();   
+        Amr_JobSheetController jobAllocation = new Amr_JobSheetController();   
         
        jobAllocation.jobAlloc=jobAllocation1;
         jobAllocation.jobList=jobDetail;
        
-        Amr_Joballocation_Page.rapAllocateCheck = false;
+        Amr_JobSheetController.rapAllocateCheck = false;
         jobAllocation.jobId=jobDetail.Id;
         jobAllocation.selectedRapName = selectedUser.id;
         
         jobAllocation.reAllocateRAP();
-    }*/
+    }
 }

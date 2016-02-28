@@ -1,11 +1,11 @@
 public with sharing class Amr_RAPJobPortfolioController{
     
-        public List<Amr_Alert__c> alert  {get; set;}
+        //public List<Amr_Alert__c> alert  {get; set;}
         public Amr_Job_Details__c jobDetails {get;set;}
         public Amr_Job_Allocation__c advSearchjobDet {get;set;}
         public Amr_Job_Allocation__c jobAlloc {get;set;}
         public list<Amr_Job_Allocation__c> jobDetailList{get;set;} 
-        public String testNumber{get;set;}
+       // public String testNumber{get;set;}
         public String projLeaderCluster{get;set; }
         public String projLeaderCountry{get;set; }
         public String agencyName{get;set;}
@@ -24,7 +24,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         public String startDate{get;set;}
         public String endDate{get;set;} 
         public Id chosenId {get; set;}
-        public String testing {get; set;}
+       // public String testing {get; set;}
         public Boolean showPageButtonForPriority{get;set;}
         public Boolean showPageButtonForPending{get;set;}
         public Boolean showPageButtonForLive{get;set;}
@@ -46,7 +46,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         public Integer limitSizeForDormantJobs = 100;
         public Integer totalSizeForDormantJobs =0;
         public Integer counterForLiveJobs = 0;
-        public Integer limitSizeForLiveJobs = 100;
+        public Integer limitSizeForLiveJobs = 200;
         public Integer totalSizeForLiveJobs =0;
         public Integer TotalJobs {get; set;}
         public Integer TotalOpenJobs {get; set;}
@@ -94,7 +94,7 @@ public with sharing class Amr_RAPJobPortfolioController{
         public String selectedSortliveOption{get;set;}
         public String selectedAlert {get;set;}
         public String selectedUser {get;set;}
-        public String selectedUser1 {get;set;}
+       // public String selectedUser1 {get;set;}
         transient  String[]  categoryString{get;set;}
     
         public Amr_RAPJobPortfolioController(){
@@ -254,11 +254,11 @@ public with sharing class Amr_RAPJobPortfolioController{
          public List<PieWedgeData> getPieData(){  
             try{
             List<PieWedgeData> data = new List<PieWedgeData>();
-            Integer amrJobDetails = 0;
+            //Integer amrJobDetails = 0;
            // Integer amrJobDetailsUserCount = 0;
             Integer i = 0;
             
-            amrJobDetails   = [SELECT count() FROM  Amr_Job_Details__c limit 50000];
+           // amrJobDetails   = [SELECT count() FROM  Amr_Job_Details__c limit 50000];
            // amrJobDetailsUserCount = [SELECT count() FROM  Amr_Job_Allocation__c Where (AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId limit 50000];
             
            
@@ -626,152 +626,7 @@ public with sharing class Amr_RAPJobPortfolioController{
        
        }
        
-       public PageReference getAdvancedSearchDetail(){
-          
-        try{
-      
-     brodMarket = jobDetails.Brodcast_Market__c;
-       projLeaderCluster = jobDetails.Project_Leader_Cluster__c;
-        projLeaderCountry = jobDetails.Project_Leader_Country__c;
-        agencyName = jobDetails.Lead_Creative_Agency_name__c;
-        stageLogged = jobDetails.Stage_of_Production_Activity__c;
-        jobStared = jobDetails.Job_Started__c;
-        jobReported = jobDetails.Job_Reported__c;
-        jobShared = jobDetails.Job_Shared__c;
-        jobAccepted = jobDetails.Job_Accepted__c;
-        addNumber = jobDetails.AdManagerText__c;
-        projEmail = jobDetails.Unilever_Project_Leader_Email__c;
-        projectName = jobDetails.Project_Details__c;
-        string euroAmount = String.valueOf(jobDetails.Allocated_Budget_euro__c);
-        jobDetailList = new list<Amr_Job_Allocation__c>();
-         
-        string soql ='select AM_Job_Detail__r.Campaign_Name__c,AM_Job_Detail__r.Project_Name_Other__c ,Job_Status__c,User__c,Job_Shared__c,Reported__c,Started__c,Job_Allocated__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__c,AM_Job_Detail__r.Brand_Position__c,AM_Job_Detail__r.Brand_Final__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where Name!=null and AM_Job_Detail__r.Job_Cancelled__c = false';
-        if(String.isNotBlank(loggedInUserId)){
-        
-        soql += ' and ((AM_Job_Detail__r.OwnerId = \''+loggedInUserId+'\' AND User__c = \''+loggedInUserId+'\') or  User__c = \''+loggedInUserId+'\')';
-               system.debug('soql loggedInUserId'+soql);
-        }
-     
-         if (String.isNotBlank(jobDetails.Project_Leader_Cluster__c)){
-         
-               soql += ' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(projLeaderCluster)+'\'';
-              
-        }
-        
-         if(String.isNotBlank(projLeaderCountry)){
-        soql += ' and AM_Job_Detail__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(projLeaderCountry)+'\'';
-               
-        }
-        
-         if(String.isNotBlank(agencyName)){
-        soql += ' and AM_Job_Detail__r.Lead_Creative_Agency_name__c = \''+String.escapeSingleQuotes(agencyName)+'\'';
-               
-         
-         }
-          if(String.isNotBlank(brodMarket)){
-       soql += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(brodMarket)+percent;
-               
-         }
-          if(String.isNotBlank(categoryName) && categoryName != NONE){
-          
-        soql += ' and AM_Job_Detail__r.ProductCategory__r.name = \''+String.escapeSingleQuotes(categoryName)+'\'';
-             
-         }
-          if(String.isNotBlank(brandPos) && brandPos != NONE){
-          
-        soql += ' and AM_Job_Detail__r.Brand_Position__r.name = \''+String.escapeSingleQuotes(brandPos)+'\'';
-               
-         }
-          if(String.isNotBlank(brandName) && brandName != NONE){
-        soql += ' and AM_Job_Detail__r.Brand_Final__r.name = \''+String.escapeSingleQuotes(brandName)+'\'';
-              
-         }
-         if(String.isNotBlank(stageLogged)){
-        soql += ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(stageLogged)+'\'';
-              
-         }
-         if(String.isNotBlank(jobAlloc.Job_Status__c)){
-        soql += ' and Job_Status__c = \''+jobAlloc.Job_Status__c+'\'';
-              
-         }
-         if(String.isNotBlank(jobAlloc.Started__c)){
-        soql += ' and Started__c = \''+jobAlloc.Started__c+'\'';
-              
-         }
-         if(String.isNotBlank(jobAlloc.Reported__c)){
-        soql += ' and Reported__c = \''+jobAlloc.Reported__c+'\'';
-              
-         }
-         system.debug('jobAlloc.Job_Shared__c!!'+jobAlloc.Job_Shared__c);
-         if(String.isNotBlank(jobAlloc.Job_Shared__c)){
-        soql += ' and Job_Shared__c = \''+jobAlloc.Job_Shared__c+'\'';
-              
-         }
-         if(String.isNotBlank(addNumber)){
-        soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+percent;
-              
-         }
-         if(String.isNotBlank(projEmail)){
-        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+percent;
-              
-         }
-         if(String.isNotBlank(projectName)){
-        soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(projectName)+'\'';
-              
-         }
-         if(String.isNotBlank(projectName)){
-        soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
-              
-         }
-         if(String.isNotBlank(jobDetails.Campaign_Name__c)){
-        soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+percent;
-            
-         }
-        
-        if(String.isNotBlank(euroAmount)){
-        //euroAmount = euroAmount.replaceAll('(,)?(.)?(,)?(\'€\')?', '');
-         system.debug('*****euroAmount ******'+euroAmount );
-        Decimal abc = Decimal.valueOf(euroAmount);
-        soql += ' and AM_Job_Detail__r.Allocated_Budget_euro__c = '+abc;
-            
-         }
-         if (String.isNotBlank(startDate)){
-   //start date creation
-               system.debug('inside start date');
-               String[] startDateSplitQuote = startDate.split(' ');
-               String[] startDateSplitSlash = startDateSplitQuote[0].split('/');
-               Integer myIntDate = integer.valueOf(startDateSplitSlash[1]);
-               Integer myIntMonth = integer.valueOf(startDateSplitSlash[0]);
-               Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
-               Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
-               DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
-               startDateFinal = startDateFinal.addDays(1);
-               DateTime refDate2 = startDateFinal.addDays(1);
-               soql += ' and createdDate '+  ' >= '+ startDateFinal.formatGMT(dateFormat) ;
-               soql += ' and createdDate '+  '< '+ refDate2.formatGMT(dateFormat);
-               
-               system.debug('soql created date'+soql);
-    }
-         system.debug('*****soql ******'+soql );
-         //soql+=' limit 120';
-         jobDetailList = Database.query(soql);
-         
-         system.debug('*****soql ******'+soql );
-         system.debug('*** My List values ' + jobDetailList);
-        
-            getPriorityJobs();
-            getPendingJobs();
-            getDormantJobs();
-            getLiveJobs();
-        }
-        catch(exception ex){
-            
-                system.debug(ex.getmessage());
-                return null;
-       }    
-           
-       return null;
-       } 
+   
        
        public Void getPriorityJobs(){
         try{
