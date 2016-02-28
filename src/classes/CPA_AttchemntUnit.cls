@@ -9,7 +9,7 @@ Purpose:
  History                                                             
  -------                                                             
  VERSION  AUTHOR                        DATE              DETAIL                    Description    
- 1.0      Shreyas Mangalvedhekar        21/12/2015      INITIAL DEVELOPMENT          CSR: ++
+ 1.0      Shreyas Mangalvedhekar        21/12/2015      INITIAL DEVELOPMENT          CSR: 
  ***********************************************************************/
 
 public class CPA_AttchemntUnit {
@@ -33,11 +33,11 @@ public class CPA_AttchemntUnit {
             {
                 mapAttachmentType.put(objAttachment.id,'spreadsheet');
                 system.debug('mapAttachmentType--->'+mapAttachmentType);
-            }else if(objAttachment.Name.startswith('PWO') && objAttachment.ContentType.contains(ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger )){
+            }else if(objAttachment.Name.startswith('PWO') && objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger )){
                 system.debug('objAttachment-->'+objAttachment);
-                mapAttachmentType.put(objAttachment.id,ConstantsForContractingAppClasses.PDF);
-            }else if(objAttachment.Name.startswith('CR') && objAttachment.ContentType.contains(ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(label.CAP_ParentId_For_Attachment_CR)){
-               mapAttachmentType.put(objAttachment.id,ConstantsForContractingAppClasses.PDF);
+                mapAttachmentType.put(objAttachment.id,CPA_ConstantsForContractingAppClasses.PDF);
+            }else if(objAttachment.Name.startswith('CR') && objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)){
+               mapAttachmentType.put(objAttachment.id,CPA_ConstantsForContractingAppClasses.PDF);
                
                 
             }else {
@@ -133,7 +133,7 @@ public class CPA_AttchemntUnit {
                         
                                             
                     }
-                    if(mapAttachmentType.get(objAttachment.id) == ConstantsForContractingAppClasses.PDF){
+                    if(mapAttachmentType.get(objAttachment.id) == CPA_ConstantsForContractingAppClasses.PDF){
                         system.debug('objAttachment--->'+objAttachment);
                         objCR.chk_Contract_Attached__c =true;
                         system.debug('objpwo --> '+ objCR);
@@ -192,7 +192,7 @@ public class CPA_AttchemntUnit {
                         
                                             
                     }
-                    if(mapAttachmentType.get(objAttachment.id) == ConstantsForContractingAppClasses.PDF){
+                    if(mapAttachmentType.get(objAttachment.id) == CPA_ConstantsForContractingAppClasses.PDF){
                         system.debug('objAttachment--->'+objAttachment);
                         objPWO.chk_PDF_Attached__c =true;
                         system.debug('objpwo --> '+ objPWO);
@@ -217,10 +217,10 @@ public class CPA_AttchemntUnit {
             
             string srtTemp = objAtta.ParentId;
             if(objAtta.Name.startswith('Commercial')) {
-                if( srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger)) {
+                if( srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger)) {
                     setPWOID.add(objAtta.ParentId);
                 }   
-                else if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_CR)){
+                else if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)){
                     setCRID.add(objAtta.ParentId);
                 }
             
@@ -284,10 +284,10 @@ public class CPA_AttchemntUnit {
             
             string srtTemp = objAtta.ParentId;
         
-            if( srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger) && objAtta.Name.startswith('PWO')) {
+            if( srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger) && objAtta.Name.startswith('PWO')) {
                 setPWOID.add(objAtta.ParentId);
             }   
-            else if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_CR) && objAtta.Name.startswith('CR')){
+            else if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR) && objAtta.Name.startswith('CR')){
                 setCRID.add(objAtta.ParentId);
             }
         
@@ -387,9 +387,9 @@ public static void ReadFile(Attachment att)    {
                         }
                         string srtTemp = att.ParentId;
                         system.debug('srtTemp--->'+srtTemp);
-                        if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger)){
+                        if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger)){
                             a.Project_Work_Order__c = att.ParentId;
-                        }else if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_CR)){
+                        }else if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)){
                             a.CR__c = att.ParentId;
                         }
                         

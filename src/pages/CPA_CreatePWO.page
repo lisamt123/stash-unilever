@@ -1,4 +1,4 @@
-<apex:page Controller="SelectRecordTypeController"  >
+<apex:page Controller="CPA_SelectRecordTypeController"  >
 <style>
 .myTable { background-color:#eee;border-collapse:collapse; }
 .myTable th { background-color:#fff;color:white;width:50%; }

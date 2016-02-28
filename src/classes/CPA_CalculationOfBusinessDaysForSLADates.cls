@@ -2,9 +2,10 @@
  * @author        : Dinesh Girase
  * @date          : 13/01/2016
  * @description   : This Class is used to add business days to current date for expected SLA date calculation
+ * @Modified      : Modified class name against Unilevers coding standards
  */
  
-public class calculationOfBusinessDaysForSLADates{
+public class CPA_CalculationOfBusinessDaysForSLADates{
 
     //Holiday logic is pending
     
@@ -59,7 +60,7 @@ public class calculationOfBusinessDaysForSLADates{
     * Description : This method creates Internal PWO ID when PWORF is Accepted and store it on PWORF.
     */
    public static void generateInternalPWOID(List<CPA_PWORF__c> oldPWORFList, List<CPA_PWORF__c> newPWORFList){
-       if(newPWORFList[0].pkl_Status__c != null && (newPWORFList[0].pkl_Status__c.equalsIgnoreCase(ConstantsForContractingAppClasses.ACCEPTED)|| newPWORFList[0].pkl_Status__c=='Auto Accepted')  && (!oldPWORFList[0].pkl_Status__c.equalsIgnoreCase(ConstantsForContractingAppClasses.ACCEPTED)|| oldPWORFList[0].pkl_Status__c!='Auto Accepted')){
+       if(newPWORFList[0].pkl_Status__c != null && (newPWORFList[0].pkl_Status__c.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.ACCEPTED)|| newPWORFList[0].pkl_Status__c=='Auto Accepted')  && (!oldPWORFList[0].pkl_Status__c.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.ACCEPTED)|| oldPWORFList[0].pkl_Status__c!='Auto Accepted')){
             List<CPA_PWORF__c> pworfs = [SELECT txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newPWORFList[0].ID];
             newPWORFList[0].txt_Internal_PWO_ID__c = pwoInternalCountLogic(false);           
         }

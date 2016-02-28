@@ -20,7 +20,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
         }
         List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem where ProcessInstance.TargetObjectId IN:settempPWOID ];
         for (Integer i = 0; i < newPWOList.size(); i++) {
-            if((PWOOldList[i].pkl_Status__c  == ConstantsForContractingAppClasses.SUBMITTED || PWOOldList[i].pkl_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED || PWOOldList[i].CNF_Status__c  == ConstantsForContractingAppClasses.SUBMITTED || PWOOldList[i].CNF_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED || PWOOldList[i].TNF_Status__c  == ConstantsForContractingAppClasses.SUBMITTED || PWOOldList[i].TNF_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED) && (newPWOList[i].pkl_Status__c == 'Cancelled' || newPWOList[i].pkl_Status__c == 'Request For Termination' || newPWOList[i].chk_isCNFcancelled__c || newPWOList[i].chk_isTNFcancelled__c)){
+            if((PWOOldList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || PWOOldList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED || PWOOldList[i].CNF_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || PWOOldList[i].CNF_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED || PWOOldList[i].TNF_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || PWOOldList[i].TNF_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED) && (newPWOList[i].pkl_Status__c == 'Cancelled' || newPWOList[i].pkl_Status__c == 'Request For Termination' || newPWOList[i].chk_isCNFcancelled__c || newPWOList[i].chk_isTNFcancelled__c)){
             system.debug('PWOOldList[i].pkl_Status__c>>'+PWOOldList[i].pkl_Status__c);
                 system.debug('newPWOList[i].pkl_Status__c>>'+PWOOldList[i].pkl_Status__c);
                 
@@ -51,7 +51,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
         List<CPA_PWORF__c> lstTemp = new List<CPA_PWORF__c>();
         
          for (Integer i = 0; i < newPWOList.size(); i++) {
-            if (((oldPWOList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.SUBMITTED &&   newPWOList[i].pkl_Status__c == ConstantsForContractingAppClasses.SUBMITTED)|| (oldPWOList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.RESUBMITTED &&   newPWOList[i].pkl_Status__c == ConstantsForContractingAppClasses.RESUBMITTED)|| (oldPWOList[i].CNF_Status__c  <> ConstantsForContractingAppClasses.SUBMITTED &&   newPWOList[i].CNF_Status__c == ConstantsForContractingAppClasses.SUBMITTED)|| (oldPWOList[i].CNF_Status__c  <> ConstantsForContractingAppClasses.RESUBMITTED &&   newPWOList[i].CNF_Status__c == ConstantsForContractingAppClasses.RESUBMITTED) || (oldPWOList[i].TNF_Status__c  <> ConstantsForContractingAppClasses.SUBMITTED &&   newPWOList[i].TNF_Status__c == ConstantsForContractingAppClasses.SUBMITTED)|| (oldPWOList[i].TNF_Status__c  <> ConstantsForContractingAppClasses.RESUBMITTED &&   newPWOList[i].TNF_Status__c == ConstantsForContractingAppClasses.RESUBMITTED)  ) &&  !isSubmitted) {
+            if (((oldPWOList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newPWOList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED)|| (oldPWOList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newPWOList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED)|| (oldPWOList[i].CNF_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newPWOList[i].CNF_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED)|| (oldPWOList[i].CNF_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newPWOList[i].CNF_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED) || (oldPWOList[i].TNF_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newPWOList[i].TNF_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED)|| (oldPWOList[i].TNF_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newPWOList[i].TNF_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED)  ) &&  !isSubmitted) {
                  
                 // create the new approval request to submit
                 Approval.ProcessSubmitRequest req = new Approval.ProcessSubmitRequest();
@@ -106,7 +106,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                 for(CPA_project_work_order__c objPWo : newmapPWO){
                     CPA_PWORF__c objPWORFTemp = mapPWORF.get(objPWo.PWORF_ID__c);                 
                     if(objPWORFTemp !=null){
-                        if(objPWo.RecordTypeid == label.Lbl_PWO_RecordTypeId){
+                        if(objPWo.RecordTypeid == label.CPA_PWO_RecordTypeId){
                             if(objPWo.mpkl_Project_Phases__c == null && objPWORFTemp.mpkl_Project_Phases__c !=null)
                                 objPWo.mpkl_Project_Phases__c = objPWORFTemp.mpkl_Project_Phases__c;
                             if(objPWo.pkl_Region__c == null && objPWORFTemp.pkl_Region__c !=null)
@@ -155,7 +155,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                             
                             
                             
-                        }else if(objPWo.RecordTypeid == label.Lbl_PWO_CNF_RecordTypeId){
+                        }else if(objPWo.RecordTypeid == label.CPA_PWO_CNF_RecordTypeId){
                             if(objPWo.txt_CNF_Unilever_Clarity_ID__c == null && objPWo.txt_Unilever_Reference__c !=null) 
                                 objPWo.txt_CNF_Unilever_Clarity_ID__c = objPWo.txt_Unilever_Reference__c;
                             if(objPWo.lkp_CNF_Unilever_budget_approver__c == null && objPWo.lkp_Unilever_budget_approver__c !=null) 
@@ -170,7 +170,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                                 objPWo.num_CNF_Planned_total_charges__c  = objPWo.num_Total_work_order_charge__c;
                             if(objPWo.dt_CNF_Planned_PWO_End_Date__c   == null && objPWo.dt_Expected_End_date__c !=null)
                                 objPWo.dt_CNF_Planned_PWO_End_Date__c  = objPWo.dt_Expected_End_date__c;
-                        }else if(objPWo.RecordTypeid == label.Lbl_PWO_TNF_RecordTypeId){
+                        }else if(objPWo.RecordTypeid == label.CPA_PWO_TNF_RecordTypeId){
                             if(objPWo.txt_TNF_Unilever_Clarity_ID__c == null && objPWo.txt_Unilever_Reference__c !=null) 
                                 objPWo.txt_TNF_Unilever_Clarity_ID__c = objPWo.txt_Unilever_Reference__c;
                             if(objPWo.num_TNF_Planned_charges__c   == null && objPWo.num_Total_work_order_charge__c !=null)
@@ -279,7 +279,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
         system.debug('pwos.size()>>'+pwos.size());
         if(pwos.size()>0){
         system.debug('inside if');
-            newPWO[0].txt_Internal_PWO_ID__c = calculationOfBusinessDaysForSLADates.pwoInternalCountLogic(true);
+            newPWO[0].txt_Internal_PWO_ID__c = CPA_CalculationOfBusinessDaysForSLADates.pwoInternalCountLogic(true);
        }else{
             List<CPA_PWORF__c> pworfs = [SELECT txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newPWO[0].PWORF_ID__c];
             if(pworfs[0].txt_Internal_PWO_ID__c != null){

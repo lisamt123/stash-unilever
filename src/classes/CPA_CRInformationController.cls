@@ -30,69 +30,69 @@ global class CPA_CRInformationController {
         }
         if((crRec.pkl_Status__c == 'Saved')|| !callFromVF){
             if(crRec.chk_Contract_Excel_Attached__c  != true)  
-                 RequiredFieldMap.put( 'Please attach Commercial CSV , with filename prefix with Commercial' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Please attach Commercial CSV , with filename prefix with Commercial' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
              if(crRec.chk_Contract_Attached__c  != true)
-                 RequiredFieldMap.put( 'Please attach Contract PDF , with filename prefix with CR' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Please attach Contract PDF , with filename prefix with CR' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txt_Accenture_Project_Manager__c  == null)  
-                 RequiredFieldMap.put( 'Accenture Project Manager' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Accenture Project Manager' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.mpkl_Change_Record_history__c  == null)  
-                 RequiredFieldMap.put( 'Change Record history' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Change Record history' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txt_Change_Record_number__c  == null)  
-                 RequiredFieldMap.put( 'Change Record number ' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Change Record number ' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.dt_CR_End_date__c  == null)  
-                 RequiredFieldMap.put( 'CR End date' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'CR End date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.dt_CR_Start_Date__c  == null)  
-                 RequiredFieldMap.put( 'CR Start Date' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'CR Start Date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.pkl_Currency__c  == null)  
-                 RequiredFieldMap.put( 'Currency' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Currency' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.dt_Date_raised__c  == null)  
-                 RequiredFieldMap.put( 'Date raised' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Date raised' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.num_Estimated_Man_days_of_CR__c  == null)  
-                 RequiredFieldMap.put( 'Estimated Man-days of CR' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Estimated Man-days of CR' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.pec_Estimated_Off_shore__c  == null)  
-                 RequiredFieldMap.put( 'Estimated Off-shore %' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Estimated Off-shore %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.pec_Estimated_On_shore__c  == null)  
-                 RequiredFieldMap.put( 'Estimated On-shore %' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Estimated On-shore %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.num_Estimated_Value_of_CR__c  == null)  
-                 RequiredFieldMap.put( 'Estimated Value of CR' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Estimated Value of CR' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.pec_Expense__c  == null)  
-                 RequiredFieldMap.put( 'Expense %' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Expense %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.num_Expense_charges_of_CR__c  == null)  
-                 RequiredFieldMap.put( 'Expense charges of CR' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Expense charges of CR' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.pkl_Phase_change_record_raised__c  == null)  
-                 RequiredFieldMap.put( 'Phase change record raised' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Phase change record raised' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.pkl_Project_Phases__c  == null)  
-                 RequiredFieldMap.put( 'Project Phases' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Project Phases' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
            /* if(crRec.PWO_number__c  == null)  
-                 RequiredFieldMap.put( 'PWO number' ,ConstantsForContractingAppClasses.MANDATORY);*/
+                 RequiredFieldMap.put( 'PWO number' ,CPA_ConstantsForContractingAppClasses.MANDATORY);*/
             if(crRec.Region_impacted__c  == null)  
-                 RequiredFieldMap.put( 'Region impacted' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Region impacted' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.pkl_Status__c  == null)  
-                 RequiredFieldMap.put( 'Status' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Status' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.num_Target_Blend_Rate__c  == null)  
-                 RequiredFieldMap.put( 'Target Blend Rate' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Target Blend Rate' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txt_Title_of_change__c  == null)  
-                 RequiredFieldMap.put( 'Title of change' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Title of change' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
            /* if(crRec.num_Total_charge_of_CR__c  == null)  
-                 RequiredFieldMap.put( 'Total charge of CR' ,ConstantsForContractingAppClasses.MANDATORY);*/  // Commentd by Shreyas M on 22nf Feb 2016, This filed is Read Only and value will be populated after Submitaion of CR
+                 RequiredFieldMap.put( 'Total charge of CR' ,CPA_ConstantsForContractingAppClasses.MANDATORY);*/  // Commentd by Shreyas M on 22nf Feb 2016, This filed is Read Only and value will be populated after Submitaion of CR
             if(crRec.lkp_Unilever_budget_approver__c  == null)  
-                 RequiredFieldMap.put( 'Unilever budget approver' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Unilever budget approver' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.lkp_Unilever_content_approver__c  == null)  
-                 RequiredFieldMap.put( 'Unilever content approver' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Unilever content approver' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txta_Unilever_Project_Name__c  == null)  
-                 RequiredFieldMap.put( 'Unilever Project Name' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Unilever Project Name' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txt_Unilever_Reference__c  == null)  
-                 RequiredFieldMap.put( 'Unilever Reference' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Unilever Reference' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.pec_Variance__c  == null)  
-                 RequiredFieldMap.put( 'Variance %' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Variance %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.num_Varied_Target_Blend_Rate__c  == null)  
-                 RequiredFieldMap.put( 'Varied Target Blend Rate' ,ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Varied Target Blend Rate' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txt_Other_Currency__c  == null && crRec.pkl_Currency__c =='OTHER') 
-                RequiredFieldMap.put( 'Other Currency' ,ConstantsForContractingAppClasses.MANDATORY);
+                RequiredFieldMap.put( 'Other Currency' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txt_Other_Phase_change_record_raised__c  == null && crRec.pkl_Phase_change_record_raised__c == 'Other') 
-                RequiredFieldMap.put( 'Other Phase change record raised' ,ConstantsForContractingAppClasses.MANDATORY);
+                RequiredFieldMap.put( 'Other Phase change record raised' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txt_Other_Project_Phases__c  == null && crRec.pkl_Project_Phases__c == 'Other') 
-                RequiredFieldMap.put( 'Other Project Phases' ,ConstantsForContractingAppClasses.MANDATORY);
+                RequiredFieldMap.put( 'Other Project Phases' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
 
 
         }

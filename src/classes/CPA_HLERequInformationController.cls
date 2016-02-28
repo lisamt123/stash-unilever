@@ -28,100 +28,100 @@ global class CPA_HLERequInformationController {
         }
         if((hleRec.pkl_Status__c == 'Saved'  || !callFromVF)){
             if(hleRec.txt_Assumptions__c  == null) 
-                 RequiredFieldMap.put('Assumptions',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Assumptions',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Background__c  == null) 
-                 RequiredFieldMap.put('Background',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Background',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.ph_UBPR_Contact_No__c  == null) 
-                 RequiredFieldMap.put('UBPR Contact Number',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('UBPR Contact Number',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.ph_UIOS_Contact_No__c  == null) 
-                 RequiredFieldMap.put('UIOS Contact Number',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('UIOS Contact Number',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.ph_AAL_Contact_No__c  == null) 
-                 RequiredFieldMap.put('AAL Contact Number',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('AAL Contact Number',CPA_ConstantsForContractingAppClasses.MANDATORY);
              
              
             if(hleRec.dt_Date_raised__c == null || hleRec.dt_Date_raised__c < system.today()) 
                  RequiredFieldMap.put('Date raised','It is Mandatory and should not be before today date');
             if(hleRec.txt_Dependencies__c  == null) 
-                 RequiredFieldMap.put('Dependencies',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Dependencies',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.eml_UBPR_Email__c  == null) 
-                 RequiredFieldMap.put('UBPR Email',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('UBPR Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.eml_UIOS_Email__c  == null) 
-                 RequiredFieldMap.put('UIOS Email',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('UIOS Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.eml_AAL_Email__c  == null) 
-                 RequiredFieldMap.put('AAL Email',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('AAL Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_UBPR_Name__c  == null) 
-                 RequiredFieldMap.put('UBPR Name',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('UBPR Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_UIOS_Name__c  == null) 
-                 RequiredFieldMap.put('UIOS Name',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('UIOS Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_AAL_Name__c  == null) 
-                 RequiredFieldMap.put('AAL Name',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('AAL Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.dt_Planned_end_date__c  == null || hleRec.dt_Planned_end_date__c < hleRec.dt_Planned_start_date__c) 
                  RequiredFieldMap.put('Planned End Date','It is Mandatory and should not be before Planned Start Date');
             if(hleRec.dt_Planned_start_date__c  == null || hleRec.dt_Planned_start_date__c < system.today()) 
                  RequiredFieldMap.put('Planned Start Date','It is Mandatory and should not be before today date');
             if(hleRec.txt_Project_description_specification__c  == null) 
-                 RequiredFieldMap.put('Project Description Specification',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Project Description Specification',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Project_type__c  == null) 
-                 RequiredFieldMap.put('Project Type',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Project Type',CPA_ConstantsForContractingAppClasses.MANDATORY);
             /*
             if(hleRec.txt_Request_ID__c  == null) 
-                 RequiredFieldMap.put('Request ID',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Request ID',CPA_ConstantsForContractingAppClasses.MANDATORY);
              */
             if(hleRec.txt_Risks_and_issues__c  == null) 
-                 RequiredFieldMap.put('Risks And Issues',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Risks And Issues',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Software_Licensing_requirements__c  == null) 
-                 RequiredFieldMap.put('Software Licensing Requirements',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Software Licensing Requirements',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Support_impact__c  == null) 
-                 RequiredFieldMap.put('Support Impact',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Support Impact',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Technologies__c  == null) 
-                 RequiredFieldMap.put('Technologies',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Technologies',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Title__c  == null) 
-                 RequiredFieldMap.put('Title',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Title',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_UL_reference__c  == null) 
-                 RequiredFieldMap.put('UL Reference',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('UL Reference',CPA_ConstantsForContractingAppClasses.MANDATORY);
              
             //jp- Adding to check funding 
             if(hleRec.PFS_Is_there_approved_funding_for_this__c  == null) 
-                 RequiredFieldMap.put('Funding approved?',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Funding approved?',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.PFS_Is_there_approved_funding_for_this__c  == 'Yes' && hleRec.mpkl_PFS_If_yes_what_is_the_source__c == null ) 
-                 RequiredFieldMap.put('If yes, what is the source?',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('If yes, what is the source?',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.PFS_Is_there_approved_funding_for_this__c  == 'Yes' && hleRec.mpkl_PFS_If_yes_what_is_the_source__c == 'Other' &&  hleRec.txt_Other_Project_funding_Source__c == null) 
-                 RequiredFieldMap.put('Other Project funding Source',ConstantsForContractingAppClasses.MANDATORY);  
+                 RequiredFieldMap.put('Other Project funding Source',CPA_ConstantsForContractingAppClasses.MANDATORY);  
             
              
            
-        }if(hleRec.pkl_Status__c == ConstantsForContractingAppClasses.ACCEPTED && hleRec.Estimate_Type__c == null && callFromVF){
+        }if(hleRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.ACCEPTED && hleRec.Estimate_Type__c == null && callFromVF){
             estimateFlag = 'Please select Estimate Type, wherther it will be High Level Estimation(HLE)/Ball Park Estimation(BPE) in Estimate Type Section';
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, estimateFlag ));
-        }else if(hleRec.pkl_Status__c == ConstantsForContractingAppClasses.ACCEPTED && hleRec.Estimate_Type__c == 'BPE' && callFromVF){
+        }else if(hleRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.ACCEPTED && hleRec.Estimate_Type__c == 'BPE' && callFromVF){
             estimateFlag = 'Please submit Ball Park Estimation';
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, estimateFlag ));
-        }else if(hleRec.pkl_Status__c == ConstantsForContractingAppClasses.ACCEPTED && hleRec.Estimate_Type__c == 'HLE' && callFromVF){
+        }else if(hleRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.ACCEPTED && hleRec.Estimate_Type__c == 'HLE' && callFromVF){
             estimateFlag = 'Please submit High Level Estimation';
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, estimateFlag ));
         }
-        if((hleRec.recordtypeid == label.CPA_BPE_Recordtype && hleRec.pkl_Status__c == ConstantsForContractingAppClasses.ACCEPTED)){
-            if(hleRec.txt_BPE_Accenture_Demand_ID__c   == null)  RequiredFieldMap.put('BPE  Accenture Demand ID',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.txt_BPE_Unilever_Demand_ID__c  == null)  RequiredFieldMap.put('BPE Unilever Demand ID',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.txt_BPE_Title__c   == null)  RequiredFieldMap.put('BPE Title',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.txt_BPE_Accenture_Project_Manager__c   == null)  RequiredFieldMap.put('BPE Accenture project manager',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.num_BPE_Effort_in_man_days__c   == null)  RequiredFieldMap.put('BPE Effort in man-days',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.txt_BPE_Key_assumptions__c   == null)  RequiredFieldMap.put('BPE Key assumptions',ConstantsForContractingAppClasses.MANDATORY);
-        }else if((hleRec.recordtypeid == label.CPA_HLE_Recordtype && hleRec.pkl_Status__c == ConstantsForContractingAppClasses.ACCEPTED )){
-            if(hleRec.txt_HLE_Accenture_estimated_project_char__c  == null)  RequiredFieldMap.put('HLE Accenture estimated project charge*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.txt_HLE_Accenture_reference__c  == null)  RequiredFieldMap.put('HLE Accenture reference*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.txt_HLE_Assumptions_Risks_Qualifying__c  == null)  RequiredFieldMap.put('HLE Assumption/Risks/Qualifying Info*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.txt_HLE_Commercial_caveats__c  == null)  RequiredFieldMap.put('HLE Commercial caveats*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.ph_HLE_PB_Contact_No__c  == null)  RequiredFieldMap.put('HLE Contact No*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.eml_HLE_PB_Email__c  == null)  RequiredFieldMap.put('HLE Email*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.num_HLE_Estimated_man_days__c  == null)  RequiredFieldMap.put('HLE Estimated man-days*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.txt_HLE_PB_Name__c  == null)  RequiredFieldMap.put('HLE Name*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.dt_HLE_Preparation_date__c   == null)  RequiredFieldMap.put('HLE Preparation date*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.txt_HLE_Project_charging_mechanism__c   == null)  RequiredFieldMap.put('HLE Project charging mechanism*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.HLE_Proposed_high_level_plan_timelines__c  == null)  RequiredFieldMap.put('HLE Proposed high level plan&timelines*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.txt_HLE_Scope__c  == null)  RequiredFieldMap.put('HLE Scope*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.txt_HLE_Skill_Resources_Blend_rate__c  == null)  RequiredFieldMap.put('HLE Skill / Resources / Blend rate*',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.txt_HLE_Solution_overview_approach__c   == null)  RequiredFieldMap.put('HLE Solution overview/approach*',ConstantsForContractingAppClasses.MANDATORY);
+        if((hleRec.recordtypeid == label.CPA_BPE_Recordtype && hleRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.ACCEPTED)){
+            if(hleRec.txt_BPE_Accenture_Demand_ID__c   == null)  RequiredFieldMap.put('BPE  Accenture Demand ID',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.txt_BPE_Unilever_Demand_ID__c  == null)  RequiredFieldMap.put('BPE Unilever Demand ID',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.txt_BPE_Title__c   == null)  RequiredFieldMap.put('BPE Title',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.txt_BPE_Accenture_Project_Manager__c   == null)  RequiredFieldMap.put('BPE Accenture project manager',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.num_BPE_Effort_in_man_days__c   == null)  RequiredFieldMap.put('BPE Effort in man-days',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.txt_BPE_Key_assumptions__c   == null)  RequiredFieldMap.put('BPE Key assumptions',CPA_ConstantsForContractingAppClasses.MANDATORY);
+        }else if((hleRec.recordtypeid == label.CPA_HLE_Recordtype && hleRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.ACCEPTED )){
+            if(hleRec.txt_HLE_Accenture_estimated_project_char__c  == null)  RequiredFieldMap.put('HLE Accenture estimated project charge*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.txt_HLE_Accenture_reference__c  == null)  RequiredFieldMap.put('HLE Accenture reference*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.txt_HLE_Assumptions_Risks_Qualifying__c  == null)  RequiredFieldMap.put('HLE Assumption/Risks/Qualifying Info*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.txt_HLE_Commercial_caveats__c  == null)  RequiredFieldMap.put('HLE Commercial caveats*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.ph_HLE_PB_Contact_No__c  == null)  RequiredFieldMap.put('HLE Contact No*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.eml_HLE_PB_Email__c  == null)  RequiredFieldMap.put('HLE Email*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.num_HLE_Estimated_man_days__c  == null)  RequiredFieldMap.put('HLE Estimated man-days*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.txt_HLE_PB_Name__c  == null)  RequiredFieldMap.put('HLE Name*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.dt_HLE_Preparation_date__c   == null)  RequiredFieldMap.put('HLE Preparation date*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.txt_HLE_Project_charging_mechanism__c   == null)  RequiredFieldMap.put('HLE Project charging mechanism*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.HLE_Proposed_high_level_plan_timelines__c  == null)  RequiredFieldMap.put('HLE Proposed high level plan&timelines*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.txt_HLE_Scope__c  == null)  RequiredFieldMap.put('HLE Scope*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.txt_HLE_Skill_Resources_Blend_rate__c  == null)  RequiredFieldMap.put('HLE Skill / Resources / Blend rate*',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.txt_HLE_Solution_overview_approach__c   == null)  RequiredFieldMap.put('HLE Solution overview/approach*',CPA_ConstantsForContractingAppClasses.MANDATORY);
  
         }           
 

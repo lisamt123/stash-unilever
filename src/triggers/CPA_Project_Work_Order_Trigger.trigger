@@ -29,4 +29,6 @@ trigger CPA_Project_Work_Order_Trigger on CPA_project_work_order__c (before inse
     if(Trigger.isDelete && Trigger.isBefore){ //for before delete trigger
         CPA_Project_Work_Order_TriggerUtil.DOntDelete(trigger.old);
      }
+     
+    
 }

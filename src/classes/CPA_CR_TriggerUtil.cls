@@ -21,7 +21,7 @@ public class CPA_CR_TriggerUtil{
         List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem where ProcessInstance.TargetObjectId IN:settempCRID ];
 
         for (Integer i = 0; i < newCRList.size(); i++) {
-            if((CROldList[i].pkl_Status__c  == ConstantsForContractingAppClasses.SUBMITTED  || CROldList[i].pkl_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED) && (newCRList[i].pkl_Status__c == 'Cancelled')){
+            if((CROldList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED  || CROldList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED) && (newCRList[i].pkl_Status__c == 'Cancelled')){
               for(ProcessInstanceWorkitem piwi:piwiList){
                     if(!isSubmitted ){ 
                         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
@@ -45,7 +45,7 @@ public class CPA_CR_TriggerUtil{
     {
              for (Integer i = 0; i < newCRList.size(); i++) {
             
-        if ((oldCRList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.SUBMITTED &&   newCRList[i].pkl_Status__c == ConstantsForContractingAppClasses.SUBMITTED)|| (oldCRList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.RESUBMITTED &&   newCRList[i].pkl_Status__c == ConstantsForContractingAppClasses.RESUBMITTED) &&  !isSubmitted) {
+        if ((oldCRList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newCRList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED)|| (oldCRList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newCRList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED) &&  !isSubmitted) {
              
             // create the new approval request to submit
             Approval.ProcessSubmitRequest req = new Approval.ProcessSubmitRequest();
@@ -225,7 +225,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
     { system.debug('newCR>>>>>>>>>'+newCR);
         List<CPA_CR__c> cancelsetId = new List<CPA_CR__c>();
         for (Integer i = 0; i < newCR.size(); i++) {
-            if((oldCRList[i].pkl_Status__c  == ConstantsForContractingAppClasses.SUBMITTED || oldCRList[i].pkl_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED) && newCR[i].pkl_Status__c == 'Cancelled'){
+            if((oldCRList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || oldCRList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED) && newCR[i].pkl_Status__c == 'Cancelled'){
                 cancelsetId.add(newCR[i]);  
             }       
         }
@@ -243,7 +243,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
         map<Id,CPA_Project_Work_Order__c>mapPWO = new map<ID,CPA_Project_Work_Order__c>();
         
         for(CPA_CR__c objCR : newCR.values()){
-            if(objCR.pkl_Status__c == ConstantsForContractingAppClasses.SUBMITTED && oldCRList.get(objCR.Id).pkl_Status__c <> ConstantsForContractingAppClasses.SUBMITTED){
+            if(objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED && oldCRList.get(objCR.Id).pkl_Status__c <> CPA_ConstantsForContractingAppClasses.SUBMITTED){
                 lstCR.add(objCR);
                 if(!objCR.chk_isStandalone_CR__c) setPWOID.add(objCR.CPA_Project_Work_Order__c);
             }
@@ -307,9 +307,9 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
         List<CPA_CR__c> ListnewCR  = new List<CPA_CR__c>();
         map<Id,Id> mapPWO = new map<ID,Id>();
         for(CPA_CR__c objCR : newCNFList){
-            if(objCR.RecordtypeId == label.Lbl_Standalone_CR_RecordTypeId){             
+            if(objCR.RecordtypeId == label.CPA_Standalone_CR_RecordTypeId){             
                 CPA_project_work_order__c newPWO =new CPA_project_work_order__c();
-                newPWO.RecordtypeId = label.Lbl_Standalone_PWO_RecordTypeId;
+                newPWO.RecordtypeId = label.CPA_Standalone_PWO_RecordTypeId;
                 newPWO.lkp_Unilever_budget_approver__c = objCR.lkp_Unilever_budget_approver__c;
                 newPWO.lkp_Unilever_content_approver__c  = objCR.lkp_Unilever_content_approver__c;
                 newPWO.txt_Unilever_Project_Name__c = objCR.txta_Unilever_Project_Name__c;

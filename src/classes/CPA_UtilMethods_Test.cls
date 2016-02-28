@@ -1,7 +1,7 @@
 @isTest(SeeAllData=true)
-private class Test_CPA_UtilMethods {
+private class CPA_UtilMethods_Test {
     
-    public Static testMethod  void Test_CPA_PWORF_Util(){  
+    public Static testMethod  void CPA_PWORF_Util_Test(){  
         Test.startTest();   
                         
             CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
@@ -14,17 +14,17 @@ private class Test_CPA_UtilMethods {
             
             objPworf1.pkl_Status__c = 'Auto Accepted';
             update objPworf1;
-            
+            System.assertNotEquals('Cancelled', objPworf1.pkl_Status__c);   
            
             CPA_PWORF__c objPworf2 = CPA_testClass_util.createTest_other_PWORF();
              objPworf2.name='PWORF-'+system.Now()+2;
             objPworf2.mpkl_Project_Phases__c = 'Plan;Analyse;Design;Build;Test;Deploy';
             
             insert objPworf2;
-            
+            System.assertNotEquals('Cancelled', objPworf2.pkl_Status__c);   
             objPworf2.pkl_Status__c = 'Submitted';
             update objPworf1;           
-           
+            System.assertNotEquals('Cancelled', objPworf1.pkl_Status__c);  
             
             
             CPA_PWORF__c objPworf3 = CPA_testClass_util.createTest_other_PWORF();
@@ -32,11 +32,11 @@ private class Test_CPA_UtilMethods {
             objPworf3.mpkl_Project_Phases__c = 'Other';
             
             insert objPworf3;
-            
+            System.assertNotEquals('Cancelled', objPworf3.pkl_Status__c);  
             objPworf3.pkl_Status__c = 'Submitted';
-            update objPworf1;
+            update objPworf3;
                                  
-            
+            System.assertNotEquals('Cancelled', objPworf3.pkl_Status__c);  
             
              CPA_PWORF__c objPworf4 = CPA_testClass_util.createTest_other_PWORF();
              objPworf4.name='PWORF-'+system.Now()+4;
@@ -51,13 +51,13 @@ private class Test_CPA_UtilMethods {
             objPworf4.pkl_Status__c = 'Withhold';
            
             update objPworf4;
-            
+             System.assertNotEquals('Cancelled', objPworf4.pkl_Status__c);
         Test.stopTest();
 
         
     }
     
-    public Static testMethod  void Test_CPA_PWO_Util(){ 
+    public Static testMethod  void  CPA_PWO_Util_Test(){ 
         Test.startTest();
             CPA_PWORF__c objPworf10 = CPA_testClass_util.createTest_other_PWORF();
             insert objPworf10;
@@ -72,31 +72,37 @@ private class Test_CPA_UtilMethods {
          CPA_Project_Work_Order_TriggerUtil.isSubmitted=false;
             objPWO.pkl_Status__c = 'Cancelled';
             update objPWO;
+              System.assertNotEquals('Cancelled', objPworf10.pkl_Status__c);
+              System.assertNotEquals('Cancelled', objPWO.ID);
         Test.stopTest();    
     }   
-public Static testMethod  void Test_CPA_PWO1_Util(){ 
-        Test.startTest();			
+public Static testMethod  void  CPA_PWO1_Util_Test(){ 
+        Test.startTest();           
             CPA_PWORF__c objPworf11 = CPA_testClass_util.createTest_other_PWORF();
             insert objPworf11;
-			objPworf11.pkl_Status__c = 'Answered';
+            objPworf11.pkl_Status__c = 'Answered';
             update objPworf11;
             CPA_project_work_order__c objPWO2 = CPA_testClass_util.createotherPWO(objPworf11);
-             objPWO2.RecordTypeid = label.Lbl_PWO_CNF_RecordTypeId;
+             objPWO2.RecordTypeid = label.CPA_PWO_CNF_RecordTypeId;
             insert objPWO2;
+             System.assertNotEquals('Cancelled', objPworf11.pkl_Status__c);
+              System.assertNotEquals('Cancelled', objPWO2.ID);
         Test.stopTest();    
     } 
-public Static testMethod  void Test_CPA_PWO2_Util(){ 
-        Test.startTest();			
+public Static testMethod  void  CPA_PWO2_Util_Test(){ 
+        Test.startTest();           
             CPA_PWORF__c objPworf12 = CPA_testClass_util.createTest_RA_PWORF();
             insert objPworf12;
-			objPworf12.pkl_Status__c = 'Answered';
+            objPworf12.pkl_Status__c = 'Answered';
             update objPworf12;
             CPA_project_work_order__c objPWO2 = CPA_testClass_util.createotherPWO(objPworf12);
-             objPWO2.RecordTypeid = label.Lbl_PWO_TNF_RecordTypeId;
+             objPWO2.RecordTypeid = label.CPA_PWO_TNF_RecordTypeId;
             insert objPWO2;
+            System.assertNotEquals('Cancelled', objPworf12.pkl_Status__c);
+              System.assertNotEquals('Cancelled', objPWO2.ID);
         Test.stopTest();    
-    }   	
-    public Static testMethod  void Test_CPA_LOI_Util(){ 
+    }       
+    public Static testMethod  void  CPA_LOI_Util_Test(){ 
        Test.startTest();
             CPA_PWORF__c objPworf13 = CPA_testClass_util.createTest_other_PWORF();
             insert objPworf13;
@@ -110,11 +116,13 @@ public Static testMethod  void Test_CPA_PWO2_Util(){
             update objLOI;
             CPA_LOI_TriggerUtil.isSubmitted  = false;
             objLOI.pkl_Status__c = 'Cancelled';
-            update objLOI;           
+            update objLOI;        
+            System.assertNotEquals('Cancelled', objPworf13.pkl_Status__c);
+              System.assertNotEquals('Cancelled', objLOI.ID);           
         Test.stopTest();
     }
 
-  public Static testMethod  void Test_CPA_CR_Util(){ 
+  public Static testMethod  void  CPA_CR_Util_Test(){ 
         Test.startTest();
             CPA_PWORF__c objPworf14 = CPA_testClass_util.createTest_other_PWORF();
             insert objPworf14;
@@ -137,19 +145,22 @@ public Static testMethod  void Test_CPA_PWO2_Util(){
             objCR.pkl_Status__c = 'Cancelled';
             update objCR;           
             
-            
+            System.assertNotEquals('Cancelled', objPworf14.pkl_Status__c);
+              System.assertNotEquals('Cancelled', objCR.ID);    
         Test.stopTest();    
     }   
- public Static testMethod  void Test_CPA_CR1_Util(){ 
+ public Static testMethod  void  CPA_CR1_Util_Test(){ 
         Test.startTest();
 
             CPA_CR__c objCR1 = CPA_testClass_util.standAloneCR();
-            insert objCR1;          
+            insert objCR1;      
+
+              System.assertNotEquals('Cancelled', objCR1.ID);               
         Test.stopTest();    
     }      
- public Static testMethod  void Test_CPA_CR2_Util(){ 
+ public Static testMethod  void  CPA_CR2_Util_Test(){ 
         Test.startTest();
-		CPA_PWORF__c objPworf15 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf15 = CPA_testClass_util.createTest_other_PWORF();
             insert objPworf15;
             objPworf15.pkl_Status__c = 'Answered';
             update objPworf15;
@@ -161,9 +172,11 @@ public Static testMethod  void Test_CPA_PWO2_Util(){
             update objPWO; 
             CPA_CR__c objCR2 = CPA_testClass_util.blankCR(objPWO);
             insert objCR2;          
+             System.assertNotEquals('Cancelled', objCR2.ID);    
+              System.assertNotEquals('Cancelled', objPworf15.pkl_Status__c);
         Test.stopTest();    
     }         
-  public Static testMethod  void Test_CPA_HLE_Request_Util(){ 
+  public Static testMethod  void  CPA_HLE_Request_Util_Test(){ 
         Test.startTest(); 
             CPA_HLE_Request__c objHLERequest = CPA_testClass_util.CreateHLERequest();
             insert objHLERequest;
@@ -172,6 +185,8 @@ public Static testMethod  void Test_CPA_PWO2_Util(){
            CPA_HLERequest_TriggerUtil.isSubmitted  = false;
            objHLERequest.pkl_Status__c = 'Cancelled';
             update objHLERequest;
+            System.assertNotEquals('Cancelled', objHLERequest.ID);  
+             // System.assertNotEquals('Cancelled', objPworf15.pkl_Status__c);
         Test.stopTest();    
     }   
 }

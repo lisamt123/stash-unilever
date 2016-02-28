@@ -38,7 +38,7 @@ global class CPA_ContractInformationController {
             else if(pwoRec.TNF_Status__c!= null && customSettingStatusMsg.get(pwoRec.TNF_Status__c).TNF_Status_Msg__c != null && callFromVF && (pwoRec.TNF_Status__c != null)){
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.get(pwoRec.TNF_Status__c).TNF_Status_Msg__c));
             }           
-        if(pwoRec.RecordTypeid == label.Lbl_PWO_RecordTypeId || pwoRec.RecordTypeid == label.Lbl_Standalone_PWO_RecordTypeId ){            
+        if(pwoRec.RecordTypeid == label.CPA_PWO_RecordTypeId || pwoRec.RecordTypeid == label.CPA_Standalone_PWO_RecordTypeId){            
             if(pwoRec.pkl_Status__c == 'Saved' || pwoRec.pkl_Status__c == 'Returned' || callFromVF == false){
                 if(pwoRec.txt_PWO_number__c == null)
                     RequiredFieldMap.put( 'PWO number','Mandatory');
@@ -124,7 +124,7 @@ global class CPA_ContractInformationController {
                 if(pwoRec.dt_Expected_End_date__c == null || pwoRec.dt_Expected_End_date__c < pwoRec.dt_Expected_Start_Date__c)
                     RequiredFieldMap.put( 'Expected End date' ,'Its mandatory and should not be before Expected Start Date');
             }
-        }else if(pwoRec.RecordTypeid == label.Lbl_PWO_CNF_RecordTypeId){
+        }else if(pwoRec.RecordTypeid == label.CPA_PWO_CNF_RecordTypeId){
             
             if(pwoRec.CNF_Status__c == 'Saved' || callFromVF == false){
                 if(pwoRec.txt_CNF_Accenture_Project_Manager__c== null) RequiredFieldMap.put('Accenture Project Manager','Mandatory');
@@ -148,7 +148,7 @@ global class CPA_ContractInformationController {
                 if(pwoRec.lkp_CNF_Unilever_content_approver__c== null) RequiredFieldMap.put('Unilever content approver','Mandatory');
                 if(pwoRec.num_CNF_Variance_number_in_man_days__c== null) RequiredFieldMap.put('Variance (number in man-days)','Mandatory');
             }
-        }else if(pwoRec.RecordTypeid == label.Lbl_PWO_TNF_RecordTypeId){
+        }else if(pwoRec.RecordTypeid == label.CPA_PWO_TNF_RecordTypeId){
             
             if(pwoRec.TNF_Status__c == 'Saved' || callFromVF == false){
                 if(pwoRec.txt_TNF_Approved_by__c == null)

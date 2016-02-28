@@ -35,7 +35,7 @@ boolean callFromVF = false;
             System.debug('Building Map !! ' );
               if((LoiRec.pkl_Status__c == 'Saved' || LoiRec.pkl_Status__c == 'Withhold') || !callFromVF){
              if(LoiRec.pkl_Currency__c == 'Select' || LoiRec.pkl_Currency__c == null)
-                 RequiredFieldMap.put('Currency',ConstantsForContractingAppClasses.MANDATORY);  
+                 RequiredFieldMap.put('Currency',CPA_ConstantsForContractingAppClasses.MANDATORY);  
               if(LoiRec.pkl_Currency__c == 'OTHER'){
                   if(LoiRec.txt_Other_Currency__c == null){
                     RequiredFieldMap.put('Other Currency','It is mandatory if OTHER as Currency');      
@@ -43,25 +43,25 @@ boolean callFromVF = false;
               }
              
              if(LoiRec.num_Expense_charges_of_LOI__c == null)
-                 RequiredFieldMap.put('Expense charges of LOI',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Expense charges of LOI',CPA_ConstantsForContractingAppClasses.MANDATORY);
              if(LoiRec.num_Total_number_of_man_days_requested__c == null)
-                 RequiredFieldMap.put('Total number of man days requested',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Total number of man days requested',CPA_ConstantsForContractingAppClasses.MANDATORY);
              if(LoiRec.num_Total_value_in_being_requested_for__c == null)
-                 RequiredFieldMap.put('W@R € spend approved at MC Rates',ConstantsForContractingAppClasses.MANDATORY); 
+                 RequiredFieldMap.put('W@R € spend approved at MC Rates',CPA_ConstantsForContractingAppClasses.MANDATORY); 
              if(LoiRec.cur_Total_value_in_Euro_being_requested__c == null)
-                 RequiredFieldMap.put('Total value in Euro being requested',ConstantsForContractingAppClasses.MANDATORY);    
+                 RequiredFieldMap.put('Total value in Euro being requested',CPA_ConstantsForContractingAppClasses.MANDATORY);    
              if(!LoiRec.chk_Contract_Attached__c )
-                  RequiredFieldMap.put('Contract pdf Not attached, Please attach Contract PDF , with filename prefix with LOI',ConstantsForContractingAppClasses.MANDATORY);
+                  RequiredFieldMap.put('Contract pdf Not attached, Please attach Contract PDF , with filename prefix with LOI',CPA_ConstantsForContractingAppClasses.MANDATORY);
              if(LoiRec.mpkl_Phases_covered_by_WAR__c == null)
-                 RequiredFieldMap.put('Phases covered by WAR',ConstantsForContractingAppClasses.MANDATORY);          
+                 RequiredFieldMap.put('Phases covered by WAR',CPA_ConstantsForContractingAppClasses.MANDATORY);          
              if(LoiRec.txt_PWO_number__c == null)
-                 RequiredFieldMap.put('PWO number',ConstantsForContractingAppClasses.MANDATORY);        
+                 RequiredFieldMap.put('PWO number',CPA_ConstantsForContractingAppClasses.MANDATORY);        
              if(LoiRec.txt_PWO_title__c == null)
-                 RequiredFieldMap.put('PWO title',ConstantsForContractingAppClasses.MANDATORY);          
+                 RequiredFieldMap.put('PWO title',CPA_ConstantsForContractingAppClasses.MANDATORY);          
              if(LoiRec.pkl_Status__c == null)
-                 RequiredFieldMap.put('Status',ConstantsForContractingAppClasses.MANDATORY);         
+                 RequiredFieldMap.put('Status',CPA_ConstantsForContractingAppClasses.MANDATORY);         
              if(LoiRec.txt_Unilever_Clarity_ID__c == null)
-                 RequiredFieldMap.put('Unilever Clarity ID',ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Unilever Clarity ID',CPA_ConstantsForContractingAppClasses.MANDATORY);
              if(LoiRec.dt_LOI_Start_Date__c == null)
                  RequiredFieldMap.put('LOI Start Date','LOI Start Date is mandatory');
              if(LoiRec.dt_LOI_Start_Date__c != null && LoiRec.dt_LOI_Start_Date__c < system.today())

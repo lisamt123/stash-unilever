@@ -20,7 +20,7 @@ public class CPA_LOI_TriggerUtil{
         }
         List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem where ProcessInstance.TargetObjectId IN:settempLOIID ];
         for (Integer i = 0; i < newLOIList.size(); i++) {
-            if((LOIOldList[i].pkl_Status__c  == ConstantsForContractingAppClasses.SUBMITTED || LOIOldList[i].pkl_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED) && (newLOIList[i].pkl_Status__c == ConstantsForContractingAppClasses.CANCELLED)){
+            if((LOIOldList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || LOIOldList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED) && (newLOIList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.CANCELLED)){
                 for(ProcessInstanceWorkitem piwi:piwiList){
                     if(piwi.ProcessInstance.TargetObjectId == newLOIList[i].id && !isSubmitted ){ 
                         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
@@ -47,7 +47,7 @@ public class CPA_LOI_TriggerUtil{
        
        for (Integer i = 0; i < newLOIList.size(); i++) {
             
-        if ((oldLOIList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.SUBMITTED &&   newLOIList[i].pkl_Status__c == ConstantsForContractingAppClasses.SUBMITTED)|| (oldLOIList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.RESUBMITTED &&   newLOIList[i].pkl_Status__c == ConstantsForContractingAppClasses.RESUBMITTED) &&  !isSubmitted) {
+        if ((oldLOIList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newLOIList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED)|| (oldLOIList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newLOIList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED) &&  !isSubmitted) {
              
             // create the new approval request to submit
             Approval.ProcessSubmitRequest req = new Approval.ProcessSubmitRequest();
@@ -58,7 +58,7 @@ public class CPA_LOI_TriggerUtil{
             // display if the reqeust was successful
 
             isSubmitted = true;
-        }else if(oldLOIList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.CANCELLED &&   newLOIList[i].pkl_Status__c == ConstantsForContractingAppClasses.CANCELLED){
+        }else if(oldLOIList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.CANCELLED &&   newLOIList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.CANCELLED){
                 setPworfId.add(newLOIList[i].lkp_PWORF__c);
         }
  
@@ -207,14 +207,14 @@ public class CPA_LOI_TriggerUtil{
         system.debug('newLOI>>>>>>>>'+newLOI);
         List<CPA_LOI__c> ListnewLOI  = new List<CPA_LOI__c>();
         for(CPA_LOI__c objNewLOI : newLOI){
-            if(objNewLOI.pkl_Status__c == ConstantsForContractingAppClasses.CANCELLED){
+            if(objNewLOI.pkl_Status__c == CPA_ConstantsForContractingAppClasses.CANCELLED){
                 system.debug('objNewLOI.pkl_Status__c >>>>>>>>'+objNewLOI.pkl_Status__c );
                 setPWORF.add(objNewLOI.lkp_PWORF__c);
             }
         }
-        for(CPA_LOI__c objLoi : [select id,pkl_Status__c from CPA_LOI__c where lkp_PWORF__c  IN: setPWORF and pkl_Status__c !=: ConstantsForContractingAppClasses.CANCELLED]){
+        for(CPA_LOI__c objLoi : [select id,pkl_Status__c from CPA_LOI__c where lkp_PWORF__c  IN: setPWORF and pkl_Status__c !=: CPA_ConstantsForContractingAppClasses.CANCELLED]){
             system.debug('objLoi>>>>>>>>>>'+objLoi);
-                objLoi.pkl_Status__c = ConstantsForContractingAppClasses.CANCELLED;
+                objLoi.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
                 system.debug('objLoi.pkl_Status__c >>>>>>>>'+objLoi.pkl_Status__c );
                 ListnewLOI.add(objLoi);
             }

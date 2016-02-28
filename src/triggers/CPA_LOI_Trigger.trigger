@@ -1,4 +1,4 @@
-trigger LOITrigger on CPA_LOI__c (before insert, after insert, before update, after update,  before Delete) {
+trigger CPA_LOI_Trigger on CPA_LOI__c (before insert, after insert, before update, after update,  before Delete) {
 
     if(Trigger.isUpdate && Trigger.isBefore){ //for before update trigger
         CPA_LOI_TriggerUtil.checklistValueOfLOI(trigger.new);

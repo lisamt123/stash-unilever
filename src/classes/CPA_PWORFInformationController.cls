@@ -34,42 +34,42 @@ global with sharing class CPA_PWORFInformationController {
 
            
             if(pworfRec.Business_Case__c == null)
-                objectMap.put('Business Case',ConstantsForContractingAppClasses.MANDATORY);              
+                objectMap.put('Business Case',CPA_ConstantsForContractingAppClasses.MANDATORY);              
             if((pworfRec.In_Scope__c ==null))
-                objectMap.put('In Scope',ConstantsForContractingAppClasses.MANDATORY);
+                objectMap.put('In Scope',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(pworfRec.Out_of_Scope__c == null)
-                objectMap.put('Out of Scope',ConstantsForContractingAppClasses.MANDATORY);
+                objectMap.put('Out of Scope',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(pworfRec.Overall_purpose_or_function_of_the_proje__c == null)
-                objectMap.put('Overall purpose/function of the project',ConstantsForContractingAppClasses.MANDATORY);
+                objectMap.put('Overall purpose/function of the project',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(pworfRec.Stakeholder_Expectations__c == null)
-                objectMap.put('Stakeholder Expectations',ConstantsForContractingAppClasses.MANDATORY);
+                objectMap.put('Stakeholder Expectations',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(pworfRec.txta_Title__c == null )
-                objectMap.put('Title',ConstantsForContractingAppClasses.MANDATORY);
+                objectMap.put('Title',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(pworfRec.lkp_Unilever_budget_approver__c == null)
-                objectMap.put('Unilever budget approver',ConstantsForContractingAppClasses.MANDATORY);
+                objectMap.put('Unilever budget approver',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(pworfRec.lkp_Unilever_content_approver__c == null)
-                objectMap.put('Unilever content approver',ConstantsForContractingAppClasses.MANDATORY);
+                objectMap.put('Unilever content approver',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(pworfRec.lkp_Unilever_Finance_BP_Contact__c ==null)
-                objectMap.put('Unilever Finance BP/Contact',ConstantsForContractingAppClasses.MANDATORY);
+                objectMap.put('Unilever Finance BP/Contact',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(pworfRec.lkp_Unilever_project_manager__c ==null)
-                objectMap.put('Unilever project manager',ConstantsForContractingAppClasses.MANDATORY);
+                objectMap.put('Unilever project manager',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if( pworfRec.pkl_Business_Area__c =='Select' || pworfRec.pkl_Business_Area__c ==null)
-                objectMap.put('Business Area',ConstantsForContractingAppClasses.MANDATORY);       
+                objectMap.put('Business Area',CPA_ConstantsForContractingAppClasses.MANDATORY);       
             if(pworfRec.txt_Cost_Centre__c != null && (pworfRec.pkl_Cost_Centre_Details__c =='Select' || pworfRec.pkl_Cost_Centre_Details__c ==null)) 
-                objectMap.put('Cost Centre Details',ConstantsForContractingAppClasses.MANDATORY);         
+                objectMap.put('Cost Centre Details',CPA_ConstantsForContractingAppClasses.MANDATORY);         
             if(pworfRec.txt_Cost_Centre__c ==null && pworfRec.txt_ICC_Number__c ==null){  
                 objectMap.put('Cost Center','Mandatory. But if ICC number is provided, CC can be avoided.');
                 objectMap.put('ICC Number','Mandatory only when the Cost Center is not provided.');
             }           
             if(pworfRec.pkl_Landscape__c  =='Select' || pworfRec.pkl_Landscape__c  ==null ) 
-                objectMap.put('Landscape',ConstantsForContractingAppClasses.MANDATORY);         
+                objectMap.put('Landscape',CPA_ConstantsForContractingAppClasses.MANDATORY);         
             if(pworfRec.pkl_Pricing_Model__c =='Select' || pworfRec.pkl_Pricing_Model__c ==null)  
-                objectMap.put('Pricing Model',ConstantsForContractingAppClasses.MANDATORY);                            
+                objectMap.put('Pricing Model',CPA_ConstantsForContractingAppClasses.MANDATORY);                            
             if(pworfRec.pkl_Region__c  =='Select' || pworfRec.pkl_Region__c  == null)    
-                objectMap.put('Region',ConstantsForContractingAppClasses.MANDATORY);           
+                objectMap.put('Region',CPA_ConstantsForContractingAppClasses.MANDATORY);           
             
             if(pworfRec.pkl_Request_Type__c =='Select' || pworfRec.pkl_Request_Type__c ==null )   
-                objectMap.put('Request Type',ConstantsForContractingAppClasses.MANDATORY);
+                objectMap.put('Request Type',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(pworfRec.pkl_Request_Type__c  =='Other' && pworfRec.txta_Other_Request_Type__c  == null )  
                 objectMap.put('Other Request Type','Mandatory, If Other is selected in Request Type.'); 
             
@@ -77,43 +77,43 @@ global with sharing class CPA_PWORFInformationController {
                 objectMap.put('PWO linked to CR' ,'Mandatory, If Request Type is Project Scope Change (CR).');
                 
             //if(pworfRec.dat_Revised_Submission_Date__c <= date.Today())  
-                //objectMap.put('Revised Submission Date',ConstantsForContractingAppClasses.MANDATORY);
+                //objectMap.put('Revised Submission Date',CPA_ConstantsForContractingAppClasses.MANDATORY);
             
             if(pworfRec.RecordTypeid == customSettingPworfRT.get('All').Record_type_id__c ){
                 if((pworfRec.txta_Acceptance_Criteria__c==null))
-                    objectMap.put('Acceptance Criteria' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Acceptance Criteria' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if((pworfRec.Analyse_sessions_expected__c==null))
-                    objectMap.put('Analyse sessions expected' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Analyse sessions expected' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.txta_Application_infrastructure__c ==null)
-                    objectMap.put('Application infrastructure' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Application infrastructure' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.txta_Business_critical_milestones__c ==null)
-                    objectMap.put('Business critical milestones' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Business critical milestones' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Expected_Business_Go_live_date__c  == null)
-                    objectMap.put('Expected Business Go live date' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Expected Business Go live date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.dt_Expected_go_live_date__c  == null)
-                    objectMap.put('Expected go-live date' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Expected go-live date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.dt_Expected_start_date__c == null)
-                    objectMap.put('Expected start date' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Expected start date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Expected_Start_Date_for_DBTD_PWO__c == null)
-                    objectMap.put('Expected Start Date for DBTD PWO' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Expected Start Date for DBTD PWO' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Expected_Start_Date_for_Plan_and_Analyse__c == null)
-                    objectMap.put('Expected Start Date for Plan and Analyse' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Expected Start Date for Plan and Analyse' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Impact_if_expected_business_go_live_date__c == null)
-                    objectMap.put('Impact if go live date not met' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Impact if go live date not met' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Planning_sessions_expected__c ==null)
-                    objectMap.put('Planning sessions expected' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Planning sessions expected' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Project_Dependencies__c ==null)
-                    objectMap.put('Project Dependencies' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Project Dependencies' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Summary_of_requirements_and_deliverables__c ==null)
-                    objectMap.put('Summary of requirements and deliverables' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Summary of requirements and deliverables' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Travel_Arrangements__c ==null)
-                    objectMap.put('Travel Arrangements' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Travel Arrangements' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Who_will_support_this_service_once_live__c ==null)
-                    objectMap.put('Post Go-Live Support Service?' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Post Go-Live Support Service?' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if( pworfRec.Does_this_project_change_Core_Business_M__c =='Select' || pworfRec.Does_this_project_change_Core_Business_M__c ==null)   
-                    objectMap.put('Does this project change Core Business M' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Does this project change Core Business M' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Does_this_Project_involve_Unilever_conf__c =='Select' || pworfRec.Does_this_Project_involve_Unilever_conf__c ==null) 
-                    objectMap.put('Does this Project involve Unilever conf' ,ConstantsForContractingAppClasses.MANDATORY); 
+                    objectMap.put('Does this Project involve Unilever conf' ,CPA_ConstantsForContractingAppClasses.MANDATORY); 
                 //if(pworfRec.Expected_Business_Go_live_date__c <= date.Today())   
                     //objectMap.put('Expected Business Go live date', 'Date should be greater than current date');  
                 //if(pworfRec.dt_Expected_start_date__c <= date.Today())   
@@ -123,43 +123,43 @@ global with sharing class CPA_PWORFInformationController {
                 //if(pworfRec.Expected_Start_Date_for_Plan_and_Analyse__c <= date.Today()) 
                     //objectMap.put('Expected Start Date for Plan and Analyse', 'Date should be greater than current date');            
                 if(pworfRec.Governance_Risk_and_Compliance__c =='Select' || pworfRec.Governance_Risk_and_Compliance__c ==null)  
-                    objectMap.put('Governance Risk and Compliance' ,ConstantsForContractingAppClasses.MANDATORY);          
+                    objectMap.put('Governance Risk and Compliance' ,CPA_ConstantsForContractingAppClasses.MANDATORY);          
                 if(pworfRec.Has_W_R_been_discussed_with_Supplier_Per__c =='Select' || pworfRec.Has_W_R_been_discussed_with_Supplier_Per__c ==null)    
-                    objectMap.put('Has W@R been discussed with Supplier Per' ,ConstantsForContractingAppClasses.MANDATORY);        
+                    objectMap.put('Has W@R been discussed with Supplier Per' ,CPA_ConstantsForContractingAppClasses.MANDATORY);        
                 if(pworfRec.Interface_to_the_system__c  =='Select' || pworfRec.Interface_to_the_system__c  ==null)    
-                    objectMap.put('Interface Introduced/Changed?' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Interface Introduced/Changed?' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Interface_to_the_system__c  =='Yes' && pworfRec.Interface_to_the_system_Detail__c == null )    
                     objectMap.put('Interface to the system Detail' ,'Mandatory, If there is Interface to the system');
                 if(pworfRec.Is_Project__c  =='Select' || pworfRec.Is_Project__c  ==null)    
-                    objectMap.put('Data-specific testing required?' ,ConstantsForContractingAppClasses.MANDATORY);    
+                    objectMap.put('Data-specific testing required?' ,CPA_ConstantsForContractingAppClasses.MANDATORY);    
                 if(pworfRec.Is_Project_Require__c   =='Select' || pworfRec.Is_Project_Require__c   == null )   
-                    objectMap.put('Application Performance Testing Needed' ,ConstantsForContractingAppClasses.MANDATORY);  
+                    objectMap.put('Application Performance Testing Needed' ,CPA_ConstantsForContractingAppClasses.MANDATORY);  
                 if(pworfRec.Is_this_a_new_or_re_worked_Integration_R__c =='Select' || pworfRec.Is_this_a_new_or_re_worked_Integration_R__c ==null)   
-                    objectMap.put('Is this a new or re-worked Integration R' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Is this a new or re-worked Integration R' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.pkl_Is_this_Project_Invasive_in_nature__c  =='Select' || pworfRec.pkl_Is_this_Project_Invasive_in_nature__c  ==null)    
-                    objectMap.put('Is this â€˜Projectâ€™ Invasive in nature?' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Is this â€˜Projectâ€™ Invasive in nature?' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.pkl_Process_Office_Area_E2E__c =='Other' && pworfRec.txt_otherProcessOfficeAreaE2E__c == null )  
                     objectMap.put('Other Process Office area E2E' ,'Mandatory, If Other is selected in Process Office area E2E.');
                 if(pworfRec.mpkl_Project_Phases__c =='Other' && pworfRec.txt_OtherProjectPhases__c == null ) 
                     objectMap.put('Other Project Phases' ,'Mandatory, If Other is selected in Project Phases.');            
                 if(pworfRec.pkl_Process_Office_Area_E2E__c =='Select' || pworfRec.pkl_Process_Office_Area_E2E__c ==null)    
-                    objectMap.put('Process Office Area E2E' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Process Office Area E2E' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.mpkl_Project_Phases__c ==null )  
-                    objectMap.put('Project Phases' ,ConstantsForContractingAppClasses.MANDATORY);                          
+                    objectMap.put('Project Phases' ,CPA_ConstantsForContractingAppClasses.MANDATORY);                          
                 if(pworfRec.Is_Project__c  =='Yes' && pworfRec.Project_Require_Data_Specific_Testing__c == null ) 
                     objectMap.put('Project Require Data Specific Testing' ,'Mandatory, If Project Require Data Specific Testing');                   
                 if(pworfRec.Is_Project_Require__c  =='Yes' && pworfRec.txta_Project_Require_Performance_Testing__c  == null ) 
                     objectMap.put('Project Require Performance Testing' ,'Mandatory, If Project Require Performance Testing');     
                 if(pworfRec.pkl_Project_Scale__c  =='Select' || pworfRec.pkl_Project_Scale__c  ==null) 
-                    objectMap.put('Project Scale' ,ConstantsForContractingAppClasses.MANDATORY);    
+                    objectMap.put('Project Scale' ,CPA_ConstantsForContractingAppClasses.MANDATORY);    
                 if(pworfRec.Role_or_System_Authorisation__c =='Select' || pworfRec.Role_or_System_Authorisation__c ==null )   
-                    objectMap.put('Role/Authorisation Introduced/Changed?' ,ConstantsForContractingAppClasses.MANDATORY);        
+                    objectMap.put('Role/Authorisation Introduced/Changed?' ,CPA_ConstantsForContractingAppClasses.MANDATORY);        
                 if(pworfRec.Role_or_System_Authorisation__c  =='Yes'&& pworfRec.txta_Role_or_System_Authorisation_detail__c  == null) 
                     objectMap.put('Role or System Authorisation detail' ,'Mandatory, if the project has Role or System Authorization'); 
                 if(pworfRec.pkl_Is_this_Project_Invasive_in_nature__c =='Yes' && pworfRec.txta_Project_Invasive_in_nature__c == null) 
                     objectMap.put('Work at Risk required?' ,'Mandatory, If Project is Invasive in nature');
                 if(pworfRec.Will_this_project_require_an_LOI_for_Wor__c =='Select' || pworfRec.Will_this_project_require_an_LOI_for_Wor__c ==null)
-                    objectMap.put('Work at Risk required?*' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Work at Risk required?*' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 //if(pworfRec.dt_Expected_go_live_date__c <= date.Today()) 
                     //objectMap.put('Expected go-live date', 'Date should be greater than current date');
                 if(pworfRec.Will_this_project_require_an_LOI_for_Wor__c  == 'Yes'){
@@ -193,15 +193,15 @@ global with sharing class CPA_PWORFInformationController {
                 }
             }else if(pworfRec.RecordTypeid == customSettingPworfRT.get('RA').Record_type_id__c ){
                 if(pworfRec.txt_Role_Level_1_13__c == null)
-                    objectMap.put('Role (Level 1-13)' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Role (Level 1-13)' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.txt_Resource_Location__c == null)
-                    objectMap.put('Resource Location' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Resource Location' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.per_Budget_Expenses_of_Resource_Cost__c == null)
-                    objectMap.put('Budget Expenses (% of Resource Cost)' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Budget Expenses (% of Resource Cost)' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.dat_Indicative_timeline_End_date__c == null)
-                    objectMap.put('Indicative timeline end date' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Indicative timeline end date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.dat_Indicative_timeline_Start_date__c == null)
-                    objectMap.put('Indicative timeline start date' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Indicative timeline start date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             }
             //if(callFromVF){
                     PWORFrelatedCheck(pworfRecId);
@@ -218,11 +218,11 @@ global with sharing class CPA_PWORFInformationController {
     void PWORFrelatedCheck(id pworfRecordId){ 
         Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll();
         pworfRecord = [SELECT Id,(SELECT PWORF_Requirement_Deliverables__c FROM Requirements_and_Deliverables__r),(select id from PWORF_Key_Contact__r), (select id from User_Defined_Attributes__r),(SELECT lkp_PWORF__c FROM Risk_Assessment_and_Mitigation__r) FROM CPA_PWORF__c WHERE Id =:pworfRecordId];
-        if(pworfRecord.Requirements_and_Deliverables__r.size()==0 ) objectMap.put('Requirements and Deliverables' ,ConstantsForContractingAppClasses.MANDATORY);
-        if(pworfRecord.PWORF_Key_Contact__r.size()==0) objectMap.put('Key Contacts' ,ConstantsForContractingAppClasses.MANDATORY);        
-        //if(pworfRecord.User_Defined_Attributes__r.size()==0) objectMap.put('User Defined Attribute' ,ConstantsForContractingAppClasses.MANDATORY);
+        if(pworfRecord.Requirements_and_Deliverables__r.size()==0 ) objectMap.put('Requirements and Deliverables' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+        if(pworfRecord.PWORF_Key_Contact__r.size()==0) objectMap.put('Key Contacts' ,CPA_ConstantsForContractingAppClasses.MANDATORY);        
+        //if(pworfRecord.User_Defined_Attributes__r.size()==0) objectMap.put('User Defined Attribute' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         /*if(pworfRec.RecordTypeid == customSettingPworfRT.get('RA').Record_type_id__c ){
-            if(pworfRecord.Risk_Assessment_and_Mitigation__r.size()==0) objectMap.put('Risk Assessment and Mitigation' ,ConstantsForContractingAppClasses.MANDATORY);            
+            if(pworfRecord.Risk_Assessment_and_Mitigation__r.size()==0) objectMap.put('Risk Assessment and Mitigation' ,CPA_ConstantsForContractingAppClasses.MANDATORY);            
         }*/
     }
    

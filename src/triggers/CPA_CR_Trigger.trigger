@@ -1,4 +1,4 @@
-trigger CRTrigger on CPA_CR__c (before insert, after insert, before update, after update, before Delete) {
+trigger CPA_CR_Trigger on CPA_CR__c (before insert, after insert, before update, after update, before Delete) {
 
     if(Trigger.isUpdate && Trigger.isBefore){ //for before update trigger
         

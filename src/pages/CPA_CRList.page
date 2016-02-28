@@ -1,4 +1,4 @@
-<apex:page standardController="CPA_project_work_order__c"  title="PWO List" extensions="CRListController"  docType="html-5.0"  id="thePage">
+<apex:page standardController="CPA_project_work_order__c"  title="PWO List" extensions="CPA_CRListController"  docType="html-5.0"  id="thePage">
 
 
 <apex:form >
