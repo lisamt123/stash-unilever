@@ -377,6 +377,7 @@ global with sharing class Amr_CAPJobPortfolioController{
      }
     
     public Pagereference getJobSearchDetails(){
+    System.debug('EMAILLLL --->>>  ' + jobDetails.Unilever_Project_Leader_Email__c);
         try{
     system.debug('categoryName!!'+categoryName);
     //job list
@@ -391,8 +392,10 @@ global with sharing class Amr_CAPJobPortfolioController{
     system.debug('soqlForCancel !!'+soqlForCancel );
     
     //search
+    System.debug('EMAILLLL --->>>  ' + jobDetails.Unilever_Project_Leader_Email__c);
      String   addNumber = jobDetails.AdManagerText__c;
        String  projEmail = jobDetails.Unilever_Project_Leader_Email__c;
+    System.debug('EMAILLLL --->>>  ' + projEmail );
        String projectName = jobDetails.Project_Details__c;
    // soqlForCancel = soql;
      
@@ -526,12 +529,12 @@ global with sharing class Amr_CAPJobPortfolioController{
         soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+Percentage_str;
         soqlForCancel += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+Percentage_str;
               
-         }
+         } /*
          if(String.isNotBlank(projEmail)){
         soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+Percentage_str;
          soqlForCancel += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+Percentage_str;
               
-         }
+         } */
          if(String.isNotBlank(projectName)){
         soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(projectName)+'\'';
          soqlForCancel += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(projectName)+'\'';
@@ -547,6 +550,13 @@ global with sharing class Amr_CAPJobPortfolioController{
          if(String.isNotBlank(jobDetails.Campaign_Name__c)){
         soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Percentage_str;
         soqlForCancel += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Percentage_str;
+            
+         }
+          if(String.isNotBlank(String.valueOf(jobDetails.Allocated_Budget_euro__c))){
+          String allocatedBudget = String.valueOf(jobDetails.Allocated_Budget_euro__c).replace(',','');
+
+        soql += ' and AM_Job_Detail__r.Allocated_Budget_euro__c = '+Double.valueOf(allocatedBudget);
+        soqlForCancel += ' and AM_Job_Detail__r.Allocated_Budget_euro__c = '+Double.valueOf(allocatedBudget);
             
          }
          if (String.isNotBlank(startDate)){
@@ -581,13 +591,12 @@ global with sharing class Amr_CAPJobPortfolioController{
      soqlForCancel+=' limit 50000';
      system.debug('soql !!'+soql +'soqlForCancel!!'+soqlForCancel);
      
-    jobDetailList = Database.query(soql);
+   // jobDetailList = Database.query(soql);
     system.debug('jobDetailList !!'+jobDetailList );
     Set<String> setJobAllocationId = new Set<String>();
      
     for(Amr_Job_Allocation__c sObj: Database.query(soql) ){
              if(!setJobAllocationId.contains(sObj.AM_Job_Detail__c+''+sObj.User__c)){
-                system.debug('sObj.idsObj.User__c!'+sObj.AM_Job_Detail__c+''+sObj.User__c );
                 setJobAllocationId.add(sObj.AM_Job_Detail__c+''+sObj.User__c);
                 jobDetailList.add(sObj ) ;
              }
@@ -610,6 +619,8 @@ global with sharing class Amr_CAPJobPortfolioController{
          //sortBySelected();     //return WrapperList;
     paginationMethodForCancelJobs(WrapperList);
     }catch(Exception ex){
+             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+             return null;
             system.debug(ex.getMessage());
     }
     return null;

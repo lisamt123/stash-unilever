@@ -6,63 +6,60 @@
 		<script type="text/javascript">
 			$j = jQuery.noConflict();
 		</script>
-		<apex:includeScript value="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/js/production-activity.js')}"/>
-		<apex:includeScript value="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/js/admanager-logging-form.js')}"/>
+		<apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/production-activity.js')}"/>
+		<apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/admanager-logging-form.js')}"/>
 		<style type="text/css">
 			@font-face {
 			font-family: 'dinOffPro';             
-			src:url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro.eot')}")  format('embedded-opentype'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro.woff2')}") format('woff2'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro.woff')}") format('woff'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro.ttf')}") format('truetype'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro.svg#svgFontName')}") format('svg');            
+			src:url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro.eot')}")  format('embedded-opentype'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro.woff2')}") format('woff2'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro.woff')}") format('woff'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro.ttf')}") format('truetype'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro.svg#svgFontName')}") format('svg');            
 			}
 			@font-face {
 			font-family: 'dinOffProBold';             
-			src:url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Bold.eot')}")  format('embedded-opentype'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Bold.woff2')}") format('woff2'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Bold.woff')}") format('woff'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Bold.ttf')}") format('truetype'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Bold.svg#svgFontName')}") format('svg');            
+			src:url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Bold.eot')}")  format('embedded-opentype'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Bold.woff2')}") format('woff2'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Bold.woff')}") format('woff'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Bold.ttf')}") format('truetype'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Bold.svg#svgFontName')}") format('svg');            
 			}
 			@font-face {
 			font-family: 'dinOffProBoldIta';             
-			src:url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-BoldIta.eot')}")  format('embedded-opentype'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-BoldIta.woff2')}") format('woff2'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-BoldIta.woff')}") format('woff'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-BoldIta.ttf')}") format('truetype'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-BoldIta.svg#svgFontName')}") format('svg');            
+			src:url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-BoldIta.eot')}")  format('embedded-opentype'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-BoldIta.woff2')}") format('woff2'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-BoldIta.woff')}") format('woff'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-BoldIta.ttf')}") format('truetype'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-BoldIta.svg#svgFontName')}") format('svg');            
 			}
 			@font-face {
 			font-family: 'dinOffProIta';             
-			src:url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Ita.eot')}")  format('embedded-opentype'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Ita.woff2')}") format('woff2'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Ita.woff')}") format('woff'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Ita.ttf')}") format('truetype'),
-			url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Ita.svg#svgFontName')}") format('svg');            
+			src:url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Ita.eot')}")  format('embedded-opentype'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Ita.woff2')}") format('woff2'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Ita.woff')}") format('woff'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Ita.ttf')}") format('truetype'),
+			url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro-Ita.svg#svgFontName')}") format('svg');            
 			}            
 		</style>
 		<style type="text/css">
 			label div {
-			background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/questionmark.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);
-			}
-			label strong {
-			background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/star.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);
-			}
+			background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/questionmark.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);
+			}			
 			.star {
 			background: url("../images/star.png") no-repeat scroll left center rgba(0, 0, 0, 0);			    
 			}
 			label strong {
-			background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/start.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);			    
+			background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/star.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);			    
 			}
 			label div {
-			background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/questionmark.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);			    
+			background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/questionmark.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);			    
 			}
 			.starfield {
-			background: url("{!URLFOR($Resource.Ad_Manager,'Ad-Manager/images/star.png')}") no-repeat scroll left center rgba(0, 0, 0, 0);			    
+			background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/star.png')}") no-repeat scroll left center rgba(0, 0, 0, 0);			    
 			}
 		</style>
-		<apex:stylesheet value="{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/css/logging-form.css')}" />
+		<apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/logging-form.css')}" />
 	</head>
 	<body>
 		<apex:form >

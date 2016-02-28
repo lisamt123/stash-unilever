@@ -1671,7 +1671,7 @@ public String docUploaded{get;set;}
     
     public void getDocuments(){
     
-       documentList= [select ContentFileName,createdDate from FeedItem where ParentId =:jobIdFromPage];  //ContentFileName,
+       documentList= [select ContentFileName,relatedrecordid,createdDate from FeedItem where ParentId =:jobIdFromPage];  //ContentFileName,
     }
      public Pagereference deleteDocuments(){
                

@@ -37,13 +37,15 @@ public with sharing class Amr_SavingSummaryController{
     public Integer totalSizeForSummaryJobs =0;
     public Integer limitSizeForSummaryJobs=100; //Integer.valueOf(System.Label.Amr_LimitValue);
     public Integer counterForSummaryJobs=0;
+    public Integer TotalActiveJobPages  {get; set;}
+    public Integer CurrentActivePageNumber {get;set;}
     public Boolean showPageButtonForSummary {get;set;}
     public List<Amr_Saving__c>summaryJobsToShow{get;set;}
     public String totalAcceptedFinalCost {get;set;} 
     public String savingAverageOfQuotes {get;set;}
     public String savingAcceptedQuotes {get;set;}
     public Amr_Job_Details__c jobDetailObj {get;set;}
-    public final double defaultValue = 0.0;
+    public final double defaultValue = 0.0;    
     
     public Amr_SavingSummaryController(){
         System.debug('HELLO00000000000');
@@ -120,11 +122,11 @@ public with sharing class Amr_SavingSummaryController{
      }
      if(!setFlag){
      
-      soql = 'select Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =true) from Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId )';
+      soql = 'select Average_Total_Opening_Quotes__c,Number_Of_Quotes__c,Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =true) from Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId )';
       
      } else{
     
-      soql = 'select Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c ,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c = true) from Amr_Saving__c where CreatedDate!=null';
+      soql = 'select Average_Total_Opening_Quotes__c,Number_Of_Quotes__c,Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c ,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c = true) from Amr_Saving__c where CreatedDate!=null';
      
      }
       system.debug('soql !!'+soql);
@@ -340,6 +342,10 @@ public with sharing class Amr_SavingSummaryController{
                 summaryJobsToShow.add(jobListToDisplay.get(i));
             }
         }
+        
+        TotalActiveJobPages 	= (totalSizeForSummaryJobs/limitSizeForSummaryJobs)+1;
+        CurrentActivePageNumber = (counterForSummaryJobs/limitSizeForSummaryJobs)+1;
+        
       }
         
     public void beginningForSummaryJobs(){
@@ -361,6 +367,9 @@ public with sharing class Amr_SavingSummaryController{
                 summaryJobsToShow.add(savingSummaryList.get(i));
             }       
         }
+        
+        TotalActiveJobPages 	= (totalSizeForSummaryJobs/limitSizeForSummaryJobs)+1;
+        CurrentActivePageNumber = (counterForSummaryJobs/limitSizeForSummaryJobs)+1;
     }
    
     public void nextForSummaryJobs(){
@@ -375,6 +384,9 @@ public with sharing class Amr_SavingSummaryController{
                 summaryJobsToShow.add(savingSummaryList.get(i));
             }
         }
+        
+        TotalActiveJobPages 	= (totalSizeForSummaryJobs/limitSizeForSummaryJobs)+1;
+        CurrentActivePageNumber = (counterForSummaryJobs/limitSizeForSummaryJobs)+1;
     }
    
     public void previousForSummaryJobs(){
@@ -385,6 +397,9 @@ public with sharing class Amr_SavingSummaryController{
             for(Integer i=counterForSummaryJobs;i<(counterForSummaryJobs+limitSizeForSummaryJobs); i++){
             summaryJobsToShow.add(savingSummaryList.get(i));
         }
+        
+        TotalActiveJobPages 	= (totalSizeForSummaryJobs/limitSizeForSummaryJobs)+1;
+        CurrentActivePageNumber = (counterForSummaryJobs/limitSizeForSummaryJobs)+1;
     }
 
     public void lastForSummaryJobs (){
@@ -397,6 +412,9 @@ public with sharing class Amr_SavingSummaryController{
         for(Integer i=counterForSummaryJobs -1;i<totalSizeForSummaryJobs -1;i++){
                 summaryJobsToShow.add(savingSummaryList.get(i));
         }
+        
+        TotalActiveJobPages 	= (totalSizeForSummaryJobs/limitSizeForSummaryJobs)+1;
+        CurrentActivePageNumber = (counterForSummaryJobs/limitSizeForSummaryJobs)+1;
       }
    
     public Boolean getDisableNextForSummaryJobs(){
