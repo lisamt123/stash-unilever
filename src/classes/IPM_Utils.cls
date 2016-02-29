@@ -1359,43 +1359,31 @@ public without sharing class IPM_Utils {
     * @param object name        Name of object from where we need get records
     * @return                   Concatinated string with set of fields from FieldSet
     */
-    public static String getSOQLQueryFromFieldSet(String fieldSetName,String fieldSetSobjectName,String FromsObject)
+    public static String getSOQLQueryFromFieldSet(String fieldSetName,String fieldSetSobjectName) 
     {
-        String targetsObject = FromsObject;
         String queryString = IPM_ConstantUtils.BLANK;
-        if(targetsObject == null || String.isBlank(targetsObject)) 
-        {
-            targetsObject = fieldSetSobjectName;
-        }
         
         Map<String,Schema.SobjectType> globalDescribeMap = Schema.getGlobalDescribe();
         Schema.FieldSet targetFieldSetObject = null;
-        if(globalDescribeMap.containsKey(fieldSetSobjectName)) {
+        if(globalDescribeMap.containsKey(fieldSetSobjectName)) 
+        {
             Schema.DescribeSObjectResult sobjectDescResult = globalDescribeMap.get(fieldSetSobjectName).getDescribe(); 
             Map<String, Schema.FieldSet> associatedFieldSetMap = sobjectDescResult.fieldSets.getMap();
-            if(associatedFieldSetMap.containsKey(fieldSetName)) {
+            if(associatedFieldSetMap.containsKey(fieldSetName)) 
+            {
                 targetFieldSetObject = associatedFieldSetMap.get(fieldSetName); 
                 
             }
         }
-        if(targetFieldSetObject != null) 
-        {
+        if(targetFieldSetObject != null) {
             queryString = 'SELECT ';
             for(Schema.FieldSetMember targetField : targetFieldSetObject.getFields()) {
                 if(targetField.getFieldPath() != IPM_ConstantUtils.SF_ID) {
-                    if((targetField.getFieldPath() != 'MCO_Name__c' && targetField.getFieldPath() != 'TargetLaunchDate__c' && FromsObject == 'IPM_MarketPerformanceBreakdown__c') || FromsObject == 'IPM_MarketPerformance__c') {
-                    {
                         queryString += targetField.getFieldPath();
                         queryString += ','; 
-                    }
                 }
             }
-            if(targetsObject == 'IPM_MarketPerformanceBreakdown__c'){
                 queryString += 'Id,External_Id__c,Period__c FROM '+FromsObject;
-            }
-            else{
-                queryString += 'Id,External_Id__c FROM '+FromsObject;
-            }
         }   
         return queryString;
     }

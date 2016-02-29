@@ -30,6 +30,8 @@ src/classes/IPM_Coreparameters.cls
 src/classes/IPM_Coreparameters.cls-meta.xml
 src/classes/IPM_CountryHandler.cls
 src/classes/IPM_CountryHandler.cls-meta.xml
+src/classes/IPM_ConstantUtils.cls
+src/classes/IPM_ConstantUtils.cls-meta.xml
 src/classes/IPM_EcoDesignSection.cls
 src/classes/IPM_EcoDesignSection.cls-meta.xml
 src/classes/IPM_FinancialActionStandards_Test.cls
