@@ -121,6 +121,7 @@ src/classes/IPM_Utils_Test.cls-meta.xmlsrc/pagessrc/pages/IPM_AddMilestone.pag
 src/pages/IPM_AddMilestone.page-meta.xml
 src/pages/IPM_AddMilestoneWizard.page
 src/pages/IPM_AddMilestoneWizard.page-meta.xml
+src/pages/IPM_Bcc_Document.page
 src/pages/IPM_Bcc_Document.page-meta.xml
 src/pages/IPM_Bosscard.page
 src/pages/IPM_Bosscard.page-meta.xml
