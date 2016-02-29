@@ -18,6 +18,11 @@ global with sharing class CPA_ContractInformationController {
      //below constructor will be call from webservice call
     public CPA_ContractInformationController(){}
     
+    /* Justification: We need to show warning messages at the top of the page for all mandatory fields, so for that
+     * we have used multiple if conditions. If that field is null, flag warning message.
+     * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
+     *  Dev team will fix this in next release.
+     */
     boolean CPA_Messages(id pwoRecId,boolean callFromVF){
     RequiredFieldMap = new Map<String,String>();
         mandatoryStringFlag = null;
@@ -54,16 +59,16 @@ global with sharing class CPA_ContractInformationController {
                     RequiredFieldMap.put( 'Unilever Innovation Area' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.mpkl_Unilever_Innovation_Area__c != null && pwoRec.mpkl_Unilever_Innovation_Area__c.contains('Other') && pwoRec.txt_Other_Innovation_Area__c == null)
                     RequiredFieldMap.put( 'Other Innovation Area' ,'It is mandatory if Unilever Innovation Area is OTHER' );
-				if(pwoRec.mpkl_Unilever_Innovation_Area__c != null && !pwoRec.mpkl_Unilever_Innovation_Area__c.contains('Other') && pwoRec.txt_Other_Innovation_Area__c != null)
+                if(pwoRec.mpkl_Unilever_Innovation_Area__c != null && !pwoRec.mpkl_Unilever_Innovation_Area__c.contains('Other') && pwoRec.txt_Other_Innovation_Area__c != null)
                     RequiredFieldMap.put( 'Other Innovation Area' ,'"Other Innovation Area" should be only entered when "Unilever Innovation Area" is Other');
                 
                 if(pwoRec.pkl_Billing_Details__c == null)
                     RequiredFieldMap.put( 'Legal Entity To Be Billed' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.pkl_Billing_Details__c != null && pwoRec.pkl_Billing_Details__c.contains('Other') && pwoRec.txt_Other_Billing_Details__c == null)
                     RequiredFieldMap.put( 'Other Billing Details' ,'It is mandatory if Billing Details is OTHER');
-			    if(pwoRec.pkl_Billing_Details__c != null && !pwoRec.pkl_Billing_Details__c.contains('Other') && pwoRec.txt_Other_Billing_Details__c != null)
+                if(pwoRec.pkl_Billing_Details__c != null && !pwoRec.pkl_Billing_Details__c.contains('Other') && pwoRec.txt_Other_Billing_Details__c != null)
                    RequiredFieldMap.put( 'Other Billing Details' ,'"Other Billing Details" should be only entered when "Legal Entity To Be Billed" is Other');
-				
+                
                 
                  //if(pwoRec.chk_First_PWO__c != true && pwoRec.txta_reason_for_additiona_PWO__c == null){
                  if(!pwoRec.chk_First_PWO__c && pwoRec.txta_reason_for_additiona_PWO__c == null){

@@ -26,7 +26,12 @@ public with sharing class CPA_CRListController {
         }
     
     
-    
+    /*
+     * Justification: Based on different values, we are doing commercials calculations, hence we need multiple if conditions 
+     * here.
+     * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
+     * Dev team will fix this in next release.
+     */
     public  void  getPwoList() {
     
     try {

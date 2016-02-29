@@ -90,7 +90,12 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     * Parameter   : 
     * Return type : None
     * Description : This method is used to populate values to the contract
-    */   
+    */
+    /* Justification: We are pre-populating some values from Parent record, to check whether those fields are not null
+     * we have put in multiple if conditions.
+     * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
+     *  Dev team will fix this in next release.
+     */   
    public static void checklistValueOfcontract(List<CPA_project_work_order__c> newmapPWO){
             set<Id> setPwoId = new set<Id>();
             map<Id,CPA_PWORF__c> mapPWORF = new map<ID,CPA_PWORF__c>();

@@ -111,7 +111,13 @@ public with sharing class CPA_CR_TriggerUtil{
                 setPWOID.add(objCR.CPA_Project_Work_Order__c);
             }
         }*/
-     }   
+     } 
+     
+     /* Justification: We are prepopulating some values from Parent record, to check whether those fields are not null
+     * we have put in multiple if conditions.
+     * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
+     *  Dev team will fix this in next release.
+     */
 public static void checklistValueOfCR(List<CPA_CR__c> newCR){
         
         set<Id> setPWO = new set<ID>();
@@ -236,7 +242,11 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
         }
     }
 
-
+    /* Justification: We are prepopulating some values from Parent record, to check whether those fields are not null
+     * we have put in multiple if conditions.
+     * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
+     *  Dev team will fix this in next release.
+     */
     public static void calculateDelta(map<Id,CPA_CR__c> oldCRList,map<Id,CPA_CR__c> newCR){
         List<CPA_CR__c> lstCR = new List<CPA_CR__c>();
         set<ID>setPWOID = new set<ID>();

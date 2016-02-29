@@ -98,6 +98,11 @@ public with sharing class CPA_LOI_TriggerUtil{
         }
     }
     
+    /* Justification: We are prepopulating some values from Parent record, to check whether those fields are not null
+     * we have put in multiple if conditions.
+     * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
+     *  Dev team will fix this in next release.
+     */
     public static void checklistValueOfLOI(List<CPA_LOI__c> newLOI){
         
         set<Id> setPWORF = new set<ID>();

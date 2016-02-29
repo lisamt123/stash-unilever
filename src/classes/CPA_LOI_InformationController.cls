@@ -18,6 +18,11 @@ boolean callFromVF = false;
      //below constructor will be call from webservice call
     public CPA_LOI_InformationController(){}
     
+    /* Justification: We need to show warning messages at the top of the page for all mandatory fields, so for that
+     * we have used multiple if conditions. If that field is null, flag warning message.
+     * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
+     *  Dev team will fix this in next release.
+     */
     boolean CreateRequiredFieldMessage(id loiId,boolean callFromVF){
         RequiredFieldMap = new Map<String,String>();
         mandatoryStringFlag = null;

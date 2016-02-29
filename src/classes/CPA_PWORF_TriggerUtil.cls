@@ -43,6 +43,11 @@ public with sharing class CPA_PWORF_TriggerUtil{
     * Return type : None
     * Description : This method is used to perform submit for  Approval process on PWORF record
     */
+    /*
+     * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
+     * Dev team will fix this in next release.
+     * Justification: Based on different status, we are doing actions, hence we need multiple if conditions here.
+     */
      public static void submitforApproval(List<CPA_PWORF__c> oldPWORFList,List<CPA_PWORF__c> newPWORFList)    
     {
        set<Id> setId = new Set<Id>();
@@ -119,6 +124,11 @@ public with sharing class CPA_PWORF_TriggerUtil{
     * Author      : Dinesh Girase    
     * Description : This method updates SLA related fields on PWORF record
     */
+    /*
+     * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
+     * Dev team will fix this in next release.
+     * Justification: Based on different project phases, we are calculating SLA's, hence we need multiple if conditions here.
+     */
     public static void updateSLAData(List<CPA_PWORF__c> newPWORFList){
         //Code review comments - remove hard coded values and use constants
         //Remove debug statements
