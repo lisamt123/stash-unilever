@@ -52,6 +52,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -188,7 +189,7 @@
         <filters>
             <field>LAST_UPDATE</field>
             <operation>equals</operation>
-            <value>4/28/2015 12:00 AM</value>
+            <value>2/25/2016 12:00 AM</value>
         </filters>
         <label>PH - alert tracker detail</label>
         <language>en_US</language>
