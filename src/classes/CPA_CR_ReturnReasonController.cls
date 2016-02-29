@@ -1,4 +1,4 @@
-Public Class CPA_CR_ReturnReasonController{
+public with sharing class CPA_CR_ReturnReasonController{
  Public id loiId;
      Public CPA_CR__c loiRec;
      Public string strReason{get;set;}  

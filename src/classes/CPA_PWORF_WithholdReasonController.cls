@@ -1,4 +1,4 @@
-Public Class CPA_PWORF_WithholdReasonController{
+public with sharing class CPA_PWORF_WithholdReasonController{
  Public id loiId;
      Public CPA_PWORF__c loiRec;
      Public string strReason{get;set;}  

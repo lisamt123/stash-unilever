@@ -90,7 +90,7 @@ select{
 <ul class="form-style-1">
   
     <li>
-        <label>Please Enter Reason for {!$CurrentPage.parameters.recordType} Cancellation<span class="required">*</span></label>
+        <label>Please Enter Reason for {!HTMLENCODE($CurrentPage.parameters.recordType)} Cancellation<span class="required">*</span></label>
         <apex:inputTextarea styleClass="field-long field-textarea" id="cancelReson"  value="{!strReason}" label=" " required="true"/>
     </li>
     <li>

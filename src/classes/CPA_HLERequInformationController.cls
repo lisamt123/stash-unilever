@@ -1,4 +1,4 @@
-global class CPA_HLERequInformationController {
+global with sharing class CPA_HLERequInformationController {
     Public id hleReqId;
     Public CPA_HLE_Request__c hleRec;
     Public String mandatoryStringFlag {get; set;}
@@ -32,35 +32,35 @@ global class CPA_HLERequInformationController {
             if(hleRec.txt_Background__c  == null) 
                  RequiredFieldMap.put('Background',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.ph_UBPR_Contact_No__c  == null) 
-                 RequiredFieldMap.put('UBPR Contact Number',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Contact Number','MANDATORY in Unilever business partner/requestor section');
             if(hleRec.ph_UIOS_Contact_No__c  == null) 
-                 RequiredFieldMap.put('UIOS Contact Number',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Contact Number ','MANDATORY in Unilever innovation owner/SME section');
             if(hleRec.ph_AAL_Contact_No__c  == null) 
-                 RequiredFieldMap.put('AAL Contact Number',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Contact Number  ','MANDATORY in Accenture Area lead section');
              
-             
+                          
             if(hleRec.dt_Date_raised__c == null || hleRec.dt_Date_raised__c < system.today()) 
                  RequiredFieldMap.put('Date raised','It is Mandatory and should not be before today date');
             if(hleRec.txt_Dependencies__c  == null) 
                  RequiredFieldMap.put('Dependencies',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.eml_UBPR_Email__c  == null) 
-                 RequiredFieldMap.put('UBPR Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Email','MANDATORY in Unilever business partner/requestor section');
             if(hleRec.eml_UIOS_Email__c  == null) 
-                 RequiredFieldMap.put('UIOS Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Email ','MANDATORY in Unilever innovation owner/SME section');
             if(hleRec.eml_AAL_Email__c  == null) 
-                 RequiredFieldMap.put('AAL Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Email  ','MANDATORY in Accenture Area lead section');
             if(hleRec.txt_UBPR_Name__c  == null) 
-                 RequiredFieldMap.put('UBPR Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Name','MANDATORY in Unilever business partner/requestor section');
             if(hleRec.txt_UIOS_Name__c  == null) 
-                 RequiredFieldMap.put('UIOS Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Name ','MANDATORY in Unilever innovation owner/SME section');
             if(hleRec.txt_AAL_Name__c  == null) 
-                 RequiredFieldMap.put('AAL Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Name  ','MANDATORY in Accenture Area lead section');
             if(hleRec.dt_Planned_end_date__c  == null || hleRec.dt_Planned_end_date__c < hleRec.dt_Planned_start_date__c) 
                  RequiredFieldMap.put('Planned End Date','It is Mandatory and should not be before Planned Start Date');
             if(hleRec.dt_Planned_start_date__c  == null || hleRec.dt_Planned_start_date__c < system.today()) 
                  RequiredFieldMap.put('Planned Start Date','It is Mandatory and should not be before today date');
             if(hleRec.txt_Project_description_specification__c  == null) 
-                 RequiredFieldMap.put('Project Description Specification',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Project Description/Specification',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Project_type__c  == null) 
                  RequiredFieldMap.put('Project Type',CPA_ConstantsForContractingAppClasses.MANDATORY);
             /*
@@ -70,7 +70,7 @@ global class CPA_HLERequInformationController {
             if(hleRec.txt_Risks_and_issues__c  == null) 
                  RequiredFieldMap.put('Risks And Issues',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Software_Licensing_requirements__c  == null) 
-                 RequiredFieldMap.put('Software Licensing Requirements',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put('Software/Licensing Requirements',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Support_impact__c  == null) 
                  RequiredFieldMap.put('Support Impact',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Technologies__c  == null) 
@@ -87,7 +87,8 @@ global class CPA_HLERequInformationController {
                  RequiredFieldMap.put('If yes, what is the source?',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.PFS_Is_there_approved_funding_for_this__c  == 'Yes' && hleRec.mpkl_PFS_If_yes_what_is_the_source__c == 'Other' &&  hleRec.txt_Other_Project_funding_Source__c == null) 
                  RequiredFieldMap.put('Other Project funding Source',CPA_ConstantsForContractingAppClasses.MANDATORY);  
-            
+            if(hleRec.mpkl_PFS_If_yes_what_is_the_source__c != 'Other' &&  hleRec.txt_Other_Project_funding_Source__c != null) 
+                 RequiredFieldMap.put('Other Project funding Source','"Other Project funding Source" should be only entered when "Source" is Others');
              
            
         }if(hleRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.ACCEPTED && hleRec.Estimate_Type__c == null && callFromVF){

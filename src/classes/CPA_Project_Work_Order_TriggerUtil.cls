@@ -147,7 +147,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                             }
                             if(objPWo.mpkl_Unilever_Innovation_Area__c == null && objPWORFTemp.pkl_Business_Area__c !=null)
                                 objPWo.mpkl_Unilever_Innovation_Area__c = objPWORFTemp.pkl_Business_Area__c;
-                            if(objPWo.mpkl_Project_Phases__c!=null && !objPWo.mpkl_Project_Phases__c.containsOnly(objPWORFTemp.mpkl_Project_Phases__c)) 
+                            if(objPWORFTemp.mpkl_Project_Phases__c!= null && objPWo.mpkl_Project_Phases__c!=null && !objPWo.mpkl_Project_Phases__c.containsOnly(objPWORFTemp.mpkl_Project_Phases__c)) 
                                 objPWo.addError('Only ' + objPWORFTemp.mpkl_Project_Phases__c.replaceAll(';', ', ') + ' Project Phases are allow');
                             if(objPWo.pkl_Region__c!=null && objPWo.pkl_Region__c!=objPWORFTemp.pkl_Region__c) 
                                 objPWo.addError('PWO can be created for '+objPWORFTemp.pkl_Region__c+ ' Region');
@@ -385,16 +385,37 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     */
     public static void setFirstPWO(list<CPA_project_work_order__c> lstPWO){
         
+       map<Id,List<CPA_project_work_order__c>> mapPWORFTOPWO = new  map<Id,List<CPA_project_work_order__c>>();
+                   set<Id> setPWORFID = new set<Id>();
+                   for(CPA_project_work_order__c objId: lstPWO){
+                             setPWORFID.add(objId.PWORF_ID__c);                       
+                   }
+                   List<CPA_project_work_order__c> listPriPWO = [Select ID,PWORF_ID__c,chk_First_PWO__c from CPA_project_work_order__c where PWORF_ID__c IN: setPWORFID  AND chk_First_PWO__c = true];
+                   
+                   for(Id objId: setPWORFID){
+                             List<CPA_project_work_order__c> TempList = new List<CPA_project_work_order__c>();
+                             for(CPA_project_work_order__c objtemp :listPriPWO ){
+                                      if(objtemp.PWORF_ID__c == objId)
+                                                TempList.add(objtemp);
+                             }
+                             mapPWORFTOPWO.put(objId,TempList);
+                   }
         for(CPA_project_work_order__c obj :lstPWO ){
-             List<CPA_project_work_order__c> listPriPWO = [Select ID,PWORF_ID__c from CPA_project_work_order__c where PWORF_ID__c =:obj.PWORF_ID__c  AND chk_First_PWO__c = true];  
-
-             if(listPriPWO == null || listPriPWO.size()<=0){
+            
+                             if(mapPWORFTOPWO.get(obj.PWORF_ID__c)!=null && mapPWORFTOPWO.get(obj.PWORF_ID__c).size()>0){
+                                      obj.chk_First_PWO__c = false;
+                             }else{
+                                      obj.chk_First_PWO__c = true;
+                             }
+                             
+            /* if(listPriPWO == null || listPriPWO.size()<=0){
                  obj.chk_First_PWO__c = true;
              }else{
-                 obj.chk_First_PWO__c = false;
-             }
+                 
+             }*/
         }
     }
+
  /**   Method Name : newPWO
     * Parameter   : newmap
     * Return type : void

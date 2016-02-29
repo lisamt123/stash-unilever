@@ -19,6 +19,16 @@ public class CPA_ConstantsForContractingAppClasses {
     public static final String SUBMITTED = 'Submitted';
     public static final String CANCELLED = 'Cancelled';
     public static final String ACCEPTED = 'Accepted';
+    public static final String ANSWERED = 'Answered';
+    public static final String SIGNED = 'Signed';
+    public static final String RETURNED = 'Returned';
+    public static final String DELIVERED = 'Delivered';
+    public static final String SAVED= 'Saved';
     public static final String PDF = 'pdf';
     public static final String PLAN_ANALYSE = 'plan; analyse';
+    
+    public static final String EUROPE = 'Europe';
+    public static final String ONETWOTHREE = '123';
+    public static final String APPLICATIONPDF = 'application/pdf';
+    public static final String APPLICATIONEXCEL = 'application/vnd.ms-excel';
 }

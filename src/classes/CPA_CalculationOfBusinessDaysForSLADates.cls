@@ -5,7 +5,7 @@
  * @Modified      : Modified class name against Unilevers coding standards
  */
  
-public class CPA_CalculationOfBusinessDaysForSLADates{
+public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
 
     //Holiday logic is pending
     

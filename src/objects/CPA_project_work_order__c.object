@@ -8360,7 +8360,7 @@ ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Saved&quot;)
         <openType>sidebar</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>/apex/CreatePWO?id={!CPA_PWORF__c.Id}</url>
+        <url>/apex/CPA_CreatePWO?id={!CPA_PWORF__c.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>New_Standard_PWO</fullName>
@@ -8538,7 +8538,7 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 		result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c != &apos;Cancelled&apos; AND pkl_Status__c != &apos;Delivered&apos;&quot;); 
 		var crRecords = result.getArray(&quot;records&quot;); 
 		if(crRecords.length == 0){
-				window.open(&quot;/&quot;+&quot;{!CPA_project_work_order__c.Id}&quot;+ &quot;/e?RecordType={!$Label.Lbl_PWO_CNF_RecordTypeId}&amp;retURL=%2F{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
+				window.open(&quot;/&quot;+&quot;{!CPA_project_work_order__c.Id}&quot;+ &quot;/e?RecordType={!$Label.CPA_PWO_CNF_RecordTypeId}&amp;retURL=%2F{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
 		}
 		else{
 			alert(&quot;CNF can&apos;t be created till corresponding all CR are either Delivered OR Cancelled &quot;); 
@@ -8588,7 +8588,7 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 			//alert(result);
 			var crRecords = result.getArray(&quot;records&quot;); 
 			if(crRecords.length == 0){
-				window.open(&quot;/&quot;+&quot;{!CPA_project_work_order__c.Id}&quot;+ &quot;/e?RecordType={!$Label.Lbl_PWO_TNF_RecordTypeId}&amp;retURL=%2F{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
+				window.open(&quot;/&quot;+&quot;{!CPA_project_work_order__c.Id}&quot;+ &quot;/e?RecordType={!$Label.CPA_PWO_TNF_RecordTypeId}&amp;retURL=%2F{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
 			}
 			else{
 				alert(&quot;TNF Can&apos;t be created if any CR is Delivered&quot;); 

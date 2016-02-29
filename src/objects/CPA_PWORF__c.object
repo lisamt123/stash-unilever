@@ -3916,7 +3916,7 @@ ISPICKVAL( pkl_Status__c , &quot;Resubmitted&quot;)
         <availability>online</availability>
         <displayType>button</displayType>
         <linkType>javascript</linkType>
-        <masterLabel>Cancel</masterLabel>
+        <masterLabel>Cancel Old</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
@@ -3953,8 +3953,6 @@ p.id = &quot;{!CPA_PWORF__c.Id}&quot;;
 p.pkl_Status__c = &quot;{!CPA_PWORF__c.pkl_Status__c }&quot;; 
 p.isValidated__c = &quot;{!CPA_PWORF__c.isValidated__c }&quot;; 
 
-var isValidateFlag = sforce.apex.execute(&quot;CPA_PWORFInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id});
-
 //if(p.isValidated__c == &quot;1&quot;){ 
 soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
 var result = sforce.connection.query(soql);
@@ -3964,38 +3962,42 @@ var permissionSetName = records1[0].PermissionSet.Name;
 
 if( permissionSetName == &quot;CPA_SMT&quot; || permissionSetName == &quot;CPA_ULPM&quot;){ 
 
-	if(isValidateFlag == &apos;true&apos;){ 
+	if(p.pkl_Status__c ==&quot;Cancelled&quot;){ 
+		alert(&quot;PWORF is already Cancelled, you cant submit for Approval&quot;); 
+	}
+	else{
+		
+		var isValidateFlag = sforce.apex.execute(&quot;CPA_PWORFInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id});
 
-		if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
-			p.pkl_Status__c = &quot;Resubmitted&quot;; 
-			result = sforce.connection.update([p]); 
-	//alert(result);
-			location.reload(true); 
+		if(isValidateFlag == &apos;true&apos;){ 
 
-		} 
-		else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
-			alert(&quot;PWORF has already been submitted&quot;); 
-		} 
-		else if(p.pkl_Status__c ==&quot;Answered&quot; ){ 
-			alert(&quot;PWORF is already Answered, you cant submit for Approval&quot;); 
-		} 
-		else if(p.pkl_Status__c ==&quot;Accepted&quot; || p.pkl_Status__c ==&quot;Auto Accepted&quot;){ 
-			alert(&quot;PWORF has already been accepted by Vendor and you cannot resubmit it&quot;); 
-		}
-		else if(p.pkl_Status__c ==&quot;Cancelled&quot;){ 
-			alert(&quot;PWORF is already Cancelled, you cant submit for Approval&quot;); 
-		}
-		else{ 
-		p.pkl_Status__c = &quot;Submitted&quot;; 
-		result = sforce.connection.update([p]); 
+			if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
+				p.pkl_Status__c = &quot;Resubmitted&quot;; 
+				result = sforce.connection.update([p]); 
 		//alert(result);
-		location.reload(true); 
+				location.reload(true); 
+
+			} 
+			else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
+				alert(&quot;PWORF has already been submitted&quot;); 
+			} 
+			else if(p.pkl_Status__c ==&quot;Answered&quot; ){ 
+				alert(&quot;PWORF is already Answered, you cant submit for Approval&quot;); 
+			} 
+			else if(p.pkl_Status__c ==&quot;Accepted&quot; || p.pkl_Status__c ==&quot;Auto Accepted&quot;){ 
+				alert(&quot;PWORF has already been accepted by Vendor and you cannot resubmit it&quot;); 
+			}
+			else{ 
+			p.pkl_Status__c = &quot;Submitted&quot;; 
+			result = sforce.connection.update([p]); 
+			//alert(result);
+			location.reload(true); 
+			} 
+
 		} 
-
-	} 
-	else { 
-	alert(&quot; PWORF cannot be submitted since mandatory data is not present.&quot;); 
-
+		else { 
+			alert(&quot; PWORF cannot be submitted since mandatory data is not present.&quot;); 
+		}
 	}
 }else{
 	alert(&quot;You are not authorized to perform this action&quot;);
@@ -4146,7 +4148,7 @@ if( permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_
 
 	// Status check Ends here 
 	}
-	else{alert(&quot;Can not Cancel PWO as it is already Cancelled&quot;); 
+	else{alert(&quot;Cannot Cancel PWORF as it is already Cancelled&quot;); 
 	} 
 
 }else{ 

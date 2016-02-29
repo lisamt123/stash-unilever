@@ -1,4 +1,4 @@
-public class CPA_testClass_util {
+public with sharing class CPA_testClass_util {
     
     public static User createTestUser (){
         //User testUser; - commented as this variable not used anywhere, just initialized on line number 7, but returning testUser1
@@ -27,7 +27,7 @@ public class CPA_testClass_util {
         pworfRec.pkl_Landscape__c  ='Cordillera' ;         
         pworfRec.pkl_Request_Type__c  ='New Project' ;
         pworfRec.pkl_Pricing_Model__c ='T&M' ;                            
-        pworfRec.pkl_Region__c  ='Europe' ;           
+        pworfRec.pkl_Region__c  =CPA_ConstantsForContractingAppClasses.EUROPE;           
         
         pworfRec.Is_this_a_new_or_re_worked_Integration_R__c = CPA_ConstantsForContractingAppClasses.YES ;
          pworfRec.pkl_Is_this_Project_Invasive_in_nature__c =CPA_ConstantsForContractingAppClasses.YES ;
@@ -114,8 +114,8 @@ public class CPA_testClass_util {
         return pworfRec;
     }
 
-    public static Requirements_and_Deliverables__c createRequirementsDeliverables (CPA_PWORF__c objPWORF){
-        Requirements_and_Deliverables__c objRandD = new Requirements_and_Deliverables__c();
+    public static CPA_Requirements_and_Deliverables__c createRequirementsDeliverables (CPA_PWORF__c objPWORF){
+        CPA_Requirements_and_Deliverables__c objRandD = new CPA_Requirements_and_Deliverables__c();
         objRandD.Business_Process_Area_del__c= 'Business Process';
         objRandD.High_Level_Description_del__c = 'High Level Description';
         objRandD.New_or_changed_requirement_del__c = 'Changed';
@@ -125,8 +125,8 @@ public class CPA_testClass_util {
         return objRandD;
     }
     
-    public static Risk_Assessment_and_Mitigation__c createRiskAssessment (CPA_PWORF__c objPWORF){
-        Risk_Assessment_and_Mitigation__c objRAM = new Risk_Assessment_and_Mitigation__c();
+    public static CPA_Risk_Assessment_and_Mitigation__c createRiskAssessment (CPA_PWORF__c objPWORF){
+        CPA_Risk_Assessment_and_Mitigation__c objRAM = new CPA_Risk_Assessment_and_Mitigation__c();
         objRAM.ltxta_Impact__c = CPA_ConstantsForContractingAppClasses.TEST;
         objRAM.ltxta_Mitigation_Action__c = CPA_ConstantsForContractingAppClasses.TEST;
         objRAM.ltxta_Probability__c = CPA_ConstantsForContractingAppClasses.TEST;
@@ -136,8 +136,8 @@ public class CPA_testClass_util {
         return objRAM;
     }
 
-    public static PWORFKey_Contacts__c CreateKeyContacts(CPA_PWORF__c objPWORF){
-        PWORFKey_Contacts__c objKC = new PWORFKey_Contacts__c();
+    public static CPA_Key_Contacts__c CreateKeyContacts(CPA_PWORF__c objPWORF){
+        CPA_Key_Contacts__c objKC = new CPA_Key_Contacts__c();
         objKC.Name = CPA_ConstantsForContractingAppClasses.TEST;
         objKC.E_mail__c = CPA_ConstantsForContractingAppClasses.TEST_EMAIL;
         objKC.Telephone__c = '2371243814';
@@ -168,7 +168,7 @@ public class CPA_testClass_util {
         pworfRec.pkl_Landscape__c  ='Landscape' ;         
         pworfRec.pkl_Request_Type__c  ='Other Request Type' ;
         pworfRec.pkl_Pricing_Model__c ='Pricing Model' ;                            
-        pworfRec.pkl_Region__c  ='Europe' ;           
+        pworfRec.pkl_Region__c  =CPA_ConstantsForContractingAppClasses.EUROPE;           
         pworfRec.pkl_Request_Type__c ='Request Type' ;
         pworfRec.RecordTypeid = customSettingPworfRT.get('RA').Record_type_id__c ;
         pworfRec.txta_Acceptance_Criteria__c='Acceptance Criteria'  ;
@@ -237,11 +237,11 @@ public class CPA_testClass_util {
         CPA_LOI__c objLOI = new CPA_LOI__c();  
         User testUSer = createTestUser();
         
-        Requirements_and_Deliverables__c objRaD = createRequirementsDeliverables(objPWORF);
+        CPA_Requirements_and_Deliverables__c objRaD = createRequirementsDeliverables(objPWORF);
         insert objRaD;
-        Risk_Assessment_and_Mitigation__c objRAM = createRiskAssessment(objPWORF);
+        CPA_Risk_Assessment_and_Mitigation__c objRAM = createRiskAssessment(objPWORF);
         insert objRAM;
-        PWORFKey_Contacts__c objKCs = CreateKeyContacts(objPWORF);
+        CPA_Key_Contacts__c objKCs = CreateKeyContacts(objPWORF);
         insert objKCs;
         objPWORF.pkl_Status__c = 'Submitted';
         update  objPWORF;
@@ -273,11 +273,11 @@ public class CPA_testClass_util {
         CPA_project_work_order__c objPwo = new CPA_project_work_order__c();
         User testUSer = createTestUser();
         
-        Requirements_and_Deliverables__c objRaD = createRequirementsDeliverables(objPWORF);
+        CPA_Requirements_and_Deliverables__c objRaD = createRequirementsDeliverables(objPWORF);
         insert objRaD;
-        Risk_Assessment_and_Mitigation__c objRAM = createRiskAssessment(objPWORF);
+        CPA_Risk_Assessment_and_Mitigation__c objRAM = createRiskAssessment(objPWORF);
         insert objRAM;
-        PWORFKey_Contacts__c objKCs = CreateKeyContacts(objPWORF);
+        CPA_Key_Contacts__c objKCs = CreateKeyContacts(objPWORF);
         insert objKCs;
         
         /*objPWORF.pkl_Status__c = 'Submitted';
@@ -309,7 +309,7 @@ public class CPA_testClass_util {
         objPwo.txt_PWO_number__c = 'PWO-001';
         objPwo.PWORF_ID__c = objPWORF.Id;
         objPwo.txt_PWO_title__c = 'Titke';
-        objPwo.pkl_Region__c = 'Europe';
+        objPwo.pkl_Region__c = CPA_ConstantsForContractingAppClasses.EUROPE;
         objPwo.num_RMS_value__c = 1;
         objPwo.num_Senior_resources_man_days__c=1;
         objPwo.num_Target_Blend_Rate__c = 1;
@@ -333,11 +333,11 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         CPA_project_work_order__c objPwo = new CPA_project_work_order__c();
         User testUSer = createTestUser();
         
-        Requirements_and_Deliverables__c objRaD = createRequirementsDeliverables(objPWORF);
+        CPA_Requirements_and_Deliverables__c objRaD = createRequirementsDeliverables(objPWORF);
         insert objRaD;
-        Risk_Assessment_and_Mitigation__c objRAM = createRiskAssessment(objPWORF);
+        CPA_Risk_Assessment_and_Mitigation__c objRAM = createRiskAssessment(objPWORF);
         insert objRAM;
-        PWORFKey_Contacts__c objKCs = CreateKeyContacts(objPWORF);
+        CPA_Key_Contacts__c objKCs = CreateKeyContacts(objPWORF);
         insert objKCs;
         
         /*objPWORF.pkl_Status__c = 'Submitted';
@@ -416,7 +416,7 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         objCR.pkl_Project_Phases__c = CPA_ConstantsForContractingAppClasses.PLAN_ANALYSE;
         objCR.CPA_Project_Work_Order__c = objPWO.Id;
         objCR.PWO_number__c = CPA_ConstantsForContractingAppClasses.TEST;
-        objCR.Region_impacted__c = 'Europe';
+        objCR.Region_impacted__c = CPA_ConstantsForContractingAppClasses.EUROPE;
         objCR.num_RMS_value__c =1;
         objCR.num_Senior_resources_man_days__c =1;
         objCR.num_Target_Blend_Rate__c =1;
@@ -457,7 +457,7 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         objCR.txt_Previous_Status_Value__c = CPA_ConstantsForContractingAppClasses.TEST;
         objCR.pkl_Project_Phases__c = CPA_ConstantsForContractingAppClasses.PLAN_ANALYSE;
         objCR.PWO_number__c = CPA_ConstantsForContractingAppClasses.TEST;
-        objCR.Region_impacted__c = 'Europe';
+        objCR.Region_impacted__c = CPA_ConstantsForContractingAppClasses.EUROPE;
         objCR.num_RMS_value__c =1;
         objCR.num_Senior_resources_man_days__c =1;
         objCR.num_Target_Blend_Rate__c =1;
@@ -482,9 +482,9 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
     public static CPA_HLE_Request__c CreateHLERequest(){
         CPA_HLE_Request__c objHLEREQ = new CPA_HLE_Request__c();
         objHLEREQ.txt_Background__c  = CPA_ConstantsForContractingAppClasses.TEST;
-        objHLEREQ.ph_UBPR_Contact_No__c  ='123';
-        objHLEREQ.ph_UIOS_Contact_No__c ='123';
-        objHLEREQ.ph_AAL_Contact_No__c  ='123';
+        objHLEREQ.ph_UBPR_Contact_No__c  =CPA_ConstantsForContractingAppClasses.ONETWOTHREE;
+        objHLEREQ.ph_UIOS_Contact_No__c =CPA_ConstantsForContractingAppClasses.ONETWOTHREE;
+        objHLEREQ.ph_AAL_Contact_No__c  =CPA_ConstantsForContractingAppClasses.ONETWOTHREE;
         objHLEREQ.dt_Date_raised__c  =system.Today();
         objHLEREQ.txt_Dependencies__c  =CPA_ConstantsForContractingAppClasses.TEST;
         objHLEREQ.eml_UBPR_Email__c  =CPA_ConstantsForContractingAppClasses.TEST_EMAIL;
@@ -512,9 +512,9 @@ public static CPA_HLE_Request__c CreateBEP(){
         //objHLEREQ.recordtypeid = label.CPA_BPE_Recordtype;
         //objHLEREQ.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ACCEPTED;  
         objHLEREQ.txt_Background__c  = CPA_ConstantsForContractingAppClasses.TEST;
-        objHLEREQ.ph_UBPR_Contact_No__c  ='123';
-        objHLEREQ.ph_UIOS_Contact_No__c ='123';
-        objHLEREQ.ph_AAL_Contact_No__c  ='123';
+        objHLEREQ.ph_UBPR_Contact_No__c  =CPA_ConstantsForContractingAppClasses.ONETWOTHREE;
+        objHLEREQ.ph_UIOS_Contact_No__c =CPA_ConstantsForContractingAppClasses.ONETWOTHREE;
+        objHLEREQ.ph_AAL_Contact_No__c  =CPA_ConstantsForContractingAppClasses.ONETWOTHREE;
         objHLEREQ.dt_Date_raised__c  =system.Today();
         objHLEREQ.txt_Dependencies__c  =CPA_ConstantsForContractingAppClasses.TEST;
         objHLEREQ.eml_UBPR_Email__c  =CPA_ConstantsForContractingAppClasses.TEST_EMAIL;

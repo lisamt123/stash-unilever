@@ -1994,7 +1994,7 @@ alert(&quot;You are not authorized to perform this action.&quot;);
         <openType>noSidebar</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>/apex/CreatePWO?id={!CPA_project_work_order__c.Id}</url>
+        <url>/apex/CPA_CreatePWO?id={!CPA_project_work_order__c.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>Submit_for_Vendor</fullName>

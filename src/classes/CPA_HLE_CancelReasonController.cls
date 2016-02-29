@@ -1,4 +1,4 @@
-Public Class CPA_HLE_CancelReasonController{
+public with sharing class CPA_HLE_CancelReasonController{
  Public id hleId;
      Public CPA_HLE_Request__c hleRecord;
      Public string strReason{get;set;}  

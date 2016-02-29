@@ -12,7 +12,7 @@ Purpose:
  1.0      Shreyas Mangalvedhekar        21/12/2015      INITIAL DEVELOPMENT          CSR: 
  ***********************************************************************/
 
-public class CPA_AttchemntUnit {
+public with sharing class CPA_AttchemntUnit {
 
  /*******************************************************************    
    Purpose:  This static method will return the file type of each attachment                                                            
@@ -604,9 +604,9 @@ public static void ReadFile(Attachment att)    {
                         objCR.num_Estimated_Value_of_CR__c = (intCostResource + intRMS + intContingencyCharges + intNonPayroll + intAuthorisation+intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
                         objCR.num_Estimated_Man_days_of_CR__c = intTotalmandays;
                         if(intTotalmandays> 0){
-                          objCR.num_Varied_Target_Blend_Rate__c = objCR.num_Target_Blend_Rate__c = intCostResource / intTotalmandays;
+                          objCR.num_Varied_Target_Blend_Rate__c =  intCostResource / intTotalmandays;
                         }else {
-                            objCR.num_Varied_Target_Blend_Rate__c = objCR.num_Target_Blend_Rate__c =0;
+                            objCR.num_Varied_Target_Blend_Rate__c = 0;
                         }
                         objCR.num_Authorisation_charges__c = intAuthorisation;
                         objCR.num_Authorisation_man_days__c = intAuthorisationman;

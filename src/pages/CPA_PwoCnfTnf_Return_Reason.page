@@ -22,7 +22,7 @@
         <apex:pageMessages />
         <apex:pageBlockSection columns="2">
             <div style="text-align: center; width: 300px "><h1>
-                <span style="text-align:left; margin-right: 10px;  width: 150px">Reason for Return of {!$CurrentPage.parameters.recordType} :
+                <span style="text-align:left; margin-right: 10px;  width: 150px">Reason for Return of {!HTMLENCODE($CurrentPage.parameters.recordType)} :
                     <apex:inputTextarea id="cancelReson"  value="{!strReason}" label=" " required="true" style="margin-right: 10px;  width: 450px; height: 150px" />
                 </span ></h1>
             </div>

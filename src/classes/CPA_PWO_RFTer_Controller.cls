@@ -1,4 +1,4 @@
-Public Class CPA_PWO_RFTer_Controller{
+public with sharing class CPA_PWO_RFTer_Controller{
  
     public ID CPA_PWOID;
      Public CPA_project_work_order__c CPAPwoObject;

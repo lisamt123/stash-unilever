@@ -3,7 +3,7 @@
  * @date 11/01/2016
  * @description - This Class is used to perform operation on before update event of CR  Trigger
  */
-public class CPA_CR_TriggerUtil{
+public with sharing class CPA_CR_TriggerUtil{
     public static boolean isSubmitted=false;
 /*
     * Method Name : recallApproval
@@ -123,7 +123,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
             }
         }
         if(setPWO.size()>0 && setPWO !=null){  
-            for(CPA_project_work_order__c objPwo : [select id, txt_Unilever_Reference__c,fml_Unilever_Project_Name_on_PWORF__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,mpkl_Project_Phases__c,pkl_Region__c from CPA_project_work_order__c where ID  IN: setPWO]){
+            for(CPA_project_work_order__c objPwo : [select id, txt_Unilever_Reference__c,fml_Unilever_Project_Name_on_PWORF__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,mpkl_Project_Phases__c,pkl_Region__c,txt_PWO_number__c from CPA_project_work_order__c where ID  IN: setPWO]){
                     mapPWO.put(objPwo.Id,objPwo);
                 }
                 
@@ -146,6 +146,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
                             objnewCR.addError('Only ' + objPWOTemp.mpkl_Project_Phases__c.replaceAll(';', ', ') + ' Project Phases are allow');
                     if(objPWOTemp.pkl_Region__c != null && objnewCR.Region_impacted__c != null && objnewCR.Region_impacted__c != objPWOTemp.pkl_Region__c) 
                             objnewCR.addError('CR can be created for '+objPWOTemp.pkl_Region__c+ ' Region');
+                        objnewCR.PWO_number__c = objPWOTemp.txt_PWO_number__c;
                 }
             }
         }
@@ -286,8 +287,10 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
                             objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Delta_Efforts__c;
                         }
                       else{
+                          if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_CR__c != null){
                           objCRTEmp.num_Delta_Efforts__c =objCRTEmp.num_Estimated_Value_of_CR__c  - mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_CR__c;
                           objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Delta_Efforts__c;
+                        } 
                       }  
                         
                     }           
@@ -350,70 +353,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
         }
     }
     
-     /** Method Name : internalCRID
-    * Parameter   : newCR
-    * Return type : None
-    * Author      : Dinesh Girase  
-    * Description : This method creates Internal CR ID, used for search purpose
-    */ 
-    
-    public static void internalCRID(List<CPA_CR__c> newCR){
-       /* List<AggregateResult> lstCR = [SELECT count(ID) newCount FROM CPA_CR__c];
-        if(lstCR[0].get('newCount') != null){
-            Integer maxNo = Integer.valueOf(lstCR[0].get('newCount') + '');
-            String newInternalCRID = getInternalCRID(maxNo);
-            System.debug('newInternalCRID ######## : ' + newInternalCRID);
-            newCR[0].txt_Internal_CR_ID__c = newInternalCRID;
-            System.debug('txt_Internal_CR_ID__c ######## : ' + newInternalCRID);
-            List<CPA_project_work_order__c> pwos = [SELECT txt_For_Search__c, PWORF_ID__c FROM CPA_project_work_order__c Where Id =: newCR[0].CPA_Project_Work_Order__c];
-            String strPWORFID='';
-            if(pwos[0].txt_For_Search__c != null){
-                strPWORFID = pwos[0].PWORF_ID__c;
-                System.debug('If strPWORFID  ######## : ' + strPWORFID );
-                String existingPWOData = pwos[0].txt_For_Search__c;
-                System.debug('CR Search ######## : ' + existingPWOData);
-                pwos[0].txt_For_Search__c = existingPWOData + ', ' + newInternalCRID;
-                update pwos;
-            }else{
-                strPWORFID = pwos[0].PWORF_ID__c;
-                System.debug('Else strPWORFID  ######## : ' + strPWORFID );
-                pwos[0].txt_For_Search__c = newInternalCRID;
-                update pwos;
-            }
-            
-            List<CPA_PWORF__c> pworfs = [SELECT For_Search__c FROM CPA_PWORF__c Where Id =: strPWORFID];
-            
-            if(pworfs[0].For_Search__c != null){
-                String existingPWORFData = pworfs[0].For_Search__c;
-                System.debug('CR Search ######## : ' + existingPWORFData);
-                pworfs[0].For_Search__c = existingPWORFData + ', ' + newInternalCRID;
-                update pworfs;
-            }
-        }*/
-    }
-    
-    /**   Method Name : getInternalCRID
-    * Parameter   : numSearch
-    * Return type : String
-    * Author      : Dinesh Girase  
-    * Description : This method generates incremental Internal CR ID
-    */
-    
-    /*public static String getInternalCRID(Integer numSearch){
-        String strCRID='';
-        integer intIncrementNum = numSearch + 1;
-        if(string.valueof(numSearch).length() == 1)
-            strCRID = 'CR-0000' + string.valueof(intIncrementNum);
-        if(string.valueof(numSearch).length() == 2)
-            strCRID = 'CR-000' + string.valueof(intIncrementNum);
-        if(string.valueof(numSearch).length() == 3)
-            strCRID = 'CR-00' + string.valueof(intIncrementNum);
-        if(string.valueof(numSearch).length() == 4)
-            strCRID = 'CR-0' + string.valueof(intIncrementNum);
-        if(string.valueof(numSearch).length() == 5)
-            strCRID = 'CR-' + string.valueof(intIncrementNum);
-        return strCRID;
-    }*/
+
     
       /**   Method Name : DOntDelete
     * Parameter   : OldMap
@@ -451,6 +391,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
                 Approval.unLockResult lrList = Approval.unlock(obj, false);
                 //CPA_project_work_order__c pwo = pworfmap.get(obj.id);
                 obj.txt_CNF_CR_number__c = pwomap.get(obj.id);
+                
                 //system.debug('obj.LatestPWOID__c>>>pooja'+obj.LatestPWOID__c);
                 lstTemp.add(obj);                    
             }

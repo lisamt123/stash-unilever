@@ -19,7 +19,7 @@
       
      
       <apex:pageBlockSection columns="1" collapsible="false"  id="theSec">
-       <apex:selectList label="Record Type of new record" value="{!recordtypeId}" style=" width: 177px; form-control" size="1" > 
+       <apex:selectList label="{!$Label.CPA_RecordType}" value="{!recordtypeId}" style=" width: 177px; form-control" size="1" > 
         <apex:selectOptions value="{!recordTypelist}" /> 
       </apex:selectList>
        
@@ -27,7 +27,7 @@
       </apex:pageBlockSection>   
       
       
- <apex:pageBlockSection title="Record Types Details" columns="1" collapsible="false"  >
+ <apex:pageBlockSection title="{!$Label.CPA_RecordType_Details}" columns="1" collapsible="false"  >
 <table style="width:30%" class="myTable" border="1">
   <tr>
     <td><strong>Name</strong></td>

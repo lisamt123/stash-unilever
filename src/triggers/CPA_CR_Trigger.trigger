@@ -19,7 +19,7 @@ trigger CPA_CR_Trigger on CPA_CR__c (before insert, after insert, before update,
        CPA_CR_TriggerUtil.checklistValueOfCR(trigger.new);
        CPA_CR_TriggerUtil.standaloneCR(trigger.new);
        //added by Dinesh, remove below comments later on
-       CPA_CR_TriggerUtil.internalCRID(trigger.new);
+       //CPA_CR_TriggerUtil.internalCRID(trigger.new);
 
     }
     if(Trigger.isInsert && Trigger.isAfter){ //for after insert trigger

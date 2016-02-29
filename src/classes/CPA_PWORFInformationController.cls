@@ -216,15 +216,14 @@ global with sharing class CPA_PWORFInformationController {
         
     }
     void PWORFrelatedCheck(id pworfRecordId){ 
-        Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll();
-        pworfRecord = [SELECT Id,(SELECT PWORF_Requirement_Deliverables__c FROM Requirements_and_Deliverables__r),(select id from PWORF_Key_Contact__r), (select id from User_Defined_Attributes__r),(SELECT lkp_PWORF__c FROM Risk_Assessment_and_Mitigation__r) FROM CPA_PWORF__c WHERE Id =:pworfRecordId];
+       Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll();
+        pworfRecord = [SELECT Id,(SELECT PWORF_Requirement_Deliverables__c FROM Requirements_and_Deliverables__r),(select id from PWORF_Key_Contact__r),(SELECT lkp_PWORF__c FROM Risk_Assessment_and_Mitigation__r) FROM CPA_PWORF__c WHERE Id =:pworfRecordId];
         if(pworfRecord.Requirements_and_Deliverables__r.size()==0 ) objectMap.put('Requirements and Deliverables' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         if(pworfRecord.PWORF_Key_Contact__r.size()==0) objectMap.put('Key Contacts' ,CPA_ConstantsForContractingAppClasses.MANDATORY);        
-        //if(pworfRecord.User_Defined_Attributes__r.size()==0) objectMap.put('User Defined Attribute' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         /*if(pworfRec.RecordTypeid == customSettingPworfRT.get('RA').Record_type_id__c ){
             if(pworfRecord.Risk_Assessment_and_Mitigation__r.size()==0) objectMap.put('Risk Assessment and Mitigation' ,CPA_ConstantsForContractingAppClasses.MANDATORY);            
         }*/
-    }
+   }
    
     
     webService static boolean checkIsValidated(Id objId) {

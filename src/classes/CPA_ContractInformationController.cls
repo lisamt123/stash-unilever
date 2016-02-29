@@ -1,4 +1,4 @@
-global class CPA_ContractInformationController {
+global with sharing class CPA_ContractInformationController {
  public id pwoId;
  public CPA_project_work_order__c pwoRec;
  public Map<String,String> RequiredFieldMap {get; set;}
@@ -39,86 +39,92 @@ global class CPA_ContractInformationController {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.get(pwoRec.TNF_Status__c).TNF_Status_Msg__c));
             }           
         if(pwoRec.RecordTypeid == label.CPA_PWO_RecordTypeId || pwoRec.RecordTypeid == label.CPA_Standalone_PWO_RecordTypeId){            
-            if(pwoRec.pkl_Status__c == 'Saved' || pwoRec.pkl_Status__c == 'Returned' || callFromVF == false){
+            //if(pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pwoRec.pkl_Status__c == 'CPA_ConstantsForContractingAppClasses.RETURNED' || callFromVF == false){
+            if(pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pwoRec.pkl_Status__c == 'CPA_ConstantsForContractingAppClasses.RETURNED' || !callFromVF){
                 if(pwoRec.txt_PWO_number__c == null)
-                    RequiredFieldMap.put( 'PWO number','Mandatory');
+                    RequiredFieldMap.put( 'PWO number',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 
                 if(pwoRec.txt_PWO_title__c == null)
-                    RequiredFieldMap.put( 'PWO title' ,'Mandatory');
+                    RequiredFieldMap.put( 'PWO title' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.mpkl_Project_Classification__c == null)
-                    RequiredFieldMap.put( 'Project Classification' ,'Mandatory');
+                    RequiredFieldMap.put( 'Project Classification' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.txt_Unilever_Project_Name__c == null)
-                    RequiredFieldMap.put( 'Unilever Project Name' ,'Mandatory');
+                    RequiredFieldMap.put( 'Unilever Project Name' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.mpkl_Unilever_Innovation_Area__c == null)
-                    RequiredFieldMap.put( 'Unilever Innovation Area' ,'Mandatory');
+                    RequiredFieldMap.put( 'Unilever Innovation Area' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.mpkl_Unilever_Innovation_Area__c == 'Other' && pwoRec.txt_Other_Innovation_Area__c == null)
                     RequiredFieldMap.put( 'Other Innovation Area' ,'It is mandatory if Unilever Innovation Area is OTHER' );
                 
                 if(pwoRec.pkl_Billing_Details__c == null)
-                    RequiredFieldMap.put( 'Legal Entity To Be Billed' ,'Mandatory');
+                    RequiredFieldMap.put( 'Legal Entity To Be Billed' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.pkl_Billing_Details__c == 'Other' && pwoRec.txt_Other_Billing_Details__c == null){
                     RequiredFieldMap.put( 'Other Billing Details' ,'It is mandatory if Billing Details is OTHER');
             }
                 
-                 if(pwoRec.chk_First_PWO__c != true && pwoRec.txta_reason_for_additiona_PWO__c == null){
-                    RequiredFieldMap.put( 'Reason For Additional PWO' ,'Mandatory');
+                 //if(pwoRec.chk_First_PWO__c != true && pwoRec.txta_reason_for_additiona_PWO__c == null){
+                 if(!pwoRec.chk_First_PWO__c && pwoRec.txta_reason_for_additiona_PWO__c == null){
+                    RequiredFieldMap.put( 'Reason For Additional PWO' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
                 
                 
                 if(pwoRec.txt_Accenture_Project_Manager__c == null)
-                    RequiredFieldMap.put( 'Accenture Project Manager' ,'Mandatory');
-                if(pwoRec.dt_Date_PWORF_accepted__c == null && pwoRec.chk_isStandalone_PWO__c != true)
-                    RequiredFieldMap.put( 'Date PWORF accepted' ,'Mandatory');
+                    RequiredFieldMap.put( 'Accenture Project Manager' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+                //if(pwoRec.dt_Date_PWORF_accepted__c == null && pwoRec.chk_isStandalone_PWO__c != true)
+                if(pwoRec.dt_Date_PWORF_accepted__c == null && !pwoRec.chk_isStandalone_PWO__c)
+                    RequiredFieldMap.put( 'Date PWORF accepted' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.num_Estimated_Man_days_of_PWO__c == null)
-                    RequiredFieldMap.put( 'Estimated Man-days of PWO' ,'Mandatory');
+                    RequiredFieldMap.put( 'Estimated Man-days of PWO' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.num_Estimated_Value_of_PWO__c == null)
-                    RequiredFieldMap.put( 'Estimated Value of PWO' ,'Mandatory');
+                    RequiredFieldMap.put( 'Estimated Value of PWO' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.lkp_Unilever_budget_approver__c == null)
-                    RequiredFieldMap.put( 'Unilever budget approver' ,'Mandatory');
+                    RequiredFieldMap.put( 'Unilever budget approver' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.lkp_Unilever_content_approver__c == null)
-                    RequiredFieldMap.put( 'Unilever content approver' ,'Mandatory');
+                    RequiredFieldMap.put( 'Unilever content approver' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.lkp_Unilever_Finance_BP_Contact__c == null)
-                    RequiredFieldMap.put( 'Unilever Finance BP/Contact' ,'Mandatory');
+                    RequiredFieldMap.put( 'Unilever Finance BP/Contact' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.dt_Project_Initiation_Date__c == null)
-                    RequiredFieldMap.put( 'Project Initiation Date' ,'Mandatory');
+                    RequiredFieldMap.put( 'Project Initiation Date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.mpkl_Project_Phases__c == null)
-                    RequiredFieldMap.put( 'Project Phases' ,'Mandatory');
+                    RequiredFieldMap.put( 'Project Phases' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.mpkl_Project_Phases__c == 'Other' && pwoRec.txt_Other_Project_Phases__c == null)
                 RequiredFieldMap.put( 'Other Project Phases' ,'It is mandatory if Project Phases is OTHER');
                 
                 
                 if(pwoRec.pkl_Pricing_Model__c == null)
-                    RequiredFieldMap.put( 'Pricing Model' ,'Mandatory');
+                    RequiredFieldMap.put( 'Pricing Model' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.num_Target_Blend_Rate__c == null)
-                    RequiredFieldMap.put( 'Target Blend Rate' ,'Mandatory');
+                    RequiredFieldMap.put( 'Target Blend Rate' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.num_Varied_Target_Blend_Rate__c == null)
-                    RequiredFieldMap.put( 'Varied Target Blend Rate' ,'Mandatory');
+                    RequiredFieldMap.put( 'Varied Target Blend Rate' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.pec_Variance__c == null)
-                    RequiredFieldMap.put( 'Variance %' ,'Mandatory');
+                    RequiredFieldMap.put( 'Variance %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.pec_Estimated_Off_shore__c == null)
-                    RequiredFieldMap.put( 'Estimated Off-shore %' ,'Mandatory');
+                    RequiredFieldMap.put( 'Estimated Off-shore %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.pec_Estimated_On_shore__c == null)
-                    RequiredFieldMap.put( 'Estimated On-shore %' ,'Mandatory');
+                    RequiredFieldMap.put( 'Estimated On-shore %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.pec_Expense__c == null)
-                    RequiredFieldMap.put( 'Total work order charge' ,'Mandatory');
+                    RequiredFieldMap.put( 'Total work order charge' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.num_Expense_charges_of_work_order__c == null)
-                    RequiredFieldMap.put( 'Expense charges of work order' ,'Mandatory');
+                    RequiredFieldMap.put( 'Expense charges of work order' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.num_Total_work_order_charge__c == null)
-                    RequiredFieldMap.put( 'Expense %' ,'Mandatory');
+                    RequiredFieldMap.put( 'Expense %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.Currency__c == null)
-                    RequiredFieldMap.put( 'Currency' ,'Mandatory');
+                    RequiredFieldMap.put( 'Currency' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.Currency__c == 'OTHER' && pwoRec.txt_Other_Currency__c == null)
                 RequiredFieldMap.put( 'Other Currency' ,'It is mandatory if Currency is OTHER');
                 
                 
-                if(pwoRec.txt_Unilever_Reference__c == null && pwoRec.fml_Clarity_ID__c == null && pwoRec.chk_isStandalone_PWO__c != true)
-                    RequiredFieldMap.put( 'Unilever Reference ' ,'Mandatory');
-                if(pwoRec.chk_Excel_Attached__c!= true )
-                    RequiredFieldMap.put( 'Commercial CSV Not attached, Please attach Commercial CSV , with filename prefix with Commercial ' ,'Mandatory');              
-                if(pwoRec.chk_PDF_Attached__c !=true)
-                     RequiredFieldMap.put( 'Contract pdf Not attached, Please attach Contract PDF , with filename prefix with PWO  ' ,'Mandatory'); 
+                //if(pwoRec.txt_Unilever_Reference__c == null && pwoRec.fml_Clarity_ID__c == null && pwoRec.chk_isStandalone_PWO__c != true)
+                if(pwoRec.txt_Unilever_Reference__c == null && pwoRec.fml_Clarity_ID__c == null && !pwoRec.chk_isStandalone_PWO__c)
+                    RequiredFieldMap.put( 'Unilever Reference ' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+                //if(pwoRec.chk_Excel_Attached__c!= true )
+                if(!pwoRec.chk_Excel_Attached__c)
+                    RequiredFieldMap.put( 'Commercial CSV Not attached, Please attach Commercial CSV , with filename prefix with Commercial ' ,CPA_ConstantsForContractingAppClasses.MANDATORY);              
+                //if(pwoRec.chk_PDF_Attached__c !=true)
+                if(!pwoRec.chk_PDF_Attached__c)
+                     RequiredFieldMap.put( 'Contract pdf Not attached, Please attach Contract PDF , with filename prefix with PWO  ' ,CPA_ConstantsForContractingAppClasses.MANDATORY); 
                 if(pwoRec.pkl_Region__c == null)
-                    RequiredFieldMap.put( 'Region' ,'Mandatory'); 
+                    RequiredFieldMap.put( 'Region' ,CPA_ConstantsForContractingAppClasses.MANDATORY); 
                 if(pwoRec.dt_Expected_Start_Date__c == null || pwoRec.dt_Expected_Start_Date__c < System.today() )
                     RequiredFieldMap.put( 'Expected Start Date' ,'Its mandatory and should not be before today');
                 if(pwoRec.dt_Expected_End_date__c == null || pwoRec.dt_Expected_End_date__c < pwoRec.dt_Expected_Start_Date__c)
@@ -126,65 +132,68 @@ global class CPA_ContractInformationController {
             }
         }else if(pwoRec.RecordTypeid == label.CPA_PWO_CNF_RecordTypeId){
             
-            if(pwoRec.CNF_Status__c == 'Saved' || callFromVF == false){
-                if(pwoRec.txt_CNF_Accenture_Project_Manager__c== null) RequiredFieldMap.put('Accenture Project Manager','Mandatory');
-                if(pwoRec.num_CNF_Actual_Day_rate__c== null) RequiredFieldMap.put('Actual Day rate','Mandatory');
-                if(pwoRec.num_CNF_Actual_expenses__c== null) RequiredFieldMap.put('Actual expenses','Mandatory');
-                if(pwoRec.num_CNF_Actual_fees_inclusive_of_discoun__c== null) RequiredFieldMap.put('Actual fees (inclusive of discount)','Mandatory');
-                if(pwoRec.num_CNF_Actual_man_days__c== null) RequiredFieldMap.put('Actual man-days','Mandatory');
-                if(pwoRec.num_CNF_Actual_PMO_tax__c== null) RequiredFieldMap.put('Actual PMO tax','Mandatory');
-                if(pwoRec.dt_CNF_Actual_PWO_End_Date__c== null) RequiredFieldMap.put('Actual PWO End Date','Mandatory');
-                if(pwoRec.num_CNF_Actual_total_charges__c== null) RequiredFieldMap.put('Actual total charges','Mandatory');
-                //if(pwoRec.mpkl_CNF_Currency__c== null) RequiredFieldMap.put('Currency','Mandatory');
-                if(pwoRec.num_CNF_Planned_Day_rate__c== null) RequiredFieldMap.put('Planned Day rate','Mandatory');
-                if(pwoRec.num_CNF_Planned_expenses__c== null) RequiredFieldMap.put('Planned expenses','Mandatory');
-                if(pwoRec.num_CNF_Planned_fees_inclusive_of_discou__c== null) RequiredFieldMap.put('Planned fees (inclusive of discount)','Mandatory');
-                if(pwoRec.num_CNF_Planned_man_days__c== null) RequiredFieldMap.put('Planned man-days','Mandatory');
-                if(pwoRec.num_CNF_Planned_PMO_tax__c== null) RequiredFieldMap.put('Planned PMO tax','Mandatory');
-                if(pwoRec.dt_CNF_Planned_PWO_End_Date__c== null) RequiredFieldMap.put('Planned PWO End Date','Mandatory');
-                if(pwoRec.num_CNF_Planned_total_charges__c== null) RequiredFieldMap.put('Planned total charges','Mandatory');
-                if(pwoRec.lkp_CNF_Unilever_budget_approver__c== null) RequiredFieldMap.put('Unilever budget approver','Mandatory');
-                if(pwoRec.txt_CNF_Unilever_Clarity_ID__c== null && pwoRec.chk_isStandalone_PWO__c != true) RequiredFieldMap.put('Unilever Clarity ID','Mandatory');
-                if(pwoRec.lkp_CNF_Unilever_content_approver__c== null) RequiredFieldMap.put('Unilever content approver','Mandatory');
-                if(pwoRec.num_CNF_Variance_number_in_man_days__c== null) RequiredFieldMap.put('Variance (number in man-days)','Mandatory');
+            //if(pwoRec.CNF_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || callFromVF == false){
+            if(pwoRec.CNF_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || !callFromVF){
+                if(pwoRec.txt_CNF_Accenture_Project_Manager__c== null) RequiredFieldMap.put('Accenture Project Manager',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Actual_Day_rate__c== null) RequiredFieldMap.put('Actual Day rate',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Actual_expenses__c== null) RequiredFieldMap.put('Actual expenses',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Actual_fees_inclusive_of_discoun__c== null) RequiredFieldMap.put('Actual fees (inclusive of discount)',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Actual_man_days__c== null) RequiredFieldMap.put('Actual man-days',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Actual_PMO_tax__c== null) RequiredFieldMap.put('Actual PMO tax',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.dt_CNF_Actual_PWO_End_Date__c== null) RequiredFieldMap.put('Actual PWO End Date',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Actual_total_charges__c== null) RequiredFieldMap.put('Actual total charges',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                //if(pwoRec.mpkl_CNF_Currency__c== null) RequiredFieldMap.put('Currency',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Planned_Day_rate__c== null) RequiredFieldMap.put('Planned Day rate',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Planned_expenses__c== null) RequiredFieldMap.put('Planned expenses',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Planned_fees_inclusive_of_discou__c== null) RequiredFieldMap.put('Planned fees (inclusive of discount)',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Planned_man_days__c== null) RequiredFieldMap.put('Planned man-days',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Planned_PMO_tax__c== null) RequiredFieldMap.put('Planned PMO tax',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.dt_CNF_Planned_PWO_End_Date__c== null) RequiredFieldMap.put('Planned PWO End Date',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Planned_total_charges__c== null) RequiredFieldMap.put('Planned total charges',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.lkp_CNF_Unilever_budget_approver__c== null) RequiredFieldMap.put('Unilever budget approver',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                //if(pwoRec.txt_CNF_Unilever_Clarity_ID__c== null && pwoRec.chk_isStandalone_PWO__c != true) RequiredFieldMap.put('Unilever Clarity ID',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.txt_CNF_Unilever_Clarity_ID__c== null && !pwoRec.chk_isStandalone_PWO__c) RequiredFieldMap.put('Unilever Clarity ID',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.lkp_CNF_Unilever_content_approver__c== null) RequiredFieldMap.put('Unilever content approver',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                if(pwoRec.num_CNF_Variance_number_in_man_days__c== null) RequiredFieldMap.put('Variance (number in man-days)',CPA_ConstantsForContractingAppClasses.MANDATORY);
             }
         }else if(pwoRec.RecordTypeid == label.CPA_PWO_TNF_RecordTypeId){
             
-            if(pwoRec.TNF_Status__c == 'Saved' || callFromVF == false){
+            //if(pwoRec.TNF_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || callFromVF == false){
+            if(pwoRec.TNF_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || !callFromVF){
                 if(pwoRec.txt_TNF_Approved_by__c == null)
-                    RequiredFieldMap.put('Approved by','Mandatory');
+                    RequiredFieldMap.put('Approved by',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.dt_TNF_TD_Date_Notified__c == null)
-                    RequiredFieldMap.put('Date Notified','Mandatory');
+                    RequiredFieldMap.put('Date Notified',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.dt_TNF_TD_Effective_Date__c == null)
-                    RequiredFieldMap.put('Effective Date','Mandatory');
+                    RequiredFieldMap.put('Effective Date',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.txt_TNF_Reason_for_termination__c == null)
-                    RequiredFieldMap.put('Reason for termination','Mandatory');
+                    RequiredFieldMap.put('Reason for termination',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.txt_TNF_Relocation_of_resources__c == null)
-                    RequiredFieldMap.put('Relocation of resources','Mandatory');
+                    RequiredFieldMap.put('Relocation of resources',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.txt_TNF_Comments__c == null)
-                    RequiredFieldMap.put('Comments','Mandatory');
+                    RequiredFieldMap.put('Comments',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.num_TNF_Variance_in_charges__c == null)
-                    RequiredFieldMap.put('Variance in charges','Mandatory');
+                    RequiredFieldMap.put('Variance in charges',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.num_TNF_Variance_in_effort__c == null)
-                    RequiredFieldMap.put('Variance in effort','Mandatory');
+                    RequiredFieldMap.put('Variance in effort',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.num_TNF_Planned_charges__c == null)
-                    RequiredFieldMap.put('Planned charges','Mandatory');   
+                    RequiredFieldMap.put('Planned charges',CPA_ConstantsForContractingAppClasses.MANDATORY);   
                 if(pwoRec.num_TNF_Actual_charges__c == null)
-                    RequiredFieldMap.put('Actual charges','Mandatory'); 
+                    RequiredFieldMap.put('Actual charges',CPA_ConstantsForContractingAppClasses.MANDATORY); 
                 if(pwoRec.txt_TNF_Actual_effort_in_days__c == null)
-                    RequiredFieldMap.put('Actual effort in days','Mandatory');
+                    RequiredFieldMap.put('Actual effort in days',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.num_TNF_Planned_effort_in_days__c == null)
-                    RequiredFieldMap.put('Planned effort in days','Mandatory'); 
+                    RequiredFieldMap.put('Planned effort in days',CPA_ConstantsForContractingAppClasses.MANDATORY); 
                 if(pwoRec.txt_TNF_TD_Notice_Required__c == null)
-                    RequiredFieldMap.put('Notice Required','Mandatory');
+                    RequiredFieldMap.put('Notice Required',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.pkl_TNF_Terminated_by__c== null)
-                    RequiredFieldMap.put('Terminated by','Mandatory');
+                    RequiredFieldMap.put('Terminated by',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.txt_TNF_Accenture_Contact__c == null)
-                    RequiredFieldMap.put('Accenture Contact','Mandatory');
+                    RequiredFieldMap.put('Accenture Contact',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.lkp_TNF_Unilever_Contact__c == null)
-                    RequiredFieldMap.put('Unilever Contact','Mandatory');
+                    RequiredFieldMap.put('Unilever Contact',CPA_ConstantsForContractingAppClasses.MANDATORY);
               //  if(pwoRec.txt_TNF_Other_Currency__c == null && pwoRec.pkl_TNF_Currency__c == 'Other') 
-                 //   RequiredFieldMap.put('Other Currency','Mandatory');
+                 //   RequiredFieldMap.put('Other Currency',CPA_ConstantsForContractingAppClasses.MANDATORY);
             }
         }
         

@@ -1,52 +1,52 @@
 @isTest(SeeAllData=true)
 public class CPA_AttchemntUtilController_Test {
-
+    public static final String  BLOBDATA = 'Entity Type,Entity Name,Role,Location,Resource Level,Rate,Cost Name,Year,Month,Effort (Man Days),Expense\n1,1,Senior SME,USA,8,191,1,2015,Sep,21,1';
     static testmethod void CPA_AttchemntUtilController_Test() {   
         CPA_PWORF__c objPworf14 = CPA_testClass_util.createTest_other_PWORF();
         insert objPworf14;
         objPworf14.pkl_Status__c = 'Answered';
         update objPworf14;
         
-    List<Attachment>  listAttachment = new List<Attachment>();             
+        List<Attachment>  listAttachment = new List<Attachment>();             
         CPA_LOI__c objLOI =CPA_testClass_util.createLOI (objPworf14);
         insert  objLOI;
         objLOI.pkl_Status__c ='Submitted';
         update objLOI;
-        Blob bBlob5 = Blob.valueOf('Test');
+        Blob bBlob5 = Blob.valueOf(CPA_ConstantsForContractingAppClasses.TEST);
         Attachment attachment5 = new Attachment();
         attachment5.ParentId = objLOI.ID;
         attachment5.Name = 'LOI RentReceipt.pdf.pdf';
-        attachment5.ContentType = 'application/pdf';
+        attachment5.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONPDF;
         attachment5.Body = bBlob5;
         //insert(attachment5);
         listAttachment.add(attachment5);
-        System.assertEquals('application/pdf', attachment5.ContentType);
+        System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment5.ContentType);
         
         CPA_project_work_order__c objPWO = CPA_testClass_util.createPWO(objPworf14);
         insert objPWO;
         
         
-        Blob bBlob = Blob.valueOf('Entity Type,Entity Name,Role,Location,Resource Level,Rate,Cost Name,Year,Month,Effort (Man Days),Expense\n1,1,Senior SME,USA,8,191,1,2015,Sep,21,1');
+        Blob bBlob = Blob.valueOf(BLOBDATA);
         Attachment attachment = new Attachment();
         attachment.ParentId = objPWO.ID;
         attachment.Name = 'Commercial for PWO.csv';
-        attachment.ContentType = 'application/vnd.ms-excel';
+        attachment.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL;
         attachment.Body = bBlob;
         //insert(attachment);
         listAttachment.add(attachment);
         
-        Blob bBlob1 = Blob.valueOf('Test');
+        Blob bBlob1 = Blob.valueOf(CPA_ConstantsForContractingAppClasses.TEST);
         Attachment attachment1 = new Attachment();
         attachment1.ParentId = objPWO.ID;
         attachment1.Name = 'PWO RentReceipt.pdf.pdf';
-        attachment1.ContentType = 'application/pdf';
+        attachment1.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONPDF;
         attachment1.Body = bBlob1;
        // insert(attachment1);
         listAttachment.add(attachment1);
 
         objPWO.pkl_Status__c = 'Accepted';
         update objPWO;    
-         System.assertEquals('Accepted', objPWO.pkl_Status__c);
+         System.Assert('Accepted'== objPWO.pkl_Status__c);
     CPA_Commercial_Details__c obj1 = new CPA_Commercial_Details__c();
     obj1.Project_Work_Order__c = objPWO.id;
     insert  obj1;    
@@ -55,11 +55,11 @@ public class CPA_AttchemntUtilController_Test {
         CPA_CR__c objCR = CPA_testClass_util.createCR(objPWO);
         insert objCR;
         CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
-        Blob bBlob2 = Blob.valueOf('Entity Type,Entity Name,Role,Location,Resource Level,Rate,Cost Name,Year,Month,Effort (Man Days),Expense\n1,1,Senior SME,USA,8,191,1,2015,Sep,21,1');
+        Blob bBlob2 = Blob.valueOf(BLOBDATA);
         Attachment attachment2 = new Attachment();
         attachment2.ParentId = objCR.ID;
         attachment2.Name = 'Commercial for CR.csv';
-        attachment2.ContentType = 'application/vnd.ms-excel';
+        attachment2.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL;
         attachment2.Body = bBlob2;
         //insert(attachment2);
         listAttachment.add(attachment2);
@@ -70,27 +70,27 @@ public class CPA_AttchemntUtilController_Test {
     
         
         
-        Blob bBlob13 = Blob.valueOf('Test');
+        Blob bBlob13 = Blob.valueOf(CPA_ConstantsForContractingAppClasses.TEST);
         Attachment attachment3 = new Attachment();
         attachment3.ParentId = objCR.ID;
         attachment3.Name = 'CR RentReceipt.pdf.pdf';
-        attachment3.ContentType = 'application/pdf';
+        attachment3.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONPDF;
         attachment3.Body = bBlob13;
        // insert(attachment3);
         listAttachment.add(attachment3);
         
         
         insert listAttachment;
-         System.assertEquals('application/pdf', attachment3.ContentType);
-          System.assertEquals('application/vnd.ms-excel', attachment2.ContentType);
+         System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment3.ContentType);
+          System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment2.ContentType);
            
         
         List<Attachment> listLOi = [Select Id,ParentId from Attachment where ParentId=:objLOI.Id];
         listLOi.add(attachment5);
         CPA_AttchemntUnit.updateLOI(listLOi);
         CPA_AttchemntUnit.DeleteLOI(listLOi);
-         System.assertEquals('application/pdf', attachment3.ContentType);
-          System.assertEquals('application/vnd.ms-excel', attachment2.ContentType);
+         System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment3.ContentType);
+          System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment2.ContentType);
     }
     static testmethod void Test_CPA_AttchemntUtil1() { 
     //*---------------------------------------------------------------*//
@@ -105,23 +105,23 @@ public class CPA_AttchemntUtilController_Test {
             CPA_project_work_order__c objPWO151 = CPA_testClass_util.createPWO(objPworf15);
             insert objPWO151;
             
-            Blob bBlob11 = Blob.valueOf('Entity Type,Entity Name,Role,Location,Resource Level,Rate,Cost Name,Year,Month,Effort (Man Days),Expense\n1,1,Senior SME,USA,8,191,1,2015,Sep,21,1');
+            Blob bBlob11 = Blob.valueOf(BLOBDATA);
             Attachment attachment78 = new Attachment();
             CPA_project_work_order__c obj = [Select Id from CPA_project_work_order__c where Id =: objPWO151.Id];
             attachment78.ParentId = obj.ID;
             attachment78.Name = 'Commercial for PWO.csv';
-            attachment78.ContentType = 'application/vnd.ms-excel';
+            attachment78.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL;
             attachment78.Body = bBlob11;
             insert(attachment78);
-             System.assertEquals('application/vnd.ms-excel', attachment78.ContentType);
+             System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment78.ContentType);
          
             //listAttachment.add(attachment78);
             
-            Blob bBlob12 = Blob.valueOf('Test');
+            Blob bBlob12 = Blob.valueOf(CPA_ConstantsForContractingAppClasses.TEST);
             Attachment attachment17 = new Attachment();
             attachment17.ParentId = objPWO151.ID;
             attachment17.Name = 'PWO RentReceipt.pdf.pdf';
-            attachment17.ContentType = 'application/pdf';
+            attachment17.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONPDF;
             attachment17.Body = bBlob12;
            // insert(attachment1);
             listAttachment.add(attachment17);
@@ -137,11 +137,11 @@ public class CPA_AttchemntUtilController_Test {
             insert objCR1;
             CPA_project_work_order__c pwo12 = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR1.CPA_Project_Work_Order__c];
            // objCR1.CPA_project_work_order__c = pwo12.id;
-            Blob bBlob21 = Blob.valueOf('Entity Type,Entity Name,Role,Location,Resource Level,Rate,Cost Name,Year,Month,Effort (Man Days),Expense\n1,1,Senior SME,USA,8,191,1,2015,Sep,21,1');
+            Blob bBlob21 = Blob.valueOf(BLOBDATA);
             Attachment attachment21 = new Attachment();
             attachment21.ParentId = objCR1.ID;
             attachment21.Name = 'Commercial for CR.csv';
-            attachment21.ContentType = 'application/vnd.ms-excel';
+            attachment21.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL;
             attachment21.Body = bBlob21;
             //insert(attachment2);
             listAttachment.add(attachment21);
@@ -152,16 +152,16 @@ public class CPA_AttchemntUtilController_Test {
         
             
             
-            Blob bBlob131 = Blob.valueOf('Test');
+            Blob bBlob131 = Blob.valueOf(CPA_ConstantsForContractingAppClasses.TEST);
             Attachment attachment31 = new Attachment();
             attachment31.ParentId = objCR1.ID;
             attachment31.Name = 'CR RentReceipt.pdf.pdf';
-            attachment31.ContentType = 'application/pdf';
+            attachment31.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONPDF;
             attachment31.Body = bBlob131;
            // insert(attachment3);
             listAttachment.add(attachment31);
             
-              System.assertEquals('application/pdf', attachment31.ContentType);
+              System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment31.ContentType);
             
         
         
@@ -169,11 +169,11 @@ public class CPA_AttchemntUtilController_Test {
         CPA_CR__c objCR2 = CPA_testClass_util.createCR(objPWO151);
             insert objCR2;
             //CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR2.CPA_Project_Work_Order__c];
-            Blob bBlob6 = Blob.valueOf('Entity Type,Entity Name,Role,Location,Resource Level,Rate,Cost Name,Year,Month,Effort (Man Days),Expense\n1,1,Senior SME,USA,8,191,1,2015,Sep,21,1');
+            Blob bBlob6 = Blob.valueOf(BLOBDATA);
             Attachment attachment6 = new Attachment();
             attachment6.ParentId = objCR2.ID;
             attachment6.Name = 'Commercial for CR.csv';
-            attachment6.ContentType = 'application/vnd.ms-excel';
+            attachment6.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL;
             attachment6.Body = bBlob6;
             //insert(attachment6);
             listAttachment.add(attachment6);
@@ -184,11 +184,11 @@ public class CPA_AttchemntUtilController_Test {
         
             
             
-            Blob bBlob18 = Blob.valueOf('Test');
+            Blob bBlob18 = Blob.valueOf(CPA_ConstantsForContractingAppClasses.TEST);
             Attachment attachment7 = new Attachment();
             attachment7.ParentId = objCR2.ID;
             attachment7.Name = 'CR RentReceipt.pdf.pdf';
-            attachment7.ContentType = 'application/pdf';
+            attachment7.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONPDF;
             attachment7.Body = bBlob18;
            
             listAttachment.add(attachment7);
@@ -215,7 +215,7 @@ public class CPA_AttchemntUtilController_Test {
         system.debug('attachment78-->'+attachment78);
         CPA_AttchemntUnit.ReadFile(attachment6);
         system.debug('attachment6-->'+attachment6);
-        System.assertEquals('application/vnd.ms-excel', attachment6.ContentType);
+        System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment6.ContentType);
             CPA_AttchemntUnit.deleteContract(lstDel);
             CPA_AttchemntUnit.deleteContract(lstDel1);
     

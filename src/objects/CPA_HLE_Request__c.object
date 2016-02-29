@@ -1031,7 +1031,7 @@ null)))</formula>
         <description>Indicate whether this project may require the provision of additional software or licenses either by Unilever or by Accenture (or both)</description>
         <externalId>false</externalId>
         <inlineHelpText>Indicate whether this project may require the provision of additional software or licenses either by Unilever or by Accenture (or both)</inlineHelpText>
-        <label>Software / Licensing Requirements*</label>
+        <label>Software/Licensing Requirements*</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>

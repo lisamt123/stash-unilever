@@ -1,4 +1,4 @@
-global class CPA_CRInformationController {
+global with sharing class CPA_CRInformationController {
  public id crId;
  public CPA_CR__c crRec;
  public String mandatoryStringFlag {get; set;}   
@@ -29,9 +29,11 @@ global class CPA_CRInformationController {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.CR_Status_Msg__c));
         }
         if((crRec.pkl_Status__c == 'Saved')|| !callFromVF){
-            if(crRec.chk_Contract_Excel_Attached__c  != true)  
+            //if(crRec.chk_Contract_Excel_Attached__c  != true)
+            if(!crRec.chk_Contract_Excel_Attached__c)  
                  RequiredFieldMap.put( 'Please attach Commercial CSV , with filename prefix with Commercial' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-             if(crRec.chk_Contract_Attached__c  != true)
+             //if(crRec.chk_Contract_Attached__c  != true)
+             if(!crRec.chk_Contract_Attached__c)
                  RequiredFieldMap.put( 'Please attach Contract PDF , with filename prefix with CR' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txt_Accenture_Project_Manager__c  == null)  
                  RequiredFieldMap.put( 'Accenture Project Manager' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -45,8 +47,8 @@ global class CPA_CRInformationController {
                  RequiredFieldMap.put( 'CR Start Date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.pkl_Currency__c  == null)  
                  RequiredFieldMap.put( 'Currency' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-            if(crRec.dt_Date_raised__c  == null)  
-                 RequiredFieldMap.put( 'Date raised' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+            /*if(crRec.dt_Date_raised__c  == null)  
+                 RequiredFieldMap.put( 'Date raised' ,CPA_ConstantsForContractingAppClasses.MANDATORY);*/
             if(crRec.num_Estimated_Man_days_of_CR__c  == null)  
                  RequiredFieldMap.put( 'Estimated Man-days of CR' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.pec_Estimated_Off_shore__c  == null)  

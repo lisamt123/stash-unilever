@@ -1,7 +1,7 @@
 //AC.08.12.01
 //AC.10.07.03
 
-public Class CPA_PwoCnfTnf_CancelReasonController{
+public with sharing class CPA_PwoCnfTnf_CancelReasonController{
     Public id pwoId;
     Public CPA_project_work_order__c pwoRec;
     Public string strReason{get;set;}
@@ -82,8 +82,9 @@ public Class CPA_PwoCnfTnf_CancelReasonController{
             for(CPA_CR__c cr:crRecList){
                 cr.ltxta_Reason_for_Cancellation__c = strReason;
                 cr.pkl_Status__c= 'Cancelled';
-                update cr;
+                //update cr;
             }
+            update crRecList;
         }
     }
 }
