@@ -4590,6 +4590,13 @@ Which Communications team do you represent? You must be associated to one Planne
         <value>BB Comments:</value>
     </labels>
     <labels>
+        <fullName>IPM_BB_Document</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM BB Document</shortDescription>
+        <value>BB Document:</value>
+    </labels>
+    <labels>
         <fullName>IPM_BB_MILESTONE_DATES</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -6135,6 +6142,13 @@ If approved your project will be linked after your Charter gate has been approve
         <value>Cluster Name can not be more the 14 characters</value>
     </labels>
     <labels>
+        <fullName>IPM_Comma</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Comma</shortDescription>
+        <value>,</value>
+    </labels>
+    <labels>
         <fullName>IPM_Comments_Label</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7017,9 +7031,30 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <shortDescription>IPM_EcoDesign_Comparison_SKU</shortDescription>
         <value>Comparison SKU</value>
     </labels>
-    
-
-    
+    <labels>
+        <fullName>IPM_EcoDesign_Countries_Added</fullName>
+        <categories>change in rollout,EcoDesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM EcoDesign Countries Added</shortDescription>
+        <value>The following countries were added to the project:</value>
+    </labels>
+    <labels>
+        <fullName>IPM_EcoDesign_Countries_Deleted</fullName>
+        <categories>change in rollout,EcoDesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM EcoDesign Countries Deleted</shortDescription>
+        <value>The following countries were deleted from the project:</value>
+    </labels>
+    <labels>
+        <fullName>IPM_EcoDesign_Country_Added</fullName>
+        <categories>change in rollout,EcoDesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM EcoDesign Country Added</shortDescription>
+        <value>The following country was added to the project:</value>
+    </labels>
     <labels>
         <fullName>IPM_EcoDesign_Country_Category_Average</fullName>
         <language>en_US</language>
@@ -7027,7 +7062,14 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <shortDescription>IPM_EcoDesign_Country_Category_Average</shortDescription>
         <value>Country Category Average</value>
     </labels>
-    
+    <labels>
+        <fullName>IPM_EcoDesign_Country_Deleted</fullName>
+        <categories>change in rollout,EcoDesign</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM EcoDesign Country Deleted</shortDescription>
+        <value>The following country was deleted from the project:</value>
+    </labels>
     <labels>
         <fullName>IPM_EcoDesign_Directional_View</fullName>
         <language>en_US</language>
@@ -7599,6 +7641,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM FinanceRole Team</shortDescription>
         <value>Finance</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Finance_Align</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Finance Align</shortDescription>
+        <value>Please align Financials for below projects before proposal.</value>
     </labels>
     <labels>
         <fullName>IPM_Finance_Char_Limit</fullName>
@@ -8649,6 +8698,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_Loading_Msg</shortDescription>
         <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Local</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Local</shortDescription>
+        <value>Local</value>
     </labels>
     <labels>
         <fullName>IPM_LocalProjectName</fullName>
@@ -11821,6 +11877,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>&quot; target=&quot;_top&quot;&gt;</value>
     </labels>
     <labels>
+        <fullName>IPM_TDL_Align</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM TDL Align</shortDescription>
+        <value>Please align TLD for below projects before proposal.</value>
+    </labels>
+    <labels>
         <fullName>IPM_TEAM_MEMBERS</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -12631,6 +12694,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM backto intermediate</shortDescription>
         <value>You have not completed core parameter wizard.&quot;Click here to go back&quot;.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_confirm_business_case_in_gate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM confirm business case in gate</shortDescription>
+        <value>Please confirm business case for below projects before proposal.</value>
     </labels>
     <labels>
         <fullName>IPM_currency_button_hover</fullName>
