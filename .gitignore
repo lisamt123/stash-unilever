@@ -24,7 +24,7 @@ Referenced Packages
 .Trashes
 ehthumbs.db
 Thumbs.db
-
+.gradle/*
 # Files breaking git for Windows users 
 ######################
 ***HELP***.homePageComponent
