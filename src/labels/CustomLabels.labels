@@ -8357,6 +8357,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Innovation/Calendar Year iTO cannot be greater than GTO.</value>
     </labels>
     <labels>
+        <fullName>IPM_Ideas</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ideas</shortDescription>
+        <value>Ideas</value>
+    </labels>
+    <labels>
         <fullName>IPM_IdsApprovalNotNullMSg</fullName>
         <language>en_US</language>
         <protected>false</protected>
