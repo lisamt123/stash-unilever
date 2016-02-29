@@ -5400,6 +5400,13 @@ If approved your project will be linked after your Charter gate has been approve
         <value>Brand Positioning</value>
     </labels>
     <labels>
+        <fullName>IPM_BrandPositioningHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BrandPositioningHelpText</shortDescription>
+        <value>A maximum of 20 values can be selected for Brand Positioning.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Brand_Builders_BB</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -5944,6 +5951,13 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM_CUS</shortDescription>
         <value>CUs</value>
+    </labels>
+    <labels>
+        <fullName>IPM_CU_And_Complexity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CU_And_Complexity</shortDescription>
+        <value>CU_And_Complexity</value>
     </labels>
     <labels>
         <fullName>IPM_CU_INFO</fullName>
