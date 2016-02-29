@@ -52,14 +52,18 @@ global with sharing class CPA_ContractInformationController {
                     RequiredFieldMap.put( 'Unilever Project Name' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.mpkl_Unilever_Innovation_Area__c == null)
                     RequiredFieldMap.put( 'Unilever Innovation Area' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-                if(pwoRec.mpkl_Unilever_Innovation_Area__c == 'Other' && pwoRec.txt_Other_Innovation_Area__c == null)
+                if(pwoRec.mpkl_Unilever_Innovation_Area__c != null && pwoRec.mpkl_Unilever_Innovation_Area__c.contains('Other') && pwoRec.txt_Other_Innovation_Area__c == null)
                     RequiredFieldMap.put( 'Other Innovation Area' ,'It is mandatory if Unilever Innovation Area is OTHER' );
+				if(pwoRec.mpkl_Unilever_Innovation_Area__c != null && !pwoRec.mpkl_Unilever_Innovation_Area__c.contains('Other') && pwoRec.txt_Other_Innovation_Area__c != null)
+                    RequiredFieldMap.put( 'Other Innovation Area' ,'"Other Innovation Area" should be only entered when "Unilever Innovation Area" is Other');
                 
                 if(pwoRec.pkl_Billing_Details__c == null)
                     RequiredFieldMap.put( 'Legal Entity To Be Billed' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-                if(pwoRec.pkl_Billing_Details__c == 'Other' && pwoRec.txt_Other_Billing_Details__c == null){
+                if(pwoRec.pkl_Billing_Details__c != null && pwoRec.pkl_Billing_Details__c.contains('Other') && pwoRec.txt_Other_Billing_Details__c == null)
                     RequiredFieldMap.put( 'Other Billing Details' ,'It is mandatory if Billing Details is OTHER');
-            }
+			    if(pwoRec.pkl_Billing_Details__c != null && !pwoRec.pkl_Billing_Details__c.contains('Other') && pwoRec.txt_Other_Billing_Details__c != null)
+                   RequiredFieldMap.put( 'Other Billing Details' ,'"Other Billing Details" should be only entered when "Legal Entity To Be Billed" is Other');
+				
                 
                  //if(pwoRec.chk_First_PWO__c != true && pwoRec.txta_reason_for_additiona_PWO__c == null){
                  if(!pwoRec.chk_First_PWO__c && pwoRec.txta_reason_for_additiona_PWO__c == null){
@@ -86,9 +90,10 @@ global with sharing class CPA_ContractInformationController {
                     RequiredFieldMap.put( 'Project Initiation Date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.mpkl_Project_Phases__c == null)
                     RequiredFieldMap.put( 'Project Phases' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-                if(pwoRec.mpkl_Project_Phases__c == 'Other' && pwoRec.txt_Other_Project_Phases__c == null)
+                if(pwoRec.mpkl_Project_Phases__c != null && pwoRec.mpkl_Project_Phases__c.contains('Other') && pwoRec.txt_Other_Project_Phases__c == null)
                 RequiredFieldMap.put( 'Other Project Phases' ,'It is mandatory if Project Phases is OTHER');
-                
+                if(pwoRec.mpkl_Project_Phases__c != null &&  !pwoRec.mpkl_Project_Phases__c.contains('Other') && pwoRec.txt_Other_Project_Phases__c != null)
+                RequiredFieldMap.put( 'Other Project Phases' ,'"Other Project Phases" should be only entered when "Project Phases" is Other');
                 
                 if(pwoRec.pkl_Pricing_Model__c == null)
                     RequiredFieldMap.put( 'Pricing Model' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -102,17 +107,18 @@ global with sharing class CPA_ContractInformationController {
                     RequiredFieldMap.put( 'Estimated Off-shore %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.pec_Estimated_On_shore__c == null)
                     RequiredFieldMap.put( 'Estimated On-shore %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-                if(pwoRec.pec_Expense__c == null)
+                if(pwoRec.num_Total_work_order_charge__c == null)
                     RequiredFieldMap.put( 'Total work order charge' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.num_Expense_charges_of_work_order__c == null)
                     RequiredFieldMap.put( 'Expense charges of work order' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-                if(pwoRec.num_Total_work_order_charge__c == null)
+                if(pwoRec.pec_Expense__c == null)
                     RequiredFieldMap.put( 'Expense %' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.Currency__c == null)
                     RequiredFieldMap.put( 'Currency' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-                if(pwoRec.Currency__c == 'OTHER' && pwoRec.txt_Other_Currency__c == null)
+                if(pwoRec.Currency__c != null && pwoRec.Currency__c == 'OTHER' && pwoRec.txt_Other_Currency__c == null)
                 RequiredFieldMap.put( 'Other Currency' ,'It is mandatory if Currency is OTHER');
-                
+                if(pwoRec.Currency__c != null && pwoRec.Currency__c != 'OTHER' && pwoRec.txt_Other_Currency__c != null)
+                RequiredFieldMap.put( 'Other Currency' ,'"Other Currency" should be only entered when "Currency" is Other');
                 
                 //if(pwoRec.txt_Unilever_Reference__c == null && pwoRec.fml_Clarity_ID__c == null && pwoRec.chk_isStandalone_PWO__c != true)
                 if(pwoRec.txt_Unilever_Reference__c == null && pwoRec.fml_Clarity_ID__c == null && !pwoRec.chk_isStandalone_PWO__c)

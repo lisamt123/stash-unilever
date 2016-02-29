@@ -97,7 +97,7 @@ global with sharing class CPA_PWORFInformationController {
                 if(pworfRec.Expected_Start_Date_for_DBTD_PWO__c == null)
                     objectMap.put('Expected Start Date for DBTD PWO' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Expected_Start_Date_for_Plan_and_Analyse__c == null)
-                    objectMap.put('Expected Start Date for Plan and Analyse' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Expected PA Start Date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Impact_if_expected_business_go_live_date__c == null)
                     objectMap.put('Impact if go live date not met' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Planning_sessions_expected__c ==null)
@@ -109,11 +109,11 @@ global with sharing class CPA_PWORFInformationController {
                 if(pworfRec.Travel_Arrangements__c ==null)
                     objectMap.put('Travel Arrangements' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Who_will_support_this_service_once_live__c ==null)
-                    objectMap.put('Post Go-Live Support Service?' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Post Go-Live Support Service' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if( pworfRec.Does_this_project_change_Core_Business_M__c =='Select' || pworfRec.Does_this_project_change_Core_Business_M__c ==null)   
-                    objectMap.put('Does this project change Core Business M' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Core Business Model changed?' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Does_this_Project_involve_Unilever_conf__c =='Select' || pworfRec.Does_this_Project_involve_Unilever_conf__c ==null) 
-                    objectMap.put('Does this Project involve Unilever conf' ,CPA_ConstantsForContractingAppClasses.MANDATORY); 
+                    objectMap.put('3rd Party/Unilever Confidential Data' ,CPA_ConstantsForContractingAppClasses.MANDATORY); 
                 //if(pworfRec.Expected_Business_Go_live_date__c <= date.Today())   
                     //objectMap.put('Expected Business Go live date', 'Date should be greater than current date');  
                 //if(pworfRec.dt_Expected_start_date__c <= date.Today())   
@@ -135,11 +135,11 @@ global with sharing class CPA_PWORFInformationController {
                 if(pworfRec.Is_Project_Require__c   =='Select' || pworfRec.Is_Project_Require__c   == null )   
                     objectMap.put('Application Performance Testing Needed' ,CPA_ConstantsForContractingAppClasses.MANDATORY);  
                 if(pworfRec.Is_this_a_new_or_re_worked_Integration_R__c =='Select' || pworfRec.Is_this_a_new_or_re_worked_Integration_R__c ==null)   
-                    objectMap.put('Is this a new or re-worked Integration R' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('New or ReWorked Integration Requirement' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.pkl_Is_this_Project_Invasive_in_nature__c  =='Select' || pworfRec.pkl_Is_this_Project_Invasive_in_nature__c  ==null)    
-                    objectMap.put('Is this â€˜Projectâ€™ Invasive in nature?' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Is this ‘Project’ Invasive in nature?' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.pkl_Process_Office_Area_E2E__c =='Other' && pworfRec.txt_otherProcessOfficeAreaE2E__c == null )  
-                    objectMap.put('Other Process Office area E2E' ,'Mandatory, If Other is selected in Process Office area E2E.');
+                    objectMap.put('Other-Process Office area E2E' ,'Mandatory, If Other is selected in Process Office area E2E.');
                 if(pworfRec.mpkl_Project_Phases__c =='Other' && pworfRec.txt_OtherProjectPhases__c == null ) 
                     objectMap.put('Other Project Phases' ,'Mandatory, If Other is selected in Project Phases.');            
                 if(pworfRec.pkl_Process_Office_Area_E2E__c =='Select' || pworfRec.pkl_Process_Office_Area_E2E__c ==null)    
@@ -168,7 +168,7 @@ global with sharing class CPA_PWORFInformationController {
                     if(pworfRec.txta_Why_is_Work_at_risk_required__c  == null) objectMap.put('Why is Work at Risk required?' ,'Mandatory,If this Project require LOI');
                     if(pworfRec.txta_What_specific_roles_do_you_require__c  == null) objectMap.put('What specific roles do you require?' ,'Mandatory,If this Project require LOI');
                     if(pworfRec.txta_ITC_Resources_Utilisation__c  == null) objectMap.put('ITC Resources Utilisation' ,'Mandatory,If this Project require LOI');
-                    if(pworfRec.Which_BP_Innovation_director_has_approve__c  == null) objectMap.put('Which BP/Innovation director has approve' ,'Mandatory,If this Project require LOI');
+                    if(pworfRec.Which_BP_Innovation_director_has_approve__c  == null) objectMap.put('Director who approved W@R spend' ,'Mandatory,If this Project require LOI');
                     if(pworfRec.pkl_Phases_covered_by_the_WAR__c  == null && pworfRec.pkl_Phases_covered_by_the_WAR__c  == 'Select') objectMap.put('Phases covered by the WAR' ,'Mandatory,If this Project require LOI');
                 }
                 

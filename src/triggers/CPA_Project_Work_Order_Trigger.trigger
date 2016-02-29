@@ -1,5 +1,7 @@
 trigger CPA_Project_Work_Order_Trigger on CPA_project_work_order__c (before insert, after insert, before update, after update, before Delete) {
 
+CPA_Trigger_Pattern__c objPWOPattern = CPA_Trigger_Pattern__c.getValues(CPA_ConstantsForContractingAppClasses.PWOTRIGGERNAME);
+	if(objPWOPattern != null && objPWOPattern.chk_Check_Run__c){
     if(Trigger.isUpdate && Trigger.isBefore){ //for before update trigger
         CPA_Project_Work_Order_TriggerUtil.checklistValueOfcontract(trigger.new);
         CPA_Project_Work_Order_TriggerUtil.requireApprovalComments(trigger.new);
@@ -29,6 +31,6 @@ trigger CPA_Project_Work_Order_Trigger on CPA_project_work_order__c (before inse
     if(Trigger.isDelete && Trigger.isBefore){ //for before delete trigger
         CPA_Project_Work_Order_TriggerUtil.DOntDelete(trigger.old);
      }
-     
+	}
     
 }

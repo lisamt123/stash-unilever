@@ -31,25 +31,26 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
     } 
    
    
-    public static Date addBusinessDays(Date startDate, integer businessDaysToAdd )
+   public static Date addBusinessDays(Date startDate, integer businessDaysToAdd )
     {
+        Integer businessDaysCount = 0;
+        businessDaysCount = businessDaysToAdd;
         //Add or decrease in businessDaysToAdd days 
         Date finalDate = startDate;
         system.debug('finaldate = '+finalDate);
-        integer direction = businessDaysToAdd < 0 ? -1 : 1;
+        integer direction = businessDaysCount < 0 ? -1 : 1;
         system.debug('direction = '+direction);
-        while(businessDaysToAdd != 0)
+        while(businessDaysCount != 0)
         {
             finalDate = finalDate.AddDays(direction);
-            system.debug('@@@@@ BusinessDaysToAdd = ' + businessDaysToAdd);            
+            system.debug('@@@@@ businessDaysCount = ' + businessDaysCount);            
             system.debug('@@@@@ finaldate = ' + finalDate);
             if (!isWeekendDay(finalDate))
             {
-                businessDaysToAdd -= direction;
+                businessDaysCount -= direction;
                
             }
         }
-        
         return finalDate;
     }
    
@@ -67,7 +68,7 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
     }
     public static string  pwoInternalCountLogic(boolean secondPWO){
         integer count=0;
-        List<CPA_project_work_order__c> pwoCnt = [SELECT id FROM CPA_project_work_order__c];
+        List<CPA_project_work_order__c> pwoCnt = [SELECT id FROM CPA_project_work_order__c Limit 50000];
         List<CPA_PWORF__c>pworfRecord = [SELECT Id,(select id from PWO11__r) FROM CPA_PWORF__c Where pkl_Status__c='Accepted' or pkl_Status__c='Auto Accepted'];     
         List<CPA_PWORF__c> pworfsAccepted = [SELECT id FROM CPA_PWORF__c Where pkl_Status__c='Accepted' or pkl_Status__c='Auto Accepted'];
         for(CPA_PWORF__c pworf : pworfRecord){
@@ -144,7 +145,7 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
     * Description : This method generates incremental Internal PWO ID
     */
     public static String getInternalPWOID(Integer numSearch){
-        String strPWOID;
+        String strPWOID='';
         integer intIncrementNum = numSearch;//+ 1;
         if(string.valueof(numSearch).length() == 1)
             strPWOID = 'PWO-0000' + string.valueof(intIncrementNum);

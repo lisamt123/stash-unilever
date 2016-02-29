@@ -10,7 +10,7 @@ public class CPA_CancelController_Test {
         update objPworf;
         
         CPA_LOI__c objLOI =CPA_testClass_util.createLOI (objPworf);
-         objLOI .pkl_Status__c ='Cancelled' ;
+         objLOI .pkl_Status__c =CPA_ConstantsForContractingAppClasses.CANCELLED;
         insert  objLOI;
 
         Test.setCurrentPage(new PageReference('CPA_LOI_Information_Display_Page'));
@@ -18,7 +18,7 @@ public class CPA_CancelController_Test {
         CPA_LOI_CancelReasonController   controller = new CPA_LOI_CancelReasonController  (new ApexPages.StandardController(objLOI));
         objLOI.txta_Reason_for_Cancellation__c = 'TEST';
         PageReference obj = controller.SaveCancelReason();
-        System.assert('Cancelled'== objLOI.pkl_Status__c);
+        System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED== objLOI.pkl_Status__c);
         
         CPA_LOI__c objLOI1 = new CPA_LOI__c ();
         insert objLOI1;
@@ -47,12 +47,12 @@ public class CPA_CancelController_Test {
         CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf);
         insert  objPWO;
         
-        objPWO.pkl_Status__c ='Delivered';
+        objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.DELIVERED;
         update objPWO;
-        System.assert('Delivered' == objPWO.pkl_Status__c );
+        System.assert(CPA_ConstantsForContractingAppClasses.DELIVERED == objPWO.pkl_Status__c );
         
         CPA_CR__c objCR1 = CPA_testClass_util.createCR(objPWO);      
-        objCR1.pkl_Status__c = 'Cancelled';
+        objCR1.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
         insert objCR1;
         
 
@@ -61,10 +61,10 @@ public class CPA_CancelController_Test {
         CPA_CR_CancelReasonController   controller = new CPA_CR_CancelReasonController  (new ApexPages.StandardController(objCR1));
        controller.SaveCancelReason();
        
-       System.assert('Cancelled'== objCR1.pkl_Status__c);
+       System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED== objCR1.pkl_Status__c);
            
        CPA_CR__c objCR2 = CPA_testClass_util.createCR(objPWO);      
-        objCR2.pkl_Status__c = 'Delivered';
+        objCR2.pkl_Status__c = CPA_ConstantsForContractingAppClasses.DELIVERED;
         insert objCR2;
         
 
@@ -73,14 +73,14 @@ public class CPA_CancelController_Test {
         CPA_CR_CancelReasonController   controller1 = new CPA_CR_CancelReasonController  (new ApexPages.StandardController(objCR1));
        controller1.CancelReason();
        
-       System.assert('Delivered'== objCR2.pkl_Status__c);
+       System.assert(CPA_ConstantsForContractingAppClasses.DELIVERED== objCR2.pkl_Status__c);
         Test.stopTest();
     
     }
  static testmethod void HLECancelController_Test() {
         Test.startTest();
         CPA_HLE_Request__c objHLE = CPA_testClass_util.CreateHLERequest(); 
-        objHLE.pkl_Status__c= 'Cancelled';
+        objHLE.pkl_Status__c= CPA_ConstantsForContractingAppClasses.CANCELLED;
         insert objHLE;
         
         Test.setCurrentPage(new PageReference('CPA_HLE_Cancel_Reason'));
@@ -88,7 +88,7 @@ public class CPA_CancelController_Test {
         CPA_HLE_CancelReasonController   controller = new CPA_HLE_CancelReasonController  (new ApexPages.StandardController(objHLE));
         controller.SaveCancelReason();
         
-      System.assert('Cancelled'==objHLE.pkl_Status__c);
+      System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED==objHLE.pkl_Status__c);
       
       
       CPA_HLE_Request__c objHLE1 = CPA_testClass_util.CreateHLERequest(); 
@@ -148,9 +148,9 @@ public class CPA_CancelController_Test {
         CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf1);
         insert  objPWO;
         
-        objPWO.pkl_Status__c ='Delivered';
+        objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.DELIVERED;
         update objPWO;       
-        System.assert('Delivered' == objPWO.pkl_Status__c);
+        System.assert(CPA_ConstantsForContractingAppClasses.DELIVERED == objPWO.pkl_Status__c);
         
         Test.setCurrentPage(new PageReference('CPA_PwoCnfTnf_Cancel_Reason'));
         System.currentPageReference().getParameters().put('id', objPWO.id);
@@ -158,7 +158,7 @@ public class CPA_CancelController_Test {
         CPA_PwoCnfTnf_CancelReasonController   controller = new CPA_PwoCnfTnf_CancelReasonController  (new ApexPages.StandardController(objPWO));
        controller.getRecord(objPWO.id);
        controller.SaveCancelReason();
-       System.assert('Delivered'== objPWO.pkl_Status__c);
+       System.assert(CPA_ConstantsForContractingAppClasses.DELIVERED== objPWO.pkl_Status__c);
      
         Test.stopTest();
     }

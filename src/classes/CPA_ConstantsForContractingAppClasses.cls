@@ -31,4 +31,12 @@ public class CPA_ConstantsForContractingAppClasses {
     public static final String ONETWOTHREE = '123';
     public static final String APPLICATIONPDF = 'application/pdf';
     public static final String APPLICATIONEXCEL = 'application/vnd.ms-excel';
+    
+    public static final String CRTRIGGERNAME = 'CPA_CR_Trigger';
+    public static final String PWOTRIGGERNAME = 'CPA_Project_Work_Order_Trigger';
+    public static final String PWORFTRIGERNAME = 'CPA_PWORF_Trigger';
+    public static final String LOITRIGGERNAME = 'CPA_LOI_Trigger';
+    public static final String ATTACHMENTTRIGERNAME = 'CPA_AfterAttachment';
+     public static final String HLEREQUESTTRIGERNAME = 'CPA_HLERequest';
+    
 }

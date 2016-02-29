@@ -1,5 +1,7 @@
 trigger CPA_LOI_Trigger on CPA_LOI__c (before insert, after insert, before update, after update,  before Delete) {
 
+CPA_Trigger_Pattern__c objLOIPattern = CPA_Trigger_Pattern__c.getValues(CPA_ConstantsForContractingAppClasses.LOITRIGGERNAME);
+	if(objLOIPattern != null && objLOIPattern.chk_Check_Run__c){
     if(Trigger.isUpdate && Trigger.isBefore){ //for before update trigger
         CPA_LOI_TriggerUtil.checklistValueOfLOI(trigger.new);
         CPA_LOI_TriggerUtil.requireApprovalComments(trigger.new);
@@ -28,4 +30,5 @@ trigger CPA_LOI_Trigger on CPA_LOI__c (before insert, after insert, before updat
         trigger.old[0].addError('LOI cant be deleted');   
         CPA_LOI_TriggerUtil.DontDelete(trigger.old);        
     }
+	}
 }
