@@ -658,7 +658,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
-                                                                                IPM_FunctionalRole__c =: IPM_Utils.roleForProjectLeader AND  
+            IPM_FunctionalRole__c not in :functionalRoleSet AND  
                                                                                 IPM_Default_Section__c = true
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000] ;
         } else if(project.IPM_Project_Leader__c != UserInfo.getUserId() && userRole != null ) {
