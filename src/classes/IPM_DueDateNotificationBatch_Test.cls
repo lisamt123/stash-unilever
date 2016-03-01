@@ -39,6 +39,15 @@ public class IPM_DueDateNotificationBatch_Test {
         insert companyCardList;
         
          IPM_TestFactory_Helper.getProjectMasterData();
+         List<IPM_Project__c>masterList=[Select id,IPM_Project_Type__c from IPM_Project__c where Name='IPM_MasterProject'];
+         List<IPM_Project__c> updatedList = new List<IPM_Project__c>();
+         for(IPM_Project__c masterProj:masterList)
+         {
+         	masterProj.IPM_Project_Type__c = 'Original';
+         	updatedList.add(masterProj);
+         	
+         }
+         update updatedList;
          
          projectList = IPM_TestFactory_Helper.projectSetUp(8,platformUser);
          
@@ -59,7 +68,7 @@ public class IPM_DueDateNotificationBatch_Test {
       private static void initializeData(Date mileStoneDuteDate){
         
          Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5'};
-         list<IPM_Project__c> projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_PM_Approach__c,IPM_Complexity__c,IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Finance_Member__c,
+         list<IPM_Project__c> projectDetailList = [Select IPM_Project_Type__c,Id,IPM_Phase__c,Name,IPM_PM_Approach__c,IPM_Complexity__c,IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Finance_Member__c,
                                                    (Select Id,Name,IPM_Planned_Date__c,IPM_Due_Date__c,IPM_Type_of_gate__c,IPM_Phase__c from IPM_Milestones__r)
                                                    from IPM_Project__c where Name in:projectNameSet];
          
@@ -71,6 +80,7 @@ public class IPM_DueDateNotificationBatch_Test {
             project.Deputy_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Project_Leader__c = UserInfo.getUserId();
             project.IPM_Finance_Member__c = UserInfo.getUserId();
+            project.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
             lstProjects.add(project);   
             
             for(IPM_Milestone__c milestone : project.IPM_Milestones__r)
@@ -86,10 +96,9 @@ public class IPM_DueDateNotificationBatch_Test {
          update lstProjects; 
          update lstIpmMilestones;     
          
-         list<IPM_Project__c> updatedProjectList = [Select Id,IPM_Phase__c,Name,IPM_PM_Approach__c,IPM_Complexity__c,IPM_Project_Gatekeeper__c,
+         list<IPM_Project__c> updatedProjectList = [Select IPM_Project_Type__c,Id,IPM_Phase__c,Name,IPM_PM_Approach__c,IPM_Complexity__c,IPM_Project_Gatekeeper__c,
                                                    (Select Id,Name,IPM_Planned_Date__c,IPM_Due_Date__c,IPM_Type_of_gate__c,IPM_Phase__c from IPM_Milestones__r)
                                                    from IPM_Project__c where Name in:projectNameSet];
-                                                   
          for(IPM_Project__c project : updatedProjectList)
          {
             System.assertEquals(project.IPM_Project_Gatekeeper__c, UserInfo.getUserId(),PROJECT_INSERTED_ASSERTION);
@@ -189,7 +198,7 @@ public class IPM_DueDateNotificationBatch_Test {
             Test.startTest(); 
                 executeBatch();
             Test.stopTest();
-            list<IPM_Milestone__c> milestoneResult = [Select Id,Name,IPM_Planned_Date__c,IPM_Due_Date__c,IPM_Type_of_gate__c,IPM_Phase__c,IPM_Milestone_Due_Date_In_Past__c from IPM_Milestone__c where IPM_Due_Date__c=:(System.today()-1)];
+            list<IPM_Milestone__c> milestoneResult = [Select Id,Name,IPM_Planned_Date__c,IPM_Due_Date__c,IPM_Type_of_gate__c,IPM_Phase__c,IPM_Milestone_Due_Date_In_Past__c from IPM_Milestone__c where IPM_Due_Date__c=:System.today()-1];
             for(IPM_Milestone__c milestone: milestoneResult )
             {
                 System.assertEquals(milestone.IPM_Milestone_Due_Date_In_Past__c,true,'IPM_Milestone_Due_Date_In_Past__c is not checked');
