@@ -3566,7 +3566,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Brand__c</field>
             <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s,Breyers,Fruttare,Good Humor,Klondike,Magnum,Popsicle,Starbucks</value>
+            <value>Breyers,Fruttare,Good Humor,Klondike,Magnum,Popsicle,Starbucks</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
@@ -3581,7 +3581,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Brand__c</field>
             <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s,Breyers,Fruttare,Good Humor,Klondike,Magnum,Popsicle,Starbucks</value>
+            <value>Breyers,Fruttare,Good Humor,Klondike,Magnum,Popsicle,Starbucks</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
@@ -3595,6 +3595,95 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_Ben_Jerrys_Canada</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>equals</operation>
+            <value>Ben &amp; Jerry&apos;s</value>
+        </filters>
+        <filters>
+            <field>Country__c</field>
+            <operation>equals</operation>
+            <value>Canada - English</value>
+        </filters>
+        <label>CEC North America Ben &amp; Jerrys Canada</label>
+        <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_Ben_Jerrys_Donations</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Country__c</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>equals</operation>
+            <value>Ben &amp; Jerry&apos;s Donations</value>
+        </filters>
+        <label>CEC North America Ben &amp; Jerrys Donations</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_Ben_Jerrys_Scoop</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Country__c</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>equals</operation>
+            <value>Ben &amp; Jerry&apos;s Scoop</value>
+        </filters>
+        <label>CEC North America Ben &amp; Jerrys Scoop</label>
+        <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_Ben_Jerrys_USA</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Country__c</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>equals</operation>
+            <value>Ben &amp; Jerry&apos;s</value>
+        </filters>
+        <filters>
+            <field>Country__c</field>
+            <operation>equals</operation>
+            <value>United States - English</value>
+        </filters>
+        <label>CEC North America Ben &amp; Jerrys USA</label>
+        <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Brand_Queue_Case</fullName>
@@ -3678,6 +3767,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Creative_Solutions_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Creative Solutions</label>
         <language>en_US</language>
@@ -3804,6 +3902,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Frequent_Caller_Queue_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America  Frequent Caller Queue</label>
         <language>en_US</language>
@@ -3854,6 +3961,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Helpdesk_Queue_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Helpdesk Queue</label>
         <language>en_US</language>
@@ -3956,7 +4072,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Pfanni</value>
+            <value>Panni</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -4402,6 +4518,16 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Supervisor_Queue_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CREATEDBY_USER.ALIAS</columns>
+        <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Supervisor Queue</label>
         <language>en_US</language>
@@ -5116,7 +5242,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Vacation_Queue_DACH</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6 OR 7) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -5154,11 +5280,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>Anlasser</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>bfric</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>
