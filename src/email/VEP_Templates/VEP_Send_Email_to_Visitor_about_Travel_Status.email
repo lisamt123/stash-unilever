@@ -1,0 +1,6 @@
+Hi {!Vep_Visitor__c.Name},<br/><br/>
+
+Your travel request to {!Vep_Visitor__c.Factory_to_Visit__c} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c} has been {!Vep_Visitor__c.Travel_Approval_Status__c} by the travel team
+<br/><br/>
+Thanks & Regards,<br/>
+Travel Desk.

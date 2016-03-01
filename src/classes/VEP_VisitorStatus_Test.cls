@@ -1,0 +1,67 @@
+@isTest
+private class VEP_VisitorStatus_Test{
+    static testMethod void testMethod1(){
+        List<VEP_Visitor__c> listVisitor = new List<VEP_Visitor__c>();
+        List<VEP_Visitor__c> listVisitorQ = new List<VEP_Visitor__c>();
+        set<id> setVisitorIds = new Set<id>();
+        
+        VEP_FactoryVisit__c Fsetting = new VEP_FactoryVisit__c();
+        Fsetting.Name = 'Factory1';
+        Fsetting.Travel_Desk_Email__c='test@xyz.com';
+        Fsetting.Lodging_Desk_Email__c='test@xyz.com';
+        insert Fsetting;
+
+        VEP_Visitor__c visitor = new VEP_Visitor__c();
+        visitor.name='Test Visitor'; 
+        visitor.Travel__c=true;
+        visitor.lodging__c=true;
+        visitor.pickup__c=true;
+        visitor.Factory_to_visit__c='Factory1';
+        listVisitor.add(visitor); 
+        VEP_Visitor__c visitor1 = new VEP_Visitor__c();
+        visitor1.name='Test Visitor1'; 
+        visitor1.status__c='Approved';
+        visitor1.Travel_Approval_Status__c='Approved';
+        visitor1.Lodging_Approval_Status__c='Approved';
+        visitor1.Travel__c=true; 
+        visitor1.lodging__c=true; 
+        visitor1.pickup__c=true;
+        visitor1.Factory_to_visit__c='Factory1';
+        listVisitor.add(visitor1);    
+        insert listVisitor;
+        for(VEP_Visitor__c v: listVisitor){
+            setVisitorIds.add(v.id);
+        }
+        listVisitorQ = [select id,VEp_number__c from VEP_Visitor__c where id in:setVisitorIds];
+       
+        Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[0].VEP_number__c);
+        Apexpages.currentpage().getparameters().put('TravelStatus','Approved');
+        VEP_VisitorStatus_CC vStatus3 = new VEP_VisitorStatus_CC();
+        vStatus3.displayMsg();
+        
+        Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[1].VEP_number__c);
+        Apexpages.currentpage().getparameters().put('TravelStatus','Approved');
+        VEP_VisitorStatus_CC vStatus4 = new VEP_VisitorStatus_CC();
+        vStatus4.displayMsg();
+        Apexpages.currentpage().getparameters().put('TravelStatus','Approvedsfdf');
+        VEP_VisitorStatus_CC vStatus5 = new VEP_VisitorStatus_CC();
+        vStatus5.displayMsg();
+        
+        Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[0].VEP_number__c);
+        Apexpages.currentpage().getparameters().put('LodgingStatus','Approved');
+        VEP_VisitorStatus_CC vStatus6 = new VEP_VisitorStatus_CC();
+        vStatus6.displayMsg();
+        
+        Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[1].VEP_number__c);
+        Apexpages.currentpage().getparameters().put('LodgingStatus','Approved');
+        VEP_VisitorStatus_CC vStatus7 = new VEP_VisitorStatus_CC();
+        vStatus7.displayMsg();
+        Apexpages.currentpage().getparameters().put('LodgingStatus','Approvedsfdf');
+        VEP_VisitorStatus_CC vStatus8 = new VEP_VisitorStatus_CC();
+        vStatus8.displayMsg();
+        
+        
+        
+        
+    }
+}
