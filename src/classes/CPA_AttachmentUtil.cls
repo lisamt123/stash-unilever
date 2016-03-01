@@ -27,35 +27,25 @@ public with sharing class CPA_AttachmentUtil {
         
         for(Attachment objAttachment:lstAttachment){
             string srtTemp = objAttachment.ParentId;
-            system.debug('objAttachment.Name.-->'+objAttachment.Name);
-            system.debug('objAttachment.ContentType --> '+objAttachment.ContentType);
-            if(objAttachment.Name.startswith('Commercial') &&( objAttachment.ContentType.contains('spreadsheet') || objAttachment.ContentType.contains('ms-excel')))
+            if(objAttachment.Name.startswith(CPA_ConstantsForContractingAppClasses.COMMERCIAL) &&( objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.SPREADSHEET) || objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.MSEXCEL)))
             {
-                mapAttachmentType.put(objAttachment.id,'spreadsheet');
-                system.debug('mapAttachmentType--->'+mapAttachmentType);
-            }else if(objAttachment.Name.startswith('PWO') && objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger )){
-                system.debug('objAttachment-->'+objAttachment);
+                mapAttachmentType.put(objAttachment.id,CPA_ConstantsForContractingAppClasses.SPREADSHEET);
+            }else if(objAttachment.Name.startswith(CPA_ConstantsForContractingAppClasses.PWO) && objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger )){
                 mapAttachmentType.put(objAttachment.id,CPA_ConstantsForContractingAppClasses.PDF);
-            }else if(objAttachment.Name.startswith('CR') && objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)){
+            }else if(objAttachment.Name.startswith(CPA_ConstantsForContractingAppClasses.CR) && objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)){
                mapAttachmentType.put(objAttachment.id,CPA_ConstantsForContractingAppClasses.PDF);
-               
-                
             }else {
-             mapAttachmentType.put(objAttachment.id,'unkonwn');
+             mapAttachmentType.put(objAttachment.id,CPA_ConstantsForContractingAppClasses.UNKONWN);
             }
-                   
-            
         }
         return mapAttachmentType;
-        
     }
     
-     /*******************************************************************    
-  Purpose:  This static method will update the respective LOI
-  Parameters: List of attachment and set for Parent ID    
-  Returns: It’s retunes nothing but it’s update the LOI      
-
-  ********************************************************************/  
+    /*******************************************************************    
+    Purpose:  This static method will update the respective LOI
+    Parameters: List of attachment and set for Parent ID    
+    Returns: It’s retunes nothing but it’s update the LOI      
+    ********************************************************************/  
     
      public static void updateLOI(List<Attachment> lstAttachment) {
          set<ID>setLOI = new set<Id>();
@@ -73,14 +63,12 @@ public with sharing class CPA_AttachmentUtil {
      }
      
      
-      /*******************************************************************    
-  Purpose:  This static method will update the respective LOI
-  Parameters: List of attachment and set for Parent ID    
-  Returns: It’s retunes nothing but it’s update the LOI      
-
-  ********************************************************************/  
-    
-     public static void DeleteLOI(List<Attachment> lstAttachment) {
+    /*******************************************************************    
+    Purpose:  This static method will update the respective LOI
+    Parameters: List of attachment and set for Parent ID    
+    Returns: It’s retunes nothing but it’s update the LOI      
+    ********************************************************************/  
+    public static void DeleteLOI(List<Attachment> lstAttachment) {
          set<ID>setLOI = new set<Id>();
           for(Attachment objAttachment : lstAttachment){
                 setLOI.add(objAttachment.ParentId);
@@ -93,7 +81,7 @@ public with sharing class CPA_AttachmentUtil {
          if(listLOI!=null && listLOI.size()>0){
              update listLOI;
          }
-     }
+    }
     
     
     /*******************************************************************    
@@ -126,42 +114,25 @@ public with sharing class CPA_AttachmentUtil {
             
             if((!objCR.chk_Contract_Excel_Attached__c ||  !objCR.chk_Contract_Attached__c) && mapAttachmentIDPWOID.get(objCR.ID)!= null){
                 for(Attachment objAttachment:mapAttachmentIDPWOID.get(objCR.Id)){
-                    system.debug('TEST-->'+mapAttachmentType.get(objAttachment.id));
-                    if(mapAttachmentType.get(objAttachment.id) == 'spreadsheet'){
+                    if(mapAttachmentType.get(objAttachment.id) == CPA_ConstantsForContractingAppClasses.SPREADSHEET){
                         objCR.chk_Contract_Excel_Attached__c = true;
                             mapCR.put(objCR.id,objCR);
-                        
-                                            
                     }
                     if(mapAttachmentType.get(objAttachment.id) == CPA_ConstantsForContractingAppClasses.PDF){
-                        system.debug('objAttachment--->'+objAttachment);
                         objCR.chk_Contract_Attached__c =true;
-                        system.debug('objpwo --> '+ objCR);
                         mapCR.put(objCR.id,objCR);                       
-                        
                     }
                 }
             }       
         }
-        system.debug('Updaterecords -->' + mapCR.values());
-        
         update mapCR.values();
-        
     }
-    
-    
-    
-    
-    
-    
+
   /*******************************************************************    
   Purpose:  This static method will update the respective PWO
   Parameters: List of attachment and set for Parent ID    
   Returns: It’s retunes nothing but it’s update the PWO      
-
   ********************************************************************/  
-
-    
     public static void updateCPAPWO(List<Attachment> lstAttachment,set<Id>setParentId) {
         
         // Variable declaration section 
@@ -185,45 +156,40 @@ public with sharing class CPA_AttachmentUtil {
             
             if((!objPWO.chk_Excel_Attached__c ||  !objPWO.chk_PDF_Attached__c) && mapAttachmentIDPWOID.get(objPWO.ID)!= null){
                 for(Attachment objAttachment:mapAttachmentIDPWOID.get(objPWO.Id)){
-                    system.debug('TEST-->'+mapAttachmentType.get(objAttachment.id));
-                    if(mapAttachmentType.get(objAttachment.id) == 'spreadsheet'){
+                    if(mapAttachmentType.get(objAttachment.id) == CPA_ConstantsForContractingAppClasses.SPREADSHEET){
                         objPWO.chk_Excel_Attached__c = true;
                             mapPwo.put(objPWO.id,objPWO);
-                        
-                                            
                     }
                     if(mapAttachmentType.get(objAttachment.id) == CPA_ConstantsForContractingAppClasses.PDF){
-                        system.debug('objAttachment--->'+objAttachment);
                         objPWO.chk_PDF_Attached__c =true;
-                        system.debug('objpwo --> '+ objPWO);
                         mapPwo.put(objPWO.id,objPWO);                       
-                        
                     }
                 }
             }       
         }
-        system.debug('Updaterecords -->' + mapPwo.values());
-        
         update mapPwo.values();
-        
     }
     
+    /*******************************************************************
+    Purpose: This method is used to delete commercials data
+    Parameters: lstatt
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static void deleteCommericalData(List<Attachment> lstatt)    {
         List<CPA_Commercial_Details__c >listComDetail = new List<CPA_Commercial_Details__c>();
         set<Id> setPWOID = new set<Id>();
         set<Id> setCRID = new set<Id>();
         
         for(Attachment objAtta : lstatt){
-            
             string srtTemp = objAtta.ParentId;
-            if(objAtta.Name.startswith('Commercial')) {
+            if(objAtta.Name.startswith(CPA_ConstantsForContractingAppClasses.COMMERCIAL)) {
                 if( srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger)) {
                     setPWOID.add(objAtta.ParentId);
                 }   
                 else if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)){
                     setCRID.add(objAtta.ParentId);
                 }
-            
             }
         }
         listComDetail = [Select Id, Name , CR__c,Project_Work_Order__c from CPA_Commercial_Details__c where Project_Work_Order__c IN : setPWOID OR CR__c IN :setCRID];
@@ -269,10 +235,13 @@ public with sharing class CPA_AttachmentUtil {
                 update lstTempCR;
             }
         }
-        
-        
     }
-    
+    /*******************************************************************
+    Purpose: This method is used to delete Contracts
+    Parameters: lstatt
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static void deleteContract(List<Attachment> lstatt)    {
         List<CPA_Commercial_Details__c >listComDetail = new List<CPA_Commercial_Details__c>();
         set<Id> setPWOID = new set<Id>();
@@ -281,32 +250,26 @@ public with sharing class CPA_AttachmentUtil {
         List<CPA_CR__c> lstTempCR = new List<CPA_CR__c>();
         
         for(Attachment objAtta : lstatt){
-            
             string srtTemp = objAtta.ParentId;
-        
             if( srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger) && objAtta.Name.startswith('PWO')) {
                 setPWOID.add(objAtta.ParentId);
             }   
             else if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR) && objAtta.Name.startswith('CR')){
                 setCRID.add(objAtta.ParentId);
             }
-        
-            
         }
        
         List<CPA_project_work_order__c>lstPWO = [Select chk_Excel_Attached__c,ID, chk_PDF_Attached__c ,Name from CPA_project_work_order__c where ID IN :setPWOID];
         List<CPA_CR__c> lstCR = [Select Id,Name,chk_Contract_Attached__c,chk_Contract_Excel_Attached__c from CPA_CR__c where ID IN:  setCRID];
         
-        system.debug('lstCR-->'+lstCR);
-       for(CPA_CR__c objCR : lstCR){
-           
+        for(CPA_CR__c objCR : lstCR){
             objCR.chk_Contract_Attached__c = false;
             lstTempCR.add(objCR);
-       }
-       for(CPA_project_work_order__c objPWO :lstPWO ){
+        }
+        for(CPA_project_work_order__c objPWO :lstPWO ){
            objPWO.chk_PDF_Attached__c = false;
            lstTemp.add(objPWO);
-       }
+        }
               
         if(lstCR!=null && lstCR.size()>0){
             update lstCR;
@@ -315,29 +278,23 @@ public with sharing class CPA_AttachmentUtil {
             update lstTemp;
         }
     }
-    
-    
-    
-
-    
-     /***This function reads the CSV file and inserts records into the CPA_Commercial_Details__c object. ***/
+ 
     //public static void ReadFile(List<Attachment> lstatt)    {
-public static void ReadFile(Attachment att)    {
+    /*******************************************************************
+    Purpose: This function reads the CSV file and inserts records into the CPA_Commercial_Details__c object.
+    Parameters: att
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static void ReadFile(Attachment att)    {
         //for(Attachment att : lstatt)
         If (att!=null) {
-            if(att.ContentType.contains('ms-excel')){              
-            
+            if(att.ContentType.contains(CPA_ConstantsForContractingAppClasses.MSEXCEL)){              
             string nameFile;
             String[] filelines = new String[]{};
             List<CPA_Commercial_Details__c> PWOupload;
             try{
-                
-                    
                     nameFile =att.body.toString();
-                     
-                    system.debug('att--->'+att);
-                 system.debug('att.ParentId--->'+att.ParentId);
-                
                     //Now sepatate every row of the excel file
                     filelines = nameFile.split('\n');
                     
@@ -386,14 +343,12 @@ public static void ReadFile(Attachment att)    {
                             a.num_Value__c =0;
                         }
                         string srtTemp = att.ParentId;
-                        system.debug('srtTemp--->'+srtTemp);
                         if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger)){
                             a.Project_Work_Order__c = att.ParentId;
                         }else if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)){
                             a.CR__c = att.ParentId;
                         }
-                        
-                          
+ 
                         PWOupload.add(a);
                     }
              }
@@ -402,7 +357,6 @@ public static void ReadFile(Attachment att)    {
              }       
             //Finally, insert the collected records
             try{
-                system.debug('PWOupload-->'+PWOupload);
                 insert PWOupload;
                 map<ID,list<CPA_Commercial_Details__c>> mapPWOComDetai = new map<ID,list<CPA_Commercial_Details__c>>();
                 map<ID,list<CPA_Commercial_Details__c>> mapCRComDetai = new map<ID,list<CPA_Commercial_Details__c>>();
@@ -432,7 +386,6 @@ public static void ReadFile(Attachment att)    {
                         }
                         mapPWOComDetai.put(objPWO.Id,lstTemp);
                     }
-                
                     
                     for(CPA_project_work_order__c objPWO : lstPWO){
                         Decimal  intTotalmandays = 0;
@@ -452,46 +405,44 @@ public static void ReadFile(Attachment att)    {
                         Decimal  intOnshower = 0;
                         Decimal  intNoOfResources = 0;
                         for(CPA_Commercial_Details__c objCOm : mapPWOComDetai.get(objPWO.id)){
-                            if(objCOm.txt_Entity_Name__c=='Resource' || objCOm.num_Entity_Type__c ==1 ){
+                            if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.RESOURCE || objCOm.num_Entity_Type__c ==1 ){
                                 intTotalmandays = intTotalmandays + objCOm.num_Efforts__c;
                                 intCostResource = intCostResource + (objCOm.num_Efforts__c * objCOm.num_Rate__c );
                                 intNoOfResources = intNoOfResources+1;
                                 string strLocation = objCOm.txt_Location__c.trim();
                                 strLocation = strLocation.toUpperCase();
-                                if(strLocation == 'INDIA' || strLocation == 'PHILIPPINES'){
+                                if(strLocation == CPA_ConstantsForContractingAppClasses.INDIA || strLocation == CPA_ConstantsForContractingAppClasses.PHILIPPINES){
                                     intoffshower = intoffshower + 1;
                                 }else {
                                     intOnshower = intOnshower + 1;
                                 }
                                 
                             }
-                            if(objCOm.txt_Entity_Name__c=='Indicative Expenses' || objCOm.num_Entity_Type__c ==2){
+                            if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.INDICATIVEEXPENSES || objCOm.num_Entity_Type__c ==2){
                                 intIndicativeExpenses = intIndicativeExpenses + objCOm.num_Value__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='Non Payroll' || objCOm.num_Entity_Type__c ==3){
+                            if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.NONPAYROLL || objCOm.num_Entity_Type__c ==3){
                                 intNonPayroll = intNonPayroll +  objCOm.num_Value__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='PMO Tax'  || objCOm.num_Entity_Type__c ==4){
+                            if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.PMOTAX  || objCOm.num_Entity_Type__c ==4){
                                 intPMOTax = intPMOTax +  objCOm.num_Value__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='Contingency Charges' || objCOm.num_Entity_Type__c ==5){
+                            if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.CONTINGENCYCHARGES || objCOm.num_Entity_Type__c ==5){
                                 intContingencyCharges = intContingencyCharges+  objCOm.num_Value__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='Discounts' || objCOm.num_Entity_Type__c ==6){
+                            if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.DISCOUNTS || objCOm.num_Entity_Type__c ==6){
                                 intDiscounts = intDiscounts+  objCOm.num_Value__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='Authorisation' || objCOm.num_Entity_Type__c ==8){
+                            if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.AUTHORISATION || objCOm.num_Entity_Type__c ==8){
                                 intAuthorisation = intAuthorisation+ objCOm.num_Value__c;
                                 intAuthorisationman = intAuthorisationman + objCOm.num_Efforts__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='RMS' || objCOm.num_Entity_Type__c ==9){
+                            if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.RMS || objCOm.num_Entity_Type__c ==9){
                                 intRMS = intRMS+objCOm.num_Value__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='Others' || objCOm.num_Entity_Type__c ==7){
+                            if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.OTHERS || objCOm.num_Entity_Type__c ==7){
                                 intOther = intOther +  objCOm.num_Value__c;
                             }
-                            
-                            
                         }
                         objPWO.num_Estimated_Value_of_PWO__c = (intCostResource + intRMS + intContingencyCharges + intNonPayroll + intAuthorisation+intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
                         objPWO.num_Estimated_Man_days_of_PWO__c = intTotalmandays;
@@ -504,7 +455,6 @@ public static void ReadFile(Attachment att)    {
                         objPWO.num_Authorisation_man_days__c = intAuthorisationman;
                         objPWO.num_Expense_charges_of_work_order__c  =intIndicativeExpenses;
                         if(intNoOfResources> 0){
-                            system.debug('intNoOfResources--->'+intNoOfResources + ' intoffshower-->'+intoffshower + ' intOnshower-->'+intOnshower);
                             objPWO.pec_Estimated_Off_shore__c = (intoffshower/intNoOfResources)*100;
                             objPWO.pec_Estimated_On_shore__c = (intOnshower/intNoOfResources)*100;
                         }
@@ -518,7 +468,6 @@ public static void ReadFile(Attachment att)    {
                         
                         lstUpdatePWO.add(objPWO);
                     }
-                
                 
                     if(lstUpdatePWO !=null && lstUpdatePWO.size() > 0){
                         update lstUpdatePWO;
@@ -535,8 +484,6 @@ public static void ReadFile(Attachment att)    {
                         }
                         mapCRComDetai.put(objCR.Id,lstTemp);
                     }
-                    
-                    
                     for(CPA_CR__c objCR : lstCR){
                         Decimal  intTotalmandays = 0;
                         //Decimal  intEstimatedValue = 0;
@@ -554,52 +501,47 @@ public static void ReadFile(Attachment att)    {
                         Decimal  intoffshower = 0;
                         Decimal  intOnshower = 0;
                         Decimal  intNoOfResources = 0;
-                        
-                        
-                        
+
                         for(CPA_Commercial_Details__c objCOm : mapCRComDetai.get(objCR.id)){
-                            if(objCOm.txt_Entity_Name__c=='Resource' || objCOm.num_Entity_Type__c ==1 ){
+                            if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.RESOURCE || objCOm.num_Entity_Type__c ==1 ){
                                 intTotalmandays = intTotalmandays + objCOm.num_Efforts__c;
                                 intNoOfResources = intNoOfResources+1;
                                 intCostResource = intCostResource + (objCOm.num_Efforts__c * objCOm.num_Rate__c );
                                 string strLocation = objCOm.txt_Location__c.trim();
                         strLocation = strLocation.toUpperCase();
                         
-                        if(strLocation == 'INDIA' || strLocation == 'PHILIPPINES'){
+                        if(strLocation == CPA_ConstantsForContractingAppClasses.INDIA || strLocation == CPA_ConstantsForContractingAppClasses.PHILIPPINES){
                             intoffshower = intoffshower + 1;
                         }else {
                             intOnshower = intOnshower + 1;
                         }
-                                
-                                
                             }
                             
-                            if(objCOm.txt_Entity_Name__c=='Indicative Expenses' || objCOm.num_Entity_Type__c ==2){
+                            if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.INDICATIVEEXPENSES || objCOm.num_Entity_Type__c ==2){
                                 intIndicativeExpenses = intIndicativeExpenses + objCOm.num_Value__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='Non Payroll' || objCOm.num_Entity_Type__c ==3){
+                            if(objCOm.txt_Entity_Name__c==CPA_ConstantsForContractingAppClasses.NONPAYROLL || objCOm.num_Entity_Type__c ==3){
                                 intNonPayroll = intNonPayroll +  objCOm.num_Value__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='PMO Tax'  || objCOm.num_Entity_Type__c ==4){
+                            if(objCOm.txt_Entity_Name__c==CPA_ConstantsForContractingAppClasses.PMOTAX  || objCOm.num_Entity_Type__c ==4){
                                 intPMOTax = intPMOTax +  objCOm.num_Value__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='Contingency Charges' || objCOm.num_Entity_Type__c ==5){
+                            if(objCOm.txt_Entity_Name__c==CPA_ConstantsForContractingAppClasses.CONTINGENCYCHARGES || objCOm.num_Entity_Type__c ==5){
                                 intContingencyCharges = intContingencyCharges+  objCOm.num_Value__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='Discounts' || objCOm.num_Entity_Type__c ==6){
+                            if(objCOm.txt_Entity_Name__c==CPA_ConstantsForContractingAppClasses.DISCOUNTS || objCOm.num_Entity_Type__c ==6){
                                 intDiscounts = intDiscounts+  objCOm.num_Value__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='Authorisation' || objCOm.num_Entity_Type__c ==8){
+                            if(objCOm.txt_Entity_Name__c==CPA_ConstantsForContractingAppClasses.AUTHORISATION || objCOm.num_Entity_Type__c ==8){
                                 intAuthorisation = intAuthorisation+ objCOm.num_Value__c;
                                 intAuthorisationman = intAuthorisationman + objCOm.num_Efforts__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='RMS' || objCOm.num_Entity_Type__c ==9){
+                            if(objCOm.txt_Entity_Name__c==CPA_ConstantsForContractingAppClasses.RMS || objCOm.num_Entity_Type__c ==9){
                                 intRMS = intRMS+objCOm.num_Value__c;
                             }
-                            if(objCOm.txt_Entity_Name__c=='Others' || objCOm.num_Entity_Type__c ==7){
+                            if(objCOm.txt_Entity_Name__c==CPA_ConstantsForContractingAppClasses.OTHERS || objCOm.num_Entity_Type__c ==7){
                                 intOther = intOther +  objCOm.num_Value__c;
                             }
-                            
                         }
                         objCR.num_Estimated_Value_of_CR__c = (intCostResource + intRMS + intContingencyCharges + intNonPayroll + intAuthorisation+intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
                         objCR.num_Estimated_Man_days_of_CR__c = intTotalmandays;
@@ -621,15 +563,11 @@ public static void ReadFile(Attachment att)    {
                             objCR.pec_Estimated_Off_shore__c = (intoffshower/intNoOfResources)*100;
                             objCR.pec_Estimated_On_shore__c = (intOnshower/intNoOfResources)*100;
                         }
-                        
-                        
-                        system.debug('CR-->'+objCR);
                         lstUpdateCR.add(objCR);
                     }
                     
                     if(lstUpdateCR !=null && lstUpdateCR.size() > 0){
                         update lstUpdateCR;
-                        system.debug('pdated CR-->'+lstUpdateCR);
                     }
                 }
             }
@@ -637,7 +575,6 @@ public static void ReadFile(Attachment att)    {
             {
                 ApexPages.Message errormsg = new ApexPages.Message(ApexPages.severity.ERROR,'An error has occured inserting the records'+e.getMessage());
                 ApexPages.addMessage(errormsg);
-                system.debug('Exception --> '+ e.getMessage());
             } 
         }   
         }

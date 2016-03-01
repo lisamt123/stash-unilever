@@ -1,46 +1,53 @@
-/**
- * @Author Dinesh Girase
- * @date 12/01/2016
- * @description - This Class is used to perform various operations for HLE request
- */
+/**********************************************************************
+Name: CPA_HLERequest_TriggerUtil()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: This Class is used to perform various operations for HLE request
+-------
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR     DATE            DETAIL Description
+1.0         Name       12/01/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
 public with sharing class CPA_HLERequest_TriggerUtil{
 
     public static boolean isSubmitted = false;
 
-    /*
-    * Method Name : submitforApproval
-    * Parameter   : 
-    * Return type : None
-    * Description : This method is used to perform submit for  Approval process
-    */
-
+    /*******************************************************************
+    Purpose: This method is used to perform submit for  Approval process
+    Parameters: oldHLEReqList, newHLEReqList
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static void submitforApproval(List<CPA_HLE_Request__c> oldHLEReqList,List<CPA_HLE_Request__c> newHLEReqList){        
         for (Integer i = 0; i < newHLEReqList.size(); i++) {
             
             if ((oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED)|| (oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED) &&  !isSubmitted) {
                 // create the new approval request to submit
                 Approval.ProcessSubmitRequest req = new Approval.ProcessSubmitRequest();
-                req.setComments('Submitted for approval. Please approve.');
+                req.setComments(CPA_ConstantsForContractingAppClasses.SUBMITFORAPPROVAL);
                 req.setObjectId(newHLEReqList[i].Id);
                 // submit the approval request for processing
                 Approval.ProcessResult result = Approval.process(req);
                 // display if the reqeust was successful
-    
                 isSubmitted = true;
             }
          }
     }
-  /*
-    * Method Name : recallApproval
-    * Parameter   : 
-    * Return type : None
-    * Description : This method is used to perform recall Approval process
-    */
-     public static void recallApproval(List<CPA_HLE_Request__c> oldHLEReqList,List<CPA_HLE_Request__c> newHLEReqList)    
+    
+    /*******************************************************************
+    Purpose: This method is used to perform recall Approval process
+    Parameters: oldHLEReqList, newHLEReqList
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static void recallApproval(List<CPA_HLE_Request__c> oldHLEReqList,List<CPA_HLE_Request__c> newHLEReqList)    
     { 
        set<ID> settempHLEreqID = new set<ID>();
        for(CPA_HLE_Request__c objHLEReqTemp: newHLEReqList){
-            
             settempHLEreqID.add(objHLEReqTemp.Id);
         }
         List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem where ProcessInstance.TargetObjectId IN:settempHLEreqID  ];
@@ -58,14 +65,15 @@ public with sharing class CPA_HLERequest_TriggerUtil{
                 }
             }
         }
-    }    
- /*
-    * Method Name : unlockrecord
-    * Parameter   : 
-    * Return type : None
-    * Description : This method is used to perform unlock record
-    */
-     public static void unlockrecord(List<CPA_HLE_Request__c> oldHLEReqList,List<CPA_HLE_Request__c> newHLEReqList)    
+    }
+        
+    /*******************************************************************
+    Purpose: This method is used to perform unlock record
+    Parameters: oldHLEReqList, newHLEReqList
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static void unlockrecord(List<CPA_HLE_Request__c> oldHLEReqList,List<CPA_HLE_Request__c> newHLEReqList)    
     { 
         List<CPA_HLE_Request__c> cancelsetId = new List<CPA_HLE_Request__c>();
         for (Integer i = 0; i < newHLEReqList.size(); i++) {
@@ -77,36 +85,47 @@ public with sharing class CPA_HLERequest_TriggerUtil{
             Approval.unLockResult[] lrList = Approval.unlock(cancelsetId, false);           
         }
     }
-/*
-    * Method Name : sLAValues
-    * Parameter   : 
-    * Return type : None
-    * Description : This method is used to update SLA data 
-    */
 
+    /*******************************************************************
+    Purpose: This method is used to update SLA data
+    Parameters: oldHLEReqList, newHLEReqList
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static void sLAValues(List<CPA_HLE_Request__c> oldHLEReqList,List<CPA_HLE_Request__c> newHLEReqList){
         CPA_HLE_Request_SLAs__c customSettingSLA = CPA_HLE_Request_SLAs__c.getInstance('SLA'); 
-        //system.debug('customSettingSLA>' +customSettingSLA );     
         for (Integer i = 0; i < newHLEReqList.size(); i++) {
              //system.debug('oldHLEReqList[i].pkl_Status__c'+oldHLEReqList[i].pkl_Status__c);
-             if (oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED) newHLEReqList[i].dat_Submitted_Date__c = system.today();
-             if (oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED) newHLEReqList[i].dat_Resubmitted_Date__c = system.today();
-             if (oldHLEReqList[i].pkl_Status__c  <> 'Accepted' &&   newHLEReqList[i].pkl_Status__c == 'Accepted') newHLEReqList[i].Accepted_Date__c = system.today();
+             if (oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED) {
+                 newHLEReqList[i].dat_Submitted_Date__c = system.today();
+             }
+             if (oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED){ 
+                 newHLEReqList[i].dat_Resubmitted_Date__c = system.today();
+             }
+             if (oldHLEReqList[i].pkl_Status__c  <> 'Accepted' &&   newHLEReqList[i].pkl_Status__c == 'Accepted'){ 
+                 newHLEReqList[i].Accepted_Date__c = system.today();
+             }
             if ((oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED)|| (oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED)) {
-                if(customSettingSLA.HLE_Request_SLA1__c!= null) newHLEReqList[i].num_SLA1__c = customSettingSLA.HLE_Request_SLA1__c;
-                else newHLEReqList[i].num_SLA1__c = 0;
-                if(customSettingSLA.HLE_Request_SLA2__c!= null) newHLEReqList[i].num_SLA2__c = customSettingSLA.HLE_Request_SLA2__c;
-                else newHLEReqList[i].num_SLA2__c = 0;
-                 //system.debug('newHLEReqList[i].num_SLA2__c'+newHLEReqList[i].num_SLA2__c);
+                if(customSettingSLA.HLE_Request_SLA1__c!= null){ 
+                    newHLEReqList[i].num_SLA1__c = customSettingSLA.HLE_Request_SLA1__c;
+                }else {
+                    newHLEReqList[i].num_SLA1__c = 0;
+                }
+                if(customSettingSLA.HLE_Request_SLA2__c!= null){ 
+                    newHLEReqList[i].num_SLA2__c = customSettingSLA.HLE_Request_SLA2__c;
+                }else {
+                    newHLEReqList[i].num_SLA2__c = 0;
+                }
             }
          }
     }
-/** Method Name : requireApprovalComments
-    * Parameter   : newHLEReqList
-    * Return type : None
-    * Author      : Pooja Kanani  
-    * Description : This method make the Approval comments require
-    */
+
+    /*******************************************************************
+    Purpose: This method make the Approval comments require
+    Parameters: newHLEReqList
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static void requireApprovalComments(List<CPA_HLE_Request__c> newHLEReqList){
  
       // Create a map that stores all the objects that require editing 
@@ -166,15 +185,13 @@ public with sharing class CPA_HLERequest_TriggerUtil{
       }
     }
     
-    
-    /**   Method Name : DOntDelete
-    * Parameter   : OldMap
-    * Return type : void
-    * Author      : JP
-    * Description : This method dont allow HLE to be deleted
-    */
+    /*******************************************************************
+    Purpose: This method dont allow HLE to be deleted
+    Parameters: lstHleReq
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static void DontDelete(list<CPA_HLE_Request__c> lstHleReq){
-        
         for(CPA_HLE_Request__c obj :lstHleReq ){
             obj.addError('HLE Request cant be deleted');
         }

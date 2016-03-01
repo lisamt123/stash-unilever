@@ -1,7 +1,21 @@
-@isTest(SeeAllData=true)
+@isTest
 private class CPA_UtilMethods_Test {
     
-    public Static testMethod  void CPA_PWORF_Util_Test(){  
+    public Static testMethod  void CPA_PWORF_Util_Test(){ 
+        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
+        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
+        insert acceptedStatus;
+        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
+        insert SubMsg;
+        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
+        insert AnsweredMsg;
+        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
+        insert CancelMsg;
+		
+        CPA_Trigger_Pattern__c PWORFTriggerPattern = CPA_testClass_util.createTest_PWORFTriggerPattern();
+        insert PWORFTriggerPattern;
+        
         Test.startTest();   
                         
             CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
@@ -61,6 +75,20 @@ private class CPA_UtilMethods_Test {
     }
     
     public Static testMethod  void  CPA_PWO_Util_Test(){ 
+        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
+        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
+        insert acceptedStatus;
+        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
+        insert SubMsg;
+        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
+        insert AnsweredMsg;
+        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
+        insert CancelMsg;
+		
+        CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
+        insert PWOTriggerPattern;
+        
         Test.startTest();
             CPA_PWORF__c objPworf10 = CPA_testClass_util.createTest_other_PWORF();
             insert objPworf10;
@@ -79,7 +107,21 @@ private class CPA_UtilMethods_Test {
              System.assert (CPA_ConstantsForContractingAppClasses.CANCELLED== objPWO.pkl_Status__c);
         Test.stopTest();    
     }   
-public Static testMethod  void  CPA_PWO1_Util_Test(){ 
+public Static testMethod  void  CPA_PWO1_Util_Test(){
+    CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
+        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
+        insert acceptedStatus;
+        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
+        insert SubMsg;
+        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
+        insert AnsweredMsg;
+        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
+        insert CancelMsg;
+
+    	CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
+        insert PWOTriggerPattern;
+    
         Test.startTest();           
             CPA_PWORF__c objPworf11 = CPA_testClass_util.createTest_other_PWORF();
             insert objPworf11;
@@ -93,7 +135,21 @@ public Static testMethod  void  CPA_PWO1_Util_Test(){
              System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPWO2.pkl_Status__c);
         Test.stopTest();    
     } 
-public Static testMethod  void  CPA_PWO2_Util_Test(){ 
+public Static testMethod  void  CPA_PWO2_Util_Test(){
+    CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
+        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
+        insert acceptedStatus;
+        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
+        insert SubMsg;
+        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
+        insert AnsweredMsg;
+        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
+        insert CancelMsg;
+		
+    	CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
+        insert PWOTriggerPattern;
+    
         Test.startTest();           
             CPA_PWORF__c objPworf12 = CPA_testClass_util.createTest_RA_PWORF();
             insert objPworf12;
@@ -107,6 +163,20 @@ public Static testMethod  void  CPA_PWO2_Util_Test(){
         Test.stopTest();    
     }       
     public Static testMethod  void  CPA_LOI_Util_Test(){ 
+        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
+        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
+        insert acceptedStatus;
+        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
+        insert SubMsg;
+        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
+        insert AnsweredMsg;
+        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
+        insert CancelMsg;
+		
+        CPA_Trigger_Pattern__c LOITriggerPattern = CPA_testClass_util.createTest_LOITriggerPattern();
+        insert LOITriggerPattern;
+        
        Test.startTest();
             CPA_PWORF__c objPworf13 = CPA_testClass_util.createTest_other_PWORF();
             insert objPworf13;
@@ -127,6 +197,20 @@ public Static testMethod  void  CPA_PWO2_Util_Test(){
     }
 
   public Static testMethod  void  CPA_CR_Util_Test(){ 
+      CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
+        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
+        insert acceptedStatus;
+        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
+        insert SubMsg;
+        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
+        insert AnsweredMsg;
+        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
+        insert CancelMsg;
+		
+      	CPA_Trigger_Pattern__c CRtriggerPattern = CPA_testClass_util.createTest_CRTriggerPattern();
+        insert CRtriggerPattern;	
+      
         Test.startTest();
             CPA_PWORF__c objPworf14 = CPA_testClass_util.createTest_other_PWORF();
             insert objPworf14;
@@ -155,6 +239,20 @@ public Static testMethod  void  CPA_PWO2_Util_Test(){
         Test.stopTest();    
     }   
  public Static testMethod  void  CPA_CR1_Util_Test(){ 
+     CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
+        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
+        insert acceptedStatus;
+        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
+        insert SubMsg;
+        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
+        insert AnsweredMsg;
+        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
+        insert CancelMsg;
+
+     	CPA_Trigger_Pattern__c CRtriggerPattern = CPA_testClass_util.createTest_CRTriggerPattern();
+        insert CRtriggerPattern;
+     
         Test.startTest();
 
             CPA_CR__c objCR1 = CPA_testClass_util.standAloneCR();
@@ -165,6 +263,20 @@ public Static testMethod  void  CPA_PWO2_Util_Test(){
         Test.stopTest();    
     }      
  public Static testMethod  void  CPA_CR2_Util_Test(){ 
+     CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
+        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
+        insert acceptedStatus;
+        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
+        insert SubMsg;
+        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
+        insert AnsweredMsg;
+        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
+        insert CancelMsg;
+
+     	CPA_Trigger_Pattern__c CRtriggerPattern = CPA_testClass_util.createTest_CRTriggerPattern();
+        insert CRtriggerPattern;
+     	
         Test.startTest();
         CPA_PWORF__c objPworf15 = CPA_testClass_util.createTest_other_PWORF();
             insert objPworf15;
@@ -183,6 +295,23 @@ public Static testMethod  void  CPA_PWO2_Util_Test(){
         Test.stopTest();    
     }         
   public Static testMethod  void  CPA_HLE_Request_Util_Test(){ 
+      CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
+        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
+        insert acceptedStatus;
+        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
+        insert SubMsg;
+        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
+        insert AnsweredMsg;
+        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
+        insert CancelMsg;
+		
+      	CPA_Trigger_Pattern__c HLERequestTriggerPattern = CPA_testClass_util.createTest_HLERequestTriggerPattern();
+        insert HLERequestTriggerPattern;
+      
+        CPA_HLE_Request_SLAs__c HLEReqSLA = CPA_testClass_util.createTest_HLEReqSLA();
+        insert HLEReqSLA;
+      
         Test.startTest(); 
             CPA_HLE_Request__c objHLERequest = CPA_testClass_util.CreateHLERequest();
             insert objHLERequest;

@@ -13,15 +13,144 @@ public with sharing class CPA_testClass_util {
     
     }
     
+    public static CPA_Status_Msg__c createTest_CPA_Status_Msg(){
+
+        CPA_Status_Msg__c saveStatus = new CPA_Status_Msg__c();
+		saveStatus.Name ='Saved';
+        saveStatus.CNF_Status_Msg__c = 'test';
+		saveStatus.CR_Status_Msg__c = 'test';
+		saveStatus.HLE_Request_Status_Msg__c = 'test';
+		saveStatus.LOI_Status_Msg__c = 'test';
+		saveStatus.PWO_Status_Msg__c = 'test';
+		saveStatus.Status_Message__c = 'test';
+		saveStatus.TNF_Status_Msg__c = 'test';
+		return saveStatus;
+		
+	}
+	
+	public static CPA_Status_Msg__c createTest_CPA_Status_Msg1(){
+
+        CPA_Status_Msg__c acceptedStatus = new CPA_Status_Msg__c();
+		acceptedStatus.Name ='Accepted';
+        acceptedStatus.CNF_Status_Msg__c = 'test';
+		acceptedStatus.CR_Status_Msg__c = 'test';
+		acceptedStatus.HLE_Request_Status_Msg__c = 'test';
+		acceptedStatus.LOI_Status_Msg__c = 'test';
+		acceptedStatus.PWO_Status_Msg__c = 'test';
+		acceptedStatus.Status_Message__c = 'test';
+		acceptedStatus.TNF_Status_Msg__c = 'test';
+		return acceptedStatus;
+		
+	}
+    public static CPA_Status_Msg__c createTest_SubMsg(){
+
+        CPA_Status_Msg__c SubMsg = new CPA_Status_Msg__c();
+		SubMsg.Name ='Submitted';
+        SubMsg.CNF_Status_Msg__c = 'test';
+		SubMsg.CR_Status_Msg__c = 'test';
+		SubMsg.HLE_Request_Status_Msg__c = 'test';
+		SubMsg.LOI_Status_Msg__c = 'test';
+		SubMsg.PWO_Status_Msg__c = 'test';
+		SubMsg.Status_Message__c = 'test';
+		SubMsg.TNF_Status_Msg__c = 'test';
+		return SubMsg;
+		
+	}
+	public static CPA_Status_Msg__c createTest_AnsweredMsg(){
+
+        CPA_Status_Msg__c AnsweredMsg = new CPA_Status_Msg__c();
+		AnsweredMsg.Name ='Answered';
+        AnsweredMsg.CNF_Status_Msg__c = 'test';
+		AnsweredMsg.CR_Status_Msg__c = 'test';
+		AnsweredMsg.HLE_Request_Status_Msg__c = 'test';
+		AnsweredMsg.LOI_Status_Msg__c = 'test';
+		AnsweredMsg.PWO_Status_Msg__c = 'test';
+		AnsweredMsg.Status_Message__c = 'test';
+		AnsweredMsg.TNF_Status_Msg__c = 'test';
+		return AnsweredMsg;
+		
+	}
+	public static CPA_Status_Msg__c createTest_CancelMsg(){
+
+        CPA_Status_Msg__c CancelMsg = new CPA_Status_Msg__c();
+		CancelMsg.Name ='Cancelled';
+        CancelMsg.CNF_Status_Msg__c = 'test';
+		CancelMsg.CR_Status_Msg__c = 'test';
+		CancelMsg.HLE_Request_Status_Msg__c = 'test';
+		CancelMsg.LOI_Status_Msg__c = 'test';
+		CancelMsg.PWO_Status_Msg__c = 'test';
+		CancelMsg.Status_Message__c = 'test';
+		CancelMsg.TNF_Status_Msg__c = 'test';
+		return CancelMsg;
+		
+	}
+    public static CPA_Trigger_Pattern__c createTest_CRTriggerPattern(){
+
+        CPA_Trigger_Pattern__c CRtriggerPattern = new CPA_Trigger_Pattern__c();
+		CRtriggerPattern.Name ='CPA_CR_Trigger';
+        CRtriggerPattern.chk_Check_Run__c = true;
+		return CRtriggerPattern;
+		
+	}
+    public static CPA_Trigger_Pattern__c createTest_AfterAttachmentTriggerPattern(){
+
+        CPA_Trigger_Pattern__c AfterAttachmentTriggerPattern = new CPA_Trigger_Pattern__c();
+		AfterAttachmentTriggerPattern.Name ='CPA_AfterAttachment';
+        AfterAttachmentTriggerPattern.chk_Check_Run__c = true;
+		return AfterAttachmentTriggerPattern;
+		
+	}
+	public static CPA_Trigger_Pattern__c createTest_HLERequestTriggerPattern(){
+
+        CPA_Trigger_Pattern__c HLERequestTriggerPattern = new CPA_Trigger_Pattern__c();
+		HLERequestTriggerPattern.Name ='CPA_HLERequest';
+        HLERequestTriggerPattern.chk_Check_Run__c = true;
+		return HLERequestTriggerPattern;
+		
+	}
+	public static CPA_Trigger_Pattern__c createTest_LOITriggerPattern(){
+
+        CPA_Trigger_Pattern__c LOITriggerPattern = new CPA_Trigger_Pattern__c();
+		LOITriggerPattern.Name ='CPA_LOI_Trigger';
+        LOITriggerPattern.chk_Check_Run__c = true;
+		return LOITriggerPattern;
+		
+	}
+	public static CPA_Trigger_Pattern__c createTest_PWOTriggerPattern(){
+
+        CPA_Trigger_Pattern__c PWOTriggerPattern = new CPA_Trigger_Pattern__c();
+		PWOTriggerPattern.Name ='CPA_Project_Work_Order_Trigger';
+        PWOTriggerPattern.chk_Check_Run__c = true;
+		return PWOTriggerPattern;
+		
+	}
+	public static CPA_Trigger_Pattern__c createTest_PWORFTriggerPattern(){
+
+        CPA_Trigger_Pattern__c PWORFTriggerPattern = new CPA_Trigger_Pattern__c();
+		PWORFTriggerPattern.Name ='CPA_PWORF_Trigger';
+        PWORFTriggerPattern.chk_Check_Run__c = true;
+		return PWORFTriggerPattern;
+		
+	}
+    public static CPA_HLE_Request_SLAs__c createTest_HLEReqSLA(){
+
+        CPA_HLE_Request_SLAs__c HLEReqSLA = new CPA_HLE_Request_SLAs__c();
+		HLEReqSLA.Name ='SLA';
+        HLEReqSLA.HLE_Request_SLA1__c = 5;
+        HLEReqSLA.HLE_Request_SLA2__c = 5;
+		return HLEReqSLA;
+		
+	}
     public static CPA_PWORF__c createTest_other_PWORF(){
 
-      
-        Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll();  
+      createTest_CPA_Status_Msg();
+        //Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll();
+        RecordType rt =[select id,Name from RecordType where sObjectType='CPA_PWORF__c' AND Name='Other' limit 1] ;
         CPA_PWORF__c pworfRec = new CPA_PWORF__c();
         pworfRec.Name = 'Test->' + system.Now()+' 1';
        pworfRec.txt_Clarity_ID__c ='123456' ;
        pworfRec.pkl_Status__c ='Saved' ;
-       pworfRec.RecordTypeid = customSettingPworfRT.get('All').Record_type_id__c ;
+       pworfRec.RecordTypeid = rt.id;
         pworfRec.pkl_Business_Area__c ='Supply Chain' ;        
         pworfRec.pkl_Cost_Centre_Details__c ='ETS IT' ; 
         pworfRec.pkl_Landscape__c  ='Cordillera' ;         
@@ -148,8 +277,9 @@ public with sharing class CPA_testClass_util {
 
         
     public static CPA_PWORF__c createTest_RA_PWORF(){
-      
-        Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll();  
+      createTest_CPA_Status_Msg();
+       // Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll();
+       RecordType rt =[select id,Name from RecordType where sObjectType='CPA_PWORF__c' AND Name='Resource Augmentation' limit 1] ;  
         CPA_PWORF__c pworfRec = new CPA_PWORF__c();
         pworfRec.Name = 'TEST1123445678';
         pworfRec.pkl_Status__c ='Saved' ;
@@ -170,7 +300,7 @@ public with sharing class CPA_testClass_util {
         pworfRec.pkl_Pricing_Model__c ='Pricing Model' ;                            
         pworfRec.pkl_Region__c  =CPA_ConstantsForContractingAppClasses.EUROPE;           
         pworfRec.pkl_Request_Type__c ='Request Type' ;
-        pworfRec.RecordTypeid = customSettingPworfRT.get('RA').Record_type_id__c ;
+        pworfRec.RecordTypeid=rt.id;
         pworfRec.txta_Acceptance_Criteria__c='Acceptance Criteria'  ;
         pworfRec.Analyse_sessions_expected__c='Analyse sessions expected'  ;
         pworfRec.txta_Application_infrastructure__c ='Application infrastructure'  ;
@@ -233,7 +363,7 @@ public with sharing class CPA_testClass_util {
     }   
     
     public static CPA_LOI__c createLOI (CPA_PWORF__c objPWORF){
-        
+        createTest_CPA_Status_Msg();
         CPA_LOI__c objLOI = new CPA_LOI__c();  
         User testUSer = createTestUser();
         
@@ -270,6 +400,7 @@ public with sharing class CPA_testClass_util {
     }
     
     public static CPA_project_work_order__c createPWO(CPA_PWORF__c objPWORF){
+        createTest_CPA_Status_Msg();
         CPA_project_work_order__c objPwo = new CPA_project_work_order__c();
         User testUSer = createTestUser();
         
@@ -330,6 +461,7 @@ public with sharing class CPA_testClass_util {
         
     }
 public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
+    createTest_CPA_Status_Msg();
         CPA_project_work_order__c objPwo = new CPA_project_work_order__c();
         User testUSer = createTestUser();
         
@@ -390,6 +522,7 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         
     }
     public static CPA_CR__c createCR(CPA_project_work_order__c objPWO){
+        createTest_CPA_Status_Msg();
         CPA_CR__c objCR = new CPA_CR__c();
         objCR.txt_Accenture_Project_Manager__c = CPA_ConstantsForContractingAppClasses.TEST;
         objCR.num_Authorisation_charges__c = 1;
@@ -431,6 +564,7 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         
     }
     public static CPA_CR__c standAloneCR(){
+        createTest_CPA_Status_Msg();
         CPA_CR__c objCR = new CPA_CR__c();
         objCR.RecordTypeid=label.CPA_Standalone_CR_RecordTypeId;
         objCR.txt_Accenture_Project_Manager__c = CPA_ConstantsForContractingAppClasses.TEST;
@@ -472,6 +606,7 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         
     }
     public static CPA_CR__c blankCR(CPA_project_work_order__c objPWO){
+        createTest_CPA_Status_Msg();
         CPA_CR__c objCR1 = new CPA_CR__c();
         objCR1.CPA_Project_Work_Order__c = objPWO.Id;       
         return objCR1;
@@ -480,6 +615,7 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
     
     
     public static CPA_HLE_Request__c CreateHLERequest(){
+        createTest_CPA_Status_Msg();
         CPA_HLE_Request__c objHLEREQ = new CPA_HLE_Request__c();
         objHLEREQ.txt_Background__c  = CPA_ConstantsForContractingAppClasses.TEST;
         objHLEREQ.ph_UBPR_Contact_No__c  =CPA_ConstantsForContractingAppClasses.ONETWOTHREE;
@@ -508,6 +644,7 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         return objHLEREQ;
     }     
 public static CPA_HLE_Request__c CreateBEP(){
+    createTest_CPA_Status_Msg();
         CPA_HLE_Request__c objHLEREQ = new CPA_HLE_Request__c();
         //objHLEREQ.recordtypeid = label.CPA_BPE_Recordtype;
         //objHLEREQ.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ACCEPTED;  

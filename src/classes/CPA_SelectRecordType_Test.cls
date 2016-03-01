@@ -1,4 +1,4 @@
-@isTest(SeeAllData=true)
+@isTest
 public class CPA_SelectRecordType_Test {
 
      public static testMethod void getRecordTypeList_tst() {

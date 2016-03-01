@@ -1,4 +1,4 @@
-@isTest(SeeAllData=true)
+@isTest //(SeeAllData=true)
 public class CPA_CancelController_Test {
     static testmethod void LOICancelController_Test() {
         Test.startTest();

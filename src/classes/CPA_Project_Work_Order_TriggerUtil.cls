@@ -99,13 +99,13 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
    public static void checklistValueOfcontract(List<CPA_project_work_order__c> newmapPWO){
             set<Id> setPwoId = new set<Id>();
             map<Id,CPA_PWORF__c> mapPWORF = new map<ID,CPA_PWORF__c>();
-            Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll(); 
+           // Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll(); 
             //Map<string,CPA_Contract_Record_type__c> customSettingcontractRT = CPA_Contract_Record_type__c.getAll(); 
             if(newmapPWO!= null ){
                  for(CPA_project_work_order__c objPWo : newmapPWO){
                     setPwoId.add(objPWo.PWORF_ID__c);
                 }
-                for(CPA_PWORF__c objPworf : [select id,txt_Internal_PWO_ID__c,mpkl_Project_Phases__c,auto_PWORF_ID__c,txta_Title__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,lkp_Unilever_Finance_BP_Contact__c,txt_Clarity_ID__c,pkl_Region__c,pkl_Project_Scale__c,RecordTypeid,pkl_Business_Area__c,dat_SLA1_Accepted_Date__c  from CPA_PWORF__c where ID  IN: setPwoId]){
+                for(CPA_PWORF__c objPworf : [select id,txt_Internal_PWO_ID__c,mpkl_Project_Phases__c,auto_PWORF_ID__c,txta_Title__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,lkp_Unilever_Finance_BP_Contact__c,txt_Clarity_ID__c,pkl_Region__c,pkl_Project_Scale__c,RecordTypeid,RecordType.name,pkl_Business_Area__c,dat_SLA1_Accepted_Date__c  from CPA_PWORF__c where ID  IN: setPwoId]){
                     mapPWORF.put(objPworf.Id,objPworf);
                 }
                 for(CPA_project_work_order__c objPWo : newmapPWO){
@@ -138,7 +138,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                             
                             if(objPWORFTemp.pkl_Project_Scale__c != null){
                             system.debug('objPWORFTemp.RecordTypeid>>>>1'+objPWORFTemp.RecordTypeid);
-                                if(objPWORFTemp.RecordTypeid == customSettingPworfRT.get('All').Record_type_id__c ){
+                                if(objPWORFTemp.RecordType.name == 'Other' ){
                                 system.debug('objPWORFTemp.RecordTypeid>>>>2'+objPWORFTemp.RecordTypeid);
                                     if(objPWORFTemp.pkl_Project_Scale__c == 'Small Project (<50 days)') objPWo.mpkl_Project_Classification__c = 'Other';
                                     else if(objPWORFTemp.pkl_Project_Scale__c == 'Large Project (>2000 days)') 

@@ -1,5 +1,26 @@
-@isTest(SeeAllData=true)
+/**********************************************************************
+Name: CPA_ReturnController_Test()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: Test class for LOI functionality
+-------
+======================================================
+======================================================
+History 
+-------
+VERSION     AUTHOR     DATE            DETAIL Description
+1.0         Name       01/01/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
+@isTest//(SeeAllData=true)
 public class CPA_ReturnController_Test {
+    
+    /*******************************************************************
+    Purpose: This method covers basic functionality of LOI
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     static testmethod void LOIreturnController_Test() {
         Test.startTest();
         
@@ -13,14 +34,13 @@ public class CPA_ReturnController_Test {
         objLOI.pkl_Status__c =CPA_ConstantsForContractingAppClasses.RETURNED;
         insert  objLOI;
 
-        Test.setCurrentPage(new PageReference('CPA_LOI_Reason_for_return'));
+        Test.setCurrentPage(new PageReference(CPA_ConstantsForContractingAppClasses.LOIREASONFORRETURN));
         System.currentPageReference().getParameters().put('id', objLOI.id);
         CPA_LOI_ReturnReasonController   controller = new CPA_LOI_ReturnReasonController  (new ApexPages.StandardController(objLOI));
         System.assert(CPA_ConstantsForContractingAppClasses.RETURNED == objLOI.pkl_Status__c);
         controller.SaveCancelReason();
         
         System.assert(CPA_ConstantsForContractingAppClasses.RETURNED== objLOI.pkl_Status__c);
-        
         
         CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
         insert objPworf1;
@@ -32,18 +52,22 @@ public class CPA_ReturnController_Test {
         objLOI1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED;
         insert  objLOI1;
 
-        Test.setCurrentPage(new PageReference('CPA_LOI_Reason_for_return'));
+        Test.setCurrentPage(new PageReference(CPA_ConstantsForContractingAppClasses.LOIREASONFORRETURN));
         System.currentPageReference().getParameters().put('id', objLOI1.id);
         CPA_LOI_ReturnReasonController   controller1 = new CPA_LOI_ReturnReasonController  (new ApexPages.StandardController(objLOI1));
         controller.CancelReason();
         System.assert(CPA_ConstantsForContractingAppClasses.ACCEPTED == objLOI1.pkl_Status__c);
-       // System.assertEquals(CPA_ConstantsForContractingAppClasses.ACCEPTED, objLOI1.pkl_Status__c);
-        
-        
-     Test.stopTest();
-    
+        //System.assertEquals(CPA_ConstantsForContractingAppClasses.ACCEPTED, objLOI1.pkl_Status__c);
+        Test.stopTest();
     }
- static testmethod void PWOreturnController_Test() {
+    
+    /*******************************************************************
+    Purpose: This method covers LOI test
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static testmethod void PWOreturnController_Test() {
         
         Test.startTest();
         
@@ -60,9 +84,9 @@ public class CPA_ReturnController_Test {
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SIGNED;
         update objPWO;       
         System.assert(CPA_ConstantsForContractingAppClasses.SIGNED == objPWO.pkl_Status__c);
-        Test.setCurrentPage(new PageReference('CPA_PwoCnfTnf_Return_Reason'));
+        Test.setCurrentPage(new PageReference(CPA_ConstantsForContractingAppClasses.PWOCNFTNFRETURNREASON));
         System.currentPageReference().getParameters().put('id', objPWO.id);
-        System.currentPageReference().getParameters().put('recordType', 'PWO');  
+        System.currentPageReference().getParameters().put(CPA_ConstantsForContractingAppClasses.RECORDTYPE, CPA_ConstantsForContractingAppClasses.PWO);  
         CPA_PwoCnfTnf_ReturnReasonController   controller = new CPA_PwoCnfTnf_ReturnReasonController  (new ApexPages.StandardController(objPWO));
        controller.getRecord(objPWO.id);
        controller.SaveCancelReason();
@@ -70,6 +94,12 @@ public class CPA_ReturnController_Test {
        System.assert(CPA_ConstantsForContractingAppClasses.SIGNED == objPWO.pkl_Status__c);
         Test.stopTest();
     }
+    /*******************************************************************
+    Purpose: This method covers CNF test
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     static testmethod void  CNFreturnController_Test() {
         
         Test.startTest();
@@ -86,16 +116,22 @@ public class CPA_ReturnController_Test {
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SIGNED;
         update objPWO;       
         System.assert(CPA_ConstantsForContractingAppClasses.SIGNED == objPWO.pkl_Status__c);
-        Test.setCurrentPage(new PageReference('CPA_PwoCnfTnf_Return_Reason'));
+        Test.setCurrentPage(new PageReference(CPA_ConstantsForContractingAppClasses.PWOCNFTNFRETURNREASON));
         System.currentPageReference().getParameters().put('id', objPWO.id);
-        System.currentPageReference().getParameters().put('recordType', 'CNF');  
+        System.currentPageReference().getParameters().put(CPA_ConstantsForContractingAppClasses.RECORDTYPE, CPA_ConstantsForContractingAppClasses.CNF);  
         CPA_PwoCnfTnf_ReturnReasonController   controller = new CPA_PwoCnfTnf_ReturnReasonController  (new ApexPages.StandardController(objPWO));
        controller.getRecord(objPWO.id);
        controller.SaveCancelReason();
         System.assert(CPA_ConstantsForContractingAppClasses.SIGNED== objPWO.pkl_Status__c);
         Test.stopTest();
     }
- static testmethod void  TNFreturnController_Test() {
+    /*******************************************************************
+    Purpose: This method covers TNF test
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static testmethod void  TNFreturnController_Test() {
         
         Test.startTest();
         
@@ -111,9 +147,9 @@ public class CPA_ReturnController_Test {
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SIGNED;
         update objPWO;       
         System.assert(CPA_ConstantsForContractingAppClasses.SIGNED == objPWO.pkl_Status__c);
-        Test.setCurrentPage(new PageReference('CPA_PwoCnfTnf_Return_Reason'));
+        Test.setCurrentPage(new PageReference(CPA_ConstantsForContractingAppClasses.PWOCNFTNFRETURNREASON));
         System.currentPageReference().getParameters().put('id', objPWO.id);
-        System.currentPageReference().getParameters().put('recordType', 'TNF');  
+        System.currentPageReference().getParameters().put(CPA_ConstantsForContractingAppClasses.RECORDTYPE, CPA_ConstantsForContractingAppClasses.TNF);  
         CPA_PwoCnfTnf_ReturnReasonController   controller = new CPA_PwoCnfTnf_ReturnReasonController  (new ApexPages.StandardController(objPWO));
         controller.getRecord(objPWO.id);
        
@@ -121,7 +157,13 @@ public class CPA_ReturnController_Test {
          controller.SaveCancelReason();
         Test.stopTest();
     }
-  static testmethod void  CRreturnController_Test() {
+    /*******************************************************************
+    Purpose: This method covers CR test
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static testmethod void  CRreturnController_Test() {
         Test.startTest();
         
         CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
@@ -142,7 +184,7 @@ public class CPA_ReturnController_Test {
         insert objCR1;
        
 
-        Test.setCurrentPage(new PageReference('CPA_CR_Reason_for_return'));
+        Test.setCurrentPage(new PageReference(CPA_ConstantsForContractingAppClasses.CRREASONFORRETURN));
         System.currentPageReference().getParameters().put('id', objCR1.id);
         CPA_CR_ReturnReasonController   controller = new CPA_CR_ReturnReasonController  (new ApexPages.StandardController(objCR1));
        controller.SaveCancelReason();
@@ -151,7 +193,13 @@ public class CPA_ReturnController_Test {
         Test.stopTest();
     
     }
- static testmethod void  PWORFwithholdController_Test() {
+    /*******************************************************************
+    Purpose: This method covers PWO withhold test
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static testmethod void  PWORFwithholdController_Test() {
         
      CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
      objPworf.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
@@ -159,7 +207,7 @@ public class CPA_ReturnController_Test {
         System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED == objPworf.pkl_Status__c);
         Test.startTest();
 
-        Test.setCurrentPage(new PageReference('CPA_PWORF_Reason_for_Withhold'));
+        Test.setCurrentPage(new PageReference(CPA_ConstantsForContractingAppClasses.PWORFREASONFORWITHHOLD));
         System.currentPageReference().getParameters().put('id', objPworf.id);
         CPA_PWORF_WithholdReasonController  controller = new CPA_PWORF_WithholdReasonController (new ApexPages.StandardController(objPworf));
         controller.SaveCancelReason();

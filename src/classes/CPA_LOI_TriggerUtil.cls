@@ -111,7 +111,7 @@ public with sharing class CPA_LOI_TriggerUtil{
         for(CPA_LOI__c objNewLOI : newLOI){
                 setPWORF.add(objNewLOI.lkp_PWORF__c);
             }
-        for(CPA_PWORF__c objPworf : [select id,txta_Title__c,RecordTypeId ,mpkl_Project_Phases__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,txt_Clarity_ID__c from CPA_PWORF__c where ID  IN: setPWORF]){
+        for(CPA_PWORF__c objPworf : [select id,txta_Title__c,RecordTypeId,RecordType.name,mpkl_Project_Phases__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,txt_Clarity_ID__c from CPA_PWORF__c where ID  IN: setPWORF]){
                 mapPWORF.put(objPworf.Id,objPworf);
             }
             
@@ -131,8 +131,8 @@ public with sharing class CPA_LOI_TriggerUtil{
                     objNewLOI.lkp_Unilever_content_approver__c = objPWORFTemp.lkp_Unilever_content_approver__c;
                 if(objNewLOI.mpkl_Phases_covered_by_WAR__c == null && objPWORFTemp.mpkl_Project_Phases__c !=null)
                     objNewLOI.mpkl_Phases_covered_by_WAR__c = objPWORFTemp.mpkl_Project_Phases__c;
-                string AllrecordType = CPA_PWORF_Record_type__c.getValues('All').Record_type_id__c;
-                if(objPWORFTemp.RecordTypeId == AllrecordType && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.mpkl_Project_Phases__c)) 
+               // string AllrecordType = CPA_PWORF_Record_type__c.getValues('All').Record_type_id__c;
+                if(objPWORFTemp.RecordType.name == 'Other' && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.mpkl_Project_Phases__c)) 
                         objNewLOI.addError('Only ' + objPWORFTemp.mpkl_Project_Phases__c.replaceAll(';', ', ') + ' Project Phases are allow');
             }
         }

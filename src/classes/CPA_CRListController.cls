@@ -1,3 +1,18 @@
+/**********************************************************************
+Name: CPA_CRListController()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: This controller is used to over rid the new CR button, open the custom page and show only relevant 
+Record types.
+-------
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR     DATE            DETAIL Description
+1.0         Name       01/01/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
 public with sharing class CPA_CRListController { 
     
      public  CPA_project_work_order__c PwoObj{get;set;}
@@ -10,7 +25,12 @@ public with sharing class CPA_CRListController {
      public Integer expensetotal {get;set;}
      public Integer blendratetotal {get;set;}
      
-     
+    /*******************************************************************
+    Purpose: This constructor will be called from VF page
+    Parameters: ApexPages.StandardController
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public CPA_CRListController(ApexPages.StandardController stdController) {
          this.PwoObj = (CPA_project_work_order__c)stdController.getRecord();
             pwoId = this.PwoObj.Id;
@@ -32,6 +52,12 @@ public with sharing class CPA_CRListController {
      * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
      * Dev team will fix this in next release.
      */
+    /*******************************************************************
+    Purpose: This method gives the PWO list
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public  void  getPwoList() {
     
     try {
@@ -43,13 +69,15 @@ public with sharing class CPA_CRListController {
             if(Integer.valueOf(PwoRs.num_Expense_charges_of_work_order__c) !=null && Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c) !=null) {
                 Blendrate = Integer.valueOf(PwoRs.num_Expense_charges_of_work_order__c)/Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c);
             }
-               if(Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c) !=null)
+               if(Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c) !=null){
                 effortstotal += Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c);
-              if(Integer.valueOf(PwoRs.num_Expense_charges_of_work_order__c) !=null) 
+                }
+              if(Integer.valueOf(PwoRs.num_Expense_charges_of_work_order__c) !=null){ 
                     costtotal += Integer.valueOf(PwoRs.num_Expense_charges_of_work_order__c);
-              if(Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c) !=null) 
+              }
+              if(Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c) !=null){ 
                     expensetotal += Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c);
-                    
+              }
                 blendratetotal+=Blendrate;
             
             List<CPA_CR__c> listCr = getCrList(pwoId);
@@ -64,26 +92,32 @@ public with sharing class CPA_CRListController {
                          innerCrObj[i-1].BlendRate=Integer.valueOf(rs.num_Total_charge_of_CR__c)/Integer.valueOf(rs.num_Estimated_Man_days_of_CR__c);
                          blendratetotal+=innerCrObj[i-1].BlendRate;
                     }
-                if(Integer.valueOf(rs.num_Estimated_Man_days_of_CR__c) !=null)    
+                if(Integer.valueOf(rs.num_Estimated_Man_days_of_CR__c) !=null){    
                     effortstotal += Integer.valueOf(rs.num_Estimated_Man_days_of_CR__c);
-                if(Integer.valueOf(rs.num_Total_charge_of_CR__c) !=null) 
+                }
+                if(Integer.valueOf(rs.num_Total_charge_of_CR__c) !=null){ 
                     costtotal += Integer.valueOf(rs.num_Total_charge_of_CR__c);
-                if(Integer.valueOf(rs.num_Expense_charges_of_CR__c) !=null) 
+                }
+                if(Integer.valueOf(rs.num_Expense_charges_of_CR__c) !=null){ 
                     expensetotal += Integer.valueOf(rs.num_Expense_charges_of_CR__c);
+                }
                 
               i++;   
             }
             
            }
-           
-           
-        
         }catch (Exception e){
         
             system.debug('Error'+e.getMessage());
         }
     }
     
+    /*******************************************************************
+    Purpose: This method gives the CR list
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public List<CPA_CR__c> getCrList(String Id) {
           List<CPA_CR__c> crList = new List<CPA_CR__c>();
          try{
@@ -98,6 +132,13 @@ public with sharing class CPA_CRListController {
          }
         return new List<CPA_CR__c>();
     }
+    
+    /*******************************************************************
+    Purpose: This is the inner class, wrapper for CR list
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public class InnerCrList {
     
         public String name {get;set;}
@@ -108,12 +149,8 @@ public with sharing class CPA_CRListController {
         public Integer recCount {get;set;}
         
         public InnerCrList(Integer recCount) {
-         this.recCount =recCount;
-         
-        
+            this.recCount =recCount;
         }
-        
-    
     }
     
 }
