@@ -509,7 +509,10 @@
                                         <span class="coreParam">{!$Label.IPM_TO_DOs_USES}</span>
                                     </div>
                                     <div class="col-sm-12">
-                                        <span class="todoTitle">{!$Label.IPM_ToDosLabel}</span>
+                                        <span class="todoTitle">{!$Label.IPM_ToDosLabel}
+                                         <span class="SecButtonSet infoMarTop">
+                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_TO_DO_ARE_THE_SET}"></a>
+                            </span></span>
                                     </div>
                                     <div class="col-sm-12">
                                         
