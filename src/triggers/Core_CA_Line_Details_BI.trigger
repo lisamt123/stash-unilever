@@ -12,7 +12,7 @@ trigger Core_CA_Line_Details_BI on Core_Approval_Details__c (Before Insert) {
     if (Trigger.isInsert) {
         List<RecordType> aribaRecordType  = [SELECT Id FROM RecordType where Name ='Ariba' AND SobjectType = 'Core_Approval_Details__c'];
         List<RecordType> gtesRecordType   = [SELECT Id FROM RecordType where Name ='GTES' AND SobjectType = 'Core_Approval_Details__c'];
-        //List<RecordType> remedyRecordType = [SELECT Id FROM RecordType where Name ='Remedy' AND SobjectType = 'Core_Approval_Details__c'];
+        List<RecordType> invoiceRecordType = [SELECT Id FROM RecordType where Name ='Invoice' AND SobjectType = 'Core_Approval_Details__c'];
         
         for (Core_Approval_Details__c a : Trigger.new) {
         
@@ -35,11 +35,11 @@ trigger Core_CA_Line_Details_BI on Core_Approval_Details__c (Before Insert) {
                }                    
                a.RecordTypeId = gtesRecordType[0].Id;
            }
-           //Updating Record type for Remedy
-           //else if(a.Source_System__c == 'Remedy'){
-               //a.Name = a.Expense_Type__c;
-               //a.RecordTypeId = remedyRecordType[0].Id;
-           //}    
+           //Updating Record type for Invoice
+           else if(a.Source_System__c == 'Invoice'){
+               a.Name = a.Expense_Type__c;
+               a.RecordTypeId = invoiceRecordType[0].Id;
+           }    
         }
     }
 }

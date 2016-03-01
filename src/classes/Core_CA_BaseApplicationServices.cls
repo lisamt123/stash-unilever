@@ -54,6 +54,8 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
                       responseObj = (Core_CA_BaseApplicationWrapper)Core_CA_LineItemDetail.getLineItemDetailGTES(appWrapperObj);      
                     if(appWrapperObj.lineItemDetailRequest.RequestType.equals(Core_CA_AppConstants.DATA_REQUEST_TYPE_ARIBA))
                       responseObj = (Core_CA_BaseApplicationWrapper)Core_CA_LineItemDetail.getLineItemDetailAriba(appWrapperObj);        
+                    if(appWrapperObj.lineItemDetailRequest.RequestType.equals(Core_CA_AppConstants.DATA_REQUEST_TYPE_INVOICE))
+                      responseObj = (Core_CA_BaseApplicationWrapper)Core_CA_LineItemDetail.getLineItemDetailInvoice(appWrapperObj);
                 }
                 
                 //Ideation Services
@@ -136,14 +138,15 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
                     responseObj = (Core_CA_BaseApplicationWrapper)Core_CA_ApproveRejectAction.postApproveRejectAction(appWrapperObj);
                 }
                
-                if(svcName.equals(Core_CA_AppConstants.SVC_EMAIL_DOMAIN_GET)){
+                /*if(svcName.equals(Core_CA_AppConstants.SVC_EMAIL_DOMAIN_GET)){
                     //appWrapperObj.retListFromServer = UtilityHelper.getEmailDomainList();
                     //responseObj = appWrapperObj;
                 }
                 if(svcName.equals(Core_CA_AppConstants.SVC_EMAIL_DOMAIN_UPDATE)){
                     //appWrapperObj.retListFromServer = UtilityHelper.processNewEmailDomainList(appWrapperObj.postListToServer);
                     //responseObj = appWrapperObj;
-                }
+
+                }*/
             }            
             else{/* Case of invalid service requested */
                 responseObj = handleInvalidSvcNameReq( responseObj );
