@@ -63,8 +63,15 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>IPM_Milestone_Due_Date_In_Past__c = true</formula>
-        <triggerType>onAllChanges</triggerType>
+        <formula>AND(
+ IPM_Milestone_Due_Date_In_Past__c = true,
+ NOT(ISPICKVAL( IPM_Phase__c , &apos;Post Launch Evaluation&apos;)),
+ IPM_Project__r.Is_Archieved__c = false,
+ ISPICKVAL( IPM_Type_of_Milestone__c , &apos;Standard&apos;),
+ IPM_Completed__c = false,
+ CreatedDate  &lt;&gt;  LastModifiedDate   
+)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>IPM_BET_WF_Trigger_MS_StatusCheck</fullName>
