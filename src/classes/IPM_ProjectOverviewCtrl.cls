@@ -346,7 +346,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         IPM_Clustering__r.Name, IPM_Brand_Positioning__c,IPM_White_Space_Project__c,IPM_Bosscard_Status__c,IPM_Bosscard__c,IPM_Gatekeeping_Model__c,IPM_Category__r.name,IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_BET_Toolkit__c,
         IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
         Deputy_Project_Leader__c, IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
-        IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,
+        IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Actual_Launch_Date__c,IPM_Actual_Launch_Date__c,
         IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,
         (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
         IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,IPM_Active__c,
@@ -658,7 +658,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
-                                                                                IPM_FunctionalRole__c =: IPM_Utils.roleForProjectLeader AND  
+            IPM_FunctionalRole__c not in :functionalRoleSet AND  
                                                                                 IPM_Default_Section__c = true
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000] ;
         } else if(project.IPM_Project_Leader__c != UserInfo.getUserId() && userRole != null ) {
