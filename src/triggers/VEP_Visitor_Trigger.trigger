@@ -6,22 +6,22 @@ trigger VEP_Visitor_Trigger on Vep_Visitor__c (before insert,before update,after
         for(Vep_Visitor__c  v: trigger.new){
             setFactories.add(v.Factory_to_Visit__c);
         }
-        if(setFactories!=null && setFactories.size()>0){
+        if(!setFactories.isEmpty()){
             listFactory= [select id,name,Factory_manager__c,Factory_Manager__r.name from VEP_Factory__c where name in:setFactories];
         }
-        if(listFactory!=null && listFactory.size()>0){
+        if(!listFactory.isEmpty()){
             for(VEP_Factory__c fact: listFactory){
                 mapFactoryuser.put(fact.name,fact);
             }
         }
-        if(mapFactoryuser!=null && mapFactoryuser.size()>0){
+        if(!mapFactoryuser.isEmpty()){
             for(Vep_Visitor__c  v: trigger.new){
-                if(trigger.IsInsert){
+                
                 if(mapFactoryuser.get(v.Factory_to_Visit__c)!=null){
                     v.factory_manager__c = mapFactoryuser.get(v.Factory_to_Visit__c).Factory_manager__c;
                     v.factory_manager_name__c = mapFactoryuser.get(v.Factory_to_Visit__c).Factory_Manager__r.name;
                 }
-                }
+                
                
             }
         }
@@ -36,33 +36,42 @@ trigger VEP_Visitor_Trigger on Vep_Visitor__c (before insert,before update,after
         for(Vep_Visitor__c  v: trigger.new){
             if((trigger.isupdate && trigger.oldMap.get(v.id).status__c!='Approved' && v.status__c=='Approved') || (trigger.isInsert && v.recordtypeId==robRecordTypeId)){
               
-                if(v.travel__c==true){
-                    if(mapEmailIds.get(v.Factory_to_visit__c)!=null)
+                if(v.travel__c){
+                    if(mapEmailIds.get(v.Factory_to_visit__c)!=null){
                         v.Travel_Desk_Email__c = mapEmailIds.get(v.Factory_to_visit__c).Travel_Desk_Email__c;
+                    }
                 }
-                if(v.lodging__c==true){
-                    if(mapEmailIds.get(v.Factory_to_visit__c)!=null)
+                if(v.lodging__c){
+                    if(mapEmailIds.get(v.Factory_to_visit__c)!=null){
                         v.Lodging_Desk_Email__c = mapEmailIds.get(v.Factory_to_visit__c).Lodging_Desk_Email__c ;
+                    }
                 }
-                if(v.pickup__c==true){
-                    if(mapEmailIds.get(v.Factory_to_visit__c)!=null)
+                if(v.pickup__c){
+                    if(mapEmailIds.get(v.Factory_to_visit__c)!=null){
                         v.pickup_Desk_Email__c = mapEmailIds.get(v.Factory_to_visit__c).pickup_Desk_Email__c ;
+                    }
                 }
             }
             
         }
     }
     if(trigger.isAfter && trigger.isInsert){
+        List<VEP_Visitor_Pass__c> listVpass = new List<VEP_Visitor_Pass__c>();
         try{
         for(Vep_Visitor__c  v: trigger.new){
             if(v.recordtypeId==robRecordTypeId){
                 VEP_Visitor_Pass__c vPass = new VEP_Visitor_Pass__c();
                 vPass.Visitor__c = v.id;
-                insert vPass;
+                listVpass.add(vPass);
+                
             }
+        }
+        if(listVpass!=null && listVpass.size()>0){
+            insert listVpass;
         }
         }
         catch(Exception e){
+            trigger.new[0].addError(e.getmessage());
         }
     }
 }

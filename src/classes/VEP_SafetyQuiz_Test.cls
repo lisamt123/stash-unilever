@@ -76,10 +76,13 @@ private class VEP_SafetyQuiz_Test{
         visitor.name='Test Visitor';        
         insert visitor;
         visitor = [select id,VEP_number__c from VEP_Visitor__c where id=:visitor.id];
+        
+        Test.startTest();
         Apexpages.currentpage().getparameters().put('VEPnumber',visitor.VEP_number__c);
         VEP_SafetyQuiz_CC safetyQuiz = new VEP_SafetyQuiz_CC();
         //VEP_SafetyQuiz_CC.AnswerWrapper  AnsW = new VEP_SafetyQuiz_CC.AnswerWrapper(aq11);
         safetyQuiz.getQuesRecords();
+        System.assert(safetyQuiz.getQuesRecords() != null);
         safetyQuiz.previous();
         safetyQuiz.next();
         safetyQuiz.submitTest();
@@ -103,12 +106,13 @@ private class VEP_SafetyQuiz_Test{
         VEP_Visitor_Pass__c visitorPass = new VEP_Visitor_Pass__c ();
         visitorPass.Visitor__c = visitor.id; 
         insert visitorPass;
+        System.assert(visitorPass.id != null);
         VEP_SafetyQuiz_CC safetyQuiz1 = new VEP_SafetyQuiz_CC();
         
         Apexpages.currentpage().getparameters().put('VEPnumber',null);
         VEP_SafetyQuiz_CC safetyQuiz2 = new VEP_SafetyQuiz_CC();
         
-        
+        Test.stopTest();
         
        
         

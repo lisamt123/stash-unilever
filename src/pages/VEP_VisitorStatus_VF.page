@@ -77,7 +77,7 @@
                                 <i class="fa fa-bars icon"></i>
                             </button>
                             <ol class="breadcrumb navbar-breadcrumb">
-                                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}"/>
+                                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}" alt="Unilever Logo"/>
                                 <li >  Approval                           
                                 </li>
                             </ol>
@@ -115,7 +115,7 @@
                           <li class="completed">
                           <a href="#profile" data-toggle="tab" title="VEP Form">
                              <span class="round-tabs">
-                                     <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/FactoryImage.jpg')}" class="img-responsive img-circle"/>                                        
+                                     <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/FactoryImage.jpg')}" class="img-responsive img-circle" alt=""/>                                        
                              </span> 
                             </a> 
                             
@@ -123,7 +123,7 @@
                          </li>
                          <li class="active"><a href="#messages" data-toggle="tab" title="Factory Manger Aproval">
                              <span class="round-tabs">
-                                     <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/ApprovalImage.jpg')}" class="img-responsive img-circle"/>
+                                     <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/ApprovalImage.jpg')}" class="img-responsive img-circle" alt=""/>
         
                              </span> </a>
                              <p class="bold">Factory Manager Approval</p>
@@ -131,7 +131,7 @@
 
                          <li class="disabled"><a href="#settings" data-toggle="tab" title="Safety Quiz">
                              <span class="round-tabs">
-                                     <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/SafetyQuiz.png')}" class="img-responsive img-circle"/>
+                                     <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/SafetyQuiz.png')}" class="img-responsive img-circle" alt=""/>
                              
                              </span> 
                          </a><p class="bold" >Pass Safety Quiz</p>
@@ -139,7 +139,7 @@
 
                          <li class="disabled"><a href="#doner" data-toggle="tab" title="Print Pass">
                              <span class="round-tabs">
-                                  <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/VisitorPassImage.jpg')}" class="img-responsive img-circle"/>
+                                  <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/VisitorPassImage.jpg')}" class="img-responsive img-circle" alt=""/>
                              </span> </a>
                              <p class="bold" >Receive visitor Pass</p>
                          </li>

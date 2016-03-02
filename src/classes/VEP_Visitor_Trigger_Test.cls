@@ -17,6 +17,8 @@ private class VEP_Visitor_Trigger_Test{
         VEP_Visitor__c visitor = new VEP_Visitor__c();
         Id robRecordTypeId = Schema.SObjectType.VEP_Visitor__c.getRecordTypeInfosByName().get('Request on Behalf').getRecordTypeId();
         Id rRecordTypeId = Schema.SObjectType.VEP_Visitor__c.getRecordTypeInfosByName().get('Request').getRecordTypeId();
+        
+        System.assert(rRecordTypeId != null);
         visitor.name='Test Visitor'; 
         visitor.Travel__c=true;
         visitor.lodging__c=true;
@@ -25,6 +27,8 @@ private class VEP_Visitor_Trigger_Test{
         visitor.status__c= 'Pending Approval';
         visitor.Factory_to_visit__c='Factory1';
         listVisitor.add(visitor); 
+        
+        System.assert(robRecordTypeId != null);
         VEP_Visitor__c visitor1 = new VEP_Visitor__c();
         visitor1.name='Test Visitor1'; 
         visitor1.status__c='Approved';

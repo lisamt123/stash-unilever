@@ -10,6 +10,8 @@ private class VEP_VisitorStatus_Test{
         Fsetting.Travel_Desk_Email__c='test@xyz.com';
         Fsetting.Lodging_Desk_Email__c='test@xyz.com';
         insert Fsetting;
+        
+        string sApproved= 'Approved';
 
         VEP_Visitor__c visitor = new VEP_Visitor__c();
         visitor.name='Test Visitor'; 
@@ -20,9 +22,9 @@ private class VEP_VisitorStatus_Test{
         listVisitor.add(visitor); 
         VEP_Visitor__c visitor1 = new VEP_Visitor__c();
         visitor1.name='Test Visitor1'; 
-        visitor1.status__c='Approved';
-        visitor1.Travel_Approval_Status__c='Approved';
-        visitor1.Lodging_Approval_Status__c='Approved';
+        visitor1.status__c=sApproved;
+        visitor1.Travel_Approval_Status__c=sApproved;
+        visitor1.Lodging_Approval_Status__c=sApproved;
         visitor1.Travel__c=true; 
         visitor1.lodging__c=true; 
         visitor1.pickup__c=true;
@@ -33,14 +35,15 @@ private class VEP_VisitorStatus_Test{
             setVisitorIds.add(v.id);
         }
         listVisitorQ = [select id,VEp_number__c from VEP_Visitor__c where id in:setVisitorIds];
-       
+        System.assert(listVisitorQ != null);
+        System.assert(listVisitorQ.size() >0 );
         Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[0].VEP_number__c);
-        Apexpages.currentpage().getparameters().put('TravelStatus','Approved');
+        Apexpages.currentpage().getparameters().put('TravelStatus',sApproved);
         VEP_VisitorStatus_CC vStatus3 = new VEP_VisitorStatus_CC();
         vStatus3.displayMsg();
         
         Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[1].VEP_number__c);
-        Apexpages.currentpage().getparameters().put('TravelStatus','Approved');
+        Apexpages.currentpage().getparameters().put('TravelStatus',sApproved);
         VEP_VisitorStatus_CC vStatus4 = new VEP_VisitorStatus_CC();
         vStatus4.displayMsg();
         Apexpages.currentpage().getparameters().put('TravelStatus','Approvedsfdf');
@@ -48,12 +51,12 @@ private class VEP_VisitorStatus_Test{
         vStatus5.displayMsg();
         
         Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[0].VEP_number__c);
-        Apexpages.currentpage().getparameters().put('LodgingStatus','Approved');
+        Apexpages.currentpage().getparameters().put('LodgingStatus',sApproved);
         VEP_VisitorStatus_CC vStatus6 = new VEP_VisitorStatus_CC();
         vStatus6.displayMsg();
         
         Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[1].VEP_number__c);
-        Apexpages.currentpage().getparameters().put('LodgingStatus','Approved');
+        Apexpages.currentpage().getparameters().put('LodgingStatus',sApproved);
         VEP_VisitorStatus_CC vStatus7 = new VEP_VisitorStatus_CC();
         vStatus7.displayMsg();
         Apexpages.currentpage().getparameters().put('LodgingStatus','Approvedsfdf');

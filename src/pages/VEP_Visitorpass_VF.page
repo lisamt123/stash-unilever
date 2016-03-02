@@ -85,7 +85,7 @@ position: relative;
 </head>
     
       <div class="header">
-        <img height="75px" widht="100px" src="{!$Resource.VEP_UnileverLogo}"/>
+        <img height="75px" widht="100px" src="{!$Resource.VEP_UnileverLogo}" alt="Unilever Logo"/>
           <h1>Factory Visit Request</h1>
        </div>
 

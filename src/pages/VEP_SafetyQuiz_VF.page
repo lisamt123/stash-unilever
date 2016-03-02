@@ -56,7 +56,6 @@
   }
  $(document).ready(function (){
     $('a[title]').tooltip();
-
     $('ul.nav li').on('click', function(e) {
         if ($(this).hasClass('disabled')) {
             e.preventDefault();
@@ -68,15 +67,12 @@
             e.preventDefault();
             return false;
         }
-    });
-        
+    });        
 });
+</script>
 
-
-
-
+<script>
 $(document).ready(function(){/* off-canvas sidebar toggle */
-
 $('[data-toggle=offcanvas]').click(function() {
     $(this).toggleClass('visible-xs text-center');
     $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');
@@ -85,11 +81,7 @@ $('[data-toggle=offcanvas]').click(function() {
     $('#xs-menu').toggleClass('visible-xs').toggleClass('hidden-xs');
     $('#btnShow').toggle();
 });
-
-
 });
-
-
 $( document ).ready(function(){
 //   Hide the border by commenting out the variable below
     var $on = 'section';
@@ -99,9 +91,6 @@ $( document ).ready(function(){
       'box-shadow':'none'
     });
 }); 
-
-
-
 </script>
 
 <script>
@@ -110,18 +99,12 @@ function checkValues()
 {
 "use strict";
 $('input[class*="quizCheck-"]').each( function() {
-
     var classID = null;
     var classes = $(this).attr('class').split(' ');
-   // alert(classes);
     var len = classes.length;
-   for (var i = 0; i < len; ++i) {
-    
+   for (var i = 0; i < len; ++i) {    
         var classq = classes[i];
-       // alert(classq );
-        if (classq.match( /^quizCheck-/ )) {
-            
-           // classID = classq.replace("quizCheck-",'');
+        if (classq.match( /^quizCheck-/ )) {            
            classID = classq;
              break;
         }
@@ -181,7 +164,7 @@ overflow: auto; */
                             <ol class="breadcrumb navbar-breadcrumb">
                             
                                 <li> 
-                                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}"/>
+                                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}" alt="Unilever Logo"/>
                                 <apex:outputPanel id="headingTop">
                                 <apex:outputText value="Safety Induction Video" rendered="{!videopanel}"/>
                                 <apex:outputText value="Safety Quiz" rendered="{!If(QApanel || Resultpanel,true,false)}"/>
@@ -254,7 +237,7 @@ overflow: auto; */
                   <li class="completed">
                   <a href="#profile" data-toggle="tab" title="VEP Form">
                      <span class="round-tabs">
-                             <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/FactoryImage.jpg')}" class="img-responsive img-circle"/>
+                             <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/FactoryImage.jpg')}" class="img-responsive img-circle" alt=""/>
                                     
                      </span> 
                      
@@ -263,7 +246,7 @@ overflow: auto; */
                  </li>
                  <li class="completed"><a href="#messages" data-toggle="tab" title="Factory Manger Aproval">
                      <span class="round-tabs">
-                             <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/ApprovalImage.jpg')}" class="img-responsive img-circle"/>
+                             <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/ApprovalImage.jpg')}" class="img-responsive img-circle" alt=""/>
 
                      </span> </a>
                      <p class="bold" >Factory Manager Approval</p>
@@ -271,7 +254,7 @@ overflow: auto; */
                       
                      <li class="active" id="activequiz"><a href="#settings" data-toggle="tab" title="Safety Quiz">
                          <span class="round-tabs">
-                                 <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/SafetyQuiz.png')}" class="img-responsive img-circle"/>
+                                 <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/SafetyQuiz.png')}" class="img-responsive img-circle" alt=""/>
                          
                          </span> 
                      </a><p class="bold" >Pass Safety Quiz</p>
@@ -279,7 +262,7 @@ overflow: auto; */
 
                      <li class="disabled" id="inactivepass"><a href="#doner" data-toggle="tab" title="Print Pass">
                          <span class="round-tabs">
-                              <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/VisitorPassImage.jpg')}" class="img-responsive img-circle"/>
+                              <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/VisitorPassImage.jpg')}" class="img-responsive img-circle" alt=""/>
                          </span> </a>
                          <p class="bold" >Receive visitor Pass</p>
                      </li>

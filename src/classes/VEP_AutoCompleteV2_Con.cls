@@ -31,8 +31,8 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *    CreatedDate : 6-Oct-2013
 *    Class Name : AutoCompleteV2_Con
 **/
-public class VEP_AutoCompleteV2_Con {
-
+public with sharing class VEP_AutoCompleteV2_Con {
+ 
     public VEP_AutoCompleteV2_Con(VEP_MapFactory_CC controller) {
 
     }
@@ -42,7 +42,7 @@ public class VEP_AutoCompleteV2_Con {
     public String valueFieldVar{ get; set; }
     public String sObjVal{get;set;}
     public Integer randomJsIden{get;set;}
-    public Object cacheField{get;private set;} 
+    public Object cacheField{get; set;} 
     
     private Object targetFieldVar;
     
@@ -53,8 +53,7 @@ public class VEP_AutoCompleteV2_Con {
         valueFieldVar='Id';
     }
     
-    /*Dummy setter Method*/
-    public void setCacheField(Object cacheField){}
+    
     
     public void setTargetFieldVar(Object targetFieldVar){
         
@@ -97,8 +96,8 @@ public class VEP_AutoCompleteV2_Con {
     @RemoteAction
     public static List<Map<String,String>> getData(String sObjVal,String labelFieldVar,String valueFieldVar,String whereClauseVar,String param){      
         List<Map<String,String>> responses = new List<Map<String,String>>();
-        param = String.escapeSingleQuotes(param);
-        for( Sobject sObj : Database.query('SELECT '+valueFieldVar+','+labelFieldVar+' FROM '+sObjVal+' WHERE '+labelFieldVar+' LIKE \'%'+param+'%\''+' OR Category__c LIKE \'%'+param+'%\''+' OR state__c LIKE \'%'+param+'%\''+(String.isNotBlank(whereClauseVar) ? ' AND '+whereClauseVar : ''))){
+        string param1 = String.escapeSingleQuotes(param);
+        for( Sobject sObj : Database.query('SELECT '+valueFieldVar+','+labelFieldVar+' FROM '+sObjVal+' WHERE '+labelFieldVar+' LIKE \'%'+param1+'%\''+' OR Category__c LIKE \'%'+param1+'%\''+' OR state__c LIKE \'%'+param1+'%\''+(String.isNotBlank(whereClauseVar) ? ' AND '+whereClauseVar : ''))){
             responses.add(new Map<String,String>{
                 'id' => String.valueOf(sObj.get(valueFieldVar)),
                 'text' => String.valueOf(sObj.get(labelFieldVar))

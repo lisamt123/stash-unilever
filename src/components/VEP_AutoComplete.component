@@ -102,7 +102,8 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
               v2.init($)
           });
         }
-        
+     </script>
+     <script>   
         autocompleteV2{!randomJsIden}.prototype={
           init : function($){
             var $elem = $( ".auto{!randomJsIden}" ).select2({
@@ -113,24 +114,13 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
                 queryData{!randomJsIden}(query);
               },
               createSearchChoice:function(term, data) {
-                if({!syncManualEntry} == true){
-                  return {id:term, text:term};
-                }
+                if({!syncManualEntry} == true){ return {id:term, text:term}; }                                 
               }
             });
-
-            $elem.on("select2-selecting", function(e) {
-              $('.hiddenField{!randomJsIden}').val(e.val);
-            });
-
-            $elem.on("select2-removed", function(e) {
-              $('.hiddenField{!randomJsIden}').val('');
-            });
-            if({!cacheField !=''}){
-              $elem.select2("data", {id: "{!targetFieldVar}", text: "{!cacheField}"})  
-            }  
-          },
-                    
+            $elem.on("select2-selecting", function(e) { $('.hiddenField{!randomJsIden}').val(e.val); });                         
+            $elem.on("select2-removed", function(e) { $('.hiddenField{!randomJsIden}').val(''); });                         
+            if({!cacheField !=''}){ $elem.select2("data", {id: "{!targetFieldVar}", text: "{!cacheField}"}) }                             
+          },                    
           triggerSearch :function(val){
             if(prevVal{!randomJsIden} != val){
               $=jQuery;
@@ -143,7 +133,8 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             }
           }
         }
-
+        </script>
+        <script>
          /*
         *This method queries data according to the passed parameter
         *and populates the combobox accordingly

@@ -6,7 +6,7 @@ VERSION   AUTHOR   DATE
 1.0       Leena   Jan-2016   
 ***********************************************************************/
 
-Public class VEP_VisitorStatus_CC{
+Public with sharing class VEP_VisitorStatus_CC{
     public string visitorId{get; set;}    
     public string TravelStatus{get; set;}
     public string LodgingStatus{get; set;}
@@ -27,7 +27,7 @@ Public class VEP_VisitorStatus_CC{
                 if(VisitorId !=null){
                     listVisitor = [select id,status__c,travel__c,lodging__c,Factory_to_visit__c,Lodging_Approval_Status__c,Travel_Approval_Status__c  from Vep_Visitor__c where VEp_number__c=:VisitorId ];
                 }
-                if(listVisitor!=null && listVisitor.size()>0){
+                if(!listVisitor.isEmpty()){
                     vRec = listvisitor[0];
                 }
                 if(TravelStatus!=null && vRec!=null){
@@ -65,7 +65,8 @@ Public class VEP_VisitorStatus_CC{
             }
         }
         Catch(Exception e){
-        
+            ApexPages.Message msg = new Apexpages.Message(ApexPages.Severity.Warning,e.getmessage() );
+            ApexPages.addmessage(msg);
         }
         
     }

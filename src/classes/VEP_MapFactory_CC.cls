@@ -7,7 +7,7 @@ VERSION   AUTHOR   DATE
 1.0       Leena   Jan-2016   
 ***********************************************************************/
 
-public class VEP_MapFactory_CC{
+public with sharing class VEP_MapFactory_CC{
     
     public Vep_Factory__c factoryDetails{get; set;}
     public List<Vep_Factory__c> factoryList{get; set;}
@@ -29,7 +29,7 @@ public class VEP_MapFactory_CC{
         showFactoryList= true;
         showDetailPage= false;
         factoryList = new List<Vep_Factory__c>();        
-        factoryList = [select id,name,Factory_Details__c,Factory_Image_Code__c,Latitude__c,Longitude__c from Vep_Factory__c];
+        factoryList = [select id,name,Factory_Details__c,Factory_Image_Code__c,Latitude__c,Longitude__c from Vep_Factory__c limit 200];
         AggregateResult[] listCount = [select count(id) sCount, status__c status from Vep_Visitor__c where (status__c='Approved' OR Status__c='Rejected' OR Status__c='Pending Approval' OR Status__c='Pending Visit') and email__c=:userinfo.getUserEmail() Group By Status__c];     
         approvedCount = 0;
         rejectedCount = 0;
@@ -57,7 +57,7 @@ public class VEP_MapFactory_CC{
             ps=[SELECT Id,IsOwnedByProfile,Label FROM PermissionSet where name='VEP_VisitorManager_Permissions'];  
             List<PermissionSetAssignment> psa = new List<PermissionSetAssignment>();
             psa = [SELECT Assignee.Name, PermissionSet.Id, PermissionSet.isOwnedByProfile, PermissionSet.Profile.Name, PermissionSet.Label FROM PermissionSetAssignment WHERE PermissionSetId =: ps.id and AssigneeId=:userinfo.getuserid()];
-            if(psa!=null && psa.size()>0){
+            if(!psa.isEmpty()){
                 showROB = true;
             }
             Schema.DescribeSObjectResult r = VEP_Visitor__c.sObjectType.getDescribe();
@@ -65,7 +65,9 @@ public class VEP_MapFactory_CC{
             ListViewId = keyPrefix;
         }
         Catch(Exception e){
-        
+            ApexPages.Message msg = new Apexpages.Message(ApexPages.Severity.Warning,e.getmessage() );
+            ApexPages.addmessage(msg);
+            
         }
            
   
@@ -83,7 +85,8 @@ public class VEP_MapFactory_CC{
         ShowFactoryList= false;
         }
         catch(Exception e){
-        
+            ApexPages.Message msg = new Apexpages.Message(ApexPages.Severity.Warning,e.getmessage() );
+            ApexPages.addmessage(msg);
         }
     }
     public void stateFactoryList(){

@@ -7,7 +7,7 @@ VERSION   AUTHOR   DATE
 1.0       Leena   Jan-2016   
 ***********************************************************************/
 
-public class VEP_SafetyQuiz_CC {
+public with sharing class VEP_SafetyQuiz_CC {
     public ApexPages.StandardSetController con{get; set;} 
     public Map<id,List<Vep_Answer__c>> mapQAns{get; set;}
     public Map<id,List<AnswerWrapper>> mapQAnsWrapper{get; set;}
@@ -31,13 +31,14 @@ public class VEP_SafetyQuiz_CC {
             visitorId = Apexpages.currentpage().getparameters().get('VEPnumber');                     
             if(VisitorId!=null && VisitorId!=''){            
                 listVisitor = [select id,name,email__c from Vep_Visitor__c where VEP_number__c=:VisitorId];
-                if(listVisitor!=null && listVisitor.size()>0)
+                if(!listVisitor.isEmpty()){
                      VisitorRec = listVisitor[0];
+                 }
              }
              if(VisitorRec!=null){
                  List<Vep_Visitor_pass__c> listpasses = new List<vep_visitor_pass__c>();
                  listpasses = [select id from vep_visitor_pass__c where visitor__c =: VisitorRec.id];
-                 if(listpasses !=null && listpasses .size()>0){
+                 if(!listpasses.isEmpty()){
                      ErrPanel = true;
                      ErrMessage = 'Visitor Pass has already been generated for this request';
                  }
@@ -65,7 +66,7 @@ public class VEP_SafetyQuiz_CC {
                         MapQAns.put(q.id,q.Answers__r);
                         MapQues.put(q.id,q);
                     }
-                    if(MapQAns!=null && MapQAns.size()>0){
+                    if(!MapQAns.isEmpty()){
                         for(id qid:MapQAns.keySet()){
                             List<AnswerWrapper> listAnsw = new List<AnswerWrapper>();
                             for(Vep_Answer__c Qans:MapQAns.get(qid)){
@@ -150,9 +151,9 @@ public class VEP_SafetyQuiz_CC {
                  for(AnswerWrapper QansW: MapQAnsWrapper.get(qid)){
                      if(Qans.id == QansW.answ.id){
                          
-                         if(Qans.Is_true__c == QansW.checked && Qans.Is_true__c == true){
+                         if(Qans.Is_true__c == QansW.checked && Qans.Is_true__c){
                              
-                             if(Qans.Is_true__c == true){
+                             if(Qans.Is_true__c){
                                  count++;
                              }
                          }
@@ -198,7 +199,9 @@ public class VEP_SafetyQuiz_CC {
              
              }
              Catch(Exception e){
-             
+                 ApexPages.Message msg = new Apexpages.Message(ApexPages.Severity.Warning,e.getmessage() );
+                 ApexPages.addmessage(msg);
+                 
              }
          }
          

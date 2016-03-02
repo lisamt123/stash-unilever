@@ -29,11 +29,14 @@ private class VEP_MapFactory_Test{
         visitor4.email__c=userinfo.getuseremail();
         insert listvisitor;
         
+        Test.startTest();
         VEP_MapFactory_CC mapfact = new VEP_MapFactory_CC();
         Apexpages.currentPage().getParameters().put('searchnameparam','Factory1');
         system.CurrentPageReference().getParameters().put('searchcatparam','Category1');
+        System.assert(mapfact.factoryList.size() != null);
         mapfact.SearchFactoryList();
         mapfact.factname='Factory1';
+        System.assert(mapfact.factname != null);
         mapfact.StateFactoryList();
         mapfact.gotoVFORM();
         mapfact.Back2Factories();
@@ -48,11 +51,13 @@ private class VEP_MapFactory_Test{
 
        
         VEP_MapFactory_CC mapfact1 = new VEP_MapFactory_CC();
+        System.assert(mapfact.factoryList.size() != null);
         mapfact1.targetField = fact.id;
         mapfact1.SearchFactoryList();
         mapfact1.factname='';
         mapfact1.StateFactoryList();
         mapfact1.gotoVFORMROB();
+        Test.stopTest();
         
     }
 }
