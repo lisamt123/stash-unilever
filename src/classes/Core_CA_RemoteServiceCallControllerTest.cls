@@ -1,4 +1,4 @@
-@istest (SeeAllData = true)
+@istest 
 public class Core_CA_RemoteServiceCallControllerTest{
     public static String serviceJSONObject;
     public static String serviceName;

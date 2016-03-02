@@ -23,7 +23,7 @@
                             17.Utility                          
 */
     
-@isTest (Seealldata=true)
+@isTest
 public class Core_CA_Test_MobileAPP{
     
     @TestVisible static String strAriba= 'Ariba';
@@ -72,7 +72,8 @@ public class Core_CA_Test_MobileAPP{
         Test.stoptest();
     }
     
-    public static testMethod void TestRequestDetail(){
+    @isTest(SeeAllData=true) 
+    public static void TestRequestDetail(){
         Core_CA_WrapperUtility wrapper=new Core_CA_WrapperUtility(); 
         
         profile p=[select id from profile where name=:'System Administrator']; 

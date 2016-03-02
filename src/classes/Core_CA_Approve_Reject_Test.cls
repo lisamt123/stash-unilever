@@ -13,7 +13,7 @@
 
 */
 
-@isTest (Seealldata=true)
+@isTest 
 //This test class is to cover controllers associated with vf pages used for Approve/Reject functionalities
 public class Core_CA_Approve_Reject_Test{
     
@@ -24,7 +24,8 @@ public class Core_CA_Approve_Reject_Test{
     @TestVisible static String strApproved= 'Approved';
     
     //This method covers the controller class of approve action for header object
-    static testMethod void TestHeaderApprove(){
+    @isTest (Seealldata=true)
+    static void TestHeaderApprove(){
         test.starttest();
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba1',Source_System__c=strAriba);
         insert headerObj;
@@ -60,7 +61,8 @@ public class Core_CA_Approve_Reject_Test{
     } 
     
     //This method covers the controller class of reject action for header object
-    static testMethod void TestHeaderReject(){
+    @isTest (Seealldata=true)
+    static void TestHeaderReject(){
         test.starttest();
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba3',Source_System__c=strAriba);
         insert headerObj;
@@ -96,7 +98,8 @@ public class Core_CA_Approve_Reject_Test{
     }
     
     //This method covers the controller class of approve action for Interested Party object
-    static testMethod void TestApproverApprove(){
+    @isTest (Seealldata=true)
+    static void TestApproverApprove(){
         test.starttest();
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba5',Source_System__c=strAriba);
         insert headerObj;
@@ -118,7 +121,8 @@ public class Core_CA_Approve_Reject_Test{
     }
     
     //This method covers the controller class of reject action for Interested Party object
-    static testMethod void TestApproverReject(){
+    @isTest (Seealldata=true)
+    static void TestApproverReject(){
         test.starttest();
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba6',Source_System__c=strAriba);
         insert headerObj;
@@ -140,7 +144,8 @@ public class Core_CA_Approve_Reject_Test{
     }
     
     //This method covers the controller class of approve action for line object
-    static testMethod void TestLineApprove(){
+    @isTest (Seealldata=true)
+    static void TestLineApprove(){
         test.starttest();
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba7',Source_System__c=strAriba);
         insert headerObj;
@@ -182,7 +187,8 @@ public class Core_CA_Approve_Reject_Test{
     }
     
     //This method covers the controller class of reject action for line object
-    static testMethod void TestLineReject(){
+    @isTest (Seealldata=true)
+    static void TestLineReject(){
         test.starttest();
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba9',Source_System__c=strAriba);
         insert headerObj;

@@ -13,7 +13,7 @@
                            7.Core_CA_InterestedParty_BI_AI_AU
 */
 
-@isTest(SeeAllData=true)
+@isTest
 public class Core_CA_Test {
    
    
@@ -29,8 +29,9 @@ public class Core_CA_Test {
    @TestVisible static String strStatusTemp = 'Submitted';
    
    
-   //Test method to cover both Header handler and Interested Party trigger and handler. 
-   static testMethod void testMethodForHeaderAndApproverHandlerGTES1(){   
+   //Test method to cover both Header handler and Interested Party trigger and handler.
+   @isTest (Seealldata=true) 
+   static void testMethodForHeaderAndApproverHandlerGTES1(){   
        
        
        //Test User
@@ -99,7 +100,8 @@ public class Core_CA_Test {
        
    }  
    
-   static testMethod void testMethodForHeaderAndApproverHandlerGTES2(){
+   @isTest (Seealldata=true)
+   static void testMethodForHeaderAndApproverHandlerGTES2(){
         
        //Test User
        profile p=[select id from profile where name=:strSystemAdministrator]; 
@@ -164,11 +166,9 @@ public class Core_CA_Test {
        Test.stoptest();
    }
    
-     
-  static testMethod void testMethodForHeaderAndApproverHandlerAriba1(){
-        
-       
-       
+  @isTest (Seealldata=true)   
+  static void testMethodForHeaderAndApproverHandlerAriba1(){
+              
        //Test User
        profile p=[select id from profile where name=:strSystemAdministrator]; 
        User obj_user1 = new User (username='Core_CA_testHeaderUser13@admintest.com',IsActive=true,Alias='user6',timezonesidkey='America/Anchorage' ,
@@ -251,7 +251,8 @@ public class Core_CA_Test {
        Test.stoptest();
    }
    
-   static testMethod void testMethodForHeaderAndApproverHandlerAriba2(){
+   @isTest (Seealldata=true)
+   static void testMethodForHeaderAndApproverHandlerAriba2(){
        
         //Test User
        profile p=[select id from profile where name=:strSystemAdministrator]; 
@@ -361,7 +362,8 @@ public class Core_CA_Test {
    
    
    //Test method to cover both Request and Approval details
-   static testMethod void testMethodForRequestAndApprovalDetails(){ 
+   @isTest (Seealldata=true)
+   static void testMethodForRequestAndApprovalDetails(){ 
        //Test User
        profile p=[select id from profile where name=:strSystemAdministrator];
        User obj_user1 = new User (username='Core_CA_testHeaderUser41@admintest.com',IsActive=true,Alias='user10',timezonesidkey='Pacific/Tongatapu' ,

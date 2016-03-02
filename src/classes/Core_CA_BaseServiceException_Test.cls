@@ -1,4 +1,4 @@
-@istest(seeAlldata = true) 
+@istest 
 public with sharing class Core_CA_BaseServiceException_Test {
 public static Testmethod void DatabaseServiceUpsertMethodTest(){
             integer i=1;
