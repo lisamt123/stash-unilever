@@ -796,10 +796,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 	            } 
             }	
             
-            if(String.isBlank(project.IPM_Approver_of_Charter__c ) )
-                {
-                    project.IPM_Approver_of_Charter__c= projectMetadata.IPM_DefaultCharterQuestionAnswer__c;
-                }                 
+                           
             update project;
             
             if(!skipValidation)

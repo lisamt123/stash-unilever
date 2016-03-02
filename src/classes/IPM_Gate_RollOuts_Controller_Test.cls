@@ -122,4 +122,15 @@ public class IPM_Gate_RollOuts_Controller_Test{
         
      } 
      
+     public static testmethod void initiate()
+     {
+         List<IPM_Project__c> projectList = [Select Id from IPM_Project__c where Name = 'TestComments1'];
+         IPM_Project__c project = null;
+         IPM_Gate_RollOuts_Controller gateController = new IPM_Gate_RollOuts_Controller();
+         gateController.proId = projectList[0].Id;
+         gateController.prepareIPMLocalToCountryWrapper();
+         System.assertEquals(gateController.regionalRollOutWrapperList.size(),2);
+         System.assertEquals(gateController.regionalRollOutWrapperList[0].regionalRollOutName,'TestComments1_AFR');
+         System.assertEquals(gateController.regionalRollOutWrapperList[1].regionalRollOutName,'TestComments1_LA');
+     } 
     }

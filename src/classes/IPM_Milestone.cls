@@ -43,6 +43,7 @@ public with sharing class IPM_Milestone {
     
     public static final String CREATE_MILESTONES = 'createMileStones';
     public static final String STR_ERROR = 'Error';
+    public static final String SELECTED_MS = 'minMsId';
     
     /***************************************************************
     *@Description :Constructor to fetch the details of the Milestones and Project
@@ -126,7 +127,10 @@ public with sharing class IPM_Milestone {
     // To auto select Mini Milestone on change of Due date
     public void selectMiniMs()
     {
-         String miniMSId = Apexpages.currentPage().getParameters().get('minMsId');
+    	Map<String,String> requestMap = Apexpages.currentPage().getParameters();
+    	if(requestMap.containsKey(SELECTED_MS) && requestMap.get(SELECTED_MS)!=null)
+    	{
+    		String miniMSId = requestMap.get(SELECTED_MS);	
          for(MilestoneWrapper miniMSObj :  milestones)
          {
             if(miniMSObj.mile.Id == miniMSId)
@@ -141,7 +145,7 @@ public with sharing class IPM_Milestone {
                 }
             }
          }
-         
+    	}
     }    
     
     /********************************************************************************
