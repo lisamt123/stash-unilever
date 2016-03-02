@@ -31,7 +31,6 @@ global with sharing class CPA_PWORFInformationController {
         callFromVF = true;
         if(ApexPages.currentPage().getParameters().get('id') != null) {      
             pworfId = ApexPages.currentPage().getParameters().get('id');
-            system.debug('pworfId>>>>'+pworfId);
             CPA_Messages(pworfId,callFromVF);         
         }
     } 
@@ -256,7 +255,7 @@ global with sharing class CPA_PWORFInformationController {
                     if(pworfRec.Which_BP_Innovation_director_has_approve__c  == null){ 
                         objectMap.put('Director who approved W@R spend' ,'Mandatory,If this Project require LOI');
                     }
-                    if(pworfRec.pkl_Phases_covered_by_the_WAR__c  == null && pworfRec.pkl_Phases_covered_by_the_WAR__c  == 'Select'){ 
+                    if(pworfRec.pkl_Phases_covered_by_the_WAR__c  == null || pworfRec.pkl_Phases_covered_by_the_WAR__c  == 'Select'){ 
                         objectMap.put('Phases covered by the WAR' ,'Mandatory,If this Project require LOI');
                     }
                 }
@@ -266,9 +265,7 @@ global with sharing class CPA_PWORFInformationController {
                 }
                 Boolean user_has_permission = false;                
                 List<PermissionSetAssignment> lstcurrentUserPerSet =    [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId() ];
-                system.debug('##lstcurrentUserPerSet' + lstcurrentUserPerSet);
                 for ( PermissionSetAssignment psa : lstcurrentUserPerSet ) {
-                    System.debug('##psa.PermissionSet.Name' + psa.PermissionSet.Name);
                     string permission = psa.PermissionSet.Name;
                     if (permission.CONTAINS('CPA_SMT')){
                         user_has_permission = true;
@@ -338,7 +335,6 @@ global with sharing class CPA_PWORFInformationController {
         boolean flag ;
         CPA_PWORFInformationController obj = new CPA_PWORFInformationController();
         flag = obj.CPA_Messages(objId,false); 
-        system.debug('flag --> '+ flag);    
         return flag; 
     }
 
