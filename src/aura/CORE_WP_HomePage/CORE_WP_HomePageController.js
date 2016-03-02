@@ -34,6 +34,7 @@
 	},
     navigateWithinComponent: function(component, event, helper) {         
         //event.getParam("displayWorkplaceHome");
+        helper.scrollToLocation(component, "top");
         var destination = "markup://c:"+event.getParam("WorkplacePannelType"); 
         $A.componentService.newComponentAsync(this, function(view) {
             var content = component.find("WorkplacePannel");
