@@ -309,6 +309,10 @@ Captured Images will be stored as attachment or document object.</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Food Solutions</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Look-a-like</fullName>
                 <default>false</default>
             </picklistValues>
@@ -889,6 +893,10 @@ Captured Images will be stored as attachment or document object.</description>
             </values>
             <values>
                 <fullName>Counterfeit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food Solutions</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1480,6 +1488,10 @@ Captured Images will be stored as attachment or document object.</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Food Solutions</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Look-a-like</fullName>
                 <default>false</default>
             </values>
@@ -1587,6 +1599,10 @@ Captured Images will be stored as attachment or document object.</description>
             </values>
             <values>
                 <fullName>Counterfeit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Food Solutions</fullName>
                 <default>false</default>
             </values>
             <values>

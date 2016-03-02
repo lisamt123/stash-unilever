@@ -249,6 +249,7 @@
         <columns>Cheque_Book__c</columns>
         <columns>Country__c</columns>
         <columns>Product_Category_Name__c</columns>
+        <columns>Brand__c</columns>
         <columns>Starting_Number__c</columns>
         <columns>Last_Cheque_Number__c</columns>
         <columns>Currency__c</columns>
