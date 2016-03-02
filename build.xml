@@ -204,8 +204,7 @@
   <!-- ************************************************************************************************ -->
   <!-- Validate the  set of IPM NG meta-data before deployment with Test Classes for Delta Deploy       -->
   <!-- ************************************************************************************************ -->
-  <target name="validateDeltaIPM">
-  <target name="validateDeltaIPM">
+    <target name="validateDeltaIPM">
     <echo level="info">Testing the deployment of IPM NG with Delta</echo>
     <sf:deploy username="${sf.username}"
       password="${sf.password}"
