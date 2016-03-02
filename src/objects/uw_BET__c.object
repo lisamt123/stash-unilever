@@ -661,7 +661,7 @@
     <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Add text that will help others search for your Brand Experience</inlineHelpText>
+        <inlineHelpText>Add text that will help others search for your brand experience. The text here has been copied from the Project description. Editing this text will not modify the description of the IPM Navigator project and only affects the description field of your BET.</inlineHelpText>
         <label>Description</label>
         <length>10000</length>
         <trackFeedHistory>false</trackFeedHistory>
