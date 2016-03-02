@@ -109,6 +109,10 @@
             <translation><!-- Counterfeit --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Food Solutions</masterLabel>
+            <translation><!-- Food Solutions --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Look-a-like</masterLabel>
             <translation><!-- Look-a-like --></translation>
         </picklistValues>
