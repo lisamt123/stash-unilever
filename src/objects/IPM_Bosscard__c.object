@@ -2560,6 +2560,15 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004XLE_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_KAYAK_LATAM</label>
+        <queue>IPM_a7IE00000004XLE</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>IPM Bosscard Name</label>
         <trackFeedHistory>false</trackFeedHistory>

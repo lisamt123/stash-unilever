@@ -3480,12 +3480,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Brand__c</field>
             <operation>equals</operation>
-            <value>Becel,Bertolli,Blue Bonnet,Brummel &amp; Brown,Country Crock,Eversweet,Fleischmanns</value>
+            <value>Becel,Bertolli,I Can&apos;t Believe It&apos;s Not Butter!,Maille</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Becel,Bertolli,Blue Bonnet,Brummel &amp; Brown,Country Crock,Eversweet,Fleischmanns</value>
+            <value>Becel,Bertolli,I Can&apos;t Believe It&apos;s Not Butter!,Maille</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -3495,12 +3495,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Brand__c</field>
             <operation>equals</operation>
-            <value>ICBINB!,Imperial,Maille,Mrs Filbert&apos;s,Pro Activ,Promise</value>
+            <value>Brummel &amp; Brown,CountryCrock</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>ICBINB!,Imperial,Maille,Mrs Filbert&apos;s,Pro Activ,Promise</value>
+            <value>Brummel &amp; Brown,CountryCrock</value>
         </filters>
         <label>CEC North America Baking Cooking &amp; Sprea</label>
         <language>en_US</language>
@@ -3806,7 +3806,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.STATUS</columns>
         <columns>OWNER_NAME</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>Case_Market__c</field>
             <operation>equals</operation>
@@ -3829,6 +3829,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC North America Deodorants &amp; Fragrance</label>
         <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
@@ -4217,7 +4218,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>CEC_North_America_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
+        <columns>Case_Brand__c</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
@@ -4335,7 +4336,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Red Rose,Salada</value>
+            <value>Red Rose,Salada,RedRoseTea,Red Rose Tea</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -5104,23 +5105,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Mine</filterScope>
         <label>My Cases</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>My_Open_Cases</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <label>My Open Cases</label>
         <language>en_US</language>
     </listViews>
     <listViews>
