@@ -107,8 +107,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         autocompleteV2{!randomJsIden}.prototype={
           init : function($){
             var $elem = $( ".auto{!randomJsIden}" ).select2({
-              minimumInputLength: 1,
-              placeholder: "Please Input Factory Name OR State OR Category",
+              minimumInputLength: 1, placeholder: "Please Input Factory Name OR State OR Category",              
               allowClear : {!allowClear},
               query: function (query) {
                 queryData{!randomJsIden}(query);
@@ -122,8 +121,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             if({!cacheField !=''}){ $elem.select2("data", {id: "{!targetFieldVar}", text: "{!cacheField}"}) }                             
           },                    
           triggerSearch :function(val){
-            if(prevVal{!randomJsIden} != val){
-              $=jQuery;
+            if(prevVal{!randomJsIden} != val){ $=jQuery;              
               prevVal{!randomJsIden} = val;
               var select = $('input.auto{!randomJsIden}');          
               var search = $('.select2-input')

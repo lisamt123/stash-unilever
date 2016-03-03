@@ -115,7 +115,7 @@
                           <li class="completed">
                           <a href="#profile" data-toggle="tab" title="VEP Form">
                              <span class="round-tabs">
-                                     <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/FactoryImage.jpg')}" class="img-responsive img-circle" alt=""/>                                        
+                                     <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/FactoryImage.jpg')}" class="img-responsive img-circle" alt="Raise a Request"/>                                        
                              </span> 
                             </a> 
                             
@@ -123,7 +123,7 @@
                          </li>
                          <li class="active"><a href="#messages" data-toggle="tab" title="Factory Manger Aproval">
                              <span class="round-tabs">
-                                     <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/ApprovalImage.jpg')}" class="img-responsive img-circle" alt=""/>
+                                     <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/ApprovalImage.jpg')}" class="img-responsive img-circle" alt="Factory Manager Approval"/>
         
                              </span> </a>
                              <p class="bold">Factory Manager Approval</p>
@@ -131,7 +131,7 @@
 
                          <li class="disabled"><a href="#settings" data-toggle="tab" title="Safety Quiz">
                              <span class="round-tabs">
-                                     <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/SafetyQuiz.png')}" class="img-responsive img-circle" alt=""/>
+                                     <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/SafetyQuiz.png')}" class="img-responsive img-circle" alt="Safety Quiz"/>
                              
                              </span> 
                          </a><p class="bold" >Pass Safety Quiz</p>
@@ -139,7 +139,7 @@
 
                          <li class="disabled"><a href="#doner" data-toggle="tab" title="Print Pass">
                              <span class="round-tabs">
-                                  <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/VisitorPassImage.jpg')}" class="img-responsive img-circle" alt=""/>
+                                  <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/VisitorPassImage.jpg')}" class="img-responsive img-circle" alt="Receive Pass"/>
                              </span> </a>
                              <p class="bold" >Receive visitor Pass</p>
                          </li>

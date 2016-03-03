@@ -237,7 +237,7 @@ overflow: auto; */
                   <li class="completed">
                   <a href="#profile" data-toggle="tab" title="VEP Form">
                      <span class="round-tabs">
-                             <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/FactoryImage.jpg')}" class="img-responsive img-circle" alt=""/>
+                             <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/FactoryImage.jpg')}" class="img-responsive img-circle" alt="Raise a Request"/>
                                     
                      </span> 
                      
@@ -246,7 +246,7 @@ overflow: auto; */
                  </li>
                  <li class="completed"><a href="#messages" data-toggle="tab" title="Factory Manger Aproval">
                      <span class="round-tabs">
-                             <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/ApprovalImage.jpg')}" class="img-responsive img-circle" alt=""/>
+                             <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/ApprovalImage.jpg')}" class="img-responsive img-circle" alt="Factory Manager Approval"/>
 
                      </span> </a>
                      <p class="bold" >Factory Manager Approval</p>
@@ -254,7 +254,7 @@ overflow: auto; */
                       
                      <li class="active" id="activequiz"><a href="#settings" data-toggle="tab" title="Safety Quiz">
                          <span class="round-tabs">
-                                 <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/SafetyQuiz.png')}" class="img-responsive img-circle" alt=""/>
+                                 <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/SafetyQuiz.png')}" class="img-responsive img-circle" alt="Safety Quiz"/>
                          
                          </span> 
                      </a><p class="bold" >Pass Safety Quiz</p>
@@ -262,7 +262,7 @@ overflow: auto; */
 
                      <li class="disabled" id="inactivepass"><a href="#doner" data-toggle="tab" title="Print Pass">
                          <span class="round-tabs">
-                              <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/VisitorPassImage.jpg')}" class="img-responsive img-circle" alt=""/>
+                              <img src="{!URLFOR($Resource.VEP_ProgressBarImages, '/VEP_ProgressBarImages/VisitorPassImage.jpg')}" class="img-responsive img-circle" alt="Recieve Pass"/>
                          </span> </a>
                          <p class="bold" >Receive visitor Pass</p>
                      </li>

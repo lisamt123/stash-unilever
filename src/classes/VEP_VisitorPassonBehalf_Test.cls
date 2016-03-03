@@ -1,6 +1,6 @@
 @isTest
 private class VEP_VisitorPassonBehalf_Test{
-    static testMethod void testMethod1(){
+    static testMethod void test_VEP_VisitorPassonBehalf_VF(){
         VEP_Visitor__c visitor = new VEP_Visitor__c();
         visitor.name='Test Visitor';        
         insert visitor;

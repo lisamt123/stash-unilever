@@ -1,6 +1,6 @@
 @isTest
 private class VEP_Visitor_Trigger_Test{
-    static testMethod void testMethod1(){
+    static testMethod void test_VEP_Visitor_Trigger(){
         VEP_Factory__c fact= new VEP_Factory__c();
         fact.name='Factory1';
         fact.category__c ='Category1';

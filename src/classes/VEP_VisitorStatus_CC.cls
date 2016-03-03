@@ -43,7 +43,7 @@ Public with sharing class VEP_VisitorStatus_CC{
                     }
                     } 
                     else{
-                        message = 'Please click on the correct URL that you have received';
+                        message = label.VEP_Status_ERR;
                     }   
                 }
                 if(LodgingStatus!=null && vRec!=null){
@@ -59,7 +59,7 @@ Public with sharing class VEP_VisitorStatus_CC{
                     } 
                     } 
                     else{
-                        message = 'Please click on the correct URL that you have received';
+                        message = label.VEP_Status_ERR;
                     }    
                 }
             }

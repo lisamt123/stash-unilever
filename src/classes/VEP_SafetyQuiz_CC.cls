@@ -40,7 +40,7 @@ public with sharing class VEP_SafetyQuiz_CC {
                  listpasses = [select id from vep_visitor_pass__c where visitor__c =: VisitorRec.id];
                  if(!listpasses.isEmpty()){
                      ErrPanel = true;
-                     ErrMessage = 'Visitor Pass has already been generated for this request';
+                     ErrMessage = label.VEP_Quiz_Pass_Err;
                  }
                  else{
                      videopanel = true; 
@@ -81,13 +81,13 @@ public with sharing class VEP_SafetyQuiz_CC {
             }
             else{
                 ErrPanel = true;
-                ErrMessage = 'Please click on the correct Url of Safety Quiz';
+                ErrMessage = label.VEP_Quiz_Correcturl_Err;
             
             }
             }
             Catch(Exception e){
                 ErrPanel = true;
-                ErrMessage = 'Please click on the correct Url of Safety Quiz';
+                ErrMessage = label.VEP_Quiz_Correcturl_Err;
             }                 
     }
     
@@ -149,13 +149,9 @@ public with sharing class VEP_SafetyQuiz_CC {
              integer count=0;
              for(Vep_Answer__c Qans: MapQAns.get(qid)){
                  for(AnswerWrapper QansW: MapQAnsWrapper.get(qid)){
-                     if(Qans.id == QansW.answ.id){
-                         
-                         if(Qans.Is_true__c == QansW.checked && Qans.Is_true__c){
-                             
-                             if(Qans.Is_true__c){
-                                 count++;
-                             }
+                     if(Qans.id == QansW.answ.id){                         
+                         if(Qans.Is_true__c == QansW.checked && Qans.Is_true__c){                                                         
+                                 count++;                             
                          }
                      }       
                  }

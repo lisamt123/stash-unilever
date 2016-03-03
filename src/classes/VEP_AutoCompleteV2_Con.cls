@@ -74,7 +74,7 @@ public with sharing class VEP_AutoCompleteV2_Con {
         if(targetFieldVar!=null){
             for(sObject sObj : Database.query('SELECT '+valueFieldVar+','+labelFieldVar+' FROM '+sObjVal+' WHERE '+valueFieldVar+' =:targetFieldVar')){
                 retVal = sObj.get(labelFieldVar);
-                break;
+                //break statement removed
             }
         }
         

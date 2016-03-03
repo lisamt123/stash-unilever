@@ -279,7 +279,7 @@
               
               <li class="active">
                 
-                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}"/>
+                <img height="50px" widht="100px" style="background-color: #f9f9f9;border-radius: 50px" src="{!URLFOR($Resource.VEP_UnileverLogo)}" alt="Unilever Logo"/>
                 Visitor Entry Portal
               </li>
             </ol>

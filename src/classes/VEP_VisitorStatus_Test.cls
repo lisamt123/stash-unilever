@@ -1,6 +1,6 @@
 @isTest
 private class VEP_VisitorStatus_Test{
-    static testMethod void testMethod1(){
+    static testMethod void test_VEP_VisitorStatus(){
         List<VEP_Visitor__c> listVisitor = new List<VEP_Visitor__c>();
         List<VEP_Visitor__c> listVisitorQ = new List<VEP_Visitor__c>();
         set<id> setVisitorIds = new Set<id>();

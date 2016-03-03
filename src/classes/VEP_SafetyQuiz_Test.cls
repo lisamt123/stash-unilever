@@ -1,6 +1,6 @@
 @isTest
 private class VEP_SafetyQuiz_Test{
-    static testMethod void testMethod1(){
+    static testMethod void test_VEP_SafetyQuiz_VF(){
         List<VEP_Question__c> listQues = new List<VEP_Question__c>();
         List<VEP_Answer__c> listAnsw = new List<VEP_Answer__c>();
         integer i=0;

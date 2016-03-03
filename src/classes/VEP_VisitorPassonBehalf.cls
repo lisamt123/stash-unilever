@@ -6,7 +6,7 @@ and display in email template of visitor on behalf
 VERSION   AUTHOR   DATE    
 1.0       Leena   Feb-2016   
 ***********************************************************************/
-public without sharing class VEP_VisitorPassonBehalf {
+public with sharing class VEP_VisitorPassonBehalf {
     public Id VisitorId{get; set;}
     
     public VEP_Visitor_Pass__c getVisitorDetail() {
