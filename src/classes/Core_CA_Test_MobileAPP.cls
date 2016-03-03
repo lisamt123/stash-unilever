@@ -38,6 +38,17 @@ public class Core_CA_Test_MobileAPP{
     @TestVisible static String strClosingTags= '}}';
     @TestVisible static String strClarity = 'Clarity';
     @TestVisible static String strInvoice = 'Invoice'; 
+    
+    
+    @testSetup static void setup() {
+        List<CORE_Chatter_Approval__c> lstCustSet = new List<CORE_Chatter_Approval__c>();
+              
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='AppRejAribaMessage', Text_Value__c='You are not an active Approver for this PR'));       
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='AppRejAlreadyStatus', Text_Value__c='You have already approved/rejected this request'));
+                
+        if(!lstCustSet.isEmpty())
+           insert lstCustSet;     
+    }
       
     public static testMethod void TestMyApprovalData(){    
         //Test data for Ariba     
@@ -72,7 +83,7 @@ public class Core_CA_Test_MobileAPP{
         Test.stoptest();
     }
     
-    @isTest(SeeAllData=true) 
+    
     public static void TestRequestDetail(){
         Core_CA_WrapperUtility wrapper=new Core_CA_WrapperUtility(); 
         

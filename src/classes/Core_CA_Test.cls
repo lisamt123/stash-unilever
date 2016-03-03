@@ -29,7 +29,7 @@ public class Core_CA_Test {
    @TestVisible static String strStatusTemp = 'Submitted';
    
    @testSetup static void setup() {
-        //List<CORE_Chatter_Approval__c> testAccts = new List<CORE_Chatter_Approval__c>();
+        List<CORE_Chatter_Approval__c> lstCustSet = new List<CORE_Chatter_Approval__c>();
         profile p=[select id from profile where name=:strSystemAdministrator]; 
         System.assert(p != null);
        
@@ -38,57 +38,31 @@ public class Core_CA_Test {
                                  LastName='user1',emailencodingkey=strUtf,languagelocalekey='en_US',localesidkey='bg_BG');
         insert obj_user1;
         
-        CORE_Chatter_Approval__c test1 = new CORE_Chatter_Approval__c(Name='PaginationLimit', Text_Value__c='20');
-        CORE_Chatter_Approval__c test2 = new CORE_Chatter_Approval__c(Name='OpenApprovalMsg', Text_Value__c='There are no Open Approvals');
-        CORE_Chatter_Approval__c test3 = new CORE_Chatter_Approval__c(Name='ClosedApprovalMsg', Text_Value__c='There are no Closed Approvals');
+        lstCustSet.add( new CORE_Chatter_Approval__c( Name='PaginationLimit', Text_Value__c='20'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='OpenApprovalMsg', Text_Value__c='There are no Open Approvals'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='ClosedApprovalMsg', Text_Value__c='There are no Closed Approvals'));
         
-        CORE_Chatter_Approval__c test4 = new CORE_Chatter_Approval__c(Name='OpenRequestMsg', Text_Value__c='There are no Open Requests');
-        CORE_Chatter_Approval__c test5 = new CORE_Chatter_Approval__c(Name='ClosedRequestMsg', Text_Value__c='There are no Closed Requests');
-        CORE_Chatter_Approval__c test6 = new CORE_Chatter_Approval__c(Name='OpenRequest', Text_Value__c='Submitted,Withdrawn,Denied');
-        CORE_Chatter_Approval__c test7 = new CORE_Chatter_Approval__c(Name='ClosedRequest', Text_Value__c='Fully Approved');
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='OpenRequestMsg', Text_Value__c='There are no Open Requests'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='ClosedRequestMsg', Text_Value__c='There are no Closed Requests'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='OpenRequest', Text_Value__c='Submitted,Withdrawn,Denied'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='ClosedRequest', Text_Value__c='Fully Approved'));
         
-        CORE_Chatter_Approval__c test8  = new CORE_Chatter_Approval__c(Name='GTES_Notification', Text_Value__c='Yes');
-        CORE_Chatter_Approval__c test9  = new CORE_Chatter_Approval__c(Name='GTES-ApproverAdded', Text_Value__c='Dear XXX, Travel & Expense claim YYY requires your immediate Approval (Requested By ZZZ)');
-        CORE_Chatter_Approval__c test10 = new CORE_Chatter_Approval__c(Name='Ariba_Notification', Text_Value__c='Yes');
-        CORE_Chatter_Approval__c test11 = new CORE_Chatter_Approval__c(Name='Ariba-ApproverAdded1', Text_Value__c='Dear XXX, Purchase requisition YYY requires your immediate Approval (Requester & Preparer: ZZZ)');
-        CORE_Chatter_Approval__c test12 = new CORE_Chatter_Approval__c(Name='Ariba-ApproverAdded2', Text_Value__c='Dear XXX, Purchase requisition YYY requires your immediate Approval (Requester: ZZZ, Preparer: AAA)');
-        CORE_Chatter_Approval__c test13 = new CORE_Chatter_Approval__c(Name='Clarity_Notification', Text_Value__c='Yes');
-        CORE_Chatter_Approval__c test14 = new CORE_Chatter_Approval__c(Name='Clarity_ApproverAdded', Text_Value__c='Dear XXX, Project Approval YYY requires your immediate Approval');
-        CORE_Chatter_Approval__c test15 = new CORE_Chatter_Approval__c(Name='Invoice_Notification', Text_Value__c='Yes');
-        CORE_Chatter_Approval__c test16 = new CORE_Chatter_Approval__c(Name='Invoice_ApproverAdded', Text_Value__c='Dear XXX, Invoice YYY from ZZZ requires your approval');
-        CORE_Chatter_Approval__c test17 = new CORE_Chatter_Approval__c(Name='Invoice', Text_Value__c='',ReminderAlertDays__c=0);
-        CORE_Chatter_Approval__c test18 = new CORE_Chatter_Approval__c(Name='Ariba', Text_Value__c= obj_user1.Id,ReminderAlertDays__c=0);
-        CORE_Chatter_Approval__c test19 = new CORE_Chatter_Approval__c(Name='GTES', Text_Value__c= obj_user1.Id,ReminderAlertDays__c=0);
-        CORE_Chatter_Approval__c test20 = new CORE_Chatter_Approval__c(Name='Clarity', Text_Value__c= obj_user1.Id,ReminderAlertDays__c=0);
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='GTES_Notification', Text_Value__c='Yes'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='GTES-ApproverAdded', Text_Value__c='Dear XXX, Travel & Expense claim YYY requires your immediate Approval (Requested By ZZZ)'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='Ariba_Notification', Text_Value__c='Yes'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='Ariba-ApproverAdded1', Text_Value__c='Dear XXX, Purchase requisition YYY requires your immediate Approval (Requester & Preparer: ZZZ)'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='Ariba-ApproverAdded2', Text_Value__c='Dear XXX, Purchase requisition YYY requires your immediate Approval (Requester: ZZZ, Preparer: AAA)'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='Clarity_Notification', Text_Value__c='Yes'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='Clarity_ApproverAdded', Text_Value__c='Dear XXX, Project Approval YYY requires your immediate Approval'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='Invoice_Notification', Text_Value__c='Yes'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='Invoice_ApproverAdded', Text_Value__c='Dear XXX, Invoice YYY from ZZZ requires your approval'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='Invoice', Text_Value__c='',ReminderAlertDays__c=0));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='Ariba', Text_Value__c= obj_user1.Id,ReminderAlertDays__c=0));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='GTES', Text_Value__c= obj_user1.Id,ReminderAlertDays__c=0));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='Clarity', Text_Value__c= obj_user1.Id,ReminderAlertDays__c=0));
         
-        CORE_Chatter_Approval__c test21 = new CORE_Chatter_Approval__c(Name='Ariba-InvalidPR', Text_Value__c='Action taken by YYY is not considered as XXX is no longer valid due to ZZZ.');
-        CORE_Chatter_Approval__c test22 = new CORE_Chatter_Approval__c(Name='Ariba-InvalidPR-Reason', Text_Value__c='Action taken by YYY is not considered as XXX is no longer valid. Please login to Ariba to review the errors.');
-        
-        insert test1;
-        insert test2;
-        insert test3; 
-        
-        insert test4;
-        insert test5;
-        insert test6;
-        insert test7; 
-        
-        insert test8;
-        insert test9;
-        insert test10; 
-        insert test11;
-        insert test12;
-        insert test13;
-        insert test14;
-        insert test15;
-        insert test16;
-        insert test17; 
-        insert test18;
-        insert test19;
-        insert test20;
-        
-        insert test21;
-        insert test22;
+        if(!lstCustSet.isEmpty())
+           insert lstCustSet;     
     }
    
    //Test method to cover both Header handler and Interested Party trigger and handler.
