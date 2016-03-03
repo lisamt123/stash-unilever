@@ -477,8 +477,12 @@
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Queue_CEC_Case_Market_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>CaseOrigin__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
