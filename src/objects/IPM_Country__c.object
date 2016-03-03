@@ -2520,6 +2520,15 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004XLE_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_KAYAK_LATAM</label>
+        <queue>IPM_a7IE00000004XLE</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>
