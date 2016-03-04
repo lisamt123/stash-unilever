@@ -211,7 +211,7 @@
                                                     <apex:inputText value="{!project.IPM_Brand_Positioning__c}" id="brandHiddenField" styleClass="hiddenBrand" />
                                                     <apex:dataList value="{!brandPos}" var="cou" id="brandposListUL" styleClass="cccmiList">                                                               
                                                         <div class="col-xs-1 ipmCheckbox">
-                                                            <input class="brandPosListbox" type="checkbox" value="{!cou.value}" id="{!cou.value}" />
+                                                            <input class="{!IF(isEditable,'brandPosListbox','disable')} ccCheck" type="checkbox" value="{!cou.value}" id="{!cou.value}" />
                                                             <label for="{!cou.value}"></label>
                                                         </div>
                                                         <div class="col-xs-8 noPadleft brandPosLabel">{!cou.label}</div>                                                                
@@ -451,6 +451,12 @@
     <apex:repeat value="{!listofprojectname}" var="proList">                
         apexAccountList.push('{!proList.IPM_Project_Name__c}');                 
     </apex:repeat>      
+	jq('.ccCheck').change(function(e) {
+        if (jq('.brandposList input[type=checkbox]:checked').length > 20) {
+            jq(this).prop('checked', false);
+            jq(this).next('label').removeClass('selected');
+        }
+    });  
     jq(".brandautocomplete").autocomplete({     
        source : apexAccountList,        
        select: function (event, ui) {       
