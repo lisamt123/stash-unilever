@@ -36,6 +36,7 @@
                               EmailEncodingKey = 'UTF-8', 
                               ProfileId = p.Id,
                               Refund_Authorization_Limit__c = 'Level 4',
+                              
                               LanguageLocaleKey = 'en_US',
                               UserPermissionsKnowledgeUser = true);  
             
@@ -217,6 +218,8 @@
                 cd1.Cheque_Book__c='CB1';
                 cd1.Increment_Number__c=1;
                 cd1.Currency__c ='USD';
+                cd1.Currency_Text__c ='Dollors';
+                cd1.Currency_Decimal_Text__c ='Cents';
                 cd1.Last_Cheque_Number__c = 11;
                // cd1.Brand__c='Knorr';
                 cd1.Country__c =cmm.Id;
@@ -299,6 +302,8 @@
                 cd1.Cheque_Book__c='CB1';
                 cd1.Increment_Number__c=1;
                 cd1.Currency__c ='USD';
+                cd1.Currency_Text__c ='Dollors';
+                cd1.Currency_Decimal_Text__c ='Cents';              
                 cd1.Last_Cheque_Number__c = 1100;
                 //cd1.Brand__c='Knorr';
                 cd1.Country__c =cmm.Id;
@@ -378,6 +383,8 @@
                 cd1.Cheque_Book__c='CB1';
                 cd1.Increment_Number__c=1;
                 cd1.Currency__c ='USD';
+                cd1.Currency_Text__c ='Dollors';
+                cd1.Currency_Decimal_Text__c ='Cents';              
                 cd1.Last_Cheque_Number__c = 11;
                // cd1.Brand__c='Knorr';
                 cd1.Country__c =cmm.Id;
@@ -580,7 +587,10 @@
                 mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', brand__c= 'Dove1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
                 insert productObj;           
                 
-                mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L5_Desc__c = 'Foreign matter - unidentifiable');
+                mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L1_Desc__c='Complaint', 
+                                                                L2_Desc__c = 'Product', L3_Desc__c = 'Foreign matter',
+                                                                L4_Desc__c = 'Unidentifiable Foreign Matter', 
+                                                                L5_Desc__c = 'Foreign matter - unidentifiable');
                 insert gListingTree;
                 
                 mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Foreign matter - unidentifiable', L5_Code__c='Foreign matter - unidentifiable',Global_Listening_Tree__c = gListingTree.Id);
@@ -751,5 +761,148 @@
             
         }
      }
-       
+ 
+       public static testMethod void test_convertRefundValueToWords(){
+            
+            User u = insertUser();        
+            System.runAs(u) {
+                
+                List<cec_Fulfilment__c>  Listff = new List<cec_Fulfilment__c> ();
+                List<cec_Fulfilment__c>  Listff1 = new List<cec_Fulfilment__c> ();         
+                List<CEC_ChequeBook_Detail__c> chbd = new List<CEC_ChequeBook_Detail__c>();
+                
+                Map<id,cec_Fulfilment__c> FulfilMap = new Map<id,cec_Fulfilment__c>();
+                
+                Account accountObj = new Account();
+                accountObj.RecordTypeId = [Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
+                accountObj.PersonMailingCity = 'United States';
+                accountObj.LastName = 'TestAccount';  
+                insert accountObj;
+                System.assertEquals(accountObj.LastName,'TestAccount');  
+                
+                mdm_Product_Category__c pc = new mdm_Product_Category__c();
+                //pc.L7_Product_Category__c ='Soup';
+                pc.L2_Product_Category__c ='Savoury';
+                pc.Corp_Brand_Name__c ='Knorr';
+                insert pc;
+                
+                mdm_Case_Product__c cp = new mdm_Case_Product__c();
+                cp.Brand__c ='Knorr';
+                cp.Active_for_CEC__c= true;
+                cp.Global_CPG_Code__c = pc.id;
+                insert cp;
+                
+                Case caseObj = new Case();
+                caseObj .Status = 'New';
+                caseObj .Origin = 'Email';
+                caseObj.AccountID=  accountObj.id;
+                //caseObj.Case_product_category__c = 'Soup';
+                caseObj.Brand__c = 'Knorr';
+                caseObj.CEC_Product__c = cp.id;
+                insert caseObj;
+                System.assertEquals( caseObj.Origin,'Email');           
+                
+                System.debug('~~~~caseObj '+ caseObj);     
+                System.debug('~~~~caseObj Account'+ caseObj.Account);      
+                
+                cec_Fulfilment__c fulfilmentObj = new cec_Fulfilment__c();  
+                fulfilmentObj.Case__c = caseObj.id;  
+                fulfilmentObj.Country__c = 'United States';
+                fulfilmentObj.Refund_Value__c = 11.11;
+                //fulfilmentObj.Cheque_Number__c = 12;
+                //fulfilmentObj.Case_Product_Category__c = cp.id;
+                Listff.add(fulfilmentObj);   
+                insert Listff;
+                
+                
+                FulfilMap.put(fulfilmentObj.Id,fulfilmentObj);
+                
+                System.debug('~~~~fulfilmentObj'+ fulfilmentObj); 
+                System.assertEquals(Listff.size(),1);
+                
+                //  
+                CEC_Cheque_Authorization_Limit__c chequeLimit=new CEC_Cheque_Authorization_Limit__c(Level_1__c=100,Level_2__c=200,Level_3__c=300,Level_4__c=400,Level_5__c=500,Level_6__c=600,Level_7__c=700);
+                insert chequeLimit;
+                
+                User loggedinuser = [select Quality_Check_Percentage__c,Max_Refund_Amount__c, FirstName from User where id = :UserInfo.getUserId()];
+                loggedinuser.Refund_Authorization_Limit__c ='Level 4';
+                update loggedinuser;                
+                
+                mdm_Geography__c g = new mdm_Geography__c();
+                g.Name='United States';
+                insert g;
+                
+                CEC_Case_Market_Mapping__c cmm = new CEC_Case_Market_Mapping__c();
+                cmm.Market__c='North America';
+                cmm.Country__c=g.Id;
+                cmm.Language__c='English';
+                insert cmm;
+                
+                CEC_ChequeBook_Detail__c cd1= new CEC_ChequeBook_Detail__c();
+                cd1.Cheque_Book__c='CB1';
+                cd1.Increment_Number__c=1;
+                cd1.Currency__c ='USD';
+                cd1.Currency_Text__c ='Dollors';
+                cd1.Currency_Decimal_Text__c ='Cents';
+                cd1.Last_Cheque_Number__c = 11;
+               // cd1.Brand__c='Knorr';
+                cd1.Country__c =cmm.Id;
+                cd1.Max_Cheque_Number__c =1000;
+                cd1.Active__c = true;
+                cd1.Product_Category__c = pc.Id;
+                //cd1.Product_Category__c = 'Soup'; -- Nagesh
+                chbd.add(cd1);
+                
+                insert chbd;  
+                
+                //System.assertEquals(fulfilmentObj.Cheque_Number__c, cd1.Last_Cheque_Number__c+cd1.Increment_Number__c);
+                CEC_ChequeProcess.generateChequeNumber(Listff[0].Id);
+                
+                fulfilmentObj.Refund_Value__c = 10.11;
+                update fulfilmentObj;
+                
+                CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
+                fulfilmentHelper.ConvertRefundValueToWords(Listff,FulfilMap);
+                
+                cec_Fulfilment__c newfulfilmentObj = [select ID,Cheque_Number__c,ChequeBook__c,Refund_Value__c,Refund_Value_in_Words__c from cec_Fulfilment__c where id = :fulfilmentObj.Id];
+                
+                System.assertEquals(newfulfilmentObj.Refund_Value__c, 10.11);
+                System.assertEquals(newfulfilmentObj.Cheque_Number__c, '12');
+                System.assertEquals(newfulfilmentObj.Refund_Value_in_Words__c, 'Ten Dollors and Eleven Cents');
+                
+                ///
+                
+                fulfilmentObj.Refund_Value__c = 112.33;
+                update fulfilmentObj;
+                
+                //CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
+                fulfilmentHelper.ConvertRefundValueToWords(Listff,FulfilMap);
+                
+                cec_Fulfilment__c newfulfilmentObj1 = [select ID,Cheque_Number__c,ChequeBook__c,Refund_Value__c,Refund_Value_in_Words__c from cec_Fulfilment__c where id = :fulfilmentObj.Id];
+                
+                System.assertEquals(newfulfilmentObj1.Refund_Value__c, 112.33);
+                System.assertEquals(newfulfilmentObj1.Cheque_Number__c, '12');
+                System.assertEquals(newfulfilmentObj1.Refund_Value_in_Words__c, 'One Hundred and Twelve Dollors and Thirty Three Cents');               
+                
+                ///
+                
+                fulfilmentObj.Refund_Value__c = 112;
+                update fulfilmentObj;
+                
+                //CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
+                fulfilmentHelper.convertRefundValueToWords(Listff,FulfilMap);
+                
+                cec_Fulfilment__c newfulfilmentObj2 = [select ID,Cheque_Number__c,ChequeBook__c,Refund_Value__c,Refund_Value_in_Words__c from cec_Fulfilment__c where id = :fulfilmentObj.Id];
+                
+                System.assertEquals(newfulfilmentObj2.Refund_Value__c, 112);
+                System.assertEquals(newfulfilmentObj2.Cheque_Number__c, '12');
+                System.assertEquals(newfulfilmentObj2.Refund_Value_in_Words__c, 'One Hundred and Twelve Dollors');              
+                
+              
+                
+                 
+            }
+        }
+
+ 
     }

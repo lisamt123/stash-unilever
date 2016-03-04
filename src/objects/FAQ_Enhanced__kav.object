@@ -45,7 +45,7 @@
         <description>CEC</description>
         <externalId>false</externalId>
         <label>Answer</label>
-        <length>32000</length>
+        <length>131072</length>
         <trackHistory>false</trackHistory>
         <type>Html</type>
         <visibleLines>25</visibleLines>

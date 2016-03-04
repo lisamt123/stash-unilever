@@ -196,6 +196,20 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>ChequeBook__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>CEC This field is a lookup to chequebook record</description>
+        <externalId>false</externalId>
+        <label>ChequeBook</label>
+        <referenceTo>CEC_ChequeBook_Detail__c</referenceTo>
+        <relationshipLabel>Fulfilment</relationshipLabel>
+        <relationshipName>Fulfilment</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Cheque_Number__c</fullName>
         <description>CEC : To capture the cheque number</description>
         <externalId>false</externalId>
@@ -401,6 +415,30 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Currency_Decimal_Text__c</fullName>
+        <description>CEC: This will hold textual version of decimal currency fro Cheque Book Details</description>
+        <externalId>false</externalId>
+        <formula>ChequeBook__r.Currency_Decimal_Text__c</formula>
+        <label>Currency_Decimal_Text</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Currency_Text__c</fullName>
+        <description>CEC : This will hold textual version of currency for Cheque book details</description>
+        <externalId>false</externalId>
+        <formula>ChequeBook__r.Currency_Text__c</formula>
+        <label>Currency_Text</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Document_Approval__c</fullName>
@@ -936,6 +974,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Refund_Value_in_Words__c</fullName>
+        <description>CEC: This field is used to hold Refund Value on Fulfilment Object  in words</description>
+        <externalId>false</externalId>
+        <label>Refund Value in Words</label>
+        <length>150</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Salutation__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT(Case__r.Account.Salutation)  +&apos; &apos; + Case__r.Account.LastName</formula>
@@ -1099,6 +1149,15 @@
             <role>CEC_Manager_Benelux</role>
             <role>CEC_Manager_Europe</role>
             <role>CEC_User_Benelux</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Brazil_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Brazil Queue</label>
+        <queue>CEC_Brazil_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -1419,6 +1478,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Middle_Americas_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Middle Americas Queue</label>
+        <queue>CEC_Middle_Americas_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Nordic_Quality_Check_cec_Fulfilment</fullName>
         <columns>NAME</columns>
         <columns>isApproved__c</columns>
@@ -1577,6 +1645,15 @@
             <role>CEC_Manager_Europe</role>
             <role>CEC_Manager_Portugal</role>
             <role>CEC_User_Portugal</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Southern_Cone_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Southern Cone Queue</label>
+        <queue>CEC_Southern_Cone_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
