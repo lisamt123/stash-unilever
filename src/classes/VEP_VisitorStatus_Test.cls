@@ -12,7 +12,7 @@ private class VEP_VisitorStatus_Test{
         insert Fsetting;
         
         string sApproved= 'Approved';
-
+        string showmessage = 'Please click on the correct URL that you have received';
         VEP_Visitor__c visitor = new VEP_Visitor__c();
         visitor.name='Test Visitor'; 
         visitor.Travel__c=true;
@@ -41,27 +41,35 @@ private class VEP_VisitorStatus_Test{
         Apexpages.currentpage().getparameters().put('TravelStatus',sApproved);
         VEP_VisitorStatus_CC vStatus3 = new VEP_VisitorStatus_CC();
         vStatus3.displayMsg();
-        
+        System.assertEquals(vStatus3.message,'Travel request is Approved Visitor will be notified by an email');
+                
         Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[1].VEP_number__c);
         Apexpages.currentpage().getparameters().put('TravelStatus',sApproved);
         VEP_VisitorStatus_CC vStatus4 = new VEP_VisitorStatus_CC();
         vStatus4.displayMsg();
+        System.assertEquals(vStatus4.message,'Travel request is already Approved');
+        
         Apexpages.currentpage().getparameters().put('TravelStatus','Approvedsfdf');
         VEP_VisitorStatus_CC vStatus5 = new VEP_VisitorStatus_CC();
         vStatus5.displayMsg();
+        System.assertEquals(vStatus5.message, showmessage);
         
         Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[0].VEP_number__c);
         Apexpages.currentpage().getparameters().put('LodgingStatus',sApproved);
         VEP_VisitorStatus_CC vStatus6 = new VEP_VisitorStatus_CC();
         vStatus6.displayMsg();
+        System.assertEquals(vStatus6.message, 'Lodging request is Approved Visitor will be notified by an email');
         
         Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[1].VEP_number__c);
         Apexpages.currentpage().getparameters().put('LodgingStatus',sApproved);
         VEP_VisitorStatus_CC vStatus7 = new VEP_VisitorStatus_CC();
         vStatus7.displayMsg();
+        System.assertEquals(vStatus7.message, 'Lodging request is already Approved');
+        
         Apexpages.currentpage().getparameters().put('LodgingStatus','Approvedsfdf');
         VEP_VisitorStatus_CC vStatus8 = new VEP_VisitorStatus_CC();
         vStatus8.displayMsg();
+        System.assertEquals(vStatus8.message, showmessage);
         
         
         

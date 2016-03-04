@@ -343,7 +343,7 @@ overflow: auto; */
                       </apex:outputPanel>
                       <apex:outputPanel rendered="{!Resultpanel}">
 
-                            <apex:outputPanel rendered="{!if(correctPercentage>=60,true,false)}">
+                            <apex:outputPanel rendered="{!if(correctPercentage>=70,true,false)}">
                             <div style="padding-left: 15%; padding-right: 15%; padding-top: 5%;">
                                 <div class = "panel panel-primary">
                                      <div class = "panel-heading">Congrats</div>
@@ -354,7 +354,7 @@ overflow: auto; */
                                   <apex:commandButton styleclass="btn-submit btn btn-primary pull-left" action="{!visitorPass}" onclick="completequiz();" value="Next" reRender="apexfrm,brd,headingTop"></apex:commandButton>         
                             </div>
                             </apex:outputPanel>
-                            <apex:outputPanel rendered="{!if(correctPercentage<60,true,false)}">
+                            <apex:outputPanel rendered="{!if(correctPercentage<70,true,false)}">
                             <div style="padding-left: 15%; padding-right: 15%; padding-top: 5%;">
                                 <div class = "panel panel-primary">
                                      <div class = "panel-heading">Result</div>

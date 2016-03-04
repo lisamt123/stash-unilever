@@ -19,6 +19,7 @@ private class VEP_Visitor_Trigger_Test{
         Id rRecordTypeId = Schema.SObjectType.VEP_Visitor__c.getRecordTypeInfosByName().get('Request').getRecordTypeId();
         
         System.assert(rRecordTypeId != null);
+        
         visitor.name='Test Visitor'; 
         visitor.Travel__c=true;
         visitor.lodging__c=true;
@@ -39,5 +40,6 @@ private class VEP_Visitor_Trigger_Test{
         visitor1.Factory_to_visit__c='Factory1';
         listVisitor.add(visitor1);    
         insert listVisitor;
+        System.assertEquals(2,listVisitor.size());
     }
 }

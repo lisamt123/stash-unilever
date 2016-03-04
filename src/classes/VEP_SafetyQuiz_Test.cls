@@ -89,14 +89,14 @@ private class VEP_SafetyQuiz_Test{
         safetyQuiz.showQApage();        
         safetyQuiz.closepage();
         safetyQuiz.back2Video();
-        safetyQuiz.correctPercentage=10;
+        safetyQuiz.correctPercentage=70;
         safetyQuiz.visitorPass();
         safetyQuiz.generatePdf();
         List<VEP_SafetyQuiz_CC.AnswerWrapper> li = new List<VEP_SafetyQuiz_CC.AnswerWrapper>();
        
         safetyQuiz.mapQAnsWrapper.get(Q1.id)[0].checked=true;
         safetyQuiz.submitTest();
-        
+        System.assertEquals(10,safetyQuiz.correctPercentage);
       
         
         boolean test1 = safetyQuiz.hasNext;

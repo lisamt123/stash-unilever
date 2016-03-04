@@ -35,9 +35,11 @@ private class VEP_MapFactory_Test{
         system.CurrentPageReference().getParameters().put('searchcatparam','Category1');
         System.assert(mapfact.factoryList.size() != null);
         mapfact.SearchFactoryList();
+        System.assertEquals(0, mapfact.factoryList.size());
         mapfact.factname='Factory1';
         System.assert(mapfact.factname != null);
         mapfact.StateFactoryList();
+        System.assertEquals('Factory1',mapfact.factoryDetails.name);
         mapfact.gotoVFORM();
         mapfact.Back2Factories();
         
@@ -54,8 +56,10 @@ private class VEP_MapFactory_Test{
         System.assert(mapfact.factoryList.size() != null);
         mapfact1.targetField = fact.id;
         mapfact1.SearchFactoryList();
+        System.assertEquals(0, mapfact.factoryList.size());
         mapfact1.factname='';
         mapfact1.StateFactoryList();
+        System.assertEquals('Factory1', mapfact.factoryDetails.name);
         mapfact1.gotoVFORMROB();
         Test.stopTest();
         

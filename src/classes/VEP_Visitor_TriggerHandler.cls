@@ -7,7 +7,7 @@ VERSION   AUTHOR   DATE
 1.0       Leena    Mar-2016   
 ***********************************************************************/
 
-public class VEP_Visitor_TriggerHandler{
+public with sharing class VEP_Visitor_TriggerHandler{
     //Populate Factory Manager details
     public static void vep_UpdateFactory(List<Vep_Visitor__c> listVisitors){
         set<string> setFactories = new set<string>();

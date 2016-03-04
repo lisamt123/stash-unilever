@@ -1,12 +1,18 @@
 /**********************************************************************
 Name: VEP_Visitor_Trigger
-Purpose:
-This Trigger is used to popuklate the travel, lodging, pickup desk emails
+Copyright © 2016 Unilever
+============================================================================
+============================================================================
+Purpose:This Trigger is used to popuklate the travel, lodging, pickup desk emails
 on VEP records dynamically from custom settings
+============================================================================
+============================================================================
+History
+-----
 VERSION   AUTHOR   DATE    
 1.0       Leena    Jan-2016   
 ***********************************************************************/
-trigger VEP_Visitor_Trigger on Vep_Visitor__c (before insert,before update,after insert, after update) {
+trigger VEP_Visitor_Trigger on Vep_Visitor__c (before insert,before update,after insert) {
     //Populate Factory Manager details
     if(trigger.isBefore && trigger.IsInsert){
         VEP_Visitor_TriggerHandler.VEP_UpdateFactory(Trigger.new);            

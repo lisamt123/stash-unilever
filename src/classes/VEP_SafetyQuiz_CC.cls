@@ -149,10 +149,8 @@ public with sharing class VEP_SafetyQuiz_CC {
              integer count=0;
              for(Vep_Answer__c Qans: MapQAns.get(qid)){
                  for(AnswerWrapper QansW: MapQAnsWrapper.get(qid)){
-                     if(Qans.id == QansW.answ.id){                         
-                         if(Qans.Is_true__c == QansW.checked && Qans.Is_true__c){                                                         
-                                 count++;                             
-                         }
+                     if(Qans.id == QansW.answ.id && Qans.Is_true__c == QansW.checked && Qans.Is_true__c){                                                                                                           
+                                 count++;                                                      
                      }       
                  }
                  
@@ -176,7 +174,7 @@ public with sharing class VEP_SafetyQuiz_CC {
          QApanel = false;
          Resultpanel = false;
          
-         if(correctPercentage>=10){
+         if(correctPercentage>=70){
              //create pass object
              Vep_Visitor_Pass__c vpass1 = new Vep_Visitor_Pass__c();
              vpass = new Vep_Visitor_Pass__c();

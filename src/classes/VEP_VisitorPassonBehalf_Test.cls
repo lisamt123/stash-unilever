@@ -14,6 +14,7 @@ private class VEP_VisitorPassonBehalf_Test{
         rob.visitorId = visitor.id;
         System.assert(rob.getVisitorDetail() != null);
         rob.getVisitorDetail();
+        System.assertEquals(visitorPass.id,rob.getVisitorDetail().id);
         Test.stopTest();
         
     }
