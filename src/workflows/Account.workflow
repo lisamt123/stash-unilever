@@ -9,6 +9,16 @@
         <template>CEC_Unilever/CEC_Account_Email_Notification</template>
     </alerts>
     <fieldUpdates>
+        <fullName>CEC_Consumer_Country_Updates</fullName>
+        <description>CEC: To update the consumer country field for NA</description>
+        <field>PersonMailingCountry</field>
+        <formula>IF(Upper(PersonMailingCountry) == &apos;USA&apos;, &apos;United States&apos;, IF(Upper(PersonMailingCountry) == &apos;CAN&apos;,&apos;Canada&apos;,&apos;Mexico&apos;))</formula>
+        <name>CEC Consumer Country Updates</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CEC_NoSpecialChar_Phone_Update</fullName>
         <description>CEC : Remove the special &amp; whitespace character from the standard &apos;Phone&apos; field and update the custom field.</description>
         <field>Phone_No_Special_Char__c</field>
@@ -28,6 +38,17 @@
         <description>Workflow is to send the email notification when account is created with mulesoft user owner id</description>
         <formula>IF(OwnerId == $Setup.cec_Org_Settings__c.Mulesoft_User_Id__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC NA Consumer Country Updates</fullName>
+        <actions>
+            <name>CEC_Consumer_Country_Updates</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>CEC: Workflow rule to update the consumer country from USA/CAN/MEX to United States/Canada/Mexico</description>
+        <formula>AND(IsPersonAccount = TRUE,OR(UPPER(PersonMailingCountry) = &apos;USA&apos;,UPPER(PersonMailingCountry) = &apos;CAN&apos;,UPPER(PersonMailingCountry) = &apos;MEX&apos;), OR( Owner.UserRole.Name = &apos;CEC Global Head&apos;, Owner.UserRole.Name = &apos;CEC Manager - North America&apos;, Owner.UserRole.Name = &apos;CEC User - North America&apos;))</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>CEC_PhoneRemoveSpecialChar</fullName>

@@ -295,6 +295,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Brazil_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Brazil - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Brazil</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Brazil</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Cyprus_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Cyprus - Manager</label>
@@ -383,6 +394,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Middle_Americas_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Middle Americas - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Middle_Americas</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Middle_Americas</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Nordic_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Nordic – Manager</label>
@@ -424,6 +446,28 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_Portugal</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_South_America_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals South America - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_South_America</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_South_America</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Market_Equals_Southern_Cone_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Market Equals Southern Cone - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Southern_Cone</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Southern_Cone</roleAndSubordinatesInternal>
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>

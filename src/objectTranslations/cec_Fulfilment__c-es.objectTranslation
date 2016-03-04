@@ -59,6 +59,11 @@
         <relationshipLabel><!-- Fulfilment --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- ChequeBook --></label>
+        <name>ChequeBook__c</name>
+        <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Cheque Number --></label>
         <name>Cheque_Number__c</name>
     </fields>
@@ -229,6 +234,14 @@
             <masterLabel>United States</masterLabel>
             <translation><!-- United States --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Currency_Decimal_Text --></label>
+        <name>Currency_Decimal_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Currency_Text --></label>
+        <name>Currency_Text__c</name>
     </fields>
     <fields>
         <label>Aprobación de documento</label>
@@ -470,6 +483,10 @@
     <fields>
         <label><!-- Refund Value --></label>
         <name>Refund_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund Value in Words --></label>
+        <name>Refund_Value_in_Words__c</name>
     </fields>
     <fields>
         <label>Encabezamiento</label>

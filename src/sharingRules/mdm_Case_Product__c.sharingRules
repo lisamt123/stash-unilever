@@ -40,6 +40,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Market_Equals_Brazil_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Brazil - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Brazil</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>ISO_Country_Code__c</field>
+            <operation>equals</operation>
+            <value>BR</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Market_Equals_Cyprus_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Cyprus – Manager</label>
@@ -144,6 +157,20 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>Market_Equals_Middle_Americas_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Middle Americas - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Middle_Americas</roleAndSubordinatesInternal>
+        </sharedTo>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>ISO_Country_Code__c</field>
+            <operation>equals</operation>
+            <value>CO,CR,EC,GT,HN,NI,PA,VE</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Market_Equals_Nordic_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Nordic – Manager</label>
@@ -193,6 +220,20 @@
             <field>ISO_Country_Code__c</field>
             <operation>equals</operation>
             <value>PT</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Market_Equals_Southern_Cone_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Southern Cone - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Southern_Cone</roleAndSubordinatesInternal>
+        </sharedTo>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>ISO_Country_Code__c</field>
+            <operation>equals</operation>
+            <value>AR,BO,CL,PY,PE,UY</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>

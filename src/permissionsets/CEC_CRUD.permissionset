@@ -89,10 +89,6 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
-        <application>WIN_POS</application>
-        <visible>false</visible>
-    </applicationVisibilities>
-    <applicationVisibilities>
         <application>cB4L</application>
         <visible>false</visible>
     </applicationVisibilities>
@@ -8432,11 +8428,6 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>Account.Bazaarvoice_Username__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>Account.BillingAddress</field>
         <readable>false</readable>
@@ -8580,6 +8571,11 @@
         <editable>false</editable>
         <field>Account.Length_of_client_relationship__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Account.Local_Identifier__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10424,7 +10420,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Brand_Reporting__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -10444,12 +10440,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.CEC_Product_Reporting_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.CEC_Product_Reporting_Name_no_size__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10758,8 +10754,18 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Case.L1_Product_Reporting__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Case.L2_Product_Category__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.L2_Product_Reporting__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10769,7 +10775,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.L3_Product_Reporting__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10779,7 +10785,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.L4_Product_Reporting__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10794,7 +10800,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.L5_Product_Reporting__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10804,7 +10810,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.L6_Product_Reporting__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -10814,7 +10820,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.L7_Product_Reporting__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -27742,6 +27748,16 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Alert_Rule__c.Case_Product__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Alert_Rule__c.Consumer_Product_Descriptor_no_size__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>cec_Alert_Rule__c.Group_By_Day_Code__c</field>
         <readable>false</readable>
@@ -27768,6 +27784,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cec_Alert_Rule__c.L2_Reason_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cec_Alert_Rule__c.L3_Product_Category__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -27775,6 +27796,16 @@
         <editable>false</editable>
         <field>cec_Alert_Rule__c.L3_Reason_Code__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Alert_Rule__c.L4_Product_Category__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Alert_Rule__c.L4_Reason_Code__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -27798,6 +27829,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cec_Alert_Rule__c.Product_Category_Concat_Value__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cec_Alert_Rule__c.Product_Category__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -27805,6 +27841,11 @@
         <editable>false</editable>
         <field>cec_Alert_Rule__c.Product_Level__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Alert_Rule__c.ReasonCode_Concat_Value__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -28142,6 +28183,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Fulfilment__c.ChequeBook__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>cec_Fulfilment__c.Cheque_Number__c</field>
         <readable>true</readable>
@@ -28165,6 +28211,16 @@
         <editable>true</editable>
         <field>cec_Fulfilment__c.Country__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Fulfilment__c.Currency_Decimal_Text__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Fulfilment__c.Currency_Text__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -28309,6 +28365,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>cec_Fulfilment__c.Refund_Value__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Fulfilment__c.Refund_Value_in_Words__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -34071,14 +34132,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>In_Store_Executions</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Innovations</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>Inside_Unilever</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -34088,10 +34141,6 @@
     </tabSettings>
     <tabSettings>
         <tab>JE_Job_Evaluation__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Masterbrand</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
@@ -34204,10 +34253,6 @@
     </tabSettings>
     <tabSettings>
         <tab>Pinnovate_Preference__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Repeatable_Models</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>

@@ -208,10 +208,6 @@
         <name>Awards__c</name>
     </fields>
     <fields>
-        <label><!-- Bazaarvoice Username --></label>
-        <name>Bazaarvoice_Username__c</name>
-    </fields>
-    <fields>
         <help><!-- Please indicate the type of business activities your organisation is currently involved in. Please also distinguish between those that are currently provided to Unilever, and those that are not. --></help>
         <label><!-- Business activity types --></label>
         <name>Business_activity_types__c</name>
@@ -1061,6 +1057,10 @@
             <masterLabel>Less than 6 Months</masterLabel>
             <translation><!-- Less than 6 Months --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Local Identifier --></label>
+        <name>Local_Identifier__c</name>
     </fields>
     <fields>
         <label>N° de série Machine</label>

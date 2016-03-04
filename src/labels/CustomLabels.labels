@@ -7077,7 +7077,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM INOPLAN USER QUERY</shortDescription>
-        <value>Inoplan users should continue to contact their IPM Business Partners should they have a query.</value>
+        <value>You’ll be able to access the short film by clicking the “Go to IPM Portal” button to the right of this panel.</value>
     </labels>
     <labels>
         <fullName>IPM_INPUT</fullName>
@@ -7091,7 +7091,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM INTERIN SUPPORT SOLUTION</shortDescription>
-        <value>iLog, the current system for logging Inoplan technical issues, will be decommissioned on the 17th of November 2014. Below is the interim support solution:</value>
+        <value>The IPM Navigator system is now live for all HHC and FabCon Users! Before you start using the system, please take a few minutes to have a look at a short introduction to IPM Navigator by HHC SVP Madhu Rao and IPM Director Rudi Hafkamp.</value>
     </labels>
     <labels>
         <fullName>IPM_INTROSCAPE</fullName>
@@ -8482,7 +8482,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PDL_FOR_PC</shortDescription>
-        <value>Product Design Lock (PDL) template for PC</value>
+        <value>This is the start of the next chapter for innovation in Unilever and the IPM team look forward to receiving your feedback. You can get this straight to us by simply pressing the “Ask IPM” button which you’ll also to the right of this panel.</value>
     </labels>
     <labels>
         <fullName>IPM_PERCENTAGE</fullName>
@@ -8622,7 +8622,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PROCEDURE_CHANGE</shortDescription>
-        <value>Procedure Change</value>
+        <value>IPM Navigator</value>
     </labels>
     <labels>
         <fullName>IPM_PROCEED</fullName>
@@ -8790,7 +8790,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PROJECT_UPDATE</shortDescription>
-        <value>Project Half Update</value>
+        <value>IPM Navigator</value>
     </labels>
     <labels>
         <fullName>IPM_PROMOTION</fullName>
@@ -10477,7 +10477,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM TECHNICAL ISSUE</shortDescription>
-        <value>What To Do If You Have a Technical Issue</value>
+        <value>Simpler-Faster-Easier</value>
     </labels>
     <labels>
         <fullName>IPM_TEMP_IS_BEING_GENERATED</fullName>
@@ -10617,7 +10617,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM TRAINING OR TECHNICAL</shortDescription>
-        <value>E IPM BP will determine whether the query is a technical or training issue.</value>
+        <value>When you get to the portal, you’ll also find links to BD and BB virtual tours of the IPM process, highlighting the benefits that the new system will provide, as well as IPM Navigator smartcards, showing you how to work with the system and the IPM Navigator functional cards that highlight responsibilities by each function.</value>
     </labels>
     <labels>
         <fullName>IPM_TRUE</fullName>
@@ -11037,7 +11037,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM WATCH FOR UPDATES TO</shortDescription>
-        <value>In the spirit of continuous improvement and simplification, additional enhancements will go live in Inoplan starting 18 September. Watch for updates to:</value>
+        <value>The IPM Navigator homepage also contains some useful quick links as well as the frequently asked questions document (FAQ).</value>
     </labels>
     <labels>
         <fullName>IPM_WEIGHTAGE</fullName>

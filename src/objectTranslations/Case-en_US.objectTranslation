@@ -393,8 +393,16 @@
         <name>L1_Product_Category__c</name>
     </fields>
     <fields>
+        <label><!-- L1 Product Reporting --></label>
+        <name>L1_Product_Reporting__c</name>
+    </fields>
+    <fields>
         <label><!-- L2 Product Category --></label>
         <name>L2_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L2 Product Reporting --></label>
+        <name>L2_Product_Reporting__c</name>
     </fields>
     <fields>
         <label><!-- L3 Product Category --></label>
@@ -527,6 +535,10 @@
             <translation><!-- Email Benelux --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Brazil</masterLabel>
+            <translation><!-- Email Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Cyprus</masterLabel>
             <translation><!-- Email Cyprus --></translation>
         </picklistValues>
@@ -559,6 +571,10 @@
             <translation><!-- Email Italy --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Middle Americas</masterLabel>
+            <translation><!-- Email Middle Americas --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Nordic</masterLabel>
             <translation><!-- Email Nordic --></translation>
         </picklistValues>
@@ -577,6 +593,10 @@
         <picklistValues>
             <masterLabel>Email Portugal</masterLabel>
             <translation><!-- Email Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email Southern Cone</masterLabel>
+            <translation><!-- Email Southern Cone --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Email Spain</masterLabel>

@@ -23,6 +23,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Brazil_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Brazil - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Brazil</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Brazil</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Cyprus_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Cyprus – Manager</label>
@@ -111,6 +122,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Middle_Americas_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Middle Americas - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Middle_Americas</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Middle_Americas</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Nordic_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Nordic – Manager</label>
@@ -155,6 +177,17 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Market_Equals_Southern_Cone_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Market Equals Southern Cone - Manager</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_Southern_Cone</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>CEC_Manager_Southern_Cone</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Market_Equals_Spain_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Spain - Manager</label>
@@ -185,6 +218,18 @@
         </sharedTo>
         <sharedFrom>
             <roleAndSubordinatesInternal>CEC_Manager_UK</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Queue_Equals_CEC_Brazil_Queue</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>CEC Sharing rule for CEC Brazil Queue</description>
+        <label>Queue Equals CEC Brazil Queue</label>
+        <sharedTo>
+            <role>CEC_User_Planitox_Brazil</role>
+        </sharedTo>
+        <sharedFrom>
+            <queue>CEC_Brazil_Queue</queue>
         </sharedFrom>
     </sharingOwnerRules>
 </SharingRules>

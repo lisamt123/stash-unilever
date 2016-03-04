@@ -85,10 +85,6 @@
         <name>Unilever_Fouracres</name>
     </customApplications>
     <customApplications>
-        <label><!-- WIN@POS --></label>
-        <name>WIN_POS</name>
-    </customApplications>
-    <customApplications>
         <label><!-- cB4L --></label>
         <name>cB4L</name>
     </customApplications>
@@ -8381,20 +8377,8 @@
         <name>Ideas</name>
     </customTabs>
     <customTabs>
-        <label><!-- In Store Executions --></label>
-        <name>In_Store_Executions</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Innovations --></label>
-        <name>Innovations</name>
-    </customTabs>
-    <customTabs>
         <label><!-- Inside Unilever --></label>
         <name>Inside_Unilever</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Masterbrand --></label>
-        <name>Masterbrand</name>
     </customTabs>
     <customTabs>
         <label>Le mie approvazioni</label>
@@ -8415,10 +8399,6 @@
     <customTabs>
         <label><!-- Supply Chain Metrics --></label>
         <name>PSARSupplyChainMetrics</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Repeatable Models --></label>
-        <name>Repeatable_Models</name>
     </customTabs>
     <customTabs>
         <label><!-- SME Selection --></label>
