@@ -226,7 +226,7 @@
                                     </apex:outputPanel>
     
                                     <apex:outputPanel rendered="{!bShowChangeStatusButton}">
-                                        <div class="openModal SecStatusUpdate dstatusButton" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="Update Status">
+                                        <div class="openModal SecStatusUpdate dstatusButton" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_UPDATE_STATUS}">
                                             <input type="button" class="ipmButton" value="Change status"/>
                                         </div>
                                     </apex:outputPanel>
