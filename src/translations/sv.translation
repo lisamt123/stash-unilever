@@ -93,10 +93,6 @@
         <name>Unilever_International_Distributor</name>
     </customApplications>
     <customApplications>
-        <label><!-- WIN@POS --></label>
-        <name>WIN_POS</name>
-    </customApplications>
-    <customApplications>
         <label><!-- cB4L --></label>
         <name>cB4L</name>
     </customApplications>
@@ -9657,24 +9653,12 @@
         <name>Ideas</name>
     </customTabs>
     <customTabs>
-        <label><!-- In Store Executions --></label>
-        <name>In_Store_Executions</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Innovations --></label>
-        <name>Innovations</name>
-    </customTabs>
-    <customTabs>
         <label><!-- Inside Unilever --></label>
         <name>Inside_Unilever</name>
     </customTabs>
     <customTabs>
         <label><!-- KPI Notifications --></label>
         <name>KPI_Notifications</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Masterbrand --></label>
-        <name>Masterbrand</name>
     </customTabs>
     <customTabs>
         <label>Mina godkännanden</label>
@@ -9699,10 +9683,6 @@
     <customTabs>
         <label><!-- Supply Chain Metrics --></label>
         <name>PSARSupplyChainMetrics</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Repeatable Models --></label>
-        <name>Repeatable_Models</name>
     </customTabs>
     <customTabs>
         <label><!-- SME Selection --></label>
@@ -10632,6 +10612,19 @@
         <sections>
             <label><!-- Unilever Geographies --></label>
             <name>Unilever Geographies</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Case Product &amp; Cases --></description>
+        <label><!-- CEC Case Product &amp; Cases --></label>
+        <name>CEC_Case_Product_Cases</name>
+        <sections>
+            <label><!-- Case Products --></label>
+            <name>Case Products</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
         </sections>
     </reportTypes>
     <reportTypes>

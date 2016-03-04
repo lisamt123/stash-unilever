@@ -73,7 +73,10 @@ public with sharing class CEC_AlertActionHelperTest {
             mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', brand__c= 'Dove1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
             insert productObj;          
             
-            mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L5_Desc__c = 'L4 Desc');
+            mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L1_Desc__c='Complaint', 
+                                                                L2_Desc__c = 'Product', L3_Desc__c = 'Foreign matter',
+                                                                L4_Desc__c = 'Unidentifiable Foreign Matter', 
+                                                                L5_Desc__c = 'Foreign matter - unidentifiable');
             insert gListingTree;
             
             mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason1', L5_Code__c='T5261',Global_Listening_Tree__c = gListingTree.Id);
@@ -141,7 +144,8 @@ public with sharing class CEC_AlertActionHelperTest {
             mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', brand__c= 'Dove1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
             insert productObj;          
             
-            mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L5_Desc__c = 'L4 Desc');
+            mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L1_Desc__c='Complaint', L2_Desc__c = 'Product',
+                                                                L3_Desc__c = 'Foreign matter',L4_Desc__c = 'Unidentifiable Foreign Matter', L5_Desc__c = 'Foreign matter - unidentifiable');
             insert gListingTree;
             
             mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason1', L5_Code__c='T5261',Global_Listening_Tree__c = gListingTree.Id);
@@ -215,7 +219,8 @@ public with sharing class CEC_AlertActionHelperTest {
             mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', brand__c= 'Dove1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
             insert productObj;          
             
-            mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L5_Desc__c = 'L4 Desc');
+            mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L1_Desc__c='Complaint', L2_Desc__c = 'Product',
+                                                                L3_Desc__c = 'Foreign matter',L4_Desc__c = 'Unidentifiable Foreign Matter', L5_Desc__c = 'Foreign matter - unidentifiable');
             insert gListingTree;
             
             mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason1', L5_Code__c='T5261',Global_Listening_Tree__c = gListingTree.Id);
@@ -416,4 +421,69 @@ public with sharing class CEC_AlertActionHelperTest {
         }
         Test.stopTest();
     }*/
+
+    // Test Method for createSafetyAlert
+    static testMethod void createAlertsForCaseProduct(){
+        
+        Test.startTest();
+        User u = insertUser();
+        
+        System.runAs(u)
+        {
+            
+            mdm_Product_Category__c pCategory = new mdm_Product_Category__c(name='ProductCategory', L0_Product_Category__c='Foods Category');
+            insert pCategory;
+            
+            mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', brand__c= 'Dove1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
+            insert productObj;          
+            
+            mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L1_Desc__c='Complaint', L2_Desc__c = 'Product',
+                                                                L3_Desc__c = 'Foreign matter',L4_Desc__c = 'Unidentifiable Foreign Matter', L5_Desc__c = 'Foreign matter - unidentifiable');
+            insert gListingTree;
+            
+            mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason1', L5_Code__c='T5261',Global_Listening_Tree__c = gListingTree.Id);
+            insert reasonObj;
+            
+            CEC_Case_Market_Mapping__c cmm = new CEC_Case_Market_Mapping__c();
+            cmm.Market__c = 'India';
+            insert cmm;
+            
+            cec_Org_Settings__c custsett = new cec_Org_Settings__c();
+            custsett.Safety_Alert_Email_Id__c = 'test@gmail.com';
+            insert custsett;
+            
+            OrgWideEmailAddress[] owea = [select Id from OrgWideEmailAddress where Address = :custsett.Safety_Alert_Email_Id__c];
+            
+            Case caseObj= new Case();
+            caseObj.Status='New';
+            caseObj.Origin='Email'; 
+            caseObj.CEC_Product__c = productObj.id;
+            caseObj.Reason_Code__c = reasonObj.id;
+            caseObj.Country__c = cmm.id;
+            caseObj.Production_Code__c = 'L1234';
+            caseObj.DayCode__c ='1234';
+            insert caseObj;
+            caseObj.Reason_Code__c = null;
+            update caseObj;
+            
+            case caseTest = [Select DayCode__c, Case_Market__c from case Where DayCode__c ='1234'];
+            
+            System.assertEquals(cmm.Market__c, caseTest.Case_Market__c);
+            
+            cec_Alert_Rule__c alertRule = new cec_Alert_Rule__c(Name = 'Rule 1', Active__c=true, Type__c='Safety', Reason_Code__c = reasonObj.id, Market__c='India',  All_Market__c = true, Threshold__c = 1, Case_Product__c = productObj.id, Reason_Level__c = '5', Group_By_Day_Code__c = false);
+            insert alertRule;
+            
+            cec_Alert_Action__c alertAction = new cec_Alert_Action__c( Type__c = 'Email', Alert_Rule_Id__c = alertRule.id, Email_Template_Name__c='AlertTemplate' , To__c='John.Smith@test.com');
+            insert alertAction;
+            
+            caseObj.Reason_Code__c = reasonObj.id;
+            caseObj.Production_Code__c = null;
+            caseObj.DayCode__c = null;
+            update caseObj;
+            
+            Integer atCount = [SELECT COUNT() FROM cec_Alert_Tracker__c WHERE Alert_Rule_Id__c = :alertRule.Id];
+            System.assertEquals(1,atCount);
+        }
+        Test.stopTest();
+    }
 }
