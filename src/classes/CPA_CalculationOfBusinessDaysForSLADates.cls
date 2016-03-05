@@ -1,10 +1,17 @@
-/**
- * @author        : Dinesh Girase
- * @date          : 13/01/2016
- * @description   : This Class is used to add business days to current date for expected SLA date calculation
- * @Modified      : Modified class name against Unilevers coding standards
- */
- 
+/**********************************************************************
+Name: CPA_CalculationOfBusinessDaysForSLADates()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: This Class is used to add business days to current date for expected SLA date calculation
+-------
+======================================================
+======================================================
+History: Modified class name against Unilevers coding standards
+-------
+VERSION     AUTHOR         DATE            DETAIL Description
+1.0         Dinesh Girase  13/01/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
 public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
 
     //Holiday logic is pending
@@ -18,33 +25,30 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
     public static Boolean isWeekendDay(Date dateParam)
     {
         boolean result     = false;
-        system.debug('dateParam = '+dateParam); 
         //Recover the day of the week
         Date startOfWeek   = dateParam.toStartOfWeek();
-        system.debug('startOfWeek = '+startOfWeek);
         //Integer dayOfWeek  = dateParam.day() - startOfWeek.day();
         Integer dayOfWeek = startOfWeek.daysBetween(dateParam);
-        system.debug('dayOfWeek = '+dayOfWeek);   
         result = dayOfWeek == 0 || dayOfWeek == 6 ? true : false;
-        system.debug('result = '+result); 
         return result;
     } 
    
-   
+   /*******************************************************************
+    Purpose: This method is used to add business days to the given date
+    Parameters: startDate, businessDaysToAdd
+    Returns: Date
+    Throws [Exceptions]: 
+    ********************************************************************/
    public static Date addBusinessDays(Date startDate, integer businessDaysToAdd )
     {
         Integer businessDaysCount = 0;
         businessDaysCount = businessDaysToAdd;
         //Add or decrease in businessDaysToAdd days 
         Date finalDate = startDate;
-        system.debug('finaldate = '+finalDate);
         integer direction = businessDaysCount < 0 ? -1 : 1;
-        system.debug('direction = '+direction);
         while(businessDaysCount != 0)
         {
             finalDate = finalDate.AddDays(direction);
-            system.debug('@@@@@ businessDaysCount = ' + businessDaysCount);            
-            system.debug('@@@@@ finaldate = ' + finalDate);
             if (!isWeekendDay(finalDate))
             {
                 businessDaysCount -= direction;
@@ -66,6 +70,12 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
             newPWORFList[0].txt_Internal_PWO_ID__c = pwoInternalCountLogic(false);           
         }
     }
+    /*******************************************************************
+    Purpose: This method is used to create internal PWO number
+    Parameters: secondPWO
+    Returns: String
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static string  pwoInternalCountLogic(boolean secondPWO){
         integer count=0;
         List<CPA_project_work_order__c> pwoCnt = [SELECT id FROM CPA_project_work_order__c Limit 50000];
@@ -75,20 +85,15 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
             if(pworf.PWO11__r.size()>0)
                     count =count+1;
         }
-        system.debug('count>>>>'+count);
         Integer maxNo1 = pworfsAccepted.size() - count;
-        system.debug('pworfsAccepted>>>>' +pworfsAccepted);
         Integer maxNo = 0;
         String newInternalPWOID = null;
         if(pwoCnt.size()>0){
             maxNo = pwoCnt.size();
-            system.debug('maxNo>>>>1>>>>>>' +maxNo);
-            system.debug('maxNo1' +maxNo1);
             if(secondPWO) 
                 maxNo = maxNo  + maxNo1 + 1;
             else 
                 maxNo = maxNo  + maxNo1;
-            system.debug('maxNo>>>>2>>>>>>>>' +maxNo);          
             newInternalPWOID = getInternalPWOID(maxNo);
         }
         return newInternalPWOID;

@@ -130,20 +130,22 @@ public with sharing class CPA_PWORF_TriggerUtil{
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/
-    public static void updateSLAData(List<CPA_PWORF__c> newPWORFList){
+    public static void updateSLAData(List<CPA_PWORF__c> OldPWORFList,List<CPA_PWORF__c> newPWORFList){
         //Code review comments - remove hard coded values and use constants
         //Remove debug statements
         
         String strStatus = newPWORFList[0].pkl_Status__c;
+        String strOldStatus = OldPWORFList[0].pkl_Status__c;
         Date dt1 = Date.today();
         if(strStatus.equalsIgnoreCase('Accepted') || strStatus.equalsIgnoreCase('Auto Accepted')){
             newPWORFList[0].dat_SLA1_Accepted_Date__c = dt1;
         }else if(!strStatus.equalsIgnoreCase('Answered')){
             newPWORFList[0].dat_SLA1_Accepted_Date__c = null;
         }
-        if(strStatus.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.SUBMITTED)){
+        //if(strStatus.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.SUBMITTED)){
+        if (strOldStatus!=null && strStatus !=null && !strOldStatus.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.SUBMITTED) &&   strStatus.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.SUBMITTED)) {
             newPWORFList[0].dat_Submitted_Date__c =dt1;
-            newPWORFList[0].dat_Resubmitted_Date__c = dt1;
+            //newPWORFList[0].dat_Resubmitted_Date__c = dt1;
             Id recordTypeID = newPWORFList[0].RecordTypeID;
             List<RecordType> lstRecordType = [Select Name From RecordType where id =: recordTypeID Limit 1];
             String strRecordType = lstRecordType[0].Name;
@@ -183,43 +185,45 @@ public with sharing class CPA_PWORF_TriggerUtil{
                         }                          
                     }
                     strToCompare = (strProjectScale.substring(0,strProjectScale.indexOf('('))).trim();
+                    system.debug('strToCompare>>>>>>'+strToCompare);
                 }
             }
             
             
             for(string SLAMapKey: SLAMap.keySet()){
                 String nameFromSLAConfig = SLAMap.get(SLAMapKey).Name;
-                
+                system.debug('nameFromSLAConfig>>>>>>'+nameFromSLAConfig);
                 if(nameFromSLAConfig.equalsIgnoreCase('RA') && strRecordType.equalsIgnoreCase('Resource Augmentation')){
                     newPWORFList[0].txt_SLA1__c = SLAMap.get(SLAMapKey).RA_SLA1__c;
                     newPWORFList[0].txt_SLA2__c = SLAMap.get(SLAMapKey).RA_SLA2__c;
-                    newPWORFList[0].dat_Expected_SLA2_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).RA_SLA2__c));
+                    //newPWORFList[0].dat_Expected_SLA2_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).RA_SLA2__c));
                 }
 
                 if(strRecordType.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.OTHER)){
                     if(nameFromSLAConfig.equalsIgnoreCase(strToCompare) && strProjectPhases.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.PA)){
                         newPWORFList[0].txt_SLA1__c = SLAMap.get(SLAMapKey).PA_SLA1__c;
                         newPWORFList[0].txt_SLA2__c = SLAMap.get(SLAMapKey).PA_SLA2__c;
-                        newPWORFList[0].dat_Expected_SLA1_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).PA_SLA1__c));
-                        newPWORFList[0].dat_Expected_SLA2_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).PA_SLA2__c));
+                       // newPWORFList[0].dat_Expected_SLA1_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).PA_SLA1__c));
+                        //newPWORFList[0].dat_Expected_SLA2_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).PA_SLA2__c));
                     }
                     if(nameFromSLAConfig.equalsIgnoreCase(strToCompare) && strProjectPhases.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.PADBTD)){
                         newPWORFList[0].txt_SLA1__c = SLAMap.get(SLAMapKey).PADBTD_SLA1__c;
                         newPWORFList[0].txt_SLA2__c = SLAMap.get(SLAMapKey).PADBTD_SLA2__c;
-                        newPWORFList[0].dat_Expected_SLA1_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).PADBTD_SLA1__c));
-                        newPWORFList[0].dat_Expected_SLA2_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).PADBTD_SLA2__c));
+                       // newPWORFList[0].dat_Expected_SLA1_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).PADBTD_SLA1__c));
+                       // newPWORFList[0].dat_Expected_SLA2_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).PADBTD_SLA2__c));
                     }
                     if(nameFromSLAConfig.equalsIgnoreCase(strToCompare) && strProjectPhases.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.DBTD)){
                         newPWORFList[0].txt_SLA1__c = SLAMap.get(SLAMapKey).DBTD_SLA1__c;
                         newPWORFList[0].txt_SLA2__c = SLAMap.get(SLAMapKey).DBTD_SLA2__c;
-                        newPWORFList[0].dat_Expected_SLA1_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).DBTD_SLA1__c));
-                        newPWORFList[0].dat_Expected_SLA2_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).DBTD_SLA2__c));
+                        //newPWORFList[0].dat_Expected_SLA1_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).DBTD_SLA1__c));
+                        //newPWORFList[0].dat_Expected_SLA2_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).DBTD_SLA2__c));
                     }
                     if(nameFromSLAConfig.equalsIgnoreCase(strToCompare) && strProjectPhases.equalsIgnoreCase(CPA_ConstantsForContractingAppClasses.OTHER)){
+                    //else{system.debug('SLAMap.get(SLAMapKey).Others_SLA1__c>>>>>>'+SLAMap.get(SLAMapKey).Others_SLA1__c);
                         newPWORFList[0].txt_SLA1__c = SLAMap.get(SLAMapKey).Others_SLA1__c;
                         newPWORFList[0].txt_SLA2__c = SLAMap.get(SLAMapKey).Others_SLA2__c;
-                        newPWORFList[0].dat_Expected_SLA1_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).Others_SLA1__c));
-                        newPWORFList[0].dat_Expected_SLA2_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).Others_SLA2__c));
+                        //newPWORFList[0].dat_Expected_SLA1_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).Others_SLA1__c));
+                        //newPWORFList[0].dat_Expected_SLA2_Date__c = CPA_CalculationOfBusinessDaysForSLADates.addBusinessDays(dt1, Integer.valueOf(SLAMap.get(SLAMapKey).Others_SLA2__c));
                     }
                 }
             }
@@ -320,4 +324,41 @@ public with sharing class CPA_PWORF_TriggerUtil{
             obj.addError(CPA_ConstantsForContractingAppClasses.PWORFCANTBEDELETED);
         }
     }
+    /*******************************************************************
+    Purpose: This method unlock the records
+    Parameters: lstPWORF
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    
+    public static void unlockPworf(list<CPA_PWORF__c> lstPWORF){
+        List < CPA_PWORF__c > ListPWORFForUnlock = new List<CPA_PWORF__c>();
+        Approval.unLockResult[] lrList;
+        for(CPA_PWORF__c objPWORF : lstPWORF){
+            if(objPWORF.isApprovalProcessStarted__c){
+                ListPWORFForUnlock.add(objPWORF);                       
+            }
+        }
+        
+        if(ListPWORFForUnlock!=null){
+            lrList = Approval.unlock(ListPWORFForUnlock, false); 
+            for(Approval.UnlockResult ur : lrList) {
+                if (ur.isSuccess()) {
+                    // Operation was successful, so get the ID of the record that was processed
+                    System.debug('Successfully unlocked account with ID: ' + ur.getId());
+                }
+                else {
+                    // Operation failed, so get all errors                
+                    for(Database.Error err : ur.getErrors()) {
+                        System.debug('The following error has occurred.');                    
+                        System.debug(err.getStatusCode() + ': ' + err.getMessage());
+                        System.debug('Account fields that affected this error: ' + err.getFields());
+                    }
+                }
+            } 
+        }
+                
+            
+    }
+    
 }

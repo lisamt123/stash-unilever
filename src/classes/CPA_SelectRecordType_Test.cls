@@ -1,11 +1,31 @@
+/********************************************************************
+ Name:  CPA_SelectRecordType_Test()
+ Copyright © 2015  Unilever
+ ======================================================
+======================================================
+Purpose:  Test class to cover record type                                                     
+-------                                                             
+======================================================
+======================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR    DATE              DETAIL                 Description
+   1.0   Name      03/04/2015        INITIAL DEVELOPMENT           
+***********************************************************************/
 @isTest
 public class CPA_SelectRecordType_Test {
-
+    
+    /*******************************************************************
+    Purpose: This method is used to create record type tests
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
      public static testMethod void getRecordTypeList_tst() {
      
      CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
      objPworf.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
-    insert objPworf;
+     insert objPworf;
          
        Test.startTest(); 
        
@@ -19,7 +39,13 @@ public class CPA_SelectRecordType_Test {
         Test.stopTest();
      
      }
-      public static testMethod void getRecordTypeListpwo_tst() {
+     /*******************************************************************
+    Purpose: This method is used to create record type tests
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static testMethod void getRecordTypeListpwo_tst() {
      
      CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
      objPworf.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
@@ -42,7 +68,12 @@ public class CPA_SelectRecordType_Test {
         Test.stopTest();
      
      }
-     
+    /*******************************************************************
+    Purpose: This method is used to create record type tests for LOI
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
       public static testMethod void getRecordTypeListLoi_tst() {
      
      CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
@@ -63,7 +94,6 @@ public class CPA_SelectRecordType_Test {
         
             System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED == objPWO.pkl_Status__c); 
          
-        
         Test.stopTest();
      
      }

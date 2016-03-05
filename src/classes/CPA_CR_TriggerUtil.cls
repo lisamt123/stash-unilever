@@ -1,8 +1,17 @@
-/**
- * @author Shreyas Mangalvedhekar
- * @date 11/01/2016
- * @description - This Class is used to perform operation on before update event of CR  Trigger
- */
+/**********************************************************************
+Name: CPA_CR_TriggerUtil()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: This Class is used to perform operation on before update event of CR  Trigger
+-------
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR                     DATE            DETAIL Description
+1.0         Shreyas Mangalvedhekar     11/01/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
 public with sharing class CPA_CR_TriggerUtil{
     public static boolean isSubmitted=false;
 /*
@@ -118,7 +127,7 @@ public with sharing class CPA_CR_TriggerUtil{
      * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
      *  Dev team will fix this in next release.
      */
-public static void checklistValueOfCR(List<CPA_CR__c> newCR){
+    public static void checklistValueOfCR(List<CPA_CR__c> newCR){
         
         set<Id> setPWO = new set<ID>();
         map<Id,CPA_project_work_order__c> mapPWO = new map<ID,CPA_project_work_order__c>();
@@ -129,7 +138,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
             }
         }
         if(setPWO.size()>0 && setPWO !=null){  
-            for(CPA_project_work_order__c objPwo : [select id, txt_Unilever_Reference__c,fml_Unilever_Project_Name_on_PWORF__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,mpkl_Project_Phases__c,pkl_Region__c,txt_PWO_number__c from CPA_project_work_order__c where ID  IN: setPWO]){
+            for(CPA_project_work_order__c objPwo : [select id, txt_Unilever_Reference__c,fml_Unilever_Project_Name_on_PWORF__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c,mpkl_Project_Phases__c,pkl_Region__c,txt_PWO_number__c from CPA_project_work_order__c where ID  IN: setPWO]){
                     mapPWO.put(objPwo.Id,objPwo);
                 }
                 
@@ -140,10 +149,24 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
                         objnewCR.txt_Unilever_Reference__c = objPWOTemp.txt_Unilever_Reference__c;
                     if(objnewCR.txta_Unilever_Project_Name__c == null && objPWOTemp.fml_Unilever_Project_Name_on_PWORF__c !=null) 
                         objnewCR.txta_Unilever_Project_Name__c = objPWOTemp.fml_Unilever_Project_Name_on_PWORF__c;
-                    if(objnewCR.lkp_Unilever_budget_approver__c == null && objPWOTemp.lkp_Unilever_budget_approver__c !=null) 
+                    
+                 /*   if(objnewCR.lkp_Unilever_budget_approver__c == null && objPWOTemp.lkp_Unilever_budget_approver__c !=null) 
                         objnewCR.lkp_Unilever_budget_approver__c = objPWOTemp.lkp_Unilever_budget_approver__c;
                     if(objnewCR.lkp_Unilever_content_approver__c == null && objPWOTemp.lkp_Unilever_content_approver__c !=null)
                         objnewCR.lkp_Unilever_content_approver__c = objPWOTemp.lkp_Unilever_content_approver__c;
+                    */
+                                        
+                    if(objnewCR.eml_Unilever_Content_Approver_Email__c == null && objPWOTemp.eml_Unilever_Content_Approver_Email__c !=null) 
+                        objnewCR.eml_Unilever_Content_Approver_Email__c = objPWOTemp.eml_Unilever_Content_Approver_Email__c;
+                    if(objnewCR.txt_Unilever_Content_Approver_Name__c == null && objPWOTemp.txt_Unilever_Content_Approver_Name__c !=null) 
+                        objnewCR.txt_Unilever_Content_Approver_Name__c = objPWOTemp.txt_Unilever_Content_Approver_Name__c;
+
+                    if(objnewCR.eml_Unilever_Budget_Approver_Email__c == null && objPWOTemp.eml_Unilever_Budget_Approver_Email__c !=null) 
+                        objnewCR.eml_Unilever_Budget_Approver_Email__c = objPWOTemp.eml_Unilever_Budget_Approver_Email__c;
+                    if(objnewCR.txt_Unilever_Budget_Approver_Name__c == null && objPWOTemp.txt_Unilever_Budget_Approver_Name__c !=null) 
+                        objnewCR.txt_Unilever_Budget_Approver_Name__c = objPWOTemp.txt_Unilever_Budget_Approver_Name__c;
+                    
+                    
                     if(objnewCR.pkl_Project_Phases__c == null && objPWOTemp.mpkl_Project_Phases__c !=null)
                         objnewCR.pkl_Project_Phases__c = objPWOTemp.mpkl_Project_Phases__c;
                     if(objnewCR.Region_impacted__c   == null && objPWOTemp.pkl_Region__c !=null)
@@ -157,7 +180,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
             }
         }
     }
-/** Method Name : requireApprovalComments
+    /** Method Name : requireApprovalComments
     * Parameter   : newCRList
     * Return type : None
     * Author      : Pooja Kanani  
@@ -222,7 +245,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
     }                                       
   }
 }
-/*
+    /*
     * Method Name : unlockrecord
     * Parameter   : 
     * Return type : None
@@ -246,7 +269,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
      * we have put in multiple if conditions.
      * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
      *  Dev team will fix this in next release.
-     */
+    
     public static void calculateDelta(map<Id,CPA_CR__c> oldCRList,map<Id,CPA_CR__c> newCR){
         List<CPA_CR__c> lstCR = new List<CPA_CR__c>();
         set<ID>setPWOID = new set<ID>();
@@ -308,8 +331,8 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
                 }
             }
         }
-    }
-/*
+    } */
+    /*
     * Method Name : standaloneCR
     * Parameter   : 
     * Return type : None
@@ -323,8 +346,16 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
             if(objCR.RecordtypeId == label.CPA_Standalone_CR_RecordTypeId){             
                 CPA_project_work_order__c newPWO =new CPA_project_work_order__c();
                 newPWO.RecordtypeId = label.CPA_Standalone_PWO_RecordTypeId;
+                /*
                 newPWO.lkp_Unilever_budget_approver__c = objCR.lkp_Unilever_budget_approver__c;
                 newPWO.lkp_Unilever_content_approver__c  = objCR.lkp_Unilever_content_approver__c;
+                */
+                newPWO.eml_Unilever_Content_Approver_Email__c = objCR.eml_Unilever_Content_Approver_Email__c;
+                newPWO.txt_Unilever_Content_Approver_Name__c = objCR.txt_Unilever_Content_Approver_Name__c;
+                newPWO.eml_Unilever_Budget_Approver_Email__c = objCR.eml_Unilever_Budget_Approver_Email__c; 
+                newPWO.txt_Unilever_Budget_Approver_Name__c = objCR.txt_Unilever_Budget_Approver_Name__c;
+
+                
                 newPWO.txt_Unilever_Project_Name__c = objCR.txta_Unilever_Project_Name__c;
                 newPWO.txt_Unilever_Reference__c = objCR.txt_Unilever_Reference__c;
                 //newPWO.pec_Variance__c = pec_Variance__c;
@@ -365,11 +396,11 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
     
 
     
-      /**   Method Name : DOntDelete
-    * Parameter   : OldMap
-    * Return type : void
-    * Author      : Shreyas
-    * Description : This method dont allow CR to be deleted
+    /**Method Name : DOntDelete
+    * Parameter    : OldMap
+    * Return type  : void
+    * Author       : Shreyas
+    * Description  : This method dont allow CR to be deleted
     */
     public static void DOntDeleteCR(list<CPA_CR__c> lstCR){
         
@@ -377,14 +408,13 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
             objCr.addError('CR cant be deleted');
         }
     }
- /**   Method Name : newCR
-    * Parameter   : newmap
-    * Return type : void
-    * Author      : Pooja Kanani
-    * Description : This method is used to update PWO with the latest CR number
+    /**Method Name : newCR
+    * Parameter    : newmap
+    * Return type  : void
+    * Author       : Pooja Kanani
+    * Description  : This method is used to update PWO with the latest CR number
     */
     public static void newCR(list<CPA_CR__c> newCRList){
-        //system.debug('Pooja testing');
         List<CPA_project_work_order__c> lstTemp= new List<CPA_project_work_order__c>();
         set<ID> pwoID = new set<ID>();
         map<ID,String>pwomap = new map<ID,String>();
@@ -392,8 +422,6 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
                     pwoID.add(obj.CPA_Project_Work_Order__c);
                     pwomap.put(obj.CPA_Project_Work_Order__c,obj.name);     
         }
-        //system.debug('pwoID>>>'+ pwoID);
-        //system.debug('pwomap>>>'+ pwomap);
         if(pwoID!=null && pwoID.size()> 0){
             List<CPA_project_work_order__c> lstPWO  = [Select Id,txt_CNF_CR_number__c from CPA_project_work_order__c where Id IN:pwoID];
             
@@ -402,15 +430,94 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
                 //CPA_project_work_order__c pwo = pworfmap.get(obj.id);
                 obj.txt_CNF_CR_number__c = pwomap.get(obj.id);
                 
-                //system.debug('obj.LatestPWOID__c>>>pooja'+obj.LatestPWOID__c);
                 lstTemp.add(obj);                    
             }
             
-            //system.debug('lstTemp>>>pooja'+lstTemp);
             if(lstTemp!=null && lstTemp.size()>0){
                 update lstTemp; 
             }
-            //system.debug('lstTemp>>pooja'+lstTemp);
+        }
+    }
+    
+    /**Method Name : newCR
+    * Parameter    : oldCRList1, newCR1
+    * Return type  : void
+    * Author       : Pooja Kanani
+    * Description  : This method is used to calculate the delta
+    */
+    public static void calculateDelta(List<CPA_CR__c> oldCRList1,List<CPA_CR__c> newCR1){
+        
+        
+        map<Id,CPA_CR__c> oldCRList = new map<Id,CPA_CR__c> ();
+        map<Id,CPA_CR__c> newCR= new map<Id,CPA_CR__c> ();
+        
+        
+        for(CPA_CR__c obj1 : oldCRList1){
+            oldCRList.put(obj1.Id,obj1);
+        }
+        for(CPA_CR__c obj2 :newCR1 ){
+            newCR.put(obj2.id,obj2);
+        }
+        
+        List<CPA_CR__c> lstCR = new List<CPA_CR__c>();
+        set<ID>setPWOID = new set<ID>();
+        map<Id,CPA_CR__c>mapPWOIDCR = new map<ID,CPA_CR__c>();
+        map<Id,CPA_Project_Work_Order__c>mapPWO = new map<ID,CPA_Project_Work_Order__c>();
+        
+        for(CPA_CR__c objCR : newCR.values()){
+            if(objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED && oldCRList.get(objCR.Id).pkl_Status__c <> CPA_ConstantsForContractingAppClasses.SUBMITTED){
+                lstCR.add(objCR);
+                if(!objCR.chk_isStandalone_CR__c) setPWOID.add(objCR.CPA_Project_Work_Order__c);
+            }
+        }
+      if(setPWOID.size()>0 && setPWOID!=null){  
+        List<CPA_project_work_order__c>lstPWO = [Select ID,num_Expense_charges_of_work_order__c,Name,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_Authorisation_man_days__c from CPA_project_work_order__c where ID IN :setPWOID];
+            for(CPA_project_work_order__c objPwo : lstPWO){
+                mapPWO.put(objPwo.Id,objPwo);
+            }
+                
+            List<CPA_CR__c> lstCR1 = [Select Id,num_Delta_Efforts__c,Name,CPA_Project_Work_Order__c,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c  from CPA_CR__c where CPA_Project_Work_Order__c IN:  setPWOID ORDER BY Createddate DESC limit 2];
+            system.debug('lstCR1---> '+lstCR1 );
+            if(lstCR1 != null && lstCR1.size()==2 && lstCR1[0]!=null && lstCR1[1]!=null){
+                 mapPWOIDCR.put(lstCR1[1].CPA_Project_Work_Order__c,lstCR1[1]);
+                 system.debug('Inside loop');
+            }else if(lstCR1 != null && lstCR1.size()==1 && lstCR1[0]!=null ) {
+                mapPWOIDCR.put(lstCR1[0].CPA_Project_Work_Order__c,lstCR1[0]);
+                 system.debug('Inside 1111loop');
+            }else{
+                
+                 system.debug('Inside 222loop');
+            }
+            
+            
+            for(CPA_CR__c objCRTEmp :lstCR ){
+                if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c)==null ){
+                    if(mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c)!=null){
+                        objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c;
+                        
+                        system.debug('Inside Loop');
+                    }else{
+                        objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c ;  
+                        system.debug('Inside Loop1111');                        
+                    }
+                     
+                }else {
+                    if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c)!=null){
+                        if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).Id == objCRTEmp.Id){
+                            objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c;
+                            objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Delta_Efforts__c;
+                        }
+                      else{
+                          if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_CR__c != null){
+                          objCRTEmp.num_Delta_Efforts__c =objCRTEmp.num_Estimated_Value_of_CR__c  - mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_CR__c;
+                          objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Delta_Efforts__c;
+                        } 
+                      }  
+                        
+                    }           
+                
+                }
+            }
         }
     }
    

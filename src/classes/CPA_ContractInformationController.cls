@@ -57,7 +57,9 @@ global with sharing class CPA_ContractInformationController {
     boolean CPA_Messages(id pwoRecId,boolean callFromVF){
         RequiredFieldMap = new Map<String,String>();
         mandatoryStringFlag = null;
-        pwoRec = [select chk_First_PWO__c,PWORF_ID__c,txta_reason_for_additiona_PWO__c,id,chk_Excel_Attached__c,chk_PDF_Attached__c,pkl_Status__c,txt_PWO_number__c,pkl_Region__c ,txt_PWO_title__c,mpkl_Project_Classification__c,txt_Unilever_Project_Name__c,mpkl_Unilever_Innovation_Area__c,pkl_Billing_Details__c,txt_Accenture_Project_Manager__c,dt_Date_PWORF_accepted__c,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,lkp_Unilever_Finance_BP_Contact__c,dt_Project_Initiation_Date__c,dt_Expected_Start_Date__c,dt_Expected_End_date__c,mpkl_Project_Phases__c,pkl_Pricing_Model__c,num_Target_Blend_Rate__c,num_Varied_Target_Blend_Rate__c,pec_Variance__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,pec_Expense__c,num_Expense_charges_of_work_order__c,num_Total_work_order_charge__c,Currency__c,txt_Unilever_Reference__c,fml_Clarity_ID__c,pkl_TNF_Currency__c,txt_TNF_Unilever_Clarity_ID__c,txt_TNF_Approved_by__c,dt_TNF_TD_Date_Notified__c,dt_TNF_TD_Effective_Date__c,txt_TNF_Reason_for_termination__c,txt_TNF_Relocation_of_resources__c,txt_TNF_Comments__c,num_TNF_Variance_in_charges__c,num_TNF_Variance_in_effort__c,num_TNF_Planned_charges__c,num_TNF_Actual_charges__c,txt_TNF_Actual_effort_in_days__c,num_TNF_Planned_effort_in_days__c,txt_TNF_TD_Notice_Required__c,pkl_TNF_Terminated_by__c,txt_TNF_Accenture_Contact__c,lkp_TNF_Unilever_Contact__c,txt_TNF_Other_Currency__c,txt_CNF_Accenture_Project_Manager__c,num_CNF_Actual_Day_rate__c,num_CNF_Actual_expenses__c,num_CNF_Actual_fees_inclusive_of_discoun__c,num_CNF_Actual_man_days__c,num_CNF_Actual_PMO_tax__c,dt_CNF_Actual_PWO_End_Date__c,num_CNF_Actual_total_charges__c,num_CNF_Planned_Day_rate__c,num_CNF_Planned_expenses__c,num_CNF_Planned_fees_inclusive_of_discou__c,num_CNF_Planned_man_days__c,num_CNF_Planned_PMO_tax__c,dt_CNF_Planned_PWO_End_Date__c,num_CNF_Planned_total_charges__c,lkp_CNF_Unilever_budget_approver__c,txt_CNF_Unilever_Clarity_ID__c,lkp_CNF_Unilever_content_approver__c,num_CNF_Variance_number_in_man_days__c,CNF_Status__c,TNF_Status__c,RecordTypeid,mpkl_CNF_Currency__c,chk_isStandalone_PWO__c, txt_Other_Project_Phases__c, txt_Other_Innovation_Area__c, txt_Other_Billing_Details__c,txt_Other_Currency__c  from CPA_project_work_order__c where id =:pwoRecId];
+        pwoRec = [select chk_First_PWO__c,PWORF_ID__c,txta_reason_for_additiona_PWO__c,id,chk_Excel_Attached__c,chk_PDF_Attached__c,pkl_Status__c,txt_PWO_number__c,pkl_Region__c ,txt_PWO_title__c,mpkl_Project_Classification__c,txt_Unilever_Project_Name__c,mpkl_Unilever_Innovation_Area__c,pkl_Billing_Details__c,txt_Accenture_Project_Manager__c,dt_Date_PWORF_accepted__c,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,dt_Project_Initiation_Date__c,dt_Expected_Start_Date__c,dt_Expected_End_date__c,mpkl_Project_Phases__c,pkl_Pricing_Model__c,num_Target_Blend_Rate__c,num_Varied_Target_Blend_Rate__c,pec_Variance__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,pec_Expense__c,num_Expense_charges_of_work_order__c,num_Total_work_order_charge__c,Currency__c,txt_Unilever_Reference__c,fml_Clarity_ID__c,pkl_TNF_Currency__c,txt_TNF_Unilever_Clarity_ID__c,txt_TNF_Approved_by__c,dt_TNF_TD_Date_Notified__c,dt_TNF_TD_Effective_Date__c,txt_TNF_Reason_for_termination__c,txt_TNF_Relocation_of_resources__c,txt_TNF_Comments__c,num_TNF_Variance_in_charges__c,num_TNF_Variance_in_effort__c,num_TNF_Planned_charges__c,num_TNF_Actual_charges__c,txt_TNF_Actual_effort_in_days__c,num_TNF_Planned_effort_in_days__c,txt_TNF_TD_Notice_Required__c,pkl_TNF_Terminated_by__c,txt_TNF_Accenture_Contact__c,txt_TNF_Other_Currency__c,txt_CNF_Accenture_Project_Manager__c,num_CNF_Actual_Day_rate__c,num_CNF_Actual_expenses__c,num_CNF_Actual_fees_inclusive_of_discoun__c,num_CNF_Actual_man_days__c,num_CNF_Actual_PMO_tax__c,dt_CNF_Actual_PWO_End_Date__c,num_CNF_Actual_total_charges__c,num_CNF_Planned_Day_rate__c,num_CNF_Planned_expenses__c,num_CNF_Planned_fees_inclusive_of_discou__c,num_CNF_Planned_man_days__c,num_CNF_Planned_PMO_tax__c,dt_CNF_Planned_PWO_End_Date__c,num_CNF_Planned_total_charges__c,txt_CNF_Unilever_Clarity_ID__c,num_CNF_Variance_number_in_man_days__c,CNF_Status__c,TNF_Status__c,RecordTypeid,mpkl_CNF_Currency__c,chk_isStandalone_PWO__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, eml_TNF_Unilever_Contact_Email__c, txt_TNF_Unilever_Contact_Name__c, eml_CNF_Unilever_Budget_Approver_Email__c, txt_CNF_Unilever_Budget_Approver_Name__c, eml_CNF_Unilever_Content_Approver_Email__c, txt_CNF_Unilever_Content_Approver_Name__c, eml_Unilever_Finance_BP_Contact_Email__c, txt_Unilever_Finance_BP_Contact_Name__c,  txt_Other_Project_Phases__c, txt_Other_Innovation_Area__c, txt_Other_Billing_Details__c,txt_Other_Currency__c  from CPA_project_work_order__c where id =:pwoRecId];
+        
+        //lkp_Unilever_Finance_BP_Contact__c,lkp_CNF_Unilever_content_approver__c,lkp_CNF_Unilever_budget_approver__c,lkp_TNF_Unilever_Contact__c,
         
         //List<CPA_project_work_order__c> listPriPWO = [Select ID,PWORF_ID__c from CPA_project_work_order__c where PWORF_ID__c =:pwoRec.PWORF_ID__c ];
         Map<string,CPA_Status_Msg__c> customSettingStatusMsg = CPA_Status_Msg__c.getAll();
@@ -114,24 +116,47 @@ global with sharing class CPA_ContractInformationController {
                     RequiredFieldMap.put( 'Accenture Project Manager' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
                 //if(pwoRec.dt_Date_PWORF_accepted__c == null && pwoRec.chk_isStandalone_PWO__c != true)
-                if(pwoRec.dt_Date_PWORF_accepted__c == null && !pwoRec.chk_isStandalone_PWO__c){
+                /*if(pwoRec.dt_Date_PWORF_accepted__c == null && !pwoRec.chk_isStandalone_PWO__c){
                     RequiredFieldMap.put( 'Date PWORF accepted' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
-                }
+                }*/
                 if(pwoRec.num_Estimated_Man_days_of_PWO__c == null){
                     RequiredFieldMap.put( 'Estimated Man-days of PWO' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
                 if(pwoRec.num_Estimated_Value_of_PWO__c == null){
                     RequiredFieldMap.put( 'Estimated Value of PWO' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
+                /*
                 if(pwoRec.lkp_Unilever_budget_approver__c == null){
                     RequiredFieldMap.put( 'Unilever budget approver' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
                 if(pwoRec.lkp_Unilever_content_approver__c == null){
                     RequiredFieldMap.put( 'Unilever content approver' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
+                
                 if(pwoRec.lkp_Unilever_Finance_BP_Contact__c == null){
                     RequiredFieldMap.put( 'Unilever Finance BP/Contact' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }*/
+                
+                if(pwoRec.eml_Unilever_Content_Approver_Email__c == null){
+                    RequiredFieldMap.put('Unilever Content Approver Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
+                if(pwoRec.txt_Unilever_Content_Approver_Name__c == null){
+                    RequiredFieldMap.put('Unilever Content Approver Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }
+                if(pwoRec.eml_Unilever_Budget_Approver_Email__c == null){
+                    RequiredFieldMap.put('Unilever Budget Approver Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }
+                if(pwoRec.txt_Unilever_Budget_Approver_Name__c == null){
+                    RequiredFieldMap.put('Unilever Budget Approver Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }
+                                                
+                if(pwoRec.eml_Unilever_Finance_BP_Contact_Email__c == null){
+                    RequiredFieldMap.put('Unilever Finance BP/Contact Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }
+                if(pwoRec.txt_Unilever_Finance_BP_Contact_Name__c == null){
+                    RequiredFieldMap.put('Unilever Finance BP/Contact Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }
+                
                 if(pwoRec.dt_Project_Initiation_Date__c == null){
                     RequiredFieldMap.put( 'Project Initiation Date' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
@@ -252,16 +277,34 @@ global with sharing class CPA_ContractInformationController {
                 if(pwoRec.num_CNF_Planned_total_charges__c== null){ 
                     RequiredFieldMap.put('Planned total charges',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
+                /*
                 if(pwoRec.lkp_CNF_Unilever_budget_approver__c== null){ 
                     RequiredFieldMap.put('Unilever budget approver',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
+                */
+                if(pwoRec.eml_CNF_Unilever_Budget_Approver_Email__c == null){
+                    RequiredFieldMap.put('CNF Unilever Budget Approver Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }
+                if(pwoRec.txt_CNF_Unilever_Budget_Approver_Name__c == null){
+                    RequiredFieldMap.put('CNF Unilever Budget Approver Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }
+                
                 //if(pwoRec.txt_CNF_Unilever_Clarity_ID__c== null && pwoRec.chk_isStandalone_PWO__c != true) RequiredFieldMap.put('Unilever Clarity ID',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(pwoRec.txt_CNF_Unilever_Clarity_ID__c== null && !pwoRec.chk_isStandalone_PWO__c){ 
                     RequiredFieldMap.put('Unilever Clarity ID',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
+                /*
                 if(pwoRec.lkp_CNF_Unilever_content_approver__c== null){ 
                     RequiredFieldMap.put('Unilever content approver',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
+                */
+                if(pwoRec.eml_CNF_Unilever_Content_Approver_Email__c == null){
+                    RequiredFieldMap.put('CNF Unilever Content Approver Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }
+                if(pwoRec.txt_CNF_Unilever_Content_Approver_Name__c == null){
+                    RequiredFieldMap.put('CNF Unilever Content Approver Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }
+                
                 if(pwoRec.num_CNF_Variance_number_in_man_days__c== null){ 
                     RequiredFieldMap.put('Variance (number in man-days)',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
@@ -315,9 +358,18 @@ global with sharing class CPA_ContractInformationController {
                 if(pwoRec.txt_TNF_Accenture_Contact__c == null){
                     RequiredFieldMap.put('Accenture Contact',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
+                /*
                 if(pwoRec.lkp_TNF_Unilever_Contact__c == null){
                     RequiredFieldMap.put('Unilever Contact',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
+                */
+                if(pwoRec.eml_TNF_Unilever_Contact_Email__c == null){
+                    RequiredFieldMap.put('TNF Unilever Contact Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }
+                if(pwoRec.txt_TNF_Unilever_Contact_Name__c == null){
+                    RequiredFieldMap.put('TNF Unilever Contact Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }
+                
               //  if(pwoRec.txt_TNF_Other_Currency__c == null && pwoRec.pkl_TNF_Currency__c == 'Other') 
                  //   RequiredFieldMap.put('Other Currency',CPA_ConstantsForContractingAppClasses.MANDATORY);
             }

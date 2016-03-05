@@ -53,7 +53,7 @@
     <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Assumptions_Risks_Qualifying_informa__c</fullName>
         <externalId>false</externalId>
@@ -79,19 +79,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>HLE_Request__c</fullName>
-        <externalId>false</externalId>
-        <label>HLE Request</label>
-        <referenceTo>CPA_HLE_Request__c</referenceTo>
-        <relationshipName>HLE</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Proposed_high_level_plan_and_timelines__c</fullName>
@@ -349,13 +336,13 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>HLE</label>
+    <label>HLE need to be deleted</label>
     <nameField>
         <label>HLE Name</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
-    <pluralLabel>HLEs</pluralLabel>
+    <pluralLabel>HLE need to be deleted</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>High_Level_Estimate</fullName>
@@ -370,5 +357,5 @@
         <label>Ball Park Estimate</label>
     </recordTypes>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

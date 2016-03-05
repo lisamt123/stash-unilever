@@ -296,11 +296,33 @@
         <fullName>dt_Date_raised__c</fullName>
         <description>Date when CR was raised</description>
         <externalId>false</externalId>
-        <label>Date Raised*</label>
+        <label>Date Raised</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>eml_Unilever_Budget_Approver_Email__c</fullName>
+        <description>Unilever Budget Approver Email</description>
+        <externalId>false</externalId>
+        <label>Unilever Budget Approver Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_Unilever_Content_Approver_Email__c</fullName>
+        <description>Unilever Content Approver Email</description>
+        <externalId>false</externalId>
+        <label>Unilever Content Approver Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>fml_Pworf_Clarity_ID__c</fullName>
@@ -327,6 +349,22 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>fur_per_Variance__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(	AND(num_Varied_Target_Blend_Rate__c &gt; 0,
+		(((num_Varied_Target_Blend_Rate__c  - num_Target_Blend_Rate__c )/num_Varied_Target_Blend_Rate__c))&gt;=0),
+	((num_Varied_Target_Blend_Rate__c  - num_Target_Blend_Rate__c )/num_Varied_Target_Blend_Rate__c),0
+	)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Variance %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>isValidated__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -334,50 +372,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>lkp_Unilever_budget_approver__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Name of Unilever person responsible for approving the project budget</description>
-        <externalId>false</externalId>
-        <label>Unilever Budget Approver*</label>
-        <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>User.IsActive</field>
-                <operation>equals</operation>
-                <value>True</value>
-            </filterItems>
-            <isOptional>false</isOptional>
-        </lookupFilter>
-        <referenceTo>User</referenceTo>
-        <relationshipName>CR</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>lkp_Unilever_content_approver__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Name of Unilever person responsible for approving the project content</description>
-        <externalId>false</externalId>
-        <label>Unilever Content Approver*</label>
-        <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>User.IsActive</field>
-                <operation>equals</operation>
-                <value>True</value>
-            </filterItems>
-            <isOptional>false</isOptional>
-        </lookupFilter>
-        <referenceTo>User</referenceTo>
-        <relationshipName>CR1</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>ltxta_Comments__c</fullName>
@@ -624,18 +618,6 @@
         <externalId>false</externalId>
         <label>Expense %*</label>
         <precision>5</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>pec_Variance__c</fullName>
-        <description>Variance between target blend &amp; varied target blend</description>
-        <externalId>false</externalId>
-        <label>Variance %*</label>
-        <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
         <trackHistory>false</trackHistory>
@@ -931,6 +913,30 @@
         <description>Title mentioned in the CR</description>
         <externalId>false</externalId>
         <label>Title of Change*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Unilever_Budget_Approver_Name__c</fullName>
+        <description>Unilever Budget Approver Name</description>
+        <externalId>false</externalId>
+        <label>Unilever Budget Approver Name*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Unilever_Content_Approver_Name__c</fullName>
+        <description>Unilever Content Approver Name</description>
+        <externalId>false</externalId>
+        <label>Unilever Content Approver Name*</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1987,14 +1993,28 @@ alert(&quot;You are not authorized to perform this action.&quot;);
         <fullName>New_CR</fullName>
         <availability>online</availability>
         <displayType>massActionButton</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <height>600</height>
-        <linkType>url</linkType>
+        <linkType>javascript</linkType>
         <masterLabel>New CR</masterLabel>
-        <openType>noSidebar</openType>
+        <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>/apex/CPA_CreatePWO?id={!CPA_project_work_order__c.Id}</url>
+        <url>soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+
+if(permissionSetName == &quot;CPA_ADM&quot;){
+
+	if(&quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Accepted&quot; || &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Sent for Signature&quot;|| &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Signed&quot; || &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Delivered&quot;) 
+	{ 
+		window.open(&apos;/apex/CPA_CreatePWO?id={!CPA_project_work_order__c.Id}&apos;,&quot;_self&quot;); 
+	}else{ 
+		alert(&quot;CR can be created only if associated PWO is in Accepted/Sent for Signature/Signed/Delivered status&quot;); 
+	}
+
+}else{
+	alert(&quot;CR can be created by Accenture Demand Management Team only.&quot;);
+}</url>
     </webLinks>
     <webLinks>
         <fullName>Submit_for_Vendor</fullName>

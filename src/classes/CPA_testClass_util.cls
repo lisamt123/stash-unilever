@@ -1,5 +1,25 @@
+/**********************************************************************
+Name: CPA_testClass_util()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: This is the util class of test of the test classes.
+-------
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR       DATE            DETAIL Description
+1.0         Shreyas      01/01/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
 public with sharing class CPA_testClass_util {
     
+    /*******************************************************************
+    Purpose: This method is used to create Test User
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static User createTestUser (){
         //User testUser; - commented as this variable not used anywhere, just initialized on line number 7, but returning testUser1
         Profile p = [select id from profile where name='system Administrator'];
@@ -13,139 +33,266 @@ public with sharing class CPA_testClass_util {
     
     }
     
+    /*******************************************************************
+    Purpose: This method is used to set the status of various objects
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_Status_Msg__c createTest_CPA_Status_Msg(){
 
         CPA_Status_Msg__c saveStatus = new CPA_Status_Msg__c();
-		saveStatus.Name ='Saved';
-        saveStatus.CNF_Status_Msg__c = 'test';
-		saveStatus.CR_Status_Msg__c = 'test';
-		saveStatus.HLE_Request_Status_Msg__c = 'test';
-		saveStatus.LOI_Status_Msg__c = 'test';
-		saveStatus.PWO_Status_Msg__c = 'test';
-		saveStatus.Status_Message__c = 'test';
-		saveStatus.TNF_Status_Msg__c = 'test';
-		return saveStatus;
-		
-	}
-	
-	public static CPA_Status_Msg__c createTest_CPA_Status_Msg1(){
+        saveStatus.Name ='Saved';
+        saveStatus.CNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        saveStatus.CR_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        saveStatus.HLE_Request_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        saveStatus.LOI_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        saveStatus.PWO_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        saveStatus.Status_Message__c = CPA_ConstantsForContractingAppClasses.TEST;
+        saveStatus.TNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        return saveStatus;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the status messages (auto accepted) of various objects
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Status_Msg__c createTest_AutoAcceMsg(){
+
+        CPA_Status_Msg__c AutoAcceMsg = new CPA_Status_Msg__c();
+        AutoAcceMsg.Name ='Auto Accepted';
+        AutoAcceMsg.CNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        AutoAcceMsg.CR_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        AutoAcceMsg.HLE_Request_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        AutoAcceMsg.LOI_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        AutoAcceMsg.PWO_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        AutoAcceMsg.Status_Message__c = CPA_ConstantsForContractingAppClasses.TEST;
+        AutoAcceMsg.TNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        return AutoAcceMsg;
+        
+    }
+    
+    /*******************************************************************
+    Purpose: This method is used to set the status messages (accepted) of various objects
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Status_Msg__c createTest_CPA_Status_Msg1(){
 
         CPA_Status_Msg__c acceptedStatus = new CPA_Status_Msg__c();
-		acceptedStatus.Name ='Accepted';
-        acceptedStatus.CNF_Status_Msg__c = 'test';
-		acceptedStatus.CR_Status_Msg__c = 'test';
-		acceptedStatus.HLE_Request_Status_Msg__c = 'test';
-		acceptedStatus.LOI_Status_Msg__c = 'test';
-		acceptedStatus.PWO_Status_Msg__c = 'test';
-		acceptedStatus.Status_Message__c = 'test';
-		acceptedStatus.TNF_Status_Msg__c = 'test';
-		return acceptedStatus;
-		
-	}
+        acceptedStatus.Name ='Accepted';
+        acceptedStatus.CNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        acceptedStatus.CR_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        acceptedStatus.HLE_Request_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        acceptedStatus.LOI_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        acceptedStatus.PWO_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        acceptedStatus.Status_Message__c = CPA_ConstantsForContractingAppClasses.TEST;
+        acceptedStatus.TNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        return acceptedStatus;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the status messages (submitted) of various objects
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_Status_Msg__c createTest_SubMsg(){
 
         CPA_Status_Msg__c SubMsg = new CPA_Status_Msg__c();
-		SubMsg.Name ='Submitted';
-        SubMsg.CNF_Status_Msg__c = 'test';
-		SubMsg.CR_Status_Msg__c = 'test';
-		SubMsg.HLE_Request_Status_Msg__c = 'test';
-		SubMsg.LOI_Status_Msg__c = 'test';
-		SubMsg.PWO_Status_Msg__c = 'test';
-		SubMsg.Status_Message__c = 'test';
-		SubMsg.TNF_Status_Msg__c = 'test';
-		return SubMsg;
-		
-	}
-	public static CPA_Status_Msg__c createTest_AnsweredMsg(){
+        SubMsg.Name ='Submitted';
+        SubMsg.CNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        SubMsg.CR_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        SubMsg.HLE_Request_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        SubMsg.LOI_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        SubMsg.PWO_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        SubMsg.Status_Message__c = CPA_ConstantsForContractingAppClasses.TEST;
+        SubMsg.TNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        return SubMsg;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the status messages (Answered) of various objects
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Status_Msg__c createTest_AnsweredMsg(){
 
         CPA_Status_Msg__c AnsweredMsg = new CPA_Status_Msg__c();
-		AnsweredMsg.Name ='Answered';
-        AnsweredMsg.CNF_Status_Msg__c = 'test';
-		AnsweredMsg.CR_Status_Msg__c = 'test';
-		AnsweredMsg.HLE_Request_Status_Msg__c = 'test';
-		AnsweredMsg.LOI_Status_Msg__c = 'test';
-		AnsweredMsg.PWO_Status_Msg__c = 'test';
-		AnsweredMsg.Status_Message__c = 'test';
-		AnsweredMsg.TNF_Status_Msg__c = 'test';
-		return AnsweredMsg;
-		
-	}
-	public static CPA_Status_Msg__c createTest_CancelMsg(){
+        AnsweredMsg.Name ='Answered';
+        AnsweredMsg.CNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        AnsweredMsg.CR_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        AnsweredMsg.HLE_Request_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        AnsweredMsg.LOI_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        AnsweredMsg.PWO_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        AnsweredMsg.Status_Message__c = CPA_ConstantsForContractingAppClasses.TEST;
+        AnsweredMsg.TNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        return AnsweredMsg;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the status messages (Cancel) of various objects
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Status_Msg__c createTest_CancelMsg(){
 
         CPA_Status_Msg__c CancelMsg = new CPA_Status_Msg__c();
-		CancelMsg.Name ='Cancelled';
-        CancelMsg.CNF_Status_Msg__c = 'test';
-		CancelMsg.CR_Status_Msg__c = 'test';
-		CancelMsg.HLE_Request_Status_Msg__c = 'test';
-		CancelMsg.LOI_Status_Msg__c = 'test';
-		CancelMsg.PWO_Status_Msg__c = 'test';
-		CancelMsg.Status_Message__c = 'test';
-		CancelMsg.TNF_Status_Msg__c = 'test';
-		return CancelMsg;
-		
-	}
+        CancelMsg.Name ='Cancelled';
+        CancelMsg.CNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        CancelMsg.CR_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        CancelMsg.HLE_Request_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        CancelMsg.LOI_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        CancelMsg.PWO_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        CancelMsg.Status_Message__c = CPA_ConstantsForContractingAppClasses.TEST;
+        CancelMsg.TNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        return CancelMsg;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the CR trigger pattern
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_Trigger_Pattern__c createTest_CRTriggerPattern(){
 
         CPA_Trigger_Pattern__c CRtriggerPattern = new CPA_Trigger_Pattern__c();
-		CRtriggerPattern.Name ='CPA_CR_Trigger';
+        CRtriggerPattern.Name ='CPA_CR_Trigger';
         CRtriggerPattern.chk_Check_Run__c = true;
-		return CRtriggerPattern;
-		
-	}
+        return CRtriggerPattern;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the after attachment trigger pattern
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_Trigger_Pattern__c createTest_AfterAttachmentTriggerPattern(){
 
         CPA_Trigger_Pattern__c AfterAttachmentTriggerPattern = new CPA_Trigger_Pattern__c();
-		AfterAttachmentTriggerPattern.Name ='CPA_AfterAttachment';
+        AfterAttachmentTriggerPattern.Name ='CPA_AfterAttachment';
         AfterAttachmentTriggerPattern.chk_Check_Run__c = true;
-		return AfterAttachmentTriggerPattern;
-		
-	}
-	public static CPA_Trigger_Pattern__c createTest_HLERequestTriggerPattern(){
+        return AfterAttachmentTriggerPattern;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the HLE Request trigger pattern
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Trigger_Pattern__c createTest_HLERequestTriggerPattern(){
 
         CPA_Trigger_Pattern__c HLERequestTriggerPattern = new CPA_Trigger_Pattern__c();
-		HLERequestTriggerPattern.Name ='CPA_HLERequest';
+        HLERequestTriggerPattern.Name ='CPA_HLERequest';
         HLERequestTriggerPattern.chk_Check_Run__c = true;
-		return HLERequestTriggerPattern;
-		
-	}
-	public static CPA_Trigger_Pattern__c createTest_LOITriggerPattern(){
+        return HLERequestTriggerPattern;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the LOI trigger pattern
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Trigger_Pattern__c createTest_LOITriggerPattern(){
 
         CPA_Trigger_Pattern__c LOITriggerPattern = new CPA_Trigger_Pattern__c();
-		LOITriggerPattern.Name ='CPA_LOI_Trigger';
+        LOITriggerPattern.Name ='CPA_LOI_Trigger';
         LOITriggerPattern.chk_Check_Run__c = true;
-		return LOITriggerPattern;
-		
-	}
-	public static CPA_Trigger_Pattern__c createTest_PWOTriggerPattern(){
+        return LOITriggerPattern;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the PWO trigger pattern
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Trigger_Pattern__c createTest_PWOTriggerPattern(){
 
         CPA_Trigger_Pattern__c PWOTriggerPattern = new CPA_Trigger_Pattern__c();
-		PWOTriggerPattern.Name ='CPA_Project_Work_Order_Trigger';
+        PWOTriggerPattern.Name ='CPA_Project_Work_Order_Trigger';
         PWOTriggerPattern.chk_Check_Run__c = true;
-		return PWOTriggerPattern;
-		
-	}
-	public static CPA_Trigger_Pattern__c createTest_PWORFTriggerPattern(){
+        return PWOTriggerPattern;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the PWORF trigger pattern
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Trigger_Pattern__c createTest_PWORFTriggerPattern(){
 
         CPA_Trigger_Pattern__c PWORFTriggerPattern = new CPA_Trigger_Pattern__c();
-		PWORFTriggerPattern.Name ='CPA_PWORF_Trigger';
+        PWORFTriggerPattern.Name ='CPA_PWORF_Trigger';
         PWORFTriggerPattern.chk_Check_Run__c = true;
-		return PWORFTriggerPattern;
-		
-	}
+        return PWORFTriggerPattern;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the HLE Request SLA details
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_HLE_Request_SLAs__c createTest_HLEReqSLA(){
 
         CPA_HLE_Request_SLAs__c HLEReqSLA = new CPA_HLE_Request_SLAs__c();
-		HLEReqSLA.Name ='SLA';
+        HLEReqSLA.Name ='SLA';
         HLEReqSLA.HLE_Request_SLA1__c = 5;
         HLEReqSLA.HLE_Request_SLA2__c = 5;
-		return HLEReqSLA;
-		
-	}
+        return HLEReqSLA;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the PWORF All record types
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_PWORF_Record_type__c createTest_PWORF_All_recordtType(ID allId){
+
+        CPA_PWORF_Record_type__c PWORFAllrecordtType = new CPA_PWORF_Record_type__c();
+        PWORFAllrecordtType.Name ='All';
+        PWORFAllrecordtType.Record_type_id__c = allId;
+        return PWORFAllrecordtType;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the PWORF RA record type
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_PWORF_Record_type__c createTest_PWORF_RA_recordtType(ID raId){
+
+        CPA_PWORF_Record_type__c PWORFRArecordtType = new CPA_PWORF_Record_type__c();
+        PWORFRArecordtType.Name ='RA';
+        PWORFRArecordtType.Record_type_id__c = raId;
+        return PWORFRArecordtType;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to create test data for PWORF
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_PWORF__c createTest_other_PWORF(){
 
-      createTest_CPA_Status_Msg();
         //Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll();
         RecordType rt =[select id,Name from RecordType where sObjectType='CPA_PWORF__c' AND Name='Other' limit 1] ;
+        CPA_PWORF_Record_type__c PWORFAllrecordtType = createTest_PWORF_All_recordtType(rt.id);
+        insert(PWORFAllrecordtType);
         CPA_PWORF__c pworfRec = new CPA_PWORF__c();
         pworfRec.Name = 'Test->' + system.Now()+' 1';
        pworfRec.txt_Clarity_ID__c ='123456' ;
@@ -200,9 +347,6 @@ public with sharing class CPA_testClass_util {
         pworfRec.Interface_to_the_system__c  =CPA_ConstantsForContractingAppClasses.YES ;
         pworfRec.Interface_to_the_system_Detail__c = 'Interface to the system Detail'  ;
         
-        
-        
-        
         pworfRec.pkl_Process_Office_Area_E2E__c ='Other (provide free text to enter)';
         pworfRec.txt_otherProcessOfficeAreaE2E__c ='Other Process Office area E2E'  ;
         pworfRec.mpkl_Project_Phases__c =CPA_ConstantsForContractingAppClasses.PLAN_ANALYSE;
@@ -218,7 +362,6 @@ public with sharing class CPA_testClass_util {
        
         pworfRec.txta_Project_Invasive_in_nature__c = 'Why Project Invasive in nature?'  ;
         
-
         pworfRec.Will_this_project_require_an_LOI_for_Wor__c  = CPA_ConstantsForContractingAppClasses.YES;
         pworfRec.How_many_man_days_do_you_think_you_requi__c  = 'Man Days'  ;
         pworfRec.When_do_you_require_the_Work_at_Risk_to__c  = system.today() ;
@@ -233,7 +376,6 @@ public with sharing class CPA_testClass_util {
         pworfRec.per_Budget_Expenses_of_Resource_Cost__c =1 ;
         pworfRec.txta_Project_Description__c = 'Project Description';
        
-        
         User testUSer = createTestUser();
         pworfRec.lkp_Unilever_budget_approver__c = testUSer.id;
         pworfRec.lkp_Unilever_content_approver__c = testUSer.id;
@@ -243,6 +385,12 @@ public with sharing class CPA_testClass_util {
         return pworfRec;
     }
 
+    /*******************************************************************
+    Purpose: This method is used to create Requirements and Deliverables test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_Requirements_and_Deliverables__c createRequirementsDeliverables (CPA_PWORF__c objPWORF){
         CPA_Requirements_and_Deliverables__c objRandD = new CPA_Requirements_and_Deliverables__c();
         objRandD.Business_Process_Area_del__c= 'Business Process';
@@ -253,7 +401,12 @@ public with sharing class CPA_testClass_util {
         objRandD.Name = CPA_ConstantsForContractingAppClasses.TEST;
         return objRandD;
     }
-    
+    /*******************************************************************
+    Purpose: This method is used to create Risk Assessment and Mitigation test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_Risk_Assessment_and_Mitigation__c createRiskAssessment (CPA_PWORF__c objPWORF){
         CPA_Risk_Assessment_and_Mitigation__c objRAM = new CPA_Risk_Assessment_and_Mitigation__c();
         objRAM.ltxta_Impact__c = CPA_ConstantsForContractingAppClasses.TEST;
@@ -264,7 +417,12 @@ public with sharing class CPA_testClass_util {
         objRAM.Name = CPA_ConstantsForContractingAppClasses.TEST;
         return objRAM;
     }
-
+    /*******************************************************************
+    Purpose: This method is used to create Key Contacts test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_Key_Contacts__c CreateKeyContacts(CPA_PWORF__c objPWORF){
         CPA_Key_Contacts__c objKC = new CPA_Key_Contacts__c();
         objKC.Name = CPA_ConstantsForContractingAppClasses.TEST;
@@ -275,11 +433,18 @@ public with sharing class CPA_testClass_util {
         return objKC;
     }
 
-        
+    /*******************************************************************
+    Purpose: This method is used to create RA PWORF test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/    
     public static CPA_PWORF__c createTest_RA_PWORF(){
       createTest_CPA_Status_Msg();
        // Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll();
-       RecordType rt =[select id,Name from RecordType where sObjectType='CPA_PWORF__c' AND Name='Resource Augmentation' limit 1] ;  
+       RecordType rt =[select id,Name from RecordType where sObjectType='CPA_PWORF__c' AND Name='Resource Augmentation' limit 1] ;
+        CPA_PWORF_Record_type__c PWORFRArecordtType = createTest_PWORF_RA_recordtType(rt.id);
+        insert(PWORFRArecordtType);
         CPA_PWORF__c pworfRec = new CPA_PWORF__c();
         pworfRec.Name = 'TEST1123445678';
         pworfRec.pkl_Status__c ='Saved' ;
@@ -361,7 +526,12 @@ public with sharing class CPA_testClass_util {
         
         return pworfRec;
     }   
-    
+    /*******************************************************************
+    Purpose: This method is used to create LOI test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_LOI__c createLOI (CPA_PWORF__c objPWORF){
         createTest_CPA_Status_Msg();
         CPA_LOI__c objLOI = new CPA_LOI__c();  
@@ -394,11 +564,14 @@ public with sharing class CPA_testClass_util {
         objLOI.txt_Unilever_Clarity_ID__c = '21323';
         
         return objLOI;
-        
-        
-        
+
     }
-    
+    /*******************************************************************
+    Purpose: This method is used to create PWO test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_project_work_order__c createPWO(CPA_PWORF__c objPWORF){
         createTest_CPA_Status_Msg();
         CPA_project_work_order__c objPwo = new CPA_project_work_order__c();
@@ -415,8 +588,6 @@ public with sharing class CPA_testClass_util {
         update  objPWORF;*/
         objPWORF.pkl_Status__c = 'Auto Accepted';
         update  objPWORF;
-        
-        
         
         objPwo.txt_Accenture_Project_Manager__c = CPA_ConstantsForContractingAppClasses.TEST;
         objPwo.num_Authorisation_charges__c = 100;
@@ -460,8 +631,14 @@ public with sharing class CPA_testClass_util {
         return objPwo;
         
     }
-public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
-    createTest_CPA_Status_Msg();
+    /*******************************************************************
+    Purpose: This method is used to create Other PWO test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
+        createTest_CPA_Status_Msg();
         CPA_project_work_order__c objPwo = new CPA_project_work_order__c();
         User testUSer = createTestUser();
         
@@ -476,8 +653,6 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         update  objPWORF;*/
         objPWORF.pkl_Status__c = 'Auto Accepted';
         update  objPWORF;
-        
-        
         
         objPwo.txt_Accenture_Project_Manager__c = CPA_ConstantsForContractingAppClasses.TEST;
         objPwo.num_Authorisation_charges__c = 100;
@@ -521,6 +696,12 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         return objPwo;
         
     }
+    /*******************************************************************
+    Purpose: This method is used to create CR test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_CR__c createCR(CPA_project_work_order__c objPWO){
         createTest_CPA_Status_Msg();
         CPA_CR__c objCR = new CPA_CR__c();
@@ -557,12 +738,18 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         objCR.num_Total_charge_of_CR__c = 1;
         objCR.txta_Unilever_Project_Name__c = CPA_ConstantsForContractingAppClasses.TEST;
         objCR.txt_Unilever_Reference__c = CPA_ConstantsForContractingAppClasses.TEST;
-        objCR.pec_Variance__c=1;
+       // objCR.pec_Variance__c=1;
         objCR.num_Varied_Target_Blend_Rate__c =1;
         objCR.chk_isStandalone_CR__c = false;        
         return objCR;
         
     }
+    /*******************************************************************
+    Purpose: This method is used to create Standalone CR test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_CR__c standAloneCR(){
         createTest_CPA_Status_Msg();
         CPA_CR__c objCR = new CPA_CR__c();
@@ -599,12 +786,18 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         objCR.num_Total_charge_of_CR__c = 1;
         objCR.txta_Unilever_Project_Name__c = CPA_ConstantsForContractingAppClasses.TEST;
         objCR.txt_Unilever_Reference__c = CPA_ConstantsForContractingAppClasses.TEST;
-        objCR.pec_Variance__c=1;
+        //objCR.pec_Variance__c=1;
         objCR.num_Varied_Target_Blend_Rate__c =1;
         
         return objCR;
         
     }
+    /*******************************************************************
+    Purpose: This method is used to create empty CR test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_CR__c blankCR(CPA_project_work_order__c objPWO){
         createTest_CPA_Status_Msg();
         CPA_CR__c objCR1 = new CPA_CR__c();
@@ -613,7 +806,12 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         
     }   
     
-    
+    /*******************************************************************
+    Purpose: This method is used to create LE request test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public static CPA_HLE_Request__c CreateHLERequest(){
         createTest_CPA_Status_Msg();
         CPA_HLE_Request__c objHLEREQ = new CPA_HLE_Request__c();
@@ -643,8 +841,14 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         
         return objHLEREQ;
     }     
-public static CPA_HLE_Request__c CreateBEP(){
-    createTest_CPA_Status_Msg();
+    /*******************************************************************
+    Purpose: This method is used to create BPE test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_HLE_Request__c CreateBEP(){
+        createTest_CPA_Status_Msg();
         CPA_HLE_Request__c objHLEREQ = new CPA_HLE_Request__c();
         //objHLEREQ.recordtypeid = label.CPA_BPE_Recordtype;
         //objHLEREQ.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ACCEPTED;  

@@ -1,11 +1,20 @@
-/**
- * @author Shreyas Mangalvedhekar
- * @date 11/01/2016
- * @description - This Class is used to perform operation on before update event of LOI Trigger
- */
+/**********************************************************************
+Name: CPA_LOI_TriggerUtil()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: This Class is used to perform operation on before update event of LOI Trigger
+-------
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR                     DATE            DETAIL Description
+1.0         Shreyas Mangalvedhekar     11/01/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
 public with sharing class CPA_LOI_TriggerUtil{
     public static boolean isSubmitted=false;
-/*
+    /*
     * Method Name : recallApproval
     * Parameter   : 
     * Return type : None
@@ -25,7 +34,7 @@ public with sharing class CPA_LOI_TriggerUtil{
                     if(piwi.ProcessInstance.TargetObjectId == newLOIList[i].id && !isSubmitted ){ 
                         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
                         req.setComments('Recalling and unlocking request.');
-                        req.setAction('Removed');
+                        req.setAction(CPA_ConstantsForContractingAppClasses.REMOVED);
                         req.setWorkitemId(piwi.Id);
                         Approval.ProcessResult result =  Approval.process(req);
                         isSubmitted = true;
@@ -40,7 +49,7 @@ public with sharing class CPA_LOI_TriggerUtil{
     * Return type : None
     * Description : This method is used to perform submit for  Approval process on PWO record
     */
-     public static void submitforApproval(List<CPA_LOI__c> oldLOIList,List<CPA_LOI__c> newLOIList)    
+     public static List<CPA_PWORF__c> submitforApproval(List<CPA_LOI__c> oldLOIList,List<CPA_LOI__c> newLOIList)    
     {
        set<Id> setPworfId = new set<Id>();
        List<CPA_PWORF__c> lstPWORF = new List<CPA_PWORF__c>();
@@ -71,9 +80,11 @@ public with sharing class CPA_LOI_TriggerUtil{
                     }               
             }
             if(lstPWORF!=null && lstPWORF.size()>0){                
-                        update lstPWORF;
+                        //update lstPWORF;
+                        return lstPWORF;
                     }
             }
+            return null;
     
     }
     
@@ -111,7 +122,7 @@ public with sharing class CPA_LOI_TriggerUtil{
         for(CPA_LOI__c objNewLOI : newLOI){
                 setPWORF.add(objNewLOI.lkp_PWORF__c);
             }
-        for(CPA_PWORF__c objPworf : [select id,txta_Title__c,RecordTypeId,RecordType.name,mpkl_Project_Phases__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,txt_Clarity_ID__c from CPA_PWORF__c where ID  IN: setPWORF]){
+        for(CPA_PWORF__c objPworf : [select id,txta_Title__c,RecordTypeId,mpkl_Project_Phases__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c,txt_Clarity_ID__c from CPA_PWORF__c where ID  IN: setPWORF]){
                 mapPWORF.put(objPworf.Id,objPworf);
             }
             
@@ -125,19 +136,32 @@ public with sharing class CPA_LOI_TriggerUtil{
                 
                 if(objNewLOI.txt_Unilever_Clarity_ID__c == null && objPWORFTemp.txt_Clarity_ID__c !=null) 
                     objNewLOI.txt_Unilever_Clarity_ID__c = objPWORFTemp.txt_Clarity_ID__c;
-                if(objNewLOI.lkp_Unilever_budget_approver__c == null && objPWORFTemp.lkp_Unilever_budget_approver__c !=null) 
-                    objNewLOI.lkp_Unilever_budget_approver__c = objPWORFTemp.lkp_Unilever_budget_approver__c;
-                if(objNewLOI.lkp_Unilever_content_approver__c == null && objPWORFTemp.lkp_Unilever_content_approver__c !=null) 
-                    objNewLOI.lkp_Unilever_content_approver__c = objPWORFTemp.lkp_Unilever_content_approver__c;
+                /*
+                JP: Removed the lookup and created text/emal fields             
+                                if(objNewLOI.lkp_Unilever_budget_approver__c == null && objPWORFTemp.lkp_Unilever_budget_approver__c !=null) 
+                                    objNewLOI.lkp_Unilever_budget_approver__c = objPWORFTemp.lkp_Unilever_budget_approver__c;
+                                if(objNewLOI.lkp_Unilever_content_approver__c == null && objPWORFTemp.lkp_Unilever_content_approver__c !=null) 
+                                    objNewLOI.lkp_Unilever_content_approver__c = objPWORFTemp.lkp_Unilever_content_approver__c;
+                */
+                if(objNewLOI.eml_Unilever_Content_Approver_Email__c == null && objPWORFTemp.eml_Unilever_Content_Approver_Email__c !=null) 
+                    objNewLOI.eml_Unilever_Content_Approver_Email__c = objPWORFTemp.eml_Unilever_Content_Approver_Email__c;
+                if(objNewLOI.txt_Unilever_Content_Approver_Name__c == null && objPWORFTemp.txt_Unilever_Content_Approver_Name__c !=null) 
+                    objNewLOI.txt_Unilever_Content_Approver_Name__c = objPWORFTemp.txt_Unilever_Content_Approver_Name__c;
+
+                if(objNewLOI.eml_Unilever_Budget_Approver_Email__c == null && objPWORFTemp.eml_Unilever_Budget_Approver_Email__c !=null) 
+                    objNewLOI.eml_Unilever_Budget_Approver_Email__c = objPWORFTemp.eml_Unilever_Budget_Approver_Email__c;
+                if(objNewLOI.txt_Unilever_Budget_Approver_Name__c == null && objPWORFTemp.txt_Unilever_Budget_Approver_Name__c !=null) 
+                    objNewLOI.txt_Unilever_Budget_Approver_Name__c = objPWORFTemp.txt_Unilever_Budget_Approver_Name__c;
+                
                 if(objNewLOI.mpkl_Phases_covered_by_WAR__c == null && objPWORFTemp.mpkl_Project_Phases__c !=null)
                     objNewLOI.mpkl_Phases_covered_by_WAR__c = objPWORFTemp.mpkl_Project_Phases__c;
-               // string AllrecordType = CPA_PWORF_Record_type__c.getValues('All').Record_type_id__c;
-                if(objPWORFTemp.RecordType.name == 'Other' && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.mpkl_Project_Phases__c)) 
+                string AllrecordType = CPA_PWORF_Record_type__c.getValues('All').Record_type_id__c;
+                if(objPWORFTemp.RecordTypeId == AllrecordType && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.mpkl_Project_Phases__c)) 
                         objNewLOI.addError('Only ' + objPWORFTemp.mpkl_Project_Phases__c.replaceAll(';', ', ') + ' Project Phases are allow');
             }
         }
     }
-/** Method Name : requireApprovalComments
+    /** Method Name : requireApprovalComments
     * Parameter   : newLOIList
     * Return type : None
     * Author      : Pooja Kanani  
@@ -153,7 +177,7 @@ public with sharing class CPA_LOI_TriggerUtil{
         // Put all objects for update that require a comment check in a map,
         // so we only have to use 1 SOQL query to do all checks
         
-        if (inv.pkl_Approval_Comment_Check__c == 'Required')
+        if (inv.pkl_Approval_Comment_Check__c == CPA_ConstantsForContractingAppClasses.REQUIRED)
         { 
           approvalStatements.put(inv.Id, inv);
           // Reset the field value to null, 
@@ -207,23 +231,19 @@ public with sharing class CPA_LOI_TriggerUtil{
     * Author      : Pooja Kanani  
     * Description : This method cancel all LOI
     */
-    public static void cancelAllLOI(List<CPA_LOI__c> newLOI){
+    public static List<CPA_LOI__c>  cancelAllLOI(List<CPA_LOI__c> newLOI){
         set<Id> setPWORF = new set<ID>();
-        system.debug('newLOI>>>>>>>>'+newLOI);
         List<CPA_LOI__c> ListnewLOI  = new List<CPA_LOI__c>();
         for(CPA_LOI__c objNewLOI : newLOI){
             if(objNewLOI.pkl_Status__c == CPA_ConstantsForContractingAppClasses.CANCELLED){
-                system.debug('objNewLOI.pkl_Status__c >>>>>>>>'+objNewLOI.pkl_Status__c );
                 setPWORF.add(objNewLOI.lkp_PWORF__c);
             }
         }
         for(CPA_LOI__c objLoi : [select id,pkl_Status__c from CPA_LOI__c where lkp_PWORF__c  IN: setPWORF and pkl_Status__c !=: CPA_ConstantsForContractingAppClasses.CANCELLED]){
-            system.debug('objLoi>>>>>>>>>>'+objLoi);
                 objLoi.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
-                system.debug('objLoi.pkl_Status__c >>>>>>>>'+objLoi.pkl_Status__c );
                 ListnewLOI.add(objLoi);
             }
-        update ListnewLOI;
+        return  ListnewLOI;
     }
     
     /** Method Name : getInternalPWOIDFromPWORF
@@ -236,7 +256,6 @@ public with sharing class CPA_LOI_TriggerUtil{
     public static void getInternalPWOIDFromPWORF(List<CPA_LOI__c> newLOI){
         List<CPA_PWORF__c> pworfs = [SELECT txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newLOI[0].lkp_PWORF__c];
         if(pworfs!=null && pworfs.size()>0 && pworfs[0] !=null && pworfs[0].txt_Internal_PWO_ID__c != null){
-            System.debug('Internal PWO ID present on PWORF @@@@@######## : ' + pworfs[0].txt_Internal_PWO_ID__c);
             newLOI[0].txt_Internal_PWO_ID__c = pworfs[0].txt_Internal_PWO_ID__c;
         }else{
             System.debug('PWO ID not present on PWORF @@@@@######## : ');
@@ -288,27 +307,7 @@ public with sharing class CPA_LOI_TriggerUtil{
         }*/
     }
     
-    /**   Method Name : getInternalPWOID
-    * Parameter   : numSearch
-    * Return type : String
-    * Author      : Dinesh Girase  
-    * Description : This method generates incremental Internal LOI ID
-    */
-   /* public static String getInternalID(Integer numSearch, String idType){
-        String strPWOID='';
-        integer intIncrementNum = numSearch + 1;
-        if(string.valueof(numSearch).length() == 1)
-            strPWOID = idType + '-0000' + string.valueof(intIncrementNum);
-        if(string.valueof(numSearch).length() == 2)
-            strPWOID = idType + '-000' + string.valueof(intIncrementNum);
-        if(string.valueof(numSearch).length() == 3)
-            strPWOID = idType + '-00' + string.valueof(intIncrementNum);
-        if(string.valueof(numSearch).length() == 4)
-            strPWOID = idType + '-0' + string.valueof(intIncrementNum);
-        if(string.valueof(numSearch).length() == 5)
-            strPWOID = idType + '-' + string.valueof(intIncrementNum);
-        return strPWOID;
-    }*/
+   
     
      /**   Method Name : DOntDelete
     * Parameter   : OldMap

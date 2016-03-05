@@ -1,3 +1,17 @@
+/**********************************************************************
+Name: CPA_HLERequInformationController()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: This Class is used to check whether user entered data in all mandatory fields
+-------
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR             DATE            DETAIL Description
+1.0         Dinesh Girasre     12/01/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
 global with sharing class CPA_HLERequInformationController {
     Public id hleReqId;
     Public CPA_HLE_Request__c hleRec;
@@ -6,6 +20,12 @@ global with sharing class CPA_HLERequInformationController {
     public Map<String,String> RequiredFieldMap {get; set;}
     boolean callFromVF = false;
  
+    /*******************************************************************
+    Purpose: This constructor calls CreateRequiredFieldMessage() methos by providing record id
+    Parameters: ApexPages.StandardController
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public CPA_HLERequInformationController (ApexPages.StandardController controller) {
         callFromVF = true;
         //mandatoryString = '';
@@ -16,6 +36,12 @@ global with sharing class CPA_HLERequInformationController {
     }
      public CPA_HLERequInformationController (){}
     
+    /*******************************************************************
+    Purpose: This method is used to check whether all mandatory fields have data
+    Parameters: hleRecId, callFromVF
+    Returns: blloean
+    Throws [Exceptions]: 
+    ********************************************************************/
     boolean CreateRequiredFieldMessage(id hleRecId,boolean callFromVF){
         RequiredFieldMap = new Map<String,String>();
         mandatoryStringFlag = null;
@@ -32,11 +58,11 @@ global with sharing class CPA_HLERequInformationController {
             if(hleRec.txt_Background__c  == null) 
                  RequiredFieldMap.put('Background',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.ph_UBPR_Contact_No__c  == null) 
-                 RequiredFieldMap.put('Contact Number','MANDATORY in Unilever business partner/requestor section');
+                 RequiredFieldMap.put('Contact No','MANDATORY in Unilever business partner/requestor section');
             if(hleRec.ph_UIOS_Contact_No__c  == null) 
-                 RequiredFieldMap.put('Contact Number ','MANDATORY in Unilever innovation owner/SME section');
+                 RequiredFieldMap.put('Contact No ','MANDATORY in Unilever innovation owner/SME section');
             if(hleRec.ph_AAL_Contact_No__c  == null) 
-                 RequiredFieldMap.put('Contact Number  ','MANDATORY in Accenture Area lead section');
+                 RequiredFieldMap.put('Contact No  ','MANDATORY in Accenture Area lead section');
              
                           
             if(hleRec.dt_Date_raised__c == null || hleRec.dt_Date_raised__c < system.today()) 
@@ -135,6 +161,12 @@ global with sharing class CPA_HLERequInformationController {
         return true;
     }
    
+    /*******************************************************************
+    Purpose: This webservice gets called from page. this is to refresh isValidate variable.
+    Parameters: hleRecId, callFromVF
+    Returns: blloean
+    Throws [Exceptions]: 
+    ********************************************************************/
     webService static boolean checkIsValidated(Id objId) {
         boolean flag ;
  

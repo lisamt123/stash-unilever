@@ -1,18 +1,27 @@
-/**
- * @author Pooja Kanani
- * @date 11/01/2016
- * @description - This Class is used to perform operation on event of CPA_Project_Work_Order_Trigger 
- */
+/**********************************************************************
+Name: CPA_Project_Work_Order_TriggerUtil()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: This Class is used to perform operation on event of CPA_Project_Work_Order_Trigger
+-------
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR           DATE            DETAIL Description
+1.0         Pooja Kanani     11/01/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
 public with sharing class CPA_Project_Work_Order_TriggerUtil{
     public static boolean isSubmitted=false;
-/*
+    /*
     * Method Name : recallApproval
     * Parameter   : 
     * Return type : None
     * Description : This method is used to perform recall Approval process on PWO record
     */
      public static void recallApproval(List<CPA_project_work_order__c> PWOOldList,List<CPA_project_work_order__c> newPWOList)    
-    { 
+     { 
        set<ID> settempPWOID = new set<ID>();
        for(CPA_project_work_order__c objPWOTemp: newPWOList){
             
@@ -22,15 +31,13 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
         for (Integer i = 0; i < newPWOList.size(); i++) {
             if((PWOOldList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || PWOOldList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED || PWOOldList[i].CNF_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || PWOOldList[i].CNF_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED || PWOOldList[i].TNF_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || PWOOldList[i].TNF_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED) && (newPWOList[i].pkl_Status__c == 'Cancelled' || newPWOList[i].pkl_Status__c == 'Request For Termination' || newPWOList[i].chk_isCNFcancelled__c || newPWOList[i].chk_isTNFcancelled__c)){
             system.debug('PWOOldList[i].pkl_Status__c>>'+PWOOldList[i].pkl_Status__c);
-                system.debug('newPWOList[i].pkl_Status__c>>'+PWOOldList[i].pkl_Status__c);
                 
                 for(ProcessInstanceWorkitem piwi:piwiList){
                     if(piwi.ProcessInstance.TargetObjectId == newPWOList[i].id && !isSubmitted ){ 
                         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
                         req.setComments('Recalling and unlocking request.');
-                        req.setAction('Removed');
+                        req.setAction(CPA_ConstantsForContractingAppClasses.REMOVED);
                         req.setWorkitemId(piwi.Id);
-                        system.debug('req>>'+req);
                         Approval.ProcessResult result =  Approval.process(req);
                         isSubmitted = true;
                     }
@@ -44,7 +51,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     * Return type : None
     * Description : This method is used to perform submit for  Approval process on PWO record
     */
-     public static void submitforApproval(List<CPA_project_work_order__c> oldPWOList,List<CPA_project_work_order__c> newPWOList)    
+     public static List<CPA_PWORF__c> submitforApproval(List<CPA_project_work_order__c> oldPWOList,List<CPA_project_work_order__c> newPWOList)    
     {
 
         set<id> setID = new set<Id>();
@@ -79,13 +86,14 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                          
              }
              if(lstTemp!=null && lstTemp.size()>0){
-                update lstTemp; 
+                return lstTemp; 
                 Approval.unLockResult[] lrList1 = Approval.unlock(lstTemp, false);
              }
         }
+        return null;
         
     }
- /*
+     /*
     * Method Name : checklistValueOfcontract
     * Parameter   : 
     * Return type : None
@@ -99,13 +107,13 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
    public static void checklistValueOfcontract(List<CPA_project_work_order__c> newmapPWO){
             set<Id> setPwoId = new set<Id>();
             map<Id,CPA_PWORF__c> mapPWORF = new map<ID,CPA_PWORF__c>();
-           // Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll(); 
+            Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll(); 
             //Map<string,CPA_Contract_Record_type__c> customSettingcontractRT = CPA_Contract_Record_type__c.getAll(); 
             if(newmapPWO!= null ){
                  for(CPA_project_work_order__c objPWo : newmapPWO){
                     setPwoId.add(objPWo.PWORF_ID__c);
                 }
-                for(CPA_PWORF__c objPworf : [select id,txt_Internal_PWO_ID__c,mpkl_Project_Phases__c,auto_PWORF_ID__c,txta_Title__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,lkp_Unilever_Finance_BP_Contact__c,txt_Clarity_ID__c,pkl_Region__c,pkl_Project_Scale__c,RecordTypeid,RecordType.name,pkl_Business_Area__c,dat_SLA1_Accepted_Date__c  from CPA_PWORF__c where ID  IN: setPwoId]){
+                for(CPA_PWORF__c objPworf : [select id,txt_Internal_PWO_ID__c,mpkl_Project_Phases__c,auto_PWORF_ID__c,txta_Title__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, eml_Unilever_Finance_BP_Contact_Email__c, txt_Unilever_Finance_BP_Contact_Name__c, txt_Clarity_ID__c,pkl_Region__c,pkl_Project_Scale__c,RecordTypeid,pkl_Business_Area__c,dat_SLA1_Accepted_Date__c  from CPA_PWORF__c where ID  IN: setPwoId]){
                     mapPWORF.put(objPworf.Id,objPworf);
                 }
                 for(CPA_project_work_order__c objPWo : newmapPWO){
@@ -122,23 +130,26 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                                 objPWo.txt_Unilever_Reference__c = objPWORFTemp.txt_Clarity_ID__c;
                             if(objPWo.txt_Unilever_Project_Name__c == null && objPWORFTemp.txta_Title__c !=null) 
                                 objPWo.txt_Unilever_Project_Name__c = objPWORFTemp.txta_Title__c;
-                            if(objPWo.lkp_Unilever_budget_approver__c == null && objPWORFTemp.lkp_Unilever_budget_approver__c !=null) 
+                          
+
+                            autoPopulateValues(objPWo,objPWORFTemp); // JP: Call to auto populate method
+                          /*if(objPWo.lkp_Unilever_budget_approver__c == null && objPWORFTemp.lkp_Unilever_budget_approver__c !=null) 
                                 objPWo.lkp_Unilever_budget_approver__c = objPWORFTemp.lkp_Unilever_budget_approver__c;
                             if(objPWo.lkp_Unilever_content_approver__c == null && objPWORFTemp.lkp_Unilever_content_approver__c !=null) 
                                 objPWo.lkp_Unilever_content_approver__c = objPWORFTemp.lkp_Unilever_content_approver__c;
                             if(objPWo.lkp_Unilever_Finance_BP_Contact__c == null && objPWORFTemp.lkp_Unilever_Finance_BP_Contact__c !=null) 
                                 objPWo.lkp_Unilever_Finance_BP_Contact__c = objPWORFTemp.lkp_Unilever_Finance_BP_Contact__c;
+                            */
                             
                             // JP : To auto popup PWORF acceptance date i.e dt_Date_PWORF_accepted__c
                               if(objPWo.dt_Date_PWORF_accepted__c == null && objPWORFTemp.dat_SLA1_Accepted_Date__c !=null) 
                               {   objPWo.dt_Date_PWORF_accepted__c = objPWORFTemp.dat_SLA1_Accepted_Date__c;
-                                system.debug('Accepted date auto populate');
                               }
                             
                             
                             if(objPWORFTemp.pkl_Project_Scale__c != null){
                             system.debug('objPWORFTemp.RecordTypeid>>>>1'+objPWORFTemp.RecordTypeid);
-                                if(objPWORFTemp.RecordType.name == 'Other' ){
+                                if(objPWORFTemp.RecordTypeid == customSettingPworfRT.get('All').Record_type_id__c ){
                                 system.debug('objPWORFTemp.RecordTypeid>>>>2'+objPWORFTemp.RecordTypeid);
                                     if(objPWORFTemp.pkl_Project_Scale__c == 'Small Project (<50 days)') objPWo.mpkl_Project_Classification__c = 'Other';
                                     else if(objPWORFTemp.pkl_Project_Scale__c == 'Large Project (>2000 days)') 
@@ -163,10 +174,15 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                         }else if(objPWo.RecordTypeid == label.CPA_PWO_CNF_RecordTypeId){
                             if(objPWo.txt_CNF_Unilever_Clarity_ID__c == null && objPWo.txt_Unilever_Reference__c !=null) 
                                 objPWo.txt_CNF_Unilever_Clarity_ID__c = objPWo.txt_Unilever_Reference__c;
+                            
+                            autoPopulateValues(objPWo,new CPA_PWORF__c()); // JP: Call to auto populate method
+                            /*   
                             if(objPWo.lkp_CNF_Unilever_budget_approver__c == null && objPWo.lkp_Unilever_budget_approver__c !=null) 
                                 objPWo.lkp_CNF_Unilever_budget_approver__c = objPWo.lkp_Unilever_budget_approver__c;
                             if(objPWo.lkp_CNF_Unilever_content_approver__c == null && objPWo.lkp_Unilever_content_approver__c !=null)
                                 objPWo.lkp_CNF_Unilever_content_approver__c = objPWo.lkp_Unilever_content_approver__c;
+                            */
+                            
                             if(objPWo.num_CNF_Planned_man_days__c == null && objPWo.num_Estimated_Man_days_of_PWO__c !=null)
                                 objPWo.num_CNF_Planned_man_days__c = objPWo.num_Estimated_Man_days_of_PWO__c;
                             if(objPWo.num_CNF_Planned_expenses__c   == null && objPWo.num_Expense_charges_of_work_order__c !=null)
@@ -187,6 +203,58 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                 }
             }       
         }
+        
+        
+        
+        
+    /** Method Name : autoPopulateValues
+    * Parameter   : newPWO & Pworf object
+    * Return type : None
+    * Author      : Jayprakash Bharti
+    * Description : This method is used to auto-Populate some values in PWO
+    */
+    public static void autoPopulateValues(CPA_project_work_order__c objPwo, CPA_PWORF__c objPworf){
+        
+      
+        if(objPWo.RecordTypeid == label.CPA_PWO_RecordTypeId){
+
+            if(objPWo.eml_Unilever_Content_Approver_Email__c == null && objPworf.eml_Unilever_Content_Approver_Email__c !=null){ 
+                objPWo.eml_Unilever_Content_Approver_Email__c = objPworf.eml_Unilever_Content_Approver_Email__c;
+            }
+            if(objPWo.txt_Unilever_Content_Approver_Name__c == null && objPworf.txt_Unilever_Content_Approver_Name__c !=null){ 
+                objPWo.txt_Unilever_Content_Approver_Name__c = objPworf.txt_Unilever_Content_Approver_Name__c;
+            }
+            if(objPWo.eml_Unilever_Budget_Approver_Email__c == null && objPworf.eml_Unilever_Budget_Approver_Email__c !=null){ 
+                objPWo.eml_Unilever_Budget_Approver_Email__c = objPworf.eml_Unilever_Budget_Approver_Email__c;
+            }
+            if(objPWo.txt_Unilever_Budget_Approver_Name__c == null && objPworf.txt_Unilever_Budget_Approver_Name__c !=null){ 
+                objPWo.txt_Unilever_Budget_Approver_Name__c = objPworf.txt_Unilever_Budget_Approver_Name__c;
+            }
+            if(objPWo.eml_Unilever_Finance_BP_Contact_Email__c == null && objPworf.eml_Unilever_Finance_BP_Contact_Email__c !=null){ 
+                objPWo.eml_Unilever_Finance_BP_Contact_Email__c = objPworf.eml_Unilever_Finance_BP_Contact_Email__c;
+            }
+            if(objPWo.txt_Unilever_Finance_BP_Contact_Name__c == null && objPworf.txt_Unilever_Finance_BP_Contact_Name__c !=null){ 
+                objPWo.txt_Unilever_Finance_BP_Contact_Name__c = objPworf.txt_Unilever_Finance_BP_Contact_Name__c;
+            }
+        }
+        else if(objPWo.RecordTypeid == label.CPA_PWO_CNF_RecordTypeId){
+            if(objPWo.eml_CNF_Unilever_Content_Approver_Email__c == null && objPWo.eml_Unilever_Content_Approver_Email__c !=null){ 
+                objPWo.eml_CNF_Unilever_Content_Approver_Email__c = objPWo.eml_Unilever_Content_Approver_Email__c;
+            }
+            if(objPWo.txt_CNF_Unilever_Content_Approver_Name__c == null && objPWo.txt_Unilever_Content_Approver_Name__c !=null){ 
+                objPWo.txt_CNF_Unilever_Content_Approver_Name__c = objPWo.txt_Unilever_Content_Approver_Name__c;
+            }
+            if(objPWo.eml_CNF_Unilever_Budget_Approver_Email__c == null && objPWo.eml_Unilever_Budget_Approver_Email__c !=null){ 
+                objPWo.eml_CNF_Unilever_Budget_Approver_Email__c = objPWo.eml_Unilever_Budget_Approver_Email__c;
+            }
+            if(objPWo.txt_CNF_Unilever_Budget_Approver_Name__c == null && objPWo.txt_Unilever_Budget_Approver_Name__c !=null){ 
+                objPWo.txt_CNF_Unilever_Budget_Approver_Name__c = objPWo.txt_Unilever_Budget_Approver_Name__c;
+            }
+        }
+        
+        
+    }
+ 
   /** Method Name : requireApprovalComments
     * Parameter   : newContractList
     * Return type : None
@@ -203,7 +271,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     // Put all objects for update that require a comment check in a map,
     // so we only have to use 1 SOQL query to do all checks
     
-    if (inv.pkl_Approval_Comment_Check__c  == 'Required')
+    if (inv.pkl_Approval_Comment_Check__c  == CPA_ConstantsForContractingAppClasses.REQUIRED)
     { 
       approvalStatements.put(inv.Id, inv);
       // Reset the field value to null, 
@@ -259,18 +327,19 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     * Return type : None
     * Description : This method is used to perform recall Approval process on PWO record
     */
-    public static void UpdateTATObj(List<CPA_project_work_order__c> newPWOList)    
+    public static List<CPA_TAT__c> UpdateTATObj(List<CPA_project_work_order__c> newPWOList)    
     {
-        system.debug('Start on create UpdateTATObj>>>>>>>>>>>');
+        List<CPA_TAT__c> lstTAT = new List<CPA_TAT__c>();
         for (CPA_project_work_order__c obj : newPWOList) {
             
             CPA_TAT__c tat = new CPA_TAT__c();
             tat.lkp_PWO_ID__c = obj.id;
             tat.TAT_Days__c = 0;
-            
-            insert(tat);
+            lstTAT.add(tat);
+            //insert(tat);
         }
-        system.debug('End UpdateTATObj<<<<<<<<<<');
+        return lstTAT;
+       
     }
      /** Method Name : getInternalPWOIDFromPWORF
     * Parameter   : newPWO
@@ -281,14 +350,11 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     */
     public static void getInternalPWOIDFromPWORF(List<CPA_project_work_order__c> newPWO){
         List<CPA_project_work_order__c> pwos = [SELECT id FROM CPA_project_work_order__c Where PWORF_ID__c =: newPWO[0].PWORF_ID__c];
-        system.debug('pwos.size()>>'+pwos.size());
         if(pwos.size()>0){
-        system.debug('inside if');
             newPWO[0].txt_Internal_PWO_ID__c = CPA_CalculationOfBusinessDaysForSLADates.pwoInternalCountLogic(true);
        }else{
             List<CPA_PWORF__c> pworfs = [SELECT txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newPWO[0].PWORF_ID__c];
-            if(pworfs[0].txt_Internal_PWO_ID__c != null){
-                System.debug('Internal PWO ID present on PWORF @@@@@######## : ' + pworfs[0].txt_Internal_PWO_ID__c);
+            if(pworfs!= null && pworfs.size()>0 && pworfs[0].txt_Internal_PWO_ID__c != null){
                 newPWO[0].txt_Internal_PWO_ID__c = pworfs[0].txt_Internal_PWO_ID__c;
             }else{
                 System.debug('PWO ID not present on PWORF @@@@@######## : ');
@@ -368,7 +434,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
         return strPWOID;
     }*/
 
-     /**   Method Name : DontDelete
+    /**   Method Name : DontDelete
     * Parameter   : OldMap
     * Return type : void
     * Author      : JP

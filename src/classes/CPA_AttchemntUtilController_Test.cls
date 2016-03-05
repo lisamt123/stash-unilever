@@ -27,6 +27,9 @@ public class CPA_AttchemntUtilController_Test {
         objPworf14.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
         update objPworf14;
         
+        CPA_Trigger_Pattern__c ATTACHMENTTRIGERNAME = CPA_testClass_util.createTest_AfterAttachmentTriggerPattern();
+        insert ATTACHMENTTRIGERNAME;
+        
         List<Attachment>  listAttachment = new List<Attachment>();             
         CPA_LOI__c objLOI =CPA_testClass_util.createLOI (objPworf14);
         insert  objLOI;
@@ -223,10 +226,15 @@ public class CPA_AttchemntUtilController_Test {
             CPA_AttachmentUtil.ReadFile(attachment78);
             CPA_AttachmentUtil.ReadFile(attachment6);
             System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment6.ContentType);
-            CPA_AttachmentUtil.deleteContract(lstDel);
+           
+           /* CPA_AttachmentUtil.deleteContract(lstDel);
             CPA_AttachmentUtil.deleteContract(lstDel1);
     
             CPA_AttachmentUtil.deleteCommericalData(lstDel2);
-            CPA_AttachmentUtil.deleteCommericalData(lstDel3); 
+            CPA_AttachmentUtil.deleteCommericalData(lstDel3); */
+            delete lstDel;
+            delete lstDel1;
+            delete lstDel2;
+            delete lstDel3;
     }
 }

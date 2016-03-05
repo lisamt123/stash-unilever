@@ -1,7 +1,26 @@
+/**********************************************************************
+Name: CPA_UtilMethods_Test()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: This is the util class of rest of the test classes.
+-------
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR       DATE            DETAIL Description
+1.0         Name      01/01/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
 @isTest
 private class CPA_UtilMethods_Test {
-    
-    public Static testMethod  void CPA_PWORF_Util_Test(){ 
+    /*******************************************************************
+    Purpose: This method is used to cover custom settings status methods
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static  void CPA_StatusMsgCustomSetting(){
         CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
         insert saveStatus;
         CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
@@ -12,13 +31,25 @@ private class CPA_UtilMethods_Test {
         insert AnsweredMsg;
         CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
         insert CancelMsg;
-		
+        CPA_Status_Msg__c AutoAcceMsg = CPA_testClass_util.createTest_AutoAcceMsg();
+        insert AutoAcceMsg;
+    
+    }       
+    /*******************************************************************
+    Purpose: This method is used to cover PWORF utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void CPA_PWORF_Util_Test(){ 
+        CPA_StatusMsgCustomSetting();
+        
         CPA_Trigger_Pattern__c PWORFTriggerPattern = CPA_testClass_util.createTest_PWORFTriggerPattern();
         insert PWORFTriggerPattern;
         
         Test.startTest();   
                         
-            CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
             objPworf1.Name = 'PWORF-'+system.Now()+1;
            objPworf1.mpkl_Project_Phases__c = 'Design; Build; Test; Deploy';
            objPworf1.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
@@ -29,9 +60,9 @@ private class CPA_UtilMethods_Test {
             update objPworf1;
             System.assert (CPA_ConstantsForContractingAppClasses.SUBMITTED == objPworf1.pkl_Status__c);
             
-            objPworf1.pkl_Status__c = 'Auto Accepted';
+            objPworf1.pkl_Status__c = CPA_ConstantsForContractingAppClasses.AUTOACCEPT;
             update objPworf1;
-             System.assert ('Auto Accepted' == objPworf1.pkl_Status__c);
+             System.assert (CPA_ConstantsForContractingAppClasses.AUTOACCEPT == objPworf1.pkl_Status__c);
            
             CPA_PWORF__c objPworf2 = CPA_testClass_util.createTest_other_PWORF();
              objPworf2.name='PWORF-'+system.Now()+2;
@@ -43,13 +74,12 @@ private class CPA_UtilMethods_Test {
             update objPworf1;           
              System.assert (CPA_ConstantsForContractingAppClasses.SUBMITTED == objPworf2.pkl_Status__c);
             
-            
             CPA_PWORF__c objPworf3 = CPA_testClass_util.createTest_other_PWORF();
              objPworf3.name='PWORF-'+system.Now()+3;
-            objPworf3.mpkl_Project_Phases__c = 'Other';
+            objPworf3.mpkl_Project_Phases__c = CPA_ConstantsForContractingAppClasses.OTHER;
             objPworf3.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
             insert objPworf3;
-            System.assertNotEquals('Cancelled', objPworf3.pkl_Status__c);  
+            System.assertNotEquals(CPA_ConstantsForContractingAppClasses.CANCELLED, objPworf3.pkl_Status__c);   
             objPworf3.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
             update objPworf3;
                                  
@@ -65,27 +95,25 @@ private class CPA_UtilMethods_Test {
            
             update objPworf4;
         CPA_PWORF_TriggerUtil.isSubmitted=false;
-            objPworf4.pkl_Status__c = 'Withhold';
+            objPworf4.pkl_Status__c = CPA_ConstantsForContractingAppClasses.WITHHOLD;
            
             update objPworf4;
-             System.assert ('Withhold' != objPworf2.pkl_Status__c);
+             System.assert (CPA_ConstantsForContractingAppClasses.WITHHOLD != objPworf2.pkl_Status__c);
         Test.stopTest();
 
         
     }
-    
+    /*******************************************************************
+    Purpose: This method is used to cover PWO utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public Static testMethod  void  CPA_PWO_Util_Test(){ 
-        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        insert saveStatus;
-        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
-        insert acceptedStatus;
-        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
-        insert SubMsg;
-        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
-        insert AnsweredMsg;
-        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
-        insert CancelMsg;
-		
+        CPA_StatusMsgCustomSetting();
+        
+        CPA_Trigger_Pattern__c PWORFTriggerPattern = CPA_testClass_util.createTest_PWORFTriggerPattern();
+        insert PWORFTriggerPattern;
         CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
         insert PWOTriggerPattern;
         
@@ -106,20 +134,17 @@ private class CPA_UtilMethods_Test {
               System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED!= objPworf10.pkl_Status__c);
              System.assert (CPA_ConstantsForContractingAppClasses.CANCELLED== objPWO.pkl_Status__c);
         Test.stopTest();    
-    }   
-public Static testMethod  void  CPA_PWO1_Util_Test(){
-    CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        insert saveStatus;
-        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
-        insert acceptedStatus;
-        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
-        insert SubMsg;
-        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
-        insert AnsweredMsg;
-        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
-        insert CancelMsg;
-
-    	CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
+    }
+    /*******************************************************************
+    Purpose: This method is used to cover PWO utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_PWO1_Util_Test(){
+        CPA_StatusMsgCustomSetting();
+        
+        CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
         insert PWOTriggerPattern;
     
         Test.startTest();           
@@ -128,52 +153,54 @@ public Static testMethod  void  CPA_PWO1_Util_Test(){
             objPworf11.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
             update objPworf11;
             CPA_project_work_order__c objPWO2 = CPA_testClass_util.createotherPWO(objPworf11);
-             objPWO2.RecordTypeid = label.CPA_PWO_CNF_RecordTypeId;
+            RecordType rt =[select id,Name from RecordType where sObjectType='CPA_project_work_order__c' AND Name='PWO CNF' limit 1] ;
+             objPWO2.RecordTypeid = rt.id;
              objPWO2.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
             insert objPWO2;
              System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objPworf11.pkl_Status__c);
              System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPWO2.pkl_Status__c);
         Test.stopTest();    
-    } 
-public Static testMethod  void  CPA_PWO2_Util_Test(){
-    CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        insert saveStatus;
-        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
-        insert acceptedStatus;
-        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
-        insert SubMsg;
-        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
-        insert AnsweredMsg;
-        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
-        insert CancelMsg;
-		
-    	CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
+    }
+    /*******************************************************************
+    Purpose: This method is used to cover PWO utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_PWO2_Util_Test(){
+        CPA_StatusMsgCustomSetting();
+        
+        CPA_Trigger_Pattern__c PWORFTriggerPattern = CPA_testClass_util.createTest_PWORFTriggerPattern();
+        insert PWORFTriggerPattern;
+        CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
         insert PWOTriggerPattern;
-    
+        
         Test.startTest();           
             CPA_PWORF__c objPworf12 = CPA_testClass_util.createTest_RA_PWORF();
             insert objPworf12;
             objPworf12.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
             update objPworf12;
+            CPA_PWORF_Record_type__c customSettingPworfRT = CPA_testClass_util.createTest_PWORF_All_recordtType(objPworf12.id);
+        insert customSettingPworfRT;
             CPA_project_work_order__c objPWO2 = CPA_testClass_util.createotherPWO(objPworf12);
-             objPWO2.RecordTypeid = label.CPA_PWO_TNF_RecordTypeId;
+            RecordType rt =[select id,Name from RecordType where sObjectType='CPA_project_work_order__c' AND Name='PWO TNF' limit 1] ;
+             objPWO2.RecordTypeid = rt.id;
             insert objPWO2;
              System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objPworf12.pkl_Status__c);
            
         Test.stopTest();    
-    }       
+    }
+    /*******************************************************************
+    Purpose: This method is used to cover LOI utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public Static testMethod  void  CPA_LOI_Util_Test(){ 
-        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        insert saveStatus;
-        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
-        insert acceptedStatus;
-        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
-        insert SubMsg;
-        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
-        insert AnsweredMsg;
-        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
-        insert CancelMsg;
-		
+        CPA_StatusMsgCustomSetting();
+        
+        CPA_Trigger_Pattern__c PWORFTriggerPattern = CPA_testClass_util.createTest_PWORFTriggerPattern();
+        insert PWORFTriggerPattern;
         CPA_Trigger_Pattern__c LOITriggerPattern = CPA_testClass_util.createTest_LOITriggerPattern();
         insert LOITriggerPattern;
         
@@ -195,21 +222,21 @@ public Static testMethod  void  CPA_PWO2_Util_Test(){
               System.assert (CPA_ConstantsForContractingAppClasses.CANCELLED == objLOI.pkl_Status__c);           
         Test.stopTest();
     }
-
-  public Static testMethod  void  CPA_CR_Util_Test(){ 
-      CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        insert saveStatus;
-        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
-        insert acceptedStatus;
-        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
-        insert SubMsg;
-        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
-        insert AnsweredMsg;
-        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
-        insert CancelMsg;
-		
-      	CPA_Trigger_Pattern__c CRtriggerPattern = CPA_testClass_util.createTest_CRTriggerPattern();
-        insert CRtriggerPattern;	
+    /*******************************************************************
+    Purpose: This method is used to cover CR utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_CR_Util_Test(){ 
+      CPA_StatusMsgCustomSetting();
+        
+        CPA_Trigger_Pattern__c PWORFTriggerPattern = CPA_testClass_util.createTest_PWORFTriggerPattern();
+        insert PWORFTriggerPattern;
+        CPA_Trigger_Pattern__c CRtriggerPattern = CPA_testClass_util.createTest_CRTriggerPattern();
+        insert CRtriggerPattern;
+        CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
+        insert PWOTriggerPattern;
       
         Test.startTest();
             CPA_PWORF__c objPworf14 = CPA_testClass_util.createTest_other_PWORF();
@@ -223,7 +250,6 @@ public Static testMethod  void  CPA_PWO2_Util_Test(){
             objPWO.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ACCEPTED;
             update objPWO;          
             
-            
             CPA_CR__c objCR = CPA_testClass_util.createCR(objPWO);
             insert objCR;
             CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
@@ -234,49 +260,50 @@ public Static testMethod  void  CPA_PWO2_Util_Test(){
             update objCR;           
             
             System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objPworf14.pkl_Status__c);
-              System.assert (CPA_ConstantsForContractingAppClasses.ACCEPTED == objPWO.pkl_Status__c);   
+            System.assert (CPA_ConstantsForContractingAppClasses.ACCEPTED == objPWO.pkl_Status__c);   
               
         Test.stopTest();    
-    }   
- public Static testMethod  void  CPA_CR1_Util_Test(){ 
-     CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        insert saveStatus;
-        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
-        insert acceptedStatus;
-        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
-        insert SubMsg;
-        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
-        insert AnsweredMsg;
-        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
-        insert CancelMsg;
-
-     	CPA_Trigger_Pattern__c CRtriggerPattern = CPA_testClass_util.createTest_CRTriggerPattern();
+    }
+    /*******************************************************************
+    Purpose: This method is used to cover CR utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_CR1_Util_Test(){ 
+        CPA_StatusMsgCustomSetting();
+        
+        CPA_Trigger_Pattern__c PWORFTriggerPattern = CPA_testClass_util.createTest_PWORFTriggerPattern();
+        insert PWORFTriggerPattern;
+        CPA_Trigger_Pattern__c CRtriggerPattern = CPA_testClass_util.createTest_CRTriggerPattern();
         insert CRtriggerPattern;
-     
+        CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
+        insert PWOTriggerPattern;
         Test.startTest();
 
             CPA_CR__c objCR1 = CPA_testClass_util.standAloneCR();
             objCR1.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
             insert objCR1;      
 
-              System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objCR1.pkl_Status__c);               
+            System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objCR1.pkl_Status__c);               
         Test.stopTest();    
-    }      
- public Static testMethod  void  CPA_CR2_Util_Test(){ 
-     CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        insert saveStatus;
-        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
-        insert acceptedStatus;
-        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
-        insert SubMsg;
-        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
-        insert AnsweredMsg;
-        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
-        insert CancelMsg;
-
-     	CPA_Trigger_Pattern__c CRtriggerPattern = CPA_testClass_util.createTest_CRTriggerPattern();
+    }
+        /*******************************************************************
+    Purpose: This method is used to cover CR utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_CR2_Util_Test(){ 
+        CPA_StatusMsgCustomSetting();
+        
+        CPA_Trigger_Pattern__c PWORFTriggerPattern = CPA_testClass_util.createTest_PWORFTriggerPattern();
+        insert PWORFTriggerPattern;
+        CPA_Trigger_Pattern__c CRtriggerPattern = CPA_testClass_util.createTest_CRTriggerPattern();
         insert CRtriggerPattern;
-     	
+        CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
+        insert PWOTriggerPattern;
+        
         Test.startTest();
         CPA_PWORF__c objPworf15 = CPA_testClass_util.createTest_other_PWORF();
             insert objPworf15;
@@ -293,20 +320,17 @@ public Static testMethod  void  CPA_PWO2_Util_Test(){
              System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objPworf15.pkl_Status__c);
               System.assert (CPA_ConstantsForContractingAppClasses.ACCEPTED == objPWO.pkl_Status__c);  
         Test.stopTest();    
-    }         
-  public Static testMethod  void  CPA_HLE_Request_Util_Test(){ 
-      CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        insert saveStatus;
-        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
-        insert acceptedStatus;
-        CPA_Status_Msg__c SubMsg = CPA_testClass_util.createTest_SubMsg();
-        insert SubMsg;
-        CPA_Status_Msg__c AnsweredMsg = CPA_testClass_util.createTest_AnsweredMsg();
-        insert AnsweredMsg;
-        CPA_Status_Msg__c CancelMsg = CPA_testClass_util.createTest_CancelMsg();
-        insert CancelMsg;
-		
-      	CPA_Trigger_Pattern__c HLERequestTriggerPattern = CPA_testClass_util.createTest_HLERequestTriggerPattern();
+    }
+    /*******************************************************************
+    Purpose: This method is used to cover HLE Request utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_HLE_Request_Util_Test(){ 
+        CPA_StatusMsgCustomSetting();
+        
+        CPA_Trigger_Pattern__c HLERequestTriggerPattern = CPA_testClass_util.createTest_HLERequestTriggerPattern();
         insert HLERequestTriggerPattern;
       
         CPA_HLE_Request_SLAs__c HLEReqSLA = CPA_testClass_util.createTest_HLEReqSLA();
@@ -320,9 +344,69 @@ public Static testMethod  void  CPA_PWO2_Util_Test(){
            CPA_HLERequest_TriggerUtil.isSubmitted  = false;
            objHLERequest.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
             update objHLERequest;
-            System.assertNotEquals('Cancelled', objHLERequest.ID);  
+            System.assertNotEquals(CPA_ConstantsForContractingAppClasses.CANCELLED, objHLERequest.ID);  
              System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objHLERequest.pkl_Status__c);
              
         Test.stopTest();    
-    }   
+    }
+    /*******************************************************************
+    Purpose: This method is used to cover CNF Historical utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_CNFHistorical_Util_Test(){ 
+        CPA_StatusMsgCustomSetting();
+        CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
+        insert PWOTriggerPattern;
+        Test.startTest();
+            CPA_PWORF__c objPworf10 = CPA_testClass_util.createTest_other_PWORF();
+            insert objPworf10;
+            objPworf10.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
+            update objPworf10;                      
+            
+            CPA_project_work_order__c objPWO = CPA_testClass_util.createotherPWO(objPworf10);
+            insert objPWO;
+
+            objPWO.pkl_Status__c = CPA_ConstantsForContractingAppClasses.DELIVERED;
+            objPWO.CNF_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
+            update objPWO;
+            objPWO.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SentForClosure;
+            objPWO.CNF_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
+            update objPWO;
+
+              //System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED!= objPworf10.pkl_Status__c);
+              //System.assert (CPA_ConstantsForContractingAppClasses.CANCELLED== objPWO.pkl_Status__c);
+        Test.stopTest();   
+    }
+    /*******************************************************************
+    Purpose: This method is used to cover TNF historical utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_TNFHistorical_Util_Test(){ 
+        CPA_StatusMsgCustomSetting();
+        CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testClass_util.createTest_PWOTriggerPattern();
+        insert PWOTriggerPattern;
+        Test.startTest();
+            CPA_PWORF__c objPworf10 = CPA_testClass_util.createTest_other_PWORF();
+            insert objPworf10;
+            objPworf10.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
+            update objPworf10;                      
+            
+            CPA_project_work_order__c objPWO = CPA_testClass_util.createotherPWO(objPworf10);
+            insert objPWO;
+
+            objPWO.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SIGNED;
+            objPWO.TNF_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
+            update objPWO;
+            objPWO.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SentForTermination;
+            objPWO.TNF_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
+            update objPWO;
+            
+            // System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED!= objPworf10.pkl_Status__c);
+            // System.assert (CPA_ConstantsForContractingAppClasses.CANCELLED== objPWO.pkl_Status__c);
+        Test.stopTest();   
+    } 
 }

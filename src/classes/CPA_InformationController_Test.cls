@@ -12,7 +12,7 @@ History
 VERSION     AUTHOR     DATE            DETAIL Description
 1.0         Name       12/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
-@isTest(SeeAllData=true)
+@isTest
 public  class CPA_InformationController_Test {
 
     /*******************************************************************
@@ -22,8 +22,8 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void PWORFInformationController_Test() {
-        //CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        //insert saveStatus;
+        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
         CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
         insert objPworf;
 
@@ -66,8 +66,8 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  PWOInformationController_Test() {
-        //CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        //insert saveStatus;
+        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
         Test.startTest();
         
         CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
@@ -107,8 +107,8 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  LOIInformationController_Test() {
-       // CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-       // insert saveStatus;
+        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
         Test.startTest();
         
         CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
@@ -150,8 +150,8 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  CRInformationController_Test() {
-        //CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        //insert saveStatus;
+        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
         Test.startTest();
         
         CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
@@ -197,8 +197,8 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  CNFInformationController_Test() {
-       // CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        //insert saveStatus;
+        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
         Test.startTest();
         
         CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
@@ -235,8 +235,8 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  TNFInformationController_Test() {
-        //CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        //insert saveStatus;
+        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
         Test.startTest();
         
         CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
@@ -275,8 +275,8 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  HLERequestInformationController_Test(){
-        //CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        //insert saveStatus;
+        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
         Test.startTest();
         CPA_HLE_Request__c objHLE = new CPA_HLE_Request__c();
         objHLE.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
@@ -296,10 +296,10 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  BPEInformationController_Test(){
-        //CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
-        //insert saveStatus;
-        //CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
-        //insert acceptedStatus;
+        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        insert saveStatus;
+        CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
+        insert acceptedStatus;
         Test.startTest(); 
         CPA_HLE_Request__c objHLE1 = CPA_testClass_util.CreateBEP();  
         objHLE1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SAVED  ;   
@@ -321,10 +321,10 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  HLEInformationController_Test(){
-        /*CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
+        CPA_Status_Msg__c saveStatus = CPA_testClass_util.createTest_CPA_Status_Msg();
         insert saveStatus;
         CPA_Status_Msg__c acceptedStatus = CPA_testClass_util.createTest_CPA_Status_Msg1();
-        insert acceptedStatus;*/
+        insert acceptedStatus;
       Test.startTest(); 
         CPA_HLE_Request__c objHLE2 = CPA_testClass_util.CreateBEP();        
          objHLE2.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;

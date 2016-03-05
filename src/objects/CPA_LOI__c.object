@@ -220,6 +220,28 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>eml_Unilever_Budget_Approver_Email__c</fullName>
+        <description>Unilever Budget Approver Email</description>
+        <externalId>false</externalId>
+        <label>Unilever Budget Approver Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_Unilever_Content_Approver_Email__c</fullName>
+        <description>Unilever Content Approver Email</description>
+        <externalId>false</externalId>
+        <label>Unilever Content Approver Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>fml_PWORF_Clarity_ID__c</fullName>
         <externalId>false</externalId>
         <formula>lkp_PWORF__r.txt_Clarity_ID__c</formula>
@@ -248,32 +270,6 @@
         <referenceTo>CPA_PWORF__c</referenceTo>
         <relationshipLabel>LOI</relationshipLabel>
         <relationshipName>LOI</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>lkp_Unilever_budget_approver__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Name of Unilever person responsible for approving the project budget</description>
-        <externalId>false</externalId>
-        <label>Unilever Budget Approver*</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>LOI</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>lkp_Unilever_content_approver__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Name of Unilever person responsible for approving the project content</description>
-        <externalId>false</externalId>
-        <label>Unilever Content Approver*</label>
-        <referenceTo>User</referenceTo>
-        <relationshipName>LOI1</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -596,10 +592,34 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Unilever_Budget_Approver_Name__c</fullName>
+        <description>Unilever Budget Approver Name</description>
+        <externalId>false</externalId>
+        <label>Unilever Budget Approver Name*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_Unilever_Clarity_ID__c</fullName>
         <description>Clarity ID of the project</description>
         <externalId>false</externalId>
         <label>Unilever Clarity ID*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Unilever_Content_Approver_Name__c</fullName>
+        <description>Unilever Content Approver Name</description>
+        <externalId>false</externalId>
+        <label>Unilever Content Approver Name*</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1143,10 +1163,14 @@ var records1 = result.getArray(&apos;records&apos;);
 var permissionSetName = records1[0].PermissionSet.Name;
 
 if( permissionSetName == &quot;CPA_SMT&quot;){
+	
+	/*
 	if(p.pkl_Status__c == &apos;Saved&apos;){ 
 		alert(&quot;LOI should be at least Submitted for Cancellation&quot;); 
 	}
-	else if(p.pkl_Status__c != &apos;Cancelled&apos;){ 
+	else 
+	*/	
+	if(p.pkl_Status__c != &apos;Cancelled&apos;){ 
 		window.open(&apos;/apex/CPA_LOI_Cancel_Reason?id=&apos;+&quot;{!CPA_LOI__c.Id}&quot;,&quot;_self&quot;); 
 	} 
 	else if(p.pkl_Status__c == &apos;Cancelled&apos;){ 
@@ -1154,6 +1178,8 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	}else{
 		alert(&quot;Can not Cancel LOI&quot;); 
 	}
+	
+	
 	
 } 
 
@@ -1169,14 +1195,34 @@ alert(&quot;You are not authorized to perform this action.&quot;);
         <fullName>New_LOI</fullName>
         <availability>online</availability>
         <displayType>massActionButton</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <height>600</height>
-        <linkType>url</linkType>
+        <linkType>javascript</linkType>
         <masterLabel>New LOI</masterLabel>
-        <openType>noSidebar</openType>
+        <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>/apex/CPA_CreatePWO?id={!CPA_PWORF__c.Id}&amp;flag=Loi</url>
+        <url>soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+
+if(permissionSetName == &quot;CPA_ADM&quot;){
+
+	if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Withhold&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Returned&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Saved&quot;) 
+	{ 
+	alert(&quot;LOI cannot be created since associated PWORF  is in Saved/Withhold/Returned/Cancelled Status&quot;); 
+	}else{
+		result = sforce.connection.query(&quot;select Id,pkl_Status__c,lkp_PWORF__c  from CPA_LOI__c where lkp_PWORF__c = &apos;{!CPA_PWORF__c.Id}&apos; AND pkl_Status__c = &apos;Cancelled&apos;&quot;);
+		var loiRecords = result.getArray(&quot;records&quot;);
+
+		if(loiRecords.length &gt;0){
+			alert(&quot;LOI cannot be created since associated PWORF contains Cancelled LOI&quot;); 
+		}else{
+			window.open(&apos;/apex/CPA_CreatePWO?id={!CPA_PWORF__c.Id}&apos;+&quot;&amp;flag=Loi&quot;,&quot;_self&quot;); 
+		}	
+	}
+}else{
+	alert(&quot;LOI can be created by Accenture Demand Management Team only.&quot;);
+}</url>
     </webLinks>
     <webLinks>
         <fullName>Submit_For_Unilever</fullName>
@@ -1269,8 +1315,7 @@ try {
 	if( permissionSetName == &quot;CPA_SMT&quot;){ 
 		if(p.pkl_Status__c == &quot;Signed&quot;){ 
 			alert(&quot;Can not Return, as LOI is already Signed&quot;); 
-		} 
-		else if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
+		} else if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
 			alert(&quot;Can not Return, as LOI is already Cancelled&quot;); 
 		}else if(p.pkl_Status__c ==&quot;Sent for Signature&quot;){ 
 			window.open(&apos;/apex/CPA_LOI_Reason_for_return?id=&apos;+&quot;{!CPA_LOI__c.Id}&quot;,&quot;_self&quot;); 
@@ -1278,20 +1323,19 @@ try {
 			alert(&quot;Can not Return, as LOI is already Returned&quot;); 
 		}else if(p.pkl_Status__c == &quot;Accepted&quot;){ 
 			alert(&quot;The LOI should be sent for Signature before returning from DocuSign.&quot;); 
+		}else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot;){
+			alert(&quot;LOI is currently pending for approval.&quot;); 
 		}
 	}
-	else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){
+	else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c !=&quot;Saved&quot; &amp;&amp; p.pkl_Status__c != &quot;Returned&quot; )){
 		alert(&quot;LOI is currently pending with UL supplier  management team for approval.&quot;); 
 	}
-	else{ 
-	alert(&quot;You are not authorized to perform this action.&quot;); 
+	else if((permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Saved&quot; || p.pkl_Status__c == &quot;Returned&quot; )) {
+		alert(&quot;You are not authorized to perform this action.&quot;); 
 	} 
 
 }catch (e) { 
-alert( 
-&quot;An unexpected Error has Occurred. Error: \r\n&quot; + 
-e 
-); 
+	alert( &quot;An unexpected Error has Occurred. Error: \r\n&quot; + e ); 
 }</url>
     </webLinks>
     <webLinks>

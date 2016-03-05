@@ -552,19 +552,6 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Number_of_SLA1_Days__c</fullName>
-        <externalId>false</externalId>
-        <label>Number of SLA1 Days</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Out_of_Scope__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Please enter details of the main ideas and business reason(s) underpinning the Project Request Form and why it is required by Unilever. Please enter a description the overall purpose or function of the project.</inlineHelpText>
@@ -687,6 +674,18 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Related_CRs__c</fullName>
+        <description>This field is used to store Clarity ID and Internal ID of all PWORF and PWO related CRs.</description>
+        <externalId>false</externalId>
+        <label>Related CRs</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Role_or_System_Authorisation__c</fullName>
@@ -917,6 +916,26 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>chk_isReturned__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isReturned</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>chk_isWithhold__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isWithhold</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>dat_Auto_Accepted_Date__c</fullName>
         <externalId>false</externalId>
         <label>Auto Accepted Date</label>
@@ -1056,6 +1075,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>dt_Date_Of_Acceptance__c</fullName>
         <description>Date when the vendor accepted the PWORF manually</description>
         <externalId>false</externalId>
+        <inlineHelpText>Date on which the PWORF was accepted by the vendor.</inlineHelpText>
         <label>Date Of Acceptance</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1122,6 +1142,70 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>eml_Project_requestor_Email__c</fullName>
+        <description>Project requestor Email</description>
+        <externalId>false</externalId>
+        <label>Project requestor Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_Unilever_Budget_Approver_Email__c</fullName>
+        <description>Unilever Budget Approver Email*</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email of Unilever person responsible for approving the project budget.</inlineHelpText>
+        <label>Unilever Budget Approver Email*</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_Unilever_Content_Approver_Email__c</fullName>
+        <description>Unilever Content Approver Email*</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email of Unilever person responsible for approving the project content.</inlineHelpText>
+        <label>Unilever Content Approver Email*</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_Unilever_Finance_BP_Contact_Email__c</fullName>
+        <description>Unilever Finance BP/Contact Email*</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email of Finance Person Maybe Contacted To Confirm Budget And Cost Centre Details</inlineHelpText>
+        <label>Unilever Finance BP/Contact Email*</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_Unilever_Project_Manager_Email__c</fullName>
+        <description>Unilever Project Manager Eamil*</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email of project manager</inlineHelpText>
+        <label>Unilever Project Manager Email*</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>ftxt_Unilever_Project_Manager_Name__c</fullName>
         <description>This filed will be used for Email Template</description>
         <externalId>false</externalId>
@@ -1165,29 +1249,6 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>lkp_Project_requestor__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <description>Name of requestor</description>
-        <externalId>false</externalId>
-        <label>Project requestor</label>
-        <lookupFilter>
-            <active>true</active>
-            <filterItems>
-                <field>User.IsActive</field>
-                <operation>equals</operation>
-                <value>True</value>
-            </filterItems>
-            <isOptional>false</isOptional>
-        </lookupFilter>
-        <referenceTo>User</referenceTo>
-        <relationshipName>PWORF</relationshipName>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>lkp_Unilever_Finance_BP_Contact__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Finance Person Maybe Contacted To Confirm Budget And Cost Centre Details</description>
@@ -1216,7 +1277,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Name of Unilever person responsible for approving the project budget</description>
         <externalId>false</externalId>
-        <inlineHelpText>Name of Unilever person responsible for approving the project budget THIS PERSON WILL BE SENT THE PWO VIA DOCUSIGN TO APPROVE\SIGN OFF.</inlineHelpText>
+        <inlineHelpText>Name of Unilever person responsible for approving the project budget. (Could be more than one)</inlineHelpText>
         <label>Unilever Budget Approver*</label>
         <lookupFilter>
             <active>true</active>
@@ -1240,7 +1301,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Name of Unilever person responsible for approving the project content</description>
         <externalId>false</externalId>
-        <inlineHelpText>Name, email, contact No’s  THIS PERSON WILL BE SENT THE PWO VIA DOCUSIGN TO APPROVE\SIGN OFF</inlineHelpText>
+        <inlineHelpText>Name of Unilever person responsible for approving the project content. (Could be more than one)</inlineHelpText>
         <label>Unilever Content Approver*</label>
         <lookupFilter>
             <active>true</active>
@@ -1335,6 +1396,34 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>num_Number_of_SLA1_Days__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Number of SLA1 Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Number_of_SLA2_Days__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Number of SLA2 Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>num_PWORF_Age__c</fullName>
@@ -1897,7 +1986,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>txt_ICC_Number__c</fullName>
         <description>ICC Number to which the project belongs</description>
         <externalId>false</externalId>
-        <inlineHelpText>Please provide Internal Cost Center number.</inlineHelpText>
+        <inlineHelpText>Please provide Internal Cost Center number</inlineHelpText>
         <label>ICC Number*</label>
         <length>255</length>
         <required>false</required>
@@ -1960,6 +2049,19 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Project_requestor_Name__c</fullName>
+        <description>Project requestor Name</description>
+        <externalId>false</externalId>
+        <label>Project requestor Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_Resource_Location__c</fullName>
         <externalId>false</externalId>
         <label>Resource Location*</label>
@@ -2010,9 +2112,65 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Unilever_Budget_Approver_Name__c</fullName>
+        <description>Unilever Budget Approver Name*</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of Unilever person responsible for approving the project budget.</inlineHelpText>
+        <label>Unilever Budget Approver Name*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Unilever_Content_Approver_Name__c</fullName>
+        <description>Unilever Content Approver Name*</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of Unilever person responsible for approving the project content.</inlineHelpText>
+        <label>Unilever Content Approver Name*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Unilever_Finance_BP_Contact_Name__c</fullName>
+        <description>Unilever Finance BP/Contact Name*</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of Finance Person Maybe Contacted To Confirm Budget And Cost Centre Details</inlineHelpText>
+        <label>Unilever Finance BP/Contact Name*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Unilever_Project_Manager_Name__c</fullName>
+        <description>Unilever Project Manager Name*</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of project manager</inlineHelpText>
+        <label>Unilever Project Manager Name*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_otherProcessOfficeAreaE2E__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>This filed is manditory, if Other is selected in &apos;Process Office Area E2E&apos;.</inlineHelpText>
+        <inlineHelpText>This filed is manditory, if Other is selected in &apos;Process Office Area E2E&apos;</inlineHelpText>
         <label>Other-Process Office area E2E</label>
         <length>255</length>
         <required>false</required>
@@ -2154,7 +2312,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <fullName>txta_Project_Description__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Please Write a Para (Maximum xxx Words)…..</inlineHelpText>
+        <inlineHelpText>Please Write a Para (Maximum 255 Words)…..</inlineHelpText>
         <label>Project Description*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -3414,7 +3572,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <validationRules>
         <fullName>CPA_PWORF_Name_cant_be_changed</fullName>
         <active>true</active>
-        <errorConditionFormula>IF(AND (!ISNEW(),ISCHANGED(Name)),true,false )</errorConditionFormula>
+        <errorConditionFormula>IF(AND (!ISNEW(),OR((ISPICKVAL( pkl_Status__c ,&apos;Accepted&apos;)),(ISPICKVAL( pkl_Status__c ,&apos;Auto Accepted&apos;)),(ISPICKVAL( pkl_Status__c ,&apos;Answered&apos;)),(ISPICKVAL( pkl_Status__c ,&apos;Cancelled&apos;))),ISCHANGED(Name)),true,false)</errorConditionFormula>
         <errorMessage>PWORF Name cant be changed after it get Accepted</errorMessage>
     </validationRules>
     <validationRules>
@@ -3759,7 +3917,6 @@ Is required</description>
         <active>false</active>
         <description>Mandatory</description>
         <errorConditionFormula>AND(( ISBLANK(lkp_Project_requestor__c) ),OR(ISPICKVAL(pkl_Status__c , &apos;Submitted&apos;),ISPICKVAL(pkl_Status__c , &apos;Resubmitted&apos;)))</errorConditionFormula>
-        <errorDisplayField>lkp_Project_requestor__c</errorDisplayField>
         <errorMessage>Mandatory</errorMessage>
     </validationRules>
     <validationRules>

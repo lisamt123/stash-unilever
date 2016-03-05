@@ -52,12 +52,12 @@ public with sharing class CPA_HLERequest_TriggerUtil{
         }
         List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem where ProcessInstance.TargetObjectId IN:settempHLEreqID  ];
         for (Integer i = 0; i < newHLEReqList.size(); i++) {
-            if((oldHLEReqList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || oldHLEReqList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED) && (newHLEReqList[i].pkl_Status__c == 'Cancelled')){
+            if((oldHLEReqList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || oldHLEReqList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED) && (newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.CANCELLED)){
                 for(ProcessInstanceWorkitem piwi:piwiList){
                     if(piwi.ProcessInstance.TargetObjectId == newHLEReqList[i].id && !isSubmitted ){ 
                         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
                         req.setComments('Recalling and unlocking request.');
-                        req.setAction('Removed');
+                        req.setAction(CPA_ConstantsForContractingAppClasses.REMOVED);
                         req.setWorkitemId(piwi.Id);
                         Approval.ProcessResult result =  Approval.process(req);
                         isSubmitted = true;
@@ -77,7 +77,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
     { 
         List<CPA_HLE_Request__c> cancelsetId = new List<CPA_HLE_Request__c>();
         for (Integer i = 0; i < newHLEReqList.size(); i++) {
-            if((oldHLEReqList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || oldHLEReqList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED) && newHLEReqList[i].pkl_Status__c == 'Cancelled'){
+            if((oldHLEReqList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || oldHLEReqList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED) && newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.CANCELLED){
                 cancelsetId.add(newHLEReqList[i]);  
             }       
         }
@@ -102,7 +102,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
              if (oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED){ 
                  newHLEReqList[i].dat_Resubmitted_Date__c = system.today();
              }
-             if (oldHLEReqList[i].pkl_Status__c  <> 'Accepted' &&   newHLEReqList[i].pkl_Status__c == 'Accepted'){ 
+             if (oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.ACCEPTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.ACCEPTED){ 
                  newHLEReqList[i].Accepted_Date__c = system.today();
              }
             if ((oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED)|| (oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED)) {
@@ -136,7 +136,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
         // Put all objects for update that require a comment check in a map,
         // so we only have to use 1 SOQL query to do all checks
         
-        if (inv.pkl_Approval_Comment_Check__c == 'Required')
+        if (inv.pkl_Approval_Comment_Check__c == CPA_ConstantsForContractingAppClasses.REQUIRED)
         { 
           approvalStatements.put(inv.Id, inv);
           // Reset the field value to null, 

@@ -1,5 +1,25 @@
+/**********************************************************************
+Name: CPA_CancelController_Test()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: This test class provides test coverage of cancel functionality
+-------
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR     DATE            DETAIL Description
+1.0         Shreyas    29/01/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
 @isTest //(SeeAllData=true)
 public class CPA_CancelController_Test {
+    /*******************************************************************
+    Purpose: This method is used to create LOI cancel test data and coverage
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     static testmethod void LOICancelController_Test() {
         Test.startTest();
         
@@ -34,6 +54,12 @@ public class CPA_CancelController_Test {
      Test.stopTest();
     
     }
+    /*******************************************************************
+    Purpose: This method is used to create CR cancel test data and coverage
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     static testmethod void CRCancelController_Test() {
         Test.startTest();
         
@@ -77,7 +103,13 @@ public class CPA_CancelController_Test {
         Test.stopTest();
     
     }
- static testmethod void HLECancelController_Test() {
+    /*******************************************************************
+    Purpose: This method is used to create HLE cancel test data and coverage
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+     static testmethod void HLECancelController_Test() {
         Test.startTest();
         CPA_HLE_Request__c objHLE = CPA_testClass_util.CreateHLERequest(); 
         objHLE.pkl_Status__c= CPA_ConstantsForContractingAppClasses.CANCELLED;
@@ -106,7 +138,13 @@ public class CPA_CancelController_Test {
         Test.stopTest();
     
     }
- static testmethod void PWOcancelController_Test() {
+    /*******************************************************************
+    Purpose: This method is used to create PWO cancel test data and coverage
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+     static testmethod void PWOcancelController_Test() {
         
         Test.startTest();
         
@@ -134,6 +172,12 @@ public class CPA_CancelController_Test {
      
         Test.stopTest();
     }
+    /*******************************************************************
+    Purpose: This method is used to create CNF cancel test data and coverage
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     static testmethod void CNFcancelController_Test() {
         
         Test.startTest();
@@ -162,7 +206,13 @@ public class CPA_CancelController_Test {
      
         Test.stopTest();
     }
- static testmethod void TNFcancelController_Test() {
+    /*******************************************************************
+    Purpose: This method is used to create TNF cancel test data and coverage
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static testmethod void TNFcancelController_Test() {
         
         Test.startTest();
         
@@ -188,7 +238,13 @@ public class CPA_CancelController_Test {
         
         Test.stopTest();
     }
- static testmethod void PWOcancelledController_Test() {
+    /*******************************************************************
+    Purpose: This method is used to create PWO cancel test data and coverage
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static testmethod void PWOcancelledController_Test() {
         
         Test.startTest();
         
@@ -214,7 +270,13 @@ public class CPA_CancelController_Test {
      System.assert(CPA_ConstantsForContractingAppClasses.SIGNED == objPWO.pkl_Status__c);
         Test.stopTest();
     }
- static testmethod void PWORFcancelledController_Test() {
+    /*******************************************************************
+    Purpose: This method is used to create PWORF cancel test data and coverage
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static testmethod void PWORFcancelledController_Test() {
         
         Test.startTest();
         
@@ -237,6 +299,12 @@ public class CPA_CancelController_Test {
      System.assert('Auto Accepted'== objPworf5.pkl_Status__c);
         Test.stopTest();
     }
+    /*******************************************************************
+    Purpose: This method is used to create PWORF cancel test data and coverage
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     static testmethod void PWORFcancelController_Test() {
         
         Test.startTest();
@@ -252,6 +320,12 @@ public class CPA_CancelController_Test {
      System.assert('Saved'== objPworf2.pkl_Status__c);
         Test.stopTest();
     }
+    /*******************************************************************
+    Purpose: This method is used to create PWORF cancel test data and coverage
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     static testmethod void PWORFcancelController1_Test() {
         
         Test.startTest();
@@ -270,6 +344,12 @@ public class CPA_CancelController_Test {
       System.assert('Auto Accepted'== objPworf2.pkl_Status__c);
         Test.stopTest();
     }
+    /*******************************************************************
+    Purpose: This method is used to create PWORF cancel test data and coverage
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     static testmethod void PWORFcancelController2_Test() {
         
         Test.startTest();
@@ -291,7 +371,13 @@ public class CPA_CancelController_Test {
       System.assert('Auto Accepted'==objPworf2.pkl_Status__c);
         Test.stopTest();
     }
- static testmethod void PWO_RFTer_Controller_Test() {
+    /*******************************************************************
+    Purpose: This method is used to create PWO cancel test data and coverage
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    static testmethod void PWO_RFTer_Controller_Test() {
         
         Test.startTest();
         
