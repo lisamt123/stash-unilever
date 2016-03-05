@@ -377,7 +377,6 @@ global with sharing class CPA_ContractInformationController {
 
        if(!RequiredFieldMap.isEmpty()){ 
            // ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, 'Bellow field are mandatory to Submit the record'));
-                //mandatoryStringFlag = 'Below field(s) are mandatory to Submit the record';
                 mandatoryStringFlag = System.Label.CPA_Mandatory_Fields_Message;
          return false;
         }  

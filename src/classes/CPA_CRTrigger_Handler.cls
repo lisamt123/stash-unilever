@@ -36,7 +36,7 @@ public with sharing class CPA_CRTrigger_Handler
         System.debug('Entering CPA_CRTrigger_Handler.bulkAfter');  
         if(triggerShouldExecute){
             if(Trigger.isInsert || Trigger.isUpdate) {
-
+                System.debug('inside isInsert');
                 //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
                 //if(Trigger.isInsert){
                 //}
@@ -61,15 +61,15 @@ public with sharing class CPA_CRTrigger_Handler
     {
         System.debug('Entering CPA_CRTrigger_Handler.bulkAfter');  
 
-
-        if(triggerShouldExecute){ 
-            if(Trigger.isInsert || Trigger.isUpdate) {
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){ 
+        //    if(Trigger.isInsert || Trigger.isUpdate) {
 
                 //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
                 //if(Trigger.isUpdate) {
                 //}
-            }
-        }
+        //    }
+       // }
     }
         
     public void beforeInsert(SObject so)
@@ -117,13 +117,14 @@ public with sharing class CPA_CRTrigger_Handler
     }
     
     /*******************************************************************
-    Purpose: This method is present in interface, need to override
+    Purpose: This method is present in interface, hence need to override
     Parameters: SObject
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/ 
     public void afterDelete(SObject so)
     {
+        System.debug('This method is present in interface, hence need to override');
     }
     
     /**

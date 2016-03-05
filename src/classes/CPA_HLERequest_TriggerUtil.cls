@@ -43,6 +43,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
     Parameters: oldHLEReqList, newHLEReqList
     Returns: 
     Throws [Exceptions]: 
+    Modified - Added custom label to fix SonarQube issue (System.Label.CPA_Recall_and_Unlock)
     ********************************************************************/
     public static void recallApproval(List<CPA_HLE_Request__c> oldHLEReqList,List<CPA_HLE_Request__c> newHLEReqList)    
     { 
@@ -56,7 +57,6 @@ public with sharing class CPA_HLERequest_TriggerUtil{
                 for(ProcessInstanceWorkitem piwi:piwiList){
                     if(piwi.ProcessInstance.TargetObjectId == newHLEReqList[i].id && !isSubmitted ){ 
                         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
-                        //Added custom label to fix SonarQube issue
                         req.setComments(System.Label.CPA_Recall_and_Unlock);
                         req.setAction(CPA_ConstantsForContractingAppClasses.REMOVED);
                         req.setWorkitemId(piwi.Id);
@@ -126,6 +126,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
     Parameters: newHLEReqList
     Returns: 
     Throws [Exceptions]: 
+    Modified - Added custom label to fix SonarQube issue (System.Label.CPA_Operation_Cancelled)
     ********************************************************************/
     public static void requireApprovalComments(List<CPA_HLE_Request__c> newHLEReqList){
  
@@ -178,7 +179,6 @@ public with sharing class CPA_HLERequest_TriggerUtil{
           if ((pi.Steps[0].Comments == null || 
                pi.Steps[0].Comments.trim().length() == 0))
           {
-              //Added custom label to fix SonarQube issue
               approvalStatements.get(pi.TargetObjectId).addError(System.Label.CPA_Operation_Cancelled);
             //approvalStatements.get(pi.TargetObjectId).addError(
             // 'Operation Cancelled: Please provide a reason ' + 
@@ -193,10 +193,10 @@ public with sharing class CPA_HLERequest_TriggerUtil{
     Parameters: lstHleReq
     Returns: 
     Throws [Exceptions]: 
+    Modified - Added custom label to fix SonarQube issue - (System.Label.CPA_HLE_Request_cant_be_deleted)
     ********************************************************************/
     public static void DontDelete(list<CPA_HLE_Request__c> lstHleReq){
         for(CPA_HLE_Request__c obj :lstHleReq ){
-            //Added custom label to fix SonarQube issue
             obj.addError(System.Label.CPA_HLE_Request_cant_be_deleted);
         }
     }

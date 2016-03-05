@@ -34,8 +34,9 @@ public with sharing class CPA_attachment_Trigger_Handler
      */
     public void bulkBefore()
     {   
-        if(triggerShouldExecute){
-            if(Trigger.isInsert || Trigger.isUpdate) {
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){
+         //   if(Trigger.isInsert || Trigger.isUpdate) {
 
                 //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
                 //if(Trigger.isInsert){
@@ -50,28 +51,26 @@ public with sharing class CPA_attachment_Trigger_Handler
                 //} 
                 
 
-            } else if(Trigger.isDelete){
-               // CPA_LOI_TriggerUtil.DontDelete(trigger.old); 
-            }
+        //    } else if(Trigger.isDelete){
+               // CPA_LOI_TriggerUtil.DontDelete(trigger.old); - This was already commented
+         //   }
 
             
-        }
+        //}
         
     }
     
     public void bulkAfter()
     {
-        if(triggerShouldExecute){ 
-            if(Trigger.isInsert || Trigger.isUpdate) {
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){ 
+        //    if(Trigger.isInsert || Trigger.isUpdate) {
                 //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
                 //if(Trigger.isUpdate) {
                     
                 //}
-            }
-
-            
-
-        }
+         //   }
+        //}
         
     }
         
@@ -180,6 +179,7 @@ public with sharing class CPA_attachment_Trigger_Handler
     ********************************************************************/
     public void afterDelete(SObject so)
     {
+        System.debug('This method is present in interface, hence need to override here');
     }
     
     /**

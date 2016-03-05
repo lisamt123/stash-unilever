@@ -35,8 +35,9 @@ CPA_Trigger_Pattern__c objHLEPattern = CPA_Trigger_Pattern__c.getValues(CPA_Cons
     public void bulkBefore()
     {   
         System.debug('Entering CPA_HLE_RequestTrigger_Handler.bulkAfter');  
-        if(triggerShouldExecute){
-            if(Trigger.isInsert || Trigger.isUpdate) {
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+       // if(triggerShouldExecute){
+           // if(Trigger.isInsert || Trigger.isUpdate) {
 
                 //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
                 //if(Trigger.isInsert){
@@ -48,21 +49,22 @@ CPA_Trigger_Pattern__c objHLEPattern = CPA_Trigger_Pattern__c.getValues(CPA_Cons
                // } 
                 
 
-            } else if(Trigger.isDelete){
-               // CPA_LOI_TriggerUtil.DontDelete(trigger.old); 
-            }
-        }
+          //  } else if(Trigger.isDelete){
+               // CPA_LOI_TriggerUtil.DontDelete(trigger.old); - this was already commented
+           // }
+        //}
     }
     
     public void bulkAfter()
     {
-        if(triggerShouldExecute){ 
-            if(Trigger.isInsert || Trigger.isUpdate) {
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){ 
+         //   if(Trigger.isInsert || Trigger.isUpdate) {
                 //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
                 //if(Trigger.isUpdate) {
                 //}
-            }
-        }
+        //    }
+        //}
     }
         
     public void beforeInsert(SObject so)
@@ -111,6 +113,7 @@ CPA_Trigger_Pattern__c objHLEPattern = CPA_Trigger_Pattern__c.getValues(CPA_Cons
     ********************************************************************/
     public void afterDelete(SObject so)
     {
+        System.debug('This method is present in interface, hence need to override here');
     }
     
     /**

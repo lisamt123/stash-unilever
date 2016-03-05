@@ -38,7 +38,7 @@ public with sharing class CPA_PWOTrigger_Handler
     {   
         if(triggerShouldExecute){
             if(Trigger.isInsert || Trigger.isUpdate) {
-
+                System.debug('Inside isInsert, isUpdate');
                 //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
                 //if(Trigger.isInsert){
                     
@@ -63,17 +63,15 @@ public with sharing class CPA_PWOTrigger_Handler
     
     public void bulkAfter()
     {
-        if(triggerShouldExecute){ 
-            if(Trigger.isInsert || Trigger.isUpdate) {
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){ 
+        //    if(Trigger.isInsert || Trigger.isUpdate) {
                 //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
                 //if(Trigger.isUpdate) {
                     
                 //}
-            }
-
-            
-
-        }
+       //     }
+        //}
     }
         
     public void beforeInsert(SObject so)
@@ -137,6 +135,7 @@ public with sharing class CPA_PWOTrigger_Handler
     ********************************************************************/
     public void afterDelete(SObject so)
     {
+        System.debug('This method is present in interface, hence need to override here');
     }
     
     /**
