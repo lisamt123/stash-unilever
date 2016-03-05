@@ -91,19 +91,19 @@ global with sharing class CPA_ContractInformationController {
                 if(pwoRec.mpkl_Unilever_Innovation_Area__c == null){
                     RequiredFieldMap.put( 'Unilever Innovation Area' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
-                if(pwoRec.mpkl_Unilever_Innovation_Area__c != null && pwoRec.mpkl_Unilever_Innovation_Area__c.contains('Other') && pwoRec.txt_Other_Innovation_Area__c == null){
+                if(pwoRec.mpkl_Unilever_Innovation_Area__c != null && pwoRec.mpkl_Unilever_Innovation_Area__c.contains(CPA_ConstantsForContractingAppClasses.OTHER) && pwoRec.txt_Other_Innovation_Area__c == null){
                     RequiredFieldMap.put( 'Other Innovation Area' ,'It is mandatory if Unilever Innovation Area is OTHER' );
                 }
-                if(pwoRec.mpkl_Unilever_Innovation_Area__c != null && !pwoRec.mpkl_Unilever_Innovation_Area__c.contains('Other') && pwoRec.txt_Other_Innovation_Area__c != null){
+                if(pwoRec.mpkl_Unilever_Innovation_Area__c != null && !pwoRec.mpkl_Unilever_Innovation_Area__c.contains(CPA_ConstantsForContractingAppClasses.OTHER) && pwoRec.txt_Other_Innovation_Area__c != null){
                     RequiredFieldMap.put( 'Other Innovation Area' ,'"Other Innovation Area" should be only entered when "Unilever Innovation Area" is Other');
                 }
                 if(pwoRec.pkl_Billing_Details__c == null){
                     RequiredFieldMap.put( 'Legal Entity To Be Billed' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
-                if(pwoRec.pkl_Billing_Details__c != null && pwoRec.pkl_Billing_Details__c.contains('Other') && pwoRec.txt_Other_Billing_Details__c == null){
+                if(pwoRec.pkl_Billing_Details__c != null && pwoRec.pkl_Billing_Details__c.contains(CPA_ConstantsForContractingAppClasses.OTHER) && pwoRec.txt_Other_Billing_Details__c == null){
                     RequiredFieldMap.put( 'Other Billing Details' ,'It is mandatory if Billing Details is OTHER');
                 }
-                if(pwoRec.pkl_Billing_Details__c != null && !pwoRec.pkl_Billing_Details__c.contains('Other') && pwoRec.txt_Other_Billing_Details__c != null){
+                if(pwoRec.pkl_Billing_Details__c != null && !pwoRec.pkl_Billing_Details__c.contains(CPA_ConstantsForContractingAppClasses.OTHER) && pwoRec.txt_Other_Billing_Details__c != null){
                    RequiredFieldMap.put( 'Other Billing Details' ,'"Other Billing Details" should be only entered when "Legal Entity To Be Billed" is Other');
                 }
                 
@@ -163,10 +163,10 @@ global with sharing class CPA_ContractInformationController {
                 if(pwoRec.mpkl_Project_Phases__c == null){
                     RequiredFieldMap.put( 'Project Phases' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
-                if(pwoRec.mpkl_Project_Phases__c != null && pwoRec.mpkl_Project_Phases__c.contains('Other') && pwoRec.txt_Other_Project_Phases__c == null){
+                if(pwoRec.mpkl_Project_Phases__c != null && pwoRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.OTHER) && pwoRec.txt_Other_Project_Phases__c == null){
                     RequiredFieldMap.put( 'Other Project Phases' ,'It is mandatory if Project Phases is OTHER');
                 }
-                if(pwoRec.mpkl_Project_Phases__c != null &&  !pwoRec.mpkl_Project_Phases__c.contains('Other') && pwoRec.txt_Other_Project_Phases__c != null){
+                if(pwoRec.mpkl_Project_Phases__c != null &&  !pwoRec.mpkl_Project_Phases__c.contains(CPA_ConstantsForContractingAppClasses.OTHER) && pwoRec.txt_Other_Project_Phases__c != null){
                     RequiredFieldMap.put( 'Other Project Phases' ,'"Other Project Phases" should be only entered when "Project Phases" is Other');
                 }
                 if(pwoRec.pkl_Pricing_Model__c == null){
@@ -199,10 +199,10 @@ global with sharing class CPA_ContractInformationController {
                 if(pwoRec.Currency__c == null){
                     RequiredFieldMap.put( 'Currency' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
-                if(pwoRec.Currency__c != null && pwoRec.Currency__c == 'OTHER' && pwoRec.txt_Other_Currency__c == null){
+                if(pwoRec.Currency__c != null && pwoRec.Currency__c == CPA_ConstantsForContractingAppClasses.OTHER && pwoRec.txt_Other_Currency__c == null){
                     RequiredFieldMap.put( 'Other Currency' ,'It is mandatory if Currency is OTHER');
                 }
-                if(pwoRec.Currency__c != null && pwoRec.Currency__c != 'OTHER' && pwoRec.txt_Other_Currency__c != null){
+                if(pwoRec.Currency__c != null && pwoRec.Currency__c != CPA_ConstantsForContractingAppClasses.OTHER && pwoRec.txt_Other_Currency__c != null){
                     RequiredFieldMap.put( 'Other Currency' ,'"Other Currency" should be only entered when "Currency" is Other');
                 }
                 //if(pwoRec.txt_Unilever_Reference__c == null && pwoRec.fml_Clarity_ID__c == null && pwoRec.chk_isStandalone_PWO__c != true)
@@ -370,21 +370,22 @@ global with sharing class CPA_ContractInformationController {
                     RequiredFieldMap.put('TNF Unilever Contact Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
                 
-              //  if(pwoRec.txt_TNF_Other_Currency__c == null && pwoRec.pkl_TNF_Currency__c == 'Other') 
+              //  if(pwoRec.txt_TNF_Other_Currency__c == null && pwoRec.pkl_TNF_Currency__c == CPA_ConstantsForContractingAppClasses.OTHER) 
                  //   RequiredFieldMap.put('Other Currency',CPA_ConstantsForContractingAppClasses.MANDATORY);
             }
         }
 
        if(!RequiredFieldMap.isEmpty()){ 
            // ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, 'Bellow field are mandatory to Submit the record'));
-                mandatoryStringFlag = 'Below field(s) are mandatory to Submit the record';
+                //mandatoryStringFlag = 'Below field(s) are mandatory to Submit the record';
+                mandatoryStringFlag = System.Label.CPA_Mandatory_Fields_Message;
          return false;
         }  
         return true;    
     }
     
     /*******************************************************************
-    Purpose: This method check whether all fields are entered data
+    Purpose: This method check whether all fields data is entered. This is getting called from Workflow
     Parameters: objId
     Returns: 
     Throws [Exceptions]: 

@@ -12,7 +12,7 @@ History
 VERSION  AUTHOR                DATE              DETAIL                 Description
    1.0   Jayprakash Bharti     03/04/2015        INITIAL DEVELOPMENT           
 ***********************************************************************/
-global class CPA_ScheduleBatchProrfAgeUpdate implements Schedulable
+global with sharing class CPA_ScheduleBatchProrfAgeUpdate implements Schedulable
 {
     global void execute(SchedulableContext sc)
     {   

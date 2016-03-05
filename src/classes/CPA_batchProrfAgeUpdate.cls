@@ -12,7 +12,7 @@ History
 VERSION     AUTHOR               DATE            DETAIL Description
 1.0         Jayprakash Bharti    01/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
-global class CPA_batchProrfAgeUpdate implements Database.Batchable<sObject>
+global with sharing class CPA_batchProrfAgeUpdate implements Database.Batchable<sObject>
 {
     global Database.QueryLocator start(Database.BatchableContext BC)
     {

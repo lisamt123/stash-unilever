@@ -19,7 +19,7 @@ public with sharing class CPA_PWORFTrigger_Handler
 {   
     
     CPA_Trigger_Pattern__c objAttachmentPattern = CPA_Trigger_Pattern__c.getValues(CPA_ConstantsForContractingAppClasses.PWORFTRIGERNAME);
-	
+    
     boolean triggerShouldExecute = objAttachmentPattern.chk_Check_Run__c;
     // Constructor
     public CPA_PWORFTrigger_Handler()
@@ -34,79 +34,58 @@ public with sharing class CPA_PWORFTrigger_Handler
      */
     public void bulkBefore()
     {   
-        System.debug('Entering CPA_PWORFTrigger_Handler.bulkAfter');  
         if(triggerShouldExecute){
             if(Trigger.isInsert || Trigger.isUpdate) {
 
-
-                if(Trigger.isInsert){
-                    
-                }
-
-                if(Trigger.isUpdate) 
-                {
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isInsert){
+                //}
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) 
+                //{
                     // Fill the Map with Participants Chatter Group memeberships for the program chatter group
-                    
-                    
-                } 
+                //} 
                 
-
             } else if(Trigger.isDelete){
                // CPA_LOI_TriggerUtil.DontDelete(trigger.old); 
             }
-
-            
+           
         }
-        System.debug('Exiting CPA_PWORFTrigger_Handler.bulkAfter');   
- 
     }
     
     public void bulkAfter()
     {
-        System.debug('Entering CPA_PWORFTrigger_Handler.bulkAfter');  
-
-
         if(triggerShouldExecute){ 
             if(Trigger.isInsert || Trigger.isUpdate) {
-
-                if(Trigger.isUpdate) {
-                    
-                }
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) {
+                //}
             }
 
-            
-
         }
-        System.debug('Exiting CPA_PWORFTrigger_Handler.bulkAfter');   
     }
         
     public void beforeInsert(SObject so)
     {
-        System.debug('Entering CPA_PWORFTrigger_Handler.beforeInsert');
-        if(triggerShouldExecute){
-            
-           
-    
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){
 
-        }
-        System.debug('Exiting CPA_PWORFTrigger_Handler.beforeInsert');
+       // }
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_PWORFTrigger_Handler.beforeUpdate');
         if(triggerShouldExecute){ 
-			 //CPA_PWORF_TriggerUtil.recallApproval(trigger.new);//to perform recall Approval process on PWORF record 
-	        CPA_PWORF_TriggerUtil.updateSLAData(trigger.old,trigger.new);
-	        //CPA_PWORF_TriggerUtil.AssignProject_requestor(trigger.new); // to assign Project_requestor if not selected
-	        CPA_PWORF_TriggerUtil.requireApprovalComments(trigger.new);
-	        //CPA_PWORFAgeing.calcualteAgeing(trigger.new); // to set the Ageing Days.
-	        //Dinesh added below code [17/02] to generate internal PWO ID
-	        //later on move this method to CPA_PWORF_TriggerUtil class
-	        CPA_CalculationOfBusinessDaysForSLADates.generateInternalPWOID(trigger.old,trigger.new);
+             //CPA_PWORF_TriggerUtil.recallApproval(trigger.new);//to perform recall Approval process on PWORF record 
+            CPA_PWORF_TriggerUtil.updateSLAData(trigger.old,trigger.new);
+            //CPA_PWORF_TriggerUtil.AssignProject_requestor(trigger.new); // to assign Project_requestor if not selected
+            CPA_PWORF_TriggerUtil.requireApprovalComments(trigger.new);
+            //CPA_PWORFAgeing.calcualteAgeing(trigger.new); // to set the Ageing Days.
+            //Dinesh added below code [17/02] to generate internal PWO ID
+            //later on move this method to CPA_PWORF_TriggerUtil class
+            CPA_CalculationOfBusinessDaysForSLADates.generateInternalPWOID(trigger.old,trigger.new);
             
         }
-        System.debug('Exiting CPA_PWORFTrigger_Handler.beforeUpdate');
     }
     
 
@@ -117,32 +96,33 @@ public with sharing class CPA_PWORFTrigger_Handler
     
     public void afterInsert(SObject so) 
     {
-        System.debug('Entering CPA_PWORFTrigger_Handler.afterInsert');
-        if(triggerShouldExecute){
-			
-			
-		}
-        System.debug('Exiting CPA_PWORFTrigger_Handler.afterInsert');
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+       // if(triggerShouldExecute){
+            
+       // }
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_PWORFTrigger_Handler.afterUpdate');
         if(triggerShouldExecute){
-			
-	         CPA_PWORF_TriggerUtil.submitforApproval(trigger.old,trigger.new);
-	         CPA_PWORF_TriggerUtil.recallApproval(trigger.old,trigger.new);
+            
+             CPA_PWORF_TriggerUtil.submitforApproval(trigger.old,trigger.new);
+             CPA_PWORF_TriggerUtil.recallApproval(trigger.old,trigger.new);
             // 04/04/2016 :- Shreyas  : This method to unlock the PWORF from approval process.
             CPA_PWORF_TriggerUtil.unlockPworf(trigger.new);
-	         //CPA_PWORF_TriggerUtil.updateSLAData(trigger.new);
-	        // CPA_PWORFAgeing.calcualteAgeing(trigger.new); // to set the Ageing Days.
-	         //Dinesh added below line for search testing, please dont remove this line
-	         //9/2 - commented because, generating PWO ID either from LIO or PWO
-	         //CPA_CalculationOfBusinessDaysForSLADates.forSearch(trigger.old,trigger.new);
+             //CPA_PWORF_TriggerUtil.updateSLAData(trigger.new);
+            // CPA_PWORFAgeing.calcualteAgeing(trigger.new); // to set the Ageing Days.
+             //Dinesh added below line for search testing, please dont remove this line
+             //9/2 - commented because, generating PWO ID either from LIO or PWO
+             //CPA_CalculationOfBusinessDaysForSLADates.forSearch(trigger.old,trigger.new);
         }
-        System.debug('Exiting CPA_PWORFTrigger_Handler.afterUpdate');
     }
-    
+    /*******************************************************************
+    Purpose: This method is present in interface, hence need to override here
+    Parameters: SObject
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public void afterDelete(SObject so)
     {
     }

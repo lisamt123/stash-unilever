@@ -35,78 +35,53 @@ public with sharing class CPA_LOITrigger_Handler
      */
     public void bulkBefore()
     {   
-        System.debug('Entering CPA_LOITrigger_Handler.bulkAfter');  
         if(triggerShouldExecute){
             if(Trigger.isInsert || Trigger.isUpdate) {
 
-
-                if(Trigger.isInsert){
-                    
-                }
-
-                if(Trigger.isUpdate) 
-                {
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isInsert){
+                //}
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) 
+                //{
                     // Fill the Map with Participants Chatter Group memeberships for the program chatter group
-                    
-                    
-                } 
-                
+                //} 
 
             } else if(Trigger.isDelete){
                 CPA_LOI_TriggerUtil.DontDelete(trigger.old); 
             }
-
-            
         }
-        System.debug('Exiting CPA_LOITrigger_Handler.bulkAfter');   
- 
     }
     
     public void bulkAfter()
     {
-        System.debug('Entering CPA_LOITrigger_Handler.bulkAfter');  
-
-
         if(triggerShouldExecute){ 
             if(Trigger.isInsert || Trigger.isUpdate) {
-
-                if(Trigger.isUpdate) {
-                    
-                }
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) {
+                //}
             }
-
-            
-
         }
-        System.debug('Exiting CPA_LOITrigger_Handler.bulkAfter');   
     }
         
     public void beforeInsert(SObject so)
     {
-        System.debug('Entering CPA_LOITrigger_Handler.beforeInsert');
         if(triggerShouldExecute){
-            
             CPA_LOI_TriggerUtil.checkforCancel(trigger.new);
             CPA_LOI_TriggerUtil.checklistValueOfLOI(trigger.new);
             //added by dinesh to generate internal LOI ID and internal PWO ID
             CPA_LOI_TriggerUtil.internalLIOID(trigger.new);
             //Below line added by Dinesh [16/02]
             CPA_LOI_TriggerUtil.getInternalPWOIDFromPWORF(trigger.new);
-    
-
         }
-        System.debug('Exiting CPA_LOITrigger_Handler.beforeInsert');
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_LOITrigger_Handler.beforeUpdate');
         if(triggerShouldExecute){ 
-
             CPA_LOI_TriggerUtil.checklistValueOfLOI(trigger.new);
             CPA_LOI_TriggerUtil.requireApprovalComments(trigger.new);
         }
-        System.debug('Exiting CPA_LOITrigger_Handler.beforeUpdate');
     }
     
 
@@ -117,22 +92,24 @@ public with sharing class CPA_LOITrigger_Handler
     
     public void afterInsert(SObject so) 
     {
-        System.debug('Entering CPA_LOITrigger_Handler.afterInsert');
-        if(triggerShouldExecute){}
-        System.debug('Exiting CPA_LOITrigger_Handler.afterInsert');
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){}
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_LOITrigger_Handler.afterUpdate');
         if(triggerShouldExecute){
            listPWORFToUpdate =  CPA_LOI_TriggerUtil.submitforApproval(trigger.old,trigger.new);
             CPA_LOI_TriggerUtil.recallApproval(trigger.old,trigger.new);
            listLOICancel =  CPA_LOI_TriggerUtil.cancelAllLOI(trigger.new);
         }
-        System.debug('Exiting CPA_LOITrigger_Handler.afterUpdate');
     }
-    
+    /*******************************************************************
+    Purpose: This method is present in interface, need to override
+    Parameters: SObject
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public void afterDelete(SObject so)
     {
     }
@@ -145,15 +122,12 @@ public with sharing class CPA_LOITrigger_Handler
      */
     public void andFinally()
     {
-        System.debug('Entering CPA_LOITrigger_Handler.andFinally');
         if(listPWORFToUpdate!=null && listPWORFToUpdate.size()>0){    
-            CPA_Utilities.saveDatabase('update', listPWORFToUpdate, false);
+            CPA_Utilities.saveDatabase(CPA_ConstantsForContractingAppClasses.UPDATECONSTANT, listPWORFToUpdate, false);
         }
         if(listLOICancel!=null && listLOICancel.size()>0){
-            CPA_Utilities.saveDatabase('update', listLOICancel, false); 
+            CPA_Utilities.saveDatabase(CPA_ConstantsForContractingAppClasses.UPDATECONSTANT, listLOICancel, false); 
         }
-            
-        System.debug('Exiting CPA_LOITrigger_Handler.andFinally');
     }
 
 }

@@ -79,8 +79,10 @@ public with sharing class CPA_PWORFAgeing {
     Throws [Exceptions]: 
     ********************************************************************/
     public static void calcualteAgeing(List<CPA_PWORF__c> LstPWORF){
-        CPA_PWORF_Ageing__c tempPA ;
-        CPA_PWORF_Ageing__c objPA;
+        //Initialized below two variables to fix SonarQube issue
+        //Variable not assigned: Found 'UR'-anomaly for variable 'objpa' (lines '81'-'132')
+        CPA_PWORF_Ageing__c tempPA = null;
+        CPA_PWORF_Ageing__c objPA = null;
         Integer nowPworfAge = 0;
         //CPA_PWORF__c pworfRec;
         List<CPA_PWORF__c> newLstPWORF = new List<CPA_PWORF__c>();

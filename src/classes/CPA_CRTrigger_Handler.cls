@@ -37,26 +37,23 @@ public with sharing class CPA_CRTrigger_Handler
         if(triggerShouldExecute){
             if(Trigger.isInsert || Trigger.isUpdate) {
 
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isInsert){
+                //}
 
-                if(Trigger.isInsert){
-                    
-                }
-
-                if(Trigger.isUpdate) 
-                {
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) 
+                //{
                     // Fill the Map with Participants Chatter Group memeberships for the program chatter group
-                    
-                    
-                } 
+               // } 
                 
 
             } else if(Trigger.isDelete){
                 CPA_LOI_TriggerUtil.DontDelete(trigger.old); 
             }
-
             
         }
-        System.debug('Exiting CPA_CRTrigger_Handler.bulkAfter');   
+           
  
     }
     
@@ -68,15 +65,11 @@ public with sharing class CPA_CRTrigger_Handler
         if(triggerShouldExecute){ 
             if(Trigger.isInsert || Trigger.isUpdate) {
 
-                if(Trigger.isUpdate) {
-                    
-                }
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) {
+                //}
             }
-
-            
-
         }
-        System.debug('Exiting CPA_CRTrigger_Handler.bulkAfter');   
     }
         
     public void beforeInsert(SObject so)
@@ -85,55 +78,50 @@ public with sharing class CPA_CRTrigger_Handler
         if(triggerShouldExecute){
             
             CPA_CR_TriggerUtil.CreateCR(trigger.new);
-			CPA_CR_TriggerUtil.checklistValueOfCR(trigger.new);
-			CPA_CR_TriggerUtil.standaloneCR(trigger.new);
-         
-    
-
+            CPA_CR_TriggerUtil.checklistValueOfCR(trigger.new);
+            CPA_CR_TriggerUtil.standaloneCR(trigger.new);
         }
-        System.debug('Exiting CPA_CRTrigger_Handler.beforeInsert');
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_CRTrigger_Handler.beforeUpdate');
         if(triggerShouldExecute){ 
 
-			CPA_CR_TriggerUtil.previouStatusValue(trigger.old,trigger.new);
-			CPA_CR_TriggerUtil.checklistValueOfCR(trigger.new);
-			CPA_CR_TriggerUtil.requireApprovalComments(trigger.new);
-			//  CPA_CR_TriggerUtil.unlockrecord(trigger.old,trigger.new);
-			CPA_CR_TriggerUtil.calculateDelta(trigger.old,trigger.new);
+            CPA_CR_TriggerUtil.previouStatusValue(trigger.old,trigger.new);
+            CPA_CR_TriggerUtil.checklistValueOfCR(trigger.new);
+            CPA_CR_TriggerUtil.requireApprovalComments(trigger.new);
+            //  CPA_CR_TriggerUtil.unlockrecord(trigger.old,trigger.new);
+            CPA_CR_TriggerUtil.calculateDelta(trigger.old,trigger.new);
         }
-        System.debug('Exiting CPA_CRTrigger_Handler.beforeUpdate');
     }
     
 
     public void beforeDelete(SObject so)
     {   
         CPA_CR_TriggerUtil.DOntDeleteCR(trigger.old);
-  
     }
     
     public void afterInsert(SObject so) 
     {
-        System.debug('Entering CPA_CRTrigger_Handler.afterInsert');
         if(triggerShouldExecute){
-			CPA_CR_TriggerUtil.newCR(trigger.new);
-		}
-        System.debug('Exiting CPA_CRTrigger_Handler.afterInsert');
+            CPA_CR_TriggerUtil.newCR(trigger.new);
+        }
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_CRTrigger_Handler.afterUpdate');
         if(triggerShouldExecute){
            CPA_CR_TriggerUtil.submitforApproval(trigger.old,trigger.new);
            CPA_CR_TriggerUtil.recallApproval(trigger.old,trigger.new);
         }
-        System.debug('Exiting CPA_CRTrigger_Handler.afterUpdate');
     }
     
+    /*******************************************************************
+    Purpose: This method is present in interface, need to override
+    Parameters: SObject
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/ 
     public void afterDelete(SObject so)
     {
     }

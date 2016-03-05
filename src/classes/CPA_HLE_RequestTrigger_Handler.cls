@@ -19,7 +19,7 @@ public with sharing class CPA_HLE_RequestTrigger_Handler
 {   
     
 CPA_Trigger_Pattern__c objHLEPattern = CPA_Trigger_Pattern__c.getValues(CPA_ConstantsForContractingAppClasses.HLEREQUESTTRIGERNAME);
-	
+    
     boolean triggerShouldExecute = objHLEPattern.chk_Check_Run__c;
     // Constructor
     public CPA_HLE_RequestTrigger_Handler()
@@ -38,70 +38,48 @@ CPA_Trigger_Pattern__c objHLEPattern = CPA_Trigger_Pattern__c.getValues(CPA_Cons
         if(triggerShouldExecute){
             if(Trigger.isInsert || Trigger.isUpdate) {
 
-
-                if(Trigger.isInsert){
-                    
-                }
-
-                if(Trigger.isUpdate) 
-                {
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isInsert){
+                //}
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) 
+               // {
                     // Fill the Map with Participants Chatter Group memeberships for the program chatter group
-                    
-                    
-                } 
+               // } 
                 
 
             } else if(Trigger.isDelete){
                // CPA_LOI_TriggerUtil.DontDelete(trigger.old); 
             }
-
-            
         }
-        System.debug('Exiting CPA_HLE_RequestTrigger_Handler.bulkAfter');   
- 
     }
     
     public void bulkAfter()
     {
-        System.debug('Entering CPA_HLE_RequestTrigger_Handler.bulkAfter');  
-
-
         if(triggerShouldExecute){ 
             if(Trigger.isInsert || Trigger.isUpdate) {
-
-                if(Trigger.isUpdate) {
-                    
-                }
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) {
+                //}
             }
-
-            
-
         }
-        System.debug('Exiting CPA_HLE_RequestTrigger_Handler.bulkAfter');   
     }
         
     public void beforeInsert(SObject so)
     {
-        System.debug('Entering CPA_HLE_RequestTrigger_Handler.beforeInsert');
-        if(triggerShouldExecute){
-            
-           
-    
-
-        }
-        System.debug('Exiting CPA_HLE_RequestTrigger_Handler.beforeInsert');
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){
+        //}
+        
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_HLE_RequestTrigger_Handler.beforeUpdate');
         if(triggerShouldExecute){ 
-		 CPA_HLERequest_TriggerUtil.unlockrecord(trigger.old,trigger.new);//to perform recall Approval process
+         CPA_HLERequest_TriggerUtil.unlockrecord(trigger.old,trigger.new);//to perform recall Approval process
          CPA_HLERequest_TriggerUtil.sLAValues(trigger.old,trigger.new);
          CPA_HLERequest_TriggerUtil.requireApprovalComments(trigger.new);
-            
         }
-        System.debug('Exiting CPA_HLE_RequestTrigger_Handler.beforeUpdate');
     }
     
 
@@ -112,24 +90,25 @@ CPA_Trigger_Pattern__c objHLEPattern = CPA_Trigger_Pattern__c.getValues(CPA_Cons
     
     public void afterInsert(SObject so) 
     {
-        System.debug('Entering CPA_HLE_RequestTrigger_Handler.afterInsert');
-        if(triggerShouldExecute){
-			
-			
-		}
-        System.debug('Exiting CPA_HLE_RequestTrigger_Handler.afterInsert');
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){
+        //}
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_HLE_RequestTrigger_Handler.afterUpdate');
         if(triggerShouldExecute){
-			CPA_HLERequest_TriggerUtil.submitforApproval(trigger.old,trigger.new);
-			CPA_HLERequest_TriggerUtil.recallApproval(trigger.old,trigger.new);
+            CPA_HLERequest_TriggerUtil.submitforApproval(trigger.old,trigger.new);
+            CPA_HLERequest_TriggerUtil.recallApproval(trigger.old,trigger.new);
         }
-        System.debug('Exiting CPA_HLE_RequestTrigger_Handler.afterUpdate');
     }
     
+    /*******************************************************************
+    Purpose: This method is present in interface, hence need to override here
+    Parameters: SObject
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public void afterDelete(SObject so)
     {
     }

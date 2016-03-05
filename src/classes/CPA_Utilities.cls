@@ -9,68 +9,72 @@ Purpose:  This class handles Saves and Deletes functionality.
 ======================================================
 History                                                            
 -------                                                            
-VERSION  AUTHOR            			 DATE              DETAIL                 Description
+VERSION  AUTHOR                      DATE              DETAIL                 Description
    1.0   Shreyas Mangalvedhekar      03/04/2015        INITIAL DEVELOPMENT           
 ***********************************************************************/
 
-public without sharing class CPA_Utilities {
-	/*******************************************************************
-	   Purpose:  	Commit saves to the database                                                      
-	********************************************************************/
-  	public static void saveDatabase (String sAction, SObject[] sObjectstoSave, Boolean bDMLOption){
-    	System.debug('Entering CPA_Utilities.saveDatabase Size:' + sObjectstoSave.size());
-    	Database.SaveResult[] srObjectstoSaves = new Database.SaveResult[]{};
+//public without sharing class CPA_Utilities {
+public with sharing class CPA_Utilities {
+    
+    /*******************************************************************
+    Purpose: This method is used to Commit saves to the database
+    Parameters: sAction, sObjectstoSave, bDMLOption
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static void saveDatabase (String sAction, SObject[] sObjectstoSave, Boolean bDMLOption){
+        Database.SaveResult[] srObjectstoSaves = new Database.SaveResult[]{};
 
-    	if (sObjectstoSave.size() > 0 ){
-    		System.debug('#### Object Type: ' + sObjectstoSave[0].getSObjectType()  +' : ' + sObjectstoSave.size() + 'Records to ' + sAction);
-	    	System.debug('#### sObjectstoSave: ' + sObjectstoSave);
-	    	if (sAction == 'insert'){
-	    		srObjectstoSaves = Database.insert(sObjectstoSave,bDMLOption);
-	    	}else if(sAction == 'update'){
-	    		srObjectstoSaves = Database.update(sObjectstoSave,bDMLOption);
-	    	}
+        if (sObjectstoSave.size() > 0 ){
+            if (sAction == CPA_ConstantsForContractingAppClasses.INSERTCONSTANT){
+                srObjectstoSaves = Database.insert(sObjectstoSave,bDMLOption);
+            }else if(sAction == CPA_ConstantsForContractingAppClasses.UPDATECONSTANT){
+                srObjectstoSaves = Database.update(sObjectstoSave,bDMLOption);
+            }
 
-			for (Database.SaveResult srObject : srObjectstoSaves){
-				if(srObject.isSuccess() == false){
-					for(Database.Error err : srObject.getErrors()) {	        	 
-			        		System.debug('The following error has occurred.');                    
-			        		System.debug(err.getStatusCode() + ': ' + err.getMessage());
-			       			System.debug('Particpant Share fields that affected this error: ' + err.getFields());
-			    			sObjectstoSave[0].addError(err.getStatusCode() + ': ' + err.getMessage());
-			       	}
-				}
-			}
-		}else{
-			System.debug('#### No Records to insert/update.');
-		}
+            for (Database.SaveResult srObject : srObjectstoSaves){
+                //Commented below line to fix SonarQube issue - Avoid unnecessary comparisons in boolean expressions
+                //if(srObject.isSuccess() == false){
+                if(!srObject.isSuccess()){
+                    for(Database.Error err : srObject.getErrors()) {                 
+                            System.debug('The following error has occurred.');                    
+                            System.debug(err.getStatusCode() + ': ' + err.getMessage());
+                            System.debug('Particpant Share fields that affected this error: ' + err.getFields());
+                            sObjectstoSave[0].addError(err.getStatusCode() + ': ' + err.getMessage());
+                    }
+                }
+            }
+        }else{
+            System.debug('#### No Records to insert/update.');
+        }
+    }
 
-		System.debug('Exiting CPA_Utilities.saveDatabase');
-
-  	}
-
-	/*******************************************************************
-	   Purpose:  	Commit deletes to the database                                                      
-	********************************************************************/ 
+    /*******************************************************************
+    Purpose: This method is used to Commit deletes to the database
+    Parameters: sObjectstoDelete, bDMLOption
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/ 
     public static void deleteDatabase (SObject[] sObjectstoDelete, Boolean bDMLOption){
-		System.debug('Entering CPA_Utilities.deleteDatabase Size:' + sObjectstoDelete.size());
-    	
-    	if (sObjectstoDelete.size() > 0 ){
+        
+        if (sObjectstoDelete.size() > 0 ){
 
-	    	Database.DeleteResult[] drObjectstoDeletes= Database.delete(sObjectstoDelete, bDMLOption);
-			
-			for (Database.DeleteResult drObjectstoDelete : drObjectstoDeletes){
-				if(drObjectstoDelete.isSuccess() == false){
-					for(Database.Error err : drObjectstoDelete.getErrors()) {	        	 
-			        		System.debug('The following error has occurred.');                    
-			        		System.debug(err.getStatusCode() + ': ' + err.getMessage());
-			       			System.debug('Particpant Share fields that affected this error: ' + err.getFields());
-			    			sObjectstoDelete[0].addError(err.getStatusCode() + ': ' + err.getMessage());
-			       	}
-				}
-			}
-		}else{
-			System.debug('#### No Records to delete.');
-		}
-		System.debug('Exiting CPA_Utilities.deleteDatabase' );
+            Database.DeleteResult[] drObjectstoDeletes= Database.delete(sObjectstoDelete, bDMLOption);
+            
+            for (Database.DeleteResult drObjectstoDelete : drObjectstoDeletes){
+                //Commented below line to fix SonarQube issue - Avoid unnecessary comparisons in boolean expressions
+                //if(drObjectstoDelete.isSuccess() == false){
+                if(!drObjectstoDelete.isSuccess()){
+                    for(Database.Error err : drObjectstoDelete.getErrors()) {                
+                            System.debug('The following error has occurred.');                    
+                            System.debug(err.getStatusCode() + ': ' + err.getMessage());
+                            System.debug('Particpant Share fields that affected this error: ' + err.getFields());
+                            sObjectstoDelete[0].addError(err.getStatusCode() + ': ' + err.getMessage());
+                    }
+                }
+            }
+        }else{
+            System.debug('#### No Records to delete.');
+        }
     }
 }

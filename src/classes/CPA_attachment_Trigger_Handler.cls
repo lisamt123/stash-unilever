@@ -19,7 +19,7 @@ public with sharing class CPA_attachment_Trigger_Handler
 {   
     
    CPA_Trigger_Pattern__c objAttachmentPattern = CPA_Trigger_Pattern__c.getValues(CPA_ConstantsForContractingAppClasses.ATTACHMENTTRIGERNAME);
-	
+    
     boolean triggerShouldExecute = objAttachmentPattern.chk_Check_Run__c;
     // Constructor
     public CPA_attachment_Trigger_Handler()
@@ -34,21 +34,20 @@ public with sharing class CPA_attachment_Trigger_Handler
      */
     public void bulkBefore()
     {   
-        System.debug('Entering CPA_attachment_Trigger_Handler.bulkAfter');  
         if(triggerShouldExecute){
             if(Trigger.isInsert || Trigger.isUpdate) {
 
-
-                if(Trigger.isInsert){
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isInsert){
                     
-                }
-
-                if(Trigger.isUpdate) 
-                {
+                //}
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) 
+                //{
                     // Fill the Map with Participants Chatter Group memeberships for the program chatter group
                     
                     
-                } 
+                //} 
                 
 
             } else if(Trigger.isDelete){
@@ -57,134 +56,128 @@ public with sharing class CPA_attachment_Trigger_Handler
 
             
         }
-        System.debug('Exiting CPA_attachment_Trigger_Handler.bulkAfter');   
- 
+        
     }
     
     public void bulkAfter()
     {
-        System.debug('Entering CPA_attachment_Trigger_Handler.bulkAfter');  
-
-
         if(triggerShouldExecute){ 
             if(Trigger.isInsert || Trigger.isUpdate) {
-
-                if(Trigger.isUpdate) {
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) {
                     
-                }
+                //}
             }
 
             
 
         }
-        System.debug('Exiting CPA_attachment_Trigger_Handler.bulkAfter');   
+        
     }
         
     public void beforeInsert(SObject so)
     {
-        System.debug('Entering CPA_attachment_Trigger_Handler.beforeInsert');
-        if(triggerShouldExecute){
-            
-           
-    
-
-        }
-        System.debug('Exiting CPA_attachment_Trigger_Handler.beforeInsert');
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){
+        //}
+        
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_attachment_Trigger_Handler.beforeUpdate');
-        if(triggerShouldExecute){ 
-		
-            
-        }
-        System.debug('Exiting CPA_attachment_Trigger_Handler.beforeUpdate');
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){ 
+        //}
+        
     }
     
 
     public void beforeDelete(SObject so)
     {   
-		List<Attachment> lstAttachmentRead = new List<Attachment>();
-		List<Attachment> lstAttachmentRead1 = new List<Attachment>();
-		List<Attachment> lstAttachmentLOI = new List<Attachment>();
-		for(sobject objAtt : trigger.old){
+        List<Attachment> lstAttachmentRead = new List<Attachment>();
+        List<Attachment> lstAttachmentRead1 = new List<Attachment>();
+        List<Attachment> lstAttachmentLOI = new List<Attachment>();
+        for(sobject objAtt : trigger.old){
             Attachment objAttachemt = (Attachment)objAtt;
-			string srtTemp = objAttachemt.ParentId;
-			if(objAttachemt.Name.startswith('Commercial') &&(srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger) || srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)) ){
-					lstAttachmentRead.add(objAttachemt);
-			}
-		  if(objAttachemt.ContentType.contains('pdf')  &&(srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger) || srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)) ){
-				 lstAttachmentRead1.add(objAttachemt);
-			 }
-			 if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_LOI) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
-				 
-				 lstAttachmentLOI.add(objAttachemt);
-			 }
-			
-		}
-		CPA_AttachmentUtil.deleteCommericalData(lstAttachmentRead);
-		CPA_AttachmentUtil.deleteContract(lstAttachmentRead1);
-		CPA_AttachmentUtil.DeleteLOI(lstAttachmentLOI);
+            string srtTemp = objAttachemt.ParentId;
+            if(objAttachemt.Name.startswith('Commercial') &&(srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger) || srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)) ){
+                    lstAttachmentRead.add(objAttachemt);
+            }
+          if(objAttachemt.ContentType.contains('pdf')  &&(srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger) || srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)) ){
+                 lstAttachmentRead1.add(objAttachemt);
+             }
+             if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_LOI) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
+                 
+                 lstAttachmentLOI.add(objAttachemt);
+             }
+            
+        }
+        CPA_AttachmentUtil.deleteCommericalData(lstAttachmentRead);
+        CPA_AttachmentUtil.deleteContract(lstAttachmentRead1);
+        CPA_AttachmentUtil.DeleteLOI(lstAttachmentLOI);
     }
     
     public void afterInsert(SObject so) 
     {
-        System.debug('Entering CPA_attachment_Trigger_Handler.afterInsert');
         if(triggerShouldExecute){
-			List<Attachment> lstAttachment = new List<Attachment>();
-	        List<Attachment> lstAttachmentCR = new List<Attachment>();
-	        List<Attachment> lstAttachmentRead = new List<Attachment>();
-	        List<Attachment> lstAttachmentLOI = new List<Attachment>();
-	        set<Id> setParentId = new set<Id>();
-	        
-	        for(sobject objAtt : trigger.new){
+            List<Attachment> lstAttachment = new List<Attachment>();
+            List<Attachment> lstAttachmentCR = new List<Attachment>();
+            List<Attachment> lstAttachmentRead = new List<Attachment>();
+            List<Attachment> lstAttachmentLOI = new List<Attachment>();
+            set<Id> setParentId = new set<Id>();
+            
+            for(sobject objAtt : trigger.new){
                 Attachment objAttachemt = (Attachment)objAtt;
-	            string srtTemp = objAttachemt.ParentId;
-	            if((srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger) || srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)) ){
-	                    lstAttachmentRead.add(objAttachemt);
-	                    if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger))
-	                        lstAttachment.add(objAttachemt);
-	                    if (srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR))
-	                        lstAttachmentCR.add(objAttachemt);
-	                   
-	                    setParentId.add(objAttachemt.ParentId);
-	            }
-	            system.debug(' objAttachemt.Name-->'+ objAttachemt.Name);
-	            system.debug(' objAttachemt.ContentType-->'+objAttachemt.ContentType);
-	             if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_LOI) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
-	                        lstAttachmentLOI.add(objAttachemt);
-	            }
-	            
-	        }
-	        if(lstAttachmentRead!=null && lstAttachmentRead.size()>0){
-	            CPA_AttachmentUtil.ReadFile(lstAttachmentRead[0]);
-	        }
-	        if(lstAttachment!=null && lstAttachment.size()>0){
-	           CPA_AttachmentUtil.updateCPAPWO(lstAttachment,setParentId);
-	           system.debug('Update for PWO-->'+ lstAttachment);
-	        }
-	        if(lstAttachmentCR!=null && lstAttachmentCR.size()>0){
-	        system.debug('Update for CR--> '+lstAttachmentCR);
-	          CPA_AttachmentUtil.updateCPACR(lstAttachmentCR,setParentId);
-	        }
-	        if(lstAttachmentLOI != null && lstAttachmentLOI.size()>0){
-	            CPA_AttachmentUtil.updateLOI(lstAttachmentLOI);
-	        }
-			
-		}
-        System.debug('Exiting CPA_attachment_Trigger_Handler.afterInsert');
+                string srtTemp = objAttachemt.ParentId;
+                if((srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger) || srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)) ){
+                        lstAttachmentRead.add(objAttachemt);
+                        if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger))
+                            lstAttachment.add(objAttachemt);
+                        if (srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR))
+                            lstAttachmentCR.add(objAttachemt);
+                       
+                        setParentId.add(objAttachemt.ParentId);
+                }
+                system.debug(' objAttachemt.Name-->'+ objAttachemt.Name);
+                system.debug(' objAttachemt.ContentType-->'+objAttachemt.ContentType);
+                 if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_LOI) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
+                            lstAttachmentLOI.add(objAttachemt);
+                }
+                
+            }
+            if(lstAttachmentRead!=null && lstAttachmentRead.size()>0){
+                CPA_AttachmentUtil.ReadFile(lstAttachmentRead[0]);
+            }
+            if(lstAttachment!=null && lstAttachment.size()>0){
+               CPA_AttachmentUtil.updateCPAPWO(lstAttachment,setParentId);
+               system.debug('Update for PWO-->'+ lstAttachment);
+            }
+            if(lstAttachmentCR!=null && lstAttachmentCR.size()>0){
+            system.debug('Update for CR--> '+lstAttachmentCR);
+              CPA_AttachmentUtil.updateCPACR(lstAttachmentCR,setParentId);
+            }
+            if(lstAttachmentLOI != null && lstAttachmentLOI.size()>0){
+                CPA_AttachmentUtil.updateLOI(lstAttachmentLOI);
+            }
+            
+        }
+        
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_attachment_Trigger_Handler.afterUpdate');
-        if(triggerShouldExecute){
-			
-        }
-        System.debug('Exiting CPA_attachment_Trigger_Handler.afterUpdate');
+        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+        //if(triggerShouldExecute){
+            
+        //}
+        
     }
-    
+    /*******************************************************************
+    Purpose: This method is present in interface, hence need to override here
+    Parameters: SObject
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public void afterDelete(SObject so)
     {
     }

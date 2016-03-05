@@ -12,8 +12,10 @@ History
 VERSION     AUTHOR           DATE            DETAIL Description
 1.0         Dinesh Girase    29/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
-public class CPA_ConstantsForContractingAppClasses {
+public class CPA_ConstantsForContractingAppClasses{
 
+    public static final String INSERTCONSTANT= 'insert';
+    public static final String UPDATECONSTANT= 'update';
     public static final String REQUIRED= 'Required';
     public static final String LOICUSTOMSETTING = 'CPA_LOIMandatoryMessages__c';
     public static final String MANDATORY = 'Mandatory';

@@ -56,7 +56,8 @@ public with sharing class CPA_HLERequest_TriggerUtil{
                 for(ProcessInstanceWorkitem piwi:piwiList){
                     if(piwi.ProcessInstance.TargetObjectId == newHLEReqList[i].id && !isSubmitted ){ 
                         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
-                        req.setComments('Recalling and unlocking request.');
+                        //Added custom label to fix SonarQube issue
+                        req.setComments(System.Label.CPA_Recall_and_Unlock);
                         req.setAction(CPA_ConstantsForContractingAppClasses.REMOVED);
                         req.setWorkitemId(piwi.Id);
                         Approval.ProcessResult result =  Approval.process(req);
@@ -177,9 +178,11 @@ public with sharing class CPA_HLERequest_TriggerUtil{
           if ((pi.Steps[0].Comments == null || 
                pi.Steps[0].Comments.trim().length() == 0))
           {
-            approvalStatements.get(pi.TargetObjectId).addError(
-             'Operation Cancelled: Please provide a reason ' + 
-             'for your approval / rejection / Recall!');
+              //Added custom label to fix SonarQube issue
+              approvalStatements.get(pi.TargetObjectId).addError(System.Label.CPA_Operation_Cancelled);
+            //approvalStatements.get(pi.TargetObjectId).addError(
+            // 'Operation Cancelled: Please provide a reason ' + 
+            // 'for your approval / rejection / Recall!');
           }
         }                                       
       }
@@ -193,7 +196,8 @@ public with sharing class CPA_HLERequest_TriggerUtil{
     ********************************************************************/
     public static void DontDelete(list<CPA_HLE_Request__c> lstHleReq){
         for(CPA_HLE_Request__c obj :lstHleReq ){
-            obj.addError('HLE Request cant be deleted');
+            //Added custom label to fix SonarQube issue
+            obj.addError(System.Label.CPA_HLE_Request_cant_be_deleted);
         }
     }
 }

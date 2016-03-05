@@ -36,21 +36,20 @@ public with sharing class CPA_PWOTrigger_Handler
      */
     public void bulkBefore()
     {   
-        System.debug('Entering CPA_PWOTrigger_Handler.bulkAfter');  
         if(triggerShouldExecute){
             if(Trigger.isInsert || Trigger.isUpdate) {
 
-
-                if(Trigger.isInsert){
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isInsert){
                     
-                }
-
-                if(Trigger.isUpdate) 
-                {
+                //}
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) 
+                //{
                     // Fill the Map with Participants Chatter Group memeberships for the program chatter group
                     
                     
-                } 
+                //} 
                 
 
             } else if(Trigger.isDelete){
@@ -59,32 +58,26 @@ public with sharing class CPA_PWOTrigger_Handler
 
             
         }
-        System.debug('Exiting CPA_PWOTrigger_Handler.bulkAfter');   
- 
+        
     }
     
     public void bulkAfter()
     {
-        System.debug('Entering CPA_PWOTrigger_Handler.bulkAfter');  
-
-
         if(triggerShouldExecute){ 
             if(Trigger.isInsert || Trigger.isUpdate) {
-
-                if(Trigger.isUpdate) {
+                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
+                //if(Trigger.isUpdate) {
                     
-                }
+                //}
             }
 
             
 
         }
-        System.debug('Exiting CPA_PWOTrigger_Handler.bulkAfter');   
     }
         
     public void beforeInsert(SObject so)
     {
-        System.debug('Entering CPA_PWOTrigger_Handler.beforeInsert');
         if(triggerShouldExecute){
             
            CPA_Project_Work_Order_TriggerUtil.checklistValueOfcontract(trigger.new);
@@ -98,12 +91,10 @@ public with sharing class CPA_PWOTrigger_Handler
     
 
         }
-        System.debug('Exiting CPA_PWOTrigger_Handler.beforeInsert');
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_PWOTrigger_Handler.beforeUpdate');
         if(triggerShouldExecute){ 
             CPA_Project_Work_Order_TriggerUtil.checklistValueOfcontract(trigger.new);
             CPA_Project_Work_Order_TriggerUtil.requireApprovalComments(trigger.new);
@@ -111,7 +102,6 @@ public with sharing class CPA_PWOTrigger_Handler
           //  CPA_CNFTNF_TriggerUtil.CNFTNF_HistoricalData(trigger.old,trigger.new);
             
         }
-        System.debug('Exiting CPA_PWOTrigger_Handler.beforeUpdate');
     }
     
 
@@ -122,27 +112,29 @@ public with sharing class CPA_PWOTrigger_Handler
     
     public void afterInsert(SObject so) 
     {
-        System.debug('Entering CPA_PWOTrigger_Handler.afterInsert');
         if(triggerShouldExecute){
             //CPA_StandalonePWOAndCR.updatePWORFName(trigger.new);
-       lstTATforUpdate = CPA_Project_Work_Order_TriggerUtil.UpdateTATObj(trigger.new); 
-        //CPA_Project_Work_Order_TriggerUtil.newPWO(trigger.new);// commented by Pooja bcoz of exception
+           lstTATforUpdate = CPA_Project_Work_Order_TriggerUtil.UpdateTATObj(trigger.new); 
+            //CPA_Project_Work_Order_TriggerUtil.newPWO(trigger.new);// commented by Pooja bcoz of exception
             
         }
-        System.debug('Exiting CPA_PWOTrigger_Handler.afterInsert');
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        System.debug('Entering CPA_PWOTrigger_Handler.afterUpdate');
         if(triggerShouldExecute){
            lstPWORFUpdate  = CPA_Project_Work_Order_TriggerUtil.submitforApproval(trigger.old,trigger.new);
             CPA_Project_Work_Order_TriggerUtil.recallApproval(trigger.old,trigger.new);
             CPA_CNFTNF_TriggerUtil.CNFTNF_HistoricalData(trigger.old,trigger.new);
         }
-        System.debug('Exiting CPA_PWOTrigger_Handler.afterUpdate');
     }
     
+    /*******************************************************************
+    Purpose: This method is present in interface, hence need to override here
+    Parameters: SObject
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
     public void afterDelete(SObject so)
     {
     }
@@ -155,16 +147,14 @@ public with sharing class CPA_PWOTrigger_Handler
      */
     public void andFinally()
     {
-        System.debug('Entering CPA_PWOTrigger_Handler.andFinally');   
         if(lstTATforUpdate !=null && lstTATforUpdate.size()>0)  
         {
-             CPA_Utilities.saveDatabase('insert', lstTATforUpdate , false);
+             CPA_Utilities.saveDatabase(CPA_ConstantsForContractingAppClasses.INSERTCONSTANT, lstTATforUpdate , false);
         }
         if(lstPWORFUpdate !=null && lstPWORFUpdate.size()>0   ){
-           CPA_Utilities.saveDatabase('update', lstPWORFUpdate , false); 
+           CPA_Utilities.saveDatabase(CPA_ConstantsForContractingAppClasses.UPDATECONSTANT, lstPWORFUpdate , false); 
 
         }
-        System.debug('Exiting CPA_PWOTrigger_Handler.andFinally');
     }
 
 }

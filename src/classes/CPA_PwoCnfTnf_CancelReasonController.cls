@@ -86,8 +86,9 @@ public with sharing class CPA_PwoCnfTnf_CancelReasonController{
         }
         
         update pwoRec;
-        if(crRec != null && crRec.size() > 0)
-            crCancel(crRec);                
+        if(crRec != null && crRec.size() > 0){
+            crCancel(crRec);
+        }                
         PageReference ReturnPage = new PageReference('/' + pwoRec.id); 
         ReturnPage.setRedirect(true); 
         return ReturnPage;  
