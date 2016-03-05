@@ -3719,6 +3719,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_Donations</fullName>
+        <booleanFilter>(1 or 2 or 4) AND 3</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -3733,6 +3734,21 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Ben &amp; Jerry&apos;s Donations</value>
         </filters>
+        <filters>
+            <field>Brand__c</field>
+            <operation>equals</operation>
+            <value>Ben &amp; Jerry&apos;s Donations</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>equals</operation>
+            <value>Ben &amp; Jerry&apos;s Donations Email</value>
+        </filters>
         <label>CEC North America Ben &amp; Jerrys Donations</label>
         <language>en_US</language>
         <sharedTo>
@@ -3743,6 +3759,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_Scoop</fullName>
+        <booleanFilter>(1 or 2 or 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -3754,8 +3771,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filterScope>Queue</filterScope>
         <filters>
             <field>Case_Brand__c</field>
+            <operation>contains</operation>
+            <value>Scoop</value>
+        </filters>
+        <filters>
+            <field>Brand__c</field>
+            <operation>contains</operation>
+            <value>Scoop</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>contains</operation>
+            <value>Scoop Shop</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>Ben &amp; Jerry&apos;s Scoop</value>
+            <value>New</value>
         </filters>
         <label>CEC North America Ben &amp; Jerrys Scoop</label>
         <language>en_US</language>
@@ -3768,7 +3800,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_USA</fullName>
-        <booleanFilter>(1 or 4) AND 2 AND 3</booleanFilter>
+        <booleanFilter>(1 or 4 or 5) AND 2 AND 3 and 6</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -3777,7 +3809,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
@@ -3798,9 +3830,18 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>equals</operation>
             <value>Ben &amp; Jerry&apos;s</value>
         </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>equals</operation>
+            <value>Ben &amp; Jerry&apos;s Email</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notEqual</operation>
+            <value>Ben &amp; Jerry&apos;s Donation Email,Scoop Shop Complaint Received</value>
+        </filters>
         <label>CEC North America Ben &amp; Jerrys USA</label>
         <language>en_US</language>
-        <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
@@ -4202,7 +4243,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.STATUS</columns>
         <columns>OWNER_NAME</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>Case_Market__c</field>
             <operation>equals</operation>
@@ -4225,6 +4266,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC North America Household Care</label>
         <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
@@ -4342,6 +4384,45 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>New</value>
         </filters>
         <label>CEC North America Maille US</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_Mexico_Escalation_Queu</fullName>
+        <booleanFilter>(1 AND (2 or 3) AND 4)</booleanFilter>
+        <columns>Case_Brand__c</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>North America</value>
+        </filters>
+        <filters>
+            <field>Country__c</field>
+            <operation>equals</operation>
+            <value>Mexico</value>
+        </filters>
+        <filters>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>Mexico</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Escalated</value>
+        </filters>
+        <label>CEC North America Mexico Escalation Queu</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_North_America</role>
@@ -4482,6 +4563,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.ORIGIN</columns>
+        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -5417,12 +5499,30 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>MyCases</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
+        <columns>Country__c</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Mine</filterScope>
         <label>My Cases</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Open_Cases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>My Open Cases</label>
         <language>en_US</language>
     </listViews>
     <listViews>

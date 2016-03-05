@@ -2528,6 +2528,15 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004XyK_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ALMATI REVOL</label>
+        <queue>IPM_a7IE00000004XyK</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>
