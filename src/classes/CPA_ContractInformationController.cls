@@ -74,8 +74,8 @@ global with sharing class CPA_ContractInformationController {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.get(pwoRec.TNF_Status__c).TNF_Status_Msg__c));
             }           
         if(pwoRec.RecordTypeid == label.CPA_PWO_RecordTypeId || pwoRec.RecordTypeid == label.CPA_Standalone_PWO_RecordTypeId){            
-            //if(pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pwoRec.pkl_Status__c == 'CPA_ConstantsForContractingAppClasses.RETURNED' || callFromVF == false){
-            if(pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pwoRec.pkl_Status__c == 'CPA_ConstantsForContractingAppClasses.RETURNED' || !callFromVF){
+            //if(pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED || callFromVF == false){
+            if(pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED || !callFromVF){
                 if(pwoRec.txt_PWO_number__c == null){
                     RequiredFieldMap.put( 'PWO number',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
