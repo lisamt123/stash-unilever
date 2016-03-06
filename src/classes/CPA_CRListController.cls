@@ -108,7 +108,7 @@ public with sharing class CPA_CRListController {
            }
         }catch (Exception e){
         
-            system.debug('Error'+e.getMessage());
+            system.debug('Error Occured');
         }
     }
     
@@ -128,7 +128,7 @@ public with sharing class CPA_CRListController {
           }
           
          }catch(Exception e) {
-            system.debug('Error'+e.getMessage());
+            system.debug('Error Occured');
          }
         return new List<CPA_CR__c>();
     }
