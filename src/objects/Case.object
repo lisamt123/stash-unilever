@@ -3800,7 +3800,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Ben_Jerrys_USA</fullName>
-        <booleanFilter>(1 or 4 or 5) AND 2 AND 3 and 6</booleanFilter>
+        <booleanFilter>(1 or 4 or 5) AND 2 AND 3 and 6 and 7</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -3839,6 +3839,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CASES.SUBJECT</field>
             <operation>notEqual</operation>
             <value>Ben &amp; Jerry&apos;s Donation Email,Scoop Shop Complaint Received</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notEqual</operation>
+            <value>Ben &amp; Jerry&apos;s Donations Email</value>
         </filters>
         <label>CEC North America Ben &amp; Jerrys USA</label>
         <language>en_US</language>
@@ -4550,6 +4555,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <sharedTo>
             <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -4734,8 +4740,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Social_Canada</fullName>
+        <booleanFilter>(1 or 2) AND (3 or 4)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>Case_Brand__c</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
@@ -4751,6 +4759,16 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>Case_Brand__c</field>
             <operation>equals</operation>
             <value>WalMart Canada Social</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Escalated</value>
         </filters>
         <label>CEC North America Social Canada</label>
         <language>en_US</language>
