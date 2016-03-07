@@ -377,7 +377,7 @@
                                         <apex:outputPanel rendered="{!!isEditCoreparameter}"
                                             layout="block">
                                             <a href="#myCarousel" data-slide="next"
-                                                title="{!$Label.IPM_SAVE_AND_CONTINUE}" id="nextControl"
+                                                title="{!$Label.IPM_SAVE_AND_CONTINUE}"  onClick="checkTooltip();" id="nextControl"
                                                 class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                                             <apex:outputPanel rendered="{!!isEditable}">
                                                 <a href="#myCarousel" data-slide="next"
@@ -422,6 +422,9 @@
                                                                 <div class="panel-label bsFieldLabel">
                                                                     <apex:outputlabel styleClass="fontB"
                                                                         value="{!$Label.IPM_Market}" />
+                                                                        <span class="SecButtonSet infoMarTop">
+                                                					    <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
+                                             							</span>
                                                                 </div>
                                                                 <label class="ipmSelect"> <apex:selectList size="1" multiselect="false"
                                                                         disabled="{!!editSubSector}" value="{!market_STR}">
