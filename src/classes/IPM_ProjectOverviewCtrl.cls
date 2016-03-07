@@ -154,41 +154,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public IPM_ProjectOverviewCtrl(IPM_ProjDocumentSectionHstryController controller) {
        
         //variables/properties initialisation
-        noOfNotifications = 0;
-        alertscount=0;
-        taskId = BLANK_STR;
-        betInformationMessage = BLANK_STR;
-        projectPriority = null;
-        betOwner = new User();
-        allIncompleteTasks = 0;
-        IsUpdateStatus=false;
-        isProjLeader = false;
-        isOriginal = false;
-        toolkitOption = BLANK_STR;
-        hasBETAccess = System.label.IPM_BETRequestNo;
-        memberCallFromURL = false;
-        showBET= false;
-        isIdeasPhase = false;
-        bShowAlertsBar = false;
-        bShowShipToTradeButton = false;
-        bShowChangeStatusButton = false;
-        bPhaseChangeInProgress = false;
-        projectDocsSet = new Set<String>();
-        projectTasksSet = new Set<String>();
-        projectMSSet = new Set<String>();
-        projectSectionsSet = new Set<String>();
-        isExemptFromThresholdITO=false;
-        ProjDueDateMap = new Map<Id,Date>();
-        additionalAlertMessages = new List<STring>();
-        projectSections = new List<IPM_Project_Document_Section__c>();
-        projectId = ApexPages.currentPage().getParameters().get('id');
-        showSuggestedMembers = false;
-        suggestedMembersList = new List<Id>();
-        suggestedManagerList = new LisT<Id>();
-        memberBucketList = new List<BET_MemberBucketWrapper>();
-        rolloutsGenerated = false;//Eco Design
-		fin = new list<IPM_Financial__c>();
-        hideFinSection =  true;
+        intializeVariables();
 		lstprojecthistory=[SELECT ParentId,Parent.Name,Parent.IPM_Fast_Track_Project__c 
                            FROM IPM_Project__History 
                            WHERE Field =:IPM_ConstantUtils.FAST_TRACK_FIELD AND ParentId=:projectId AND 
@@ -329,6 +295,44 @@ public with sharing class IPM_ProjectOverviewCtrl {
         
     }
     
+    public void intializeVariables()
+    {
+    	noOfNotifications = 0;
+        alertscount=0;
+        taskId = BLANK_STR;
+        betInformationMessage = BLANK_STR;
+        projectPriority = null;
+        betOwner = new User();
+        allIncompleteTasks = 0;
+        IsUpdateStatus=false;
+        isProjLeader = false;
+        isOriginal = false;
+        toolkitOption = BLANK_STR;
+        hasBETAccess = System.label.IPM_BETRequestNo;
+        memberCallFromURL = false;
+        showBET= false;
+        isIdeasPhase = false;
+        bShowAlertsBar = false;
+        bShowShipToTradeButton = false;
+        bShowChangeStatusButton = false;
+        bPhaseChangeInProgress = false;
+        projectDocsSet = new Set<String>();
+        projectTasksSet = new Set<String>();
+        projectMSSet = new Set<String>();
+        projectSectionsSet = new Set<String>();
+        isExemptFromThresholdITO=false;
+        ProjDueDateMap = new Map<Id,Date>();
+        additionalAlertMessages = new List<STring>();
+        projectSections = new List<IPM_Project_Document_Section__c>();
+        projectId = ApexPages.currentPage().getParameters().get('id');
+        showSuggestedMembers = false;
+        suggestedMembersList = new List<Id>();
+        suggestedManagerList = new LisT<Id>();
+        memberBucketList = new List<BET_MemberBucketWrapper>();
+        rolloutsGenerated = false;//Eco Design
+        fin = new list<IPM_Financial__c>();
+        hideFinSection =  true;
+    }
     //DEF3195-Earliest Target Launch is not displayed on overview page
     public string getEarlTLD(){
         return earliestTLD;
