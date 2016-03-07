@@ -60,7 +60,7 @@ public with sharing class CPA_CRListController {
     ********************************************************************/
     public  void  getPwoList() {
     
-    try {
+    
     
            CPA_project_work_order__c PwoRs =  [Select Id,Name,num_Estimated_Value_of_PWO__c,num_Estimated_Man_days_of_PWO__c,num_Expense_charges_of_work_order__c From CPA_project_work_order__c Where Id=:pwoId];
           system.debug('Test'+PwoRs);
@@ -106,10 +106,7 @@ public with sharing class CPA_CRListController {
             }
             
            }
-        }catch (Exception e){
-        
-            system.debug('Error Occured');
-        }
+      
     }
     
     /*******************************************************************
@@ -120,19 +117,17 @@ public with sharing class CPA_CRListController {
     ********************************************************************/
     public List<CPA_CR__c> getCrList(String Id) {
           List<CPA_CR__c> crList = new List<CPA_CR__c>();
-         try{
+      
           crList =[Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c From CPA_CR__c Where CPA_Project_Work_Order__c =:Id];
           system.debug('crList'+crList);
           if(crList.size() > 0) {
            return crList;
           }
           
-         }catch(Exception e) {
-            system.debug('Error Occured');
-         }
+        
         return new List<CPA_CR__c>();
     }
-    
+     
     /*******************************************************************
     Purpose: This is the inner class, wrapper for CR list
     Parameters: 
