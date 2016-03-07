@@ -18,7 +18,6 @@ src/objects/IPM_Project_Document_Section_Content__c.object
 src/objects/IPM_Project_Rollout__c.object
 src/objects/IPM_Project_Type__c.object
 src/objects/IPM_Project__c.object
-src/objects/IPM_Trigger_Router__c.object
 src/pages
 src/pages/IPM_Bcc_Document.page
 src/pages/IPM_Bcc_Document.page-meta.xml
