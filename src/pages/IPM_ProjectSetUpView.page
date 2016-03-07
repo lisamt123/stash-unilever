@@ -268,7 +268,7 @@
                                                                         <apex:outputLabel value="{!$Label.IPM_BRAND_POSITIONING}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span>
                                                                         <span class="SecButtonSet infoMarTop">
                                                                         	<apex:outputPanel rendered="{!projectMetadata.IPM_MultipleBrandPosApplicable__c}">
-                                                                        		<a class="icoButton info" title="{!$Label.IPM_BrandPositioningHelpText}"></a>
+                                                                                <a class="icoButton info small-Info" title="{!$Label.IPM_BrandPositioningHelpText}"></a>
                                                                         	</apex:outputPanel>
                                                                     	</span>
                                                                         <apex:actionStatus startText="" id="refreshPos" startStyleClass="proInit"/>    

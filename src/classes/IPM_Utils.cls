@@ -557,50 +557,14 @@ public without sharing class IPM_Utils {
         
         if(addChild)
         {
-            // Get Child Relationships
-            for(Schema.ChildRelationship cr : Schema.getGlobalDescribe().get(SObjectName).getDescribe().getChildRelationships())
-            {
-                // Get Child Relationship Name
-                String childRelationShipName = cr.getRelationshipName();
                 
-                // Get Child Object Reference
-                Schema.SObjectType childObjectSchema = cr.getChildSObject();
-                Schema.DescribeSObjectResult childObjectDescibe = childObjectSchema.getDescribe();
-                String childObjectAPIName = childObjectDescibe.getName();
                  
-                if(childObjectDescibe.isCustom() && childRelationshipName!=null && includededChildObjects.contains(childObjectAPIName))
-                {
-                    Map<String,Schema.SObjectField> childFieldTypeMap = childObjectDescibe.fields.getMap();
+            queryStr += getChildRelationshipFields(SObjectName,includededChildObjects,includeSystemFields);    
                 
-                    queryStr += ' ( Select ';
-                    for(String childFieldAPIName : childFieldTypeMap.keySet())
-                    {
-                        Schema.DescribeFieldResult fieldDescribe = childFieldTypeMap.get(childFieldAPIName).getDescribe();
-                        if(!mandatoryStandardFieldSet.contains(childFieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() ) )
-                        {
-                            queryStr += ' '+childFieldAPIName+',';
-                        }
-                    } 
                     
-                    if(!childObjectDescibe.getRecordTypeInfos().isEmpty())
-                    { 
-                        for(Schema.RecordTypeInfo recordInfo : childObjectDescibe.getRecordTypeInfos())
-                        {
-                            if(!recordInfo.isMaster())
-                            {
-                                queryStr += 'recordTypeId,';
-                                break;
-                            }
-                        }
-                    }
                     
-                    queryStr += 'Id,Name from '+childRelationshipName;
                     
-                    queryStr = queryStr.removeEnd(IPM_ConstantUtils.COMMA);
                     
-                    queryStr += '  ),'; 
-                }
-            }   
         }
         
         if(!sObjectDescribe.getRecordTypeInfos().isEmpty())
@@ -620,6 +584,49 @@ public without sharing class IPM_Utils {
         return queryStr;
     } 
     
+    public static String getChildRelationshipFields(String SObjectName,Set<String> includededChildObjects,Boolean includeSystemFields)
+    {
+    	String queryStr = '';
+    	Set<String> mandatoryStandardFieldSet = new Set<String>{'id','name','recordtypeid'};
+    	// Get Child Relationships
+        for(Schema.ChildRelationship cr : Schema.getGlobalDescribe().get(SObjectName).getDescribe().getChildRelationships())
+        {
+            // Get Child Relationship Name
+            String childRelationShipName = cr.getRelationshipName();
+            // Get Child Object Reference
+            Schema.SObjectType childObjectSchema = cr.getChildSObject();
+            Schema.DescribeSObjectResult childObjectDescibe = childObjectSchema.getDescribe();
+            String childObjectAPIName = childObjectDescibe.getName();
+            if(childObjectDescibe.isCustom() && childRelationshipName!=null && includededChildObjects.contains(childObjectAPIName))
+            {
+                Map<String,Schema.SObjectField> childFieldTypeMap = childObjectDescibe.fields.getMap();
+                queryStr += ' ( Select ';
+                for(String childFieldAPIName : childFieldTypeMap.keySet())
+                {
+                    Schema.DescribeFieldResult fieldDescribe = childFieldTypeMap.get(childFieldAPIName).getDescribe();
+                    if(!mandatoryStandardFieldSet.contains(childFieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() ) )
+                    {
+                        queryStr += ' '+childFieldAPIName+',';
+                    }
+                } 
+                if(!childObjectDescibe.getRecordTypeInfos().isEmpty())
+                { 
+                    for(Schema.RecordTypeInfo recordInfo : childObjectDescibe.getRecordTypeInfos())
+                    {
+                        if(!recordInfo.isMaster())
+                        {
+                            queryStr += 'recordTypeId,';
+                            break;
+                        }
+                    }
+                }
+                queryStr += 'Id,Name from '+childRelationshipName;
+                queryStr = queryStr.removeEnd(IPM_ConstantUtils.COMMA);
+                queryStr += '  ),'; 
+            }
+        }
+        return queryStr; 
+    }
     
     /**************************************************************
     * @description: Helper method To get current state for the project in its lifecycle.Project Type Framework

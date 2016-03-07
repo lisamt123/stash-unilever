@@ -143,7 +143,7 @@
                                 </apex:outputPanel>
                          </div>
                         
-                        <p class="clearfix">{!project.IPM_Brand_Positioning__c} | {!project.IPM_Project_Type__c}</p>
+                        <p class="clearfix breakWord">{!project.IPM_Brand_Positioning__c} | {!project.IPM_Project_Type__c}</p>
                         <p class="keycontent">{!project.IPM_Brand__c} | {!project.IPM_Category_Text__c}</p>
                         <div class="greyborder"></div>
                         <apex:outputPanel rendered="{!project.IPM_Fast_Track_Project__c && project.IPM_Project_Type__c != 'Operational'}">
