@@ -377,7 +377,7 @@
                                         <apex:outputPanel rendered="{!!isEditCoreparameter}"
                                             layout="block">
                                             <a href="#myCarousel" data-slide="next"
-                                                title="{!$Label.IPM_SAVE_AND_CONTINUE}" id="nextControl"
+                                                title="{!$Label.IPM_SAVE_AND_CONTINUE}"  onClick="checkTooltip();" id="nextControl"
                                                 class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                                             <apex:outputPanel rendered="{!!isEditable}">
                                                 <a href="#myCarousel" data-slide="next"

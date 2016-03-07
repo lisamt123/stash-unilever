@@ -16,7 +16,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
     }
     public Map<String, String> BusinessCaseMessageMap{get;set;}
     public List<IPM_Project__History> lstprojecthistory {get;set;} //variable to identify if the project is fast track
-    public IPM_Financial__c fin {get;set;}//used for fetching the BusinessImpact details
+     public list<IPM_Financial__c> fin {get;set;}//used for fetching the BusinessImpact details
     public String lstalertMessage {get;set;} //alert message for the fast track
     public List<String> lstFinAlertMessage {get;set;} //Alert message for financial misalignment
     public List<String> lstRolloutProjectAlertMessage {get;set;} //Alert message for Rollout local projec leader is blank
@@ -149,7 +149,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public boolean bPhaseChangeInProgress{get;set;}//variable to check if phase change is in progress or not
     public string earliestTLD=null;//DEF3195 Mukul to review
     public String projectPriority{get;set;}//varibale to show project priority for local rollout projects
-    
+    public Boolean hideFinSection{get;set;}//varibale to check whether user has acces to financial record
     //SD constructor
     public IPM_ProjectOverviewCtrl(IPM_ProjDocumentSectionHstryController controller) {
        
@@ -187,7 +187,9 @@ public with sharing class IPM_ProjectOverviewCtrl {
         suggestedManagerList = new LisT<Id>();
         memberBucketList = new List<BET_MemberBucketWrapper>();
         rolloutsGenerated = false;//Eco Design
-        lstprojecthistory=[SELECT ParentId,Parent.Name,Parent.IPM_Fast_Track_Project__c 
+		fin = new list<IPM_Financial__c>();
+        hideFinSection =  true;
+		lstprojecthistory=[SELECT ParentId,Parent.Name,Parent.IPM_Fast_Track_Project__c 
                            FROM IPM_Project__History 
                            WHERE Field =:IPM_ConstantUtils.FAST_TRACK_FIELD AND ParentId=:projectId AND 
                                  CreatedDate >=: System.today()-IPM_ConstantUtils.CONST_7 limit 10000];
@@ -460,6 +462,9 @@ public with sharing class IPM_ProjectOverviewCtrl {
         if(projIdiTOMap != null && !projIdiTOMap.isEmpty() && projIdiTOMap.containsKey(project.id)){
             globalyearDec = projIdiTOMap.get(project.id);
         }
+		else{
+        	hideFinSection = false;
+        }
 
         if((((IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c))) || (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c))) || (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equalsIgnoreCase(project.IPM_Project_Type__c)))) && (project.Exempt_from_Threshold__c))){
             isExemptFromThresholdITO = true;
@@ -477,7 +482,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
 				fin=[SELECT Business_Impact_Global__c					            
 					 FROM IPM_Financial__c 
 					 WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-				globalbusinessImpactStr = fin.Business_Impact_Global__c;
+				globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE : (fin[0].Business_Impact_Global__c != null ? fin[0].Business_Impact_Global__c : IPM_ConstantUtils.BLANK) );
 			}
 			//IF SPAN is Regional
 			else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
@@ -487,7 +492,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
 					 fin=[SELECT Business_Impact_Regional__c
 					 FROM IPM_Financial__c 
 					 WHERE Regional_Project__c=:project.Id AND Financial_External_ID__c=:project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-					 globalbusinessImpactStr = fin.Business_Impact_Regional__c;						
+					globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Regional__c != null ? fin[0].Business_Impact_Regional__c :IPM_ConstantUtils.BLANK)); 	
 				}
 				else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
 				{
@@ -495,7 +500,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
 					fin=[SELECT Business_Impact_Global__c
 						 FROM IPM_Financial__c 
 						 WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-					 globalbusinessImpactStr = fin.Business_Impact_Global__c;
+					 globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Global__c != null ? fin[0].Business_Impact_Global__c :IPM_ConstantUtils.BLANK));
 				}
 			}
 			else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
@@ -507,7 +512,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
 					fin=[SELECT Business_Impact_Regional__c FROM IPM_Financial__c 
 							  WHERE Regional_Project__c=:project.IPM_Parent_Project__c 
 							  AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
-					 globalbusinessImpactStr = fin.Business_Impact_Regional__c;
+					globalbusinessImpactStr = (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Regional__c != null ? fin[0].Business_Impact_Regional__c :IPM_ConstantUtils.BLANK));
 				}
 				// if local is Child to Regional Local Project
 				else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
@@ -518,10 +523,14 @@ public with sharing class IPM_ProjectOverviewCtrl {
 							 AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
 					 
 					 
-					 globalbusinessImpactStr = fin.Business_Impact_Global__c;
+					globalbusinessImpactStr =  (fin.isEmpty() ? IPM_ConstantUtils.EDITMODE_FALSE :(fin[0].Business_Impact_Global__c != null ? fin[0].Business_Impact_Global__c :IPM_ConstantUtils.BLANK));
 				}
 				
 			}
+			if(globalbusinessImpactStr.equalsIgnoreCase(IPM_ConstantUtils.EDITMODE_FALSE))
+            {
+                hideFinSection = false;
+            }
 		}
 		// For BI where Source is OPERATIONAL project. Will work got GKM5,GKM6,GKM7 OPERATIONAL
 		else if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)

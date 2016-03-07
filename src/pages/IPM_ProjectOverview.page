@@ -265,6 +265,7 @@
                                     {!$Label.IPM_Description} {!project.IPM_Complexity__c}
                                 </div>
                             </div>
+							<apex:outputpanel rendered="{!hideFinSection}">
                             <div class="greyborder"></div>
                             <div class="row">
                                 <div class="col-sm-8 pr0">
@@ -274,6 +275,7 @@
                                     &euro;{!globalyearDec}mn
                                 </div>
                             </div>
+							</apex:outputpanel>
                             
                             <apex:outputPanel layout="block" styleClass="" rendered="{!isExemptFromThresholdITO}">
                             <div class="greyborder"></div>
@@ -289,7 +291,7 @@
                             </apex:outputPanel>
                             
                             <div class="greyborder"></div>
-                            <apex:outputpanel rendered="{!project.IPM_Project_Type__c!='Operational'}">
+                            <apex:outputpanel rendered="{!if(project.IPM_Project_Type__c!='Operational' && hideFinSection,true,false )}">
                             
                             <div class="row">
                                 <div class="col-sm-8 pr0">
