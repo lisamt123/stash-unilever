@@ -12,8 +12,8 @@ History
 VERSION     AUTHOR     DATE            DETAIL Description
 1.0         Shreyas    29/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
-@isTest //(SeeAllData=true)
-public class CPA_CancelController_Test {
+@isTest 
+public class CPA_CancelController_Test { 
     /*******************************************************************
     Purpose: This method is used to create LOI cancel test data and coverage
     Parameters: 
@@ -23,13 +23,13 @@ public class CPA_CancelController_Test {
     static testmethod void LOICancelController_Test() {
         Test.startTest();
         
-        CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf;
         
         objPworf.pkl_Status__c ='Accepted' ;
         update objPworf;
         
-        CPA_LOI__c objLOI =CPA_testClass_util.createLOI (objPworf);
+        CPA_LOI__c objLOI =CPA_testContractClass.createLOI (objPworf);
          objLOI .pkl_Status__c =CPA_ConstantsForContractingAppClasses.CANCELLED;
         insert  objLOI;
 
@@ -38,7 +38,8 @@ public class CPA_CancelController_Test {
         CPA_LOI_CancelReasonController   controller = new CPA_LOI_CancelReasonController  (new ApexPages.StandardController(objLOI));
         objLOI.txta_Reason_for_Cancellation__c = 'TEST';
         PageReference obj = controller.SaveCancelReason();
-        System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED== objLOI.pkl_Status__c);
+        CPA_LOI__c objLOIFinal = [Select Id,pkl_Status__c from CPA_LOI__c where Id =:objLOI.id ];               
+        System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED  == objLOIFinal.pkl_Status__c);
         
         CPA_LOI__c objLOI1 = new CPA_LOI__c ();
         insert objLOI1;
@@ -49,7 +50,8 @@ public class CPA_CancelController_Test {
         controller1.SaveCancelReason();
         objLOI1.txta_Reason_for_Cancellation__c = 'TEST';
         PageReference obj1 = controller1.CancelReason();
-        System.assert('Accepted'== objLOI1.pkl_Status__c);
+        CPA_LOI__c objLOIFinal1 = [Select Id,pkl_Status__c from CPA_LOI__c where Id =:objLOI1.id ];               
+        System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED  == objLOIFinal1.pkl_Status__c);
         
      Test.stopTest();
     
@@ -63,21 +65,21 @@ public class CPA_CancelController_Test {
     static testmethod void CRCancelController_Test() {
         Test.startTest();
         
-        CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf;
 
        objPworf.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ANSWERED;
         update objPworf;
         System.assert(CPA_ConstantsForContractingAppClasses.ANSWERED == objPworf.pkl_Status__c );
         
-        CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf);
+        CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf);
         insert  objPWO;
         
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.DELIVERED;
         update objPWO;
         System.assert(CPA_ConstantsForContractingAppClasses.DELIVERED == objPWO.pkl_Status__c );
         
-        CPA_CR__c objCR1 = CPA_testClass_util.createCR(objPWO);      
+        CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO);      
         objCR1.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
         insert objCR1;
         
@@ -85,21 +87,12 @@ public class CPA_CancelController_Test {
         Test.setCurrentPage(new PageReference('CPA_CR_Cancel_Reason'));
         System.currentPageReference().getParameters().put('id', objCR1.id);
         CPA_CR_CancelReasonController   controller = new CPA_CR_CancelReasonController  (new ApexPages.StandardController(objCR1));
-       controller.SaveCancelReason();
+        controller.SaveCancelReason();
+        controller.CancelReason();
        
-       System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED== objCR1.pkl_Status__c);
+        CPA_CR__c objCRFinal = [Select Id,pkl_Status__c from CPA_CR__c where Id =:objCR1.id ];               
+        System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED  == objCRFinal.pkl_Status__c);
            
-       CPA_CR__c objCR2 = CPA_testClass_util.createCR(objPWO);      
-        objCR2.pkl_Status__c = CPA_ConstantsForContractingAppClasses.DELIVERED;
-        insert objCR2;
-        
-
-        Test.setCurrentPage(new PageReference('CPA_CR_Cancel_Reason'));
-        System.currentPageReference().getParameters().put('id', objCR2.id);
-        CPA_CR_CancelReasonController   controller1 = new CPA_CR_CancelReasonController  (new ApexPages.StandardController(objCR1));
-       controller1.CancelReason();
-       
-       System.assert(CPA_ConstantsForContractingAppClasses.DELIVERED== objCR2.pkl_Status__c);
         Test.stopTest();
     
     }
@@ -111,7 +104,7 @@ public class CPA_CancelController_Test {
     ********************************************************************/
      static testmethod void HLECancelController_Test() {
         Test.startTest();
-        CPA_HLE_Request__c objHLE = CPA_testClass_util.CreateHLERequest(); 
+        CPA_HLE_Request__c objHLE = CPA_testContractClass.CreateHLERequest(); 
         objHLE.pkl_Status__c= CPA_ConstantsForContractingAppClasses.CANCELLED;
         insert objHLE;
         
@@ -119,11 +112,12 @@ public class CPA_CancelController_Test {
         System.currentPageReference().getParameters().put('id', objHLE.id);
         CPA_HLE_CancelReasonController   controller = new CPA_HLE_CancelReasonController  (new ApexPages.StandardController(objHLE));
         controller.SaveCancelReason();
-        
-      System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED==objHLE.pkl_Status__c);
+		
+       CPA_HLE_Request__c objHLERFinal = [Select Id,pkl_Status__c from CPA_HLE_Request__c where Id =:objHLE.id ];                        
+       System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED==objHLERFinal.pkl_Status__c);
       
       
-      CPA_HLE_Request__c objHLE1 = CPA_testClass_util.CreateHLERequest(); 
+      CPA_HLE_Request__c objHLE1 = CPA_testContractClass.CreateHLERequest(); 
         objHLE1.pkl_Status__c= 'Saved';
         insert objHLE1;
         
@@ -132,7 +126,8 @@ public class CPA_CancelController_Test {
         CPA_HLE_CancelReasonController   controller1 = new CPA_HLE_CancelReasonController  (new ApexPages.StandardController(objHLE1));
         controller1.CancelReason();
         
-      System.assert('Saved'== objHLE1.pkl_Status__c);
+      CPA_HLE_Request__c objHLERFinal1 = [Select Id,pkl_Status__c from CPA_HLE_Request__c where Id =:objHLE1.id ];               
+        System.assert(CPA_ConstantsForContractingAppClasses.SAVED  == objHLERFinal1.pkl_Status__c);
       
       
         Test.stopTest();
@@ -148,14 +143,15 @@ public class CPA_CancelController_Test {
         
         Test.startTest();
         
-        CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf1 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf1;
 
        objPworf1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ANSWERED;
         update objPworf1;
-        System.assert(CPA_ConstantsForContractingAppClasses.ANSWERED ==objPworf1.pkl_Status__c);
-        
-        CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf1);
+		CPA_PWORF__c objPWORFFinal = [Select Id,pkl_Status__c from CPA_PWORF__c where Id =:objPworf1.id ];               
+        System.assert(CPA_ConstantsForContractingAppClasses.ANSWERED  == objPWORFFinal.pkl_Status__c);
+
+        CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf1);
         
         insert  objPWO;
         
@@ -168,7 +164,9 @@ public class CPA_CancelController_Test {
         CPA_PwoCnfTnf_CancelReasonController   controller = new CPA_PwoCnfTnf_CancelReasonController  (new ApexPages.StandardController(objPWO));
        controller.getRecord(objPWO.id);
        controller.SaveCancelReason();
-       System.assert(CPA_ConstantsForContractingAppClasses.SIGNED== objPWO.pkl_Status__c);
+	   
+	   CPA_project_work_order__c objPWOFinal = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id =:objPWO.id ];               
+       System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED== objPWOFinal.pkl_Status__c);
      
         Test.stopTest();
     }
@@ -182,19 +180,21 @@ public class CPA_CancelController_Test {
         
         Test.startTest();
         
-        CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf1 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf1;
 
        objPworf1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ANSWERED;
         update objPworf1;
-        System.assert(CPA_ConstantsForContractingAppClasses.ANSWERED ==objPworf1.pkl_Status__c);
+		CPA_PWORF__c objPWORFFinal = [Select Id,pkl_Status__c from CPA_PWORF__c where Id =:objPworf1.id ];               
+       System.assert(CPA_ConstantsForContractingAppClasses.ANSWERED== objPWORFFinal.pkl_Status__c);
         
-        CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf1);
+        CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf1);
         insert  objPWO;
         
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.DELIVERED;
         update objPWO;       
-        System.assert(CPA_ConstantsForContractingAppClasses.DELIVERED == objPWO.pkl_Status__c);
+        CPA_project_work_order__c objPWOFinal = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id =:objPWO.id ];               
+       System.assert(CPA_ConstantsForContractingAppClasses.DELIVERED== objPWOFinal.pkl_Status__c);
         
         Test.setCurrentPage(new PageReference('CPA_PwoCnfTnf_Cancel_Reason'));
         System.currentPageReference().getParameters().put('id', objPWO.id);
@@ -202,7 +202,8 @@ public class CPA_CancelController_Test {
         CPA_PwoCnfTnf_CancelReasonController   controller = new CPA_PwoCnfTnf_CancelReasonController  (new ApexPages.StandardController(objPWO));
        controller.getRecord(objPWO.id);
        controller.SaveCancelReason();
-       System.assert(CPA_ConstantsForContractingAppClasses.DELIVERED== objPWO.pkl_Status__c);
+	   CPA_project_work_order__c objPWOFinal1 = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id =:objPWO.id ];               
+       System.assert(CPA_ConstantsForContractingAppClasses.DELIVERED== objPWOFinal1.pkl_Status__c);
      
         Test.stopTest();
     }
@@ -216,13 +217,13 @@ public class CPA_CancelController_Test {
         
         Test.startTest();
         
-        CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf1 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf1;
 
        objPworf1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ANSWERED;
         update objPworf1;
         
-        CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf1);
+        CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf1);
         insert  objPWO;
         
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SIGNED;
@@ -234,8 +235,9 @@ public class CPA_CancelController_Test {
         CPA_PwoCnfTnf_CancelReasonController   controller = new CPA_PwoCnfTnf_CancelReasonController  (new ApexPages.StandardController(objPWO));
        controller.getRecord(objPWO.id);
        controller.SaveCancelReason();
-        System.assert(CPA_ConstantsForContractingAppClasses.SIGNED== objPWO.pkl_Status__c);
-        
+	   CPA_project_work_order__c objPWOFinal = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id =:objPWO.id ];               
+       System.assert(CPA_ConstantsForContractingAppClasses.SIGNED== objPWOFinal.pkl_Status__c);
+
         Test.stopTest();
     }
     /*******************************************************************
@@ -248,13 +250,13 @@ public class CPA_CancelController_Test {
         
         Test.startTest();
         
-        CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf1 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf1;
 
        objPworf1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ANSWERED;
         update objPworf1;
         
-        CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf1);
+        CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf1);
         insert  objPWO;
         
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SIGNED;
@@ -267,7 +269,8 @@ public class CPA_CancelController_Test {
        controller.getRecord(objPWO.id);
        controller.CancelReason();
      //System.assertEquals(CPA_ConstantsForContractingAppClasses.SIGNED, objPWO.pkl_Status__c);
-     System.assert(CPA_ConstantsForContractingAppClasses.SIGNED == objPWO.pkl_Status__c);
+     CPA_project_work_order__c objPWOFinal = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id =:objPWO.id ];               
+       System.assert(CPA_ConstantsForContractingAppClasses.SIGNED== objPWOFinal.pkl_Status__c);
         Test.stopTest();
     }
     /*******************************************************************
@@ -280,13 +283,13 @@ public class CPA_CancelController_Test {
         
         Test.startTest();
         
-        CPA_PWORF__c objPworf5 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf5 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf5;
 
        objPworf5.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ANSWERED;
         update objPworf5;
         
-        CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf5);
+        CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf5);
         insert  objPWO;
         
         //CPA_LOI__c objLOI =CPA_testClass_util.createLOI (objPworf5);
@@ -296,7 +299,8 @@ public class CPA_CancelController_Test {
         System.currentPageReference().getParameters().put('id', objPworf5.id);
         CPA_PWORF_CancelReasonController   controller = new CPA_PWORF_CancelReasonController  (new ApexPages.StandardController(objPworf5));
        controller.SaveCancelReason();
-     System.assert('Auto Accepted'== objPworf5.pkl_Status__c);
+     CPA_PWORF__c objPWORFFinal = [Select Id,pkl_Status__c from CPA_PWORF__c where Id =:objPworf5.id ];               
+       System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED== objPWORFFinal.pkl_Status__c);
         Test.stopTest();
     }
     /*******************************************************************
@@ -309,7 +313,7 @@ public class CPA_CancelController_Test {
         
         Test.startTest();
         
-        CPA_PWORF__c objPworf2 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf2 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf2;
 
         Test.setCurrentPage(new PageReference('CPA_PWORF_Cancel_Reason'));
@@ -317,7 +321,8 @@ public class CPA_CancelController_Test {
         CPA_PWORF_CancelReasonController   controller = new CPA_PWORF_CancelReasonController  (new ApexPages.StandardController(objPworf2));
 
        controller.CancelReason();
-     System.assert('Saved'== objPworf2.pkl_Status__c);
+     CPA_PWORF__c objPWORFFinal = [Select Id,pkl_Status__c from CPA_PWORF__c where Id =:objPworf2.id ];               
+       System.assert(CPA_ConstantsForContractingAppClasses.SAVED== objPWORFFinal.pkl_Status__c);
         Test.stopTest();
     }
     /*******************************************************************
@@ -330,7 +335,7 @@ public class CPA_CancelController_Test {
         
         Test.startTest();
         
-        CPA_PWORF__c objPworf2 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf2 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf2;
         
         objPworf2.pkl_Status__c ='Auto Accepted';
@@ -341,7 +346,8 @@ public class CPA_CancelController_Test {
         CPA_PWORF_CancelReasonController   controller = new CPA_PWORF_CancelReasonController  (new ApexPages.StandardController(objPworf2));
 
        controller.SaveCancelReason();
-      System.assert('Auto Accepted'== objPworf2.pkl_Status__c);
+     CPA_PWORF__c objPWORFFinal = [Select Id,pkl_Status__c from CPA_PWORF__c where Id =:objPworf2.id ];               
+       System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED== objPWORFFinal.pkl_Status__c);
         Test.stopTest();
     }
     /*******************************************************************
@@ -354,13 +360,13 @@ public class CPA_CancelController_Test {
         
         Test.startTest();
         
-        CPA_PWORF__c objPworf2 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf2 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf2;
         
         objPworf2.pkl_Status__c ='Auto Accepted';
         update objPworf2;
         
-        CPA_LOI__c objLOI =CPA_testClass_util.createLOI (objPworf2);
+        CPA_LOI__c objLOI =CPA_testContractClass.createLOI (objPworf2);
         insert  objLOI;
         
         Test.setCurrentPage(new PageReference('CPA_PWORF_Cancel_Reason'));
@@ -368,7 +374,8 @@ public class CPA_CancelController_Test {
         CPA_PWORF_CancelReasonController   controller = new CPA_PWORF_CancelReasonController  (new ApexPages.StandardController(objPworf2));
 
        controller.SaveCancelReason();
-      System.assert('Auto Accepted'==objPworf2.pkl_Status__c);
+       CPA_PWORF__c objPWORFFinal = [Select Id,pkl_Status__c from CPA_PWORF__c where Id =:objPworf2.id ];               
+       System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED== objPWORFFinal.pkl_Status__c);
         Test.stopTest();
     }
     /*******************************************************************
@@ -381,13 +388,13 @@ public class CPA_CancelController_Test {
         
         Test.startTest();
         
-        CPA_PWORF__c objPworf6= CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf6= CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf6;
 
        objPworf6.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ANSWERED;
         update objPworf6;
         
-        CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf6);
+        CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf6);
         insert  objPWO;
         
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SIGNED;
@@ -398,8 +405,9 @@ public class CPA_CancelController_Test {
         CPA_PWO_RFTer_Controller   controller = new CPA_PWO_RFTer_Controller  (new ApexPages.StandardController(objPWO));
        controller.getRecord(objPWO.id);
        controller.SaveCancelReason();
-       controller.CancelReason();
-        System.assert(CPA_ConstantsForContractingAppClasses.SIGNED== objPWO.pkl_Status__c);
+       controller.CancelReason(); 
+	   CPA_project_work_order__c objPWOFinal = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id =:objPWO.id ];               
+       System.assert(CPA_ConstantsForContractingAppClasses.REQUESTFORTERMINATION== objPWOFinal.pkl_Status__c);
         Test.stopTest();
     }
 }

@@ -1182,11 +1182,17 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	
 	
 } 
-
-else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){
-	alert(&quot;You are not authorized to cancel the record. Please raise a query and request SMT for cancellation.&quot;); 
+else if( permissionSetName == &quot;CPA_ULPM&quot;){
+	alert(&quot;You are not authorized to cancel LOI. Please raise a query for cancellation.&quot;); 
 }
-
+else if(permissionSetName == &quot;CPA_ADM&quot;){
+	if(p.pkl_Status__c == &apos;Saved&apos;){ 
+		window.open(&apos;/apex/CPA_LOI_Cancel_Reason?id=&apos;+&quot;{!CPA_LOI__c.Id}&quot;,&quot;_self&quot;); 
+	}else {
+		
+		alert(&quot;You are not authorized to cancel LOI. Please raise a query for cancellation.&quot;);
+	}
+}
 else{ 
 alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
@@ -1258,7 +1264,7 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 			location.reload(true);
 		}
 		else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){
-			alert(&quot;LOI has already been submitted.&quot;);
+			alert(&quot;LOI is currently pending with UL supplier management team for approval.&quot;);
 		}
 		else if(p.pkl_Status__c ==&quot;Answered&quot; ){
 
@@ -1331,7 +1337,7 @@ try {
 		alert(&quot;LOI is currently pending with UL supplier  management team for approval.&quot;); 
 	}
 	else if((permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Saved&quot; || p.pkl_Status__c == &quot;Returned&quot; )) {
-		alert(&quot;You are not authorized to perform this action.&quot;); 
+		alert(&quot;The LOI should be sent for Signature before returning from Docusign.&quot;); 
 	} 
 
 }catch (e) { 

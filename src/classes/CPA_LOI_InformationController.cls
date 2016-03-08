@@ -37,16 +37,16 @@ global with sharing class CPA_LOI_InformationController {
      //below constructor will be call from webservice call
     
     public CPA_LOI_InformationController(){}
-    
-    /* Justification: We need to show warning messages at the top of the page for all mandatory fields, so for that
-     * we have used multiple if conditions. If that field is null, flag warning message.
+    /*
      * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
-     *  Dev team will fix this in next release.
+     * Dev team will fix this in next release.
+     * Justification: We need to show warning messages at the top of the page for all mandatory fields, so for that
+     * we have used multiple if conditions. If a particular field is null, flag warning message.
      */
     /*******************************************************************
     Purpose: This method is used to check whether all mandatory fields have data
-    Parameters: hleRecId, callFromVF
-    Returns: blloean
+    Parameters: loiId, callFromVF
+    Returns: boolean
     Throws [Exceptions]: 
     ********************************************************************/
     boolean CreateRequiredFieldMessage(id loiId,boolean callFromVF){
@@ -64,13 +64,16 @@ global with sharing class CPA_LOI_InformationController {
      
          if(LoiRec != null){
             System.debug('Building Map !! ' );
-              if((LoiRec.pkl_Status__c == 'Saved' || LoiRec.pkl_Status__c == 'Withhold') || !callFromVF){
+              if((LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.WITHHOLD) || !callFromVF){
+              /*
+                  //Uncomment below code in Release 2
                     String strToSplit = String.valueOf(LoiRec);
                     //CPA_MandatoryFieldsUtil abc = new CPA_MandatoryFieldsUtil();
                     Map<String, String> dataMap = new Map<String, String>();
                     RequiredFieldMap = CPA_MandatoryFieldsUtil.validateMandatoryFields('CPA_LOIMandatoryMessages__c', strToSplit);
                     System.debug('RequiredFieldMap ###### ' + RequiredFieldMap);
-                /*
+                */
+                
                 if(LoiRec.pkl_Currency__c == 'Select' || LoiRec.pkl_Currency__c == null)
                  RequiredFieldMap.put('Currency',CPA_ConstantsForContractingAppClasses.MANDATORY);  
                 if(LoiRec.pkl_Currency__c == 'OTHER'){
@@ -78,56 +81,57 @@ global with sharing class CPA_LOI_InformationController {
                     RequiredFieldMap.put('Other Currency','It is mandatory if OTHER as Currency');      
                   }
                 }
-             
                 if(LoiRec.num_Expense_charges_of_LOI__c == null)
-                 RequiredFieldMap.put('Expense charges of LOI',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    RequiredFieldMap.put('Expense charges of LOI',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(LoiRec.num_Total_number_of_man_days_requested__c == null)
-                 RequiredFieldMap.put('Total number of man days requested',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    RequiredFieldMap.put('Total number of man days requested',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(LoiRec.num_Total_value_in_being_requested_for__c == null)
-                 RequiredFieldMap.put('W@R € spend approved at MC Rates',CPA_ConstantsForContractingAppClasses.MANDATORY); 
+                    RequiredFieldMap.put('W@R € spend approved at MC Rates',CPA_ConstantsForContractingAppClasses.MANDATORY); 
                 if(LoiRec.cur_Total_value_in_Euro_being_requested__c == null)
-                 RequiredFieldMap.put('Total value in Euro being requested',CPA_ConstantsForContractingAppClasses.MANDATORY);    
+                    RequiredFieldMap.put('Total value in Euro being requested',CPA_ConstantsForContractingAppClasses.MANDATORY);    
                 if(!LoiRec.chk_Contract_Attached__c )
-                  RequiredFieldMap.put('Contract pdf Not attached, Please attach Contract PDF , with filename prefix with LOI',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    RequiredFieldMap.put('Contract pdf Not attached, please attach Contract PDF, with file name prefix as LOI',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(LoiRec.mpkl_Phases_covered_by_WAR__c == null)
-                 RequiredFieldMap.put('Phases covered by WAR',CPA_ConstantsForContractingAppClasses.MANDATORY);          
+                    RequiredFieldMap.put('Phases covered by WAR',CPA_ConstantsForContractingAppClasses.MANDATORY);          
                 if(LoiRec.txt_PWO_number__c == null)
-                 RequiredFieldMap.put('PWO number',CPA_ConstantsForContractingAppClasses.MANDATORY);        
+                    RequiredFieldMap.put('PWO number',CPA_ConstantsForContractingAppClasses.MANDATORY);        
                 if(LoiRec.txt_PWO_title__c == null)
-                 RequiredFieldMap.put('PWO title',CPA_ConstantsForContractingAppClasses.MANDATORY);          
+                    RequiredFieldMap.put('PWO title',CPA_ConstantsForContractingAppClasses.MANDATORY);          
                 if(LoiRec.pkl_Status__c == null)
-                 RequiredFieldMap.put('Status',CPA_ConstantsForContractingAppClasses.MANDATORY);         
+                    RequiredFieldMap.put('Status',CPA_ConstantsForContractingAppClasses.MANDATORY);         
                 if(LoiRec.txt_Unilever_Clarity_ID__c == null)
-                 RequiredFieldMap.put('Unilever Clarity ID',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    RequiredFieldMap.put('Unilever Clarity ID',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(LoiRec.dt_LOI_Start_Date__c == null)
-                 RequiredFieldMap.put('LOI Start Date','LOI Start Date is mandatory');
-                if(LoiRec.dt_LOI_Start_Date__c != null && LoiRec.dt_LOI_Start_Date__c < system.today())
-                RequiredFieldMap.put('LOI Start Date','LOI Start Date cannot be a date from the past.');
+                    RequiredFieldMap.put('LOI Start Date','LOI Start Date is mandatory');
+                
                 if(LoiRec.dt_LOI_End_date__c == null)
-                RequiredFieldMap.put('LOI End date','LOI End Date is mandatory');
-                if(LoiRec.dt_LOI_End_date__c != null &&  LoiRec.dt_LOI_End_date__c < LoiRec.dt_LOI_Start_Date__c)
-                 RequiredFieldMap.put('LOI End date','LOI End Date cannot before Start date');
+                    RequiredFieldMap.put('LOI End date','LOI End Date is mandatory');
                 if(LoiRec.mpkl_Phases_covered_by_WAR__c!=null && LoiRec.mpkl_Phases_covered_by_WAR__c.contains('Other') && LoiRec.txt_Other_Phases_Covered_by_W_R__c== null)
-                 RequiredFieldMap.put('Other Phases Covered by W@R','If Other Phase covered is selected then this field is mandatory');
-
+                    RequiredFieldMap.put('Other Phases Covered by W@R','If Other Phase covered is selected then this field is mandatory');
                 if(LoiRec.eml_Unilever_Content_Approver_Email__c == null){
-                RequiredFieldMap.put('Unilever Content Approver Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    RequiredFieldMap.put('Unilever Content Approver Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
                 if(LoiRec.txt_Unilever_Content_Approver_Name__c == null){
-                RequiredFieldMap.put('Unilever Content Approver Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    RequiredFieldMap.put('Unilever Content Approver Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
                 if(LoiRec.eml_Unilever_Budget_Approver_Email__c == null){
-                RequiredFieldMap.put('Unilever Budget Approver Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    RequiredFieldMap.put('Unilever Budget Approver Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
                 if(LoiRec.txt_Unilever_Budget_Approver_Name__c == null){
-                RequiredFieldMap.put('Unilever Budget Approver Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    RequiredFieldMap.put('Unilever Budget Approver Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
-                */
+                //Dont comment below two checks, they are needed even though we optimize above if conditions
+                if(LoiRec.dt_LOI_Start_Date__c != null && LoiRec.dt_LOI_Start_Date__c < system.today()){
+                    RequiredFieldMap.put('LOI Start Date','LOI Start Date can not be a date from the past.');
+                }
+                if(LoiRec.dt_LOI_End_date__c != null &&  LoiRec.dt_LOI_End_date__c < LoiRec.dt_LOI_Start_Date__c){
+                    RequiredFieldMap.put('LOI End date','LOI End Date can not be before Start date');
+                }
             }
          }
         if(!RequiredFieldMap.isEmpty()){ 
             // ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, 'Bellow field are mandatory to Submit the record'));          
-            mandatoryStringFlag = 'Below field(s) are mandatory to Submit the record';
+            mandatoryStringFlag = System.Label.CPA_Mandatory_Fields_Message;
             return false;
         }  
         return true;
@@ -136,7 +140,7 @@ global with sharing class CPA_LOI_InformationController {
     /*******************************************************************
     Purpose: This webservice gets called from page. this is to refresh isValidate variable.
     Parameters: objId
-    Returns: blloean
+    Returns: boolean
     Throws [Exceptions]: 
     ********************************************************************/
     webService static boolean checkIsValidated(Id objId) {
@@ -148,39 +152,4 @@ global with sharing class CPA_LOI_InformationController {
     
         return flag; 
     }
-    
-    //public Map<String,String> validateMandatoryFields(String custSettingName, String strObject){
-    /*
-    public Map<String,String> validateMandatoryFields(String custSettingName, sObject LoiRec){
-        RequiredFieldMap = new Map<String,String>();
-        String strObject = String.valueOf(LoiRec);
-        System.debug('custSettingName@@@@ ' + custSettingName);
-        System.debug('strObject@@@@ ' + strObject);
-        CPA_LOIMandatoryMessages__c custsetLOI = null;
-        List<CPA_LOIMandatoryMessages__c> mandatoryFields = null;
-        if(custSettingName != null && strObject != null){
-            if(custSettingName == 'CPA_LOIMandatoryMessages__c'){
-                //custsetLOI = new CPA_LOIMandatoryMessages__c();
-                mandatoryFields = CPA_LOIMandatoryMessages__c.getall().values();//get from custom settings
-            }
-            //Load the list with API names
-            for(Integer i = 0; i < mandatoryFields.size(); i++){
-                boolean found = false;
-                String fieldName = mandatoryFields[i].txt_FieldAPIName__c;
-                System.debug('pwoRec@@@@ ' + strObject.contains(fieldName));
-                if(!strObject.contains(fieldName)){
-                    System.debug('FieldLabel@@@@ ' + mandatoryFields[i].txt_FieldLabel__c);
-                    System.debug('Message@@@@ ' + mandatoryFields[i].txt_Message__c);
-                    //Get message from custom setting and add to the map, for ex
-                    RequiredFieldMap.put(mandatoryFields[i].txt_FieldLabel__c, mandatoryFields[i].txt_Message__c);
-                    //Need to get details of dependent field here
-                }
-            }
-
-        }
-        System.debug('RequiredFieldMap@@@@ ' + RequiredFieldMap);
-        return RequiredFieldMap;
-    } */
-    
-    
 }

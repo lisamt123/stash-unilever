@@ -69,7 +69,7 @@ global with sharing class CPA_CRInformationController {
                  RequiredFieldMap.put( 'Please attach Contract PDF , with filename prefix with CR' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
              }
             if(crRec.txt_Accenture_Project_Manager__c  == null){  
-                 RequiredFieldMap.put( 'Accenture Project Manager' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+                 RequiredFieldMap.put( 'Vendor Project Manager' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
             }
             if(crRec.mpkl_Change_Record_history__c  == null){  
                  RequiredFieldMap.put( 'Change Record history' ,CPA_ConstantsForContractingAppClasses.MANDATORY);

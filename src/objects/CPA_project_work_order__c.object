@@ -239,7 +239,7 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
     <fields>
         <fullName>Standalone_PWO_clarity_ID__c</fullName>
         <externalId>false</externalId>
-        <label>Standalone PWO clarity ID</label>
+        <label>Clarity ID</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -645,7 +645,7 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <fullName>dt_Date_PWORF_accepted__c</fullName>
         <description>Date when PWORF was accepted by Accenture</description>
         <externalId>false</externalId>
-        <label>Date PWORF Accepted*</label>
+        <label>Date PWORF Accepted</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -2350,16 +2350,6 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <type>TextArea</type>
     </fields>
     <label>PWO</label>
-    <listViews>
-        <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>pkl_Status__c</columns>
-        <columns>fml_Clarity_ID__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-        <language>en_US</language>
-    </listViews>
     <nameField>
         <displayFormat>PWO-{00000}</displayFormat>
         <label>PWO ID</label>
@@ -8666,10 +8656,10 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		alert(&quot;PWO cannot be cancelled PWO as it is already Cancelled/Delivered&quot;); 
 	} 
 } 
-else if(permissionSetName == &quot;CPA_ADM&quot;){
-	alert(&quot;Please request SMT to cancel the PWO&quot;); 
+else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; p.pkl_Status__c == &apos;Saved&apos;){
+	window.open(&apos;/apex/CPA_PwoCnfTnf_Cancel_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 	
 }else{ 
-alert(&quot;You are not authorized to perform this action.&quot;); 
+	alert(&quot;You are not authorized to cancel PWO. Please raise a query for cancellation.&quot;);
 }</url>
     </webLinks>
     <webLinks>

@@ -93,6 +93,14 @@
             <name>CPA_Owner_Update_to_VDM</name>
             <type>FieldUpdate</type>
         </action>
+        <action>
+            <name>CPA_PWORF_Submitted_SLA1_Date</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>CPA_PWORF_Submitted_SLA2_Date</name>
+            <type>FieldUpdate</type>
+        </action>
     </initialSubmissionActions>
     <label>CPA VDM Approval Process</label>
     <recallActions>

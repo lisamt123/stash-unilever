@@ -2103,16 +2103,11 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	else{ 
 		window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;); 
 	} 
-}else if(permissionSetName == &quot;CPA_ADM&quot;){
-	if(p.pkl_Status__c == &apos;Saved&apos;){ 
-		window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;);  
-	}else {
-		
-		alert(&quot;You are not authorized to perform this action,Please raise Query for cancellation &quot;);
-	}
+}else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; p.pkl_Status__c == &apos;Saved&apos;){
+	window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;);  
 }
  else	{ 
-	alert(&quot;You are not authorized to perform this action,&quot;); 
+	alert(&quot;You are not authorized to perform CR, Please raise Query for cancellation &quot;);
 }</url>
     </webLinks>
     <webLinks>

@@ -100,15 +100,15 @@
                 <behavior>Edit</behavior>
                 <field>Latest_PWO_Status__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Related_CRs__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>lkp_Project_requestor__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -509,7 +509,7 @@
         <fields>New_or_changed_requirement_del__c</fields>
         <fields>CREATEDBY_USER</fields>
         <fields>OBJECT_ID</fields>
-        <relatedList>Requirements_and_Deliverables__c.PWORF_Requirement_Deliverables__c</relatedList>
+        <relatedList>CPA_Requirements_and_Deliverables__c.PWORF_Requirement_Deliverables__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>

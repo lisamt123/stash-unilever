@@ -87,6 +87,10 @@
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
+            <name>CPA_CR_Raised_Date</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>CPA_CR_SMT_Send_for_Signature</name>
             <type>FieldUpdate</type>
         </action>

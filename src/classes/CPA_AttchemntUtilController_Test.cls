@@ -13,7 +13,7 @@ VERSION     AUTHOR     DATE            DETAIL Description
 1.0         Name       01/01/2016     INITIAL DEVELOPMENT CSR:
 ***********************************************************************/
 @isTest 
-public class CPA_AttchemntUtilController_Test {
+public class CPA_AttchemntUtilController_Test { 
     public static final String  BLOBDATA = 'Entity Type,Entity Name,Role,Location,Resource Level,Rate,Cost Name,Year,Month,Effort (Man Days),Expense\n1,1,Senior SME,USA,8,191,1,2015,Sep,21,1';
     /*******************************************************************
     Purpose: This method covers attachment functionality
@@ -22,16 +22,16 @@ public class CPA_AttchemntUtilController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void CPA_AttchemntUtilController_Test() {   
-        CPA_PWORF__c objPworf14 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf14 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf14;
         objPworf14.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
         update objPworf14;
         
-        CPA_Trigger_Pattern__c ATTACHMENTTRIGERNAME = CPA_testClass_util.createTest_AfterAttachmentTriggerPattern();
+        CPA_Trigger_Pattern__c ATTACHMENTTRIGERNAME = CPA_testCustomSettingClass_util.createTest_AfterAttachmentTriggerPattern();
         insert ATTACHMENTTRIGERNAME;
         
         List<Attachment>  listAttachment = new List<Attachment>();             
-        CPA_LOI__c objLOI =CPA_testClass_util.createLOI (objPworf14);
+        CPA_LOI__c objLOI =CPA_testContractClass.createLOI (objPworf14);
         insert  objLOI;
         objLOI.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SUBMITTED;
         update objLOI;
@@ -45,7 +45,7 @@ public class CPA_AttchemntUtilController_Test {
         listAttachment.add(attachment5);
         System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment5.ContentType);
         
-        CPA_project_work_order__c objPWO = CPA_testClass_util.createPWO(objPworf14);
+        CPA_project_work_order__c objPWO = CPA_testContractClass.createPWO(objPworf14);
         insert objPWO;
 
         Blob bBlob = Blob.valueOf(BLOBDATA);
@@ -73,7 +73,7 @@ public class CPA_AttchemntUtilController_Test {
         obj1.Project_Work_Order__c = objPWO.id;
         insert  obj1;    
 
-        CPA_CR__c objCR = CPA_testClass_util.createCR(objPWO);
+        CPA_CR__c objCR = CPA_testContractClass.createCR(objPWO);
         insert objCR;
         CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
         Blob bBlob2 = Blob.valueOf(BLOBDATA);
@@ -117,14 +117,14 @@ public class CPA_AttchemntUtilController_Test {
     ********************************************************************/
     static testmethod void Test_CPA_AttchemntUtil1() { 
     //*---------------------------------------------------------------*//
-       CPA_PWORF__c objPworf15 = CPA_testClass_util.createTest_other_PWORF();
+       CPA_PWORF__c objPworf15 = CPA_testPWORFClass_util.createTest_other_PWORF();
             insert objPworf15;
             objPworf15.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
             update objPworf15;
          
             List<Attachment>  listAttachment = new List<Attachment>();             
             
-            CPA_project_work_order__c objPWO151 = CPA_testClass_util.createPWO(objPworf15);
+            CPA_project_work_order__c objPWO151 = CPA_testContractClass.createPWO(objPworf15);
             insert objPWO151;
             
             Blob bBlob11 = Blob.valueOf(BLOBDATA);
@@ -154,7 +154,7 @@ public class CPA_AttchemntUtilController_Test {
             obj15.Project_Work_Order__c = objPWO151.id;
             insert  obj15;    
             
-            CPA_CR__c objCR1 = CPA_testClass_util.createCR(objPWO151);
+            CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO151);
             insert objCR1;
             CPA_project_work_order__c pwo12 = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR1.CPA_Project_Work_Order__c];
             //objCR1.CPA_project_work_order__c = pwo12.id;
@@ -181,7 +181,7 @@ public class CPA_AttchemntUtilController_Test {
             listAttachment.add(attachment31);
             
             System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment31.ContentType);
-            CPA_CR__c objCR2 = CPA_testClass_util.createCR(objPWO151);
+            CPA_CR__c objCR2 = CPA_testContractClass.createCR(objPWO151);
             insert objCR2;
             //CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR2.CPA_Project_Work_Order__c];
             Blob bBlob6 = Blob.valueOf(BLOBDATA);
@@ -227,14 +227,15 @@ public class CPA_AttchemntUtilController_Test {
             CPA_AttachmentUtil.ReadFile(attachment6);
             System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment6.ContentType);
            
-           /* CPA_AttachmentUtil.deleteContract(lstDel);
+           /* */CPA_AttachmentUtil.deleteContract(lstDel);
             CPA_AttachmentUtil.deleteContract(lstDel1);
     
             CPA_AttachmentUtil.deleteCommericalData(lstDel2);
-            CPA_AttachmentUtil.deleteCommericalData(lstDel3); */
+             delete lstDel3;
+            /*CPA_AttachmentUtil.deleteCommericalData(lstDel3); 
             delete lstDel;
             delete lstDel1;
-            delete lstDel2;
+            delete lstDel2;*/
             delete lstDel3;
     }
 }

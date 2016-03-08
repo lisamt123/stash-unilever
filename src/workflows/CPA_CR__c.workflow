@@ -159,6 +159,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_CR_Raised_Date</fullName>
+        <field>dt_Date_raised__c</field>
+        <formula>TODAY()</formula>
+        <name>CPA CR Raised Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_CR_Resubmitted</fullName>
         <field>dat_Resubmitted_Date__c</field>
         <formula>TODAY()</formula>
@@ -410,6 +419,10 @@
     </rules>
     <rules>
         <fullName>CPA CR Submitted%2C Resubmitted</fullName>
+        <actions>
+            <name>CPA_CR_Raised_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
         <actions>
             <name>CPA_CR_SMT_Send_for_Signature</name>
             <type>FieldUpdate</type>

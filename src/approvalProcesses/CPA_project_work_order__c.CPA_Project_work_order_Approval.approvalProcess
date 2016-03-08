@@ -84,20 +84,15 @@
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <entryCriteria>
-            <booleanFilter>1 AND( 2 OR 3)</booleanFilter>
+            <booleanFilter>1 AND 2</booleanFilter>
+            <criteriaItems>
+                <field>CPA_project_work_order__c.CNF_Status__c</field>
+                <operation>equals</operation>
+                <value>Submitted,Resubmitted</value>
+            </criteriaItems>
             <criteriaItems>
                 <field>CPA_project_work_order__c.num_CNF_Planned_man_days__c</field>
                 <operation>notEqual</operation>
-            </criteriaItems>
-            <criteriaItems>
-                <field>CPA_project_work_order__c.CNF_Status__c</field>
-                <operation>equals</operation>
-                <value>Submitted</value>
-            </criteriaItems>
-            <criteriaItems>
-                <field>CPA_project_work_order__c.CNF_Status__c</field>
-                <operation>equals</operation>
-                <value>Resubmitted</value>
             </criteriaItems>
         </entryCriteria>
         <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
@@ -117,6 +112,10 @@
             </action>
             <action>
                 <name>CPA_Closure_Notification_Returned_date</name>
+                <type>FieldUpdate</type>
+            </action>
+            <action>
+                <name>CPA_Record_type_CPA_PWO_CNF</name>
                 <type>FieldUpdate</type>
             </action>
         </rejectionActions>

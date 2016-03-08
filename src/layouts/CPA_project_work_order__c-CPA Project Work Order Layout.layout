@@ -20,6 +20,10 @@
                 <showScrollbars>true</showScrollbars>
                 <width>100%</width>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Related_CRs__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -49,6 +53,10 @@
                 <behavior>Edit</behavior>
                 <field>lkp_Linked_PWO__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Project_requestor_Name__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -56,8 +64,7 @@
                 <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>lkp_PWORFDelta_Project_requestor__c</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -70,6 +77,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>dt_Date_PWORF_accepted__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>eml_Project_requestor_Email__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -106,15 +117,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>lkp_Unilever_content_approver__c</field>
+                <field>txt_Unilever_Content_Approver_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>lkp_Unilever_budget_approver__c</field>
+                <field>txt_Unilever_Budget_Approver_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>lkp_Unilever_Finance_BP_Contact__c</field>
+                <field>txt_Unilever_Finance_BP_Contact_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -144,6 +155,22 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_Region__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Unilever_Reference__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>eml_Unilever_Content_Approver_Email__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>eml_Unilever_Budget_Approver_Email__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>eml_Unilever_Finance_BP_Contact_Email__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -276,7 +303,7 @@
         <layoutColumns>
             <layoutItems>
                 <height>200</height>
-                <page>CRList</page>
+                <page>CPA_CRList</page>
                 <showLabel>false</showLabel>
                 <showScrollbars>false</showScrollbars>
                 <width>100%</width>

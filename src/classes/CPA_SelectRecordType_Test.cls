@@ -23,7 +23,7 @@ public class CPA_SelectRecordType_Test {
     ********************************************************************/
      public static testMethod void getRecordTypeList_tst() {
      
-     CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
+     CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
      objPworf.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
      insert objPworf;
          
@@ -47,12 +47,12 @@ public class CPA_SelectRecordType_Test {
     ********************************************************************/
     public static testMethod void getRecordTypeListpwo_tst() {
      
-     CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
+     CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
      objPworf.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
      insert objPworf;
      System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED == objPworf.pkl_Status__c); 
      
-     CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf);
+     CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf);
      objPWO.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
         insert  objPWO;
     
@@ -76,12 +76,12 @@ public class CPA_SelectRecordType_Test {
     ********************************************************************/
       public static testMethod void getRecordTypeListLoi_tst() {
      
-     CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
+     CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
       objPworf.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
      insert objPworf;
      System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED == objPworf.pkl_Status__c); 
      
-     CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf);
+     CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf);
      objPWO.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
         insert  objPWO;
 

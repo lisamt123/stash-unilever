@@ -347,28 +347,61 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CAP_PWORF_Return_Num_SLA1_Days</fullName>
+        <field>num_Number_of_SLA1_Days__c</field>
+        <formula>IF(ISNUMBER(txt_SLA1__c) , (VALUE(  txt_SLA1__c )-(IF(ISBLANK(dat_Resubmitted_Date__c),(CASE(MOD(dat_Submitted_Date__c-DATE(1985,6,24),7), 
+0,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+1,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+2,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+3,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+4,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+5,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+6,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+999)+(FLOOR((TODAY()-dat_Submitted_Date__c)/7)*5)),(CASE(MOD(dat_Resubmitted_Date__c-DATE(1985,6,24),7), 
+0,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+1,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+2,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+3,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+4,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+5,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+6,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+999)+(FLOOR((TODAY()-dat_Resubmitted_Date__c)/7)*5))))) , 0)</formula>
+        <name>CAP PWORF Return_Num_SLA1 Days</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CAP_PWORF_Return_Num_SLA2_Days</fullName>
+        <field>num_Number_of_SLA2_Days__c</field>
+        <formula>IF(ISNUMBER(txt_SLA2__c) , (VALUE( txt_SLA2__c )-(IF(ISBLANK(dat_Resubmitted_Date__c),(CASE(MOD(dat_Submitted_Date__c-DATE(1985,6,24),7), 
+0,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+1,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+2,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+3,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+4,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+5,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+6,CASE(MOD(TODAY()-dat_Submitted_Date__c,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+999)+(FLOOR((TODAY()-dat_Submitted_Date__c)/7)*5)),(CASE(MOD(dat_Resubmitted_Date__c-DATE(1985,6,24),7), 
+0,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+1,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+2,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+3,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+4,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+5,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+6,CASE(MOD(TODAY()-dat_Resubmitted_Date__c,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+999)+(FLOOR((TODAY()-dat_Resubmitted_Date__c)/7)*5))))) , 0)</formula>
+        <name>CAP PWORF Return_Num_SLA2 Days</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CAP_PWORF_Withhold_Resubmitted_date</fullName>
         <field>dat_Resubmitted_Date__c</field>
         <name>CAP PWORF Withhold_Resubmitted date</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Null</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>CAP_PWORF_Withhold_SLA1_Date</fullName>
-        <field>dat_SLA1_Accepted_Date__c</field>
-        <name>CAP PWORF Withhold_SLA1 Date</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Null</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>CAP_PWORF_Withhold_SLA1_Days</fullName>
-        <field>Number_of_SLA1_Days__c</field>
-        <formula>VALUE(txt_SLA1__c ) -( dat_Withhold_Date__c - dat_Resubmitted_Date__c )</formula>
-        <name>CAP PWORF Withhold_SLA1 Days</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -407,6 +440,16 @@
         <name>CPA Change the Owner to ULPM after Withh</name>
         <notifyAssignee>true</notifyAssignee>
         <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_Date_of_Acceptance_field_Update</fullName>
+        <description>to update Date of Acceptance  when pworf is updated.</description>
+        <field>dt_Date_Of_Acceptance__c</field>
+        <formula>TODAY()</formula>
+        <name>CPA Date of Acceptance field Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -478,24 +521,6 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>CPA_PWORF_Resubmitted_ExpectedSLA1_date</fullName>
-        <field>dat_Expected_SLA1_Date__c</field>
-        <formula>CASE( 
-MOD(dat_Resubmitted_Date__c - DATE(1900, 1, 7), 7), 
-0, (dat_Resubmitted_Date__c ) + Number_of_SLA1_Days__c + FLOOR((Number_of_SLA1_Days__c-1)/5)*2, 
-1, (dat_Resubmitted_Date__c ) + Number_of_SLA1_Days__c + FLOOR((Number_of_SLA1_Days__c)/5)*2, 
-2, (dat_Resubmitted_Date__c ) + Number_of_SLA1_Days__c + FLOOR((Number_of_SLA1_Days__c+1)/5)*2, 
-3, (dat_Resubmitted_Date__c ) + Number_of_SLA1_Days__c + FLOOR((Number_of_SLA1_Days__c+2)/5)*2, 
-4, (dat_Resubmitted_Date__c ) + Number_of_SLA1_Days__c + FLOOR((Number_of_SLA1_Days__c+3)/5)*2, 
-5, (dat_Resubmitted_Date__c ) + Number_of_SLA1_Days__c + CEILING((Number_of_SLA1_Days__c)/5)*2, 
-6, (dat_Resubmitted_Date__c ) - IF(Number_of_SLA1_Days__c&gt;0,1,0) + Number_of_SLA1_Days__c + CEILING((Number_of_SLA1_Days__c)/5)*2, 
-null)</formula>
-        <name>CPA PWORF Resubmitted_ExpectedSLA1 date</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>CPA_PWORF_Resubmitted_Re_Submitted_date</fullName>
         <field>dat_Resubmitted_Date__c</field>
         <formula>TODAY()</formula>
@@ -505,21 +530,54 @@ null)</formula>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>CPA_PWORF_Resubmitted_SLA1_date</fullName>
-        <field>dat_SLA1_Accepted_Date__c</field>
-        <formula>CASE(
-MOD(dat_Resubmitted_Date__c   - DATE(1900, 1, 7), 7),
-0, (dat_Resubmitted_Date__c  ) + Number_of_SLA1_Days__c + FLOOR((Number_of_SLA1_Days__c-1)/5)*2,
-1, (dat_Resubmitted_Date__c  ) + Number_of_SLA1_Days__c + FLOOR((Number_of_SLA1_Days__c)/5)*2,
-2, (dat_Resubmitted_Date__c  ) + Number_of_SLA1_Days__c + FLOOR((Number_of_SLA1_Days__c+1)/5)*2,
-3, (dat_Resubmitted_Date__c  ) + Number_of_SLA1_Days__c + FLOOR((Number_of_SLA1_Days__c+2)/5)*2,
-4, (dat_Resubmitted_Date__c  ) + Number_of_SLA1_Days__c + FLOOR((Number_of_SLA1_Days__c+3)/5)*2,
-5, (dat_Resubmitted_Date__c  ) + Number_of_SLA1_Days__c + CEILING((Number_of_SLA1_Days__c)/5)*2,
-6, (dat_Resubmitted_Date__c  ) - IF(Number_of_SLA1_Days__c&gt;0,1,0) + Number_of_SLA1_Days__c + CEILING((Number_of_SLA1_Days__c)/5)*2,
-null)</formula>
-        <name>CPA PWORF Resubmitted_SLA1 date</name>
+        <fullName>CPA_PWORF_Resubmitted_isreturn_false</fullName>
+        <field>chk_isReturned__c</field>
+        <literalValue>0</literalValue>
+        <name>CPA PWORF Resubmitted isreturn false</name>
         <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWORF_Resubmitted_iswithhold_false</fullName>
+        <field>chk_isWithhold__c</field>
+        <literalValue>0</literalValue>
+        <name>CPA PWORF Resubmitted iswithhold false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWORF_Resubmitted_return_date_null</fullName>
+        <field>dat_VDM_Request_return_Date__c</field>
+        <name>CPA PWORF Resubmitted return date null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWORF_Resubmitted_withhold_date_null</fullName>
+        <field>dat_Withhold_Date__c</field>
+        <name>CPA PWORF Resubmitted withhold date null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWORF_Return_Isreturn</fullName>
+        <field>chk_isReturned__c</field>
+        <literalValue>1</literalValue>
+        <name>CPA PWORF Return Isreturn</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWORF_Return_SLA2_date_null</fullName>
+        <field>dat_Expected_SLA2_Date__c</field>
+        <name>CPA PWORF Return SLA2 date null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -533,15 +591,6 @@ null)</formula>
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>CPA_PWORF_Submited_submittedDate</fullName>
-        <field>dat_Submitted_Date__c</field>
-        <formula>TODAY()</formula>
-        <name>CPA PWORF Submited_submittedDate</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>CPA_PWORF_Submitted_Re_Submitted_date</fullName>
         <field>dat_Resubmitted_Date__c</field>
         <formula>TODAY()</formula>
@@ -551,37 +600,71 @@ null)</formula>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>CPA_PWORF_Submitted_SLA1</fullName>
-        <field>Number_of_SLA1_Days__c</field>
-        <formula>7</formula>
-        <name>CPA PWORF Submitted SLA1</name>
+        <fullName>CPA_PWORF_Submitted_SLA1_Date</fullName>
+        <field>dat_Expected_SLA1_Date__c</field>
+        <formula>IF((AND(chk_isReturned__c,NOT(chk_isWithhold__c),NOT(ISBLANK(txt_SLA1__c)),NOT(txt_SLA1__c==&apos;NA&apos;))),(CASE(
+MOD(Today() - DATE(1900, 1, 7), 7),
+0, Today() + num_Number_of_SLA1_Days__c+ FLOOR((num_Number_of_SLA1_Days__c-1)/5)*2,
+1, Today() + num_Number_of_SLA1_Days__c + FLOOR((num_Number_of_SLA1_Days__c)/5)*2,
+2, Today() + num_Number_of_SLA1_Days__c + FLOOR((num_Number_of_SLA1_Days__c+1)/5)*2,
+3, Today() + num_Number_of_SLA1_Days__c + FLOOR((num_Number_of_SLA1_Days__c+2)/5)*2,
+4, Today() + num_Number_of_SLA1_Days__c + FLOOR((num_Number_of_SLA1_Days__c+3)/5)*2,
+5, Today() + num_Number_of_SLA1_Days__c + CEILING((num_Number_of_SLA1_Days__c)/5)*2,
+6, Today() - IF((num_Number_of_SLA1_Days__c)&gt;0,1,0) + num_Number_of_SLA1_Days__c + CEILING(((num_Number_of_SLA1_Days__c))/5)*2,
+null)), (IF((AND(NOT(ISBLANK(txt_SLA1__c)),NOT(txt_SLA1__c==&apos;NA&apos;))),(CASE(
+MOD(Today() - DATE(1900, 1, 7), 7),
+0, Today() + VALUE(txt_SLA1__c) + FLOOR((VALUE(txt_SLA1__c)-1)/5)*2,
+1, Today() + VALUE(txt_SLA1__c) + FLOOR((VALUE(txt_SLA1__c))/5)*2,
+2, Today() + VALUE(txt_SLA1__c) + FLOOR((VALUE(txt_SLA1__c)+1)/5)*2,
+3, Today() + VALUE(txt_SLA1__c) + FLOOR((VALUE(txt_SLA1__c)+2)/5)*2,
+4, Today() + VALUE(txt_SLA1__c) + FLOOR((VALUE(txt_SLA1__c)+3)/5)*2,
+5, Today() + VALUE(txt_SLA1__c) + CEILING((VALUE(txt_SLA1__c))/5)*2,
+6, Today() - IF(VALUE(txt_SLA1__c)&gt;0,1,0) + VALUE(txt_SLA1__c) + CEILING((VALUE(txt_SLA1__c))/5)*2,
+null)),null)))</formula>
+        <name>CPA PWORF Submitted_SLA1 Date</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>CPA_PWORF_Submitted_SLA1_Date</fullName>
-        <field>dat_SLA1_Accepted_Date__c</field>
-        <formula>CASE(
-MOD(dat_Submitted_Date__c  - DATE(1900, 1, 7), 7),
-0, (dat_Submitted_Date__c ) + VALUE(txt_SLA1__c) + FLOOR((VALUE(txt_SLA1__c)-1)/5)*2,
-1, (dat_Submitted_Date__c ) + VALUE(txt_SLA1__c) + FLOOR((VALUE(txt_SLA1__c))/5)*2,
-2, (dat_Submitted_Date__c ) + VALUE(txt_SLA1__c) + FLOOR((VALUE(txt_SLA1__c)+1)/5)*2,
-3, (dat_Submitted_Date__c ) + VALUE(txt_SLA1__c) + FLOOR((VALUE(txt_SLA1__c)+2)/5)*2,
-4, (dat_Submitted_Date__c ) + VALUE(txt_SLA1__c) + FLOOR((VALUE(txt_SLA1__c)+3)/5)*2,
-5, (dat_Submitted_Date__c ) + VALUE(txt_SLA1__c) + CEILING((VALUE(txt_SLA1__c))/5)*2,
-6, (dat_Submitted_Date__c ) - IF(VALUE(txt_SLA1__c)&gt;0,1,0) + VALUE(txt_SLA1__c) + CEILING((VALUE(txt_SLA1__c))/5)*2,
-null)</formula>
-        <name>CPA PWORF Submitted_SLA1 Date</name>
+        <fullName>CPA_PWORF_Submitted_SLA2_Date</fullName>
+        <field>dat_Expected_SLA2_Date__c</field>
+        <formula>IF((AND(chk_isReturned__c,NOT(chk_isWithhold__c),NOT(ISBLANK(txt_SLA2__c)),NOT(txt_SLA2__c==&apos;NA&apos;))),(CASE(
+MOD(Today() - DATE(1900, 1, 7), 7),
+0, Today() + num_Number_of_SLA2_Days__c+ FLOOR((num_Number_of_SLA2_Days__c-1)/5)*2,
+1, Today() + num_Number_of_SLA2_Days__c + FLOOR((num_Number_of_SLA2_Days__c)/5)*2,
+2, Today() + num_Number_of_SLA2_Days__c + FLOOR((num_Number_of_SLA2_Days__c+1)/5)*2,
+3, Today() + num_Number_of_SLA2_Days__c + FLOOR((num_Number_of_SLA2_Days__c+2)/5)*2,
+4, Today() + num_Number_of_SLA2_Days__c + FLOOR((num_Number_of_SLA2_Days__c+3)/5)*2,
+5, Today() + num_Number_of_SLA2_Days__c + CEILING((num_Number_of_SLA2_Days__c)/5)*2,
+6, Today() - IF((num_Number_of_SLA2_Days__c)&gt;0,1,0) + num_Number_of_SLA2_Days__c + CEILING(((num_Number_of_SLA2_Days__c))/5)*2,
+null)), (IF((AND(NOT(ISBLANK(txt_SLA2__c)),NOT(txt_SLA2__c==&apos;NA&apos;))),(CASE(
+MOD(Today() - DATE(1900, 1, 7), 7),
+0, Today() + VALUE(txt_SLA2__c) + FLOOR((VALUE(txt_SLA2__c)-1)/5)*2,
+1, Today() + VALUE(txt_SLA2__c) + FLOOR((VALUE(txt_SLA2__c))/5)*2,
+2, Today() + VALUE(txt_SLA2__c) + FLOOR((VALUE(txt_SLA2__c)+1)/5)*2,
+3, Today() + VALUE(txt_SLA2__c) + FLOOR((VALUE(txt_SLA2__c)+2)/5)*2,
+4, Today() + VALUE(txt_SLA2__c) + FLOOR((VALUE(txt_SLA2__c)+3)/5)*2,
+5, Today() + VALUE(txt_SLA2__c) + CEILING((VALUE(txt_SLA2__c))/5)*2,
+6, Today() - IF(VALUE(txt_SLA2__c)&gt;0,1,0) + VALUE(txt_SLA2__c) + CEILING((VALUE(txt_SLA2__c))/5)*2,
+null)),null)))</formula>
+        <name>CPA PWORF Submitted_SLA2 Date</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_PWORF_Submitted_dat_Expected_SLA1_Da</fullName>
         <field>dat_Expected_SLA1_Date__c</field>
         <name>CPA PWORF Submitted_dat_Expected_SLA1_Da</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWORF_Submitted_date_null</fullName>
+        <field>dat_Submitted_Date__c</field>
+        <name>CPA PWORF Submitted date null</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Null</operation>
         <protected>false</protected>
@@ -597,12 +680,29 @@ null)</formula>
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_PWORF_return_SLA1_date_null</fullName>
+        <field>dat_Expected_SLA1_Date__c</field>
+        <name>CPA PWORF return SLA1 date null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_PWORF_uniqueness</fullName>
         <field>Unique_PWORF__c</field>
         <formula>Name</formula>
         <name>CPA PWORF uniqueness</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWORF_withhold_isWithhold</fullName>
+        <field>chk_isWithhold__c</field>
+        <literalValue>1</literalValue>
+        <name>CPA PWORF withhold isWithhold</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -621,7 +721,15 @@ null)</formula>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_Resubmitted_Date_update</fullName>
+        <description>Set Resubmitted date null</description>
+        <field>dat_Resubmitted_Date__c</field>
+        <name>CPA Resubmitted Date update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_Status_Saved</fullName>
@@ -643,6 +751,26 @@ null)</formula>
         <operation>LookupValue</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_isCancelled_PWORF_update</fullName>
+        <description>mark ture when PWORF is Cancelled</description>
+        <field>isCancelled_PWORF__c</field>
+        <literalValue>1</literalValue>
+        <name>CPA isCancelled PWORF update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_isCancelled_Pworf_update_false</fullName>
+        <description>to set isCancelled Pworf False PWORF is newly created</description>
+        <field>isCancelled_PWORF__c</field>
+        <literalValue>0</literalValue>
+        <name>CPA isCancelled Pworf update false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_uncheck_IScancel</fullName>
@@ -752,6 +880,10 @@ null)</formula>
             <type>FieldUpdate</type>
         </actions>
         <actions>
+            <name>CPA_Date_of_Acceptance_field_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CPA_PWORF_Accepted_Date_Update</name>
             <type>FieldUpdate</type>
         </actions>
@@ -800,6 +932,10 @@ null)</formula>
             <type>FieldUpdate</type>
         </actions>
         <actions>
+            <name>CPA_isCancelled_PWORF_update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>Cancelled_Action_field_Udate</name>
             <type>FieldUpdate</type>
         </actions>
@@ -814,11 +950,23 @@ null)</formula>
     <rules>
         <fullName>CPA PWORF Cloned%2FCreated</fullName>
         <actions>
+            <name>CPA_PWORF_Submitted_date_null</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CPA_Reason_for_Cancellation</name>
             <type>FieldUpdate</type>
         </actions>
         <actions>
+            <name>CPA_Resubmitted_Date_update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CPA_Status_Saved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_isCancelled_Pworf_update_false</name>
             <type>FieldUpdate</type>
         </actions>
         <actions>
@@ -849,32 +997,30 @@ null)</formula>
             <type>Alert</type>
         </actions>
         <actions>
-            <name>CPA_PWORF_Resubmitted_ExpectedSLA1_date</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
             <name>CPA_PWORF_Resubmitted_Re_Submitted_date</name>
             <type>FieldUpdate</type>
         </actions>
         <actions>
-            <name>CPA_PWORF_Resubmitted_SLA1_date</name>
+            <name>CPA_PWORF_Resubmitted_isreturn_false</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_Resubmitted_iswithhold_false</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_Resubmitted_return_date_null</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_Resubmitted_withhold_date_null</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <criteriaItems>
             <field>CPA_PWORF__c.pkl_Status__c</field>
             <operation>equals</operation>
             <value>Resubmitted</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>CPA_PWORF__c.txt_SLA1__c</field>
-            <operation>notEqual</operation>
-            <value>NA</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>CPA_PWORF__c.txt_SLA1__c</field>
-            <operation>notEqual</operation>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -885,7 +1031,27 @@ null)</formula>
             <type>Alert</type>
         </actions>
         <actions>
+            <name>CAP_PWORF_Return_Num_SLA1_Days</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CAP_PWORF_Return_Num_SLA2_Days</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_Return_Isreturn</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_Return_SLA2_date_null</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CPA_PWORF_Returned_Date_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_return_SLA1_date_null</name>
             <type>FieldUpdate</type>
         </actions>
         <actions>
@@ -901,6 +1067,29 @@ null)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>CPA PWORF Status update to Auto Accepted</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_PWORF__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted,Resubmitted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_PWORF__c.dat_Expected_SLA1_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Update_Status</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>CPA_PWORF__c.dat_Expected_SLA1_Date__c</offsetFromField>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
         <fullName>CPA PWORF Withhold</fullName>
         <actions>
             <name>CPA_PWORF_Withhold_Email_Alert</name>
@@ -911,19 +1100,19 @@ null)</formula>
             <type>FieldUpdate</type>
         </actions>
         <actions>
-            <name>CAP_PWORF_Withhold_SLA1_Date</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CAP_PWORF_Withhold_SLA1_Days</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
             <name>CAP_PWORF_Withhold_Withhold_Date</name>
             <type>FieldUpdate</type>
         </actions>
         <actions>
-            <name>CPA_PWORF_Submitted_dat_Expected_SLA1_Da</name>
+            <name>CPA_PWORF_Return_SLA2_date_null</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_return_SLA1_date_null</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_withhold_isWithhold</name>
             <type>FieldUpdate</type>
         </actions>
         <actions>
@@ -931,20 +1120,10 @@ null)</formula>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <criteriaItems>
             <field>CPA_PWORF__c.pkl_Status__c</field>
             <operation>equals</operation>
             <value>Withhold</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>CPA_PWORF__c.txt_SLA1__c</field>
-            <operation>notEqual</operation>
-            <value>NA</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>CPA_PWORF__c.txt_SLA1__c</field>
-            <operation>notEqual</operation>
         </criteriaItems>
         <description>This workflow will fire after the status for PWORF will be Withhold update the date fields.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
@@ -991,17 +1170,30 @@ null)</formula>
     </rules>
     <rules>
         <fullName>CPA SLA2 BreachCheck</fullName>
-        <actions>
-            <name>CPA_Breach_Applicable</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_Penalty_Applicable</name>
-            <type>FieldUpdate</type>
-        </actions>
         <active>true</active>
-        <formula>IF(OR(NOT(ISBLANK(dat_Revised_Submission_Date__c)),NOT(ISBLANK(dat_Expected_SLA2_Date__c))),IF(OR((AND(ISBLANK(dat_Revised_Submission_Date__c),dat_Expected_SLA2_Date__c == TODAY())),((AND(NOT(ISBLANK(dat_Revised_Submission_Date__c)),dat_Revised_Submission_Date__c == TODAY())))),true,false),false)</formula>
+        <criteriaItems>
+            <field>CPA_PWORF__c.dat_Expected_SLA2_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_PWORF__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted,Resubmitted,Accepted</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>CPA_Breach_Applicable</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <actions>
+                <name>CPA_Penalty_Applicable</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>CPA_PWORF__c.dat_Expected_SLA2_Date__c</offsetFromField>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
     </rules>
     <rules>
         <fullName>Status Auto Approved</fullName>

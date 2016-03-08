@@ -188,6 +188,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_First_PWO_Update</fullName>
+        <description>to set each Standalone PWO as First PWO</description>
+        <field>chk_First_PWO__c</field>
+        <literalValue>1</literalValue>
+        <name>CPA First PWO Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_PWO_CNF_status_saved</fullName>
         <field>CNF_Status__c</field>
         <literalValue>Saved</literalValue>
@@ -644,12 +654,16 @@
         <criteriaItems>
             <field>CPA_project_work_order__c.RecordTypeId</field>
             <operation>notEqual</operation>
-            <value>CPA Standalone PWO</value>
+            <value>Standalone PWO</value>
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>CPA Project Work Order Cloned%2FCreated Standalone PWO</fullName>
+        <actions>
+            <name>CPA_First_PWO_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
         <actions>
             <name>CPA_Project_Work_Order_Saved</name>
             <type>FieldUpdate</type>
@@ -662,7 +676,7 @@
         <criteriaItems>
             <field>CPA_project_work_order__c.RecordTypeId</field>
             <operation>equals</operation>
-            <value>CPA Standalone PWO</value>
+            <value>Standalone PWO</value>
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>
@@ -912,7 +926,7 @@
             <name>CPA_Record_type_CPA_PWO_CNF</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>CPA_project_work_order__c.CNF_Status__c</field>
             <operation>equals</operation>

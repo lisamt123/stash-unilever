@@ -28,6 +28,10 @@
                 <showScrollbars>true</showScrollbars>
                 <width>100%</width>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Related_CRs__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -100,10 +104,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>lkp_Project_requestor__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -555,13 +555,13 @@
         <fields>ltxta_Probability__c</fields>
         <fields>ltxta_Impact__c</fields>
         <fields>ltxta_Mitigation_Action__c</fields>
-        <relatedList>Risk_Assessment_and_Mitigation__c.lkp_PWORF__c</relatedList>
+        <relatedList>CPA_Risk_Assessment_and_Mitigation__c.lkp_PWORF__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>E_mail__c</fields>
         <fields>Telephone__c</fields>
-        <relatedList>PWORFKey_Contacts__c.PWORF__c</relatedList>
+        <relatedList>CPA_Key_Contacts__c.PWORF__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
@@ -579,7 +579,7 @@
         <fields>NAME</fields>
         <fields>pkl_Attribute_Type__c</fields>
         <fields>txt_Value__c</fields>
-        <relatedList>CAP_User_Defined_Attribute__c.lkp_PWORF__c</relatedList>
+        <relatedList>CPA_User_Defined_Attribute__c.lkp_PWORF__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

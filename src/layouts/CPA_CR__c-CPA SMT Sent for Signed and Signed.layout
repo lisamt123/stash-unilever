@@ -88,11 +88,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>lkp_Unilever_content_approver__c</field>
+                <field>txt_Accenture_Project_Manager__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>lkp_Unilever_budget_approver__c</field>
+                <field>txt_Unilever_Content_Approver_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txt_Unilever_Budget_Approver_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -118,11 +122,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_Accenture_Project_Manager__c</field>
+                <field>ltxta_Comments__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>ltxta_Comments__c</field>
+                <field>eml_Unilever_Content_Approver_Email__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>eml_Unilever_Budget_Approver_Email__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -178,6 +186,10 @@
                 <behavior>Readonly</behavior>
                 <field>num_Total_charge_of_CR__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>num_Delta_Efforts__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -198,7 +210,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>pec_Variance__c</field>
+                <field>fur_per_Variance__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -274,7 +286,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>CAP_User_Defined_Attribute__c.lkp_CR__c</relatedList>
+        <relatedList>CPA_User_Defined_Attribute__c.lkp_CR__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CreatedDate</fields>

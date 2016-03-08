@@ -18,6 +18,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String UPDATECONSTANT= 'update';
     public static final String REQUIRED= 'Required';
     public static final String LOICUSTOMSETTING = 'CPA_LOIMandatoryMessages__c';
+    public static final String PWORFCUSTOMSETTING = 'CPA_PWORFMandatoryMessages__c';
     public static final String MANDATORY = 'Mandatory';
     public static final String YES = 'Yes';
     public static final String NO = 'No';
@@ -140,7 +141,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String DATASPECIFICTESTINGREQ='Data-specific testing required?';
     public static final String INTERFACETOSYSDETAIL='Interface to the system Detail';
     public static final String INTERFACEINTROCHANGED='Interface Introduced/Changed?';
-    public static final String HASWARBEENDISCUSSEDWITHSUPPER='Has W@R been discussed with Supplier Per';
+    public static final String HASWARBEENDISCUSSEDWITHSUPPER='Agreed with Supplier Performance Team';
     public static final String GOVRISKANDCOMPLIANCE='Governance Risk and Compliance';
     public static final String EXPECTEDSTDTFORPLANANDANALYSE='Expected Start Date for Plan and Analyse';
     public static final String EXPECTEDSTDTFORDBTDPWO='Expected Start Date for DBTD PWO';
@@ -168,7 +169,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String LANDSCAPE='Landscape';
     public static final String ICCNUMBER='ICC Number';
     public static final String COSTCENTER='Cost Center';
-    public static final String COSTCENTERDETAILS='Cost Centre Details';
+    public static final String COSTCENTERDETAILS='Cost Center Details';
     public static final String BUSINESSAREA='Business Area';
     public static final String ULPROJECTMANAGER='Unilever project manager';
     public static final String ULFINANCEBP='Unilever Finance BP/Contact';
@@ -211,5 +212,11 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String ULBAEMAIL='Unilever Budget Approver Email';
     public static final String ULCANAME='Unilever Content Approver Name';
     public static final String ULCAEMAIL='Unilever Content Approver Email';
+    
+    public static final String PWOTITLE = 'PWO title';
+    public static final String EXPENSECHAGRESOFLOI = 'Expense charges of LOI';
+    public static final String CNFULCAEMAIL=  'CNF Unilever Content Approver Email';
+    public static final String TNFULCONTACTEMAIL=  'TNF Unilever Contact Email';
+    public static final String ASSUMPTIONS=  'Assumptions';
 
 }

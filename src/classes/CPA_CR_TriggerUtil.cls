@@ -439,10 +439,10 @@ public with sharing class CPA_CR_TriggerUtil{
         }
     }
     
-    /**Method Name : newCR
+    /**Method Name : calculateDelta
     * Parameter    : oldCRList1, newCR1
     * Return type  : void
-    * Author       : Pooja Kanani
+    * Author       : Shreyas Mangalvedhekar
     * Description  : This method is used to calculate the delta
     */
     public static void calculateDelta(List<CPA_CR__c> oldCRList1,List<CPA_CR__c> newCR1){
@@ -492,20 +492,25 @@ public with sharing class CPA_CR_TriggerUtil{
             
             for(CPA_CR__c objCRTEmp :lstCR ){
                 if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c)==null ){
-                    if(mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c)!=null){
+                    if(mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c)!=null && mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c!=null){
                         objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c;
                         
                         system.debug('Inside Loop');
-                    }else{
+                    }else if(objCRTEmp.num_Estimated_Value_of_CR__c !=null){
                         objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c ;  
                         system.debug('Inside Loop1111');                        
+                    }else {
+                        objCRTEmp.num_Delta_Efforts__c =0;
                     }
                      
                 }else {
                     if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c)!=null){
-                        if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).Id == objCRTEmp.Id){
+                        if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).Id == objCRTEmp.Id && mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c!= null){
                             objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c;
                             objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Delta_Efforts__c;
+                        } else if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).Id == objCRTEmp.Id && mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c== null){
+                            objCRTEmp.num_Delta_Efforts__c = 0;
+                            objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Estimated_Value_of_CR__c;
                         }
                       else{
                           if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_CR__c != null){

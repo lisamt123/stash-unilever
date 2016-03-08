@@ -131,7 +131,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
     <fields>
         <fullName>Business_Case__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Please enter details of the main ideas and business reason(s) underpinning the Project Request Form and why it is required by Unilever. Please enter a description the overall purpose or function of the project.</inlineHelpText>
+        <inlineHelpText>Please enter details of the main ideas and business reason(s) underpinning the Project Request Form and why it is required by Unilever</inlineHelpText>
         <label>Business Case*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -383,7 +383,6 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
     <fields>
         <fullName>In_Scope__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Please enter details of the main ideas and business reason(s) underpinning the Project Request Form and why it is required by Unilever. Please enter a description the overall purpose or function of the project.</inlineHelpText>
         <label>In Scope*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -554,7 +553,6 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <fullName>Out_of_Scope__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Please enter details of the main ideas and business reason(s) underpinning the Project Request Form and why it is required by Unilever. Please enter a description the overall purpose or function of the project.</inlineHelpText>
         <label>Out of Scope*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -565,7 +563,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <fullName>Overall_purpose_or_function_of_the_proje__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Please enter details of the main ideas and business reason(s) underpinning the Project Request Form and why it is required by Unilever. Please enter a description the overall purpose or function of the project.</inlineHelpText>
+        <inlineHelpText>Please enter a description the overall purpose or function of the project.</inlineHelpText>
         <label>Overall Purpose/Function of the Project*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -711,7 +709,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <fullName>Stakeholder_Expectations__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Please enter details of the main ideas and business reason(s) underpinning the Project Request Form and why it is required by Unilever.  Please enter a description the overall purpose or function of the project.  Please also provide details.</inlineHelpText>
+        <inlineHelpText>Description of expectations from Unilever stakeholders</inlineHelpText>
         <label>Stakeholder Expectations*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1228,10 +1226,22 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>isCancelled_PWORF__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>true when PWORF is Cancelled.</description>
+        <externalId>false</externalId>
+        <label>isCancelled PWORF</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>isCancelled__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Used when LOI is cancelled</description>
         <externalId>false</externalId>
-        <label>isCancelled</label>
+        <label>isCancelled LOI</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1549,7 +1559,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>pkl_Cost_Centre_Details__c</fullName>
         <description>Cost center funding detail</description>
         <externalId>false</externalId>
-        <label>Cost Centre Details*</label>
+        <label>Cost Center Details*</label>
         <picklist>
             <picklistValues>
                 <fullName>ETS IT</fullName>
@@ -1973,7 +1983,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <description>Cost Center to which the project belongs</description>
         <externalId>false</externalId>
         <inlineHelpText>Cost Center to which the project belongs</inlineHelpText>
-        <label>Cost Centre*</label>
+        <label>Cost Center*</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2312,7 +2322,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <fullName>txta_Project_Description__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Please Write a Para (Maximum 255 Words)…..</inlineHelpText>
+        <inlineHelpText>Please Write a Para (Maximum 255 Words)….</inlineHelpText>
         <label>Project Description*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -3934,6 +3944,13 @@ Is required</description>
         <errorConditionFormula>AND((OR((ISPICKVAL(   pkl_Status__c , &apos;Submitted&apos;)),(ISPICKVAL(   pkl_Status__c , &apos;Resubmitted&apos;)))),ISPICKVAL( pkl_Request_Type__c , &apos;Select&apos;))</errorConditionFormula>
         <errorDisplayField>pkl_Request_Type__c</errorDisplayField>
         <errorMessage>You must Select a Request Type</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Restrict_cancelled_PWORF_to_be_edited</fullName>
+        <active>true</active>
+        <description>to prevent the cancelled PROWF from been edited.</description>
+        <errorConditionFormula>isCancelled_PWORF__c == TRUE</errorConditionFormula>
+        <errorMessage>This PWORF is in cancelled status, can not edit.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Revised_Submission_Date</fullName>

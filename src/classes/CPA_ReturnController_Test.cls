@@ -24,13 +24,13 @@ public class CPA_ReturnController_Test {
     static testmethod void LOIreturnController_Test() {
         Test.startTest();
         
-        CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf;
         
         objPworf.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED ;
         update objPworf;
         
-        CPA_LOI__c objLOI =CPA_testClass_util.createLOI (objPworf);
+        CPA_LOI__c objLOI =CPA_testContractClass.createLOI (objPworf);
         objLOI.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SAVED;
         insert  objLOI;
 
@@ -44,13 +44,13 @@ public class CPA_ReturnController_Test {
 
         //System.assert(CPA_ConstantsForContractingAppClasses.RETURNED == objLOI.pkl_Status__c);
         
-        CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf1 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf1;
         
         objPworf1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED ;
         update objPworf1;
         
-        CPA_LOI__c objLOI1 =CPA_testClass_util.createLOI (objPworf1);
+        CPA_LOI__c objLOI1 =CPA_testContractClass.createLOI (objPworf1);
         objLOI1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED;
         insert  objLOI1;
 
@@ -75,13 +75,13 @@ public class CPA_ReturnController_Test {
         
         Test.startTest();
         
-        CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf1 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf1;
 
        objPworf1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ANSWERED ;
         update objPworf1;
         System.assert(CPA_ConstantsForContractingAppClasses.ANSWERED == objPworf1.pkl_Status__c);
-        CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf1);
+        CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf1);
         
         insert  objPWO;
         
@@ -109,13 +109,13 @@ public class CPA_ReturnController_Test {
         
         Test.startTest();
         
-        CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf1 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf1;
 
        objPworf1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ANSWERED ;
         update objPworf1;
        
-        CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf1);
+        CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf1);
         insert  objPWO;
         
         objPWO.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SentForClosure ;
@@ -143,13 +143,13 @@ public class CPA_ReturnController_Test {
         
         Test.startTest();
         
-        CPA_PWORF__c objPworf1 = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf1 = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf1;
 
        objPworf1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ANSWERED ;
         update objPworf1;
         
-        CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf1);
+        CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf1);
         insert  objPWO;
         
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SentForTermination ;
@@ -163,9 +163,9 @@ public class CPA_ReturnController_Test {
         controller.getRecord(objPWO.id);
        
        CPA_project_work_order__c objPWOFinal = [Select Id,pkl_Status__c,TNF_Status__c from CPA_project_work_order__c where Id =:objPWO.id ];
-         System.assert(CPA_ConstantsForContractingAppClasses.SentForTermination == objPWOFinal.pkl_Status__c);
+         
          controller.SaveCancelReason();
-        System.assert(CPA_ConstantsForContractingAppClasses.RETURNED == objPWOFinal.TNF_Status__c);
+        System.assert(CPA_ConstantsForContractingAppClasses.SentForTermination == objPWOFinal.pkl_Status__c);
          
         Test.stopTest();
     }
@@ -178,20 +178,20 @@ public class CPA_ReturnController_Test {
     static testmethod void  CRreturnController_Test() {
         Test.startTest();
         
-        CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf;
 
        objPworf.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ANSWERED ;
         update objPworf;
         System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED== objPworf.pkl_Status__c);
-        CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf);
+        CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf);
         insert  objPWO;
         
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.DELIVERED ;
         update objPWO;
         System.assert (CPA_ConstantsForContractingAppClasses.DELIVERED == objPWO.pkl_Status__c);
         
-        CPA_CR__c objCR1 = CPA_testClass_util.createCR(objPWO);      
+        CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO);      
         objCR1.pkl_Status__c= CPA_ConstantsForContractingAppClasses.DELIVERED;
         insert objCR1;
        
@@ -219,20 +219,20 @@ public class CPA_ReturnController_Test {
     static testmethod void  CRreturnController_Cancel_Test() {
         Test.startTest();
         
-        CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf;
 
        objPworf.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ANSWERED ;
         update objPworf;
         System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED== objPworf.pkl_Status__c);
-        CPA_project_work_order__c objPWO =CPA_testClass_util.createPWO(objPworf);
+        CPA_project_work_order__c objPWO =CPA_testContractClass.createPWO(objPworf);
         insert  objPWO;
         
         objPWO.pkl_Status__c =CPA_ConstantsForContractingAppClasses.DELIVERED ;
         update objPWO;
         System.assert (CPA_ConstantsForContractingAppClasses.DELIVERED == objPWO.pkl_Status__c);
         
-        CPA_CR__c objCR1 = CPA_testClass_util.createCR(objPWO);      
+        CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO);      
         objCR1.pkl_Status__c= CPA_ConstantsForContractingAppClasses.SAVED;
         insert objCR1;
        
@@ -261,7 +261,7 @@ public class CPA_ReturnController_Test {
     ********************************************************************/
     static testmethod void  PWORFwithholdController_Test() {
         
-     CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
+     CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
      objPworf.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
         insert objPworf;
         System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED == objPworf.pkl_Status__c);
@@ -287,7 +287,7 @@ public class CPA_ReturnController_Test {
     ********************************************************************/
     static testmethod void  PWORFwithholdController_Cancel_Test() {
         
-     CPA_PWORF__c objPworf = CPA_testClass_util.createTest_other_PWORF();
+     CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
      objPworf.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
         insert objPworf;
         objPworf.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SAVED;

@@ -231,7 +231,7 @@
                 <field>mpkl_PFS_If_yes_what_is_the_source__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>txt_Other_Project_funding_Source__c</field>
             </layoutItems>
         </layoutColumns>
@@ -280,13 +280,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>RECORDTYPE</fields>
-        <fields>txt_Accenture_project_manager__c</fields>
-        <fields>txt_Title__c</fields>
-        <relatedList>CPA_HLE__c.HLE_Request__c</relatedList>
-    </relatedLists>
     <relatedLists>
         <fields>CreatedDate</fields>
         <fields>StepStatus</fields>

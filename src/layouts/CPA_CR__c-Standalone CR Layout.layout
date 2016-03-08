@@ -70,6 +70,14 @@
                 <behavior>Edit</behavior>
                 <field>dat_Actual_End_Date__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Unilever_Content_Approver_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Unilever_Budget_Approver_Name__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -93,7 +101,7 @@
                 <field>txt_Change_Record_number__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>dt_Date_raised__c</field>
             </layoutItems>
             <layoutItems>
@@ -106,17 +114,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>lkp_Unilever_budget_approver__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>lkp_Unilever_content_approver__c</field>
-            </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>pkl_Project_Phases__c</field>
             </layoutItems>
             <layoutItems>
@@ -126,6 +123,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Region_impacted__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>eml_Unilever_Content_Approver_Email__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>eml_Unilever_Budget_Approver_Email__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -154,8 +159,8 @@
                 <field>num_Target_Blend_Rate__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>pec_Variance__c</field>
+                <behavior>Readonly</behavior>
+                <field>fur_per_Variance__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -259,7 +264,7 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>CAP_User_Defined_Attribute__c.lkp_CR__c</relatedList>
+        <relatedList>CPA_User_Defined_Attribute__c.lkp_CR__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>CreatedDate</fields>
