@@ -436,7 +436,7 @@
                                                         <apex:outputPanel rendered="{!ipm_CategoryVal.IPM_Sub_Sector__c}">
                                                             <div class="inputField">
                                                                 <div class="panel-label bsFieldLabel">
-                                                                    <apex:outputlabel value="{!$Label.IPM_Sub_Sector}" />
+                                                                    <apex:outputlabel  styleClass="fontB" value="{!$Label.IPM_Sub_Sector}" />
                                                                     <span class="SecButtonSet infoMarTop">
                                                 					 <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
                                              						</span>
