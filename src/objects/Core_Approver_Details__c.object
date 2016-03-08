@@ -639,11 +639,23 @@ NULL))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>PAPP</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>PREP</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>QUER</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>REJC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REWO</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -663,6 +675,14 @@ NULL))))))))))))</formula>
             </values>
             <values>
                 <fullName>EMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>END</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTH</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -716,7 +736,15 @@ NULL))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -731,7 +759,19 @@ NULL))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Query With Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Return to AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rework</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -928,11 +968,23 @@ NULL))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>PAPP</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>PREP</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>QUER</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>REJC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REWO</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -952,6 +1004,14 @@ NULL))))))))))))</formula>
             </values>
             <values>
                 <fullName>EMP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>END</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTH</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1005,7 +1065,15 @@ NULL))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1020,7 +1088,19 @@ NULL))))))))))))</formula>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Query With Vendor</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Return to AP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rework</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

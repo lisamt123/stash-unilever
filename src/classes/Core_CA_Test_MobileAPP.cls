@@ -84,7 +84,7 @@ public class Core_CA_Test_MobileAPP{
     }
     
     
-    public static void TestRequestDetail(){
+    public static testmethod void TestRequestDetail(){
         Core_CA_WrapperUtility wrapper=new Core_CA_WrapperUtility(); 
         
         profile p=[select id from profile where name=:'System Administrator']; 

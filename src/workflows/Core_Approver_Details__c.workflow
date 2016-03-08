@@ -76,6 +76,22 @@
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>
     </outboundMessages>
+    <outboundMessages>
+        <fullName>Core_CA_IP_Invoice_OutboundMessage</fullName>
+        <apiVersion>36.0</apiVersion>
+        <endpointUrl>http://52.19.177.104:8081/DciwSalesforceResponseService</endpointUrl>
+        <fields>Comments__c</fields>
+        <fields>CurrentDateTime__c</fields>
+        <fields>Header_ExternalId__c</fields>
+        <fields>Id</fields>
+        <fields>Interested_Party_Email__c</fields>
+        <fields>Status__c</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>invoice.system@unilever.com</integrationUser>
+        <name>Core CA IP Invoice OutboundMessage</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
     <rules>
         <fullName>Core CA ActionDate WF Rule</fullName>
         <actions>
@@ -215,6 +231,50 @@
             <value>Ariba</value>
         </criteriaItems>
         <description>Ariba Reject Notifications</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Core CA Invoice Notifications WF Rule</fullName>
+        <actions>
+            <name>Core_CA_IP_Invoice_OutboundMessage</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND (2 OR 3 )</booleanFilter>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Source_System__c</field>
+            <operation>equals</operation>
+            <value>Invoice</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Return to AP</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Core CA Invoice QWV Notifications WF Rule</fullName>
+        <actions>
+            <name>Core_CA_IP_Invoice_OutboundMessage</name>
+            <type>OutboundMessage</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Source_System__c</field>
+            <operation>equals</operation>
+            <value>Invoice</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Core_Approver_Details__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Query With Vendor</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

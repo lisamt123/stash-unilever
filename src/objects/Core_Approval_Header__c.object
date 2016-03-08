@@ -943,6 +943,24 @@
         <label>Ariba</label>
     </listViews>
     <listViews>
+        <fullName>Clarity</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Requested_By__c</columns>
+        <columns>Requested_For__c</columns>
+        <columns>Impact__c</columns>
+        <columns>Urgency__c</columns>
+        <columns>Priority__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Source_System__c</field>
+            <operation>equals</operation>
+            <value>Clarity</value>
+        </filters>
+        <label>Clarity</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>GTES</fullName>
         <columns>NAME</columns>
         <columns>Status__c</columns>
@@ -958,6 +976,24 @@
             <value>GTES</value>
         </filters>
         <label>GTES</label>
+    </listViews>
+    <listViews>
+        <fullName>Invoice</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Requested_By__c</columns>
+        <columns>Requested_For__c</columns>
+        <columns>Impact__c</columns>
+        <columns>Urgency__c</columns>
+        <columns>Priority__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Source_System__c</field>
+            <operation>equals</operation>
+            <value>Invoice</value>
+        </filters>
+        <label>Invoice</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Request ID</label>
@@ -980,7 +1016,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1111,7 +1155,15 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Clarity</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>GTES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invoice</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1214,10 +1266,6 @@
             </values>
             <values>
                 <fullName>Rejected</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Sent for Payment</fullName>
                 <default>false</default>
             </values>
             <values>
