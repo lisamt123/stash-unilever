@@ -41,5 +41,20 @@ private class VEP_Visitor_Trigger_Test{
         listVisitor.add(visitor1);    
         insert listVisitor;
         System.assertEquals(2,listVisitor.size());
+        Test.startTest();
+        VEP_Visitor_TriggerHandler.vep_UpdateFactory(listVisitor);
+        VEP_Visitor_TriggerHandler.vep_generatePassOnBehalf(listVisitor);
+        Test.stopTest();
+        VEP_Visitor__c lv = [select id,factory_manager__c from VEP_Visitor__c where id=:visitor.id];
+        
+        System.assertEquals(lv.factory_manager__c,fact.Factory_Manager__c);
+        
+        
+      
+        VEP_Visitor_Pass__c vp = [select id,Visitor__c from VEP_Visitor_Pass__c where Visitor__c=: visitor1.id limit 1];
+        System.assertEquals(visitor1.id,vp.Visitor__c);
+        
+        
+        
     }
 }

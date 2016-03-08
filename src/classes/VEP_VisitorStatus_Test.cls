@@ -36,12 +36,7 @@ private class VEP_VisitorStatus_Test{
         }
         listVisitorQ = [select id,VEp_number__c from VEP_Visitor__c where id in:setVisitorIds];
         System.assert(listVisitorQ != null);
-        System.assert(listVisitorQ.size() >0 );
-        Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[0].VEP_number__c);
-        Apexpages.currentpage().getparameters().put('TravelStatus',sApproved);
-        VEP_VisitorStatus_CC vStatus3 = new VEP_VisitorStatus_CC();
-        vStatus3.displayMsg();
-        System.assertEquals(vStatus3.message,'Travel request is Approved Visitor will be notified by an email');
+        System.assert(listVisitorQ.size() >0 );        
                 
         Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[1].VEP_number__c);
         Apexpages.currentpage().getparameters().put('TravelStatus',sApproved);
@@ -55,6 +50,12 @@ private class VEP_VisitorStatus_Test{
         System.assertEquals(vStatus5.message, showmessage);
         
         Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[0].VEP_number__c);
+        Apexpages.currentpage().getparameters().put('TravelStatus',sApproved);
+        VEP_VisitorStatus_CC vStatus3 = new VEP_VisitorStatus_CC();
+        vStatus3.displayMsg();
+        System.assertEquals(vStatus3.message,'Travel request is Approved Visitor will be notified by an email');
+                       
+        Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[0].VEP_number__c);
         Apexpages.currentpage().getparameters().put('LodgingStatus',sApproved);
         VEP_VisitorStatus_CC vStatus6 = new VEP_VisitorStatus_CC();
         vStatus6.displayMsg();
@@ -65,6 +66,10 @@ private class VEP_VisitorStatus_Test{
         VEP_VisitorStatus_CC vStatus7 = new VEP_VisitorStatus_CC();
         vStatus7.displayMsg();
         System.assertEquals(vStatus7.message, 'Lodging request is already Approved');
+        
+        VEP_Visitor__c vl = [select id,Lodging_Approval_Status__c,Travel_Approval_Status__c  from VEP_Visitor__c where VEP_number__c=: listVisitorQ[1].VEP_number__c];
+        System.assertEquals(vl.Lodging_Approval_Status__c , sApproved);
+        System.assertEquals(vl.Travel_Approval_Status__c, sApproved);
         
         Apexpages.currentpage().getparameters().put('LodgingStatus','Approvedsfdf');
         VEP_VisitorStatus_CC vStatus8 = new VEP_VisitorStatus_CC();

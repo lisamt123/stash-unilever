@@ -5,16 +5,18 @@ private class VEP_VisitorPassonBehalf_Test{
         visitor.name='Test Visitor';        
         insert visitor;
         
-        Test.startTest();
+        
         VEP_Visitor_Pass__c visitorPass = new VEP_Visitor_Pass__c ();
         visitorPass.Visitor__c = visitor.id; 
         insert visitorPass;
         
+        Test.startTest();
         VEP_VisitorPassonBehalf rob = new VEP_VisitorPassonBehalf();
-        rob.visitorId = visitor.id;
-        System.assert(rob.getVisitorDetail() != null);
-        rob.getVisitorDetail();
+        rob.visitorId = visitor.id;        
+        rob.getVisitorDetail();  
+        VEP_Visitor_Pass__c vpass = [select id,name from VEP_Visitor_Pass__c where id =: visitorPass.id];   
         System.assertEquals(visitorPass.id,rob.getVisitorDetail().id);
+        System.assertEquals(vPass,rob.getVisitorDetail());
         Test.stopTest();
         
     }

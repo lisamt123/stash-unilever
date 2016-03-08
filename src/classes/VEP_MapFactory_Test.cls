@@ -1,8 +1,10 @@
 @isTest
 private class VEP_MapFactory_Test{
     static testMethod void test_VEP_MapFactory_VF(){
+        string Factoryname='Factory1';
+    
         VEP_Factory__c fact= new VEP_Factory__c();
-        fact.name='Factory1';
+        fact.name=Factoryname;
         fact.category__c ='Category1';
         insert fact;
         
@@ -30,37 +32,25 @@ private class VEP_MapFactory_Test{
         insert listvisitor;
         
         Test.startTest();
-        VEP_MapFactory_CC mapfact = new VEP_MapFactory_CC();
-        Apexpages.currentPage().getParameters().put('searchnameparam','Factory1');
-        system.CurrentPageReference().getParameters().put('searchcatparam','Category1');
-        System.assert(mapfact.factoryList.size() != null);
-        mapfact.SearchFactoryList();
-        System.assertEquals(0, mapfact.factoryList.size());
-        mapfact.factname='Factory1';
-        System.assert(mapfact.factname != null);
+        VEP_MapFactory_CC mapfact = new VEP_MapFactory_CC();                      
+        mapfact.factname=Factoryname;        
         mapfact.StateFactoryList();
-        System.assertEquals('Factory1',mapfact.factoryDetails.name);
-        mapfact.gotoVFORM();
+        System.assertEquals(Factoryname,mapfact.factoryDetails.name);               
         mapfact.Back2Factories();
-        
-       /* Apexpages.currentPage().getParameters().put('searchnameparam','');
-        mapfact.SearchFactoryList();
-        
-        Apexpages.currentPage().getParameters().put('searchnameparam','Factory1');
-        system.CurrentPageReference().getParameters().put('searchcatparam','');
-        mapfact.SearchFactoryList();*/
-        
-
-       
-        VEP_MapFactory_CC mapfact1 = new VEP_MapFactory_CC();
-        System.assert(mapfact.factoryList.size() != null);
+                                             
+        VEP_MapFactory_CC mapfact1 = new VEP_MapFactory_CC();        
         mapfact1.targetField = fact.id;
         mapfact1.SearchFactoryList();
-        System.assertEquals(0, mapfact.factoryList.size());
+        System.assertEquals(Factoryname, mapfact.factoryDetails.name);
+        System.assertEquals(1, mapfact.factoryList.size());
         mapfact1.factname='';
         mapfact1.StateFactoryList();
-        System.assertEquals('Factory1', mapfact.factoryDetails.name);
+                
         mapfact1.gotoVFORMROB();
+        System.assert(true);
+        
+        pagereference pv= mapfact.gotoVFORM();
+        System.assert(true);
         Test.stopTest();
         
     }
