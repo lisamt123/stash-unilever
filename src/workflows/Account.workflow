@@ -12,7 +12,7 @@
         <fullName>CEC_Consumer_Country_Updates</fullName>
         <description>CEC: To update the consumer country field for NA</description>
         <field>PersonMailingCountry</field>
-        <formula>IF(Upper(PersonMailingCountry) == &apos;USA&apos;, &apos;United States&apos;, IF(Upper(PersonMailingCountry) == &apos;CAN&apos;,&apos;Canada&apos;,&apos;Mexico&apos;))</formula>
+        <formula>IF(OR(Upper(PersonMailingCountry) = &apos;USA&apos;, Upper(PersonMailingCountry) = &apos;US&apos;), &apos;United States&apos;, IF(OR(Upper(PersonMailingCountry) = &apos;CAN&apos;,Upper(PersonMailingCountry) = &apos;CA&apos; ),&apos;Canada&apos;,&apos;Mexico&apos;))</formula>
         <name>CEC Consumer Country Updates</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
@@ -47,7 +47,7 @@
         </actions>
         <active>true</active>
         <description>CEC: Workflow rule to update the consumer country from USA/CAN/MEX to United States/Canada/Mexico</description>
-        <formula>AND(IsPersonAccount = TRUE,OR(UPPER(PersonMailingCountry) = &apos;USA&apos;,UPPER(PersonMailingCountry) = &apos;CAN&apos;,UPPER(PersonMailingCountry) = &apos;MEX&apos;), OR( Owner.UserRole.Name = &apos;CEC Global Head&apos;, Owner.UserRole.Name = &apos;CEC Manager - North America&apos;, Owner.UserRole.Name = &apos;CEC User - North America&apos;))</formula>
+        <formula>AND(IsPersonAccount = TRUE,OR(UPPER(PersonMailingCountry) = &apos;USA&apos;,UPPER(PersonMailingCountry) = &apos;US&apos;,UPPER(PersonMailingCountry) = &apos;CAN&apos;,UPPER(PersonMailingCountry) = &apos;MEX&apos;, UPPER(PersonMailingCountry) = &apos;CA&apos;,UPPER(PersonMailingCountry) = &apos;MX&apos;), OR( Owner.UserRole.Name = &apos;CEC Global Head&apos;, Owner.UserRole.Name = &apos;CEC Manager - North America&apos;, Owner.UserRole.Name = &apos;CEC User - North America&apos;))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

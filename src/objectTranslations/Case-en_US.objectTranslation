@@ -300,6 +300,10 @@
         <name>Default_From_Address__c</name>
     </fields>
     <fields>
+        <label><!-- Email Subject --></label>
+        <name>Email_Subject__c</name>
+    </fields>
+    <fields>
         <label><!-- Escalated Date --></label>
         <name>Escalated_Date__c</name>
     </fields>
