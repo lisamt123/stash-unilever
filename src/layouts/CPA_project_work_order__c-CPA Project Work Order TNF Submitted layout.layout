@@ -22,10 +22,6 @@
                 <showScrollbars>true</showScrollbars>
                 <width>100%</width>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Related_CRs__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -56,7 +52,7 @@
                 <field>lkp_Linked_PWO__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>txt_Project_requestor_Name__c</field>
             </layoutItems>
         </layoutColumns>
@@ -81,7 +77,7 @@
                 <field>dt_Date_PWORF_accepted__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>eml_Project_requestor_Email__c</field>
             </layoutItems>
         </layoutColumns>
@@ -327,7 +323,7 @@
                 <field>pkl_TNF_Terminated_by__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>txt_TNF_Unilever_Contact_Name__c</field>
             </layoutItems>
             <layoutItems>
@@ -344,7 +340,7 @@
                 <field>txt_TNF_Reason_for_termination__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>eml_TNF_Unilever_Contact_Email__c</field>
             </layoutItems>
             <layoutItems>
@@ -377,7 +373,7 @@
                 <field>txt_TNF_Approved_by__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>pkl_TNF_Currency__c</field>
             </layoutItems>
         </layoutColumns>

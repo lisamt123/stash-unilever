@@ -19,10 +19,6 @@
                 <showScrollbars>true</showScrollbars>
                 <width>100%</width>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Related_CRs__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -291,18 +287,11 @@
                 <behavior>Readonly</behavior>
                 <field>txta_Reason_for_Cancellation__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ltxta_CNF_Reason_for_Cancellation__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txta_TNF_Reason_for_Cancellation__c</field>
+                <field>ltxta_CNF_Reason_for_Cancellation__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

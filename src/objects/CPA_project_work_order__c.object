@@ -1974,6 +1974,18 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_CNF_Other_Currency__c</fullName>
+        <description>this is Mandatory when CNF Currency is selected as OTHER</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mandatory when CNF Currency is selected as OTHER</inlineHelpText>
+        <label>CNF Other Currency</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_CNF_Unilever_Budget_Approver_Name__c</fullName>
         <description>CNF Unilever Budget Approver Name*</description>
         <externalId>false</externalId>

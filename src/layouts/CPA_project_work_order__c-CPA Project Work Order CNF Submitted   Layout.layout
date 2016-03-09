@@ -22,10 +22,6 @@
                 <showScrollbars>true</showScrollbars>
                 <width>100%</width>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Related_CRs__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -316,6 +312,13 @@
                 <field>num_CNF_Variance_number_in_man_days__c</field>
             </layoutItems>
             <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>mpkl_CNF_Currency__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>txt_CNF_Accenture_Project_Manager__c</field>
             </layoutItems>
@@ -329,6 +332,10 @@
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ltxta_CNF_Comments__c</field>
+            </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>num_CNF_Actual_man_days__c</field>
@@ -367,6 +374,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>txt_CNF_Other_Currency__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>txt_CNF_CR_number__c</field>
             </layoutItems>
             <layoutItems>
@@ -376,10 +387,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>eml_CNF_Unilever_Content_Approver_Email__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ltxta_CNF_Comments__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

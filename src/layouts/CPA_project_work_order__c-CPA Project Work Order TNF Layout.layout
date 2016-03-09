@@ -19,10 +19,6 @@
                 <showScrollbars>true</showScrollbars>
                 <width>100%</width>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Related_CRs__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -305,7 +301,7 @@
                 <field>pkl_TNF_Terminated_by__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>txt_TNF_Reason_for_termination__c</field>
             </layoutItems>
         </layoutColumns>
@@ -401,7 +397,7 @@
                 <field>dt_TNF_TD_Effective_Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>txta_TNF_Reason_for_Cancellation__c</field>
             </layoutItems>
         </layoutColumns>

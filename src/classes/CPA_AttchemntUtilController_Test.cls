@@ -235,7 +235,7 @@ public class CPA_AttchemntUtilController_Test {
             Update objCR1;
             objCR2.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
             Update objCR2;
-            
+        Test.startTest();
             CPA_AttachmentUtil.ReadFile(attachment78);
             CPA_AttachmentUtil.ReadFile(attachment6);
             System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment6.ContentType);
@@ -250,5 +250,17 @@ public class CPA_AttchemntUtilController_Test {
             delete lstDel1;
             delete lstDel2;*/
             delete lstDel3;
+        Test.stopTest();
+        
+            
+            CPA_project_work_order__c objPWOCheck = [Select Id,chk_Excel_Attached__c,chk_PDF_Attached__c from CPA_project_work_order__c where id=: obj.id];
+            CPA_CR__c objCRChek = [Select Id,chk_Contract_Excel_Attached__c,chk_Contract_Attached__c from CPA_CR__c where id =:objCR2.id];
+            
+            System.Assert(!objPWOCheck.chk_Excel_Attached__c);
+            
+            
+            
+            System.Assert(!objCRChek.chk_Contract_Excel_Attached__c);
+            
     }
 }

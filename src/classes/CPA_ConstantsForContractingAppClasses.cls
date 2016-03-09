@@ -129,7 +129,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String WORKATRISKREQ='Work at Risk required?';
     public static final String ROLEORSYSAUTHDETAIL='Role or System Authorisation detail';
     public static final String ROLEAUTHINTRODUCEDCHANGED='Role/Authorisation Introduced/Changed?';
-    public static final String PROJECTSCALE='Project Scale';
+    public static final String PROJECTSCALE='Project Type';
     public static final String PROJECTREQPERFORMANCETESTING='Project Require Performance Testing';
     public static final String PROJECTREQDATASPECIFICTESTING='Project Require Data Specific Testing';
     public static final String PROCESSOFFICEAREAE2E='Process Office Area E2E';
@@ -149,7 +149,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String COREBUMODELCHANGED='Core Business Model changed?';
     public static final String POSTGOLIVESUPPORTSERVICE='Post Go-Live Support Service';
     public static final String TRAVELARRANGEMENTS='Travel Arrangements';
-    public static final String SUMMARYOFREQANDDEL='Summary of requirements and deliverables';
+    public static final String SUMMARYOFREQANDDEL='Summary Of Requirements & Deliverables';
     public static final String PROJECTDEPENDENCIES='Project Dependencies';
     public static final String PLANNINGSESSIONSEXPECTED='Planning sessions expected';
     public static final String IMPACTIFGOLIVEDATENOTMET='Impact if go live date not met';
@@ -204,7 +204,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String PROJECTSCOPECHANGE='Project Scope Change (CR)';
     public static final String MANDATORYIFCOSTCENTNOTPROVIDED='Mandatory only when the Cost Center is not provided.';
     public static final String MANDATORYIFICCNOISPROVIDED='Mandatory. But if ICC number is provided, CC can be avoided.';
-    public static final String ULPMEMAIL='Unilever Project Manager Eamil';
+    public static final String ULPMEMAIL='Unilever Project Manager Email';
     public static final String ULPMENAME='Unilever Project Manager Name';
     public static final String ULFMENAME='Unilever Finance BP/Contact Name';
     public static final String ULFMEMAIL='Unilever Finance BP/Contact Email';
@@ -218,5 +218,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String CNFULCAEMAIL=  'CNF Unilever Content Approver Email';
     public static final String TNFULCONTACTEMAIL=  'TNF Unilever Contact Email';
     public static final String ASSUMPTIONS=  'Assumptions';
+    public static final String BPETITLE = 'BPE Title';
+    public static final String HLENAME = 'HLE Name*';
 
 }

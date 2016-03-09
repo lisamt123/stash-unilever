@@ -18,10 +18,6 @@
                 <showScrollbars>true</showScrollbars>
                 <width>100%</width>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Related_CRs__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -322,6 +318,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>mpkl_CNF_Currency__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>num_CNF_Planned_PMO_tax__c</field>
             </layoutItems>
             <layoutItems>
@@ -361,6 +361,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>num_CNF_Actual_PMO_tax__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txt_CNF_Other_Currency__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

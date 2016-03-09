@@ -19,10 +19,6 @@
                 <showScrollbars>true</showScrollbars>
                 <width>100%</width>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Related_CRs__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -335,6 +331,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>mpkl_CNF_Currency__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>num_CNF_Planned_man_days__c</field>
             </layoutItems>
             <layoutItems>
@@ -395,6 +395,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>dt_CNF_Actual_PWO_End_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_CNF_Other_Currency__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
