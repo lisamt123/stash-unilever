@@ -1,4 +1,18 @@
-public class CPA_testCustomSettingClass_util {
+/**********************************************************************
+Name: CPA_testCustomSettingClass_util()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: This is the test class for attachment functionality
+-------
+======================================================
+======================================================
+History : AC.08.12.01, AC.10.07.03
+-------
+VERSION     AUTHOR     DATE            DETAIL Description
+1.0         Pooja      08/03/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
+public with sharing class CPA_testCustomSettingClass_util {
     /*******************************************************************
     Purpose: This method is used to set the status of various objects
     Parameters: 
