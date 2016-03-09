@@ -596,6 +596,7 @@
     </relatedLists>
     <relatedLists>
         <customButtons>New_LOI</customButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>pkl_Status__c</fields>
         <fields>OWNER.FIRST_NAME</fields>

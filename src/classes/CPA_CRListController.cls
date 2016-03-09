@@ -63,7 +63,7 @@ public with sharing class CPA_CRListController {
     
     
            CPA_project_work_order__c PwoRs =  [Select Id,Name,num_Estimated_Value_of_PWO__c,num_Estimated_Man_days_of_PWO__c,num_Expense_charges_of_work_order__c From CPA_project_work_order__c Where Id=:pwoId];
-          system.debug('Test'+PwoRs);
+         
            if(PwoRs !=null) {
             PwoObjList.add(PwoRs);
             if(Integer.valueOf(PwoRs.num_Expense_charges_of_work_order__c) !=null && Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c) !=null) {
@@ -119,7 +119,7 @@ public with sharing class CPA_CRListController {
           List<CPA_CR__c> crList = new List<CPA_CR__c>();
       
           crList =[Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c From CPA_CR__c Where CPA_Project_Work_Order__c =:Id];
-          system.debug('crList'+crList);
+          
           if(crList.size() > 0) {
            return crList;
           }

@@ -185,14 +185,14 @@ public with sharing class CPA_PWORF_TriggerUtil{
                         }                          
                     }
                     strToCompare = (strProjectScale.substring(0,strProjectScale.indexOf('('))).trim();
-                    system.debug('strToCompare>>>>>>'+strToCompare);
+                    
                 }
             }
             
             
             for(string SLAMapKey: SLAMap.keySet()){
                 String nameFromSLAConfig = SLAMap.get(SLAMapKey).Name;
-                system.debug('nameFromSLAConfig>>>>>>'+nameFromSLAConfig);
+                
                 if(nameFromSLAConfig.equalsIgnoreCase('RA') && strRecordType.equalsIgnoreCase('Resource Augmentation')){
                     newPWORFList[0].txt_SLA1__c = SLAMap.get(SLAMapKey).RA_SLA1__c;
                     newPWORFList[0].txt_SLA2__c = SLAMap.get(SLAMapKey).RA_SLA2__c;

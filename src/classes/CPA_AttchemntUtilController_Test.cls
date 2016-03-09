@@ -41,9 +41,8 @@ public class CPA_AttchemntUtilController_Test {
         attachment5.Name = CPA_ConstantsForContractingAppClasses.LOIFILENAME;//'LOI RentReceipt.pdf.pdf'
         attachment5.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONPDF;
         attachment5.Body = bBlob5;
-        //insert(attachment5);
+       
         listAttachment.add(attachment5);
-       // System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment5.ContentType);
         
         CPA_project_work_order__c objPWO = CPA_testContractClass.createPWO(objPworf14);
         insert objPWO;
@@ -54,7 +53,7 @@ public class CPA_AttchemntUtilController_Test {
         attachment.Name = CPA_ConstantsForContractingAppClasses.COMMERCIALPWOCSV;//'Commercial for PWO.csv'
         attachment.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL;
         attachment.Body = bBlob;
-        //insert(attachment);
+        
         listAttachment.add(attachment);
         
         Blob bBlob1 = Blob.valueOf(CPA_ConstantsForContractingAppClasses.TEST);
@@ -63,7 +62,7 @@ public class CPA_AttchemntUtilController_Test {
         attachment1.Name = CPA_ConstantsForContractingAppClasses.PWOPDFFILENAME;
         attachment1.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONPDF;
         attachment1.Body = bBlob1;
-       // insert(attachment1);
+      
         listAttachment.add(attachment1);
 
         objPWO.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ACCEPTED;
@@ -82,7 +81,7 @@ public class CPA_AttchemntUtilController_Test {
         attachment2.Name = CPA_ConstantsForContractingAppClasses.COMMERCIALCRCSV;
         attachment2.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL;
         attachment2.Body = bBlob2;
-        //insert(attachment2);
+       
         listAttachment.add(attachment2);
     
         CPA_Commercial_Details__c obj = new CPA_Commercial_Details__c();
@@ -95,7 +94,7 @@ public class CPA_AttchemntUtilController_Test {
         attachment3.Name = CPA_ConstantsForContractingAppClasses.CRPDFFILENAME;
         attachment3.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONPDF;
         attachment3.Body = bBlob13;
-       // insert(attachment3);
+       
         listAttachment.add(attachment3);
         Test.startTest();
             insert listAttachment;
@@ -148,10 +147,8 @@ public class CPA_AttchemntUtilController_Test {
             attachment78.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL;
             attachment78.Body = bBlob11;
             insert(attachment78);
-            System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment78.ContentType);
-         
-            //listAttachment.add(attachment78);
             
+          
             Blob bBlob12 = Blob.valueOf(CPA_ConstantsForContractingAppClasses.TEST);
             Attachment attachment17 = new Attachment();
             attachment17.ParentId = objPWO151.ID;
@@ -190,7 +187,7 @@ public class CPA_AttchemntUtilController_Test {
             attachment31.Name = CPA_ConstantsForContractingAppClasses.CRPDFFILENAME;
             attachment31.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONPDF;
             attachment31.Body = bBlob131;
-           // insert(attachment3);
+          
             listAttachment.add(attachment31);
             
             System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment31.ContentType);
@@ -203,7 +200,7 @@ public class CPA_AttchemntUtilController_Test {
             attachment6.Name = CPA_ConstantsForContractingAppClasses.COMMERCIALCRCSV;
             attachment6.ContentType = CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL;
             attachment6.Body = bBlob6;
-            //insert(attachment6);
+            
             listAttachment.add(attachment6);
         
             CPA_Commercial_Details__c obj9 = new CPA_Commercial_Details__c();
@@ -238,29 +235,30 @@ public class CPA_AttchemntUtilController_Test {
         Test.startTest();
             CPA_AttachmentUtil.ReadFile(attachment78);
             CPA_AttachmentUtil.ReadFile(attachment6);
-            System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment6.ContentType);
+            
+            CPA_project_work_order__c objPWOCheck1 = [Select Id,chk_Excel_Attached__c,chk_PDF_Attached__c from CPA_project_work_order__c where id=: obj.id];
+            CPA_CR__c objCRChek1 = [Select Id,chk_Contract_Excel_Attached__c,chk_Contract_Attached__c from CPA_CR__c where id =:objCR2.id];            
+            System.Assert(objPWOCheck1.chk_Excel_Attached__c);  // Attachement is there so Check box will be check
+            System.Assert(!objCRChek1.chk_Contract_Excel_Attached__c); // Attachement is there so Check box will be check
            
-           /* */CPA_AttachmentUtil.deleteContract(lstDel);
-            CPA_AttachmentUtil.deleteContract(lstDel1);
+           
+           CPA_AttachmentUtil.deleteContract(lstDel);
+            CPA_AttachmentUtil.deleteContract(lstDel1);     // It's Delete the attachment Contact file
     
-            CPA_AttachmentUtil.deleteCommericalData(lstDel2);
-             delete lstDel3;
-            /*CPA_AttachmentUtil.deleteCommericalData(lstDel3); 
-            delete lstDel;
+            CPA_AttachmentUtil.deleteCommericalData(lstDel2); // It's Delete the attachment Commercial cover
+             delete lstDel3;                                    // Attachment deleted which neither contract not commercial
+           
+           /* delete lstDel;
             delete lstDel1;
             delete lstDel2;*/
             delete lstDel3;
         Test.stopTest();
-        
-            
+
             CPA_project_work_order__c objPWOCheck = [Select Id,chk_Excel_Attached__c,chk_PDF_Attached__c from CPA_project_work_order__c where id=: obj.id];
-            CPA_CR__c objCRChek = [Select Id,chk_Contract_Excel_Attached__c,chk_Contract_Attached__c from CPA_CR__c where id =:objCR2.id];
+            CPA_CR__c objCRChek = [Select Id,chk_Contract_Excel_Attached__c,chk_Contract_Attached__c from CPA_CR__c where id =:objCR2.id];            
+            System.Assert(!objPWOCheck.chk_Excel_Attached__c);  // Attachement is deleted so Check box will be uncheck
+            System.Assert(!objCRChek.chk_Contract_Excel_Attached__c); // Attachement is deleted so Check box will be uncheck
             
-            System.Assert(!objPWOCheck.chk_Excel_Attached__c);
-            
-            
-            
-            System.Assert(!objCRChek.chk_Contract_Excel_Attached__c);
             
     }
 }

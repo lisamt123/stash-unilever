@@ -252,14 +252,14 @@ public with sharing class CPA_CR_TriggerUtil{
     * Description : This method is used to perform unlock record
     */
      public static void unlockrecord(List<CPA_CR__c> oldCRList,List<CPA_CR__c> newCR)    
-    { system.debug('newCR>>>>>>>>>'+newCR);
+    { 
         List<CPA_CR__c> cancelsetId = new List<CPA_CR__c>();
         for (Integer i = 0; i < newCR.size(); i++) {
             if((oldCRList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || oldCRList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED) && newCR[i].pkl_Status__c == 'Cancelled'){
                 cancelsetId.add(newCR[i]);  
             }       
         }
-        system.debug('cancelsetId>>>>>>>>>'+cancelsetId);
+        
         if(cancelsetId !=null && cancelsetId.size()>0){
             Approval.unLockResult[] lrList = Approval.unlock(cancelsetId, false);           
         }
@@ -477,16 +477,13 @@ public with sharing class CPA_CR_TriggerUtil{
             }
                 
             List<CPA_CR__c> lstCR1 = [Select Id,num_Delta_Efforts__c,Name,CPA_Project_Work_Order__c,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c  from CPA_CR__c where CPA_Project_Work_Order__c IN:  setPWOID ORDER BY Createddate DESC limit 2];
-            system.debug('lstCR1---> '+lstCR1 );
+            
             if(lstCR1 != null && lstCR1.size()==2 && lstCR1[0]!=null && lstCR1[1]!=null){
                  mapPWOIDCR.put(lstCR1[1].CPA_Project_Work_Order__c,lstCR1[1]);
-                 system.debug('Inside loop');
+                
             }else if(lstCR1 != null && lstCR1.size()==1 && lstCR1[0]!=null ) {
                 mapPWOIDCR.put(lstCR1[0].CPA_Project_Work_Order__c,lstCR1[0]);
-                 system.debug('Inside 1111loop');
-            }else{
-                
-                 system.debug('Inside 222loop');
+                 
             }
             
             
@@ -495,10 +492,10 @@ public with sharing class CPA_CR_TriggerUtil{
                     if(mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c)!=null && mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c!=null){
                         objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c;
                         
-                        system.debug('Inside Loop');
+                        
                     }else if(objCRTEmp.num_Estimated_Value_of_CR__c !=null){
                         objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c ;  
-                        system.debug('Inside Loop1111');                        
+                                           
                     }else {
                         objCRTEmp.num_Delta_Efforts__c =0;
                     }

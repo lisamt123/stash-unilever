@@ -137,8 +137,7 @@ public with sharing class CPA_attachment_Trigger_Handler
                        
                         setParentId.add(objAttachemt.ParentId);
                 }
-                system.debug(' objAttachemt.Name-->'+ objAttachemt.Name);
-                system.debug(' objAttachemt.ContentType-->'+objAttachemt.ContentType);
+                
                  if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_LOI) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
                             lstAttachmentLOI.add(objAttachemt);
                 }
@@ -149,10 +148,10 @@ public with sharing class CPA_attachment_Trigger_Handler
             }
             if(lstAttachment!=null && lstAttachment.size()>0){
                CPA_AttachmentUtil.updateCPAPWO(lstAttachment,setParentId);
-               system.debug('Update for PWO-->'+ lstAttachment);
+               
             }
             if(lstAttachmentCR!=null && lstAttachmentCR.size()>0){
-            system.debug('Update for CR--> '+lstAttachmentCR);
+            
               CPA_AttachmentUtil.updateCPACR(lstAttachmentCR,setParentId);
             }
             if(lstAttachmentLOI != null && lstAttachmentLOI.size()>0){

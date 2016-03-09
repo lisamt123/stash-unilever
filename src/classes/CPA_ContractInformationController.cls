@@ -402,7 +402,7 @@ global with sharing class CPA_ContractInformationController {
 
         CPA_ContractInformationController obj = new CPA_ContractInformationController();
         flag = obj.CPA_Messages(objId,false); 
-        system.debug('flag --> '+ flag);
+       
     
         return flag; 
     }

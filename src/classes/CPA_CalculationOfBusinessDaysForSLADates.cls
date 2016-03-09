@@ -109,24 +109,23 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
    /* public static void forSearch(List<CPA_PWORF__c> oldPWORFList, List<CPA_PWORF__c> newPWORFList){
         //if(oldPWORFList[0].pkl_Status__c != null && newPWORFList[0].pkl_Status__c != null){
         if(newPWORFList[0].pkl_Status__c != null && newPWORFList[0].pkl_Status__c.equalsIgnoreCase('Accepted')){
-            System.debug('oldPWORFList @@@@@######## : ' + oldPWORFList[0].pkl_Status__c);
-            System.debug('newPWORFList @@@@@######## : ' + newPWORFList[0].pkl_Status__c);
+           
         
             Integer maxNo=0;
             List<AggregateResult> maxNum = new List<AggregateResult>();
             maxNum = [SELECT Max(For_Search_Numeric__c) FROM CPA_PWORF__c];
            if(maxNum[0].get('expr0') != null){
                 maxNo = Integer.valueOf(maxNum[0].get('expr0') + '');
-                System.debug('maxNum Outside @@@@######## : ' + maxNo);
+                
             }
-            //System.debug('maxNum Outside @@@@######## : ' + maxNo);
+            
             for(AggregateResult maxNumber : maxNum){
                 if(maxNumber.get('expr0') != null){
                     maxNo = Integer.valueOf(maxNumber.get('expr0') + '');
-                    System.debug('maxNum######## : ' + maxNo);
+                  
                 }else{
                     maxNo = 0;
-                    System.debug('else maxNum######## : ' + maxNo);
+                    
                 }
             }
             List<CPA_PWORF__c> pworfs = [SELECT For_Search__c, For_Search_Numeric__c FROM CPA_PWORF__c Where Id =: newPWORFList[0].ID];
@@ -135,10 +134,10 @@ public with sharing class CPA_CalculationOfBusinessDaysForSLADates{
                 pworfs[0].For_Search__c = newInternalPWOID;
                 pworfs[0].txt_Internal_PWO_ID__c = newInternalPWOID;
                 pworfs[0].For_Search_Numeric__c = maxNo + 1;
-                System.debug('For_Search__c ######## : ' + newInternalPWOID);
+                
                 update pworfs;
             } else{
-                System.debug('Else For_Search__c ######## : ' + pworfs[0].For_Search__c);
+              
             }
         }
     }*/

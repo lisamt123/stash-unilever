@@ -147,7 +147,7 @@ public with sharing class CPA_testCustomSettingClass_util {
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/
-    public static CPA_LOIMandatoryMessages__c createTest_LOI_message(){
+   /* public static CPA_LOIMandatoryMessages__c createTest_LOI_message(){
 
         CPA_LOIMandatoryMessages__c  LOIMsg= new CPA_LOIMandatoryMessages__c ();
         LOIMsg.Name ='16';
@@ -157,5 +157,5 @@ public with sharing class CPA_testCustomSettingClass_util {
         return LOIMsg;
         
     }
-    
+    */
 }

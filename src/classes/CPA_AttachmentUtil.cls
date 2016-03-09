@@ -353,7 +353,7 @@ public with sharing class CPA_AttachmentUtil {
                     }
              }
              catch(Exception e){
-                   system.debug('Exception --> '+ e.getMessage());
+                   att.addError('Operation is failed Due to internal error');
              }       
             //Finally, insert the collected records
             try{
@@ -372,14 +372,14 @@ public with sharing class CPA_AttachmentUtil {
                 if(setPWOID !=null && setPWOID.size()>0){
                     ReadPWOFile(setPWOID,PWOupload);
                 }else if(setCRID !=null && setCRID.size()>0){
-                  //  ReadCRFile(setCRID,PWOupload);
+                
                     ReadCRFile(setCRID,PWOupload);
                 }
                 
             }
             catch(Exception e)
             {
-                system.debug('Error' +e);
+                 att.addError('Operation is failed Due to internal error');
             }
         }
     }
@@ -504,7 +504,7 @@ public with sharing class CPA_AttachmentUtil {
     Returns: It’s retunes nothing but it’s update the CR      
     ********************************************************************/      
     public  static void ReadCRFile(set<Id> setCRID,List<CPA_Commercial_Details__c> CRuploadCommerical) {
-    system.debug('CRuploadCommerical-->'+CRuploadCommerical);
+    
         map<ID,list<CPA_Commercial_Details__c>> mapCRComDetai = new map<ID,list<CPA_Commercial_Details__c>>();      
         List<CPA_CR__c> lstUpdateCR = new List < CPA_CR__c>();
         List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c  from CPA_CR__c where ID IN:  setCRID];
@@ -518,7 +518,7 @@ public with sharing class CPA_AttachmentUtil {
                     }
                 }
                 mapCRComDetai.put(objCR.Id,lstTemp);
-                 system.debug('mapCRComDetai-->'+mapCRComDetai);
+                 
             }
             for(CPA_CR__c objCR : lstCR){
                 Decimal  intTotalmandays = 0;
@@ -539,8 +539,7 @@ public with sharing class CPA_AttachmentUtil {
                 Decimal  intNoOfResources = 0;
 
                 for(CPA_Commercial_Details__c objCOm : mapCRComDetai.get(objCR.id)){
-                system.debug('objCR.id-->'+objCR.id);
-                system.debug('objCOm .id-->'+objCOm );
+               
                     if(objCOm.txt_Entity_Name__c == CPA_ConstantsForContractingAppClasses.RESOURCE || objCOm.num_Entity_Type__c ==1 ){
                         intTotalmandays = intTotalmandays + objCOm.num_Efforts__c;
                         intNoOfResources = intNoOfResources+1;
@@ -602,12 +601,12 @@ public with sharing class CPA_AttachmentUtil {
                     objCR.pec_Estimated_On_shore__c = (intOnshower/intNoOfResources)*100;
                 }
                 lstUpdateCR.add(objCR);
-                system.debug('objCR-->'+objCR);
+               
             }
             
             if(lstUpdateCR !=null && lstUpdateCR.size() > 0){
                 update lstUpdateCR;
-                system.debug('lstUpdateCR-->'+lstUpdateCR);
+                
             }
         }
     }

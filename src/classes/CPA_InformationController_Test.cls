@@ -125,8 +125,8 @@ public  class CPA_InformationController_Test {
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
         
-        CPA_LOIMandatoryMessages__c objMSG = CPA_testCustomSettingClass_util.createTest_LOI_message();
-        insert objMSG;
+        /*CPA_LOIMandatoryMessages__c objMSG = CPA_testCustomSettingClass_util.createTest_LOI_message();
+        insert objMSG;*/
         
         Test.startTest();
         

@@ -30,7 +30,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
         List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem where ProcessInstance.TargetObjectId IN:settempPWOID ];
         for (Integer i = 0; i < newPWOList.size(); i++) {
             if((PWOOldList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || PWOOldList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED || PWOOldList[i].CNF_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || PWOOldList[i].CNF_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED || PWOOldList[i].TNF_Status__c  == CPA_ConstantsForContractingAppClasses.SUBMITTED || PWOOldList[i].TNF_Status__c  == CPA_ConstantsForContractingAppClasses.RESUBMITTED) && (newPWOList[i].pkl_Status__c == 'Cancelled' || newPWOList[i].pkl_Status__c == 'Request For Termination' || newPWOList[i].chk_isCNFcancelled__c || newPWOList[i].chk_isTNFcancelled__c)){
-            system.debug('PWOOldList[i].pkl_Status__c>>'+PWOOldList[i].pkl_Status__c);
+            
                 
                 for(ProcessInstanceWorkitem piwi:piwiList){
                     if(piwi.ProcessInstance.TargetObjectId == newPWOList[i].id && !isSubmitted ){ 
@@ -65,7 +65,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                 req.setComments('Submitted for approval. Please approve.');
                 req.setObjectId(newPWOList[i].Id);
                 // submit the approval request for processing
-                system.debug('req>>>'+req);
+                
                 Approval.ProcessResult result = Approval.process(req);
                 // display if the reqeust was successful
                 setID.add(newPWOList[i].PWORF_ID__c);
@@ -148,14 +148,14 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                             
                             
                             if(objPWORFTemp.pkl_Project_Scale__c != null){
-                            system.debug('objPWORFTemp.RecordTypeid>>>>1'+objPWORFTemp.RecordTypeid);
+                            
                                 if(objPWORFTemp.RecordTypeid == customSettingPworfRT.get('All').Record_type_id__c ){
-                                system.debug('objPWORFTemp.RecordTypeid>>>>2'+objPWORFTemp.RecordTypeid);
+                                
                                     if(objPWORFTemp.pkl_Project_Scale__c == 'Small Project (<50 days)') objPWo.mpkl_Project_Classification__c = 'Other';
                                     else if(objPWORFTemp.pkl_Project_Scale__c == 'Large Project (>2000 days)') 
-                                    {system.debug('objPWORFTemp.pkl_Project_Scale__c'+objPWORFTemp.pkl_Project_Scale__c);
+                                    {
                                     objPWo.mpkl_Project_Classification__c = 'Complex';
-                                    system.debug('objPWo.mpkl_Project_Classification__c'+objPWo.mpkl_Project_Classification__c); 
+                                    
                                     }
                                     else if(objPWORFTemp.pkl_Project_Scale__c == 'Low Complexity Project (50 - 500 days)' ) objPWo.mpkl_Project_Classification__c = 'Low Complexity';
                                     else if(objPWORFTemp.pkl_Project_Scale__c == 'Standard Project (500 - 2000 days)') objPWo.mpkl_Project_Classification__c = 'Standard';

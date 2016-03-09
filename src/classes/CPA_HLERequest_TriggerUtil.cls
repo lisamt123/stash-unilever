@@ -96,7 +96,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
     public static void sLAValues(List<CPA_HLE_Request__c> oldHLEReqList,List<CPA_HLE_Request__c> newHLEReqList){
         CPA_HLE_Request_SLAs__c customSettingSLA = CPA_HLE_Request_SLAs__c.getInstance('SLA'); 
         for (Integer i = 0; i < newHLEReqList.size(); i++) {
-             //system.debug('oldHLEReqList[i].pkl_Status__c'+oldHLEReqList[i].pkl_Status__c);
+             
              if (oldHLEReqList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newHLEReqList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED) {
                  newHLEReqList[i].dat_Submitted_Date__c = system.today();
              }

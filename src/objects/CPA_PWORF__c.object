@@ -3923,13 +3923,6 @@ Is required</description>
         <errorMessage>You must Select a Project Type</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Project_requestor</fullName>
-        <active>false</active>
-        <description>Mandatory</description>
-        <errorConditionFormula>AND(( ISBLANK(lkp_Project_requestor__c) ),OR(ISPICKVAL(pkl_Status__c , &apos;Submitted&apos;),ISPICKVAL(pkl_Status__c , &apos;Resubmitted&apos;)))</errorConditionFormula>
-        <errorMessage>Mandatory</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>Region</fullName>
         <active>false</active>
         <description>Mandatory</description>
