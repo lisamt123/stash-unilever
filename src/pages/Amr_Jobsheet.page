@@ -1,4 +1,4 @@
-<apex:page controller="Amr_JobSheetController" sidebar="false" id="pageId" tabStyle="{!IF(strTabName<>null,strTabName,'RAP_Jobs_Portfolio__tab')}" docType="html-5.0">
+<apex:page controller="Amr_JobSheetController_CC" sidebar="false" id="pageId" tabStyle="{!IF(strTabName<>null,strTabName,'RAP_Jobs_Portfolio__tab')}" docType="html-5.0">
     <apex:include pageName="amr_common" />
     <apex:includeScript value="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/js/production-activity.js')}"/>
     <script type="text/javascript">
@@ -599,6 +599,21 @@
                 background-color: #F8F8F8;
             }
             
+            label div {
+                cursor: pointer;
+                height: 1px;
+                overflow: hidden;
+                padding-top: 18px;
+                position: absolute;
+                right: -25px;
+                top: 5px;
+                width: 15px;
+            }
+            
+            label div {
+            background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/questionmark.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);
+            }
+            
             /*PJ*/
             .apexp {
                 overflow-x:auto;
@@ -615,6 +630,7 @@
             }
             /**/
     </style>
+    <apex:include pageName="amr_common_header" />
        <div class="mask" style="display:{!if(jobList.AdManagerText__c != null,'none','')}"></div>
     <apex:pagemessages id="msgs"></apex:pagemessages>
     <!---Ad Main section---->
@@ -777,7 +793,7 @@
                 <div style="display:{!IF( jobStatus == 'Accepted', '', 'None')}" >                              
                     <apex:commandButton styleClass="show-all-detail-button commonbtn left margin-right12" value="Job Allocation"/>
                 </div>
-                 <div>                              
+                 <div style="display:{!IF( jobStatus == 'Accepted', '', 'None')}">                              
                     <apex:commandButton styleClass="show-change-status-popup commonbtn left" value="Set status"/>
                 </div>
                 <div class="clear">
@@ -985,7 +1001,7 @@
                            <apex:repeat value="{!listOfUserToDisplay}" var="job">
                            <apex:outputText value="{!job.User__r.Name}"></apex:outputText><br/>
                            </apex:repeat>
-                                <div class="before inner_heading_sub_section margin-btwn-inner-container">
+                                <div class="before inner_heading_sub_section margin-bottom20">
                                     <h4>Before you start</h4>
                                     <!-- Amr_Jobsheet.page -->
                                 </div>
@@ -996,21 +1012,28 @@
                                 </div>
                                 <div class="dropdown cmi_class">
                                     <!--  <apex:inputField value="{!joblist.Check_With_CMI__c}" /> -->
-                                    <div class="float-left width252 radio-label">
+                                    <div class="left width252 radio-label">
                                         <apex:selectRadio value="{!joblist.Check_With_CMI__c}" styleClass="radio-label">
                                             <apex:selectOption itemValue="Yes" itemLabel="Yes " />
                                             <apex:selectOption itemValue="No" itemLabel="No " />
                                             <apex:selectOption itemValue="Not Applicable" itemLabel="Not Applicable" />
                                         </apex:selectRadio>
                                     </div>
+                                    <div class="left" style="margin-top: 5px;">
+                                        <apex:outputLabel title="{!$ObjectType.Amr_Job_Details__c.fields.Check_With_CMI__c.inlineHelpText}" styleClass="cursor-pointer pos-rel" style="position:relative;">
+                                            <div style="right:-133px;">?</div>
+                                        </apex:outputLabel>
+                                    </div>
+                                    <div class="clear"></div>
                                 </div>
                                 <div class="before inner_heading_sub_section margin-bottom10">
                                     <h4>Uniliver information</h4>
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Your Email Address
-                                        <strong></strong>                                        
+                                        <strong></strong>
+                                        <div title="{!$ObjectType.Amr_Job_Details__c.fields.Your_Email_Address__c.inlineHelpText}"></div>                                        
                                     </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
@@ -1018,9 +1041,10 @@
                                 </div>
                                 <div class="clear">                  
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Unilever project leader email (if different)
+                                        <div title="{!$ObjectType.Amr_Job_Details__c.fields.Unilever_Project_Leader_Email__c.inlineHelpText}"></div>
                                     </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
@@ -1028,10 +1052,11 @@
                                 </div>
                                 <div class="clear">                  
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Location of Unilever project leader
                                         <strong></strong>
+                                        <div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Leader_Cluster__c.inlineHelpText}"></div>
                                     </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
@@ -1042,10 +1067,11 @@
                                 </div>
                                 <div class="clear">                  
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Unilever finance member email
                                         <strong></strong>
+                                        <div title="{!$ObjectType.Amr_Job_Details__c.fields.Unilever_Finance_Member_Email__c.inlineHelpText}"></div>
                                     </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
@@ -1053,40 +1079,48 @@
                                 </div>
                                 <div class="clear">                  
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Final approver of material email                     
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Final_Approver_Of_Material_Email__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Final_Approver_Of_Material_Email__c}" html-placeholder="Email Address" />
                                 </div>
                                 <div class="clear">                  
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Which function are you part of (BD/BB/Other)
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Function_You_Are_Part__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Function_You_Are_Part__c}" />
                                 </div>
                                 <div class="clear">                  
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Budget responsibility (BD, BB, Other)
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Budget_Responsibility__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Budget_Responsibility__c}" />
                                 </div>
                                 <div class="clear">                  
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Budget allocated for this activity (enter all digits)
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Allocated_Budget_euro__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:selectList value="{!selectedCountry }" size="1" id="selectedId" onchange="Calculate()" styleClass="selectedIdClass">
@@ -1101,10 +1135,12 @@
                                 </div>
                                 <div class="clear">                  
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Category > Brand Positioning > Brand
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.ProductCategory__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:actionRegion >
@@ -1154,25 +1190,29 @@
                                 <div class="before inner_heading_sub_section margin-bottom10">
                                     <h4>Agency Information</h4>
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Lead Agency Name
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Lead_Creative_Agency_name__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Lead_Creative_Agency_name__c}" styleClass="agencypick" style="display:{!if(joblist.Lead_Agency_Name_Other__c != '','none','')}"/>
                                     <apex:inputField value="{!joblist.Lead_Agency_Name_Other__c}" styleClass="agencytext" html-placeholder="New Agency" style="display:{!if(joblist.Lead_Agency_Name_Other__c == '','none','')}"/>
                                 </div>
-                                <div class="form-field2 widthautocomp" style="margin-top:13px;">
+                                <div class="form-field2 widthautocomp" style="margin-top:6px;">
                                     <a class="agencyother" rel = 'select' href="#" style= "display:{!if(joblist.Lead_Agency_Name_Other__c != '','none','')}"> Other </a>
                                     <a href = "#" id="projectother"  class="agencycancel" rel = 'text' style= "display:{!if(joblist.Lead_Agency_Name_Other__c == '','none','')}"> Cancel </a>
                                 </div>
                                 <div class='clear'>
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Lead Agency Location
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Lead_Agency_Location_Cluster__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Lead_Agency_Location_Cluster__c}" />
@@ -1182,29 +1222,33 @@
                                 </div>
                                 <div class='clear'>
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Agency contact or account director email
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Agency_Contact_Account_Director_Email__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Agency_Contact_Account_Director_Email__c}"  />
                                 </div>
                                 <div class='clear'>
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
-                                        Digital Agency Name (if applicable)                            
+                                        Digital Agency Name (if applicable)  
+                                        <div title="{!$ObjectType.Amr_Job_Details__c.fields.Digital_Agency_Name__c.inlineHelpText}"></div>                          
                                     </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
-                                    <apex:inputField value="{!joblist.Digital_Agency_Name__c}"  />
+                                    <apex:inputField value="{!joblist.Digital_Agency_Name__c}"  />                                    
                                 </div>
                                 <div class='clear'>
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
-                                        Any other agencies involved?                            
+                                        Any other agencies involved?  
+                                        <div title="{!$ObjectType.Amr_Job_Details__c.fields.Any_other_agencies_involved__c.inlineHelpText}"></div>                          
                                     </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
@@ -1215,9 +1259,10 @@
                                 <div class="before inner_heading_sub_section margin-bottom10">
                                     <h4>Overview of Project</h4>
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Project name (e.g. Apollo)    
+                                        <div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Details__c.inlineHelpText}"></div>
                                     <strong></strong></apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
@@ -1227,16 +1272,18 @@
                                         <apex:inputField value="{!joblist.Project_Name_Other__c}" id="projDetailIdOther" styleClass="projecttext" html-data-id="projecttext" style="display:{!if(joblist.Project_Name_Other__c == '','none','')}" />
                                     </apex:actionRegion>
                                 </div>
-                                <div class="form-field2 widthautocomp" style="margin-top:13px;">
+                                <div class="form-field2 widthautocomp" style="margin-top:6px;">
                                     <a href = "#" id="projectother" class="projectotherClass" rel = 'select' style= "display:{!if(joblist.Project_Name_Other__c != '','none','')}"> Other </a>
                                     <a href = "#" id="projectother" class="projectcancelClass" rel = 'text' style= "display:{!if(joblist.Project_Name_Other__c == '','none','')}"> Cancel </a>
                                 </div>
                                 <div class="clear">
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Project Location
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Location_Cluster__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Project_Location_Cluster__c}" />
@@ -1246,60 +1293,72 @@
                                 </div>
                                 <div class="clear">
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Broadcast Market
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Brodcast_Market__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp form-field-multiselect">
                                     <apex:inputField value="{!joblist.Brodcast_Market__c}" />
                                 </div>
                                 <div class="clear">
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         What type of activity will this production support?
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Production_Activity_Type__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Production_Activity_Type__c}" />
                                 </div>
                                 <div class="clear">
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Project Description
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Description__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2" style="width: 71%;">
                                    <apex:inputField value="{!joblist.Project_Description__c}" />
                                 </div>
                                 <div class="clear">
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Campaign name (e.g. Nothing beats an astronaut) if known
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Campaign_Name__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Campaign_Name__c}" />
                                 </div>
                                 <div class="clear">
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Execution name (e.g. Lifeguard or Fireman) if known 
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Execution_Name__c.inlineHelpText}" ></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Execution_Name__c}" />
                                 </div>
                                 <div class="clear">
                                 </div>
-                                <div class="form-field2">
+                                <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Target air date (i.e. when will material be released)
-                                    <strong></strong></apex:outputLabel>
+                                    <strong></strong>
+                                    <div title="{!$ObjectType.Amr_Job_Details__c.fields.Target_Air_Date__c.inlineHelpText}"></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Target_Air_Date__c}" />
@@ -1313,11 +1372,11 @@
                                     <!--  <h2 class="margintop25" style="margin-bottom:10px;">Production Activity Detail</h2> -->
                     <div class="production-activity-sub-section" style="margin-left:20px;margin-bottom:15px;">
                         <div id="productionactivitytypegroup">
-                            <div class="form-field" style="padding:5px 0">
+                            <div class="form-field" style="padding:5px 0; margin-bottom: 3px;">
                                 <label style="text-align:left;position:relative;">
-                                    Production activity type (select one or more)
-                                    <strong style="top:-8px;"></strong>
-                                    <div style="right:43px;" title="Please select one or more options based on the scope of the project/activity.  Please note your selection should be based on this registration only and should be based on one shoot/creation date as outlined above."></div>
+                                    Production activity type
+                                    <strong style="top:-7px;"></strong>
+                                    <div style="top:-2px; right:-251px;" title="Please select one or more options based on the scope of the project/activity.  Please note your selection should be based on this registration only and should be based on one shoot/creation date as outlined above."></div>
                                 </label>
                             </div>
                         </div>
@@ -1936,8 +1995,10 @@
                                 <div class="summary" style="visibility:none;border-bottom:1px solid #E6E6E6;">
                                 </div>
                     
-                                <div class="form-field2">
-                                    <apex:outputLabel style="padding:0;">Do you anticipate that your production will require Music?<strong></strong></apex:outputLabel>
+                                <div class="form-field2 padding-qm">
+                                    <apex:outputLabel style="padding:0;">Do you anticipate that your production will require Music?
+                                    <strong style="top:-6px;"></strong>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2-radio">
                                     <apex:selectRadio value="{!joblist.Require_Music__c}">
@@ -1947,8 +2008,9 @@
                                 </div>
                                 <div class="clear">
                                 </div>
-                                <div class="form-field2">
-                                    <apex:outputLabel style="padding:0;">Do you anticipate that your production will require Celebrity Talent?<strong></strong></apex:outputLabel>
+                                <div class="form-field2 padding-qm">
+                                    <apex:outputLabel style="padding:0;">Do you anticipate that your production will require Celebrity Talent?
+                                    <strong style="top:-6px;"></strong></apex:outputLabel>
                                 </div>
                                 <div class="form-field2-radio">
                                     <apex:selectRadio value="{!joblist.Require_Celebrity_Talent__c}" dir="RTL">
@@ -1958,8 +2020,11 @@
                                 </div>
                                 <div class="clear">
                                 </div>
-                                <div class="form-field2">
-                                    <apex:outputLabel >Current stage of your production activity<strong></strong></apex:outputLabel>
+                                <div class="form-field2 padding-qm">
+                                    <apex:outputLabel >Current stage of your production activity
+                                    <strong style="right:-12px;"></strong>
+                                    <div title="If your registation is across multiple Production Activity types then please select based on the timing of the 1st activity.  If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cutdown, Re-edit) your timing selection is based on the individual activity NOT based on if the master has been previously aired."></div>
+                                    </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Stage_of_Production_Activity__c}" />
@@ -1967,7 +2032,7 @@
                                 <div class="clear">
                                 </div>
                                 <div class="right">                                    
-                                    <apex:commandButton value="Update" action="{!UpdateJob}" onclick="enableText()" styleClass="commonbtn" />
+                                    <apex:commandButton value="Update" action="{!UpdateJob}" onclick="enableText()" styleClass="commonbtn-blue" />
                                 </div>
                                 <div class="clear">
                                 </div>
@@ -2019,11 +2084,11 @@
                     <div class="inner_sub2_section">
                         <apex:form >
                             <div class="inner-content">
-                                <div class="before inner_heading_sub_section margin-btwn-inner-container">
+                               <!-- <div class="before inner_heading_sub_section margin-btwn-inner-container">
                                     <h4>
                                         Upload                                         
                                     </h4>
-                                </div>
+                                </div>-->
                                 <div class="margin-btwn-inner-container">
                                     <div class="left" style="margin-left:12px;">
                                         <apex:inputFile value="{!document.body}"  filename="{!document.name}" />
@@ -2039,28 +2104,35 @@
                                     <div class="clear">
                                     </div>
                                 </div>
-                                <div class="before inner_heading_sub_section margin-btwn-container12">
+                                <!--<div class="before inner_heading_sub_section margin-btwn-container12">
                                     <h4>
                                         Creative Docs - List                                         
                                     </h4>
-                                </div>
+                                </div>-->
                                 <div class="margin-btwn-inner-container">
                                     <apex:pageBlock >
                                         <apex:pageBlockSection columns="1">
                                             <apex:pageBlockTable value="{!documentList}" var="doc" rendered="{!if(documentList.size>0,true,false)}" columnswidth="500px,100px">
-                                                <apex:column headerValue="File Name"  styleclass="th_cd_filename_header" >  <!-- value="{!doc.ContentFileName}" -->
-                                                    <a href="/sfc/servlet.shepherd/version/download/{!doc.relatedrecordid}"> {!doc.ContentFileName}</a>
-                                                </apex:column>
-                                                <apex:column headerValue="Date">
-                                                    <apex:outputText value="{0,date,MM/dd/yy}">
-                                                        <apex:param value="{!doc.createdDate}" />
-                                                    </apex:outputText>
-                                                </apex:column>
-                                                <apex:column headerValue="Remove">
+                                                <apex:column >
                                                     <apex:commandLink value="Remove"  action="{!deleteDocuments}" >
                                                         <apex:param name="recordId"  assignTo="{!chosenDocId}" value="{!doc.id}"/>
                                                     </apex:commandLink>
                                                 </apex:column>
+                                                <apex:column >
+                                                 <apex:outputLink value="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB720BY480&versionId={!doc.RelatedRecordId}" target="_blank">Preview</apex:outputLink>      
+                                               </apex:column>
+                                                <apex:column >  <!-- value="{!doc.ContentFileName}" -->
+                                                    <a href="/sfc/servlet.shepherd/version/download/{!doc.relatedrecordid}"> {!doc.ContentFileName}</a>
+                                                </apex:column>
+                                                <apex:column >
+                                                  {!doc.CreatedBy.name}
+                                                </apex:column>
+                                                <apex:column >
+                                                    <apex:outputText value="{0,date,dd/MM/yy}">
+                                                        <apex:param value="{!doc.createdDate}" />
+                                                    </apex:outputText>
+                                                </apex:column>
+                                                
                                             </apex:pageBlockTable>
                                         </apex:pageBlockSection>
                                     </apex:pageBlock>
@@ -2096,15 +2168,19 @@
                             <apex:tabPanel switchType="client" >
                                 <apex:tab label="Savings" name="savings" id="saving_input"> <!-- rerender="refreshCTP" -->
                                        <apex:outputPanel id="refreshCTP">
-                                            <apex:include pageName="Amr_NewSaving"/>
+                                            <apex:include pageName="Amr_NewSavingPage"/>
                                        </apex:outputPanel>
                                 </apex:tab>
                                 <apex:tab label="Submitted Savings" name="saving_submitted" id="saving_submitted" >
    
                                     <apex:pageBlock >
                                     <apex:pageBlockTable value="{!quoteList}"  var="obj">
+                                    <!--Job Information-->
                                     <apex:column headerValue="AdManager No">
                                      <apex:outputText value="{!adManagerNumber}" />
+                                    </apex:column>
+                                     <apex:column headerValue="Production Type">
+                                    <apex:outputText value="{!obj.Production_Type__c}"/>
                                     </apex:column>
                                     <apex:column headerValue="No Of Masters ">
                                     <apex:outputField value="{!obj.No_of_Masters__c}"/>
@@ -2127,22 +2203,16 @@
                                     <apex:column headerValue="Shoot Location">
                                     <apex:outputText value="{!obj.Shoot_Location__c}" />
                                     </apex:column>
+                                     <apex:column headerValue="Stage RAP Engaged">
+                                    <apex:outputText value="{!obj.Stage_RAP_engaged__c}"/>
+                                    </apex:column>
                                     <apex:column headerValue="Script Title">
                                     <apex:outputText value="{!obj.Script_Title__c}"/>
                                     </apex:column>
                                     <apex:column headerValue="Scope re-Brief">
                                     <apex:outputText value="{!obj.Scope_re_brief__c}"/>
                                     </apex:column>
-                                    <apex:column headerValue="Folder">
-                                     <apex:outputText value="{!obj.Folder_Name__c}"/>
-                                    </apex:column>
-                                    <apex:column headerValue="Production Type">
-                                    <apex:outputText value="{!obj.Production_Type__c}"/>
-                                    </apex:column>
-                                    <apex:column headerValue="Stage RAP Engaged">
-                                    <apex:outputText value="{!obj.Stage_RAP_engaged__c}"/>
-                                    </apex:column>
-                                    
+                                   <!--saving review-->
                                     <apex:column headerValue="€ Saving - Average of Quotes">
                                     <apex:outputText value="{!obj.Saving_Average_of_Quotes__c}"/>
                                     </apex:column>
@@ -2161,15 +2231,343 @@
                                     <apex:column headerValue="Cost per master per shoot day">
                                     <apex:outputText value="{!obj.Cost_per_master_per_shoot_day__c}"/>
                                     </apex:column>
-                                    <apex:column headerValue="Total Accepted Final Cost (CA/PC/PPC) Euro Amount" > 
-                                                    <apex:outputText value="{!obj.Quotes__r[0].Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
-                                                    </apex:column>
-                                    <apex:column headerValue="Total Cost" > 
+                                    <apex:column headerValue="No of Quotes">
+                                    <apex:outputText value="{!obj.Number_Of_Quotes__c}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Average of all total opening quotes">
+                                    <apex:outputText value="{!obj.Average_Total_Opening_Quotes__c}"/>
+                                    </apex:column>
+                                    <!--Quote 1 accepted quote -->
+                                    <apex:column headerValue="Q1(Accepted Quote)-Is PC Part Of The Roster?" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].Is_PC_part_of_the_Roster__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q1(Accepted Quote)-PC Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].PC_name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q1(Accepted Quote)-PC Country Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].PC_Country__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q1(Accepted Quote)-Service Company Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].Service_Company_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q1(Accepted Quote)-PC Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].Local_Currency_of_PC_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q1(Accepted Quote)-PC Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].Local_Amount_of_PC__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q1(Accepted Quote)-Is the PPC part of the Roster?" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].Is_the_PPC_part_of_the_Roster__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q1(Accepted Quote)-PPC Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].PPC_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q1(Accepted Quote)-PPC Country Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].PPC_Country__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q1(Accepted Quote)-PPC Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].Local_Currency_of_PPC_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q1(Accepted Quote)-PPC Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].Local_Amount_of_PPC__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q1(Accepted Quote)-PPC Costs Only (Euro Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].PPC_Costs_Euro_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q1(Accepted Quote)-CA/Additional agency Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].CA_Additional_agency_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q1(Accepted Quote)-CA Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].CA_Location__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q1(Accepted Quote)-CA Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].Local_Currency_of_CA_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q1(Accepted Quote)-CA Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].Local_Amount_of_CA__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q1(Accepted Quote)-CA Costs Only (Euro Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[0].CA_Costs_Euro_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q1(Accepted Quote)-Total Cost" > 
                                                     <apex:outputText value="{!obj.Quotes__r[0].Total_Cost__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
-                                                    </apex:column>
-                                                    
+                                     </apex:column>
+                                     <!--accepted final quote-->
+                                      <apex:column headerValue="Accepted Final Cost - PC only (Currency)" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_PC_only_Currency__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                      <apex:column headerValue="Accepted Final Cost - PC only (Local Amount)" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_PC_only_Local_Amo__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                       <apex:column headerValue="Accepted Final Cost - PC only (Euro Amount)" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_PC_Euro_Amou__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                     <apex:column headerValue="Accepted Final Cost - PPC only (Currency)" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_PPC_only_Currency__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                     <apex:column headerValue="Accepted Final Cost - PPC only (Local Amount)" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_PPC_only_Local_Am__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                      <apex:column headerValue="Accepted Final Cost - PPC only (Euro Amount)" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_PPC_Euro_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                      <apex:column headerValue="Accepted Final Cost - CA only (Currency)" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_CA_only_Currency__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                      <apex:column headerValue="Accepted Final Cost - CA only (Local Amount)" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_CA_Local_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                      <apex:column headerValue="Accepted Final Cost - CA only (Euro Amount)" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_CA_Euro_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                     <apex:column headerValue="Accepted Final Cost - Editors name" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_Editors_name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                     <apex:column headerValue="Accepted Final Cost - Sound Studio Name" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_Sound_Studio_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                      <apex:column headerValue="Accepted Final Cost - Total Sound Studio costs" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_Total_Sound_Studio__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                      <apex:column headerValue="Accepted Final Cost - Travel Costs" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_Travel_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                      <apex:column headerValue="Accepted Final Cost - Value of props & wardrobe (paid for)" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Accepted_Final_Cost_props_wardrobe__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                     <apex:column headerValue="What type of Savings is this?" > 
+                                     <apex:outputText value="{!obj.Quotes__r[0].Saving_Type__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                      <apex:column headerValue="Total Accepted Final Cost (CA/PC/PPC) Euro Amount" > 
+                                                    <apex:outputText value="{!obj.Quotes__r[0].Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    
+                                    <!--Quote2-->
+                                    <apex:column headerValue="Q2-Is PC Part Of The Roster?" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].Is_PC_part_of_the_Roster__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q2-PC Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].PC_name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q2-PC Country Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].PC_Country__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q2-Service Company Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].Service_Company_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q2-PC Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].Local_Currency_of_PC_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q2-PC Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].Local_Amount_of_PC__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q2-Is the PPC part of the Roster?" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].Is_the_PPC_part_of_the_Roster__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q2-PPC Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].PPC_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q2-PPC Country Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].PPC_Country__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q2-PPC Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].Local_Currency_of_PPC_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q2-PPC Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].Local_Amount_of_PPC__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q2-PPC Costs Only (Euro Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].PPC_Costs_Euro_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q2-CA/Additional agency Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].CA_Additional_agency_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q2-CA Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].CA_Location__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q2-CA Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].Local_Currency_of_CA_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q2-CA Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].Local_Amount_of_CA__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q2-CA Costs Only (Euro Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[1].CA_Costs_Euro_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q2-Total Cost" > 
+                                   <apex:outputText value="{!obj.Quotes__r[1].Total_Cost__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                    <!--Quote 3-->
+                                    <apex:column headerValue="Q3-Is PC Part Of The Roster?" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].Is_PC_part_of_the_Roster__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q3-PC Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].PC_name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q3-PC Country Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].PC_Country__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q3-Service Company Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].Service_Company_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q3-PC Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].Local_Currency_of_PC_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q3-PC Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].Local_Amount_of_PC__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q3-Is the PPC part of the Roster?" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].Is_the_PPC_part_of_the_Roster__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q3-PPC Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].PPC_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q3-PPC Country Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].PPC_Country__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q3-PPC Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].Local_Currency_of_PPC_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q3-PPC Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].Local_Amount_of_PPC__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q3-PPC Costs Only (Euro Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].PPC_Costs_Euro_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q3-CA/Additional agency Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].CA_Additional_agency_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q3-CA Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].CA_Location__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q3-CA Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].Local_Currency_of_CA_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q3-CA Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].Local_Amount_of_CA__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q3-CA Costs Only (Euro Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[2].CA_Costs_Euro_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q3-Total Cost" > 
+                                   <apex:outputText value="{!obj.Quotes__r[2].Total_Cost__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                    <!--Quote 4-->
+                                    <apex:column headerValue="Q4-Is PC Part Of The Roster?" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].Is_PC_part_of_the_Roster__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q4-PC Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].PC_name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q4-PC Country Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].PC_Country__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q4-Service Company Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].Service_Company_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q4-PC Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].Local_Currency_of_PC_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q4-PC Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].Local_Amount_of_PC__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q4-Is the PPC part of the Roster?" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].Is_the_PPC_part_of_the_Roster__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q4-PPC Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].PPC_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q4-PPC Country Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].PPC_Country__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q4-PPC Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].Local_Currency_of_PPC_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q4-PPC Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].Local_Amount_of_PPC__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q4-PPC Costs Only (Euro Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].PPC_Costs_Euro_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q4-CA/Additional agency Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].CA_Additional_agency_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q4-CA Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].CA_Location__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q4-CA Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].Local_Currency_of_CA_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q4-CA Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].Local_Amount_of_CA__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q4-CA Costs Only (Euro Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].CA_Costs_Euro_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q4-Total Cost" > 
+                                    <apex:outputText value="{!obj.Quotes__r[3].Total_Cost__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                    <!--Quote 5-->
+                                  <apex:column headerValue="Q5-Is PC Part Of The Roster?" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].Is_PC_part_of_the_Roster__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q5-PC Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].PC_name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q5-PC Country Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].PC_Country__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q5-Service Company Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].Service_Company_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q5-PC Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].Local_Currency_of_PC_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q5-PC Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].Local_Amount_of_PC__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q5-Is the PPC part of the Roster?" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].Is_the_PPC_part_of_the_Roster__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q5-PPC Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].PPC_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q5-PPC Country Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].PPC_Country__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q5-PPC Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].Local_Currency_of_PPC_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q5-PPC Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].Local_Amount_of_PPC__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q5-PPC Costs Only (Euro Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].PPC_Costs_Euro_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q5-CA/Additional agency Name" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].CA_Additional_agency_Name__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q5-CA Location" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].CA_Location__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q5-CA Costs Only (Local Currency)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].Local_Currency_of_CA_Costs__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                     <apex:column headerValue="Q5-CA Costs Only (Local Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].Local_Amount_of_CA__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q5-CA Costs Only (Euro Amount)" > 
+                                    <apex:outputText value="{!obj.Quotes__r[4].CA_Costs_Euro_Amount__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                    </apex:column>
+                                    <apex:column headerValue="Q5-Total Cost" > 
+                                 <apex:outputText value="{!obj.Quotes__r[4].Total_Cost__c}"   rendered="{!obj.Quotes__r.size != 0}"/>
+                                     </apex:column>
+                                    <!--end-->
+                                  
+                                    
+                                                  
                                     <apex:column headerValue="View">
-                                    <apex:outputlink target="_blank" value="Amr_SubmittedSaving?id={!obj.id}">View</apex:outputlink>
+                                    <apex:outputlink target="_blank" value="Amr_SubmittedSavingPage?id={!obj.id}">View</apex:outputlink>
                                     </apex:column>
                                     
                                     </apex:pageBlockTable>
