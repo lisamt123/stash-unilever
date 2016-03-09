@@ -5,7 +5,7 @@
  */
  
 @isTest
-private class IPM_BD_BB_Report_Batch_Test {
+private class IPM_BD_BB_Report_Batch_Test {  
     
     public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     public static List<IPM_Financial__c> lstFinancial=new List<IPM_Financial__c>();
@@ -21,6 +21,7 @@ private class IPM_BD_BB_Report_Batch_Test {
     public static final String GROSS = 'Gross';
     public static final String INCREMENTAL = 'Incremental';
     public static final String CALENDAR = 'Calendar';
+    
     
     /**********************************************************************
     *  @Description: Test Method to initialize data for the other test methods
@@ -111,28 +112,28 @@ private class IPM_BD_BB_Report_Batch_Test {
                 ipmMileStoneTestList[i].IPM_Name__c = projid + string.valueof(i); 
                                           
                 if(i==0){
-                	 ipmMileStoneTestList[0].IPM_Type_of_gate__c = IPM_Utils.Charter; 
+                     ipmMileStoneTestList[0].IPM_Type_of_gate__c = IPM_Utils.Charter; 
                 }          
                 if(i==1) {
-                	ipmMileStoneTestList[1].IPM_Type_of_gate__c = IPM_Utils.Contract;
+                    ipmMileStoneTestList[1].IPM_Type_of_gate__c = IPM_Utils.Contract;
                 }
                 if(i==2){
-                	 ipmMileStoneTestList[2].IPM_Type_of_gate__c = IPM_Utils.MarketReady;
+                     ipmMileStoneTestList[2].IPM_Type_of_gate__c = IPM_Utils.MarketReady;
                 }
                 
                 if(i==3){
-                	 ipmMileStoneTestList[3].IPM_Type_of_gate__c = IPM_Utils.MarketDeployment;
+                     ipmMileStoneTestList[3].IPM_Type_of_gate__c = IPM_Utils.MarketDeployment;
                 }
                 if(i==4) {
-                	ipmMileStoneTestList[4].IPM_Name__c = IPM_Utils.TargetLaunchDateShiptoTrade;
+                    ipmMileStoneTestList[4].IPM_Name__c = IPM_Utils.TargetLaunchDateShiptoTrade;
                 }
                 
                 if(i==5) {
-                	ipmMileStoneTestList[5].IPM_Name__c = IPM_ConstantUtils.BET_MS_FIRST_RELEASE;
+                    ipmMileStoneTestList[5].IPM_Name__c = IPM_ConstantUtils.BET_MS_FIRST_RELEASE;
                 }
-                	
+                    
                 if(i==6) {
-                	ipmMileStoneTestList[6].IPM_Name__c = IPM_ConstantUtils.BET_MS_FINAL_RELEASE;
+                    ipmMileStoneTestList[6].IPM_Name__c = IPM_ConstantUtils.BET_MS_FINAL_RELEASE;
                 }
             }
 
@@ -343,23 +344,25 @@ private class IPM_BD_BB_Report_Batch_Test {
     }
         
     
-    static testMethod void testBDBBreport1() { 
+    static testMethod void testBDBBreport1() {  
         initializeData1();            
         system.runAs(testUser){
-            string query = 'SELECT Id,IPM_Global_ProjectId__c,Project_External_ID__c,Name,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.Id,IPM_Project_Leader__r.Name,Deputy_Project_Leader__r.Name,IPM_Technical_Project_Leader__r.Name,IPM_Finance_Member__r.Name,IPM_Rollout_Status__c,IPM_Category_Group__c,IPM_Category_Text__c,IPM_Phase__c,IPM_Brand_Positioning__c,IPMProject_Span__c, IPMProject_Type__c,Project_Countries__c,IPM_No_of_Country_Rollouts__c,IPM_Threshold_Value__c,IPM_Company_Card__r.Name,IPM_Cluster__c,Market_Cluster__c,Market_Cluster_Name__c,IPM_Clustering__c,IPM_Clusters__c,IPM_Answer_of_Q1__c, IPM_Answer_of_Q2__c, Exempt_from_Threshold__c, IPM_Answer_of_Q3__c,IPM_Strategic_Intent__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Launch_Date__c, IPM_Actual_Launch_Month__c,IPM_Actual_Launch_Year__c,IPMPlatform__c,IPM_Project_Type__c,IPM_Project_Description__c,IPM_Target_Launch_Dates__c,IPM_Project_Rollout__c,IPM_Misalligned__c, CreatedDate FROM IPM_Project__c WHERE Is_Archieved__c = false'; 
+            string  query = 'SELECT Id,IPM_Global_ProjectId__c,Project_External_ID__c,Name,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.Id,IPM_Project_Leader__r.Name,Deputy_Project_Leader__r.Name,IPM_Technical_Project_Leader__r.Name,IPM_Finance_Member__r.Name,IPM_Rollout_Status__c,IPM_Category_Group__c,IPM_Category_Text__c,IPM_Phase__c,IPM_Brand_Positioning__c,IPMProject_Span__c, IPMProject_Type__c,Project_Countries__c,IPM_No_of_Country_Rollouts__c,IPM_Threshold_Value__c,IPM_Company_Card__r.Name,IPM_Cluster__c,Market_Cluster__c,Market_Cluster_Name__c,IPM_Clustering__c,IPM_Clusters__c,IPM_Answer_of_Q1__c, IPM_Answer_of_Q2__c, Exempt_from_Threshold__c, IPM_Answer_of_Q3__c,IPM_Strategic_Intent__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Launch_Date__c, IPM_Actual_Launch_Month__c,IPM_Actual_Launch_Year__c,IPMPlatform__c,IPM_Project_Type__c,IPM_Project_Description__c,IPM_Target_Launch_Dates__c,IPM_Project_Rollout__c,IPM_Misalligned__c,CreatedDate,IPM_Project_Start_Date__c,IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c,IPM_CPP__c,IPM_Fast_Track_Project__c,Is_Archieved__c,IPM_Global_OR_Regional__c,IPM_Project_Rollout__r.Target_Launch_Date__c, IPM_Project_Rollout__r.KeyMCO__c FROM IPM_Project__c'; 
             IPM_BD_BB_Report_Batch  batchs = new IPM_BD_BB_Report_Batch(query); 
-            database.executebatch(batchs,100);
-        }   
+            database.executebatch(batchs,100);            
+        }  
+         
         List<IPM_Reporting__c>reportParameterlist1=[SELECT Id, Last_Batch_RunDate__c FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
         system.assertequals(reportParameterlist1[0].Last_Batch_RunDate__c.day(),reportParameter.Last_Batch_RunDate__c.day(),'Error in Batch Last run date update - initializeData2 Method');            
     }
         static testMethod void testBDBBreport2() { 
         initializeData2();            
         system.runAs(testUser){
-            string query = 'SELECT Id,IPM_Global_ProjectId__c,Project_External_ID__c,Name,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.Id,IPM_Project_Leader__r.Name,Deputy_Project_Leader__r.Name,IPM_Technical_Project_Leader__r.Name,IPM_Finance_Member__r.Name,IPM_Rollout_Status__c,IPM_Category_Group__c,IPM_Category_Text__c,IPM_Phase__c,IPM_Brand_Positioning__c,IPMProject_Span__c, IPMProject_Type__c,Project_Countries__c,IPM_No_of_Country_Rollouts__c,IPM_Threshold_Value__c,IPM_Company_Card__r.Name,IPM_Cluster__c,Market_Cluster__c,Market_Cluster_Name__c,IPM_Clustering__c,IPM_Clusters__c,IPM_Answer_of_Q1__c, IPM_Answer_of_Q2__c, Exempt_from_Threshold__c, IPM_Answer_of_Q3__c,IPM_Strategic_Intent__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Launch_Date__c, IPM_Actual_Launch_Month__c,IPM_Actual_Launch_Year__c,IPMPlatform__c,IPM_Project_Type__c,IPM_Project_Description__c,IPM_Target_Launch_Dates__c,IPM_Project_Rollout__c,IPM_Misalligned__c,CreatedDate FROM IPM_Project__c WHERE Is_Archieved__c = false'; 
+            string  query = 'SELECT Id,IPM_Global_ProjectId__c,Project_External_ID__c,Name,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.Id,IPM_Project_Leader__r.Name,Deputy_Project_Leader__r.Name,IPM_Technical_Project_Leader__r.Name,IPM_Finance_Member__r.Name,IPM_Rollout_Status__c,IPM_Category_Group__c,IPM_Category_Text__c,IPM_Phase__c,IPM_Brand_Positioning__c,IPMProject_Span__c, IPMProject_Type__c,Project_Countries__c,IPM_No_of_Country_Rollouts__c,IPM_Threshold_Value__c,IPM_Company_Card__r.Name,IPM_Cluster__c,Market_Cluster__c,Market_Cluster_Name__c,IPM_Clustering__c,IPM_Clusters__c,IPM_Answer_of_Q1__c, IPM_Answer_of_Q2__c, Exempt_from_Threshold__c, IPM_Answer_of_Q3__c,IPM_Strategic_Intent__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Launch_Date__c, IPM_Actual_Launch_Month__c,IPM_Actual_Launch_Year__c,IPMPlatform__c,IPM_Project_Type__c,IPM_Project_Description__c,IPM_Target_Launch_Dates__c,IPM_Project_Rollout__c,IPM_Misalligned__c,CreatedDate,IPM_Project_Start_Date__c,IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c,IPM_CPP__c,IPM_Fast_Track_Project__c,Is_Archieved__c,IPM_Global_OR_Regional__c,IPM_Project_Rollout__r.Target_Launch_Date__c, IPM_Project_Rollout__r.KeyMCO__c FROM IPM_Project__c'; 
             IPM_BD_BB_Report_Batch  batch = new IPM_BD_BB_Report_Batch(query); 
             database.executebatch(batch,100);
-        }   
+        } 
+        
         List<IPM_Reporting__c>reportParameterlist2=[SELECT Id, Last_Batch_RunDate__c FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
         system.assertequals(reportParameterlist2[0].Last_Batch_RunDate__c.day(),reportParameter.Last_Batch_RunDate__c.day(),'Error in Batch Last run date update - initializeData2 Method');            
     }
