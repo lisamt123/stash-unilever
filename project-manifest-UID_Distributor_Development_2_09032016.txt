@@ -1,0 +1,2 @@
+src/classes/UID_StockCoverTriggerHelper_Test.cls
+src/classes/UID_StockCoverTriggerHelper_Test.cls-meta.xml
