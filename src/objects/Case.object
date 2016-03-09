@@ -3943,6 +3943,38 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_North_America_Brand_Sun_Queue</fullName>
+        <columns>Case_Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CEC_Product_Hierarchy__c</columns>
+        <columns>CEC_Reason_Code__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>equals</operation>
+            <value>SUN</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>Escalated</value>
+        </filters>
+        <label>CEC North America Brand Sun Queue</label>
+        <language>en_US</language>
+        <queue>CEC_North_America_Brand_Queue</queue>
+        <sharedTo>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_North_America_Claims_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
@@ -5016,13 +5048,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC North America Talenti</label>
         <language>en_US</language>
         <sharedTo>
+            <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Unilever_General</fullName>
-        <booleanFilter>1 and (2 or 3 or 4 or 5)</booleanFilter>
+        <booleanFilter>1 and (2 or 3 or 4 or 5 or 6 or 7)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -5056,6 +5089,16 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>Brand__c</field>
             <operation>equals</operation>
             <value>Pending Request,Privacy,Privacy Policy,Recontact,Unilever Canada</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>equals</operation>
+            <value>Operation in Touch</value>
+        </filters>
+        <filters>
+            <field>Brand__c</field>
+            <operation>equals</operation>
+            <value>Operation in Touch</value>
         </filters>
         <label>CEC North America Unilever General</label>
         <language>en_US</language>
@@ -5602,8 +5645,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>L2_Product_Category__c</columns>
-        <columns>NAME</columns>
-        <columns>Country__c</columns>
+        <columns>ACCOUNT.NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -5616,6 +5658,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>My_Open_Cases</fullName>
         <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>L2_Product_Category__c</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
@@ -5828,7 +5872,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>mavonba</value>
+            <value>MaSeidel</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
