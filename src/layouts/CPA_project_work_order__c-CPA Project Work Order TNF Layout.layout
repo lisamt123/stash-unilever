@@ -301,7 +301,7 @@
                 <field>pkl_TNF_Terminated_by__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>txt_TNF_Reason_for_termination__c</field>
             </layoutItems>
         </layoutColumns>

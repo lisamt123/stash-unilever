@@ -304,6 +304,10 @@ global with sharing class CPA_ContractInformationController {
         if(cnfRecord.num_CNF_Variance_number_in_man_days__c== null){ 
             RequiredFieldMap.put('Variance (number in man-days)',CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
+        if(cnfRecord.mpkl_CNF_Currency__c == null){
+            RequiredFieldMap.put( 'CNF Currency' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+        }
+        
         if(cnfRecord.mpkl_CNF_Currency__c != null && cnfRecord.mpkl_CNF_Currency__c == CPA_ConstantsForContractingAppClasses.OTHER && cnfRecord.txt_CNF_Other_Currency__c == null){
             RequiredFieldMap.put( 'CNF Other Currency' ,'It is mandatory if CNF Currency is OTHER');
         }
@@ -373,6 +377,10 @@ global with sharing class CPA_ContractInformationController {
         }
         if(tnfRecord.txt_TNF_Unilever_Contact_Name__c == null){
             RequiredFieldMap.put('TNF Unilever Contact Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+        }
+        
+        if(tnfRecord.pkl_TNF_Currency__c == null){
+            RequiredFieldMap.put( 'TNF Currency' ,CPA_ConstantsForContractingAppClasses.MANDATORY);
         }
         
         if(tnfRecord.pkl_TNF_Currency__c != null && tnfRecord.pkl_TNF_Currency__c == CPA_ConstantsForContractingAppClasses.OTHER && tnfRecord.txt_TNF_Other_Currency__c == null){
