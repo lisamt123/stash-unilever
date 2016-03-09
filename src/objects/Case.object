@@ -5048,6 +5048,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC North America Talenti</label>
         <language>en_US</language>
         <sharedTo>
+            <role>CEC_Global_Head</role>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
         </sharedTo>
@@ -5644,8 +5645,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>L2_Product_Category__c</columns>
-        <columns>NAME</columns>
-        <columns>Country__c</columns>
+        <columns>ACCOUNT.NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -5658,6 +5658,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>My_Open_Cases</fullName>
         <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>L2_Product_Category__c</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
@@ -5870,7 +5872,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>mavonba</value>
+            <value>MaSeidel</value>
         </filters>
         <filters>
             <field>CORE.USERS.ALIAS</field>
