@@ -1,4 +1,18 @@
-public class CPA_testContractClass {
+/********************************************************************
+ Name:  CPA_testContractClass()
+ Copyright © 2015  Unilever
+ ======================================================
+======================================================
+Purpose:  Test class to cover record type                                                     
+-------                                                             
+======================================================
+======================================================
+History                                                            
+-------                                                            
+VERSION  AUTHOR    DATE              DETAIL                 Description
+   1.0   Pooja     09/03/2015        INITIAL DEVELOPMENT           
+***********************************************************************/
+public with sharing class CPA_testContractClass {
     /*******************************************************************
     Purpose: This method is used to create Test User
     Parameters: 
@@ -17,7 +31,7 @@ public class CPA_testContractClass {
         return testUser1;
     
     }
-	    /*******************************************************************
+        /*******************************************************************
     Purpose: This method is used to create LOI test data
     Parameters: 
     Returns: 
