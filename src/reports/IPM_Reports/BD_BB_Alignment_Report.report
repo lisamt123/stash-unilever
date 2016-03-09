@@ -252,6 +252,15 @@
     <columns>
         <field>IPM_Analytics__c$IPM_BET_Final_Released_On_date__c</field>
     </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Fast_Track_Project__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Stopped__c</field>
+    </columns>
+    <columns>
+        <field>IPM_Analytics__c$IPM_Key_NonKey__c</field>
+    </columns>
     <format>Tabular</format>
     <name>BD BB Alignment Report</name>
     <params>
