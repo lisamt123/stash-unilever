@@ -43,7 +43,7 @@ public class CPA_AttchemntUtilController_Test {
         attachment5.Body = bBlob5;
         //insert(attachment5);
         listAttachment.add(attachment5);
-        System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment5.ContentType);
+       // System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment5.ContentType);
         
         CPA_project_work_order__c objPWO = CPA_testContractClass.createPWO(objPworf14);
         insert objPWO;
@@ -68,7 +68,7 @@ public class CPA_AttchemntUtilController_Test {
 
         objPWO.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ACCEPTED;
         update objPWO;    
-         System.Assert(CPA_ConstantsForContractingAppClasses.ACCEPTED == objPWO.pkl_Status__c);
+         
         CPA_Commercial_Details__c obj1 = new CPA_Commercial_Details__c();
         obj1.Project_Work_Order__c = objPWO.id;
         insert  obj1;    
@@ -97,15 +97,28 @@ public class CPA_AttchemntUtilController_Test {
         attachment3.Body = bBlob13;
        // insert(attachment3);
         listAttachment.add(attachment3);
+        Test.startTest();
+            insert listAttachment;
+            List<Attachment> listLOi = [Select Id,ParentId from Attachment where ParentId=:objLOI.Id];
+            listLOi.add(attachment5);
+            CPA_LOI__c objLOICheck = [Select Id,chk_Contract_Attached__c from CPA_LOI__c where Id = : objLOI.Id ];
+            CPA_project_work_order__c objPWOCheck = [Select Id,chk_Excel_Attached__c,chk_PDF_Attached__c from CPA_project_work_order__c where id=: objPWO.id];
+            CPA_CR__c objCRChek = [Select Id,chk_Contract_Excel_Attached__c,chk_Contract_Attached__c from CPA_CR__c where id =:objCR.id];
+           
+            System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment3.ContentType);
+            System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment2.ContentType);
+            CPA_AttachmentUtil.updateLOI(listLOi);
+            CPA_AttachmentUtil.DeleteLOI(listLOi);
+        Test.stopTest();
         
-        insert listAttachment;
-        System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment3.ContentType);
-        System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment2.ContentType);
-
-        List<Attachment> listLOi = [Select Id,ParentId from Attachment where ParentId=:objLOI.Id];
-        listLOi.add(attachment5);
-        CPA_AttachmentUtil.updateLOI(listLOi);
-        CPA_AttachmentUtil.DeleteLOI(listLOi);
+        System.Assert(objLOICheck.chk_Contract_Attached__c);
+        System.Assert(objPWOCheck.chk_Excel_Attached__c);
+        System.Assert(objPWOCheck.chk_PDF_Attached__c);
+        
+        
+        System.Assert(objCRChek.chk_Contract_Excel_Attached__c);
+        System.Assert(objCRChek.chk_Contract_Attached__c);
+        
         System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONPDF == attachment3.ContentType);
         System.Assert(CPA_ConstantsForContractingAppClasses.APPLICATIONEXCEL == attachment2.ContentType);
     }

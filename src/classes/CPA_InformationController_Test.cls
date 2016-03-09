@@ -22,7 +22,7 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void PWORFInformationController_Test() {
-        CPA_Status_Msg__c saveStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg();
+        CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
         CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf;
@@ -74,7 +74,7 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  PWOInformationController_Test() {
-        CPA_Status_Msg__c saveStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg();
+        CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
         Test.startTest();
         
@@ -122,7 +122,7 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  LOIInformationController_Test() {
-        CPA_Status_Msg__c saveStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg();
+        CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
         
         CPA_LOIMandatoryMessages__c objMSG = CPA_testCustomSettingClass_util.createTest_LOI_message();
@@ -181,7 +181,7 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  CRInformationController_Test() {
-        CPA_Status_Msg__c saveStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg();
+        CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
         Test.startTest();
         
@@ -241,7 +241,7 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  CNFInformationController_Test() {
-        CPA_Status_Msg__c saveStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg();
+        CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
         Test.startTest();
         
@@ -284,7 +284,7 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  TNFInformationController_Test() {
-        CPA_Status_Msg__c saveStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg();
+        CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
         Test.startTest();
         
@@ -329,7 +329,7 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  HLERequestInformationController_Test(){
-        CPA_Status_Msg__c saveStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg();
+        CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
         Test.startTest();
         CPA_HLE_Request__c objHLE = new CPA_HLE_Request__c();
@@ -354,9 +354,9 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  BPEInformationController_Test(){
-        CPA_Status_Msg__c saveStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg();
+        CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
-        CPA_Status_Msg__c acceptedStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg1();
+        CPA_Status_Msg__c acceptedStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg1();
         
         insert acceptedStatus;
         Test.startTest(); 
@@ -364,7 +364,10 @@ public  class CPA_InformationController_Test {
         objHLE1.txt_Assumptions__c  = null;     
         objHLE1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SAVED  ;   
         insert objHLE1; 
-        System.assert(CPA_ConstantsForContractingAppClasses.SAVED== objHLE1.pkl_Status__c);
+		objHLE1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED  ;  
+		objHLE1.txt_BPE_Title__c =null;		
+        update objHLE1;
+        System.assert(CPA_ConstantsForContractingAppClasses.ACCEPTED== objHLE1.pkl_Status__c);
       
         objHLE1.recordtypeid = label.CPA_BPE_Recordtype;
         update objHLE1;
@@ -372,8 +375,8 @@ public  class CPA_InformationController_Test {
         CPA_HLERequInformationController  controller2 = new CPA_HLERequInformationController  (new ApexPages.StandardController(objHLE1));
        
         
-        System.assert (controller2.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.ASSUMPTIONS ) != null);
-        System.assert (controller2.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.ASSUMPTIONS ) == CPA_ConstantsForContractingAppClasses.MANDATORY);
+        System.assert (controller2.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.BPETITLE ) != null);
+        System.assert (controller2.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.BPETITLE ) == CPA_ConstantsForContractingAppClasses.MANDATORY);
         Test.stopTest();
     }
     /*******************************************************************
@@ -383,25 +386,28 @@ public  class CPA_InformationController_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     static testmethod void  HLEInformationController_Test(){
-        CPA_Status_Msg__c saveStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg();
+        CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
-        CPA_Status_Msg__c acceptedStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg1();
+        CPA_Status_Msg__c acceptedStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg1();
         insert acceptedStatus;
       Test.startTest(); 
         CPA_HLE_Request__c objHLE2 = CPA_testContractClass.CreateHLERequest();        
          objHLE2.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
          objHLE2.txt_Assumptions__c  = null;    
         insert objHLE2; 
-        System.assert(CPA_ConstantsForContractingAppClasses.SAVED == objHLE2.pkl_Status__c);
+        objHLE2.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED  ;   
+        update objHLE2;
+        System.assert(CPA_ConstantsForContractingAppClasses.ACCEPTED== objHLE2.pkl_Status__c);
        
         objHLE2.recordtypeid = label.CPA_HLE_Recordtype;
+		objHLE2.txt_HLE_PB_Name__c =null;
         update objHLE2;
         
         System.currentPageReference().getParameters().put('id', objHLE2.id);
         CPA_HLERequInformationController  controller3 = new CPA_HLERequInformationController  (new ApexPages.StandardController(objHLE2));
-        
-         System.assert (controller3.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.ASSUMPTIONS ) != null);
-        System.assert (controller3.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.ASSUMPTIONS ) == CPA_ConstantsForContractingAppClasses.MANDATORY);
         Test.stopTest(); 
+         System.assert (controller3.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.HLENAME ) != null);
+        System.assert (controller3.RequiredFieldMap.get(CPA_ConstantsForContractingAppClasses.HLENAME ) == CPA_ConstantsForContractingAppClasses.MANDATORY);
+        
     }
 }

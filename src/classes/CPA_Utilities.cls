@@ -55,7 +55,7 @@ public with sharing class CPA_Utilities {
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/ 
-    public static void deleteDatabase (SObject[] sObjectstoDelete, Boolean bDMLOption){
+   /* public static void deleteDatabase (SObject[] sObjectstoDelete, Boolean bDMLOption){
         
         if (sObjectstoDelete.size() > 0 ){
 
@@ -76,5 +76,5 @@ public with sharing class CPA_Utilities {
         }else{
             System.debug('#### No Records to delete.');
         }
-    }
+    }*/
 }

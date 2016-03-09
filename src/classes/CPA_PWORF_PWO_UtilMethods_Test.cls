@@ -21,17 +21,17 @@ private class CPA_PWORF_PWO_UtilMethods_Test {
     Throws [Exceptions]: 
     ********************************************************************/
     public Static  void CPA_StatusMsgCustomSetting(){
-        CPA_Status_Msg__c saveStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg();
+        CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
-        CPA_Status_Msg__c acceptedStatus = CPA_testCustomSettingClass_util.createTest_CPA_Status_Msg1();
+        CPA_Status_Msg__c acceptedStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg1();
         insert acceptedStatus;
-        CPA_Status_Msg__c SubMsg = CPA_testCustomSettingClass_util.createTest_SubMsg();
+        CPA_Status_Msg__c SubMsg = CPA_testStatusMsgCustomSettingClass.createTest_SubMsg();
         insert SubMsg;
-        CPA_Status_Msg__c AnsweredMsg = CPA_testCustomSettingClass_util.createTest_AnsweredMsg();
+        CPA_Status_Msg__c AnsweredMsg = CPA_testStatusMsgCustomSettingClass.createTest_AnsweredMsg();
         insert AnsweredMsg;
-        CPA_Status_Msg__c CancelMsg = CPA_testCustomSettingClass_util.createTest_CancelMsg();
+        CPA_Status_Msg__c CancelMsg = CPA_testStatusMsgCustomSettingClass.createTest_CancelMsg();
         insert CancelMsg;
-        CPA_Status_Msg__c AutoAcceMsg = CPA_testCustomSettingClass_util.createTest_AutoAcceMsg();
+        CPA_Status_Msg__c AutoAcceMsg = CPA_testStatusMsgCustomSettingClass.createTest_AutoAcceMsg();
         insert AutoAcceMsg;
     
     }       
