@@ -347,11 +347,11 @@
                                                         <li>
                                                             <div class='input-group date' id='datetimepickerFromDate' >
                                                                 <div class="tldLable">{!$Label.IPM_From}</div>
-                                                                <apex:inputField value="{!projectForTLD.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldFrom calendar" onfocus="DatePicker.pickDate(true, this , false);"/>                                                                                     
+                                                                <apex:inputField value="{!projectForTLDFrom.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldFrom calendar" onfocus="DatePicker.pickDate(true, this , false);"/>                                                                                     
                                                             </div>
                                                             <div class='input-group date' id='datetimepickerToDate'>
                                                                 <div class="tldLable">{!$Label.IPM_To}</div>
-                                                                <apex:inputField value="{!projectForTLD.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldFrom calendar" onfocus="DatePicker.pickDate(true, this , false);"/>                                                                                     
+                                                                <apex:inputField value="{!projectForTLDTo.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldFrom calendar" onfocus="DatePicker.pickDate(true, this , false);"/>                                                                                     
                                                             </div>
                                                         </li>
                                                     </ul>
