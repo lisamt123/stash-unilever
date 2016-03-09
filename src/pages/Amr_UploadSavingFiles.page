@@ -1,0 +1,155 @@
+<apex:page controller="Amr_UploadSavingFilesController_CC" sidebar="false" id="pageId">
+    <!--  
+    <style type="text/css">
+        .labelCol {         
+        width: 43px !important;         
+        }
+        .detailList td {
+        padding: 8px 0;
+        vertical-align : bottom !important;
+        }
+        select {
+        width:auto !important;
+        }
+    </style>
+    <apex:include pageName="amr_common2" />
+    <apex:pagemessages id="msgs"></apex:pagemessages>
+    <div class="container">
+        <div class="outer_section">
+            <div class="main_inner_section">
+                <h4 class="main_inner_sectionh4">Attachments &lt;AdManager No&gt;</h4>
+                <div class="submain_inner_section" style="">
+                    <div class="inner_section">
+                        <h4>
+                            Upload Multiple Attachment to Object
+                            <div class="minusclass commonall" data-id="multiple_document_upload">
+                            </div>
+                        </h4>
+                        <div class="multiple_document_upload inner_sub_section" style="display: block;">
+                            <div class="inner_sub2_section">
+                                <apex:form >
+                                    <apex:pageBlock title="">
+                                        <apex:actionFunction name="ChangeCount" action="{!ChangeCount}"/>
+                                        <apex:pageblocksection >
+                                            <apex:pageBlockSectionItem >
+                                                <apex:outputLabel value="How many files you want to upload?"/>
+                                                <apex:selectList onchange="ChangeCount()" multiselect="false" size="1" value="{!FileCount}">
+                                                    <apex:selectOption itemLabel="--None--" itemValue=""/>
+                                                    <apex:selectOptions value="{!filesCountList}"/>
+                                                </apex:selectList>
+                                            </apex:pageBlockSectionItem>
+                                        </apex:pageblocksection>
+                                        <apex:actionRegion >
+                                            <apex:outputPanel rendered="{!IF(FileCount != null && FileCount != '', true , false)}">
+                                                <div class="inner_heading_sub_section">
+                                                    <h4>Select files</h4>
+                                                </div>
+                                                <div class="inner_content_sub_section">
+                                                    <apex:pageBlockSection >
+                                                        <apex:dataTable value="{!allFileList}" var="AFL" cellspacing="5">
+                                                            <apex:column headervalue="File">
+                                                                <apex:inputField value="{!AFL.savingObj.Folder_Name__c}"/>
+                                                            </apex:column>
+                                                            <apex:column headervalue="Folder">
+                                                                <apex:inputfile value="{!AFL.document.body}" filename="{!AFL.document.Name}" />
+                                                            </apex:column>
+                                                        </apex:dataTable>
+                                                    </apex:pageBlockSection>
+                                                    <apex:commandButton value="Upload" action="{!SaveAttachments}" styleClass="btn allocationbtn btn1 acceptedLike decline right" />
+                                                </div>
+                                            </apex:outputPanel>
+                                        </apex:actionRegion>
+                                    </apex:pageBlock>
+                                </apex:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                          
+        </div>
+    </div>
+    -->
+    
+    <apex:include pageName="amr_common" />
+    <style type="text/css">
+        .pbBody {
+            background: #fff none repeat scroll 0 0 !important;
+            margin: 0 !important;
+        }
+        .pbSubsection {
+             width: 39%;
+        }
+        input {
+            margin-top: 5px;
+            padding-top: 0;
+        }
+        select {
+            border: 1px solid #E6E6E6;
+            border-radius: 6px;
+            min-width: 150px;
+        }
+        .inner_content_sub_section {
+            padding: 12px 0 0 5px !important;
+        }
+    </style>
+    <apex:pagemessages id="msgs"></apex:pagemessages>
+    <div class="container">
+        <div class="outer_section">
+            <div class="main_inner_section margin-btwn-container bg-g1">
+                <h4 class="main_inner_sectionh4">
+                    Attachments &lt;{!adManagerNumber}&gt;                    
+                </h4>
+                <div class="submain_inner_section">
+                    <div class="inner_section">
+                        <div class="inner_sub_section" style="display: block;">
+                            <div class="inner_sub2_section">
+                                <div>
+                                    <div class="before inner_heading_sub_section margin-btwn-inner-container">
+                                        <h4>Upload multiple attachments</h4>
+                                        <!-- Amr_Jobsheet.page -->
+                                    </div>
+                                    <div>
+                                        <apex:form >
+                                            <apex:pageBlock >
+                                                <apex:actionFunction name="ChangeCount" action="{!ChangeCount}"/>
+                                                <apex:pageblocksection >
+                                                    <apex:pageBlockSectionItem >
+                                                        <apex:outputLabel value="How many files you want to upload?"/>
+                                                        <apex:selectList onchange="ChangeCount()" multiselect="false" size="1" value="{!FileCount}">
+                                                            <apex:selectOption itemLabel="--None--" itemValue=""/>
+                                                            <apex:selectOptions value="{!filesCountList}"/>
+                                                        </apex:selectList>
+                                                    </apex:pageBlockSectionItem>
+                                                </apex:pageblocksection>
+                                                <apex:actionRegion >
+                                                    <apex:outputPanel rendered="{!IF(FileCount != null && FileCount != '', true , false)}">
+                                                        <div class="inner_heading_sub_section margin-top30">
+                                                            <h4>Select files</h4>
+                                                        </div>
+                                                        <div class="inner_content_sub_section" style="margin-bottom:35px;">
+                                                            <apex:pageBlockSection >
+                                                                <apex:dataTable value="{!allFileList}" var="AFL" cellspacing="5">
+                                                                    <apex:column headervalue="File">
+                                                                        <apex:inputField value="{!AFL.savingObj.Folder_Name__c}"/>
+                                                                    </apex:column>
+                                                                    <apex:column headervalue="Folder">
+                                                                        <apex:inputfile value="{!AFL.document.body}" filename="{!AFL.document.Name}" />
+                                                                    </apex:column>
+                                                                </apex:dataTable>
+                                                            </apex:pageBlockSection>
+                                                            <apex:commandButton value="Upload" action="{!SaveAttachments}" styleClass="commonbtn right" />
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                </apex:actionRegion>
+                                            </apex:pageBlock>
+                                        </apex:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</apex:page>
