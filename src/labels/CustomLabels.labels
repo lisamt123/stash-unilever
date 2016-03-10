@@ -3943,7 +3943,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ADD_EDIT_ROLLOUTS</shortDescription>
-        <value>Manage Rollouts</value>
+        <value>Add/Manage Rollouts</value>
     </labels>
     <labels>
         <fullName>IPM_ADD_MANAGE_SEC</fullName>
@@ -3978,7 +3978,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ADD_ROLLOUT</shortDescription>
-        <value>Add Rollout</value>
+        <value>Add/Manage Rollouts</value>
     </labels>
     <labels>
         <fullName>IPM_ADD_SELECTED_MEMBERS</fullName>
