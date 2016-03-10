@@ -167,22 +167,22 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
     /* Uses out error codes/messages from exception object and updates the same to Core_CA_BaseApplicationWrapper which is sent as response for the service call */
     
     
-    public static Core_CA_BaseApplicationWrapper constructResponseBody(Core_CA_BaseApplicationWrapper responseObj, Object exceptionObj ){
-        if(Utility.isEmpty(responseObj)) responseObj = new Core_CA_ApplicationWrapper();
+    public static Core_CA_BaseApplicationWrapper constructResponseBody(Core_CA_BaseApplicationWrapper responseObjj, Object exceptionObj ){
+        if(Utility.isEmpty(responseObjj)) responseObjj = new Core_CA_ApplicationWrapper();
         if( exceptionObj instanceOf Core_CA_BaseServiceException || exceptionObj instanceOf Exception) {
-            responseObj.message   = Core_CA_AppConstants.ERROR_MSG_UNEXPECTED_ERROR_OCCURED;
-            responseObj.statusCode = Core_CA_AppConstants.RESPONSE_FAILURE_ERROR_CODE;
+            responseObjj.message   = Core_CA_AppConstants.ERROR_MSG_UNEXPECTED_ERROR_OCCURED;
+            responseObjj.statusCode = Core_CA_AppConstants.RESPONSE_FAILURE_ERROR_CODE;
         }
-        return (Core_CA_BaseApplicationWrapper)responseObj;
+        return (Core_CA_BaseApplicationWrapper)responseObjj;
     }
 
     /* Updates error code and error message for invalid service name cases */
    
-    public static Core_CA_BaseApplicationWrapper handleInvalidSvcNameReq(Core_CA_BaseApplicationWrapper responseObj){
-        if(Utility.isEmpty(responseObj)) responseObj = new Core_CA_ApplicationWrapper();
-        responseObj.statusCode   =   Core_CA_AppConstants.RESPONSE_FAILURE_ERROR_CODE;
-        responseObj.message     =   Core_CA_AppConstants.SVC_RESP_MESSAGE_INVALID_SVCNAME;
-        return (Core_CA_BaseApplicationWrapper)responseObj;
+    public static Core_CA_BaseApplicationWrapper handleInvalidSvcNameReq(Core_CA_BaseApplicationWrapper responseObje){
+        if(Utility.isEmpty(responseObje)) responseObje = new Core_CA_ApplicationWrapper();
+        responseObje.statusCode   =   Core_CA_AppConstants.RESPONSE_FAILURE_ERROR_CODE;
+        responseObje.message     =   Core_CA_AppConstants.SVC_RESP_MESSAGE_INVALID_SVCNAME;
+        return (Core_CA_BaseApplicationWrapper)responseObje;
     }
     private static String createSerializedMapString(String serviceJSONObjectasString){
         String requestBodySerializedMap = '';
