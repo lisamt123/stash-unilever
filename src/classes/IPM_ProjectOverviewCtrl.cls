@@ -682,8 +682,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
                                                                                 IPM_FunctionalRole__c =: userRole AND
-                                                                                IPM_Default_Section__c = true AND 
-            ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c !=:IPM_ConstantUtils.IPM_BLG )) 
+                                                                                IPM_Default_Section__c = true 
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000];
         }
         
