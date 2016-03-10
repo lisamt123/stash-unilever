@@ -21,6 +21,7 @@ public with sharing class CPA_attachment_Trigger_Handler
    CPA_Trigger_Pattern__c objAttachmentPattern = CPA_Trigger_Pattern__c.getValues(CPA_ConstantsForContractingAppClasses.ATTACHMENTTRIGERNAME);
     
     boolean triggerShouldExecute = objAttachmentPattern.chk_Check_Run__c;
+    
     // Constructor
     public CPA_attachment_Trigger_Handler()
     {
@@ -96,16 +97,17 @@ public with sharing class CPA_attachment_Trigger_Handler
         List<Attachment> lstAttachmentRead = new List<Attachment>();
         List<Attachment> lstAttachmentRead1 = new List<Attachment>();
         List<Attachment> lstAttachmentLOI = new List<Attachment>();
+        
         for(sobject objAtt : trigger.old){
             Attachment objAttachemt = (Attachment)objAtt;
             string srtTemp = objAttachemt.ParentId;
-            if(objAttachemt.Name.startswith('Commercial') &&(srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger) || srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)) ){
+            if(objAttachemt.Name.startswith('Commercial') &&(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
                     lstAttachmentRead.add(objAttachemt);
             }
-          if(objAttachemt.ContentType.contains('pdf')  &&(srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger) || srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)) ){
+          if(objAttachemt.ContentType.contains('pdf')  &&(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
                  lstAttachmentRead1.add(objAttachemt);
              }
-             if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_LOI) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
+             if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_LOI_ID) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
                  
                  lstAttachmentLOI.add(objAttachemt);
              }
@@ -128,17 +130,17 @@ public with sharing class CPA_attachment_Trigger_Handler
             for(sobject objAtt : trigger.new){
                 Attachment objAttachemt = (Attachment)objAtt;
                 string srtTemp = objAttachemt.ParentId;
-                if((srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger) || srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)) ){
+                if((srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) || srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)) ){
                         lstAttachmentRead.add(objAttachemt);
-                        if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger))
+                        if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ))
                             lstAttachment.add(objAttachemt);
-                        if (srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR))
+                        if (srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID))
                             lstAttachmentCR.add(objAttachemt);
                        
                         setParentId.add(objAttachemt.ParentId);
                 }
                 
-                 if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_LOI) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
+                 if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_LOI_ID) && objAttachemt.ContentType.contains('pdf') && objAttachemt.Name.startswith('LOI') ){
                             lstAttachmentLOI.add(objAttachemt);
                 }
                 

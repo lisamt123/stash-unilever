@@ -43,8 +43,8 @@ public with sharing class CPA_testPWORFClass_util {
 
         //Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll();
         RecordType rt =[select id,Name from RecordType where sObjectType='CPA_PWORF__c' AND Name='Other' limit 1] ;
-        CPA_PWORF_Record_type__c PWORFAllrecordtType = CPA_testCustomSettingClass_util.createTest_PWORF_All_recordtType(rt.id);
-        insert(PWORFAllrecordtType);
+       // CPA_PWORF_Record_type__c PWORFAllrecordtType = CPA_testCustomSettingClass_util.createTest_PWORF_All_recordtType(rt.id);
+        //insert(PWORFAllrecordtType);
         CPA_PWORF__c pworfRec = new CPA_PWORF__c();
         pworfRec.Name = 'Test->' + system.Now()+' 1';
        pworfRec.txt_Clarity_ID__c ='123456' ;
@@ -194,8 +194,8 @@ public with sharing class CPA_testPWORFClass_util {
     public static CPA_PWORF__c createTest_RA_PWORF(){
        // Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll();
        RecordType rt =[select id,Name from RecordType where sObjectType='CPA_PWORF__c' AND Name='Resource Augmentation' limit 1] ;
-        CPA_PWORF_Record_type__c PWORFRArecordtType = CPA_testCustomSettingClass_util.createTest_PWORF_RA_recordtType(rt.id);
-        insert(PWORFRArecordtType);
+       // CPA_PWORF_Record_type__c PWORFRArecordtType = CPA_testCustomSettingClass_util.createTest_PWORF_RA_recordtType(rt.id);
+       // insert(PWORFRArecordtType);
         CPA_PWORF__c pworfRec = new CPA_PWORF__c();
         pworfRec.Name = 'TEST1123445678';
         pworfRec.pkl_Status__c ='Saved' ;

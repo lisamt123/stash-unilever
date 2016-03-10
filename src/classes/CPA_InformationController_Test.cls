@@ -243,6 +243,7 @@ public  class CPA_InformationController_Test {
     static testmethod void  CNFInformationController_Test() {
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
+        ID CNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_CNF_RecordTypeId ).getRecordTypeId();
         Test.startTest();
         
         CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
@@ -261,7 +262,9 @@ public  class CPA_InformationController_Test {
         CPA_ContractInformationController   controller = new CPA_ContractInformationController  (new ApexPages.StandardController(objPWO));   
             
         objPWO.CNF_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
-        objPWO.RecordTypeid = label.CPA_PWO_CNF_RecordTypeId;
+        
+        objPWO.RecordTypeid =CNFRecordtype;
+        //objPWO.RecordTypeid = label.CPA_PWO_CNF_RecordTypeId;
         objPWO.eml_CNF_Unilever_Content_Approver_Email__c  = null;
         update  objPWO;
         
@@ -305,7 +308,9 @@ public  class CPA_InformationController_Test {
         CPA_ContractInformationController   controller = new CPA_ContractInformationController  (new ApexPages.StandardController(objPWO));   
             
         objPWO.TNF_Status__c=CPA_ConstantsForContractingAppClasses.SAVED ;
-        objPWO.RecordTypeid = label.CPA_PWO_TNF_RecordTypeId;
+        ID TNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_TNF_RecordTypeId  ).getRecordTypeId();
+        //objPWO.RecordTypeid = label.CPA_PWO_TNF_RecordTypeId;
+        objPWO.RecordTypeid =TNFRecordtype;
         objPWO.eml_TNF_Unilever_Contact_Email__c   = null;
         update  objPWO;
         System.assert(CPA_ConstantsForContractingAppClasses.SAVED == objPWO.TNF_Status__c);
@@ -357,19 +362,21 @@ public  class CPA_InformationController_Test {
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
         CPA_Status_Msg__c acceptedStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg1();
-        
+        ID BPERecordType = Schema.SObjectType.CPA_HLE_Request__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_BPE_Recordtype).getRecordTypeId();
+
         insert acceptedStatus;
         Test.startTest(); 
         CPA_HLE_Request__c objHLE1 = CPA_testContractClass.CreateHLERequest();
         objHLE1.txt_Assumptions__c  = null;     
         objHLE1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.SAVED  ;   
         insert objHLE1; 
-		objHLE1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED  ;  
-		objHLE1.txt_BPE_Title__c =null;		
+        objHLE1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED  ;  
+        objHLE1.txt_BPE_Title__c =null;     
         update objHLE1;
         System.assert(CPA_ConstantsForContractingAppClasses.ACCEPTED== objHLE1.pkl_Status__c);
       
-        objHLE1.recordtypeid = label.CPA_BPE_Recordtype;
+        //objHLE1.recordtypeid = label.CPA_BPE_Recordtype;
+        objHLE1.recordtypeid = BPERecordType ;
         update objHLE1;
         System.currentPageReference().getParameters().put('id', objHLE1.id);
         CPA_HLERequInformationController  controller2 = new CPA_HLERequInformationController  (new ApexPages.StandardController(objHLE1));
@@ -388,6 +395,7 @@ public  class CPA_InformationController_Test {
     static testmethod void  HLEInformationController_Test(){
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
+        Id HLERecordType = Schema.SObjectType.CPA_HLE_Request__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_HLE_Recordtype).getRecordTypeId();
         CPA_Status_Msg__c acceptedStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg1();
         insert acceptedStatus;
       Test.startTest(); 
@@ -399,8 +407,8 @@ public  class CPA_InformationController_Test {
         update objHLE2;
         System.assert(CPA_ConstantsForContractingAppClasses.ACCEPTED== objHLE2.pkl_Status__c);
        
-        objHLE2.recordtypeid = label.CPA_HLE_Recordtype;
-		objHLE2.txt_HLE_PB_Name__c =null;
+        objHLE2.recordtypeid = HLERecordType;
+        objHLE2.txt_HLE_PB_Name__c =null;
         update objHLE2;
         
         System.currentPageReference().getParameters().put('id', objHLE2.id);

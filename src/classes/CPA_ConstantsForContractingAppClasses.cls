@@ -220,5 +220,28 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String ASSUMPTIONS=  'Assumptions';
     public static final String BPETITLE = 'BPE Title';
     public static final String HLENAME = 'HLE Name*';
+    
+    
+    public static final String CPA_Standalone_PWO_RecordTypeId = 'Standalone PWO';
+    public static final String CPA_PWO_RecordTypeId = 'PWO';
+    public static final String CPA_CNF_RecordTypeId = 'PWO CNF'; 
+    public static final String CPA_TNF_RecordTypeId = 'PWO TNF'; 
+    
+    public static final String CPA_Standalone_CR_RecordTypeId= 'Standalone CR';
+    public static final String CPA_HLE_Recordtype = 'HLE';
+    public static final String CPA_BPE_Recordtype= 'BPE';
+    
+    
+    public static final String CPA_CNF_historical_TNF_id = 'TNF';
+    public static final String CPA_CNF_historical_CNF_id = 'CNF';
+    
+    public static final String CPA_PWO_OBJECT_ID = CPA_project_work_order__c.getSObjectType().getDescribe().getKeyPrefix();
+    public static final String CPA_LOI_ID = CPA_LOI__c.getSObjectType().getDescribe().getKeyPrefix();
+    public static final String CPA_CR_ID = CPA_CR__c.getSObjectType().getDescribe().getKeyPrefix();
+    
+    public static final String CPA_PWORF_ALL_RECORDTYPE = 'Other';
+    public static final String CPA_PWORF_RA_RECORDTYPE = 'Resource Augmentation';
+    
+       
 
 }

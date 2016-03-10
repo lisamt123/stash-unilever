@@ -686,6 +686,17 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Related_LOIs__c</fullName>
+        <externalId>false</externalId>
+        <label>Related LOIs</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
         <fullName>Role_or_System_Authorisation__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>For any type of change or enhancement required, please consider whether any existing role/authorisation should be amended as part of development, or a new set of role/authorisations should be created.</inlineHelpText>
@@ -1085,7 +1096,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>dt_Date_Of_Request__c</fullName>
         <description>Date when the PWORF was created.</description>
         <externalId>false</externalId>
-        <label>Date Of Request*</label>
+        <label>Date Of Request</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2099,7 +2110,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>txt_SLA1__c</fullName>
         <description>Capture SLA1 in the background as per the project type and project phase.</description>
         <externalId>false</externalId>
-        <label>SLA1</label>
+        <label>PWORF to be accepted by (SLA1 in Days)</label>
         <length>3</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2112,7 +2123,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>txt_SLA2__c</fullName>
         <description>Capture SLA2 in the background as per the project type and project phase.</description>
         <externalId>false</externalId>
-        <label>SLA2</label>
+        <label>PWORF to be answered by (SLA2 in Days)</label>
         <length>3</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>

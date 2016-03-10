@@ -1016,8 +1016,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
             <sorted>false</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <visibleLines>4</visibleLines>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>mpkl_Project_Classification__c</fullName>
@@ -8745,9 +8744,14 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 	if(p.pkl_Status__c == &apos;Delivered&apos;){
 		
 		result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c != &apos;Cancelled&apos; AND pkl_Status__c != &apos;Delivered&apos;&quot;); 
+		var CNFId = sforce.connection.query(&quot;select Id,SobjectType from RecordType where Name =&apos;PWO CNF&apos; AND SobjectType =&apos;CPA_project_work_order__c&apos;&quot;);
+		
+		var CPA_CNF = CNFId.getArray(&quot;records&quot;); 
+		var cnf  = CPA_CNF[0].Id;
 		var crRecords = result.getArray(&quot;records&quot;); 
 		if(crRecords.length == 0){
-				window.open(&quot;/&quot;+&quot;{!CPA_project_work_order__c.Id}&quot;+ &quot;/e?RecordType={!$Label.CPA_PWO_CNF_RecordTypeId}&amp;retURL=%2F{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
+			
+				window.open(&quot;/&quot;+&quot;{!CPA_project_work_order__c.Id}&quot;+ &quot;/e?RecordType=&quot;+cnf+&quot;&amp;retURL=%2F{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
 		}
 		else{
 			alert(&quot;CNF can&apos;t be created till corresponding all CR are either Delivered OR Cancelled &quot;); 
@@ -8778,42 +8782,41 @@ var p = new sforce.SObject(&apos;CPA_project_work_order__c&apos;);
 p.id = &quot;{!CPA_project_work_order__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_project_work_order__c.pkl_Status__c }&quot;; 
 
-
-
-
 soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
-//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+
 
 if( permissionSetName == &quot;CPA_ADM&quot;){ 
-
-
-	if(p.pkl_Status__c != &apos;Delivered&apos;){
-		if(p.pkl_Status__c != &apos;Sent For Termination&apos;){
+	if(p.pkl_Status__c == &apos;Delivered&apos;){
+		alert(&quot;TNF Can&apos;t be created if PWO is Delivered.&quot;); 
+	}else if(p.pkl_Status__c == &apos;Sent For Termination&apos;){
+		alert(&quot;Termination is already in process.&quot;); 
+	}else if(p.pkl_Status__c == &apos;Request For Termination&apos;){
+		result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c = &apos;Delivered&apos;&quot;); 
+		var crRecords = result.getArray(&quot;records&quot;); 
+		result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c = &apos;Delivered&apos;&quot;); 
 		
-			result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c = &apos;Delivered&apos;&quot;); 
-			//alert(result);
-			var crRecords = result.getArray(&quot;records&quot;); 
-			if(crRecords.length == 0){
-				window.open(&quot;/&quot;+&quot;{!CPA_project_work_order__c.Id}&quot;+ &quot;/e?RecordType={!$Label.CPA_PWO_TNF_RecordTypeId}&amp;retURL=%2F{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
-			}
-			else{
-				alert(&quot;TNF Can&apos;t be created if any CR is Delivered&quot;); 
-			}
+		var TNFId = sforce.connection.query(&quot;select Id,SobjectType from RecordType where Name =&apos;PWO TNF&apos; AND SobjectType =&apos;CPA_project_work_order__c&apos;&quot;);
 		
-		}else{
-			alert(&quot;TNF is already created&quot;); 
+		var CPA_TNF = TNFId.getArray(&quot;records&quot;); 
+		var tnf  = CPA_TNF[0].Id;
+		
+		if(crRecords.length == 0){
+			
+		window.open(&quot;/&quot;+&quot;{!CPA_project_work_order__c.Id}&quot;+ &quot;/e?RecordType=&quot;+tnf+&quot;&amp;retURL=%2F{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
+		
 		}
-		
+		else{
+		alert(&quot;TNF Can&apos;t be created if any CR is Delivered.&quot;); 
+		}
 	}else{
-			alert(&quot;TNF Can&apos;t be created if PWO is Delivered&quot;); 
+		alert(&quot;TNF Can be created once &apos;Request For Termination&apos; is raised.&quot;); 
 	}
-	
-	
-}else{
-	alert(&quot;You are not authorized to perform this action.&quot;); 
+}
+else{
+alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -9537,34 +9540,26 @@ var recordType = &apos;PWO&apos;;
 		var records1 = result.getArray(&apos;records&apos;);
 		var permissionSetName = records1[0].PermissionSet.Name;
 
-
-
 		if( permissionSetName == &quot;CPA_SMT&quot; || permissionSetName == &quot;CPA_ULPM&quot; ){
-				
-				
-				
-				result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c = &apos;Delivered&apos;&quot;);
 
-				var crRecords = result.getArray(&quot;records&quot;);
+			result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c = &apos;Delivered&apos;&quot;);
+			var crRecords = result.getArray(&quot;records&quot;);
 
-				if(p.pkl_Status__c == &quot;Delivered&quot; || crRecords.length &gt;0){
-					alert(&apos;You cannot request for termination since the PWO or its associated CRs may be delivered&apos;);
-				}
-				else if(permissionSetName == &quot;CPA_ULPM&quot; &amp;&amp; (p.pkl_Status__c == &apos;Submitted&apos; || p.pkl_Status__c == &apos;Resubmitted&apos;)){
-					alert(&quot;Please contat Supplier Management Team for Termination Request&quot;);
-				}
-				else if( p.pkl_Status__c != &apos;Cancelled&apos; &amp;&amp; p.pkl_Status__c != &apos;Terminated&apos; &amp;&amp; p.pkl_Status__c != &apos;Request For Termination&apos; &amp;&amp; p.pkl_Status__c != &apos;Closed&apos; &amp;&amp; p.pkl_Status__c != &apos;Sent For Closure&apos;){
-					window.open(&apos;/apex/CPA_PWO_Request_For_Termination?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
-				}
-				else if(p.pkl_Status__c == &apos;Request For Termination&apos;){
-					alert(&quot;Request for Termination is already is process&quot;);
-				}
-				else{
-					alert(&quot;Cannot Request for Termination, because of PWO is set for Closed/Termination&quot;);
-				}
-			} else{
-				alert(&quot;You are not authorized to perform this action.&quot;);
+			if(p.pkl_Status__c == &quot;Delivered&quot; || crRecords.length &gt;0){
+				alert(&apos;You cannot request for termination since the PWO or its associated CRs are delivered&apos;);
 			}
+			else if( p.pkl_Status__c == &apos;Signed&apos; || p.pkl_Status__c == &apos;Sent for Signature&apos; || p.pkl_Status__c == &apos;Accepted&apos;){
+				window.open(&apos;/apex/CPA_PWO_Request_For_Termination?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
+			}
+			else if(p.pkl_Status__c == &apos;Request For Termination&apos;){
+				alert(&quot;Request for Termination is already is process&quot;);
+			}
+			else{
+				alert(&quot;Request For Termination can be raised if PWO is in Accepted/Sent for Signature/Signed status.&quot;);
+			}
+		} else{
+			alert(&quot;You are not authorized to perform this action.&quot;);
+		}
 
 	}catch (e) {
 		alert(&quot;An unexpected Error has Occurred. Error: \r\n&quot; +e);

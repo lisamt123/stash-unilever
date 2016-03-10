@@ -43,12 +43,12 @@
                 <field>VDM_Name__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_Project_requestor_Name__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>auto_PWORF_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Project_requestor_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -87,7 +87,7 @@
                 <field>dat_Submitted_Date__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>dt_Date_Of_Request__c</field>
             </layoutItems>
         </layoutColumns>
@@ -95,6 +95,9 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>OwnerId</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

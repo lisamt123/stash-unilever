@@ -49,7 +49,7 @@
                 <field>lkp_Linked_PWO__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>txt_Project_requestor_Name__c</field>
             </layoutItems>
         </layoutColumns>
@@ -74,7 +74,7 @@
                 <field>dt_Date_PWORF_accepted__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>eml_Project_requestor_Email__c</field>
             </layoutItems>
         </layoutColumns>

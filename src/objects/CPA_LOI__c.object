@@ -1330,7 +1330,7 @@ try {
 		}else if(p.pkl_Status__c == &quot;Accepted&quot;){ 
 			alert(&quot;The LOI should be sent for Signature before returning from DocuSign.&quot;); 
 		}else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot;){
-			alert(&quot;LOI is currently pending for approval.&quot;); 
+			alert(&quot;The LOI should be sent for Signature before returning from DocuSign.&quot;); 
 		}
 	}
 	else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c !=&quot;Saved&quot; &amp;&amp; p.pkl_Status__c != &quot;Returned&quot; )){

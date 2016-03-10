@@ -253,7 +253,9 @@ public with sharing class CPA_testContractClass {
     ********************************************************************/
     public static CPA_CR__c standAloneCR(){
         CPA_CR__c objCR = new CPA_CR__c();
-        objCR.RecordTypeid=label.CPA_Standalone_CR_RecordTypeId;
+        Id StandaloneCRRecordType = Schema.SObjectType.CPA_CR__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_Standalone_CR_RecordTypeId).getRecordTypeId();
+        //objCR.RecordTypeid=label.CPA_Standalone_CR_RecordTypeId;
+        objCR.RecordTypeid= StandaloneCRRecordType;
         objCR.txt_Accenture_Project_Manager__c = CPA_ConstantsForContractingAppClasses.TEST;
         objCR.num_Authorisation_charges__c = 1;
         objCR.num_Authorisation_man_days__c =1;

@@ -30,9 +30,9 @@ public with sharing class CPA_AttachmentUtil {
             if(objAttachment.Name.startswith(CPA_ConstantsForContractingAppClasses.COMMERCIAL) &&( objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.SPREADSHEET) || objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.MSEXCEL)))
             {
                 mapAttachmentType.put(objAttachment.id,CPA_ConstantsForContractingAppClasses.SPREADSHEET);
-            }else if(objAttachment.Name.startswith(CPA_ConstantsForContractingAppClasses.PWO) && objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger )){
+            }else if(objAttachment.Name.startswith(CPA_ConstantsForContractingAppClasses.PWO) && objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID  )){
                 mapAttachmentType.put(objAttachment.id,CPA_ConstantsForContractingAppClasses.PDF);
-            }else if(objAttachment.Name.startswith(CPA_ConstantsForContractingAppClasses.CR) && objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)){
+            }else if(objAttachment.Name.startswith(CPA_ConstantsForContractingAppClasses.CR) && objAttachment.ContentType.contains(CPA_ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)){
                mapAttachmentType.put(objAttachment.id,CPA_ConstantsForContractingAppClasses.PDF);
             }else {
              mapAttachmentType.put(objAttachment.id,CPA_ConstantsForContractingAppClasses.UNKONWN);
@@ -184,10 +184,10 @@ public with sharing class CPA_AttachmentUtil {
         for(Attachment objAtta : lstatt){
             string srtTemp = objAtta.ParentId;
             if(objAtta.Name.startswith(CPA_ConstantsForContractingAppClasses.COMMERCIAL)) {
-                if( srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger)) {
+                if( srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID )) {
                     setPWOID.add(objAtta.ParentId);
                 }   
-                else if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)){
+                else if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)){
                     setCRID.add(objAtta.ParentId);
                 }
             }
@@ -251,10 +251,10 @@ public with sharing class CPA_AttachmentUtil {
         
         for(Attachment objAtta : lstatt){
             string srtTemp = objAtta.ParentId;
-            if( srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger) && objAtta.Name.startswith('PWO')) {
+            if( srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID ) && objAtta.Name.startswith('PWO')) {
                 setPWOID.add(objAtta.ParentId);
             }   
-            else if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR) && objAtta.Name.startswith('CR')){
+            else if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID) && objAtta.Name.startswith('CR')){
                 setCRID.add(objAtta.ParentId);
             }
         }
@@ -343,9 +343,9 @@ public with sharing class CPA_AttachmentUtil {
                             a.num_Value__c =0;
                         }
                         string srtTemp = att.ParentId;
-                        if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_trigger)){
+                        if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID )){
                             a.Project_Work_Order__c = att.ParentId;
-                        }else if(srtTemp.startswith(label.CPA_ParentId_For_Attachment_CR)){
+                        }else if(srtTemp.startswith(CPA_ConstantsForContractingAppClasses.CPA_CR_ID)){
                             a.CR__c = att.ParentId;
                         }
  

@@ -107,8 +107,12 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
    public static void checklistValueOfcontract(List<CPA_project_work_order__c> newmapPWO){
             set<Id> setPwoId = new set<Id>();
             map<Id,CPA_PWORF__c> mapPWORF = new map<ID,CPA_PWORF__c>();
-            Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll(); 
-            //Map<string,CPA_Contract_Record_type__c> customSettingcontractRT = CPA_Contract_Record_type__c.getAll(); 
+           // Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll(); 
+            Id AllrecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_ALL_RECORDTYPE).getRecordTypeId();
+			Id RArecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getRecordTypeId();      
+	        ID PWORecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWO_RecordTypeId ).getRecordTypeId();
+	      	ID CNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_CNF_RecordTypeId ).getRecordTypeId(); ID TNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_TNF_RecordTypeId  ).getRecordTypeId();
+            
             if(newmapPWO!= null ){
                  for(CPA_project_work_order__c objPWo : newmapPWO){
                     setPwoId.add(objPWo.PWORF_ID__c);
@@ -119,7 +123,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                 for(CPA_project_work_order__c objPWo : newmapPWO){
                     CPA_PWORF__c objPWORFTemp = mapPWORF.get(objPWo.PWORF_ID__c);                 
                     if(objPWORFTemp !=null){
-                        if(objPWo.RecordTypeid == label.CPA_PWO_RecordTypeId){
+                        if(objPWo.RecordTypeid == PWORecordtype){
                             if(objPWo.mpkl_Project_Phases__c == null && objPWORFTemp.mpkl_Project_Phases__c !=null)
                                 objPWo.mpkl_Project_Phases__c = objPWORFTemp.mpkl_Project_Phases__c;
                             if(objPWo.pkl_Region__c == null && objPWORFTemp.pkl_Region__c !=null)
@@ -132,16 +136,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                                 objPWo.txt_Unilever_Project_Name__c = objPWORFTemp.txta_Title__c;
                           
 
-                            autoPopulateValues(objPWo,objPWORFTemp); // JP: Call to auto populate method
-                          /*if(objPWo.lkp_Unilever_budget_approver__c == null && objPWORFTemp.lkp_Unilever_budget_approver__c !=null) 
-                                objPWo.lkp_Unilever_budget_approver__c = objPWORFTemp.lkp_Unilever_budget_approver__c;
-                            if(objPWo.lkp_Unilever_content_approver__c == null && objPWORFTemp.lkp_Unilever_content_approver__c !=null) 
-                                objPWo.lkp_Unilever_content_approver__c = objPWORFTemp.lkp_Unilever_content_approver__c;
-                            if(objPWo.lkp_Unilever_Finance_BP_Contact__c == null && objPWORFTemp.lkp_Unilever_Finance_BP_Contact__c !=null) 
-                                objPWo.lkp_Unilever_Finance_BP_Contact__c = objPWORFTemp.lkp_Unilever_Finance_BP_Contact__c;
-                            */
-                            
-                            // JP : To auto popup PWORF acceptance date i.e dt_Date_PWORF_accepted__c
+                            autoPopulateValues(objPWo,objPWORFTemp); 
                               if(objPWo.dt_Date_PWORF_accepted__c == null && objPWORFTemp.dat_SLA1_Accepted_Date__c !=null) 
                               {   objPWo.dt_Date_PWORF_accepted__c = objPWORFTemp.dat_SLA1_Accepted_Date__c;
                               }
@@ -149,7 +144,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                             
                             if(objPWORFTemp.pkl_Project_Scale__c != null){
                             
-                                if(objPWORFTemp.RecordTypeid == customSettingPworfRT.get('All').Record_type_id__c ){
+                                if(objPWORFTemp.RecordTypeid == AllrecordType ){
                                 
                                     if(objPWORFTemp.pkl_Project_Scale__c == 'Small Project (<50 days)') objPWo.mpkl_Project_Classification__c = 'Other';
                                     else if(objPWORFTemp.pkl_Project_Scale__c == 'Large Project (>2000 days)') 
@@ -171,19 +166,10 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                             
                             
                             
-                        }else if(objPWo.RecordTypeid == label.CPA_PWO_CNF_RecordTypeId){
+                        }else if(objPWo.RecordTypeid == CNFRecordtype){
                             if(objPWo.txt_CNF_Unilever_Clarity_ID__c == null && objPWo.txt_Unilever_Reference__c !=null) 
-                                objPWo.txt_CNF_Unilever_Clarity_ID__c = objPWo.txt_Unilever_Reference__c;
-                            
-                            autoPopulateValues(objPWo,new CPA_PWORF__c()); // JP: Call to auto populate method
-                            /*   
-                            if(objPWo.lkp_CNF_Unilever_budget_approver__c == null && objPWo.lkp_Unilever_budget_approver__c !=null) 
-                                objPWo.lkp_CNF_Unilever_budget_approver__c = objPWo.lkp_Unilever_budget_approver__c;
-                            if(objPWo.lkp_CNF_Unilever_content_approver__c == null && objPWo.lkp_Unilever_content_approver__c !=null)
-                                objPWo.lkp_CNF_Unilever_content_approver__c = objPWo.lkp_Unilever_content_approver__c;
-                            */
-                            
-                            if(objPWo.num_CNF_Planned_man_days__c == null && objPWo.num_Estimated_Man_days_of_PWO__c !=null)
+                                objPWo.txt_CNF_Unilever_Clarity_ID__c = objPWo.txt_Unilever_Reference__c;                            
+                            autoPopulateValues(objPWo,new CPA_PWORF__c());  if(objPWo.num_CNF_Planned_man_days__c == null && objPWo.num_Estimated_Man_days_of_PWO__c !=null)
                                 objPWo.num_CNF_Planned_man_days__c = objPWo.num_Estimated_Man_days_of_PWO__c;
                             if(objPWo.num_CNF_Planned_expenses__c   == null && objPWo.num_Expense_charges_of_work_order__c !=null)
                                 objPWo.num_CNF_Planned_expenses__c  = objPWo.num_Expense_charges_of_work_order__c;
@@ -191,7 +177,8 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                                 objPWo.num_CNF_Planned_total_charges__c  = objPWo.num_Total_work_order_charge__c;
                             if(objPWo.dt_CNF_Planned_PWO_End_Date__c   == null && objPWo.dt_Expected_End_date__c !=null)
                                 objPWo.dt_CNF_Planned_PWO_End_Date__c  = objPWo.dt_Expected_End_date__c;
-                        }else if(objPWo.RecordTypeid == label.CPA_PWO_TNF_RecordTypeId){
+                       // }else if(objPWo.RecordTypeid == label.CPA_PWO_TNF_RecordTypeId){
+                        }else if(objPWo.RecordTypeid == TNFRecordtype){
                             if(objPWo.txt_TNF_Unilever_Clarity_ID__c == null && objPWo.txt_Unilever_Reference__c !=null) 
                                 objPWo.txt_TNF_Unilever_Clarity_ID__c = objPWo.txt_Unilever_Reference__c;
                             if(objPWo.num_TNF_Planned_charges__c   == null && objPWo.num_Total_work_order_charge__c !=null)
@@ -215,8 +202,11 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     */
     public static void autoPopulateValues(CPA_project_work_order__c objPwo, CPA_PWORF__c objPworf){
         
-      
-        if(objPWo.RecordTypeid == label.CPA_PWO_RecordTypeId){
+      	        
+    	ID PWORecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWO_RecordTypeId ).getRecordTypeId();
+  		ID CNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_CNF_RecordTypeId ).getRecordTypeId();
+         //if(objPWo.RecordTypeid == label.CPA_PWO_RecordTypeId){
+         if(objPWo.RecordTypeid == PWORecordtype){
 
             if(objPWo.eml_Unilever_Content_Approver_Email__c == null && objPworf.eml_Unilever_Content_Approver_Email__c !=null){ 
                 objPWo.eml_Unilever_Content_Approver_Email__c = objPworf.eml_Unilever_Content_Approver_Email__c;
@@ -237,7 +227,8 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                 objPWo.txt_Unilever_Finance_BP_Contact_Name__c = objPworf.txt_Unilever_Finance_BP_Contact_Name__c;
             }
         }
-        else if(objPWo.RecordTypeid == label.CPA_PWO_CNF_RecordTypeId){
+       // else if(objPWo.RecordTypeid == label.CPA_PWO_CNF_RecordTypeId){
+       else if(objPWo.RecordTypeid == CNFRecordtype){
             if(objPWo.eml_CNF_Unilever_Content_Approver_Email__c == null && objPWo.eml_Unilever_Content_Approver_Email__c !=null){ 
                 objPWo.eml_CNF_Unilever_Content_Approver_Email__c = objPWo.eml_Unilever_Content_Approver_Email__c;
             }
