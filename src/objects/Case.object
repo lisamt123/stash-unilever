@@ -4235,6 +4235,40 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_North_America_Gortons_BlueWater</fullName>
+        <booleanFilter>(1 or 2) AND 3</booleanFilter>
+        <columns>Country__c</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>equals</operation>
+            <value>BlueWater,Gorton&apos;s,GORTONS</value>
+        </filters>
+        <filters>
+            <field>Brand__c</field>
+            <operation>equals</operation>
+            <value>BlueWater,Gorton&apos;s,GORTONS</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>equals</operation>
+            <value>New,Escalated</value>
+        </filters>
+        <label>CEC North America Gortons-BlueWater</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_North_America_Hair_Care</fullName>
         <booleanFilter>1 AND 4 AND (2 OR 3 or 5 or 6)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
@@ -5644,7 +5678,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>MyCases</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
-        <columns>L2_Product_Category__c</columns>
         <columns>ACCOUNT.NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
@@ -5658,13 +5691,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>My_Open_Cases</fullName>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>Case_Brand__c</columns>
-        <columns>L2_Product_Category__c</columns>
-        <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
+        <columns>NAME</columns>
+        <columns>Case_Brand__c</columns>
         <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CASES.STATUS</columns>
         <filterScope>Mine</filterScope>
         <filters>
             <field>CASES.STATUS</field>
