@@ -1,0 +1,12 @@
+<messaging:emailTemplate subject=" TNF for PWO {!RelatedTo.Name}  is Resubmitted by {!RelatedTo.LastModifiedBy} " recipientType="User" relatedToType="CPA_project_work_order__c">
+<messaging:htmlEmailBody >
+    Hi,<br/><br/>
+    A TNF for PWO {!RelatedTo.Name}  is Resubmitted by {!RelatedTo.Owner.Name} on {!RelatedTo.dat_TNF_Resubmitted_Date__c}. <br/><br/>
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+   
+Regards, <br/><br/>
+
+Automation Contract System    
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

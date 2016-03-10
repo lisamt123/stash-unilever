@@ -1,0 +1,13 @@
+<messaging:emailTemplate subject="HLE request with ID {!RelatedTo.Name} is returned by {!RelatedTo.LastModifiedBy.Name}" recipientType="User"  relatedToType="CPA_HLE_Request__c" >
+<messaging:htmlEmailBody >
+Hi,<br/><br/>
+
+A HLE request with ID {!RelatedTo.Name} is returned by {!RelatedTo.LastModifiedBy.Name} on {!RelatedTo.dat_Returned_Date__c}.<br/>
+
+You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+
+Regards,<br/><br/>
+Automation Contract System
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
