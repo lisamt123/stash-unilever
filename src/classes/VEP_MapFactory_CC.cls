@@ -74,9 +74,7 @@ public with sharing class VEP_MapFactory_CC{
     
     }
     public void searchFactoryList(){
-        try{
-       
-
+        try{      
       Factorylist = [select id,name,Factory_Details__c,Factory_Image_Code__c,state__c,Factory_Contact__c,Factory_Address__c,Air_Connectivity__c,Rail_Connectivity__c,Road_Connectivity__c,Latitude__c,Longitude__c  from Vep_Factory__c where id =: targetField];
        Factorydetails = Factorylist[0];
               

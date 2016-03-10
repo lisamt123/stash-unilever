@@ -40,8 +40,10 @@ private class VEP_Visitor_Trigger_Test{
         visitor1.Factory_to_visit__c='Factory1';
         listVisitor.add(visitor1);    
         insert listVisitor;
-        System.assertEquals(2,listVisitor.size());
-        Test.startTest();
+        List<VEP_Visitor__c> listvepins = new List<VEP_Visitor__c>();
+        listvepins = [select id from VEP_Visitor__c where id=:visitor.id or id=:visitor1.id];
+        System.assertEquals(listVisitor.size(),listvepins.size());
+        Test.startTest();        
         VEP_Visitor_TriggerHandler.vep_UpdateFactory(listVisitor);
         VEP_Visitor_TriggerHandler.vep_generatePassOnBehalf(listVisitor);
         Test.stopTest();

@@ -41,16 +41,16 @@ private class VEP_MapFactory_Test{
         VEP_MapFactory_CC mapfact1 = new VEP_MapFactory_CC();        
         mapfact1.targetField = fact.id;
         mapfact1.SearchFactoryList();
-        System.assertEquals(Factoryname, mapfact.factoryDetails.name);
-        System.assertEquals(1, mapfact.factoryList.size());
+        System.assertEquals(Factoryname, mapfact1.factoryDetails.name);
+        System.assertEquals(1, mapfact1.factoryList.size());
         mapfact1.factname='';
         mapfact1.StateFactoryList();
                 
         mapfact1.gotoVFORMROB();
-        System.assert(true);
+        
         
         pagereference pv= mapfact.gotoVFORM();
-        System.assert(true);
+        
         Test.stopTest();
         
     }
