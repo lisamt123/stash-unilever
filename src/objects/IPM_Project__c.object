@@ -4623,6 +4623,24 @@ OwnerId))</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE00000004YNL_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004YNL</label>
+        <queue>IPM_a7IE00000004YNL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004YNM_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_NEWORDER LH</label>
+        <queue>IPM_a7IE00000004YNM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>My_IPM_Projects</fullName>
         <columns>CREATED_DATE</columns>
         <columns>NAME</columns>

@@ -2547,6 +2547,24 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004YNL_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004YNL</label>
+        <queue>IPM_a7IE00000004YNL</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004YNM_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_NEWORDER LH</label>
+        <queue>IPM_a7IE00000004YNM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>
