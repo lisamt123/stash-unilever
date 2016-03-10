@@ -10217,6 +10217,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Confirmation: Project Phase Change Request</value>
     </labels>
     <labels>
+        <fullName>IPM_Phase_Gate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Phase_Gate</shortDescription>
+        <value>Phase &amp; Gate document</value>
+    </labels>
+    <labels>
         <fullName>IPM_Phase_Label</fullName>
         <language>en_US</language>
         <protected>false</protected>

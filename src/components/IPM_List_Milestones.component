@@ -164,7 +164,8 @@
                             
                             
                             <apex:outputPanel styleClass="misalignchck" rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
-                                <a class="icoButton edit1 editMilestoneBtn" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" >
+                                <a class="icoButton edit1 editMilestoneBtn" id="editMilestone" data-toggle="modal" data-target="#ipmModal" data-backdrop="static" 
+                        data-keyboard="false" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" >
                                     <input type="checkbox" value="{!p.isChecked}"   id="{!p.record['Id']}" isDisabled="{!if(or(AND(NOT(ISNULL(p.record['IPM_Milestone__c'])),isEditable=true),AND(ISNULL(p.record['IPM_Milestone__c'] ),isSDateEdit=true,isEditable=true)),'false','true')}"/>
                                 </a>
                             </apex:outputPanel>
@@ -190,7 +191,7 @@
                                 
                                 
                                   <apex:outputPanel rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
-                                    <div class="editMilestone" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" ><apex:outputfield value="{!p.record['IPM_Name__c']}" /></div>
+                                    <div class="editMilestone" id="editMilestone" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" ><apex:outputfield value="{!p.record['IPM_Name__c']}" /></div>
                                  </apex:outputPanel>
                                   <apex:outputPanel rendered="{!!AND(p.isEditable,isSDateEdit,isEditable)}">
                                     <apex:outputfield value="{!p.record['IPM_Name__c']}" />
@@ -216,7 +217,7 @@
                         
                         
                           <apex:outputPanel rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
-                            <div class="editMilestone" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" ><apex:outputfield value="{!p.record['IPM_Phase__c']}" /></div>
+                            <div class="editMilestone" id="editMilestone" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" ><apex:outputfield value="{!p.record['IPM_Phase__c']}" /></div>
                          </apex:outputPanel> 
                         <apex:outputPanel rendered="{!!AND(p.isEditable,isSDateEdit,isEditable)}">
                             <apex:outputfield value="{!p.record['IPM_Phase__c']}" />
@@ -231,7 +232,7 @@
                         </apex:facet>
                         
                        <apex:outputPanel rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
-                            <div class="editMilestone" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}"><apex:outputfield value="{!p.record['IPM_Due_Date__c']}"/></div>
+                            <div class="editMilestone" id="editMilestone" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}"><apex:outputfield value="{!p.record['IPM_Due_Date__c']}"/></div>
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!!AND(p.isEditable,isSDateEdit,isEditable)}">
                             <apex:outputfield value="{!p.record['IPM_Due_Date__c']}"/>
@@ -246,7 +247,7 @@
                         </apex:facet>
                         
                          <apex:outputPanel rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
-                            <div class="editMilestone" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" ><apex:outputfield value="{!p.record['IPM_Completed_On__c']}"/></div>
+                            <div class="editMilestone" id="editMilestone" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" ><apex:outputfield value="{!p.record['IPM_Completed_On__c']}"/></div>
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!!AND(p.isEditable,isSDateEdit,isEditable)}">
                             <apex:outputfield value="{!p.record['IPM_Completed_On__c']}"/>
@@ -260,7 +261,8 @@
                             <!-- Edit button code starts here-------- -->
                             <apex:outputPanel rendered="{!p.isEditable}">
                                 <apex:outputPanel rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
-                                    <a class="icoButton edit1 editMilestoneBtn" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" ></a>
+                                    <a class="icoButton edit1 editMilestoneBtn" id="editMilestone" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" data-backdrop="static" 
+                        data-keyboard="false"></a>
                                 </apex:outputPanel>
                                   
                             </apex:outputPanel>
