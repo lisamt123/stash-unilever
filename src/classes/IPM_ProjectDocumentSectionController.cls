@@ -69,7 +69,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     private static final String EXTERNAL_ID_ENVIRONMENTAL_IMPACT='Environmental_Impact';
     public static final Set<String> sectionEditableOnStatus = new Set<String>{IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,IPM_ConstantUtils.STATUS_NOT_STARTED,IPM_ConstantUtils.STATUS_IN_PROGRESS};
     public Static final String ENVIRONMENTAL_IMPACT = IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_EXTERNAL_ID;
-
+	public boolean isCUandComplexity{get;set;}//to display cu and complexity component
     /****************************************************************************************************************************************************************
     * @description Fetching the Page parameters and Retrieving Project,Projerct Document and Projerct Document Section
     */
@@ -86,7 +86,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         isTaskeditable=false;
         markTaskAccess =  false;
         isTaskViewable =  true;
-        
+        isCUandComplexity=false;
         remainingChar=0;
         isChecked='';
         attachId='';
@@ -953,4 +953,11 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 	        remainingChar=countLimit;
     	}
     }    
+	@testVisible private void renderedConditions(){
+        if((project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) && projDocSec.IPM_Master_Section_External_Id__c.equals(IPM_ConstantUtils.CU_AND_COMPLEXITY) && !project.IPM_Phase__c.equals(IPM_ConstantUtils.PHASE_IDEAS))
+        ||(!project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) && projDocSec.IPM_Master_Section_External_Id__c.equals(IPM_ConstantUtils.CU_AND_COMPLEXITY) && (project.IPMProject_Span__c.equals(IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL) 
+        || project.IPMProject_Span__c.equals(IPM_ConstantUtils.PROJECT_SPAN_LOCAL)|| project.IPM_Phase__c.equals(IPM_ConstantUtils.PHASE_IDEAS)))){
+            isCUandComplexity=true;
+        }
+    }     
 }

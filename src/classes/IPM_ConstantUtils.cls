@@ -1177,4 +1177,5 @@ public class IPM_ConstantUtils {
    public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
    public static finaL String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
    public static final Integer KB_TO_BYTES = 1024;
+   public static final string CU_AND_COMPLEXITY= 'CU_And_Complexity';
 }
