@@ -287,7 +287,6 @@ public with sharing class IPM_ProjectDocumentHelper
                                         projDocSect.IPM_FunctionalRole__c = section.IPM_FunctionalRole__c;
                                         projDocSect.IPM_Section_Help_Text_Long__c = section.IPM_Section_Help_Text__c;
                                         projDocSect.IPM_Negotiable__c = section.IPM_Negotiable__c;
-										projDocSect.IPM_Default_Section__c=section.IPM_IS_Default_Section__c;
                                         projDocSect.IPM_Section_Type__c = section.IPM_Section_Type__c;
                                         projDocSect.IPM_Has_Appendix__c=section.IPM_Has_Appendix__c;
                                         projDocSect.Is_IPM_Global_Consolidated__c=section.Is_IPM_Global_Consolidated__c;
