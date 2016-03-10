@@ -287,6 +287,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                         projDocSect.IPM_FunctionalRole__c = section.IPM_FunctionalRole__c;
                                         projDocSect.IPM_Section_Help_Text_Long__c = section.IPM_Section_Help_Text__c;
                                         projDocSect.IPM_Negotiable__c = section.IPM_Negotiable__c;
+										projDocSect.IPM_Default_Section__c=section.IPM_IS_Default_Section__c;
                                         projDocSect.IPM_Section_Type__c = section.IPM_Section_Type__c;
                                         projDocSect.IPM_Has_Appendix__c=section.IPM_Has_Appendix__c;
                                         projDocSect.Is_IPM_Global_Consolidated__c=section.Is_IPM_Global_Consolidated__c;
@@ -340,7 +341,10 @@ public with sharing class IPM_ProjectDocumentHelper
                                         }
                                         
                                        if(!String.isBlank(section.ProjectSpan__c) && !String.isBlank(project.IPMProject_Span__c) && section.ProjectSpan__c.contains(project.IPMProject_Span__c)){
+											if(!(project.IPM_ProjectSubType__c == IPM_ConstantUtils.IPM_BLG && section.IPM_Section_Sequence__c == '5.3'))
+											{
                                             projectDocumentSectionList.add(projDocSect);
+											}                                     
                                        }
                                     }
                                 }

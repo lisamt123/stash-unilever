@@ -734,9 +734,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
             WHERE IPM_Project_Document__r.IPM_Project__c = :String.escapeSingleQuotes(projectId) AND
             IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER
             AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND        
-            IPM_Project_Document__r.IPM_GateDocuments__c = :projDoc.IPM_GateDocuments__c AND IPM_Default_Section__c = true
-            AND ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c !=:IPM_ConstantUtils.IPM_BLG ))
-            ORDER BY IPM_Section_Sequence__c];
+            IPM_Project_Document__r.IPM_GateDocuments__c = :projDoc.IPM_GateDocuments__c AND IPM_Default_Section__c = true ORDER BY IPM_Section_Sequence__c];
         
         for(IPM_Project_Document_Section__c eachProSection : projectSectionsList) {
                 projectSections.add(eachProSection);
