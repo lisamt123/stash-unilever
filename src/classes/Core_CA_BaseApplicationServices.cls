@@ -167,7 +167,8 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
     /* Uses out error codes/messages from exception object and updates the same to Core_CA_BaseApplicationWrapper which is sent as response for the service call */
     
     
-    public static Core_CA_BaseApplicationWrapper constructResponseBody(Core_CA_BaseApplicationWrapper responseObjj, Object exceptionObj ){
+    public static Core_CA_BaseApplicationWrapper constructResponseBody(Core_CA_BaseApplicationWrapper responseObj, Object exceptionObj ){
+        Core_CA_BaseApplicationWrapper responseObjj = responseObj;
         if(Utility.isEmpty(responseObjj)) responseObjj = new Core_CA_ApplicationWrapper();
         if( exceptionObj instanceOf Core_CA_BaseServiceException || exceptionObj instanceOf Exception) {
             responseObjj.message   = Core_CA_AppConstants.ERROR_MSG_UNEXPECTED_ERROR_OCCURED;
@@ -178,7 +179,8 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
 
     /* Updates error code and error message for invalid service name cases */
    
-    public static Core_CA_BaseApplicationWrapper handleInvalidSvcNameReq(Core_CA_BaseApplicationWrapper responseObje){
+    public static Core_CA_BaseApplicationWrapper handleInvalidSvcNameReq(Core_CA_BaseApplicationWrapper responseObj){
+        Core_CA_BaseApplicationWrapper responseObje = responseObj;
         if(Utility.isEmpty(responseObje)) responseObje = new Core_CA_ApplicationWrapper();
         responseObje.statusCode   =   Core_CA_AppConstants.RESPONSE_FAILURE_ERROR_CODE;
         responseObje.message     =   Core_CA_AppConstants.SVC_RESP_MESSAGE_INVALID_SVCNAME;
