@@ -6,8 +6,6 @@ src/classes/IPM_BD_BB_Report_BatchSchedule.cls
 src/classes/IPM_BD_BB_Report_BatchSchedule.cls-meta.xml
 src/classes/IPM_BD_BB_Report_Batch_Test.cls
 src/classes/IPM_BD_BB_Report_Batch_Test.cls-meta.xml
-src/classes/IPM_ProjectSearchCtrl.cls
-src/classes/IPM_ProjectSearchCtrl.cls-meta.xml
 src/components
 src/components/IPM_AssortmentStrategy.component
 src/components/IPM_AssortmentStrategy.component-meta.xml
@@ -171,9 +169,6 @@ src/objects/IPM_POS_RQS_Mapping__c.object
 src/objects/IPM_Reporting__c.object
 src/objects/IPM_Section_Copy_Mapping__c.object
 src/objects/IPM_Trigger_Router__c.object
-src/pages
-src/pages/IPM_ProjectSearchPage.page
-src/pages/IPM_ProjectSearchPage.page-meta.xml
 src/reportTypes
 src/reportTypes/BB_BD_Report.reportType
 src/reports

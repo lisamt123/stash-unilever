@@ -29,7 +29,7 @@ This componet used for regional rollout project
                     <apex:outputPanel rendered="{!AND(isEditMode,isEditable,projectType.IPM_CreateLocalProjects__c) }" layout="block">
                         <a class="ipmButton localRollout primary pull-right" data-toggle="modal" data-target="#ipmLocalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
                      </apex:outputPanel>
-                     
+                     <!-- This render condition will check for edit mode(true/false) and project type is local project -->
                      <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateLocalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
@@ -42,6 +42,7 @@ This componet used for regional rollout project
             </apex:outputPanel>
         </div>        
          <apex:outputPanel id="validationErrorMsg">
+         <!-- This render condition will check for validation error should not blank -->
             <apex:outputText styleClass="rolloutErrorBox" value="{!validationError}" rendered="{!AND(NOT(ISNULL(validationError)),NOT(ISBLANK(validationError)))}"/> 
         </apex:outputPanel>
         
@@ -73,6 +74,7 @@ This componet used for regional rollout project
                             <div class="colPhase incHeight"><span>{!$Label.IPM_Status}</span></div>
                         </div>
                     </th>
+                    <!-- This render condition will check if project span is regional and type is original and project phase is ideas -->
                     <apex:outputPanel layout="block" styleClass="test" rendered="{!if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c=='Original',project.IPM_Phase__c=='Ideas'),false,true)}">
                         <th scope="col" width="180px" colspan="1">
                             <div>
@@ -214,6 +216,7 @@ This componet used for regional rollout project
                                         </th>
                                         <th scope="col" width="60px" colspan="1">
                                             <div>
+                                                <!-- This render condition will check if rollout is keyMCO and local project is null and project phase is ideas -->
                                                 <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(localRollout.KeyMCO__c,localRollout.Local_Project__c == null,project.IPM_Phase__c=='Ideas')}"/>
                                             </div>
                                         </th>
@@ -225,9 +228,11 @@ This componet used for regional rollout project
                                         </th>
                                        
                                         <th scope="col" width="100px" colspan="1">
+                                        	<!-- This render condition will check if status is editable ,edit mode is true and local rollout status is leader-->
                                             <apex:outputField value="{!localRollout.IPM_Regional_Rollout_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Regional_Rollout_Status__c=='Leader'), false, true)}"/>
                                             <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].IPM_Regional_Rollout_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Regional_Rollout_Status__c=='Leader'), true, false)}"/>
                                         </th>
+                                        <!--This render condition will check if Project span is regional ,type is original and phase is ideas-->
                                         <apex:outputPanel rendered="{!if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c=='Original',project.IPM_Phase__c=='Ideas'),false,true)}">
                                               
                                         <th scope="col" width="180px" colspan="1">

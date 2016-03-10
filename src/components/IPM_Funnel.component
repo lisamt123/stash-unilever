@@ -18,6 +18,7 @@
                         <apex:variable value="{!0}" var="counter"/>
                         <apex:repeat value="{!associatedProjectPhases}" var="phase" >
                             <apex:variable var="counter" value="{!counter + 1}"/>
+                           <!-- Below rendered is enabled if pahse is equal to the project phase-->
                            <apex:variable var="currentProjectPhaseSeq" value="{!counter}" rendered="{!phase==project.IPM_Phase__c}"/>
                         </apex:repeat> 
                         

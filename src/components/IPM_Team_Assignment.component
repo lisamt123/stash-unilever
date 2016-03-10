@@ -174,6 +174,7 @@
                                                                 <apex:outputpanel id="displayAissgnedM" rendered="{!IF(AND(uRole=lstMem.IPM_Role_Type__c) , 'true', 'false') }">
                                                                     <div class="custPosition noPadleft">
                                                                         <div class="memContainer">                                                                   
+                                                                        <!-- If Logged in user is core team member and user role is login user type then User can delete the member  -->                                                               
                                                                             <apex:outputPanel rendered="{! if(OR(isCoreMemEditable=true,uRole=loginusertype),'true','false')}">
                                                                                
                                                                                  <div class="SecButtonSet teamMemberButton" data-toggle="modal" data-target="#ipmModalDelete" title="Delete Member" data-backdrop="static" data-keyboard="false">
