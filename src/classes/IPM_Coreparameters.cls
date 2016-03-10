@@ -421,8 +421,11 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         integer qTwo=2;
         integer qThree=3;
         
-        map<string,IPM_CoreParameter_Questions__c> coreQuestionMap=IPM_CoreParameter_Questions__c.getAll();
-        for(IPM_CoreParameter_Questions__c coreQ:coreQuestionMap.Values()){
+        List<IPM_CoreParameter_Questions__c>allCorepQuestionList=new List<IPM_CoreParameter_Questions__c>();
+        allCorepQuestionList=[SELECT Name,IPM_Question_Number__c,IPM_Innovation_Renovation__c,
+                            IPM_Operational__c,IPM_BLG__c FROM IPM_CoreParameter_Questions__c ORDER BY 
+                            IPM_Question_Number__c,IPM_Order_Number__c ASC LIMIT 1000];
+        for(IPM_CoreParameter_Questions__c coreQ:allCorepQuestionList){
             //get coreparameter questions for Innovation/Renovation project
             if(IPM_Coreparameter.IPM_ProjectSubType__c!=null && IPM_Coreparameter.IPM_ProjectSubType__c.equals(IPM_ConstantUtils.IPM_INNOVATION_RENOVATION)){
                 if(coreQ.IPM_Innovation_Renovation__c && coreQ.IPM_Question_Number__c==qOne){
