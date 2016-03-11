@@ -8,10 +8,11 @@ public class Core_CA_RemoteServiceCallControllerTest{
     public static Testmethod void MyTest(){
     
     RemoteServiceCallController remServiceCall = new RemoteServiceCallController();
-    System.assert(remServiceCall != null);
     RemoteServiceCallController.invokeService(serviceJSONObject,serviceName,requestType);
     RemoteServiceCallController.invokeServiceWithURLParameter(serviceJSONObject,serviceName,requestType,urlparameter);
     RemoteServiceCallController.constructRequestBody(serviceJSONObject,serviceName,requestType,urlparameter);
-    
+    System.assert(RemoteServiceCallController.invokeService(serviceJSONObject,serviceName,requestType) != null);
+    System.assert(RemoteServiceCallController.invokeServiceWithURLParameter(serviceJSONObject,serviceName,requestType,urlparameter) != null);
+    System.assert(RemoteServiceCallController.constructRequestBody(serviceJSONObject,serviceName,requestType,urlparameter) != null);
     }
 }
