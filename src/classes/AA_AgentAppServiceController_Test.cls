@@ -172,8 +172,8 @@ private class AA_AgentAppServiceController_Test {
 
         User u2 = new User(Alias = 'tdfss', Email='tes23132t@testorg.com',ProfileId = p.Id ,
         
-        EmailEncodingKey='UTF-8', LastName='Tes3423423ting', LanguageLocaleKey='en_US',
-        LocaleSidKey='en_US', TimeZoneSidKey='America/Los_Angeles', UserName='sdadaas123@testorg.com');
+        EmailEncodingKey='UTF-8', LastName='Tes3423423ting', LanguageLocaleKey=AA_Constants.Stringen_us,
+        LocaleSidKey=AA_Constants.Stringen_us, TimeZoneSidKey='America/Los_Angeles', UserName='sdadaas123@testorg.com');
         System.runAs(u2) {
          
         obj4.updateIsAcceptedTermsAndCondition(wapperobj2);
@@ -185,15 +185,15 @@ private class AA_AgentAppServiceController_Test {
   
     static testMethod void retriveAllAgentReportsTest_ApplyFilterTrue(){
     	User user = new User();
-        user.Username ='testemail@test.com';
+        user.Username =AA_Constants.Stringtestemail;
         user.LastName = 'LastTestName';
-        user.Email = 'testemail@test.com';
+        user.Email = AA_Constants.Stringtestemail;
         user.alias = 'testAl';
         user.TimeZoneSidKey = 'America/New_York';
-        user.LocaleSidKey = 'en_US';
+        user.LocaleSidKey = AA_Constants.Stringen_us;
         user.EmailEncodingKey = 'ISO-8859-1';
         user.ProfileId = [select id from Profile where Name='System Administrator'].Id;
-        user.LanguageLocaleKey = 'en_US';
+        user.LanguageLocaleKey = AA_Constants.Stringen_us;
         insert user;
         aa_Agent_App_Category__c compCategory = new aa_Agent_App_Category__c(Name = 'Skin Care');
        insert compCategory;
@@ -209,17 +209,17 @@ private class AA_AgentAppServiceController_Test {
         
        aa_agent_app_custom_setting__c setting = new aa_agent_app_custom_setting__c();
        setting.Name = 'Salesforce Instance URL Content';
-       setting.Value__c = 'Whatever';
+       setting.Value__c = AA_Constants.Stringwhatever;
        insert setting;
  
        aa_agent_app_custom_setting__c setting1 = new aa_agent_app_custom_setting__c();
        setting1.Name = 'SFC Content';
-       setting1.Value__c = 'Whatever';
+       setting1.Value__c =  AA_Constants.Stringwhatever;
        insert setting1;
 
        aa_agent_app_custom_setting__c setting2 = new aa_agent_app_custom_setting__c();
        setting2.Name = 'Document URL Content';
-       setting2.Value__c = 'Whatever';
+       setting2.Value__c =  AA_Constants.Stringwhatever;
        insert setting2;              
        
        
@@ -441,32 +441,32 @@ private class AA_AgentAppServiceController_Test {
     
     static testMethod void retriveAllAgentReportsTest_ApplyFilterTrue1(){
     	User user = new User();
-        user.Username ='testemail@test.com';
+        user.Username =AA_Constants.Stringtestemail;
         user.LastName = 'LastTestName';
-        user.Email = 'testemail@test.com';
+        user.Email = AA_Constants.Stringtestemail;
         user.alias = 'testAl';
         user.TimeZoneSidKey = 'America/New_York';
-        user.LocaleSidKey = 'en_US';
+        user.LocaleSidKey = AA_Constants.Stringen_us;
         user.EmailEncodingKey = 'ISO-8859-1';
         user.ProfileId = [select id from Profile where Name='System Administrator'].Id;
-        user.LanguageLocaleKey = 'en_US';
+        user.LanguageLocaleKey = AA_Constants.Stringen_us;
         insert user;
         
         
        
     	aa_agent_app_custom_setting__c setting = new aa_agent_app_custom_setting__c();
        setting.Name = 'Salesforce Instance URL Content';
-       setting.Value__c = 'Whatever';
+       setting.Value__c =  AA_Constants.Stringwhatever;
        insert setting;
  
        aa_agent_app_custom_setting__c setting1 = new aa_agent_app_custom_setting__c();
        setting1.Name = 'SFC Content';
-       setting1.Value__c = 'Whatever';
+       setting1.Value__c =  AA_Constants.Stringwhatever;
        insert setting1;
 
        aa_agent_app_custom_setting__c setting2 = new aa_agent_app_custom_setting__c();
        setting2.Name = 'Document URL Content';
-       setting2.Value__c = 'Whatever';
+       setting2.Value__c = AA_Constants.Stringwhatever;
        insert setting2;    
        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
@@ -562,29 +562,29 @@ private class AA_AgentAppServiceController_Test {
      	
      	aa_agent_app_custom_setting__c setting = new aa_agent_app_custom_setting__c();
        setting.Name = 'Salesforce Instance URL Content';
-       setting.Value__c = 'Whatever';
+       setting.Value__c =  AA_Constants.Stringwhatever;
        insert setting;
  
        aa_agent_app_custom_setting__c setting1 = new aa_agent_app_custom_setting__c();
        setting1.Name = 'SFC Content';
-       setting1.Value__c = 'Whatever';
+       setting1.Value__c =  AA_Constants.Stringwhatever;
        insert setting1;
 
        aa_agent_app_custom_setting__c setting2 = new aa_agent_app_custom_setting__c();
        setting2.Name = 'Document URL Content';
-       setting2.Value__c = 'Whatever';
+       setting2.Value__c =  AA_Constants.Stringwhatever;
        insert setting2;     
      	
      	User user = new User();
-        user.Username ='testemail@test.com';
+        user.Username =AA_Constants.Stringtestemail;
         user.LastName = 'LastTestName';
-        user.Email = 'testemail@test.com';
+        user.Email = AA_Constants.Stringtestemail;
         user.alias = 'testAl';
         user.TimeZoneSidKey = 'America/New_York';
-        user.LocaleSidKey = 'en_US';
+        user.LocaleSidKey = AA_Constants.Stringen_us;
         user.EmailEncodingKey = 'ISO-8859-1';
         user.ProfileId = [select id from Profile where Name='System Administrator'].Id;
-        user.LanguageLocaleKey = 'en_US';
+        user.LanguageLocaleKey = AA_Constants.Stringen_us;
         insert user;
         aa_Agent_App_Category__c compCategory = new aa_Agent_App_Category__c(Name = 'Skin Care');
        insert compCategory;
