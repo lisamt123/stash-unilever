@@ -23,9 +23,29 @@ public class Core_CA_Approve_Reject_Test{
     @TestVisible static String strApprover= 'Approver';
     @TestVisible static String strApproved= 'Approved';
     
+    @testSetup static void setup() {
+        List<CORE_Chatter_Approval__c> lstCustSet = new List<CORE_Chatter_Approval__c>();
+       
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='MyApprovalsTabId', Text_Value__c='Yes'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='AppRejSubmitMessage', Text_Value__c='This form is electronically signed when you click submit. By submitting, you are confirming that the information provided by you reflects your wishes and intent'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='AppErrorMessage', Text_Value__c='You are not authorized to approve this request'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='AppRejAribaMessage', Text_Value__c='You are not an active Approver for this PR'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='AppRejAlreadyStatus', Text_Value__c='You have already approved/rejected this request'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='AppRejGTESCANCMessage', Text_Value__c='User has recalled this expense Claim'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='AppRejStringLengthMessage', Text_Value__c='Please restrict Comments to less than 255 characters'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='AppConfirmMessage', Text_Value__c='You have successfully approved this request'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='AppRejDBErrorMessage', Text_Value__c='An error has occurred, please try again later'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='RejErrorMessage', Text_Value__c='You are not authorized to reject this request'));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='AppRejGTESCommErrMessage', Text_Value__c='You have successfully rejected this request' ,ReminderAlertDays__c=0));
+        lstCustSet.add( new CORE_Chatter_Approval__c(Name='RejConfirmMessage', Text_Value__c='You have successfully rejected this request',ReminderAlertDays__c=0));
+        
+        if(!lstCustSet.isEmpty())
+           insert lstCustSet;     
+    }
+    
     //This method covers the controller class of approve action for header object
-    @isTest (Seealldata=true)
-    static void TestHeaderApprove(){      
+    static testmethod void TestHeaderApprove(){
+       
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba1',Source_System__c=strAriba);
         insert headerObj;
         System.assert(headerObj!= null);
@@ -61,8 +81,7 @@ public class Core_CA_Approve_Reject_Test{
     } 
     
     //This method covers the controller class of reject action for header object
-    @isTest (Seealldata=true)
-    static void TestHeaderReject(){
+    static testmethod void TestHeaderReject(){
         
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba3',Source_System__c=strAriba);
         insert headerObj;
@@ -99,8 +118,8 @@ public class Core_CA_Approve_Reject_Test{
     }
     
     //This method covers the controller class of approve action for Interested Party object
-    @isTest (Seealldata=true)
-    static void TestApproverApprove(){        
+    static testmethod void TestApproverApprove(){
+        
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba5',Source_System__c=strAriba);
         insert headerObj;
         System.assert(headerObj!= null);
@@ -122,8 +141,8 @@ public class Core_CA_Approve_Reject_Test{
     }
     
     //This method covers the controller class of reject action for Interested Party object
-    @isTest (Seealldata=true)
-    static void TestApproverReject(){        
+    static testmethod  void TestApproverReject(){
+        
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba6',Source_System__c=strAriba);
         insert headerObj;
         System.assert(headerObj!= null);
@@ -145,8 +164,8 @@ public class Core_CA_Approve_Reject_Test{
     }
     
     //This method covers the controller class of approve action for line object
-    @isTest (Seealldata=true)
-    static void TestLineApprove(){        
+    static testmethod  void TestLineApprove(){
+        
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba7',Source_System__c=strAriba);
         insert headerObj;
         System.assert(headerObj!= null);
@@ -157,7 +176,6 @@ public class Core_CA_Approve_Reject_Test{
         insert approverObj;
         System.assert(approverObj!= null);
         
-        test.starttest();
         Core_Approval_Header__c headerObj1=new Core_Approval_Header__c(Name='Test Ariba8',Source_System__c=strAriba);
         insert headerObj1;
         System.assert(headerObj1!= null);
@@ -171,6 +189,7 @@ public class Core_CA_Approve_Reject_Test{
         insert approverObj3;
         System.assert(approverObj3!= null);
         
+        test.starttest();
         Apexpages.currentPage().getParameters().put('id',lineObj.id);
         ApexPages.StandardController sc = new ApexPages.standardController(lineObj);
         Core_CA_Line_ApproveController lineApproveCont=new Core_CA_Line_ApproveController(sc);
@@ -188,9 +207,8 @@ public class Core_CA_Approve_Reject_Test{
     }
     
     //This method covers the controller class of reject action for line object
-    @isTest (Seealldata=true)
-    static void TestLineReject(){
-       
+    static testmethod void TestLineReject(){
+        
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba9',Source_System__c=strAriba);
         insert headerObj;
         System.assert(headerObj!= null);
@@ -222,12 +240,14 @@ public class Core_CA_Approve_Reject_Test{
         lineRejectCont.submitComments();
         lineRejectCont.approverComments='fhpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpoho';
         lineRejectCont.submitComments();
+        System.assert(lineRejectCont!= null);
         
         Apexpages.currentPage().getParameters().put('id',lineObj1.id);
         ApexPages.StandardController sc1 = new ApexPages.standardController(lineObj1);
         Core_CA_Line_RejectController lineRejectCont1=new Core_CA_Line_RejectController(sc1);
         lineRejectCont1.approverComments=strStatusRejected;
         lineRejectCont1.submitComments();
+        System.assert(lineRejectCont1!= null);
         test.stoptest();
     }
 }
