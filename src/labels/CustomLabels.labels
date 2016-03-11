@@ -4453,8 +4453,8 @@ Which Communications team do you represent? You must be associated to one Planne
         <fullName>IPM_Assumption_A_P</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>IPM Assumption A&amp;P</shortDescription>
-        <value>A&amp;P</value>
+        <shortDescription>IPM Assumption BMI</shortDescription>
+        <value>BMI</value>
     </labels>
     <labels>
         <fullName>IPM_Assumption_CAPEX</fullName>
@@ -6023,6 +6023,13 @@ If approved your project will be linked after your Charter gate has been approve
         <value>Cancel and Revert</value>
     </labels>
     <labels>
+        <fullName>IPM_Cannot_Delete_CharterApproved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Cannot_Delete_CharterApproved</shortDescription>
+        <value>Cannot Delete Charter Approved Rollouts</value>
+    </labels>
+    <labels>
         <fullName>IPM_CategoryNameNotNull</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7550,6 +7557,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>used wherever we want to show error message for filling regional PL and TLD</shortDescription>
         <value>Please Fill Regional Project leader and Target Launch Date in Regional Rollouts</value>
+    </labels>
+    <labels>
+        <fullName>IPM_FinAlignment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_FinAlignment</shortDescription>
+        <value>Financial Alignment</value>
     </labels>
     <labels>
         <fullName>IPM_Fin_BC</fullName>
