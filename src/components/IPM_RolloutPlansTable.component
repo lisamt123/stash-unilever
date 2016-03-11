@@ -9,7 +9,7 @@
 
 
 <apex:component controller="IPM_RolloutPlansTableController" allowDML="true"> 
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_EditProject.css')}"/>  
+     
 
     <apex:outputPanel rendered="{!isError}">
         <div class="finGreyBG">
@@ -285,7 +285,7 @@
                                             </apex:outputPanel>
                                         </th>
                                         
-                                        <th scope="col" width="120px" colspan="1"> 
+                                        <th scope="col" width="130px" colspan="1"> 
                                             <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
                                                 <apex:image styleClass="rounded" url="{!regionalRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
@@ -348,7 +348,7 @@
                                                 <div class="incHeight">
                                                 </div>
                                             </td>
-                                            <td scope="col" width="120px">
+                                            <td scope="col" width="130px">
                                                 <div>
                                                 </div>
                                             </td>                
