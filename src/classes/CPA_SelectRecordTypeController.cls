@@ -85,19 +85,19 @@ public with sharing class CPA_SelectRecordTypeController {
         if(objName =='CPA_PWORF__c') {
             CPA_PWORF__c Rs= [Select Id,Name From CPA_PWORF__c Where Id=:pworfId];
             
-            UrlLink = '/'+Label.CPA_ParentId_For_Attachment_trigger+'/e?retURL='+Rs.Id+'&RecordType='+recordtypeId+Label.CPA_PWORF_Name_Filed_Id+'='+Rs.Name+Label.CPA_PWORF_Name_Filed_Id+'_lkid='+Rs.Id;
+            UrlLink = '/'+CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID +'/e?retURL='+Rs.Id+'&RecordType='+recordtypeId+Label.CPA_PWORF_Name_Filed_Id+'='+Rs.Name+Label.CPA_PWORF_Name_Filed_Id+'_lkid='+Rs.Id;
        
        }if(objName =='CPA_PWORF__c' && flagState =='Loi'){
         
             CPA_PWORF__c RsLoi= [Select Id,Name From CPA_PWORF__c Where Id=:pworfId];
             
-            UrlLink = '/'+Label.CPA_ParentId_For_Attachment_LOI+'/e?retURL='+RsLoi.Id+'&RecordType='+recordtypeId+Label.CPA_PWORF_LOI_Name_Filed_Id+'='+RsLoi.Name+Label.CPA_PWORF_LOI_ID_Filed_Id+'_lkid='+RsLoi.Id;
+            UrlLink = '/'+CPA_ConstantsForContractingAppClasses.CPA_LOI_ID+'/e?retURL='+RsLoi.Id+'&RecordType='+recordtypeId+Label.CPA_PWORF_LOI_Name_Filed_Id+'='+RsLoi.Name+Label.CPA_PWORF_LOI_ID_Filed_Id+'_lkid='+RsLoi.Id;
         
         }if(objName =='CPA_project_work_order__c'){   
         
             CPA_project_work_order__c Rscr= [Select Id,Name From CPA_project_work_order__c Where Id=:pworfId];
               
-            UrlLink = '/'+Label.CPA_ParentId_For_Attachment_CR+'/e?retURL='+Rscr.ID+'&RecordType='+recordtypeId+Label.CPA_PWO_Name_Field_Id+'='+Rscr.Name+Label.CPA_PWO_Name_Field_Id+'_lkid='+Rscr.Id;
+            UrlLink = '/'+CPA_ConstantsForContractingAppClasses.CPA_CR_ID+'/e?retURL='+Rscr.ID+'&RecordType='+recordtypeId+Label.CPA_PWO_Name_Field_Id+'='+Rscr.Name+Label.CPA_PWO_Name_Field_Id+'_lkid='+Rscr.Id;
         }
         PageReference massPageUrl = new PageReference(UrlLink);
         massPageUrl.setRedirect(true);

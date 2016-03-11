@@ -11,6 +11,7 @@ History
 -------
 VERSION     AUTHOR                     DATE            DETAIL Description
 1.0         Shreyas Mangalvedhekar     11/01/2016     INITIAL DEVELOPMENT CSR:
+1.1			Shreyas    				   10/03/2016	  Replaceing Custom label with query on line 351	
 ***********************************************************************/
 public with sharing class CPA_CR_TriggerUtil{
     public static boolean isSubmitted=false;
@@ -342,10 +343,16 @@ public with sharing class CPA_CR_TriggerUtil{
         List<CPA_project_work_order__c> ListnewPWO  = new List<CPA_project_work_order__c>();
         List<CPA_CR__c> ListnewCR  = new List<CPA_CR__c>();
         map<Id,Id> mapPWO = new map<ID,Id>();
+        
+        Id StandaloneCRRecordType = Schema.SObjectType.CPA_CR__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_Standalone_CR_RecordTypeId).getRecordTypeId();
+		ID StandaloneRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_Standalone_PWO_RecordTypeId).getRecordTypeId();
+		
         for(CPA_CR__c objCR : newCNFList){
-            if(objCR.RecordtypeId == label.CPA_Standalone_CR_RecordTypeId){             
+            if(objCR.RecordtypeId == StandaloneCRRecordType){             
                 CPA_project_work_order__c newPWO =new CPA_project_work_order__c();
-                newPWO.RecordtypeId = label.CPA_Standalone_PWO_RecordTypeId;
+                
+				newPWO.RecordtypeId = StandaloneRecordtype;
+                //newPWO.RecordtypeId = label.CPA_Standalone_PWO_RecordTypeId; //Replaceing Custom label with query : Shreyas 10th March 2016
                 /*
                 newPWO.lkp_Unilever_budget_approver__c = objCR.lkp_Unilever_budget_approver__c;
                 newPWO.lkp_Unilever_content_approver__c  = objCR.lkp_Unilever_content_approver__c;

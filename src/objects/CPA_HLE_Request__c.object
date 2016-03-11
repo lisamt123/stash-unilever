@@ -2511,18 +2511,26 @@ soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssig
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
-//alert(permissionSetName);
+
+var HLEID = sforce.connection.query(&quot;select Id,SobjectType from RecordType where Name =&apos;HLE&apos; AND SobjectType =&apos;CPA_HLE_Request__c&apos;&quot;); 
+var CPA_HLE = HLEID.getArray(&quot;records&quot;); 
+var hle = CPA_HLE[0].Id; 
+
+var BPEID = sforce.connection.query(&quot;select Id,SobjectType from RecordType where Name =&apos;BPE&apos; AND SobjectType =&apos;CPA_HLE_Request__c&apos;&quot;); 
+var CPA_BPE = BPEID.getArray(&quot;records&quot;); 
+var bpe = CPA_BPE[0].Id;
+
+
 if( permissionSetName == &quot;CPA_ADM&quot;){
 	if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; || p.pkl_Status__c ==&quot;Saved&quot; || p.pkl_Status__c ==&quot;Returned&quot;){ 
 		alert(&quot;Can not Estimate HLE Request as it is not yet Accepted&quot;); 
 	} 
 	else if(p.pkl_Status__c ==&quot;Accepted&quot; ){
-		if(p.Estimate_Type__c == &quot;BPE&quot;){ 
-		//p.Estimates_Status__c = &quot;Saved&quot;;
-			window.open(&quot;/&quot;+&quot;{!CPA_HLE_Request__c.Id}&quot;+ &quot;/e?RecordType={!$Label.CPA_BPE_Recordtype}&amp;retURL=%2F{!CPA_HLE_Request__c.Id}&quot;,&quot;_self&quot;); 
-		}else if(p.Estimate_Type__c == &quot;HLE&quot;){ 
-		//p.Estimates_Status__c = &quot;Saved&quot;;
-			window.open(&quot;/&quot;+&quot;{!CPA_HLE_Request__c.Id}&quot;+ &quot;/e?RecordType={!$Label.CPA_HLE_Recordtype}&amp;retURL=%2F{!CPA_HLE_Request__c.Id}&quot;,&quot;_self&quot;); 
+		if(p.Estimate_Type__c == &quot;BPE&quot;){ 	
+			window.open(&quot;/&quot;+&quot;{!CPA_HLE_Request__c.Id}&quot;+ &quot;/e?RecordType=&quot;+bpe+&quot;&amp;retURL=%2F{!CPA_HLE_Request__c.Id}&quot;,&quot;_self&quot;); 
+			
+		}else if(p.Estimate_Type__c == &quot;HLE&quot;){ 	
+			window.open(&quot;/&quot;+&quot;{!CPA_HLE_Request__c.Id}&quot;+ &quot;/e?RecordType=&quot;+hle+&quot;&amp;retURL=%2F{!CPA_HLE_Request__c.Id}&quot;,&quot;_self&quot;); 
 		}else {
 			alert(&quot;Please select Type of Estimate&quot;);
 		} 

@@ -11,6 +11,7 @@ History
 -------
 VERSION     AUTHOR     DATE            DETAIL Description
 1.0         Name       01/01/2016     INITIAL DEVELOPMENT CSR:
+1.1			Shreyas    10/03/2016	  Replaceing Custom label with query on line 75,92,87
 ***********************************************************************/
 global with sharing class CPA_ContractInformationController {
     public id pwoId;
@@ -57,7 +58,11 @@ global with sharing class CPA_ContractInformationController {
     boolean CPA_Messages(id pwoRecId,boolean callFromVF){
         RequiredFieldMap = new Map<String,String>();
         mandatoryStringFlag = null;
-        pwoRec = [select chk_First_PWO__c,PWORF_ID__c,txta_reason_for_additiona_PWO__c,id,chk_Excel_Attached__c,chk_PDF_Attached__c,pkl_Status__c,txt_PWO_number__c,pkl_Region__c ,txt_PWO_title__c,mpkl_Project_Classification__c,txt_Unilever_Project_Name__c,mpkl_Unilever_Innovation_Area__c,pkl_Billing_Details__c,txt_Accenture_Project_Manager__c,dt_Date_PWORF_accepted__c,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,dt_Project_Initiation_Date__c,dt_Expected_Start_Date__c,dt_Expected_End_date__c,mpkl_Project_Phases__c,pkl_Pricing_Model__c,num_Target_Blend_Rate__c,num_Varied_Target_Blend_Rate__c,pec_Variance__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,pec_Expense__c,num_Expense_charges_of_work_order__c,num_Total_work_order_charge__c,Currency__c,txt_Unilever_Reference__c,fml_Clarity_ID__c,pkl_TNF_Currency__c,txt_TNF_Unilever_Clarity_ID__c,txt_TNF_Approved_by__c,dt_TNF_TD_Date_Notified__c,dt_TNF_TD_Effective_Date__c,txt_TNF_Reason_for_termination__c,txt_TNF_Relocation_of_resources__c,txt_TNF_Comments__c,num_TNF_Variance_in_charges__c,num_TNF_Variance_in_effort__c,num_TNF_Planned_charges__c,num_TNF_Actual_charges__c,txt_TNF_Actual_effort_in_days__c,num_TNF_Planned_effort_in_days__c,txt_TNF_TD_Notice_Required__c,pkl_TNF_Terminated_by__c,txt_TNF_Accenture_Contact__c,txt_TNF_Other_Currency__c,txt_CNF_Accenture_Project_Manager__c,num_CNF_Actual_Day_rate__c,num_CNF_Actual_expenses__c,num_CNF_Actual_fees_inclusive_of_discoun__c,num_CNF_Actual_man_days__c,num_CNF_Actual_PMO_tax__c,dt_CNF_Actual_PWO_End_Date__c,num_CNF_Actual_total_charges__c,num_CNF_Planned_Day_rate__c,num_CNF_Planned_expenses__c,num_CNF_Planned_fees_inclusive_of_discou__c,num_CNF_Planned_man_days__c,num_CNF_Planned_PMO_tax__c,dt_CNF_Planned_PWO_End_Date__c,num_CNF_Planned_total_charges__c,txt_CNF_Unilever_Clarity_ID__c,num_CNF_Variance_number_in_man_days__c,CNF_Status__c,TNF_Status__c,RecordTypeid, mpkl_CNF_Currency__c ,txt_CNF_Other_Currency__c,chk_isStandalone_PWO__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, eml_TNF_Unilever_Contact_Email__c, txt_TNF_Unilever_Contact_Name__c, eml_CNF_Unilever_Budget_Approver_Email__c, txt_CNF_Unilever_Budget_Approver_Name__c, eml_CNF_Unilever_Content_Approver_Email__c, txt_CNF_Unilever_Content_Approver_Name__c, eml_Unilever_Finance_BP_Contact_Email__c, txt_Unilever_Finance_BP_Contact_Name__c,  txt_Other_Project_Phases__c, txt_Other_Innovation_Area__c, txt_Other_Billing_Details__c,txt_Other_Currency__c  from CPA_project_work_order__c where id =:pwoRecId];
+        Id StandaloneRecordtype ;
+        Id PWORecordtype ;
+        Id CNFRecordtype ;
+        Id TNFRecordtype ;
+        pwoRec = [select chk_First_PWO__c,mpkl_CNF_Currency__c,PWORF_ID__c,txta_reason_for_additiona_PWO__c,id,chk_Excel_Attached__c,chk_PDF_Attached__c,pkl_Status__c,txt_PWO_number__c,pkl_Region__c ,txt_PWO_title__c,mpkl_Project_Classification__c,txt_Unilever_Project_Name__c,mpkl_Unilever_Innovation_Area__c,pkl_Billing_Details__c,txt_Accenture_Project_Manager__c,dt_Date_PWORF_accepted__c,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,dt_Project_Initiation_Date__c,dt_Expected_Start_Date__c,dt_Expected_End_date__c,mpkl_Project_Phases__c,pkl_Pricing_Model__c,num_Target_Blend_Rate__c,num_Varied_Target_Blend_Rate__c,pec_Variance__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,pec_Expense__c,num_Expense_charges_of_work_order__c,num_Total_work_order_charge__c,Currency__c,txt_Unilever_Reference__c,fml_Clarity_ID__c,pkl_TNF_Currency__c,txt_TNF_Unilever_Clarity_ID__c,txt_TNF_Approved_by__c,dt_TNF_TD_Date_Notified__c,dt_TNF_TD_Effective_Date__c,txt_TNF_Reason_for_termination__c,txt_TNF_Relocation_of_resources__c,txt_TNF_Comments__c,num_TNF_Variance_in_charges__c,num_TNF_Variance_in_effort__c,num_TNF_Planned_charges__c,num_TNF_Actual_charges__c,txt_TNF_Actual_effort_in_days__c,num_TNF_Planned_effort_in_days__c,txt_TNF_TD_Notice_Required__c,pkl_TNF_Terminated_by__c,txt_TNF_Accenture_Contact__c,txt_TNF_Other_Currency__c,txt_CNF_Accenture_Project_Manager__c,num_CNF_Actual_Day_rate__c,num_CNF_Actual_expenses__c,num_CNF_Actual_fees_inclusive_of_discoun__c,num_CNF_Actual_man_days__c,num_CNF_Actual_PMO_tax__c,dt_CNF_Actual_PWO_End_Date__c,num_CNF_Actual_total_charges__c,num_CNF_Planned_Day_rate__c,num_CNF_Planned_expenses__c,num_CNF_Planned_fees_inclusive_of_discou__c,num_CNF_Planned_man_days__c,num_CNF_Planned_PMO_tax__c,dt_CNF_Planned_PWO_End_Date__c,num_CNF_Planned_total_charges__c,txt_CNF_Unilever_Clarity_ID__c,num_CNF_Variance_number_in_man_days__c,CNF_Status__c,TNF_Status__c,RecordTypeid, txt_CNF_Other_Currency__c,chk_isStandalone_PWO__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, eml_TNF_Unilever_Contact_Email__c, txt_TNF_Unilever_Contact_Name__c, eml_CNF_Unilever_Budget_Approver_Email__c, txt_CNF_Unilever_Budget_Approver_Name__c, eml_CNF_Unilever_Content_Approver_Email__c, txt_CNF_Unilever_Content_Approver_Name__c, eml_Unilever_Finance_BP_Contact_Email__c, txt_Unilever_Finance_BP_Contact_Name__c,  txt_Other_Project_Phases__c, txt_Other_Innovation_Area__c, txt_Other_Billing_Details__c,txt_Other_Currency__c  from CPA_project_work_order__c where id =:pwoRecId];
 
         Map<string,CPA_Status_Msg__c> customSettingStatusMsg = CPA_Status_Msg__c.getAll();
             
@@ -69,16 +74,23 @@ global with sharing class CPA_ContractInformationController {
         }
         else if(pwoRec.TNF_Status__c!= null && customSettingStatusMsg.get(pwoRec.TNF_Status__c).TNF_Status_Msg__c != null && callFromVF && (pwoRec.TNF_Status__c != null)){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.get(pwoRec.TNF_Status__c).TNF_Status_Msg__c));
-        }           
-        if(pwoRec.RecordTypeid == label.CPA_PWO_RecordTypeId || pwoRec.RecordTypeid == label.CPA_Standalone_PWO_RecordTypeId){            
+        }  
+        StandaloneRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_Standalone_PWO_RecordTypeId).getRecordTypeId();        
+        PWORecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWO_RecordTypeId ).getRecordTypeId();
+      	CNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_CNF_RecordTypeId ).getRecordTypeId();        
+        TNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_TNF_RecordTypeId  ).getRecordTypeId();
+       // if(pwoRec.RecordTypeid == label.CPA_PWO_RecordTypeId || pwoRec.RecordTypeid == label.CPA_Standalone_PWO_RecordTypeId){ //Replaceing Custom label with query : Shreyas 10th March 2016
+        if(pwoRec.RecordTypeid == PWORecordtype || pwoRec.RecordTypeid == StandaloneRecordtype){            
             if(pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pwoRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED || !callFromVF){
                 pWOReqFields(pwoRec,RequiredFieldMap);
             }
-        }else if(pwoRec.RecordTypeid == label.CPA_PWO_CNF_RecordTypeId){
+       // }else if(pwoRec.RecordTypeid == label.CPA_PWO_CNF_RecordTypeId){ //Replaceing Custom label with query : Shreyas 10th March 2016
+        }else if(pwoRec.RecordTypeid == CNFRecordtype){
             if(pwoRec.CNF_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || !callFromVF){
                cNFReqFields(pwoRec,RequiredFieldMap);
             }
-        }else if(pwoRec.RecordTypeid == label.CPA_PWO_TNF_RecordTypeId){
+        //}else if(pwoRec.RecordTypeid == label.CPA_PWO_TNF_RecordTypeId){ //Replaceing Custom label with query : Shreyas 10th March 2016
+        	 }else if(pwoRec.RecordTypeid == TNFRecordtype){
             if(pwoRec.TNF_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || !callFromVF){
                 tNFReqFields(pwoRec,RequiredFieldMap);
             }

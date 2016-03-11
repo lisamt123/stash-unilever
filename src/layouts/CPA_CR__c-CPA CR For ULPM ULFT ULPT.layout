@@ -15,7 +15,7 @@
                 <height>200</height>
                 <page>CPA_CR_Information_Display_Page</page>
                 <showLabel>false</showLabel>
-                <showScrollbars>false</showScrollbars>
+                <showScrollbars>true</showScrollbars>
                 <width>100%</width>
             </layoutItems>
         </layoutColumns>

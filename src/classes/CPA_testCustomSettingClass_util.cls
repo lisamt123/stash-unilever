@@ -119,28 +119,28 @@ public with sharing class CPA_testCustomSettingClass_util {
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/
-    public static CPA_PWORF_Record_type__c createTest_PWORF_All_recordtType(ID allId){
+   /* public static CPA_PWORF_Record_type__c createTest_PWORF_All_recordtType(ID allId){
 
         CPA_PWORF_Record_type__c PWORFAllrecordtType = new CPA_PWORF_Record_type__c();
         PWORFAllrecordtType.Name ='All';
         PWORFAllrecordtType.Record_type_id__c = allId;
         return PWORFAllrecordtType;
         
-    }
+    }*/
     /*******************************************************************
     Purpose: This method is used to set the PWORF RA record type
     Parameters: 
     Returns: 
     Throws [Exceptions]: 
     ********************************************************************/
-    public static CPA_PWORF_Record_type__c createTest_PWORF_RA_recordtType(ID raId){
+    /*public static CPA_PWORF_Record_type__c createTest_PWORF_RA_recordtType(ID raId){
 
         CPA_PWORF_Record_type__c PWORFRArecordtType = new CPA_PWORF_Record_type__c();
         PWORFRArecordtType.Name ='RA';
         PWORFRArecordtType.Record_type_id__c = raId;
         return PWORFRArecordtType;
         
-    }
+    }*/
     /*******************************************************************
     Purpose: This method is used to set the LOI
     Parameters: 

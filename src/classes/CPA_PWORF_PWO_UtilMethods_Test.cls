@@ -180,8 +180,8 @@ private class CPA_PWORF_PWO_UtilMethods_Test {
             insert objPworf12;
             objPworf12.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
             update objPworf12;
-            CPA_PWORF_Record_type__c customSettingPworfRT = CPA_testCustomSettingClass_util.createTest_PWORF_All_recordtType(objPworf12.id);
-        insert customSettingPworfRT;
+           // CPA_PWORF_Record_type__c customSettingPworfRT = CPA_testCustomSettingClass_util.createTest_PWORF_All_recordtType(objPworf12.id);
+        //insert customSettingPworfRT;
             CPA_project_work_order__c objPWO2 = CPA_testContractClass.createotherPWO(objPworf12);
             RecordType rt =[select id,Name from RecordType where sObjectType='CPA_project_work_order__c' AND Name='PWO TNF' limit 1] ;
              objPWO2.RecordTypeid = rt.id;
