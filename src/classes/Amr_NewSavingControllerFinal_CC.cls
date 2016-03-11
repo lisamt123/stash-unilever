@@ -9,20 +9,20 @@ Purpose:
  History                                                             
  -------                                                             
  VERSION   AUTHOR                        DATE              DETAIL                    Description    
- 1.0       Mindtree      			 04/03/2016      INITIAL DEVELOPMENT            CSR: 
+ 1.0       Mindtree                  04/03/2016      INITIAL DEVELOPMENT            CSR: 
  ***********************************************************************/
 
 
 public with sharing class Amr_NewSavingControllerFinal_CC {
-	 
-	public Amr_Saving__c savingObj{get;set;}
-	public String jobId{get;set;}
-	public Amr_Job_Details__c jobDetailObj{get;set;}
-	public String adManagerNumber{get;set;} 
-	public List<SelectOption> shootLocation{get;set;}
-	public List<String> selectedCountry{get;set;}
-	public  Amr_Quote__c acceptedQuote {get;set;}
-	public List<Amr_Quote__c> quoteList{
+     
+    public Amr_Saving__c savingObj{get;set;}
+    public String jobId{get;set;}
+    public Amr_Job_Details__c jobDetailObj{get;set;}
+    public String adManagerNumber{get;set;} 
+    public List<SelectOption> shootLocation{get;set;}
+    public List<String> selectedCountry{get;set;}
+    public  Amr_Quote__c acceptedQuote {get;set;}
+    public List<Amr_Quote__c> quoteList{
         get{
              if(quoteList == null)
                     quoteList = new List<Amr_Quote__c>();     
@@ -89,14 +89,14 @@ public with sharing class Amr_NewSavingControllerFinal_CC {
         }set;
     } 
     
-	public Amr_NewSavingControllerFinal_CC(){
-		jobId = ApexPages.currentPage().getParameters().get('id');
-		
-		if(jobId!=null){
-			 jobDetailObj = [select id,AdManagerText__c from Amr_Job_Details__c where id = :jobId];
-		}
-		
-		if(jobDetailObj.AdManagerText__c !=null){
+    public Amr_NewSavingControllerFinal_CC(){
+        jobId = ApexPages.currentPage().getParameters().get('id');
+        jobDetailObj = new Amr_Job_Details__c();
+        if(jobId!=null){
+             jobDetailObj = [select id,AdManagerText__c from Amr_Job_Details__c where id = :jobId];
+        }
+        
+        if(jobDetailObj.AdManagerText__c !=null){
                 adManagerNumber = jobDetailObj.AdManagerText__c;
         }
          
@@ -111,28 +111,28 @@ public with sharing class Amr_NewSavingControllerFinal_CC {
         acceptedQuote = new Amr_Quote__c(Quote_Number__c = 1,Is_Accepted__c = true);
         
         for(integer i=2;i<=5;i++){
-        	Amr_Quote__c quoteObj = new Amr_Quote__c(Quote_Number__c = i,Is_Accepted__c = false);
-        	quoteList.add(quoteObj);
-        	system.debug('inside add Quote');
+            Amr_Quote__c quoteObj = new Amr_Quote__c(Quote_Number__c = i,Is_Accepted__c = false);
+            quoteList.add(quoteObj);
+            system.debug('inside add Quote');
         }
         system.debug('quote list==>'+quoteList);
        
-	}
-	
-	
+    }
+    
+    
    /*******************************************************************    
    Purpose:  This method is used to insert data of Quote and Saving                                                        
    Parameters: 
    Returns: It’s return nothing 
 
    ********************************************************************/ 
-	public void SaveQuoteAndSavingData(){
-		system.debug('saving data'+savingObj);
-		system.debug('accepted quote data'+acceptedQuote);
-		system.debug('quote List data'+quoteList);
-		//try{
-			
-			if(selectedCountry.size()>0){
+    public void SaveQuoteAndSavingData(){
+        system.debug('saving data'+savingObj);
+        system.debug('accepted quote data'+acceptedQuote);
+        system.debug('quote List data'+quoteList);
+        //try{
+            
+            if(selectedCountry.size()>0){
                     for(String str : selectedCountry){
                         if(savingObj.Shoot_Location__c == null){
                             savingObj.Shoot_Location__c = str ;
@@ -141,209 +141,208 @@ public with sharing class Amr_NewSavingControllerFinal_CC {
                         }
                     }
             }
-			upsert savingObj;
-			
-			if(savingObj.id !=null){
-				
-				acceptedQuote.Saving__c = savingObj.id;
-				upsert acceptedQuote;
-				
-				
-				system.debug('accepted quote insert successfully===>'+acceptedQuote.id);
-				
-				for(Amr_Quote__c quoteObj:quoteList){
-					quoteObj.Saving__c = savingObj.id;
-				}
-				upsert quoteList;
-				
-			}
-		    Amr_Saving__c savingObjInserted = [select Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,Percentage_Saving_Accepted_Quote__c,
-								Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Saving_Accepted_Quote_Euro__c, 
-								Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,
-								No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Number_Of_Quotes__c,Average_Total_Opening_Quotes__c from Amr_Saving__c where id =:savingObj.id];
-			savingObj = savingObjInserted;
-		//}catch(Exception e){
-		//	system.debug('===inside exception'+e.getMessage());
-		//}
-	}
-	
-	 /*******************************************************************    
+            upsert savingObj;
+            
+            if(savingObj.id !=null){
+                acceptedQuote.Saving__c = savingObj.id;
+                upsert acceptedQuote;
+                
+                
+                system.debug('accepted quote insert successfully===>'+acceptedQuote.id);
+                
+                for(Amr_Quote__c quoteObj:quoteList){
+                    quoteObj.Saving__c = savingObj.id;
+                }
+                upsert quoteList;
+                
+            }
+            Amr_Saving__c savingObjInserted = [select Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,Percentage_Saving_Accepted_Quote__c,
+                                Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Saving_Accepted_Quote_Euro__c, 
+                                Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,
+                                No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Number_Of_Quotes__c,Average_Total_Opening_Quotes__c from Amr_Saving__c where id =:savingObj.id];
+            savingObj = savingObjInserted;
+        //}catch(Exception e){
+        //  system.debug('===inside exception'+e.getMessage());
+        //}
+    }
+    
+     /*******************************************************************    
    Purpose:  This method is used to insert document in accepted quote                                                      
    Parameters: 
    Returns: It’s return nothing 
 
    ********************************************************************/ 
    
-	public void UploadAcceptedquoteDoc(){
-		if(validateAccepted(acceptedQuote)){
-			String parentId = null;
-			system.debug('accepted quote Id '+acceptedQuote.id);
-	        acceptedQuote.Folder__c = 'Accepted Quotes and Documents';    
-	        if(acceptedQuote.id != null){
-	            parentId = acceptedQuote.Id;
-	            system.debug('parent Id==>'+parentId);
-	        }
+    public void UploadAcceptedquoteDoc(){
+        if(validateAccepted(acceptedQuote)){
+            String parentId = null;
+            system.debug('accepted quote Id '+acceptedQuote.id);
+            acceptedQuote.Folder__c = 'Accepted Quotes and Documents';    
+            if(acceptedQuote.id != null){
+                parentId = acceptedQuote.Id;
+                system.debug('parent Id==>'+parentId);
+            }
         
-			if(document.body!=null){    
-	            system.debug(document+'--------document Body'+document.body);        
-	            FeedItem FI = new FeedItem();
-	            FI.ParentId = parentId;
-	            FI.Body = 'Attachment added';
-	            FI.ContentData = document.body;
-	            system.debug('doc name==>'+document.Name);
-	            FI.ContentFileName = document.Name;
-	            insert FI;
-	            system.debug('feed Item Inserted===>'+FI.id);
-	            document = new document();
-	            
-	            if(FI.id!=null){
-	                 document.body = null;
-	                 FI = new FeedItem();
-	                 FI = null; 
-	            }
-         	}
+            if(document.body!=null){    
+                system.debug(document+'--------document Body'+document.body);        
+                FeedItem FI = new FeedItem();
+                FI.ParentId = parentId;
+                FI.Body = 'Attachment added';
+                FI.ContentData = document.body;
+                system.debug('doc name==>'+document.Name);
+                FI.ContentFileName = document.Name;
+                insert FI;
+                system.debug('feed Item Inserted===>'+FI.id);
+                document = new document();
+                
+                if(FI.id!=null){
+                     document.body = null;
+                     FI = new FeedItem();
+                     FI = null; 
+                }
+            }
          
-         	attachedList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-         						FROM FeedItem where ParentId =:parentId];
-		}
-	}
-	
+            attachedList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
+                                FROM FeedItem where ParentId =:parentId];
+        }
+    }
+    
   /*******************************************************************    
    Purpose:  This method is used to validate acceptedQuote in order to insert Document                                                      
    Parameters: 
    Returns: It’s return boolean
 
    ********************************************************************/ 
-	public boolean validateAccepted(Amr_Quote__c acceptedQuoteObj){
-		boolean flag = false;
-		 if(acceptedQuoteObj.id!=null){
-		 	 flag = true;
-		 }else{
-		 	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Save Saving and Quote'));
-		 	document.body =null;
-		 	return false;
-		 }
-		 return flag;
-	}
-	
+    public boolean validateAccepted(Amr_Quote__c acceptedQuoteObj){
+        boolean flag = false;
+         if(acceptedQuoteObj.id!=null){
+             flag = true;
+         }else{
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Save Saving and Quote'));
+            document.body =null;
+            return false;
+         }
+         return flag;
+    }
+    
    /*******************************************************************    
    Purpose:  This method is used to delete document                                              
    Parameters: 
    Returns: It’s return nothing 
 
    ********************************************************************/ 
-	public void deleteDocument(){
-		system.debug('feed Item Id need to be deleted ========>'+IdDeleted);
-		FeedItem feedObj = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-         						FROM FeedItem where id = :IdDeleted];
-		delete feedObj;
-		
-		attachedList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-         						FROM FeedItem where ParentId =:acceptedQuote.id];
-	}
-	
-	
+    public void deleteDocument(){
+        system.debug('feed Item Id need to be deleted ========>'+IdDeleted);
+        FeedItem feedObj = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
+                                FROM FeedItem where id = :IdDeleted];
+        delete feedObj;
+        
+        attachedList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
+                                FROM FeedItem where ParentId =:acceptedQuote.id];
+    }
+    
+    
    /*******************************************************************    
    Purpose:  This method is used to upload additional document                                           
    Parameters: 
    Returns: It’s return nothing 
 
    ********************************************************************/ 
-	public void UploadAdditionalDoc(){
-		if(validateAdditional(savingObj)){
-			String parentId = null;
-			system.debug('accepted quote Id '+acceptedQuote.id);
-	        //acceptedQuote.Folder__c = 'Accepted Quotes and Documents';    
-	        if(savingObj.id != null){
-	            parentId = savingObj.Id;
-	            system.debug('parent Id==>'+parentId);
-	        }
+    public void UploadAdditionalDoc(){
+        if(validateAdditional(savingObj)){
+            String parentId = null;
+            system.debug('accepted quote Id '+acceptedQuote.id);
+            //acceptedQuote.Folder__c = 'Accepted Quotes and Documents';    
+            if(savingObj.id != null){
+                parentId = savingObj.Id;
+                system.debug('parent Id==>'+parentId);
+            }
         
-			if(document.body!=null){    
-	            system.debug(document+'--------document Body'+document.body);        
-	            FeedItem FI = new FeedItem();
-	            FI.ParentId = parentId;
-	            FI.Body = 'Attachment added';
-	            FI.ContentData = document.body;
-	            system.debug('doc name==>'+document.Name);
-	            FI.ContentFileName = document.Name;
-	            insert FI;
-	            system.debug('feed Item Inserted===>'+FI.id);
-	            document = new document();
+            if(document.body!=null){    
+                system.debug(document+'--------document Body'+document.body);        
+                FeedItem FI = new FeedItem();
+                FI.ParentId = parentId;
+                FI.Body = 'Attachment added';
+                FI.ContentData = document.body;
+                system.debug('doc name==>'+document.Name);
+                FI.ContentFileName = document.Name;
+                insert FI;
+                system.debug('feed Item Inserted===>'+FI.id);
+                document = new document();
             
-            	if(FI.id!=null){
-                 	document.body = null;
-                 	FI = new FeedItem();
-                 	FI = null; 
-            	}
-         	}
+                if(FI.id!=null){
+                    document.body = null;
+                    FI = new FeedItem();
+                    FI = null; 
+                }
+            }
          
-         	attachedListSaving = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-         						FROM FeedItem where ParentId =:parentId];
-		}
-	}
-	
-		
+            attachedListSaving = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
+                                FROM FeedItem where ParentId =:parentId];
+        }
+    }
+    
+        
    /*******************************************************************    
    Purpose:  This method is used to validate saving in order to insert additional document                                                    
    Parameters: 
    Returns: It’s return boolean
 
    ********************************************************************/ 
-	public boolean validateAdditional(Amr_Saving__c savingObj){
-		boolean flag = false;
-		 if(savingObj.id!=null){
-		 	 flag = true;
-		 }else{
-		 	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Save Saving and Quote'));
-		 	document.body =null;
-		 	return false;
-		 }
-		 return flag;
-	}
-	
-	/*******************************************************************    
+    public boolean validateAdditional(Amr_Saving__c savingObj){
+        boolean flag = false;
+         if(savingObj.id!=null){
+             flag = true;
+         }else{
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Save Saving and Quote'));
+            document.body =null;
+            return false;
+         }
+         return flag;
+    }
+    
+    /*******************************************************************    
    Purpose:  This method is used to delete document uploaded in additional document                                                     
    Parameters: 
    Returns: It’s return nothing
 
    ********************************************************************/ 
-	public void deleteDocumentSaving(){
-		system.debug('feed Item Id need to be deleted ========>'+IdDeletedSaving);
-		FeedItem feedObj = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-         						FROM FeedItem where id = :IdDeletedSaving];
-		delete feedObj;
-		
-		attachedListSaving = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
-         						FROM FeedItem where ParentId =:savingObj.id];
-	}
-	
-	public void getCaProcessMangCategory(){
+    public void deleteDocumentSaving(){
+        system.debug('feed Item Id need to be deleted ========>'+IdDeletedSaving);
+        FeedItem feedObj = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
+                                FROM FeedItem where id = :IdDeletedSaving];
+        delete feedObj;
+        
+        attachedListSaving = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
+                                FROM FeedItem where ParentId =:savingObj.id];
+    }
+    
+    public void getCaProcessMangCategory(){
      system.debug('inside');
     }
     
     
-	/*******************************************************************    
+    /*******************************************************************    
    Purpose:  This method is used to insert appraisal data                                                 
    Parameters: 
    Returns: It’s return Pagereference
 
    ********************************************************************/ 
     
-	 public Pagereference AllValues(){
-	 	Boolean flag = true;
+     public Pagereference AllValues(){
+        Boolean flag = true;
         if(attachedListSaving.size()<1 || attachedList.size()<1){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please attach at least one document in accepted Quote and one in additional document'));
-        	flag = false;
-        	
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please attach at least one document in accepted Quote and one in additional document'));
+            flag = false;
+            
         }
         if(savingObj.id == null){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Save Saving and Quote '));
-        	flag = false;
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Save Saving and Quote '));
+            flag = false;
         }
         
         if(!flag) {
-    		return null;
+            return null;
         }
        
         System.debug('Pc TIME MANAGEMENT  ->  '+ pcTimeMangCategoryValue + ' CLASSS -> 1' +  pcTimeMangCategoryClass );
@@ -398,5 +397,5 @@ public with sharing class Amr_NewSavingControllerFinal_CC {
               
         }
         return null;
-	 }
+     }
 }

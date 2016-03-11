@@ -58,9 +58,11 @@ public with sharing class Amr_SavingSummaryController_CC{
     public String savingAcceptedQuotes {get;set;}
     public Amr_Job_Details__c jobDetailObj {get;set;}
     public final double defaultValue = 0.0;    
-    public STring permissionSetName {get;set;}
+    public String permissionSetName {get;set;}
+    public List<SelectOption> rapNameList{get;set;} 
+    public String selectedRapName{get;set;}
+    
     public Amr_SavingSummaryController_CC(){
-        System.debug('HELLO00000000000');
         
       try{
        Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
@@ -85,8 +87,19 @@ public with sharing class Amr_SavingSummaryController_CC{
             categoryString.add(mdCat.name);
         }
         listOfBrandPosition = new List<SelectOption>();
-        listOfBrandPosition.add(new selectOption(NONE,NONE));   
-        }catch(Exception e){
+        listOfBrandPosition.add(new selectOption(NONE,NONE));
+        
+        
+         rapNameList = new list<selectoption>();
+         rapNameList.add(new SelectOption('--None--','--None--'));
+          for(PermissionSetAssignment  userObj :[select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name = :Label.Amr_RAP order by Assignee.name] ){
+
+            SelectOption obj=new SelectOption(userObj.Assignee.id,userObj.Assignee.name);
+            rapNameList.add(obj);
+  
+            }
+        }
+        catch(Exception e){
         system.debug(e.getMessage());
         }
         
@@ -142,6 +155,9 @@ Returns:
      try{
      system.debug('total ->  '+ totalAcceptedFinalCost  + 'SAv ->  ' + savingAverageOfQuotes +'SAVE ->   ' + savingAcceptedQuotes );
      String addNumber = jobDetailObj.AdManagerText__c;
+     String region = jobDetailObj.Project_Leader_Cluster__c;
+     String country = jobDetailObj.Project_Leader_Country__c;
+     String budgetReponse = jobDetailObj.Budget_Responsibility__c;
      System.debug('Start Date -> ' + startDate + 'END Date -> ' + endDate + 'SAVING OBJ ->  ' + savingObject + 'Add Number -> ' + addNumber);
      savingSummaryList = new List<Amr_Saving__c>();
      Boolean setFlag = false;
@@ -159,7 +175,7 @@ Returns:
      
       soql = 'select Average_Total_Opening_Quotes__c,Number_Of_Quotes__c,Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Job_Details__r.Budget_Responsibility__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,No_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Duration_of_Additional_Films__c,Duration_of_Masters__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c'
                +',Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,PC_Costs_Local_Currency__c,PC_Costs_Local_Amount__c,PC_Costs_Euro_Amount__c,Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,PPC_Costs_Local_Currency__c,PPC_Costs_Local_Amount__c,PPC_Costs_Euro_Amount__c,CA_Additional_agency_Name__c,CA_Location__c,CA_Costs_Local_Currency__c,CA_Costs_Local_Amount__c,CA_Costs_Euro_Amount__c,Total_Cost__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_CA_only_Currency__c'
-                +',Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId )';
+                +',Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where (CreatedById = :userid OR LastModifiedById = :userid)';
       
      } else{
     
@@ -297,7 +313,22 @@ Returns:
        
        if(String.isNotBlank(brandPosName) && brandPosName != '--None--'){
            soql += ' and Job_Details__r.Brand_Position__r.Name LIKE \''+String.escapeSingleQuotes(brandPosName)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+       } 
+       
+        if(String.isNotBlank(region) && region != '--None--'){
+           soql += ' and Job_Details__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(region)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
        }
+       
+       if(String.isNotBlank(country) && country != '--None--'){
+           soql += ' and Job_Details__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(country)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+       }    
+       
+       if(String.isNotBlank(budgetReponse) && budgetReponse != '--None--'){
+           soql += ' and Job_Details__r.Budget_Responsibility__c = \''+String.escapeSingleQuotes(budgetReponse)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+       }
+       
+       System.debug('SQL Till Here -> '+ soql );
+       
       if(String.isNotBlank(films)){
       Double noOfFilms= double.valueOf(films);  
     soql += ' and Total_no_of_films__c =:noOfFilms';
@@ -309,13 +340,9 @@ Returns:
          system.debug('selectedCountry'+selectedCountry);
         String str = '';
           for(String s:selectedCountry){
-            //str= s+ ';'+str;
-          //  str+='\''+s+'\''+';';
               str += s+ ',';
           }
           String shLocString = '\'' + str.subString(0,str.length()-1) + '\'';
-        //  System.debug('Shoot LOCATEN -> ' + shLocString);
-        //str= str = str.substring(0, str.length()-1);
         soql += ' and Shoot_Location__c IN ('+shLocString+')';
         System.debug('Str -> ' + shLocString);
         System.debug('SOQL -> ' + soql);
@@ -672,11 +699,11 @@ Returns: It will return submitted saving data.
          }
          
        public pageReference clearJob(){
-        	
-        	PageReference pageRef = new PageReference('/apex/Amr_SavingSummary');
-        	pageRef.setRedirect(true);
-        	return pageRef;
-        	
+                
+                PageReference pageRef = new PageReference('/apex/Amr_SavingSummary');
+                pageRef.setRedirect(true);
+                return pageRef;
+                
         return null;
         }
         

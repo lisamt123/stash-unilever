@@ -10,6 +10,7 @@ public with sharing class Amr_JobSheetController_CC{
 
 public String docUploaded{get;set;}
     public String projNameFromPage{get;set;}
+    public String projectNameFromPage{get;set;}
     public String alertmessage{get;set;}
     public Date alertDate{get;set;}
     public String adManagerNumber{get;set;}
@@ -40,33 +41,9 @@ public String docUploaded{get;set;}
     public boolean viewAcceptedQuote{get;set;}
     public Blob fileBody   {get;set;}
     public Integer QuoteNumber{get;set;}
+    public static final String STR_NONE = '--None--';
     
-    //Appraisal
-    /*public Integer pcTimeMangCategoryValue {get;set;}
-    public Integer pcCostMangCategoryValue {get;set;}
-    public Integer pcProcessMangCategoryValue {get;set;}
-    public Integer pcOutputQualityCategoryValue{get;set;}
-    public Integer pccTimeMangCategoryValue {get;set;}
-    public Integer pccCostMangCategoryValue {get;set;}
-    public Integer pccProcessMangCategoryValue{get;set;}
-    public Integer pccOutputQualityCategoryValue {get;set;}
-    public Integer caTimeMangCategoryValue {get;set;}
-    public Integer caCostMangCategoryValue {get;set;}
-    public Integer caProcessMangCategoryValue{get;set;}
-    public Integer caOutputQualityCategoryValue {get;set;}*/
-    //Appraisal Class
-    /*public String pcTimeMangCategoryClass {get;set;}
-    public String pcCostMangCategoryClass {get;set;}
-    public String pcProcessMangCategoryClass {get;set;}
-    public String pcOutputQualityCategoryClass{get;set;}
-    public String pccTimeMangCategoryClass {get;set;}
-    public String pccCostMangCategoryClass {get;set;}
-    public String pccProcessMangCategoryClass{get;set;}
-    public String pccOutputQualityCategoryClass {get;set;}
-    public String caTimeMangCategoryClass {get;set;}
-    public String caCostMangCategoryClass {get;set;}
-    public String caProcessMangCategoryClass{get;set;}
-    public String caOutputQualityCategoryClass {get;set;}*/
+    
     public Amr_Quote__c quoteObj{get;set;}
     public Integer totalAlertCount{get; set;}
     public static final String NONE ='--None--';
@@ -124,15 +101,7 @@ public String docUploaded{get;set;}
     public Id chosenId {get; set;} 
     public Amr_Alert__c alertObj{get;set;}
     
-   /* 
-   public  Document document {
-    get {
-      if (document == null)
-         document = new Document();
-         return document;
-    }
-    set;
-   }*/
+   
     public List<FeedItem> documentList{get;set;}
    
     public Amr_JobSheetController_CC(){
@@ -458,28 +427,7 @@ public String docUploaded{get;set;}
         }
         set;
    }
-   /* public List<InnerSavingClass> docAndQuoteLst{
-        get{
-             if(docAndQuoteLst == null)
-                    docAndQuoteLst = new List<InnerSavingClass>();     
-                return docAndQuoteLst;
-        }set;
-    }
-    
-       
-    public class InnerSavingClass{
-        public Amr_Quote__c quoteObj{get;set;}
-        public Document attachmentObj{get;set;}
-        
-        
-        public InnerSavingClass( Integer i,Boolean accepted ,Amr_Quote__c quoteObj1){
-            quoteObj = quoteObj1;
-            quoteObj.Quote_Number__c = i;
-            quoteObj.Is_Accepted__c = accepted;
-            attachmentObj = new Document();
-        }
-        
-    }*/
+ 
     public String lstcov {
       get{
             lstcov = JSON.serialize(Amr_CurrencyConversionRate__c.getAll().values());
@@ -489,30 +437,44 @@ public String docUploaded{get;set;}
     //public String jobId{get;set;}
     public List<Amr_Saving__c> quoteList{get;set;}
     public List<Amr_Quote__c> quoteRelatedToSavingList{get;set;}
-  /*  public List<Amr_Saving__c> lstQuoteToaddRow{
-        get{
-             if(lstQuoteToaddRow == null)
-                    lstQuoteToaddRow = new List<Amr_Saving__c>();     
-                return lstQuoteToaddRow;
-        }set;
-    }*/
+ 
     public string userId{get;set;}
  
-      public List<selectOption> currencyRecords{
-    get {
+  
+  public List<selectOption> currencyRecords {
+        get {
+            List<selectOption> options = new List<selectOption>();
+            List<selectOption> optionsNew = new List<selectOption>();
+            //options.add(new SelectOption(STR_NONE,STR_NONE));
+             if(currencyMap!=null){
+                options.add(new SelectOption(currencyMap.get('selectedCountry'),selectedCountry));
+            }else{
+                options.add(new SelectOption(STR_NONE,STR_NONE));
+            }
+            List<Amr_CurrencyConversionRate__c> lstcov = Amr_CurrencyConversionRate__c.getAll().values();
+            System.debug('Currency List Size --> ' + lstcov.size());
+            lstcov.sort();
+            
+            Map<String,String> mapAmountToCurrency = new Map<String,String>();
         
-        List<selectOption> options = new List<selectOption>();
-        if(currencyMap!=null){
-        options.add(new SelectOption(currencyMap.get('selectedCountry'),selectedCountry));}
-        
-        for (Amr_CurrencyConversionRate__c currencyConversion: Amr_CurrencyConversionRate__c.getAll().values())
-        if(selectedCountry != currencyConversion.Name+'-'+currencyConversion.Currency_Unit__c){
-        options.add(new SelectOption(String.valueOf(currencyConversion.Currency_Unit_To_Euro__c),currencyConversion.Name+'-'+currencyConversion.Currency_Unit__c));
+            for (Amr_CurrencyConversionRate__c cc: lstcov){
+                if( (cc.Name+'-'+cc.Currency_Unit__c == 'USA-US $') ||  (cc.Name+'-'+cc.Currency_Unit__c == 'UK-£' ) || (cc.Name+'-'+cc.Currency_Unit__c == 'EEC-Euro' )){
+                    mapAmountToCurrency.put(cc.Name+'-'+cc.Currency_Unit__c , String.valueOf(cc.Currency_Unit_To_Euro__c));
+                    options.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+'-'+cc.Currency_Unit__c));
+                    continue;
+                }   
+                else{
+                    optionsNew.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+'-'+cc.Currency_Unit__c));
+                }
+                //€ (EEC), £(UK), $(US)
+            }
+             options.addAll(optionsNew);
+            
+            return options;
+
         }
-        return options;
+        set;
     }
-    set;
-  }
          
          public String getMethodToPassProjectNames(){
             try{
@@ -1009,33 +971,7 @@ public String docUploaded{get;set;}
         system.debug('project-------->'+projNameFromPage);
     
     }
-     /*
-    public List<SelectOption> getBrandList(){      
-       
-         listOfBrand = new List<SelectOption>();
-         system.debug('========>'+brandPosName);
-         
-         listOfBrand.add(new selectOption(NONE,NONE));
-         
-         Set<String> brandlst = new Set<String>();
-         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-         
-         for(String brandPos:utiltyObj.BrandPositionAndBrandMap.keySet()){
-                 List<String> postionCategorylist = brandPos.split(',');
-                 system.debug('bandPostion and Category====>'+postionCategorylist);
-                 if(postionCategorylist.size()>0){
-                        if(postionCategorylist[0] == brandPosName && postionCategorylist[1] == categoryName){
-                                brandlst = utiltyObj.BrandPositionAndBrandMap.get(brandPos);
-                        }
-                 }
-         }
-         
-          for(String bps : brandlst)
-             listOfBrand.add(new selectOption(bps,bps));
-        
-         return listOfBrand;
-     }  */
-     
+  
      
      /* 
         Method to get all the brand names on the basis of selected brand position.
@@ -1080,17 +1016,7 @@ public String docUploaded{get;set;}
                     categoryString.add(mdCat.name);
                 }
         }
-        /*if(projNameList == null){
-                 projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
-                 listString= new list<string>();
-                 
-                 listString.add(NONE);
-                 For(Amr_Project_Details__c i : projNameList){
-                    
-                        listString.add(i.name);
-                    
-                 }
-        }*/
+       
         if(MDOBrandPositionslst.size()>0){
                         if(categoryName !=NONE){
                                 system.debug('===list MDO Category'+MDOBrandPositionslst[0].product_category_id__c );
@@ -1105,6 +1031,11 @@ public String docUploaded{get;set;}
                         }
         }
         system.debug('selectedCountry!!'+selectedCountry);
+        system.debug('job detail id=======>'+jobList.Project_Details__c);
+        
+       
+        
+        
         if(String.isNotBlank(selectedCountry)){
         Amr_CurrencyConversionRate__c currencyObject =[SELECT Currency_Unit__c,Name FROM Amr_CurrencyConversionRate__c WHERE Currency_Unit_To_Euro__c =:double.valueOf(selectedCountry) limit 1];
          
@@ -1115,6 +1046,11 @@ public String docUploaded{get;set;}
        
         validateJobList();
         if(validateSuccess){
+        	 if(jobList.Project_Details__c!=null){
+              Amr_Project_Details__c projectObj = [select id,name from Amr_Project_Details__c where id = :jobList.Project_Details__c ];
+              projectNameFromPage = projectObj.name;
+              system.debug('project name====>'+projectNameFromPage);
+        	}
         update jobList;
        
          PageReference pageRef = new PageReference('/apex/Amr_JobSheet');
@@ -1256,7 +1192,7 @@ public String docUploaded{get;set;}
           system.debug('List  ->  ' + jobSharedList );
       
    //  ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,Label.Amr_Success_JobShared)); 
-    Amr_EmailSendingClass.emailSending(jobId, emailAddress, 'Amr_RAPSharedJob', new List<id>());
+    Amr_EmailSendingClass.emailSending(jobId, emailAddress, 'Amr_RAPSharedJob');
  
       PageReference pageRef = Page.amr_jobsheet;
      pageRef.getParameters().put('id',jobId);
@@ -1294,136 +1230,241 @@ public String docUploaded{get;set;}
         Method holds the logic for validation of jobsheet.
     */ 
    
+    public boolean CheckWithCMIflag{get;set;}
+    public boolean yourEmailAddressFlag{get;set;}
+    public boolean unileverFinanceMemberEmailFlag{get;set;}
+    public boolean projectLeaderCountryClusterFlag{get;set;}
+    public boolean finalApproverMaterialEmailFlag{get;set;}
+    public boolean functionYouArePartFlag{get;set;}
+    public boolean budgetResponsibilityFlag{get;set;}
+    public boolean budgetAllocatedCountryFlag{get;set;}
+    public boolean budgetAllocatedInputFlag{get;set;}
+    public boolean categoryNameFlag{get;set;}
+    public boolean brandPosNameFlag{get;set;}
+    public boolean brandNameFromPageFlag{get;set;}
+    public boolean agencyDirectorEmailFlag{get;set;}
+    public boolean projectDescriptionFlag{get;set;}
+    public boolean campaignNameFlag{get;set;}
+    public boolean targetAirDateFlag{get;set;}
+    public boolean leadAgencyFlag{get;set;}
+    public boolean LeadAgencyClusterFlag{get;set;}
+    public boolean projectDetailsFlag{get;set;}
+    public boolean productionActivityTypeFlag{get;set;}
+    public boolean ExecutionNameFlag{get;set;}
+    public boolean BrodcastMarketFlag{get;set;}
+    public boolean RequireMusicFlag{get;set;}
+    public boolean RequireTalentFlag{get;set;}
+    public boolean StageProductionActivity{get;set;}
+    public String CheckWithCMI{get;set;}
    public PageReference validateJobList(){
+   		    CheckWithCMIflag = false;
+            yourEmailAddressFlag = false;
+            unileverFinanceMemberEmailFlag = false;
+            projectLeaderCountryClusterFlag = false;
+            finalApproverMaterialEmailFlag = false;
+            FunctionYouArePartFlag = false;
+            budgetResponsibilityFlag = false;
+            budgetAllocatedCountryFlag = false;
+            budgetAllocatedInputFlag = false;
+            categoryNameFlag = false;
+            brandPosNameFlag = false;
+            brandNameFromPageFlag = false;
+            AgencyDirectorEmailFlag = false;
+            ProjectDescriptionFlag = false;
+            CampaignNameFlag = false;
+            TargetAirDateFlag = false;
+            leadAgencyFlag = false;
+            LeadAgencyClusterFlag = false;
+            projectDetailsFlag = false;
+            productionActivityTypeFlag = false;
+            //ProjectDescriptionFlag = false;
+            ExecutionNameFlag = false;
+            BrodcastMarketFlag = false;
+            RequireMusicFlag = false;
+            RequireTalentFlag = false;
+            StageProductionActivity = false;
+            CheckWithCMI = 'Please fill in missing information';
         
-                Boolean okayToSave = true;
-                validateSuccess = false;
+            Boolean okayToSave = true;
+            validateSuccess = false;
+            
          if(jobList.Check_With_CMI__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Have you checked with CMI if there is an existing asset in the Millward Brown TV Ad Vitality Bank that could be utilised for this JTBD? : a radio button must be selected'));
-        okayToSave =false;
-        
+          //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Have you checked with CMI if there is an existing asset in the Millward Brown TV Ad Vitality Bank that could be utilised for this JTBD? : a radio button must be selected'));
+         //okayToSave =false;
+          CheckWithCMIflag = true;
+          system.debug('CheckWithCMIflag'+CheckWithCMIflag);
         }
         
          if(jobList.Your_Email_Address__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Your email address : must follow the standard format of an email address, e.g. txt@txt.com'));
-       okayToSave =false;
+         	 yourEmailAddressFlag = true;
+       // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Your email address : must follow the standard format of an email address, e.g. txt@txt.com'));
+      // okayToSave =false;
         } 
         if(jobList.Unilever_Finance_Member_Email__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Unilever finance member email : must follow the standard format of an email address, e.g. txt@txt.com'));
-        okayToSave =false;
+        	 unileverFinanceMemberEmailFlag = true;
+        	 system.debug('unileverFinanceMemberEmailFlag'+unileverFinanceMemberEmailFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Unilever finance member email : must follow the standard format of an email address, e.g. txt@txt.com'));
+       // okayToSave =false;
         }
         if(jobList.Final_Approver_Of_Material_Email__c== null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Final approver of material email : must follow the standard format of an email address, e.g. txt@txt.com'));
-       okayToSave =false;
+        	 finalApproverMaterialEmailFlag = true;
+        	  system.debug('finalApproverMaterialEmailFlag'+finalApproverMaterialEmailFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Final approver of material email : must follow the standard format of an email address, e.g. txt@txt.com'));
+       //okayToSave =false;
         }
         if(String.isBlank(selectedCountry)){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget allocated for this activity (enter all digits) : option must be selected from drop down'));
-       okayToSave =false;
+        	budgetAllocatedCountryFlag = true;
+        	 system.debug('budgetAllocatedInputFlag'+budgetAllocatedCountryFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget allocated for this activity (enter all digits) : option must be selected from drop down'));
+      // okayToSave =false;
         }
         
         if(jobList.Budget_Allocated_Input_Value__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget allocated for this activity (enter all digits) : number must be entered'));
-       okayToSave =false;
+       // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget allocated for this activity (enter all digits) : number must be entered'));
+      // okayToSave =false;
+      
+         budgetAllocatedInputFlag =  true;
+         system.debug('budgetAllocatedInputFlag'+budgetAllocatedInputFlag);
         }
         
          if( jobList.ProductCategory__c == null || categoryName == NONE){
-        
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
-        okayToSave =false;
+        categoryNameFlag = true;
+        system.debug('categoryNameFlag'+categoryNameFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
+       // okayToSave =false;
         }
          if( jobList.Brand_Position__c == null || brandPosName == NONE){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
-        okayToSave =false;
+         	brandPosNameFlag = true;
+         	system.debug('brandPosNameFlag'+brandPosNameFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
+        //okayToSave =false;
         }
          if(jobList.Brand_Final__c == null || brandNameFromPage == NONE){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
-        okayToSave =false;
+         	 brandNameFromPageFlag = true;
+         	 system.debug('brandNameFromPageFlag'+brandNameFromPageFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
+        //okayToSave =false;
         }
         
         if(jobList.Agency_Contact_Account_Director_Email__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Agency contact or account director email : must follow the standard format of an email address, e.g. txt@txt.com'));
-       okayToSave =false;
+        	AgencyDirectorEmailFlag = true;
+        	system.debug('AgencyDirectorEmailFlag'+AgencyDirectorEmailFlag);
+       // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Agency contact or account director email : must follow the standard format of an email address, e.g. txt@txt.com'));
+       //okayToSave =false;
         }
         if(jobList.Project_Description__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project description : text must be entered'));
-       okayToSave =false;
+        	ProjectDescriptionFlag = true;
+        	system.debug('ProjectDescriptionFlag'+ProjectDescriptionFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project description : text must be entered'));
+       //okayToSave =false;
         }
         if(jobList.Campaign_Name__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Campaign name : text must be entered'));
-       okayToSave =false;
+        	 CampaignNameFlag = true;
+        	 system.debug('CampaignNameFlag'+CampaignNameFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Campaign name : text must be entered'));
+       //okayToSave =false;
         }
         if(jobList.Target_Air_Date__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Target air date : a date must be selected from the calendar'));
-       okayToSave =false;
+        	 TargetAirDateFlag = true;
+        	  system.debug('TargetAirDateFlag'+TargetAirDateFlag);
+       // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Target air date : a date must be selected from the calendar'));
+      // okayToSave =false;
         }
      //----     
        
        
         if(jobList.Project_Leader_Cluster__c == null || jobList.Project_Leader_Country__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Location of Unilever project leader : option must be selected from both market cluster and country drop downs'));
-        okayToSave =false;
+        	 projectLeaderCountryClusterFlag = true;
+        	 system.debug('projectLeaderCountryClusterFlag'+projectLeaderCountryClusterFlag);
+       // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Location of Unilever project leader : option must be selected from both market cluster and country drop downs'));
+       // okayToSave =false;
         }
         
         if(jobList.Function_You_Are_Part__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Which function are you part of (BD/BB/Other) : option must be selected from drop down'));
-       okayToSave =false;
+        	 FunctionYouArePartFlag = true;
+       // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Which function are you part of (BD/BB/Other) : option must be selected from drop down'));
+     //  okayToSave =false;
         }
         
         if(jobList.Budget_Responsibility__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget responsibility (BD, BB, Other) : option must be selected from drop down'));
-        okayToSave =false;
+        	budgetResponsibilityFlag = true;
+        	system.debug('budgetResponsibilityFlag'+budgetResponsibilityFlag);
+       // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget responsibility (BD, BB, Other) : option must be selected from drop down'));
+       // okayToSave =false;
         }
         if(jobList.Lead_Creative_Agency_name__c == null && jobList.Lead_Agency_Name_Other__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Lead agency name : option must be selected from the drop down menu OR a name must be entered in the "Other" text box'));
-       okayToSave =false;
+       // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Lead agency name : option must be selected from the drop down menu OR a name must be entered in the "Other" text box'));
+      // okayToSave =false;
+		leadAgencyFlag = true;
+		 system.debug('leadAgencyFlag'+leadAgencyFlag);
         }
         if(jobList.Lead_Agency_Location_Cluster__c == null || jobList.Lead_Agency_Location_Country__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Lead agency location : option must be selected from both market cluster and country drop downs'));
-       okayToSave =false;
+        	 LeadAgencyClusterFlag = true; 
+        system.debug('LeadAgencyClusterFlag'+LeadAgencyClusterFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Lead agency location : option must be selected from both market cluster and country drop downs'));
+       //okayToSave =false;
         }
         system.debug('jobList.Project_Details__c!!'+jobList.Project_Details__c);
        if(String.isBlank(jobList.Project_Details__c) && String.isBlank(jobList.Project_Name_Other__c)){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project name (e.g. Apollo) : option must be selected from the drop down menu OR a name must be entered in the "Other" text box'));
-      okayToSave =false;
+       	projectDetailsFlag = true;
+       	 system.debug('projectDetailsFlag'+projectDetailsFlag);
+       // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project name (e.g. Apollo) : option must be selected from the drop down menu OR a name must be entered in the "Other" text box'));
+     // okayToSave =false;
         }
-        if(jobList.Project_Location_Cluster__c == null || jobList.Project_Location_Country__c==null){
+       /* if(jobList.Project_Location_Cluster__c == null || jobList.Project_Location_Country__c==null){
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project location : option must be selected from both market cluster and country drop downs'));
        okayToSave =false;
-        }
+        }*/
+        
         if(jobList.Production_Activity_Type__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'What type of activity will this production support? : one option must be selected from the drop down menu'));
-       okayToSave =false;
+        	productionActivityTypeFlag = true;
+        	 system.debug('productionActivityTypeFlag'+productionActivityTypeFlag);
+           //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'What type of activity will this production support? : one option must be selected from the drop down menu'));
+       //okayToSave =false;
         }
            // system.debug('jobDetails.Project_Description__c!!'+jobDetails.Project_Description__c+'jobDetails.Execution_Name__c!!'+jobDetails.Execution_Name__c);  
         
         if(String.isBlank(jobList.Project_Description__c)){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project description : text must be entered'));
-       okayToSave =false;
+        	 ProjectDescriptionFlag = true;
+        	 system.debug('ProjectDescriptionFlag'+ProjectDescriptionFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project description : text must be entered'));
+       //okayToSave =false;
         }
         
         if(String.isBlank(jobList.Execution_Name__c)){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Execution name : text must be entered'));
-      okayToSave =false;
+        	 system.debug('inside execution name==========>'+ExecutionNameFlag);
+        	 ExecutionNameFlag = true;
+        	 system.debug('inside execution name value==========>'+ExecutionNameFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Execution name : text must be entered'));
+      //okayToSave =false;
         }
 
          if(String.isBlank(jobList.Brodcast_Market__c)){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Broadcast market : one option must be selected from the drop down menu'));
-      okayToSave =false;
+         	  BrodcastMarketFlag = true;
+         	  system.debug('BrodcastMarketFlag'+BrodcastMarketFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Broadcast market : one option must be selected from the drop down menu'));
+      //okayToSave =false;
         }
 
         
         if(jobList.Require_Music__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Do you anticipate that your production will require Music? : a radio button must be selected'));
-       okayToSave =false;
+        	RequireMusicFlag = true;
+        	system.debug('RequireMusicFlag'+RequireMusicFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Do you anticipate that your production will require Music? : a radio button must be selected'));
+       //okayToSave =false;
         }
         
         if(jobList.Require_Celebrity_Talent__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Do you anticipate that your production will require Celebrity Talent? : a radio button must be selected'));
-       okayToSave =false;
+        	RequireTalentFlag = true;
+        	system.debug('RequireTalentFlag'+RequireTalentFlag);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Do you anticipate that your production will require Celebrity Talent? : a radio button must be selected'));
+      // okayToSave =false;
         }
         if(jobList.Stage_of_Production_Activity__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Current stage of your production activity : option must be selected from drop down'));
-       okayToSave =false;
+        	StageProductionActivity = true;
+        	system.debug('StageProductionActivity'+StageProductionActivity);
+        //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Current stage of your production activity : option must be selected from drop down'));
+       //okayToSave =false;
         }
         
       if(!jobList.NewOriginalMaster__c && !jobList.LanguageAdaptionMaster__c && !jobList.Create_Additional_Material__c && !jobList.ReworkExistingMaterial__c && !jobList.BuyoutsTalent__c && !jobList.BuyoutsMusic__c ){
@@ -1695,14 +1736,22 @@ public String docUploaded{get;set;}
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to Digital'));
             okayToSave =false;
         }
-        
+         
+         if( okayToSave && CheckWithCMIflag == false && yourEmailAddressFlag == false && unileverFinanceMemberEmailFlag == false && projectLeaderCountryClusterFlag == false && finalApproverMaterialEmailFlag == false && functionYouArePartFlag == false
+            	 && budgetResponsibilityFlag == false && budgetAllocatedCountryFlag == false && budgetAllocatedInputFlag == false && categoryNameFlag == false && brandPosNameFlag== false && brandNameFromPageFlag == false && agencyDirectorEmailFlag == false
+            	 && projectDescriptionFlag == false && campaignNameFlag== false && leadAgencyFlag == false && LeadAgencyClusterFlag== false && projectDetailsFlag == false && productionActivityTypeFlag == false && TargetAirDateFlag == false
+            	 && ExecutionNameFlag == false && BrodcastMarketFlag == false && RequireMusicFlag== false && RequireTalentFlag == false && StageProductionActivity == false) {
+           		validateSuccess = true;
+           		system.debug('validate inside');
+                return null;
+        }
 
        
         
-        if(okayToSave) {
+        /*if(okayToSave) {
                 validateSuccess = true;
                 return null;
-        }
+        }*/
    return null;
    }
    

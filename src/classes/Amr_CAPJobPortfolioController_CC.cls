@@ -327,7 +327,7 @@ Returns: It will return list of options.
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Lead_Creative_Agency_name__c','Lead agency name'));
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Allocated_Budget_euro__c','Allocated budget(euro)'));
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brodcast_Market__c','Broadcast market'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Production_Activity_Type__c','Production activity type'));
+        // listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Production_Activity_Type__c','Production activity type'));
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Campaign_Name__c','Campaign Name'));
          listOfSortOptions.add(new selectOption('User__c','RAP allocated'));
          listOfSortOptions.add(new selectOption('Job_Allocated__c','Accepted and email sent'));
@@ -351,11 +351,11 @@ Returns:
     jobDetailList = new list<Amr_Job_Allocation__c>();
     acceptedString='Accepted';
     cancelledString='Cancelled';
-    string soql ='select AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c != '+'\'Cancelled\' AND AM_Job_Detail__r.Job_Cancelled__c = false ';
+    string soql ='select AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c != '+'\'Cancelled\' AND AM_Job_Detail__r.Job_Cancelled__c = false ';
     system.debug('soql !!'+soql);
     //cancellation
     jobDetailCancellationList = new list<Amr_Job_Allocation__c>();
-    string soqlForCancel ='select AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c= '+'\'Cancelled\'AND AM_Job_Detail__r.Job_Cancelled__c = true ';
+    string soqlForCancel ='select AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c= '+'\'Cancelled\'AND AM_Job_Detail__r.Job_Cancelled__c = true ';
     system.debug('soqlForCancel !!'+soqlForCancel );
     
     //search
@@ -936,11 +936,11 @@ Returns: pageRef.
         }
    }
    public pageReference clearJob(){
-        	
-        	PageReference pageRef = new PageReference('/apex/Amr_CAPJobPortfolio');
-        	pageRef.setRedirect(true);
-        	return pageRef;
-        	
+            
+            PageReference pageRef = new PageReference('/apex/Amr_CAPJobPortfolio');
+            pageRef.setRedirect(true);
+            return pageRef;
+            
         return null;
         }
    
