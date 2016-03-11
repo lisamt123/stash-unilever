@@ -909,11 +909,7 @@
         <field>UID_Order_Product__c.UID_Source__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>UID_Performance_Line_Item__c.Order_RecordType__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+    
     <fieldPermissions>
         <editable>true</editable>
         <field>UID_Performance_Line_Item__c.UID_IOP_Date__c</field>
@@ -998,12 +994,7 @@
         <editable>false</editable>
         <field>UID_Performance__c.UID_Oct_IOP__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>UID_Performance__c.UID_Order_RecordType__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+    </fieldPermissions>    
     <fieldPermissions>
         <editable>false</editable>
         <field>UID_Performance__c.UID_Sep_IOP__c</field>
@@ -1153,8 +1144,7 @@
         <editable>true</editable>
         <field>UID_Stocked_Product__c.UID_Stocked_Product_External_ID__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    
+    </fieldPermissions>    
     <label>UID Uploader Permission Set</label>
     <objectPermissions>
         <allowCreate>true</allowCreate>
