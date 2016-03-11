@@ -73,8 +73,6 @@ src/components/IPM_Financial_ActionStandards.component
 src/components/IPM_Financial_ActionStandards.component-meta.xml
 src/components/IPM_Footer.component
 src/components/IPM_Footer.component-meta.xml
-src/components/IPM_Funnel.component
-src/components/IPM_Funnel.component-meta.xml
 src/components/IPM_GateCMI.component
 src/components/IPM_GateCMI.component-meta.xml
 src/components/IPM_GateCMI_Consolidated.component
