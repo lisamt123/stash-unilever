@@ -309,7 +309,7 @@
                         <div class="ipmAcrdnExpand">
                             <apex:repeat value="{!rolloutTolocalRolloutToCountryMap[regionalRolloutID]}" var="localRolloutId" >  
                             <apex:variable var="localRollout" value="{!lstcompleteRollout[localRolloutId]}" />
-                                
+                            <apex:variable var="nonKeyMcoTLDMisaligned" value="{!nonKeyMcoTLDMisalignedMap[localRollout.Regional_Rollout_External_Id__c]}" />
                                 <div class="pt20">
                                     <table class="rollouttable editable">                                 
                                         <tr>
@@ -336,7 +336,7 @@
                                             <td scope="col" width="190px">
                                                 <div class="incHeight">                                                    
                                                     <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
-                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/> 
+                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/> 
                                                 </div>
                                             </td>
                                             <td scope="col" width="100px">

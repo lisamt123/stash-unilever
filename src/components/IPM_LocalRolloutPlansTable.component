@@ -191,6 +191,7 @@ This componet used for regional rollout project
                     <apex:repeat value="{!rolloutTolocalRolloutToCountryMap}" var="localRolloutId">
                     <apex:repeat value="{!rolloutTolocalRolloutToCountryMap[localRolloutId]}" var="localRolloutDuplicateId">
                     <apex:variable var="localrollout" value="{!lstcompleteRollout[localRolloutDuplicateId]}"/>
+                    <apex:variable var="nonKeyMcoTLDMisaligned" value="{!nonKeyMcoTLDMisalignedMap[localRollout.Regional_Rollout_External_Id__c]}" />
                     <div class="projectContainer">
                         <!-- Local Rollout Header -->
                         <div class="pHead">
@@ -223,7 +224,7 @@ This componet used for regional rollout project
                                         <th scope="col" width="190px" colspan="1">
                                             <div class="incHeight">
                                                 <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
-                                                <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/>
+                                                <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}"  rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/>
                                             </div>
                                         </th>
                                        

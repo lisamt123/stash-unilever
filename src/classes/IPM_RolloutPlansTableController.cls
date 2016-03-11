@@ -41,6 +41,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public Integer rolloutCount{get; set;} // To calculate the count of rollouts to show on the page
     public Boolean isRolloutEditable{get;set;} ////If the Rollout can be edited
     public Boolean isEligibleToAddRollout {get;set;} //If the user is eligible to add Rollout
+    public Map<String,Boolean> nonKeyMcoTLDMisalignedMap {get;set;} // CR0355 - Map to capture non-key mco TLD misalignment.
     
     public Boolean isError {get; set;} //Boolean variable to indicate error on page
     public String errorMessage {get; set;} //Error Message to be displayed on the page  
@@ -112,7 +113,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     	isPLAllocated = false; 
         isEditMode = false;
         isFLAllocated=false;
-       
+        // initialisation
+       	nonKeyMcoTLDMisalignedMap = new Map<String, Boolean>();
        	if(projectTolocalRolloutToCountryMap!=null)
        	{
        		projectTolocalRolloutToCountryMap.clear();
@@ -634,6 +636,12 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 lstcompleteRollout.put(localRollout.Id,localRollout); // Add Local Rollouts to the Compltete List
             }
         }
+        // CR0355 - populate 'nonKeyMcoTLDMisalignedMap' with default values to avoid element not found exception
+         for (IPM_Project_Rollout__c localRollout : lstcompleteRollout.values()) {
+                if( nonKeyMcoTLDMisalignedMap.isEmpty() || !nonKeyMcoTLDMisalignedMap.keySet().contains(localRollout.Regional_Rollout_External_Id__c) ) {
+                	nonKeyMcoTLDMisalignedMap.put(localRollout.Regional_Rollout_External_Id__c,false);
+                }
+        }   
             
         Map<Id,List<IPM_Country__c>> localRolloutToCountryMap = getLocalRolloutToCountryMapping(localRolloutIdSet);
                   
@@ -732,6 +740,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     public PageReference saveRollout()
     {
+       // CR0355 - clear 'nonKeyMcoTLDMisalignedMap'
+       for(String key: nonKeyMcoTLDMisalignedMap.keySet()) {
+       		nonKeyMcoTLDMisalignedMap.put(key,false);
+       }
         try
         {   
             Map<Id,IPM_Project_Rollout__c> updaterolloutsMap = new Map<Id,IPM_Project_Rollout__c>();
@@ -830,6 +842,9 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                             break;
                         }       
                     }               
+                    // CR0355 implementation starts
+                    validateNonKeyMcoTLDMisalignment(updaterolloutsMap);
+                    // CR0355 implementation ends
                     
                     for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
                     {
@@ -884,6 +899,36 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             errorMessage = Label.IPM_PLEASE_CONTACT_ADMINISTRATOR;
         }
         return null;
+    }
+    /*******************************************************************************************************
+    * @description  Method to Validate Non-Key TLD misalignment
+    * @param        Updated Project rollouts
+    * @return       None
+    */
+    private void validateNonKeyMcoTLDMisalignment( Map<Id,IPM_Project_Rollout__c> updaterolloutsMap ) {
+            // The TLD misalignment check is only for Global/Regional original projects in Ideas phase
+            if( project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL||project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)) {
+                Map<String,Date> mcoTLDMap = new Map<String,Date>();
+                Date mcoTDL;
+                // iterate through rollouts
+                for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values()) {
+                    // we are interested only in non-key local rollouts
+                    if(!rollout.KeyMCO__c && rollout.IPM_Rollout_Span__c  ==IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL) {
+                    	// get the non-key local rollouts TLDs into Map with its regional external id as key
+                    	mcoTDL = mcoTLDMap.get(rollout.Regional_Rollout_External_Id__c);
+                    	if(mcoTDL==null) {
+                    		// for the first time 'mcoTLDMap' will be empty, fill it with first mco TLD
+                    		mcoTLDMap.put(rollout.Regional_Rollout_External_Id__c,rollout.Target_Launch_Date__c);
+                    		continue;
+                    	}
+                    	if(mcoTLDMap.get(rollout.Regional_Rollout_External_Id__c)!=rollout.Target_Launch_Date__c) {
+                    		// if any of the non-key local rollout TLDs are not same, raise validation error 
+                    	    nonKeyMcoTLDMisalignedMap.put(rollout.Regional_Rollout_External_Id__c,true);
+                    		validationError = Label.IPM_NonMCO_TLD_Misaligned;
+                    	}
+                    }       
+                }
+            }
     }
     
     /*******************************************************************************************************

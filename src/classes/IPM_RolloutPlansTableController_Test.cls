@@ -383,5 +383,22 @@ static testMethod void RegionalOrignalTest()
         }
      
     }
- 
+ 	public static testMethod  void testValidateNonKeyMcoTLDMisalignment() {
+        Set<String> projectNameSet = new Set<String>{TESTPROJECT};
+        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
+        System.runAs(globalUser)
+        {
+            projectList = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet for update];
+            System.assertEquals(projectList[0].IPM_Phase__c,'Ideas');
+            PageReference pageRef = new PageReference('/apex/ipm_rolloutplansadd?id='+projectList[0].Id);
+            Test.setCurrentPage(pageRef); 
+            IPM_RolloutPlansTableController irp= new IPM_RolloutPlansTableController();
+            irp.addRollout();
+            irp.saveRollout();
+            System.assert(irp.nonKeyMcoTLDMisalignedMap.size()>0);
+            for(String key: irp.nonKeyMcoTLDMisalignedMap.keySet()) {
+                System.assertEquals(false, irp.nonKeyMcoTLDMisalignedMap.get(key)); 
+            }
+         }
+ }
  }
