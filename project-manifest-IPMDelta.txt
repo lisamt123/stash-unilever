@@ -2,6 +2,6 @@ src
 src/classes
 src/classes/IPM_ProjectSearchCtrl.cls
 src/classes/IPM_ProjectSearchCtrl.cls-meta.xml
-src/pages/
+src/pages
 src/pages/IPM_ProjectSearchPage.page
 src/pages/IPM_ProjectSearchPage.page-meta.xml
