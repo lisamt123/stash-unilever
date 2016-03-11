@@ -250,7 +250,7 @@
                                 <apex:inputTextarea value="{!projectDoc.IPM_Approved_Comments__c}"/>        
                                 <apex:outputPanel layout="block" rendered="{!if(projectDoc.IPM_GateDocuments__c=='Charter',True,False)}">
                                     
-                                    <div class="col-sm-12 noPadleft noPadright appGates radioButton">
+                                    <apex:outputPanel layout="block" rendered="{!!isOperational}" styleClass="col-sm-12 noPadleft noPadright appGates radioButton">
                                         <apex:outputLabel value="{!$Label.IPM_WHO_WILL_APPROVE_CONTRACT_MR}" styleClass="bsFieldLabel setupBlock" />
                                         <div class="ipmApproveButtons gkm">
                                             <apex:selectRadio value="{!project.IPM_GateKeeping_Model__c}" >
@@ -263,7 +263,7 @@
                                         <div class="radioTooltip3 toolTipMsg approveToolTip" id="GCLT">
                                             <span>{!$Label.IPM_GCLT_AND_RCLT_ALL_APPROVAL}</span>
                                         </div>
-                                    </div>
+                                    </apex:outputPanel>
                                     <div class="col-sm-12 noPadleft noPadright radioButton">
                                         <span class="mStonequest">{!$Label.IPM_PROJECT_ROUTE} </span>
                                         <span class="mStonequest">{!$Label.IPM_SUGGEST_RIGHT_MILESTONES}</span>
