@@ -89,6 +89,11 @@ global with sharing class Core_CA_MyApprovalData {
     * @description This method convert the Core_Approver_Details__c data into wrapper format.
     * @param list of Core_Approver_Details__c 
     * @return Core_CA_WrapperUtility.ExpenseData wrapper.
+    */
+    
+     /* -- SONAR Issue explanation -- 
+       This method retrieve the data from Approval console,Approval status and line item object and bind with the wrapper class fields
+       and send to the UI. So multiple SOQL query and too many fields and multiple if condtions that is leading to Npath complexity. 
     */  
     private static List<Core_CA_WrapperUtility.ExpenseData> processExpenseData(List<Core_Approver_Details__c> lstApproverDetail){ 
         List<Core_CA_WrapperUtility.ExpenseData> lstExpenseData = new List<Core_CA_WrapperUtility.ExpenseData>();
@@ -154,7 +159,8 @@ global with sharing class Core_CA_MyApprovalData {
                          objExpensedata.ExpenseName = 'Invoice'; 
                      if(mapHeaderRecord.get(penddingExpense.Approval_Header__c).Category__c == 'CN')
                          objExpensedata.ExpenseName = 'Credit Note';    
-                     objExpensedata.RequestedBy = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Ariba_Company_Code__c;                         
+                     objExpensedata.RequestedBy = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Ariba_Company_Code__c;
+                     objExpensedata.ProjectBug = mapHeaderRecord.get(penddingExpense.Approval_Header__c).Urgency__c;                         
                  }
                  lstExpenseData.add(objExpensedata);         
              } 

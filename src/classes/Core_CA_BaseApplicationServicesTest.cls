@@ -1,6 +1,8 @@
 @isTest
 public with sharing class Core_CA_BaseApplicationServicesTest {
-    
+      /* -- SONAR Issue explanation -- 
+       This test class is calling Core_CA_BaseApplicationServices.cls that class has NPath complexity so test class is having Npath complexity.
+     */ 
      @TestVisible static String strPost= 'POST';
      
      static testmethod void invokeTest(){
@@ -86,7 +88,9 @@ public with sharing class Core_CA_BaseApplicationServicesTest {
             throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method9 ',ex);} 
         try{
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj10);
+            System.assert(Core_CA_BaseApplicationServices.invokeService(remoteServCallObj10)  == null);
             Core_CA_BaseApplicationServices.constructResponseBody(remoteServCallObj10,new Core_CA_BaseServiceException());
+            System.assert(Core_CA_BaseApplicationServices.constructResponseBody(remoteServCallObj10,new Core_CA_BaseServiceException())  != null);
         }catch(Core_CA_BaseServiceException ex)   {
             throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method10 ',ex);} 
         Test.stopTest();

@@ -9,6 +9,12 @@ Requirement/Description: This is a handler class which executes from trigger, Th
                         3. Trigger notification -after insert & after update
 */
 
+/* -- SONAR Issue explanation -- 
+    This is Handler class for the Trigger written on Approval Status object.When bunch of records are inserted by the external system with as a non-admin user, and If we use 'Sharing' keyword for this class.    
+    For EntitySubscription SOQL max we can extract 1000 records as a non admin user but the query return more than 1000 records and we cannot exclude other records. We have included the Where cluase already. And following error is thrown     
+    System.QueryException: Implementation restriction: EntitySubscription only allows security evaluation for non-admin users when LIMIT is specified and at most 1000
+*/
+ 
 public class Core_CA_InterestedParty_Handler{
     
     public static String strAribaTemp ='Ariba';
@@ -853,6 +859,12 @@ public class Core_CA_InterestedParty_Handler{
     
       }
     }
+    
+     /* -- SONAR Issue explanation -- 
+      This is handler class for trigger written for AfterInsert instance of Approval Console.
+      Which has Follow/Unfollow logic, Apex sharing and Chatter notification code. 
+      So multiple If else condition inside for loop to create chatter notification and multiple SOQL, DML are written thats leading to the Npath Complexity.  
+    */
     public void handleAfterDelete (List<Core_Approver_Details__c > approverList){
         try{
         List<feeditem> lstFeedItem=new List<feeditem>();

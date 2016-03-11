@@ -45,8 +45,8 @@
         <label class="detailPageHeaderText" ng-if="approvalRequestData.RequestType == 'Invoice'" ng-init="true">{{approvalRequestData.PreparedBy}}</label>
         &nbsp;&nbsp;&nbsp;
         
-        <label class="detailPageHeaderText" ng-if="approvalRequestData.RequestType != 'Clarity'"> {{approvalRequestData.Currencies}} {{approvalRequestData.TotalAmount}}</label>
-        <label class="detailPageHeaderText" ng-if="approvalRequestData.RequestType == 'Clarity'"> {{approvalRequestData.Currencies}} {{approvalRequestData.ProjectBug}}</label>
+        <label class="detailPageHeaderText" ng-if="approvalRequestData.RequestType == 'Purchase Request' || approvalRequestData.RequestType == 'Expense'"> {{approvalRequestData.Currencies}} {{approvalRequestData.TotalAmount}}</label>
+        <label class="detailPageHeaderText" ng-if="approvalRequestData.RequestType == 'Clarity' || approvalRequestData.RequestType == 'Invoice'"> {{approvalRequestData.Currencies}} {{approvalRequestData.ProjectBug}}</label>      
         <br/>
     </div>
     <div ng-if='approvalRequestData.accessStatus == false' class="defaultLeftSpace">
@@ -537,7 +537,7 @@
                                             <td class="responsiveDetailSectionTableRowLabel">{{'LBL_PREVIOUSLY_APPROVED_BUDGET' | translate}}</td>
                                         </tr>
                                         <tr>
-                                            <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.ChargeTo | replaceNullValue}}</td>
+                                            <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.ChargeTo != null"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.ChargeTo | replaceNullValue}}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -575,7 +575,7 @@
                                                     <td class="responsiveDetailSectionTableRowLabel">{{'LBL_TOTAL_PROPOSED_BUDGET' | translate}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Comments | replaceNullValue}}</td>
+                                                    <td class="responsiveDetailSectionTableRowValue"> <label ng-if="approvalRequestData.Comments != null"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.Comments | replaceNullValue}}</td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -585,7 +585,7 @@
                                                     <td class="responsiveDetailSectionTableRowLabel">{{'LBL_TOTAL_PROPOSED_BUDGET_IPIX_BUSINESS_INVESTMENT' | translate}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.AmountToCompany | replaceNullValue}}</td>
+                                                    <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.AmountToCompany != null"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.AmountToCompany | replaceNullValue}}</td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -691,11 +691,11 @@
                                 <tr>
                                     <td class="mediumWidth fixed-nav-bar-padding">
                                         <div class="fieldLabel"> {{'LBL_INV_TOTAL_AMOUNT_INCL_TAX' | translate}} </div>
-                                        <div class="fieldValue"> {{approvalRequestData.Currencies}} {{approvalRequestData.TotalAmount}} </div>
+                                        <div class="fieldValue"> {{approvalRequestData.Currencies}} {{approvalRequestData.ProjectBug}} </div>
                                     </td>
                                     <td class="mediumWidth fixed-nav-bar-padding">
                                         <div class="fieldLabel"> {{'LBL_INV_TAX' | translate}} </div>
-                                        <div class="fieldValue"> {{approvalRequestData.Currencies}} {{approvalRequestData.AdvanceAmount}} </div>
+                                        <div class="fieldValue"> {{approvalRequestData.Currencies}} {{approvalRequestData.RequestedByLang}} </div>
                                     </td>
                                 </tr>
                             </table>
@@ -737,7 +737,7 @@
                                         <span class="textLinkExpenceNameTruncate">{{approvalRequestLineItems.ItemName}}</span>
                                     </td>
                                     <td id="defaultTopSpace" class="alignRight">
-                                        <span class="fieldValue">{{approvalRequestLineItems.Currencies}}&nbsp;{{approvalRequestLineItems.Amount}}</span>
+                                        <span class="fieldValue">{{approvalRequestLineItems.Currencies}}&nbsp;{{approvalRequestLineItems.NetAmount}}</span>
                                     </td>
                                 </tr>
                             </table>

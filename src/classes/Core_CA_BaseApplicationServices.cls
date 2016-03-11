@@ -7,7 +7,13 @@
 */
 @RestResource (urlMapping='/AppService/*')
 global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationServices{
-
+    
+    /* -- SONAR Issue explanation -- 
+       This class is called from Core_CA_RemoteServiceCallController which Accept the request JSON from the UI and the required apex
+       method will be called and the Response JSON will be sent, to differentiate which method to be called according to the JSON value 
+       there are multiple if and else condtion and it has code for MyApproval App and Ideation APP thats leading to the Npath complexity.
+    */
+    
     @HttpPost
     webservice static Core_CA_BaseApplicationWrapper invokeService(Core_CA_ApplicationWrapper appWrapperObj){
 

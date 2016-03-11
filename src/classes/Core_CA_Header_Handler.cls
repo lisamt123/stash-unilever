@@ -9,6 +9,11 @@
                            3. Trigger notification -after update
 */
 
+ /* -- SONAR Issue explanation -- 
+    This is Handler class for the Trigger written on Approval console object.When bunch of records are inserted by the external system with as a non-admin user, and If we use 'Sharing' keyword for this class.    
+    For EntitySubscription SOQL max we can extract 1000 records as a non admin user but the query return more than 1000 records and we cannot exclude other records. We have included the Where cluase already. And following error is thrown     
+    System.QueryException: Implementation restriction: EntitySubscription only allows security evaluation for non-admin users when LIMIT is specified and at most 1000
+ */  
 public class Core_CA_Header_Handler{
 
     public void handleBeforeInsert(List<Core_Approval_Header__c > headerList){
@@ -36,6 +41,11 @@ public class Core_CA_Header_Handler{
         }
     }
     
+    /* -- SONAR Issue explanation -- 
+      This is handler class for trigger written for AfterInsert instance of Approval Console.
+      Which has Follow/Unfollow logic, Apex sharing and Chatter notification code. 
+      So multiple If else condition inside for loop to create chatter notification and multiple SOQL, DML are written thats leading to the Npath Complexity.  
+    */
     public void handleAfterInsert(List<Core_Approval_Header__c > headerList){
         try{
         List<Core_Approval_Header__Share> lstShareHeader=new List<Core_Approval_Header__Share>();
@@ -239,6 +249,12 @@ public class Core_CA_Header_Handler{
     
       }
     }
+    
+    /* -- SONAR Issue explanation -- 
+      This is handler class for trigger written for AfterUpdate instance of Approval Console.
+      Which has Follow/Unfollow logic, Apex sharing and Chatter notification code. 
+      So multiple If else condition inside for loop to create chatter notification and multiple SOQL, DML are written thats leading to the Npath Complexity.  
+    */
     
     public void handleAfterUpdate(map<Id,Core_Approval_Header__c> headerNew, map<Id,Core_Approval_Header__c> headerOld){
         try{

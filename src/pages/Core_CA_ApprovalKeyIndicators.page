@@ -61,7 +61,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel">{{'LBL_NPV_FIVE_YEARS' | translate}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestedByLang.split(',')[3] | replaceNullValue}}</td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.RequestedByLang.split(',')[3]  != '' && approvalRequestData.RequestedByLang.split(',')[3]  != null "> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.RequestedByLang.split(',')[3] | replaceNullValue}}</td>
                             </tr>
                         </table>
                     </div>
@@ -73,17 +73,17 @@
                                 <td class="responsiveDetailSectionTableRowLabel">{{'LBL_NPV_SEVEN_YEARS' | translate}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestedByLang.split(',')[4] | replaceNullValue}}</td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.RequestedByLang.split(',')[4] !='' && approvalRequestData.RequestedByLang.split(',')[4] !=null "> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.RequestedByLang.split(',')[4] | replaceNullValue}}</td>
                             </tr>
                         </table>
                     </div>
                     <div class="responsiveDetailSectionData">
                         <table class="responsiveDetailSectionTable">
                             <tr>
-                                <td class="responsiveDetailSectionTableRowLabel">{{'LBL_DCF_NPV_TEN_YEARS' | translate}}</td>
+                                <td class="responsiveDetailSectionTableRowLabel">NPV – 10 Years</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.RequestedByLang.split(',')[5] | replaceNullValue}}</td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.RequestedByLang.split(',')[5] != '' && approvalRequestData.RequestedByLang.split(',')[5] != null"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.RequestedByLang.split(',')[5] | replaceNullValue}}</td>
                             </tr>
                         </table>
                     </div>
