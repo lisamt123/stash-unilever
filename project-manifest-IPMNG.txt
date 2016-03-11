@@ -184,6 +184,7 @@ src/objects/IPM_Project_Type__c.object
 src/objects/IPM_Project__c.object
 src/objects/IPM_ProjectMetadata__c.object
 src/objects/IPM_Analytics__c.object
+src/objects/IPM_Project_Rollout__c.object
 src/components
 src/components/IPM_AssortmentStrategy.component
 src/components/IPM_AssortmentStrategy.component-meta.xml
