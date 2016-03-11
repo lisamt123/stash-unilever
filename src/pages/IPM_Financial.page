@@ -162,7 +162,7 @@
                                                                 <li role="presentation" class="tabOdd active">
                                                                     <a href="#myView" aria-controls="myView" role="tab" data-toggle="tab" onclick="changeTabs('myview');">
                                                                     <span title="{!IF (project.IPMProject_Span__c=='Local',$Label.IPM_THIS_SHOWS_THE_FULL_BUSINESS_BB,
-                                                                      (IF(project.IPMProject_Span__c=='Regional',$Label.IPM_THIS_VIEW_SHOWS,$Label.IPM_THE_SELECTION_HERE_DOES_NOT)))}">{!tabLabelMyView}</span></a>
+                                                                      (IF(project.IPMProject_Span__c=='Regional',$Label.IPM_THIS_VIEW_SHOWS,'')))}">{!tabLabelMyView}</span></a>
                                                                 </li>
                                                                 <!-- Rendered when controller's showTopDownTab is true ie when user clicks on TopDown TAB -->
                                                                 <apex:outputText rendered="{!showTopDownTab}">
@@ -305,7 +305,11 @@
                                                             
                                                              <apex:outputText rendered="{!AND((associatedCountryList.size >0))}">
                                                              <div class="countryListDiv">
-                                                                <apex:outputPanel styleClass="countryLabel" rendered="{!associatedCountryList.size >0 }">{!$Label.IPM_RolloutCountriesLabel}</apex:outputPanel>
+                                                                <apex:outputPanel styleClass="countryLabel" rendered="{!associatedCountryList.size >0 }">{!$Label.IPM_RolloutCountriesLabel}
+                                                                <span class="SecButtonSet infoMarTop">
+                                                 						<a class="icoButton info smalllinfo" title="{!$Label.IPM_THE_SELECTION_HERE_DOES_NOT}"></a>
+                                            					 </span>
+                                                                </apex:outputPanel>
                                                                     <div class="countryCheckList clearfix">
                                                                         <apex:variable value="{!1}" var="rowNum"/>
                                                                         <apex:repeat value="{!associatedCountryList}" var="clist" rendered="{!associatedCountryList.size >0}" >
