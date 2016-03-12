@@ -689,7 +689,7 @@
                                                     <div class="row">    
                                                         <div class="col-sm-12">
                                                             <span class="skipDesc">
-                                                                    <c:BET_UpsertBET ProjectId="{!ProjectId}" Project_name="{!project.name}" Category_name="{!CategoryGroupId}" category="{!categryId}" Brand_Position="{!BrandPositionId}" OwnerId="{!project.IPM_Project_Leader__c}" TLD="{!project.IPM_Target_Launch_Dates__c}" Description="{!project.IPM_Project_Description__c}" callback="{!URLFOR('/apex/IPM_BETSuggestedMembers?id=' +projectId+'&showMembers=true&BETId=')}"   CallbackSkip="{!URLFOR('/apex/ipm_projectoverview?id=' +projectId)}" />                                                                    
+                                                                    <c:BET_UpsertBET ProjectId="{!ProjectId}" Project_name="{!project.IPM_Project_Name__c}" Category_name="{!CategoryGroupId}" category="{!categryId}" Brand_Position="{!BrandPositionId}" OwnerId="{!project.IPM_Project_Leader__c}" TLD="{!project.IPM_Target_Launch_Dates__c}" Description="{!project.IPM_Project_Description__c}" callback="{!URLFOR('/apex/IPM_BETSuggestedMembers?id=' +projectId+'&showMembers=true&BETId=')}"   CallbackSkip="{!URLFOR('/apex/ipm_projectoverview?id=' +projectId)}" />                                                                    
                                                             </span>
                                                         </div>            
                                                     </div>  

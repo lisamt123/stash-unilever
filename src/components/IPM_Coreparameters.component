@@ -614,8 +614,11 @@
                                                                 </apex:outputPanel>
                                                             </apex:outputPanel>
                                                         </apex:outputPanel>
+                                                    </div>
+                                                </apex:outputPanel>
+												<div class="col-sm-12 toolkitContainer noPadleft">
                                                         <!-- If bLinkBET attribute is false, the below panel will be diplayed  -->
-                                                        <apex:outputPanel rendered="{!!bLinkBET }">
+                                                        <apex:outputPanel rendered="{!AND(IPM_Coreparameter.IPM_BET_Toolkit__c!=$Label.IPM_BET_NoBET, !bLinkBET)}">
                                                             <apex:outputText value="{!PreSelectedBet.betName}" />
 
                                                             <!--this is trigger point of pop up --->
@@ -633,7 +636,6 @@
                                                         </apex:outputPanel>
                                                     </div>
 
-                                                </apex:outputPanel>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
 
