@@ -244,6 +244,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Company_Priority__c</fullName>
+        <description>To hold Company Priority</description>
+        <externalId>false</externalId>
+        <label>Company Priority</label>
+        <length>25</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Company__c</fullName>
         <description>Company Name</description>
         <externalId>false</externalId>
@@ -315,6 +326,18 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_Exemptfrom_Threshold__c</fullName>
+        <description>Exempt From Threshold - Formula field (Yes/ NO)</description>
+        <externalId>false</externalId>
+        <formula>IF(IPM_Exempt_from_Threshold__c = true, &apos;Yes&apos;, &apos;No&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Exempt from Threshold</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Expected_Charter_Approval_Date__c</fullName>
         <description>Expected Charter Approval Date</description>
         <externalId>false</externalId>
@@ -356,6 +379,17 @@
         <externalId>false</externalId>
         <label>IPM_External_ID</label>
         <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Fast_Track_Project__c</fullName>
+        <description>To indicate Project is Fast Track or Not</description>
+        <externalId>false</externalId>
+        <label>Fast Track</label>
+        <length>10</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -494,6 +528,17 @@
         <externalId>false</externalId>
         <label>IPM IC NBU</label>
         <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Key_NonKey__c</fullName>
+        <description>To indicate KeyMCO or not</description>
+        <externalId>false</externalId>
+        <label>Key/NonKey</label>
+        <length>3</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -669,6 +714,17 @@
         <externalId>false</externalId>
         <label>IPM Status</label>
         <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Stopped__c</fullName>
+        <description>To Indicate whether project is stopped or not</description>
+        <externalId>false</externalId>
+        <label>Stopped</label>
+        <length>3</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

@@ -196,6 +196,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Global_OR_Regional__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+	NOT(ISBLANK(IPM_Project__r.Name)), IPM_Project__r.IPM_Global_OR_Regional__c, 
+	false
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Global OR Regional</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_Local_Rollout_Status__c</fullName>
         <externalId>false</externalId>
         <label>Local Rollout Status</label>
@@ -209,6 +222,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Parent_Project_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(TEXT(IPM_Rollout_Span__c) = &apos;Regional&apos; ,IPM_Project__r.Name, IF( Regional_Project__c &lt;&gt; null, Regional_Project__r.Name , Regional_Rollout__r.Name ))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Parent Project Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_PhaseChangeQueueJobId__c</fullName>
@@ -500,6 +525,28 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Local_Rollout_Phase__c</fullName>
+        <description>phase of local rollout</description>
+        <externalId>false</externalId>
+        <formula>if(RecordType.Name =&quot;Local Rollouts&quot;,
+  if(isblank( Local_Project__c) ,
+     CASE(Regional_Rollout_Phase__c,
+     &quot;Market Ready&quot;, &quot;Feasibility&quot;,
+     &quot;Market Deployment&quot;,&quot;Feasibility&quot;,
+     &quot;PLE&quot;,&quot;Feasibility&quot;
+     ,Global_Project_Phase__c) ,
+   text( Local_Project__r.IPM_Phase__c )
+   )
+,&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Local Rollout Phase</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>MCO_Name__c</fullName>
         <externalId>false</externalId>
         <label>MCO Name</label>
@@ -635,6 +682,25 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Regional_Rollout_Phase__c</fullName>
+        <description>Phase of Regional Rollout</description>
+        <externalId>false</externalId>
+        <formula>if(RecordType.Name =&quot;Regional Rollout&quot;, 
+if(isblank(Regional_Project__c), 
+Case(Global_Project_Phase__c,
+&quot;Ideas&quot;,&quot;Ideas&quot;,
+&quot;Feasibility&quot;) 
+,text( Regional_Project__r.IPM_Phase__c )) 
+,&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Regional Rollout Phase</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Regional_Rollout__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -646,6 +712,57 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Target_LaunchMonth__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MONTH(Target_Launch_Date__c), 
+
+1, &quot;January&quot;, 
+
+2, &quot;February&quot;, 
+
+3, &quot;March&quot;, 
+
+4, &quot;April&quot;, 
+
+5, &quot;May&quot;, 
+
+6, &quot;June&quot;, 
+
+7, &quot;July&quot;, 
+
+8, &quot;August&quot;, 
+
+9, &quot;September&quot;, 
+
+10, &quot;October&quot;, 
+
+11, &quot;November&quot;, 
+
+12, &quot;December&quot;, 
+
+&quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Launch Month</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Target_LaunchYear__c</fullName>
+        <description>Year</description>
+        <externalId>false</externalId>
+        <formula>TEXT(YEAR(Target_Launch_Date__c))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Target Launch Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Target_Launch_Date__c</fullName>

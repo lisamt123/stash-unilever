@@ -499,6 +499,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Global OR Regional --></label>
+        <name>IPM_Global_OR_Regional__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Global ProjectId --></label>
         <name>IPM_Global_ProjectId__c</name>
     </fields>
