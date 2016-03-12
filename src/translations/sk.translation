@@ -8736,6 +8736,10 @@
                 <name>Exempt from Threshold</name>
             </columns>
             <columns>
+                <label><!-- Exempt from Threshold --></label>
+                <name>Exempt from Threshold</name>
+            </columns>
+            <columns>
                 <label><!-- Expected Charter Approval  --></label>
                 <name>Expected Charter Approval </name>
             </columns>
