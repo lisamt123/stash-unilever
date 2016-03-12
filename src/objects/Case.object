@@ -3758,7 +3758,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New</value>
+            <value>New,Escalated</value>
         </filters>
         <filters>
             <field>CASES.SUBJECT</field>
@@ -3798,7 +3798,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New</value>
+            <value>,New,Escalated</value>
         </filters>
         <filters>
             <field>CASES.SUBJECT</field>
@@ -3879,7 +3879,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New</value>
+            <value>,New,Escalated</value>
         </filters>
         <filters>
             <field>Brand__c</field>
@@ -4797,6 +4797,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>Case_Brand__c</columns>
         <columns>Country__c</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE_DATE_ONLY</columns>
         <columns>CASES.STATUS</columns>
         <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
@@ -4991,6 +4992,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>Case_Brand__c</columns>
         <columns>Country__c</columns>
         <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <columns>CASES.STATUS</columns>
         <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
@@ -5728,6 +5730,23 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Mine</filterScope>
         <label>My Cases</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Open_Cases</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>My Open Cases - DO NOT EDIT</label>
         <language>en_US</language>
     </listViews>
     <listViews>

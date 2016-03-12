@@ -81,6 +81,10 @@
         <name>IPM_Cluster_Project__c</name>
     </fields>
     <fields>
+        <label><!-- Company Priority --></label>
+        <name>IPM_Company_Priority__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Company --></label>
         <name>IPM_Company__c</name>
     </fields>
@@ -109,6 +113,10 @@
         <name>IPM_Exempt_from_Threshold__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Exempt from Threshold --></label>
+        <name>IPM_Exemptfrom_Threshold__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Expected Charter Approval Date --></label>
         <name>IPM_Expected_Charter_Approval_Date__c</name>
     </fields>
@@ -127,6 +135,10 @@
     <fields>
         <label><!-- IPM_External_ID --></label>
         <name>IPM_External_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fast Track --></label>
+        <name>IPM_Fast_Track_Project__c</name>
     </fields>
     <fields>
         <label><!-- IPM Finance Member --></label>
@@ -175,6 +187,10 @@
     <fields>
         <label><!-- IPM IC NBU --></label>
         <name>IPM_IC_NBU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key/NonKey --></label>
+        <name>IPM_Key_NonKey__c</name>
     </fields>
     <fields>
         <label><!-- IPM Market Cluster --></label>
@@ -243,6 +259,10 @@
     <fields>
         <label><!-- IPM Status --></label>
         <name>IPM_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stopped --></label>
+        <name>IPM_Stopped__c</name>
     </fields>
     <fields>
         <label><!-- IPM Strategic Intent --></label>

@@ -131,6 +131,12 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>Exempt from Threshold</displayNameOverride>
+            <field>IPM_Exemptfrom_Threshold__c</field>
+            <table>IPM_Analytics__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Exempt from Threshold</displayNameOverride>
             <field>IPM_Exempt_from_Threshold__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
@@ -176,8 +182,18 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Fast_Track_Project__c</field>
+            <table>IPM_Analytics__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>Geography</displayNameOverride>
             <field>IPM_Geography__c</field>
+            <table>IPM_Analytics__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Company_Priority__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
         <columns>
@@ -332,6 +348,11 @@
             <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>iGP 2021 (BD)</displayNameOverride>
             <field>IPM_iGP_Y8_BD__c</field>
+            <table>IPM_Analytics__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Stopped__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
         <columns>
@@ -539,6 +560,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>LastModifiedDate</field>
+            <table>IPM_Analytics__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>IPM_Key_NonKey__c</field>
             <table>IPM_Analytics__c</table>
         </columns>
         <columns>
