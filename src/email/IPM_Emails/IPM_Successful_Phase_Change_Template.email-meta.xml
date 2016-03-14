@@ -16,6 +16,6 @@ Project Name: {!IPM_Project__c.IPM_Project_Name__c}
 Current Phase: {!IPM_Project__c.IPM_Phase__c}
 
 
-{!IPM_Project__c.IPMProjectBaseURL__c}</textOnly>
+{!IPM_Project__c.IPM_Org_Base_URL__c}apex/IPM_ProjectOverview?id={!IPM_Project__c.Id}</textOnly>
     <type>html</type>
 </EmailTemplate>

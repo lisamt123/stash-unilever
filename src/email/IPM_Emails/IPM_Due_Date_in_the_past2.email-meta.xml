@@ -10,7 +10,7 @@
 
 This is a reminder that your expected {!IPM_Milestone__c.IPM_Type_of_gate__c} gate approval date for {!IPM_Milestone__c.IPM_Project_Name__c} has passed with no {!IPM_Milestone__c.IPM_Type_of_gate__c} approval in IPM Navigator.
 You need to take one of the following actions in IPM Navigator:
-1) Approve Contract
+1) Approve {!IPM_Milestone__c.IPM_Type_of_gate__c}
 2) Archive Project
 3) Update the expected {!IPM_Milestone__c.IPM_Type_of_gate__c} approval date in the Milestones table and state the reason for the change in the OTIF summary box.
 You will receive weekly reminders until you have taken appropriate action in IPM Navigator.</textOnly>
