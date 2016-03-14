@@ -58,15 +58,15 @@ private class VEP_VisitorStatus_Test{
         Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[0].VEP_number__c);
         Apexpages.currentpage().getparameters().put('LodgingStatus',sApproved);
         VEP_VisitorStatus_CC vStatus6 = new VEP_VisitorStatus_CC();
-        vStatus6.displayMsg();
-        VEP_Visitor__c vl = [select id,Lodging_Approval_Status__c,Travel_Approval_Status__c  from VEP_Visitor__c where VEP_number__c=: vStatus6.visitorId];
-        System.assertEquals(vl.Lodging_Approval_Status__c , vStatus6.LodgingStatus);
+        vStatus6.displayMsg();                      
         System.assertEquals(vStatus6.message, 'Lodging request is Approved Visitor will be notified by an email');
-        
+        System.assertEquals(sApproved, [select Lodging_Approval_Status__c,id from VEP_Visitor__c where VEP_number__c=: vStatus6.visitorId].Lodging_Approval_Status__c);
+
+
         Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[1].VEP_number__c);
         Apexpages.currentpage().getparameters().put('LodgingStatus',sApproved);
-        VEP_VisitorStatus_CC vStatus7 = new VEP_VisitorStatus_CC();
-        System.assertEquals(listVisitorQ[1].Lodging_Approval_Status__c, vStatus7.LodgingStatus);
+        VEP_VisitorStatus_CC vStatus7 = new VEP_VisitorStatus_CC(); 
+        system.assert(vStatus7.visitorid!=null);       
         vStatus7.displayMsg();        
         System.assertEquals(vStatus7.message, 'Lodging request is already Approved');
         

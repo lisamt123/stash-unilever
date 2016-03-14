@@ -11,7 +11,7 @@ public with sharing class VEP_VisitorPassonBehalf {
     
     public VEP_Visitor_Pass__c getVisitorDetail() {
     VEP_Visitor_Pass__c v = new VEP_Visitor_Pass__c();
-    v = [Select id,name from VEP_Visitor_Pass__c where Visitor__c =: VisitorId Limit 1];
+    v = [Select id,name,visitor__r.name,visitor__c from VEP_Visitor_Pass__c where Visitor__c =: VisitorId Limit 1];
     return v;
 }
     

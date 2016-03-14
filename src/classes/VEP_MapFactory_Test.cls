@@ -32,6 +32,7 @@ private class VEP_MapFactory_Test{
         insert listvisitor;
         
         Test.startTest();
+        
         VEP_MapFactory_CC mapfact = new VEP_MapFactory_CC();                      
         mapfact.factname=Factoryname;        
         mapfact.StateFactoryList();
@@ -40,8 +41,9 @@ private class VEP_MapFactory_Test{
                                              
         VEP_MapFactory_CC mapfact1 = new VEP_MapFactory_CC();        
         mapfact1.targetField = fact.id;
+        System.assert(mapfact1.targetField != null);
         mapfact1.SearchFactoryList();
-        System.assertEquals(Factoryname, mapfact1.factoryDetails.name);
+        System.assertEquals('Factory1', mapfact1.factoryDetails.name);
         System.assertEquals(1, mapfact1.factoryList.size());
         mapfact1.factname='';
         mapfact1.StateFactoryList();
