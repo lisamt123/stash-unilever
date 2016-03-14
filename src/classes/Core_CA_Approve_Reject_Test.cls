@@ -45,7 +45,7 @@ public class Core_CA_Approve_Reject_Test{
     
     //This method covers the controller class of approve action for header object
     static testmethod void TestHeaderApprove(){
-        test.starttest();
+       
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba1',Source_System__c=strAriba);
         insert headerObj;
         System.assert(headerObj!= null);
@@ -63,6 +63,7 @@ public class Core_CA_Approve_Reject_Test{
         insert approverObj3;
         System.assert(approverObj3!= null);
         
+        test.starttest();
         Apexpages.currentPage().getParameters().put('id',headerObj.id);
         ApexPages.StandardController sc = new ApexPages.standardController(headerObj);
         Core_CA_HeaderApproveController headerApproveCont=new Core_CA_HeaderApproveController(sc);
@@ -81,7 +82,7 @@ public class Core_CA_Approve_Reject_Test{
     
     //This method covers the controller class of reject action for header object
     static testmethod void TestHeaderReject(){
-        test.starttest();
+        
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba3',Source_System__c=strAriba);
         insert headerObj;
         System.assert(headerObj!= null);
@@ -99,6 +100,7 @@ public class Core_CA_Approve_Reject_Test{
         insert approverObj3;
         System.assert(approverObj3!= null);
         
+        test.starttest();
         Apexpages.currentPage().getParameters().put('id',headerObj.id);
         ApexPages.StandardController sc = new ApexPages.standardController(headerObj);
         Core_CA_HeaderRejectController headerRejectCont=new Core_CA_HeaderRejectController(sc);
@@ -117,7 +119,7 @@ public class Core_CA_Approve_Reject_Test{
     
     //This method covers the controller class of approve action for Interested Party object
     static testmethod void TestApproverApprove(){
-        test.starttest();
+        
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba5',Source_System__c=strAriba);
         insert headerObj;
         System.assert(headerObj!= null);
@@ -125,6 +127,7 @@ public class Core_CA_Approve_Reject_Test{
         insert approverObj;
         System.assert(approverObj!= null);
         
+        test.starttest();
         Apexpages.currentPage().getParameters().put('id',approverObj.id);
         ApexPages.StandardController sc = new ApexPages.standardController(approverObj);
         Core_CA_Approver_ApproveController approverApproveCont=new Core_CA_Approver_ApproveController(sc);
@@ -139,7 +142,7 @@ public class Core_CA_Approve_Reject_Test{
     
     //This method covers the controller class of reject action for Interested Party object
     static testmethod  void TestApproverReject(){
-        test.starttest();
+        
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba6',Source_System__c=strAriba);
         insert headerObj;
         System.assert(headerObj!= null);
@@ -147,6 +150,7 @@ public class Core_CA_Approve_Reject_Test{
         insert approverObj;
         System.assert(approverObj!= null);
         
+        test.starttest();
         Apexpages.currentPage().getParameters().put('id',approverObj.id);
         ApexPages.StandardController sc = new ApexPages.standardController(approverObj);
         Core_CA_Approver_RejectController approverRejectCont=new Core_CA_Approver_RejectController(sc);
@@ -161,7 +165,7 @@ public class Core_CA_Approve_Reject_Test{
     
     //This method covers the controller class of approve action for line object
     static testmethod  void TestLineApprove(){
-        test.starttest();
+        
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba7',Source_System__c=strAriba);
         insert headerObj;
         System.assert(headerObj!= null);
@@ -185,6 +189,7 @@ public class Core_CA_Approve_Reject_Test{
         insert approverObj3;
         System.assert(approverObj3!= null);
         
+        test.starttest();
         Apexpages.currentPage().getParameters().put('id',lineObj.id);
         ApexPages.StandardController sc = new ApexPages.standardController(lineObj);
         Core_CA_Line_ApproveController lineApproveCont=new Core_CA_Line_ApproveController(sc);
@@ -203,7 +208,7 @@ public class Core_CA_Approve_Reject_Test{
     
     //This method covers the controller class of reject action for line object
     static testmethod void TestLineReject(){
-        test.starttest();
+        
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name='Test Ariba9',Source_System__c=strAriba);
         insert headerObj;
         System.assert(headerObj!= null);
@@ -227,6 +232,7 @@ public class Core_CA_Approve_Reject_Test{
         insert approverObj3;
         System.assert(approverObj3!= null);
         
+        test.starttest();
         Apexpages.currentPage().getParameters().put('id',lineObj.id);
         ApexPages.StandardController sc = new ApexPages.standardController(lineObj);
         Core_CA_Line_RejectController lineRejectCont=new Core_CA_Line_RejectController(sc);
@@ -234,12 +240,14 @@ public class Core_CA_Approve_Reject_Test{
         lineRejectCont.submitComments();
         lineRejectCont.approverComments='fhpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpohoihpopohpoho';
         lineRejectCont.submitComments();
+        System.assert(lineRejectCont!= null);
         
         Apexpages.currentPage().getParameters().put('id',lineObj1.id);
         ApexPages.StandardController sc1 = new ApexPages.standardController(lineObj1);
         Core_CA_Line_RejectController lineRejectCont1=new Core_CA_Line_RejectController(sc1);
         lineRejectCont1.approverComments=strStatusRejected;
         lineRejectCont1.submitComments();
+        System.assert(lineRejectCont1!= null);
         test.stoptest();
     }
 }

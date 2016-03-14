@@ -1,6 +1,8 @@
 @isTest
 public with sharing class Core_CA_BaseApplicationServicesTest {
-    
+      /* -- SONAR Issue explanation -- 
+       This test class is calling Core_CA_BaseApplicationServices.cls that class has NPath complexity so test class is having Npath complexity.
+     */ 
      @TestVisible static String strPost= 'POST';
      
      static testmethod void invokeTest(){
@@ -38,46 +40,57 @@ public with sharing class Core_CA_BaseApplicationServicesTest {
         Test.startTest();
         try{
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj);
+            System.assert(Core_CA_BaseApplicationServices.invokeService(remoteServCallObj)  == null);
         }catch(Core_CA_BaseServiceException ex)   {
             throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method1 ',ex);} 
         try{
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj2);
+            System.assert(Core_CA_BaseApplicationServices.invokeService(remoteServCallObj2)  == null);
             }catch(Core_CA_BaseServiceException ex)   {
                 throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method2 ',ex);}
         try{
             
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj3);
+            System.assert(Core_CA_BaseApplicationServices.invokeService(remoteServCallObj3)  == null);
             }catch(Core_CA_BaseServiceException ex)   {
                 throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method3 ',ex);}
         try{
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj4);
+            System.assert(Core_CA_BaseApplicationServices.invokeService(remoteServCallObj4)  == null);
         }catch(Core_CA_BaseServiceException ex)   {
             throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method4 ',ex);}
             
         try{
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj5);
+            System.assert(Core_CA_BaseApplicationServices.invokeService(remoteServCallObj5)  == null);
         }catch(Core_CA_BaseServiceException ex)   {
             throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method5 ',ex);}
             
         try{
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj6);
+            System.assert(Core_CA_BaseApplicationServices.invokeService(remoteServCallObj6)  == null);
         }catch(Core_CA_BaseServiceException ex)   {
             throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method6 ',ex);}
         try{
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj7);
+            System.assert(Core_CA_BaseApplicationServices.invokeService(remoteServCallObj7)  == null);
         }catch(Core_CA_BaseServiceException ex)   {
             throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method7 ',ex);}
         try{
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj8);
+            System.assert(Core_CA_BaseApplicationServices.invokeService(remoteServCallObj8)  == null);
         }catch(Core_CA_BaseServiceException ex)   {
             throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method8 ',ex);} 
         try{
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj9);
+            System.assert(Core_CA_BaseApplicationServices.invokeService(remoteServCallObj9)  == null);
         }catch(Core_CA_BaseServiceException ex)   {
             throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method9 ',ex);} 
         try{
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj10);
+            System.assert(Core_CA_BaseApplicationServices.invokeService(remoteServCallObj10)  == null);
             Core_CA_BaseApplicationServices.constructResponseBody(remoteServCallObj10,new Core_CA_BaseServiceException());
+            System.assert(Core_CA_BaseApplicationServices.constructResponseBody(remoteServCallObj10,new Core_CA_BaseServiceException())  != null);
         }catch(Core_CA_BaseServiceException ex)   {
             throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method10 ',ex);} 
         Test.stopTest();

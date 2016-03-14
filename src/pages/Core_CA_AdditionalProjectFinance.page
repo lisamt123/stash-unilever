@@ -33,7 +33,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel"> {{'LBL_TRADE_ID' | translate}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue"> {{approvalRequestData.CompanyCode | replaceNullValue}} </td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.CompanyCode != null && approvalRequestData.CompanyCode != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.CompanyCode | replaceNullValue}} </td>
                             </tr>
                         </table>
                     </div>
@@ -43,7 +43,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.PreTripDetails.PassengerInfo.split(',')[0]}} </td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue"> {{approvalRequestData.PreTripDetails.PassengerInfo.split(',')[1] | replaceNullValue}}</td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.PreTripDetails.PassengerInfo.split(',')[1] != null && approvalRequestData.PreTripDetails.PassengerInfo.split(',')[1] != ''"> {{approvalRequestData.Currencies}}</label>   {{approvalRequestData.PreTripDetails.PassengerInfo.split(',')[1] | replaceNullValue}}</td>
                             </tr>
                         </table>
                     </div>
@@ -55,7 +55,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel"> {{'LBL_CAPEX' | translate}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue"> {{approvalRequestData.Capex | replaceNullValue}}</td>
+                                <td class="responsiveDetailSectionTableRowValue"> <label ng-if="approvalRequestData.Capex != null && approvalRequestData.Capex != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.Capex | replaceNullValue}}</td>
                             </tr>
                         </table>
                     </div>
@@ -65,7 +65,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel"> {{approvalRequestData.Currentyear1.split(',')[0]}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue"> {{approvalRequestData.Currentyear1.split(',')[1] | replaceNullValue}}</td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.Currentyear1.split(',')[1] != null && approvalRequestData.Currentyear1.split(',')[1] != ''"> {{approvalRequestData.Currencies}}</label>  {{approvalRequestData.Currentyear1.split(',')[1] | replaceNullValue}}</td>
                             </tr>
                         </table>
                     </div>
@@ -77,7 +77,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel"> {{'LBL_RESTRUCTURING' | translate}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue"> {{approvalRequestData.PreTripDetails.Id | replaceNullValue}}</td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.PreTripDetails.Id != null && approvalRequestData.PreTripDetails.Id != ''"> {{approvalRequestData.Currencies}}</label>  {{approvalRequestData.PreTripDetails.Id | replaceNullValue}}</td>
                             </tr>
                         </table>
                     </div>
@@ -87,7 +87,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel"> {{'LBL_ALL_OTHER_YEARS' | translate}} </td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue"> {{approvalRequestData.YearAllOther | replaceNullValue}}</td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.YearAllOther != null && approvalRequestData.YearAllOther != ''"> {{approvalRequestData.Currencies}}</label>  {{approvalRequestData.YearAllOther | replaceNullValue}}</td>
                             </tr>
                         </table>
                     </div>
@@ -99,7 +99,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel"> {{'LBL_TOTAL' | translate}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue"> {{approvalRequestData.PreTripDetails.LocationDetails | replaceNullValue}}</td>
+                                <td class="responsiveDetailSectionTableRowValue"> <label ng-if="approvalRequestData.PreTripDetails.LocationDetails != null && approvalRequestData.PreTripDetails.LocationDetails != ''"> {{approvalRequestData.Currencies}}</label>  {{approvalRequestData.PreTripDetails.LocationDetails | replaceNullValue}}</td>
                             </tr>
                         </table>
                     </div>
@@ -109,7 +109,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel"> {{'LBL_TOTAL' | translate}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue"> {{approvalRequestData.Toatl2 | replaceNullValue}}</td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.Toatl2 != null && approvalRequestData.Toatl2 != ''"> {{approvalRequestData.Currencies}}</label>  {{approvalRequestData.Toatl2 | replaceNullValue}}</td>
                             </tr>
                         </table>
                     </div>

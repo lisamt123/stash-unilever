@@ -34,7 +34,8 @@
                                 <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.CompanyName.split(',')[0]}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.CompanyName.split(',')[1] | replaceNullValue}} </td>
+                                <td class="responsiveDetailSectionTableRowValue">
+                                <label ng-if="approvalRequestData.CompanyName.split(',')[1] != null && approvalRequestData.CompanyName.split(',')[1] != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.CompanyName.split(',')[1] | replaceNullValue}} </td>
                             </tr>
                         </table>
                     </div>
@@ -44,7 +45,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.Cop.split(',')[0]}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Cop.split(',')[1] | replaceNullValue}} </td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.Cop.split(',')[1] != null && approvalRequestData.Cop.split(',')[1] != ''"> {{approvalRequestData.Currencies}}</label>  {{approvalRequestData.Cop.split(',')[1] | replaceNullValue}} </td>
                             </tr>
                         </table>
                     </div>
@@ -56,7 +57,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.CompanyName.split(',')[2]}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.CompanyName.split(',')[3] | replaceNullValue}} </td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.CompanyName.split(',')[3] != null && approvalRequestData.CompanyName.split(',')[3] != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.CompanyName.split(',')[3] | replaceNullValue}} </td>
                             </tr>
                         </table>
                     </div>
@@ -66,7 +67,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.Cop.split(',')[2]}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Cop.split(',')[3] | replaceNullValue}} </td>
+                                <td class="responsiveDetailSectionTableRowValue"> <label ng-if="approvalRequestData.Cop.split(',')[3] != null && approvalRequestData.Cop.split(',')[3] != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.Cop.split(',')[3] | replaceNullValue}} </td>
                             </tr>
                         </table>
                     </div>
@@ -78,7 +79,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.CompanyName.split(',')[4]}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.CompanyName.split(',')[5] | replaceNullValue}} </td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.CompanyName.split(',')[5] != null && approvalRequestData.CompanyName.split(',')[5] != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.CompanyName.split(',')[5] | replaceNullValue}} </td>
                             </tr>
                         </table>
                     </div>
@@ -88,7 +89,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.Cop.split(',')[4]}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Cop.split(',')[5] | replaceNullValue}} </td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.Cop.split(',')[5] != null && approvalRequestData.Cop.split(',')[5] != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.Cop.split(',')[5] | replaceNullValue}} </td>
                             </tr>
                         </table>
                     </div>
@@ -100,7 +101,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.CompanyName.split(',')[6]}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.CompanyName.split(',')[7] | replaceNullValue}} </td>
+                                <td class="responsiveDetailSectionTableRowValue"><label ng-if="approvalRequestData.CompanyName.split(',')[7]  != null && approvalRequestData.CompanyName.split(',')[7]  != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.CompanyName.split(',')[7] | replaceNullValue}} </td>
                             </tr>
                         </table>
                     </div>
@@ -110,7 +111,7 @@
                                 <td class="responsiveDetailSectionTableRowLabel">{{approvalRequestData.Cop.split(',')[6]}}</td>
                             </tr>
                             <tr>
-                                <td class="responsiveDetailSectionTableRowValue">{{approvalRequestData.Cop.split(',')[7] | replaceNullValue}} </td>
+                                <td class="responsiveDetailSectionTableRowValue"> <label ng-if="approvalRequestData.Cop.split(',')[7]  != null && approvalRequestData.Cop.split(',')[7]  != ''"> {{approvalRequestData.Currencies}}</label> {{approvalRequestData.Cop.split(',')[7] | replaceNullValue}} </td>
                             </tr>
                         </table>
                     </div>
