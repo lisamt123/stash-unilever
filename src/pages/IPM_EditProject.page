@@ -445,7 +445,7 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Limiter.js')}" type="text/javascript"></script>
     <apex:outputPanel id="editProjectAction">               
     <script>
-        var IPMAppEP = { corePage:'{!URLFOR($Page.IPM_CoreParameters)}', projectId:'{!projectId}',proSelectlabel:'{!$Label.IPM_ProjectSetup_SELECT}' };
+        var IPMAppEP = { corePage:'{!URLFOR($Page.IPM_CoreParameters)}', projectId:'{!projectId}',proSelectlabel:'{!$Label.IPM_ProjectSetup_SELECT}',prosuccess:'{!saveSuccess }' };
     jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});     
     var apexAccountList =[];                        
     <apex:repeat value="{!listofprojectname}" var="proList">                
