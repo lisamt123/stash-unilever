@@ -15705,4 +15705,139 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos;</shortDescription>
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
     </labels>
+	<labels>
+        <fullName>WU_Category</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Category</shortDescription>
+        <value>Network</value>
+    </labels>
+    <labels>
+        <fullName>WU_City</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>WU_Country</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>WU_DuplicateCapacityDetailWhileInsert</fullName>
+        <categories>WU_Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_DuplicateCapacityDetailWhileInsert</shortDescription>
+        <value>Warehouse Capacity Detail record already exists with the provided Utilization Start Date and Utilization End Date. If you want to edit the existing Warehouse Capacity Detail record, edit it from the list.</value>
+    </labels>
+    <labels>
+        <fullName>WU_EndDate</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU EndDate</shortDescription>
+        <value>Utilization End Date</value>
+    </labels>
+    <labels>
+        <fullName>WU_MCO</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU MCO</shortDescription>
+        <value>MCO</value>
+    </labels>
+    <labels>
+        <fullName>WU_Region</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Region</shortDescription>
+        <value>Region</value>
+    </labels>
+    <labels>
+        <fullName>WU_SAPCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU SAPCode</shortDescription>
+        <value>SAP Code</value>
+    </labels>
+    <labels>
+        <fullName>WU_StartDate</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU StartDate</shortDescription>
+        <value>Utilization Start Date</value>
+    </labels>
+    <labels>
+        <fullName>WU_utilizationTypeCannotChange</fullName>
+        <categories>WU_Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_utilizationTypeCannotChange</shortDescription>
+        <value>Utilization Type for this month has been set.You cannot change it.</value>
+    </labels>
+	<labels>
+        <fullName>WU_Report_City</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_City</shortDescription>
+        <value>00N8A000000H0Qb</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Country</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Country</shortDescription>
+        <value>00N8A000000GmXs</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Id</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Id</shortDescription>
+        <value>00O8A000000OSiD</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_MCO</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_MCO</shortDescription>
+        <value>00N8A000000GmXn</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Network</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Network</shortDescription>
+        <value>00N8A000000GmWB</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Region</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Region</shortDescription>
+        <value>00N8A000000GmXi</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_SAP_Code</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_SAP_Code</shortDescription>
+        <value>00N8A000000GmWV</value>
+    </labels>
 </CustomLabels>
