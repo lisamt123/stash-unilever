@@ -4,6 +4,6 @@
     <name>Warehouse Utilization</name>
     <publicFolderAccess>ReadOnly</publicFolderAccess>
     <sharedTo>
-        <roleAndSubordinatesInternal>WU_Logistics_Leadership_Team</roleAndSubordinatesInternal>
+        <allInternalUsers></allInternalUsers>
     </sharedTo>
 </EmailFolder>
