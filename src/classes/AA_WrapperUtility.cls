@@ -1,6 +1,5 @@
 global with sharing class AA_WrapperUtility {
 
-
     global class AgentReportDataResponse extends AA_BaseApplicationWrapperObj{
            // public list<AllAgentReports> responseReports;
         }
@@ -44,6 +43,12 @@ global with sharing class AA_WrapperUtility {
             public String RecordType;
             public String AgentReportId;
             public String SortOnMostLike;
+            public String Status;
+            public String searchString;
+
+            /* Other brand and company names */
+            public String OtherBrandName;
+            public String OtherCompetitor; 
            
         }
     
@@ -68,6 +73,9 @@ global with sharing class AA_WrapperUtility {
             public List<aa_Topic__c> topicList;
             public String agentReportId;
             public String googleApiVaue;
+           // public Map<String,String> usernamesMap;
+           public List<User>  userList;
+           public List<Topic> topicsList;
             
         }
         
@@ -109,31 +117,15 @@ global with sharing class AA_WrapperUtility {
            
             global Integer compareTo(Object objToCompare) {
           
-           agentReportDetail compareToreport=(agentReportDetail)objToCompare;
+            agentReportDetail compareToreport=(agentReportDetail)objToCompare;
             
                if (LikeCount == compareToreport.LikeCount)  return 0;
                if (LikeCount < compareToreport.LikeCount) return 1;
                return -1; 
-          
-           
-              
-             
-       
-         
-          }
-           
-            /*public String feedId;
-            public String likeCount; 
-            public String CommentCount;*/
+            }          
     }
-    
-    /*global class listOfAgentReport {
-        public List<agentReportDetail> responseListofAgentReport; 
-    }*/
-     
-        
-     global class FilterTypeRequest{
+            
+    global class FilterTypeRequest{
           public String FilterType;
-        
-     }
+    }
 }
