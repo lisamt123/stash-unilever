@@ -79,7 +79,7 @@ public class Core_CA_InterestedParty_Handler{
         }  
         
         //map of chatter Approval header 
-        Map<Id,Core_Approval_Header__c> lstHeader =new Map<Id,Core_Approval_Header__c> ([SELECT id,Requested_By__c,Name,Requested_For__c,Status__c,Fully_Approved__c,Manager__c,Requested_For_Details__c,Requested_by_details__c,Ariba_Company_Code__c FROM Core_Approval_Header__c WHERE Id IN :approverHeaderids]); 
+        Map<Id,Core_Approval_Header__c> lstHeader =new Map<Id,Core_Approval_Header__c> ([SELECT id,Requested_By__c,Name,Requested_For__c,Status__c,Fully_Approved__c,Manager__c,Requested_For_Details__c,Requested_by_details__c,Ariba_Company_Code__c,Category__c FROM Core_Approval_Header__c WHERE Id IN :approverHeaderids]); 
         List<Core_Approval_Header__Share> headerShareObj= [SELECT UserOrGroupId, ParentId  FROM Core_Approval_Header__Share WHERE ParentId IN :approverHeaderids]; 
         List<EntitySubscription> headerEntitySubObj= [SELECT ParentId,SubscriberId FROM EntitySubscription WHERE ParentId IN : approverHeaderids];
         
@@ -182,52 +182,12 @@ public class Core_CA_InterestedParty_Handler{
                 setShareHeader.add(shareObj);
             }
            /* end of Apex header sharing */
-           
-           
-                                      
+                                                 
             String strBody; //Variable to save to feedItem body
             
         /* Start of GTES notification  after insert code */
             if(approverRec.Source_System__c==strGtesTemp && CORE_Chatter_Approval__c.getinstance('GTES_Notification').Text_Value__c == strTextValue && !lstHeader.get(approverRec.Approval_Header__c).Fully_Approved__c){
-                
-             //Expense Claim Submitted with(Action 'SUBM' and Role 'EMP')
-                // If the Requestor__c on Header object is same as  Interested_Party__c 
-                /*if(approverRec.Role__c == 'EMP' && approverRec.Action__c == 'SUBM' && lstHeader.get(approverRec.Approval_Header__c).Requested_By__c == approverRec.Interested_Party__c && approverRec.Interested_Party__c != null && lstHeader.get(approverRec.Approval_Header__c).Requested_By__c!=null){
-                    strBody = CORE_Chatter_Approval__c.getinstance('GTES-ExpenseClaimSubmitted1').Text_Value__c;
-                    strBody = strBody.replace('XXX',lstHeader.get(approverRec.Approval_Header__c).Name);  
-                    strBody = strBody.replace('YYY',mapUser.get(approverRec.Interested_Party__c).Name); 
-                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL =baseUrl+'/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c));     
-                    //setHeaderStatus.add(new Core_Approval_Header__c(id=lstHeader.get(approverRec.Approval_Header__c).Id,Status__c='Submitted'));
-                }
-                // If the Requestor__c on Header object is not same as  Interested_Party__c 
-                if(approverRec.Role__c == 'EMP' && approverRec.Action__c == 'SUBM' && lstHeader.get(approverRec.Approval_Header__c).Requested_By__c != approverRec.Interested_Party__c && approverRec.Interested_Party__c != null && lstHeader.get(approverRec.Approval_Header__c).Requested_By__c!=null){
-                    strBody = CORE_Chatter_Approval__c.getinstance('GTES-ExpenseClaimSubmitted2').Text_Value__c;
-                    strBody = strBody.replace('XXX',lstHeader.get(approverRec.Approval_Header__c).Name);
-                    strBody = strBody.replace('YYY',mapUser.get(approverRec.Interested_Party__c).Name);
-                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL =baseUrl+'/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c)); 
-                    //setHeaderStatus.add(new Core_Approval_Header__c(id=lstHeader.get(approverRec.Approval_Header__c).Id,Status__c='Submitted'));
-                }
-                
-                
-             //Expense Claim Submitted with(Action 'SUBM' and Role 'SUB')
-                // If the Requestor__c on Header object is same as  Interested_Party__c
-                if(approverRec.Role__c == 'SUB' && approverRec.Action__c == 'SUBM' && lstHeader.get(approverRec.Approval_Header__c).Requested_By__c == approverRec.Interested_Party__c && approverRec.Interested_Party__c != null && lstHeader.get(approverRec.Approval_Header__c).Requested_By__c!=null){
-                    strBody = CORE_Chatter_Approval__c.getinstance('GTES-ExpenseClaimSubmitted3').Text_Value__c;
-                    strBody = strBody.replace('XXX',lstHeader.get(approverRec.Approval_Header__c).Name); 
-                    strBody = strBody.replace('YYY',mapUser.get(approverRec.Interested_Party__c).Name);
-                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL ='/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c)); 
-                    //setHeaderStatus.add(new Core_Approval_Header__c(id=lstHeader.get(approverRec.Approval_Header__c).Id,Status__c='Submitted'));
-                }                 
-                // If the Requestor__c on Header object is not same as  Interested_Party__c
-                if(approverRec.Role__c == 'SUB' && approverRec.Action__c == 'SUBM' && lstHeader.get(approverRec.Approval_Header__c).Requested_By__c != approverRec.Interested_Party__c && approverRec.Interested_Party__c != null && lstHeader.get(approverRec.Approval_Header__c).Requested_By__c!=null){
-                    strBody = CORE_Chatter_Approval__c.getinstance('GTES-ExpenseClaimSubmitted4').Text_Value__c;
-                    strBody = strBody.replace('XXX',lstHeader.get(approverRec.Approval_Header__c).Name);
-                    strBody = strBody.replace('YYY',mapUser.get(approverRec.Interested_Party__c).Name); 
-                    strBody = strBody.replace('ZZZ',mapUser.get(lstHeader.get(approverRec.Approval_Header__c).Requested_By__c).Name);
-                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL ='/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c));  
-                    //setHeaderStatus.add(new Core_Approval_Header__c(id=lstHeader.get(approverRec.Approval_Header__c).Id,Status__c='Submitted'));
-                }*/           
-                
+                              
             //Approver Added with (Role__c 'APP') and (Action <> APPR)
                 if(approverRec.Role__c == strAppTemp && approverRec.Action__c != strApprTemp && approverRec.Action__c != strRejcTemp && approverRec.Action__c != strCopyTemp){
                     strBody = CORE_Chatter_Approval__c.getinstance('GTES-ApproverAdded').Text_Value__c;
@@ -238,73 +198,13 @@ public class Core_CA_InterestedParty_Handler{
                     else strBody = strBody.replace(strzzzTemp,'');
                     //lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL = baseUrl+'/apex/Core_CA_ApprovalHomePage#/MyApprovalsHome?headerId='+lstHeader.get(approverRec.Approval_Header__c).Id+'&ipId='+approverRec.Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c)); 
                     lstFeedItem.add(new FeedItem(Type = strLinkpstTemp , Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL = baseUrl+'/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance(strGtesTemp).Text_Value__c)); 
-                }
-                
-            //Fully Approved with (Action 'APPR' and Role 'SYS') or with (Role 'PST')
-                /*if((approverRec.Role__c == 'SYS' && approverRec.Action__c == 'APPR') || (approverRec.Role__c == 'PST') ){
-                    if(mapApprover.get(approverRec.Approval_Header__c) != null){
-                        setHeaderStatus.add(new Core_Approval_Header__c(id=lstHeader.get(approverRec.Approval_Header__c).Id,Status__c='Fully Approved'));
-                        Boolean bolExistedNotification=false;
-                        for(Core_Approver_Details__c otherApproverRec : mapApprover.get(approverRec.Approval_Header__c)){
-                            if((otherApproverRec.Role__c=='SYS' && otherApproverRec.Action__c=='APPR' && otherApproverRec.Id != approverRec.Id  )||(otherApproverRec.Role__c=='PST' && otherApproverRec.Id != approverRec.Id)) bolExistedNotification=true;
-                        }
-                        for(Core_Approver_Details__c otherApproverRec : mapApprover.get(approverRec.Approval_Header__c)){
-                            if((otherApproverRec.Role__c=='EMP' || otherApproverRec.Role__c=='SUB') && otherApproverRec.Interested_Party__c != null && bolExistedNotification==false){
-                                strBody=CORE_Chatter_Approval__c.getinstance('GTES-FullyApproved').Text_Value__c;
-                                strBody=strBody.replace('XXXXXX',lstHeader.get(approverRec.Approval_Header__c).Name);
-                                lstFeedItem.add(new FeedItem( Type = 'LinkPost', Body = strBody, ParentId = otherApproverRec.Interested_Party__c,
-                                LinkURL =baseUrl+'/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c)); 
-                            }
-                        }
-                    }
-                }*/ 
-                
-                 //Rejected (Role 'APP' and Action 'REJC' )
-                    /*if((approverRec.Role__c=='APP' || approverRec.Role__c=='PRE') &&  approverRec.Action__c=='REJC' && (approverRec.Interested_Party__c!=null || approverRec.Interested_Party_Details__c != null)){
-                        
-                        //if(mapApprover.get(approverRec.Approval_Header__c) != null){
-                            //for(Core_Approver_Details__c otherApproverRec : mapApprover.get(approverRec.Approval_Header__c)){
-                               //if((otherApproverRec.Role__c=='EMP' || otherApproverRec.Role__c=='SUB') && otherApproverRec.Interested_Party__c != null){                            
-                                    strBody=CORE_Chatter_Approval__c.getinstance('GTES-Rejected').Text_Value__c;
-                                    strBody=strBody.replace('XXX',lstHeader.get(approverRec.Approval_Header__c).Name);
-                                    if(approverRec.Interested_Party__c != null) strBody=strBody.replace('YYY',mapUser.get(approverRec.Interested_Party__c).Name);
-                                        //strBody=strBody+' '+ mapUser.get(approverRec.Interested_Party__c).Name+'.';
-                                    if(approverRec.Interested_Party__c == null && approverRec.Interested_Party_Details__c != null) strBody=strBody.replace('YYY',approverRec.Interested_Party_Details__c);
-                                        //strBody=strBody+' '+ approverRec.Interested_Party_Details__c+'.';
-                                    lstFeedItem.add(new FeedItem( Type = 'LinkPost', Body = strBody, ParentId = approverRec.Approval_Header__c,
-                                    LinkURL =baseUrl+'/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c));
-                              //}
-                           //}
-                        //}   
-                    }*/           
+                }                             
             }  
          /* End of GTES notification code */
             
          /* Start of Ariba notification after insert code */
             if(approverRec.Source_System__c==strAribaTemp && CORE_Chatter_Approval__c.getinstance('Ariba_Notification').Text_Value__c == strTextValue ){
-                 
-            //Request Approved with (Role__c = 'APP' and Action__c ='APPR') 
-               /* if(lstHeader.get(approverRec.Approval_Header__c).Status__c=='Submitted' && approverRec.Role__c == 'APP' && approverRec.Action__c == 'APPR' && (approverRec.Interested_Party__c != null || approverRec.Interested_Party_Details__c != null)){  
-                    strBody=CORE_Chatter_Approval__c.getinstance('Ariba-RequestApproved').Text_Value__c;
-                    strBody = strBody.replace('XXX',lstHeader.get(approverRec.Approval_Header__c).Name);                  
-                    if(approverRec.Interested_Party__c != null)                       
-                        strBody = strBody.replace('YYY',mapUser.get(approverRec.Interested_Party__c).Name);                   
-                    if(approverRec.Interested_Party__c == null && approverRec.Interested_Party_Details__c != null)
-                        strBody = strBody.replace('YYY',approverRec.Interested_Party_Details__c);                                     
-                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = lstHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));  
-                } */
-                
-             //Request Rejected with (Role__c = 'APP' and Action__c ='REJC') 
-               /* else if(lstHeader.get(approverRec.Approval_Header__c).Status__c=='Denied' && approverRec.Role__c == 'APP' && approverRec.Action__c == 'REJC' && (approverRec.Interested_Party__c != null || approverRec.Interested_Party_Details__c != null)){
-                    strBody=CORE_Chatter_Approval__c.getinstance('Ariba-RequestRejected').Text_Value__c;
-                    strBody = strBody.replace('XXX',lstHeader.get(approverRec.Approval_Header__c).Name);
-                    if(approverRec.Interested_Party__c != null)    
-                        strBody = strBody.replace('YYY',mapUser.get(approverRec.Interested_Party__c).Name);
-                    if(approverRec.Interested_Party__c == null && approverRec.Interested_Party_Details__c != null)
-                        strBody = strBody.replace('YYY',approverRec.Interested_Party_Details__c);  
-                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = lstHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));  
-                } */
-                               
+                                   
             //Approver added with (Role__c = 'APP' and Is_Active__c=true))
                  if(lstHeader.get(approverRec.Approval_Header__c).Status__c=='Submitted' && approverRec.Role__c == strAppTemp && approverRec.Is_Active__c && approverRec.Action__c != strRejcTemp && approverRec.Action__c != strApprTemp ){
                     //send a notification to newly added approver.
@@ -337,23 +237,8 @@ public class Core_CA_InterestedParty_Handler{
                             strBody = strBody.replace(strxxxTemp,approverRec.Interested_Party_Details__c);  
                         else
                             strBody = strBody.replace(strxxxTemp,'');                                        
-                        lstFeedItem.add(new FeedItem(Type = strLinkpstTemp, Body = strBody, ParentId = lstHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance(strAribaTemp).Text_Value__c));  
-                        //lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = lstHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/apex/Core_CA_ApprovalHomePage#/MyApprovalsHome?headerId='+lstHeader.get(approverRec.Approval_Header__c).Id+'&ipId='+approverRec.Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));  
-                    }
-                    
-                    
-                    //send a notification to Requested_For.
-                    /*if(CORE_Chatter_Approval__c.getinstance('Ariba_RequestedFor_Notification').Text_Value__c == 'true' || CORE_Chatter_Approval__c.getinstance('Ariba_RequestedFor_Notification').Text_Value__c == 'True'){
-                        strBody=CORE_Chatter_Approval__c.getinstance('Ariba-ApproverAdded2').Text_Value__c;
-                        if(approverRec.Interested_Party__c != null){
-                            strBody = strBody.replace('XXX',lstHeader.get(approverRec.Approval_Header__c).Name)+' '+mapUser.get(approverRec.Interested_Party__c).Name+'.';                           
-                        }
-                        if( approverRec.Interested_Party__c == null && approverRec.Interested_Party_Details__c != null){
-                           strBody = strBody.replace('XXX',lstHeader.get(approverRec.Approval_Header__c).Name)+' '+approverRec.Interested_Party_Details__c+'.';
-                        }
-                        if(lstHeader.get(approverRec.Approval_Header__c).Requested_For__c!=null && (approverRec.Interested_Party__c != null || approverRec.Interested_Party_Details__c != null))             
-                            lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = lstHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));
-                   } */
+                        lstFeedItem.add(new FeedItem(Type = strLinkpstTemp, Body = strBody, ParentId = lstHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance(strAribaTemp).Text_Value__c));    
+                    }                    
                 }
                               
             } 
@@ -368,7 +253,6 @@ public class Core_CA_InterestedParty_Handler{
                     if(approverRec.Interested_Party_Details__c!=null) strBody = strBody.replace(strxxxTemp,approverRec.Interested_Party_Details__c);
                     else strBody = strBody.replace(strxxxTemp,'');
                     strBody = strBody.replace(stryyyTemp,lstHeader.get(approverRec.Approval_Header__c).Name);
-                    //lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL = baseUrl+'/apex/Core_CA_ApprovalHomePage#/MyApprovalsHome?headerId='+lstHeader.get(approverRec.Approval_Header__c).Id+'&ipId='+approverRec.Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c)); 
                     lstFeedItem.add(new FeedItem(Type = strLinkpstTemp, Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL = baseUrl+'/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Clarity').Text_Value__c)); 
                 }
             }
@@ -382,6 +266,11 @@ public class Core_CA_InterestedParty_Handler{
                     else strBody = strBody.replace(strxxxTemp,'');
                     strBody = strBody.replace(stryyyTemp,lstHeader.get(approverRec.Approval_Header__c).Requested_For_Details__c);
                     strBody = strBody.replace(strzzzTemp,lstHeader.get(approverRec.Approval_Header__c).Ariba_Company_Code__c);
+                    
+                    if(lstHeader.get(approverRec.Approval_Header__c).Category__c == 'INV') strBody = strBody.replace(straaaTemp,'Invoice');
+                    else if(lstHeader.get(approverRec.Approval_Header__c).Category__c == 'CN') strBody = strBody.replace(straaaTemp,'Credit note');
+                    else strBody = strBody.replace(straaaTemp,'Invoice');
+                    
                     lstFeedItem.add(new FeedItem(Type = strLinkpstTemp, Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL = baseUrl+'/'+lstHeader.get(approverRec.Approval_Header__c).Id, Title = lstHeader.get(approverRec.Approval_Header__c).Requested_For_Details__c,CreatedById = CORE_Chatter_Approval__c.getinstance('Invoice').Text_Value__c)); 
                 }
             }
@@ -402,25 +291,6 @@ public class Core_CA_InterestedParty_Handler{
         //delete entity subscription record
         if(!lstEntitySubDelete.isempty()) Database.delete(lstEntitySubDelete);
         
-        //update the list of header records whose status need to be changed for GTES.
-        /*if(!setHeaderStatus.isempty()){
-            List<Core_Approval_Header__c> lstHeaderStatus=new List<Core_Approval_Header__c>();
-            Map<Id,List<String>> mapHeaderStatus=new Map<Id,List<String>>();
-            for(Core_Approval_Header__c header : setHeaderStatus){
-                if(!mapHeaderStatus.containsKey(header.Id))
-                    mapHeaderStatus.put(header.Id,new List<String>());            
-                mapHeaderStatus.get(header.Id).add(header.Status__c);
-            }
-            for(Id id : mapHeaderStatus.keyset()){
-                List<string> lstStatus=new List<string>();
-                lstStatus=mapHeaderStatus.get(id);
-                if(lstStatus.size()>1)
-                    lstHeaderStatus.add(new Core_Approval_Header__c(id=id,Status__c='Fully Approved'));
-                else
-                    lstHeaderStatus.add(new Core_Approval_Header__c(id=id,Status__c=lstStatus[0]));
-            }
-            Database.update(lstHeaderStatus);
-        }*/
         }
        catch (Exception ex) {
          while (ex.getCause() != null)
@@ -440,7 +310,7 @@ public class Core_CA_InterestedParty_Handler{
         List<feeditem> lstFeedItem=new List<feeditem>();
         Set<EntitySubscription> setEntitySubHeader=new Set<EntitySubscription>();
         List<EntitySubscription> lstEntitySubDelete=new List<EntitySubscription>();
-        Map<Id,Core_Approval_Header__c> mapHeader =new Map<Id,Core_Approval_Header__c> ([SELECT id,Requested_By__c,Name,Requested_For__c,Status__c,Fully_Approved__c,Manager__c,Requested_For_Details__c,Requested_by_details__c,Ariba_Company_Code__c  FROM Core_Approval_Header__c WHERE Id IN (select Approval_Header__c from Core_Approver_Details__c WHERE Id IN : approverNew.keyset())]);
+        Map<Id,Core_Approval_Header__c> mapHeader =new Map<Id,Core_Approval_Header__c> ([SELECT id,Requested_By__c,Name,Requested_For__c,Status__c,Fully_Approved__c,Manager__c,Requested_For_Details__c,Requested_by_details__c,Ariba_Company_Code__c,Category__c  FROM Core_Approval_Header__c WHERE Id IN (select Approval_Header__c from Core_Approver_Details__c WHERE Id IN : approverNew.keyset())]);
         List<Core_Approver_Details__c> setIpStatus = new List<Core_Approver_Details__c>();
         Set<Core_Approval_Header__Share> setShareHeader = new Set<Core_Approval_Header__Share>(); 
         Set<Id> approverIPids = new Set<Id>();
@@ -600,45 +470,7 @@ public class Core_CA_InterestedParty_Handler{
             /* Start of GTES notification  after update code */
             if(CORE_Chatter_Approval__c.getinstance('GTES_Notification').Text_Value__c==strTextValue){
                 if(approverRec.Source_System__c==strGtesTemp && !mapHeader.get(approverRec.Approval_Header__c).Fully_Approved__c){                       
-                    
-                    //Rejected (Role 'APP' and Action 'REJC' )
-                    /*if((approverRec.Role__c=='APP' || approverRec.Role__c=='PRE') &&  approverRec.Action__c=='REJC' && newApprover.Action__c != oldApprover.Action__c && (approverRec.Interested_Party__c!=null || approverRec.Interested_Party_Details__c != null)){
-                        
-                        //if(mapApprover.get(approverRec.Approval_Header__c) != null){
-                            //for(Core_Approver_Details__c otherApproverRec : mapApprover.get(approverRec.Approval_Header__c)){
-                               //if((otherApproverRec.Role__c=='EMP' || otherApproverRec.Role__c=='SUB') && otherApproverRec.Interested_Party__c != null){                            
-                                    strBody=CORE_Chatter_Approval__c.getinstance('GTES-Rejected').Text_Value__c;
-                                    strBody=strBody.replace('XXX',mapHeader.get(approverRec.Approval_Header__c).Name);
-                                    if(approverRec.Interested_Party__c != null) strBody=strBody.replace('YYY',mapUser.get(approverRec.Interested_Party__c).Name);
-                                        //strBody=strBody+' '+ mapUser.get(approverRec.Interested_Party__c).Name+'.';
-                                    if(approverRec.Interested_Party__c == null && approverRec.Interested_Party_Details__c != null) strBody=strBody.replace('YYY',approverRec.Interested_Party_Details__c);
-                                        //strBody=strBody+' '+ approverRec.Interested_Party_Details__c+'.';
-                                    lstFeedItem.add(new FeedItem( Type = 'LinkPost', Body = strBody, ParentId = approverRec.Approval_Header__c,
-                                    LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c));
-                              //}
-                           //}
-                        //}   
-                    }*/
-                    
-                    //Fully Approved ( Role 'SYS' and Action 'APPR' )
-                    /*if(approverRec.Role__c=='SYS' &&  approverRec.Action__c=='APPR' && newApprover.Action__c != oldApprover.Action__c ){
-                        if(mapApprover.get(approverRec.Approval_Header__c) != null){
-                            setHeaderStatus.add(new Core_Approval_Header__c(id=mapHeader.get(approverRec.Approval_Header__c).Id,Status__c='Fully Approved'));
-                            Boolean bolExistedNotification=false;
-                            for(Core_Approver_Details__c otherApproverRec : mapApprover.get(approverRec.Approval_Header__c)){
-                                if((otherApproverRec.Role__c=='SYS' && otherApproverRec.Action__c=='APPR' && otherApproverRec.Id != approverRec.Id  )||(otherApproverRec.Role__c=='PST' && otherApproverRec.Id != approverRec.Id)) bolExistedNotification=true;
-                            }
-                            for(Core_Approver_Details__c otherApproverRec : mapApprover.get(approverRec.Approval_Header__c)){
-                                if((otherApproverRec.Role__c=='EMP' || otherApproverRec.Role__c=='SUB') && otherApproverRec.Interested_Party__c != null && bolExistedNotification==false){
-                                    strBody=CORE_Chatter_Approval__c.getinstance('GTES-FullyApproved').Text_Value__c;
-                                    strBody=strBody.replace('XXXXXX',mapHeader.get(approverRec.Approval_Header__c).Name);
-                                    lstFeedItem.add(new FeedItem( Type = 'LinkPost', Body = strBody, ParentId = otherApproverRec.Interested_Party__c,
-                                    LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c));
-                                }
-                            }
-                        }   
-                    }*/
-                   
+                                     
                    //Recalled 
                    if(approverRec.Role__c=='EMP' &&  approverRec.Action__c=='SUBM' && oldApprover.Role__c=='EMP' && oldApprover.Action__c=='CANC' ){
                        if(mapApprover.get(approverRec.Approval_Header__c) != null){
@@ -650,8 +482,7 @@ public class Core_CA_InterestedParty_Handler{
                                     strBody = strBody.replace(stryyyTemp,mapHeader.get(approverRec.Approval_Header__c).Name);
                                     if(mapHeader.get(approverRec.Approval_Header__c).Requested_by_details__c!=null) strBody = strBody.replace(strzzzTemp,mapHeader.get(approverRec.Approval_Header__c).Requested_by_details__c);
                                     else strBody = strBody.replace(strzzzTemp,'');
-                                    lstFeedItem.add(new FeedItem(Type = strLinkpstTemp, Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance(strGtesTemp).Text_Value__c));
-                                    //lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL =baseUrl+'/apex/Core_CA_ApprovalHomePage#/MyApprovalsHome?headerId='+mapHeader.get(approverRec.Approval_Header__c).Id+'&ipId='+approverRec.Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c));
+                                    lstFeedItem.add(new FeedItem(Type = strLinkpstTemp, Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance(strGtesTemp).Text_Value__c));                              
                              }
                           }
                        }
@@ -671,23 +502,6 @@ public class Core_CA_InterestedParty_Handler{
                    
                    //Set the Ip status to blank
                    setIpStatus.add(new Core_Approver_Details__c(id=approverRec.Id,Status__c =''));
-                    
-                   //Notification when Requested For == Requested by
-                   /* if(mapHeader.get(approverRec.Approval_Header__c).Requested_For__c== mapHeader.get(approverRec.Approval_Header__c).Requested_By__c || mapHeader.get(approverRec.Approval_Header__c).Requested_By__c==null){ 
-                        strBody = CORE_Chatter_Approval__c.getinstance('Ariba-ExpenseClaimSubmitted1').Text_Value__c;
-                        strBody = strBody.replace('XXX',mapHeader.get(approverRec.Approval_Header__c).Name);
-                        strBody = strBody.replace('YYY',mapUser.get(mapHeader.get(approverRec.Approval_Header__c).Requested_For__c).Name);
-                        lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
-                    }
-                    
-                    //Notification when Requested For <> Requested by
-                    if(mapHeader.get(approverRec.Approval_Header__c).Requested_By__c!=null && mapHeader.get(approverRec.Approval_Header__c).Requested_For__c!= mapHeader.get(approverRec.Approval_Header__c).Requested_By__c ){
-                        strBody = CORE_Chatter_Approval__c.getinstance('Ariba-ExpenseClaimSubmitted2').Text_Value__c;
-                        strBody = strBody.replace('XXX',mapHeader.get(approverRec.Approval_Header__c).Name); 
-                        strBody = strBody.replace('YYY',mapUser.get(mapHeader.get(approverRec.Approval_Header__c).Requested_By__c).Name);
-                        strBody = strBody.replace('ZZZ',mapUser.get(mapHeader.get(approverRec.Approval_Header__c).Requested_For__c).Name);
-                        lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name, CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
-                   }*/
                    
                    //Approver added Notification to approver other than denied approver.
                    if(mapApprover.get(approverRec.Approval_Header__c) != null){ 
@@ -721,35 +535,12 @@ public class Core_CA_InterestedParty_Handler{
                                    else
                                        strBody = strBody.replace(strxxxTemp,''); 
                                    
-                                   lstFeedItem.add(new FeedItem(Type = strLinkpstTemp, Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance(strAribaTemp).Text_Value__c));                             
-                                   //lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/apex/Core_CA_ApprovalHomePage#/MyApprovalsHome?headerId='+mapHeader.get(approverRec.Approval_Header__c).Id+'&ipId='+approverRec.Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));                             
+                                   lstFeedItem.add(new FeedItem(Type = strLinkpstTemp, Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance(strAribaTemp).Text_Value__c));                                                          
                               }
                            }
                        }    
                     }                                    
                 }
-                //Request Approved with (Role__c = 'APP' and Action__c ='APPR')
-                /*if(mapHeader.get(approverRec.Approval_Header__c).Status__c =='Submitted' && approverRec.Role__c == 'APP' && newApprover.Action__c != oldApprover.Action__c && approverRec.Action__c == 'APPR' && (approverRec.Interested_Party__c != null || approverRec.Interested_Party_Details__c != null)){
-                    strBody=CORE_Chatter_Approval__c.getinstance('Ariba-RequestApproved').Text_Value__c;
-                    strBody = strBody.replace('XXX',mapHeader.get(approverRec.Approval_Header__c).Name);
-                    if(approverRec.Interested_Party__c != null)                        
-                        strBody = strBody.replace('YYY',mapUser.get(approverRec.Interested_Party__c).Name);
-                    if(approverRec.Interested_Party__c == null && approverRec.Interested_Party_Details__c != null)
-                        strBody = strBody.replace('YYY',approverRec.Interested_Party_Details__c);                                
-                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));  
-                } 
-             
-                else
-                //Request Rejected with (Role__c = 'APP' and Action__c ='REJC')
-                if(mapHeader.get(approverRec.Approval_Header__c).Status__c =='Denied' && approverRec.Role__c == 'APP' && newApprover.Action__c != oldApprover.Action__c && approverRec.Action__c == 'REJC' && (approverRec.Interested_Party__c != null || approverRec.Interested_Party_Details__c != null)){
-                    strBody=CORE_Chatter_Approval__c.getinstance('Ariba-RequestRejected').Text_Value__c;
-                    strBody = strBody.replace('XXX',mapHeader.get(approverRec.Approval_Header__c).Name);
-                    if(approverRec.Interested_Party__c != null)                    
-                        strBody = strBody.replace('YYY',mapUser.get(approverRec.Interested_Party__c).Name);                    
-                    if(approverRec.Interested_Party__c == null && approverRec.Interested_Party_Details__c != null)                       
-                        strBody = strBody.replace('YYY',approverRec.Interested_Party_Details__c);                      
-                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));  
-                } */
                 
                // else
                 //Approver Added with IsActive changed from false to true
@@ -783,21 +574,8 @@ public class Core_CA_InterestedParty_Handler{
                         else
                             strBody = strBody.replace(strxxxTemp,'');  
                         
-                        lstFeedItem.add(new FeedItem(Type = strLinkpstTemp, Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance(strAribaTemp).Text_Value__c));  
-                       // lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/apex/Core_CA_ApprovalHomePage#/MyApprovalsHome?headerId='+mapHeader.get(approverRec.Approval_Header__c).Id+'&ipId='+approverRec.Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));  
+                        lstFeedItem.add(new FeedItem(Type = strLinkpstTemp, Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance(strAribaTemp).Text_Value__c));                      
                     }
-                    //send a notification to Requested_For.
-                   /* if(CORE_Chatter_Approval__c.getinstance('Ariba_RequestedFor_Notification').Text_Value__c == 'true' || CORE_Chatter_Approval__c.getinstance('Ariba_RequestedFor_Notification').Text_Value__c == 'True'){
-                        strBody=CORE_Chatter_Approval__c.getinstance('Ariba-ApproverAdded2').Text_Value__c;
-                        if(approverRec.Interested_Party__c != null){
-                            strBody = strBody.replace('XXX',mapHeader.get(approverRec.Approval_Header__c).Name)+' '+mapUser.get(approverRec.Interested_Party__c).Name+'.';                           
-                        }
-                        if( approverRec.Interested_Party__c == null && approverRec.Interested_Party_Details__c != null){
-                           strBody = strBody.replace('XXX',mapHeader.get(approverRec.Approval_Header__c).Name)+' '+approverRec.Interested_Party_Details__c+'.';
-                        }
-                        if(mapHeader.get(approverRec.Approval_Header__c).Requested_For__c!=null && (approverRec.Interested_Party__c != null || approverRec.Interested_Party_Details__c != null))             
-                            lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));
-                    }*/
                 }
                 
             }
@@ -811,8 +589,7 @@ public class Core_CA_InterestedParty_Handler{
                     strBody = CORE_Chatter_Approval__c.getinstance('Clarity_ApproverAdded').Text_Value__c;
                     if(approverRec.Interested_Party_Details__c!=null) strBody = strBody.replace(strxxxTemp,approverRec.Interested_Party_Details__c);
                     else strBody = strBody.replace(strxxxTemp,'');
-                    strBody = strBody.replace(stryyyTemp,mapHeader.get(approverRec.Approval_Header__c).Name);
-                    //lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = approverRec.Approval_Header__c, LinkURL = baseUrl+'/apex/Core_CA_ApprovalHomePage#/MyApprovalsHome?headerId='+lstHeader.get(approverRec.Approval_Header__c).Id+'&ipId='+approverRec.Id, Title = lstHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('GTES').Text_Value__c)); 
+                    strBody = strBody.replace(stryyyTemp,mapHeader.get(approverRec.Approval_Header__c).Name); 
                     lstFeedItem.add(new FeedItem(Type = strLinkpstTemp, Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL = baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Clarity').Text_Value__c)); 
                 }                        
             }
@@ -826,6 +603,11 @@ public class Core_CA_InterestedParty_Handler{
                     else strBody = strBody.replace(strxxxTemp,'');
                     strBody = strBody.replace(stryyyTemp,mapHeader.get(approverRec.Approval_Header__c).Requested_For_Details__c);
                     strBody = strBody.replace(strzzzTemp,mapHeader.get(approverRec.Approval_Header__c).Ariba_Company_Code__c);
+                    
+                    if(mapHeader.get(approverRec.Approval_Header__c).Category__c == 'INV') strBody = strBody.replace(straaaTemp,'Invoice');
+                    else if(mapHeader.get(approverRec.Approval_Header__c).Category__c == 'CN') strBody = strBody.replace(straaaTemp,'Credit note');
+                    else strBody = strBody.replace(straaaTemp,'Invoice');
+                    
                     lstFeedItem.add(new FeedItem(Type = strLinkpstTemp, Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL = baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Requested_For_Details__c,CreatedById = CORE_Chatter_Approval__c.getinstance('Invoice').Text_Value__c)); 
                 }
             }
@@ -834,11 +616,6 @@ public class Core_CA_InterestedParty_Handler{
         }
         //insert the list of feed item record.
         if(!lstFeedItem.isempty()) Database.insert(lstFeedItem);
-        //update the list of header records whose status need to be changed for GTES.
-        /*if(!setHeaderStatus.isempty()){ 
-            List<Core_Approval_Header__c> lstHeaderStatus= new List<Core_Approval_Header__c>(setHeaderStatus);
-            Database.update(lstHeaderStatus);
-        }*/
         
         //insert the header share record.
         if(!setShareHeader.isEmpty()){
@@ -907,28 +684,7 @@ public class Core_CA_InterestedParty_Handler{
                     lstApexSharingQuery=[SELECT Id,ParentId,UserOrGroupId FROM Core_Approval_Header__Share WHERE UserOrGroupId = :approverRec.Interested_Party__c AND ParentId = :approverRec.Approval_Header__c];
                 }
                 if(!lstApexSharingQuery.isempty()) lstApexSharingDelete.add(lstApexSharingQuery[0]);
-            //}
-            
-            //****Delete access to record End
-            
-            /*if(approverRec.Source_System__c=='Ariba' && CORE_Chatter_Approval__c.getinstance('Ariba_Notification').Text_Value__c == strTextValue){
-                String strBody;
-                              
-                //Approver Deleted
-                if(mapHeader.get(approverRec.Approval_Header__c).Status__c=='Submitted' && approverRec.Role__c == 'APP' && (approverRec.Interested_Party__c != null || approverRec.Interested_Party_Details__c != null) ) {   
-                    strBody = CORE_Chatter_Approval__c.getinstance('Ariba-ApproverDeleted').Text_Value__c;
-                    strBody = strBody.replace('YYY',mapHeader.get(approverRec.Approval_Header__c).Name);
-                    
-                    if(approverRec.Interested_Party__c != null){
-                        strBody = strBody.replace('XXX',mapUser.get(approverRec.Interested_Party__c).Name);
-                    }
-                    if(approverRec.Interested_Party__c == null && approverRec.Interested_Party_Details__c != null){
-                        strBody = strBody.replace('XXX',approverRec.Interested_Party_Details__c);
-                    } 
-                    lstFeedItem.add(new FeedItem(Type = 'LinkPost', Body = strBody, ParentId = mapHeader.get(approverRec.Approval_Header__c).Id, LinkURL =baseUrl+'/'+mapHeader.get(approverRec.Approval_Header__c).Id, Title = mapHeader.get(approverRec.Approval_Header__c).Name,CreatedById = CORE_Chatter_Approval__c.getinstance('Ariba').Text_Value__c));     
-                    
-                }
-            } */
+            //}           
         }
         //insert the list of feed item record.
         if(!lstFeedItem.isempty()) Database.insert(lstFeedItem);
