@@ -1,0 +1,13 @@
+Dear {!WU_Master_Warehouse__c.OwnerFullName} ,
+
+Please be informed of the Change in  Warehouse Utilization is submitted for approval.
+
+Warehouse ID: {!WU_Master_Warehouse__c.WU_SAPCode_s__c} 
+Warehouse Name : {!WU_Master_Warehouse__c.WU_SAPName_s__c} 
+
+Prior Committed/Max Pallet Utilization : {!WU_Master_Warehouse__c.WU_Prior_CommittedPalletStorage__c} 
+
+Updated Committed/Max Pallet Utilization :{!WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c} 
+
+Thanks, 
+Unilever Warehouse Administrator.
