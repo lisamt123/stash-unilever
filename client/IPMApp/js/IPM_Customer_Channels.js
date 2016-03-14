@@ -5,7 +5,7 @@
 ***********************************************************************************/
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
-    /* Below code is to check the checkboxes */
+    /* Below script works on page load. If the condition is true it checks the checkboxes */
     jq('#customerChannels input[type=checkbox]').each(function() {
         var val = jq(this).attr('value');
         if (val === 'true') {
@@ -17,15 +17,16 @@ jq(document).ready(function() {
     jq(document).on('click', '.ccChannelList input[type="checkbox"], .ccChannelList li', function(e) {
         e.stopPropagation();
     });
+	/* Below script works on click event. If the condition is true it hides the channel list */
     jq(document).click(function(e) {
-        if (e.target.id != 'channelList') {
+        if (e.target.id !== 'channelList') {
             jq(".channelList").hide();
         }
     });
     checkboxScript();
     selectCheckboxScript();
 });
-/* Below code is to open the Delete channel modal */
+/* Below function is used to open the Delete channel modal */
 function deletecc(str) {
     jq('#ipmChannelDelete').modal({
         show: true,
@@ -47,13 +48,13 @@ function selectCheckboxScript() {
     ccimageloadstatus();
     var selectedValues = IPMAppCC.channelName;
     var selectedValuesArr = selectedValues.split(',');
-    /* Below code is to show the Customer channels list */
+    /* Below function works on page load. If the condition is true it checks the checkboxes and disables it and vice versa */
     function checkBoxRec1() {
         jq('.channelList').show();
-        if (selectedValuesArr.length != 0) {
+        if (selectedValuesArr.length !== 0) {
             jq('.customerChannelList .dropdown-menu input[type="checkbox"]').each(function() {
                 var val = jq(this).attr('value');
-                if (jq.inArray(val, selectedValuesArr) != -1) {
+                if (jq.inArray(val, selectedValuesArr) !== -1) {
                     jq(this).prop('checked', true);
                     jq(this).prop('disabled', true);
                     jq(this).next('label').addClass('selected');
@@ -67,12 +68,12 @@ function selectCheckboxScript() {
             });
         }
     }
-    /* Below code is to check the selected customer channels */
+  /* Below function works on page load. If the condition is true it checks the checkboxes and disables it and vice versa */
     function checkBoxRec() {
-        if (selectedValuesArr.length != 0) {
+        if (selectedValuesArr.length !== 0) {
             jq('.customerChannelList .dropdown-menu input[type="checkbox"]').each(function() {
                 var val = jq(this).attr('value');
-                if (jq.inArray(val, selectedValuesArr) != -1) {
+                if (jq.inArray(val, selectedValuesArr) !== -1) {
                     jq(this).prop('checked', true);
                     jq(this).prop('disabled', true);
                     jq(this).next('label').addClass('selected');
@@ -90,23 +91,27 @@ function selectCheckboxScript() {
         checkBoxRec1();
     });
     checkBoxRec();
+	
+	/* Below function works on page load. If the checked check boxes are greater than three then the users will not be able to check the check boxes */
     jq('.ccCheck').change(function(e) {
         if (jq('.ccListbox input[type=checkbox]:checked').length > 3) {
             jq(this).prop('checked', false);
             jq(this).next('label').removeClass('selected');
         }
     });
-    /* Below code is to remove the Customer channels */
+	
+    /* Below script works on click event. When clicked on remove button it calls a function which removes the Customer channels */
     jq(document).on('click', '#ipmChannelDelete .removeChannel', function() {
         var questionId = jq(this).attr('data-result');
         deleteChannel(questionId);
         jq("#ipmChannelDelete").modal('hide');
     });
-    /* Below code is to reset the selected the customer channel list */
+	
+    /* Below script works on click event. If the condition is true it unchecks the check boxes and enables it and vice versa */ 
     jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e) {
         e.stopPropagation();
         jq(".channelList input:checkbox").each(function() {
-            if (selectedValues.indexOf(jq(this).val()) == -1) {
+            if (selectedValues.indexOf(jq(this).val()) === -1) {
                 jq(this).prop('checked', false);
 				jq(this).prop('disabled', false);
                 jq(this).next('label').removeClass('selected');
@@ -119,6 +124,7 @@ function selectCheckboxScript() {
             }
         });
     });
+	/* Below function works on reset functionality */
     function fchannelReset(e) {
         jq('.channelList').hide();
         jq(".channelList input:checkbox").each(function() {
@@ -127,6 +133,8 @@ function selectCheckboxScript() {
         });
         createCustomChannels('');
     }
+	
+	/* Below script works on tooltip functionality */
     jq(".info").tooltip({
         position: {
             my: 'center top',
@@ -135,16 +143,16 @@ function selectCheckboxScript() {
     });
 }
 
-/* Below code is to check the selected customer channels */
+/* Below function works on page load. If the condition is true it checks the checkboxes and disables it and vice versa */
 function checkboxScript() {
     var selectedValues1 = IPMAppCC.channelInfo;
     var selectedValuesArr1 = selectedValues1.split(',');
 
-    if (selectedValuesArr1.length != 0) {
+    if (selectedValuesArr1.length !== 0) {
         jq('.infoCheck input[type="checkbox"]').each(function() {
 
             var val = jq(this).attr('value');
-            if (jq.inArray(val, selectedValuesArr1) != -1) {
+            if (jq.inArray(val, selectedValuesArr1) !== -1) {
                 jq(this).prop('checked', true);
                 jq(this).next('label').addClass('selected');				
             } else {
@@ -153,6 +161,7 @@ function checkboxScript() {
             }
         });
     }
+	/* Below script works on click event. If the condition is true the value of the checked check boxes pushed to a function */
     jq(document).on('click', '.ipmCheckbox.infoCheck > input[type="checkbox"]', function() {
         var channelM = [];
         jq('.infoCheck input[type="checkbox"]').each(function() {
@@ -165,6 +174,7 @@ function checkboxScript() {
             updateInfoLogo(conName);
         });
     });
+	/* Below script works on tooltip functionality */
     jq(".info").tooltip({
         position: {
             my: 'center top',
@@ -173,7 +183,7 @@ function checkboxScript() {
     });
 
 }
-/* Below code is used for the Image hover for uploading image */
+/* Below function perfoms the Image hover animation for uploading image */
 function ccimageloadstatus() {
     jq('.uploadImage').hover(function() {
         jq(this).find('.updateDeletimg').toggle("slide", {
@@ -186,7 +196,7 @@ function ccimageloadstatus() {
         }, 100);
     });
 }
-/* Below code is add the selected customer channels */
+	/* Below function pushes the value of the checked check boxes to a function */
 function fchannelM() {
     var conName;
     var channelM;
@@ -198,15 +208,15 @@ function fchannelM() {
     conName = channelM.toString();
     createCustomChannels(conName);
 }
-/* Below code is to update the selected customer channels */
+/* Below function calls another function 'updateContent' which updates the selected customer channels */
 function update(conId, content, type) {
     updateContent(conId, content, type);
 }
-/* Below code is to delete the selected customer channels */
+/* Below function calls another function 'delChannel' which deletes the selected customer channels */
 function deleteChannel(conId) {
     delChannel(conId);
 }
-/* Below code is to update the priority of the customer channels */
+/* Below function calls another function 'updatePriority' which updates the priority of the customer channels */
 function updatePriorityScript(conId, arrow, priority) {
     updatePriority(conId, arrow, priority);
 }

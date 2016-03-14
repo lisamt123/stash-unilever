@@ -8,7 +8,7 @@
 // To prevent conflict with prototype.js
 var jq = jQuery.noConflict();
 
-/* Below code is related to the modal */
+/* Below script is the main modal functionality which is used to open the modal and called across the application. */
 function ipmModal(el, title, width, height, margintop, zindex) {
     var mTitle = jq('#ipmModal .modal-title');
     var domEl = jq('#ipmModal .modal-dialog');
@@ -24,19 +24,21 @@ function ipmModal(el, title, width, height, margintop, zindex) {
             'z-index': zindex
         });
     });
+	
+/* Below script works on key down event. When the user press enter it triggers a click event. */
     jq(document).on('keydown', el, function() {
         var keyCode = (event.keyCode ? event.keyCode : event.which);
-        if (keyCode == 13) {
+        if (keyCode === 13) {
             jq(el).trigger('click');
         }
     });
 }
-/* Below code is related to open the modal */
+/* Below function is used to open an Iframe inside the modal body which inturn loads a url inside the Iframe. */
 function openModal(url) {
     jq(document).find('#ipmModal').find('.modal-body').html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "' + url + '"></iframe>');
 }
 
-/* Below code is related to close the modal */
+/* Below script works on click event. When user clicks on cancel button a click event is triggered and closes the modal. */
 function closeModal() {
     jq(document).on('click', '.cancelButton', function() {
         var frame = parent.document.getElementById("ipmModal");
@@ -44,7 +46,7 @@ function closeModal() {
     });
 }
 
-/* Below code is related to delete task modal */
+/* Below function changes the modal header and changes the content inside the modal of delete task modal. */
 function openDeleteTaskModal(str, deleteMsg) {
     jq('#ipmDeleteModal .modal-title').html("Remove To-do");
     jq('#ipmDeleteModal .confirmMsg').html(deleteMsg);
@@ -52,6 +54,7 @@ function openDeleteTaskModal(str, deleteMsg) {
     jq(".confirmAction").addClass("removeTask");
 }
 
+/* Below function gets the value of a element and based on the element it deletes the task and hides the modal. */
 function deleteTaskJs(element) {
     var taskId = jq(element).attr('value');
     DeleteTask(taskId);
@@ -65,8 +68,9 @@ jq.fn.preload = function() {
     });
 };
 
-/* Below code is used to select Table Row on click of checkbox.  */
 jq(document).ready(function(){
+
+/* Below script works on click event. It is used to select Table Row and change the row color if the checkbox is checked. */
 	jq(document).on('click', '.ipmCheckbox input[type="checkbox"]:not(:disabled)', function() {
 		var chkInput = jq(this);
 		if (chkInput.is(':checked')) {

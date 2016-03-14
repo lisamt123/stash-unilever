@@ -35,7 +35,6 @@
 	
 	.ipmButton.green{background:#81bf42 !important;}
 	.ipmButton.green:hover{background:#56843b !important;}
-	#changeStatus .ipmButtonGroup{padding-bottom: 4%;padding-right: 6px;} 
 	.SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
 	.ipmButtonGroup{margin-bottom:15px;  margin-right: 15px;}
 	
@@ -56,7 +55,6 @@
 	.slider3 .legendSld label[for=s2]:before {display:none!important;}
 	.sliderDiv{margin-top:20px;} 
 	.sliderDiv:after {display:block; clear:both: content:" "; visibility:hidden;}   
-	#changeStatus{margin:20px 0 0 0;padding:0 15px;}       
 	.infoMsg{padding:10px;font-size:0.82em;background:#e5f8ff;border:1px #1568b6 solid;color:#007dbb; border-radius:2px;}       
 	.toolTipMsg{background:#fafafa;border:1px #c9c9c9 solid; border-radius:2px;color:#364354;font-size:0.82em;position:relative;}          
 	.toolTipMsg::before { left: 5%;top: -8px; position: absolute; border-top: 1px #c9c9c9 solid;border-right: 1px #c9c9c9 solid;background: #fafafa;content: " ";height: 15px;width: 15px;transform: rotate(-45deg);-moz-transform: rotate(-45deg);-webkit--transform: rotate(-45deg);-ms-transform: rotate(-45deg); }
@@ -90,7 +88,7 @@
 	.tooltip > .tooltip-inner {-webkit-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);-moz-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);font-weight:normal;background-color: #00b1a5;border-radius:2px;text-align:left;width:500px;}
 	.tooltip > .tooltip-arrow {border-top-color:#00b1a5!important;}
 	.tooltip.bottom .tooltip-arrow {border-bottom-color:#00b1a5!important;}
-	#showQues {display:none;}
+	.showQues {display:none;}
 	.delButton{width: 25px !important;display: block;height: 25px;border: 1px solid;border-radius: 50px;padding: 15px;}        
 /* add question part */
 	.inputField input, .inputField select{width: 100%;height: 30px;border-radius: 3px;border: 1px #a8a8a8 solid;}

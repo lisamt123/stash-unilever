@@ -79,19 +79,19 @@
 		height: 100%;
 	}
 	.imgPointer{cursor:pointer;}
-	ul.imgupdatelink {
+	.imgupdatelink {
 		list-style-type: none;
 		margin-top: 3px;
 		padding: 0px;
 	}
 	
-	ul.imgupdatelink li {
+	.imgupdatelink li {
 		margin: 0px;
 		float: left;
 		padding: 0px 11px;
 	}
 	
-	ul.imgupdatelink li:first-child {
+	.imgupdatelink li:first-child {
 		border-right: #ccc solid 1px;
 	}
 	
@@ -111,7 +111,7 @@
 		display: none;
 	}
 	
-	ul.imgupdatelink li a {
+	.imgupdatelink li a {
 		font-size: 11px;
 		font-weight: bold;
 		display: block;
@@ -159,4 +159,7 @@ textarea::-webkit-input-placeholder {
 textarea:-ms-input-placeholder {  
    color: #B5B5B5;  
    font-style:italic;
+}
+blockquote.imgupdatelink{
+border-left:0px !important;
 }

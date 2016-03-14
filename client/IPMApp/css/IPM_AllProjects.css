@@ -16,7 +16,7 @@
 .incHeight{height: 17px;}
 .pull-right{float:right;}
 .table>thead>tr>th:first-child {padding-left: 4px !important;}
-#datetimepickerFromDate{margin-bottom:10px;}
+.datetimepickerFromDate{margin-bottom:10px;}
 .keep-open {height: 18px;width: 25px;}
 .projectTable>thead>tr>th{border-bottom:1px solid #007DBB !important;}
 .projectDesc{text-align:left;color:#666;font-size:0.95em;}
@@ -68,7 +68,7 @@
 .expandTool span{font-size: 14.666667px;}
 .expandTool .expandAll{padding-right:5px;}
 .expandTool .collapseAll{margin-left:5px;}
-#resetFilterBtn{margin-right: 0;}
+.resetFilterBtn{margin-right: 0;}
 .tldLableTo{margin-top:15px;}
 .tldTo{margin-top:10px;}
 .proTitle_hover{color:#66933E!important;}

@@ -15,6 +15,8 @@ var Validationflag4 = "false";
 var Validationflag5 = "false";
 var Validationflag6 = "false";
 var Validationflag7 = "false";
+var volSwitch = false;
+
 var myWindow;
 function openWin() {
     myWindow = window.open(IPMAppFin.UploadBusinessCase + "?parentId=" + IPMAppFin.projectId, "myWindow", "width=400, height=200, top = 300, left= 500");
@@ -113,16 +115,16 @@ jq(document).ready(function() {
             if ([0, 1, 2, 3, 14, 18, 22, 23, 24, 25, 26, 27, 38].indexOf(row) !== -1 && col >= 0) {
                 cellProperties.readOnly = true;
                 cellProperties.renderer = ReadOnlyRenderer;
-            } else if ([19, 20].indexOf(row) != -1 && [4, 6, 7, 9].indexOf(col) != -1) {
+            } else if ([19, 20].indexOf(row) !== -1 && [4, 6, 7, 9].indexOf(col) !== -1) {
                 cellProperties.readOnly = true;
                 cellProperties.renderer = ReadOnlyRenderer;
-            } else if ([21].indexOf(row) != -1 && [4, 6, 7, 8, 9].indexOf(col) != -1) {
+            } else if ([21].indexOf(row) !== -1 && [4, 6, 7, 8, 9].indexOf(col) !== -1) {
                 cellProperties.readOnly = true;
                 cellProperties.renderer = ReadOnlyRenderer;
-            } else if (sustPeriod == '3' && [8, 9, 13, 14].indexOf(col) != -1 && [19, 20].indexOf(row) == -1) {
+            } else if (sustPeriod === '3' && [8, 9, 13, 14].indexOf(col) !== -1 && [19, 20].indexOf(row) === -1) {
                 cellProperties.readOnly = true;
                 cellProperties.renderer = ReadOnlyRenderer;
-            } else if ([0, 1, 2, 3].indexOf(col) != -1) {
+            } else if ([0, 1, 2, 3].indexOf(col) !== -1) {
                 cellProperties.readOnly = true;
                 cellProperties.renderer = headerRenderer2;
             }
@@ -150,9 +152,12 @@ jq(document).ready(function() {
                 cellProperties.renderer = boldAndAlignRenderer;
             } else if (row === 7 && col === 1) {
                 cellProperties.readOnly = false;
-                cellProperties.type = 'text';
+                cellProperties.type = 'autocomplete';
+				//cellProperties.source = ['Total Tons','Total 000 Units'];
+				//cellProperties.visibleRowsNumber= 1;
+				
             } else if (row === 31 && col === 1) {
-                cellProperties.readOnly = false;
+                cellProperties.readOnly = true;
                 cellProperties.type = 'text';
             }
             return cellProperties;
@@ -303,31 +308,27 @@ jq(document).ready(function() {
                     }
                     for (var j = 0; j < globalchanges.length; j++) {
 					    if(BI != 'Small'){
-							if ((globalchanges[j][0].toString() == '9' || globalchanges[j][0].toString() == '33') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag == 'false') {
-								alert(IPMAppFin.IPM_TurnOverCP);
-								Validationflag = 'true';
-							}
-							if ((globalchanges[j][0].toString() == '11' || globalchanges[j][0].toString() == '35') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag1 == 'false') {
+							if ((globalchanges[j][0].toString() === '11' || globalchanges[j][0].toString() === '35') && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0') && Validationflag1 === 'false') {
 								alert(IPMAppFin.IPM_GrossProfitCP);
 								Validationflag1 = 'true';
 							}
-							if ((globalchanges[j][0].toString() == '12' || globalchanges[j][0].toString() == '36') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag2 == 'false') {
+							if ((globalchanges[j][0].toString() === '12' || globalchanges[j][0].toString() === '36') && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0') && Validationflag2 === 'false') {
 								alert(IPMAppFin.IPM_AdvertisingCP);
 								Validationflag2 = 'true';
 							}
-							if ((globalchanges[j][0].toString() == '13' || globalchanges[j][0].toString() == '37') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag3 == 'false') {
+							if ((globalchanges[j][0].toString() === '13' || globalchanges[j][0].toString() === '37') && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0') && Validationflag3 === 'false') {
 								alert(IPMAppFin.IPM_PBOCP);
 								Validationflag3 = 'true';
 							}
-							if ((globalchanges[j][0].toString() == '15' || globalchanges[j][0].toString() == '39') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag4 == 'false') {
+							if ((globalchanges[j][0].toString() === '15' || globalchanges[j][0].toString() === '39') && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0') && Validationflag4 === 'false') {
 								alert(IPMAppFin.IPM_GMCP);
 								Validationflag4 = 'true';
 							}
-							if ((globalchanges[j][0].toString() == '16' || globalchanges[j][0].toString() == '40') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag5 == 'false') {
+							if ((globalchanges[j][0].toString() === '16' || globalchanges[j][0].toString() === '40') && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0') && Validationflag5 === 'false') {
 								alert(IPMAppFin.IPM_AandP);
 								Validationflag5 = 'true';
 							}
-							if ((globalchanges[j][0].toString() == '17' || globalchanges[j][0].toString() == '41') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag6 == 'false') {
+							if ((globalchanges[j][0].toString() === '17' || globalchanges[j][0].toString() === '41') && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0') && Validationflag6 === 'false') {
 								alert(IPMAppFin.IPM_PBOPCP);
 								Validationflag6 = 'true';
                             }
@@ -335,68 +336,88 @@ jq(document).ready(function() {
 							
 					    }
 						
-						if ((globalchanges[j][0].toString() == '7'  && globalchanges[j][1] == 1) && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag7 == 'false') {
+						if (globalchanges[j][0].toString() === '7'  && globalchanges[j][1] === 1 && Validationflag7 === 'false') {
+							if(globalchanges[j][3].toString().replace(/'/g, "\'").toLowerCase().trim() !== 'total tons' ){
+						        volSwitch = true;
+						    }
+							if(globalchanges[j][3].toString().replace(/'/g, "\'").toLowerCase().trim() !== 'total \'000 units' && volSwitch === true){
+								  volSwitch = true;
+							}else{
+								volSwitch = false;
+							}
+							if(volSwitch === true ){
+								alert(IPMAppFin.IPM_CopyPastevolumevalid);
+								Validationflag7 = 'true';
+							}
+						}
+						
+						if ((globalchanges[j][0].toString() === '7'  && globalchanges[j][1] === 1) && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0' ) && Validationflag7 === 'false') {
 						   	    alert(IPMAppFin.IPM_CopyPastevolumevalid);
 								Validationflag7 = 'true';
 						}
-                        if (globalchanges[j][0].toString() == '9' && globalchanges[j][1] == 5) {
+						if ((globalchanges[j][0].toString() === '9' || globalchanges[j][0].toString() === '33') && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0') && Validationflag === 'false') {
+								alert(IPMAppFin.IPM_TurnOverCP);
+								Validationflag = 'true';
+						}
+							
+                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 5) {
                             Y1GTO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '9' && globalchanges[j][1] == 6) {
+                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 6) {
                             Y2GTO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '9' && globalchanges[j][1] == 7) {
+                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 7) {
                             Y3GTO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '9' && globalchanges[j][1] == 8) {
+                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 8) {
                             Y4GTO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '9' && globalchanges[j][1] == 9) {
+                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 9) {
                             Y5GTO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '9' && globalchanges[j][1] == 10) {
+                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 10) {
                             Y1ITO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '9' && globalchanges[j][1] == 11) {
+                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 11) {
                             Y2ITO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '9' && globalchanges[j][1] == 12) {
+                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 12) {
                             Y3ITO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '9' && globalchanges[j][1] == 13) {
+                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 13) {
                             Y4ITO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '9' && globalchanges[j][1] == 14) {
+                        if (globalchanges[j][0].toString() === '9' && globalchanges[j][1] === 14) {
                             Y5ITO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '33' && globalchanges[j][1] == 5) {
+                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 5) {
                             Y1CGTO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '33' && globalchanges[j][1] == 6) {
+                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 6) {
                             Y2CGTO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '33' && globalchanges[j][1] == 7) {
+                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 7) {
                             Y3CGTO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '33' && globalchanges[j][1] == 8) {
+                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 8) {
                             Y4CGTO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '33' && globalchanges[j][1] == 9) {
+                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 9) {
                             Y5CGTO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '33' && globalchanges[j][1] == 10) {
+                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 10) {
                             Y1CITO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '33' && globalchanges[j][1] == 11) {
+                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 11) {
                             Y2CITO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '33' && globalchanges[j][1] == 12) {
+                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 12) {
                             Y3CITO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '33' && globalchanges[j][1] == 13) {
+                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 13) {
                             Y4CITO = globalchanges[j][3];
                         }
-                        if (globalchanges[j][0].toString() == '33' && globalchanges[j][1] == 14) {
+                        if (globalchanges[j][0].toString() === '33' && globalchanges[j][1] === 14) {
                             Y5CITO = globalchanges[j][3];
                         }
                     }
@@ -415,9 +436,9 @@ jq(document).ready(function() {
 						}
 					
 					/* If we reduce the number of conditional operators it will contradict with the other sonar issue 'Merge this if statement with the nested one' */
-                    if (Validationflag == 'false' && Validationflag1 == 'false' && Validationflag2 == 'false' 
-					&& Validationflag3 == 'false' && Validationflag4 == 'false' && Validationflag5 == 'false' 
-					&& Validationflag6 == 'false' && Validationflag7 == 'false') {
+                    if (Validationflag === 'false' && Validationflag1 === 'false' && Validationflag2 === 'false' 
+					&& Validationflag3 === 'false' && Validationflag4 === 'false' && Validationflag5 === 'false' 
+					&& Validationflag6 === 'false' && Validationflag7 === 'false') {
                         document.getElementById('DivButton').style.display = 'inline';
                     } else {
                         document.getElementById('DivButton').style.display = 'none';
@@ -426,11 +447,11 @@ jq(document).ready(function() {
             }
         },
         afterValidate: function(isValid, value, row, prop, source) {
-            if (source == "paste" && !isValid && errorflag == "false") {
+            if (source === "paste" && !isValid && errorflag === "false") {
 				alert(IPMAppFin.FinancialGrid_MSG3);
 				errorflag = "true";
 				document.getElementById("Clrbtn").click();             
-            } else if (source == "edit" && !isValid) {
+            } else if (source === "edit" && !isValid) {
                     alert(IPMAppFin.FinancialGrid_MSG3);
                     document.getElementById("Clrbtn").click();
             }
@@ -438,7 +459,7 @@ jq(document).ready(function() {
     });
 });
 function chdropdown(valx) {
-    if (globalchanges == '') {
+    if (globalchanges === '') {
         alert(IPMAppFin.FinancialGrid_MSG4);
         return;
     }

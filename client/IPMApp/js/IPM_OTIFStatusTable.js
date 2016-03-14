@@ -7,18 +7,18 @@ the slider bar
 *@Created Date: 03/01/2015
 ***********************************************************************************
 */  
-
 var jq = jQuery.noConflict();
+/* Below script calls a function 'initSliderOTIF' on page load. */
 jq(document).ready(function() {
     initSliderOTIF();
 });
 
-/* Below code is to change the otif status */
+/* Below function calls another function 'callupdateOtifList' which updates the otif list */
 function changeStatus(id, status) {
     callupdateOtifList(id, status);
 }
 
-/* Below code is for the OTIF slider functionality */
+/* Below function contains the script for the slider functionality in first Otif list. It contains the complete functionality code when user clicks on the options the pointer ball moves to the clicked option. Also it highlights the selected option with a different color on page load. Also it saves the selected option when clicked on it. */
 function initSliderOTIF() {
 
     var itemsGK = [IPMAppOTT.select, IPMAppOTT.green, IPMAppOTT.amber, IPMAppOTT.red, IPMAppOTT.na];
@@ -49,22 +49,22 @@ function initSliderOTIF() {
 				}
             });
 			
-		if (answer == IPMAppOTT.green) {            
+		if (answer === IPMAppOTT.green) {            
             jq(this).find(".sld5 label[for=s1]").css({
                 'color': '#e98824',
 				'font-weight': 'bold'
             });
-        } else if (answer == IPMAppOTT.amber) {
+        } else if (answer === IPMAppOTT.amber) {
             jq(this).find(".sld5 label[for=s2]").css({
                 'color': '#e98824',
 				'font-weight': 'bold'
             });
-        } else if (answer == IPMAppOTT.red) {
+        } else if (answer === IPMAppOTT.red) {
             jq(this).find(".sld5 label[for=s3]").css({
                 'color': '#e98824',
 				'font-weight': 'bold'
             });          
-        } else if (answer == IPMAppOTT.na) {
+        } else if (answer === IPMAppOTT.na) {
             jq(this).find(".sld5 label[for=s4]").css({
                 'color': '#e98824',
 				'font-weight': 'bold'
@@ -95,17 +95,17 @@ function initSliderOTIF() {
 				}
             });
 
-		if (answer == IPMAppOTT.green) { 
+		if (answer === IPMAppOTT.green) { 
             jq(this).find(".sld4 label[for=s1]").css({
                 'color': '#e98824',
 				'font-weight': 'bold'
             });
-        } else if (answer == IPMAppOTT.red) {        
+        } else if (answer === IPMAppOTT.red) {        
             jq(this).find(".sld4 label[for=s2]").css({
                 'color': '#e98824',
 				'font-weight': 'bold'
             });
-        } else if (answer == IPMAppOTT.na) {         
+        } else if (answer === IPMAppOTT.na) {         
             jq(this).find(".sld4 label[for=s3]").css({
                 'color': '#e98824',
 				'font-weight': 'bold'
@@ -118,6 +118,8 @@ function initSliderOTIF() {
         }
         }
     });
+	
+/* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */	
     jq(".legendSld label").on("click", function() {
         var lpos = jq(".legendSld label").offset().left;
         jq(this).closest(".legendSld").find("label").css({

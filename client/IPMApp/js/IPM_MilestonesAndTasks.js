@@ -5,25 +5,29 @@
 ************************************************************************************/
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
+    jq(this).scrollTop(1); 
     ipmModal('#addMilestone', 'Add Milestone', '60%', '80%', '2%');
     ipmModal('#addTask', 'Add To-do', '320px', '600px', '2%');
-    /* Below code is related to edit milestone and edit task on click functionality */
+    /* Below script works on click event. If the condition is true it opens up the edit modal. */
     jq(document).on('dblclick', '.editMilestone, .editTask', function(e) {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
         var isDisabled = jq('.editMilestoneBtn').find('input[type=checkbox]').attr('isDisabled');
-        if (isDisabled == 'false') {
+        if (isDisabled === 'false') {
             openEditModal(this);
         }
         var isDisabled = jq('.editTaskBtn').find('input[type=checkbox]').attr('isDisabled');
-        if (isDisabled == 'false') {
+        if (isDisabled === 'false') {
             openEditModal(this);
         }
     });
+	
+	/* Below script works on click event. It opens up the edit modal. */
     jq(document).on('click', '.editMilestoneBtn, .editTaskBtn', function(e) {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
         openEditModal(this);
     });
-    /* Below code is to open the edit task modal */
+	
+    /* Below script works on click event. It opens up the edit modal by loading a page inside an Iframe. */
     jq(document).on('click', '#editTask', function(e) {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
         var url = jq(this).attr('value');
@@ -43,17 +47,17 @@ jq(document).ready(function() {
         jq('#ipmModal .modal-dialog').height('90%');
         jq('#ipmModal .modal-dialog').css('margin-top', '3%');
     });
-    /* Below code is to add a class to the selected check boxes  */
+    /* Below script is to add a class to table row based on the selected check boxes  */
     jq(".ipmCheckbox").find("input[type=checkbox]:checked").closest("tr").addClass("selected");
     jq(".ipmCheckbox").on("click", "input[type=checkbox]", function() {
         var $this = jq(this);
-        if ($this.prop("value") == "true") {
+        if ($this.prop("value") === "true") {
             $this.closest("tr").addClass("selected");
         } else {
             $this.closest("tr").removeClass("selected");
         }
     });
-    if (IPMApp.pmApproachMessage == "true") {
+    if (IPMApp.pmApproachMessage === "true") {
         jq('.ipmStatistics').hide();
         jq('#addTask').hide();
         jq('#tasksAssignedToMeFilter').hide();
@@ -73,10 +77,10 @@ jq(document).ready(function() {
     var full = "Full";
     var $full = jq('#Full');
     var $lite = jq('#Lite');
-    if (isDisabled == 'true') {
+    if (isDisabled === 'true') {
         jq('.transBox .ipmRadioButton input[type=radio]').prop('disabled', true);
     }
-    if (complexity == full) {
+    if (complexity === full) {
         jq('#full').prop('checked', true);
         $lite.hide();
         $full.show();
@@ -85,7 +89,7 @@ jq(document).ready(function() {
         $full.hide();
         $lite.show();
     }
-    if (manageToDo == "Internal") {
+    if (manageToDo === "Internal") {
         displayTasksChkBox.prop('checked', true);
         displayTasksChkBox.next().addClass('selected');
     } else {
@@ -93,8 +97,10 @@ jq(document).ready(function() {
         displayTasksChkBox.next().removeClass('selected');
     }
 
+	  hilightTaskScript();
+
 });
-/* Below code is related to the time line view functionality */
+/* Below function performs the toggling of time line view and list view. */
 function checkBoxScript() {
     jq(".timeLineView").hide();
     jq(".toggleContainer .icoButton.document").on("click", function() {
@@ -110,7 +116,7 @@ function checkBoxScript() {
         pageScrollTop = jq(window).scrollTop();
     });
 }
-/* Below code is to open the edit modal */
+/* Below fucntion opens up the edit milestone modal. */
 function openEditModal(elem) {
     var url = jq(elem).attr('value');
     var top = jq(elem).closest('tr').offset().top - pageScrollTop;
@@ -131,3 +137,11 @@ function openEditModal(elem) {
     mDialog.css('margin-right', '8%');
 }
 checkBoxScript();
+
+/* Below function contains the script which has the tooltip functionality. This function is called when the rerendering happens and the script will run again */
+function hilightTaskScript(){
+	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+	jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});	
+	jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
+	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
+}

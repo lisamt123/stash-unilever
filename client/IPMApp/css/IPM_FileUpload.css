@@ -1,7 +1,6 @@
 	.clearfx {clear:both;}
     .btn.teal {background:#00B389; color:#fff; border:none; font-family: arial;font-weight: normal;font-size: 12px; padding:7px 15px; border-radius:0; -webkit-border-radius:0; -moz-border-radius:0;}
     .bPageBlock.brandSecondaryBrd {background:transparent!important; border:transparent!important;border-radius:1px!important;-webkit-border-radius:1px!important;}
-    #closeBtn{background:url(../images/ipmCoreParamClose.png) no-repeat;text-align: center;font-size:3.5em;color:#003229;cursor:pointer;line-height: 1;padding-left: 10px;}
     .ipmModalTitle{float:left;padding:25px 0;}
     .marginTop{margin-top:13%;width:100%;}
     .infoMsgDiv{padding:0 !important;margin-top:10px;float:left;}

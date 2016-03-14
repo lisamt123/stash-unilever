@@ -36,10 +36,10 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
 .custMarginTop {
     margin-top: 20px;
 }
-#ipmAddMemberModal .modal-body {
+.ipmAddMemberModal .modal-body {
     height: 88% !important;
 }
-#charCountRemaining {
+.charCountRemaining {
     font-weight: bold;
 }
 .sfdc_richtext img {
@@ -279,20 +279,20 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
 }
 /* new modal styles */
 
-#ipmModalGetStarted .modal-dialog {
+.ipmModalGetStarted .modal-dialog {
     width: 95%;
     height: 95%;
 }
-#ipmModalGetStarted .modal-content {
+.ipmModalGetStarted .modal-content {
     overflow: auto;
 }
-#ipmModalGetStarted .modal-header button.close {
+.ipmModalGetStarted .modal-header button.close {
     margin-top: 0 !important;
     position: relative;
     bottom: 40px;
     right: 10px;
 }
-#ipmModalGetStarted .modal-header {
+.ipmModalGetStarted .modal-header {
     border-bottom: 1px solid #7fa19e;
     height: 80px;
     padding: 10px 0 0;
@@ -300,18 +300,18 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-#ipmGetStartedTab .ipmTabContent {
+.ipmGetStartedTab .ipmTabContent {
     width: 100%;
 }
-#ipmGetStartedTab .panel {
+.ipmGetStartedTab .panel {
     background: transparent;
 }
-#ipmGetStartedTab .ipmStartedTabs {
+.ipmGetStartedTab .ipmStartedTabs {
     padding: 0 0 0 10px;
     margin-top: 29px;
     margin-bottom: 15px;
 }
-#ipmGetStartedTab .ipmStartedTabs li {
+.ipmGetStartedTab .ipmStartedTabs li {
     width: 180px;
     position: relative;
     padding: 11px;
@@ -324,13 +324,13 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
     cursor: pointer;
 }
 
-#ipmGetStartedTab .ipmStartedTabs li.active {
+.ipmGetStartedTab .ipmStartedTabs li.active {
     color: #343434;
     position: relative;
     cursor: pointer;
 	top: 1px;
 }
-#ipmModalGetStarted .modal-header .ipmModalGetStartedClose.close {
+.ipmModalGetStarted .modal-header .ipmModalGetStartedClose.close {
     bottom: 82px;
 }
 /*modal content styles*/
@@ -671,49 +671,49 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
 }
 /*slider styles */
 
-#slideBar1 label:nth-child(2) {
+.slideBar1 label:nth-child(2) {
     top: -42px!important;
 }
-#slideBar1 label:nth-child(2):before {
+.slideBar1 label:nth-child(2):before {
     top: 37px!important;
 }
-#slideBar1 label:nth-child(6) {
+.slideBar1 label:nth-child(6) {
     top: -42px!important;
 }
-#slideBar1 label:nth-child(6):before {
+.slideBar1 label:nth-child(6):before {
     top: 37px!important;
 }
-#slideBar1 label:nth-child(10) {
+.slideBar1 label:nth-child(10) {
     top: -42px!important;
 }
-#slideBar1 label:nth-child(10):before {
+.slideBar1 label:nth-child(10):before {
     top: 37px!important;
 }
-#slideBar1 label:nth-child(14) {
+.slideBar1 label:nth-child(14) {
     top: -42px!important;
 }
-#slideBar1 label:nth-child(14):before {
+.slideBar1 label:nth-child(14):before {
     top: 37px!important;
 }
-#slideBar1 label:nth-child(18) {
+.slideBar1 label:nth-child(18) {
     top: -42px!important;
 }
-#slideBar1 label:nth-child(18):before {
+.slideBar1 label:nth-child(18):before {
     top: 37px!important;
 }
-#slideBar1 label:nth-child(22) {
+.slideBar1 label:nth-child(22) {
     top: -42px!important;
 }
-#slideBar1 label:nth-child(22):before {
+.slideBar1 label:nth-child(22):before {
     top: 37px!important;
 }
-#slideBar1 label:nth-child(26) {
+.slideBar1 label:nth-child(26) {
     top: -42px!important;
 }
-#slideBar1 label:nth-child(26):before {
+.slideBar1 label:nth-child(26):before {
     top: 37px!important;
 }
-#slideBar1 label:before {
+.slideBar1 label:before {
     background: #A3C24B;
     border-radius: 20px;
     position: absolute !important;
@@ -727,31 +727,31 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
     border: 1px solid black;
     z-index: 100;
 }
-#slideBar1 label.fstchild {
+.slideBar1 label.fstchild {
     text-align: left;
     left: 0;
     width: 3.571428571428571%!important;
 }
-#slideBar1 label.fstchild:before {
+.slideBar1 label.fstchild:before {
     left: 0;
     background: #fff;
 }
-#slideBar1 label.lstchild {
+.slideBar1 label.lstchild {
     text-align: center;
     right: 0;
     width: 3.571428571428571%!important;
 }
-#slideBar1 label.lstchild:before {
+.slideBar1 label.lstchild:before {
     left: 94%;
 }
 .panel-heading.question {
     margin-bottom: 5% !important;
 }
-#slideBar1 label.active {
+.slideBar1 label.active {
     color: #555555 !important;
     font-weight: bold;
 }
-#slideBar1 label {
+.slideBar1 label {
     font-size: 11px;
     color: #555555 !important;
     font-weight: normal;
@@ -761,20 +761,20 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
     padding: 0!important;
     margin: 0!important;
 }
-#slideBar1 label span {
+.slideBar1 label span {
     position: absolute;
     top: 0;
     left: 0;
     width: 164%;
     left: -30%;
 }
-#slideBar1 label.fstchild span {
+.slideBar1 label.fstchild span {
     left: -2px;
 }
-#slideBar1 label.lstchild span {
+.slideBar1 label.lstchild span {
     left: 0;
 }
-#slideBar1 .col-xs-12 span label:nth-child(2) {
+.slideBar1 .col-xs-12 span label:nth-child(2) {
     margin-top: -50px;
 }
 .sliderTrack {
@@ -789,40 +789,40 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
 .slide-bar {
     background-color: #C5C5C5 !important;
 }
-#slideBar2 label {
+.slideBar2 label {
     width: 20%;
     font-size: 11px;
     margin: 0!important;
     top: 20px;
 }
-#slideBar2 label.fstchild {
+.slideBar2 label.fstchild {
     width: 10%!important;
 }
-#slideBar2 label.lstchild {
+.slideBar2 label.lstchild {
     width: 10%!important;
     right: 0!important;
 }
-#slideBar2 label:before {
+.slideBar2 label:before {
     background: #EDEDED;
 }
-#slideBar3 label {
+.slideBar3 label {
     width: 25%!important;
     font-size: 11px;
     margin: 0!important;
     top: 20px;
 }
-#slideBar3 label:before {
+.slideBar3 label:before {
     background: #EDEDED;
 }
-#slideBar3 label.fstchild {
+.slideBar3 label.fstchild {
     width: 12.5%!important;
 }
-#slideBar3 label.lstchild {
+.slideBar3 label.lstchild {
     width: 12.5%!important;
     right: 0!important;
 }
-#slideBar2 label.fstchild:before,
-#slideBar3 label.fstchild:before {
+.slideBar2 label.fstchild:before,
+.slideBar3 label.fstchild:before {
     background: #fff;
 }
 .slide-bar {
@@ -933,7 +933,7 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
     margin-top: 20px !important;
 }
 
-#projectSpan select {
+.projectSpan select {
     padding: 0 !important;
 }
 .successMsgDiv1 {
@@ -971,7 +971,7 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
     position: relative;
     bottom: 3px;
 }
-#projectSpan .panel-heading.question {
+.projectSpan .panel-heading.question {
     margin-bottom: 0 !important;
 }
 /* Graph box styles */
@@ -1114,7 +1114,7 @@ img[data-leader='true'] {
 .noPadright {
     padding-right: 0 !important;
 }
-#quitWizard .modal-dialog {
+.quitWizard .modal-dialog {
     margin-top: 15%;
 }
 /* Team Radio button styles */
@@ -1287,7 +1287,7 @@ img[data-leader='true'] {
     float: left;
     padding-right: 4px;
 }
-#ipmTableDiv .SecButtonSet {
+.ipmTableDiv .SecButtonSet {
     display: inline-block;
     text-align: right;
     margin-top: 7px;
@@ -1542,10 +1542,10 @@ img[data-leader='true'] {
     clear:both;
 }
 @-moz-document url-prefix() {
-    #ipmGetStartedTab .ipmStartedTabs li {
+    .ipmGetStartedTab .ipmStartedTabs li {
         width:172px;
     }
-    #ipmGetStartedTab .ipmStartedTabs {
+    .ipmGetStartedTab .ipmStartedTabs {
         margin-top:28px;
     }
 }
@@ -1567,8 +1567,8 @@ margin-left: 1px;
 
 .deleteButtoncontainer{  margin: 0 10px;}
 .buttonMarginRight {  margin-right: 15px;}
-#ipmModalDelete .modal-header{height:32%;}
-#slideBar1 .slideIcon{margin-left:-4px;}
+.ipmModalDelete .modal-header{height:32%;}
+.slideBar1 .slideIcon{margin-left:-4px;}
 .mstonePagination{color:#333;display:block;margin:0 10px;}
     .mstoneArrows{margin:0 10px;font-weight: bold;text-decoration:none;}
     .mstoneArrows:hover{text-decoration:none;}

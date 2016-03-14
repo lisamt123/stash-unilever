@@ -7,13 +7,16 @@
 *********************************************************************************/
 var jq = jQuery.noConflict();
 jq.browser = {};
+/* Below script calls a function 'initSliderGk' on page load. */
 jq(document).ready(function() {
     initSliderGk();
 });
+
+/* Below function calls another function 'callupdateGKList' which updates the gate keeper list */
 function updateGKList(id, ans, comment, cmnts) {
     callupdateGKList(id, ans, comment, cmnts);
 }
-/* Below code is for the slider functionality in gate keeper list*/
+/* Below function contains the script for the slider functionality in gate keeper list. It contains the complete functionality code when user clicks on the options the pointer ball moves to the clicked option. Also it highlights the selected option with a different color on page load. Also it saves the selected option when clicked on it. */
 function initSliderGk() {
     var itemsGK = [IPMAppGKC.select, IPMAppGKC.yes, IPMAppGKC.partly, IPMAppGKC.no, IPMAppGKC.na];
     var s = jq(".sliderGk");
@@ -68,6 +71,8 @@ function initSliderGk() {
 		}
 
     });
+	
+/* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */
     jq(".legendSld label").on("click", function() {
         var lpos = jq(".legendSld label").offset().left;
         jq(".legendSld label").css({

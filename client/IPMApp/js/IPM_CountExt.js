@@ -3,7 +3,7 @@
  *@Author: Cognizant
  *@Created Date: 17/09/2015
 ******************************************************************/
-/* Below code is to display the remaining characters */
+/* Below script helps to display the remaining characters of the RTF field. */
 jq(document).ready(function() {
     jq('[id$=form]').areYouSure({
         'silent': true
@@ -13,14 +13,14 @@ jq(document).ready(function() {
     var strTextAreaID = "";
     var strLabelName = "";
     var MaxLength = 0;
-    if (jq("#charCountRemaining").length > 0) {
+    if (jq("#dummyCount").length > 0) {
         strTextAreaID = "gate";
         strLabelName = "charCountRemaining";
-        MaxLength = parseInt(jq("#charCountRemaining").text());
-    } else if (jq("#lblCharCountGate2").length > 0) {
+        MaxLength = parseInt(jq("#dummyCount").text());
+    } else if (jq("#secEditCount").length > 0) {
         strTextAreaID = "gate2";
         strLabelName = "lblCharCountGate2";
-        MaxLength = parseInt(jq("#lblCharCountGate2").text());
+        MaxLength = parseInt(jq("#secEditCount").text());
     }
     var strFullText = "";
     var objTA;
@@ -38,18 +38,19 @@ jq(document).ready(function() {
 			if (strFrameParent.indexOf(strTextAreaID) >= 0) {
 				CKEDITOR.instances[strFrameParent].on("key", function(e) {
 					var objTextArea = this.document.$.body;
-					var strText = objTextArea.textContent;
+					var strText = objTextArea.textContent.replace(/ *\<[^>]*\> */g, "");
+					
 					/* If we reduce the number of conditional operators it will contradict with the other sonar issue 'Merge this if statement with the nested one' */
-					if ((e.data.domEvent.$.keyCode == 8) || (e.data.domEvent.$.keyCode == 46) || ((e.data.domEvent.$.shiftKey) 
-						&& (e.data.domEvent.$.keyCode == 36)) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode == 35)) 
-					    || (e.data.domEvent.$.keyCode == 35) || (e.data.domEvent.$.keyCode == 36) || (e.data.domEvent.$.keyCode == 37) 
-						|| (e.data.domEvent.$.keyCode == 38) || (e.data.domEvent.$.keyCode == 39) || (e.data.domEvent.$.keyCode == 40)) {
+					if ((e.data.domEvent.$.keyCode === 8) || (e.data.domEvent.$.keyCode === 46) || ((e.data.domEvent.$.shiftKey) 
+						&& (e.data.domEvent.$.keyCode === 36)) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode === 35)) 
+					    || (e.data.domEvent.$.keyCode === 35) || (e.data.domEvent.$.keyCode === 36) || (e.data.domEvent.$.keyCode === 37) 
+						|| (e.data.domEvent.$.keyCode === 38) || (e.data.domEvent.$.keyCode === 39) || (e.data.domEvent.$.keyCode === 40)) {
 						showCharacterCount();
 						e.cancelBubble = false;
 						e.returnValue = true;
 						return true;
 					}
-					if (strText.length == MaxLength) {
+					if (strText.length === MaxLength) {
 						e.cancelBubble = true;
 						e.returnValue = false;
 						e.cancel();
@@ -68,10 +69,10 @@ jq(document).ready(function() {
 						var objTA = jq(document.activeElement).contents().find("html").find("body")[0];
 					});
 					this.document.on("keyup", function(event) {
-						if (event.data.$.keyCode == 37 || event.data.$.keyCode == 39 || event.data.$.keyCode == 13) {
+						if (event.data.$.keyCode === 37 || event.data.$.keyCode === 39 || event.data.$.keyCode === 13) {
 							return false;
 						}
-						if (event.data.$.keyCode == 8 || event.data.$.keyCode == 46) {
+						if (event.data.$.keyCode === 8 || event.data.$.keyCode === 46) {
 							showCharacterCount();
 							return true;
 						}
@@ -80,15 +81,15 @@ jq(document).ready(function() {
 					//paste event
 					this.document.on("paste", function(event) {
 						var strText;
-						if (strBrowser == "IE") {
+						if (strBrowser === "IE") {
 							strText = window.clipboardData.getData('Text');
-						} else if (strBrowser == "CHROME") {
+						} else if (strBrowser === "CHROME") {
 							strText = event.data.$.clipboardData.getData("text/plain");
 						}
-						var element = (this).$.body;
-						var strFullText = element.textContent.length + strText.length;
+						var element = (this).$.body;					
+						var strFullText = strText.length;
 						if (strFullText > MaxLength) {
-							if (strBrowser == "IE") {
+							if (strBrowser === "IE") {
 								event.preventDefault ? event.preventDefault() : event.returnValue = false;
 								window.clipboardData.clearData("Text");
 								jq('#ipmDeleteModal').modal();
@@ -100,7 +101,7 @@ jq(document).ready(function() {
 									"height": "120px",
 									"margin-right": "15px"
 								});
-							} else if (strBrowser == "CHROME") {
+							} else if (strBrowser === "CHROME") {
 								event.data.preventDefault();
 								event.data.$.clipboardData.clearData();
 								jq('#ipmDeleteModal').modal();
@@ -141,7 +142,7 @@ jq(document).ready(function() {
             node = node.nextSibling;
         }
     };
-    /* Below code is to calculate the characters remaining */
+    /* Below function helps to display the characters remaining. If it exceeds the character limit it displays an error message. */
     function showCharacterCount(strText) {
         // below condition for copy paste and undo redo
         if (arguments.length > 0) {
@@ -159,6 +160,7 @@ jq(document).ready(function() {
             var objTextArea = jq(jq(document).find(".secEditSummary").find("iframe.cke_wysiwyg_frame")).contents().find("html").find("body")[0];
             strTextArea = objTextArea.textContent || objTextArea.innerText;
             var rem = MaxLength - parseInt(strTextArea.length);
+
             if (rem > 0) {
                 jq("#" + strLabelName).show().text(rem.toString()).prev("span").text(IPMAppSE.charRemaining);
             } else {

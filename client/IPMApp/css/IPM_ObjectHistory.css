@@ -20,12 +20,12 @@
 .secUsersHistory .SecButtonSet {display:inline-block; text-align:right; margin-top:7px;}
 .secUsersHistory .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
 a.icoButton.question{margin-top:5px !important;}
-#ipmSecHistoryTab {}
-#ipmSecHistoryTab .ipmTabContent { width:100%; }
-#ipmSecHistoryTab .panel {background:transparent;}
-#ipmSecHistoryTab .ipmTabs {padding:0 0 0 20px; margin-top:20px; background:#fff; border-bottom:1px solid #d1d1d1;}
-#ipmSecHistoryTab .ipmTabs li {  top: 5px;  width: 180px;  position: relative;  padding: 14px;  background-repeat: no-repeat !important;  text-align: center;  margin-right: 0.5%;  display: inline-block;  color: #fff;  margin-left: 0 !important;  font-weight: bold;  cursor: pointer; }
-#ipmSecHistoryTab .ipmTabs li.active{color: #343434;  position: relative;  cursor: pointer;z-index:100; top:6px;}
+.ipmSecHistoryTab {}
+.ipmSecHistoryTab .ipmTabContent { width:100%; }
+.ipmSecHistoryTab .panel {background:transparent;}
+.ipmSecHistoryTab .ipmTabs {padding:0 0 0 20px; margin-top:20px; background:#fff; border-bottom:1px solid #d1d1d1;}
+.ipmSecHistoryTab .ipmTabs li {  top: 5px;  width: 180px;  position: relative;  padding: 14px;  background-repeat: no-repeat !important;  text-align: center;  margin-right: 0.5%;  display: inline-block;  color: #fff;  margin-left: 0 !important;  font-weight: bold;  cursor: pointer; }
+.ipmSecHistoryTab .ipmTabs li.active{color: #343434;  position: relative;  cursor: pointer;z-index:100; top:6px;}
 .tabEven{background: url('../images/tabsprite.png');background-position: -188px -247px !important;}
 .tabEven:hover{background: url('../images/tabsprite.png');background-position: -188px -298px !important;}
 .tabOdd{ background: url('../images/tabsprite.png'); background-position: -5px -247px !important;}

@@ -5,7 +5,7 @@
  *@Created Date: 28/05/2015 
  ***************************************************************************************************
  */
- /* Below code is to open the risk modal */
+ /* Below script works on click event. It opens the risk questionnaire modal. */
 	var jq = jQuery.noConflict();
 	jq(document).on('click', '.riskModal', function(e){
 	e.preventDefault();

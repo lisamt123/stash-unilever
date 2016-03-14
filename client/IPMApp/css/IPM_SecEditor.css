@@ -12,6 +12,7 @@
 	.ipmProjectDetails {border-top:1px solid #4a5b8f; border-bottom:1px solid #34416b;}
 	.ipmProjectDetails .panel {background:transparent;}
 	.ipmProjectDetails .uploadImg {overflow:hidden;padding:0!important;margin:0!important;}
+	#dummyCount,#secEditCount{display:none;}
 	
 	.secEditorNav{  float: left;  width: 35%;margin-top: 15px;}
 	.secEditorNavList{width: 50%;}
@@ -631,24 +632,24 @@
 .deleteButtoncontainer{margin: 10px 10px;width: 180px;}
 .skipDesc{display: block;padding: 10px 0px 0px;}
 	
-.cmiContractHeadBlock {width: 20%;}
-.cmiContractHeadBlock2 {width: 32%;}
-.cmiContractHeadBlock3 {width: 20%;}
-.cmiContractHeadBlock4 {width: 22%;margin-right: 10px;font-weight: bold;display: block;float: left;}
+.cmiContractHeadBlock {width: 22%;}
+.cmiContractHeadBlock2 {width: 25%;}
+.cmiContractHeadBlock3 {width: 23%;}
+.cmiContractHeadBlock4 {width: 23%;margin-right: 10px;font-weight: bold;display: block;float: left;}
 .cmiContractHeadBlock,.cmiContractHeadBlock2,.cmiContractHeadBlock3{display: block;float: left;margin-right: 10px;border-right: 1px solid #B4B9BD;font-weight: bold;}
-.cmiContractInputContainer{width: 130px;float:left;margin-left: 10px;}
-.cmiContractResultContainer{margin-left: 10px;width: 220px;float: left;min-height: 30px;}
+.cmiContractInputContainer{width: 218px;float:left;margin-left: 10px;}
+.cmiContractResultContainer{margin-left: 10px;width: 240px;float: left;min-height: 30px;}
 .cmiContractResultContainer input{height:30px;}
-.cmiContractAchievedContainer{margin-left: 10px;width: 138px;min-height: 30px;float: left;}
-.cmiContractCommentContainer{float: left;width: 170px;margin-left: 10px;}
+.cmiContractAchievedContainer{margin-left: 10px;width: 226px;min-height: 30px;float: left;}
+.cmiContractCommentContainer{float: left;width: 250px;margin-left: 10px;}
 .cmiResultTime{margin-left:15px;float:left;margin-right:15px;padding-top:0px !important;margin-top:2px;}
 .cmiContractContainer{overflow-x:auto;}
-.cmiContractTable{width:700px;}
+.cmiContractTable{width:1000px;}
 .ronlyComment{word-break:break-word;width:300px;}
-.contractInputContainer{  width: 140px;float: left;}
-.contractResultContainer{  margin-left: 10px;width: 138px;float: left;}
-.contractCommentContainer{  width: 170px;float: left;  margin-left: 10px;}
-.contractAchievedContainer{width: 220px;float: left;min-height: 25px;margin-left: 10px;}
+.contractInputContainer{  width: 228px;float: left;}
+.contractResultContainer{  margin-left: 10px;width: 226px;float: left;}
+.contractCommentContainer{  width: 250px;float: left;  margin-left: 10px;}
+.contractAchievedContainer{width: 239px;float: left;min-height: 25px;margin-left: 10px;}
 .cmiContractInputContainer .cmiSelectBox{width:95%;}
 .assortList1 .filterActionscc{padding:0px !important;}
 .secComponent .cust-overlay {opacity: 0.8;
@@ -738,3 +739,10 @@
 .ipmFintableAlign.table thead tr th:nth-child(5){width:11%;}
 .ipmFintableAlign.table{width:902px;max-width:902px}
 .ipmFintableAlign.table tbody tr td textarea{width:98%}
+
+.infoDivv a.smalllinfo
+{
+   height:16px !important;
+   width:16px !important;
+   top:3px;
+}

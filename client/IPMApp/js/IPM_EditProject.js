@@ -6,8 +6,7 @@
 *******************************************************
 */ 
 var jq= jQuery.noConflict();	
-
-/* Below code is to open Upload image modal */
+/* Below script works on click event. It is used to open Upload image modal */
 jq(document).on('click', '.uploadImage', function(e) { 
 	e.preventDefault ? e.preventDefault() : e.returnValue = false; 
 	var url = jq(this).attr('value'); 
@@ -15,6 +14,8 @@ jq(document).on('click', '.uploadImage', function(e) {
 	jq("#ipmUploadImage .modal-body").html('<iframe frameborder="0" height="100%" width="100%" marginheight="0" marginwidth="0" allowtransparency="true" src= "'+url+'"></iframe>');  
 	jq('#ipmUploadImage .modal-dialog').addClass('uploadImages');     
 });
+
+/* Below script works on hover event. It is used to show the hover container while updating or deleting the image. */
 jq(".imageBorder").hover(function() {                  
 	 jq('.imgHoverContainer').stop();
 	 jq('.imgHoverContainer').show(200);
@@ -24,7 +25,7 @@ jq(".imageBorder").hover(function() {
 		 jq('.imgHoverContainer').hide(100);
  });
  
-/* Below code is to open Delete image modal */
+/* Below script works on click event. It is used to open Delete image modal */
 jq(document).on('click', '.imgDelButton', function(e) { 
 	e.preventDefault ? e.preventDefault() : e.returnValue = false;               
 	jq('#deleteImgPop .modal-dialog').width('600px');
@@ -32,16 +33,19 @@ jq(document).on('click', '.imgDelButton', function(e) {
 	jq('#deleteImgPop .modal-dialog').css({'margin-top':'10%','z-index':'999'});
 });
 
-/* Below code is to close the modal */
+/* Below function performs page reload when user tries to close the image modal. */
 function closeimagepopup(){
 	window.location.reload(true);
 }
+
+/* Below function performs page reload. */
 function pagerefresh() {
 	window.location.reload(true);    
 }
 
+/* Below function performs page reload when the condition is true. It redirects to core parameters page. */
 IPMAppEP.Closepopup = new function() {
-if (IPMAppEP.isSave == true) {
+if (IPMAppEP.isSave === true) {
 	window.top.location.href = IPMAppEP.corePage + '?id=' + IPMAppEP.projectId;
 }
 };
@@ -52,14 +56,14 @@ jq(document).ready(function(){
     jq(".limitdesc").limiter(70, remaining, total);
 });
 
-/* Below code is to display the brand positioning list*/
+/* Below script works on click event. It displays the brand positioning list*/
  jq(document).on('show.bs.dropdown', '.brandposListContainer', function(){
    jq(this).find('.brandposList').show(); 
 });
 
-/* Below code is to hide the brand positioning list*/
+/* Below script works on click event. If the condition is true it hides the brand positioning list*/
 jq(document).click(function(e) {
-   if( e.target.id != 'brandposListUL') {
+   if( e.target.id !== 'brandposListUL') {
 	   jq(".brandposList").hide();    
    }   
 });
@@ -67,7 +71,7 @@ jq(document).on('click', '.brandposList input[type="checkbox"], .brandposList li
    e.stopPropagation();
 });
 
-/* Below code is to reset the selected brand positioning list*/
+/* Below script works on click event. It is used to reset the selected brand positioning list by unchecking the recently checked checkboxes. */
 jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e){
    e.stopPropagation();
    jq(".brandposList input:checkbox").each(function() {
@@ -77,12 +81,12 @@ jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e){
    });
 }); 
 
-/* Below code is to check the selected brand positioning list*/
+/* Below script works on click event. If the condition is true the selected checkboxes values are seperated by comma and stored in a variable. */
 jq('.ipmDropbuttonscc').click(function(e) {               
    var brandPositionValue = '';
    jq(".brandposList  input[type=checkbox]").each(function(e)
 	  {
-		  if(jq(this).prop('checked') == true)
+		  if(jq(this).prop('checked') === true)
 		  {   
 			  if(brandPositionValue.length > 0)
 			  {
@@ -95,7 +99,7 @@ jq('.ipmDropbuttonscc').click(function(e) {
 		  } 
 	  });
    jq('.hiddenBrand').val(brandPositionValue);
-   if(brandPositionValue == ''){
+   if(brandPositionValue === ''){
 	   jq('.brandSelValues').text(IPMAppEP.proSelectlabel);
    }
    else{
@@ -104,10 +108,10 @@ jq('.ipmDropbuttonscc').click(function(e) {
    jq(".brandposList").hide(); 
 });  
   
-if( jq('.hiddenBrand') !=null && jQuery.type(jq('.hiddenBrand')) != 'undefined') 
+if( jq('.hiddenBrand') !== null && jQuery.type(jq('.hiddenBrand')) != 'undefined') 
 {
    var brandPicklist = jq('.hiddenBrand').val();   
-   if(jQuery.type(brandPicklist) != "undefined" && brandPicklist.length > 0 )
+   if(jQuery.type(brandPicklist) !== "undefined" && brandPicklist.length > 0 )
    {
 	   jq('.brandSelValues').text(brandPicklist);
 	   var brandArray = brandPicklist.split(',');  
@@ -124,5 +128,13 @@ if( jq('.hiddenBrand') !=null && jQuery.type(jq('.hiddenBrand')) != 'undefined')
 	   });
    }
 }
-
-
+/* Below function performs key code check. If key code is 95 it returns nothing else it returns true value. */
+function invalidChar(key)
+         {
+           var keycode = (key.which) ? key.which : key.keyCode;
+           if(keycode==95){
+              return false;
+           }else{
+              return true;
+           }  
+        }

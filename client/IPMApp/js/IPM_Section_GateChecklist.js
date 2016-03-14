@@ -7,20 +7,22 @@
 */ 
 
 var jq = jQuery.noConflict();
-/* Below code is to set the slider */
+ /* Below script calls a function 'initSliderSecGk' on page load. */
 jq(document).ready(function() {
     initSliderSecGk();
 });
 
-/* Below code is to update the gate keeper list */
+/* Below function calls another function 'callupdateSecGateKeeperList' which updates the Section Gate keeper list */
 function updateSecGateKeeperList(id, ans, comment, cmnts) {
     callupdateSecGateKeeperList(id, ans, comment, cmnts);
 }
+
+/* Below function calls another function 'callupdateGKList' which updates the Gate keeper list */
 function updateGKList(id, ans, comment, cmnts) {
     callupdateGKList(id, ans, comment, cmnts);
 }
 
-/* Below code is for the slider functionality */
+ /* Below function contains the script for the slider functionality in Section Gate keeper list. It contains the complete functionality code when user clicks on the options the pointer ball moves to the clicked option. Also it highlights the selected option with a different color on page load. Also it saves the selected option when clicked on it. */
 function initSliderSecGk() {
 
     var itemsSecGK = [IPMAppSecGK.select, IPMAppSecGK.yes, IPMAppSecGK.partly, IPMAppSecGK.no, IPMAppSecGK.na];
@@ -47,22 +49,22 @@ jq(s).each(function() {
 		}
     });
     
-    if (answerSecGK == IPMAppSecGK.yes) {           
+    if (answerSecGK === IPMAppSecGK.yes) {           
             jq(this).find("label[for=s1]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (answerSecGK == IPMAppSecGK.partly) {            
+        } else if (answerSecGK === IPMAppSecGK.partly) {            
             jq(this).find("label[for=s2]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (answerSecGK == IPMAppSecGK.no) {           
+        } else if (answerSecGK === IPMAppSecGK.no) {           
             jq(this).find("label[for=s3]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (answerSecGK == IPMAppSecGK.na) {           
+        } else if (answerSecGK === IPMAppSecGK.na) {           
             jq(this).find("label[for=s4]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
@@ -74,6 +76,8 @@ jq(s).each(function() {
             });
         }
 });
+
+/* Below works on click event. It highlights the selected option with a different color and different font style.*/
 jq(".legendSld label").on("click", function() {
     var lpos = jq(".legendSld label").offset().left;
     jq(this).parent().find('label').css({
@@ -85,7 +89,5 @@ jq(".legendSld label").on("click", function() {
         'font-weight': 'bold'
     });
 });
-    
 jq("input[type=radio][id^='s']").hide();
-
 }

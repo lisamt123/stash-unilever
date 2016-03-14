@@ -57,6 +57,8 @@
         width: 100%;
     }
     /*Table*/
+	.ipmTableDiv .SecButtonSet .icoButton {display: inline-block;width: 30px;margin: 0 5px; height: 30px; border: 1px solid #1568b6;border-radius: 50%;-webkit-border-radius: 50%; -moz-border-radius: 50%;}
+
     
     .ipmTable.table-bordered {
         table-layout: fixed;
@@ -149,16 +151,7 @@
     .deleteTask div {
         padding: 20px;
     }
-    #ipmTableDiv .SecButtonSet .icoButton {
-        display: inline-block;
-        width: 30px;
-        margin: 0 5px;
-        height: 30px;
-        border: 1px solid #1568b6;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-    }
+    
     .dropdown-toggle {
         padding: 7px;
         position: relative;
@@ -435,9 +428,7 @@
     .addrolloutsec {
         background-color: #f8f8f8;
     }
-    #editsection {
-        display: none;
-    }
+    
     .dblock {
         display: block;
     }
@@ -492,13 +483,6 @@
     .editsectn {
         text-align: right;
         margin-right: 13px;
-    }
-    #editblock tr td {
-        border-top: 0;
-    }
-    table #editblock {
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.17);
-        border: 1px solid #2262A0;
     }
     .fa-chevron-right {
         color: #A2A697;
@@ -775,3 +759,52 @@
 	.buttonMarginRight{margin-right:15px;}
 	.btn{padding:0.625em !important;height:100% !important;line-height:1em !important;font-size:1em !important;}
 	input[type=text]::-ms-clear {display: none; width:0; height:0;}
+	
+	
+	.infoFloatR
+      {
+         float:right;
+      }
+      .infoFloatR a.icoButton
+      {
+          height: 16px !important;
+    width: 16px !important;
+    top: 10px;
+    right: 14px;
+      }
+      
+      .tooltip > .tooltip-inner {-webkit-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);-moz-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);margin-left:100px;font-weight:normal;background-color: #00b1a5;border-radius:2px;text-align:left;width:500px;}
+    .tooltip > .tooltip-arrow {border-top-color:#00b1a5!important;}
+    .tooltip.bottom .tooltip-arrow {border-bottom-color:#00b1a5!important;}
+      .ui-tooltip {
+    -webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15)!important;
+    -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15)!important;
+    box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15)!important;
+    font-weight: normal!important;
+    background-color: #01B1A6 !important;
+    border-radius: 2px!important;
+    border: none!important;
+    text-align: left!important;
+    color:#fff!important;
+    padding:3px 7px!important;
+    opacity:0.9;
+    width:200px;
+}
+.ui-tooltip-content {
+    position: relative;
+    padding: 0px;    
+    font-size:12px!important;
+}
+.ui-tooltip-content::after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    display: block;
+    width: 0;
+    top: -10px;
+    left: 44%;
+    border-color: #01B1A6 transparent!important;
+    border-width: 0 10px 10px;
+}
+.ui-lefttip .ui-tooltip-content::after{left: 20px !important;}
+.ui-lefttip{left: 10px !important;}

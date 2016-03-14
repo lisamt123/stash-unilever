@@ -14,7 +14,8 @@
 /*ipmButton Styles */
 	.ipmButton.green{background:#81bf42 !important;}
 	.ipmButton.green:hover{background:#56843b !important;}
-	#addTask .ipmButtonGroup{margin-bottom: 8%;} 
+	.addTask .ipmButtonGroup{margin-bottom: 8%;}
+	
 
 /* lookup search icon*/
 	.lookupInput a{margin-left: -9%;}

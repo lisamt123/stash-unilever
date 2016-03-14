@@ -8,6 +8,8 @@
 // To prevent conflict with prototype.js
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
+
+/* Below works on click event. Based on the options selected by the user the option will be highlighted in blue color. */
 	jq(document).on("click", ".radioButton input[type=radio]", function(){ 
 		var $this = jq(this);
 		var radioId = jq(this).attr('id');
@@ -33,7 +35,7 @@ jq(document).ready(function() {
 	});	 
 });
 
-/* Below code is to close modal on click cancel*/
+/* Below function closes the modal by triggering the click event of close button. */
 function closeModal(){
    jq(document).on('click', '.cancelButton', function() { 
    var frame = parent.document.getElementById("ipmModal");
@@ -41,7 +43,8 @@ function closeModal(){
 });
 }
 
-/* Below code is to create a new project */
+/* Below function checks for the validation. Once the user tries to create a project it validates with some back end information 
+and if it passes it will be redirected to Project setup page else an error message will be displayed. */
  function createPro(){
 		 if(jq("input[type='radio'].rbutton").is(':checked')){
 				   card_type  = jq("input[type='radio'].rbutton:checked").val();
@@ -62,7 +65,6 @@ function closeModal(){
 				}
 			);
 		}
-
 		else{
 		Visualforce.remoting.Manager.invokeAction(
 			IPMApp.RemoteActionCreateBoss,

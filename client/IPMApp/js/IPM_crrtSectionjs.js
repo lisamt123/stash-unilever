@@ -5,11 +5,12 @@
 *@Created Date: 28/05/2015 
 ****************************************************************
 */ 
-/* Below code is for the accordion functionality */
  var jq= jQuery.noConflict();
     jq(document).ready( function() {
+/* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */
         jq(".ipmAcrdnExpand").hide();
-        jq(".ipmAcrdnExpand:first, .ipmAcrdnExpand:first .ipmAcrdnExpand").not(':empty').show();                          
+        jq(".ipmAcrdnExpand:first, .ipmAcrdnExpand:first .ipmAcrdnExpand").not(':empty').show();  
+/* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
         jq(document).on("click", ".pHead .expico", function(){  
 			var $this = jq(this);
             if($this.closest(".pHead").next(".ipmAcrdnExpand").is(":visible") && jq(this).closest(".pHead").next(".ipmAcrdnExpand").not(':empty')){

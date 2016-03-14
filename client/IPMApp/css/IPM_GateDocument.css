@@ -104,12 +104,13 @@
 	.SecButtonSet.delete{margin-left:0 !important;}
 	
 /* ===MODAL STYLES=== */
-	#ipmModal .modal-header{background: url(../images/pop_header.png) repeat-x !important;padding:17.5px 10px 17.5px 17.5px; border-bottom:1px #d7d7d7 solid;border-radius:3px;-webkit-border-radius:3px;}
-	#ipmModal .modal-title{color:#333 !important;font-weight:bold;font-size:1em;}
-	#ipmModal .modal-header button.close{border: 1px #007dbb solid;border-radius: 50%;padding: 3px 5px;color: #007dbb;width: 30px; background: #fff; margin-top:-8px;opacity: 1;}
-	#ipmModal .modal-content{border-radius:3px;height:100%;}
-	#ipmModal .modal-body{height:90%;padding:0;}
-	#ipmModal .modal-dialog{margin:15px auto;}
+	.ipmModal .modal-header{background: url(../images/pop_header.png) repeat-x !important;padding:17.5px 10px 17.5px 17.5px; border-bottom:1px #d7d7d7 solid;border-radius:3px;-webkit-border-radius:3px;}
+	.ipmModal .modal-title{color:#333 !important;font-weight:bold;font-size:1em;}
+	.ipmModal .modal-header button.close{border: 1px #007dbb solid;border-radius: 50%;padding: 3px 5px;color: #007dbb;width: 30px; background: #fff; margin-top:-8px;opacity: 1;}
+	.ipmModal .modal-content{border-radius:3px;height:100%;}
+	.ipmModal .modal-body{height:90%;padding:0;}
+	.ipmModal .modal-dialog{margin:15px auto;}
+	
 	.dropdown-menu{min-width:246px;left:2px;}	   
 	.messageBox{color:#0f81bb;background:#dbefff;border:1px solid #007DBB;position:absolute;border-radius:3px;margin-left:215px;padding:7px;}
 	.closeMessage{color: #007dbb;cursor: pointer;  float: left;  display: block;  margin-left: 15px;}
@@ -129,7 +130,7 @@
     .skipButtoncontainer{margin:15px 10px;}
     .noPadleft{padding-left:0 !important;}
     .noPadright{padding-right:0 !important;}
-    #ipmMoveFeasibility .modal-dialog{margin-top:15%;}
+    .ipmMoveFeasibility .modal-dialog{margin-top:15%;}
     .buttonMarginRight{margin-right:15px;}         
 	
 /* ===OVERLAY STYLES=== */
@@ -270,7 +271,7 @@
     .ipmFinancetable>thead>tr>th.finProname{white-space:initial !important;}
     .ccPurpleBox span {border-bottom: 1px solid #B2C6C5;display: block;padding-bottom: 10px;color:#565E6B;text-align:center;}
     .gaterollouts{table-layout:fixed;}
-    #resetFilterBtn{margin-right:11px;}
+    .resetFilterBtn{margin-right:11px;}
     .secDisMsg {min-height:32px;}
 
 /* ===ECO DESIGN STYLES=== */
@@ -322,26 +323,44 @@
 	.cmiInputHead{ width: 125px;padding-left: 5px;padding-right: 5px;}
 	.cmiInputval{ width: 125px;padding-left: 5px;padding-right: 5px;}
 	.cmiTimingHead{width: 80px;padding-right: 5px;padding-left: 5px;}
-	.cmiTimingval{width: 80px;padding-right: 5px;padding-left: 5px;}
-	.cmiResultsHead{width: 27%;padding-right: 5px;padding-left: 5px;}
+	.cmiTimingval{width: 9%;padding-right: 5px;padding-left: 5px;}
+	.cmiResultsHead{width: 21%;padding-right: 5px;padding-left: 5px;}
 	.cmiResfirst{width: 105px;padding-right: 5px;padding-left: 5px;}
 	.cmiRessecond{width: 105px;padding-right: 5px;padding-left: 5px;padding-bottom: 5px;}
-	.cmiOverallHead{width:100px;padding-right: 5px;padding-left: 5px;}
-	.cmiOverallval {width:100px}
+	.cmiOverallHead{width:9%;padding-right: 5px;padding-left: 5px;}
+	.cmiOverallval {width:100px;padding-left: 5px;padding-right:5px;}
 	.cmiCommentsHead{width:235px;padding-right:5px;padding-left: 10px;}
 	.cmiCommentsval{width:235px;padding-right:5px;padding-left: 10px;}
 	.ovrAllHeadText{margin-right:5px;}
-	.cmiContractInputHead{width:30%;}
-	.cmiContractTimingHead{width:17%;}
-	.cmiContractCountryHead{width:10%;min-width: 78px;padding-left: 5px;}
-	.cmiContractResultsHead{width:46%;}
-	.cmiRessecond span.CMILGreen,.cmiRessecond span.CMIRed,.cmiRessecond span.CMIAmber,.cmiRessecond span.CMIPink,.cmiRessecond span.CMIGreen{width:auto;height:auto;padding:5px;text-align:center;}
-	.cmiOverallval span.CMILGreen,.cmiOverallval span.CMIRed,.cmiOverallval span.CMIAmber,.cmiOverallval span.CMIPink,.cmiOverallval span.CMIGreen{width:auto !important;height:auto;padding:5px;text-align:center;}
+	
+	.cmiContractInputHead{width:12%;}
+	.cmiContractInputval{width:11%;padding-left: 5px;padding-right:5px;}
+	.cmiContractTimingHead{width:10%;}
+	.cmiContractTimingval{width:10%;padding-left: 5px;padding-right:5px;}
+	.cmiContractCountryHead{width:11%;padding-left: 5px;padding-right:5px;}
+	.cmiContractCountryval{width:10%;padding-left: 5px;padding-right:5px;}
+	.cmiContractResfirst1{width: 10%;padding-right: 5px;padding-left: 5px;}
+	.cmiContractRessecond1{width: 10%;padding-right: 5px;padding-left: 5px;padding-bottom: 5px;}
+	.cmiContractResfirst2{width: 10%;padding-right: 5px;padding-left: 5px;}
+	.cmiContractRessecond2{width: 10%;padding-right: 5px;padding-left: 5px;padding-bottom: 5px;}
+	.cmiContractOverallval1{width:10%;padding-left: 5px;padding-right:5px;}
+	.cmiContractOverallval2{width:10%;padding-left: 5px;padding-right:5px;}
+	.cmiContractCommentsval{width:11%;padding-left: 5px;padding-right:5px;}
+	.cmiContractResultsHead{width:19%;}
+	.cmiContractOverallHead{width:11%;}
+	.cmiContractCommentsHead{width:20%;}
+	
+	.cmiContractOverallval1 span.CMILGreen,.cmiContractOverallval1 span.CMIRed,.cmiContractOverallval1 span.CMIAmber,.cmiContractOverallval1 span.CMIPink,.cmiContractOverallval1 span.CMIGreen{width:auto !important;height:auto !important;padding:5px;text-align:center;margin-left:0px !important;}
+	.cmiContractOverallval2 span.CMILGreen,.cmiContractOverallval2 span.CMIRed,.cmiContractOverallval2 span.CMIAmber,.cmiContractOverallval2 span.CMIPink,.cmiContractOverallval2 span.CMIGreen{width:auto !important;height:auto !important;padding:5px;text-align:center;margin-left:0px !important;}
+	.cmiRessecond span.CMILGreen,.cmiRessecond span.CMIRed,.cmiRessecond span.CMIAmber,.cmiRessecond span.CMIPink,.cmiRessecond span.CMIGreen{width:auto !important;height:auto !important;padding:5px;text-align:center;margin-left:0px !important;}
+	.cmiContractRessecond1 span.CMILGreen,.cmiContractRessecond1 span.CMIRed,.cmiContractRessecond1 span.CMIAmber,.cmiContractRessecond1 span.CMIPink,.cmiContractRessecond1 span.CMIGreen{width:auto !important;height:auto !important;padding:5px;text-align:center;margin-left:0px !important;}
+	.cmiContractRessecond2 span.CMILGreen,.cmiContractRessecond2 span.CMIRed,.cmiContractRessecond2 span.CMIAmber,.cmiContractRessecond2 span.CMIPink,.cmiContractRessecond2 span.CMIGreen{width:auto !important;height:auto !important;padding:5px;text-align:center;margin-left:0px !important;}
+	.cmiOverallval span.CMILGreen,.cmiOverallval span.CMIRed,.cmiOverallval span.CMIAmber,.cmiOverallval span.CMIPink,.cmiOverallval span.CMIGreen{width:auto !important;height:auto !important;padding:5px;text-align:center;margin-left:0px !important;}
 	.rSpan{border-right:1px solid #ddd !important;}
 	.cmitdNopadding{padding-top:0 !important;padding-bottom:0 !important;padding-left:0 !important;}
-	.gateCmiInnerTable tbody td{border-right:1px solid #ddd !important;border-bottom: 1px solid #ddd !important;border-top: 1px solid #ddd !important;}
+	.gateCmiInnerTable tbody td{border-right:1px solid #ddd !important;border-bottom: 1px solid #ddd !important;border-top: 0 solid #ddd !important;}
 	.gateCmiInnerTable tbody tr td .cmiContractCountryHead:last-child{border-bottom:0 !important;}
-	.gateCmiInnerTable{width:850px;}
+	.gateCmiInnerTable{width:1000px;}
 	.CMIPink {background: #E6B8B7;}
 	.cmiColorBox{width:20px !important;height:20px !important;}
 	.cmiCharterResults{width:204px !important;}
@@ -361,3 +380,8 @@
 /* ===VIEW ASSORTMENT STRATEGY STYLES=== */
 	.viewDistribType,.viewDataPeriod{margin-right:10px;font-weight:bold;}
 	.viewassortpriority{display:block;font-weight:bold;}
+	
+	
+	.ipmFinancetable.table tr.btmBleBorder td {
+    font-size: 12.2px !important;
+    }

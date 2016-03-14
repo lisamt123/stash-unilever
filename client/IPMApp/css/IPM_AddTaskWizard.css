@@ -13,7 +13,7 @@
 /*ipmButton Styles */
 	.ipmButton.green{background:#81bf42 !important;}
 	.ipmButton.green:hover{background:#56843b !important;}
-	#addTask .ipmButtonGroup{margin-bottom: 8%;} 
+	.addTask .ipmButtonGroup{margin-bottom: 8%;} 
 	.pull-right{float:right;}
 	 
  /* lookup search icon*/
@@ -28,17 +28,17 @@
 	.errorMsg:before{left: 5%;top: 73px;position: absolute;border-top: 1px #ffebec solid;border-right: 1px #ffebec solid;background: #ffebec;content: " ";height: 15px;width: 15px;-ms-transform: rotate(-45deg);transform: rotate(-45deg);}
              
 /* tab nav styles */
-    #ipmAddMilestoneTab .ipmTabContent { width:100%; }
-	#ipmAddMilestoneTab{margin-top:20px;}
-	#ipmAddMilestoneTab .ipmMilestoneTabs li {top: 8px;width: 182px;position: relative;padding: 14px;background-repeat: no-repeat !important;text-align: center;margin-right: 0.5%;display: inline-block;color: #fff;margin-left: 0 !important;font-weight: bold;cursor: pointer;}
+    .ipmAddMilestoneTab .ipmTabContent { width:100%; }
+	.ipmAddMilestoneTab{margin-top:20px;}
+	.ipmAddMilestoneTab .ipmMilestoneTabs li {top: 8px;width: 182px;position: relative;padding: 14px;background-repeat: no-repeat !important;text-align: center;margin-right: 0.5%;display: inline-block;color: #fff;margin-left: 0 !important;font-weight: bold;cursor: pointer;}
 	.tabEven{background-position: -188px -247px !important;}
 	.tabEven:hover{background-position: -188px -298px !important;}
 	.tabOdd{  background-position: -5px -247px !important;}
 	.tabOdd:hover{  background-position: -5px -298px !important;}
 	.tabOdd.active:hover{background: url('../images/tab_white_right.svg') !important;  height: 40px;  background-size: 100% !important;}
 	.tabEven.active:hover{background: url('../images/tab_white_left.svg') !important;  height: 40px;  background-size: 100% !important;}
-	#ipmAddMilestoneTab .ipmMilestoneTabs {padding: 0 0 0 20px;border-bottom:1px solid #7ea19d;margin-bottom:20px;}
-	#ipmAddMilestoneTab .ipmMilestoneTabs li.active {color: #343434;position: relative;cursor: pointer;top: 9px;}
+	.ipmAddMilestoneTab .ipmMilestoneTabs {padding: 0 0 0 20px;border-bottom:1px solid #7ea19d;margin-bottom:20px;}
+	.ipmAddMilestoneTab .ipmMilestoneTabs li.active {color: #343434;position: relative;cursor: pointer;top: 9px;}
 	
 	input[type=text]{width: 100%;height: 30px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px #a8a8a8 solid;}
 	.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding:10px 5px;}

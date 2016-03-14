@@ -8,7 +8,8 @@
 	.modal-backdrop.in {opacity: 0.7;}
 	.date input{height:30px;border-radius: 4px;border: 1px #ddd solid;width:100%;}
 	.input-group.date{width:100%;}
-	#addTask .ipmButtonGroup{margin-bottom: 8%;} 
+	.addTask .ipmButtonGroup{margin-bottom: 8%;} 
+	
 	.pull-right{float:right;}
 /* lookup search icon*/
 	.lookupInput a{margin-left: -14%;}
@@ -19,10 +20,11 @@
 	.errorMsg{padding: 10px;background: #ffebec;border-radius: 3px;margin-top: 8px;}
 	.error{border:1px solid #e03729 !important;}
 	body{overflow:hidden;height:100%;}
-	html, .container-fluid, #EditTask, #EditTask form{overflow:auto;}
-	.panelScroll{overflow-y:scroll;height:100%;}
+	html, .container-fluid, .EditTask, .EditTask form{overflow:auto;}
+	.phaseModal{width: 48%;float: left;margin-right: 12px;}
+	.gatedocModal{width: 48%;float: left;}
 		
-	#EditTask .ipmButtonGroup{height:10%;}
+	.EditTask .ipmButtonGroup{height:10%;}
 	.inlineEdit{margin:10px 10px 0 10px;}
 	.inlineEdit > div, .inlineEdit .optionalPart > div{padding-left:5px; padding-right:5px;}
 	.inlineEdit > div:first-child{padding-left:0;}

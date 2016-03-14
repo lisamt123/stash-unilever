@@ -35,10 +35,10 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
 .custMarginTop {
     margin-top: 20px;
 }
-#ipmAddMemberModal .modal-body {
+.ipmAddMemberModal .modal-body {
     height: 88% !important;
 }
-#charCountRemaining {
+.charCountRemaining {
     font-weight: bold;
 }
 .sfdc_richtext img {
@@ -278,20 +278,20 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
 }
 /* new modal styles */
 
-#ipmModalGetStarted .modal-dialog {
+.ipmModalGetStarted .modal-dialog {
     width: 95%;
     height: 95%;
 }
-#ipmModalGetStarted .modal-content {
+.ipmModalGetStarted .modal-content {
     overflow: auto;
 }
-#ipmModalGetStarted .modal-header button.close {
+.ipmModalGetStarted .modal-header button.close {
     margin-top: 0 !important;
     position: relative;
     bottom: 40px;
     right: 10px;
 }
-#ipmModalGetStarted .modal-header {
+.ipmModalGetStarted .modal-header {
     border-bottom: 1px solid #7fa19e;
     height: 80px;
     padding: 10px 0 0;
@@ -299,18 +299,18 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-#ipmGetStartedTab .ipmTabContent {
+.ipmGetStartedTab .ipmTabContent {
     width: 100%;
 }
-#ipmGetStartedTab .panel {
+.ipmGetStartedTab .panel {
     background: transparent;
 }
-#ipmGetStartedTab .ipmStartedTabs {
+.ipmGetStartedTab .ipmStartedTabs {
     padding: 0 0 0 10px;
     margin-top: 29px;
     margin-bottom: 15px;
 }
-#ipmGetStartedTab .ipmStartedTabs li {
+.ipmGetStartedTab .ipmStartedTabs li {
     width: 180px;
     position: relative;
     padding: 11px;
@@ -323,13 +323,13 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
     cursor: pointer;
 }
 
-#ipmGetStartedTab .ipmStartedTabs li.active {
+.ipmGetStartedTab .ipmStartedTabs li.active {
     color: #343434;
     position: relative;
     cursor: pointer;
 	top: 1px;
 }
-#ipmModalGetStarted .modal-header .ipmModalGetStartedClose.close {
+.ipmModalGetStarted .modal-header .ipmModalGetStartedClose.close {
     bottom: 82px;
 }
 /*modal content styles*/
@@ -362,7 +362,7 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
 .descTop {
     margin-top: 20px;
 }
-#charCountRemainingText {
+.charCountRemainingText {
 	display:inline-block;
 	margin-bottom:20px;
 }
@@ -673,7 +673,7 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
 }
 /*slider styles*/
 
-#slideBar1 label:before {
+.slideBar1 label:before {
     background: #A3C24B;
     border-radius: 20px;
     position: absolute !important;
@@ -688,11 +688,11 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
     z-index: 100;
 }
 
-#slideBar1 label.active {
+.slideBar1 label.active {
     color: #555555 !important;
     font-weight: bold;
 }
-#slideBar1 label {
+.slideBar1 label {
     font-size: 11px;
     color: #555555 !important;
     font-weight: normal;
@@ -702,7 +702,7 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
     padding: 0!important;
     margin: 0!important;
 }
-#slideBar1 label span {
+.slideBar1 label span {
     position: absolute;
     top: 0;
     left: 0;
@@ -710,7 +710,7 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
 	word-break:break-word;
 }
 
-#slideBar1 .col-xs-12 span label:nth-child(2) {
+.slideBar1 .col-xs-12 span label:nth-child(2) {
     margin-top: -50px;
 }
 .sliderTrack {
@@ -728,28 +728,28 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
 .slide-bar {
     background-color: #C5C5C5 !important;
 }
-#slideBar2 label {
+.slideBar2 label {
     font-size: 11px;
     margin: 0!important;
     top: 20px;
 	word-break:break-word;
 }
 
-#slideBar2 label:before {
+.slideBar2 label:before {
     background: #EDEDED;
 }
-#slideBar3 label {
+.slideBar3 label {
     font-size: 11px;
     margin: 0!important;
     top: 20px;
 	word-break:break-word;
 }
-#slideBar3 label:before {
+.slideBar3 label:before {
     background: #EDEDED;
 }
 
-#slideBar2 label.fstchild:before,
-#slideBar3 label.fstchild:before {
+.slideBar2 label.fstchild:before,
+.slideBar3 label.fstchild:before {
     background: #fff;
 }
 .slide-bar {
@@ -843,7 +843,7 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
     margin-top: 20px !important;
 }
 
-#projectSpan select {
+.projectSpan select {
     padding: 0 !important;
 }
 .successMsgDiv1 {
@@ -881,7 +881,7 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
     position: relative;
     bottom: 3px;
 }
-#projectSpan .panel-heading.question {
+.projectSpan .panel-heading.question {
     margin-bottom: 0 !important;
 }
 /* Graph box styles */
@@ -1028,7 +1028,7 @@ img[data-leader='true'] {
 .noPadright {
     padding-right: 0 !important;
 }
-#quitWizard .modal-dialog {
+.quitWizard .modal-dialog {
     margin-top: 15%;
 }
 /* Team Radio button styles */
@@ -1201,7 +1201,7 @@ img[data-leader='true'] {
     float: left;
     padding-right: 4px;
 }
-#ipmTableDiv .SecButtonSet {
+.ipmTableDiv .SecButtonSet {
     display: inline-block;
     text-align: right;
     margin-top: 7px;
@@ -1458,10 +1458,10 @@ img[data-leader='true'] {
     clear:both;
 }
 @-moz-document url-prefix() {
-    #ipmGetStartedTab .ipmStartedTabs li {
+    .ipmGetStartedTab .ipmStartedTabs li {
         width:172px;
     }
-    #ipmGetStartedTab .ipmStartedTabs {
+    .ipmGetStartedTab .ipmStartedTabs {
         margin-top:28px;
     }
 }
@@ -1483,7 +1483,7 @@ margin-right:1px;
 
 .deleteButtoncontainer{  margin: 0 15px;}
 .buttonMarginRight {  margin-right: 15px;}
-#ipmModalDelete .modal-header{height:32%;}
+.ipmModalDelete .modal-header{height:32%;}
 .mstonePagination{color:#333;display:block;margin:0 10px;}
     .mstoneArrows{margin:0 10px;font-weight: bold;text-decoration:none;}
     .mstoneArrows:hover{text-decoration:none;}
