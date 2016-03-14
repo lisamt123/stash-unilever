@@ -123,7 +123,6 @@ public class IPM_MyList_Test{
             taskListTest.deleteTask();
             taskListTest.setTaskId(string.valueof(ipmTask.id));
             taskListTest.markComplete();
-            taskListTest.project();
             taskListTest.setUser(globalUser.Id);
             
             taskListTest.setprojectName('test proj');
