@@ -8,20 +8,16 @@
                            
 */
 public class Core_CA_LineItem_Handler implements ITrigger{
+    
+    //SOQL queries to retrive the recordtype for Lineitem object. 
+    List<RecordType> aribaRecordType  = [SELECT Id FROM RecordType where Name ='Ariba' AND SobjectType = 'Core_Approval_Details__c'];
+    List<RecordType> gtesRecordType   = [SELECT Id FROM RecordType where Name ='GTES' AND SobjectType = 'Core_Approval_Details__c'];
+    List<RecordType> invoiceRecordType =[SELECT Id FROM RecordType where Name ='Invoice' AND SobjectType = 'Core_Approval_Details__c'];
 
-    public void beforeInsert(SObject so){
-        
+    public void beforeInsert(SObject so){    
         // Cast the SObject to an Account
         Core_Approval_Details__c a = (Core_Approval_Details__c)so;
-       
-        List<RecordType> aribaRecordType  = [SELECT Id FROM RecordType where Name ='Ariba' AND SobjectType = 'Core_Approval_Details__c'];
-        List<RecordType> gtesRecordType   = [SELECT Id FROM RecordType where Name ='GTES' AND SobjectType = 'Core_Approval_Details__c'];
-        List<RecordType> invoiceRecordType =[SELECT Id FROM RecordType where Name ='Invoice' AND SobjectType = 'Core_Approval_Details__c'];
-        
-        //Fetching Record Type Id for Selected Source System.
-            //List<RecordType> recordTypeList = [SELECT Id FROM RecordType where Name =: a.Source_System__c AND SobjectType = 'Core_Approval_Details__c'];            
-            //a.RecordType = recordTypeList[0]; 
-        
+     
            //Updating Name field with Line Item Number for Ariba.
            if(a.Source_System__c == 'Ariba') {          
                a.Name = '' + a.Line_Item_Number__c;
@@ -43,13 +39,13 @@ public class Core_CA_LineItem_Handler implements ITrigger{
                a.RecordTypeId = invoiceRecordType[0].Id;
            }    
     }
-    public void bulkBefore(){}
-    public void bulkAfter(){}
-  //public void beforeInsert(SObject so){}
-    public void beforeUpdate(SObject oldSo,SObject so){}
-    public void beforeDelete(SObject so){}
-    public void afterInsert(SObject so){}
-    public void afterUpdate(SObject oldSo,SObject so){}
-    public void afterDelete(SObject so){}
-    public void andFinally(){}
+    public void bulkBefore(){ System.debug('Inside bulkBefore');}
+    public void bulkAfter(){ System.debug('Inside bulkBefore');}
+    //public void beforeInsert(SObject so){}
+    public void beforeUpdate(SObject oldSo,SObject so){System.debug('Inside beforeUpdate');}
+    public void beforeDelete(SObject so){System.debug('Inside beforeDelete');}
+    public void afterInsert(SObject so){System.debug('Inside afterInsert');}
+    public void afterUpdate(SObject oldSo,SObject so){System.debug('Inside afterUpdate');}
+    public void afterDelete(SObject so){System.debug('Inside afterDelete');}
+    public void andFinally(){System.debug('Inside andFinally');}
 }

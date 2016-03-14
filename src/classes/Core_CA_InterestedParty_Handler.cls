@@ -248,7 +248,7 @@ public class Core_CA_InterestedParty_Handler{
             if(approverRec.Source_System__c==strClarityTemp && CORE_Chatter_Approval__c.getinstance('Clarity_Notification').Text_Value__c == strTextValue ){
                 //Approver Added with (Role__c 'APP') and (Action <> APPR)
                 if((approverRec.Role__c == strAppTemp || approverRec.Role__c == strEndTemp) && approverRec.Action__c == strActvTemp){
-                    system.debug('@@@@@@@ notification'+ approverRec);
+                    
                     strBody = CORE_Chatter_Approval__c.getinstance('Clarity_ApproverAdded').Text_Value__c;
                     if(approverRec.Interested_Party_Details__c!=null) strBody = strBody.replace(strxxxTemp,approverRec.Interested_Party_Details__c);
                     else strBody = strBody.replace(strxxxTemp,'');
@@ -267,7 +267,7 @@ public class Core_CA_InterestedParty_Handler{
                     strBody = strBody.replace(stryyyTemp,lstHeader.get(approverRec.Approval_Header__c).Requested_For_Details__c);
                     strBody = strBody.replace(strzzzTemp,lstHeader.get(approverRec.Approval_Header__c).Ariba_Company_Code__c);
                     
-                    if(lstHeader.get(approverRec.Approval_Header__c).Category__c == 'INV') strBody = strBody.replace(straaaTemp,'Invoice');
+                    if(lstHeader.get(approverRec.Approval_Header__c).Category__c == 'INV') strBody = strBody.replace(straaaTemp,strInvoiceTemp);
                     else if(lstHeader.get(approverRec.Approval_Header__c).Category__c == 'CN') strBody = strBody.replace(straaaTemp,'Credit note');
                     else strBody = strBody.replace(straaaTemp,'Invoice');
                     
@@ -585,7 +585,6 @@ public class Core_CA_InterestedParty_Handler{
             if(approverRec.Source_System__c==strClarityTemp && CORE_Chatter_Approval__c.getinstance('Clarity_Notification').Text_Value__c == strTextValue ){                            
                 //Approver Added with (Role__c 'APP') and (Action = ACTV)
                 if((approverRec.Role__c == strAppTemp || approverRec.Role__c == strEndTemp) && approverRec.Action__c == strActvTemp && (newApprover.Action__c != oldApprover.Action__c || newApprover.Role__c != oldApprover.Role__c )){
-                    system.debug('@@@@@@@ notification'+ approverRec);
                     strBody = CORE_Chatter_Approval__c.getinstance('Clarity_ApproverAdded').Text_Value__c;
                     if(approverRec.Interested_Party_Details__c!=null) strBody = strBody.replace(strxxxTemp,approverRec.Interested_Party_Details__c);
                     else strBody = strBody.replace(strxxxTemp,'');
@@ -604,7 +603,7 @@ public class Core_CA_InterestedParty_Handler{
                     strBody = strBody.replace(stryyyTemp,mapHeader.get(approverRec.Approval_Header__c).Requested_For_Details__c);
                     strBody = strBody.replace(strzzzTemp,mapHeader.get(approverRec.Approval_Header__c).Ariba_Company_Code__c);
                     
-                    if(mapHeader.get(approverRec.Approval_Header__c).Category__c == 'INV') strBody = strBody.replace(straaaTemp,'Invoice');
+                    if(mapHeader.get(approverRec.Approval_Header__c).Category__c == 'INV') strBody = strBody.replace(straaaTemp, strInvoiceTemp);
                     else if(mapHeader.get(approverRec.Approval_Header__c).Category__c == 'CN') strBody = strBody.replace(straaaTemp,'Credit note');
                     else strBody = strBody.replace(straaaTemp,'Invoice');
                     
