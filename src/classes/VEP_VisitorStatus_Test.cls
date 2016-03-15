@@ -60,7 +60,8 @@ private class VEP_VisitorStatus_Test{
         VEP_VisitorStatus_CC vStatus6 = new VEP_VisitorStatus_CC();
         vStatus6.displayMsg();                      
         System.assertEquals(vStatus6.message, 'Lodging request is Approved Visitor will be notified by an email');
-        System.assertEquals(sApproved, [select Lodging_Approval_Status__c,id from VEP_Visitor__c where VEP_number__c=: vStatus6.visitorId].Lodging_Approval_Status__c);
+        VEP_Visitor__c vstatus = [select Lodging_Approval_Status__c,id from VEP_Visitor__c where VEP_number__c=: vStatus6.visitorId];
+        System.assertEquals(vstatus.Lodging_Approval_Status__c,sApproved);
 
 
         Apexpages.currentpage().getparameters().put('VEPnumber',listVisitorQ[1].VEP_number__c);

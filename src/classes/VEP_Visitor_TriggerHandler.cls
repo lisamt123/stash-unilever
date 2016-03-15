@@ -20,33 +20,7 @@ public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
     * any data required into maps prior execution of the trigger.
     */
     public void bulkBefore(){
-        if(trigger.isInsert){
-            set<string> setFactories = new set<string>();
-            List<VEP_Factory__c> listFactory = new List<VEP_Factory__c>();
-            Map<string,VEP_Factory__c> mapFactoryuser = new Map<string,VEP_Factory__c>();
-            for(Vep_Visitor__c  v: (List<Vep_Visitor__c >)Trigger.New){
-                setFactories.add(v.Factory_to_Visit__c);
-            }
-            if(!setFactories.isEmpty()){
-                listFactory= [select id,name,Factory_manager__c,Factory_Manager__r.name from VEP_Factory__c where name in:setFactories];
-            }
-            if(!listFactory.isEmpty()){
-                for(VEP_Factory__c fact: listFactory){
-                    mapFactoryuser.put(fact.name,fact);
-                }
-            }
-            if(!mapFactoryuser.isEmpty()){
-                for(Vep_Visitor__c  v: (List<Vep_Visitor__c >)Trigger.New){
-                    
-                    if(mapFactoryuser.get(v.Factory_to_Visit__c)!=null){
-                        v.factory_manager__c = mapFactoryuser.get(v.Factory_to_Visit__c).Factory_manager__c;
-                        v.factory_manager_name__c = mapFactoryuser.get(v.Factory_to_Visit__c).Factory_Manager__r.name;
-                    }
-                    
-                   
-                }
-            }
-        }
+        
         if(trigger.isInsert || trigger.isUpdate){
             Map<string,VEP_FactoryVisit__c> mapEmailIds = new Map<string,VEP_FactoryVisit__c>();
             Id robRecordTypeId = Schema.SObjectType.VEP_Visitor__c.getRecordTypeInfosByName().get('Request on Behalf').getRecordTypeId(); 
@@ -106,6 +80,33 @@ public with sharing class VEP_Visitor_TriggerHandler implements ITrigger{
     }
     public void beforeInsert(SObject so){
         //This method has been included as the class implements the ITrigger interface
+        //if(trigger.isInsert){
+            set<string> setFactories = new set<string>();
+            List<VEP_Factory__c> listFactory = new List<VEP_Factory__c>();
+            Map<string,VEP_Factory__c> mapFactoryuser = new Map<string,VEP_Factory__c>();
+            for(Vep_Visitor__c  v: (List<Vep_Visitor__c >)Trigger.New){
+                setFactories.add(v.Factory_to_Visit__c);
+            }
+            if(!setFactories.isEmpty()){
+                listFactory= [select id,name,Factory_manager__c,Factory_Manager__r.name from VEP_Factory__c where name in:setFactories];
+            }
+            if(!listFactory.isEmpty()){
+                for(VEP_Factory__c fact: listFactory){
+                    mapFactoryuser.put(fact.name,fact);
+                }
+            }
+            if(!mapFactoryuser.isEmpty()){
+                for(Vep_Visitor__c  v: (List<Vep_Visitor__c >)Trigger.New){
+                    
+                    if(mapFactoryuser.get(v.Factory_to_Visit__c)!=null){
+                        v.factory_manager__c = mapFactoryuser.get(v.Factory_to_Visit__c).Factory_manager__c;
+                        v.factory_manager_name__c = mapFactoryuser.get(v.Factory_to_Visit__c).Factory_Manager__r.name;
+                    }
+                    
+                   
+                }
+            }
+        //}
     }
     
     public void beforeUpdate(SObject oldSo, SObject so){   

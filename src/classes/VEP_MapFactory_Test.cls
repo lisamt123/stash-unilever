@@ -36,14 +36,14 @@ private class VEP_MapFactory_Test{
         VEP_MapFactory_CC mapfact = new VEP_MapFactory_CC();                      
         mapfact.factname=Factoryname;        
         mapfact.StateFactoryList();
-        System.assertEquals(Factoryname,mapfact.factoryDetails.name);               
+        System.assertEquals(mapfact.factoryDetails.name,Factoryname);               
         mapfact.Back2Factories();
                                              
         VEP_MapFactory_CC mapfact1 = new VEP_MapFactory_CC();        
         mapfact1.targetField = fact.id;
         System.assert(mapfact1.targetField != null);
         mapfact1.SearchFactoryList();
-        System.assertEquals('Factory1', mapfact1.factoryDetails.name);
+        System.assertEquals(mapfact1.factoryDetails.name,'Factory1');
         System.assertEquals(1, mapfact1.factoryList.size());
         mapfact1.factname='';
         mapfact1.StateFactoryList();

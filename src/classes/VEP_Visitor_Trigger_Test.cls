@@ -1,6 +1,10 @@
 @isTest
 private class VEP_Visitor_Trigger_Test{
+
     static testMethod void test_VEP_Visitor_Trigger(){
+    Test.startTest(); 
+        Boolean flag=false;
+        
         VEP_Factory__c fact= new VEP_Factory__c();
         fact.name='Factory1';
         fact.category__c ='Category1';
@@ -40,11 +44,10 @@ private class VEP_Visitor_Trigger_Test{
         visitor1.Factory_to_visit__c='Factory1';
         listVisitor.add(visitor1);    
         insert listVisitor;        
-       
-           Boolean flag;
-        Test.startTest(); 
+                          
                 List<VEP_Visitor__c> listv = new List<VEP_Visitor__c>();
                 listv = [select id,name from VEP_Visitor__c where id=:visitor1.id];
+                system.assertEquals(listv[0].name,'Test Visitor1'); 
                 for(VEP_Visitor__c tempV : listv)
                                                                        
                      {
