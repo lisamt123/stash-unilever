@@ -42,13 +42,10 @@ public with sharing class Core_CA_BaseApplicationServicesTest {
         Core_CA_ApplicationWrapper remoteServCallObj = constructRequestBody(jsonInput, 'GetMyApprovalsData', strPost);
          System.assert(remoteServCallObj != null);
         Test.startTest();
-        try{
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj);
              System.assertEquals(200,Core_CA_BaseApplicationServices.invokeService(remoteServCallObj).statusCode,'error');
              System.assertEquals('SUCCESS',Core_CA_BaseApplicationServices.invokeService(remoteServCallObj).message,'error');
-        }catch(Core_CA_BaseServiceException ex)   {
-            throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method1 ',ex);} 
- 
+        
          Test.stopTest();
     }
     
