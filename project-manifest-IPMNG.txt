@@ -54,6 +54,8 @@ src/classes/IPM_FinancialController_Test.cls
 src/classes/IPM_FinancialController_Test.cls-meta.xml
 src/classes/IPM_FinancialCopyPasteGrid.cls
 src/classes/IPM_FinancialCopyPasteGrid.cls-meta.xml
+src/classes/IPM_FunnelController.cls
+src/classes/IPM_FunnelController.cls-meta.xml
 src/classes/IPM_FunnelController_Test.cls
 src/classes/IPM_FunnelController_Test.cls-meta.xml
 src/classes/IPM_GateDocumentController.cls
