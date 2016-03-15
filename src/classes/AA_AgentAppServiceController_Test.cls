@@ -1,20 +1,19 @@
 @IsTest 
 private class AA_AgentAppServiceController_Test {
 
-    //Unilever Report
+  //Insert Unilever Report
   static testMethod void insertAgentApp_UnileverTest() {
-      //aa_agent_app_custom_setting__c agentAppCustomSetting1 = new aa_agent_app_custom_setting__c(Name = 'Google Api Key',Key__c = 'Google_Api_Key',Value__c='test Value');
-       // insert agentAppCustomSetting1; 
-        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
-        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
-        Id recTypeId = (RT.get('Unilever Agent Report')).getRecordTypeId();
+ 
+       Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
+       Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
+       Id recTypeId = (RT.get('Unilever Agent Report')).getRecordTypeId();
         
        AA_AgentAppServiceController obj =new AA_AgentAppServiceController();
        
        
        Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
-        Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
-        Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
+       Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
+       Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
         
         
        aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
@@ -39,40 +38,37 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.Latitude = AA_Constants.LatSample;
        objAgentApp.Longitude = AA_Constants.LongSample;
        objAgentApp.RecordTypeId = recTypeId;
-      // objAgentApp.Status='Published (Private)';
-       
+             
        obj.convertRequestAgentReport(objAgentApp);
        AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
        obj1.objAgentAppDataRequest = objAgentApp;
-      // obj.insertAgentApp(obj1);
+       // obj.insertAgentApp(obj1);
        obj.getAutoPopulatedValues_UnileverReport(obj1);
-        system.assertEquals(objAgentApp.ReportName,unileverReport.Report_Title__c);
+       system.assertEquals(objAgentApp.ReportName,unileverReport.Report_Title__c);
      }
   
     
-  //Competitor Test
-    static testMethod void insertAgentApp_CompetitorTest() {
-    
-    //aa_agent_app_custom_setting__c agentAppCustomSetting1 = new aa_agent_app_custom_setting__c(Name = 'Google Api Key',Key__c = 'Google_Api_Key',Value__c='test Value');
-       // insert agentAppCustomSetting1; 
+     //Insert Competitor Report Test
+     static testMethod void insertAgentApp_CompetitorTest() {
+
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
         
-       AA_AgentAppServiceController obj =new AA_AgentAppServiceController();
+        AA_AgentAppServiceController obj =new AA_AgentAppServiceController();
        
-       Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
+        Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
         Id recTypeId1 = (RT1.get('Competitor Brand')).getRecordTypeId();
         
         
-       aa_Agent_App_Competitor_Brand__c compBrand = new aa_Agent_App_Competitor_Brand__c(Name = 'BBOthers',RecordTypeId=recTypeId1);
+       aa_Agent_App_Competitor_Brand__c compBrand = new aa_Agent_App_Competitor_Brand__c(Name = AA_Constants.CompetitorBrandNameSample,RecordTypeId=recTypeId1);
        insert compBrand;
-       aa_Agent_Competitor__c compName = new aa_Agent_Competitor__c(Name = 'Amul');
+       aa_Agent_Competitor__c compName = new aa_Agent_Competitor__c(Name = AA_Constants.CompNameSample);
        insert compName;
-       aa_Agent_App_Category__c compCategory = new aa_Agent_App_Category__c(Name = 'Skin Care');
+       aa_Agent_App_Category__c compCategory = new aa_Agent_App_Category__c(Name = AA_Constants.CategorySample);
        insert compCategory;
-       aa_Topic__c topic = new aa_Topic__c(Name = 'Campaign');
+       aa_Topic__c topic = new aa_Topic__c(Name = AA_Constants.Topicsample);
        insert topic;
        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
        insert retailerData;
@@ -80,10 +76,10 @@ private class AA_AgentAppServiceController_Test {
        insert clusterData;
        aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
+       aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Report_Description__c = AA_Constants.Stringwhatever ,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
        insert competitorReport;
        
-       aa_Topic__c newtopic=new aa_Topic__c(Name='topic name',Sub_Topic__c='test');
+       aa_Topic__c newtopic=new aa_Topic__c(Name=AA_Constants.Topicsample,Sub_Topic__c=AA_Constants.SubtopicSample);
        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
        
        objAgentApp.ReportName = competitorReport.Report_Title__c;
@@ -102,8 +98,7 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.RecordTypeId = recTypeId;
        objAgentApp.TopicId=newtopic.Id;
        objAgentApp.SubTopic=newtopic.Sub_Topic__c;
-      // objAgentApp.CodeOfConduct='true';
-       
+             
        obj.convertRequestAgentReport_Competitor(objAgentApp);
        AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
        obj1.objAgentAppDataRequest = objAgentApp;
@@ -131,7 +126,7 @@ private class AA_AgentAppServiceController_Test {
        system.assertEquals(objAgentApp.ReportName,competitorReport.Report_Title__c);
     }
     
-    //IsAccepted Test
+    //Check IsAccepted Terms & conditions test
     static testMethod void isAcceptedTermsAndConditionTest(){
         aa_Agent_App_User_Preference__c UserPref = new aa_Agent_App_User_Preference__c(UserId__c = UserInfo.getUserId(),Is_Accepted_Terms_Condition__c = true);
         insert UserPref;
@@ -143,7 +138,7 @@ private class AA_AgentAppServiceController_Test {
         system.assertEquals(UserPref.Is_Accepted_Terms_Condition__c,true);
           
     }
-    //UpdatesIsAccepted Test
+    //Check UpdatesIsAccepted Test
     static testMethod void updateIsAcceptedTermsAndConditionTest(){
         aa_Agent_App_User_Preference__c UserPref = new aa_Agent_App_User_Preference__c(UserId__c = UserInfo.getUserId(),Is_Accepted_Terms_Condition__c = true);
         insert UserPref;
@@ -165,10 +160,10 @@ private class AA_AgentAppServiceController_Test {
         system.assertEquals(UserPref1.Is_Accepted_Terms_Condition__c,false);
           
           
-         AA_AgentAppServiceController obj4 =new AA_AgentAppServiceController();
-         AA_ApplicationWrapperObj wapperobj2 = new AA_ApplicationWrapperObj();
-         wapperobj2.isAcceptedTermsCondition = true;
-          Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
+        AA_AgentAppServiceController obj4 =new AA_AgentAppServiceController();
+        AA_ApplicationWrapperObj wapperobj2 = new AA_ApplicationWrapperObj();
+        wapperobj2.isAcceptedTermsCondition = true;
+        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User'];
 
         User u2 = new User(Alias = 'tdfss', Email='tes23132t@testorg.com',ProfileId = p.Id ,
         
@@ -179,11 +174,13 @@ private class AA_AgentAppServiceController_Test {
         obj4.updateIsAcceptedTermsAndCondition(wapperobj2);
           
           }
+          system.assertEquals(UserPref.Is_Accepted_Terms_Condition__c,true);
     }
   
     
   
     static testMethod void retriveAllAgentReportsTest_ApplyFilterTrue(){
+    	
     	User user = new User();
         user.Username =AA_Constants.Stringtestemail;
         user.LastName = 'LastTestName';
@@ -195,7 +192,7 @@ private class AA_AgentAppServiceController_Test {
         user.ProfileId = [select id from Profile where Name='System Administrator'].Id;
         user.LanguageLocaleKey = AA_Constants.Stringen_us;
         insert user;
-        aa_Agent_App_Category__c compCategory = new aa_Agent_App_Category__c(Name = 'Skin Care');
+        aa_Agent_App_Category__c compCategory = new aa_Agent_App_Category__c(Name = AA_Constants.CategorySample);
        insert compCategory;
         
         aa_Agent_App_User_Preference__c userpref = new aa_Agent_App_User_Preference__c(UserId__c=user.Id ,Category__c=compCategory.Id,Is_Accepted_Terms_Condition__c=true);
@@ -230,8 +227,8 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.FilterType = 'filterReports';
    
        objAgentApp.ApplyFilter = 'true';
-       objAgentApp.ReportingOn='Food Solutions';
-       aa_Agent_App_Category__c cat1= new aa_Agent_App_Category__c(Name='Hair care');
+       objAgentApp.ReportingOn=AA_Constants.ReportingOnSample;
+       aa_Agent_App_Category__c cat1= new aa_Agent_App_Category__c(Name=AA_Constants.CategorySample);
        insert cat1;
        
         aa_Cluster__c clusterData1 = new aa_Cluster__c(Name =AA_Constants.ClusterSample);
@@ -263,7 +260,7 @@ private class AA_AgentAppServiceController_Test {
        obj.retrieveAgentReportsOnMostliked(obj1);
        
       //myreports
-      AA_WrapperUtility.AgentAppDataRequest objAgentApp2 = new AA_WrapperUtility.AgentAppDataRequest();
+       AA_WrapperUtility.AgentAppDataRequest objAgentApp2 = new AA_WrapperUtility.AgentAppDataRequest();
        objAgentApp2.FilterType = 'myReports';
       // objAgentApp2.ApplyFilter = 'true';      
     
@@ -271,7 +268,7 @@ private class AA_AgentAppServiceController_Test {
        obj2.objAgentAppDataRequest = objAgentApp2;
        obj.retriveAllAgentReports(obj2);
     
-    //All reports 
+      //All reports 
        AA_WrapperUtility.AgentAppDataRequest objAgentApp3 = new AA_WrapperUtility.AgentAppDataRequest();
        objAgentApp3.FilterType = 'AllReports';
        //objAgentApp3.ApplyFilter = 'true';      
@@ -280,7 +277,7 @@ private class AA_AgentAppServiceController_Test {
        obj3.objAgentAppDataRequest = objAgentApp3;
        obj.retriveAllAgentReports(obj3);
    
-   // filter False    
+      // filter False    
        AA_WrapperUtility.AgentAppDataRequest objAgentApp4 = new AA_WrapperUtility.AgentAppDataRequest();
        objAgentApp4.FilterType = 'AllReports';
        objAgentApp4.ApplyFilter = 'false';      
@@ -290,7 +287,7 @@ private class AA_AgentAppServiceController_Test {
        obj.retriveAllAgentReports(obj4);
   
      // filter False    
-        aa_Agent_App_Category__c cat= new aa_Agent_App_Category__c(Name='Hair care');
+        aa_Agent_App_Category__c cat= new aa_Agent_App_Category__c(Name=AA_Constants.CategorySample);
         insert cat;
         aa_Agent_App_User_Preference__c upref = new aa_Agent_App_User_Preference__c();
        
@@ -310,16 +307,19 @@ private class AA_AgentAppServiceController_Test {
        AA_WrapperUtility.AgentAppDataRequest objAgentApp1 = new AA_WrapperUtility.AgentAppDataRequest();
        objAgentApp1.SortOnMostLike='true';
        AA_ApplicationWrapperObj obj6 = new AA_ApplicationWrapperObj();
+       
+       objAgentApp1.ApplyFilter='false';
+       objAgentApp1.FilterType='All Reports';
+       obj6.serviceName='GetAgentAllReport';
        obj6.objAgentAppDataRequest = objAgentApp1;
-       obj.retriveAllAgentReports(obj6);  
-       system.assert(obj!=null);
+       AA_ApplicationWrapperObj result=obj.retriveAllAgentReports(obj6);  
+       system.assertEquals(result.serviceName ,'GetAgentAllReport');
+       
         }
     }
     
       static testMethod void updateUnLikeCountTest(){
     
-        //aa_agent_app_custom_setting__c agentAppCustomSetting1 = new aa_agent_app_custom_setting__c(Name = 'Google Api Key',Key__c = 'Google_Api_Key',Value__c='test Value');
-        //insert agentAppCustomSetting1; 
         AA_AgentAppServiceController obj =new AA_AgentAppServiceController();
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
@@ -346,61 +346,58 @@ private class AA_AgentAppServiceController_Test {
             fi2.Type = 'TextPost' ;
             fi2.Title = 'Agent File';           
             fi2.ParentId = unileverReport.Id;
-       //     system.debug('feed iem to be inserted '+fi2);
-            insert fi2;          
+           insert fi2;          
        unileverReport.Chatter_Post_ID__c=fi2.Id;
        unileverReport.Status__c='Existing';
        update unileverReport;
        
-        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
-        objAgentApp.AgentReportId=unileverReport.id;
-        //objAgentApp.Status='Published (Private)';
-        obj.convertRequestAgentReport(objAgentApp);
-        AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
-        obj1.objAgentAppDataRequest = objAgentApp;
+       AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
+       objAgentApp.AgentReportId=unileverReport.id;
       
-        obj.insertAgentApp(obj1);
-        //obj1.UpdateUnLikeCount = true;
-        obj.updateLikeCount(obj1);
-        obj.updateUnlikeCount(obj1);
-        
-        
-        
+       obj.convertRequestAgentReport(objAgentApp);
+       AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
+       obj1.objAgentAppDataRequest = objAgentApp;
+       obj1.serviceName='GetAutoPopulatedValues';
+       obj.insertAgentApp(obj1);
+       obj.updateLikeCount(obj1);
+       obj.updateUnlikeCount(obj1);
+            
         aa_Agent_Retailer__c retailer =new aa_Agent_Retailer__c(Name='Dmart');        
         insert retailer;
         
         aa_Agent_App_Competitor_Brand__c brand =new aa_Agent_App_Competitor_Brand__c(Name='brand');
         insert brand;
         
-        
-         aa_Cluster__c cluster=new aa_Cluster__c(Name='test');
+        aa_Cluster__c cluster=new aa_Cluster__c(Name='test');
         insert cluster;
         
         aa_Country__c country =new aa_Country__c(Name='country',Cluster_Id__c = cluster.id);
         insert country;
-        
+      
+        aa_Agent_App_Competitor_Brand__c uniBrand2 = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
+        insert uniBrand2;
        
+        aa_Agent_Retailer__c retailerData4 = new aa_Agent_Retailer__c(Name =AA_Constants.RetailerSample);
+        insert retailerData4;
         
+        aa_Cluster__c clusterData3 = new aa_Cluster__c(Name = AA_Constants.ClusterSample);
+        insert clusterData3;
         
-         aa_Agent_App_Competitor_Brand__c uniBrand2 = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
-       insert uniBrand2;
-       aa_Agent_Retailer__c retailerData4 = new aa_Agent_Retailer__c(Name =AA_Constants.RetailerSample);
-       insert retailerData4;
-       aa_Cluster__c clusterData3 = new aa_Cluster__c(Name = AA_Constants.ClusterSample);
-       insert clusterData3;
-       aa_Country__c countryData4 = new aa_Country__c(Name =AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
-       insert countryData4;
-       aa_Topic__c topic=new aa_Topic__c();
-       insert topic;
+        aa_Country__c countryData4 = new aa_Country__c(Name =AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
+        insert countryData4;
+        
+        aa_Topic__c topic=new aa_Topic__c();
+        insert topic;
        
-       aa_Agent_Competitor__c competitor=new aa_Agent_Competitor__c();
-       insert competitor;
+        aa_Agent_Competitor__c competitor=new aa_Agent_Competitor__c();
+        insert competitor;
        
-       aa_Agent_App_Category__c cate=new aa_Agent_App_Category__c();
-       insert cate;
-        obj.getAutoPopulatedValues_UnileverReport(obj1);
-        
-        system.assert(obj!=null);
+        aa_Agent_App_Category__c cate=new aa_Agent_App_Category__c();
+        insert cate;
+        AA_ApplicationWrapperObj result=obj.getAutoPopulatedValues_UnileverReport(obj1);
+        system.debug('******************=>'+result);
+        system.debug('=======>'+result.objGetAgentDataResponse.clusterList[0].Name);
+        system.assertEquals(result.objGetAgentDataResponse.clusterList[0].Name,AA_Constants.ClusterSample);
    
   }
     
@@ -433,8 +430,9 @@ private class AA_AgentAppServiceController_Test {
        list<String> agentAPPIDInserted=new List<String>();
        agentAPPIDInserted.add(unileverReport.ID);
        AA_AgentAppServiceController serobj=new AA_AgentAppServiceController();
-       serobj.convertRequestAgentReportDocument(objAgentApp,agentAPPIDInserted);
-        system.assert(unileverReport!=null);
+      ContentDocumentLink conLink= serobj.convertRequestAgentReportDocument(objAgentApp,agentAPPIDInserted);
+     
+      system.assertNotEquals(conlink.ContentDocumentId,null);
     
     }
     
@@ -454,7 +452,7 @@ private class AA_AgentAppServiceController_Test {
         
         
        
-    	aa_agent_app_custom_setting__c setting = new aa_agent_app_custom_setting__c();
+       aa_agent_app_custom_setting__c setting = new aa_agent_app_custom_setting__c();
        setting.Name = 'Salesforce Instance URL Content';
        setting.Value__c =  AA_Constants.Stringwhatever;
        insert setting;
@@ -548,19 +546,22 @@ private class AA_AgentAppServiceController_Test {
                      system.runAs(user){
         objFinalReport.add(objGetAllReports);
         AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
-          obj1.objAgentAppDataRequest = objAgentApp;
+        obj1.objAgentAppDataRequest = objAgentApp;
         obj1.objPassAgentReportsToNG = objFinalReport;
-        obj.retriveAllAgentReports(obj1);
-        obj.retrieveAgentReportsOnMostliked(obj1);
-           
-        system.assert(obj!=null);
-        }
+        AA_ApplicationWrapperObj result1= obj.retriveAllAgentReports(obj1);
+        AA_ApplicationWrapperObj result2=obj.retrieveAgentReportsOnMostliked(obj1);
+       
+       system.assert(result1.objPassAgentReportsToNG.size() > 0);
+       system.assert(result2.objPassAgentReportsToNG.size() > 0);
+       
+       
+       }
     }
    
   
      static testMethod void retriveAllAgentReportsTest_ApplyFilterFalse(){
      	
-     	aa_agent_app_custom_setting__c setting = new aa_agent_app_custom_setting__c();
+       aa_agent_app_custom_setting__c setting = new aa_agent_app_custom_setting__c();
        setting.Name = 'Salesforce Instance URL Content';
        setting.Value__c =  AA_Constants.Stringwhatever;
        insert setting;
@@ -587,7 +588,7 @@ private class AA_AgentAppServiceController_Test {
         user.LanguageLocaleKey = AA_Constants.Stringen_us;
         insert user;
         aa_Agent_App_Category__c compCategory = new aa_Agent_App_Category__c(Name = 'Skin Care');
-       insert compCategory;
+        insert compCategory;
         
         aa_Agent_App_User_Preference__c userpref = new aa_Agent_App_User_Preference__c(UserId__c=user.Id ,Category__c=compCategory.Id,Is_Accepted_Terms_Condition__c=true);
         insert userpref;
@@ -634,9 +635,64 @@ private class AA_AgentAppServiceController_Test {
        AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
        obj1.objAgentAppDataRequest = objAgentApp;
  
-       obj.retriveAllAgentReports(obj1);
+       AA_ApplicationWrapperObj result= obj.retriveAllAgentReports(obj1);
         
-                system.assert(obj!=null);
+       system.assert(result.objAgentAppDataRequest!=null);
     }
-        }
+  }
+  
+  static testMethod void getUserList_Test_Positive(){
+  	    User user = new User();
+        user.Username =AA_Constants.Stringtestemail;
+        user.FirstName=AA_constants.testString;
+        user.LastName = AA_constants.testString;
+        user.Email = AA_Constants.Stringtestemail;
+        user.alias = AA_constants.testString;
+        user.TimeZoneSidKey = 'America/New_York';
+        user.LocaleSidKey = AA_Constants.Stringen_us;
+        user.EmailEncodingKey = 'ISO-8859-1';
+        user.ProfileId = [select id from Profile where Name='System Administrator'].Id;
+        user.LanguageLocaleKey = AA_Constants.Stringen_us;
+        user.IsActive=true;
+        insert user;
+  	
+        AA_AgentAppServiceController obj =new AA_AgentAppServiceController();
+        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
+        // for users 
+        objAgentApp.searchString = 'test';
+        objAgentApp.searchType='users';
+        AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
+        obj1.objAgentAppDataRequest = objAgentApp;
+        obj1.serviceName=AA_Constants.SVC_AGENT_APP_AUTOCOMPLETELIST;
+        AA_ApplicationWrapperObj result= obj.getUserList(obj1);
+       
+         Topic topictest=new Topic(Name=AA_Constants.testString);
+       //for topics
+        objAgentApp.searchString = 'test';
+        objAgentApp.searchType='topics';
+        AA_ApplicationWrapperObj obj2 = new AA_ApplicationWrapperObj();
+        obj2.objAgentAppDataRequest = objAgentApp;
+        obj2.serviceName=AA_Constants.SVC_AGENT_APP_AUTOCOMPLETELIST;
+        AA_ApplicationWrapperObj result1= obj.getUserList(obj2);
+
+        system.assertEquals(result1.serviceName,AA_Constants.SVC_AGENT_APP_AUTOCOMPLETELIST);
+        
+                
+        
    }
+  static testMethod void getUserList_Test_Negative(){
+        
+        AA_AgentAppServiceController obj =new AA_AgentAppServiceController();
+        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
+        objAgentApp.searchString = '';
+        objAgentApp.searchType='';
+       
+        AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
+        obj1.objAgentAppDataRequest = objAgentApp;
+        obj1.serviceName=AA_Constants.SVC_AGENT_APP_AUTOCOMPLETELIST;
+        AA_ApplicationWrapperObj result= obj.getUserList(obj1);
+        system.assertEquals(result.serviceName,AA_Constants.SVC_AGENT_APP_AUTOCOMPLETELIST);
+        
+        
+   }   
+}

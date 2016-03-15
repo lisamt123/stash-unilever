@@ -185,5 +185,32 @@ public with sharing class AA_DatabaseServiceUtil {
         }
         return false;
     }
+    
+    //Sending Email to Ets Manager to inform adding new brand and brandcompany to master table
+    
+    public static void sendEmail(string strBrand,string strBrandCompany,string reportId) {
+    
+        string strDesktoplink=URL.getSalesforceBaseUrl().toExternalForm()+'/' + reportId;
+        string strMobileLink='com.salesforce.salesforce1://entity/view?entityId='+ reportId;
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        List<String> idList = new List<String>();
+        List<GroupMember> useridList=[SELECT UserOrGroupId FROM GroupMember where group.name='ETS Group'];
+        for (GroupMember gm : useridList) {
+          idList.add(gm.UserOrGroupId );
+        }
+        List<User> userEmail=[SELECT email FROM user WHERE id IN:idList];
+        List<String> mailToAddresses = new List<String>();
+        for(User u : userEmail) {
+          mailToAddresses.add(u.email);
+        }
+        mailToAddresses.add('hampesh.pda@gmail.com');
+        mail.setToAddresses(mailToAddresses);
+        mail.setSubject('Regarding Adding New Brand ');
+        mail.setHtmlBody('<img src="https://unilever--chazwa--c.cs23.content.force.com/servlet/servlet.ImageServer?id=01518000000aJoD&oid=00D180000008e54&lastMod=1450774294000" width="100%"/>'+'<br/> <br/>'+Userinfo.getName()+'has submitted an Agent report with a new competitor brand - '+ strBrand +' & competitor name - '+ strBrandCompany+'. Please review the competitor brand/competitor name. <br/>If it’s a valid addition please add them to the master list of competitor brand/competitor name & update the Agent report with the new values from the list. <br/><br/>Please use the links below to Approve/Reject the report.<br/><br/>'+'<a href='+strDesktoplink+'>Mobile</a>'+'<br/><a href='+strDesktoplink+'>Desktop</a> <br/><br/>'+'Thanks<br/>'+'The Agent');
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+     
+     //Sending Email to Ets Manager to inform adding new brand and brandcompany to master table Ends    
+      
+} 
 
 }

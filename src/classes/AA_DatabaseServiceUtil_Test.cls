@@ -39,7 +39,7 @@ private class AA_DatabaseServiceUtil_Test {
         reportLst.add(unileverReport);
         List<String> res5 = AA_DatabaseServiceUtil.upsertOperation(reportLst);
         
-        system.assert(res.size()>0);
+        system.assert(res5.Id!=null);
     }
     static testMethod void deleteOperationListTest() {
         aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');

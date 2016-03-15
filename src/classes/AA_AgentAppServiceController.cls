@@ -15,7 +15,7 @@ public with sharing class AA_AgentAppServiceController {
             objAgentApp = appWrapperObj.objAgentAppDataRequest;
             list<String> agentAPPIDInserted = AA_DatabaseServiceUtil.upsertOperation(convertRequestAgentReport(objAgentApp));
             list<String> agentAPPDocumentIDInserted = AA_DatabaseServiceUtil.insertOperation(agentAPPIDInserted[0], objAgentApp.ContentDocumentId);
-            appWrapperObj.message = 'Report Inserted Successfully';
+            appWrapperObj.message = System.Label.AA_Agent_Report_Success;
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
             objResponse.agentReportId = agentAPPIDInserted[0];
             appWrapperObj.objGetAgentDataResponse  =  objResponse;
@@ -34,9 +34,10 @@ public with sharing class AA_AgentAppServiceController {
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
             objResponse.agentReportId = agentAPPIDInserted[0];
             appWrapperObj.objGetAgentDataResponse  =  objResponse;
-  
+            
+           
         }catch(Exception e){
-        	 System.debug('Exception:' + e);
+             System.debug('Exception:' + e);
             
         }
         return appWrapperObj;
@@ -50,52 +51,23 @@ public with sharing class AA_AgentAppServiceController {
      */
     public aa_Agent_Report__c convertRequestAgentReport(AA_WrapperUtility.AgentAppDataRequest objAgentApp){
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
-       // if(!String.isEmpty(objAgentApp.UnileverBrandId)){
             newObjToBeInserted.Agent_App_Unilever_Brand__c  = objAgentApp.UnileverBrandId;
-        //}
-        //if(!String.isEmpty(objAgentApp.ReportDesc)){
             newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
-        //}
-       //if(!String.isEmpty(objAgentApp.Retailer)){
             newObjToBeInserted.Retailer__c  = objAgentApp.Retailer;
-      // }
-       //if(!String.isEmpty(objAgentApp.ReportingOn)){
             newObjToBeInserted.Reporting_on__c = objAgentApp.ReportingOn;
-       //}
-       //if(!String.isEmpty(objAgentApp.CountryId)){
             newObjToBeInserted.Country__c = objAgentApp.CountryId;
-       //}
-      // if(!String.isEmpty(objAgentApp.ReportName )){
             newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
-       //}
-       //if(!String.isEmpty(objAgentApp.Town)){
             newObjToBeInserted.Town__c = objAgentApp.Town;
-       //}
-       //if(!String.isEmpty(objAgentApp.Longitude)){
             newObjToBeInserted.longitude__c = objAgentApp.Longitude;
-       //}
-       //if(!String.isEmpty(objAgentApp.Latitude)){
             newObjToBeInserted.latitude__c = objAgentApp.Latitude;
-       //}
-       //if(!String.isEmpty(objAgentApp.CategoryId )){
             newObjToBeInserted.Category__c = objAgentApp.CategoryId ;
-       //}
-       //if(!String.isEmpty(objAgentApp.CompetitorId )){
             newObjToBeInserted.Competitor_Name__c = objAgentApp.CompetitorId ;
-       //}
-       //if(!String.isEmpty(objAgentApp.CompetitorBrandId )){
             newObjToBeInserted.Competitor_Brand__c = objAgentApp.CompetitorBrandId ;
-       //}
-        /* if(!Utility.isEmpty(objAgentApp.ClusterId)){
-            newObjToBeInserted.Country__r.Cluster_Id__c = objAgentApp.ClusterId ;
-        }*/
         
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get('Unilever Agent Published Report')).getRecordTypeId();
         newObjToBeInserted.RecordTypeId = recTypeId;
-        //newObjToBeInserted.RecordTypeId = '012c00000008rxMAAQ';
-        //newObjToBeInserted.RecordTypeId = '012c00000008rxlAAA';
         return newObjToBeInserted;
     }
     
@@ -139,6 +111,14 @@ public with sharing class AA_AgentAppServiceController {
             }          
         }      
        
+        //Adding New Brand Fields 
+        newObjToBeInserted.OtherBrandName__c=objAgentApp.OtherBrandName;
+        newObjToBeInserted.OtherCompanyName__c=objAgentApp.OtherCompetitor;
+        
+        //Adding userids  to be mentioned in the feed and topics names  to be inserted
+        newObjToBeInserted.TF_Mention_User__c=objAgentApp.usertomentionIds;
+        newObjToBeInserted.TF_Topic_Name__c=objAgentApp.topicIds;
+        
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
@@ -217,19 +197,7 @@ public with sharing class AA_AgentAppServiceController {
         
     }
     
-     /**
-     * @date        -   03/08/2015
-     * @description -   retrieve all Competitor Brand Name 
-     * @param       -   void 
-     * @return      -   All Competitor Brand name and Id in List format
-     * @modifiedby  -   
-     
-    public static List<aa_Agent_Unilever_Brand__c> getCompetitorListValues(){
-        List<aa_Agent_Unilever_Brand__c> agentUnileverBrandList = fetchValues('aa_Agent_Unilever_Brand__c','id,name');     
-        return agentUnileverBrandList;
-        
-    }*/
-    
+         
     /**
      * @date        -   03/08/2015
      * @description -   retrieve all retailer Name 
@@ -288,9 +256,6 @@ public with sharing class AA_AgentAppServiceController {
     }
    
     public static List<Sobject> fetchValuesByRecordType(String SobjectApiName,String commaSepratedFields, String recType){
-        /*Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
-        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
-        Id recTypeId = (RT.get(recType)).getRecordTypeId();*/
         
         List<Sobject> result=new List<Sobject>();
         String query;
@@ -496,6 +461,7 @@ public with sharing class AA_AgentAppServiceController {
         {
             aa_Agent_Report__c requestAgentDataObj = new aa_Agent_Report__c();                
             if(objAgentApp.ApplyFilter==null || objAgentApp.ApplyFilter=='false'){
+               
             aa_Agent_App_User_Preference__c UserPref = [SELECT Id,
                                                                 UserId__c, 
                                                                 Category__c,
@@ -509,74 +475,90 @@ public with sharing class AA_AgentAppServiceController {
                                                                 ReportingOn__c,
                                                                 Topic__c
                                                                 FROM aa_Agent_App_User_Preference__c 
-                                                                where UserId__c =: UserInfo.getUserId()];                                                                
+                                                                where UserId__c =: UserInfo.getUserId()];   
+                /*
+                   Each value fetching from database needs to be go thrugh null check before applying it to the current filter i.e. in below query
+                   If null check is removed query will fail with exception even if one value is null
+                */                                                                                                             
                if(UserPref.Country__c != NULL )
-                {  soqlquery +='AND Country__c ='+AA_Constants.Escapechar+UserPref.Country__c+AA_Constants.Escapechar; }                
-                
+                {
+                   soqlquery +='AND Country__c ='+AA_Constants.Escapechar+UserPref.Country__c+AA_Constants.Escapechar;    
+                }                
                 if(UserPref.Agent_App_Unilever_Brand__c!=NULL)
-                { soqlquery +='AND Agent_App_Unilever_Brand__c ='+AA_Constants.Escapechar+UserPref.Agent_App_Unilever_Brand__c+AA_Constants.Escapechar; }
-                                
+                {
+                  soqlquery +='AND Agent_App_Unilever_Brand__c ='+AA_Constants.Escapechar+UserPref.Agent_App_Unilever_Brand__c+AA_Constants.Escapechar;
+                }                
                 if(UserPref.Competitor_Name__c !=NULL)
-                { soqlquery +='AND Competitor_Name__c='+AA_Constants.Escapechar+UserPref.Competitor_Name__c+AA_Constants.Escapechar; }                
-                
+                {
+                  soqlquery +='AND Competitor_Name__c='+AA_Constants.Escapechar+UserPref.Competitor_Name__c+AA_Constants.Escapechar;
+                }                
                 if(UserPref.Competitor_Brand__c !=NULL)
-                {  soqlquery +='AND Competitor_Brand__c ='+AA_Constants.Escapechar+UserPref.Competitor_Brand__c+AA_Constants.Escapechar; }
-                                
+                {
+                   soqlquery +='AND Competitor_Brand__c ='+AA_Constants.Escapechar+UserPref.Competitor_Brand__c+AA_Constants.Escapechar;
+                }                
                 if(UserPref.Retailer__c !=NULL)
-                { soqlquery +='AND Retailer__c ='+AA_Constants.Escapechar+UserPref.Retailer__c+AA_Constants.Escapechar;}
-                                
+                {
+                   soqlquery +='AND Retailer__c ='+AA_Constants.Escapechar+UserPref.Retailer__c+AA_Constants.Escapechar;
+                }                
                 if(UserPref.Category__c !=NULL)
-                { soqlquery +='AND Category__c ='+AA_Constants.Escapechar+UserPref.Category__c+AA_Constants.Escapechar; }  
-                
+                {
+                   soqlquery +='AND Category__c ='+AA_Constants.Escapechar+UserPref.Category__c+AA_Constants.Escapechar;
+                }  
                 if(UserPref.Cluster__c !=NULL)
-                { soqlquery +='AND Country__r.Cluster_Id__c ='+AA_Constants.Escapechar+UserPref.Cluster__c+AA_Constants.Escapechar; }
-                   
+                {
+                   soqlquery +='AND Country__r.Cluster_Id__c ='+AA_Constants.Escapechar+UserPref.Cluster__c+AA_Constants.Escapechar;
+                }   
                 if(UserPref.RecordTypeId__c!=NULL)
-                { soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+UserPref.RecordTypeId__c+AA_Constants.Escapechar;}
-                       
+                {
+                soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+UserPref.RecordTypeId__c+AA_Constants.Escapechar;    
+                }       
                 if(UserPref.Topic__c!=NULL)
-                { soqlquery +='AND Topic__c ='+AA_Constants.Escapechar+UserPref.Topic__c+AA_Constants.Escapechar; }
-                
+                {
+                    soqlquery +='AND Topic__c ='+AA_Constants.Escapechar+UserPref.Topic__c+AA_Constants.Escapechar;
+                }
                 if(UserPref.ReportingOn__c!=NULL)
-                { soqlquery +='AND Reporting_on__c = '+AA_Constants.Escapechar+UserPref.ReportingOn__c+AA_Constants.Escapechar; }
-           }
-           else if(appWrapperObj.objAgentAppDataRequest.ApplyFilter=='true') {         
+                {
+                    soqlquery +='AND Reporting_on__c = '+AA_Constants.Escapechar+UserPref.ReportingOn__c+AA_Constants.Escapechar;
+                }
+           }else if(appWrapperObj.objAgentAppDataRequest.ApplyFilter=='true') {         
                 requestAgentDataObj=(aa_Agent_Report__c)convertRequestAgentReport(objAgentApp);
                 if(requestAgentDataObj.country__c != NULL )
-                { soqlquery +='AND Country__c ='+AA_Constants.Escapechar+requestAgentDataObj.country__c+AA_Constants.Escapechar; }                
-                
+                {
+                   soqlquery +='AND Country__c ='+AA_Constants.Escapechar+requestAgentDataObj.country__c+AA_Constants.Escapechar;    
+                }                
                 if(requestAgentDataObj.Agent_App_Unilever_Brand__c !=NULL)
-                { soqlquery +='AND Agent_App_Unilever_Brand__c ='+AA_Constants.Escapechar+requestAgentDataObj.Agent_App_Unilever_Brand__c +AA_Constants.Escapechar; }                
-                
+                {
+                  soqlquery +='AND Agent_App_Unilever_Brand__c ='+AA_Constants.Escapechar+requestAgentDataObj.Agent_App_Unilever_Brand__c +AA_Constants.Escapechar;
+                }                
                 if(requestAgentDataObj.Competitor_Name__c !=NULL)
-                { soqlquery +='AND Competitor_Name__c= '+AA_Constants.Escapechar+requestAgentDataObj.Competitor_Name__c +AA_Constants.Escapechar; }                
-                
+                {
+                  soqlquery +='AND Competitor_Name__c= '+AA_Constants.Escapechar+requestAgentDataObj.Competitor_Name__c +AA_Constants.Escapechar;
+                }                
                 if(requestAgentDataObj.Competitor_Brand__c !=NULL)
-                { soqlquery +='AND Competitor_Brand__c = '+AA_Constants.Escapechar+ requestAgentDataObj.Competitor_Brand__c+AA_Constants.Escapechar;  }               
-                 
+                {
+                   soqlquery +='AND Competitor_Brand__c = '+AA_Constants.Escapechar+ requestAgentDataObj.Competitor_Brand__c+AA_Constants.Escapechar;
+                }                
                 if(requestAgentDataObj.Retailer__c !=NULL)
-                { soqlquery +='AND Retailer__c = '+AA_Constants.Escapechar+requestAgentDataObj.Retailer__c+AA_Constants.Escapechar;  }                
-                
+                {
+                   soqlquery +='AND Retailer__c = '+AA_Constants.Escapechar+requestAgentDataObj.Retailer__c+AA_Constants.Escapechar;
+                }                
                 if(requestAgentDataObj.Category__c !=NULL)
-                {  soqlquery +='AND Category__c = '+AA_Constants.Escapechar+requestAgentDataObj.Category__c+AA_Constants.Escapechar;   }                
-                
+                {
+                   soqlquery +='AND Category__c = '+AA_Constants.Escapechar+requestAgentDataObj.Category__c+AA_Constants.Escapechar;
+                }                
                 if(appWrapperObj.objAgentAppDataRequest.ClusterId!=NULL)
                 {
                    soqlquery +='AND Country__r.Cluster_Id__c ='+AA_Constants.Escapechar+appWrapperObj.objAgentAppDataRequest.ClusterId+AA_Constants.Escapechar;
                 }
-                
                 if(appWrapperObj.objAgentAppDataRequest.TopicId!=NULL)
                 {
                     soqlquery +='AND Topic__c ='+AA_Constants.Escapechar+appWrapperObj.objAgentAppDataRequest.TopicId+AA_Constants.Escapechar;
                 }
-                
                 if(appWrapperObj.objAgentAppDataRequest.ReportingOn!=NULL)
                 {
                     soqlquery +='AND Reporting_on__c ='+AA_Constants.Escapechar+appWrapperObj.objAgentAppDataRequest.ReportingOn+AA_Constants.Escapechar;
                 }
-                
                 String recTypeId='';
-                
                 if(appWrapperObj.objAgentAppDataRequest.RecordType=='Unilever')
                 {
                     Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
@@ -584,15 +566,13 @@ public with sharing class AA_AgentAppServiceController {
                     recTypeId = (RT.get('Unilever Agent Published Report')).getRecordTypeId();
                     soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+recTypeId+AA_Constants.Escapechar;
                 }            
-                
                 if(appWrapperObj.objAgentAppDataRequest.RecordType=='Competitor')
                 {
                     Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
                     Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
                     recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
                     soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+recTypeId+AA_Constants.Escapechar;
-                }
-                            
+                }            
             aa_Agent_App_User_Preference__c userPref = [SELECT Id,UserId__c 
                                                                FROM aa_Agent_App_User_Preference__c              
                                                               Where UserId__c =: UserInfo.getUserId()];         
@@ -611,11 +591,9 @@ public with sharing class AA_AgentAppServiceController {
              update userPref;            
         }
         }        
-         
          if(objAgentApp.SortOnMostLike!='true' || objAgentApp.SortOnMostLike==NULL){
          soqlquery +=' Order by LastModifiedDate desc';
-         }
-         else if(objAgentApp.SortOnMostLike=='true'){
+         }else if(objAgentApp.SortOnMostLike=='true'){
             String  soqlFeedQuery='SELECT Id,likecount FROM aa_Agent_Report__Feed order by likecount desc limit 1000'  ; //+ ' OFFSET '+appWrapperObj.objAgentAppDataRequest.OffSet;
             List<aa_Agent_Report__Feed> feedlist=  database.query(soqlFeedQuery);             
             set<ID>idlist=new set<ID>();            
@@ -634,7 +612,7 @@ public with sharing class AA_AgentAppServiceController {
            soqlquery +='  LIMIT 1000';        
         }else
            soqlquery +='  LIMIT 1000';
-        system.debug('Final SOQL Query -- >'+soqlquery);    
+        //system.debug('Final SOQL Query -- >'+soqlquery);    
         List <aa_Agent_Report__c> tmpList=  database.query(soqlquery);          
         List<AA_WrapperUtility.agentReportDetail> objFinalReport = new List<AA_WrapperUtility.agentReportDetail>();        
         // To check whether current user has liked report or not 
@@ -685,7 +663,7 @@ public with sharing class AA_AgentAppServiceController {
                     objGetAllReports.CreatedBy=item.CreatedBy.Name;
                     objGetAllReports.CountryId=item.Country__c;
                     objGetAllReports.CreatedTime=String.valueOf(item.LastModifiedDate);
-                    system.debug(LoggingLevel.INFO,'?retriveAllAgentReports? item.Feeds -- ?'+objGetAllReports.feedList);
+                    
                     objGetAllReports.clusterName = item.Country__r.Cluster_Id__r.name;
                     objGetAllReports.clusterId=item.Country__r.Cluster_Id__c;
                     objGetAllReports.UserLike=ReportUserLike.get(objGetAllReports.agentReportID);
@@ -758,7 +736,7 @@ public with sharing class AA_AgentAppServiceController {
         Integer TotalAgentReports=database.countQuery(countquery);
         appWrapperObj.TotalAgentReports=TotalAgentReports;                    
        //appWrapperObj.TotalAgentReports=9;
-        system.debug(LoggingLevel.INFO,'?retriveAllAgentReports?  '+appWrapperObj.objPassAgentReportsToNG);                               
+                                    
         }catch(DMLException e){
             system.debug(e.getMessage());        }
         catch(Exception e){
@@ -790,7 +768,7 @@ public with sharing class AA_AgentAppServiceController {
             update UserPref; 
          }
          }
-        system.debug(appWrapperObj+'============='+appWrapperObj.isAcceptedTermsCondition);
+     
         return appWrapperObj;
     }
     
@@ -806,7 +784,7 @@ public with sharing class AA_AgentAppServiceController {
             aa_Agent_App_User_Preference__c UserPref = new aa_Agent_App_User_Preference__c();
             List<aa_Agent_App_User_Preference__c> UserPrefData = [SELECT Id,User_Last_Login__c,UserId__c,Is_Accepted_Terms_Condition__c,T_C_AcceptedDate__c FROM aa_Agent_App_User_Preference__c where UserId__c =: UserInfo.getUserId() Limit 1];
                
-             system.debug('UserPrefData.UserId__c==========>'+UserPrefData);  
+           
                            
             if(UserPrefData.size() >= 1){
             
@@ -819,14 +797,13 @@ public with sharing class AA_AgentAppServiceController {
                 
             }
             else {
-            system.debug('in else******');
                 UserPref.UserId__c = UserInfo.getUserId();
                 UserPref.Is_Accepted_Terms_Condition__c = true;
                 appWrapperObj.isAcceptedTermsCondition = true;
                 UserPref.User_Last_Login__c = System.now();
                 insert UserPref;
             }
-        system.debug(appWrapperObj+'=============updateIsAcceptedTermsAndCondition');
+        
         }
         catch(DMLException e){
             system.debug(e.getMessage());
@@ -837,31 +814,32 @@ public with sharing class AA_AgentAppServiceController {
         return appWrapperObj;
     }
     
-    
+    /**
+     * @date        -   19/08/2015
+     * @description -   updates isAcceptedTerms & Condition value
+     * @param       -   void
+     * @return      -   appWrapperObj of isAcceptedTermsCondition
+     * @modifiedby  -   
+     */
     public AA_ApplicationWrapperObj updateLikeCount(AA_ApplicationWrapperObj appWrapperObj){
     
         try{           
-            system.debug('In updateLikeCount');
+            
             aa_Agent_Report__c requestAgentDataObj = new aa_Agent_Report__c();
             AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
             objAgentApp = appWrapperObj.objAgentAppDataRequest;
-            //requestAgentDataObj=(aa_Agent_Report__c)convertRequestAgentReport(objAgentApp);
-            //string postId;
-            system.debug('report ID'+appWrapperObj.objAgentAppDataRequest);
             
             List<aa_Agent_Report__c> reportList=[select chatter_post_id__c from aa_Agent_Report__c where Id=:Id.valueOf(objAgentApp.AgentReportId)];
             FeedLike objFeed=New FeedLike(FeedItemId=reportList[0].chatter_post_id__c);
-            system.debug('===>'+objFeed);
-            insert objFeed;     
-            //appWrapperObj.UpdateLikeCount
             
+            insert objFeed;     
+                       
            }
             catch(Exception genEx){
             system.debug(genEx);
         }
         appWrapperObj.UpdateLikeCount = true;
-        system.debug('wrapper response from update count:::'+appWrapperObj);
-           return appWrapperObj;
+        return appWrapperObj;
     }    
    
     
@@ -870,18 +848,87 @@ public with sharing class AA_AgentAppServiceController {
   
     AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
     objAgentApp = appWrapperObj.objAgentAppDataRequest;
-   system.debug('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'+objAgentApp);
+
     aa_Agent_Report__c report=[select chatter_post_id__c from aa_Agent_Report__c where Id=:Id.valueOf(objAgentApp.AgentReportId)];
    
     aa_Agent_Report__Feed reportfeed=[Select a.LikeCount, a.Id, ParentId,(Select Id, InsertedById From FeedLikes where InsertedById=:UserInfo.getUserId()) From aa_Agent_Report__Feed a where a.Id=:report.chatter_post_id__c];
 
     List<Feedlike> feedlikelist=reportfeed.Feedlikes;
-    system.debug('dsadsfadsf=========>'+feedlikelist);
+  
     
     delete feedlikelist[0];
-    // appWrapperObj.UpdateUnlikeCount = true;
+    
     return appWrapperObj;
    }
     
+    
+    
+    /**
+     * @date        -   14/03/2016
+     * @description -   @mention user autocomplete method
+     * @param       -   AA_ApplicationWrapperObj
+     * @return      -   appWrapperObj 
+     * @modifiedby  -   
+     */
+    
+    public AA_ApplicationWrapperObj getUserList(AA_ApplicationWrapperObj appWrapperObj)
+    {
+        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
+        objAgentApp = appWrapperObj.objAgentAppDataRequest;
+        AA_WrapperUtility.AgentAppDataResponse wrapperUtilityObj = new AA_WrapperUtility.AgentAppDataResponse(); 
+      
+        
+        if(objAgentApp.searchType=='users')
+        {
+            String sanitizedSearchString = String.escapeSingleQuotes(objAgentApp.searchString);
+        
+            List<sObject> userList=new List<sObject>();
+        
+            String searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + 'User' + '(id,name where IsActive=true ) Limit 50';
+            List<List<SObject>> searchList = search.query(searchQuery); 
+        
+       
+            for (SObject item : searchList[0]){
+                if(userinfo.getUserId() != item.Id){
+        
+                    userList.add((User)item);
+              }
+            }
+        //    wrapperUtilityObj.autocompleteList=new List<User>();
+            wrapperUtilityObj.autocompleteList=userList;
+        }
+        
+        if(objAgentApp.searchType == 'topics')
+        {
+           
+        String sanitizedSearchString = String.escapeSingleQuotes(objAgentApp.searchString);
+        
+        List<sObject> topicsList=new List<sObject>();
+        
+        String searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + 'Topic' + '(id,name  ) Limit 50';
+        List<List<SObject>> searchList = search.query(searchQuery); 
+         
+       
+        for (SObject item : searchList[0]){
+            
+        
+                topicsList.add(item);
+              
+               }
+      //  wrapperUtilityObj.autocompleteList=new List<Topic>();
+        wrapperUtilityObj.autocompleteList=topicsList;
+       
+
+            
+        }
+        appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
+     
+        
+         return appWrapperObj;   
+              
+    }
+    
+  
+ 
     
 }

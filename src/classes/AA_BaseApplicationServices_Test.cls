@@ -59,38 +59,56 @@ private class AA_BaseApplicationServices_Test {
         obj1.serviceName = AA_Constants.SVC_AGENT_APP_UNILEVER_CREATE;
         obj1.objAgentAppDataRequest = objAgentApp;
         AA_BaseApplicationServices.invokeService(obj1);
+        
         obj1.serviceName = AA_Constants.SVC_AGENT_APP_GET_AUTO_POPULATED_VALUES;
         obj1.objAgentAppDataRequest = objAgentApp;
         AA_BaseApplicationServices.invokeService(obj1);
+        
         obj1.serviceName = AA_Constants.SVC_AGENT_APP_GET_COMPETITOR_NAME_AND_CATEGORY;
         obj1.objAgentAppDataRequest = objAgentApp;
         AA_BaseApplicationServices.invokeService(obj1);
+        
         obj1.serviceName = AA_Constants.SVC_AGENT_APP_GET_COMPETITOR_SOURCE_RETAILER_TOPIC_COUNTRY;
         obj1.objAgentAppDataRequest = objAgentApp;
         AA_BaseApplicationServices.invokeService(obj1);
+        
         obj1.serviceName = AA_Constants.SVC_AGENT_APP_COMPETITOR_CREATE;
         obj1.objAgentAppDataRequest = objAgentApp;
         AA_BaseApplicationServices.invokeService(obj1);
+        
         obj1.serviceName = AA_Constants.SVC_AGENT_APP_TERMS_AND_CONDITION;
         obj1.objAgentAppDataRequest = objAgentApp;
         AA_BaseApplicationServices.invokeService(obj1);
+        
         obj1.serviceName = AA_Constants.SVC_AGENT_APP_UPDATE_TERMS_AND_CONDITION;
         obj1.objAgentAppDataRequest = objAgentApp;
-        AA_BaseApplicationServices.invokeService(obj1);
+        AA_BaseApplicationWrapperObj baseobj= AA_BaseApplicationServices.invokeService(obj1);
+      
+        
         obj1.serviceName = AA_Constants.SVC_AGENT_APP_LIKE_UPDATE;
         obj1.objAgentAppDataRequest = objAgentApp;
         AA_BaseApplicationServices.invokeService(obj1);
         
-        obj1.serviceName = 'Get Reports';
+                
+        obj1.serviceName = AA_Constants.SVC_AGENT_APP_UNLIKE_UPDATE;
         obj1.objAgentAppDataRequest = objAgentApp;
         AA_BaseApplicationServices.invokeService(obj1);
-        system.assert(obj1 != null);
+        
+        Topic topicone=new Topic(Name=AA_Constants.testString); 
+        objAgentApp.searchString=AA_Constants.testString;
+        objAgentApp.searchType='topics';
+        obj1.serviceName = AA_Constants.SVC_AGENT_APP_AUTOCOMPLETELIST;
+        obj1.objAgentAppDataRequest = objAgentApp;
+        AA_BaseApplicationServices.invokeService(obj1);
+        
+        system.debug('************==>'+baseobj);
+        system.assertEquals(baseobj.message ,AA_Constants.testString);
     }
     
     static testMethod void createSerializedMapStringTest(){
     
         String response = AA_BaseApplicationServices.createSerializedMapString('{"serviceJSONObjectasString":"{\"AgentAppDataRequest\": {\"CompetitorBrandId\": \"a6Lc00000008Tfu\"}}"');
-        system.assert(response!= null);
+        system.assertNotEquals(response,null);
     }
     
  

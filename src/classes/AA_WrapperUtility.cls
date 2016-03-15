@@ -45,6 +45,9 @@ global with sharing class AA_WrapperUtility {
             public String SortOnMostLike;
             public String Status;
             public String searchString;
+            public String searchType;
+            public String usertomentionIds;
+            public String topicIds;
 
             /* Other brand and company names */
             public String OtherBrandName;
@@ -73,9 +76,9 @@ global with sharing class AA_WrapperUtility {
             public List<aa_Topic__c> topicList;
             public String agentReportId;
             public String googleApiVaue;
-           // public Map<String,String> usernamesMap;
-           public List<User>  userList;
-           public List<Topic> topicsList;
+            // public Map<String,String> usernamesMap;
+            public List<sObject>  autocompleteList;
+          
             
         }
         
