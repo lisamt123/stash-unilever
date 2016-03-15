@@ -51,7 +51,7 @@ else
 	echo "***********************************************************"
 	echo "Total number of deleted components: " $(git diff --diff-filter=D  HEAD~$count --name-only | wc -l)
 	echo "Deleted Components Are (Not included in component file):"
-	git diff --diff-filter=D  HEAD~$count --name-only
+	#git diff --diff-filter=D  HEAD~$count --name-only
 	echo "***********************************************************"
 
 fi 
