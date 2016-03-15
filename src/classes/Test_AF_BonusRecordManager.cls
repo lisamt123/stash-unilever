@@ -6,7 +6,7 @@
 @Version : 1.0
 @reference : none
 ****************************************************************************************************************************/
-@isTest(SeeAlldata=true)
+@isTest(SeeAlldata=false)
 public class Test_AF_BonusRecordManager  
 {   
     Static Integer IcurrYear = System.Today().year();

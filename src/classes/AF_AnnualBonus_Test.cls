@@ -9,16 +9,13 @@
 @isTest(SeeAlldata=false)
 public class AF_AnnualBonus_Test
 { 
-    Private Static Integer IcurrYear = System.Today().year();
-    Private Static string currYear=string.valueof(IcurrYear);
+    private Static Integer IcurrYear = System.Today().year();
+    private Static string currYear=string.valueof(IcurrYear);
     private static user userforAnnualBonus;
-    private static String agencyEntityName ='Test Entityab3';
-    private static String agencyEntityCountry = 'Singapore';
     private static String bonusMeasure ='BM1';
     private static String Brandid = 'Brandid';
     private static String Agencyid = 'Agencyid';
     private static String Year = 'Year';
-    private static String categoryName ='Test Beveragesab1';
     private static String ANNUAL_BONUS='The AnnualBonus records are inserted';
     private static String QUARTERLY_BONUS='The QuarterlyBonus records are inserted';
     /***********************************************************************************
@@ -680,10 +677,7 @@ public class AF_AnnualBonus_Test
             }
             insert subResults;
             update subResults;
-            try{
-                delete subResults;
-            } catch(Exception e){
-            }
+            delete subResults;
             AF_SubResultHandler obj=new AF_SubResultHandler();
             obj.beforeDelete(subResults[0]);
             obj.afterDelete(subResults[0]);

@@ -30,10 +30,7 @@ public class AF_Sendemail_categoryfinance_Test
 		{
 			System.assert(u.Id!=null,AF_TestFactory_Helper.USER_RECORD);
 			AF_Sendemail_categoryfinance sendMailCatFin=new AF_Sendemail_categoryfinance();
-			try{
-				sendMailCatFin.send();
-			}catch(exception e){
-			}
+			sendMailCatFin.send();
 			sendMailCatFin.closePopup();            
 		}
 		Test.stopTest();

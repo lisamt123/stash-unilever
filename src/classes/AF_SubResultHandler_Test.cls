@@ -174,11 +174,7 @@ public class AF_SubResultHandler_Test
 			insert subResultlist1;
 			List<AF_Sub_Result__c> subResultsQuery = [SELECT ID,AF_Bonus_Threshold__c FROM AF_Sub_Result__c WHERE ID IN : subResults LIMIT 1];
 			System.assertEquals(subResultsQuery[0].AF_Bonus_Threshold__c ,BonusThresholdQuery[0].id, AF_TestFactory_Helper.SUBRESULT_RECORD);
-			try{
-				delete subResultlist;
-			}
-			catch(Exception e){
-			}
+			delete subResultlist;
 			//Insert Bonus Results.
 			List<AF_Bonus_Results__c> BonusResultList = AF_TestFactory_Helper.insertBonusResults(1,true);
 			List<AF_Bonus_Results__c> BonusResultQuery = [SELECT ID,AF_Bonus_Thresholds__c FROM AF_Bonus_Results__c WHERE RecordTypeId=:AF_TestFactory_Helper.AF_BONUS_RESULTS_RECTYPE LIMIT 1];
@@ -365,11 +361,7 @@ public class AF_SubResultHandler_Test
 			insert subResultlist1;
 			List<AF_Sub_Result__c> subResultsQuery = [SELECT ID,AF_Bonus_Threshold__c FROM AF_Sub_Result__c WHERE ID IN : subResults LIMIT 1];
 			System.assertEquals(subResultsQuery[0].AF_Bonus_Threshold__c ,BonusThresholdQuery[0].id, AF_TestFactory_Helper.SUBRESULT_RECORD);
-			try{
-				delete subResultlist;
-			}
-			catch(Exception e){
-			}
+			delete subResultlist;
 			//Insert Bonus Results.
 			List<AF_Bonus_Results__c> BonusResultList = AF_TestFactory_Helper.insertBonusResultsquarterly(1,false);
 			List<AF_Bonus_Results__c> BonusResultListNew = new  List<AF_Bonus_Results__c>();

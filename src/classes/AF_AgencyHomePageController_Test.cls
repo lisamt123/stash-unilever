@@ -6,7 +6,7 @@
 @Version : 1.0
 @reference : none
 ****************************************************************************************************************************/
-@isTest(SeeAlldata=true)
+@isTest(SeeAlldata=false)
 public class AF_AgencyHomePageController_Test
 {  
     Static Integer IcurrYear = System.Today().year();

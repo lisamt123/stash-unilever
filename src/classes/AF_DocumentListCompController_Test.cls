@@ -10,10 +10,8 @@
 public class AF_DocumentListCompController_Test
 {
 	private static string ATTACHMENT_RECORD='The attachment Record is inserted';
-	Static Integer IcurrYear = System.Today().year();
-	Static string currYear=string.valueof(IcurrYear);
-	private String ParentObjectType;
-	private boolean isAgencyFlag;
+	static Integer IcurrYear = System.Today().year();
+	static string currYear=string.valueof(IcurrYear);
 	static user userforDocumentListComp;
 	/***********************************************************************************
 *  @Description: this method will the test data

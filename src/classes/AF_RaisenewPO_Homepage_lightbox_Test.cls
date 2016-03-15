@@ -9,20 +9,16 @@
 @isTest(SeeAlldata=false)
 public class AF_RaisenewPO_Homepage_lightbox_Test
 {  
-	Private Static Integer IcurrYear = System.Today().year();
-	Private Static string currYear=string.valueof(IcurrYear); 
-	Private static user RaisenewPO_Homepage_lightbox; 
-	private Static Boolean RaisePo;
-	private static String BrandName;
-	private static string selectedQuarters;
-	private String selectedId;
+	private static Integer IcurrYear = System.Today().year();
+	private static string currYear=string.valueof(IcurrYear); 
+	private static user RaisenewPO_Homepage_lightbox; 
 	/**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : raisenewPO_Homepage_lightbox
 *  @param : none
 *  @return : none
 *************************************************************************/ 
-	Static testMethod void AF_RaisenewPO_Homepage_lightbox ()
+	static testMethod void AF_RaisenewPO_Homepage_lightbox ()
 	{
 		Test.startTest();
 		RaisenewPO_Homepage_lightbox = AF_TestFactory_Helper.createUserAdmin(true);
@@ -143,7 +139,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
 *  @param : none
 *  @return : none
 *************************************************************************/ 
-	Static testMethod void AF_RaisenewPO_Homepage_lightbox1()
+	static testMethod void AF_RaisenewPO_Homepage_lightbox1()
 	{
 		Test.startTest();
 		RaisenewPO_Homepage_lightbox = AF_TestFactory_Helper.createUserAdmin(true);
@@ -232,11 +228,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
 			}
 			insert AgencyEsitmatelist;
 			List<AF_Agency_Estimate__c> AgencyQuery = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmate limit 1];
-			try{
-				delete AgencyEsitmate;
-			}
-			catch(Exception e){
-			}        
+			delete AgencyEsitmate;			   
 			List<AF_Currency__c> AFCurrency = AF_TestFactory_Helper.insertAFcurrencyList(1,true);
 			List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c LIMIT 1];
 			System.Assert(AFCurrencyQuery[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);

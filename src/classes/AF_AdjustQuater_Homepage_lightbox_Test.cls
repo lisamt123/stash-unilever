@@ -9,11 +9,10 @@
 @isTest(seeAllData=false)
 public class AF_AdjustQuater_Homepage_lightbox_Test 
 {  
-    Private Static Integer IcurrYear = System.Today().year();
-    Private Static string currYear=string.valueof(IcurrYear);
-    private static String agencyFeesUserType = 'Agency';
+    private Static Integer IcurrYear = System.Today().year();
+    private Static string currYear=string.valueof(IcurrYear);
     private static String Fyear = 'Year';
-    Private static user usrforlightbox;
+    private static user usrforlightbox;
     /**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : AF_adjustQuater_Homepage_lightbox1

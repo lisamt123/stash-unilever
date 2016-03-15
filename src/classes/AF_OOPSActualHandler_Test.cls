@@ -66,10 +66,7 @@ public class AF_OOPSActualHandler_Test
 			List<AF_OOPS_Estimate__c> OOPSEstimateList = AF_TestFactory_Helper.InsertOOPsEstimate(1,true);
 			List<AF_OOPS_Estimate__c> OOPSEstimateListQuery =[SELECT ID,AF_OOPS_Actual__c FROM AF_OOPS_Estimate__c WHERE ID IN :OOPSEstimateList LIMIT 1];
 			System.assertEquals(OOPSEstimateListQuery[0].AF_OOPS_Actual__c, OopsactualList[0].id,AF_TestFactory_Helper.OOPSESTIMATE_RECORD);
-			try{
-				delete OopsactualList ;
-			}catch(Exception e){
-			}
+			delete OopsactualList ;
 			AF_OOPSActualHandler acthandler = new AF_OOPSActualHandler();
 			AF_OOPS_Actual__c oldso = new AF_OOPS_Actual__c();
 			AF_OOPS_Actual__c so = new AF_OOPS_Actual__c();

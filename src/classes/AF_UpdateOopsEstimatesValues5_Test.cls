@@ -61,10 +61,7 @@ public class AF_UpdateOopsEstimatesValues5_Test
 				curr.AF_Fiscal_Year_new__c=currYear;
 				AFCurrencyQuerylist.add(curr);
 			}
-			try{
-				insert AFCurrencyQuerylist;
-			}catch(Exception e){
-			}
+			insert AFCurrencyQuerylist;
 			List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c where Id IN:AFCurrencyQuerylist LIMIT 1];
 			System.Assert(AFCurrencyQuery[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);
 			//insert OOPs Actual.
@@ -275,10 +272,7 @@ public class AF_UpdateOopsEstimatesValues5_Test
 				curr.AF_Fiscal_Year_new__c=currYear;
 				AFCurrencyQuerylist.add(curr);
 			}
-			try{
-				insert AFCurrencyQuerylist;
-			}catch(Exception e){
-			}
+			insert AFCurrencyQuerylist;
 			List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c where Id IN:AFCurrencyQuerylist LIMIT 1];
 			System.Assert(AFCurrencyQuery[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);
 			//insert OOPs Actual.
