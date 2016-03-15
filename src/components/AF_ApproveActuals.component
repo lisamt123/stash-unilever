@@ -113,8 +113,8 @@
       </script>
    </apex:outputPanel>
    <apex:pagemessages id="pm1"></apex:pagemessages>
-   <div style="float: left;font-size: 16px;font-weight: bold;margin-top: 10px;width: 103%;text-align: center;">Quarterly Actuals  </div>
-   <apex:dataTable value="{!lstActualApprovals}" var="oops" id="table" border="1" rowClasses="even,odd" style="font-size: 16px;width:103%;margin-top:10px;text-align: center;" >
+   <div style="float: left;font-size: 16px;font-weight: bold;margin-top: 10px;width: 106%;text-align: center;">Quarterly Actuals  </div>
+   <apex:dataTable value="{!lstActualApprovals}" var="oops" id="table" border="1" rowClasses="even,odd" style="font-size: 16px;width:106%;margin-top:10px;text-align: center;" >
       <apex:column Style="width:66px;height: 35px;" >
          <apex:facet name="header">Quarter</apex:facet>
          {!oops.quarter}

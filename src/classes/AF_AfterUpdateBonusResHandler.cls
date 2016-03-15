@@ -39,7 +39,7 @@ public with sharing class AF_AfterUpdateBonusResHandler {
 				update BonusMatrixCollection;
 			}
 			catch(Exception ex){
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AfterUpdateBonusResHandler','updateBonusMatrix',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AfterUpdateBonusResHandler','updateBonusMatrix',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			}
 		}  
 	}   

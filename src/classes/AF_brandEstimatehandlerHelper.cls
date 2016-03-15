@@ -46,7 +46,7 @@ global with sharing class AF_brandEstimatehandlerHelper{
 				}
 			}
 		}
-	    brandEstApprovalProcess();
+		brandEstApprovalProcess();
 	}
 	/*********************************************************************************************************
 *  @Description: this method is used to reject and update the latest catfinance users in BrandEstimate

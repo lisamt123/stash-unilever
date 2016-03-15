@@ -1,3 +1,12 @@
+/*****************************************************************************************************************************
+@Author :Cognizant
+@name : AF_Agency_EstimateHandler
+@CreateDate : 21/8/2014
+@Description : This is a controller class for trigger's 
+@               
+@Version : 1.0
+@reference : none
+***********************************************************************************/
 public with sharing class AF_Agency_EstimateHandler implements ITrigger{
     Set<String> agencyEstimateUnique = new Set<String>();
     Set<Id> Agency = new Set<Id>();
@@ -36,29 +45,34 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
                     quarter.add(AgencyEst.AF_Mean_Quarter__c);
                 }
             }
-    quarterList.addAll(quarter);
-    if(quarterList.size()>0){
-    quarterInfo = quarterList[0];
-    }
-    AgencyEstimatelist =[select id, Name, AF_Adaptation__c, AF_Digital__c,Brand__c,Agency_Account_Id__c, AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Compound_Key__c, AF_Traditional__c,AF_Brand_Estimate__r.Name from AF_Agency_Estimate__c WHERE id NOT IN:AgencyestimateId and AF_Compound_Key__c IN:Compoundkey ]; 
-    for(AF_Agency_Estimate__c  Agencylist:AgencyEstimatelist){
-        brandEstimateName = Agencylist.AF_Brand_Estimate__r.Name;
-        if(brandEstimateName.contains(quarterInfo) && (Agencylist.AF_Digital__c>0 || Agencylist.AF_Adaptation__c>0 ||  Agencylist.AF_Traditional__c>0 )){
-            errordisplay=true;
+            quarterList.addAll(quarter);
+            if(quarterList.size()>0){
+                quarterInfo = quarterList[0];
+            }
+            AgencyEstimatelist =[select id, Name, AF_Adaptation__c, AF_Digital__c,Brand__c,Agency_Account_Id__c, AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Compound_Key__c, AF_Traditional__c,AF_Brand_Estimate__r.Name from AF_Agency_Estimate__c WHERE id NOT IN:AgencyestimateId and AF_Compound_Key__c IN:Compoundkey ]; 
+            for(AF_Agency_Estimate__c  Agencylist:AgencyEstimatelist){
+                brandEstimateName = Agencylist.AF_Brand_Estimate__r.Name;
+                if(brandEstimateName.contains(quarterInfo) && (Agencylist.AF_Digital__c>0 || Agencylist.AF_Adaptation__c>0 ||  Agencylist.AF_Traditional__c>0 )){
+                    errordisplay=true;
+                }
+                brandEstimateName='';
+            }
+            for(AF_Agency_Estimate__c AgencyEstimateOldtrigger :(List<AF_Agency_Estimate__c>)trigger.old){
+                If(errordisplay)
+                AgencyEstimateOldtrigger.adderror('please check the base fees');
+            } 
         }
-        brandEstimateName='';
     }
-          
-    for(AF_Agency_Estimate__c AgencyEstimateOldtrigger :(List<AF_Agency_Estimate__c>)trigger.old){
-        If(errordisplay)
-            AgencyEstimateOldtrigger.adderror('please check the base fees');
-    } 
-    }
-    }
-   public void bulkAfter()
+    public void bulkAfter()
     {
-        
     }
+    /********************************************************************************************
+*  @Description: This method is called iteratively for each record to be inserted during a BEFORE
+*                trigger. Never execute any SOQL/SOSL etc in this and other iterative methods.
+*  @name : beforeInsert
+*  @param : none
+*  @return: boolean.
+*************************************************************************************/
     public void beforeInsert(SObject so)
     {
         AF_Agency_Estimate__c agencyInstance = (AF_Agency_Estimate__c)so;
@@ -66,64 +80,63 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
         agencyEstimatesRecords.add(agencyInstance);
         // AF_UpdateAgencyEstimate Trigger Logic Ends
     }
-    /**
-    * beforeUpdate
-    *
-    * This method is called iteratively for each record to be updated during a BEFORE
-    * trigger.
-    */
+    /********************************************************************************************
+*  @Description: This method is called iteratively for each record to be updated during a BEFORE
+*                trigger
+*  @name : beforeUpdate
+*  @param : none
+*  @return: boolean.
+*************************************************************************************/
     public void beforeUpdate(SObject oldSo, SObject so)
     {
         AF_Agency_Estimate__c agencyInstance = (AF_Agency_Estimate__c)so;
         AF_Agency_Estimate__c oldAgencyInstance = (AF_Agency_Estimate__c)oldSo;
-        
         // AF_UpdateAgencyEstimate Trigger Logic Starts
-        
         if(agencyInstance.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO && oldAgencyInstance.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO){
-        trigger_count++;
+            trigger_count++;
         }
         else{
-        agencyEstimatesRecords.add(agencyInstance);
+            agencyEstimatesRecords.add(agencyInstance);
         }
         // AF_UpdateAgencyEstimate Trigger Logic Ends
     }
-    /**
-    * beforeDelete
-    *
-    * This method is called iteratively for each record to be deleted during a BEFORE
-    * trigger.
-    */
+    /********************************************************************************************
+*  @Description: This method is called iteratively for each record to be deleted during a BEFORE
+*                trigger
+*  @name : beforeDelete
+*  @param : none
+*  @return: boolean.
+*************************************************************************************/
     public void beforeDelete(SObject so)
     {
         AF_Agency_Estimate__c agencyInstance = (AF_Agency_Estimate__c)so;
-        
         // AF_Agency_POReport Trigger Logic Starts
         AgencyEstids.add(agencyInstance.Id);
         deletePOReport = true;
         // AF_Agency_POReport Trigger Logic Ends
-        
     }
-    /**
-    * afterInsert
-    *
-    * This method is called iteratively for each record inserted during an AFTER
-    * trigger. Always put field validation in the 'After' methods in case another trigger
-    * has modified any values. The record is 'read only' by this point.
-    */
+    /********************************************************************************************
+*  @Description: This method is called iteratively for each record inserted during an AFTER
+*                trigger. Always put field validation in the 'After' methods in case another trigger
+*                 has modified any values. The record is 'read only' by this point.
+*  @name : afterInsert
+*  @param : none
+*  @return: boolean.
+*************************************************************************************/
     public void afterInsert(SObject so)
     {
         AF_Agency_Estimate__c agencyInstance = (AF_Agency_Estimate__c)so;
-        
         // AF_Agency_POReport Trigger Logic Starts
         AgencyEstids.add(agencyInstance.Id);
         // AF_Agency_POReport Trigger Logic Ends
     }
-    /**
-    * afterUpdate
-    *
-    * This method is called iteratively for each record updated during an AFTER
-    * trigger.
-    */
+    /********************************************************************************************
+*  @Description: This method is called iteratively for each record updated during an AFTER
+*                trigger.
+*  @name : afterUpdate
+*  @param : none
+*  @return: boolean.
+*************************************************************************************/
     public void afterUpdate(SObject oldSo, SObject so)
     {
         AF_Agency_Estimate__c AgencyEstimateInstance = (AF_Agency_Estimate__c)so;
@@ -140,17 +153,18 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
         AgencyEstids.add(AgencyEstimateInstance.Id);
         // AF_Agency_POReport Trigger Logic Ends
     }
-    /**
-    * afterDelete
-    *
-    * This method is called iteratively for each record deleted during an AFTER
-    * trigger.
-    */
+    /********************************************************************************************
+*  @Description: This method is called iteratively for each record deleted during an AFTER
+*                trigger.
+*  @name : afterDelete
+*  @param : none
+*  @return: boolean.
+*************************************************************************************/
     public void afterDelete(SObject so)
     {
         //derived as a part of trigger factory
     }
-  /***********************************************************************************
+    /***********************************************************************************
 *  @Description: this method is used to check the values in the agency estiamte records
 *  @             are picking from the home page, updates the sub result when the values  
 *  @             in digital,traditional are updated
@@ -172,68 +186,67 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
             AF_GetBaseFeePOData.BatchcreatePOReportFromAgencyEstimate(AgencyEstids,deletePOReport);
         }
         if(Trigger.isAfter && Trigger.isUpdate){
-        try{
-            agencyEstimateRecords = [select AF_Traditional__c,AF_Digital__c,AF_Bonus_Agency_Formula__c from AF_Agency_Estimate__c where AF_Bonus_Agency_Formula__c IN:agencyEstimateUnique and AF_BrandEstimate_Active__c=true];
-            if(!agencyEstimateRecords.isEmpty()){
-                for(AF_Agency_Estimate__c a:agencyEstimateRecords){
-                    if(!countryTradDigitalMap.containsKey(a.AF_Bonus_Agency_Formula__c)){
-                        TraditionalTotal =0.0;
-                        DigitalTotal = 0.0;
-                        TraditionalTotal = TraditionalTotal + a.AF_Traditional__c;
-                        DigitalTotal = DigitalTotal + a.AF_Digital__c;
-                        Total = TraditionalTotal + DigitalTotal;
-                        tradDigitaltotals.put('Trad',TraditionalTotal);
-                        tradDigitaltotals.put('Digital',DigitalTotal);
-                        tradDigitaltotals.put('TD',Total);
-                        countryTradDigitalMap.put(a.AF_Bonus_Agency_Formula__c,tradDigitaltotals);
+            try{
+                agencyEstimateRecords = [select AF_Traditional__c,AF_Digital__c,AF_Bonus_Agency_Formula__c from AF_Agency_Estimate__c where AF_Bonus_Agency_Formula__c IN:agencyEstimateUnique and AF_BrandEstimate_Active__c=true];
+                if(!agencyEstimateRecords.isEmpty()){
+                    for(AF_Agency_Estimate__c a:agencyEstimateRecords){
+                        if(!countryTradDigitalMap.containsKey(a.AF_Bonus_Agency_Formula__c)){
+                            TraditionalTotal =0.0;
+                            DigitalTotal = 0.0;
+                            TraditionalTotal = TraditionalTotal + a.AF_Traditional__c;
+                            DigitalTotal = DigitalTotal + a.AF_Digital__c;
+                            Total = TraditionalTotal + DigitalTotal;
+                            tradDigitaltotals.put('Trad',TraditionalTotal);
+                            tradDigitaltotals.put('Digital',DigitalTotal);
+                            tradDigitaltotals.put('TD',Total);
+                            countryTradDigitalMap.put(a.AF_Bonus_Agency_Formula__c,tradDigitaltotals);
+                        }
+                        else{
+                            TradAmount = tradDigitaltotals.get('Trad');
+                            DigitalAmount = tradDigitaltotals.get('Digital');
+                            TDTotal = tradDigitaltotals.get('TD');
+                            TradAmount = TradAmount + a.AF_Traditional__c;
+                            DigitalAmount = DigitalAmount + a.AF_Digital__c;
+                            TDTotal = TradAmount + DigitalAmount;
+                            tradDigitaltotals.put('Trad',TradAmount);
+                            tradDigitaltotals.put('Digital',DigitalAmount);
+                            tradDigitaltotals.put('TD',TDTotal);
+                            countryTradDigitalMap.put(a.AF_Bonus_Agency_Formula__c,tradDigitaltotals);
+                        }
                     }
-                    else{
-                        TradAmount = tradDigitaltotals.get('Trad');
-                        DigitalAmount = tradDigitaltotals.get('Digital');
-                        TDTotal = tradDigitaltotals.get('TD');
-                        TradAmount = TradAmount + a.AF_Traditional__c;
-                        DigitalAmount = DigitalAmount + a.AF_Digital__c;
-                        TDTotal = TradAmount + DigitalAmount;
-                        tradDigitaltotals.put('Trad',TradAmount);
-                        tradDigitaltotals.put('Digital',DigitalAmount);
-                        tradDigitaltotals.put('TD',TDTotal);
-                        countryTradDigitalMap.put(a.AF_Bonus_Agency_Formula__c,tradDigitaltotals);
+                }
+                subResultRecords = [select AF_Traditional__c,AF_Digital__c,AF_Bonusable_Fees__c,AF_Bonus_Threshold__c,AF_Bonus_Threshold__r.Agency_Name__c,AF_Bonus_Threshold__r.Brand_Name__c,AF_Bonus_Threshold__r.Country_Name__c,AF_Bonus_Threshold__r.Year__c from AF_Sub_Result__c where AF_Bonus_Threshold__r.Agency_Name__c IN:Agency 
+                and AF_Bonus_Threshold__r.Brand_Name__c IN:Brand and AF_Bonus_Threshold__r.Country_Name__c IN:Country and AF_Bonus_Threshold__r.Year__c IN:Year and AF_Locked__c=false and AF_Period__c!=null];
+                if(!subResultRecords.isEmpty()){
+                    Decimal TDBonusableFees=0.0;
+                    Decimal TBonusableFees=0.0;
+                    Decimal DBonusableFees=0.0;
+                    List<AF_Sub_Result__c> updatedSubResult = new List<AF_Sub_Result__c>();
+                    for(AF_Sub_Result__c sub:subResultRecords){
+                        String Uniquekey='';
+                        Uniquekey = sub.AF_Bonus_Threshold__r.Agency_Name__c+'::'+sub.AF_Bonus_Threshold__r.Brand_Name__c+'::'+sub.AF_Bonus_Threshold__r.Country_Name__c+'::'+sub.AF_Bonus_Threshold__r.Year__c;
+                        if(sub.AF_Traditional__c && sub.AF_Digital__c){
+                            TDBonusableFees = countryTradDigitalMap.get(Uniquekey).get('TD');
+                            sub.AF_Bonusable_Fees__c = TDBonusableFees;
+                        }
+                        else if(sub.AF_Traditional__c){
+                            TBonusableFees =countryTradDigitalMap.get(Uniquekey).get('Trad');
+                            sub.AF_Bonusable_Fees__c = TBonusableFees;
+                        }
+                        else if(sub.AF_Digital__c){
+                            DBonusableFees = countryTradDigitalMap.get(Uniquekey).get('Digital');
+                            sub.AF_Bonusable_Fees__c = DBonusableFees;
+                        }
+                        updatedSubResult.add(sub);
+                    }
+                    if(!updatedSubResult.isEmpty()){
+                        update updatedSubResult;
                     }
                 }
             }
-            subResultRecords = [select AF_Traditional__c,AF_Digital__c,AF_Bonusable_Fees__c,AF_Bonus_Threshold__c,AF_Bonus_Threshold__r.Agency_Name__c,AF_Bonus_Threshold__r.Brand_Name__c,AF_Bonus_Threshold__r.Country_Name__c,AF_Bonus_Threshold__r.Year__c from AF_Sub_Result__c where AF_Bonus_Threshold__r.Agency_Name__c IN:Agency 
-            and AF_Bonus_Threshold__r.Brand_Name__c IN:Brand and AF_Bonus_Threshold__r.Country_Name__c IN:Country and AF_Bonus_Threshold__r.Year__c IN:Year and AF_Locked__c=false and AF_Period__c!=null];
-            if(!subResultRecords.isEmpty()){
-                Decimal TDBonusableFees=0.0;
-                Decimal TBonusableFees=0.0;
-                Decimal DBonusableFees=0.0;
-                List<AF_Sub_Result__c> updatedSubResult = new List<AF_Sub_Result__c>();
-                for(AF_Sub_Result__c sub:subResultRecords){
-                    String Uniquekey='';
-                    Uniquekey = sub.AF_Bonus_Threshold__r.Agency_Name__c+'::'+sub.AF_Bonus_Threshold__r.Brand_Name__c+'::'+sub.AF_Bonus_Threshold__r.Country_Name__c+'::'+sub.AF_Bonus_Threshold__r.Year__c;
-                    if(sub.AF_Traditional__c && sub.AF_Digital__c){
-                        TDBonusableFees = countryTradDigitalMap.get(Uniquekey).get('TD');
-                        sub.AF_Bonusable_Fees__c = TDBonusableFees;
-                    }
-                    else if(sub.AF_Traditional__c){
-                        TBonusableFees =countryTradDigitalMap.get(Uniquekey).get('Trad');
-                        sub.AF_Bonusable_Fees__c = TBonusableFees;
-                    }
-                    else if(sub.AF_Digital__c){
-                        DBonusableFees = countryTradDigitalMap.get(Uniquekey).get('Digital');
-                        sub.AF_Bonusable_Fees__c = DBonusableFees;
-                    }
-                    updatedSubResult.add(sub);
-                }
-                if(!updatedSubResult.isEmpty()){
-                    update updatedSubResult;
-                }
+            catch(Exception e){
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_Agency_EstimateHandler','andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
             }
-        }
-        catch(Exception e){
-        ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_Agency_EstimateHandler','andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-        }
         }
     }
-
 }

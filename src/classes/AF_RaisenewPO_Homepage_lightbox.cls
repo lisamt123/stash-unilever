@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_RaisenewPO_Homepage_lightbox
-   @CreateDate : 6/6/2014
-   @Description : This is a controller class for AgencyHomePage Page, 
-   @			  this is used to raise new PO's for BrandEstimate.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_RaisenewPO_Homepage_lightbox
+@CreateDate : 6/6/2014
+@Description : This is a controller class for AgencyHomePage Page, 
+@			  this is used to raise new PO's for BrandEstimate.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 public with sharing class AF_RaisenewPO_Homepage_lightbox{
 	public list<AF_Brand_Estimate__c> brandEstimate{get;set;}
 	public Boolean Quarter1;
@@ -359,7 +359,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 			}
 		}
 		catch(Exception e){
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_RaisenewPO_Homepage_lightbox','saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_RaisenewPO_Homepage_lightbox','saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		}
 		displayPopup = False;
 		//SendEmailNotification();

@@ -553,7 +553,7 @@
                                              <apex:outputPanel rendered="{!!isAgencyFlag}">
                                                 <table>
                                                    <tr>
-                                                      <td class="firstlabelName">
+                                                      <td class="firstlabelName" style="width:209px">
                                                          <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Annual_Base_Fee_Target}">Unilever Targets</apex:outputLink>
                                                       </td>
                                                       <td>

@@ -1,34 +1,34 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_UpdateOopsEstimatesValues5
-   @CreateDate : 28/7/2014
-   @Description : This is a controller class for OOPS Estimate trigger, 
-   @			  this is used to calculate the local currency for oopsEstimate.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_UpdateOopsEstimatesValues5
+@CreateDate : 28/7/2014
+@Description : This is a controller class for OOPS Estimate trigger, 
+@			  this is used to calculate the local currency for oopsEstimate.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 public with sharing Class AF_UpdateOopsEstimatesValues5
 {
-		static set<id>   AgencyEntity= new set<id>();
-		static set<id>   unileverEntity=new set<id>();
-		static set<String> fYear=new set<String>();
-		static Map<id ,String> AgencyEntityNames=new Map<id,String>();
-		static Map<id ,String> unileverEntityNames=new Map<id,String>();
-		static List<string> matrixCountries=new list<string>();
-		static Map<id,list<string>>  mapMatrixtable=new Map<id,list<string>>();
-		static Map<id,string> mapMatrixcountry=new Map<id,string>();
-		static Map<id,string> mapReadyForPOCountry=new Map<id,string>();
-		static Map<string,Double>  CurrencyMap=new  Map<string,Double>();
-		static Map<string,Double>  CurrencyMapforUSD=new  Map<string,Double>();
-		static Map<string,Double>  CurrencyMapforGBP=new  Map<string,Double>();
-		static set<string>  currncycodes=new set<string>();
-		static list<string> matrixString;
-		static Map<id,String>  matrixDataEntryCurrency=new Map<id,String>();
-		static Map<id,String>  matrixReadyforconversion=new Map<id,String>();
-		static Map<id,String>  ReadyForPOEntryCurrency=new Map<id,String>();
-		static Integer MatrixRecoundCount=0;
-		static set<String> agencyCountries=new set<String>();
-		static set<String> unileverCountries=new set<String>();
+	static set<id>   AgencyEntity= new set<id>();
+	static set<id>   unileverEntity=new set<id>();
+	static set<String> fYear=new set<String>();
+	static Map<id ,String> AgencyEntityNames=new Map<id,String>();
+	static Map<id ,String> unileverEntityNames=new Map<id,String>();
+	static List<string> matrixCountries=new list<string>();
+	static Map<id,list<string>>  mapMatrixtable=new Map<id,list<string>>();
+	static Map<id,string> mapMatrixcountry=new Map<id,string>();
+	static Map<id,string> mapReadyForPOCountry=new Map<id,string>();
+	static Map<string,Double>  CurrencyMap=new  Map<string,Double>();
+	static Map<string,Double>  CurrencyMapforUSD=new  Map<string,Double>();
+	static Map<string,Double>  CurrencyMapforGBP=new  Map<string,Double>();
+	static set<string>  currncycodes=new set<string>();
+	static list<string> matrixString;
+	static Map<id,String>  matrixDataEntryCurrency=new Map<id,String>();
+	static Map<id,String>  matrixReadyforconversion=new Map<id,String>();
+	static Map<id,String>  ReadyForPOEntryCurrency=new Map<id,String>();
+	static Integer MatrixRecoundCount=0;
+	static set<String> agencyCountries=new set<String>();
+	static set<String> unileverCountries=new set<String>();
 	/***********************************************************************************
 *  @Description: this method is used to calculate the local currency of OOPSEstimate
 *  @name : UpdateExchageRates
@@ -67,7 +67,7 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 			unileverEntityNames.put(entity.id,entity.AF_Country__c );// Add id,and its unilever Country from Entity 
 			unileverCountries.add(entity.AF_Country__c);
 		}
-		//Query for matrix Table reocrds 
+		//Query for matrix Table records 
 		list<AF_Matrix_Table__c> matrixRecords=[select id, AF_Agency_Country__c,AF_Matrix_Country__c,Ready_For_PO_Conversion__c,AF_Matrix_country_Currency__c,AF_Matrix_Currency_Code__c,AF_Ready_For_PO_Country__c,AF_Ready_For_PO_Country_Currency__c,AF_Ready_For_PO_Currency_Code__c,AF_Unilver_Country__c from AF_Matrix_Table__c where AF_Agency_Country__c IN : agencyCountries And AF_Unilver_Country__c IN : unileverCountries limit 50000];
 		if(matrixRecords.size()>0)
 		for(AF_Matrix_Table__c mtable:matrixRecords)
@@ -100,6 +100,12 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 		}
 		retrieveCurrency(agencyRecords,matrixRecords);
 	}
+	/***********************************************************************************
+*  @Description: this method is used to to query the exchange rates
+*  @name : retrieveCurrency
+*  @param : ae
+*  @return: none.
+*************************************************************************************/	
 	public static void retrieveCurrency(List<AF_OOPS_Estimate__c> agencyRecords,List<AF_Matrix_Table__c> matrixRecords){
 		// Query for Retrieve Currency Records
 		List<AF_Currency__c> currencyrecords;
@@ -107,7 +113,7 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 			currencyrecords=[select id,Country_Currency__c,Ready_For_PO_Exchange_Rate_To_EUR__c,AF_Currency_Code__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,AF_Average_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and Country_Currency__c IN:currncycodes  and AF_Fiscal_Year_new__c IN :fYear limit 50000];
 		}
 		catch(Exception e){
-		ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_UpdateOopsEstimatesValues5','AF_UpdateOopsEstimatesValues5',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_UpdateOopsEstimatesValues5','AF_UpdateOopsEstimatesValues5',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		}
 		if(currencyrecords.size()>0)
 		for(AF_Currency__c  curren:currencyrecords)
@@ -118,7 +124,6 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 				CurrencyMapforUSD.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_SGD_To_USD__c );
 				CurrencyMapforGBP.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_To_EUR__c );
 			}
-			
 		}
 		if(agencyRecords.size()>0)
 		for(AF_OOPS_Estimate__c agencyEst:agencyRecords)

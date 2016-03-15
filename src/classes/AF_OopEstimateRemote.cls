@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_OopEstimateRemote
-   @CreateDate : 17/6/2014
-   @Description : This is a controller class for AF_UL_oopsMatrix Page, 
-   @			  this is used to create the matrix cell structure for OOPS.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_OopEstimateRemote
+@CreateDate : 17/6/2014
+@Description : This is a controller class for AF_UL_oopsMatrix Page, 
+@			  this is used to create the matrix cell structure for OOPS.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 global with sharing class AF_OopEstimateRemote {
 	public AF_OopEstimateRemote(ApexPages.StandardController stdController) {}
 	@remoteAction

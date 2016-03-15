@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_MatrixAgencySummary
-   @CreateDate : 28/6/2014
-   @Description : This is a controller class for AF_UL_oopsMatrix Page, 
-   @			  this is used to display the oops summary section in matrix page.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_MatrixAgencySummary
+@CreateDate : 28/6/2014
+@Description : This is a controller class for AF_UL_oopsMatrix Page, 
+@			  this is used to display the oops summary section in matrix page.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 public  with sharing class AF_MatrixAgencySummary {
 	/*** Variables for Summary Section ***/
 	public Boolean isCMCO{get;set;}
@@ -184,7 +184,6 @@ public  with sharing class AF_MatrixAgencySummary {
 *  @param : none
 *  @return: none.
 *************************************************************************************/
-	
 	public void save(){
 		try{
 			String msg;
@@ -203,13 +202,13 @@ public  with sharing class AF_MatrixAgencySummary {
 			}
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, msg));
 		}catch(DMLException dml){
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_MatrixAgencySummary','save',dml.getMessage(),dml.getTypeName(),dml.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_MatrixAgencySummary','save',dml.getMessage(),dml.getTypeName(),dml.getStackTraceString());
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.fatal,dml.getMessage()));
 		}
 	}
 	/*****************************************************************************************
 *  @Description: this method is used to query and check the status of each quarter status
-                  and update the entered values in OOPSActual
+				and update the entered values in OOPSActual
 *  @name : submit
 *  @param : none
 *  @return: pagereference.
@@ -263,7 +262,7 @@ public  with sharing class AF_MatrixAgencySummary {
 				update updatedopps_est;
 			}
 			catch(Exception e){
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_MatrixAgencySummary','submit',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_MatrixAgencySummary','submit',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				system.debug(e);
 			}
 		}
@@ -387,7 +386,7 @@ public  with sharing class AF_MatrixAgencySummary {
 			update oopsActObj;
 			update updatedopps_est;
 		}catch(DMLException dml){
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_MatrixAgencySummary','SubmitOverall',dml.getMessage(),dml.getTypeName(),dml.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_MatrixAgencySummary','SubmitOverall',dml.getMessage(),dml.getTypeName(),dml.getStackTraceString());
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.fatal,dml.getMessage()));
 		}
 	} 

@@ -209,7 +209,7 @@ public with sharing class AF_AgencyHomePageController {
         } 
         catch(exception ex)
         {
-            ExceptionLoggingHelper.createApplicationLevelErrorLog (AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AgencyHomePageController',
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog (AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AgencyHomePageController',
             'AF_AgencyHomePageController',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
         }
     }
@@ -267,7 +267,6 @@ public with sharing class AF_AgencyHomePageController {
             brandEstimateObjList=[select id,Brand__c,AF_Bonus_Quaterly_Status__c,AF_No_Bonus__c,AF_Pilot_Model__c,AF_Bonus_Yearly_Status__c,AF_No_Of_Bonus_Matrix_Crossborders__c,AF_No_of_OOPS_Crossborder__c, Brand__r.Name, Brand__r.AF_Brand_Logo__c,AF_Agency__r.Name,AF_Crossborder__c,Agency_Base_Fee__c,Base_Fee_Total__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Agency__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,AF_No_CrossBorders__c,AF_Category_Finance_Flag__c from AF_Brand_Estimate__c where Brand__r.AF_Category_Brands__c=:selectedCatId AND Brand__r.Name=:brandList AND AF_Fiscal_Year__c=:financialYear AND AF_Active__c=true AND AF_Agency__c!=null AND Brand__c !=null order by Brand__r.Name asc];
         }
         //variable to store base fees details related to brand
-        //map<String, String> brandBaseFeeMap = new map<String, String>();
         //map to store brand estimate instance with id as key
         map<Id,AF_Brand_Estimate__c> brandEstMap= new map<Id,AF_Brand_Estimate__c>();
         //variable to store Agency id

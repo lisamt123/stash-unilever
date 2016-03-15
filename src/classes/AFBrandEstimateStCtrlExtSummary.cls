@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AFBrandEstimateStCtrlExtSummary
-   @CreateDate : 23/6/2014
-   @Description : This is a controller class for AF_UL_AgencyMatrix Page, 
-   @			  this is used to display the summary section of the Basefee Matrix page.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AFBrandEstimateStCtrlExtSummary
+@CreateDate : 23/6/2014
+@Description : This is a controller class for AF_UL_AgencyMatrix Page, 
+@              this is used to display the summary section of the Basefee Matrix page.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 public class AFBrandEstimateStCtrlExtSummary {
 	public String brandEstimateId {get;set;}
 	public string financialYear{get;set;} //To get selected financial Year
@@ -102,7 +102,6 @@ public class AFBrandEstimateStCtrlExtSummary {
 		list<AF_Brand_Estimate__c> brandEstimateObjList = new list<AF_Brand_Estimate__c>();
 		brandEstimateObjList=[select id, Brand__r.Name, Brand__r.AF_Brand_Logo__c,AF_Agency__r.Name,AF_Crossborder__c,Agency_Base_Fee__c,Base_Fee_Total__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Agency__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c from AF_Brand_Estimate__c where id =:brandEstimateId AND AF_Fiscal_Year__c=:financialYear AND AF_Active__c=true order by Brand__r.Name asc];
 		//variable to store base fees details related to brand
-		//map<String, String> brandBaseFeeMap = new map<String, String>();
 		//map to store brand estimate instance with id as key
 		map<Id,AF_Brand_Estimate__c> brandEstMap= new map<Id,AF_Brand_Estimate__c>();
 		//variable to store Agency id

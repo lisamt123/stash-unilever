@@ -58,7 +58,6 @@
   <div class="fontSize16P overflowA">
  
  <apex:pageblockTable value="{!QuartelyBonus}" styleClass="quartelyBonusGrid tableSection" var="QB" id="pbt" rowClasses="even,odd">
- 
   <apex:column headerValue="Bonus Measure" rendered="{!!AF_Pilot_Model}">
    <apex:outputText value="{!QB.bonusMeasureMatrix}"/>
   </apex:column>
@@ -224,11 +223,11 @@
  <div class="NoteStyle"> Note: On Submit, these records will be locked. Please contact to CMCO Super User to unlock. </div>
  <br/>
  <br/>
- <apex:outputPanel rendered="{!AND(IsEditable,NOT(isAgency))}" styleClass="floatR wid222P">
+ <apex:outputPanel id="outButtons" rendered="{!AND(IsEditable,NOT(isAgency))}" styleClass="floatR wid222P">
  <div id="Savebutton">
- <apex:commandButton id="UpdateBonus"  action="{!UpdateBonus}" Value="Save" reRender="pbt,pmsg" styleClass="submit_btn1" rendered="{!IsDraft}" status="status"/>
+ <apex:commandButton id="UpdateBonus"  action="{!UpdateBonus}" Value="Save" reRender="pbt,outButtons,pmsg" styleClass="submit_btn1" rendered="{!IsDraft}" status="status"/>
  </div>
- <apex:commandButton id="Confirm" action="{!ConfirmBonus}" value="Submit" reRender="pbt,pmsg" styleClass="submit_btn2" oncomplete="calldisable()" status="status"/>
+ <apex:commandButton id="Confirm" action="{!ConfirmBonus}" value="Submit" reRender="pbt,pmsg" styleClass="submit_btn2" oncomplete="calldisable()" status="status" rendered="{!showSubmit}"/>
  </apex:outputPanel>
  </apex:form>
  

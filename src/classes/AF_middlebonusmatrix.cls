@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_middlebonusmatrix
-   @CreateDate : 3/8/2014
-   @Description : This is a controller class for AgencyHomePage Page, 
-   @			  this displays bonus summary in an intermediate page before bonus matrix.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_middlebonusmatrix
+@CreateDate : 3/8/2014
+@Description : This is a controller class for AgencyHomePage Page, 
+@			  this displays bonus summary in an intermediate page before bonus matrix.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 public with sharing class AF_middlebonusmatrix {
 	public String url_brandid{get;set;}
 	Public String url_agencyid{get;set;}

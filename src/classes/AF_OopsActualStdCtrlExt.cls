@@ -53,7 +53,7 @@ public with sharing class AF_OopsActualStdCtrlExt {
 		}
 		catch(DMLException ex)
 		{
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OopsActualStdCtrlExt','SaveRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OopsActualStdCtrlExt','SaveRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			pageRef.setRedirect(true);
 			pageRef = null;             
 		}

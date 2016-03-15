@@ -74,7 +74,38 @@
          } 
          }
       </style>
-      
+      <script type="text/javascript">
+         $('a.addfancy').fancybox({
+           autoSize: false,
+                 width: 900,
+                 height: 600,
+                 type: 'iframe',
+                 titlePosition: 'inside',
+                 hideOnOverlayClick:'false',
+                 hideOnContentClick:'false',
+                 helpers     : { 
+                 overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
+                 },
+                 afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+                     location.reload();
+                 }
+         });
+         $('a.addfancy1').fancybox({
+           autoSize: false,
+                 width: 900,
+                 height: 600,
+                 type: 'iframe',
+                 titlePosition: 'inside',
+                 hideOnOverlayClick:'false',
+                 hideOnContentClick:'false',
+                 helpers     : { 
+                 overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
+                 },
+                 afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+                     location.reload();
+                 }
+         });
+      </script>
       <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
       <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
       <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.filter.css')}" />
@@ -223,14 +254,6 @@
              });
          });
       </script>
-      <!-- jquery library Start-->
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
-      <!-- jquery library End-->
-      <!--   Bootstrap_Js File start 
-         <!-- Bootstrap_Js File start-->
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
-      <!--Bootstrap Js File End -->
-      
    </head>
    <div class="AF_UL_oopsMatrix">
       <!---Header Summary section -->
@@ -482,8 +505,6 @@
             <!-- /.modal -->
          </div>
          <!-- Bootstrap modal window End --> 
-        
-        
          <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/matrixControls.js')}"></script>
          <!--Chart script -->
          <script>
@@ -533,7 +554,14 @@
             }
             commentsToggleClose('commentAddTable');
          </script>
+         <!-- jquery library Start-->
+      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
+      <!-- jquery library End-->
+      <!--   Bootstrap_Js File start 
+         <!-- Bootstrap_Js File start-->
+      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
+      <!--Bootstrap Js File End -->
+         <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'AF_UL_oopsMatrix.js')}"></script>
       </body>
    </div>
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'AF_UL_oopsMatrix.js')}"></script>
 </apex:page>

@@ -137,7 +137,7 @@ public with sharing class AF_BonusMatrixOverrideController
 		}
 		catch(Exception ex) 
 		{
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusMatrixOverrideController','AF_BonusMatrixOverrideController',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusMatrixOverrideController','AF_BonusMatrixOverrideController',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			
 		}
 	}
@@ -166,7 +166,7 @@ public with sharing class AF_BonusMatrixOverrideController
 		}
 		catch(Exception ex)
 		{
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusMatrixOverrideController','Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusMatrixOverrideController','Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			BonusMatrixObj.AF_Overidden__c = true;
 			update BonusMatrixObj;
 			CalculateLocalC();
@@ -200,7 +200,7 @@ public with sharing class AF_BonusMatrixOverrideController
 			}
 		}
 		catch(exception ex){
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusMatrixOverrideController','CalculateLocalC',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusMatrixOverrideController','CalculateLocalC',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			if(BonusMatrixValue==''){
 				EsLocal=0;
 			}

@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_BonusRecordManagerAsyncWrapper
-   @CreateDate : 23/6/2014
-   @Description : This is a future class, 
-   @			  this is used to create the Bonus Matrix records based on the corresponding Agency Estimate records.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_BonusRecordManagerAsyncWrapper
+@CreateDate : 23/6/2014
+@Description : This is a future class, 
+@			  this is used to create the Bonus Matrix records based on the corresponding Agency Estimate records.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 global class AF_BonusRecordManagerAsyncWrapper 
 {
 	/***********************************************************************************

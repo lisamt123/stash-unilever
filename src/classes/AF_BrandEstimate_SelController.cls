@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_BrandEstimate_SelController
-   @CreateDate : 14/7/2014
-   @Description : This is a controller class for AgencyHomePage Page, 
-   @			  this is used to display all the Brand Estimate for a particular year in an intermediate page before Base Fee Matrix.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_BrandEstimate_SelController
+@CreateDate : 14/7/2014
+@Description : This is a controller class for AgencyHomePage Page, 
+@			  this is used to display all the Brand Estimate for a particular year in an intermediate page before Base Fee Matrix.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 public with sharing class AF_BrandEstimate_SelController {
 	public String agencyId {get;set;}
 	public String fiscalYear {get;set;}

@@ -595,7 +595,7 @@ global with sharing class AF_BrandEstimateRemote {
             delete agencyEstimatesToDelete;
             }
             catch(Exception e){
-                ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 
             }
         }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
@@ -627,7 +627,7 @@ global with sharing class AF_BrandEstimateRemote {
             delete agencyEstimatesToDelete;
             }
             catch(Exception e){
-            ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
             }
         }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
             for(AF_OOPS_Estimate__c eachOopsEstimate : archiveOopsEstimatesPerAgencyEntity(colsArr, sObjectId)) {
@@ -637,7 +637,7 @@ global with sharing class AF_BrandEstimateRemote {
             delete oopsEstimatesToDelete;
             }
             catch(Exception e){
-            ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
             }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
             for(AF_Bonus_Matrix__c eachBonusMatrix : archiveBonusMatrixPerAgencyEntity(colsArr, sObjectId)) {

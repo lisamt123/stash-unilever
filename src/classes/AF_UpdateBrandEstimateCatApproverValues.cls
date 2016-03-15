@@ -164,8 +164,8 @@ public with sharing class AF_UpdateBrandEstimateCatApproverValues
 				Brandest.AF_Cat_Finance_Approver_3__c=userids[2];
 				Brandest.AF_Cat_Finance_Approver_4__c=userids[3];
 				Brandest.AF_Cat_Finance_Approver_5__c=userids[4];
-				Brandest.AF_Cat_Finance_Approver_5__c=userids[5];
-				Brandest.AF_Cat_Finance_Approver_6__c=userids[6];
+				Brandest.AF_Cat_Finance_Approver_6__c=userids[5];
+				Brandest.AF_Cat_Finance_Approver_7__c=userids[6];
 				Brandest.AF_Cat_Finance_Approver_8__c=userids[7];
 				Brandest.AF_Cat_Finance_Approver_9__c=DummyUserid;
 				Brandest.AF_Cat_Finance_Approver_10__c=DummyUserid;
@@ -238,6 +238,13 @@ public with sharing class AF_UpdateBrandEstimateCatApproverValues
 			}
 		}
 	}
+	/**************************************************************************************
+*  @Description: this method is used to query the brandestimate and agency users 
+*  @             
+*  @name : UpdateOopsagencyBulk
+*  @param : BrandRecords
+*  @return: none.
+*******************************************************************************************/
 	public static void UpdateOopsagencyBulk(List<AF_Brand_Estimate__c> BrandRecords){
 		Map<Id,List<AF_Brand_Estimate__c>> accountToBrandRecordList = new Map<Id,List<AF_Brand_Estimate__c>>();
 		for(AF_Brand_Estimate__c brandRecord : BrandRecords){
@@ -262,6 +269,13 @@ public with sharing class AF_UpdateBrandEstimateCatApproverValues
 			}
 		}
 	}
+	/***********************************************************************************************
+*  @Description: this method is used to assign the agency users email to the field in brandestimate
+*  @             
+*  @name : processContact
+*  @param : BrandRecords
+*  @return: none.
+*******************************************************************************************/
 	public  static void processContact(List<Contact> cList,AF_Brand_Estimate__c ao)
 	{
 		if(!clist.isEmpty() && clist.size()==1){

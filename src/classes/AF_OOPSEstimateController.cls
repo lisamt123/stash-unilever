@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_OOPSEstimateController
-   @CreateDate : 8/8/2014
-   @Description : This is a controller class for AF_OOPSEstimate Page, 
-   @			  this is used to override the OOPSEstimate.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_OOPSEstimateController
+@CreateDate : 8/8/2014
+@Description : This is a controller class for AF_OOPSEstimate Page, 
+@			  this is used to override the OOPSEstimate.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 public with sharing class AF_OOPSEstimateController {
 	public String oopsEstimateId;
 	public AF_OOPS_Estimate__c oopsEstimate {get;set;}
@@ -140,7 +140,7 @@ public with sharing class AF_OOPSEstimateController {
 		}
 		catch(DMLException ex)
 		{
-		ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPSEstimateController','Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPSEstimateController','Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 		}
 		return null;
 	}
@@ -168,7 +168,7 @@ public with sharing class AF_OOPSEstimateController {
 			EsLocal=Decimal.valueof(oopsvalue)*oopsEstimate.AF_Agency_Exchange_Rate__c;
 		}
 		Catch(exception e){
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPSEstimateController','CalculateLocalC',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPSEstimateController','CalculateLocalC',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 			if(OppsEstimatesValue==''){
 				EsLocal=null;
 			}

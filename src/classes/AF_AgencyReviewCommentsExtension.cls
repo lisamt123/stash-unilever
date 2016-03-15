@@ -65,7 +65,7 @@ public with sharing class AF_AgencyReviewCommentsExtension{
 			apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.Confirm,'Record successfully saved');
 			apexpages.addmessage(msg); 
 		}catch(Exception ex){
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AgencyReviewCommentsExtension','saveControllerReview',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AgencyReviewCommentsExtension','saveControllerReview',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.Confirm, 'Reviews Complete');
 			apexpages.addmessage(msg);  
 		}

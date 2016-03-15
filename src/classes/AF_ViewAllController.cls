@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_ViewAllController
-   @CreateDate : 10/7/2014
-   @Description : This is a controller class for AF_ViewAll Page, 
-   @			  this is used to display all the comments,Documents and field history more than 5 records
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_ViewAllController
+@CreateDate : 10/7/2014
+@Description : This is a controller class for AF_ViewAll Page, 
+@			  this is used to display all the comments,Documents and field history more than 5 records
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 public with sharing class AF_ViewAllController 
 {
 	public string DParentId {get;set;}

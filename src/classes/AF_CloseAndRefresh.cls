@@ -44,7 +44,7 @@ public with sharing class AF_CloseAndRefresh {
 		}
 		catch(Exception ex)
 		{
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CloseAndRefresh','AF_CloseAndRefresh',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CloseAndRefresh','AF_CloseAndRefresh',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 		}
 	}
 }

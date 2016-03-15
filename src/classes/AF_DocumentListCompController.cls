@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_DocumentListCompController
-   @CreateDate : 5/6/2014
-   @Description : This is a controller class for Matrix Pages, 
-   @			  this is used to enter documents upload.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_DocumentListCompController
+@CreateDate : 5/6/2014
+@Description : This is a controller class for Matrix Pages, 
+@			  this is used to enter documents upload.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 public with sharing class AF_DocumentListCompController{
 	public String ParentRecordId {get;set;}
 	public String ParentObjectType {get;set;}

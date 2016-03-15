@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_CommentsListCompController
-   @CreateDate : 25/6/2014
-   @Description : This is a controller class for AF_CommentsListComp Component, 
-   @			  this is used to enter comments and display comments in matrix page.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_CommentsListCompController
+@CreateDate : 25/6/2014
+@Description : This is a controller class for AF_CommentsListComp Component, 
+@			  this is used to enter comments and display comments in matrix page.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 public with sharing class AF_CommentsListCompController{
 	public String ParentRecordId {get;set;}
 	public String ParentObjectType {get;set;}
@@ -139,8 +139,7 @@ public with sharing class AF_CommentsListCompController{
 		}
 		catch(Exception ex)
 		{
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CommentsListCompController','SaveComment',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
-			
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CommentsListCompController','SaveComment',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 		}
 	}
 	/**********************************************************************
@@ -186,7 +185,7 @@ public with sharing class AF_CommentsListCompController{
 					update objBE;
 				}
 			}catch(DMLException ex){
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CommentsListCompController','UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CommentsListCompController','UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			}
 		}
 		if(pObjectType == 'AF_Agency_Estimate__c'){
@@ -197,7 +196,7 @@ public with sharing class AF_CommentsListCompController{
 					update objAE;
 				}
 			}catch(DMLException ex){
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CommentsListCompController','UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CommentsListCompController','UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			}
 		}
 		if(pObjectType == 'AF_OOPS_Estimate__c'){
@@ -207,7 +206,7 @@ public with sharing class AF_CommentsListCompController{
 					update objOE;
 				}
 			}catch(DMLException ex){
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CommentsListCompController','UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CommentsListCompController','UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			}
 		}        
 	}

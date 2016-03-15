@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_CountryBreakdownCheck
-   @CreateDate : 4/7/2014
-   @Description : This is a controller class for AF_ApprovalProcessForBrandEstController class, 
-   @			  this is used to display the country breakdown percentage and updation the percantage.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_CountryBreakdownCheck
+@CreateDate : 4/7/2014
+@Description : This is a controller class for AF_ApprovalProcessForBrandEstController class, 
+@			  this is used to display the country breakdown percentage and updation the percantage.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 public with sharing class AF_CountryBreakdownCheck {
 	/***********************************************************************************
 *  @Description: this method is used to query and validate the countrybreakdown% 

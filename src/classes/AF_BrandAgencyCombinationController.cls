@@ -1,14 +1,14 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_BonusQuarterly
-   @CreateDate : 30/7/2014
-   @Description : This is a controller class for AF_QuarterlyBonus Page, 
-   @			  this is used to get the lookup values of Brand and agency as
-   @			  pick list values and display in the page
-   @			  and On click of Save it should store the record in Brand Estimates
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_BonusQuarterly
+@CreateDate : 30/7/2014
+@Description : This is a controller class for AF_QuarterlyBonus Page, 
+@			  this is used to get the lookup values of Brand and agency as
+@			  pick list values and display in the page
+@			  and On click of Save it should store the record in Brand Estimates
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 public with sharing class AF_BrandAgencyCombinationController 
 {
 	// Declaration of setters and getters
@@ -104,7 +104,7 @@ public with sharing class AF_BrandAgencyCombinationController
 				}
 				catch(Exception ex)
 				{
-					ExceptionLoggingHelper.createApplicationLevelErrorLog (AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandAgencyCombinationController',
+					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog (AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandAgencyCombinationController',
 					'save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 				}
 			}
@@ -123,7 +123,6 @@ public with sharing class AF_BrandAgencyCombinationController
 *************************************************************************************/
 	public void closePopup() 
 	{ 
-		system.debug('control is inside Closepopup action method');
 		displayPopup = false;    
 	} 
 }

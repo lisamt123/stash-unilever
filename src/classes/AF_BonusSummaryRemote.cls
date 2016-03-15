@@ -1,12 +1,12 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_BonusSummaryRemote
-   @CreateDate : 18/7/2014
-   @Description : This is a controller class for AF_BonusMatrix Page, 
-   @			  this is used to frame matrix cell structure for Bonus matrix.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_BonusSummaryRemote
+@CreateDate : 18/7/2014
+@Description : This is a controller class for AF_BonusMatrix Page, 
+@			  this is used to frame matrix cell structure for Bonus matrix.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 global with sharing class AF_BonusSummaryRemote {
 	public AF_BonusSummaryRemote(ApexPages.StandardController stdController) {}
 	/***********************************************************************************
@@ -62,7 +62,6 @@ global with sharing class AF_BonusSummaryRemote {
 				String keyMatch = eachCol+'-'+eachRow; //column Vs row
 				if(bonusULRelationMap .containsKey(keyMatch)) {
 					/* commented for incident No:INC000097270556 */
-					//colTotal += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c/1000);
 					/* commented for incident No:INC000097270556 */
 					colTotalA += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c);
 				}
@@ -101,7 +100,6 @@ global with sharing class AF_BonusSummaryRemote {
 				String keyMatch = eachCol+'-'+eachRow; //column Vs row
 				if(bonusULRelationMap .containsKey(keyMatch)) {
 					/* commented for incident No:INC000097270556 */
-					//rowTotal += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c/1000);
 					/* commented for incident No:INC000097270556 */
 					rowLocalTotal += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Bonus_Local_Value__c/1000);
 					rowTotalA += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c);

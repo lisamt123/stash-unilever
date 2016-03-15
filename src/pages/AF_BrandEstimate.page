@@ -24,10 +24,12 @@
        function isNumberKey(evt)
       {
         var charCode = (evt.which) ? evt.which : event.keyCode;
+        alert('charCode..'+charCode);
         var result = false;
         var errorMsg = document.getElementById("regTitle");
-        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+        if (charCode == 46 ||( charCode > 31 && (charCode < 48 || charCode > 57)))
         {
+           alert('inside loop..');
            errorMsg.innerHTML = "<b>Please enter numbers only.</b>";
            result = false;
         }
@@ -89,34 +91,46 @@
    <!-- Common_Style File End -->
 <!-- Adding comma in Text box -->
 <script>
-jQuery( function() {
- jQuery('input.number').keyup(function(event){
-      // skip for arrow keys
-      if(event.which >= 37 && event.which <= 40){
-          event.preventDefault();
-      }
-      var $this = jQuery(this);
-      var num = $this.val().replace(/,/gi, "").split("").reverse().join("");
-      var num2 = RemoveRougeChar(num.replace(/(.{3})/g,"$1,").split("").reverse().join("")); 
-      console.log(num2);
-      
-      
-      // the following line has been simplified. Revision history contains original.
-      $this.val(num2);
-  });
-});
-
- function RemoveRougeChar(convertString){
+function RemoveRougeChar(convertString){
     
     
-    if(convertString.substring(0,1) == ","){
-        
-        return convertString.substring(1, convertString.length)            
+    if(convertString.substring(0,1) == ","){ 
+        return convertString.substring(1, convertString.length);
+                  
         
     }
     return convertString;
     
 }
+
+jQuery( function() {
+ jQuery('input.number').keyup(function(event){
+      //alert('Hi..');
+      
+      var charCode = event.keyCode;
+      //alert(charCode);
+      var errorMsg = document.getElementById("regTitle");
+         if(event.keyCode <=47 || event.keyCode>=57){
+           errorMsg.innerHTML = "<b>Please enter numbers only.</b>"; 
+           return false;   
+          }
+          else{
+          errorMsg.innerHTML = "";
+          
+          }
+         var $this = jQuery(this);
+         var num = $this.val().replace(/,/gi, "").split("").reverse().join("");
+         //alert('num..'+num);
+         var num2 = RemoveRougeChar(num.replace(/(.{3})/g,"$1,").split("").reverse().join(""));
+         //alert('num2..'+num2);
+         $this.val(num2);
+         return result;
+      
+      
+      // the following line has been simplified. Revision history contains original.
+      
+  });
+});
 </script>
 <!-- Adding comma in Text box End -->
    
@@ -160,24 +174,24 @@ jQuery( function() {
                      </td>
                      <td class="paddingR10">
                         <span class="labelName">Traditional: </span>                             
-                        <apex:inputText value="{!TraditionalDisplay}" onkeypress="return isNumberKey(event)" id="traditionalInput"  styleClass="values1 number">
-                           <apex:actionSupport event="onchange" 
+                        <apex:inputText value="{!TraditionalDisplay}"  id="traditionalInput" styleClass="values1 number" >
+                           <apex:actionSupport event="onmouseout" 
                               action="{!CalculateTotal}" 
                               rerender="totalFigure" />
                         </apex:inputText>
                      </td>
                      <td class="paddingR10">
                         <span class="labelName">Digital:</span>            
-                        <apex:inputText value="{!DigitalDisplay}" onkeypress="return isNumberKey(event)" styleClass="values1 number" >
-                           <apex:actionSupport event="onchange" 
+                        <apex:inputText value="{!DigitalDisplay}"  styleClass="values1 number" >
+                           <apex:actionSupport event="onmouseout" 
                               action="{!CalculateTotal}" 
                               rerender="totalFigure" />
                         </apex:inputText>
                      </td>
                      <td class="paddingR10">
                         <span class="labelName">Adaptation:</span>                       
-                        <apex:inputText onkeypress="return isNumberKey(event)" value="{!AdaptationDisplay}" styleClass="values1 number" >
-                           <apex:actionSupport event="onchange" 
+                        <apex:inputText value="{!AdaptationDisplay}" styleClass="values1 number" >
+                           <apex:actionSupport event="onmouseout" 
                               action="{!CalculateTotal}" 
                               rerender="totalFigure" />
                         </apex:inputText>

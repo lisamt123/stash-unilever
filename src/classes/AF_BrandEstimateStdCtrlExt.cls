@@ -74,12 +74,11 @@ public with sharing class AF_BrandEstimateStdCtrlExt {
 		try
 		{               
 			BrandEstimateObj.AF_Status_Base_Fees__c = 'Ready for PO';
-			update BrandEstimateObj;    
-			System.debug('Updated Record.....');                                    
+			update BrandEstimateObj;                                       
 		}  
 		catch(Exception ex) 
 		{
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateStdCtrlExt','SetStatus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateStdCtrlExt','SetStatus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 		}                                                              
 		return pageRef;        
 	}

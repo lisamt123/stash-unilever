@@ -7,7 +7,8 @@
    @Version : 1.0
    @reference : none
   ****************************************************************************************************************************/
-public with sharing class AF_ApprovalProcessForBrandEstController
+  /*Sonar Exception for with sharing*/
+public class AF_ApprovalProcessForBrandEstController
 {
     public String brandEstimateId {get;set;}
     public String ParentId {get;set;}
@@ -99,7 +100,7 @@ public with sharing class AF_ApprovalProcessForBrandEstController
             }    
         }catch(Exception e)
         {
-            ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'RejectBrandWithComments',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'RejectBrandWithComments',e.getMessage(),e.getTypeName(),e.getStackTraceString());
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,e.getmessage()));
             ref=null;
         }
@@ -141,7 +142,7 @@ public with sharing class AF_ApprovalProcessForBrandEstController
             }
         }catch(exception ex)
         {
-            ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'ApproveRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'ApproveRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
             ref=null;
         }
         return null;
@@ -182,7 +183,7 @@ public with sharing class AF_ApprovalProcessForBrandEstController
             }    
         }Catch(Exception ex)
         {
-            ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'RejectRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'RejectRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
             ref=null;
         }
         return null;
@@ -476,7 +477,7 @@ public with sharing class AF_ApprovalProcessForBrandEstController
             }
         }catch(exception ex)
         {
-            ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'TrueControllerFlag',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'TrueControllerFlag',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
         }
     }
     /************************************************************************************************
@@ -516,7 +517,7 @@ public with sharing class AF_ApprovalProcessForBrandEstController
         }
         catch(exception ex)
         {
-            ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'TrueControllerFlag',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'TrueControllerFlag',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
         }
     }
 }

@@ -109,7 +109,7 @@ public with sharing class AF_AttachmentUploadController{
 			} 
 			catch (Exception e) 
 			{
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AttachmentUploadController','UploadFile',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AttachmentUploadController','UploadFile',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				
 				// As of now we are able to upload all kind of attachments whoes size is below 5 10mb , will be update the code if we are
 				// not able to upload any kind of files like .htm etc.,

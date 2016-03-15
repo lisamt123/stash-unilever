@@ -350,7 +350,7 @@ public with sharing class AF_AgencyEstimateController
 					poReportObj = [SELECT AF_Calculate_Tradition_Local__c,AF_Calculate_Adaptation_Local__c,AF_Calculate_Digital_Local__c,AF_PO_Value_Total_LC__c from AF_PO_Report__c where AF_Agency_Estimate_ID__c=:ParentId];
 				}
 				catch(Exception ex){
-					ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'AF_AgencyEstimateController',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'AF_AgencyEstimateController',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 
 				}
 				if(AgencyEstimate.AF_OverridePO_Adaptation_LC__c!=null)
@@ -511,7 +511,7 @@ public with sharing class AF_AgencyEstimateController
 				poReportObj = [SELECT AF_Calculate_Tradition_Local__c,AF_Calculate_Adaptation_Local__c,AF_Calculate_Digital_Local__c,AF_PO_Value_Total_LC__c from AF_PO_Report__c where AF_Agency_Estimate_ID__c=:ParentId];
 			}
 			catch(Exception ex){
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'OverridePO',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'OverridePO',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			}
 			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved')); 
 		}
@@ -535,7 +535,7 @@ public with sharing class AF_AgencyEstimateController
 		{
 			pageRef = new PageReference('/apex/AF_CloseAndRefresh?IsError=true');
 			pageRef.setRedirect(true);        
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AgencyEstimateController','Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AgencyEstimateController','Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
 		}
 		return pageRef;
 	}
@@ -556,7 +556,8 @@ public with sharing class AF_AgencyEstimateController
 			TraditionalDisplay = TraditionalDisplay.Remove(',');
 			DigitalDisplay = DigitalDisplay.Remove(',');
 			AdaptationDisplay = AdaptationDisplay.Remove(',');
-			if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c == AF_Constants.CATEGORY_FINANCE && isCatFinance)
+			if((AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c == AF_Constants.CATEGORY_FINANCE && isCatFinance)
+				||AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c == AF_Constants.BASE_FEES_WIHTCMCO && (isCMCO||isCMCOSuperUser))
 			AgencyEstimate.AF_Category_Finance_Flag__c=true;
 			upsert AgencyEstimate;
 			UpdateEntityEX();
@@ -672,7 +673,7 @@ public with sharing class AF_AgencyEstimateController
 		catch(DMLException ex)
 		{
 			ApexPages.addMessages(ex);
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'SaveEntityException',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'SaveEntityException',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
 			pageRef = null;
 		}
 		return pageRef;         
@@ -755,7 +756,7 @@ public with sharing class AF_AgencyEstimateController
 		catch(DMLException ex)
 		{
 			ApexPages.addMessages(ex);
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(), AF_AgencyEstimateController,'DeleteException',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(), AF_AgencyEstimateController,'DeleteException',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
 			pageRef = new PageReference('/apex/AF_CloseAndRefresh?IsError=true');
 			pageRef.setRedirect(true);
 			pageRef = null;             
@@ -874,7 +875,7 @@ public with sharing class AF_AgencyEstimateController
 			}
 		}
 		catch(exception ex){
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'SaveEntityExceptionRecords',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'SaveEntityExceptionRecords',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 		}
 	}   
 	/**********************************************************************

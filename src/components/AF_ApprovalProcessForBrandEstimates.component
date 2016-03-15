@@ -124,7 +124,7 @@
                <apex:outputLabel value="{!$Label.AF_OOPS_Submit}" styleClass="approval_fontS16PX"/>
             </h2>
             <br/><br/>
-            <apex:commandButton value="Confirm" action="{!SubitforApproval}" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup"  oncomplete="redirection();"/>
+            <apex:commandButton style="margin-left: 215px !important;" value="Confirm" action="{!SubitforApproval}" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup"  oncomplete="redirection();"/>
          </div>
       </apex:outputPanel>
    </apex:outputPanel>
