@@ -59,7 +59,11 @@ public class Core_CA_InterestedParty_Handler{
             approverRec.Name = approverRec.CA_Role__c;
         }
     }
-    
+    /* -- SONAR Issue explanation -- 
+      This is handler class for trigger written for AfterInsert instance of Approval Status.
+      Which has Follow/Unfollow logic, Apex sharing and Chatter notification code. 
+      So multiple If else condition inside for loop to create chatter notification and multiple SOQL, DML are written thats leading to the Npath Complexity.  
+    */
     public void handleAfterInsert(List<Core_Approver_Details__c > approverList){
         String strCopyTemp ='COPY';
         try{
@@ -637,9 +641,9 @@ public class Core_CA_InterestedParty_Handler{
     }
     
      /* -- SONAR Issue explanation -- 
-      This is handler class for trigger written for AfterInsert instance of Approval Console.
-      Which has Follow/Unfollow logic, Apex sharing and Chatter notification code. 
-      So multiple If else condition inside for loop to create chatter notification and multiple SOQL, DML are written thats leading to the Npath Complexity.  
+      This is handler class for trigger written for AfterDelete instance of Approval Status.
+      Which has Apex sharing 
+      So multiple If else condition inside for loop and multiple SOQL, DML are written thats leading to the Npath Complexity.  
     */
     public void handleAfterDelete (List<Core_Approver_Details__c > approverList){
         try{
