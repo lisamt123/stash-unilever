@@ -1,5 +1,6 @@
 public with sharing class Core_CA_AppConstants {
 
+
     /* Service response error messages */
     public static final String ERROR_MSG_UNEXPECTED_ERROR_OCCURED = 'Unexcepted exception encountered, please try again later';
     public static final String SVC_RESP_MESSAGE_INVALID_SVCNAME = 'Invalid service requested, please check the service name requested for';
