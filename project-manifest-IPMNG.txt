@@ -72,6 +72,12 @@ src/classes/IPM_MilestoneHandler_Test.cls
 src/classes/IPM_MilestoneHandler_Test.cls-meta.xml
 src/classes/IPM_MilestoneHelper.cls
 src/classes/IPM_MilestoneHelper.cls-meta.xml
+src/classes/IPM_HomePageController.cls
+src/classes/IPM_HomePageController.cls-meta.xml
+src/classes/IPM_HomePageController_Test.cls
+src/classes/IPM_HomePageController_Test.cls-meta.xml
+src/classes/IPM_MyList.cls
+src/classes/IPM_MyList.cls-meta.xml
 src/classes/IPM_MyList_Test.cls
 src/classes/IPM_MyList_Test.cls-meta.xml
 src/classes/IPM_MyProjects_Test.cls
@@ -131,6 +137,8 @@ src/classes/IPM_Utils.cls-meta.xml
 src/classes/IPM_Utils_Test.cls
 src/classes/IPM_Utils_Test.cls-meta.xml
 src/components
+src/components/BET_UpsertBET.component
+src/components/BET_UpsertBET.component-meta.xml
 src/components/IPM_Coreparameters.component
 src/components/IPM_Coreparameters.component-meta.xml
 src/components/IPM_LandingCoreParameters.component
@@ -139,6 +147,8 @@ src/objects
 src/objects/IPM_ProjectMetadata__c.object
 src/objects/IPM_Project_Type__c.object
 src/pages
+src/pages/IPM_AddManageSections.page
+src/pages/IPM_AddManageSections.page-meta.xml
 src/pages/IPM_AddMilestone.page
 src/pages/IPM_AddMilestone.page-meta.xml
 src/pages/IPM_AddMilestoneWizard.page
@@ -151,6 +161,8 @@ src/pages/IPM_ChangeCurrenDocumentStatus.page
 src/pages/IPM_ChangeCurrenDocumentStatus.page-meta.xml
 src/pages/IPM_EditProject.page
 src/pages/IPM_EditProject.page-meta.xml
+src/pages/IPM_ExportBosscardPDF.page
+src/pages/IPM_ExportBosscardPDF.page-meta.xml
 src/pages/IPM_Financial.page
 src/pages/IPM_Financial.page-meta.xml
 src/pages/IPM_GateDocument.page
@@ -212,6 +224,12 @@ src/components/IPM_MyToDoList.component
 src/components/IPM_MyToDoList.component-meta.xml
 src/components/IPM_RolloutPlansTable.component
 src/components/IPM_RolloutPlansTable.component-meta.xml
+src/email
+src/email/IPM_Emails
+src/email/IPM_Emails/IPM_Due_Date_in_the_past2.email
+src/email/IPM_Emails/IPM_Due_Date_in_the_past2.email-meta.xml
+src/email/IPM_Emails/IPM_Successful_Phase_Change_Template.email
+src/email/IPM_Emails/IPM_Successful_Phase_Change_Template.email-meta.xml
 src/labels
 src/labels/CustomLabels.labels
 src/flows
