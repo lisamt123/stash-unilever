@@ -368,7 +368,7 @@ Returns:
      
     if (String.isNotBlank(String.valueOf(jobDetails.Start_Date__c))){
         Datetime startdate = jobDetails.Start_Date__c;
-        String dateTimeFormat = startdate.format('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
+        String dateTimeFormat = startdate.format(Amr_ConstantForAdManager.DATEFORMAT);
         
         soql += ' and AM_Job_Detail__r.createdDate ' +  ' >= '+  dateTimeFormat ;
         soqlForCancel +=' and AM_Job_Detail__r.createdDate ' +  ' >= '+ dateTimeFormat;
@@ -377,7 +377,7 @@ Returns:
     
     if (String.isNotBlank(String.valueOf(jobDetails.End_Date__c))){ 
         Datetime endate  = jobDetails.End_Date__c;
-         String dateTimeFormat1 = endate.format('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
+         String dateTimeFormat1 = endate.format(Amr_ConstantForAdManager.DATEFORMAT);
         
          soql += ' and AM_Job_Detail__r.createdDate ' +  ' < '+  dateTimeFormat1 ;
          soqlForCancel +=' and AM_Job_Detail__r.createdDate ' +  ' < '+ dateTimeFormat1;
@@ -546,8 +546,8 @@ Returns:
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
                 DateTime endDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0).addDays(1);
          
-               soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') + ' and createdDate'+  ' < '+ endDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
-               soqlForCancel += ' and createdDate'+  ' = '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
+               soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.DATEFORMAT) + ' and createdDate'+  ' < '+ endDateFinal.formatGMT(Amr_ConstantForAdManager.DATEFORMAT) ;
+               soqlForCancel += ' and createdDate'+  ' = '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.DATEFORMAT) ;
              
                
                system.debug('soql created date'+soql);

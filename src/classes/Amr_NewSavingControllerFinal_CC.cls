@@ -106,6 +106,7 @@ public with sharing class Amr_NewSavingControllerFinal_CC {
         for(Amr_Country_Cluster__c countryObj:countrylst){
              shootLocation.add(new SelectOption(countryObj.Country__c,countryObj.Country__c));
         }
+        shootLocation.sort();
         
         savingObj = new Amr_Saving__c(Job_Details__c = jobId);
         acceptedQuote = new Amr_Quote__c(Quote_Number__c = 1,Is_Accepted__c = true);
@@ -161,6 +162,9 @@ public with sharing class Amr_NewSavingControllerFinal_CC {
                                 Production_Type__c,No_of_Masters__c,Duration_of_Masters__c,No_of_Additional_Films__c,Duration_of_Additional_Films__c,
                                 No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Number_Of_Quotes__c,Average_Total_Opening_Quotes__c from Amr_Saving__c where id =:savingObj.id];
             savingObj = savingObjInserted;
+            
+           
+           
         //}catch(Exception e){
         //  system.debug('===inside exception'+e.getMessage());
         //}
@@ -396,6 +400,9 @@ public with sharing class Amr_NewSavingControllerFinal_CC {
               update savingObj;
               
         }
-        return null;
+        
+        PageReference pageRef = new PageReference('/apex/Amr_jobsheet?id='+jobId);
+        return pageRef.setRedirect(true);
+        
      }
 }

@@ -197,9 +197,9 @@ Returns:
    Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
    Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
    DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
-     
-           soql += ' and createdDate'+  ' >= '+ startDateFinal.addDays(1).formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') + ' and createdDate'+  ' < '+ startDateFinal.addDays(2).formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
-          
+    System.debug('DATE ->  ' + startDateFinal); 
+        //   soql += ' and createdDate'+  ' >= '+ startDateFinal.addDays(1).formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') + ' and createdDate'+  ' < '+ startDateFinal.addDays(2).formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
+           soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'HH:mm:ss\'Z\'') ;
            
            system.debug('soql created date'+soql);
     }
@@ -213,7 +213,7 @@ Returns:
    Date d1 = Date.newInstance(myIntYear1, myIntMonth1, myIntDate1);
    DateTime endDateDateFinal = DateTime.newInstance(d1.year(), d1.month(), d1.day(), 0, 0, 0);
      
-           soql += ' and createdDate ' +  ' < '+ endDateDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
+           soql += ' and createdDate ' +  ' < '+ endDateDateFinal.addDays(1).formatGMT('yyyy-MM-dd\'T\'HH:mm:ss\'Z\'');
            
            system.debug('soql end date'+soql);
     }
@@ -325,6 +325,10 @@ Returns:
        
        if(String.isNotBlank(budgetReponse) && budgetReponse != '--None--'){
            soql += ' and Job_Details__r.Budget_Responsibility__c = \''+String.escapeSingleQuotes(budgetReponse)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+       }    
+       
+       if(String.isNotBlank(selectedRapName) && selectedRapName != '--None--'){
+           soql += ' and Job_Details__r.ownerId = \''+String.escapeSingleQuotes(selectedRapName)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
        }
        
        System.debug('SQL Till Here -> '+ soql );

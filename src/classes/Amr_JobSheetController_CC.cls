@@ -219,7 +219,7 @@ public String docUploaded{get;set;}
                 system.debug('category---'+jobList.ProductCategory__r.name);
                  system.debug('Brand---'+jobList.Brand_Position__r.name);
                   system.debug('Brand_Final__r---'+jobList.Brand_Final__r.name);
-                 
+                   projectNameFromPage = jobList.Project_Details__r.name;
                 selectedCategory = jobList.ProductCategory__r.name;
                 selectedBrandPosName = jobList.Brand_Position__r.name;
                 //system.debug('brand Postition========>'+selectedBrandPosName);
@@ -1043,14 +1043,15 @@ public String docUploaded{get;set;}
          jobList.Currency_Conversion_Country_List__c = currencyFinalString;
          selectedCountry = currencyFinalString;
         }
-       
-        validateJobList();
-        if(validateSuccess){
-        	 if(jobList.Project_Details__c!=null){
+        system.debug('===>project===>'+jobList.Project_Details__c);
+       	 if(jobList.Project_Details__c!=null){
               Amr_Project_Details__c projectObj = [select id,name from Amr_Project_Details__c where id = :jobList.Project_Details__c ];
               projectNameFromPage = projectObj.name;
               system.debug('project name====>'+projectNameFromPage);
-        	}
+         }
+        validateJobList();
+        if(validateSuccess){
+        	
         update jobList;
        
          PageReference pageRef = new PageReference('/apex/Amr_JobSheet');
@@ -1407,6 +1408,7 @@ public String docUploaded{get;set;}
         system.debug('jobList.Project_Details__c!!'+jobList.Project_Details__c);
        if(String.isBlank(jobList.Project_Details__c) && String.isBlank(jobList.Project_Name_Other__c)){
        	projectDetailsFlag = true;
+       	projectNameFromPage = null;
        	 system.debug('projectDetailsFlag'+projectDetailsFlag);
        // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project name (e.g. Apollo) : option must be selected from the drop down menu OR a name must be entered in the "Other" text box'));
      // okayToSave =false;

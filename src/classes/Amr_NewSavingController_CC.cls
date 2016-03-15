@@ -104,12 +104,14 @@ public with sharing class Amr_NewSavingController_CC{
         }
         
         List<Amr_Country_Cluster__c> countrylst = Amr_Country_Cluster__c.getall().values();
+        countrylst.sort();
         shootLocation = new List<SelectOption>();
         
         for(Amr_Country_Cluster__c countryObj:countrylst){
              shootLocation.add(new SelectOption(countryObj.Country__c,countryObj.Country__c));
         }
-        
+        shootLocation.sort();
+        system.debug('shoot location'+shootLocation);
         savingObj = new Amr_Saving__c(Job_Details__c = jobId);
         System.debug('SACVING OBJ -> ' + savingObj + 'SAVING ID -> ' + savingObj.id);
        
