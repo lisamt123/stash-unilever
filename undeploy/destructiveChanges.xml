@@ -1,4 +1,4 @@
-<?xml version="10" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soapsforcecom/2006/04/metadata">
     <types>
 		<members>IPM_CountryTriggerHandler<members>		<members>IPM_FinancialTriggerHandler</members>		<members>IPM_FinancialTriggerHandler_Test</members>		<members>IPM_FinancialYearTriggerHandler_Test</members>		<members>IPM_GenericExtCtrl</members>		<members>IPM_GetHelpDoc_Test</members>		<members>IPM_QuestionnaireHandler</members>		<members>IPM_UserTriggerHandler</members>		<members>IPM_UserTriggerHandler_Test</members>
