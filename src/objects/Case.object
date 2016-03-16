@@ -3287,7 +3287,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_NORTH_AMERICA_24_7_QUEUE_HPC</fullName>
-        <booleanFilter>(1 OR 2 OR 3 ) AND 4 AND 5</booleanFilter>
+        <booleanFilter>(1 OR 2 OR 3 OR 6 ) AND 4 AND 5</booleanFilter>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
@@ -3311,7 +3311,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>TRESemme,Vaseline,Vim</value>
+            <value>TRESemme,Vaseline,Vim,Unilever Corporate,Privacy Policy</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -3322,6 +3322,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>Case_Market__c</field>
             <operation>equals</operation>
             <value>North America</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>equals</operation>
+            <value>Canada Replies,ToninGuy,Unilever Canada,Unilever Comments</value>
         </filters>
         <label>CEC North America 24-7 Queue HPC</label>
         <language>en_US</language>
@@ -3602,7 +3607,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_24_7_Queue</fullName>
-        <booleanFilter>(1 OR 2 OR 5 OR 6 OR 7 OR 8) AND 3 AND 4</booleanFilter>
+        <booleanFilter>(1 OR 2 OR 5 OR 6 OR 7 OR 8 OR 9) AND 3 AND 4</booleanFilter>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
@@ -3652,6 +3657,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>Case_Brand__c</field>
             <operation>equals</operation>
             <value>Popsicle_CA-EN,Promise,Red Rose Tea,RedRoseTea,Salada,Talenti</value>
+        </filters>
+        <filters>
+            <field>Case_Brand__c</field>
+            <operation>equals</operation>
+            <value>Bertolli Sauce,Bertolli Oil,Carapelli,Carbonell,Ragu</value>
         </filters>
         <label>CEC North America 24-7 Queue Foods</label>
         <language>en_US</language>
@@ -5553,7 +5563,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Foreign_Language</fullName>
-        <booleanFilter>1 AND (2 OR 3 or 4)</booleanFilter>
+        <booleanFilter>1 AND (2 OR 3 or 4) and 5</booleanFilter>
         <columns>Country_Name__c</columns>
         <columns>Case_Brand__c</columns>
         <columns>CASES.CASE_NUMBER</columns>
@@ -5584,6 +5594,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>Case_Brand__c</field>
             <operation>equals</operation>
             <value>Unilever French</value>
+        </filters>
+        <filters>
+            <field>Country_Name__c</field>
+            <operation>notEqual</operation>
+            <value>Mexico</value>
         </filters>
         <label>CEC North America Foreign Language</label>
         <language>en_US</language>
@@ -5944,6 +5959,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Out_of_Hours_case_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>Case_Market__c</columns>
         <filterScope>Queue</filterScope>
         <label>Out of Hours case</label>
         <language>en_US</language>

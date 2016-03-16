@@ -11,6 +11,8 @@
  ------- 
  VERSION AUTHOR DATE DETAIL Description 
  1.0 Mangaoang 11/11/2015 INITIAL DEVELOPMENT Test inventory field population
+ 1.1 Barcenas  03/08/2015 Update the code to cater the Unique field setting 
+                             of Stocked Product External ID field of Stock Product
  ***********************************************************************/
 @isTest(seealldata=false)
 public class UID_StockCoverTriggerHelper_Test{
@@ -227,13 +229,14 @@ public class UID_StockCoverTriggerHelper_Test{
         List<UID_Stocked_Product__c> stockedProducts = new List<UID_Stocked_Product__c>();
         List<UID_Stocked_Product_Summary__c> stockedProductSummaries = new List<UID_Stocked_Product_Summary__c>();
         
+        //Barcenas 03/08/2015: updated the code from .AddMonths(0) to .AddMonths(i)
         for(Integer i=0; i< 200; i++) {
             UID_Stocked_Product__c stockedProduct = new UID_Stocked_Product__c();
-            stockedProduct.UID_Start_Date__c = System.today().AddMonths(0);
-            stockedProduct.UID_End_Date__c = System.today().AddMonths(0);
+            stockedProduct.UID_Start_Date__c = System.today().AddMonths(i);
+            stockedProduct.UID_End_Date__c = System.today().AddMonths(i);
             stockedProduct.UID_Distributor__c = testAccount00.Id;
             stockedProduct.UID_Stock_Cover_Calculation_Flag__c = false;
-			stockedProduct.UID_Report_Date__c = System.today().AddMonths(0);
+            stockedProduct.UID_Report_Date__c = System.today().AddMonths(i);
             
             stockedProducts.add(stockedProduct);
         }
