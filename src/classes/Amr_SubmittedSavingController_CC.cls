@@ -1,23 +1,23 @@
 public with sharing class Amr_SubmittedSavingController_CC {
-	public String savingIdFromPage{get;set;}
-	public Amr_Saving__c savObj {get;set;}
+    public String savingIdFromPage{get;set;}
+    public Amr_Saving__c savObj {get;set;}
     public Amr_Saving__c savObjNum {get;set;}
     public String adManagerNumber{get;set;}
     public boolean editedSavingMode{get;set;}
     public boolean viewSavingMode{get;set;}
-	public String saveRecordValue{get;set;}
-	public List<SelectOption> shootLocation{get;set;}
+    public String saveRecordValue{get;set;}
+    public List<SelectOption> shootLocation{get;set;}
     public List<String> selectedCountry{get;set;}
     public string userId{get;set;}
-	public Amr_Quote__c acceptedQuote{get;set;}
-	public List<Amr_Quote__c> quoteRelatedToSavingList{get;set;}
-	public String savingId {get;set;}
-	public String acceptedQuoteId{get;set;}
-	public List<FeedItem> feedItemAcceptedList{get;set;}
-	public List<FeedItem> feedItemAdditionalList {get;set;}
-	public String chosenFileId {get;set;}
-	public String jobId{get;set;}
-	//Appraisal
+    public Amr_Quote__c acceptedQuote{get;set;}
+    public List<Amr_Quote__c> quoteRelatedToSavingList{get;set;}
+    public String savingId {get;set;}
+    public String acceptedQuoteId{get;set;}
+    public List<FeedItem> feedItemAcceptedList{get;set;}
+    public List<FeedItem> feedItemAdditionalList {get;set;}
+    public String chosenFileId {get;set;}
+    public String jobId{get;set;}
+    //Appraisal
     public Integer pcTimeMangCategoryValue {get;set;}
     public Integer pcCostMangCategoryValue {get;set;}
     public Integer pcProcessMangCategoryValue {get;set;}
@@ -44,7 +44,7 @@ public with sharing class Amr_SubmittedSavingController_CC {
     public String caProcessMangCategoryClass{get;set;}
     public String caOutputQualityCategoryClass {get;set;}
     
-	 public  Document document {
+     public  Document document {
         get {
           if (document == null)
              document = new Document();
@@ -58,13 +58,13 @@ public with sharing class Amr_SubmittedSavingController_CC {
             return lstcov;
         }set;
     } 
-	public Amr_SubmittedSavingController_CC(){
-		try{
-	savingIdFromPage = ApexPages.currentPage().getParameters().get('id');
-	feedItemAcceptedList = new List <FeedItem>();
-	feedItemAdditionalList = new List <FeedItem>();
- 	if(savingIdFromPage!=null){
- 		editedSavingMode = false;
+    public Amr_SubmittedSavingController_CC(){
+        try{
+    savingIdFromPage = ApexPages.currentPage().getParameters().get('id');
+    feedItemAcceptedList = new List <FeedItem>();
+    feedItemAdditionalList = new List <FeedItem>();
+    if(savingIdFromPage!=null){
+        editedSavingMode = false;
         viewSavingMode = true;
         savObj = new Amr_Saving__c();
         savObj = [select PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
@@ -88,58 +88,58 @@ public with sharing class Amr_SubmittedSavingController_CC {
              quoteInformation();
              getFeedItemAcceptedData();
              getFeedItemAdditionalData();
-		}catch(Exception e){
-		system.debug(e.getMessage());
-		}
-	}
-	
-	public void quoteInformation(){
-		try{
-		acceptedQuote=[select Saving_Type__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Accepted_Final_Cost_props_wardrobe__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,
+        }catch(Exception e){
+        system.debug(e.getMessage());
+        }
+    }
+    
+    public void quoteInformation(){
+        try{
+        acceptedQuote=[select Saving_Type__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Accepted_Final_Cost_props_wardrobe__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,
                                            Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,PPC_Costs_Euro_Amount__c,
                                            Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,
                                            Local_Currency_of_PPC_Costs__c,Local_Amount_of_PPC__c,CA_Costs_Euro_Amount__c,
                                            CA_Additional_agency_Name__c,CA_Location__c,Is_Accepted__c,
                                            Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,PC_Costs_Euro_Amount__c,
                                            Total_Cost__c,id,Folder__c from Amr_Quote__c where Saving__c =:savingIdFromPage AND Is_Accepted__c =:true];
-	
-	quoteRelatedToSavingList = [select Saving_Type__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Accepted_Final_Cost_props_wardrobe__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,
+    
+    quoteRelatedToSavingList = [select Saving_Type__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Accepted_Final_Cost_props_wardrobe__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,
                                            Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,PPC_Costs_Euro_Amount__c,
                                            Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,
                                            Local_Currency_of_PPC_Costs__c,Local_Amount_of_PPC__c,CA_Costs_Euro_Amount__c,
                                            CA_Additional_agency_Name__c,CA_Location__c,Is_Accepted__c,
                                            Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,PC_Costs_Euro_Amount__c,
                                            Total_Cost__c,id,Folder__c from Amr_Quote__c where Saving__c =:savingIdFromPage AND Is_Accepted__c =:false ORDER BY Quote_Number__c]; 
-	}catch(Exception e){
-		system.debug(e.getMessage());
-		}
-	}
-	
-	public PageReference edit(){
-		try{
-		 if(saveRecordValue !=null){
+    }catch(Exception e){
+        system.debug(e.getMessage());
+        }
+    }
+    
+    public PageReference edit(){
+        try{
+         if(saveRecordValue !=null){
         editedSavingMode = true;
-    	viewSavingMode = false;
+        viewSavingMode = false;
           system.debug('editedSavingMode !!'+editedSavingMode );
         }
         }catch(Exception e){
-		system.debug(e.getMessage());
-		}
+        system.debug(e.getMessage());
+        }
          return null;
-	}
-	
-	public PageReference saveData(){
-		
-	return null;
-	}
-	
-	public PageReference uploadAcceptedData(){
-		try{
-	system.debug('acceptedQuoteId!!'+acceptedQuoteId);
-	if(acceptedQuoteId!=null){
-	
-		 if(document.body!=null){
-   		
+    }
+    
+    public PageReference saveData(){
+        
+    return null;
+    }
+    
+    public PageReference uploadAcceptedData(){
+        try{
+    system.debug('acceptedQuoteId!!'+acceptedQuoteId);
+    if(acceptedQuoteId!=null){
+    
+         if(document.body!=null){
+        
             system.debug(document+'--------document Body'+document.body );        
             FeedItem FI = new FeedItem();
             FI.ParentId = acceptedQuoteId;
@@ -148,48 +148,48 @@ public with sharing class Amr_SubmittedSavingController_CC {
           
             FI.ContentFileName = document.Name;
             insert FI;
- 			system.debug('FI!!'+FI);
+            system.debug('FI!!'+FI);
             document = new document();
         }else{
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please select document'));
         }
-	}
-	getFeedItemAcceptedData();
-	}catch(Exception e){
-		system.debug(e.getMessage());
-	}
-	return null;
-	}
-	
-	public void getFeedItemAcceptedData(){
-		try{
-		feedItemAcceptedList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
+    }
+    getFeedItemAcceptedData();
+    }catch(Exception e){
+        system.debug(e.getMessage());
+    }
+    return null;
+    }
+    
+    public void getFeedItemAcceptedData(){
+        try{
+        feedItemAcceptedList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
                                           FROM FeedItem where ParentId =:acceptedQuote.Id];
         system.debug('feedItemAcceptedList!!'+feedItemAcceptedList);
-		}catch(Exception e){
-		system.debug(e.getMessage());
-		}	
-	}
-	
-	public PageReference deleteFile(){
-		try{
-		system.debug('chosenFileId!!'+chosenFileId);
-		FeedItem feedItemObj = [select id from FeedItem where id=:chosenFileId limit 1];
-		delete feedItemObj;
-		getFeedItemAcceptedData();	
-		}catch(Exception e){
-		system.debug(e.getMessage());
-		}
-	return null;
-	}
-	
-	public PageReference uploadAdditionalData(){
-		try{
-	system.debug('savingId!!'+savingId);
-	if(savingId!=null){
-	
-		 if(document.body!=null){
-   		
+        }catch(Exception e){
+        system.debug(e.getMessage());
+        }   
+    }
+    
+    public PageReference deleteFile(){
+        try{
+        system.debug('chosenFileId!!'+chosenFileId);
+        FeedItem feedItemObj = [select id from FeedItem where id=:chosenFileId limit 1];
+        delete feedItemObj;
+        getFeedItemAcceptedData();  
+        }catch(Exception e){
+        system.debug(e.getMessage());
+        }
+    return null;
+    }
+    
+    public PageReference uploadAdditionalData(){
+        try{
+    system.debug('savingId!!'+savingId);
+    if(savingId!=null){
+    
+         if(document.body!=null){
+        
             system.debug(document+'--------document Body'+document.body );        
             FeedItem FI = new FeedItem();
             FI.ParentId = savingId;
@@ -198,54 +198,54 @@ public with sharing class Amr_SubmittedSavingController_CC {
           
             FI.ContentFileName = document.Name;
             insert FI;
- 			system.debug('FI!!'+FI);
+            system.debug('FI!!'+FI);
             document = new document();
         }else{
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please select document'));
         }
-	}
-	getFeedItemAdditionalData();
-	}catch(Exception e){
-		system.debug(e.getMessage());
-	}
-	return null;
-	}
-	
-	public void getFeedItemAdditionalData(){
-		try{
-		feedItemAdditionalList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
+    }
+    getFeedItemAdditionalData();
+    }catch(Exception e){
+        system.debug(e.getMessage());
+    }
+    return null;
+    }
+    
+    public void getFeedItemAdditionalData(){
+        try{
+        feedItemAdditionalList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
                                           FROM FeedItem where ParentId =:savingIdFromPage];
         system.debug('feedItemAdditionalList!!'+feedItemAdditionalList);
-	}catch(Exception e){
-		system.debug(e.getMessage());
-	}	
-	}
-	
-	public PageReference deleteOtherFile(){
-		try{
-		system.debug('chosenFileId!!'+chosenFileId);
-		FeedItem feedItemObj = [select id from FeedItem where id=:chosenFileId limit 1];
-		delete feedItemObj;
-	getFeedItemAdditionalData();	
-	}catch(Exception e){
-		system.debug(e.getMessage());
-	}
-	return null;
-	}
-	
-	public PageReference deleteSaving(){
-		try{
-		delete savObj;
-		pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobId);
+    }catch(Exception e){
+        system.debug(e.getMessage());
+    }   
+    }
+    
+    public PageReference deleteOtherFile(){
+        try{
+        system.debug('chosenFileId!!'+chosenFileId);
+        FeedItem feedItemObj = [select id from FeedItem where id=:chosenFileId limit 1];
+        delete feedItemObj;
+    getFeedItemAdditionalData();    
+    }catch(Exception e){
+        system.debug(e.getMessage());
+    }
+    return null;
+    }
+    
+    public PageReference deleteSaving(){
+        try{
+        delete savObj;
+        pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobId);
         page.setRedirect(true); 
         return page ;
         }catch(Exception e){
-		system.debug(e.getMessage());
-		}
-	return null;	
-	}
-	
-	 public void getCaProcessMangCategory(){
+        system.debug(e.getMessage());
+        }
+    return null;    
+    }
+    
+     public void getCaProcessMangCategory(){
     system.debug('here');
     }
     
@@ -257,7 +257,7 @@ Returns:
 ************************************************************************************************************************************/    
     public PageReference SubmitWholeSaving(){
         try{
-        	if(selectedCountry.size()>0){ 
+            if(selectedCountry.size()>0){ 
         if(savObj.Shoot_Location__c != null){
             savObj.Shoot_Location__c = null;
         }
@@ -272,26 +272,26 @@ Returns:
          
     }
     Boolean testSuccess;
-	update savObj;
-	system.debug('savObj!!'+savObj);
-	update acceptedQuote;
-	system.debug('acceptedQuote!!'+acceptedQuote);
-	update quoteRelatedToSavingList;
-	system.debug('quoteRelatedToSavingList!!'+quoteRelatedToSavingList);
-	
+    update savObj;
+    system.debug('savObj!!'+savObj);
+    update acceptedQuote;
+    system.debug('acceptedQuote!!'+acceptedQuote);
+    update quoteRelatedToSavingList;
+    system.debug('quoteRelatedToSavingList!!'+quoteRelatedToSavingList);
+    
         AllValues();
         
         if(feedItemAcceptedList.size()<1 && feedItemAdditionalList.size()<1){
         ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.Error,'Please attach documents'));
         return null;
         }else{
-        	testSuccess=true;
+            testSuccess=true;
         pagereference page = new PageReference('/apex/Amr_SubmittedSavingPage?id='+savingIdFromPage);
         page.setRedirect(true); 
         return page ;
         }
-        if(testSuccess == true){
-        	system.debug('inside success!!');
+        if(testSuccess){
+            system.debug('inside success!!');
         ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,'Saving updated successfully'));
         return null;
         }
@@ -551,5 +551,5 @@ Returns:
         }
        return null;
     }
-	
+    
 }

@@ -1,4 +1,5 @@
 <apex:page controller="Amr_JobSheetController_CC" sidebar="false" id="pageId" tabStyle="{!IF(strTabName<>null,strTabName,'RAP_Jobs_Portfolio__tab')}" docType="html-5.0">
+    
     <apex:include pageName="amr_common" />
     <apex:includeScript value="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/js/production-activity.js')}"/>
     <script type="text/javascript">
@@ -78,9 +79,15 @@
             });
              $j('.cancel-alert-popup').click(function(e){
                e.preventDefault();
-               $j("div").remove('.mask');
                $j('.alert-popup').hide();
+               $j("div").remove('.mask');
            }); 
+           
+           $j('.cancel-status-popup').click(function(e){
+               e.preventDefault();
+               $j('.change-status-popup').hide();
+               $j("div").remove('.mask');
+           });
            
            
            var strArr = {!CategoryList};
@@ -116,17 +123,46 @@
             
            var stringArray = JSON.parse('{!MethodToPassProjectNames}');
            var newOption;
-           
-          
-          // alert(stringArray.length);
-            for(var i=0;i<stringArray.length;i++){
-            //console.log(stringArray);
-               
+          /*  for(var i=0;i<stringArray.length;i++){
                 newOption = $j('<option value="'+stringArray[i]+'">'+stringArray[i]+'</option>');
-                // alert(newOption);
                  $j('#projectList').append(newOption);
-            }
-              // console.log('options'+newOption );
+            }*/
+             //alert('{!projectNameFromPage}');
+             var projFormPage = '{!projectNameFromPage}';
+            
+           if(projFormPage.length === 0 || projFormPage == null || projFormPage == ''){
+                var none = $j('<option value="none">--None--</option>');
+                $j('#projectList').append(none); 
+            //  alert('inside if');
+                for(var i=0;i<stringArray.length;i++){ 
+                    if(stringArray[i] == '--None--'){
+                        i = i+1;
+                    }else{
+                         newOption = $j('<option value="'+stringArray[i]+'">'+stringArray[i]+'</option>');
+                         $j('#projectList').append(newOption); 
+                    }                   
+                 } 
+           }else{
+         //  alert('inside else');
+                for(var i=0;i<stringArray.length;i++){  
+                   
+                    if('{!projectNameFromPage}' == stringArray[i] && '{!projectNameFromPage}' !== null){
+                       newOption = $j('<option value="'+stringArray[i]+'">'+stringArray[i]+'</option>');
+                       $j('#projectList').append(newOption);                   
+                    }  
+                 }        
+                 for(var i=0;i<stringArray.length;i++){ 
+                     
+                    if('{!projectNameFromPage}' == stringArray[i]){
+                        i = i+1;
+                    }
+                    
+                    newOption = $j('<option value="'+stringArray[i]+'">'+stringArray[i]+'</option>');                
+                    $j('#projectList').append(newOption);
+                 }  
+         
+           
+           }  
               
                // Agency logic
                   var agencyFlag      = true;     
@@ -186,6 +222,8 @@
 
                      }
                 });
+                
+                $j(".reallocatepopupstatus select option[value='Pending']").remove();
            
         });
         
@@ -203,6 +241,8 @@
             
         $j('.projecttextProjDetail').attr('value', projName);
         //   alert('Hi---'+$j('.projecttextProjDetail').val());
+          }else{
+          $j('.projecttextProjDetail').val('');
           } 
             
         }
@@ -629,32 +669,79 @@
                 table-layout:fixed !important;
             }
             /**/
+            .rich-tab-active {
+                background: #AC4FC6 !important;
+                border-radius: 0 40px 0 0 !important 
+            }
+            .rich-tab-bottom-line {
+                background:#FFFFFF;
+            }                        
+            .commonbtn-modified {
+                background: #2C99CE none repeat scroll 0 0 !important;
+                border: medium none !important;
+                border-radius: 6px !important;
+                color: #FFFFFF !important;
+                font-family: "dinOffProBold",sans-serif !important;
+                font-size: 14px !important;
+                font-weight: bold;
+                padding: 6px 22px !important;
+            } 
+            .subheader-quotes {
+                color: #2C99CE;
+                margin-bottom:20px;
+                font-size: 14px;
+            }
+            
+            .rich-tab-active {
+            background: #AC4FC6 !important;
+            border-radius: 0 40px 0 0 !important;
+            border-image-slice: 0 100% 0 0;
+		    border-image-source: url("/resource/1458112864000/Amr_static_resources/Amr-static-resource/images/Img_TabWhite.png") !important;
+		    border-image-width: 0 10px 0 0 !important;
+		    border-image-outset: 0 10px 0 10px !important;
+             
+            }
+            
+            .rich-tab-inactive {
+            border-image-slice: 0 100% 0 0 !important;
+		    border-image-source: url("/resource/1458112864000/Amr_static_resources/Amr-static-resource/images/Img_TabPurple.png") !important;
+		    border-image-width: 0 10px 0 0 !important;
+		    border-image-outset: 0 10px 0 10px !important;
+             
+            }
+            .rich-tabhdr-side-cell table {
+            	margin-right: 10px;
+            	background:#FFFFFF !important;
+            }            
     </style>
     <apex:include pageName="amr_common_header" />
-       <div class="mask" style="display:{!if(jobList.AdManagerText__c != null,'none','')}"></div>
+     <div class="mask" style="display:{!if(jobList.AdManagerText__c != null,'none','')}"></div>  
     <apex:pagemessages id="msgs"></apex:pagemessages>
     <!---Ad Main section---->
     
     <div class="container">
-   
+        
+        <div class="absolute padding10-10-0-0 pointer" id="showAlertPopup" style="right:25px;top:270px;display:{!IF(strTabName<>null,'none','')}">                  
+            <div class="left bold bell-text-label">
+                {!totalAlertCount}
+            </div>
+            <div class="left">
+                <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_alert.png')}" alt="alert"/>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        
+        
         <div class="outer_section">
-            <div class="title">
+            <div class="title absolute" style="left:140px;top:45px;">
                 <div class="title-header-breadcrumb left">
                  <!--   <a href="/apex/am_CAPJobportfolio2" >Job Portfolio</a> > -->
                      <apex:form >
                     <apex:commandLink action="{!getPage}" value="Job Portfolio"/>&nbsp;&gt;&nbsp;<span class="arrow-after">{!jobList.AdManagerText__c}</span>
                      </apex:form>
                 </div>
-                <div class="right padding10-10-0-0 pointer" id="showAlertPopup" style="display:{!IF(strTabName<>null,'none','')}">                  
-                    <div class="left bold bell-text-label">
-                        {!totalAlertCount}
-                    </div>
-                    <div class="left">
-                        <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_alert.png')}" alt="alert"/>
-                    </div>
-                    <div class="clear">
-                    </div>
-                </div>
+                
                 <div class="clear">             
                 </div>
             </div>
@@ -779,23 +866,23 @@
         <!-- End of CAP section -->
         
         <!-- Start of RAP section -->
-        <div id="rapDivNew" style="display:{!IF(permissionSetName != 'RAP' , 'None', '')}">
+        <div id="rapDivNew" style="position: absolute; right: 100px; top: 280px; width: 45%;display:{!IF(permissionSetName != 'RAP' , 'None', '')}">
             <div>
-                <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
-                    <apex:commandButton styleClass="commonbtn left margin-right12" value="Accept" action="{!acceptJob}" />
+                <div style="display:{!IF( jobStatus == 'Accepted', '', 'None')}">                              
+                    <apex:commandButton styleClass="show-change-status-popup commonbtn-modified right" value="Set status"/>
                 </div>
-                <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
-                    <apex:commandButton styleClass="show-allocate-popup commonbtn left margin-right12"  value="Re-allocate" />
-                </div>                                                 
-                <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
-                    <apex:commandButton styleClass="commonbtn left margin-right12" value="Cancel Job" action="{!cancelRapJob}" onclick="return confirm('Are you sure you want to cancel this job?')"/>
-                </div>              
                 <div style="display:{!IF( jobStatus == 'Accepted', '', 'None')}" >                              
-                    <apex:commandButton styleClass="show-all-detail-button commonbtn left margin-right12" value="Job Allocation"/>
+                    <apex:commandButton styleClass="show-all-detail-button commonbtn-modified right margin-right12" value="Job Allocation"/>
                 </div>
-                 <div style="display:{!IF( jobStatus == 'Accepted', '', 'None')}">                              
-                    <apex:commandButton styleClass="show-change-status-popup commonbtn left" value="Set status"/>
+                <div>    <!-- style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}" -->
+                    <apex:commandButton styleClass="commonbtn-modified right margin-right12" value="Cancel Job" action="{!cancelRapJob}" onclick="return confirm('Are you sure you want to cancel this job?')"/>
                 </div>
+                <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
+                    <apex:commandButton styleClass="show-allocate-popup commonbtn-modified right margin-right12"  value="Re-allocate" />
+                </div>
+                <div style="display:{!IF(jobStatus == 'Accepted' || jobCancelled  , 'None', '')}">
+                    <apex:commandButton styleClass="commonbtn-modified right margin-right12" value="Accept" action="{!acceptJob}" />
+                </div>                
                 <div class="clear">
                 </div>
             </div>
@@ -865,10 +952,10 @@
                             </div>                            
                         </div>
                         <div class="margin-btwn-inner-container">
-                            <div style="display:{!if( jobStatus != 'Accepted', 'None', if(sharedListSize  == 0,'none', '') )}">
+                            <div style="display:{!if( jobStatus != 'Accepted', 'None', if(sharedListSize  == 0 ,'none', '') )}">    <!--  -->
                                 Shared With
                             </div>
-                            <div style="display:{!if( jobStatus != 'Accepted', 'None', if(sharedListSize  == 0,'none', '') )}">                                
+                          <div style="display:{!if( jobStatus != 'Accepted', 'None', if(sharedListSize  == 0 ,'none', '') )}">          <!-- -->                      
                                 <div class="width:100%">
                                     <apex:repeat value="{!jobSharedList}" var="jbList">
                                         <div class="left bg-g1 relative share-absolute">
@@ -913,10 +1000,10 @@
                         -->
                         <div class="right">
                             <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!reAllocateSecRAP}" value="Apply" />
-                        </div>
+                        </div> <!--
                         <div class="right margin-right20">
                             <apex:commandButton styleClass="cancel-all-popup commonbtn"  value="Cancel" />
-                        </div>                        
+                        </div>   -->                     
                         <div class="clear">                         
                         </div>
                     </div>
@@ -949,7 +1036,7 @@
                 Set status
             </div>
             <div class="right popup-close">                                
-                <apex:commandLink styleClass="cancel-alert-popup"  >
+                <apex:commandLink styleClass="cancel-status-popup"  >
                     <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_ClosePopup.png')}" alt="close pop up"/>
                 </apex:commandLink>
             </div>
@@ -966,10 +1053,10 @@
         <div>             
              <div class="right">
                  <apex:commandButton styleClass="rellocate-apply commonbtn-blue" action="{!changePriority}" value="Apply" />
-             </div>                             
+             </div>   <!--                          
              <div class="right margin-right20">
                 <apex:commandButton styleClass="cancel-change-status-popup commonbtn"  value="Cancel"/>
-            </div>
+            </div> -->
             <div class="clear">                         
              </div>                           
         </div>
@@ -993,7 +1080,7 @@
                         <div class="inner_sub2_section">
                             <div class="jobsection jobsection-id">
                             <span style="font-weight:bold;">Date Logged:</span>&nbsp;
-                            <apex:outputText value="{0,date,MM/dd/yy}">
+                            <apex:outputText value="{0,date,dd/MM/yy}">
                                    <apex:param value="{!jobList.CreatedDate}" />
                            </apex:outputText><br/><br/>
                            
@@ -1013,6 +1100,8 @@
                                 <div class="dropdown cmi_class">
                                     <!--  <apex:inputField value="{!joblist.Check_With_CMI__c}" /> -->
                                     <div class="left width252 radio-label">
+                                    
+                                     <apex:outputlabel value="{!CheckWithCMI}" rendered="{!CheckWithCMIflag}" style="color:Red"/> 
                                         <apex:selectRadio value="{!joblist.Check_With_CMI__c}" styleClass="radio-label">
                                             <apex:selectOption itemValue="Yes" itemLabel="Yes " />
                                             <apex:selectOption itemValue="No" itemLabel="No " />
@@ -1030,6 +1119,7 @@
                                     <h4>Uniliver information</h4>
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!yourEmailAddressFlag}" style="color:Red"/> 
                                     <apex:outputLabel >
                                         Your Email Address
                                         <strong></strong>
@@ -1053,6 +1143,7 @@
                                 <div class="clear">                  
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                  <apex:outputlabel value="{!CheckWithCMI}" rendered="{!projectLeaderCountryClusterFlag}" style="color:Red"/> 
                                     <apex:outputLabel >
                                         Location of Unilever project leader
                                         <strong></strong>
@@ -1068,6 +1159,7 @@
                                 <div class="clear">                  
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!unileverFinanceMemberEmailFlag}" style="color:Red"/> 
                                     <apex:outputLabel >
                                         Unilever finance member email
                                         <strong></strong>
@@ -1080,6 +1172,7 @@
                                 <div class="clear">                  
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                   <apex:outputlabel value="{!CheckWithCMI}" rendered="{!finalApproverMaterialEmailFlag}" style="color:Red"/> 
                                     <apex:outputLabel >
                                         Final approver of material email                     
                                     <strong></strong>
@@ -1092,6 +1185,7 @@
                                 <div class="clear">                  
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                <apex:outputlabel value="{!CheckWithCMI}" rendered="{!functionYouArePartFlag}" style="color:Red"/> 
                                     <apex:outputLabel >
                                         Which function are you part of (BD/BB/Other)
                                     <strong></strong>
@@ -1104,6 +1198,7 @@
                                 <div class="clear">                  
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetResponsibilityFlag}" style="color:Red"/> 
                                     <apex:outputLabel >
                                         Budget responsibility (BD, BB, Other)
                                     <strong></strong>
@@ -1117,25 +1212,28 @@
                                 </div>
                                 <div class="form-field2 padding-qm">
                                     <apex:outputLabel >
-                                        Budget allocated for this activity (enter all digits)
+                                        Budget allocated for this activity (enter full amount)
                                     <strong></strong>
                                     <div title="{!$ObjectType.Amr_Job_Details__c.fields.Allocated_Budget_euro__c.inlineHelpText}"></div>
                                     </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
+                                <apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetAllocatedCountryFlag}" style="color:Red"/> 
                                     <apex:selectList value="{!selectedCountry }" size="1" id="selectedId" onchange="Calculate()" styleClass="selectedIdClass">
                                         <apex:selectOptions value="{!currencyRecords }" />
                                     </apex:selectList>
                                 </div>
                                 <div class="form-field2 widthautocomp">
-                                    <apex:inputField value="{!joblist.Budget_Allocated_Input_Value__c}" styleClass="inputIdClass" onkeypress="return isNumber(event)" onkeyup="Calculate()" />
+                                <apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetAllocatedInputFlag}" style="color:Red"/> 
+                                    <apex:inputField value="{!joblist.Budget_Allocated_Input_Value__c}" styleClass="inputIdClass" onkeypress="return isNumber(event)" onkeyup="Calculate()" html-placeholder="Local Currency( Example 123456.00)"/>
                                 </div>
                                 <div class="form-field2 widthautocomp">
-                                    <apex:inputField value="{!joblist.Allocated_Budget_euro__c}" styleClass="outputIdClass"/>
+                                    <apex:inputField value="{!joblist.Allocated_Budget_euro__c}" styleClass="outputIdClass" html-placeholder="Auto Calc to Euros"/>
                                 </div>
                                 <div class="clear">                  
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!if(categoryNameFlag || brandPosNameFlag || brandNameFromPageFlag,true,false)}" style="color:Red"/> 
                                     <apex:outputLabel >
                                         Category > Brand Positioning > Brand
                                     <strong></strong>
@@ -1191,6 +1289,7 @@
                                     <h4>Agency Information</h4>
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!leadAgencyFlag}" style="color:Red"/>
                                     <apex:outputLabel >
                                         Lead Agency Name
                                     <strong></strong>
@@ -1208,6 +1307,7 @@
                                 <div class='clear'>
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                   <apex:outputlabel value="{!CheckWithCMI}" rendered="{!LeadAgencyClusterFlag}"  style="color:Red"/>
                                     <apex:outputLabel >
                                         Lead Agency Location
                                     <strong></strong>
@@ -1223,6 +1323,7 @@
                                 <div class='clear'>
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                   <apex:outputlabel value="{!CheckWithCMI}" rendered="{!AgencyDirectorEmailFlag}" style="color:Red"/> 
                                     <apex:outputLabel >
                                         Agency contact or account director email
                                     <strong></strong>
@@ -1260,6 +1361,7 @@
                                     <h4>Overview of Project</h4>
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                <apex:outputlabel value="{!CheckWithCMI}" rendered="{!projectDetailsFlag}" style="color:Red"/> 
                                     <apex:outputLabel >
                                         Project name (e.g. Apollo)    
                                         <div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Details__c.inlineHelpText}"></div>
@@ -1278,7 +1380,7 @@
                                 </div>
                                 <div class="clear">
                                 </div>
-                                <div class="form-field2 padding-qm">
+                                <!--<div class="form-field2 padding-qm">
                                     <apex:outputLabel >
                                         Project Location
                                     <strong></strong>
@@ -1290,10 +1392,11 @@
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Project_Location_Country__c}" />
-                                </div>
+                                </div>  -->
                                 <div class="clear">
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                <apex:outputlabel value="{!CheckWithCMI}" rendered="{!BrodcastMarketFlag}" style="color:Red"/>
                                     <apex:outputLabel >
                                         Broadcast Market
                                     <strong></strong>
@@ -1306,6 +1409,7 @@
                                 <div class="clear">
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!productionActivityTypeFlag}" style="color:Red"/>
                                     <apex:outputLabel >
                                         What type of activity will this production support?
                                     <strong></strong>
@@ -1318,6 +1422,7 @@
                                 <div class="clear">
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                   <apex:outputlabel value="{!CheckWithCMI}" rendered="{!ProjectDescriptionFlag}" style="color:Red"/> 
                                     <apex:outputLabel >
                                         Project Description
                                     <strong></strong>
@@ -1330,6 +1435,7 @@
                                 <div class="clear">
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!CampaignNameFlag}" style="color:Red"/> 
                                     <apex:outputLabel >
                                         Campaign name (e.g. Nothing beats an astronaut) if known
                                     <strong></strong>
@@ -1342,6 +1448,8 @@
                                 <div class="clear">
                                 </div>
                                 <div class="form-field2 padding-qm">
+                        
+                                <apex:outputlabel value="{!CheckWithCMI}" rendered="{!ExecutionNameFlag}" style="color:Red"/> 
                                     <apex:outputLabel >
                                         Execution name (e.g. Lifeguard or Fireman) if known 
                                     <strong></strong>
@@ -1354,6 +1462,7 @@
                                 <div class="clear">
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                     <apex:outputlabel value="{!CheckWithCMI}" rendered="{!TargetAirDateFlag}" style="color:Red"/>
                                     <apex:outputLabel >
                                         Target air date (i.e. when will material be released)
                                     <strong></strong>
@@ -1996,6 +2105,7 @@
                                 </div>
                     
                                 <div class="form-field2 padding-qm">
+                                     <apex:outputlabel value="{!CheckWithCMI}" rendered="{!RequireMusicFlag}" style="color:Red"/> 
                                     <apex:outputLabel style="padding:0;">Do you anticipate that your production will require Music?
                                     <strong style="top:-6px;"></strong>
                                     </apex:outputLabel>
@@ -2009,6 +2119,7 @@
                                 <div class="clear">
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!RequireTalentFlag}" style="color:Red"/> 
                                     <apex:outputLabel style="padding:0;">Do you anticipate that your production will require Celebrity Talent?
                                     <strong style="top:-6px;"></strong></apex:outputLabel>
                                 </div>
@@ -2021,6 +2132,7 @@
                                 <div class="clear">
                                 </div>
                                 <div class="form-field2 padding-qm">
+                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!StageProductionActivity}" style="color:Red"/>
                                     <apex:outputLabel >Current stage of your production activity
                                     <strong style="right:-12px;"></strong>
                                     <div title="If your registation is across multiple Production Activity types then please select based on the timing of the 1st activity.  If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cutdown, Re-edit) your timing selection is based on the individual activity NOT based on if the master has been previously aired."></div>
@@ -2044,7 +2156,7 @@
         </div>
     </div>
     <div class="main_inner_section margin-btwn-container12 bg-g1">
-        <h4 class="main_inner_sectionh4" hashId="notes">
+        <h4 class="main_inner_sectionh4" hashId="notes" style="background:#27AB85;">
             Notes
             <div data-id="job_notes" class="commonall openclass">                                       
             </div>
@@ -2073,7 +2185,7 @@
         </div>
     </div>
     <div class="main_inner_section margin-btwn-container12 bg-g1">
-        <h4 class="main_inner_sectionh4" hashId="creative-docs">
+        <h4 class="main_inner_sectionh4" hashId="creative-docs" style="background:#F1B22E;">
             Creative Docs
             <div data-id="job_creative_docs" class="commonall openclass">                                       
             </div>
@@ -2155,20 +2267,26 @@
             </div>
         </div>
     </div>            
-            <div class="main_inner_section margin-btwn-container bg-g1">
-                <h4 class="main_inner_sectionh4" hashId="saving-details">
+            <div class="main_inner_section margin-btwn-container bg-w8"> <!-- bg-g1 -->
+                <h4 class="main_inner_sectionh4" hashId="saving-details" style="background:#AC4FC6;">
                     Saving Details
-                    <div data-id="job_saving_details" class="commonall openclass">                                      
+                    <div data-id="job_saving_details" class="commonall foldclass">                                      
                     </div>
                 </h4>
                 
-                <div class="submain_inner_section job_saving_details hide">
+                <div class="submain_inner_section job_saving_details">
                     <div class="inner_section">
                         <div class="tabsection">
                             <apex:tabPanel switchType="client" >
                                 <apex:tab label="Savings" name="savings" id="saving_input"> <!-- rerender="refreshCTP" -->
-                                       <apex:outputPanel id="refreshCTP">
+                                       <apex:outputPanel rendered="{!$User.FirstName =='Bhupendra111'}">
+                                            <apex:include pageName="Amr_NewSaving"/>
+                                       </apex:outputPanel>
+                                       <apex:outputPanel rendered="{!$User.FirstName =='Bhupendra111'}">
                                             <apex:include pageName="Amr_NewSavingPage"/>
+                                       </apex:outputPanel>
+                                       <apex:outputPanel id="refreshCTP">
+                                            <apex:include pageName="Amr_NewSavingPage2"/>
                                        </apex:outputPanel>
                                 </apex:tab>
                                 <apex:tab label="Submitted Savings" name="saving_submitted" id="saving_submitted" >

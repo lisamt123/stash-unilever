@@ -211,9 +211,7 @@
                         Search &amp; Filter
                     </div>
                     <div class="leftbar-container-content margin12 padding12 bg-w8">
-                    <div class="right margin-right12">
-                            <apex:commandLink styleClass="" value="Clear Filter" onclick="this.form.reset();return false;" />
-                            </div>
+
                         <div class="inputpanel"> <!--
                             <div class="left inputpanel-first">
                                 AdManager number
@@ -239,7 +237,7 @@
                             
                             </div>
                             <div style="display:none;width:30px;border:none;margin-bottom:5px;" class="loading">
-                            <img src="/img/loading.gif" />  
+                            <img src="/img/loading.gif" alt = "loading image"/>  
                             </div>
                             <div class="clear">
                             </div>
@@ -255,7 +253,7 @@
                                 </apex:selectList>
                                 <apex:actionstatus id="actStatusId1">
                             <apex:facet name="start" >
-                                <img src="/img/loading.gif" />                    
+                                <img src="/img/loading.gif"  alt = "loading image"/>                    
                             </apex:facet>
                         </apex:actionstatus>
                             </div>
@@ -318,20 +316,21 @@
                             <div class="left inputclass bold padding-top10">
                                 <a class = "advance-popup" href="#">Advanced Search</a>
                             </div> -->
+                            <div class="left inputclass bold padding-top10">
+                                        <a class = "advance-popup" href="#">Advanced Search</a>
+                                    </div>
                             <div class="right">
                                 <apex:commandButton styleClass="commonbtn-blue" value="Apply" action="{!getJobSearchDetails}" reRender="listRefresh,lstcancelid" status="actionStatusSearchFilter"></apex:commandButton>
                                 <apex:actionStatus id="actionStatusSearchFilter" >
                                     <apex:facet name="start" >
-                                        <img src="/img/loading.gif" />                    
+                                        <img src="/img/loading.gif" alt = "loading image"/>                    
                                     </apex:facet>
                                 </apex:actionStatus>
-                                    <div class="left inputclass bold padding-top10">
-                                        <a class = "advance-popup" href="#">Advanced Search</a>
-                                    </div>
-                            </div> <!--
+                                    
+                            </div> 
                              <div class="right margin-right12">
-                                <apex:commandButton styleClass="commonbtn" value="Clear" onclick="this.form.reset();return false;" />
-                            </div>  -->
+                                <apex:commandButton styleClass="commonbtn" value="Clear" action="{!clearJob}" />
+                            </div>  
                             
                             <div class="clear">
                             </div>
@@ -534,7 +533,7 @@
                                         </apex:selectList>
                                         <apex:actionStatus id="actionStatusJobsSorting" >
                                             <apex:facet name="start" >
-                                                <img src="/img/loading.gif" />                    
+                                                <img src="/img/loading.gif" alt = "loading image"/>                    
                                             </apex:facet>
                                         </apex:actionStatus>
                                     </apex:outputPanel>
@@ -623,10 +622,10 @@
                                                     </div>
                                                 </apex:outputText>                                          
                                             </apex:column>
-                                            <apex:column headerValue="Production activity type" title="{!job.AM_Job_Detail__r.Production_Activity_Type__c}">
+                                            <apex:column headerValue="Production activity type" title="{!job.AM_Job_Detail__r.ProductionActivityTextArea__c}">
                                                 <apex:outputText >
                                                     <div class="td-overflow width40">                                                                                                                                                                                                                                                          
-                                                        {!job.AM_Job_Detail__r.Production_Activity_Type__c}
+                                                        {!job.AM_Job_Detail__r.ProductionActivityTextArea__c}
                                                     </div>
                                                 </apex:outputText>
                                             </apex:column>
@@ -648,7 +647,7 @@
                                         </div>                                        
                                         <!-- <apex:actionStatus id="actStatusId3" >
                                             <apex:facet name="start" >
-                                              <img src="/img/loading.gif" />                    
+                                              <img src="/img/loading.gif" alt = "loading image"/>                    
                                             </apex:facet>
                                             </apex:actionStatus>  -->
                                     </apex:pageBlockSection>
@@ -661,7 +660,7 @@
                                      <!--  <apex:outputPanel styleClass="pagination"> -->
                                          <apex:actionStatus id="actStatusId3" >
                                              <apex:facet name="start" >
-                                                 <img src="/img/loading.gif" />                    
+                                                 <img src="/img/loading.gif" alt = "loading image"/>                    
                                              </apex:facet>
                                          </apex:actionStatus>
                                          <apex:commandButton value="<<" action="{!beginningForActiveJobs}" status="actStatusId3" disabled="{!DisablePreviousForActiveJobs}"  reRender="joblist_pageblock,joblistpagination,scriptRefresh"/>
@@ -707,7 +706,7 @@
                                             </apex:selectList>
                                             <apex:actionStatus id="actionStatusCancelSorting" >
                                                 <apex:facet name="start" >
-                                                    <img src="/img/loading.gif" />                    
+                                                    <img src="/img/loading.gif" alt = "loading image"/>                    
                                                 </apex:facet>
                                             </apex:actionStatus>
                                         </apex:outputPanel>
@@ -812,10 +811,10 @@
                                                     </apex:outputText>
                                                 
                                                 </apex:column>
-                                                <apex:column headerValue="Production activity type">
+                                                <apex:column headerValue="Production activity type" title="{!job.sObjRec.AM_Job_Detail__r.ProductionActivityTextArea__c}">
                                                     <apex:outputText >
                                                         <div class="td-overflow width40">                                                                                                                                                                                                                                                          
-                                                            {!job.sObjRec.AM_Job_Detail__r.Production_Activity_Type__c}
+                                                            {!job.sObjRec.AM_Job_Detail__r.ProductionActivityTextArea__c}
                                                         </div>
                                                     </apex:outputText>
                                                 </apex:column>
@@ -840,7 +839,7 @@
                                         <apex:outputPanel styleClass="pagination" >
                                             <apex:actionStatus id="actStatusId4" >
                                                 <apex:facet name="start" >
-                                                    <img src="/img/loading.gif" />                    
+                                                    <img src="/img/loading.gif" alt = "loading image" />                    
                                                 </apex:facet>
                                             </apex:actionStatus>
                                             <apex:commandButton value="<<" action="{!beginningForCancelJobs}" disabled="{!DisablePreviousForCancelJobs}"  reRender="cancelled_joblist_pageblock,scriptRefresh" status="actStatusId4"/>

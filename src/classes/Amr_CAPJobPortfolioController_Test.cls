@@ -40,7 +40,7 @@ public class Amr_CAPJobPortfolioController_Test{
         jobPortFolio.brandPos=brandPos.Id;
         jobPortFolio.brandName=brand.Id;
         jobPortFolio.getCategoryList();
-        jobPortFolio.getBrandPositioningList();
+        jobPortFolio.brandPositionListData();
         jobPortFolio.getBrandList();
         jobPortFolio.getUserList();
         jobPortFolio.getSortOptions();

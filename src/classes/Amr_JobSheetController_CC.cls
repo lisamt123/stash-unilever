@@ -1044,14 +1044,14 @@ public String docUploaded{get;set;}
          selectedCountry = currencyFinalString;
         }
         system.debug('===>project===>'+jobList.Project_Details__c);
-       	 if(jobList.Project_Details__c!=null){
+         if(jobList.Project_Details__c!=null){
               Amr_Project_Details__c projectObj = [select id,name from Amr_Project_Details__c where id = :jobList.Project_Details__c ];
               projectNameFromPage = projectObj.name;
               system.debug('project name====>'+projectNameFromPage);
          }
         validateJobList();
         if(validateSuccess){
-        	
+            
         update jobList;
        
          PageReference pageRef = new PageReference('/apex/Amr_JobSheet');
@@ -1258,7 +1258,7 @@ public String docUploaded{get;set;}
     public boolean StageProductionActivity{get;set;}
     public String CheckWithCMI{get;set;}
    public PageReference validateJobList(){
-   		    CheckWithCMIflag = false;
+            CheckWithCMIflag = false;
             yourEmailAddressFlag = false;
             unileverFinanceMemberEmailFlag = false;
             projectLeaderCountryClusterFlag = false;
@@ -1297,25 +1297,25 @@ public String docUploaded{get;set;}
         }
         
          if(jobList.Your_Email_Address__c == null){
-         	 yourEmailAddressFlag = true;
+             yourEmailAddressFlag = true;
        // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Your email address : must follow the standard format of an email address, e.g. txt@txt.com'));
       // okayToSave =false;
         } 
         if(jobList.Unilever_Finance_Member_Email__c == null){
-        	 unileverFinanceMemberEmailFlag = true;
-        	 system.debug('unileverFinanceMemberEmailFlag'+unileverFinanceMemberEmailFlag);
+             unileverFinanceMemberEmailFlag = true;
+             system.debug('unileverFinanceMemberEmailFlag'+unileverFinanceMemberEmailFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Unilever finance member email : must follow the standard format of an email address, e.g. txt@txt.com'));
        // okayToSave =false;
         }
         if(jobList.Final_Approver_Of_Material_Email__c== null){
-        	 finalApproverMaterialEmailFlag = true;
-        	  system.debug('finalApproverMaterialEmailFlag'+finalApproverMaterialEmailFlag);
+             finalApproverMaterialEmailFlag = true;
+              system.debug('finalApproverMaterialEmailFlag'+finalApproverMaterialEmailFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Final approver of material email : must follow the standard format of an email address, e.g. txt@txt.com'));
        //okayToSave =false;
         }
         if(String.isBlank(selectedCountry)){
-        	budgetAllocatedCountryFlag = true;
-        	 system.debug('budgetAllocatedInputFlag'+budgetAllocatedCountryFlag);
+            budgetAllocatedCountryFlag = true;
+             system.debug('budgetAllocatedInputFlag'+budgetAllocatedCountryFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget allocated for this activity (enter all digits) : option must be selected from drop down'));
       // okayToSave =false;
         }
@@ -1335,39 +1335,39 @@ public String docUploaded{get;set;}
        // okayToSave =false;
         }
          if( jobList.Brand_Position__c == null || brandPosName == NONE){
-         	brandPosNameFlag = true;
-         	system.debug('brandPosNameFlag'+brandPosNameFlag);
+            brandPosNameFlag = true;
+            system.debug('brandPosNameFlag'+brandPosNameFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
         //okayToSave =false;
         }
          if(jobList.Brand_Final__c == null || brandNameFromPage == NONE){
-         	 brandNameFromPageFlag = true;
-         	 system.debug('brandNameFromPageFlag'+brandNameFromPageFlag);
+             brandNameFromPageFlag = true;
+             system.debug('brandNameFromPageFlag'+brandNameFromPageFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
         //okayToSave =false;
         }
         
         if(jobList.Agency_Contact_Account_Director_Email__c == null){
-        	AgencyDirectorEmailFlag = true;
-        	system.debug('AgencyDirectorEmailFlag'+AgencyDirectorEmailFlag);
+            AgencyDirectorEmailFlag = true;
+            system.debug('AgencyDirectorEmailFlag'+AgencyDirectorEmailFlag);
        // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Agency contact or account director email : must follow the standard format of an email address, e.g. txt@txt.com'));
        //okayToSave =false;
         }
         if(jobList.Project_Description__c == null){
-        	ProjectDescriptionFlag = true;
-        	system.debug('ProjectDescriptionFlag'+ProjectDescriptionFlag);
+            ProjectDescriptionFlag = true;
+            system.debug('ProjectDescriptionFlag'+ProjectDescriptionFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project description : text must be entered'));
        //okayToSave =false;
         }
         if(jobList.Campaign_Name__c == null){
-        	 CampaignNameFlag = true;
-        	 system.debug('CampaignNameFlag'+CampaignNameFlag);
+             CampaignNameFlag = true;
+             system.debug('CampaignNameFlag'+CampaignNameFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Campaign name : text must be entered'));
        //okayToSave =false;
         }
         if(jobList.Target_Air_Date__c == null){
-        	 TargetAirDateFlag = true;
-        	  system.debug('TargetAirDateFlag'+TargetAirDateFlag);
+             TargetAirDateFlag = true;
+              system.debug('TargetAirDateFlag'+TargetAirDateFlag);
        // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Target air date : a date must be selected from the calendar'));
       // okayToSave =false;
         }
@@ -1375,41 +1375,41 @@ public String docUploaded{get;set;}
        
        
         if(jobList.Project_Leader_Cluster__c == null || jobList.Project_Leader_Country__c == null){
-        	 projectLeaderCountryClusterFlag = true;
-        	 system.debug('projectLeaderCountryClusterFlag'+projectLeaderCountryClusterFlag);
+             projectLeaderCountryClusterFlag = true;
+             system.debug('projectLeaderCountryClusterFlag'+projectLeaderCountryClusterFlag);
        // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Location of Unilever project leader : option must be selected from both market cluster and country drop downs'));
        // okayToSave =false;
         }
         
         if(jobList.Function_You_Are_Part__c == null){
-        	 FunctionYouArePartFlag = true;
+             FunctionYouArePartFlag = true;
        // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Which function are you part of (BD/BB/Other) : option must be selected from drop down'));
      //  okayToSave =false;
         }
         
         if(jobList.Budget_Responsibility__c == null){
-        	budgetResponsibilityFlag = true;
-        	system.debug('budgetResponsibilityFlag'+budgetResponsibilityFlag);
+            budgetResponsibilityFlag = true;
+            system.debug('budgetResponsibilityFlag'+budgetResponsibilityFlag);
        // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget responsibility (BD, BB, Other) : option must be selected from drop down'));
        // okayToSave =false;
         }
         if(jobList.Lead_Creative_Agency_name__c == null && jobList.Lead_Agency_Name_Other__c == null){
        // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Lead agency name : option must be selected from the drop down menu OR a name must be entered in the "Other" text box'));
       // okayToSave =false;
-		leadAgencyFlag = true;
-		 system.debug('leadAgencyFlag'+leadAgencyFlag);
+        leadAgencyFlag = true;
+         system.debug('leadAgencyFlag'+leadAgencyFlag);
         }
         if(jobList.Lead_Agency_Location_Cluster__c == null || jobList.Lead_Agency_Location_Country__c == null){
-        	 LeadAgencyClusterFlag = true; 
+             LeadAgencyClusterFlag = true; 
         system.debug('LeadAgencyClusterFlag'+LeadAgencyClusterFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Lead agency location : option must be selected from both market cluster and country drop downs'));
        //okayToSave =false;
         }
         system.debug('jobList.Project_Details__c!!'+jobList.Project_Details__c);
        if(String.isBlank(jobList.Project_Details__c) && String.isBlank(jobList.Project_Name_Other__c)){
-       	projectDetailsFlag = true;
-       	projectNameFromPage = null;
-       	 system.debug('projectDetailsFlag'+projectDetailsFlag);
+        projectDetailsFlag = true;
+        projectNameFromPage = null;
+         system.debug('projectDetailsFlag'+projectDetailsFlag);
        // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project name (e.g. Apollo) : option must be selected from the drop down menu OR a name must be entered in the "Other" text box'));
      // okayToSave =false;
         }
@@ -1419,52 +1419,52 @@ public String docUploaded{get;set;}
         }*/
         
         if(jobList.Production_Activity_Type__c == null){
-        	productionActivityTypeFlag = true;
-        	 system.debug('productionActivityTypeFlag'+productionActivityTypeFlag);
+            productionActivityTypeFlag = true;
+             system.debug('productionActivityTypeFlag'+productionActivityTypeFlag);
            //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'What type of activity will this production support? : one option must be selected from the drop down menu'));
        //okayToSave =false;
         }
            // system.debug('jobDetails.Project_Description__c!!'+jobDetails.Project_Description__c+'jobDetails.Execution_Name__c!!'+jobDetails.Execution_Name__c);  
         
         if(String.isBlank(jobList.Project_Description__c)){
-        	 ProjectDescriptionFlag = true;
-        	 system.debug('ProjectDescriptionFlag'+ProjectDescriptionFlag);
+             ProjectDescriptionFlag = true;
+             system.debug('ProjectDescriptionFlag'+ProjectDescriptionFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project description : text must be entered'));
        //okayToSave =false;
         }
         
         if(String.isBlank(jobList.Execution_Name__c)){
-        	 system.debug('inside execution name==========>'+ExecutionNameFlag);
-        	 ExecutionNameFlag = true;
-        	 system.debug('inside execution name value==========>'+ExecutionNameFlag);
+             system.debug('inside execution name==========>'+ExecutionNameFlag);
+             ExecutionNameFlag = true;
+             system.debug('inside execution name value==========>'+ExecutionNameFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Execution name : text must be entered'));
       //okayToSave =false;
         }
 
          if(String.isBlank(jobList.Brodcast_Market__c)){
-         	  BrodcastMarketFlag = true;
-         	  system.debug('BrodcastMarketFlag'+BrodcastMarketFlag);
+              BrodcastMarketFlag = true;
+              system.debug('BrodcastMarketFlag'+BrodcastMarketFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Broadcast market : one option must be selected from the drop down menu'));
       //okayToSave =false;
         }
 
         
         if(jobList.Require_Music__c == null){
-        	RequireMusicFlag = true;
-        	system.debug('RequireMusicFlag'+RequireMusicFlag);
+            RequireMusicFlag = true;
+            system.debug('RequireMusicFlag'+RequireMusicFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Do you anticipate that your production will require Music? : a radio button must be selected'));
        //okayToSave =false;
         }
         
         if(jobList.Require_Celebrity_Talent__c == null){
-        	RequireTalentFlag = true;
-        	system.debug('RequireTalentFlag'+RequireTalentFlag);
+            RequireTalentFlag = true;
+            system.debug('RequireTalentFlag'+RequireTalentFlag);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Do you anticipate that your production will require Celebrity Talent? : a radio button must be selected'));
       // okayToSave =false;
         }
         if(jobList.Stage_of_Production_Activity__c == null){
-        	StageProductionActivity = true;
-        	system.debug('StageProductionActivity'+StageProductionActivity);
+            StageProductionActivity = true;
+            system.debug('StageProductionActivity'+StageProductionActivity);
         //ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Current stage of your production activity : option must be selected from drop down'));
        //okayToSave =false;
         }
@@ -1740,11 +1740,11 @@ public String docUploaded{get;set;}
         }
          
          if( okayToSave && CheckWithCMIflag == false && yourEmailAddressFlag == false && unileverFinanceMemberEmailFlag == false && projectLeaderCountryClusterFlag == false && finalApproverMaterialEmailFlag == false && functionYouArePartFlag == false
-            	 && budgetResponsibilityFlag == false && budgetAllocatedCountryFlag == false && budgetAllocatedInputFlag == false && categoryNameFlag == false && brandPosNameFlag== false && brandNameFromPageFlag == false && agencyDirectorEmailFlag == false
-            	 && projectDescriptionFlag == false && campaignNameFlag== false && leadAgencyFlag == false && LeadAgencyClusterFlag== false && projectDetailsFlag == false && productionActivityTypeFlag == false && TargetAirDateFlag == false
-            	 && ExecutionNameFlag == false && BrodcastMarketFlag == false && RequireMusicFlag== false && RequireTalentFlag == false && StageProductionActivity == false) {
-           		validateSuccess = true;
-           		system.debug('validate inside');
+                 && budgetResponsibilityFlag == false && budgetAllocatedCountryFlag == false && budgetAllocatedInputFlag == false && categoryNameFlag == false && brandPosNameFlag== false && brandNameFromPageFlag == false && agencyDirectorEmailFlag == false
+                 && projectDescriptionFlag == false && campaignNameFlag== false && leadAgencyFlag == false && LeadAgencyClusterFlag== false && projectDetailsFlag == false && productionActivityTypeFlag == false && TargetAirDateFlag == false
+                 && ExecutionNameFlag == false && BrodcastMarketFlag == false && RequireMusicFlag== false && RequireTalentFlag == false && StageProductionActivity == false) {
+                validateSuccess = true;
+                system.debug('validate inside');
                 return null;
         }
 
@@ -1817,10 +1817,10 @@ public String docUploaded{get;set;}
         if(alertObj.New_Alert__c < Date.today()){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Alert date must be greater than or equal to today\'s date'));
         }
-        if(alertObj.Alert_Message__c.length()>100){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Alert message should be less than 100 characters'));
+        if(alertObj.Alert_Message__c.length()>150){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Alert message should be less than 150 characters'));
         }
-        if(!String.isBlank(String.valueOf(alertObj.New_Alert__c)) && !String.isBlank(alertObj.Alert_Message__c) && alertObj.New_Alert__c >= Date.today() && alertObj.Alert_Message__c.length()<=100){
+        if(!String.isBlank(String.valueOf(alertObj.New_Alert__c)) && !String.isBlank(alertObj.Alert_Message__c) && alertObj.New_Alert__c >= Date.today() && alertObj.Alert_Message__c.length()<=150){
          insert alertObj;
          alert = [SELECT Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c FROM Amr_Alert__c where hide__c = :false AND Job_Id__c  = :jobIdFromPage AND ownerId = :userInfo.getUserID() order by New_Alert__c desc];
          totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];

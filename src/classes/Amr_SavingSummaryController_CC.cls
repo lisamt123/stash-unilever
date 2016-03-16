@@ -26,7 +26,7 @@ public with sharing class Amr_SavingSummaryController_CC{
      public String categoryName{get;set;}
     public String brandPosName{get;set;}
     public String brandNameFromPage{get;set;} 
-    public static final String NONE ='--None--';
+    //public static final String NONE ='--None--';
     public List<SelectOption> listOfBrandPosition{get;set;}
     public List<SelectOption> listOfBrand{get;set;}
    // public  AggregateResult[] groupedSubmissionResultCurrentMonth {get;set;}
@@ -39,6 +39,10 @@ public with sharing class Amr_SavingSummaryController_CC{
     public  AggregateResult[] groupedSubmissionResultsPrevYear1  {get;set;}
     
     public  AggregateResult[] groupedSavingResultsCurrentMonth1  {get;set;}
+    public AggregateResult[] yourYTDSpend{get;set;}
+    public AggregateResult[] globalYTDSpend{get;set;}
+    public AggregateResult[] savingActivitiesSubmitted{get;set;}
+    
     
    // public  AggregateResult[] groupedSavingResultsYearToDate  {get;set;}
   //  public  AggregateResult[] groupedSavingResultsPrevYear  {get;set;}
@@ -87,11 +91,11 @@ public with sharing class Amr_SavingSummaryController_CC{
             categoryString.add(mdCat.name);
         }
         listOfBrandPosition = new List<SelectOption>();
-        listOfBrandPosition.add(new selectOption(NONE,NONE));
+        listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
         
         
          rapNameList = new list<selectoption>();
-         rapNameList.add(new SelectOption('--None--','--None--'));
+         rapNameList.add(new SelectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
           for(PermissionSetAssignment  userObj :[select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name = :Label.Amr_RAP order by Assignee.name] ){
 
             SelectOption obj=new SelectOption(userObj.Assignee.id,userObj.Assignee.name);
@@ -115,6 +119,13 @@ public with sharing class Amr_SavingSummaryController_CC{
             permissionSetName = Label.Amr_RAP;
         }
            
+        //dashboard
+        Date startOfMonth = Date.today().toStartOfMonth();
+            Date startOfNextMonth = startOfMonth.addMonths(1);
+            Date currentDay = Date.today();
+        yourYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+        globalYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];   
+   		savingActivitiesSubmitted = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
     }
 /***********************************************************************************************************************************
 Purpose: Method to create options for sort by functionality.
@@ -125,7 +136,7 @@ Returns: It will return list of options.
     public List<SelectOption> getSortOptions(){  
          
          listOfSortOptions = new List<SelectOption>();
-          listOfSortOptions.add(new selectOption(NONE,NONE));
+          listOfSortOptions.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
          listOfSortOptions.add(new selectOption('Job_Details__r.AdManagerText__c','ADManager Number'));
          listOfSortOptions.add(new selectOption('CreatedDate','Date Savings Submitted'));
          listOfSortOptions.add(new selectOption('No_of_Masters__c','No Of Masters'));
@@ -307,27 +318,27 @@ Returns:
               
        } 
        
-       if(String.isNotBlank(categoryName) && categoryName != '--None--'){
+       if(String.isNotBlank(categoryName) && categoryName != Amr_ConstantForAdManager.NONE){
            soql += ' and Job_Details__r.ProductCategory__r.Name LIKE \''+String.escapeSingleQuotes(categoryName)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
        }
        
-       if(String.isNotBlank(brandPosName) && brandPosName != '--None--'){
+       if(String.isNotBlank(brandPosName) && brandPosName != Amr_ConstantForAdManager.NONE){
            soql += ' and Job_Details__r.Brand_Position__r.Name LIKE \''+String.escapeSingleQuotes(brandPosName)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
        } 
        
-        if(String.isNotBlank(region) && region != '--None--'){
+        if(String.isNotBlank(region) && region != Amr_ConstantForAdManager.NONE){
            soql += ' and Job_Details__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(region)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
        }
        
-       if(String.isNotBlank(country) && country != '--None--'){
+       if(String.isNotBlank(country) && country != Amr_ConstantForAdManager.NONE){
            soql += ' and Job_Details__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(country)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
        }    
        
-       if(String.isNotBlank(budgetReponse) && budgetReponse != '--None--'){
+       if(String.isNotBlank(budgetReponse) && budgetReponse != Amr_ConstantForAdManager.NONE){
            soql += ' and Job_Details__r.Budget_Responsibility__c = \''+String.escapeSingleQuotes(budgetReponse)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
        }    
        
-       if(String.isNotBlank(selectedRapName) && selectedRapName != '--None--'){
+       if(String.isNotBlank(selectedRapName) && selectedRapName != Amr_ConstantForAdManager.NONE){
            soql += ' and Job_Details__r.ownerId = \''+String.escapeSingleQuotes(selectedRapName)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
        }
        
@@ -373,7 +384,7 @@ Returns:
        system.debug(Ex.getMessage());
     }
     System.debug(selectedSortJobsOption);
-    if(String.isNotBlank(selectedSortJobsOption) && selectedSortJobsOption!=NONE){
+    if(String.isNotBlank(selectedSortJobsOption) && selectedSortJobsOption!=Amr_ConstantForAdManager.NONE){
         
          soql += ' ORDER BY '+String.escapeSingleQuotes(selectedSortJobsOption)+' ASC';
               System.debug(soql); 
@@ -567,7 +578,7 @@ Returns: It will return list of brands.
         listOfBrand = new List<SelectOption>();
         system.debug('========>'+brandPosName+'category name=====>'+categoryName);
 
-        listOfBrand.add(new selectOption(NONE,NONE));
+        listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
 
         //Set<String> brandlst = new Set<String>();
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
@@ -619,7 +630,7 @@ Returns: It will return submitted saving data.
         
      groupedSubmissionResultsPrevYear  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
      }else{
-        groupedSavingResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+     groupedSavingResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
           
      groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
         
@@ -666,13 +677,8 @@ Returns: It will return submitted saving data.
      groupedSubmissionResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
          
      groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
-    }else{
-     groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
-       
-     groupedSubmissionResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-         
-     groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
-    }    
+     
+     
      Integer aa = 0;
      aa = Integer.valueOf(groupedSubmissionResultsPrevYear1[0].get('savCostPrevYear')) != null ? Integer.valueOf(groupedSubmissionResultsPrevYear1[0].get('savCostPrevYear')): aa;
      
@@ -680,6 +686,17 @@ Returns: It will return submitted saving data.
      data.add(new PieWedgeData('Current Month',Integer.valueOf(groupedSavingResultsCurrentMonth1[0].get('savCostmonth'))));
      data.add(new PieWedgeData('YTD',Integer.valueOf(groupedSubmissionResultsYearToDate1[0].get('savCurrentCostYTD'))));
      data.add(new PieWedgeData('Prev Year',aa));
+    }else{
+     groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+       
+     groupedSubmissionResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+         
+     groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+   
+     data.add(new PieWedgeData('Global YTD Saving',Integer.valueOf(groupedSubmissionResultsYearToDate1[0].get('savCurrentCostYTD'))));
+     data.add(new PieWedgeData('Global this month saving',Integer.valueOf(groupedSavingResultsCurrentMonth1[0].get('savCostmonth'))));
+    }    
+     
      
      System.debug('*****data1*****'+data);
      return data;  

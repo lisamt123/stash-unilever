@@ -1,15 +1,62 @@
-<apex:page controller="Amr_AdManagerController_CC" title="AdManager" sidebar="false" action="{!Redirect}" tabStyle="AD_Manager__tab" >
-     <apex:pageMessages id="showmsg"></apex:pageMessages> 
-    
+<apex:page controller="Amr_AdManagerController_CC" title="AdManager" sidebar="false" action="{!Redirect}" tabStyle="AD_Manager__tab" >    
     <head>
         <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
         <apex:includeScript value="/support/console/31.0/integration.js"/>
         <script type="text/javascript">
             $j = jQuery.noConflict();
         </script>
+        <script type="text/javascript">
+        	$j(function(){
+        		$j('.loadError').each(function(){ 
+        			var lengthOfParent = $j(this).attr('data-width');
+        			if(lengthOfParent) {
+        				$j(this).closest('.form-field-parent').addClass('loadErrorParent width70percent');
+        			} else {
+        				$j(this).closest('.form-field-parent').addClass('loadErrorParent');
+        			}           		            		
+            	}); 
+        	});            
+        </script>
+        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/menu-shift.js')}"/>
         <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/production-activity.js')}"/>
-        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/admanager-logging-form.js')}"/>        
-        <style type="text/css">         
+        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/admanager-logging-form.js')}"/>    
+            
+        <style type="text/css">
+        	.errorM3 {
+        		border:3px solid red;
+        		border-radius:0px !important;
+        		margin:0 !important;
+        		color:red !important;
+        		background-color:#FFFFFF !important;
+        	}
+        	.errorM3 span {
+        		color:red !important;
+        	}
+        	.errorM2 .messageText {
+        		color:red !important;
+        	}        	
+        	.width70percent {
+        		width:70%;
+        	}
+        	#AllTab_Tab {
+    			display:none;
+    		}
+        	.loadError {
+        		color:red !important;
+        		position:absolute !important;
+        		top:0px !important;
+        		left: 0 !important;
+        	}
+        	.loadErrorParent {
+        		border:3px solid red;
+        		background:#EFE4B0;
+        		padding: 25px 0 10px 0;
+        		position:relative;
+        		margin: 12px 0;
+        	}
+        	.form-field-level1 {
+        		background:#FFFFFF;
+        	}         
             @font-face {
             font-family: 'dinOffPro';             
             src:url("{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/fonts/UnileverDINOffcPro.eot')}")  format('embedded-opentype'),
@@ -67,15 +114,16 @@
                     <apex:outputText value="{!r.Introduction__c}" escape="false" />
                 </section>
                 <section>
-                    <h2>Before you start..</h2>
+                    <h2>{!$Label.Amr_Before_you_start}</h2>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="checkedtext">
                         <apex:outputLabel >
-                            Have you checked with CMI if there is an existing asset in the Millward Brown TV Ad Vitality Bank that could be utilised for this JTBD?
+                            {!$Label.Amr_Have_you_checked_with_CMI}
                             <span class="asterisk">*</span>
                         </apex:outputLabel>
                     </div>
                     <div class="float-left width252 radio-label" style="margin-bottom:13px;">
-                  		<apex:outputlabel value="{!CheckWithCMI}" rendered="{!CheckWithCMIflag}" style="color:red;"/> 
+                                <apex:outputlabel value="{!CheckWithCMI}" rendered="{!CheckWithCMIflag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:selectRadio value="{!jobDetails.Check_With_CMI__c}" styleClass="radio-label">
                             <apex:selectOption itemValue="Yes" itemLabel="Yes " />
                             <apex:selectOption itemValue="No" itemLabel="No " />
@@ -90,26 +138,31 @@
                     </div>
                     <div class="clear">
                     </div>
+                    </div>
+                    </div>
                 </section>
                 <section>
-                    <h2>Unilever Information </h2>
-                    <div class="form-field padding0-10-5">
-                    	<apex:outputlabel value="{!CheckWithCMI}" rendered="{!yourEmailAddressFlag}" style="color:red;"/> 
-                        <apex:outputLabel >
-                            Your email address
-                            <strong></strong>                    
-                            <div title="{!$ObjectType.Amr_Job_Details__c.fields.Your_Email_Address__c.inlineHelpText}"></div>
-                        </apex:outputLabel>
+                    <h2>{!$Label.Amr_Unilever_Information} </h2>
+                    <div class="form-field-parent"><div class="form-field-level1">
+	                    <div class="form-field padding0-10-5">
+	                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!yourEmailAddressFlag}" styleclass="loadError" html-data-width="70"/> 
+	                        <apex:outputLabel >
+	                           {!$label.Amr_Your_email_address} 
+	                            <strong></strong>                    
+	                            <div title="{!$ObjectType.Amr_Job_Details__c.fields.Your_Email_Address__c.inlineHelpText}"></div>
+	                        </apex:outputLabel>
+	                    </div>
+	                    <div class="form-field padding0-10-5 margin-left-minus30">
+	                        <apex:inputField value="{!jobDetails.Your_Email_Address__c}"  html-default-value="{!$User.Email}" styleClass="your_email_address" />
+	                    </div>
+	                    <div class="clear">                  
+	                    </div>
                     </div>
-                    <div class="form-field padding0-10-5 margin-left-minus30">
-                        <apex:inputField value="{!jobDetails.Your_Email_Address__c}"  html-default-value="{!$User.Email}" styleClass="your_email_address" />
-                    </div>
-                    <div class="clear">                  
                     </div>
                     <div class="form-field">
-                    	
+                        
                         <apex:outputLabel >
-                            Unilever project leader email (if different)                     
+                            {!$label.Amr_Unilever_project_leader_email_if_different}                  
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Unilever_Project_Leader_Email__c.inlineHelpText}"></div>
                         </apex:outputLabel>
                     </div>
@@ -119,10 +172,12 @@
                     </div>
                     <div class="clear">                  
                     </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
+                    
                     <div class="form-field">
-                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!projectLeaderCountryClusterFlag}" style="color:red;"/> 
+                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!projectLeaderCountryClusterFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
-                            Location of Unilever project leader
+                            {!$label.Amr_Location_of_Unilever_project_leader}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Leader_Cluster__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -135,10 +190,13 @@
                     </div>
                     <div class="clear">                  
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
-                    	<apex:outputlabel value="{!CheckWithCMI}" rendered="{!unileverFinanceMemberEmailFlag}" style="color:red;"/> 
+                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!unileverFinanceMemberEmailFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
-                            Unilever finance member email
+                           {!$label.Amr_Unilever_finance_member_email}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Unilever_Finance_Member_Email__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -149,10 +207,13 @@
                     </div>
                     <div class="clear">                  
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
-                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!finalApproverMaterialEmailFlag}" style="color:red;"/> 
+                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!finalApproverMaterialEmailFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
-                            Final approver of material email                     
+                             {!$label.Amr_Final_approver_of_material_email}                
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Final_Approver_Of_Material_Email__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -163,10 +224,13 @@
                     </div>
                     <div class="clear">                  
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
-                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!functionYouArePartFlag}" style="color:red;"/> 
+                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!functionYouArePartFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
-                            Which function are you part of (BD/BB/Other)
+                            {!$label.Amr_Which_function_are_you_part_of_BD_BB_Other}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Function_You_Are_Part__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -176,10 +240,13 @@
                     </div>
                     <div class="clear">                  
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
-                    	<apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetResponsibilityFlag}" style="color:red;"/> 
+                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetResponsibilityFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
-                            Budget responsibility (BD, BB, Other)
+                           {!$label.Amr_Budget_responsibility_BD_BB_Other}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Budget_Responsibility__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -189,33 +256,39 @@
                     </div>
                     <div class="clear">                  
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
                         <apex:outputLabel >
-                            Budget allocated for this activity (enter all digits)
+                            {!$label.Amr_Budget_allocated_for_this_activity_enter_full_amount}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Allocated_Budget_euro__c.inlineHelpText}"></div>
                         </apex:outputLabel>
                     </div>
                     <div class="form-field margin-left-minus30">
-                    	<apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetAllocatedCountryFlag}" style="color:red;"/> 
+                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetAllocatedCountryFlag}" styleclass="loadError"/> 
                         <apex:selectList value="{!selectedCountry }" size="1" id="selectedId" onchange="Calculate()" styleClass="selectedIdClass">
                             <apex:selectOptions value="{!currencyRecords }" />
                         </apex:selectList>
                     </div>
                     <div class="form-field">
-                    	<apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetAllocatedInputFlag}" style="color:red;"/> 
-                        <apex:inputField value="{!jobDetails.Budget_Allocated_Input_Value__c}" id="inputId" onkeypress="return isNumber(event)" onkeyup="Calculate()" styleClass="inputIdClass" html-placeholder="Local Currency" html-autocomplete="off" />
+                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetAllocatedInputFlag}" styleclass="loadError"/> 
+                        <apex:inputField value="{!jobDetails.Budget_Allocated_Input_Value__c}" id="inputId" onkeypress="return isNumber(event)" onkeyup="Calculate()" styleClass="inputIdClass" html-placeholder="Local Currency( Example 123456.00)" html-autocomplete="off" />
                     </div>
                     <div class="form-field">
                         <apex:inputField value="{!jobDetails.Allocated_Budget_euro__c}" id="outputId" styleClass="outputIdClass" html-placeholder="Auto Calc to Euros" />
                     </div>
                     <div class="clear">                  
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
                     
-                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!if(categoryNameFlag || brandPosNameFlag || brandNameFromPageFlag,true,false)}" style="color:red;"/> 
+                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!if(categoryNameFlag || brandPosNameFlag || brandNameFromPageFlag,true,false)}" styleclass="loadError"/> 
                         <apex:outputLabel >
-                            Category > Brand Positioning > Brand
+                            {!$label.Amr_Category_Brand_Positioning_Brand}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.ProductCategory__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -264,13 +337,16 @@
                     </div>
                     <div class="clear">                  
                     </div>
+                    </div>
+                    </div>
                 </section>
                 <section>
-                    <h2 class="margintop25">Agency Information </h2>
+                    <h2 class="margintop25">{!$Label.Amr_Agency_Information}</h2>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field padding0-10-5">
-                    
+                     <apex:outputlabel value="{!CheckWithCMI}" rendered="{!leadAgencyFlag}" styleclass="loadError" html-data-width="70"/>
                         <apex:outputLabel >
-                            Lead agency name
+                           {!$label.Amr_Lead_agency_name}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Lead_Creative_Agency_name__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -280,13 +356,17 @@
                         <apex:inputField value="{!jobDetails.Lead_Agency_Name_Other__c}" styleClass="agencytext" html-placeholder="New Agency" />
                     </div>
                     <div class="form-field" style="margin-top:2px;">
-                        <a class="agencyother" href="#"> Other </a>
+                        <a class="agencyother" href="#"> {!$label.Amr_Other} </a>
                     </div>
                     <div class='clear'>
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
+                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!LeadAgencyClusterFlag}" styleclass="loadError" html-data-width="70"/>
                         <apex:outputLabel >
-                            Lead agency location
+                            {!$label.Amr_Lead_agency_location}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Lead_Agency_Location_Cluster__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -299,10 +379,13 @@
                     </div>
                     <div class='clear'>
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
-                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!AgencyDirectorEmailFlag}" style="color:red;"/> 
+                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!AgencyDirectorEmailFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
-                            Agency contact or account director email
+                           {!$label.Amr_Agency_contact_or_account_director_email}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Agency_Contact_Account_Director_Email__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -313,9 +396,11 @@
                     </div>
                     <div class='clear'>
                     </div>
+                    </div>
+                    </div>
                     <div class="form-field">
                         <apex:outputLabel >
-                            Digital agency name (if applicable)                            
+                           {!$label.Amr_Digital_agency_name_if_applicable}                 
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Digital_Agency_Name__c.inlineHelpText}"></div>
                         </apex:outputLabel>
                     </div>
@@ -327,7 +412,7 @@
                     </div>
                     <div class="form-field">
                         <apex:outputLabel >
-                            Any other agencies involved?                            
+                           {!$label.Amr_Any_other_agencies_involved}                          
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Any_other_agencies_involved__c.inlineHelpText}"></div>
                         </apex:outputLabel>
                     </div>
@@ -339,12 +424,13 @@
                     </div>
                 </section>
                 <section>
-                    <h2 class="margintop25">Overview of Project </h2>
+                    <h2 class="margintop25">{!$label.Amr_Overview_of_Project}</h2>
                     
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field padding0-10-5">
-                    
+                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!projectDetailsFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
-                            Project name (e.g. Apollo)    
+                            {!$label.Project_name_e_g_Apollo}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Details__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -361,28 +447,33 @@
                         </apex:actionRegion>
                     </div>
                     <div class="form-field" style="margin-top:2px;">
-                        <a href = "#" id="projectother" class="projectotherClass"> Other </a>
+                        <a href = "#" id="projectother" class="projectotherClass"> {!$label.Amr_Other} </a>
                     </div>
                     <div class="clear">
                     </div>
-                    <div class="form-field">
+                    
+                    <!-- <div class="form-field">
                         <apex:outputLabel >
                             Project location
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Location_Cluster__c.inlineHelpText}"></div>
                         </apex:outputLabel>
-                    </div>
-                    <div class="form-field margin-left-minus30">
+                    </div>  -->
+                    <!-- <div class="form-field margin-left-minus30">
                         <apex:inputField value="{!jobDetails.Project_Location_Cluster__c}" />
                     </div>
                     <div class="form-field">
                         <apex:inputField value="{!jobDetails.Project_Location_Country__c}" />
-                    </div>
+                    </div> -->
                     <div class="clear">
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
+                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!BrodcastMarketFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
-                            Broadcast market
+                           {!$label.Amr_Broadcast_market}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Brodcast_Market__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -392,36 +483,47 @@
                     </div>
                     <div class="clear">
                     </div>
+                    </div>
+                    </div>                    
+                    <div class="form-field-parent"><div class="form-field-level1">
+	                    <div class="form-field">
+	                        <apex:outputlabel value="{!CheckWithCMI}" rendered="{!productionActivityTypeFlag}" styleclass="loadError" html-data-width="70"/> 
+	                        <apex:outputLabel >
+	                            {!$label.Amr_What_type_of_activity_will_this_production_support}
+	                            <strong></strong>
+	                            <div title="{!$ObjectType.Amr_Job_Details__c.fields.Production_Activity_Type__c.inlineHelpText}"></div>
+	                        </apex:outputLabel>                        
+	                    </div>
+	                    <div class="form-field margin-left-minus30">
+	                        <apex:inputField value="{!jobDetails.Production_Activity_Type__c}" html-placeholder="Type Of Activity" />
+	                    </div>
+	                    <div class="clear">
+	                    </div>
+                    </div>
+                    </div>
+                   
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
+                     <apex:outputlabel value="{!CheckWithCMI}" rendered="{!ProjectDescriptionFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
-                            What type of activity will this production support?
-                            <strong></strong>
-                            <div title="{!$ObjectType.Amr_Job_Details__c.fields.Production_Activity_Type__c.inlineHelpText}"></div>
-                        </apex:outputLabel>
-                    </div>
-                    <div class="form-field margin-left-minus30">
-                        <apex:inputField value="{!jobDetails.Production_Activity_Type__c}" html-placeholder="Type Of Activity" />
-                    </div>
-                    <div class="clear">
-                    </div>
-                    <div class="form-field">
-                     <apex:outputlabel value="{!CheckWithCMI}" rendered="{!ProjectDescriptionFlag}" style="color:red;"/> 
-                        <apex:outputLabel >
-                            Project description
+                            {!$label.Amr_Project_description}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Description__c.inlineHelpText}"></div>
                         </apex:outputLabel>
                     </div>
-                    <div class="form-field margin-left-minus30" style="width:70%;">
+                    <div class="form-field margin-left-minus30"><!-- style="width:70%;" -->
                         <apex:inputField value="{!jobDetails.Project_Description__c}" />
                         <!-- html-placeholder="Description"  -->
                     </div>
                     <div class="clear">
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
-                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!CampaignNameFlag}" style="color:red;"/> 
+                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!CampaignNameFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
-                            Campaign name (e.g. Nothing beats an astronaut) if known
+                            {!$label.Amr_Campaign_name_e_g_Nothing_beats_an_astronaut_if_known}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Campaign_Name__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -432,9 +534,13 @@
                     </div>
                     <div class="clear">
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
+                     <apex:outputlabel value="{!CheckWithCMI}" rendered="{!ExecutionNameFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
-                            Execution name (e.g. Lifeguard or Fireman) if known
+                            {!$label.Amr_Execution_name_e_g_Lifeguard_or_Fireman_if_known}
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Execution_Name__c.inlineHelpText}" ></div>
                         </apex:outputLabel>
@@ -445,10 +551,13 @@
                     </div>
                     <div class="clear">
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
-                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!TargetAirDateFlag}" style="color:red;"/> 
+                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!TargetAirDateFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
-                            Target air date (i.e. when will material be released)
+                           {!$label.Amr_Target_air_date_i_e_when_will_material_be_released} 
                             <strong></strong>
                             <div title="{!$ObjectType.Amr_Job_Details__c.fields.Target_Air_Date__c.inlineHelpText}"></div>
                         </apex:outputLabel>
@@ -459,14 +568,19 @@
                     </div>
                     <div class="clear">
                     </div>
-                </section>
+                    </div>
+                    </div>
+                </section>                
                 <section class="production-activity-section">
-                    <h2 class="margintop25" style="margin-bottom:10px;">Production Activity Detail</h2>
+                    <h2 class="margintop25" style="margin-bottom:10px;">{!$Label.Amr_Production_Activity_Detail}</h2>
                     <div class="production-activity-sub-section" style="margin-left:20px;margin-bottom:15px;">
+                    
+                    <apex:pageMessages id="showmsg"></apex:pageMessages>
+                    
                         <div id="productionactivitytypegroup">
                             <div class="form-field" style="padding:5px 0">
                                 <label style="text-align:left;">
-                                    Production activity type 
+                                   {!$label.Amr_Production_activity_type}
                                     <strong style="left:121px;"></strong>
                                     <div style="right:43px;" title="Please select one or more options based on the scope of the project/activity.  Please note your selection should be based on this registration only and should be based on one shoot/creation date as outlined above."></div>
                                 </label>
@@ -476,16 +590,16 @@
                         </div>
                         <div class="amr_production_activity_parent">
                             <div style="float:left; width:26%;">
-                                <div class="production-activity-type-sub" style="width: 90%;">Production Activity</div>
-                                <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">(can select either New Original Master or multiple others)</span>
+                                <div class="production-activity-type-sub" style="width: 90%;">{!$label.Amr_Production_Activity}</div>
+                                <span class="production-activity-help-text" style="font-size: 12px; font-family: dinOffPro;">{!$label.Amr_can_select_either_New_Original_Master_or_multiple_others}</span>
                                 <div style="height:50px;margin-top:20px;">
                                     <div class="new_original_master_parent master_parent">
                                         <apex:inputfield html-data-id="main-new-original-master" styleClass="master original_master" value="{!jobDetails.NewOriginalMaster__c}"/>
-                                        <apex:outputLabel ><dfn class="">New Original Master</dfn><br/><span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(incl. multiple executions/cutdowns within project)</span></apex:outputLabel>
+                                        <apex:outputLabel ><dfn class="">{!$label.Amr_New_Original_Master}</dfn><br/><span style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!$label.Amr_incl_multiple_executions_cutdowns_within_project}</span></apex:outputLabel>
                                     </div>
                                 </div>
                                 <div class="bold orclass">
-                                    OR
+                                   {!$Label.Amr_OR}
                                 </div>
                                 <div style="height:258px;">
                                     <div class="other_master_parent master_parent">
@@ -1069,7 +1183,9 @@
                     </div>
                     <div class="summary" style="visibility:none;border-bottom:1px solid #E6E6E6;">
                     </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
+                      <apex:outputlabel value="{!CheckWithCMI}" rendered="{!RequireMusicFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel style="margin-right: 44px;padding: 4px 5px 4px 0;width: 306px;">
                             Do you anticipate that your production will require Music?                     
                             <strong style="right:-8px;"></strong>
@@ -1084,7 +1200,11 @@
                     </div>
                     <div class="clear">               
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
+                    <apex:outputlabel value="{!CheckWithCMI}" rendered="{!RequireTalentFlag}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel style="margin-right: 44px;padding: 4px 5px 4px 0;width: 306px;">
                             Do you anticipate that your production will require Celebrity Talent?               
                             <strong style="right:-8px;"></strong>
@@ -1099,7 +1219,11 @@
                     </div>
                     <div class="clear">               
                     </div>
+                    </div>
+                    </div>
+                    <div class="form-field-parent"><div class="form-field-level1">
                     <div class="form-field">
+                     <apex:outputlabel value="{!CheckWithCMI}" rendered="{!StageProductionActivity}" styleclass="loadError" html-data-width="70"/> 
                         <apex:outputLabel >
                             Current stage of your production activity                     
                             <strong></strong>
@@ -1113,12 +1237,19 @@
                     </div>
                     <div class="clear">
                     </div>
+                    </div>
+                    </div>
                 </section>
                 <section>
                     <apex:actionRegion >
                         <div class="submit_button right" style="float:right;">
                             <apex:commandButton value="Submit" id="submit" onclick="enableText1();return false;" styleClass="sbutton"  > 
                             </apex:commandButton>
+                            <apex:actionStatus id="actStatusId" >
+                                  <apex:facet name="start" >
+                                        <img src="/img/loading.gif" />                    
+                                  </apex:facet>
+                            </apex:actionStatus>
                         </div>                     
                     </apex:actionRegion>
                    <!-- <apex:pageBlock id="hiddenBlock" rendered="false"></apex:pageBlock>  -->
@@ -1136,7 +1267,7 @@
                     <apex:param id="catname" assignTo="{!categoryName}" name="categoryName" value="{!categoryName}" />
                 </apex:actionFunction>
                 <!--   -->
-                 <apex:actionFunction name="sendProductionActivity" action="{!prodActivity}" reRender="showmsg1" oncomplete="submitData()">
+                 <apex:actionFunction name="sendProductionActivity" action="{!prodActivity}" reRender="showmsg1" oncomplete="submitData()" status="actStatusId">
                             <apex:param id="patypename" assignTo="{!productionActivityData}" name="productionActivityData" value="{!productionActivityData}" />
                  </apex:actionFunction>
                  <apex:actionFunction name="submitData"   action="{!getSubmitForm}">        
@@ -1146,11 +1277,46 @@
     </body>
     <script type="text/javascript">
         $j(function() {
+           // alert('project from page'+'{!projectNameFromPage}');
             var stringArray = JSON.parse('{!MethodToPassProjectNames}');            
-            for(var i=0;i<stringArray.length;i++){            
-                 var newOption = $j('<option value="'+stringArray[i]+'">'+stringArray[i]+'</option>');                
-                 $j('#projectList').append(newOption);
-            }              
+            var newOption;
+            var projFormPage = '{!projectNameFromPage}';
+            //alert('{!projectNameFromPage}');
+            /*if(projFormPage.length === 0 || projFormPage == null || projFormPage == ''){
+           		var none = $j('<option value="none">--None--</option>');
+           		$j('#projectList').append(none); 
+           		alert('inside if');
+           		for(var i=0;i<stringArray.length;i++){ 
+           			if(stringArray[i] == '--None--'){
+	                    i = i+1;
+	                }else{
+	                	 newOption = $j('<option value="'+stringArray[i]+'">'+stringArray[i]+'</option>');
+	                     $j('#projectList').append(newOption); 
+	                }                   
+	             } 
+           }else{*/
+            // alert('inside else');
+             for(var i=0;i<stringArray.length;i++){  
+                
+                if('{!projectNameFromPage}' == stringArray[i] && '{!projectNameFromPage}' !== null){
+                   newOption = $j('<option value="'+stringArray[i]+'">'+stringArray[i]+'</option>');
+                   $j('#projectList').append(newOption);                   
+                } 
+                 
+             }        
+             
+             for(var i=0;i<stringArray.length;i++){ 
+             
+             	if('{!projectNameFromPage}' == stringArray[i]){
+                    i = i+1;
+                }
+                
+                newOption = $j('<option value="'+stringArray[i]+'">'+stringArray[i]+'</option>');                
+                $j('#projectList').append(newOption);
+             }  
+             
+            //}    
+           
         });
         
     </script>
@@ -1205,8 +1371,7 @@
                     var adding = $j(arrayString[i]).text();
 
                     paList += '\n \n' + adding;
-                }
-                alert('Pa List ->  \n' + paList);
+                }                
             sendProductionActivity(paList);
             }
         
