@@ -8,31 +8,7 @@
 		<name>ApexPage</name>
 	</types>
 	<types>
-		<members>IPM_CountryTriggerHandler</members>		<members>IPM_FinancialTriggerHandler</members>		<members>IPM_FinancialTriggerHandler_Test</members>		<members>IPM_FinancialYearTriggerHandler_Test</members>		<members>IPM_GenericExtCtrl</members>		<members>IPM_GetHelpDoc_Test</members>		<members>IPM_QuestionnaireHandler</members>		<members>IPM_UserTriggerHandler</members>		<members>IPM_UserTriggerHandler_Test</members>
-		<name>ApexClass</name>
-	</types>
-	<types>
-		<members>unfiled$public/IPM_Email_template_to_Notify_Bosscard_In_Activity_for_30_Day</members>
-		<members>unfiled$public/IPM_section_notification</members>
-		<members>unfiled$public/IPM_template_to_Notify_Auto_Deletion_of_Bosscard_after_6_months_of_inactivity</members>
-		<members>unfiled$public/IPM_template_to_Notify_Auto_Deletion_of_Bosscard_after_6_months_of_inactivity1</members>
-		<members>unfiled$public/IPM_template_to_Notify_Auto_Deletion_of_Bosscard_after_6_months_of_inactivity2</members>
-		<name>EmailTemplate</name>
-	</types>
-	<types>
-		<members>IPM_Financial_Local_To_Regional-2</members>
-		<members>IPM_Notify_Local_Rollout_Project_Created-12</members>
-		<members>IPM_Notify_Local_Rollout_Project_Created-2</members>
-		<members>IPM_Notify_Local_Rollout_Project_Created-3</members>
-		<members>IPM_Notify_Local_Rollout_Project_Created-4</members>
-		<members>IPM_Notify_Local_Rollout_Project_Created-5</members>
-		<members>IPM_Notify_Local_Rollout_Project_Created-8</members>
-		<members>IPM_Notify_Local_Rollout_Project_Created-9</members>
-		<members>IPM_Notify_Regional_Rollout_Project_Created-2</members>
-		<members>IPM_Notify_Regional_Rollout_Project_Created-3</members>
-		<members>IPM_Notify_Regional_Rollout_Project_Created-9</members>
-		<members>IPM_Send_mail_when_TLD_changed-2</members>
-		<name>Flow</name>
+		<members>IPM_CountryTriggerHandler</members>		<members>IPM_FinancialTriggerHandler_Test</members>		<members>IPM_FinancialYearTriggerHandler_Test</members>		<members>IPM_GenericExtCtrl</members>		<members>IPM_GetHelpDoc_Test</members>		<members>IPM_QuestionnaireHandler</members>		<name>ApexClass</name>
 	</types>
 	<types>
 		<members>IPM_Project_Document_Section_Trigger</members>
