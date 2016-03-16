@@ -54,17 +54,8 @@ global with sharing class CPA_LOI_InformationController {
         mandatoryStringFlag = null;
          LoiRec = [select id,isValidated__c,cur_Total_value_in_Euro_being_requested__c,txt_Other_Phases_Covered_by_W_R__c,num_Total_value_in_being_requested_for__c,num_Total_number_of_man_days_requested__c,chk_Contract_Attached__c,pkl_Status__c,pkl_Currency__c,num_Expense_charges_of_LOI__c,txt_Internal_PWO_ID__c,dt_LOI_End_date__c,dt_LOI_Start_Date__c,mpkl_Phases_covered_by_WAR__c,txt_PWO_number__c,txt_PWO_title__c,txt_Unilever_Clarity_ID__c, eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, txt_Other_Currency__c from CPA_LOI__c where id =: loiId];
         
-
-         CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(LoiRec.pkl_Status__c);
-         if(customSettingStatusMsg.LOI_Status_Msg__c != null && callFromVF){
-             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.LOI_Status_Msg__c));
-         }
-         
-        
-     
          if(LoiRec != null){
-            
-              if((LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.WITHHOLD) || !callFromVF){
+              if((LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED) || !callFromVF){
               /*
                   //Uncomment below code in Release 2
                     String strToSplit = String.valueOf(LoiRec);
@@ -74,13 +65,16 @@ global with sharing class CPA_LOI_InformationController {
                     System.debug('RequiredFieldMap ###### ' + RequiredFieldMap);
                 */
                 
-                if(LoiRec.pkl_Currency__c == 'Select' || LoiRec.pkl_Currency__c == null)
+                if(LoiRec.pkl_Currency__c == null){
                  RequiredFieldMap.put('Currency',CPA_ConstantsForContractingAppClasses.MANDATORY);  
-                if(LoiRec.pkl_Currency__c == 'OTHER'){
-                  if(LoiRec.txt_Other_Currency__c == null){
-                    RequiredFieldMap.put('Other Currency','It is mandatory if OTHER as Currency');      
-                  }
                 }
+                if(LoiRec.pkl_Currency__c != null && LoiRec.pkl_Currency__c.equalsIgnoreCase('OTHER') && LoiRec.txt_Other_Currency__c == null){
+                    RequiredFieldMap.put('Other Currency','It is mandatory if OTHER as Currency');      
+                }
+                if(LoiRec.pkl_Currency__c != null && !LoiRec.pkl_Currency__c.equalsIgnoreCase('OTHER') && LoiRec.txt_Other_Currency__c != null){
+                    RequiredFieldMap.put('Other Currency','It should be only entered when Currency is OTHER');      
+                }
+                
                 if(LoiRec.num_Expense_charges_of_LOI__c == null)
                     RequiredFieldMap.put('Expense charges of LOI',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(LoiRec.num_Total_number_of_man_days_requested__c == null)
@@ -90,7 +84,7 @@ global with sharing class CPA_LOI_InformationController {
                 if(LoiRec.cur_Total_value_in_Euro_being_requested__c == null)
                     RequiredFieldMap.put('Total value in Euro being requested',CPA_ConstantsForContractingAppClasses.MANDATORY);    
                 if(!LoiRec.chk_Contract_Attached__c )
-                    RequiredFieldMap.put('Contract pdf Not attached, please attach Contract PDF, with file name prefix as LOI',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                    RequiredFieldMap.put('Contract document not attached. Please attach Contract Order as PDF document type with filename prefixed with LOI',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 if(LoiRec.mpkl_Phases_covered_by_WAR__c == null)
                     RequiredFieldMap.put('Phases covered by WAR',CPA_ConstantsForContractingAppClasses.MANDATORY);          
                 if(LoiRec.txt_PWO_number__c == null)
@@ -99,15 +93,21 @@ global with sharing class CPA_LOI_InformationController {
                     RequiredFieldMap.put('PWO title',CPA_ConstantsForContractingAppClasses.MANDATORY);          
                 if(LoiRec.pkl_Status__c == null)
                     RequiredFieldMap.put('Status',CPA_ConstantsForContractingAppClasses.MANDATORY);         
-                if(LoiRec.txt_Unilever_Clarity_ID__c == null)
-                    RequiredFieldMap.put('Unilever Clarity ID',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                /*if(LoiRec.txt_Unilever_Clarity_ID__c == null)
+                    RequiredFieldMap.put('Unilever Clarity ID',CPA_ConstantsForContractingAppClasses.MANDATORY); */
                 if(LoiRec.dt_LOI_Start_Date__c == null)
                     RequiredFieldMap.put('LOI Start Date','LOI Start Date is mandatory');
                 
                 if(LoiRec.dt_LOI_End_date__c == null)
-                    RequiredFieldMap.put('LOI End date','LOI End Date is mandatory');
-                if(LoiRec.mpkl_Phases_covered_by_WAR__c!=null && LoiRec.mpkl_Phases_covered_by_WAR__c.contains('Other') && LoiRec.txt_Other_Phases_Covered_by_W_R__c== null)
+                    {RequiredFieldMap.put('LOI End date','LOI End Date is mandatory');}
+                if(LoiRec.mpkl_Phases_covered_by_WAR__c!=null && LoiRec.mpkl_Phases_covered_by_WAR__c.contains('Other') && LoiRec.txt_Other_Phases_Covered_by_W_R__c== null){
                     RequiredFieldMap.put('Other Phases Covered by W@R','If Other Phase covered is selected then this field is mandatory');
+                }
+                
+                if(LoiRec.mpkl_Phases_covered_by_WAR__c!=null && !LoiRec.mpkl_Phases_covered_by_WAR__c.contains('Other') && LoiRec.txt_Other_Phases_Covered_by_W_R__c != null){
+                    RequiredFieldMap.put('Other Phases Covered by W@R','It should be only entered when "Phase covered" contains OTHER');
+                }
+                
                 if(LoiRec.eml_Unilever_Content_Approver_Email__c == null){
                     RequiredFieldMap.put('Unilever Content Approver Email',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
@@ -129,6 +129,19 @@ global with sharing class CPA_LOI_InformationController {
                 }
             }
          }
+         
+
+        CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(LoiRec.pkl_Status__c);
+        CPA_Status_Msg__c customSettingStatusMsg1 = CPA_Status_Msg__c.getInstance(CPA_ConstantsForContractingAppClasses.READYTOSUBMIT);
+
+        if(customSettingStatusMsg1 !=null && customSettingStatusMsg1.LOI_Status_Msg__c != null && callFromVF && RequiredFieldMap.isEmpty() && LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED ){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg1.LOI_Status_Msg__c));
+        }
+        else if(customSettingStatusMsg.LOI_Status_Msg__c != null && callFromVF){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.LOI_Status_Msg__c));
+        }
+
+         
         if(!RequiredFieldMap.isEmpty()){ 
             // ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, 'Bellow field are mandatory to Submit the record'));          
             mandatoryStringFlag = System.Label.CPA_Mandatory_Fields_Message;

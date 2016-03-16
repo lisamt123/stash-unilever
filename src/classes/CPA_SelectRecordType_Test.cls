@@ -23,7 +23,7 @@ public class CPA_SelectRecordType_Test {
     ********************************************************************/
      public static testMethod void getRecordTypeList_tst() {
      
-     CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
+   /*  CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
      objPworf.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
      insert objPworf;
          
@@ -36,7 +36,7 @@ public class CPA_SelectRecordType_Test {
         System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED ==  objPworf.pkl_Status__c);   
          controller.cancelRedirect();
         
-        Test.stopTest();
+        Test.stopTest();*/
      
      }
      /*******************************************************************

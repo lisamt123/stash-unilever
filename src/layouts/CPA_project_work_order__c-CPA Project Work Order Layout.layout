@@ -49,10 +49,6 @@
                 <behavior>Edit</behavior>
                 <field>lkp_Linked_PWO__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_Project_requestor_Name__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -73,10 +69,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>dt_Date_PWORF_accepted__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>eml_Project_requestor_Email__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -168,6 +160,13 @@
                 <behavior>Edit</behavior>
                 <field>eml_Unilever_Finance_BP_Contact_Email__c</field>
             </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txta_Request_for_Termination__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -198,15 +197,15 @@
                 <field>num_Expense_charges_of_work_order__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>num_RMS_value__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>num_Authorisation_man_days__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>num_Authorisation_charges__c</field>
             </layoutItems>
             <layoutItems>
@@ -256,13 +255,13 @@
         <label>Resourcing Details</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>pec_Estimated_On_shore__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>pec_Estimated_Off_shore__c</field>
             </layoutItems>
         </layoutColumns>
@@ -277,10 +276,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>CreatedById</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txta_Reason_for_Cancellation__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

@@ -47,17 +47,15 @@ global with sharing class CPA_PWORFInformationController {
         objectMap = new Map<String,String>();
        
         Id AllrecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_ALL_RECORDTYPE).getRecordTypeId();
-		Id RArecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getRecordTypeId();
+        Id RArecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getRecordTypeId();
         mandatoryStringFlag = null;
        pworfRec = [select id,pkl_Status__c,Business_Case__c,pkl_Business_Area__c ,In_Scope__c,txta_Acceptance_Criteria__c,Analyse_sessions_expected__c,Will_this_project_require_an_LOI_for_Wor__c,RecordTypeid,RecordType.name,Out_of_Scope__c,Overall_purpose_or_function_of_the_proje__c,Stakeholder_Expectations__c,txta_Title__c,txta_Application_infrastructure__c,txta_Business_critical_milestones__c,Expected_Business_Go_live_date__c,dt_Expected_go_live_date__c,dt_Expected_start_date__c,Expected_Start_Date_for_DBTD_PWO__c,Expected_Start_Date_for_Plan_and_Analyse__c,Impact_if_expected_business_go_live_date__c,Planning_sessions_expected__c,Project_Dependencies__c,Summary_of_requirements_and_deliverables__c,Travel_Arrangements__c,Who_will_support_this_service_once_live__c,pkl_Cost_Centre_Details__c,txt_Cost_Centre__c,txt_ICC_Number__c,pkl_Landscape__c,pkl_Request_Type__c,txta_Other_Request_Type__c,pkl_Pricing_Model__c,pkl_Region__c,dat_Revised_Submission_Date__c,Does_this_project_change_Core_Business_M__c,Does_this_Project_involve_Unilever_conf__c,Governance_Risk_and_Compliance__c,Has_W_R_been_discussed_with_Supplier_Per__c,Interface_to_the_system__c,Interface_to_the_system_Detail__c,Is_Project__c,Is_Project_Require__c,Is_this_a_new_or_re_worked_Integration_R__c,pkl_Is_this_Project_Invasive_in_nature__c,pkl_Process_Office_Area_E2E__c,mpkl_Project_Phases__c,pkl_Project_Scale__c,Role_or_System_Authorisation__c,txta_Project_Invasive_in_nature__c,txta_Role_or_System_Authorisation_detail__c,txta_Project_Require_Performance_Testing__c,Project_Require_Data_Specific_Testing__c,txt_OtherProjectPhases__c,txt_otherProcessOfficeAreaE2E__c,isValidated__c,txt_Role_Level_1_13__c,txt_Resource_Location__c,per_Budget_Expenses_of_Resource_Cost__c,dat_Indicative_timeline_End_date__c,dat_Indicative_timeline_Start_date__c,How_many_man_days_do_you_think_you_requi__c,When_do_you_require_the_Work_at_Risk_to__c,txta_Why_is_Work_at_risk_required__c,txta_What_specific_roles_do_you_require__c,txta_ITC_Resources_Utilisation__c,Which_BP_Innovation_director_has_approve__c ,pkl_Phases_covered_by_the_WAR__c,txta_PWO_linked_to_CR__c, eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, eml_Unilever_Finance_BP_Contact_Email__c, txt_Unilever_Finance_BP_Contact_Name__c, txt_Unilever_Project_Manager_Name__c, eml_Unilever_Project_Manager_Email__c from CPA_PWORF__c where id =:pworfRecId];
         
         //lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,lkp_Unilever_Finance_BP_Contact__c,lkp_Unilever_project_manager__c,
         
-        CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(pworfRec.pkl_Status__c); 
         
-        if(customSettingStatusMsg.Status_Message__c != null && callFromVF){
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.Status_Message__c));
-        }
+        
+        
         if((pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.WITHHOLD)  || !callFromVF){
 
             if(pworfRec.Business_Case__c == null){
@@ -335,10 +333,20 @@ global with sharing class CPA_PWORFInformationController {
            // }
             
         }
+        CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(pworfRec.pkl_Status__c); 
+        CPA_Status_Msg__c customSettingStatusMsg1 = CPA_Status_Msg__c.getInstance(CPA_ConstantsForContractingAppClasses.READYTOSUBMIT);
+        
+        if(customSettingStatusMsg1!=null && customSettingStatusMsg1.Status_Message__c != null && callFromVF && objectMap.isEmpty() && pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED ){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg1.Status_Message__c));
+        }
+        else if(customSettingStatusMsg.Status_Message__c != null && callFromVF  ){
+             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.Status_Message__c));
+        }
         if(!objectMap.isEmpty()){ 
                 mandatoryStringFlag = CPA_ConstantsForContractingAppClasses.MANDATORYFIELDSMESSAGE;
             return false;
         }  
+        
         return true; 
         
     }

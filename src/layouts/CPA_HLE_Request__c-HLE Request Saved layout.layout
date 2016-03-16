@@ -115,8 +115,8 @@
                 <field>txt_Accenture_skill_types_required__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Unilever_Project_Manager_Name__c</field>
+                <behavior>Edit</behavior>
+                <field>txt_Unilever_project_manager_name__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -149,7 +149,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>lkp_Unilever_project_manager__c</field>
+                <field>eml_Unilever_project_manager_Email__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

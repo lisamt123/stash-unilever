@@ -31,7 +31,7 @@
                     {!obj.num_Estimated_Man_days_of_PWO__c}
 
             </apex:outputPanel>
-            <apex:outputPanel rendered="{!IF(obj.num_Estimated_Man_days_of_PWO__c ==null , 'true', 'false')}">
+            <apex:outputPanel rendered="{!IF(obj.num_Expense_charges_of_work_order__c==null , 'true', 'false')}">
 
                   --
 
@@ -44,12 +44,12 @@
             <apex:column >
             <apex:facet name="header">Total Cost</apex:facet>
             
-            <apex:outputPanel rendered="{!IF(obj.num_Expense_charges_of_work_order__c !=null , 'true', 'false')}">
+            <apex:outputPanel rendered="{!IF(obj.num_Effort_Cost__c !=null , 'true', 'false')}">
 
-                   {!obj.num_Expense_charges_of_work_order__c}
+                   {!obj.num_Effort_Cost__c}
 
             </apex:outputPanel>
-            <apex:outputPanel rendered="{!IF(obj.num_Expense_charges_of_work_order__c ==null , 'true', 'false')}">
+            <apex:outputPanel rendered="{!IF(obj.num_Effort_Cost__c ==null , 'true', 'false')}">
 
                   --
 
@@ -63,12 +63,12 @@
              <apex:column >
           
           <apex:facet name="header">Expense</apex:facet>
-               <apex:outputPanel rendered="{!IF(obj.num_Estimated_Man_days_of_PWO__c !=null , 'true', 'false')}">
+               <apex:outputPanel rendered="{!IF(obj.num_Expense_charges_of_work_order__c!=null , 'true', 'false')}">
 
-                    {!obj.num_Estimated_Man_days_of_PWO__c}
+                    {!obj.num_Expense_charges_of_work_order__c}
 
             </apex:outputPanel>
-            <apex:outputPanel rendered="{!IF(obj.num_Estimated_Man_days_of_PWO__c ==null , 'true', 'false')}">
+            <apex:outputPanel rendered="{!IF(obj.num_Expense_charges_of_work_order__c==null , 'true', 'false')}">
 
                   --
 

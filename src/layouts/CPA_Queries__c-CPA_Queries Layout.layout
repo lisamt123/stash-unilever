@@ -24,6 +24,10 @@
                 <behavior>Required</behavior>
                 <field>RTXTQuery_Description__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Assigned_to__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -92,6 +96,8 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
+        <customButtons>Submit_New_Response</customButtons>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>RTXTQuery_Comments__c</fields>
         <fields>CREATEDBY_USER</fields>

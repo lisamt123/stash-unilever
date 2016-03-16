@@ -236,6 +236,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_CR_record_type_Standalone_CR</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>CPA_Standalone_CR</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>CPA CR record type Standalone CR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_Status_Saved</fullName>
         <field>pkl_Status__c</field>
         <literalValue>Saved</literalValue>
@@ -337,7 +347,7 @@
         <criteriaItems>
             <field>CPA_CR__c.RecordTypeId</field>
             <operation>notEqual</operation>
-            <value>CPA Standalone CR</value>
+            <value>Standalone CR</value>
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>
@@ -358,7 +368,7 @@
     <rules>
         <fullName>CPA CR Returned</fullName>
         <actions>
-            <name>CPA_CR_Saved_returned</name>
+            <name>CPA_CR_record_type_Standalone_CR</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
@@ -366,6 +376,11 @@
             <field>CPA_CR__c.pkl_Status__c</field>
             <operation>equals</operation>
             <value>Returned</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_CR__c.chk_isStandalone_CR__c</field>
+            <operation>equals</operation>
+            <value>True</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -375,17 +390,17 @@
             <name>CPA_CR_Saved_returned</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
-        <booleanFilter>1 OR 2</booleanFilter>
+        <active>false</active>
+        <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <field>CPA_CR__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Saved</value>
+            <value>Saved,Returned</value>
         </criteriaItems>
         <criteriaItems>
-            <field>CPA_CR__c.pkl_Status__c</field>
+            <field>CPA_CR__c.chk_isStandalone_CR__c</field>
             <operation>equals</operation>
-            <value>Returned</value>
+            <value>False</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -409,11 +424,15 @@
             <name>CPA_CR_Standalone_CR</name>
             <type>FieldUpdate</type>
         </actions>
+        <actions>
+            <name>CPA_Status_Saved</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <criteriaItems>
             <field>CPA_CR__c.RecordTypeId</field>
             <operation>equals</operation>
-            <value>CPA Standalone CR</value>
+            <value>Standalone CR</value>
         </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>

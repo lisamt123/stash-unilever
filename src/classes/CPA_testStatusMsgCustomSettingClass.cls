@@ -1,5 +1,5 @@
 public with sharing class CPA_testStatusMsgCustomSettingClass {
-	/*******************************************************************
+  /*******************************************************************
     Purpose: This method is used to set the status of various objects
     Parameters: 
     Returns: 
@@ -118,6 +118,82 @@ public with sharing class CPA_testStatusMsgCustomSettingClass {
         CancelMsg.Status_Message__c = CPA_ConstantsForContractingAppClasses.TEST;
         CancelMsg.TNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
         return CancelMsg;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the name of groups
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Group__c createTest_CPA_Group(){
+
+        CPA_Group__c groupName = new CPA_Group__c();
+        groupName.Name ='SMT';
+        groupName.CPA_Group_Name__c = 'CPA SMT';        
+        return groupName;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the name of groups
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Group__c createTest_CPA_GroupULPM(){
+
+        CPA_Group__c groupNameULPM = new CPA_Group__c();
+        groupNameULPM.Name ='ULPM';
+        groupNameULPM.CPA_Group_Name__c = 'CPA ULPM';        
+        return groupNameULPM;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the status messages (READYTOSUBMIT) of various objects
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Status_Msg__c createTest_READYTOSUBMIT(){
+
+        CPA_Status_Msg__c CancelMsg = new CPA_Status_Msg__c();
+        CancelMsg.Name ='READYTOSUBMIT';
+        CancelMsg.CNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        CancelMsg.CR_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        CancelMsg.HLE_Request_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        CancelMsg.LOI_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        CancelMsg.PWO_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        CancelMsg.Status_Message__c = CPA_ConstantsForContractingAppClasses.TEST;
+        CancelMsg.TNF_Status_Msg__c = CPA_ConstantsForContractingAppClasses.TEST;
+        return CancelMsg;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the Query trigger pattern
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Trigger_Pattern__c createTest_QueryTriggerPattern(){
+
+        CPA_Trigger_Pattern__c QueryTriggerPattern = new CPA_Trigger_Pattern__c();
+        QueryTriggerPattern.Name ='CPA_Queries';
+        QueryTriggerPattern.chk_Check_Run__c = true;
+        return QueryTriggerPattern;
+        
+    }
+    /*******************************************************************
+    Purpose: This method is used to set the Query comment trigger pattern
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_Trigger_Pattern__c createTest_Query_commentTriggerPattern(){
+
+        CPA_Trigger_Pattern__c Query_commentTriggerPattern = new CPA_Trigger_Pattern__c();
+        Query_commentTriggerPattern.Name ='CPA_Query_comment';
+        Query_commentTriggerPattern.chk_Check_Run__c = true;
+        return Query_commentTriggerPattern;
         
     }
 }
