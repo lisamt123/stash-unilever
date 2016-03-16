@@ -1,14 +1,33 @@
+/**
+ * Name:        -   AA_AgentAppServiceController
+ * @description -   This is the controller class for the services requested from frontend & includes the business logic
+ * @Author      -   Aslesha R K     
+ */
+
 public with sharing class AA_AgentAppServiceController {
 
     public AA_ApplicationWrapperObj aaToOperate {get;set;}
+   
+    /**
+     * @date        -   03/08/2015
+     * @description -   Constructor of the class create object of the Application wrapperObj
+     * @param       -   None 
+     * @return      -   None
+     * @modifiedby  -
+     */        
     
     public AA_AgentAppServiceController(){
         aaToOperate = new AA_ApplicationWrapperObj ();
     }
     
-    public PageReference callAccountInsert(){
-      return null;
-    }
+    /**
+     * @date        -   03/08/2015
+     * @description -   create unliver type report
+     * @param       -   AA_ApplicationWrapperObj 
+     * @return      -   AA_ApplicationWrapperObj
+     * @modifiedby  -
+     */  
+    
     public AA_ApplicationWrapperObj insertAgentApp(AA_ApplicationWrapperObj appWrapperObj){
         try{
             AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
@@ -24,22 +43,26 @@ public with sharing class AA_AgentAppServiceController {
         }
         return appWrapperObj;
     }
+
+    /**
+     * @date        -   03/08/2015
+     * @description -   Create competitor type of agent report
+     * @param       -   AA_ApplicationWrapperObj 
+     * @return      -   AA_ApplicationWrapperObj
+     * @modifiedby  -
+     */      
     public AA_ApplicationWrapperObj insertAgentApp_Competitor(AA_ApplicationWrapperObj appWrapperObj){
-        try{
+ 
             AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
             objAgentApp = appWrapperObj.objAgentAppDataRequest;
             list<String> agentAPPIDInserted = AA_DatabaseServiceUtil.upsertOperation(convertRequestAgentReport_Competitor(objAgentApp));
             list<String> agentAPPDocumentIDInserted = AA_DatabaseServiceUtil.insertOperation(agentAPPIDInserted[0], objAgentApp.ContentDocumentId);
-            appWrapperObj.message = 'Report Inserted Successfully';
+            appWrapperObj.message = System.Label.AA_Agent_Report_Success;
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
             objResponse.agentReportId = agentAPPIDInserted[0];
             appWrapperObj.objGetAgentDataResponse  =  objResponse;
             
-           
-        }catch(Exception e){
-             System.debug('Exception:' + e);
             
-        }
         return appWrapperObj;
     }
     /**
@@ -126,6 +149,13 @@ public with sharing class AA_AgentAppServiceController {
         return newObjToBeInserted;
     }
     
+    /**
+     * @date        -   03/08/2015
+     * @description -   Upload the image into the content document 
+     * @param       -   AA_WrapperUtility.AgentAppDataRequest, List of string
+     * @return      -   ContentDocumentLink object
+     * @modifiedby  -
+     */      
     public ContentDocumentLink convertRequestAgentReportDocument(AA_WrapperUtility.AgentAppDataRequest objAgentApp,list<String> agentAPPIDInserted){
         //Image Upload
         String agentReportId = agentAPPIDInserted[0];   
@@ -184,6 +214,7 @@ public with sharing class AA_AgentAppServiceController {
                                               
         return appWrapperObj;
     }
+    
      /**
      * @date        -   03/08/2015
      * @description -   retrieve all Unilever Brand Name 
@@ -232,10 +263,7 @@ public with sharing class AA_AgentAppServiceController {
     public List<aa_Cluster__c> getClusterValues(){
         List<aa_Cluster__c> ClusterNameList = fetchValues('aa_Cluster__c',AA_Constants.ID_NAME);
         return ClusterNameList;
-    }
-    
-    
-    
+    }    
     
     /**
      * @date        -   03/08/2015
@@ -254,7 +282,14 @@ public with sharing class AA_AgentAppServiceController {
          }
        return result;
     }
-   
+    
+    /**
+     * @date        -   03/08/2015
+     * @description -   to fetch the values from the database based the object sent as parameter
+     * @param       -   Object Name , Fields comma seperated , record type 
+     * @return      -   List of Sobject type data retrieved from query
+     * @modifiedby  -   
+     */   
     public static List<Sobject> fetchValuesByRecordType(String SobjectApiName,String commaSepratedFields, String recType){
         
         List<Sobject> result=new List<Sobject>();
@@ -266,6 +301,7 @@ public with sharing class AA_AgentAppServiceController {
          }
        return result;
     }
+    
     /**
      * @date        -   03/08/2015
      * @description -   retrieving Reporting On field picklist values
@@ -273,6 +309,7 @@ public with sharing class AA_AgentAppServiceController {
      * @return      -   List of String having picklist values
      * @modifiedby  -   
      */
+     
    public List<String> getReportingOnListValues(){
         Schema.DescribeFieldResult fieldResult;
         fieldResult = aa_Agent_Report__c.Reporting_on__c.getDescribe();
@@ -440,10 +477,17 @@ public with sharing class AA_AgentAppServiceController {
             }  
         }
         return retList;
-    }    
-    
+    }   
+     
+   /**
+     * @date        -   11/09/2015
+     * @description -   retriev Agent report data for front end with sorting , filter etc
+     * @param       -   AA_ApplicationWrapperObj
+     * @return      -   List of Agent reports
+     * @modifiedby  -   Aslesha R K
+     */    
    public AA_ApplicationWrapperObj retriveAllAgentReports(AA_ApplicationWrapperObj appWrapperObj){
-   try{
+  // try{
         Map<string,aa_agent_app_custom_setting__c> objURL = aa_agent_app_custom_setting__c.getAll(); 
         String urlHost =  objURL.get('Salesforce Instance URL Content').Value__c;  // Salesforce Instance URL
         String sfcURLContent =  objURL.get('SFC Content').Value__c; // URL for Image population on UI
@@ -714,7 +758,7 @@ public with sharing class AA_AgentAppServiceController {
                 }        
         if(objAgentApp.SortOnMostLike=='true'){
             objFinalReport.sort();    
-            //for(AA_WrapperUtility.agentReportDetail test:objFinalReport){  }           
+                       
              Integer i=0; 
              Integer totallimit=Integer.valueOf(appWrapperObj.objAgentAppDataRequest.OffSet)+Integer.valueOf(appWrapperObj.objAgentAppDataRequest.LimitRecords);                       
              List< AA_WrapperUtility.agentReportDetail> objFinalReportForSort = new List<AA_WrapperUtility.agentReportDetail>();           
@@ -731,22 +775,22 @@ public with sharing class AA_AgentAppServiceController {
         List<String> arr=soqlquery.split( 'where');
         string finalstr=arr[1].SubstringBefore('Order by');
         finalstr=finalstr.SubstringBefore('LIMIT');   
-       // appWrapperObj.TotalAgentReports=10;
+       
         String countquery='Select count() From aa_Agent_Report__c a where '+finalstr;   
         Integer TotalAgentReports=database.countQuery(countquery);
         appWrapperObj.TotalAgentReports=TotalAgentReports;                    
-       //appWrapperObj.TotalAgentReports=9;
+       
                                     
-        }catch(DMLException e){
-            system.debug(e.getMessage());        }
-        catch(Exception e){
-            system.debug(e.getMessage());
-        }      
+    //    }catch(DMLException e){
+    //        system.debug(e.getMessage());        }
+    //    catch(Exception e){
+    //        system.debug(e.getMessage());
+    //    }      
         return appWrapperObj;
     }
     
     /* Most like Reports results */
-   public AA_ApplicationWrapperObj retrieveAgentReportsOnMostliked(AA_ApplicationWrapperObj appWrapperObj)
+      public AA_ApplicationWrapperObj retrieveAgentReportsOnMostliked(AA_ApplicationWrapperObj appWrapperObj)
             { return appWrapperObj; }
   
     /**
@@ -756,7 +800,7 @@ public with sharing class AA_AgentAppServiceController {
      * @return      -   appWrapperObj of isAcceptedTermsCondition
      * @modifiedby  -   
      */
-     public AA_ApplicationWrapperObj isAcceptedTermsAndCondition(AA_ApplicationWrapperObj appWrapperObj){
+    public AA_ApplicationWrapperObj isAcceptedTermsAndCondition(AA_ApplicationWrapperObj appWrapperObj){
         List<aa_Agent_App_User_Preference__c> UserPref = [SELECT Id,User_Last_Login__c,UserId__c,Is_Accepted_Terms_Condition__c,T_C_AcceptedDate__c FROM aa_Agent_App_User_Preference__c where UserId__c =: UserInfo.getUserId() LIMIT 1];
          if(UserPref.size() >= 1){
          if(!UserPref[0].Is_Accepted_Terms_Condition__c){
@@ -842,7 +886,14 @@ public with sharing class AA_AgentAppServiceController {
         return appWrapperObj;
     }    
    
-    
+ /**
+     * @date        -   19/08/2015
+     * @description -   Reduce the like count when user unlike the report
+     * @param       -   AA_ApplicationWrapperObj 
+     * @return      -   AA_ApplicationWrapperObj
+     * @modifiedby  -   Aslesha RK
+     */
+       
     
     public AA_ApplicationWrapperObj updateUnlikeCount(AA_ApplicationWrapperObj appWrapperObj){
   
@@ -894,7 +945,7 @@ public with sharing class AA_AgentAppServiceController {
                     userList.add((User)item);
               }
             }
-        //    wrapperUtilityObj.autocompleteList=new List<User>();
+           //    wrapperUtilityObj.autocompleteList=new List<User>();
             wrapperUtilityObj.autocompleteList=userList;
         }
         
@@ -915,7 +966,7 @@ public with sharing class AA_AgentAppServiceController {
                 topicsList.add(item);
               
                }
-      //  wrapperUtilityObj.autocompleteList=new List<Topic>();
+         //  wrapperUtilityObj.autocompleteList=new List<Topic>();
         wrapperUtilityObj.autocompleteList=topicsList;
        
 
@@ -926,9 +977,5 @@ public with sharing class AA_AgentAppServiceController {
         
          return appWrapperObj;   
               
-    }
-    
-  
- 
-    
+    }    
 }

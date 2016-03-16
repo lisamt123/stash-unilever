@@ -107,8 +107,8 @@ private class AA_BaseApplicationServices_Test {
     
     static testMethod void createSerializedMapStringTest(){
     
-        String response = AA_BaseApplicationServices.createSerializedMapString('{"serviceJSONObjectasString":"{\"AgentAppDataRequest\": {\"CompetitorBrandId\": \"a6Lc00000008Tfu\"}}"');
-        system.assertNotEquals(response,null);
+        String response = AA_BaseApplicationServices.createSerializedMapString('{"AgentAppDataRequest":{"FilterType":"AllReports","LimitRecords":12,"OffSet":0}}');
+        system.assertEquals(response,'{"OffSet":0,"LimitRecords":12,"FilterType":"AllReports"}');
     }
     
  

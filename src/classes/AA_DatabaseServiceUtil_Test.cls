@@ -1,6 +1,19 @@
 @isTest
-private class AA_DatabaseServiceUtil_Test {
+/**
+ * Name:        -   AA_DatabaseServiceUtil_Test
+ * @description -   This is test class for AA_DatabaseServiceUtil class which includes all the DML operations
+ * @Author      -   Aslesha R K     
+ */
 
+private class AA_DatabaseServiceUtil_Test {
+	
+    /**
+     * @date        -   19/09/2015
+     * @description -   Test class to test the method upsertOperation
+     * @param       -   None 
+     * @return      -   None
+     * @modifiedby  -
+     */     
     static testMethod void upsertOperationTest() {
         aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
         insert retailerData;
@@ -38,9 +51,16 @@ private class AA_DatabaseServiceUtil_Test {
         List<aa_Agent_Report__c> reportLst=new List<aa_Agent_Report__c>();
         reportLst.add(unileverReport);
         List<String> res5 = AA_DatabaseServiceUtil.upsertOperation(reportLst);
-        
-        system.assert(res5.Id!=null);
+        system.assert(res.size()>0);
     }
+    
+    /**
+     * @date        -   19/09/2015
+     * @description -   Test class to test the method deleteOperationList
+     * @param       -   None 
+     * @return      -   None
+     * @modifiedby  -
+     */      
     static testMethod void deleteOperationListTest() {
         aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
         insert retailerData;
@@ -54,6 +74,15 @@ private class AA_DatabaseServiceUtil_Test {
         
         system.assert(res.size()>0);
     }
+    
+     /**
+     * @date        -   19/09/2015
+     * @description -   Test class to test the method deleteOperation
+     * @param       -   None 
+     * @return      -   None
+     * @modifiedby  -
+     */     
+    
     static testMethod void deleteOperationTest() {
         aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
         insert retailerData;
@@ -68,17 +97,42 @@ private class AA_DatabaseServiceUtil_Test {
         system.assert(res.size()>0);
         
     }
+
+     /**
+     * @date        -   19/09/2015
+     * @description -   Test class to test the method getRecordType
+     * @param       -   None 
+     * @return      -   None
+     * @modifiedby  -
+     */       
     static testMethod void getRecordTypeId() {
         Id res = AA_DatabaseServiceUtil.getRecordTypeId('aa_Agent_Report__c','Unilever_Agent_Report');
         system.debug('Recordtype id '+AA_DatabaseServiceUtil.getRecordTypeId('aa_Agent_Report__c','Unilever Agent Report'));
          system.assert(res != '');
     }
+    
+     /**
+     * @date        -   19/09/2015
+     * @description -   Test class to test the method getPickListValues
+     * @param       -   None 
+     * @return      -   None
+     * @modifiedby  -
+     */    
+    
     static testMethod void getPickListValues() {
         AA_DatabaseServiceUtil obj = new AA_DatabaseServiceUtil();
         List<String> res = obj.getPickListValues('aa_Agent_Report__c','Status__c');
         system.debug('picklist values id '+obj.getPickListValues('aa_Agent_Report__c','Status__c'));
         system.assert(obj!=null);  
     }
+    
+     /**
+     * @date        -   19/09/2015
+     * @description -   Test class to test the method validateId
+     * @param       -   None 
+     * @return      -   None
+     * @modifiedby  -
+     */     
     static testMethod void validateId() {
     	aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '78-Eleven');
         insert retailerData;
@@ -87,6 +141,14 @@ private class AA_DatabaseServiceUtil_Test {
         system.assertEquals(res,true);
     }
     
+    
+     /**
+     * @date        -   19/09/2015
+     * @description -   Test class to test the method insertOperation
+     * @param       -   None 
+     * @return      -   None
+     * @modifiedby  -
+     */     
     static testMethod void insertOperationTest() {
         
         Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
@@ -116,7 +178,15 @@ private class AA_DatabaseServiceUtil_Test {
         //commented as part of 10 Nov 2015 deployment 
         system.assert(res1.size()>0);
     }
-    // Added as part of Nov 13 deployment 
+    
+     /**
+     * @date        -   13/11/2015
+     * @description -   Test class to test the method invokeTriggerAA_AgentReportRejected
+     * @param       -   None 
+     * @return      -   None
+     * @modifiedby  - // Added as part of Nov 13 deployment 
+     */ 
+   
     static testMethod void invokeTriggerAA_AgentReportRejected_Email(){
     aa_Agent_Report__c recNew = new aa_Agent_Report__c(Name='TestAgentReport102938');
     try{
