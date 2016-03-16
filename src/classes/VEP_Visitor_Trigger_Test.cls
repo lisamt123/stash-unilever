@@ -3,7 +3,7 @@ private class VEP_Visitor_Trigger_Test{
 
     static testMethod void test_VEP_Visitor_Trigger(){
     Test.startTest(); 
-        Boolean flag=false;
+        
         
         VEP_Factory__c fact= new VEP_Factory__c();
         fact.name='Factory1';
@@ -33,7 +33,7 @@ private class VEP_Visitor_Trigger_Test{
         visitor.Factory_to_visit__c='Factory1';
         listVisitor.add(visitor); 
         
-        System.assert(robRecordTypeId != null);
+        
         VEP_Visitor__c visitor1 = new VEP_Visitor__c();
         visitor1.name='Test Visitor1'; 
         visitor1.status__c='Approved';
@@ -43,23 +43,13 @@ private class VEP_Visitor_Trigger_Test{
         visitor1.pickup__c=true;
         visitor1.Factory_to_visit__c='Factory1';
         listVisitor.add(visitor1);    
-        insert listVisitor;        
-                          
-                List<VEP_Visitor__c> listv = new List<VEP_Visitor__c>();
-                listv = [select id,name from VEP_Visitor__c where id=:visitor1.id];
-                system.assertEquals(listv[0].name,'Test Visitor1'); 
-                for(VEP_Visitor__c tempV : listv)
-                                                                       
-                     {
-                           If(tempV.name=='Test Visitor1')
-                           {flag=true;}           
-                           else
-                           {flag=false;}
-                     }           
-            
-                Test.stopTest();  
+        insert listVisitor;         
+        system.assert(visitor1.id!=null);
+        VEP_Visitor__c v1 = [select id,name from VEP_Visitor__c where id=: visitor1.id];
+        system.assertequals(visitor1.id,v1.id);                     
+        Test.stopTest();  
         
-        system.assertEquals(true,flag); 
+        
         
     }
 }

@@ -40,9 +40,9 @@ private class VEP_MapFactory_Test{
         mapfact.Back2Factories();
                                              
         VEP_MapFactory_CC mapfact1 = new VEP_MapFactory_CC();        
-        mapfact1.targetField = fact.id;
-        System.assert(mapfact1.targetField != null);
+        mapfact1.targetField = fact.id;        
         mapfact1.SearchFactoryList();
+        System.assert(mapfact1.factoryList!=null);
         System.assertEquals(mapfact1.factoryDetails.name,'Factory1');
         System.assertEquals(1, mapfact1.factoryList.size());
         mapfact1.factname='';
