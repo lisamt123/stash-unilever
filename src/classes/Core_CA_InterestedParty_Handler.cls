@@ -34,6 +34,10 @@ public class Core_CA_InterestedParty_Handler{
     public static String strTextValue = 'Yes' ;
     
     public void handleBeforeInsert(List<Core_Approver_Details__c > approverList){
+        /* -- SONAR Issue explanation -- 
+          When the Record is inserted by the External system depending on the Source System We are assigning the relevant record type to the record.
+          there are 4 Recordtype for the approval status object.So its been retrived in the below code snippet 
+        */
         String strApproverobjTemp ='Core_Approver_Details__c';
         List<RecordType> aribaRecordType  = [SELECT Id FROM RecordType where Name =: strAribaTemp AND SobjectType =: strApproverobjTemp];
         List<RecordType> gtesRecordType   = [SELECT Id FROM RecordType where Name =: strGtesTemp AND SobjectType =: strApproverobjTemp];
