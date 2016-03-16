@@ -1,7 +1,15 @@
+/**
+   @Author: Cognizant
+   @name : IPM_BETNotificationBatchSchedule_Test
+   @CreateDate : 10/01/2015
+   @Description : Test class for IPM_BETNotificationBatchScheduler
+   @Version <1.0>
+   @reference 
+ */
 @isTest
 public with sharing class IPM_BETNotificationBatchSchedule_Test {
 
-private static final String  FEED_UPDATED_ASSERT = 'Feed Updated';
+private static final String  FEED_NOT_UPDATED_ASSERT = 'Feed not Updated';
 
   public static testMethod void betTestMethod() {
      
