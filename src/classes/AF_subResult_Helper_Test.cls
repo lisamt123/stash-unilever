@@ -9,8 +9,6 @@
 @isTest(SeeAlldata=false)
 public class AF_subResult_Helper_Test
 {
-	Private Static Integer IcurrYear = System.Today().year();
-	Private Static string currYear=string.valueof(IcurrYear);
 	static user userForsubResultHelper;
 	private static string bonusmeasure='BM1';
 	/**********************************************************************
@@ -123,11 +121,7 @@ public class AF_subResult_Helper_Test
 			insert subResultlist2;
 			List<AF_Sub_Result__c> subResultsQuery = [SELECT ID,AF_Bonus_Threshold__c FROM AF_Sub_Result__c WHERE ID IN : subResults LIMIT 1];
 			System.assertEquals(subResultsQuery[0].AF_Bonus_Threshold__c ,BonusThresholdQuery[0].id, AF_TestFactory_Helper.SUBRESULT_RECORD);
-			try{
-				delete subResultlist;
-			}
-			catch(Exception e){
-			}
+			delete subResultlist;
 			//Insert Bonus Results.
 			List<AF_Bonus_Results__c> BonusResultList = AF_TestFactory_Helper.insertBonusResults(1,false);
 			List<AF_Bonus_Results__c> BonusResultListNew = new  List<AF_Bonus_Results__c>();
@@ -260,11 +254,7 @@ public class AF_subResult_Helper_Test
 				subResultlist1.add(sr1);
 			}
 			insert subResultlist1;
-			try{
-				delete subResultlist;
-			}
-			catch(Exception e){
-			}
+			delete subResultlist;
 			AF_subResult_Helper subhelp = new AF_subResult_Helper();
 			Test.stopTest();
 		}

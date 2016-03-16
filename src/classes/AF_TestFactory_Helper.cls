@@ -111,7 +111,7 @@ public without sharing class AF_TestFactory_Helper
     public static User createUserAdmin(Boolean doInsert) 
     {
         u= new User(Alias = 'testbe', Email='standarduserbe@unilever.com', 
-        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, FirstName='test',LastName='Test Userbe', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, FirstName=AF_Constants.TEST_USER_FIRSTNAME,LastName='Test Userbe', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id, 
         TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='agency',isActive=true, 
         UserName='testuserbe@test123321.com',AF_Brand__c='Test Brandbe',AF_Category__c='Test Beveragesbe');
@@ -645,7 +645,7 @@ public without sharing class AF_TestFactory_Helper
         {
             AF_Controller_Review__c conRev1=new AF_Controller_Review__c();
             conRev1.Brand_Estimate__c=BrandEstimateList[i-1].Id;
-            conRev1.Controller_Group__c='test';
+            conRev1.Controller_Group__c=AF_Constants.TEST_USER_FIRSTNAME;
             controllerReviewList.add(conRev1);
         }
         if(doInsert){
@@ -1227,7 +1227,7 @@ public without sharing class AF_TestFactory_Helper
         { 
             AF_PO_Report__c po= new AF_PO_Report__c();
             po.AF_Adaptation__c=145;
-            po.AF_Agency_Name__c='test';
+            po.AF_Agency_Name__c=AF_Constants.TEST_USER_FIRSTNAME;
             po.AF_Compound_Key__c='compondtest';
             po.AF_PO_Report_Type__c='poreport';
            poreportLst.add(po);

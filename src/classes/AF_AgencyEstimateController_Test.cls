@@ -9,8 +9,6 @@
 @isTest(SeeAlldata=false)
 public class AF_AgencyEstimateController_Test
 { 
-    Private Static Integer IcurrYear = System.Today().year();
-    Private Static string currYear=string.valueof(IcurrYear);
     Private static user AgencyEstimateController;
     /***********************************************************************************
 *  @Description: this method will the test data

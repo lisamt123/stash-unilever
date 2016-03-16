@@ -15,6 +15,11 @@ public class AF_AgencyHomePageController_Test
     Static string currYear1=string.valueof(IcurrYear1);
     Static Integer IcurrYear2 = System.Today().year()-2;
     Static string currYear2=string.valueof(IcurrYear2);
+    Private static final string category='category';
+    Private static final string year='Year';
+    Private static final string brandvalue='brandvalue';
+    Private static final string mybrand='My Brands';
+    Private static final string allbrands='All Brands';
     Private static user AgencyHomePage;
     /***********************************************************************************
 *  @Description: this method will the test data
@@ -135,9 +140,9 @@ public class AF_AgencyHomePageController_Test
             List<AF_OOPS_Estimate__c> OOPSEstimateListQuery =[SELECT ID,AF_OOPS_Actual__c FROM AF_OOPS_Estimate__c WHERE ID IN :OOPSEstimateList LIMIT 1];
             System.assertEquals(OOPSEstimateListQuery[0].AF_OOPS_Actual__c, OopsactualList[0].id,AF_TestFactory_Helper.OOPSACTUCAL_RECORD);
             //Instantiate AF_OOPS_SelectionController  Class
-            ApexPages.currentPage().getParameters().put('category',cb[0].Name+'::'+cb[0].Id);
-            ApexPages.currentPage().getParameters().put('Year',currYear1);
-            ApexPages.currentPage().getParameters().put('brandvalue','My Brands');
+            ApexPages.currentPage().getParameters().put(category,cb[0].Name+'::'+cb[0].Id);
+            ApexPages.currentPage().getParameters().put(year,currYear1);
+            ApexPages.currentPage().getParameters().put(brandvalue,mybrand);
             AF_AgencyHomePageController agenHome=new AF_AgencyHomePageController();
             agenHome.getfinancialYearOption();
             agenHome.getCategoryOption();
@@ -273,9 +278,9 @@ public class AF_AgencyHomePageController_Test
             List<AF_OOPS_Estimate__c> OOPSEstimateListQuery =[SELECT ID,AF_OOPS_Actual__c FROM AF_OOPS_Estimate__c WHERE ID IN :OOPSEstimateList LIMIT 1];
             System.assertEquals(OOPSEstimateListQuery[0].AF_OOPS_Actual__c, OopsactualList[0].id,AF_TestFactory_Helper.OOPSACTUCAL_RECORD);
             //Instantiate AF_OOPS_SelectionController  Class
-            ApexPages.currentPage().getParameters().put('category',cb[0].Name+'::'+cb[0].Id);
-            ApexPages.currentPage().getParameters().put('Year',currYear1);
-            ApexPages.currentPage().getParameters().put('brandvalue','All Brands');
+            ApexPages.currentPage().getParameters().put(category,cb[0].Name+'::'+cb[0].Id);
+            ApexPages.currentPage().getParameters().put(year,currYear1);
+            ApexPages.currentPage().getParameters().put(brandvalue,allbrands);
             AF_AgencyHomePageController agenHome=new AF_AgencyHomePageController();
             agenHome.getfinancialYearOption();
             agenHome.getCategoryOption();
@@ -380,9 +385,9 @@ public class AF_AgencyHomePageController_Test
             List<AF_OOPS_Estimate__c> OOPSEstimateListQuery =[SELECT ID,AF_OOPS_Actual__c FROM AF_OOPS_Estimate__c WHERE ID IN :OOPSEstimateList LIMIT 1];
             System.assertEquals(OOPSEstimateListQuery[0].AF_OOPS_Actual__c, OopsactualList[0].id,AF_TestFactory_Helper.OOPSACTUCAL_RECORD);
             //Instantiate AF_OOPS_SelectionController  Class
-            ApexPages.currentPage().getParameters().put('category',cb[0].Name+'::'+cb[0].Id);
-            ApexPages.currentPage().getParameters().put('Year',currYear);
-            ApexPages.currentPage().getParameters().put('brandvalue','My Brands');
+            ApexPages.currentPage().getParameters().put(category,cb[0].Name+'::'+cb[0].Id);
+            ApexPages.currentPage().getParameters().put(year,currYear);
+            ApexPages.currentPage().getParameters().put(brandvalue,mybrand);
             AF_AgencyHomePageController agenHome=new AF_AgencyHomePageController();
             agenHome.getfinancialYearOption();
             agenHome.getCategoryOption();
@@ -406,7 +411,7 @@ public class AF_AgencyHomePageController_Test
         Test.startTest();
         AgencyHomePage = AF_TestFactory_Helper.createAgency(true);
         User u=[SELECT id,Email FROM user WHERE id=:AgencyHomePage.id LIMIT 1];
-        PermissionSet perSet = [SELECT Id,Name FROM PermissionSet WHERE Name ='AF_Procurement' Limit 1];
+        PermissionSet perSet = [SELECT Id,Name FROM PermissionSet WHERE Name = 'AF_Procurement'  Limit 1];
         PermissionSetAssignment perSetAssign=new PermissionSetAssignment();
         perSetAssign.PermissionSetId = perSet.Id; 
         perSetAssign.AssigneeId=u.id;
@@ -486,9 +491,9 @@ public class AF_AgencyHomePageController_Test
             List<AF_OOPS_Estimate__c> OOPSEstimateListQuery =[SELECT ID,AF_OOPS_Actual__c FROM AF_OOPS_Estimate__c WHERE ID IN :OOPSEstimateList LIMIT 1];
             System.assertEquals(OOPSEstimateListQuery[0].AF_OOPS_Actual__c, OopsactualList[0].id,AF_TestFactory_Helper.OOPSESTIMATE_RECORD);
             //Instantiate AF_OOPS_SelectionController  Class
-            ApexPages.currentPage().getParameters().put('category',cb[0].Name+'::'+cb[0].Id);
-            ApexPages.currentPage().getParameters().put('Year',currYear);
-            ApexPages.currentPage().getParameters().put('brandvalue','All Brands');
+            ApexPages.currentPage().getParameters().put(category,cb[0].Name+'::'+cb[0].Id);
+            ApexPages.currentPage().getParameters().put(year,currYear);
+            ApexPages.currentPage().getParameters().put(brandvalue,allbrands);
             AF_AgencyHomePageController agenHome=new AF_AgencyHomePageController();
             agenHome.getfinancialYearOption();
             agenHome.getCategoryOption();
@@ -512,7 +517,7 @@ public class AF_AgencyHomePageController_Test
         Test.startTest();
         AgencyHomePage = AF_TestFactory_Helper.createUserAdmin2(true);
         User u=[SELECT id,Email FROM user WHERE id=:AgencyHomePage.id LIMIT 1];
-        PermissionSet perSet = [SELECT Id,Name FROM PermissionSet WHERE Name ='AF_Category_Finance_Regional' Limit 1];
+        PermissionSet perSet = [SELECT Id,Name FROM PermissionSet WHERE Name = 'AF_Category_Finance_Regional' Limit 1];
         PermissionSetAssignment perSetAssign=new PermissionSetAssignment();
         perSetAssign.PermissionSetId = perSet.Id; 
         perSetAssign.AssigneeId=u.id;
@@ -581,9 +586,9 @@ public class AF_AgencyHomePageController_Test
             List<AF_OOPS_Estimate__c> OOPSEstimateListQuery =[SELECT ID,AF_OOPS_Actual__c FROM AF_OOPS_Estimate__c WHERE ID IN :OOPSEstimateList LIMIT 1];
             System.assertEquals(OOPSEstimateListQuery[0].AF_OOPS_Actual__c, OopsactualList[0].id,AF_TestFactory_Helper.OOPSESTIMATE_RECORD);
             //Instantiate AF_OOPS_SelectionController  Class
-            ApexPages.currentPage().getParameters().put('category',cb[0].Name+'::'+cb[0].Id);
-            ApexPages.currentPage().getParameters().put('Year',currYear);
-            ApexPages.currentPage().getParameters().put('brandvalue','All Brands');
+            ApexPages.currentPage().getParameters().put(category,cb[0].Name+'::'+cb[0].Id);
+            ApexPages.currentPage().getParameters().put(year,currYear);
+            ApexPages.currentPage().getParameters().put(brandvalue,allbrands);
             AF_AgencyHomePageController agenHome=new AF_AgencyHomePageController();
             agenHome.getfinancialYearOption();
             agenHome.getCategoryOption();

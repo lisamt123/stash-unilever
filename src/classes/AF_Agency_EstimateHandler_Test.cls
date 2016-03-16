@@ -88,11 +88,7 @@ public class AF_Agency_EstimateHandler_Test
 			update AgencyEsitmateNew;
 			List<AF_Agency_Estimate__c> AgencyQuery = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmate limit 1];
 			System.assertEquals(AgencyQuery[0].AF_Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
-			try{
-				delete AgencyEsitmateNew;
-			}
-			Catch(Exception e){
-			}
+			delete AgencyEsitmateNew;
 			AF_Agency_EstimateHandler agencyhand = new AF_Agency_EstimateHandler();
 			AF_Agency_Estimate__c so = new AF_Agency_Estimate__c();     
 			AF_Agency_Estimate__c oldso =new AF_Agency_Estimate__c();
@@ -175,10 +171,7 @@ public class AF_Agency_EstimateHandler_Test
 				agency.AF_Traditional_Local__c=0; 
 				AgencyEsitmateNew.add(agency);
 			}
-			try{
 				insert AgencyEsitmateNew;
-			}Catch(exception e){
-			}
 			List<AF_Agency_Estimate__c> AgencyQuery = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmate limit 1];
 			//insert agency estimate
 			List<AF_Agency_Estimate__c> AgencyEsitmate1 = AF_TestFactory_Helper.insertAgencyEstimate(1,false);
@@ -197,11 +190,7 @@ public class AF_Agency_EstimateHandler_Test
 			insert AgencyEsitmateNew1;
 			List<AF_Agency_Estimate__c> AgencyQuery1 = [SELECT Id ,AF_Brand_Estimate__c FROM AF_Agency_Estimate__c WHERE ID IN : AgencyEsitmate1 limit 1];
 			System.assertEquals(AgencyQuery[0].AF_Brand_Estimate__c, BrandEst[0].id,AF_TestFactory_Helper.AGENCYESTIMATE_RECORD);
-			try{
-				delete AgencyEsitmateNew1;
-			}
-			Catch(Exception e){
-			}
+			delete AgencyEsitmateNew1;
 			//Insert Bonus Threshold
 			List<AF_Bonus_Threshold__c> BonusThreshold =  AF_TestFactory_Helper.insertBonusThreshhold(1,false);
 			List<AF_Bonus_Threshold__c> BonusThresholdlist =new List<AF_Bonus_Threshold__c>();
