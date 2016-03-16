@@ -247,7 +247,7 @@ public with sharing class AF_ApproveActualsCtrl {
 *  @param : none
 *  @return: Boolean.
 **********************************************************************/
-    private Boolean getActualUploadedValues(AF_OOPS_Actual__c oop, String quarter) {
+    /*private Boolean getActualUploadedValues(AF_OOPS_Actual__c oop, String quarter) {
         Boolean valueToReturn=false;
         if(quarter == 'Q1') {
             valueToReturn = oop.AF_Q1_Backup__c;
@@ -259,7 +259,7 @@ public with sharing class AF_ApproveActualsCtrl {
             valueToReturn = oop.AF_Q4_Backup__c;
         }
         return valueToReturn;
-    }
+    }*/
     /**********************************************************************
 *  @Description: this method used to update the OOPS each quarter input amounts
 *  @name : saveQuarterInputs

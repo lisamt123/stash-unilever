@@ -1,4 +1,4 @@
-public without sharing class AF_TestFactory_Helper 
+public with sharing class AF_TestFactory_Helper 
 {
     public static List<AF_Bonus_Summary__c> BonussummaryList;
     public static user u;

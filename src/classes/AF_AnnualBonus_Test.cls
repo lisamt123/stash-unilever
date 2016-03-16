@@ -160,7 +160,7 @@ public class AF_AnnualBonus_Test
                 sr.AF_Minimum__c = 1;
                 sr.AF_Outstanding__c = 3;
                 sr.AF_Stretching__c = 2;
-                sr.Bonus_Measure__c ='BM1';
+                sr.Bonus_Measure__c =bonusMeasure;
                 subResultlist.add(sr);
             }
             insert subResultlist;
@@ -229,7 +229,7 @@ public class AF_AnnualBonus_Test
             }
             insert AnnualBns;
             List<AF_AnnualBonus_Qual__c> AnnualBnsQuery = [SELECT ID FROM AF_AnnualBonus_Qual__c Limit 1];
-            System.Assert(AnnualBnsQuery[0].Id != null, 'The AnnualBonus records are inserted');
+            System.Assert(AnnualBnsQuery[0].Id != null, ANNUAL_BONUS);
             List<AF_AnnualBonus_Qual__c> AnnualBs = AF_TestFactory_Helper.insertAnnualBonus(1,false);
             List<AF_AnnualBonus_Qual__c> AnnualBnslist=new List<AF_AnnualBonus_Qual__c>();
             for(AF_AnnualBonus_Qual__c  AnnualBonus : AnnualBs)
@@ -243,7 +243,7 @@ public class AF_AnnualBonus_Test
             }
             insert AnnualBnslist;
             List<AF_AnnualBonus_Qual__c> AnnualBsQuery = [SELECT ID FROM AF_AnnualBonus_Qual__c LIMIT 1];
-            System.Assert(AnnualBsQuery[0].Id != null, 'The AnnualBonus records are inserted');
+            System.Assert(AnnualBsQuery[0].Id != null, ANNUAL_BONUS);
             // insert QuarterlyBonus.
             List<AF_QuarterlyBonus__c> QuarterlyBonus = AF_TestFactory_Helper.insertQuarterlyBonus(1,false);
             List<AF_QuarterlyBonus__c> QuarterlyBonuslist=new List<AF_QuarterlyBonus__c>();
@@ -323,7 +323,7 @@ public class AF_AnnualBonus_Test
                 sr.AF_Minimum__c = 1;
                 sr.AF_Outstanding__c = 3;
                 sr.AF_Stretching__c = 2;
-                sr.Bonus_Measure__c ='BM1';
+                sr.Bonus_Measure__c =bonusMeasure;
                 subResultlist.add(sr);
             }
             insert subResultlist;
@@ -394,7 +394,7 @@ public class AF_AnnualBonus_Test
             }
             insert AnnualBnslsit;
             List<AF_AnnualBonus_Qual__c> AnnualBnsQuery = [SELECT ID FROM AF_AnnualBonus_Qual__c Limit 1];
-            System.Assert(AnnualBnsQuery[0].Id != null, 'The AnnualBonus records are inserted');
+            System.Assert(AnnualBnsQuery[0].Id != null, ANNUAL_BONUS);
             List<AF_AnnualBonus_Qual__c> AnnualBs = AF_TestFactory_Helper.insertAnnualBonus(1,false);
             List<AF_AnnualBonus_Qual__c> AnnualBslist=new List<AF_AnnualBonus_Qual__c>();
             for(AF_AnnualBonus_Qual__c  AnnualBonus : AnnualBs)
@@ -408,7 +408,7 @@ public class AF_AnnualBonus_Test
             }
             insert AnnualBslist;
             List<AF_AnnualBonus_Qual__c> AnnualBsQuery = [SELECT ID FROM AF_AnnualBonus_Qual__c LIMIT 1];
-            System.Assert(AnnualBsQuery[0].Id != null, 'The AnnualBonus records are inserted');
+            System.Assert(AnnualBsQuery[0].Id != null, ANNUAL_BONUS);
             // insert QuarterlyBonus.
             List<AF_QuarterlyBonus__c> QuarterlyBonus = AF_TestFactory_Helper.insertQuarterlyBonus(1,false);
             List<AF_QuarterlyBonus__c> QuarterlyBonuslist=new List<AF_QuarterlyBonus__c>();
@@ -497,7 +497,7 @@ public class AF_AnnualBonus_Test
                 sr.AF_Minimum__c = 1;
                 sr.AF_Outstanding__c = 3;
                 sr.AF_Stretching__c = 2;
-                sr.Bonus_Measure__c ='BM1';
+                sr.Bonus_Measure__c =bonusMeasure;
             }
             insert subResults;
             List<AF_Sub_Result__c> subResults1 = AF_TestFactory_Helper.insertSubResult1(1,false);
@@ -511,7 +511,7 @@ public class AF_AnnualBonus_Test
                 sr1.AF_Minimum__c = 5;
                 sr1.AF_Outstanding__c = 7;
                 sr1.AF_Stretching__c = 6;
-                sr1.Bonus_Measure__c = 'BM1';
+                sr1.Bonus_Measure__c = bonusMeasure;
                 sr1.AF_Quant_Bonus_Value__c = 156;
                 sr1.AF_Total_Bonus_Value__c = 3800;
                 sr1.AF_Bonusable_Fees__c = 35;
@@ -572,7 +572,7 @@ public class AF_AnnualBonus_Test
             }
             insert AnnualBns;
             List<AF_AnnualBonus_Qual__c> AnnualBnsQuery = [SELECT ID FROM AF_AnnualBonus_Qual__c Limit 1];
-            System.Assert(AnnualBnsQuery[0].Id != null, 'The AnnualBonus records are inserted');
+            System.Assert(AnnualBnsQuery[0].Id != null, ANNUAL_BONUS);
             List<AF_AnnualBonus_Qual__c> AnnualBs = AF_TestFactory_Helper.insertAnnualBonus(1,false);
             List<AF_AnnualBonus_Qual__c> AnnualBslist =new List<AF_AnnualBonus_Qual__c> ();
             for(AF_AnnualBonus_Qual__c  AnnualBonus : AnnualBs)
@@ -586,7 +586,7 @@ public class AF_AnnualBonus_Test
             }
             insert AnnualBslist;
             List<AF_AnnualBonus_Qual__c> AnnualBsQuery = [SELECT ID FROM AF_AnnualBonus_Qual__c LIMIT 1];
-            System.Assert(AnnualBsQuery[0].Id != null, 'The AnnualBonus records are inserted');
+            System.Assert(AnnualBsQuery[0].Id != null, ANNUAL_BONUS);
             // insert QuarterlyBonus.
             List<AF_QuarterlyBonus__c> QuarterlyBonus = AF_TestFactory_Helper.insertQuarterlyBonus(1,false);
             List<AF_QuarterlyBonus__c> QuarterlyBonuslist=new List<AF_QuarterlyBonus__c> ();
@@ -665,9 +665,9 @@ public class AF_AnnualBonus_Test
                 sr.AF_Minimum__c = 1;
                 sr.AF_Outstanding__c = 3;
                 sr.AF_Stretching__c = 2;
-                sr.Bonus_Measure__c ='BM1';
-                sr.AF_Period__c='Q1';
-                sr.AF_Status__c='Draft';
+                sr.Bonus_Measure__c =bonusMeasure;
+                sr.AF_Period__c=AF_Constants.QUARTER1;
+                sr.AF_Status__c=AF_Constants.STATUS_DRAFT;
                 sr.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
                 //subResults.add(sr);
             }
@@ -680,9 +680,9 @@ public class AF_AnnualBonus_Test
                 sr.AF_Minimum__c = 1;
                 sr.AF_Outstanding__c = 3;
                 sr.AF_Stretching__c = 2;
-                sr.Bonus_Measure__c ='BM1';
-                sr.AF_Period__c='Q2';
-                sr.AF_Status__c='Draft';
+                sr.Bonus_Measure__c =bonusMeasure;
+                sr.AF_Period__c=AF_Constants.QUARTER2;
+                sr.AF_Status__c=AF_Constants.STATUS_DRAFT;
                 sr.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
                 //subResults.add(sr);
             }
@@ -695,13 +695,13 @@ public class AF_AnnualBonus_Test
                 sr.AF_Minimum__c = 0;
                 sr.AF_Outstanding__c = 3;
                 sr.AF_Stretching__c = 2;
-                sr.Bonus_Measure__c ='BM1';
-                sr.AF_Period__c='Q3';
+                sr.Bonus_Measure__c =bonusMeasure;
+                sr.AF_Period__c=AF_Constants.QUARTER3;
                 //sr.AF_Result_type__c='Quarterly';
                 //sr.AF_Unique_Key__c='test1236';
                 //sr.Sub_Result_AnnualID__c=subResults[0].id;
                 //sr.AF_deletion_key__c=subResults[0].AF_deletion_key__c;
-                sr.AF_Status__c='Draft';
+                sr.AF_Status__c=AF_Constants.STATUS_DRAFT;
                 sr.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
                 //subResults.add(sr);
             }  
