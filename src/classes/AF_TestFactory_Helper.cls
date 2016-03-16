@@ -1,4 +1,4 @@
-public with sharing class AF_TestFactory_Helper 
+public without sharing class AF_TestFactory_Helper 
 {
     public static List<AF_Bonus_Summary__c> BonussummaryList;
     public static user u;
@@ -111,9 +111,9 @@ public with sharing class AF_TestFactory_Helper
     public static User createUserAdmin(Boolean doInsert) 
     {
         u= new User(Alias = 'testbe', Email='standarduserbe@unilever.com', 
-        EmailEncodingKey='UTF-8', FirstName='test',LastName='Test Userbe', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, FirstName='test',LastName='Test Userbe', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id, 
-        TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='agency',isActive=true, 
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='agency',isActive=true, 
         UserName='testuserbe@test123321.com',AF_Brand__c='Test Brandbe',AF_Category__c='Test Beveragesbe');
         if(doInsert){
             insert u; 
@@ -121,21 +121,21 @@ public with sharing class AF_TestFactory_Helper
     }
     public static User createUserAdmin1(Boolean doInsert) 
     {
-        u1= new User(Alias = 'testbth1', Email='standarduserbth1@unilever.com', 
-        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbth1', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        u1= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbth1@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id,
-        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true,AF_UserTypeText__c='Regional Category Finance', 
-        UserName='testuserbth1@test123321.com',AF_Brand__c='Test Brandbth1',AF_Category__c='Test Beveragesbth1');
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true,AF_UserTypeText__c='Regional Category Finance', 
+        UserName='testuserbth1@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
         if(doInsert){
             insert u1; 
         }return u1;
     }
     public static User createUserADMINSTRATOR_CATEGORY(Boolean doInsert) 
     {
-        u1= new User(Alias = 'testbth1', Email='standarduserbth1@unilever.com', 
-        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbth1', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        u1= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbth1@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id,
-        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true,AF_UserTypeText__c='Category Finance', 
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true,AF_UserTypeText__c=AF_Constants.UT_CATEGORY_FINANCE, 
         UserName='testuserbth@test123321.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_CATEGORYNAME);
         if(doInsert){
             insert u1; 
@@ -143,55 +143,55 @@ public with sharing class AF_TestFactory_Helper
     }
     public static User createUserADMINSTRATOR(Boolean doInsert) 
     {
-        u1= new User(Alias = 'testbth1', Email='standarduserbth1@unilever.com', 
-        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbth1', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        u1= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbth1@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id,
-        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true,AF_UserTypeText__c='Category Finance', 
-        UserName='testuserbth@test123321.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c='Test Beveragesbth1');
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true,AF_UserTypeText__c=AF_Constants.UT_CATEGORY_FINANCE, 
+        UserName='testuserbth@test123321.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
         if(doInsert){
             insert u1; 
         }return u1;
     }
     public static User createUserADMINSTRATOR1(Boolean doInsert) 
     {
-        u1= new User(Alias = 'testbth1', Email='standarduserbth11@unilever.com', 
-        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbth1', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        u1= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbth11@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id,
-        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true,AF_UserTypeText__c='Category Finance', 
-        UserName='testuserbth1@test12332123.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c='Test Beveragesbth1');
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true,AF_UserTypeText__c=AF_Constants.UT_CATEGORY_FINANCE, 
+        UserName='testuserbth1@test12332123.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
         if(doInsert){
             insert u1; 
         }return u1;
     }
     public static User createUserADMINSTRATOR2(Boolean doInsert) 
     {
-        u1= new User(Alias = 'testbth1', Email='standarduserbth11@unilever.com', 
-        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbth1', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        u1= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbth11@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id,
-        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true,AF_UserTypeText__c='Category Finance', 
-        UserName='testuserbth123@test12332123.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c='Test Beveragesbth1');
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true,AF_UserTypeText__c=AF_Constants.UT_CATEGORY_FINANCE, 
+        UserName='testuserbth123@test12332123.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
         if(doInsert){
             insert u1; 
         }return u1;
     }
     public static User createUserADMINSTRATOR3(Boolean doInsert) 
     {
-        u1= new User(Alias = 'testbth1', Email='standarduserbth11@unilever.com', 
-        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbth1', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        u1= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbth11@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id,
-        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true,AF_UserTypeText__c='Category Finance', 
-        UserName='testuserbth12123@test12332123.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c='Test Beveragesbth1');
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true,AF_UserTypeText__c=AF_Constants.UT_CATEGORY_FINANCE, 
+        UserName='testuserbth12123@test12332123.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
         if(doInsert){
             insert u1; 
         }return u1;
     }
     public static User createUserADMINSTRATOR4(Boolean doInsert) 
     {
-        u1= new User(Alias = 'testbth1', Email='standarduserbth11@unilever.com', 
-        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbth1', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        u1= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbth11@unilever.com', 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id,
-        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true,AF_UserTypeText__c='Category Finance', 
-        UserName='testuserbth12123@test1233212345.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c='Test Beveragesbth1');
+        TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true,AF_UserTypeText__c=AF_Constants.UT_CATEGORY_FINANCE, 
+        UserName='testuserbth12123@test1233212345.com',AF_Brand__c=AF_Constants.TEST_BRANDNAME,AF_Category__c=AF_Constants.TEST_AF_Category);
         if(doInsert){
             insert u1; 
         }return u1;
@@ -199,7 +199,7 @@ public with sharing class AF_TestFactory_Helper
       public static user createUserAdmin2(Boolean doInsert)
     {
         usr= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
-        EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = Platformprofile.Id, 
         TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CMCO_USER,isActive=true, 
         UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c='Test Beveragesc');
@@ -233,7 +233,7 @@ public with sharing class AF_TestFactory_Helper
     public static user createuser(Boolean doInsert)
     {
         usr= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
-        EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = Platformprofile.Id, 
         TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='CMCO Super User',isActive=true, 
         UserName='testuserctc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c='Test Beveragesc');
@@ -245,8 +245,8 @@ public with sharing class AF_TestFactory_Helper
     public static user createAgency(Boolean doInsert)
     {
         usr= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
-        EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
-        LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = Platformprofile.Id,AF_UserTypeText__c='Category Finance',
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = Platformprofile.Id,AF_UserTypeText__c=AF_Constants.UT_CATEGORY_FINANCE,
         TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
         UserName='testusercsd@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c='Test Beveragesc');
         if(doInsert){
@@ -257,8 +257,8 @@ public with sharing class AF_TestFactory_Helper
     public static user createAgencyProfile(Boolean doInsert)
     {
         usr= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
-        EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
-        LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = AgencyPlatformprofile.Id,AF_UserTypeText__c='Category Finance',
+        EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+        LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = AgencyPlatformprofile.Id,AF_UserTypeText__c=AF_Constants.UT_CATEGORY_FINANCE,
         TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
         UserName='testusercsd@test12332112.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c='Test Beveragesc');
         if(doInsert){

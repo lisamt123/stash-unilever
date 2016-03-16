@@ -14,6 +14,7 @@ public class AF_BrandAgencyCombinationController_Test
 	Static Integer IcurrYear1 = System.Today().year()-1;
 	Static string currYear1=string.valueof(IcurrYear1);
 	static user userforBrandAgencyCombinationController;
+	private static string year='Year';
 	/***********************************************************************************
 *  @Description: this method will the test data
 *  @name : AF_BrandAgencyCombinationController
@@ -62,13 +63,13 @@ public class AF_BrandAgencyCombinationController_Test
 			insert BrandEstLst;
 			List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEstLst LIMIT 1]; 
 			System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
-			ApexPages.currentPage().getParameters().put('Year',currYear);  
+			ApexPages.currentPage().getParameters().put(year,currYear);  
 			AF_BrandAgencyCombinationController brandAg=new AF_BrandAgencyCombinationController();
 			brandAg.selectedoption=AFCategoryBrand[0].Id+'::'+AFCategoryBrand[0].Name;
 			brandAg.selectedoptionAgency=acc[0].Id+'::'+acc[0].Name;
 			brandAg.Save();
 			brandAg.closePopup();
-			ApexPages.currentPage().getParameters().put('Year','currYear1');  
+			ApexPages.currentPage().getParameters().put(year,currYear1);  
 			AF_BrandAgencyCombinationController brandAg1=new AF_BrandAgencyCombinationController();
 			Test.stopTest(); 
 		}
@@ -118,13 +119,13 @@ public class AF_BrandAgencyCombinationController_Test
 			insert BrandEstLst;
 			List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEstLst LIMIT 1]; 
 			System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
-			ApexPages.currentPage().getParameters().put('Year',currYear);  
+			ApexPages.currentPage().getParameters().put(year,currYear);  
 			AF_BrandAgencyCombinationController brandAg=new AF_BrandAgencyCombinationController();
 			brandAg.selectedoption=AFCategoryBrand[0].Id+'::'+AFCategoryBrand[0].Name;
 			brandAg.selectedoptionAgency=acc[0].Id+'::'+acc[0].Name;
 			brandAg.Save();
 			brandAg.closePopup();
-			ApexPages.currentPage().getParameters().put('Year','currYear1');  
+			ApexPages.currentPage().getParameters().put(year,currYear1);  
 			AF_BrandAgencyCombinationController brandAg1=new AF_BrandAgencyCombinationController();
 			Test.stopTest(); 
 		}
@@ -174,11 +175,11 @@ public class AF_BrandAgencyCombinationController_Test
 			insert BrandEstLst;
 			List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c where Id IN:BrandEstLst LIMIT 1]; 
 			System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
-			ApexPages.currentPage().getParameters().put('Year',currYear);  
+			ApexPages.currentPage().getParameters().put(year,currYear);  
 			AF_BrandAgencyCombinationController brandAg=new AF_BrandAgencyCombinationController();
 			brandAg.Save();
 			brandAg.closePopup();
-			ApexPages.currentPage().getParameters().put('Year','currYear1');  
+			ApexPages.currentPage().getParameters().put(year,currYear1);  
 			AF_BrandAgencyCombinationController brandAg1=new AF_BrandAgencyCombinationController();
 			Test.stopTest(); 
 		}

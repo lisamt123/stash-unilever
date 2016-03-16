@@ -12,6 +12,8 @@ public class AF_BonusMatrixOverrideController_Test
     Static Integer IcurrYear = System.Today().year();
     Static string currYear=string.valueof(IcurrYear);
     static user userforBonusMatrixOverride;
+    private static string CHPARENTID='CHParentId';
+    private static string ID='id';
     /***********************************************************************************
 *  @Description: this method will the test data
 *  @name : AF_bonusMatrixOverrideController
@@ -116,14 +118,14 @@ public class AF_BonusMatrixOverrideController_Test
             insert AFBonusMatLst;
             List<AF_Bonus_Matrix__c> AFBonusMatQuery = [Select AF_Bonus_Results__c from AF_Bonus_Matrix__c where Id IN:AFBonusMat LIMIT 1];
             System.assertEquals(AFBonusMatQuery[0].AF_Bonus_Results__c,AFBonusResQuery[0].id, AF_TestFactory_Helper.BONUSMATRIX_RECORD);
-            ApexPages.currentPage().getParameters().put('id',AFBonusMatLst[0].id);
+            ApexPages.currentPage().getParameters().put(ID,AFBonusMatLst[0].id);
             AF_BonusMatrixOverrideController bonMatCtrl=new AF_BonusMatrixOverrideController();
             bonMatCtrl.Save();  
-            ApexPages.currentPage().getParameters().put('CHParentId',AgencyEsitmate[0].id);
+            ApexPages.currentPage().getParameters().put(CHPARENTID,AgencyEsitmate[0].id);
             AF_ViewAllController viewCtrl1=new AF_ViewAllController();
-            ApexPages.currentPage().getParameters().put('CHParentId',OOPSEstimateList[0].id);
+            ApexPages.currentPage().getParameters().put(CHPARENTID,OOPSEstimateList[0].id);
             AF_ViewAllController viewCtrl2=new AF_ViewAllController();
-            ApexPages.currentPage().getParameters().put('CHParentId',AFBonusMat[0].id);
+            ApexPages.currentPage().getParameters().put(CHPARENTID,AFBonusMat[0].id);
             AF_ViewAllController viewCtrl3=new AF_ViewAllController();
             Test.stopTest();
         }
@@ -238,14 +240,14 @@ public class AF_BonusMatrixOverrideController_Test
             update AFBonusMatLst;
             List<AF_Bonus_Matrix__c> AFBonusMatQuery = [Select AF_Bonus_Results__c from AF_Bonus_Matrix__c where Id IN:AFBonusMat LIMIT 1];
             System.assertEquals(AFBonusMatQuery[0].AF_Bonus_Results__c,AFBonusResQuery[0].id, AF_TestFactory_Helper.BONUSMATRIX_RECORD);
-            ApexPages.currentPage().getParameters().put('id',AFBonusMat[0].id);
+            ApexPages.currentPage().getParameters().put(ID,AFBonusMat[0].id);
             AF_BonusMatrixOverrideController bonMatCtrl=new AF_BonusMatrixOverrideController();
             bonMatCtrl.Save();  
-            ApexPages.currentPage().getParameters().put('CHParentId',AgencyEsitmate[0].id);
+            ApexPages.currentPage().getParameters().put(CHPARENTID,AgencyEsitmate[0].id);
             AF_ViewAllController viewCtrl1=new AF_ViewAllController();
-            ApexPages.currentPage().getParameters().put('CHParentId',OOPSEstimateList[0].id);
+            ApexPages.currentPage().getParameters().put(CHPARENTID,OOPSEstimateList[0].id);
             AF_ViewAllController viewCtrl2=new AF_ViewAllController();
-            ApexPages.currentPage().getParameters().put('CHParentId',AFBonusMat[0].id);
+            ApexPages.currentPage().getParameters().put(CHPARENTID,AFBonusMat[0].id);
             AF_ViewAllController viewCtrl3=new AF_ViewAllController();
             Test.stopTest();
         }

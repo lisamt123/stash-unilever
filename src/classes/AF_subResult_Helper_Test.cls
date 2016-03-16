@@ -9,8 +9,10 @@
 @isTest(SeeAlldata=false)
 public class AF_subResult_Helper_Test
 {
-	private Static Integer IcurrYear = System.Today().year();
+	Private Static Integer IcurrYear = System.Today().year();
+	Private Static string currYear=string.valueof(IcurrYear);
 	static user userForsubResultHelper;
+	private static string bonusmeasure='BM1';
 	/**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : AF_SubResultHandler
@@ -74,7 +76,7 @@ public class AF_subResult_Helper_Test
 				sr.AF_Outstanding__c = 3;
 				sr.AF_Total_Bonus_Value__c=12;
 				sr.AF_Stretching__c = 2;
-				sr.Bonus_Measure__c ='BM1';
+				sr.Bonus_Measure__c =bonusmeasure;
 				sr.AF_Bonusable_Fees__c = 35;
 				sr.AF_Period__c=AF_Constants.QUARTER1;
 				sr.AF_Qual_Bonus_Value__c=234;
@@ -97,7 +99,7 @@ public class AF_subResult_Helper_Test
 				sr1.AF_Outstanding__c = 7;
 				sr1.AF_Quant_Bonus_Value__c=1234;
 				sr1.AF_Stretching__c = 6;
-				sr1.Bonus_Measure__c = 'BM1';
+				sr1.Bonus_Measure__c = bonusmeasure;
 				sr1.AF_Bonus_Threshold__c=BonusThresholdQuery[0].id;
 				sr1.AF_Bonusable_Fees__c = 45;
 				subResultlist1.add(sr1);
@@ -113,7 +115,7 @@ public class AF_subResult_Helper_Test
 				sr2.AF_Minimum__c = 5;
 				sr2.AF_Outstanding__c = 7;
 				sr2.AF_Stretching__c = 6;
-				sr2.Bonus_Measure__c = 'BM1';
+				sr2.Bonus_Measure__c = bonusmeasure;
 				sr2.AF_Quant_Bonus_Value__c = 156;
 				sr2.AF_Bonusable_Fees__c = 45;               
 				subResultlist2.add(sr2);
@@ -121,7 +123,11 @@ public class AF_subResult_Helper_Test
 			insert subResultlist2;
 			List<AF_Sub_Result__c> subResultsQuery = [SELECT ID,AF_Bonus_Threshold__c FROM AF_Sub_Result__c WHERE ID IN : subResults LIMIT 1];
 			System.assertEquals(subResultsQuery[0].AF_Bonus_Threshold__c ,BonusThresholdQuery[0].id, AF_TestFactory_Helper.SUBRESULT_RECORD);
-			delete subResultlist;
+			try{
+				delete subResultlist;
+			}
+			catch(Exception e){
+			}
 			//Insert Bonus Results.
 			List<AF_Bonus_Results__c> BonusResultList = AF_TestFactory_Helper.insertBonusResults(1,false);
 			List<AF_Bonus_Results__c> BonusResultListNew = new  List<AF_Bonus_Results__c>();
@@ -206,7 +212,7 @@ public class AF_subResult_Helper_Test
 				sr.AF_Minimum__c = 1;
 				sr.AF_Outstanding__c = 3;
 				sr.AF_Stretching__c = 2;
-				sr.Bonus_Measure__c ='BM1';
+				sr.Bonus_Measure__c =bonusmeasure;
 				sr.AF_Bonusable_Fees__c = 35;
 				sr.AF_Total_Bonus_Value__c=234;
 				sr.AF_Qual_Bonus_Value__c=23;
@@ -226,7 +232,7 @@ public class AF_subResult_Helper_Test
 				sr.AF_Minimum__c = 1;
 				sr.AF_Outstanding__c = 3;
 				sr.AF_Stretching__c = 2;
-				sr.Bonus_Measure__c ='BM1';
+				sr.Bonus_Measure__c =bonusmeasure;
 				sr.AF_Bonusable_Fees__c = 35;
 				sr.AF_Total_Bonus_Value__c=234;
 				sr.AF_Qual_Bonus_Value__c=23;
@@ -248,13 +254,17 @@ public class AF_subResult_Helper_Test
 				sr1.AF_Outstanding__c = 7;
 				sr1.AF_Stretching__c = 6;
 				sr1.AF_Qual_Bonus_Value__c=23;
-				sr1.Bonus_Measure__c = 'BM1';
+				sr1.Bonus_Measure__c = bonusmeasure;
 				sr1.AF_Period__c=AF_Constants.QUARTER3;
 				sr1.AF_Bonusable_Fees__c = 45;
 				subResultlist1.add(sr1);
 			}
 			insert subResultlist1;
-			delete subResultlist;
+			try{
+				delete subResultlist;
+			}
+			catch(Exception e){
+			}
 			AF_subResult_Helper subhelp = new AF_subResult_Helper();
 			Test.stopTest();
 		}
