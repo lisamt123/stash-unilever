@@ -13,7 +13,7 @@ jq(document).ready(function() {
 /* Below script is related to the date picker Functionality. If the condition is true the css class 'date' calls the datepicker. */
     var dateFormat = "dd/mm/yyyy";
     var slider4 = jq(".slider4");
-    if (status != IPMApp.Postponed) {
+    if (status !== IPMApp.Postponed) {
 		jq('.date').datepicker({
         format: dateFormat,
         autoclose: true,

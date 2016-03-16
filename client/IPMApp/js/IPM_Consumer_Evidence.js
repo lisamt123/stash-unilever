@@ -149,7 +149,7 @@ function selectCheckboxScript() {
         e.stopPropagation();
 		var selectedValues = IPMAppCE.countryName;
         jq(".channelList input:checkbox").each(function() {
-            if (selectedValues.indexOf(jq(this).val()) == -1) {
+            if (selectedValues.indexOf(jq(this).val()) === -1) {
                 jq(this).prop('checked', false);
                 jq(this).next('label').removeClass('selected');
             } else {

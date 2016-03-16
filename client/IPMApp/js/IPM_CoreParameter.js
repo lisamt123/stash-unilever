@@ -244,7 +244,7 @@ jq(window).load(function() {
 function setSlider(currentIndex) {
     var selectedRadioBtn = getselectedRadioBtnBtn(currentIndex);
     var selectedVal = selectedRadioBtn.val();
-    if (selectedVal != '' && selectedVal != undefined) {
+    if (selectedVal !== '' && selectedVal !== undefined) {
         var element = selectedRadioBtn.prev();
         var pos = element.position().left;
         var ewidth = selectedRadioBtn.prev().innerWidth() / 2;

@@ -4,12 +4,11 @@
  * @Date:05/08/2015
  * *****************************************************/
 @isTest
-public class IPM_AddManageSection_Test {
+private class IPM_AddManageSection_Test {
     
     private static IPM_Project__c project;// Project object initialization
     private static IPM_Project_Document__c projDoc;
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
-    private static IPM_Project_Document_Section__c projDocSec;
     private static IPM_Document_Template__c ipdt;
     private static IPM_Project_Template__c projTempl;
     private static IPM_Section__c secMst;
@@ -18,10 +17,13 @@ public class IPM_AddManageSection_Test {
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static user testUser;
     private static string userLastName_STR='user lastname is:';
+  private static final string PLATFORM_LASTNAME='PLATFORM_USER';
+  private static final String IDEA_GRAPHIC= 'Idea / Graphic';
+  private static final String TEST_COMMENTS = 'TestComments';
     /***********************************
      * @Description: Test Data Creation
      * *********************************/
-    static void initializeData()
+  @testSetup static void initializeData()
     {
         //Creation test user
         testUser=IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);
@@ -81,14 +83,11 @@ public class IPM_AddManageSection_Test {
             pojDocSection.IPM_Section__c=secMst.Id;
             insert pojDocSection;
             List<IPM_Project_Document_Section__c> projDocSecList=[SELECT ID,IPM_Default_Section__c,IPM_Project_Document__c,IPM_Section__c FROM IPM_Project_Document_Section__c WHERE ID=:pojDocSection.ID LIMIT 1];
-            projDocSec=projDocSecList[0];
+      
             System.assertEquals(projDocSecList[0].IPM_Section__c,secMst.Id); //positive test 
             
-            pRef =Page.IPM_AddManageSections;
-            pRef.getParameters().put('id',project.Id);
-            pRef.getParameters().put('DocType',projDoc.IPM_GateDocuments__c);
-            Test.setCurrentPage(pRef);
-            adMng=new IPM_AddManageSection();
+      
+      
         }
     }
     
@@ -98,16 +97,26 @@ public class IPM_AddManageSection_Test {
     
     static testMethod void testAddManage()
     {
-         initializeData();
+    testUser=[SELECT ID FROM USER WHERE LastName=:PLATFORM_LASTNAME LIMIT 1];
          test.startTest();
          system.runAs(testUser){
-             //checking for negative case
+      //positive test
+      List<IPM_Project__c>proList=[select Id,Name from IPM_Project__c where Name=:TEST_COMMENTS Limit 1];
+      List<IPM_Project_Document__c>proDocList=[select Id,IPM_GateDocuments__c from IPM_Project_Document__c where IPM_GateDocuments__c=:IPM_ConstantUtils.CHARTER_GATE Limit 1];
+      pRef =Page.IPM_AddManageSections;
+      pRef.getParameters().put('id',proList[0].Id);
+      pRef.getParameters().put('DocType',proDocList[0].IPM_GateDocuments__c);
+      Test.setCurrentPage(pRef);
+      adMng=new IPM_AddManageSection();
+      List<IPM_Project_Document_Section__c>projDocSecTest=[SELECT IPM_Default_Section__c,IPM_Section_Name__c FROM 
+      IPM_Project_Document_Section__c  where IPM_Section_Name__c=:IDEA_GRAPHIC LIMIT 1];
              adMng.IsModified=true;
-             projDocSec.IPM_Default_Section__c=null;//null value can not be save
-             adMng.projSubSectionList.add(projDocSec);
+      projDocSecTest[0].IPM_Default_Section__c=null;//null value can not be save
+      adMng.projSubSectionList=new List<IPM_Project_Document_Section__c>();
+      adMng.projSubSectionList.add(projDocSecTest[0]);
              adMng.SaveAddManage();
              List<IPM_Project_Document_Section__c>proDocSec=[SELECT IPM_Default_Section__c FROM 
-                                                    IPM_Project_Document_Section__c WHERE ID=:projDocSec.ID LIMIT 1];
+      IPM_Project_Document_Section__c WHERE ID=:projDocSecTest[0].ID LIMIT 1];
              system.assertEquals(proDocSec[0].IPM_Default_Section__c,true, 'IPM Project Document Section- IPM_Default_Section__c is False');//negative test                                      
          }
          test.stopTest();
@@ -118,15 +127,19 @@ public class IPM_AddManageSection_Test {
      * ******************************************/
     static testMethod void testSaveAddManage()
     {
-         initializeData();
+    testUser=[SELECT ID FROM USER WHERE LastName=:PLATFORM_LASTNAME LIMIT 1];
          test.startTest();
          system.runAs(testUser){
              //positive test
-             projDocSec.IPM_Default_Section__c=false;
-             adMng.projSubSectionList.add(projDocSec);
+      adMng=new IPM_AddManageSection();
+      List<IPM_Project_Document_Section__c>projDocSecTest=[SELECT IPM_Default_Section__c,IPM_Section_Name__c FROM 
+      IPM_Project_Document_Section__c  where IPM_Section_Name__c=:IDEA_GRAPHIC LIMIT 1];
+      projDocSecTest[0].IPM_Default_Section__c=false;
+      adMng.projSubSectionList=new List<IPM_Project_Document_Section__c>();
+      adMng.projSubSectionList.add(projDocSecTest[0]);
              adMng.SaveAddManage();
              List<IPM_Project_Document_Section__c>proDocSec=[SELECT IPM_Default_Section__c FROM 
-                                                    IPM_Project_Document_Section__c WHERE ID=:projDocSec.ID LIMIT 1];
+      IPM_Project_Document_Section__c WHERE ID=:projDocSecTest[0].ID LIMIT 1];
              system.assertEquals(proDocSec[0].IPM_Default_Section__c,false, 'IPM Project Document Section- IPM_Default_Section__c is True');//positive test 
             
          }

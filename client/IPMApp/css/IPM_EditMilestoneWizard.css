@@ -18,26 +18,28 @@
 	input[disabled], select:disabled{background: #f7f7f7; border:1px #cdcdcd solid;}
 	.input-group-addon{padding: 0;margin-top: -23px;width: 1px;background:none; border:none;color: #007dbb;font-size: 1.3em; left:100%; position:absolute;}
 	
-	.messageTable td ul li{margin-left:0 !important;}
-	.messageTable td ul{padding-left:0 !important;margin-top: -25px !important;}
-	.message .messageTable .messageCell{margin-top:-6px !important;float:left;}
+	.messageTable td ul li{margin-left:0;}
+	.messageTable td ul{padding-left:0;margin-top: -25px ;}
+	.message .messageTable .messageCell{margin-top:-6px;float:left;}
 	.errorMsg{padding: 10px;background: #ffebec;border-radius: 3px;margin-top: 8px;}
-	.error{border:1px solid #e03729 !important;}
+	.error{border:1px solid #e03729;}
 	.popupContent .ipmButton{width:6%;}
 	.popupContent{margin-top:10px;}
 	.mPhaseEditDiv{margin-left:14%;}
 	.dateDropDown{width:12.8%;}
 	.noPadding {	padding:0;}
 	
-	.errorM3 .messageTable .messageText h4,.errorM3 .messageTable .messageText{color:#E13726 !important;font-weight:normal !important;}
+	.errorM3 .messageTable .messageText h4,.errorM3 .messageTable .messageText{color:#E13726;font-weight:normal;}
+	.errorM3 .messageTable .imp_messageText h4,.errorM3 .messageTable .imp_messageText{color:#E13726;font-weight:normal;}
 	.errorM3 .messageText::before{content:url('../images/red_i_icon.png');position:absolute; left: 30px;}
-	.errorM3 .messageTable .messageText{margin-left:35px !important;}
-	.errorM3{background:#FFEBEC !important;border:1px solid #F3BEB6 !important;  margin-bottom: 20px;}
+	.errorM3 .messageTable .messageText{margin-left:35px ;}
+	.errorM3 .messageTable .imp_messageText{margin-left:35px;}
+	.errorM3{background:#FFEBEC;border:1px solid #F3BEB6 ;  margin-bottom: 20px;}
 	.errorM3 .msgIcon, .errorMedium{display:none;}
-	.errorM3 ul li{color:#E13726 !important;font-weight:normal !important;}
-	.errorM3 ul{margin-left: 25px !important;}
+	.errorM3 ul li{color:#E13726;font-weight:normal;}
+	.errorM3 ul{margin-left: 25px;}
 	.buttonmarRight{margin-right:15px;}
-	.dateFormat {display:none!important;}
+	.dateFormat {display:none;}
 	.buttonMarginRight{margin-right:15px;}
 	.marginL100P {margin-left:100%;} 
        

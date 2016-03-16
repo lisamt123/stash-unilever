@@ -193,7 +193,7 @@ Also if the checkbox is checked it will check its own related child checkboxes. 
                 jq('input.geographyAllLevel1').prop("checked", false);
                 jq('input.geographyAllLevel1').next("label").removeClass('selected');
             }
-            if (checkNot == checkSub) {
+            if (checkNot === checkSub) {
                 jq('input.geographyAllLevel1').prop("checked", true);
                 jq('input.geographyAllLevel1').next("label").addClass('selected');
             }

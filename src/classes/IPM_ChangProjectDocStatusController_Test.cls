@@ -5,7 +5,7 @@
 	Lots of valdations needs to be fullfilled hence there are many fields in this test class
 */
 @isTest
-public class  IPM_ChangProjectDocStatusController_Test {
+private class  IPM_ChangProjectDocStatusController_Test {
     private static PageReference  pRef;
     private static IPM_Project__c project;// Project object initialization
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();// Project Documetn List
@@ -30,6 +30,19 @@ public class  IPM_ChangProjectDocStatusController_Test {
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static IPM_Gate_CMI__c gateCMICountry;
     private static final string INVALID_NAME='TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTes';
+    private static IPM_Project__c childProj;
+    private static IPM_Project__c childProjs;
+    private static IPM_Financial__c localFin;
+    private static string ROLLOUT_STR='Rollout';
+    private static string GLOBALCOMPANY_CARD_STR='Global Company Card';
+    private static string INNOVATIONRENO_STR='Innovation/Renovation';
+    private static string RCLT_STR='RCLT';
+    private static string LITE_STR='Lite';
+    private static string PROJECT_CREATION_STR='Project Creation';
+    private static string PROJECT_STATUS_STR='Eligible For Processing';
+    private static string PROJECT_CATEGORY_STR='Household Care';
+    private static string CURRENTPHASE_STR='Current Phase is';
+    private static string ERRORONPAGE_STR='display error message on page';
     /*************************************************************************************************************************
     * @description Test Data
     */
@@ -136,6 +149,59 @@ public class  IPM_ChangProjectDocStatusController_Test {
             List<IPM_Milestone__c>mileList1=[select Id,IPM_Active__c,IPM_Due_Date__c from IPM_Milestone__c where Id=:mileListObj[0].Id];
             System.assert(mileList1[0].IPM_Active__c,'milestones not updated');
             
+            //regional project and local project creation
+            childProj=new IPM_Project__c();
+            childProj.IPM_Parent_Project__c=project.id;
+            childProj.IPM_Project_Name__c=project.Name+'_Name';
+            childProj.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+            childProj.IPM_Target_Launch_Dates__c=system.today();
+            childProj.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
+            childProj.IPM_Company_Card__c=comList[0].id;
+            childProj.IPM_CompanyCardText__c=GLOBALCOMPANY_CARD_STR;
+            childProj.IPM_ProjectSubType__c=INNOVATIONRENO_STR;
+            childProj.IPM_Project_Type__c=ROLLOUT_STR;
+            childProj.IPM_GateKeeping_Model__c=RCLT_STR;
+            childProj.IPM_Complexity__c=LITE_STR;
+            childProj.IPM_Temporary_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
+            childProj.IPM_ProjectJobType__c=PROJECT_CREATION_STR;
+            childProj.IPM_Project_Job_Status__c=PROJECT_STATUS_STR;
+            childProj.IPM_Category_Text__c=PROJECT_CATEGORY_STR;
+            insert childProj;
+            list<IPM_Project__c>lstLocalProj=[SELECT IPM_Category_Text__c FROM IPM_Project__c WHERE ID=:childProj.ID LIMIT 1];
+          System.assertEquals(lstLocalProj[0].IPM_Category_Text__c,PROJECT_CATEGORY_STR,'Project category is'+lstLocalProj[0].IPM_Category_Text__c);
+            childProjs=new IPM_Project__c();
+            childProjs.IPM_Parent_Project__c=childProj.id;
+            childProjs.IPM_Project_Name__c=project.Name+'_Names';
+            childProjs.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+            childProjs.Rollout_Plan_Target_Launch_Date__c=system.today().addDays(4);
+            childProjs.IPM_Target_Launch_Dates__c=system.today().addDays(1);
+            childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
+            childProjs.IPM_Company_Card__c=comList[0].id;
+            childProjs.IPM_CompanyCardText__c=GLOBALCOMPANY_CARD_STR;
+            childProjs.IPM_ProjectSubType__c=INNOVATIONRENO_STR;
+            childProjs.IPM_Project_Type__c=ROLLOUT_STR;
+            childProjs.IPM_GateKeeping_Model__c=RCLT_STR;
+            childProjs.IPM_Complexity__c=LITE_STR;
+            childProjs.IPM_Temporary_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
+            childProjs.IPM_ProjectJobType__c=PROJECT_CREATION_STR;
+            childProjs.IPM_Project_Job_Status__c=PROJECT_STATUS_STR;
+            childProjs.IPM_Category_Text__c=PROJECT_CATEGORY_STR;
+            insert childProjs;
+            list<IPM_Project__c>lstLocalProjs=[SELECT IPM_Category_Text__c FROM IPM_Project__c WHERE ID=:childProjs.ID LIMIT 1];
+          System.assertEquals(lstLocalProjs[0].IPM_Category_Text__c,PROJECT_CATEGORY_STR,'Project category is:'+lstLocalProjs[0].IPM_Category_Text__c);
+            //create local financial
+            Id LOCAL_FIN_RECTYPE = Schema.SObjectType.IPM_Financial__c.RecordTypeInfosByName.get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).RecordTypeId;
+        localFin=new IPM_Financial__c();
+        localFin.Local_Project__c=childProjs.id;
+        localFin.IPM_Business_Case_Confirmed__c=false;
+      localFin.Is_BC_Confirmed_Capability__c=false;
+      localFin.recordTypeId =LOCAL_FIN_RECTYPE;
+        localFin.Target_Launch_Date__c=system.today();
+        localFin.Financial_External_ID__c=project.Name+'Names';
+        localFin.Volume_Unit_Local__c='Total 000 Units';
+        insert localFin;
+        list<IPM_Financial__c>lstLocalFin=[SELECT Local_Project__c FROM IPM_Financial__c WHERE ID=:localFin.ID LIMIT 1];
+          System.assertEquals(lstLocalFin[0].Local_Project__c,childProjs.id,'Financial local project is'+lstLocalFin[0].Local_Project__c);
             pRef = Page.IPM_ProjectDocumentSectionEditor;
             pRef.getParameters().put('id', projectListObj[0].Id);
             Test.setCurrentPage(pRef);
@@ -144,7 +210,44 @@ public class  IPM_ChangProjectDocStatusController_Test {
         }  
 
     }
+    /****************************************************************************************
+    *@Description:below test method is used to test local rollout functionality.
+    * example:if local project BB document is not confirmed and regional PL try to propose gate document
+          then Pl will get page meesage and he/she is unabled to propose gate document.
+    *****************************************************************************************/
+    static testMethod void testgetLocalProjectDetails(){
+      test.startTest();
+      initializeTestMethodData();
+      test.stopTest();
+      list<IPM_Project__c>lstLocalProj=[SELECT IPM_Phase__c FROM IPM_Project__c WHERE ID=:childProjs.ID LIMIT 1];
+        System.assertEquals(lstLocalProj[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY,CURRENTPHASE_STR+lstLocalProj[0].IPM_Phase__c);
+        List<IPM_Project__c>lstNewPhaseProj=new List<IPM_Project__c>();
+        system.runAs(globalUser){
+          chngPro.project=childProj;
+          chngPro.projectId=childProj.id;
+          chngPro.showValidation=true;
+          chngPro.getLocalProjectDetails();  
+          system.assertEquals(chngPro.showValidation,false,ERRORONPAGE_STR);//positive test
+          childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
+          childProj.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
+          lstNewPhaseProj.add(childProjs);
+          lstNewPhaseProj.add(childProj);
+          update lstNewPhaseProj;
+          chngPro.showValidation=true;
+          chngPro.getLocalProjectDetails();
+          system.assertEquals(chngPro.showValidation,false,ERRORONPAGE_STR);//positive test
+          localFin.IPM_Business_Case_Confirmed__c=true;
+      localFin.Is_BC_Confirmed_Capability__c=true;
+      update localFin;
     
+        IPM_FinancialController finController=new IPM_FinancialController();
+        finController.project=childProjs;
+        finController.currentFinancial=localFin;
+        finController.isTargetLaunchDateMisaligned=true;
+        finController.localProjectConditions();
+        system.assertEquals(finController.tldAcceptFromValue==null,false,'Tld date text should not be empty');//positive test
+        }
+    }
     static testMethod void dotestNotStarted(){
         initializeTestMethodData();
         test.startTest();

@@ -17,7 +17,7 @@
     .ipmTimeLine .taskProgress li .rightPanel {position:absolute; width:40px; height:40px; background:#fff; top:0; right:-20px; border:3px solid #fff; border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;}
     .ipmTimeLine .taskProgress li .leftPanel .phase {margin-bottom:3px; font-size:1em;}
     .ipmTimeLine .taskProgress li .leftPanel .milestones {margin-bottom:5px; font-size:1.2em; font-weight:bold; }
-    .ipmTimeLine .taskProgress li .leftPanel .dueDate, #ipmTimeLine .taskProgress li .leftPanel .comDate {font-size:1em;color:#ababab; }
+    .ipmTimeLine .taskProgress li .leftPanel .dueDate, .ipmTimeLine .taskProgress li .leftPanel .comDate {font-size:1em;color:#ababab; }
     
     .ipmTimeLine .taskProgress li:nth-child(even) .leftPanel {padding-top:15px;}
     /*#ipmTimeLine .taskProgress li.upcoming:nth-child(even) .leftPanel {padding-top:35px;}*/

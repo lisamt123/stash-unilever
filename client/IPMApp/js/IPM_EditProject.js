@@ -108,7 +108,7 @@ jq('.ipmDropbuttonscc').click(function(e) {
    jq(".brandposList").hide(); 
 });  
   
-if( jq('.hiddenBrand') !== null && jQuery.type(jq('.hiddenBrand')) != 'undefined') 
+if( jq('.hiddenBrand') !== null && jQuery.type(jq('.hiddenBrand')) !== 'undefined') 
 {
    var brandPicklist = jq('.hiddenBrand').val();   
    if(jQuery.type(brandPicklist) !== "undefined" && brandPicklist.length > 0 )
@@ -132,7 +132,7 @@ if( jq('.hiddenBrand') !== null && jQuery.type(jq('.hiddenBrand')) != 'undefined
 function invalidChar(key)
          {
            var keycode = (key.which) ? key.which : key.keyCode;
-           if(keycode==95){
+           if(keycode === 95){
               return false;
            }else{
               return true;

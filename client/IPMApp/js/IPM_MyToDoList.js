@@ -97,7 +97,7 @@
 	        var icoButton = jq('.completedFilter .dropdown-toggle .icoButton');
        		var selectedValues = IPMAppTD.isCompleteTasks.trim();
       		var selectedValuesArr = selectedValues.split(',');
-	      	if (selectedValues == ''  || selectedValuesArr == '') 
+	      	if (selectedValues === ''  || selectedValuesArr === '') 
 	       	{
 	       		icoButton.removeClass('filter-selected');
 	       		icoButton.addClass('filter');
@@ -112,7 +112,7 @@
 	        var icoButton = jq('.projectFilter .dropdown-toggle .icoButton');
        		var selectedValues = IPMAppTD.projectName.trim();
       		var selectedValuesArr = selectedValues.split(',');
-	      	if (selectedValues == ''  || selectedValuesArr == '') 
+	      	if (selectedValues === ''  || selectedValuesArr === '') 
 	       	{
 	       		icoButton.removeClass('filter-selected');
 	       		icoButton.addClass('filter');
@@ -158,7 +158,7 @@
 	        var icoButton = jq('.brandFilter .dropdown-toggle .icoButton');
        		var selectedValues = IPMAppTD.brandName.trim();
       		var selectedValuesArr = selectedValues.split(',');
-	      	if (selectedValues == ''  || selectedValuesArr == '') 
+	      	if (selectedValues === ''  || selectedValuesArr === '') 
 	       	{
 	       		icoButton.removeClass('filter-selected');
 	       		icoButton.addClass('filter');
@@ -198,7 +198,7 @@
 	        var icoButton = jq('.categoryFilter .dropdown-toggle .icoButton');
        		var selectedValues = IPMAppTD.categoryName.trim();
       		var selectedValuesArr = selectedValues.split(',');
-	      	if (selectedValues == ''  || selectedValuesArr == '') 
+	      	if (selectedValues === ''  || selectedValuesArr === '') 
 	       	{
 	       		icoButton.removeClass('filter-selected');
 	       		icoButton.addClass('filter');
@@ -238,7 +238,7 @@
 	        var icoButton = jq('.phaseFilter .dropdown-toggle .icoButton');
        		var selectedValues = IPMAppTD.phase.trim();
       		var selectedValuesArr = selectedValues.split(',');
-	      	if (selectedValues == ''  || selectedValuesArr == '') 
+	      	if (selectedValues === ''  || selectedValuesArr === '') 
 	       	{
 	       		icoButton.removeClass('filter-selected');
 	       		icoButton.addClass('filter');

@@ -159,7 +159,7 @@ function scriptPanelLoad(){
         var newTLDValue = param.value;
         tldOrignalValue = param.defaultValue;
         selectedDateField = param;
-        if(newTLDValue != tldOrignalValue){
+        if(newTLDValue !== tldOrignalValue){
             jq('#tldWarningDialog').modal('show'); 
             return false;
         }

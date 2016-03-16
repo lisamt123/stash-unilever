@@ -4,7 +4,7 @@
 *@Description : Test class to test IPM_ChannelImageController class functionalities
 **/
 @isTest
-public class IPM_ChannelImageController_Test{
+private class IPM_ChannelImageController_Test{
     private static User stdUserForChannelImage;
     private static Attachment atth;    
     private static IPM_Project_Document_Section_Content__c sectionContent;
@@ -55,7 +55,7 @@ public class IPM_ChannelImageController_Test{
     * @param : void
     * @return :void
     */
-    static testMethod void testDataSetup(){   	
+    static void testDataSetup(){    
 
 		User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
 		System.runAs(globalUser)

@@ -4,7 +4,7 @@
 * @description  This class is used to test the functionality of IPM_FileUploadController class 
 */
 @isTest
-public class IPM_FileUploadController_Test
+private class IPM_FileUploadController_Test
 {    
     /*******************************************************************************************************
     * @description	Test Method to IPM_FileUploadController methods

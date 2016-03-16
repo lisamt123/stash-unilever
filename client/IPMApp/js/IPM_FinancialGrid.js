@@ -307,7 +307,7 @@ jq(document).ready(function() {
                         globalchanges.push([changes[i][0], changes[i][1], changes[i][2], changes[i][3]]);
                     }
                     for (var j = 0; j < globalchanges.length; j++) {
-					    if(BI != 'Small'){
+					    if(BI !== 'Small'){
 							if ((globalchanges[j][0].toString() === '11' || globalchanges[j][0].toString() === '35') && (globalchanges[j][3] === '' || globalchanges[j][3].toString() === '0') && Validationflag1 === 'false') {
 								alert(IPMAppFin.IPM_GrossProfitCP);
 								Validationflag1 = 'true';

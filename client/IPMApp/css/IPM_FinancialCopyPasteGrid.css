@@ -6,20 +6,27 @@
 	- Author        : Cognizant Technology Solutions  
 *******************************************************************************************/
 /* ===GLOBAL STYLES=== */
-.panel,table{border:0 !important;}
-table{margin-bottom:0 !important;}
+.panel,table{border:0;}
+table{margin-bottom:0;}
 
-.panel{padding:0 !important;margin-top: 10px;}
-label{cursor:auto !important;}
+.panel{padding:0;margin-top: 10px;}
+label{cursor:auto;}
 .grentxt{margin-top: 4px;}
-ul, ol, dl{font-size:1em !important;}
-.pageHeadToolbar{border-bottom:0 !important;}
-.noPadleft{padding-left:0 !important;}
-.noPadright{padding-right:0 !important;}
-.icoButton.question{line-height:29px !important;}
+ul, ol, dl{font-size:1em;}
+.pageHeadToolbar{border-bottom:0;}
+.imp_pageHeadToolbar{border-bottom:0;}
+.noPadleft{padding-left:0;}
+.imp_noPadleft{padding-left:0;}
+.noPadright{padding-right:0;}
+.imp_noPadright{padding-right:0;}
+.icoButton.question{line-height:29px;}
 .gridBtnContainer{margin-top:10px;}
-.gridMcoLabel{color:#555;margin-top: 6px;font-weight:bold;margin-right:10px;cursor:auto !important;}
-.drpfield{border-color: #ccc !important;width:35% !important;background-size:40px;}
-.ipmButton{height:34px !important;}
+.gridMcoLabel{color:#555;margin-top: 6px;font-weight:bold;margin-right:10px;cursor:auto;}
+.imp_gridMcoLabel{color:#555;margin-top: 6px;font-weight:bold;margin-right:10px;cursor:auto;}
+.drpfield{border-color: #ccc;width:35%;background-size:40px;}
+.imp_drpfield{border-color: #ccc ;width:35%;background-size:40px;}
+.ipmButton{height:34px;}
+.imp_ipmButton{height:34px;}
 .gridInfo {margin-bottom:20px;border: 1px solid #B0D2E6;padding: 10px;border-radius: 4px;text-indent: 30px;background: url(../images/info_icon.png) no-repeat 12px 10px #E5F8FF;}
-.gridInfo label{color: #007DBB !important;}
+.gridInfo label{color: #007DBB;}
+.imp_gridInfo label{color: #007DBB;}

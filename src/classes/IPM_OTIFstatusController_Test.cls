@@ -7,15 +7,15 @@
 @reference IPM_OTIFstatusController
 */
 @isTest
-public class IPM_OTIFstatusController_Test {
+private class IPM_OTIFstatusController_Test {
     
-    public static IPM_Project__c project;
-    public static IPM_Project_Document__c projDoc;
-    public static List<IPM_Project_Document__c> projDocList;
-    public static IPM_Project_Document_Section__c projDocSec;
-    public static IPM_Project_Document_Section_Content__c projDocSecCon;
-    public static User otifUser;
-    public static final string IDEA_STR = 'Idea';
+    private static IPM_Project__c project;
+    private static IPM_Project_Document__c projDoc;
+    private static List<IPM_Project_Document__c> projDocList;
+    private static IPM_Project_Document_Section__c projDocSec;
+    private static IPM_Project_Document_Section_Content__c projDocSecCon;
+    private static User otifUser;
+    private static final string IDEA_STR = 'Idea';
     
     /*Name: initializeData
     * @Description: Initialises the data needed for creating OTIF situation

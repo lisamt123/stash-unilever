@@ -44,7 +44,7 @@ var jq = jQuery.noConflict();
 	        	var icoButton = jq('.phaseMFilter .dropdown-toggle .icoButton');
          		var selectedValues = IPMAppLM.phaseM.trim();
         		var selectedValuesArr = selectedValues.split(',');
-	        	if (selectedValues.length == 0  || selectedValuesArr.length == 0) 
+	        	if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
 	        	{
 	        		icoButton.removeClass('filter-selected');
 	        		icoButton.addClass('filter');
@@ -56,7 +56,7 @@ var jq = jQuery.noConflict();
 	        	var icoButton = jq('.completedFilterM .dropdown-toggle .icoButton');
          		var selectedValues = IPMAppLM.isCompleteMilestones.trim();
         		var selectedValuesArr = selectedValues.split(',');
-	        	if (selectedValues.length == 0 ||  selectedValuesArr.length == 0) {
+	        	if (selectedValues.length === 0 ||  selectedValuesArr.length === 0) {
 	        		icoButton.removeClass('filter-selected');
 	        		icoButton.addClass('filter');
 	        	}

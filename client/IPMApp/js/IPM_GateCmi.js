@@ -234,7 +234,7 @@ function skipTestrender() {
         var $this = jq(this);
         var selectedValues = jq(this).attr("data-list");
         jq(".CMIList input:checkbox").each(function() {
-            if (selectedValues.indexOf(jq(this).val()) == -1) {
+            if (selectedValues.indexOf(jq(this).val()) === -1) {
                 jq(this).prop('checked', false);
                 jq(this).next('label').removeClass('selected');
             } else {

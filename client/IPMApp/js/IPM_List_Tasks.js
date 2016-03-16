@@ -42,7 +42,7 @@
 				    });
 				    /* Below script works on click event for user filter. If the condition is true the options for the drop down list will be appended. */
 				    jq(document).on('show.bs.dropdown', '.userFilter', function() {
-				        if (jq('.userFilter ul.user').length == 0) {
+				        if (jq('.userFilter ul.user').length === 0) {
 				            var dropDownList = jq('#userFilterDiv').html();
 				            jq(this).append(dropDownList);
 				        }
@@ -74,7 +74,7 @@
 				        var icoButton = jq('.completedFilterT .dropdown-toggle .icoButton');
 		         		var selectedValues = IPMAppComp.isCompleteTasks.trim();
 		        		var selectedValuesArr = selectedValues.split(',');
-			        	if (selectedValues.length == 0  || selectedValuesArr.length == 0) 
+			        	if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
 			        	{
 			        		icoButton.removeClass('filter-selected');
 			        		icoButton.addClass('filter');
@@ -89,7 +89,7 @@
 				        var icoButton = jq('.userFilter .dropdown-toggle .icoButton');
 		         		var selectedValues = IPMAppComp.assignee.trim();
 		        		var selectedValuesArr = selectedValues.split(',');
-			        	if (selectedValues.length == 0  || selectedValuesArr.length == 0) 
+			        	if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
 			        	{
 			        		icoButton.removeClass('filter-selected');
 			        		icoButton.addClass('filter');
@@ -105,7 +105,7 @@
 				    	var icoButton = jq('.phaseFilter .dropdown-toggle .icoButton');
 		         		var selectedValues = IPMAppComp.selectedValues.trim();
 		        		var selectedValuesArr = selectedValues.split(',');
-			        	if (selectedValues.length == 0  || selectedValuesArr.length == 0) 
+			        	if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
 			        	{
 			        		icoButton.removeClass('filter-selected');
 			        		icoButton.addClass('filter');
@@ -232,7 +232,7 @@
 					the modal title, modal body's content as per the condition. */
 				function myFunc(str, isLst, gateName, secName) {
 				    var errMsg = ''
-				    if (isLst == 'true') {
+				    if (isLst === 'true') {
 				        errMsg = 'All To-do\'s correlating to the ' + gateName + ' Section ' + secName + '  have been removed. Would you like to remove this section from the ' + gateName + ' Document?';
 				    } else {
 				        errMsg = IPMAppComp.errMsg;

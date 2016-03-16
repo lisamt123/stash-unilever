@@ -28,6 +28,7 @@ private class  IPM_CompanyCard_Test {
     private static final string SAVORY='Savory';
     private static final string CURRENCY_STR='AED';
     private static final string GLOBAL_STR='Global';
+  private static final string NEW_BPUSER='New_BP_User';
     private static User userInitialize; 
     private static User userBP;  
     private static User systemAdimUser; 
@@ -35,11 +36,14 @@ private class  IPM_CompanyCard_Test {
     private static list<IPM_Company_Card__c>companyBulkList=new List<IPM_Company_Card__c>();
     private static string bulkCompanyCardName='GlobalCard';
     private static string bulkUpdateCompanyCardName='GlobalCards';
+    private static string globalCompanyName='GlobalCC';
+    private static string regionalCompanyName='RegionalCC';
+    private static string localCompanyName='LocalCC';
     
     /******************************************************************************
     *@Description :Testmethod To create MDO_Geography,Company card and User
     */
-    static void initializeData(){
+    @TestSetup static void initializeData(){
         //In appllication , Only system admin's can create company card no other users have permissions to create
         
         //insert users
@@ -47,12 +51,13 @@ private class  IPM_CompanyCard_Test {
         userInitialize = IPM_TestFactory_Helper.createUser(false);
         userList.add(userInitialize);
         userBP=IPM_TestFactory_Helper.createUser(false);
+    userBP.LastName=NEW_BPUSER;
         userList.add(userBP);
         insert userList;//insert users
         List<User>userAllList=[SELECT LastName FROM User WHERE LastName=:userLastName LIMIT 1];
         System.assertEquals(userAllList[0].LastName,userLastName,sameName);//positive test
         systemAdimUser=IPM_TestFactory_Helper.createUserAdmin(false);
-        
+        system.runAS(systemAdimUser){
         //Geography for Unilever Cluster
         mdoGeographyCluster = IPM_TestFactory_Helper.createMDOGeography(false);
         mdoGeographyCluster.Name = clusterName;
@@ -105,7 +110,7 @@ private class  IPM_CompanyCard_Test {
         //Global company card
         List<IPM_Company_Card__c>ccardallList=new List<IPM_Company_Card__c>();
         gcomCard=IPM_TestFactory_Helper.createGlobalCompanyCard(false);
-        gcomCard.Name='GlobalCC';
+      gcomCard.Name=globalCompanyName;
         gcomCard.IPM_Managed_Category__c=SAVORY;
         gcomCard.IPM_Currency__c=CURRENCY_STR;
         gcomCard.IPM_TxtGeographical_Scope__c=GLOBAL_STR;
@@ -114,7 +119,7 @@ private class  IPM_CompanyCard_Test {
         
         //Regional company card
         rcomCard=IPM_TestFactory_Helper.createRegionalCompanyCard(false);
-        rcomCard.Name='RegionalCC';
+      rcomCard.Name=regionalCompanyName;
         rcomCard.IPM_Managed_Category__c=SAVORY;
         rcomCard.IPM_Currency__c=CURRENCY_STR;
         rcomCard.IPM_TxtGeographical_Scope__c=clusterName;
@@ -123,7 +128,7 @@ private class  IPM_CompanyCard_Test {
         
         //Local company card
         lcomCard=IPM_TestFactory_Helper.createLocalCompanyCard(false);
-        lcomCard.Name='LocalCC';
+      lcomCard.Name=localCompanyName;
         lcomCard.IPM_Managed_Category__c=SAVORY;
         lcomCard.IPM_Currency__c=CURRENCY_STR;
         lcomCard.IPM_TxtGeographical_Scope__c=ANGELO_STR;
@@ -133,6 +138,8 @@ private class  IPM_CompanyCard_Test {
         ccardallList.add(lcomCard);
         insert ccardallList;//insert company cards
         
+      list<IPM_Company_Card__c>ccardList=[SELECT Name FROM IPM_Company_Card__c WHERE Name=:globalCompanyName LIMIT 1];
+      system.assertEquals(ccardList[0].Name,gcomCard.Name,'Company card name is '+ccardList[0].Name);//positive test
         //call bulkification for creating company card
         for(Integer i=0;i<200;i++){
             IPM_Company_Card__c newGlobalCard=IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -148,27 +155,26 @@ private class  IPM_CompanyCard_Test {
         list<IPM_Company_Card__c>bulkCCardList=[SELECT Name FROM IPM_Company_Card__c WHERE Name like:cQuery LIMIT 200];
         system.assertEquals(bulkCCardList.size(),companyBulkList.size(),'Total comapany card inserted count is:'+bulkCCardList.size());//positive test
         
-        list<IPM_Company_Card__c>ccardList=[SELECT Name FROM IPM_Company_Card__c WHERE Name='GlobalCC' LIMIT 1];
-        system.assertEquals(ccardList[0].Name,gcomCard.Name,'Company card name is '+ccardList[0].Name);//positive test
         list<IPM_Company_Card__c>ccsList=[SELECT id FROM IPM_Company_Card__c LIMIT 50000];
         list<IPM_Company_Card__Share>ccShareList=IPM_TestFactory_Helper.shareCompanyCard(ccsList,userList);//share company card records
         insert ccShareList;
         list<IPM_Company_Card__Share>ccShareAllList=[SELECT ParentId,UserOrGroupId FROM IPM_Company_Card__Share WHERE ParentId=:gcomCard.id AND UserOrGroupId=:userInitialize.id LIMIT 1];
         system.assertEquals(ccShareAllList[0].UserOrGroupId,userInitialize.id,userInitialize.id+'User should have edit access to company card');//positive test
+    }
         
-        ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, gcomCard.id);
-        ipmComCardGlobal=new IPM_CompanyCard();
-        ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, rcomCard.id);
-        ipmComCardRegional=new IPM_CompanyCard();
-        ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, lcomCard.id);
-        ipmComCardLocal=new IPM_CompanyCard();
+        
+        
         
      }
     /**************************************************************************
     *@Description : testmethod To call methods for global company card,Only system admin can permform this tastk
     */
     static testMethod void testGlobalCC(){
-        initializeData();
+        
+    systemAdimUser=IPM_TestFactory_Helper.createUserAdmin(false);
+    gcomCard=[SELECT id,IPM_TxtGeographical_Scope__c FROM IPM_Company_Card__c WHERE Name=:globalCompanyName LIMIT 1];
+    ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, gcomCard.id);
+        ipmComCardGlobal=new IPM_CompanyCard();
         system.runAS(systemAdimUser){
             Test.StartTest();
             ipmComCardGlobal.showDropdown();
@@ -184,7 +190,11 @@ private class  IPM_CompanyCard_Test {
     *@Description : testmethod To call methods for regional company card,Only system admin can permform this tastk
     */
     static testMethod void testRegionalCC(){
-        initializeData();
+       
+    systemAdimUser=IPM_TestFactory_Helper.createUserAdmin(false);
+    rcomCard=[SELECT id,IPM_TxtGeographical_Scope__c FROM IPM_Company_Card__c WHERE Name=:regionalCompanyName LIMIT 1];
+    ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, rcomCard.id);
+        ipmComCardRegional=new IPM_CompanyCard();
         system.runAS(systemAdimUser){
             Test.StartTest();
             ipmComCardRegional.IPMCompanyCard.id=rcomCard.Id;
@@ -200,7 +210,11 @@ private class  IPM_CompanyCard_Test {
     *@Description : testmethod To call methods for local company card,Only system admin can permform this tastk
     */
     static testMethod void testLocalCC(){
-        initializeData();
+        
+    systemAdimUser=IPM_TestFactory_Helper.createUserAdmin(false);
+    lcomCard=[SELECT id,IPM_TxtGeographical_Scope__c FROM IPM_Company_Card__c WHERE Name=:localCompanyName LIMIT 1];
+    ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, lcomCard.id);
+        ipmComCardLocal=new IPM_CompanyCard();
         system.runAS(systemAdimUser){
             Test.StartTest();
             ipmComCardLocal.IPMCompanyCard.id=lcomCard.Id;
@@ -238,7 +252,11 @@ private class  IPM_CompanyCard_Test {
     *@Description : testmethod To call methods for regional company card
     */
     static testMethod void testEdituser(){
-        initializeData();
+        
+    userInitialize=[SELECT ID FROM USER WHERE LastName=:userLastName LIMIT 1];
+    rcomCard=[SELECT id,IPM_TxtGeographical_Scope__c FROM IPM_Company_Card__c WHERE Name=:regionalCompanyName LIMIT 1];
+    ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, rcomCard.id);
+        ipmComCardRegional=new IPM_CompanyCard();
         system.runAs(userInitialize){
             Test.StartTest();
             ipmComCardRegional.IPMCompanyCard.id=rcomCard.Id;
@@ -255,15 +273,19 @@ private class  IPM_CompanyCard_Test {
     *@Description : testmethod To call methods for regional company card (BP user access)
     */
     static testMethod void testBPtuser(){
-        initializeData();
+        
+    userBP=[SELECT ID FROM USER WHERE LastName=:NEW_BPUSER LIMIT 1];
+    rcomCard=[SELECT id,IPM_TxtGeographical_Scope__c FROM IPM_Company_Card__c WHERE Name=:regionalCompanyName LIMIT 1];
+    ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, rcomCard.id);
+        ipmComCardRegional=new IPM_CompanyCard();
         system.runAs(userBP){
             Test.StartTest();
             ipmComCardRegional.IPMCompanyCard.id=rcomCard.Id;
-            ipmComCardRegional.CCRecordType='RegionalCC';
+            ipmComCardRegional.CCRecordType=regionalCompanyName;
             ipmComCardRegional.OneUnileverCluster=clusterName;
             ipmComCardRegional.IPMCompanyCard.IPM_Company_Turnover__c=100;
             ipmComCardRegional.SaveCC();//save regional company card 
-            List<IPM_Company_Card__c>ccSaveList=[SELECT IPM_Company_Turnover__c FROM IPM_Company_Card__c WHERE Name='RegionalCC' LIMIT 1];
+            List<IPM_Company_Card__c>ccSaveList=[SELECT IPM_Company_Turnover__c FROM IPM_Company_Card__c WHERE Name=:regionalCompanyName LIMIT 1];
             system.assertEquals(ccSaveList[0].IPM_Company_Turnover__c,100,'Validation checked,BP user can change the company turn over');// Positive Test
             Test.StopTest();
         }     
@@ -273,8 +295,12 @@ private class  IPM_CompanyCard_Test {
     *@Description : testmethod To call methods for regional company card (BP user access)
     */
     static testMethod void testBulkUpdate(){
-        //call bulkification for creating company card
-        initializeData();
+        //call bulkification for update company card
+       
+        userBP=[SELECT ID FROM USER WHERE LastName=:NEW_BPUSER LIMIT 1];
+    string cQuery=bulkCompanyCardName+'%'; 
+    companyBulkList=[SELECT Name,id FROM IPM_Company_Card__c WHERE Name like:cQuery LIMIT 200];
+    systemAdimUser=IPM_TestFactory_Helper.createUserAdmin(false);  
         Test.StartTest();
         system.runAS(systemAdimUser){
             integer i=0;
@@ -293,10 +319,12 @@ private class  IPM_CompanyCard_Test {
                     
             }
             update oldCCList;
-            string cQuery=bulkUpdateCompanyCardName+'%';
+            
             list<IPM_Company_Card__c>bulkCCardList=[SELECT Name FROM IPM_Company_Card__c WHERE Name like:cQuery LIMIT 200];
             system.assertEquals(bulkCCardList.size(),oldCCList.size(),'Total comapany card updated count is:'+bulkCCardList.size());//positive test
-            delete oldCCList;
+            delete oldCCList;//delete company card
+      list<IPM_Company_Card__c>bulkCCardsList=[SELECT Name FROM IPM_Company_Card__c WHERE Name like:cQuery LIMIT 200];
+            system.assertEquals(bulkCCardsList.isEmpty(),true,'all company card got deleted');//positive test
       }  
       Test.StopTest();  
     }
