@@ -1226,7 +1226,8 @@
         <modifyAllRecords>false</modifyAllRecords>
         <object>UID_Stocked_Product__c</object>
         <viewAllRecords>false</viewAllRecords>
-    </objectPermissions>    
+    </objectPermissions>
+	
     <recordTypeVisibilities>
         <recordType>Account.UID_Primary_Account</recordType>
         <visible>true</visible>
