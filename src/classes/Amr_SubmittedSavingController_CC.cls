@@ -1,3 +1,15 @@
+/*************************************************************************************************************************************
+Name: Amr_SubmittedSavings_CC
+Copyright © 2015 Salesforce
+======================================================
+Purpose:Class has activities such as delete,edit etc. related to submitted savings and quotes. 
+-------
+======================================================
+History
+-------
+VERSION     AUTHOR             DATE           DETAIL           Description
+1.0         Varuna Nikam       4/03/2016     INITIAL DEV      CSR:
+*************************************************************************************************************************************/
 public with sharing class Amr_SubmittedSavingController_CC {
     public String savingIdFromPage{get;set;}
     public Amr_Saving__c savObj {get;set;}
@@ -70,7 +82,7 @@ public with sharing class Amr_SubmittedSavingController_CC {
         savObj = [select PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
                                No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
                                Average_Total_Opening_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =:true) from Amr_Saving__c where Id=:savingIdFromPage limit 1];
-                      system.debug('savObj========>'+savObj );
+                    
         savObjNum = [select Job_Details__r.AdManagerText__c from Amr_Saving__c where Id =:savingIdFromPage limit 1];
         adManagerNumber = savObjNum.Job_Details__r.AdManagerText__c;
         jobId = savObjNum.Job_Details__C;
@@ -83,7 +95,7 @@ public with sharing class Amr_SubmittedSavingController_CC {
             }
             
            
-                        system.debug('========>selectedCountry '+selectedCountry );
+                     
              userId = userinfo.getuserid(); 
              quoteInformation();
              getFeedItemAcceptedData();
@@ -93,7 +105,12 @@ public with sharing class Amr_SubmittedSavingController_CC {
         system.debug(ex.getMessage());
         }
     }
-    
+/***********************************************************************************************************************************
+Purpose: Method to get quotes related to saving.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/    
     public void quoteInformation(){
         try{
         acceptedQuote=[select Saving_Type__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Accepted_Final_Cost_props_wardrobe__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,
@@ -116,13 +133,18 @@ public with sharing class Amr_SubmittedSavingController_CC {
         system.debug(ex.getMessage());
         }
     }
-    
+  /***********************************************************************************************************************************
+Purpose: Method to edit saving record.
+Parameters: 
+Returns:
+
+************************************************************************************************************************************/  
     public PageReference edit(){
         try{
          if(saveRecordValue !=null){
         editedSavingMode = true;
         viewSavingMode = false;
-          system.debug('editedSavingMode !!'+editedSavingMode );
+         
         }
         }catch(Exception ex){
         	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -135,23 +157,28 @@ public with sharing class Amr_SubmittedSavingController_CC {
         
     return null;
     }
-    
+  /***********************************************************************************************************************************
+Purpose: Method to upload documents.
+Parameters: 
+Returns:
+
+************************************************************************************************************************************/  
     public PageReference uploadAcceptedData(){
         try{
-    system.debug('acceptedQuoteId!!'+acceptedQuoteId);
+    
     if(acceptedQuoteId!=null){
     
          if(document.body!=null){
         
-            system.debug(document+'--------document Body'+document.body );        
+            
             FeedItem FI = new FeedItem();
             FI.ParentId = acceptedQuoteId;
-            FI.Body = 'Attachment added';
+            FI.Body = Amr_ConstantForAdManager.ATTACHMENT_ADDED;
             FI.ContentData = document.body;
           
             FI.ContentFileName = document.Name;
             insert FI;
-            system.debug('FI!!'+FI);
+           
             document = new document();
         }else{
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Please_Select_Document));
@@ -165,21 +192,31 @@ public with sharing class Amr_SubmittedSavingController_CC {
     }
     return null;
     }
-    
+/***********************************************************************************************************************************
+Purpose: Method to get uploaded documents.
+Parameters: 
+Returns:
+
+************************************************************************************************************************************/    
     public void getFeedItemAcceptedData(){
         try{
         feedItemAcceptedList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
                                           FROM FeedItem where ParentId =:acceptedQuote.Id];
-        system.debug('feedItemAcceptedList!!'+feedItemAcceptedList);
+       
         }catch(Exception ex){
         	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         system.debug(ex.getMessage());
         }   
     }
-    
+ /***********************************************************************************************************************************
+Purpose: Method to delete document
+Parameters: 
+Returns:
+
+************************************************************************************************************************************/   
     public PageReference deleteFile(){
         try{
-        system.debug('chosenFileId!!'+chosenFileId);
+       
         FeedItem feedItemObj = [select id from FeedItem where id=:chosenFileId limit 1];
         delete feedItemObj;
         getFeedItemAcceptedData();  
@@ -189,23 +226,28 @@ public with sharing class Amr_SubmittedSavingController_CC {
         }
     return null;
     }
-    
+/***********************************************************************************************************************************
+Purpose: Method to upload additional documents.
+Parameters: 
+Returns:
+
+************************************************************************************************************************************/    
     public PageReference uploadAdditionalData(){
         try{
-    system.debug('savingId!!'+savingId);
+   
     if(savingId!=null){
     
          if(document.body!=null){
         
-            system.debug(document+'--------document Body'+document.body );        
+               
             FeedItem FI = new FeedItem();
             FI.ParentId = savingId;
-            FI.Body = 'Attachment added';
+            FI.Body = Amr_ConstantForAdManager.ATTACHMENT_ADDED;
             FI.ContentData = document.body;
           
             FI.ContentFileName = document.Name;
             insert FI;
-            system.debug('FI!!'+FI);
+           
             document = new document();
         }else{
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Please_Select_Document));
@@ -218,18 +260,28 @@ public with sharing class Amr_SubmittedSavingController_CC {
     }
     return null;
     }
-    
+/***********************************************************************************************************************************
+Purpose: Method to get uploaded additional documents.
+Parameters: 
+Returns:
+
+************************************************************************************************************************************/    
     public void getFeedItemAdditionalData(){
         try{
         feedItemAdditionalList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
                                           FROM FeedItem where ParentId =:savingIdFromPage];
-        system.debug('feedItemAdditionalList!!'+feedItemAdditionalList);
+       
     }catch(Exception ex){
     	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         system.debug(ex.getMessage());
     }   
     }
-    
+ /***********************************************************************************************************************************
+Purpose: Method to delete document.
+Parameters: 
+Returns:
+
+************************************************************************************************************************************/   
     public PageReference deleteOtherFile(){
         try{
         system.debug('chosenFileId!!'+chosenFileId);
@@ -242,11 +294,16 @@ public with sharing class Amr_SubmittedSavingController_CC {
     }
     return null;
     }
-    
+/***********************************************************************************************************************************
+Purpose: Method to delete saving record.
+Parameters: 
+Returns:
+
+************************************************************************************************************************************/    
     public PageReference deleteSaving(){
         try{
         delete savObj;
-        pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobId);
+        pagereference page = new PageReference(Label.Amr_Jobsheet_Id+jobId);
         page.setRedirect(true); 
         return page ;
         }catch(Exception ex){
@@ -284,11 +341,11 @@ Returns:
     }
     Boolean testSuccess;
     update savObj;
-    system.debug('savObj!!'+savObj);
+   
     update acceptedQuote;
-    system.debug('acceptedQuote!!'+acceptedQuote);
+    
     update quoteRelatedToSavingList;
-    system.debug('quoteRelatedToSavingList!!'+quoteRelatedToSavingList);
+   
     
         AllValues();
         
@@ -296,16 +353,16 @@ Returns:
         ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.Error,Label.Amr_Please_Select_Document));
         return null;
         }else{
-            testSuccess=true;
-        pagereference page = new PageReference('/apex/Amr_SubmittedSavingPage?id='+savingIdFromPage);
+           
+        pagereference page = new PageReference(Label.Amr_Submitted_Saving_Page_Id + savingIdFromPage);
         page.setRedirect(true); 
         return page ;
         }
-        if(testSuccess){
+        /*if(testSuccess){
             system.debug('inside success!!');
         ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,'Saving updated successfully'));
         return null;
-        }
+        }*/
         }catch(Exception ex){
         	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         System.debug(ex.getmessage());

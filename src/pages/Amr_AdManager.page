@@ -28,6 +28,7 @@
                 margin:0 !important;
                 color:red !important;
                 background-color:#FFFFFF !important;
+                width:40%;
             }
             .errorM3 span {
                 color:red !important;

@@ -227,6 +227,11 @@
            
         });
         
+        function updateNotes(Notes){
+            //alert('hello==>'+Notes);
+            updateNotesData(Notes);
+        }
+        
         function transferCategoryValue(categoryValue){
           //alert(categoryValue);
             sendCategory(categoryValue);
@@ -267,7 +272,7 @@
             $j('.alert-popup').hide();
         }
        
-        
+       
     </script>
     <style type="text/css">
         body {
@@ -696,23 +701,29 @@
             background: #AC4FC6 !important;
             border-radius: 0 40px 0 0 !important;
             border-image-slice: 0 100% 0 0;
-		    border-image-source: url("/resource/1458112864000/Amr_static_resources/Amr-static-resource/images/Img_TabWhite.png") !important;
-		    border-image-width: 0 20px 0 0 !important;
-		    border-image-outset: 0 20px 0 10px !important;
+            border-image-source: url("/resource/1458112864000/Amr_static_resources/Amr-static-resource/images/Img_TabWhite.png") !important;
+            border-image-width: 0 20px 0 0 !important;
+            border-image-outset: 0 20px 0 10px !important;
              
             }
             
             .rich-tab-inactive {
             border-image-slice: 0 100% 0 0 !important;
-		    border-image-source: url("/resource/1458112864000/Amr_static_resources/Amr-static-resource/images/Img_TabPurple.png") !important;
-		    border-image-width: 0 20px 0 0 !important;
-		    border-image-outset: 0 20px 0 10px !important;
+            border-image-source: url("/resource/1458112864000/Amr_static_resources/Amr-static-resource/images/Img_TabPurple.png") !important;
+            border-image-width: 0 20px 0 0 !important;
+            border-image-outset: 0 20px 0 10px !important;
              
             }
             .rich-tabhdr-side-cell table {
-            	margin-right: 20px;
-            	background:#FFFFFF !important;
-            }            
+                margin-right: 20px;
+                background:#FFFFFF !important;
+            }   
+            
+            /* Maya CSS Starts */   
+            .text-camel-case {
+                text-transform: capitalize;
+            }
+            /* Maya CSS Ends */        
     </style>
     <apex:include pageName="amr_common_header" />
      <div class="mask" style="display:{!if(jobList.AdManagerText__c != null,'none','')}"></div>  
@@ -2168,12 +2179,14 @@
                         <apex:form >
                             <div class="inner-content">                                                                
                                 <div style="width:100%;">
-                                    <apex:inputField value="{!joblist.Job_Notes__c}" html-placeholder="Deliverables, Budget, timings etc "/>
+                                    <apex:inputField value="{!joblist.Job_Notes__c}" html-placeholder="Deliverables, Budget, timings etc " onblur="updateNotes(this.value)"/>
                                 </div>
                                 <div class="clear">
                                 </div>
                                 <div class="right margin-top18">                                        
-                                    <apex:commandButton value="Save" action="{!updateJobForNotes}" onclick="enableText()" styleClass="commonbtn"/>
+                                   
+                                     <!-- <apex:commandButton value="Save" action="{!updateJobForNotes}" onclick="enableText()" styleClass="commonbtn"/>  -->
+              
                                 </div>
                                 <div class="clear">
                                 </div>                                
@@ -2260,6 +2273,9 @@
                                  <apex:actionFunction name="hideAlert" action="{!alertHide}" reRender="view">
                                         <apex:param id="aname" assignTo="{!selectedAlert}" name="selectedAlert" value="{!selectedAlert}" />
                                  </apex:actionFunction>
+                                <apex:actionFunction name="updateNotesData" action="{!updateJobForNotes}" reRender="none">
+                                 <apex:param id="Notesname" assignTo="{!NotesValue}" name="NotesValue" value="{!NotesValue}" />
+                                </apex:actionFunction>
                             </apex:actionRegion>
                         </apex:form>
                     </div>

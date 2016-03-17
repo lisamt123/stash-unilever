@@ -96,7 +96,7 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
     
     //cancellation
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             
             system.debug(ex.getMessage());
             
@@ -170,7 +170,7 @@ Returns:
 
         system.debug('brandPositionListtt----->'+listOfBrandPosition);
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
             return null;
         }
@@ -201,7 +201,7 @@ Returns: It will return list of brands.
         }
         return listOfBrand;
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
             return null;
         }
@@ -227,7 +227,7 @@ Returns: It will return list of RAP users.
     system.debug('listOfUser!!'+listOfUser);
          return listOfUser;
          }catch(Exception ex){
-         	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
             return null;
         }
@@ -262,7 +262,7 @@ Returns:
         TotalDormantJobs  = [SELECT count()  FROM  Amr_Job_Details__c where  Amr_Job_Details__c.Job_Status__c = :Label.Amr_Status_Dormant ];
         TotalSavingsJobs  = [SELECT count() from Amr_Saving__c limit 50000];
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
@@ -392,21 +392,21 @@ Returns:
           
     }
     
-      if(String.isNotBlank(categoryName) && categoryName != NONE){
+      if(String.isNotBlank(categoryName)){
       
-    soql += ' and AM_Job_Detail__r.ProductCategory__r.Name = \''+String.escapeSingleQuotes(categoryName)+'\'';
-    soqlForCancel += ' and AM_Job_Detail__r.ProductCategory__r.Name = \''+String.escapeSingleQuotes(categoryName)+'\'';
+    soql += ' and AM_Job_Detail__r.ProductCategory__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    soqlForCancel += ' and AM_Job_Detail__r.ProductCategory__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
          
      }
-      if(String.isNotBlank(brandPos) && brandPos != NONE){
+      if(String.isNotBlank(brandPos)){
       
-    soql += ' and AM_Job_Detail__r.Brand_Position__r.name = \''+String.escapeSingleQuotes(brandPos)+'\'';
-    soqlForCancel +=' and AM_Job_Detail__r.Brand_Position__r.name = \''+String.escapeSingleQuotes(brandPos)+'\'';
+    soql += ' and AM_Job_Detail__r.Brand_Position__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandPos)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    soqlForCancel +=' and AM_Job_Detail__r.Brand_Position__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandPos)+Amr_ConstantForAdManager.PERCENTAGESLASH;
           
      }
-      if(String.isNotBlank(brandName) && brandName != NONE){
-    soql += ' and AM_Job_Detail__r.Brand_Final__r.name = \''+String.escapeSingleQuotes(brandName)+'\'';
-    soqlForCancel += ' and AM_Job_Detail__r.Brand_Final__r.name = \''+String.escapeSingleQuotes(brandName)+'\'';
+      if(String.isNotBlank(brandName) ){
+    soql += ' and AM_Job_Detail__r.Brand_Final__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    soqlForCancel += ' and AM_Job_Detail__r.Brand_Final__r.name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
           
      }
      
@@ -441,8 +441,8 @@ Returns:
      }
    
     if(String.isNotBlank(jobDetails.AdManagerText__c)){
-    soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+String.escapeSingleQuotes(jobDetails.AdManagerText__c)+PERCENT;
-    soqlForCancel += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+String.escapeSingleQuotes(jobDetails.AdManagerText__c)+PERCENT;
+    soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(jobDetails.AdManagerText__c)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    soqlForCancel += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(jobDetails.AdManagerText__c)+Amr_ConstantForAdManager.PERCENTAGESLASH;
           
      }
      if(String.isNotBlank(jobDetails.Unilever_Project_Leader_Email__c)){
@@ -495,11 +495,11 @@ Returns:
      }
       if(String.isNotBlank(jobDetails.Campaign_Name__c)){
             
-     soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+PERCENT;
-    soqlForCancel += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+PERCENT;
+     soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    soqlForCancel += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Amr_ConstantForAdManager.PERCENTAGESLASH;
       }
      
-    
+    System.debug('QUERRRYYYY ->   ' + soql);
      if(String.isNotBlank(addNumber)){
         soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+PERCENT;
         soqlForCancel += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+PERCENT;
@@ -529,12 +529,7 @@ Returns:
         soqlForCancel += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
               
          }
-          System.debug('SOQL Till Here -->>>  ' + soql );
-         if(String.isNotBlank(jobDetails.Campaign_Name__c)){
-        soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+PERCENT;
-        soqlForCancel += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+PERCENT;
-            
-         }
+          
           if(String.isNotBlank(String.valueOf(jobDetails.Allocated_Budget_euro__c))){
           String allocatedBudget = String.valueOf(jobDetails.Allocated_Budget_euro__c).replace(',','');
 
@@ -671,7 +666,7 @@ Returns:
                 return null;
           } 
           }catch(Exception ex){
-          	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
             return null;
         }
@@ -710,7 +705,7 @@ Returns:
                        
         //getTotalActiveJobPages(totalSizeForActiveJobs/limitSizeForActiveJobs);
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
       }
@@ -732,7 +727,7 @@ Returns:
         TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
@@ -756,7 +751,7 @@ Returns:
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
         
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         } 
     }
@@ -772,7 +767,7 @@ Returns:
         TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
@@ -792,7 +787,7 @@ Returns:
         TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
       }
@@ -840,7 +835,7 @@ Returns:
         }
          system.debug('cancelJobsToShow!!'+cancelJobsToShow);
          }catch(Exception ex){
-         	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
       }
@@ -859,7 +854,7 @@ Returns:
             }       
         }
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
@@ -878,7 +873,7 @@ Returns:
             }
         }
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
@@ -891,7 +886,7 @@ Returns:
             cancelJobsToShow.add(WrapperList.get(i));
         }
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
@@ -908,7 +903,7 @@ Returns:
                 cancelJobsToShow.add(WrapperList.get(i));
         }
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
       }
@@ -940,7 +935,7 @@ Returns: pageRef.
        pageRef.setRedirect(true);
        return pageRef;
        }catch(Exception ex){
-       	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
           system.debug(ex.getMessage());
             return null;
         }

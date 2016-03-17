@@ -65,7 +65,6 @@ public with sharing class Amr_SavingSummaryController_CC{
     public String permissionSetName {get;set;}
     public List<SelectOption> rapNameList{get;set;} 
     public String selectedRapName{get;set;}
-    
     public Amr_SavingSummaryController_CC(){
         
       try{
@@ -120,12 +119,11 @@ public with sharing class Amr_SavingSummaryController_CC{
         }
            
         //dashboard
-        Date startOfMonth = Date.today().toStartOfMonth();
-         //   Date startOfNextMonth = startOfMonth.addMonths(1);
+       
             Date currentDay = Date.today();
-        yourYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-        globalYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];   
-        savingActivitiesSubmitted = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+        yourYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Accepted_Quote_Euro__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+        globalYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Accepted_Quote_Euro__c) savCurrentCostYTD FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];   
+        savingActivitiesSubmitted = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Accepted_Quote_Euro__c) savCurrentCostYTD FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
     }
 /***********************************************************************************************************************************
 Purpose: Method to create options for sort by functionality.
@@ -318,14 +316,17 @@ Returns:
               
        } 
        
-       if(String.isNotBlank(categoryName) && categoryName != Amr_ConstantForAdManager.NONE){
-           soql += ' and Job_Details__r.ProductCategory__r.Name LIKE \''+String.escapeSingleQuotes(categoryName)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+       if(String.isNotBlank(categoryName)){
+           soql += ' and Job_Details__r.ProductCategory__r.Name LIKE \''+'%'+String.escapeSingleQuotes(categoryName)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
        }
        
-       if(String.isNotBlank(brandPosName) && brandPosName != Amr_ConstantForAdManager.NONE){
-           soql += ' and Job_Details__r.Brand_Position__r.Name LIKE \''+String.escapeSingleQuotes(brandPosName)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+       if(String.isNotBlank(brandPosName)){
+           soql += ' and Job_Details__r.Brand_Position__r.Name LIKE \''+'%'+String.escapeSingleQuotes(brandPosName)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
        } 
-       
+       if(String.isNotBlank(brandNameFromPage)){
+           soql += ' and Job_Details__r.Brand_Final__r.Name LIKE \''+'%'+String.escapeSingleQuotes(brandNameFromPage)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+       }
+       System.debug('SQL HERE ->   ' + soql);
         if(String.isNotBlank(region) && region != Amr_ConstantForAdManager.NONE){
            soql += ' and Job_Details__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(region)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
        }
@@ -624,17 +625,17 @@ Returns: It will return submitted saving data.
      }
      } 
      if(!setFlag){    
-     groupedSavingResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+     groupedSavingResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Saving_Average_of_Quotes__c) savCostmonth FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
           
-     groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+     groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Average_of_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
         
-     groupedSubmissionResultsPrevYear  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+     groupedSubmissionResultsPrevYear  = [SELECT count(Id) savCurrentPrevYear,SUM(Saving_Average_of_Quotes__c)  savCostPrevYear FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
      }else{
-     groupedSavingResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+     groupedSavingResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Saving_Average_of_Quotes__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
           
-     groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+     groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Average_of_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
         
-     groupedSubmissionResultsPrevYear  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+     groupedSubmissionResultsPrevYear  = [SELECT count(Id) savCurrentPrevYear,SUM(Saving_Average_of_Quotes__c)  savCostPrevYear FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
      }    
      data.add(new PieWedgeData('Current Month',Integer.valueOf(groupedSavingResultsCurrentMonth[0].get('savCurrentMonth'))));
      data.add(new PieWedgeData('YTD',Integer.valueOf(groupedSubmissionResultsYearToDate[0].get('savCurrentYearToDate'))));
@@ -672,11 +673,11 @@ Returns: It will return submitted saving data.
      }      
     if(!setFlag){
     
-     groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+     groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Saving_Average_of_Quotes__c) savCostmonth FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
        
-     groupedSubmissionResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+     groupedSubmissionResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Average_of_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
          
-     groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+     groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Saving_Average_of_Quotes__c)  savCostPrevYear FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
      
      
      Integer aa = 0;
@@ -687,11 +688,11 @@ Returns: It will return submitted saving data.
      data.add(new PieWedgeData('YTD',Integer.valueOf(groupedSubmissionResultsYearToDate1[0].get('savCurrentCostYTD'))));
      data.add(new PieWedgeData('Prev Year',aa));
     }else{
-     groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Sum_Of_Total_Cost__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+     groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Saving_Average_of_Quotes__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
        
-     groupedSubmissionResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost__c) savCurrentCostYTD FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+     groupedSubmissionResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Average_of_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
          
-     groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Sum_Of_Total_Cost__c)  savCostPrevYear FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+     groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Saving_Average_of_Quotes__c)  savCostPrevYear FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
    
      data.add(new PieWedgeData('Global YTD Saving',Integer.valueOf(groupedSubmissionResultsYearToDate1[0].get('savCurrentCostYTD'))));
      data.add(new PieWedgeData('Global this month saving',Integer.valueOf(groupedSavingResultsCurrentMonth1[0].get('savCostmonth'))));

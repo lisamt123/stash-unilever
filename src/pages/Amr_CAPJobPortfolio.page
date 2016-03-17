@@ -208,7 +208,7 @@
             <div class="leftbar">
                 <div class="leftbar-container1 bg-g1 margin-btwn-container">
                     <div class="leftbar-container-header dark-blue-header">
-                        {!$Label.Amr_Search} &amp; {$Label.Amr_Filter}
+                        {!$Label.Amr_Search} &amp; {!$Label.Amr_Filter}
                     </div>
                     <div class="leftbar-container-content margin12 padding12 bg-w8">
 
@@ -222,19 +222,19 @@
                             <div class="clear">
                             </div>
                         </div>                      
-                        <div class="inputpanel">
+                        <div class="inputpanel"> <!--
                             <div class="left inputpanel-first">
                                 {!$Label.Amr_Category}
-                            </div>
+                            </div> -->
                             <div class="clear  inputclass">
                                 <!--  
                                     <apex:selectList value="{!categoryName}" size="1"  multiselect="false" >
                                         <apex:actionSupport event="onchange" reRender="brandPosPick,brandPick" status="actStatusId"/>
                                         <apex:selectOptions value="{!CategoryList}" />
                                     </apex:selectList>
-                                    -->
-                                <select id="categoryList" size="1" onchange="transferCategoryValue(this.value)" reRender="brandPosPick"  class="categorySelected"></select>
-                            
+                                    
+                                <select id="categoryList" size="1" onchange="transferCategoryValue(this.value)" reRender="brandPosPick"  class="categorySelected"></select>-->
+                                <apex:inputText value="{!categoryName}" html-placeholder="{!$Label.Amr_Category}"/> 
                             </div>
                             <div style="display:none;width:30px;border:none;margin-bottom:5px;" class="loading">
                             <img src="/img/loading.gif" alt = "loading image"/>  
@@ -242,11 +242,11 @@
                             <div class="clear">
                             </div>
                         </div>
-                        <div class="inputpanel">
+                        <div class="inputpanel"> <!--
                             <div class="left inputpanel-first">
                                 {!$Label.Amr_Brand_Position_Name}
-                            </div>
-                            <div class="clear  inputclass">
+                            </div>  -->
+                            <div class="clear  inputclass"> <!--
                                 <apex:selectList id="brandPosPick" value="{!brandPos}" size="1" multiselect="false" >
                                     <apex:actionSupport event="onchange" reRender="brandPick" status="actStatusId1" />
                                     <apex:selectOptions value="{!listOfBrandPosition}" />
@@ -255,21 +255,22 @@
                             <apex:facet name="start" >
                                 <img src="/img/loading.gif"  alt = "loading image"/>                    
                             </apex:facet>
-                        </apex:actionstatus>
+                        </apex:actionstatus>  -->
+                                 <apex:inputText value="{!brandPos}" html-placeholder="{!$Label.Amr_Brand_Position_Name}"/>
                             </div>
                             <div class="clear">
                             </div>
                         </div>
-                        <div class="inputpanel">
+                        <div class="inputpanel">    <!--
                             <div class="left inputpanel-first">
                                {!$Label.Amr_Brand_Name}
-                            </div>
-                            <div class="clear  inputclass">
+                            </div>    -->
+                            <div class="clear  inputclass"> <!--
                                 <apex:selectList id="brandPick" value="{!brandName}" size="1" multiselect="false" >
                                 
                                     <apex:selectOptions value="{!BrandList}" />
-                                </apex:selectList>
-                                
+                                </apex:selectList>    -->
+                                <apex:inputText value="{!brandName}" html-placeholder="{!$Label.Amr_Brand_Name}"/>
                             </div>
                             <div class="clear">
                             </div>
@@ -290,7 +291,7 @@
                             </div>
                             <div class="clear">
                             </div>
-                        </div>
+                        </div> <!--
                         <div class="inputpanel" id="projectNameOther">
                             <div class="clear inputclass">
                                  {!$Label.Amr_Other}
@@ -300,7 +301,7 @@
                             </div>
                             <div class="clear">
                             </div>
-                        </div>
+                        </div>  -->
                         <div class="inputpanel"> <!-- 
                             <div class="left inputpanel-first">
                                 Campaign name
@@ -505,10 +506,10 @@
                 </apex:actionFunction>
                 <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlCancelSort" reRender="cancelled_joblist_pageblock" status="actionStatusCancelSorting">
                     <apex:param name="param19" value="" id="y19" assignTo="{!selectedSortCancelOption}" />
-                </apex:actionFunction>
+                </apex:actionFunction> <!--
                  <apex:actionFunction name="sendCategory" action="{!brandPositionListData}" reRender="brandPosPick" oncomplete="closeloading()">
                 <apex:param id="catname" name="categoryName" value="" assignTo="{!categoryName}"/>
-                </apex:actionFunction>
+                </apex:actionFunction>  -->
                 <div class="joblist-main-section bg-g1">                
                 <h4 class="main_inner_sectionh4">
                     {!$Label.Amr_Job_List}

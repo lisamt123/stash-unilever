@@ -35,7 +35,7 @@
             <div class="leftbar bg-g1">
                 <div class="leftbar-container bg-g1 margin-btwn-container">
                     <div class="leftbar-container-header dark-blue-header">
-                        {!$Label.Amr_Search} &amp; {$Label.Amr_Filter}
+                        {!$Label.Amr_Search} &amp; {!$Label.Amr_Filter}
                     </div>
                     <div class="leftbar-container-content margin12 bg-w8 padding12 initial-search" style="min-height:244px;">
                         <div class="input-section">
@@ -93,26 +93,36 @@
                                 </div>
                             </div> 
                              
-                            <div class="job-field-parent displayinlineblock">
+                            <div class="job-field-parent displayinlineblock"><!-- 
                                 <div class="job-field-label">{!$Label.Amr_Category}</div>
-                                <div class="job-field-input">
-                                    <select id="categoryList" size="1" onchange="transferCategoryValue(this.value)" reRender="brandPosPick" class="categorySelected"></select>
+                                
+                                   <select id="categoryList" size="1" onchange="transferCategoryValue(this.value)" reRender="brandPosPick" class="categorySelected"></select> -->
+                                 <div class="job-field-input">
+                                   <apex:inputText value="{!categoryName}" html-placeholder="{!$Label.Amr_Category}"/> 
                                 </div>
                             </div>
                                
-                            <div class="job-field-parent displayinlineblock">
+                            <div class="job-field-parent displayinlineblock"  style = "display:{!if(permissionSetName = 'CAP','','none')}"> <!--
                                 <div class="job-field-label">{!$Label.Amr_Brand_Position_Name}</div>
-                                <div class="job-field-input">
+                                
                                     <apex:actionRegion >
                                         <apex:selectList id="brandPosPick" value="{!brandPosName}" size="1">
                                             <apex:selectOptions value="{!listOfBrandPosition}" />
                                             <apex:actionSupport event="onchange" reRender="brandPick" status="actStatusId1" />
                                         </apex:selectList>
-                                    </apex:actionRegion>
-                                </div>
+                                    </apex:actionRegion>-->                          
+                               <div class="job-field-input" >      <!-- display:{!if(permissionSetName = 'CAP','','none')}-->
+                                <apex:inputText value="{!brandPosName}" html-placeholder="{!$Label.Amr_Brand_Position_Name}"/>
+                              </div> 
                             </div> 
+                            <div class="job-field-parent displayinlineblock">
+                                        <div class="job-field-input">
+                                            <apex:inputText value="{!brandNameFromPage}" html-placeholder="{!$Label.Amr_Brand_Name}"/>
+                                        </div>
+                            </div>
                             
-                            <div class = "cap-section" style = "display:{!if(permissionSetName = 'CAP','','none')}">        <!-- display:{!if(permissionSetName = 'CAP','','none')} -->
+                            <div class = "cap-section" style = "display:{!if(permissionSetName = 'CAP','','none')}">        <!-- display:{!if(permissionSetName = 'CAP','','none')}-->
+                                    
                                     <div class="job-field-parent displayinlineblock">
                                         <div class="job-field-label">{!$Label.Amr_Budget_Responsibility}</div>
                                         <div class="job-field-input">
@@ -933,10 +943,10 @@
                         </apex:outputPanel>
                     </div>
                 </div>
-            </div>
+            </div> <!--
             <apex:actionFunction name="sendCategory" action="{!brandPositionListData}" reRender="brandPosPick" oncomplete="closeloading()">
                 <apex:param id="catname" assignTo="{!categoryName}" name="categoryName" value="{!categoryName}" />
-            </apex:actionFunction>
+            </apex:actionFunction>  -->
         </apex:form>
     </div>
 </apex:page>

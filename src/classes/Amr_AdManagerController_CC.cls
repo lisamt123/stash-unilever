@@ -14,20 +14,15 @@ Purpose:
 public with sharing class Amr_AdManagerController_CC{
 
     public Amr_Job_Details__c jobDetails{get;set;}
-    public static final String STR_NONE = '--None--';
-    public static final String STR_CHECK = 'Check -> ';
-    //public static final boolean VAL_TRUE = true;
     public Amr_Logging_Form_Setting__c r  {get; set;}
-    //public String categorylabel{get;set;}
-    
-    public String selectedCountry {get;set;}
+      public String selectedCountry {get;set;}
     public String projectNameFromPage{get;set;}
     public String productionActivityData {get;set;}
     public List<selectOption> currencyRecords {
         get {
             List<selectOption> options = new List<selectOption>();
             List<selectOption> optionsNew = new List<selectOption>();
-            options.add(new SelectOption(STR_NONE,STR_NONE));
+            options.add(new SelectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
             List<Amr_CurrencyConversionRate__c> lstcov = Amr_CurrencyConversionRate__c.getAll().values();
             System.debug('Currency List Size --> ' + lstcov.size());
             lstcov.sort();
@@ -35,13 +30,13 @@ public with sharing class Amr_AdManagerController_CC{
             Map<String,String> mapAmountToCurrency = new Map<String,String>();
         
             for (Amr_CurrencyConversionRate__c cc: lstcov){
-                if( (cc.Name+'-'+cc.Currency_Unit__c == 'USA-US $') ||  (cc.Name+'-'+cc.Currency_Unit__c == 'UK-£' ) || (cc.Name+'-'+cc.Currency_Unit__c == 'EEC-Euro' )){
-                    mapAmountToCurrency.put(cc.Name+'-'+cc.Currency_Unit__c , String.valueOf(cc.Currency_Unit_To_Euro__c));
-                    options.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+'-'+cc.Currency_Unit__c));
+                if( (cc.Name+Amr_ConstantForAdManager.DASH+cc.Currency_Unit__c == Amr_ConstantForAdManager.USA_US) ||  (cc.Name+Amr_ConstantForAdManager.DASH+cc.Currency_Unit__c == Amr_ConstantForAdManager.UK ) || (cc.Name+Amr_ConstantForAdManager.DASH+cc.Currency_Unit__c == Amr_ConstantForAdManager.EEC_Euro)){
+                    mapAmountToCurrency.put(cc.Name+Amr_ConstantForAdManager.DASH+cc.Currency_Unit__c , String.valueOf(cc.Currency_Unit_To_Euro__c));
+                    options.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+Amr_ConstantForAdManager.DASH+cc.Currency_Unit__c));
                     continue;
                 }   
                 else{
-                    optionsNew.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+'-'+cc.Currency_Unit__c));
+                    optionsNew.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+Amr_ConstantForAdManager.DASH+cc.Currency_Unit__c));
                 }
                 //€ (EEC), £(UK), $(US)
             }
@@ -80,7 +75,7 @@ public with sharing class Amr_AdManagerController_CC{
 
             listString = new list<string>();
             categoryString = new list<string>();
-            listString.add(STR_NONE);
+            listString.add(Amr_ConstantForAdManager.NONE);
             
             for(Amr_Project_Details__c i : projNameList){
                 listString.add(i.name);
@@ -92,13 +87,12 @@ public with sharing class Amr_AdManagerController_CC{
             }
 
             listOfBrandPosition = new List<SelectOption>();
-            listOfBrandPosition.add(new selectOption(STR_NONE,STR_NONE));
-            system.debug('mdString !!'+categoryString);
-            system.debug('listString!!'+listString);
-            System.debug('Project Name Size -> ' + projNameList.size());
+            listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+          
         
-        }catch(Exception e){
-            system.debug(e.getMessage());
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
         }
     }
 
@@ -116,7 +110,7 @@ public with sharing class Amr_AdManagerController_CC{
    ********************************************************************/ 
 
     public String getCategoryList(){ 
-        System.debug('cATE ->' +  JSON.serialize(categoryString));
+      
         return JSON.serialize(categoryString);
     }
     
@@ -129,7 +123,7 @@ public with sharing class Amr_AdManagerController_CC{
    ********************************************************************/ 
     
     public String getMethodToPassProjectNames(){
-        system.debug('serialize!!'+JSON.serialize(listString));
+       
         return JSON.serialize(listString);
     }
     
@@ -141,11 +135,9 @@ public with sharing class Amr_AdManagerController_CC{
    ********************************************************************/ 
     public PageReference  brandPositionListData(){  
         try{  
-            System.debug('BBBBBBRANDDD ->'+ categoryName);  
+           
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-            
             Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
-            system.debug('brandPositionListttoo----->'+brandPositionlst );
             Set<String> brnadPosNameSet = new Set<String>();
             
             for(MDO_BrandPositions__c bps : brandPositionlst){
@@ -154,9 +146,9 @@ public with sharing class Amr_AdManagerController_CC{
                     brnadPosNameSet.add(bps.brand_position_id__r.name);
                 }
             }
-            system.debug('brandPositionListtt----->'+listOfBrandPosition);
-        }catch(Exception e){
-            system.debug(e.getMessage());
+           }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
         }
         
         return null;
@@ -172,8 +164,7 @@ public with sharing class Amr_AdManagerController_CC{
     public List<SelectOption> getBrandList(){  
         try{    
             listOfBrand = new List<SelectOption>();
-            system.debug('========>'+brandPosName+'category name=====>'+categoryName);
-            listOfBrand.add(new selectOption(STR_NONE,STR_NONE));
+            listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
         
             Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
             Set<MDO_BrandPositions__c> brandlst = utiltyObj.brandValues(categoryName,brandPosName);
@@ -187,8 +178,9 @@ public with sharing class Amr_AdManagerController_CC{
             }
             
             return listOfBrand;
-        }catch(Exception e){
-            system.debug(e.getMessage());
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
             return null;
         }
     }
@@ -252,25 +244,18 @@ public with sharing class Amr_AdManagerController_CC{
             RequireMusicFlag = false;
             RequireTalentFlag = false;
             StageProductionActivity = false;
-            CheckWithCMI = 'Please fill in missing information';
+            CheckWithCMI = Amr_ConstantForAdManager.FILL_INFO;
             
             
             Boolean okayToSave = true;
-            system.debug('hii!!'+categoryName+'!!'+brandPosName+'!!'+brandNameFromPage);
-            system.debug('job detail checkboxes=======>'+jobDetails.Project_Details__c  );
             if(jobDetails.Project_Details__c!=null){
               Amr_Project_Details__c projectObj = [select id,name from Amr_Project_Details__c where id = :jobDetails.Project_Details__c ];
               projectNameFromPage = projectObj.name;
-              system.debug('project name====>'+projectNameFromPage);
-            }
-            system.debug('projectNameFromPage=======>'+projectNameFromPage);
-            system.debug('selectedCountry=======>'+selectedCountry);
-            system.debug('CC!'+productionActivityData);
             
+            }
+         
             jobDetails.ProductionActivityTextArea__c = productionActivityData;
-            system.debug('jobDetails.Check_With_CMI__c!!'+jobDetails.Check_With_CMI__c);
-            System.debug(STR_CHECK + jobDetails.NewOriginalMaster__c + STR_CHECK + jobDetails.NewOriginalMasterOutofHome__c + STR_CHECK + jobDetails.NewOriginalMasterOutofHomeMovingImage__c + STR_CHECK +
-            jobDetails.NewOriginalMasterOutofHomeAudio__c + STR_CHECK + jobDetails.NewOriginalMasterOutofHomeStillImage__c );
+            
             
             if(jobDetails.Check_With_CMI__c == null){      
                 CheckWithCMIflag = true;     
@@ -289,7 +274,7 @@ public with sharing class Amr_AdManagerController_CC{
                 
             }
            
-            if((String.isBlank(selectedCountry)|| selectedCountry == STR_NONE)){
+            if((String.isBlank(selectedCountry)|| selectedCountry == Amr_ConstantForAdManager.NONE)){
                 budgetAllocatedCountryFlag = true;
                 
             }
@@ -298,16 +283,16 @@ public with sharing class Amr_AdManagerController_CC{
                 
             }
             
-            if(categoryName == STR_NONE){
+            if(categoryName == Amr_ConstantForAdManager.NONE){
                 
                 categoryNameFlag = true;
                 
             }
-            if(brandPosName == STR_NONE){
+            if(brandPosName == Amr_ConstantForAdManager.NONE){
                 brandPosNameFlag = true;
                 
             }
-            if(brandNameFromPage == STR_NONE){
+            if(brandNameFromPage == Amr_ConstantForAdManager.NONE){
                 brandNameFromPageFlag = true;
                
             }
@@ -608,8 +593,9 @@ public with sharing class Amr_AdManagerController_CC{
             }
     
             createJob();
-        }catch(Exception e){
-            system.debug(e.getMessage());
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
         }
             return null;
 
@@ -623,9 +609,7 @@ public with sharing class Amr_AdManagerController_CC{
         public PageReference createJob(){
                 try{     
                     Amr_CurrencyConversionRate__c currencyObject =[SELECT Currency_Unit__c,Name FROM Amr_CurrencyConversionRate__c WHERE Currency_Unit_To_Euro__c =:double.valueOf(selectedCountry) limit 1];
-                    system.debug('currencyObject !!!'+currencyObject);
-                    String currencyFinalString = currencyObject.Name+'-'+currencyObject.Currency_Unit__c;
-                    system.debug('selectedCountry !!!'+selectedCountry +'currencyObject !!!'+currencyObject +'currencyFinalString !!'+currencyFinalString );
+                    String currencyFinalString = currencyObject.Name+Amr_ConstantForAdManager.DASH+currencyObject.Currency_Unit__c;
                     List<MDO_BrandPositions__c> MDOBrandPositionslst =[select  brand_position_id__c,product_category_id__c,brand_id__c from MDO_BrandPositions__c where product_category_id__r.name = :categoryName AND brand_position_id__r.name = :brandPosName AND brand_id__r.name = :brandNameFromPage];
                     
                     if(MDOBrandPositionslst.size()>0){
@@ -635,15 +619,12 @@ public with sharing class Amr_AdManagerController_CC{
                         jobDetails.Brand_Final__c = MDOobj.brand_id__c;
                     }
                     jobDetails.Currency_Conversion_Country_List__c = currencyFinalString;
-                    
-                    system.debug('values!@@!!'+jobDetails.ProductCategory__c+'!!'+jobDetails.Brand_Position__c+'!!'+jobDetails.Brand_Final__c);
-                    
+                                     
                     adManagerNumberCreation();
                     jobDetails.Is_Submitt__c = true;
                     compareThresold(jobDetails, categoryName,brandPosName,brandNameFromPage);
                     jobDetails.GBVM_Email__c = gbvmEmail;
                     jobDetails.Threshold_Amount__c = thresholdValue ;
-                    System.debug('HELLO ->!!!!!' + jobDetails.GBVM_Email__c);   
                     insert jobDetails;
                     
                     getCategoryList();
@@ -652,10 +633,10 @@ public with sharing class Amr_AdManagerController_CC{
                     
                     automaticJobAllocation(obj);
                     jobDetails = new Amr_Job_Details__c();
-                    selectedCountry =STR_NONE;
-                    categoryName =STR_NONE;
-                    brandPosName =STR_NONE;
-                    brandNameFromPage =STR_NONE;
+                    selectedCountry =Amr_ConstantForAdManager.NONE;
+                    categoryName =Amr_ConstantForAdManager.NONE;
+                    brandPosName =Amr_ConstantForAdManager.NONE;
+                    brandNameFromPage =Amr_ConstantForAdManager.NONE;
                     
                    // PageReference pageRef = new PageReference('/apex/Amr_AdManager');
                     PageReference pageRef = Page.Amr_AdManager;
@@ -664,8 +645,9 @@ public with sharing class Amr_AdManagerController_CC{
                     pageRef.setRedirect(false);
                     return pageRef;
                     
-        }catch(Exception e){
-            system.debug(e.getMessage());
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
         }       
             return null;
         } 
@@ -681,15 +663,16 @@ public with sharing class Amr_AdManagerController_CC{
             jobAlloc.AM_Job_Detail__c = jobId;
             jobAlloc.Is_Primary__c = TRUE ; 
             jobAlloc.User__c = userId;
-            jobAlloc.Job_Allocated__c = 'Yes';
+            jobAlloc.Job_Allocated__c = Amr_ConstantForAdManager.YES;
             insert jobAlloc;
-            System.debug('PASSESD Email LEO ->  ' +  emailIdToAllocate);
+           
             
             Amr_Job_Details__c jobDetails = new Amr_Job_Details__c(Id= jobId , ownerId = userId, JobAllocated_Email__c = emailIdToAllocate);
             update jobDetails; 
-            System.debug('jobDetails ->  ' +  jobDetails);
-        }catch(Exception e){
-            system.debug(e.getMessage());
+           
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
         }
     }
     
@@ -703,34 +686,35 @@ public with sharing class Amr_AdManagerController_CC{
     @TestVisible static void automaticJobAllocation(String JobObject){
         try{
             InnerJobDetail jobDetailsNew = (InnerJobDetail)JSON.deserialize(JobObject, InnerJobDetail.class);
-            system.debug(jobDetailsNew.Cluster+'----'+jobDetailsNew.Country+'-----'+jobDetailsNew.JobId);
+           
             //Autometic assigment
             
             if(jobDetailsNew.Cluster!=null && jobDetailsNew.Country!=null){
-                system.debug(jobDetailsNew.Cluster+'======>'+jobDetailsNew.Country);
+                
                 List<Amr_Country_Cluster__c> countryClusterLst = Amr_Country_Cluster__c.getAll().values(); 
                 List<String> emailIds = new List<String>();
-                system.debug(jobDetailsNew.Cluster +'======country===='+jobDetailsNew.Country);
+               
                 for(Amr_Country_Cluster__c obj:countryClusterLst){
                     if(obj.Cluster__c == jobDetailsNew.Cluster && obj.Country__c ==  jobDetailsNew.Country){
-                        system.debug('inside===>'+obj.Primary_RAP_Email__c);
+                       
                         emailIds.add(obj.Primary_RAP_Email__c); 
                 }
             }
             
-            List<PermissionSetAssignment> userList =  [SELECT Id,Assignee.Name,Assignee.id,Assignee.Email FROM PermissionSetAssignment where PermissionSet.Name ='RAP' AND Assignee.Email = :emailIds ];
+            List<PermissionSetAssignment> userList =  [SELECT Id,Assignee.Name,Assignee.id,Assignee.Email FROM PermissionSetAssignment where PermissionSet.Name = 'RAP' AND Assignee.Email = :emailIds ];
             if(userList.size()>0){
                 Amr_Job_Details__Share jobShareObj  = new Amr_Job_Details__Share();
                 jobShareObj.ParentId = jobDetailsNew.JobId;
                 jobShareObj.UserOrGroupId = userList[0].Assignee.id;               
-                jobShareObj.AccessLevel = 'Edit';
+                jobShareObj.AccessLevel = Amr_ConstantForAdManager.EDIT;
                 insert jobShareObj;
-                System.debug('PASSESD ->  ' + userList[0].Assignee.Email + ' ORIGINAL  -> ' + emailIds );
+              
                 insertJobAllocationData(jobDetailsNew.JobId,userList[0].Assignee.id, userList[0].Assignee.Email);
            }
         }
-        }catch(Exception e){
-            system.debug(e.getMessage());
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
         }
     }
     
@@ -761,31 +745,32 @@ public with sharing class Amr_AdManagerController_CC{
     public void compareThresold(Amr_Job_Details__c jobDetailObj, String Categorty ,String BrandPostion , String Brand ){
         try{
         amountEntered = jobDetailObj.Allocated_Budget_euro__c;
-        system.debug(Brand +'==='+Categorty+'===='+BrandPostion+'===='+amountEntered);
+       
         List<Amr_JobBudgetThreshold__c> jobBudgetThresoldList = [select id,BrandPosition__r.name,Brand__r.name, Brand__r.Id, ProductCategory__r.Id,BrandPosition__r.Id,
                                                                  BrandCategoryPosition__c,Budget_Limit__c,ProductCategory__r.name,
                                                                  UserEmailId__c from Amr_JobBudgetThreshold__c where BrandPosition__r.name = :BrandPostion  and ProductCategory__r.name =:Categorty  ];
                                                           
         String brandCategoryPosition = BrandPostion+Brand+Categorty;
-        system.debug('=======>'+brandCategoryPosition);                                                      
+                                               
         for(Amr_JobBudgetThreshold__c jobBudgetThresoldObj:jobBudgetThresoldList){
-            system.debug('=======>'+jobBudgetThresoldObj.BrandCategoryPosition__c);  
+            
             String thresholdCompareId = jobBudgetThresoldObj.BrandPosition__r.name +''+ jobBudgetThresoldObj.Brand__r.name + jobBudgetThresoldObj.ProductCategory__r.name ;
-            System.debug('Thre ->' + thresholdCompareId);
+          
             
             if(thresholdCompareId == brandCategoryPosition){ 
-                System.debug('Threshold -> ' + jobBudgetThresoldObj.Budget_Limit__c + 'Entered Ampunt -> ' + amountEntered);
+             
                 if(jobBudgetThresoldObj.Budget_Limit__c < amountEntered){
                     ToUserEmailId = jobBudgetThresoldObj.UserEmailId__c;
-                    system.debug('to email Addresss====>'+ToUserEmailId);
+                
                     ToUserEmailId = String.valueOf(ToUserEmailId);
                     gbvmEmail  = ToUserEmailId;
                     thresholdValue  = jobBudgetThresoldObj.Budget_Limit__c;
-                    System.debug('HELLO ->' + jobDetails.GBVM_Email__c);
+                  
                 }
             }
         }
         }catch(exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug('ex****'+ex.getMessage());
         }
    }
@@ -800,9 +785,9 @@ public with sharing class Amr_AdManagerController_CC{
     public void adManagerNumberCreation(){
         try{
             Amr_Job_Details__c[] jobDetailList=[select Id,AdManagerText__c from Amr_Job_Details__c order by CreatedDate desc limit 1];
-            system.debug('job details!!'+jobDetailList);
+          
             Id id = jobDetails.Brand_Final__c ;
-            system.debug('id!!'+id+'lookup!!!'+jobDetails.Brand_Final__c);
+          
             MDO_Brand__c jobBrand = [select Name from MDO_Brand__c  where Id =: id];
             String brandStr = jobBrand.Name;
             String brandName = brandStr.Left(3);
@@ -810,22 +795,23 @@ public with sharing class Amr_AdManagerController_CC{
             if(jobDetailList.size()>0){
                 String textStr = jobDetailList[0].AdManagerText__c;
                 String adNumber = textStr.Right(5);
-                if(adNumber =='99999'){
-                    jobDetails.AdManagerText__c = brandName+'/'+'00001';
+                if(adNumber == Amr_ConstantForAdManager.NINTY_SERIES){
+                    jobDetails.AdManagerText__c = brandName+Amr_ConstantForAdManager.BACK_SLASH+Amr_ConstantForAdManager.ZERO_SERIES;
                 }else{
                     Integer num = integer.valueOf(adNumber)+1;
                     String numStr =string.valueof(num);
                     for(;numStr.length()<5;){
-                        numstr='0'+numStr;
-                        system.debug('num string!!'+numStr); 
+                        numstr=Amr_ConstantForAdManager.ZERO+numStr;
+                        
                     }
-                    jobDetails.AdManagerText__c =brandName+'/'+numstr;}
+                    jobDetails.AdManagerText__c =brandName+Amr_ConstantForAdManager.BACK_SLASH+numstr;}
             }else{
-                jobDetails.AdManagerText__c =brandName+'/'+'00001';
+                jobDetails.AdManagerText__c =brandName+Amr_ConstantForAdManager.BACK_SLASH+Amr_ConstantForAdManager.ZERO_SERIES;
             }
-            system.debug('job details!!'+jobDetails);
-        }catch(Exception e){
-            system.debug(e.getMessage());
+           
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
         }
     }
     
@@ -877,8 +863,9 @@ public with sharing class Amr_AdManagerController_CC{
             PageReference pageRef1 = Page.Amr_AdManager;
             pageRef1.setRedirect(true);
             return null;
-        }catch(Exception e){
-            system.debug(e.getMessage());
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            system.debug(ex.getMessage());
             return null;
         }
     }
