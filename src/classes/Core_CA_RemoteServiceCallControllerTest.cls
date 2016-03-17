@@ -33,8 +33,6 @@ public class Core_CA_RemoteServiceCallControllerTest{
     System.assertEquals('200',str.substring(14,17),'error');
      System.assertEquals('Purchase Request',str.substring(227,243),'error');
     
-    //RemoteServiceCallController.invokeServiceWithURLParameter(serviceJSONObject,serviceName,requestType,urlparameter);
-    //RemoteServiceCallController.constructRequestBody(serviceJSONObject,serviceName,requestType,urlparameter);
     
     }
 }

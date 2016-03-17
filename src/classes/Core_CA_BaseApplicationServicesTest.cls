@@ -16,26 +16,27 @@ public with sharing class Core_CA_BaseApplicationServicesTest {
     @TestVisible static String strClosingTags= '}}';
     @TestVisible static String strClarity = 'Clarity';
     @TestVisible static String strInvoice = 'Invoice'; 
+    @TestVisible static String strMessage = 'Error'; 
     
      static testmethod void invokeTest(){
      
         //Test data for Ariba     
         Core_Approval_Header__c headerObj=new Core_Approval_Header__c(Name= 'Test Ariba1' ,Source_System__c=strAriba,Invalid_PR__c= true,Invalid_PR_Reason__c='invalid');
         insert headerObj;
-        System.assertEquals(strAriba,headerObj.Source_System__c,'Error');
+        System.assertEquals(strAriba,headerObj.Source_System__c,strMessage );
         Core_Approver_Details__c approverObj=new Core_Approver_Details__c(Approval_Header__c=headerObj.Id,Interested_Party__c=Userinfo.getuserId(),Name=strApprover,Is_Active__c=true,Source_System__c=strAriba,Role__c=strApp);
         insert approverObj;
-        System.assertEquals(strAriba,approverObj.Source_System__c,'Error');
+        System.assertEquals(strAriba,approverObj.Source_System__c,strMessage );
      
         //Test data for GTES
         Core_Approval_Header__c objHeader = new Core_Approval_Header__c( Name = 'testHeader1', Source_System__c = strGtes, Status__c= strStatus,Manager__c = Userinfo.getuserId() ,
                                                Requested_By__c= Userinfo.getuserId(),Requested_For__c = Userinfo.getuserId(), Reminder_Alert_Days__c=0,Fully_Approved__c=false);
         insert objHeader;
-        System.assertEquals(strGtes,objHeader.Source_System__c,'Error');
+        System.assertEquals(strGtes,objHeader.Source_System__c,strMessage );
         Core_Approver_Details__c  objApprover = new Core_Approver_Details__c (Interested_Party__c = Userinfo.getuserId() ,Source_System__c = strGtes,Approval_Header__c =  objHeader.Id,
                                                Role__c = strApp,Action__c='ACTV');
         insert objApprover;
-        System.assertEquals(strGtes,objApprover.Source_System__c,'Error');                     
+        System.assertEquals(strGtes,objApprover.Source_System__c,strMessage );                     
         
         String jsonInput = '{"myApprovalsDataRequest": {"ExpenseStatus":"All","RecordsShownCount": 0,"ExpenseTypeSelected": "All"}}';
          System.assert(jsonInput != null);
@@ -48,8 +49,8 @@ public with sharing class Core_CA_BaseApplicationServicesTest {
                   We can only access Status Code and success message because the return type of invokeService method is Core_CA_BaseApplicationWrapper
                   which contains only these two field. So we can't access any other fields.
              */
-             System.assertEquals(200,Core_CA_BaseApplicationServices.invokeService(remoteServCallObj).statusCode,'error');
-             System.assertEquals('SUCCESS',Core_CA_BaseApplicationServices.invokeService(remoteServCallObj).message,'error');
+             System.assertEquals(200,Core_CA_BaseApplicationServices.invokeService(remoteServCallObj).statusCode,strMessage );
+             System.assertEquals('SUCCESS',Core_CA_BaseApplicationServices.invokeService(remoteServCallObj).message,strMessage );
              System.assert(Core_CA_BaseApplicationServices.invokeService(remoteServCallObj) != null);
 
          Test.stopTest();
