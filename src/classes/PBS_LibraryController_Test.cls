@@ -5,7 +5,7 @@ private class PBS_LibraryController_Test {
     {
         Test.startTest();
 
-        PBS_LibraryController pbsLibrary = new PBS_LibraryController();
+        PBS_LibraryController_CC pbsLibrary = new PBS_LibraryController_CC();
         System.assertNotEquals(null, pbsLibrary.language, 'Language should not be empty');
 
         System.assertEquals(1, pbsLibrary.getCurrentPageNumber(), 'Page should be 1');
@@ -22,7 +22,7 @@ private class PBS_LibraryController_Test {
         System.assertEquals(1, pbsLibrary.getCurrentPageNumber(), 'Page should be 1');
 
         pbsLibrary.sortData();
-        System.assertEquals(1, pbsLibrary.getCurrentPageNumber(), 'Page should be 1');
+        System.assertEquals(1, pbsLibrary.getCurrentPageNumber(), 'Page should be one');
 
         pbsLibrary.sortField = 'invalid field';
         System.assertEquals('Title', pbsLibrary.sortField, 'Sort field should be reset to title when provided name is invalid');
@@ -62,9 +62,9 @@ private class PBS_LibraryController_Test {
 
         Test.startTest();
 
-        PBS_LibraryController pbsLibrary = new PBS_LibraryController();
+        PBS_LibraryController_CC pbsLibrary = new PBS_LibraryController_CC();
 
-        System.assertEquals(1, pbsLibrary.getCurrentPageNumber(), 'Page should be 1');
+        System.assertEquals(1, pbsLibrary.getCurrentPageNumber(), 'Page should be one');
         System.assertEquals(true, pbsLibrary.getHasNext(), 'There should be next page');
         System.assertEquals(false, pbsLibrary.getHasPrevious(), 'There should be no previous page');
 
@@ -77,7 +77,7 @@ private class PBS_LibraryController_Test {
         System.assertEquals(true, pbsLibrary.getHasPrevious(), 'There should be previous page');
 
         pbsLibrary.previous();
-        System.assertEquals(1, pbsLibrary.getCurrentPageNumber(), 'Page should be 1');
+        System.assertEquals(1, pbsLibrary.getCurrentPageNumber(), 'Page should be one');
 
         Test.stopTest();
     }
@@ -88,7 +88,7 @@ private class PBS_LibraryController_Test {
 
         Test.startTest();
 
-        PBS_LibraryController pbsLibrary = new PBS_LibraryController();
+        PBS_LibraryController_CC pbsLibrary = new PBS_LibraryController_CC();
 
         System.assertEquals(2, pbsLibrary.getPbsArticleList().size(), 'There should be 2 articles');
 
@@ -109,7 +109,7 @@ private class PBS_LibraryController_Test {
     @isTest static void getArticleTypeFilterOptions() {
         Test.startTest();
 
-        PBS_LibraryController pbsLibrary = new PBS_LibraryController();
+        PBS_LibraryController_CC pbsLibrary = new PBS_LibraryController_CC();
         System.assertEquals(3, pbsLibrary.getArticleTypeFilterOptions().size(), 'There should be 3 options to choose from');
 
         Test.stopTest();

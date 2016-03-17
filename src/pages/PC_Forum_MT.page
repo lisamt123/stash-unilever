@@ -54,42 +54,38 @@
         <div class="row">
             <div class="col-md-3 col-lg-3 leftNav">
                 <div class="box center center-1">
-                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PBS_WelcomePage}" target="innerFrame">
-                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources_MT, 'img/hexicons_demandplan.svg')}" />
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!PBSForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources_MT, 'img/hexicons_pbs.svg')}" />
                     </a>
                 </div>
                 <div class="box center box-center-2">
-                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PBS_WelcomePage}" target="innerFrame">
-                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources_MT, 'img/hexicons_supplyplan.svg')}" />
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!DPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources_MT, 'img/hexicons_demandplan.svg')}" />
                     </a>
                 </div>                
                 <div class="box center box-center-3">
-                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PBS_WelcomePage}" target="innerFrame">
-                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources_MT, 'img/hexicons_distribution.svg')}" />
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!SPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources_MT, 'img/hexicons_supplyplan.svg')}" />
                     </a>
                 </div>                
                 <div class="box center box-center-4">
-                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PBS_WelcomePage}" target="innerFrame">
-                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources_MT, 'img/hexicons_material.svg')}" />
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!DisPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources_MT, 'img/hexicons_distribution.svg')}" />
                     </a>
                 </div>                
                 <div class="box center box-center-5">
-                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PBS_WelcomePage}" target="innerFrame">
-                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources_MT, 'img/hexicons_innovation.svg')}" />
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!MPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources_MT, 'img/hexicons_material.svg')}" />
                     </a>
                 </div>  
                 <div class="box center box-center-6">
-                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PBS_WelcomePage}" target="innerFrame">
-                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources_MT, 'img/hexicons_pbs.svg')}" />
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!IPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources_MT, 'img/hexicons_innovation.svg')}" />
                     </a>
                 </div>                  
             </div>
             <div class="col-md-9 col-lg-9">
-                <div class="forum-page">
-                
-                 <img src="/resource/1457689582000/PCResources_MT/img/icons_demandplan.svg" alt="" style="width:8%;    margin-right: 10px;"/>DEMAND PLANNING
-                </div>
-                
+                              
                 <div class="chatterWrapper zen">
                    <chatter:newsfeed /> 
                 </div>
