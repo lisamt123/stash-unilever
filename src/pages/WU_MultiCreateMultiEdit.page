@@ -5,6 +5,20 @@
     </head>
     <script src="{!URLFOR($Resource.jquery171min)}" type="text/javascript" ></script>
     
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"></link>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css"></link>
+    
+   <script type="text/javascript">
+$(function() {
+alert('sdfsd');
+$( "#dialog-1" ).dialog({
+autoOpen: false,  
+});
+}
+</script>
+    
     <style>
     .modalDialog {
         position: fixed;
@@ -80,7 +94,7 @@
         </apex:actionFunction>
         
       
-        <div id="openModal" class="modalDialog">
+        <div id="dialog-1" title="Dialog Title goes here...">
             <div>
                 <a href="#close" title="Close" class="close">X</a>
                
@@ -102,7 +116,7 @@
                     
                     <apex:pageBlockSectionItem rendered="{!IF(selectedField == 'startdate',TRUE,FALSE)}" >
                     <apex:outputLabel value="Utilization Start Date"  />
-                        <apex:input type="date" value="{!wrapperInstancePopup.startDate}" /> 
+                        <apex:input type="date" value="{!wrapperInstancePopup.startDate}" />  
                     </apex:pageBlockSectionItem>
                     
                     <apex:pageBlockSectionItem rendered="{!IF(selectedField == 'utilamt',TRUE,FALSE)}" >
@@ -123,6 +137,9 @@
                 </div>
                 </apex:pageBlock>
             </div>
+            
+            
+            
         </div>
         
         
@@ -150,7 +167,7 @@
                       </apex:selectList>
                   </apex:column>
                   <apex:column headerValue="Utilization Start Date">
-                      <apex:input type="date" value="{!masterWH.startDate}" ondblclick="showpopup('{!masterWH.masterWHId}','startdate')"/> 
+                     <apex:input type="date" value="{!masterWH.startDate}" ondblclick="showpopup('{!masterWH.masterWHId}','startdate')"/> 
                  </apex:column>
                  <apex:column headerValue="Utilization End Date">
                       <apex:input type="date" value="{!masterWH.endDate}" ondblclick="showpopup('{!masterWH.masterWHId}','enddate')"/> 
@@ -171,6 +188,8 @@
      
      
      <script type="text/javascript">
+
+     
         function selectAllCheckboxes(obj,receivedInputID)
         {
             var inputCheckBox = document.querySelectorAll('input[type=checkbox]');               
@@ -189,14 +208,25 @@
         
         function showpopup(masterId, fieldSelected){
             setfieldstopopup(masterId, fieldSelected );
+             
         }
         
         function hidefields (){
-            $(document).find('#openModal').css({"opacity":"1", "pointer-events":"auto" });
+            //$(document).find('#openModal').css({"opacity":"1", "pointer-events":"auto" });
+            alert('dfd');
+            $( "#dialog-1" ).dialog( "open" );
         }
         
         $('.close').click(function(){
              $(document).find('#openModal').css({"opacity":"0","pointer-events":""});
         });
+        
+        $("input[type=date]").each(function() {
+            if (this.type != 'date' ){
+                $(this).datepicker();
+            }
+        });
+
      </script>
+    
 </apex:page>

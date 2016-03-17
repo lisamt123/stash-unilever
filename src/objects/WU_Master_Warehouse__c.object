@@ -724,7 +724,7 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
         <externalId>false</externalId>
         <label>Current Pallet Utilization Count</label>
         <precision>18</precision>
-        <required>true</required>
+        <required>false</required>
         <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -735,7 +735,7 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
         <fullName>WU_FromDate__c</fullName>
         <externalId>false</externalId>
         <label>Utilization Start Date</label>
-        <required>true</required>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -1259,7 +1259,7 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
         <fullName>WU_ToDate__c</fullName>
         <externalId>false</externalId>
         <label>Utilization End Date</label>
-        <required>true</required>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -1305,7 +1305,7 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <picklistValues>
                 <fullName>Weekly</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Monthly</fullName>
@@ -1459,7 +1459,176 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
         <unique>false</unique>
     </fields>
     <label>Master Warehouse</label>
-    
+    <listViews>
+        <fullName>AAR</fullName>
+        <columns>NAME</columns>
+        <columns>WU_SAPCode_s__c</columns>
+        <columns>WU_SAPName_s__c</columns>
+        <columns>WU_Region__c</columns>
+        <columns>WU_MCO__c</columns>
+        <columns>WU_Country__c</columns>
+        <columns>WU_CityName__c</columns>
+        <columns>WU_Logistics_ServiceProvider__c</columns>
+        <columns>WU_Building_ContractType__c</columns>
+        <columns>WU_Average_Current_Utilization__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Day__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Month__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
+        </filters>
+        <filters>
+            <field>WU_Region__c</field>
+            <operation>equals</operation>
+            <value>AAR</value>
+        </filters>
+        <label>AAR</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>WU_SAPCode_s__c</columns>
+        <columns>WU_SAPName_s__c</columns>
+        <columns>WU_Region__c</columns>
+        <columns>WU_MCO__c</columns>
+        <columns>WU_Country__c</columns>
+        <columns>WU_CityName__c</columns>
+        <columns>WU_Logistics_ServiceProvider__c</columns>
+        <columns>WU_Building_ContractType__c</columns>
+        <columns>WU_Average_Current_Utilization__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Day__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Month__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
+        </filters>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Europe</fullName>
+        <columns>NAME</columns>
+        <columns>WU_SAPCode_s__c</columns>
+        <columns>WU_SAPName_s__c</columns>
+        <columns>WU_Region__c</columns>
+        <columns>WU_MCO__c</columns>
+        <columns>WU_Country__c</columns>
+        <columns>WU_CityName__c</columns>
+        <columns>WU_Logistics_ServiceProvider__c</columns>
+        <columns>WU_Building_ContractType__c</columns>
+        <columns>WU_Average_Current_Utilization__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Day__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Month__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
+        </filters>
+        <filters>
+            <field>WU_Region__c</field>
+            <operation>equals</operation>
+            <value>Europe</value>
+        </filters>
+        <label>Europe</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>LatAM</fullName>
+        <columns>NAME</columns>
+        <columns>WU_SAPCode_s__c</columns>
+        <columns>WU_SAPName_s__c</columns>
+        <columns>WU_Region__c</columns>
+        <columns>WU_MCO__c</columns>
+        <columns>WU_Country__c</columns>
+        <columns>WU_CityName__c</columns>
+        <columns>WU_Logistics_ServiceProvider__c</columns>
+        <columns>WU_Building_ContractType__c</columns>
+        <columns>WU_Average_Current_Utilization__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Day__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Month__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
+        </filters>
+        <filters>
+            <field>WU_Region__c</field>
+            <operation>equals</operation>
+            <value>LatAm</value>
+        </filters>
+        <label>LatAM</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Warehouses</fullName>
+        <columns>NAME</columns>
+        <columns>WU_SAPCode_s__c</columns>
+        <columns>WU_SAPName_s__c</columns>
+        <columns>WU_Region__c</columns>
+        <columns>WU_MCO__c</columns>
+        <columns>WU_Country__c</columns>
+        <columns>WU_CityName__c</columns>
+        <columns>WU_Logistics_ServiceProvider__c</columns>
+        <columns>WU_Building_ContractType__c</columns>
+        <columns>WU_Average_Current_Utilization__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Day__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Month__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
+        </filters>
+        <label>My Warehouses</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>NA</fullName>
+        <columns>NAME</columns>
+        <columns>WU_SAPCode_s__c</columns>
+        <columns>WU_SAPName_s__c</columns>
+        <columns>WU_Region__c</columns>
+        <columns>WU_MCO__c</columns>
+        <columns>WU_Country__c</columns>
+        <columns>WU_CityName__c</columns>
+        <columns>WU_Logistics_ServiceProvider__c</columns>
+        <columns>WU_Building_ContractType__c</columns>
+        <columns>WU_Average_Current_Utilization__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Day__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Week__c</columns>
+        <columns>WU_Average_Pallet_Utilization_Month__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
+        </filters>
+        <filters>
+            <field>WU_Region__c</field>
+            <operation>equals</operation>
+            <value>NA</value>
+        </filters>
+        <label>NA</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <displayFormat>W{0000}</displayFormat>
         <label>Salesforce Id</label>
@@ -2086,7 +2255,7 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </values>
             <values>
                 <fullName>Weekly</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -2735,7 +2904,7 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </values>
             <values>
                 <fullName>Weekly</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -2817,6 +2986,5 @@ ISPICKVAL( WU_Utilization_Type__c , &apos;Weekly&apos;), OR(WU_FromDate__c  =  W
         <errorConditionFormula>WU_FromDate__c  &gt;  WU_ToDate__c</errorConditionFormula>
         <errorDisplayField>WU_FromDate__c</errorDisplayField>
         <errorMessage>Utilization Start  Date should not be greater than Utilization End Date.</errorMessage>
-    </validationRules>    
-      
+    </validationRules>
 </CustomObject>

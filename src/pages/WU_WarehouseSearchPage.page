@@ -57,7 +57,7 @@
             </td>
             <td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td>
             <td>
-                <apex:commandButton value="View Report" action="{!redirectToReport}" />
+                <apex:commandButton value="Export Report" action="{!redirectToReport}" />
             </td>
             <td>&nbsp;&nbsp;</td>
         </tr>

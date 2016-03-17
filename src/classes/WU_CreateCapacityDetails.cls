@@ -106,7 +106,7 @@ public class WU_CreateCapacityDetails
                                     && masterMap!=null && masterMap.containsKey(masterWH.Id)
                                   )
                                   {
-                                  	isDetailExist = true;
+                                    isDetailExist = true;
                                     //if(masterMap!=null && masterMap.containsKey(masterWH.Id))
                                     //{
                                         system.debug(':::::::Utilization Type of master'+masterWH.WU_Utilization_Type__c+'::::::Of Detail'+wcd.WU_Utilization_Type__c);

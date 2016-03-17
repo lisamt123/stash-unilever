@@ -122,12 +122,28 @@ public class WU_SetWarehousePOCHandler
     }*/
      
     /** Get user mapping  **/
-    private static Map<string, User> getUserMap(List<WU_Master_Warehouse__c> lstWc){
-        set<string> profileSet= getUserProfile();
+    private static Map<string, User> getUserMap(List<WU_Master_Warehouse__c> lstWc)
+    {
+        set<String> pocUsers = fetchUsersWithExcellencePermissions();
+        //set<string> profileSet= getUserProfile();
         set<string> eMailSet=new set<string>();
+        
         for(WU_Master_Warehouse__c w:lstWc){
             eMailSet.add(w.WU_WarehousePOC_Email__c);
         }
+        
+        if(!pocUsers.isEmpty() && !eMailSet.isEmpty())
+        {
+            for(User ur:[Select  u.Profile.Name, u.ProfileId, u.Name, u.LastName, u.Id, u.FirstName, u.Email,u.ManagerId From User u 
+                            where u.IsActive=true
+                            and u.Id IN :pocUsers
+                            and u.Email In :eMailSet
+                            LIMIT 2000])
+                            {
+                                userMap.put(ur.Email, ur); 
+                            }
+        }
+        /*
         if(!profileSet.isEmpty())
         {
             Map<Id,Profile> pMap=new Map<Id,Profile>([Select Id from profile where name IN : profileSet]);
@@ -140,12 +156,14 @@ public class WU_SetWarehousePOCHandler
                
             }
         }
-        
+        */
         return userMap;
     }
     
     
+    
    /** Get user profile detaqils for warehouse POC **/ 
+   /*
     private static set<string> getUserProfile(){
         set<string> profileSet=new set<string>();
         WMS_Settings__c profileCode = WMS_Settings__c.getValues('WarehousePOC Profile'); 
@@ -164,6 +182,37 @@ public class WU_SetWarehousePOCHandler
         system.debug ('***profileSet-->'+profileSet);
         return profileSet;
     }
+    */
+    private static Set<String> fetchUsersWithExcellencePermissions()
+    {
+        Set<String> UserIds = new Set<String>();
+        Set<String> permissionLabelsSet = new Set<String>();
+        WU_Permission_Set_Name__c permissionSetLabel = WU_Permission_Set_Name__c.getValues('PermissionSetName'); 
+                
+        if(permissionSetLabel!=null)
+        {
+            string permSetName=permissionSetLabel.Permission_Name__c;
+            List<string> lstPerms=permSetName.split(',');
+            if(!lstPerms.isEmpty()){
+                permissionLabelsSet.addAll(lstPerms);
+            }
+            else{
+                permissionLabelsSet.add(permSetName);
+            }
+        }
+        if(!permissionLabelsSet.isEmpty())
+        {
+            List<PermissionSetAssignment> excellencePermissionAssigneesList = new List<PermissionSetAssignment>();
+            excellencePermissionAssigneesList = [SELECT Assignee.Name,AssigneeId FROM PermissionSetAssignment where PermissionSetId IN : permissionLabelsSet LIMIT 2000];
+            
+            for(PermissionSetAssignment perm : excellencePermissionAssigneesList)
+            {
+                UserIds.add(perm.AssigneeId);
+            }
+        }
+        
+        return UserIds;
+    }
     /** Get user profile detaqils for warehouse POC **/ 
     /*
     private static set<string> getManagerProfile(){
@@ -172,7 +221,7 @@ public class WU_SetWarehousePOCHandler
         if(profileCode!=null)
         {
             string aryProfile=profileCode.Warehouse_ManagerProfiles__c;
-            List<string> lstProfile=aryProfile.split(',');
+            List<string> lstProfile=aryProfile.split(','); 
             if(!lstProfile.isEmpty()){
                 profileSet.addAll(lstProfile);
             }
