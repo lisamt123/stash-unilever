@@ -19,6 +19,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12 noPadleft noPadright custMarginTop newProjectOption">
+                    <!-- Render condition is to verify if the current logged in user has edit/create access on BOSSCARD  -->
                     <apex:outputPanel rendered="{!isBoosEdtable='true'}">                    
                         <div class="col-xs-6 noPadleft radioButton">
                             <div class="bosscardbutton-grey bosscardbutton-blue radioIcon"></div>
@@ -32,6 +33,7 @@
                             </div>
                         </div>
                         </apex:outputPanel>
+                        <!-- Render condition is to verify if the current logged in user has edit/create access on Project  -->
                         <apex:outputPanel rendered="{!isProEditable='true'}">                        
                         <div class="col-xs-6 radioButton">
                         

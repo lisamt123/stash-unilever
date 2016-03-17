@@ -6,6 +6,6 @@
             <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
         </apex:outputPanel> 
     </apex:form>
-    
+    <!-- below component is rendered when secHistory(boolean variable which checks url contains projectDocumentSectionId or not) is false-->
     <c:IPM_ObjectAllHistoryComponent getProjectId="{!projectId}" myObjectName="{!projDocSec}" recordLimitCount="50" rendered="{!!secHistory}"></c:IPM_ObjectAllHistoryComponent>
 </apex:page>

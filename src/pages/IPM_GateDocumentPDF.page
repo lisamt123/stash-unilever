@@ -786,20 +786,29 @@
                 <apex:outputText value="(guidance not due until contract)" rendered="{!IF(pds.IPM_Section_Name__c='Deployment',True,False)}"  styleClass="bdText"> </apex:outputText>
                 
             </apex:outputPanel>
+            <!-- below panel is rendered when document section sectioType is "sub-header" and default section is true -->
             <apex:outputPanel rendered="{!IF(AND(pds.IPM_Section__r.IPM_Section_Type__c='Sub Header',pds.IPM_Default_Section__c=true),true,false)}">   
                 <apex:outputText value="{!pds.IPM_Section_Sequence__c} {!pds.IPM_Section_Name__c}"  styleClass="heading3 bold" rendered="{!!pds.IPM_Has_Appendix__c}" /> 
                
                 <apex:outputField value="{!pds.IPM_Gate_Document_Summary__c}"  styleClass="bdText" />
             </apex:outputPanel>
+            <!-- below panel is rendered when  -->
+            <!-- 1. SectionType of section associated with project document section is any of the "Text/Checklist/Static Table/Dynamic Complex Table/Dynamic Simple Table" -->
+            <!-- 2. SectionType of section associated with project document section external id is not "Appendix" -->
+            <!-- 3. Projectsubtype associated with prject of document section is not "BLG" and sectionSequence of document section is not "5.3" -->
            <apex:outputPanel rendered="{!IF(AND(OR(pds.IPM_Section__r.IPM_Section_Type__c='Text',pds.IPM_Section__r.IPM_Section_Type__c='Checklist',pds.IPM_Section__r.IPM_Section_Type__c='Static Table',pds.IPM_Section__r.IPM_Section_Type__c='Dynamic Complex Table',pds.IPM_Section__r.IPM_Section_Type__c='Dynamic Simple Table'),pds.IPM_Section__r.IPM_Parent_Section__r.External_ID__c!='Appendix',pds.IPM_Default_Section__c=true,IF(AND(pds.IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c = 'BLG',pds.IPM_Section__r.IPM_Section_Sequence__c='5.3'),FALSE,TRUE)),true,false)}"> 
                 <apex:outputText value="{!pds.IPM_Section_Sequence__c} {!pds.IPM_Section_Name__c} [{!pds.IPM_FunctionalRole__c}]"  styleClass="heading4 bold" />
           <!--- Components To BE Displayed within Sections--->
 
                 <c:IPM_Financial_ActionStandards gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!pds.Id}" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c!='Market Deployment')}" > </c:IPM_Financial_ActionStandards>
+                <!-- below component renders while it meet one of the criteria -->
+                <!-- 1. sub header section master section external id is "Initial_Estimate_of_Opportunity" -->
+                <!-- 2. sub header section master section external id is "Business_Case_Action_Standards" and project Document gate is "Market Deployment"-->                                                    
                 <c:IPM_FinGate projId="{!projectId}" rendered="{!OR(pds.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',AND(pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c=='Market Deployment'))}" ></c:IPM_FinGate>
                 <c:IPM_RND_QuestionsView rendered="{!if(OR(pds.IPM_Section_Name__c=='R&D Initial Outline (Product/Pack)',pds.IPM_Section_Name__c=='R&D Technical Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" RNDEdit="False"></c:IPM_RND_QuestionsView>
                 <c:IPM_SC_Feasibility_QuestionsView rendered="{!if(OR(pds.IPM_Section_Name__c=='Supply Chain Feasibility',pds.IPM_Section_Name__c=='Supply Chain Technical Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}"></c:IPM_SC_Feasibility_QuestionsView>
                 <c:IPM_RND_Feasibility_QuestionsView rendered="{!if(pds.IPM_Section_Name__c=='R&D Feasibility',true,false)}" RNDEdit="False" gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_RND_Feasibility_QuestionsView>    
+                <!-- below component will render when child od sub header section master external id is "CUs n Complexity" and project span is "Regional" or "Local" and phase is "Ideas" -->
                <c:IPM_CU_Complexity gateType="{!projectDoc.IPM_GateDocuments__c}" getSectionId="{!pds.Id}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}"  isEdit="false" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas'))}"></c:IPM_CU_Complexity>
                <c:IPM_CU_Complexity_Consolidated getGateType="{!projectDoc.IPM_GateDocuments__c}" isGateDoc="true" getProjId="{!project.Id}" rendered="{!AND(project.IPMProject_Span__c='Global',pds.IPM_Master_Section_External_Id__c='CU_And_Complexity')}" /> 
                <c:IPM_TradeMark_QuestionsView rendered="{!if(pds.IPM_Master_Section_External_Id__c=='Trademarks',true,false)}"  gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_TradeMark_QuestionsView>    

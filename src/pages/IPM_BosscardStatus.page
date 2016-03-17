@@ -73,6 +73,7 @@
                                 <div class="col-xs-12 toolTipMsg approvePointer marginTop"><span class="statusToolTip">{!$Label.IPM_Bosscard_Congratulations}</span></div>
                             </div>   
                         </div>                      
+                        <!-- If the current loggged in user is not PL then display the output panel -->                 
                         <apex:outputPanel layout="block" styleClass="nominateContainer" rendered="{!searchPL_Bool}">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Nominate}</span>
                             <span class="apprDesc">{!$Label.IPM_Bosscard_Project_Leader}</span>
@@ -104,6 +105,7 @@
                                         </apex:repeat>
                                     </tbody>
                                 </table>
+                                <!-- When no results found with PL then show the below error message -->
                                 <apex:outputText rendered="{!IsNoMatchfound=true}" value="{!$Label.IPM_NO_MATCHES_FOUND}" id="notfound" />
                            </apex:outputPanel>
                         </apex:outputPanel>
@@ -143,14 +145,18 @@
                     <div class="statusButtonContainer pull-right">
                         <apex:commandLink value="{!$Label.IPM_CANCEL}" styleClass="ipmButton" onclick="cancel();"/>
                         <apex:outputPanel id="refresh">
+                            <!-- When the bosscard is not approved then the navigation should be to the BOSSCARD page and not the project page -->
                             <apex:commandLink action="{!updateStatus}" value="{!$Label.IPM_CHANGE}" styleClass="ipmButton primary" oncomplete="goToBosscardParentPage()"  rendered="{!isNotApproved}"/>   
+                            <!-- before selecting the PL disable the button -->
                             <apex:outputPanel rendered="{!isApprovedOtherPLSelected}">
                                 <span class="disableButton">{!$Label.IPM_Bosscard_Change}</span>
                             </apex:outputPanel>
+                            <!-- After selecting the PL enable the button -->
                              <apex:outputPanel rendered="{!isApprovedWithPLSelected}">
                                 <a onclick="createPro('{!holdPL_STR}');"  Class="ipmButton primary">{!$Label.IPM_Bosscard_Change}</a>
                                  
                              </apex:outputPanel>
+                              <!-- If the current logged in user is PL then display the below output panel -->
                             <apex:outputPanel rendered="{!isApprovedButNoPLSelected}">
                                 <a onclick="createPro('{!holdPL_STR}');"  Class="ipmButton primary">{!$Label.IPM_Bosscard_Change}</a>
                                  

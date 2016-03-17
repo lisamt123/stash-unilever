@@ -136,6 +136,7 @@
              </style>
         </head>
         <body class="docBody">
+            <!--If the IPM_Bosscard_Status__c is in 'In Progress', then the below image will be displayed -->
             <apex:outPutpanel rendered="{!IF(bosscard.IPM_Bosscard_Status__c='In Progress', 'true', 'false')}">
                 <img alt="Draft" src="{!URLFOR($Resource.IPM_Resource, 'images/draft-wm.png')}" class="waterMark"/>
             </apex:outPutpanel>
@@ -145,7 +146,9 @@
                     <table>
                         <tr>
                             <td width="10%">
+                                <!--If the field IPM_Bosscard_Logo_Id__c is null, then the below image will be displayed -->
                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, '/images/upload_img2b.png')}" rendered="{!Bosscard.IPM_Bosscard_Logo_Id__c=null}" styleClass="projLogo"/>
+                                <!--If the field IPM_Bosscard_Logo_Id__c is not null, then the below image will be displayed -->
                                 <apex:image value="{!$Label.IPM_ServletFile}{!Bosscard.IPM_Bosscard_Logo_Id__c}" rendered="{!Bosscard.IPM_Bosscard_Logo_Id__c!=null}" styleClass="projLogo"/>
                             </td>
                             <td align="center" >
@@ -155,6 +158,7 @@
                                 <div class="headSecBlock bold">{!$Label.IPM_BOSSCARD}</div>
                                 <apex:outputText value="{!Bosscard.IPM_Bosscard_Span_Logo__c}" styleClass="headSecBlock regPdfIcon" escape="false" />
                                 <apex:outputText value="{!Bosscard.IPMBosscard_Span__c}" styleClass="regPdfText" />  
+                                <!--If the field IPM_Bosscard_Status__c is Approved, then the below message will be displayed in the panel -->
                                 <apex:outPutpanel rendered="{!IF(Bosscard.IPM_Bosscard_Status__c='Approved', 'true', 'false')}">
                                     <div class="headSecBlock bold">{!$Label.IPM_APPROVED}</div>   
                                 </apex:outPutpanel>
