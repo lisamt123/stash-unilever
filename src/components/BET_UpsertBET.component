@@ -114,7 +114,7 @@
 
         <div class="form-item">
             <div class="item-label">
-                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
+                <apex:outputLabel Title="{!$ObjectType.uw_BET__c.Fields.Description__c.InlineHelpText}">{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
             </div>
             <div class="item-input-description">
                 <apex:inputTextarea rows="5" value="{!betobject.Description__c}" />

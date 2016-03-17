@@ -343,7 +343,7 @@
     </fields>
     <fields>
         <fullName>BET_MS_Final_Release_Date__c</fullName>
-        <description>To store the final release BET milestone due date as per BET First Release Date.</description>
+        <description>To store the final release BET milestone due date as per BET Final Release Date.</description>
         <externalId>false</externalId>
         <label>BET MS Final Release Date</label>
         <summarizedField>IPM_Milestone__c.IPM_Due_Date__c</summarizedField>
@@ -729,6 +729,7 @@
     </fields>
     <fields>
         <fullName>IPM_Answer_of_Q1__c</fullName>
+        <description>To store the project parameter value in this case Market Place Activity.</description>
         <externalId>false</externalId>
         <label>Market Place Activity</label>
         <length>50</length>
@@ -2218,6 +2219,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IPM_Strategic_Intent__c</fullName>
+        <description>To store the Strategic Intent value.</description>
         <externalId>false</externalId>
         <label>IPM Strategic Intent</label>
         <length>50</length>
@@ -2456,6 +2458,7 @@ OwnerId))</formula>
     </fields>
     <fields>
         <fullName>IsFinanceMemberNull__c</fullName>
+        <description>To check if the finance member is present or not for the project.</description>
         <externalId>false</externalId>
         <formula>ISNULL(IPM_Finance_Member__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -2478,6 +2481,7 @@ OwnerId))</formula>
     <fields>
         <fullName>ManualCheck__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check for Manual Checks.</description>
         <externalId>false</externalId>
         <label>ManualCheck</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2681,18 +2685,6 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>Test_Profile__c</fullName>
-        <externalId>false</externalId>
-        <formula>$User.User_License__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Test Profile</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Upcoming_Milestone_Due_Date__c</fullName>

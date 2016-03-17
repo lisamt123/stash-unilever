@@ -408,9 +408,6 @@ public class IPM_HomePageController_Test{
         insert userPLProfile;
         System.assertEquals(1, [Select count() from IPM_User_Profile__c where id =: userPLProfile.id],'PL user profile has been set.');
         
-        IPM_HomePageController iHp = new IPM_HomePageController();
-        iHp.project(); 
-        iHp.bosscard();
         
         }
         test.stopTest();

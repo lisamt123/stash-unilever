@@ -27,13 +27,9 @@ public without sharing class IPM_Utils {
     public static String IPM_Project ='IPM_Project__c';
     public static String IPM_Approval_Date ='IPM_Approval_Date__c';
     
-    //
     public static String pdf = 'pdf';
 
-    //IPM_Milestone
-    public static String apexIPMTaskListid ='/apex/IPM_TaskList?id=';
     
-    public static String Reports = '/apex/IPM_ProjectsOverview_XL';
     public static String Y1 = 'Y1';
     public static String y2012 = '2012';
     public static String y2013 = '2013';
@@ -84,8 +80,6 @@ public without sharing class IPM_Utils {
     public static String IPM_Fast_Track_Project = 'IPM_Fast_Track_Project__c';
     public static String YYYYMMdd = 'YYYY-MM-dd';
     public static String daysfor  = ' days for ';
-    public static String apexipmbosscard = '/apex/ipmbosscard_1';
-    public static String apexipmproject_1 = '/apex/ipmproject_1';
     public static String Createnewproject = 'Create new project';
     public static String Createnewbosscard = 'Create new bosscard';
     
@@ -1232,7 +1226,7 @@ public without sharing class IPM_Utils {
         }else{ // If project type is not operational, It can be Original or Rollout of Original
             strProjectType = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
         }
-        system.debug('IPM_ProjectMetadata__c:::'+IPM_ProjectMetadata__c.getAll().values());
+        
         // Get the source Project Type and Source Company card to identify the Phase Sequence.
         for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
         {

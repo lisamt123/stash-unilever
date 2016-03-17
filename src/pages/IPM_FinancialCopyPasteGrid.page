@@ -38,6 +38,7 @@
               <apex:outputpanel id="message">  
               <apex:pageMessages />  
               </apex:outputpanel>
+              <!-- check if the code is editable this value comes from Controller. -->
             <apex:outputPanel rendered="{!isEditable}">                   
             <table style="IPM_Table" class="ipmTable table">
               <tr>
@@ -54,6 +55,7 @@
                             <apex:commandButton value="{!$Label.IPM_FinancialGrid_goBack}" action="{!goBack}"  id="bckbtn"  styleclass="ipmButton green"  /> 
                             <button onclick="clearAll();"  id="Clrbtn" class="ipmButton green" >{!$Label.IPM_FinancialGrid_Clear}</button> 
                             <div class="gridInfo">
+                                <!-- render only if the flag is true this is for the appropriate message to be displayed on the page. -->
                                 <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG2}" rendered="{!flag}" />
                                 <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG1}" />
                             </div> 
@@ -67,6 +69,7 @@
 
 <td class="TDwidth2">
       <apex:outputpanel id="outdata">
+          <!-- This the render condition for the side table that displays on copypaste page. -->
          <apex:dataTable value="{!submittedList}" rendered="{!showdata}" var="c" title="{!$Label.IPM_FinancialGrid_Tableheader}" Id="datatbl" headerClass="headerRenderer" >
               <apex:facet name="header" >{!$Label.IPM_FinancialGrid_Tableheader}</apex:facet>
                     <apex:column value="{!c}"/> 

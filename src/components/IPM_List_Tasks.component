@@ -87,14 +87,14 @@
                                                             <input type="checkbox" value="t" id="complYes" />
                                                             <label for="complYes"></label>
                                                         </div>
-                                                        <div class="col-sm-10 staticLabel">{!$Label.IPM_YES}</div>
+                                                        <div class="col-sm-10 staticLabel font-Small">{!$Label.IPM_YES}</div>
                                                     </li>
                                                     <li>
                                                         <div class="col-sm-2 ipmCheckbox">
                                                             <input type="checkbox" value="f" id="complNo" />
                                                             <label for="complNo"></label>
                                                         </div>
-                                                        <div class="col-sm-10 staticLabel">{!$Label.IPM_NO}</div>
+                                                        <div class="col-sm-10 staticLabel font-Small">{!$Label.IPM_NO}</div>
                                                     </li>
                                                     <li class="filterActions">
                                                         <div class="ipmButtonGroup fltrbrdrRight col-xs-6 pull-left">
@@ -280,7 +280,7 @@
                                     <input type="checkbox" value="{!phs}" id="{!phs}" checked="{!IF(contains(phase, phs), "checked", "")}"/>
                                     <label for="{!phs}"></label>
                                 </div>
-                                <div class="col-sm-10 staticLabel">{!phs}</div>
+                                <div class="col-sm-10 staticLabel font-Small">{!phs}</div>
                             </li>
                         </apex:repeat>
                         <li class="filterActions">
@@ -301,7 +301,7 @@
                                     <input type="checkbox" value="{!usr}" id="{!usr}" />
                                     <label for="{!usr}"></label>
                                 </div>
-                                <div class="col-sm-10 staticLabel">{!usr}</div>
+                                <div class="col-sm-10 staticLabel font-Small">{!usr}</div>
                             </li>
                         </apex:repeat>
                         <li class="filterActions">

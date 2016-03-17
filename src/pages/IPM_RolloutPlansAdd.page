@@ -13,6 +13,7 @@
         <apex:define name="body">          
                 <apex:form >
                 <div class="gradientbg">  
+                <!-- Component added for Project Details at Rollout page --> 
                     <c:IPM_ProjectDetails project="{!project}" activeItem="rolloutPlan" />
                  </div>
              <apex:outputPanel id="theForm" layout="block">
@@ -39,6 +40,7 @@
                                 </div>
                             </div>
                         </div>                        
+                        <!-- Display list of countries matching search criteria -->                       
                         <div class="searchBox"><label class="greytext"></label> <apex:inputtext value="{!searchCountry}" html-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" /><img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();"/></div>
                         <apex:actionFunction action="{!searchRolloutCountry}" name="callsearch"/>
                         <apex:outputText value="{!$Label.IPM_Rollout_Search_Message}" rendered="{!isNoResult}" styleclass="finGreyBG"/>
@@ -78,7 +80,7 @@
                                                  <span class="SecButtonSet infoMarTop infoFloatR">
                                                  <a class="icoButton info" title="{!$Label.IPM_KEY_MCO_NEEDS}"></a>
                                              </span>
-                                                <span class="btext pull-right">
+                                                <span class="btext pull-right ieAlign">
                                                     {!$Label.IPM_MARK_THIS_MCO_AS_KEY}
                                                     <div class="btm2 ipmCheckbox">
                                                         <input class="notselected {!IF( OR (mapMCOWrappers[selectedMCO].key,AND(NOT(mapMCOWrappers[selectedMCO].mcoDisabled),project.IPM_Phase__c !='Ideas') ), 'selected', '')} {!IF(OR(mapMCOWrappers[selectedMCO].mcoDisabled,project.IPM_Phase__c !='Ideas'), 'disabled', '')}" id="keyMCO" type="checkbox"/> 
@@ -125,7 +127,7 @@
                         </apex:outputPanel>    
                     </div>
                 </apex:outputPanel>                   
-                
+                <!-- Action function for Changing Market Cluster ,MCO And Generate Rollout  -->
                 <apex:actionFunction name="changeCluster" action="{!changeCluster}" reRender="theForm,scriptPanel" status="loadingStatus" oncomplete="scriptPanelLoad();">
                     <apex:param name="p1" assignTo="{!globalCountries}" value=""/>
                     <apex:param name="p2" assignTo="{!globalUnselectedCountries}" value=""/>

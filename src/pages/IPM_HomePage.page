@@ -171,12 +171,14 @@
                     <div class="setAuto">
                         <div class="row">
                             <div class="col-sm-12">
+                            	<!-- Below rendered is used to enabled pop up box on create new project button -->
                                 <apex:outputpanel rendered="{! if(OR(isProjectEditable=true,isBossCardEditable=true),'true','false')}">
                                     <div id="createProject" class="col-sm-6 centerAlign noPadleft noPadright box1 SecButtonSet" data-toggle="modal" data-keyboard="true" data-target="#ipmModal" title="Create Project" value="{!$Page.IPM_createproject}?IsBossCardEditable={!isBossCardEditable}&IsProjectEditable={!isProjectEditable}" data-backdrop="static" >
                                         <a class="icoButton newproject" tabindex="0"></a>                                  
                                         <span class="boxTitle"><div>{!$Label.IPM_CREATE_NEW}</div><div>{!$Label.IPM_PROJECT}</div></span>           
                                     </div>
                                 </apex:outputpanel>
+                                <!-- Below rendered is used to disabled pop up box on create new project button -->
                                 <apex:outputpanel rendered="{! if(AND(isProjectEditable=false,isBossCardEditable=false),'true','false')}">
                                     <div id="createProject1" class="col-sm-6 centerAlign noPadleft noPadright box1 SecButtonSet" value="{!$Page.IPM_CreateProject}">
                                         <a class="icoButton newproject" tabindex="0"></a>

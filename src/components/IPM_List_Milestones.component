@@ -138,14 +138,14 @@
                                                     <input type="checkbox" value="t" id="complYesM" />
                                                     <label for="complYesM"></label>
                                                 </div>
-                                                <div class="col-sm-10 staticLabel">{!$Label.IPM_MILESTONE_Yes}</div>
+                                                <div class="col-sm-10 staticLabel font-Small">{!$Label.IPM_MILESTONE_Yes}</div>
                                             </li>
                                             <li>
                                                 <div class="col-sm-2 ipmCheckbox">
                                                     <input type="checkbox" value="f" id="complNoM" />
                                                     <label for="complNoM"></label>
                                                 </div>
-                                                <div class="col-sm-10 staticLabel">{!$Label.IPM_BETRequestNo}</div>
+                                                <div class="col-sm-10 staticLabel font-Small">{!$Label.IPM_BETRequestNo}</div>
                                             </li>
                                             <li class="filterActions">
                                                 <div class="ipmButtonGroup col-xs-6 pull-left fltrbrdrRight">
@@ -310,7 +310,7 @@
                             <input type="checkbox" value="{!phsM}" id="M_{!phsM}" />
                             <label for="M_{!phsM}"></label>
                         </div>
-                        <div class="col-sm-10 staticLabel">{!phsM}</div>
+                        <div class="col-sm-10 staticLabel font-Small">{!phsM}</div>
                     </li>
                 </apex:repeat>
                 <li class="filterActions">

@@ -24,6 +24,7 @@
         
             <!-- POS Questions List -->
             <apex:outputPanel id="qPanel">
+                <!-- below panel renders when POS is completed(used for viewing right questions) and custom question is added -->
                 <apex:outputPanel id="qPanel1" rendered="{!AND(!posComplete,!isAdd)}" >
                     <div class="container-fluid">
                         <div class="questionnaire">  
@@ -41,11 +42,13 @@
                                 <div class="row">
                                     <div class="col-sm-12 noPadright noPadleft questionBox">
                                         <apex:repeat value="{!posQuestionsList}" var="pr">  
+                                        	<!-- below panel renders when question type is "POS" -->
                                             <apex:outputPanel styleClass="questContainer" layout="block" rendered="{!pc==pr.IPM_POS_Question_Type__c}">                                        
                                                 <div class="questions">
                                                     <apex:outputText value="{!pr.IPM_Sequence_Number__c}."/>
                                                     <apex:outputText value="{!pr.IPM_Question__c}"/>
                                                 </div>
+                                                <!-- below panel renders when user has rights to edit -->
                                                 <apex:outputPanel rendered="{! if(isEditableUser=='true','true','false')}">
                                                     <input name="scoreDB" value="{!pr.IPM_Score__c}" class="scoreDB"/>
                                                     <apex:outputPanel id="slide" styleClass="sliderStat" > 
@@ -64,6 +67,7 @@
                                                         </div>
                                                     </apex:outputPanel>
                                                 </apex:outputPanel> 
+                                                <!-- below panel renders when user has NOT rights to edit -->
                                                 <apex:outputText value="{!pr.IPM_Score__c}" rendered="{! if(isEditableUser=='false','true','false')}"/>                                         
                                             </apex:outputPanel> 
                                         </apex:repeat> 
@@ -84,6 +88,7 @@
             <!---------------------------------------------------------------------------------------------->
             <!-- RQS Questions List  -->
             <apex:outputPanel id="rPanel">
+                <!-- below panel renders when POS is completed -->
                 <apex:outputPanel id="rPanel1" rendered="{!posComplete}" >
                     <div class="container-fluid">
                         <div class="questionnaire"> 
@@ -96,6 +101,7 @@
                                         <apex:outputText styleClass="custMtop" value="{!$Label.IPM_Risk_Project}"></apex:outputText> 
                                     </div>
                                     <div class="col-sm3-6 pull-right noPadright addLink">
+                                    	<!-- below panel renders when user has NOT rights to edit -->
                                         <apex:outputPanel rendered="{! if(isEditableUser=='false','false','true')}">
                                             <span class="fa fa-plus"></span>
                                             <span class="addLinkText"><apex:commandLink value="{!$Label.IPM_ADD_QUESTION}" action="{!changeQuestionView}" reRender="addQues,rPanel,crPanel"/></span>
@@ -112,6 +118,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 noPadleft noPadright questionBox">                             
                                         <apex:repeat value="{!rqsQuestionsList}" var="rq">
+                                        	<!-- below panel renders when question type is "RQS" -->
                                             <apex:outputPanel styleClass="questContainer" layout="block" rendered="{!rc==rq.IPM_RQS_Question_Type__c}">  
                                                 <div class="row">
                                                     <div class="riskheading noPadleft blue ipmPanelHeading width3">                                  
@@ -124,6 +131,7 @@
                                                     <i class="fa fa-circle"></i>
                                                     <apex:outputText value="{!rq.IPM_Question__c}"/>
                                                 </div>
+                                                <!-- below panel renders when user has rights to edit -->
                                                 <apex:outputPanel rendered="{! if(isEditableUser=='true','true','false')}">   
                                                     <input type="hidden" id="quest" name="quest" value="{!IF(projDocType='Charter',rq.IPM_Charter_Score__c,IF(projDocType='Contract',rq.IPM_Contract_Score__c,IF(projDocType='Market Ready',rq.IPM_Market_Ready_Score__c,rq.IPM_Market_Deployment_Score__c)))}"/>
                                                     <apex:outputPanel id="slide" styleClass="sliderStat1" >
@@ -143,6 +151,7 @@
                                                         </div>
                                                     </apex:outputPanel>
                                                 </apex:outputPanel>
+                                                <!-- below panel renders when user has NOT rights to edit -->
                                                 <apex:outputText value="{!IF(projDocType='Charter',rq.IPM_Charter_Score__c,IF(projDocType='Contract',rq.IPM_Contract_Score__c,IF(projDocType='Market Ready',rq.IPM_Market_Ready_Score__c,rq.IPM_Market_Deployment_Score__c)))}" rendered="{! if(isEditableUser=='false','true','false')}"/>                              
                                             </apex:outputPanel>
                                         </apex:repeat>
@@ -152,7 +161,9 @@
                         </div> 
                     </div>      
                     <div class="marginTop ipmButtonGroup pull-right">
+                    	<!-- below link renders when project document type is NOT "Contract" -->
                         <apex:commandLink styleClass="ipmButton buttonMarginRight" value="{!$Label.IPM_BACK}" action="{!backToPos}" reRender="qPanel,rPanel" oncomplete="retainValues();"  rendered="{!projDocType!='Contract'}"/>
+                        <!-- below link renders when project document type is NOT "Contract" and user has rights to edit -->
                         <apex:commandLink value="{!$Label.IPM_Generate_Mitigation_Button}" styleClass="ipmButton green" action="{!generateMitigationPlan}" oncomplete="goToParentPage();" rendered="{!AND(isEditableUser='true',projDocType!='Contract')}" /> 
                     </div>  
                 </apex:outputPanel>
@@ -161,6 +172,7 @@
             <!--------------Corporate Risk Questions------------------------->
             
             <apex:outputPanel id="crPanel">
+            	<!-- below link renders when project document type is "Contract", POS is completed and custom question us added -->
                 <apex:outputPanel id="crPanel1" rendered="{!AND(posComplete=true,projDocType='Contract',!isAdd)}" >
                     <div class="container-fluid">
                         <div class="questionnaire"> 
@@ -179,6 +191,7 @@
                                             <i class="fa fa-circle"></i>
                                             <apex:outputText value="{!crq.IPM_Question__c}"/>
                                         </div>
+                                        <!-- below panel renders when user has rights to edit -->
                                         <apex:outputPanel rendered="{! if(isEditableUser=='true','true','false')}">   
                                             <input type="hidden" id="quest" name="quest" value="{!IF(projDocType='Charter',crq.IPM_Charter_Score__c,IF(projDocType='Contract',crq.IPM_Contract_Score__c,IF(projDocType='Market Ready',crq.IPM_Market_Ready_Score__c,crq.IPM_Market_Deployment_Score__c)))}"/>
                                             <apex:outputPanel id="slide" styleClass="sliderStat1" >
@@ -198,6 +211,7 @@
                                                 </div>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
+                                        <!-- below panel renders when user has NOT rights to edit -->
                                         <apex:outputText value="{!IF(projDocType='Charter',crq.IPM_Charter_Score__c,IF(projDocType='Contract',crq.IPM_Contract_Score__c,IF(projDocType='Market Ready',crq.IPM_Market_Ready_Score__c,crq.IPM_Market_Deployment_Score__c)))}" rendered="{!if(isEditableUser=='false','true','false')}"/>
                                     </div>
                                 </div>
@@ -205,7 +219,9 @@
                         </div> 
                     </div>      
                     <div class="marginTop ipmButtonGroup pull-right">
+                        <!-- below link renders when project document type is NOT "Contract" -->
                         <apex:commandLink styleClass="ipmButton buttonMarginRight" value="Back" action="{!backToPos}" reRender="qPanel,rPanel" oncomplete="retainValues();"  rendered="{!projDocType!='Contract'}"/>
+                        <!-- below panel renders when user has rights to edit -->
                         <apex:commandLink value="{!$Label.IPM_Generate_Mitigation_Button}" styleClass="ipmButton green" action="{!generateMitigationPlan}" oncomplete="goToParentPage();" rendered="{!isEditableUser}" /> 
                     </div>  
                 </apex:outputPanel>
@@ -222,6 +238,7 @@
             <!---------------------------Add Question---------------------------------------->
             
             <apex:outputPanel id="addQues">
+            	<!-- below panel renders if custom question is added -->
                 <apex:outputPanel id="addQues1" rendered="{!isAdd}" >
                     <apex:pageMessages />
                     

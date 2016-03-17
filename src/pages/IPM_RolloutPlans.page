@@ -19,6 +19,7 @@
    <apex:define name="body">
        <apex:form id="rolloutPlansForm">
          <div class="gradientbg"> 
+         <!-- Project Detail Component added in Global Rollout Page -->
               <c:IPM_ProjectDetails project="{!project}" activeItem="rolloutPlan"/>                    
                 </div>                
   
@@ -40,6 +41,7 @@
                             </div>
                         </div>
                     </div>                  
+                     <!--  Component added based on Global and Regional Rollout   -->                  
                     <c:IPM_RolloutPlansTable rendered="{!isSpanGlobal}"/>
                     <c:IPM_LocalRolloutPlansTable rendered="{!isSpanRegional}"/>
                     

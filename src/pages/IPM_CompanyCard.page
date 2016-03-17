@@ -15,6 +15,7 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_CompanyCard.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_DropDown.css')}"/> 
     <apex:pagemessages id="pgmsg"/>
+    <!-- If isEditable attribute is true, then the below form will be displayed -->
     <apex:form rendered="{!isEditable}">
         
         <div class="row">
@@ -31,6 +32,7 @@
                                         <label class="ipmSelect custSelectWidth">
                                             <apex:inputField value="{!IPMCompanyCard.Name}"/>
                                         </label>
+                                        <!-- If duplicateCCName attribute is true, then the below message will be displayed -->
                                         <apex:outputtext value="{!$Label.IPM_Duplicate_company_card}" rendered="{!duplicateCCName}" styleClass="ManagedErrMsgLocal"/>
                                     </div>
                                 </apex:outputpanel>
@@ -51,6 +53,7 @@
                             </div>
                         </div>
                         <apex:outputpanel id="manCatLoc">
+                        <!-- If IPM_Multiple_Managed_Catagory__c field value is true, then the below panel will be displayed -->
                             <apex:outputPanel rendered="{!ipmCompanyConfig.IPM_Multiple_Managed_Catagory__c}">
                                 <div class="inputField">
                                     <div class="col-sm-12 pb20 pt20">
@@ -61,6 +64,7 @@
                                             <label class="ipmSelect ccMultiselect custSelectWidth" >                                   
                                                 <apex:inputField value="{!IPMCompanyCard.IPM_Managed_Category__c}"/>                                         
                                                 <apex:outputPanel id="ManCatMsg1">
+                                                    <!-- If managedErrMsgLocal attribute is true, then the below message will be displayed -->
                                                     <apex:outputText value="{!$Label.IPM_Managed_Catagory_Mandatory}" rendered="{!managedErrMsgLocal}" styleClass="ManagedErrMsgLocal"/>                                       
                                                 </apex:outputPanel>
                                             </label>
@@ -70,6 +74,7 @@
                             </apex:outputPanel>
                         </apex:outputPanel>                       
                         <apex:outputpanel id="manCatGlRl">
+                            <!-- If IPM_Single_Managed_Catagory__c field value is true, then the below panel will be displayed -->
                             <apex:outputPanel rendered="{!ipmCompanyConfig.IPM_Single_Managed_Catagory__c}">
                                 <div class="inputField">
                                     <div class="col-sm-12 pb20 pt20">
@@ -82,6 +87,7 @@
                                                     <apex:selectOptions value="{!lstManCat}"></apex:selectOptions>
                                                 </apex:selectList>
                                                 <apex:outputPanel id="ManCatMsg">
+                                                <!-- If managedErrMsg attribute is true, then the below message will be displayed -->
                                                     <apex:outputText value="{!$Label.IPM_Managed_Catagory_Mandatory}" rendered="{!managedErrMsg}" styleClass="ManagedErrMsg"/>                                        
                                                 </apex:outputPanel>
                                             </label>
@@ -95,23 +101,29 @@
                                 <div class="inputField">
                                     <div class="col-sm-12 pb20">
                                         <div class="col-sm-4">
+                                            <!-- If IPM_Local__c field value is true, then the below label IPM_MARKET_CLUSTER will be displayed -->
                                             <apex:outputPanel rendered="{!ipmCompanyConfig.IPM_Local__c}">
                                                 <label class="bsFieldLabel">{!$Label.IPM_MARKET_CLUSTER}</label>
                                             </apex:outputPanel>
+                                            <!-- If IPM_Global__c field value is true, then the below label IPM_Geographical_Scope will be displayed -->
                                             <apex:outputPanel rendered="{!ipmCompanyConfig.IPM_Global__c}">
                                                 <label class="bsFieldLabel">{!$Label.IPM_Geographical_Scope}</label>
                                             </apex:outputPanel>
+                                            <!-- If IPM_Regional__c field value is true, then the below label IPM_Geographical_Scope will be displayed -->
                                             <apex:outputPanel rendered="{!ipmCompanyConfig.IPM_Regional__c}">
                                                 <label class="bsFieldLabel">{!$Label.IPM_Geographical_Scope}</label>
                                             </apex:outputPanel>
                                         </div>
                                         <div class="col-sm-8"> 
+                                            <!-- If IPM_Global__c field value is true, then the below Select List will be displayed -->
                                             <apex:outputText value="{!ccRecordType}" rendered="{!ipmCompanyConfig.IPM_Global__c}"/>
                                             <apex:selectList id="SelectedUnileverCluster2" multiselect="false" value="{!OneUnileverCluster}" styleClass="multiSelect" size="1" onchange="doSearch1(this.value)" rendered="{!ipmCompanyConfig.IPM_Market_Cluster__c}">
                                                 <apex:selectOptions value="{!lstUnileverCluster}"></apex:selectOptions>
                                             </apex:selectList>
                                             <apex:outputPanel id="geoScopeId">
+                                            <!-- If isMarketClusterLocal attribute is true, then the below message will be displayed -->
                                             <apex:outputText value="{!$Label.IPM_Select_Market_Cluster}" rendered="{!isMarketClusterLocal}" styleClass="ManagedErrMsg"/>  
+                                            <!-- If isMarketClusterRegional attribute is true, then the below message will be displayed -->
                                             <apex:outputText value="{!$Label.IPM_Select_Geograpical_Scope}" rendered="{!isMarketClusterRegional}" styleClass="ManagedErrMsg"/>                                     
                                             </apex:outputPanel>
                                         </div>
@@ -120,6 +132,7 @@
                            
                         </apex:outputpanel>
                     <apex:outputpanel id="MCO">
+                        <!-- If IPM_MCO__c field value is true, then the below panel will be displayed -->
                         <apex:outputpanel rendered="{!ipmCompanyConfig.IPM_MCO__c}">
                             <div class="inputField">
                                 <div class="col-sm-12 pb20">
@@ -132,6 +145,7 @@
                                                 <apex:selectOptions value="{!lstCountryCluster}"></apex:selectOptions>
                                             </apex:selectList>
                                             <apex:outputPanel id="MCONamePanel">
+                                            <!-- If isMcoLocal attribute value is true, then the below error message will be displayed -->
                                             <apex:outputText value="{!$Label.IPM_SelectMCO}" rendered="{!isMcoLocal}" styleClass="ManagedErrMsg"/>                                        
                                             </apex:outputPanel>
                                         </label>
@@ -142,6 +156,7 @@
                     </apex:outputpanel>
                     <!-- ISOCountryDependencyName-->
                     <apex:outputpanel id="isoname">
+                        <!-- If IPM_Country__c field value is true, then the below panel will be displayed -->
                         <apex:outputpanel rendered="{!ipmCompanyConfig.IPM_Country__c}">
                             <div class="inputField">
                                 <div class="col-sm-12 pb20">
@@ -155,6 +170,7 @@
                                                 <apex:selectOptions value="{!lstISOCountryDependencyName }"></apex:selectOptions>
                                             </apex:selectList>
                                             <apex:outputPanel id="uCountryNamepanel">
+                                            <!-- If isGeoScopeLocal attribute value is true, then the below error message will be displayed -->
                                             <apex:outputText value="{!$Label.IPM_Select_Geograpical_Scope}" rendered="{!isGeoScopeLocal}" styleClass="ManagedErrMsg"/>                                        
                                             </apex:outputPanel>
                                         </label>

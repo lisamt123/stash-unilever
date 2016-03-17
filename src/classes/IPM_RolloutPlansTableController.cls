@@ -382,7 +382,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet())
             {
-                if (field != ID_PARAMETER)
+                if (!(field.equalsignoreCase(ID_PARAMETER)))
                 {
                     queryString+= field + ', ';
                 }
@@ -393,7 +393,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             queryString+= ' (SELECT ';
             for (String field : Schema.SObjectType.IPM_Project__c.fields.getMap().KeySet())
             {
-                if (field != ID_PARAMETER)
+                if (!(field.equalsignoreCase(ID_PARAMETER)))
                 {
                     queryString+= field + ', ';
                 }
@@ -460,7 +460,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet())
             {
-                if (field != ID_PARAMETER)
+                if (!(field.equalsignoreCase(ID_PARAMETER)))
                 {
                     queryLocalRolloutString += field + ', ';
                 }
@@ -530,7 +530,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet())
             {
-                if (field != ID_PARAMETER)
+                if (!(field.equalsignoreCase(ID_PARAMETER)))
                 {
                     localRolloutQuery += field + ', ';
                 }
@@ -539,7 +539,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             for (String field : Schema.SObjectType.IPM_Country__c.fields.getMap().KeySet())
             {
-                if (field != ID_PARAMETER)
+                if (!(field.equalsignoreCase(ID_PARAMETER)))
                 {
                     localRolloutQuery += field + ', ';
                 }
@@ -586,7 +586,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet())
             {
-                if (field != ID_PARAMETER)
+                if (!(field.equalsignoreCase(ID_PARAMETER)))
                 {
                     queryString+= field + ', ';
                 }
@@ -602,7 +602,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             //IPM PROJECT ROLLOUT
             for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet())
             {
-                if (field != ID_PARAMETER) 
+                if (!(field.equalsignoreCase(ID_PARAMETER))) 
                 {
                     queryString+= field + ', ';
                 }
