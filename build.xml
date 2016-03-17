@@ -721,12 +721,13 @@
   </target>
   
    <target name="undeployCode">
-    <echo level="info">Performing undeploy - DESTRUCTIVE CHANGE</echo>
+    <echo level="info">Performing undeployCode - DESTRUCTIVE CHANGE</echo>
     <sf:deploy username="${sf.username}"
       password="${sf.password}"
       serverurl="${sf.serverurl}"
-      checkOnly="true"
       ignoreWarnings="true"
+	  checkOnly="true"
+	  purgeOnDelete ="true"
       deployRoot="${basedir}/undeploy"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}"/>
