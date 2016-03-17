@@ -7,5 +7,5 @@
 *************************************************************************
 -->
 <apex:page sidebar="false" standardStylesheets="false" controller="IPM_BETSuggestedMembersController" action="{!updateBETonProject}">
-<!-- This vf is used to redirect andupdate bet details on project -->
+<!-- This page  is used to redirect and update BET details on project -->
 </apex:page>

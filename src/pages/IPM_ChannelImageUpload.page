@@ -22,6 +22,7 @@
         <apex:form >            
             <div class="col-xs-12 infoMsgDiv"><apex:pageMessages id="pgsmg"/></div>
             <apex:outputpanel layout="block" styleClass="pull-left chinfoContainer" id="info">
+                <!-- Below rendered condition is used to execute the below output panel if hideInfoMsg is false -->
                 <apex:outputpanel rendered="{!!hideInfoMsg}">
                      <div class="imgInfoBox">
                         <span class="imgInfoTxt">{!$Label.IPM_Image_format}</span>

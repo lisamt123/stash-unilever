@@ -17,6 +17,7 @@
         <div class="row" id="EditTask">
             <apex:form id="form">
                 <apex:pageMessages id="messages"/> 
+                <!-- Milestone name will be editable for Adhoc Milestone --> 
                 <div class="row inlineEdit">
                     <div class="col-xs-3">
                             <apex:outputPanel rendered="{!!editMsNameFlag}">
@@ -26,6 +27,7 @@
                                 <apex:inputField value="{!milestoneObj.IPM_Name__c}"  styleClass="fieldFont" />
                             </apex:outputPanel> 
                     </div>
+                    <!-- Milestone Phase name will be editable for Adhoc Milestone -->
                     <div class="col-xs-offset-2 col-xs-2 mPhaseEditDiv">
                             <apex:outputPanel rendered="{!!editPhaseFlag}">
                                 <apex:outputField id="mPhase" value="{!milestoneObj.IPM_Phase__c}" styleClass="fieldFont mPhaseEdit"/>
@@ -34,6 +36,7 @@
                                 <apex:inputField value="{!milestoneObj.IPM_Phase__c}" styleClass="fieldFont mPhaseEdit"/>
                             </apex:outputPanel>
                     </div>
+                    <!--------- Milestone Due date column  ----------->
                     <div class="col-xs-1 dateDropDown">
                         <div class="inputField">
                             <apex:inputField value="{!milestoneObj.IPM_Due_Date__c}" id="DateP" styleClass="dateInputBox calendar marginL100P">
@@ -47,13 +50,16 @@
                     <div class="buttonmarRight ipmButtonGroup pull-right"> 
                         <div class="pull-right"> 
                             <apex:commandLink value="{!$Label.IPM_CANCEL}" styleClass="ipmButton buttonmarRight" onClick="pageclose();"/>  
+                            <!------ Save button while editing milestones  -->
                             <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green" action="{!saveMilestones}" reRender="messages,form,displaymessage"  rendered="{!AND( OR(adhocmilestoneFlag, miniMilestoneFlag),milestoneFlag)}"  oncomplete="{!if(validateSuccess,'pageclose();','')}" />
+                            <!-- Save button while editing current standard milestone -->
                             <apex:commandLink value="{!$Label.IPM_SAVE}" styleClass="ipmButton green" action="{!promptForTaskUpdate}" reRender="messages,form,displaymessage"  rendered="{!AND(stndMilestoneFlag, milestoneFlag)}" oncomplete="{!if(validateSuccess,'pageclose();','')}" />                                                 
                         </div> 
                     </div>
                 </div>               
             </apex:form>            
             <apex:form >
+            	<!------ Below code is to prompt user to update the task while updating the curent phase of standard milestone --------->
                 <apex:outputPanel id="displaymessage">
                     <apex:outputPanel styleClass="popupBg" layout="block" rendered="{!displayPopUp}"/>
                     <apex:outputPanel styleClass="popup" layout="block" rendered="{!displayPopUp}">

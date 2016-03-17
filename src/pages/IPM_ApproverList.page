@@ -50,18 +50,22 @@
                 
             </apex:outputpanel>
             <apex:outputpanel id="noResults">
+                 <!-- Below rendered condition is to used to show label 'no result found' -->
                 <apex:outputlabel styleClass="noApprList" value="{!$Label.IPM_Results_not_found}" rendered="{!noResultfound_Bool}"/>
             </apex:outputpanel>
             
             <div class="apprButtonsContainer pull-right">
                 <a class="buttonmarRight apprCancel ipmButton pull-left" onclick="closepopup();">{!$Label.IPM_CANCEL}</a>
                 <apex:outputPanel layout="block" styleClass="pull-left" id="btnRefresh">
+                    <!--Below rendered condition is used to show the command button for selecting approver  -->
                     <apex:commandButton action="{!saveApprover}" styleClass="buttonmarRight ipmButton primary" oncomplete="closepopup();" value="{!$Label.IPM_Update_Approver}" rendered="{!displayApproveBtn}"/>
+                    <!--Below rendered condition provides update user functionality-->
                     <apex:outputPanel layout="block" styleClass="addButtonContainer editbContainer pull-right" rendered="{!!displayApproveBtn}">
                         <span class="buttonmarRight apprDisable">{!$Label.IPM_Update_Approver}</span>
                     </apex:outputPanel>
                 </apex:outputPanel> 
             </div>   
+             <!--Below rendered condition will call the action function which in turn will call holdApproverID method  -->   
             <apex:actionFunction name="selectedCMem" action="{!holdApproverID}" reRender="btnRefresh">
                 <apex:param name="holdapproverUser" assignTo="{!approverid}" value=""/>
             </apex:actionFunction>  

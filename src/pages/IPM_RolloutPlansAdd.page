@@ -13,6 +13,7 @@
         <apex:define name="body">          
                 <apex:form >
                 <div class="gradientbg">  
+                <!-- Component added for Project Details at Rollout page --> 
                     <c:IPM_ProjectDetails project="{!project}" activeItem="rolloutPlan" />
                  </div>
              <apex:outputPanel id="theForm" layout="block">
@@ -39,6 +40,7 @@
                                 </div>
                             </div>
                         </div>                        
+                        <!-- Display list of countries matching search criteria -->                       
                         <div class="searchBox"><label class="greytext"></label> <apex:inputtext value="{!searchCountry}" html-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" /><img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();"/></div>
                         <apex:actionFunction action="{!searchRolloutCountry}" name="callsearch"/>
                         <apex:outputText value="{!$Label.IPM_Rollout_Search_Message}" rendered="{!isNoResult}" styleclass="finGreyBG"/>
@@ -125,7 +127,7 @@
                         </apex:outputPanel>    
                     </div>
                 </apex:outputPanel>                   
-                
+                <!-- Action function for Changing Market Cluster ,MCO And Generate Rollout  -->
                 <apex:actionFunction name="changeCluster" action="{!changeCluster}" reRender="theForm,scriptPanel" status="loadingStatus" oncomplete="scriptPanelLoad();">
                     <apex:param name="p1" assignTo="{!globalCountries}" value=""/>
                     <apex:param name="p2" assignTo="{!globalUnselectedCountries}" value=""/>
