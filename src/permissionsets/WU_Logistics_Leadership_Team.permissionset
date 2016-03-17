@@ -9,7 +9,15 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>WU_CreateCapacityDetails_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>WU_MultiCreateMultiEdit</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WU_MultiCreateMultiEdit_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -18,6 +26,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>WU_SetCurrentMonthBatch_Scheduler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WU_SetCurrentMonthBatch_Scheduler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WU_SetCurrentMonthBatch_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -39,6 +55,10 @@
     <classAccesses>
         <apexClass>WU_WarehouseSearchController</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>WU_WarehouseSearchController_test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <description>Warehouse LLT user permissions</description>
     <fieldPermissions>
@@ -129,6 +149,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_Current_Month_Utilization_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.WU_Current_Utilization__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.WU_FromDate__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -244,6 +274,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_Storage_Total__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.WU_ToDate__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

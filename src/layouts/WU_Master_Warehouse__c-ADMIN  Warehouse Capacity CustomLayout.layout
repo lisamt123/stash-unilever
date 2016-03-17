@@ -11,14 +11,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>WU_FromDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>WU_ToDate__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
                 <field>WU_SAPCode_s__c</field>
             </layoutItems>
             <layoutItems>
@@ -155,7 +147,7 @@
         <label>Utilization Capacity</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>WU_Current_Utilization__c</field>
             </layoutItems>
             <layoutItems>
@@ -189,10 +181,6 @@
         <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
-    <miniLayout>
-        <fields>WU_FromDate__c</fields>
-        <fields>WU_ToDate__c</fields>
-    </miniLayout>
     <relatedLists>
         <customButtons>New_Warehouse_Capacity_Detail</customButtons>
         <fields>NAME</fields>

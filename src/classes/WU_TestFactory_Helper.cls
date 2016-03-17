@@ -21,16 +21,19 @@ public class WU_TestFactory_Helper{
     //public static Profile PAdmin = [SELECT Id FROM Profile WHERE Name='System Administrator']; //retrieve the profile of the user
     public static Profile PWarehousePOC= [SELECT Id FROM Profile WHERE Name='Unilever - Force MultiApp Standard']; //retrieve the profile of the warehouse POC user
     //public static Profile PWarehouseLLT= [SELECT Id FROM Profile WHERE Name='WU-Logistics Leadership Team']; //retrieve the profile of the warehouse POC user       
-    
+    public static PermissionSet perms = [SELECT Id,Name from PermissionSet WHERE Name = 'WU_Warehouse_Excellence_Operations'];
     public static String uniqueUserEmail  = WU_TestFactory_Helper.getUniqueUsername();
     public static User ur=WU_TestFactory_Helper.createWarehouseProfileUser();
+    
+    //public static PermissionSetAssignment permsAssign = WU_TestFactory_Helper.assignPermSet();
+    
 
     private WU_TestFactory_Helper(){}
     
     public static List<WU_Master_Warehouse__c> insertWUWarehouseList(Integer numberOfRecords){ 
     
-        WMS_Settings__c WsConfig=WU_TestFactory_Helper.createCustomSettingValues();
-        system.assert(WsConfig!=null);
+        //WMS_Settings__c WsConfig=WU_TestFactory_Helper.createCustomSettingValues();
+        //system.assert(WsConfig!=null);
         //uniqueUserEmail  =    getUniqueUsername();     
         system.assert(ur!=null);
         for(integer i=0;i<numberOfRecords;i++){
@@ -182,5 +185,18 @@ public class WU_TestFactory_Helper{
         cs.Warehouse_ManagerProfiles__c='Unilever - Force MultiApp Standard';
         insert cs;
         return cs;
+    }
+    
+    public Static void assignPermSet()
+    {
+    	PermissionSetAssignment psa = new PermissionSetAssignment();
+    	psa.AssigneeId = ur.Id;
+    	if(perms!=null)
+    	{
+    		psa.PermissionSetId = perms.Id;
+	    	insert psa;
+    	}
+	    
+	    //return psa;
     }
 }
