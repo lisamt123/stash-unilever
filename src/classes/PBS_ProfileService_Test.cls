@@ -3,6 +3,14 @@ private class PBS_ProfileService_Test {
 
     private static final string LEVEL1 = 'Level 1';
     private static final string EUROPE = 'Europe';
+    private static final string GUEST = 'Guest';
+    private static final string TESTS = 'Test';
+    private static final string UPDATE_NOT_REQUIRED = 'Update should not be required';
+    private static final string UPDATE_REQUIRED = 'Update should be required';
+    private static final string EN_US = 'en_US';
+    private static final string NOT_SHARE = 'There should be no sharing for this user';  
+    private static final string SHARE = 'There should be sharing for this user';  
+    
     
     @isTest
     static void getPicklistOptions() {
@@ -31,10 +39,10 @@ private class PBS_ProfileService_Test {
         Test.startTest();
 
         PBS_Standard_Job_Profile__c sjp  = new PBS_Standard_Job_Profile__c(
-            Name = 'Guest'
+            Name = GUEST
         );
         PBS_Standard_Job_Profile__c sjp2 = new PBS_Standard_Job_Profile__c(
-            Name = 'Test'
+            Name = TESTS
         );
         insert new List<PBS_Standard_Job_Profile__c>{sjp, sjp2};
 
@@ -42,18 +50,18 @@ private class PBS_ProfileService_Test {
         System.assertEquals(0, [SELECT Id FROM PBS_Profile__c WHERE User__c = :userId].size(), 'User profile should not exist');
 
         PBS_Profile__c profile = PBS_ProfileService.getCurrentUserProfile();
-        System.assertEquals('Guest', profile.Work_Level__c, 'Work Level not initialized to Guest');
-        System.assertEquals('Guest', profile.Geography__c,  'Geography not initialized to Guest');
+        System.assertEquals(GUEST, profile.Work_Level__c, 'Work Level not initialized to Guest');
+        System.assertEquals(GUEST, profile.Geography__c,  'Geography not initialized to Guest');
         System.assertEquals(sjp.Id,  profile.User_Role__c,  'Role not initialized to Guest');
 
-        profile.Work_Level__c = 'test';
-        profile.Geography__c  = 'test';
+        profile.Work_Level__c = TESTS;
+        profile.Geography__c  = TESTS;
         profile.User_Role__c  = sjp2.Id;
         upsert profile;
 
         profile = PBS_ProfileService.getCurrentUserProfile();
-        System.assertEquals('test', profile.Work_Level__c, 'Work Level not valid');
-        System.assertEquals('test', profile.Geography__c,  'Geography not valid');
+        System.assertEquals(TESTS, profile.Work_Level__c, 'Work Level not valid');
+        System.assertEquals(TESTS, profile.Geography__c,  'Geography not valid');
         System.assertEquals(sjp2.Id, profile.User_Role__c,  'Role not valid');
 
         Test.stopTest();
@@ -67,7 +75,7 @@ private class PBS_ProfileService_Test {
         PBS_Profile__c p2 = new PBS_Profile__c();
 
         PBS_Standard_Job_Profile__c sjp  = new PBS_Standard_Job_Profile__c(
-            Name = 'Guest'
+            Name = GUEST
         );
         insert sjp;
 
@@ -81,27 +89,27 @@ private class PBS_ProfileService_Test {
         p2.user_role__c  = null;
         p2.user__c       = null;
 
-        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should not be required');
+        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_NOT_REQUIRED);
 
         p1.Work_Level__c = 'New';
-        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should be required');
+        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_REQUIRED);
         p1.Work_Level__c = null;
-        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should not be required');
+        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_NOT_REQUIRED);
 
         p1.Geography__c  = 'New';
-        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should be required');
+        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_REQUIRED);
         p1.Geography__c  = null;
-        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should not be required');
+        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_NOT_REQUIRED);
 
         p1.user_role__c  = sjp.Id;
-        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should be required');
+        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_REQUIRED);
         p1.user_role__c  = null;
-        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should not be required');
+        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_NOT_REQUIRED);
 
         p1.user__c       = UserInfo.getUserId();
-        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should be required');
+        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_REQUIRED);
         p1.user__c       = null;
-        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should not be required');
+        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_NOT_REQUIRED);
 
         Test.stopTest();
     }
@@ -114,7 +122,7 @@ private class PBS_ProfileService_Test {
         Training_Track__c p2 = new Training_Track__c();
 
         PBS_Standard_Job_Profile__c sjp  = new PBS_Standard_Job_Profile__c(
-            Name = 'Guest'
+            Name = GUEST
         );
         insert sjp;
 
@@ -126,22 +134,22 @@ private class PBS_ProfileService_Test {
         p2.Geography__c  = null;
         p2.PBS_Standard_Job_Profile__c  = null;
 
-        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should not be required');
+        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_NOT_REQUIRED);
 
         p1.Work_Level__c = 'New';
-        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should be required');
+        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_REQUIRED);
         p1.Work_Level__c = null;
-        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should not be required');
+        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_NOT_REQUIRED);
 
         p1.Geography__c  = 'New';
-        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should be required');
+        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_REQUIRED);
         p1.Geography__c  = null;
-        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should not be required');
+        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_NOT_REQUIRED);
 
         p1.PBS_Standard_Job_Profile__c  = sjp.Id;
-        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should be required');
+        System.assertEquals(true, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_REQUIRED);
         p1.PBS_Standard_Job_Profile__c  = null;
-        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), 'Update should not be required');
+        System.assertEquals(false, PBS_ProfileService.isUpdateRequired(p1, p2), UPDATE_NOT_REQUIRED);
 
         Test.stopTest();
     }
@@ -152,11 +160,11 @@ private class PBS_ProfileService_Test {
         User u = new User(
             email             = 'test@test.test.test',
             emailencodingkey  = 'UTF-8',
-            lastname          = 'test',
-            FirstName         = 'test',
+            lastname          = TESTS,
+            FirstName         = TESTS,
             alias             = 'TA',
-            languagelocalekey = 'en_US',
-            localesidkey      = 'en_US',
+            languagelocalekey = EN_US,
+            localesidkey      = EN_US,
             profileid         = [SELECT id FROM Profile WHERE name = 'Standard User'].id,
             timezonesidkey    = 'GMT',
             username          =  String.valueOf(DateTime.Now()).replace(' ', '').replace(':','') + 'test@test.com'
@@ -164,7 +172,7 @@ private class PBS_ProfileService_Test {
         insert u;
 
         PBS_Standard_Job_Profile__c sjp  = new PBS_Standard_Job_Profile__c(
-            Name = 'Guest'
+            Name = GUEST
         );
         insert sjp;
 
@@ -194,7 +202,7 @@ private class PBS_ProfileService_Test {
 
             // make sure there are no sharing for our user
             List<Training_Track__Share> tts = serviceObj.getExistingSharingForProfile(p1);
-            System.assertEquals(true, tts.isEmpty(), 'There should be no sharing for this user');
+            System.assertEquals(true, tts.isEmpty(), NOT_SHARE);
 
             // add sharing
             tts.addAll(serviceObj.getNewSharingForProfile(p1));
@@ -202,12 +210,12 @@ private class PBS_ProfileService_Test {
 
             // check if added
             tts = serviceObj.getExistingSharingForProfile(p1);
-            System.assertEquals(false, tts.isEmpty(), 'There should be sharing for this user');
+            System.assertEquals(false, tts.isEmpty(), SHARE);
 
             // remove sharing
             serviceObj.updateSharing(null, tts);
             tts = serviceObj.getExistingSharingForProfile(p1);
-            System.assertEquals(true, tts.isEmpty(), 'There should be no sharing for this user');
+            System.assertEquals(true, tts.isEmpty(), NOT_SHARE);
         }
         Test.stopTest();
     }
@@ -218,18 +226,18 @@ private class PBS_ProfileService_Test {
         User u = new User(
             email             = 'test@test.test.test',
             emailencodingkey  = 'UTF-8',
-            lastname          = 'test',
-            FirstName         = 'test',
+            lastname          = TESTS,
+            FirstName         = TESTS,
             alias             = 'TA',
-            languagelocalekey = 'en_US',
-            localesidkey      = 'en_US',
+            languagelocalekey = EN_US,
+            localesidkey      = EN_US,
             profileid         = [SELECT id FROM Profile WHERE name = 'Standard User'].id,
             timezonesidkey    = 'GMT',
             username          =  String.valueOf(DateTime.Now()).replace(' ', '').replace(':','') + 'test@test.com'
         );
         insert u;
 
-        PBS_Standard_Job_Profile__c sjp = PBS_TestHelper.createJobProfile('Guest');
+        PBS_Standard_Job_Profile__c sjp = PBS_TestHelper.createJobProfile(GUEST);
         Training_Track__c t1            = PBS_TestHelper.createTrainingTrack('Test Name', LEVEL1, EUROPE, sjp.Id);
 
         PBS_Profile__c p1 = new PBS_Profile__c(
@@ -246,21 +254,21 @@ private class PBS_ProfileService_Test {
 
         System.runAs(u) {
             List<Training_Track__Share> tts = serviceObj.getExistingSharingForProfile(p1);
-            System.assertEquals(true, tts.isEmpty(), 'There should be no sharing for this user');
+            System.assertEquals(true, tts.isEmpty(), NOT_SHARE);
 
             // create sharing
             insert p1;
 
             // make sure there are sharing for our user
             tts = serviceObj.getExistingSharingForProfile(p1);
-            System.assertEquals(false, tts.isEmpty(), 'There should be sharing for this user');
+            System.assertEquals(false, tts.isEmpty(), SHARE);
 
             p1.Work_Level__c = 'Invalid Level';
             update p1;
 
             // should be no sharing due to level change
             tts = serviceObj.getExistingSharingForProfile(p1);
-            System.assertEquals(true, tts.isEmpty(), 'There should be no sharing for this user');
+            System.assertEquals(true, tts.isEmpty(), NOT_SHARE);
 
             // restore sharing
             p1.Work_Level__c = t1.Work_Level__c;
@@ -268,20 +276,20 @@ private class PBS_ProfileService_Test {
 
             // make sure there are sharing for our user
             tts = serviceObj.getExistingSharingForProfile(p1);
-            System.assertEquals(false, tts.isEmpty(), 'There should be sharing for this user');
+            System.assertEquals(false, tts.isEmpty(), SHARE);
 
             // remove profile and therefore remove sharing
             delete p1;
 
             // should be no sharing due to level change
             tts = serviceObj.getExistingSharingForProfile(p1);
-            System.assertEquals(true, tts.isEmpty(), 'There should be no sharing for this user');
+            System.assertEquals(true, tts.isEmpty(), NOT_SHARE);
 
             undelete p1;
 
             // make sure there are sharing for our user
             tts = serviceObj.getExistingSharingForProfile(p1);
-            System.assertEquals(false, tts.isEmpty(), 'There should be sharing for this user');
+            System.assertEquals(false, tts.isEmpty(), SHARE);
         }
 
         Test.stopTest();
@@ -293,18 +301,18 @@ private class PBS_ProfileService_Test {
         User u = new User(
             email             = 'test@test.test.test',
             emailencodingkey  = 'UTF-8',
-            lastname          = 'test',
-            FirstName         = 'test',
+            lastname          = TESTS,
+            FirstName         = TESTS,
             alias             = 'TA',
-            languagelocalekey = 'en_US',
-            localesidkey      = 'en_US',
+            languagelocalekey = EN_US,
+            localesidkey      = EN_US,
             profileid         = [SELECT id FROM Profile WHERE name = 'Standard User'].id,
             timezonesidkey    = 'GMT',
             username          =  String.valueOf(DateTime.Now()).replace(' ', '').replace(':','') + 'test@test.com'
         );
         insert u;
 
-        PBS_Standard_Job_Profile__c sjp = PBS_TestHelper.createJobProfile('Guest');
+        PBS_Standard_Job_Profile__c sjp = PBS_TestHelper.createJobProfile(GUEST);
 
         PBS_Profile__c p1 = new PBS_Profile__c(
             Work_Level__c = 'Level 2',
@@ -326,7 +334,7 @@ private class PBS_ProfileService_Test {
 
             // make sure there are no sharing for our user
             List<Training_Track__Share> tts = serviceObj.getExistingSharingForTrainingTrack(t1);
-            System.assertEquals(true, tts.isEmpty(), 'There should be no sharing for this user');
+            System.assertEquals(true, tts.isEmpty(), NOT_SHARE);
 
             // add sharing
             tts.addAll(serviceObj.getNewSharingForTrainingTrack(t1));
@@ -334,12 +342,12 @@ private class PBS_ProfileService_Test {
 
             // check if added
             tts = serviceObj.getExistingSharingForTrainingTrack(t1);
-            System.assertEquals(false, tts.isEmpty(), 'There should be sharing for this user');
+            System.assertEquals(false, tts.isEmpty(), SHARE);
 
             // remove sharing
             serviceObj.updateSharing(null, tts);
             tts = serviceObj.getExistingSharingForTrainingTrack(t1);
-            System.assertEquals(true, tts.isEmpty(), 'There should be no sharing for this user');
+            System.assertEquals(true, tts.isEmpty(), NOT_SHARE);
         }
 
         Test.stopTest();
@@ -351,18 +359,18 @@ private class PBS_ProfileService_Test {
         User u = new User(
             email             = 'test@test.test.test',
             emailencodingkey  = 'UTF-8',
-            lastname          = 'test',
-            FirstName         = 'test',
+            lastname          = TESTS,
+            FirstName         = TESTS,
             alias             = 'TA',
-            languagelocalekey = 'en_US',
-            localesidkey      = 'en_US',
+            languagelocalekey = EN_US,
+            localesidkey      = EN_US,
             profileid         = [SELECT id FROM Profile WHERE name = 'Standard User'].id,
             timezonesidkey    = 'GMT',
             username          =  String.valueOf(DateTime.Now()).replace(' ', '').replace(':','') + 'test@test.com'
         );
         insert u;
 
-        PBS_Standard_Job_Profile__c sjp = PBS_TestHelper.createJobProfile('Guest');
+        PBS_Standard_Job_Profile__c sjp = PBS_TestHelper.createJobProfile(GUEST);
 
         PBS_Profile__c p1 = new PBS_Profile__c(
             Work_Level__c = LEVEL1,
@@ -428,8 +436,8 @@ private class PBS_ProfileService_Test {
     static void crippledTrainingTrackShare()
     {
         Test.startTest();
-        PBS_Standard_Job_Profile__c sjp = PBS_TestHelper.createJobProfile('Guest');
-        Training_Track__c t1            = PBS_TestHelper.createTrainingTrack('Test', LEVEL1, EUROPE, sjp.Id);
+        PBS_Standard_Job_Profile__c sjp = PBS_TestHelper.createJobProfile(GUEST);
+        Training_Track__c t1            = PBS_TestHelper.createTrainingTrack(TESTS, LEVEL1, EUROPE, sjp.Id);
 
         try {
             PBS_ProfileService.PBS_ProfileWithoutSharing serviceObj = new PBS_ProfileService.PBS_ProfileWithoutSharing();
