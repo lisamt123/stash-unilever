@@ -144,6 +144,7 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 *************************************************************************************/
 	public void beforeInsert(SObject so)
 	{
+		/*Method is Blank as this handler doesnot handle any beforeInsert*/
 	}
 	/***********************************************************************************
 *  @Description: this method is derived as a part of trigger factory
