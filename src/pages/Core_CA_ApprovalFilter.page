@@ -1,15 +1,32 @@
 <apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
-    <table class="filterPageHeaderBarBackground" > 
+    <table class="filterPageHeaderBarBackground" >
         <tr class="border_bottom">
-            <td class="headerBarRowAlign"> <button type="button" class="headerBarButton" ng-click='cancel()'>{{'LBL_CANCEL' | translate}}</button> </td>
-            <td class="headerBarRowAlign" id="alignCenter"> <label class="headerBarTitle">{{'LBL_FIL_FILTER' | translate}}</label> </td>
-            <td class="headerBarRowAlign"> <button type="button" id="headerBarButton" class="alignRight" ng-click='apply()'>{{'LBL_FIL_APPLY' | translate}}</button> </td>
+            <td class="headerBarRowAlign">
+                <button type="button" class="headerBarButton" ng-click='cancel()'>{{'LBL_CANCEL' | translate}}</button>
+            </td>
+            <td class="headerBarRowAlign" id="alignCenter">
+                <label class="headerBarTitle">{{'LBL_FIL_FILTER' | translate}}</label>
+            </td>
+            <td class="headerBarRowAlign">
+                <button type="button" id="headerBarButton" class="alignRight" ng-click='apply()'>{{'LBL_FIL_APPLY' | translate}}</button>
+            </td>
         </tr>
     </table>
-    
     <table class="filter-striped-menu">
-        <tr class="border_bottom" > <td ng-class="{selected_li: isShowAllChecked}" ng-click="setSelectedFilter('')"> {{'LBL_SHOW_ALL' | translate}} </td></tr>
-        <tr class="border_bottom" > <td ng-class="{selected_li: isShowOnlyExpChecked}" ng-click="setSelectedFilter('Expense')"> {{'LBL_SHOW_ONLY_EXPENSES' | translate}} </td></tr>
-        <tr class="border_bottom" > <td ng-class="{selected_li: isShowOnlyPRChecked}" ng-click="setSelectedFilter('Purchase Request')"> {{'LBL_SHOW_ONLY_PURCHASE_REQUEST' | translate}} </td></tr>
+        <tr class="border_bottom" >
+            <td ng-class="{selected_li: isShowAllChecked}" ng-click="setSelectedFilter('')"> {{'LBL_SHOW_ALL' | translate}} </td>
+        </tr>
+        <tr class="border_bottom" >
+            <td ng-class="{selected_li: isShowOnlyExpChecked}" ng-click="setSelectedFilter('Expense')"> {{'LBL_SHOW_ONLY_EXPENSES' | translate}} </td>
+        </tr>
+        <tr class="border_bottom" >
+            <td ng-class="{selected_li: isShowOnlyPRChecked}" ng-click="setSelectedFilter('Purchase Request')"> {{'LBL_SHOW_ONLY_PURCHASE_REQUEST' | translate}} </td>
+        </tr>
+        <tr class="border_bottom" >
+            <td ng-class="{selected_li: isShowOnlyClarityChecked}" ng-click="setSelectedFilter('Clarity')">{{'LBL_SHOW_ONLY_PROJECT_APPROVAL' | translate}} </td>
+        </tr>
+        <tr class="border_bottom" >
+            <td ng-class="{selected_li: isShowOnlyInvoiceChecked}" ng-click="setSelectedFilter('Invoice')">{{'LBL_SHOW_ONLY_INVOICES' | translate}} </td>
+        </tr>
     </table>
 </apex:page>
