@@ -4,21 +4,11 @@
         <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"/>
     </head>
     <script src="{!URLFOR($Resource.jquery171min)}" type="text/javascript" ></script>
-    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"></link>
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css"></link>
-    
-   <script type="text/javascript">
-$(function() {
-alert('sdfsd');
-$( "#dialog-1" ).dialog({
-autoOpen: false,  
-});
-}
-</script>
-    
+
     <style>
     .modalDialog {
         position: fixed;
@@ -81,9 +71,8 @@ autoOpen: false,
     .BtnClass{ 
         width:60px; 
     }
-    
-    
     .close:hover { background: #00d9ff; }
+    
     </style>
     
      <apex:form id="formId">
@@ -94,7 +83,7 @@ autoOpen: false,
         </apex:actionFunction>
         
       
-        <div id="dialog-1" title="Dialog Title goes here...">
+        <div id="openModal" class="modalDialog">
             <div>
                 <a href="#close" title="Close" class="close">X</a>
                
@@ -132,14 +121,11 @@ autoOpen: false,
                 </apex:pageBlockSection>
                 
                 <div align="center"  >   
-                    <apex:commandButton value="Ok" action="{!saveRecords}" styleClass="BtnClass" />
-                    <apex:commandButton value="Cancel" action="{!cancel}" styleClass="BtnClass" />
+                    <apex:commandButton value="Ok" action="{!saveRecords}" styleClass="BtnClass" reRender="formId"/>
+                    <apex:commandButton value="Cancel" action="{!cancel}" styleClass="BtnClass" reRender="formId"/>
                 </div>
                 </apex:pageBlock>
             </div>
-            
-            
-            
         </div>
         
         
@@ -188,8 +174,6 @@ autoOpen: false,
      
      
      <script type="text/javascript">
-
-     
         function selectAllCheckboxes(obj,receivedInputID)
         {
             var inputCheckBox = document.querySelectorAll('input[type=checkbox]');               
@@ -199,6 +183,8 @@ autoOpen: false,
                 }
             }
         }
+      </script>
+      <script type="text/javascript">
         $(document).on("click", ".theTextInput", function(){
             //updateMasterWarweHousePopup();
             $(document).find('.utilizationtype,.todate,.fromdate').parent().parent().css('display','none');
@@ -208,13 +194,10 @@ autoOpen: false,
         
         function showpopup(masterId, fieldSelected){
             setfieldstopopup(masterId, fieldSelected );
-             
         }
         
         function hidefields (){
-            //$(document).find('#openModal').css({"opacity":"1", "pointer-events":"auto" });
-            alert('dfd');
-            $( "#dialog-1" ).dialog( "open" );
+            $(document).find('#openModal').css({"opacity":"1", "pointer-events":"auto" });
         }
         
         $('.close').click(function(){

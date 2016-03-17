@@ -20,7 +20,7 @@ public class WU_SetCurrentMonthBatch_Scheduler_Test{
         createData();
         test.startTest();
         system.assert(!WarehouseCapacityList.isEmpty());
-		String jobId = System.schedule('ScheduleWU_SetCurrentMonthBatch_Scheduler', CRON_EXP, new WU_SetCurrentMonthBatch_Scheduler());
+		System.schedule('ScheduleWU_SetCurrentMonthBatch_Scheduler', CRON_EXP, new WU_SetCurrentMonthBatch_Scheduler());
         test.stopTest();
 	}
 }

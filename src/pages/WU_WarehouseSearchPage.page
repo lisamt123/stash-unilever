@@ -12,8 +12,7 @@
     <table width="85%">
          <tr> 
              <td vertical-align="center">
-                <apex:outputLabel value="{!$Label.WU_SAPCode}"></apex:outputLabel>&nbsp;&nbsp;
-            
+                <apex:outputLabel value="{!$Label.WU_SAPCode}"></apex:outputLabel>
                 <apex:inputfield value="{!warehouseCapacity.WU_SAPCode_s__c}" id="ipSAP"/>
             </td>
             <td>&nbsp;&nbsp;</td>
@@ -51,15 +50,19 @@
                      <apex:actionsupport event="onchange" rerender="wareList"/>
                  </apex:inputfield>
             </td>
+           
            <td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td>
             <td>
+                <br></br>
                 <apex:commandButton value="Search" action="{!SearchRecords}" style="height:20px;width:70px;text-align:center;"/>
             </td>
             <td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td>
             <td>
+                <br></br>
                 <apex:commandButton value="Export Report" action="{!redirectToReport}" />
             </td>
             <td>&nbsp;&nbsp;</td>
+           
         </tr>
        
         <tr>
