@@ -96,7 +96,10 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
     
     //cancellation
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            
             system.debug(ex.getMessage());
+            
         }
     }
     
@@ -167,7 +170,9 @@ Returns:
 
         system.debug('brandPositionListtt----->'+listOfBrandPosition);
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
+            return null;
         }
         return null;
 
@@ -196,6 +201,7 @@ Returns: It will return list of brands.
         }
         return listOfBrand;
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
             return null;
         }
@@ -221,6 +227,7 @@ Returns: It will return list of RAP users.
     system.debug('listOfUser!!'+listOfUser);
          return listOfUser;
          }catch(Exception ex){
+         	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
             return null;
         }
@@ -255,6 +262,7 @@ Returns:
         TotalDormantJobs  = [SELECT count()  FROM  Amr_Job_Details__c where  Amr_Job_Details__c.Job_Status__c = :Label.Amr_Status_Dormant ];
         TotalSavingsJobs  = [SELECT count() from Amr_Saving__c limit 50000];
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
@@ -659,10 +667,11 @@ Returns:
            return pageRef;
            }
           else{
-             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please select any value'));
+             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Please_Select_Any_Value));
                 return null;
           } 
           }catch(Exception ex){
+          	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
             return null;
         }
@@ -698,13 +707,10 @@ Returns:
         
         TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
         CurrentActivePageNumber         = (counterForActiveJobs/limitSizeForActiveJobs)+1;
-        
-         system.debug('Bhupi Total size for active jobs'+totalSizeForActiveJobs);
-         system.debug('Bhupi limit of records are'+limitSizeForActiveJobs);
-         system.debug('Bhupi pages are'+TotalActiveJobPages);
-        
+                       
         //getTotalActiveJobPages(totalSizeForActiveJobs/limitSizeForActiveJobs);
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
       }
@@ -726,6 +732,7 @@ Returns:
         TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
@@ -734,10 +741,7 @@ Returns:
         try{
         activeJobsToShow.clear();
         counterForActiveJobs=counterForActiveJobs+limitSizeForActiveJobs;
-        system.debug('limitSizeForActiveJobs-----'+limitSizeForActiveJobs);
-        system.debug('totalSizeForActiveJobs-----'+totalSizeForActiveJobs);
-        system.debug('counterForActiveJobs-----'+counterForActiveJobs);
-        
+               
         if((counterForActiveJobs+limitSizeForActiveJobs) <= totalSizeForActiveJobs ){
             for(Integer i=counterForActiveJobs;i<(counterForActiveJobs+limitSizeForActiveJobs);i++){
                 activeJobsToShow.add(jobDetailList.get(i));
@@ -751,10 +755,8 @@ Returns:
         TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
         
-         system.debug('activeJobsToShow-----'+activeJobsToShow);
-         system.debug('no of page -----'+TotalActiveJobPages);
-         system.debug('current page -----'+CurrentActivePageNumber);
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         } 
     }
@@ -770,6 +772,7 @@ Returns:
         TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
@@ -789,6 +792,7 @@ Returns:
         TotalActiveJobPages = (totalSizeForActiveJobs/limitSizeForActiveJobs)+1;
         CurrentActivePageNumber = (counterForActiveJobs/limitSizeForActiveJobs)+1;
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
       }
@@ -836,6 +840,7 @@ Returns:
         }
          system.debug('cancelJobsToShow!!'+cancelJobsToShow);
          }catch(Exception ex){
+         	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
       }
@@ -854,6 +859,7 @@ Returns:
             }       
         }
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
@@ -872,6 +878,7 @@ Returns:
             }
         }
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
@@ -884,6 +891,7 @@ Returns:
             cancelJobsToShow.add(WrapperList.get(i));
         }
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
     }
@@ -900,6 +908,7 @@ Returns:
                 cancelJobsToShow.add(WrapperList.get(i));
         }
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
         }
       }
@@ -926,21 +935,26 @@ Returns: pageRef.
     
      public PageReference jobSheetPageTransfer(){
       try{
-       PageReference pageRef = new PageReference('/apex/Amr_JobSheet');
+       PageReference pageRef = new PageReference(Label.Amr_JobSheet);
        pageRef.getParameters().put('id',chosenId);
        pageRef.setRedirect(true);
        return pageRef;
        }catch(Exception ex){
-            system.debug(ex.getMessage());
+       	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+          system.debug(ex.getMessage());
             return null;
         }
    }
    public pageReference clearJob(){
-            
-            PageReference pageRef = new PageReference('/apex/Amr_CAPJobPortfolio');
+         try{   
+            PageReference pageRef = new PageReference(Label.Amr_CApJobPortFolio);
             pageRef.setRedirect(true);
             return pageRef;
-            
+         }catch(Exception ex){
+         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+         system.debug(ex.getMessage());
+         return null;
+         }   
         return null;
         }
    

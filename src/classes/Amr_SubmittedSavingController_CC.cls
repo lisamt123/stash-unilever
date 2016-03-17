@@ -88,8 +88,9 @@ public with sharing class Amr_SubmittedSavingController_CC {
              quoteInformation();
              getFeedItemAcceptedData();
              getFeedItemAdditionalData();
-        }catch(Exception e){
-        system.debug(e.getMessage());
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        system.debug(ex.getMessage());
         }
     }
     
@@ -110,8 +111,9 @@ public with sharing class Amr_SubmittedSavingController_CC {
                                            CA_Additional_agency_Name__c,CA_Location__c,Is_Accepted__c,
                                            Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,PC_Costs_Euro_Amount__c,
                                            Total_Cost__c,id,Folder__c from Amr_Quote__c where Saving__c =:savingIdFromPage AND Is_Accepted__c =:false ORDER BY Quote_Number__c]; 
-    }catch(Exception e){
-        system.debug(e.getMessage());
+    }catch(Exception ex){
+    	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        system.debug(ex.getMessage());
         }
     }
     
@@ -122,8 +124,9 @@ public with sharing class Amr_SubmittedSavingController_CC {
         viewSavingMode = false;
           system.debug('editedSavingMode !!'+editedSavingMode );
         }
-        }catch(Exception e){
-        system.debug(e.getMessage());
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        system.debug(ex.getMessage());
         }
          return null;
     }
@@ -151,12 +154,14 @@ public with sharing class Amr_SubmittedSavingController_CC {
             system.debug('FI!!'+FI);
             document = new document();
         }else{
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please select document'));
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Please_Select_Document));
         }
     }
     getFeedItemAcceptedData();
-    }catch(Exception e){
-        system.debug(e.getMessage());
+    }catch(Exception ex){
+    	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        system.debug(ex.getMessage());
+        return null;
     }
     return null;
     }
@@ -166,8 +171,9 @@ public with sharing class Amr_SubmittedSavingController_CC {
         feedItemAcceptedList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
                                           FROM FeedItem where ParentId =:acceptedQuote.Id];
         system.debug('feedItemAcceptedList!!'+feedItemAcceptedList);
-        }catch(Exception e){
-        system.debug(e.getMessage());
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        system.debug(ex.getMessage());
         }   
     }
     
@@ -177,8 +183,9 @@ public with sharing class Amr_SubmittedSavingController_CC {
         FeedItem feedItemObj = [select id from FeedItem where id=:chosenFileId limit 1];
         delete feedItemObj;
         getFeedItemAcceptedData();  
-        }catch(Exception e){
-        system.debug(e.getMessage());
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        system.debug(ex.getMessage());
         }
     return null;
     }
@@ -201,12 +208,13 @@ public with sharing class Amr_SubmittedSavingController_CC {
             system.debug('FI!!'+FI);
             document = new document();
         }else{
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please select document'));
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Please_Select_Document));
         }
     }
     getFeedItemAdditionalData();
-    }catch(Exception e){
-        system.debug(e.getMessage());
+    }catch(Exception ex){
+    	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        system.debug(ex.getMessage());
     }
     return null;
     }
@@ -216,8 +224,9 @@ public with sharing class Amr_SubmittedSavingController_CC {
         feedItemAdditionalList = [select id,CreatedById,CreatedBy.name,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,CreatedDate 
                                           FROM FeedItem where ParentId =:savingIdFromPage];
         system.debug('feedItemAdditionalList!!'+feedItemAdditionalList);
-    }catch(Exception e){
-        system.debug(e.getMessage());
+    }catch(Exception ex){
+    	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        system.debug(ex.getMessage());
     }   
     }
     
@@ -227,8 +236,9 @@ public with sharing class Amr_SubmittedSavingController_CC {
         FeedItem feedItemObj = [select id from FeedItem where id=:chosenFileId limit 1];
         delete feedItemObj;
     getFeedItemAdditionalData();    
-    }catch(Exception e){
-        system.debug(e.getMessage());
+    }catch(Exception ex){
+    	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        system.debug(ex.getMessage());
     }
     return null;
     }
@@ -239,8 +249,9 @@ public with sharing class Amr_SubmittedSavingController_CC {
         pagereference page = new PageReference('/apex/Amr_JobSheet?id='+jobId);
         page.setRedirect(true); 
         return page ;
-        }catch(Exception e){
-        system.debug(e.getMessage());
+        }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        system.debug(ex.getMessage());
         }
     return null;    
     }
@@ -282,7 +293,7 @@ Returns:
         AllValues();
         
         if(feedItemAcceptedList.size()<1 && feedItemAdditionalList.size()<1){
-        ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.Error,'Please attach documents'));
+        ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.Error,Label.Amr_Please_Select_Document));
         return null;
         }else{
             testSuccess=true;
@@ -296,6 +307,7 @@ Returns:
         return null;
         }
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         System.debug(ex.getmessage());
         }  
     
@@ -522,6 +534,7 @@ Returns:
               
         }
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         System.debug(ex.getmessage());
         }
        
@@ -547,6 +560,7 @@ Returns:
        
        return JSON.Serialize(lstsavingObj );
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         System.debug(ex.getmessage());
         }
        return null;

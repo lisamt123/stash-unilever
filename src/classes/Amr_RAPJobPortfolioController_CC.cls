@@ -151,6 +151,7 @@ public with sharing class Amr_RAPJobPortfolioController_CC{
             listOfBrandPosition.add(new selectOption(NONE,NONE));
             }
             catch(exception ex){
+            	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getmessage());
           }
         
@@ -225,6 +226,7 @@ Returns:
                     }
             }
              catch(exception ex){
+             	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
                system.debug(ex.getmessage());
           }
      
@@ -248,6 +250,7 @@ Returns: It will return pisklist values.
           }
             return options;
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
             return null;
           }
@@ -308,6 +311,7 @@ Returns: It will return submitted saving data.
            data.add(new PieWedgeData('Global Team Saving',Integer.valueOf(savingSubmittedAll)));
            return data;  
             }catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
             return null;
           }
@@ -345,6 +349,7 @@ Returns: It will return submitted saving data of current month.
              data.add(new PieWedgeData('Global Team Saving',Integer.valueOf(savingSubmittedAll)));
             return data; 
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
             return null;
           } 
@@ -379,6 +384,7 @@ Returns:
             alertListForUnhide= [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:true limit 50000];
               system.debug('alertList !!'+alertListForUnhide);
               }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -401,6 +407,7 @@ Returns: It will return category records in JSON format.
             return JSON.serialize(categoryString);
         }
             catch(exception ex){
+            	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
                 system.debug(ex.getmessage());
                 return null;
           }
@@ -433,6 +440,7 @@ Returns:
             system.debug('brandPositionListtt----->'+listOfBrandPosition);
          }
             catch(exception ex){
+            	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
                 system.debug(ex.getmessage());
                 return null;
           }
@@ -461,7 +469,7 @@ Returns: It will return brand records.
         }
         }
         catch(exception ex){
-            
+            	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
                 system.debug(ex.getmessage());
                 return null;
           }
@@ -548,17 +556,17 @@ Returns:
         
          if (String.isNotBlank(jobDetails.Project_Leader_Cluster__c)){
          
-               soql += ' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(projLeaderCluster)+'\'';
+               soql += ' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(projLeaderCluster)+Amr_ConstantForAdManager.SLASH;
               
         }
         
          if(String.isNotBlank(projLeaderCountry)){
-        soql += ' and AM_Job_Detail__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(projLeaderCountry)+'\'';
+        soql += ' and AM_Job_Detail__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(projLeaderCountry)+Amr_ConstantForAdManager.SLASH;
                
         }
         
          if(String.isNotBlank(agencyName)){
-        soql += ' and AM_Job_Detail__r.Lead_Creative_Agency_name__c = \''+String.escapeSingleQuotes(agencyName)+'\'';
+        soql += ' and AM_Job_Detail__r.Lead_Creative_Agency_name__c = \''+String.escapeSingleQuotes(agencyName)+Amr_ConstantForAdManager.SLASH;
                
          
          }
@@ -568,37 +576,37 @@ Returns:
          }
           if(String.isNotBlank(categoryName) && categoryName != NONE){
           
-        soql += ' and AM_Job_Detail__r.ProductCategory__r.name = \''+String.escapeSingleQuotes(categoryName)+'\'';
+        soql += ' and AM_Job_Detail__r.ProductCategory__r.name = \''+String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.SLASH;
              
          }
           if(String.isNotBlank(brandPos) && brandPos != NONE){
           
-        soql += ' and AM_Job_Detail__r.Brand_Position__r.name = \''+String.escapeSingleQuotes(brandPos)+'\'';
+        soql += ' and AM_Job_Detail__r.Brand_Position__r.name = \''+String.escapeSingleQuotes(brandPos)+Amr_ConstantForAdManager.SLASH;
                
          }
           if(String.isNotBlank(brandName) && brandName != NONE){
-        soql += ' and AM_Job_Detail__r.Brand_Final__r.name = \''+String.escapeSingleQuotes(brandName)+'\'';
+        soql += ' and AM_Job_Detail__r.Brand_Final__r.name = \''+String.escapeSingleQuotes(brandName)+Amr_ConstantForAdManager.SLASH;
               
          }
          if(String.isNotBlank(stageLogged)){
-        soql += ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(stageLogged)+'\'';
+        soql += ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(stageLogged)+Amr_ConstantForAdManager.SLASH;
               
          }
          if(String.isNotBlank(jobAlloc.Job_Status__c)){
-        soql += ' and Job_Status__c = \''+jobAlloc.Job_Status__c+'\'';
+        soql += ' and Job_Status__c = \''+jobAlloc.Job_Status__c+Amr_ConstantForAdManager.SLASH;
               
          }
          if(String.isNotBlank(jobAlloc.Started__c)){
-        soql += ' and Started__c = \''+jobAlloc.Started__c+'\'';
+        soql += ' and Started__c = \''+jobAlloc.Started__c+Amr_ConstantForAdManager.SLASH;
               
          }
          if(String.isNotBlank(jobAlloc.Reported__c)){
-        soql += ' and Reported__c = \''+jobAlloc.Reported__c+'\'';
+        soql += ' and Reported__c = \''+jobAlloc.Reported__c+Amr_ConstantForAdManager.SLASH;
               
          }
          system.debug('jobAlloc.Job_Shared__c!!'+jobAlloc.Job_Shared__c);
          if(String.isNotBlank(jobAlloc.Job_Shared__c)){
-        soql += ' and Job_Shared__c = \''+jobAlloc.Job_Shared__c+'\'';
+        soql += ' and Job_Shared__c = \''+jobAlloc.Job_Shared__c+Amr_ConstantForAdManager.SLASH;
               
          }
          if(String.isNotBlank(addNumber)){
@@ -610,16 +618,16 @@ Returns:
               
          }    /* Project name dropdown
          if(String.isNotBlank(projectName)){
-        soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(projectName)+'\'';
+        soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(projectName)+Amr_ConstantForAdManager.SLASH;
               
          } 
          if(String.isNotBlank(projectName)){
-        soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';projectNameText 
+        soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+Amr_ConstantForAdManager.SLASH;projectNameText 
               
          } */
          
           if(String.isNotBlank(projectNameText)){
-        soql += ' and AM_Job_Detail__r.Project_Details__r.Name LIKE \''+'%'+String.escapeSingleQuotes(projectNameText)+PERCENT;  //'\'';
+        soql += ' and AM_Job_Detail__r.Project_Details__r.Name LIKE \''+'%'+String.escapeSingleQuotes(projectNameText)+PERCENT;  //Amr_ConstantForAdManager.SLASH;
                      
          }
           System.debug('Project Name -->>>  ' + projectNameText);
@@ -658,7 +666,7 @@ Returns:
             getLiveJobs();
         }
         catch(exception ex){
-            
+            	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
                 system.debug(ex.getmessage());
                 return null;
        }    
@@ -699,6 +707,7 @@ Returns:
            paginationMethodForPriorityJobs(priorityJobList);
           
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -738,6 +747,7 @@ Returns:
           pendingJobList = Database.query(pendingSoql);
           paginationMethodForPendingJobs(pendingJobList);
           }catch(Exception ex){
+          	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
           
@@ -777,6 +787,7 @@ Returns:
           system.debug('dormantJobList !!!'+dormantJobList);
           paginationMethodForDormantJobs(dormantJobList);
          }catch(Exception ex){
+         	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
          }
           
@@ -815,6 +826,7 @@ Returns:
           liveJobList = Database.query(liveSoql);
           paginationMethodForLiveJobs(liveJobList);  
        }catch(Exception ex){
+       	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
        }
        
@@ -866,6 +878,7 @@ Returns:
             }
                 system.debug('pendingJobsToShow!!'+pendingJobsToShow.size()+'lstPendingJobsNew!!'+lstPendingJobsNew.size());
           }catch(Exception ex){
+          	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
           }
@@ -886,6 +899,7 @@ Returns:
                 }       
             }
        }catch(Exception ex){
+       	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -918,6 +932,7 @@ Returns:
                 }
             }
          }catch(Exception ex){
+         	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -930,6 +945,7 @@ Returns:
                 pendingJobsToShow.add(lstPendingJobsNew.get(i));
             }
           }catch(Exception ex){
+          	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -946,6 +962,7 @@ Returns:
                     pendingJobsToShow.add(lstPendingJobsNew.get(i));
             }
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
           }
@@ -1006,6 +1023,7 @@ Returns:
             }
              system.debug('******priorityJobsToShow'+priorityJobsToShow);
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
           }
@@ -1024,6 +1042,7 @@ Returns:
                 }       
             }
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -1043,6 +1062,7 @@ Returns:
                 }
             }
           }catch(Exception ex){
+          	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -1055,6 +1075,7 @@ Returns:
                 priorityJobsToShow.add(lstpriorityJobsNew.get(i));
             }
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -1071,6 +1092,7 @@ Returns:
                     priorityJobsToShow.add(lstpriorityJobsNew.get(i));
             }
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
           }
@@ -1128,6 +1150,7 @@ Returns:
                 }
             }
          }catch(Exception ex){
+         	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }   
           }
@@ -1146,6 +1169,7 @@ Returns:
                 }       
             }
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -1164,6 +1188,7 @@ Returns:
                 }
             }
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -1176,6 +1201,7 @@ Returns:
                 dormantJobsToShow.add(lstDormantJobsNew.get(i));
             }
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -1192,6 +1218,7 @@ Returns:
                     dormantJobsToShow.add(lstDormantJobsNew.get(i));
             }
             }catch(Exception ex){
+            	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
           }
@@ -1252,6 +1279,7 @@ Returns:
                 }
             }
           }catch(Exception ex){
+          	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }  
           }
@@ -1270,6 +1298,7 @@ Returns:
                 }       
             }
         }catch(Exception ex){
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }    
         }
@@ -1288,6 +1317,7 @@ Returns:
                 }
             }
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -1301,6 +1331,7 @@ Returns:
                 liveJobsToShow.add(lstLiveJobsNew.get(i));
             }
           }catch(Exception ex){
+          	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -1320,6 +1351,7 @@ Returns:
                     liveJobsToShow.add(lstLiveJobsNew.get(i));
             }
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
           }
@@ -1361,6 +1393,7 @@ Returns:
                system.debug('******priorityJobsToShow'+priorityJobsToShow);
              }
           }catch(Exception ex){
+          	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }  
         }
@@ -1385,6 +1418,7 @@ Returns:
                system.debug('******pendingJobsToShow'+pendingJobsToShow);
              }
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           } 
         }
@@ -1411,6 +1445,7 @@ Returns:
                system.debug('******dormantJobsToShow'+dormantJobsToShow);
              }
             }catch(Exception ex){
+            	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -1435,6 +1470,7 @@ Returns:
                system.debug('******liveJobsToShow'+liveJobsToShow.size());
              }
             }catch(Exception ex){
+            	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
@@ -1446,11 +1482,12 @@ Returns: pageRef.
 ************************************************************************************************************************************/   
      public PageReference jobSheetPageTransfer(){
           try{
-           PageReference pageRef = new PageReference('/apex/Amr_JobSheet');
+           PageReference pageRef = new PageReference(Label.Amr_JobSheet);
            pageRef.getParameters().put('id',chosenId);
            pageRef.setRedirect(true);
            return pageRef;
            }catch(Exception ex){
+           	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
             return null;
           }
@@ -1477,16 +1514,21 @@ Returns:
            alertList = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today limit 50000];          
            totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false AND New_Alert__c= today limit 50000];
           }catch(Exception ex){
+          	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
           }
         }
         
         public pageReference clearJob(){
-                
-                PageReference pageRef = new PageReference('/apex/Amr_RAPJobPortfolio');
+             try{   
+                PageReference pageRef = new PageReference(Label.Amr_RAPJobPortFolio);
                 pageRef.setRedirect(true);
                 return pageRef;
-                
+             }catch(Exception ex){
+             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+             system.debug(ex.getMessage());
+             return null;
+             }     
         return null;
         }
     

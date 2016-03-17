@@ -208,7 +208,7 @@
             <div class="leftbar">
                 <div class="leftbar-container1 bg-g1 margin-btwn-container">
                     <div class="leftbar-container-header dark-blue-header">
-                        Search &amp; Filter
+                        {!$Label.Amr_Search} &amp; {$Label.Amr_Filter}
                     </div>
                     <div class="leftbar-container-content margin12 padding12 bg-w8">
 
@@ -224,7 +224,7 @@
                         </div>                      
                         <div class="inputpanel">
                             <div class="left inputpanel-first">
-                                Category
+                                {!$Label.Amr_Category}
                             </div>
                             <div class="clear  inputclass">
                                 <!--  
@@ -244,7 +244,7 @@
                         </div>
                         <div class="inputpanel">
                             <div class="left inputpanel-first">
-                                Brand position name 
+                                {!$Label.Amr_Brand_Position_Name}
                             </div>
                             <div class="clear  inputclass">
                                 <apex:selectList id="brandPosPick" value="{!brandPos}" size="1" multiselect="false" >
@@ -262,7 +262,7 @@
                         </div>
                         <div class="inputpanel">
                             <div class="left inputpanel-first">
-                                Brand name
+                               {!$Label.Amr_Brand_Name}
                             </div>
                             <div class="clear  inputclass">
                                 <apex:selectList id="brandPick" value="{!brandName}" size="1" multiselect="false" >
@@ -293,7 +293,7 @@
                         </div>
                         <div class="inputpanel" id="projectNameOther">
                             <div class="clear inputclass">
-                                Other
+                                 {!$Label.Amr_Other}
                             </div>
                             <div class="clear  inputclass">
                                 <apex:inputField value="{!jobDetails.Project_Name_Other__c}"   />
@@ -317,7 +317,7 @@
                                 <a class = "advance-popup" href="#">Advanced Search</a>
                             </div> -->
                             <div class="left inputclass bold padding-top10">
-                                        <a class = "advance-popup" href="#">Advanced Search</a>
+                                        <a class = "advance-popup" href="#">{!$Label.Amr_Advanced_Search}</a>
                                     </div>
                             <div class="right">
                                 <apex:commandButton styleClass="commonbtn-blue" value="Apply" action="{!getJobSearchDetails}" reRender="listRefresh,lstcancelid" status="actionStatusSearchFilter"></apex:commandButton>
@@ -346,7 +346,7 @@
                    
                     <div class="inputpanel" >
                             <div class="clear inputclass">
-                                AdManager Number
+                               {!$Label.Amr_AdManager_Number}
                             </div>
                             <div class="clear  inputclass">
                              <!--   <apex:inputField value="{!advSearchjobDet.AM_Job_Detail__r.AdManagerText__c}" styleClass="test"  /> -->
@@ -358,7 +358,7 @@
                     </div>
                     <div class="inputpanel" >
                             <div class="clear inputclass">
-                               Date logged
+                               {!$Label.Amr_Date_logged}
                             </div>
                             <div class="clear  inputclass">
                                 <input type="text" id="datepicker" onchange="callActionFunctionStartDate(this.value);" /> 
@@ -369,7 +369,7 @@
                     </div>
                     <div class="inputpanel" >
                             <div class="clear inputclass">
-                                Project leader email
+                                {!$Label.Amr_Project_leader_email}
                             </div>
                             <div class="clear  inputclass">
                               <!--  <apex:inputField value="{!advSearchjobDet.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}"   />-->
@@ -391,7 +391,7 @@
                     </div>  -->
                    <div class="inputpanel" >
                             <div class="clear inputclass">
-                                Stage of production activity
+                                {!$Label.Amr_Stage_of_production_activity}
                             </div>
                             <div class="clear  inputclass">
                               
@@ -404,7 +404,7 @@
                 <!--
                     <div class="inputpanel" >
                             <div class="clear inputclass">
-                                Lead agency name
+                                 {!$Label.Amr_Lead_agency_name}
                             </div>
                             <div class="clear  inputclass">
                               <!--  <apex:inputField value="{!advSearchjobDet.AM_Job_Detail__r.Lead_Creative_Agency_name__c}"   />-->  <!--
@@ -416,7 +416,7 @@
                 -->
                      <div class="inputpanel" >
                             <div class="clear inputclass">
-                                Allocated budget(euro)
+                                {!$Label.Amr_Allocated_budget_euro}
                             </div>
                             <div class="clear  inputclass">
                                 <!-- <apex:inputField value="{!advSearchjobDet.AM_Job_Detail__r.Allocated_Budget_euro__c}"   />-->
@@ -427,7 +427,7 @@
                     </div> <!--
                      <div class="inputpanel" >
                             <div class="clear inputclass">
-                                Production Support
+                               {!$Label.Amr_Production_Support}
                             </div>
                             <div class="clear  inputclass">
                                <!-- <apex:inputField value="{!advSearchjobDet.AM_Job_Detail__r.Production_Activity_Type__c}"   />--> <!--
@@ -439,7 +439,7 @@
             <!--
                      <div class="inputpanel" >
                             <div class="clear inputclass">
-                                Job Status
+                                {!$Label.Amr_Job_Status}
                             </div>
                             <div class="clear  inputclass">
                               
@@ -450,7 +450,7 @@
                     </div>
                         <div class="inputpanel" >
                             <div class="clear inputclass">
-                                Job Started
+                                 {!$Label.Amr_Job_Started}
                             </div>
                             <div class="clear  inputclass">
                               
@@ -461,7 +461,7 @@
                     </div>
                       <div class="inputpanel" >
                             <div class="clear inputclass">
-                                Job Shared
+                                {!$Label.Amr_Job_Shared}
                             </div>
                             <div class="clear  inputclass">
                               
@@ -473,7 +473,7 @@
                    
                       <div class="inputpanel" >
                             <div class="clear inputclass">
-                               Job Reported
+                                {!$Label.Amr_Job_Reported}
                             </div>
                             <div class="clear  inputclass">
                               
@@ -511,7 +511,7 @@
                 </apex:actionFunction>
                 <div class="joblist-main-section bg-g1">                
                 <h4 class="main_inner_sectionh4">
-                    Job List
+                    {!$Label.Amr_Job_List}
                     <div data-id="joblist-section" class="commonall foldclass">                                     
                     </div>
                 </h4>
@@ -643,7 +643,7 @@
                                                 <apex:column value="{!job.Job_Shared__c}" headerValue="Shared"/>-->
                                         </apex:pageBlockTable>
                                         <div class="no-data" style="display:{!if(activeJobsToShow.size=0 , '', 'none')}" >
-                                            There is no data to display
+                                             {!$Label.Amr_There_is_no_data_to_display}
                                         </div>                                        
                                         <!-- <apex:actionStatus id="actStatusId3" >
                                             <apex:facet name="start" >
@@ -685,7 +685,7 @@
                 <div class="cancelled-joblist-main-section bg-g1 margin-top30">
                 
                 <h4 class="main_inner_sectionh4">
-                    Cancelled Jobs List
+                   {!$Label.Amr_Cancelled_Jobs_List}
                     <div data-id="joblist-cancelled-section" class="commonall openclass">                                     
                     </div>
                 </h4>
@@ -832,7 +832,7 @@
                                                     <apex:column value="{!job.sObjRec.Job_Shared__c}" headerValue="Shared"/>-->
                                             </apex:pageBlockTable>
                                             <div class="no-data" style="display:{!if(WrapperList.size=0 , '', 'none')}" >
-                                                There is no data to display
+                                                {!$Label.Amr_There_is_no_data_to_display}
                                             </div>                                          
                                         </apex:pageBlock>                                       
                                         <!--   <apex:outputPanel rendered="{!showPageButtonForCancel}" styleClass="pagination">-->

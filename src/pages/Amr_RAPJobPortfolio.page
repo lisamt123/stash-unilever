@@ -382,7 +382,7 @@
                 
                 <div class="leftbar-container bg-g1 margin-btwn-inner-container">
                     <div class="leftbar-container-header dark-blue-header">
-                        Dashboard
+                        {!$Label.Amr_Dashboard}
                     </div>
                     <div class="leftbar-container-content margin12 bg-w8" style="text-align: center;">
                         <div class="leftbar-container-content93">
@@ -741,7 +741,7 @@
                     </div>
                         <div class="inputpanel" >
                             <div class="clear inputclass">
-                                Job Started
+                               {!$Label.Amr_Job_Started}
                             </div>
                             <div class="clear  inputclass">
                               
@@ -752,7 +752,7 @@
                     </div>
                       <div class="inputpanel" >
                             <div class="clear inputclass">
-                                Job Shared
+                                {!$Label.Amr_Job_Shared}
                             </div>
                             <div class="clear  inputclass">
                               
@@ -764,7 +764,7 @@
                    
                       <div class="inputpanel" >
                             <div class="clear inputclass">
-                               Job Reported
+                                {!$Label.Amr_Job_Reported}
                             </div>
                             <div class="clear  inputclass">
                               
@@ -814,7 +814,7 @@
                   
                         <div class="margin-btwn-container12">
                             <div class="left popup-header">
-                                Alert
+                                {!$Label.Amr_Alert}
                             </div>
                             <div class="right popup-close">                                
                                 <apex:commandLink styleClass="cancel-alert-popup"  >
@@ -832,21 +832,21 @@
                                                         <apex:pageBlockTable value="{!alertList}" var="alertVar">
                                                             
                                                             <apex:column value="{!alertVar.New_Alert__c}" >
-                                                                 <apex:facet name="header">Date</apex:facet>
+                                                                 <apex:facet name="header">{!$Label.Amr_Date}</apex:facet>
                                                                  
                                                             </apex:column>
                                                             <apex:column >
                                                             <apex:commandLink value="{!alertVar.job_Id__r.AdManagerText__c}"  action="{!jobSheetPageTransfer}"  >
                                                                       <apex:param name="chosenId" value="{!alertVar.Job_Id__c}" assignTo="{!chosenId}"/>
                                                                  </apex:commandLink>
-                                                                <apex:facet name="header">AD-ID</apex:facet>
+                                                                <apex:facet name="header">{!$Label.Amr_AD_ID}</apex:facet>
                                                              </apex:column>
                                                             <apex:column value="{!alertVar.Alert_Message__c}">
-                                                                <apex:facet name="header">Alert Message</apex:facet>
+                                                                <apex:facet name="header">{!$Label.Amr_Alert_Message}</apex:facet>
                                                              </apex:column>
                                                             <apex:column >
-                                                                <apex:facet name="header">Action</apex:facet>                                                                
-                                                                      <a class="hide-alert" href="#">Remove</a>
+                                                                <apex:facet name="header">{!$Label.Amr_Action}</apex:facet>                                                                
+                                                                      <a class="hide-alert" href="#">{!$Label.Amr_Remove}</a>
                                                                       <input type = "Hidden" value = "{!alertVar.id}" />                                                                  
                                                             </apex:column>
                                                         </apex:pageBlockTable>
@@ -991,7 +991,7 @@
                                              </apex:pageBlockSection>
                                            
                                             <div class="no-data" style="display:{!if(pendingJobsToShow.size==0 , '', 'none')}" >
-                                                There is no data to display
+                                               {!$Label.Amr_There_is_no_data_to_display}
                                             </div>                                       
                                         </apex:pageBlock>                                       
                                    </div>    
@@ -1152,7 +1152,7 @@
                                             </apex:pageBlockSection>
                                               
                                                 <div class="no-data" style="display:{!if(liveJobsToShow.size=0,'','none')}" >
-                                                      There is no data to display
+                                                     {!$Label.Amr_There_is_no_data_to_display}
                                                 </div> 
               
                                     </apex:pageBlock>
@@ -1283,7 +1283,7 @@
                                              </apex:pageBlockSection>
                                               
                                             <div class="no-data" style="display:{!if(PriorityJobsToShow.size=0 , '', 'none')}" >
-                                                There is no data to display
+                                                {!$Label.Amr_There_is_no_data_to_display}
                                             </div>
                                            
                                             <!-- <apex:outputPanel rendered="{!showPageButtonForPriority}" styleClass="pagination">-->
@@ -1415,7 +1415,7 @@
                                             </apex:pageBlockTable>
                                              </apex:pageBlockSection>
                                             <div class="no-data" style="display:{!if(DormantJobsToShow.size=0 , '', 'none')}" >
-                                                There is no data to display
+                                                {!$Label.Amr_There_is_no_data_to_display}
                                             </div>
                                             <!--   <apex:outputPanel rendered="{!showPageButtonForDormant}"  styleClass="pagination">-->                                            
                                     </apex:pageBlock>

@@ -35,7 +35,7 @@
             <div class="leftbar bg-g1">
                 <div class="leftbar-container bg-g1 margin-btwn-container">
                     <div class="leftbar-container-header dark-blue-header">
-                        Search &amp; Filter
+                        {!$Label.Amr_Search} &amp; {$Label.Amr_Filter}
                     </div>
                     <div class="leftbar-container-content margin12 bg-w8 padding12 initial-search" style="min-height:244px;">
                         <div class="input-section">
@@ -82,7 +82,7 @@
                                 </div>
                             </div> -->
                             <div class="job-field-parent displayinlineblock">
-                                <div class="job-field-label">Production Activity Type</div>
+                                <div class="job-field-label">{!$Label.Amr_Production_activity_type}</div>
                                 <div class="job-field-input">
                                     <apex:inputField value="{!savingObject.Production_Type__c}" />
                                 </div>
@@ -94,14 +94,14 @@
                             </div> 
                              
                             <div class="job-field-parent displayinlineblock">
-                                <div class="job-field-label">Category</div>
+                                <div class="job-field-label">{!$Label.Amr_Category}</div>
                                 <div class="job-field-input">
                                     <select id="categoryList" size="1" onchange="transferCategoryValue(this.value)" reRender="brandPosPick" class="categorySelected"></select>
                                 </div>
                             </div>
                                
                             <div class="job-field-parent displayinlineblock">
-                                <div class="job-field-label">Brand Position</div>
+                                <div class="job-field-label">{!$Label.Amr_Brand_Position_Name}</div>
                                 <div class="job-field-input">
                                     <apex:actionRegion >
                                         <apex:selectList id="brandPosPick" value="{!brandPosName}" size="1">
@@ -114,25 +114,25 @@
                             
                             <div class = "cap-section" style = "display:{!if(permissionSetName = 'CAP','','none')}">        <!-- display:{!if(permissionSetName = 'CAP','','none')} -->
                                     <div class="job-field-parent displayinlineblock">
-                                        <div class="job-field-label">Budget Responsibility</div>
+                                        <div class="job-field-label">{!$Label.Amr_Budget_Responsibility}</div>
                                         <div class="job-field-input">
                                             <apex:inputField value="{!jobDetailObj.Budget_Responsibility__c}" html-placeholder="Budget Responsibility"/>
                                         </div>
                                     </div>
                                     <div class="job-field-parent displayinlineblock">
-                                        <div class="job-field-label">Region</div>
+                                        <div class="job-field-label">{!$Label.Amr_Region}</div>
                                         <div class="job-field-input">
                                             <apex:inputField value="{!jobDetailObj.Project_Leader_Cluster__c}" />
                                         </div>
                                     </div>
                                     <div class="job-field-parent displayinlineblock">
-                                        <div class="job-field-label">Country</div>
+                                        <div class="job-field-label">{!$Label.Amr_Country}</div>
                                         <div class="job-field-input">
                                         <apex:inputField value="{!jobDetailObj.Project_Leader_Country__c}" />  
                                         </div>
                                     </div>
                                     <div class="job-field-parent displayinlineblock">
-                                         <div class="job-field-label">RAP Name</div>
+                                         <div class="job-field-label">{!$Label.Amr_RAP_Name}</div>
                                         <apex:selectList label="Select the user Name"  size="1" value="{!selectedRapName}" >
                                             <apex:selectOptions value="{!rapNameList}" />
                                         </apex:selectList>
@@ -144,7 +144,7 @@
 
                         </div>
                         <div class="left bold inputclass padding-top10">
-                            <a class="advance-popup" href="#">Advanced Search</a>
+                            <a class="advance-popup" href="#">{!$Label.Amr_Advanced_Search}</a>
                         </div>
                         <div class="right">
                             <div class="right">
@@ -168,7 +168,7 @@
             <div class="advance-search-popup popup-window hide">
                 <div class="margin-btwn-container12">
                     <div class="left popup-header">
-                        Advanced Search
+                           {!$Label.Amr_Advanced_Search}
                     </div>
                     <div class="right popup-close cancel-advance-popup pointer">                        
                         <img src="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_ClosePopup.png')}" alt="close" />                        
@@ -193,26 +193,26 @@
                     </div>  
                    -->
                     <div class="job-field-parent displayinlineblock margin-top0imp">
-                        <div class="job-field-label">No Of Masters</div>
+                        <div class="job-field-label">{!$Label.Amr_No_Of_Masters}</div>
                         <div class="job-field-input">
                             <apex:inputField value="{!savingObject.No_of_Masters__c}" />
                         </div>
                     </div>
                     <div class="job-field-parent displayinlineblock margin-top0imp">
-                        <div class="job-field-label">Duration Of Masters</div>
+                        <div class="job-field-label">{!$Label.Amr_Duration_of_Masters}</div>
                         <div class="job-field-input">
                             <apex:inputField value="{!savingObject.Duration_of_Masters__c}" />
                         </div>
                     </div>
 
                     <div class="job-field-parent displayinlineblock">
-                        <div class="job-field-label">Total No Of Films</div>
+                        <div class="job-field-label">{!$Label.Amr_Total_No_of_Films}</div>
                         <div class="job-field-input">
                             <input type="text" class="inputTextCommon1" onchange="callActionFunctionTotalFilms(this.value);" />
                         </div>
                     </div>
                     <div class="job-field-parent displayinlineblock">
-                        <div class="job-field-label">No Of Shoot Days</div>
+                        <div class="job-field-label">{!$Label.Amr_No_of_Shoot_Days}</div>
                         <div class="job-field-input">
                             <apex:inputField value="{!savingObject.No_of_shoot_days__c}" />
                         </div>

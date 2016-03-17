@@ -697,20 +697,20 @@
             border-radius: 0 40px 0 0 !important;
             border-image-slice: 0 100% 0 0;
 		    border-image-source: url("/resource/1458112864000/Amr_static_resources/Amr-static-resource/images/Img_TabWhite.png") !important;
-		    border-image-width: 0 10px 0 0 !important;
-		    border-image-outset: 0 10px 0 10px !important;
+		    border-image-width: 0 20px 0 0 !important;
+		    border-image-outset: 0 20px 0 10px !important;
              
             }
             
             .rich-tab-inactive {
             border-image-slice: 0 100% 0 0 !important;
 		    border-image-source: url("/resource/1458112864000/Amr_static_resources/Amr-static-resource/images/Img_TabPurple.png") !important;
-		    border-image-width: 0 10px 0 0 !important;
-		    border-image-outset: 0 10px 0 10px !important;
+		    border-image-width: 0 20px 0 0 !important;
+		    border-image-outset: 0 20px 0 10px !important;
              
             }
             .rich-tabhdr-side-cell table {
-            	margin-right: 10px;
+            	margin-right: 20px;
             	background:#FFFFFF !important;
             }            
     </style>

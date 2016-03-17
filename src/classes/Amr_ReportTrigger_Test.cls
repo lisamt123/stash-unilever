@@ -22,6 +22,7 @@ public with sharing class Amr_ReportTrigger_Test{
                                             Function_You_Are_Part__c = 'BD',Project_Location_Cluster__c = 'Latin America',ProductCategory__c = productCategory1.id);
         insert jobDetailsObj1;
         
+        system.assert(jobDetailsObj1!=null);
     }
     
 }
