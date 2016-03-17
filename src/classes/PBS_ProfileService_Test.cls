@@ -1,11 +1,14 @@
 @isTest
 private class PBS_ProfileService_Test {
 
-	@isTest
+    private static final string LEVEL1 = 'Level 1';
+    private static final string EUROPE = 'Europe';
+    
+    @isTest
     static void getPicklistOptions() {
         Test.startTest();
 
-		List<String> result  = PBS_ProfileService.getPicklistOptions('PBS_Profile__c', 'Geography__c', false);
+        List<String> result  = PBS_ProfileService.getPicklistOptions('PBS_Profile__c', 'Geography__c', false);
         System.assertEquals(false, result.isEmpty(), 'No picklist value available');
 
         List<String> result2 = PBS_ProfileService.getPicklistOptions('PBS_Profile__c', 'Geography__c', true);
@@ -21,9 +24,9 @@ private class PBS_ProfileService_Test {
         System.assertEquals(true, emptyValueFound, 'Empty value was not found');
 
         Test.stopTest();
-	}
+    }
 
-	@isTest
+    @isTest
     static void getCurrentUserProfile() {
         Test.startTest();
 
@@ -38,7 +41,7 @@ private class PBS_ProfileService_Test {
         String userId = UserInfo.getUserId();
         System.assertEquals(0, [SELECT Id FROM PBS_Profile__c WHERE User__c = :userId].size(), 'User profile should not exist');
 
-		PBS_Profile__c profile = PBS_ProfileService.getCurrentUserProfile();
+        PBS_Profile__c profile = PBS_ProfileService.getCurrentUserProfile();
         System.assertEquals('Guest', profile.Work_Level__c, 'Work Level not initialized to Guest');
         System.assertEquals('Guest', profile.Geography__c,  'Geography not initialized to Guest');
         System.assertEquals(sjp.Id,  profile.User_Role__c,  'Role not initialized to Guest');
@@ -54,7 +57,7 @@ private class PBS_ProfileService_Test {
         System.assertEquals(sjp2.Id, profile.User_Role__c,  'Role not valid');
 
         Test.stopTest();
-	}
+    }
 
     @isTest
     static void isUpdateRequiredProfile() {
@@ -167,8 +170,8 @@ private class PBS_ProfileService_Test {
 
         Training_Track__c t1 = new Training_Track__c(
             Name                        = 'Test Name',
-            Work_Level__c               = 'Level 1',
-            Geography__c                = 'Europe',
+            Work_Level__c               = LEVEL1,
+            Geography__c                = EUROPE,
             PBS_Standard_Job_Profile__c = sjp.Id
         );
         insert t1;
@@ -227,7 +230,7 @@ private class PBS_ProfileService_Test {
         insert u;
 
         PBS_Standard_Job_Profile__c sjp = PBS_TestHelper.createJobProfile('Guest');
-        Training_Track__c t1            = PBS_TestHelper.createTrainingTrack('Test Name', 'Level 1', 'Europe', sjp.Id);
+        Training_Track__c t1            = PBS_TestHelper.createTrainingTrack('Test Name', LEVEL1, EUROPE, sjp.Id);
 
         PBS_Profile__c p1 = new PBS_Profile__c(
             Work_Level__c = t1.Work_Level__c,
@@ -305,12 +308,12 @@ private class PBS_ProfileService_Test {
 
         PBS_Profile__c p1 = new PBS_Profile__c(
             Work_Level__c = 'Level 2',
-            Geography__c  = 'Europe',
+            Geography__c  = EUROPE,
             user_role__c  = sjp.Id,
             user__c       = u.Id
         );
         insert p1;
-        Training_Track__c t1 = PBS_TestHelper.createTrainingTrack('Test Name', 'Level 1', p1.Geography__c, p1.user_role__c);
+        Training_Track__c t1 = PBS_TestHelper.createTrainingTrack('Test Name', LEVEL1, p1.Geography__c, p1.user_role__c);
 
 
         PBS_ProfileService.PBS_ProfileWithoutSharing serviceObj = new PBS_ProfileService.PBS_ProfileWithoutSharing();
@@ -362,8 +365,8 @@ private class PBS_ProfileService_Test {
         PBS_Standard_Job_Profile__c sjp = PBS_TestHelper.createJobProfile('Guest');
 
         PBS_Profile__c p1 = new PBS_Profile__c(
-            Work_Level__c = 'Level 1',
-            Geography__c  = 'Europe',
+            Work_Level__c = LEVEL1,
+            Geography__c  = EUROPE,
             user_role__c  = sjp.Id,
             user__c       = u.Id
         );
@@ -426,7 +429,7 @@ private class PBS_ProfileService_Test {
     {
         Test.startTest();
         PBS_Standard_Job_Profile__c sjp = PBS_TestHelper.createJobProfile('Guest');
-        Training_Track__c t1            = PBS_TestHelper.createTrainingTrack('Test', 'Level 1', 'Europe', sjp.Id);
+        Training_Track__c t1            = PBS_TestHelper.createTrainingTrack('Test', LEVEL1, EUROPE, sjp.Id);
 
         try {
             PBS_ProfileService.PBS_ProfileWithoutSharing serviceObj = new PBS_ProfileService.PBS_ProfileWithoutSharing();
