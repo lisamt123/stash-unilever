@@ -200,9 +200,9 @@ private class CPA_PWORF_PWO_UtilMethods_Test {
         
         CPA_Trigger_Pattern__c queryTriggerPattern = CPA_testStatusMsgCustomSettingClass.createTest_QueryTriggerPattern();
         insert queryTriggerPattern;
-        CPA_Group__c groupSMT =CPA_testStatusMsgCustomSettingClass.createTest_CPA_Group();
+        CPA_Group__c groupSMT =CPA_testGroupNameCustomSettingClass.createTest_CPA_Group();
         insert groupSMT;
-        CPA_Group__c groupULPM =CPA_testStatusMsgCustomSettingClass.createTest_CPA_GroupULPM();
+        CPA_Group__c groupULPM =CPA_testGroupNameCustomSettingClass.createTest_CPA_GroupULPM();
         insert groupULPM;
         Test.startTest();
         	CPA_PWORF__c objPworf12 = CPA_testPWORFClass_util.createTest_RA_PWORF();
@@ -226,7 +226,7 @@ private class CPA_PWORF_PWO_UtilMethods_Test {
         
         CPA_Trigger_Pattern__c queryCommentTriggerPattern = CPA_testStatusMsgCustomSettingClass.createTest_Query_commentTriggerPattern();
         insert queryCommentTriggerPattern;
-        CPA_Group__c groupSMT =CPA_testStatusMsgCustomSettingClass.createTest_CPA_Group();
+        CPA_Group__c groupSMT =CPA_testGroupNameCustomSettingClass.createTest_CPA_Group();
         insert groupSMT;
         Test.startTest();
         	CPA_PWORF__c objPworf12 = CPA_testPWORFClass_util.createTest_RA_PWORF();

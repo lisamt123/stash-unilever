@@ -1532,7 +1532,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <picklistValues>
                 <fullName>No</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -1672,7 +1672,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </picklistValues>
             <picklistValues>
                 <fullName>No</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -2733,7 +2733,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             <picklist>pkl_Breach_Applicable__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Yes</fullName>
@@ -2824,7 +2824,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             <picklist>pkl_Penalty_Applicable__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Yes</fullName>
@@ -3260,7 +3260,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             <picklist>pkl_Breach_Applicable__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Yes</fullName>
@@ -3351,7 +3351,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             <picklist>pkl_Penalty_Applicable__c</picklist>
             <values>
                 <fullName>No</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Yes</fullName>

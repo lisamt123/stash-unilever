@@ -208,10 +208,6 @@
                 <behavior>Edit</behavior>
                 <field>txta_Third_Party_Details__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>dt_Date_Of_Acceptance__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -506,7 +502,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>dat_SLA1_Accepted_Date__c</field>
+                <field>dt_Date_Of_Acceptance__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

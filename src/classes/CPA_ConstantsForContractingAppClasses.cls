@@ -44,6 +44,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String READYTOSUBMIT= 'Ready To Submit';
     public static final String PDF = 'pdf';
     public static final String PLAN_ANALYSE = 'plan; analyse';
+    public static final String PWOISTERMINATED= 'PWO is Terminated';
     
     public static final String EUROPE = 'Europe';
     public static final String ONETWOTHREE = '123';

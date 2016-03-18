@@ -477,7 +477,7 @@ public with sharing class CPA_AttachmentUtil {
                         intOther = intOther +  objCOm.num_Value__c;
                     }
                 }
-                objPWO.num_Estimated_Value_of_PWO__c = (intCostResource + intRMS + intContingencyCharges + intNonPayroll + intAuthorisation+intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
+                objPWO.num_Estimated_Value_of_PWO__c = (intCostResource  + intContingencyCharges + intNonPayroll +intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
                 objPWO.num_Estimated_Man_days_of_PWO__c = intTotalmandays;
                 if(intTotalmandays> 0){
                     objPWO.num_Varied_Target_Blend_Rate__c = intCostResource / intTotalmandays;
@@ -592,7 +592,7 @@ public with sharing class CPA_AttachmentUtil {
                         intOther = intOther +  objCOm.num_Value__c;
                     }
                 }
-                objCR.num_Estimated_Value_of_CR__c = (intCostResource + intRMS + intContingencyCharges + intNonPayroll + intAuthorisation+intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
+                objCR.num_Estimated_Value_of_CR__c = (intCostResource + intContingencyCharges + intNonPayroll +intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
                 objCR.num_Estimated_Man_days_of_CR__c = intTotalmandays;
                 objCR.num_Total_Resource_Efforts_CR__c = intTotalmandays;
                 if(intTotalmandays> 0){

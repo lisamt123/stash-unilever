@@ -1533,7 +1533,7 @@
     </listViews>
     <nameField>
         <displayFormat>CR-{00000}</displayFormat>
-        <label>CR ID</label>
+        <label>Internal CR ID</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
@@ -3751,23 +3751,23 @@ var permissionSetName = records1[0].PermissionSet.Name;
 
 //alert(p.pkl_Status__c);
 if( permissionSetName == &quot;CPA_ADM&quot;){ 
- 
-	if(p.pkl_Status__c == &quot;Signed&quot; &amp;&amp; (pwoRecords[0].pkl_Status__c != &quot;Terminated&quot; || pwoRecords[0].pkl_Status__c != &quot;Sent For Termination&quot; || pwoRecords[0].pkl_Status__c != &quot;Request For Termination&quot;)){ 
-	p.pkl_Status__c = &quot;Delivered&quot;;	
-	p.dat_Actual_End_Date__c = today; 
-	result = sforce.connection.update([p]);
+
+if(p.pkl_Status__c == &quot;Signed&quot; &amp;&amp; (pwoRecords[0].pkl_Status__c != &quot;Terminated&quot; &amp;&amp; pwoRecords[0].pkl_Status__c != &quot;Sent For Termination&quot; &amp;&amp; pwoRecords[0].pkl_Status__c != &quot;Request For Termination&quot;)){ 
+p.pkl_Status__c = &quot;Delivered&quot;;	
+p.dat_Actual_End_Date__c = today; 
+result = sforce.connection.update([p]);
 // alert(result);
-	location.reload(true); 
-	} 
-	else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
-	alert(&quot;CR is already Delivered&quot;); 
-	}
-	else if(p.pkl_Status__c != &quot;Signed&quot;){ 
-	alert(&quot;CR can not be Delivered as it is not yet signed&quot;); 
-	} 
-	else { 
-	alert(&quot;CR can not be Delivered, Contact Administrator&quot;); 
-	} 
+location.reload(true); 
+} 
+else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
+alert(&quot;CR is already Delivered&quot;); 
+}
+else if(p.pkl_Status__c != &quot;Signed&quot;){ 
+alert(&quot;CR can not be Delivered as it is not yet signed&quot;); 
+} 
+else { 
+alert(&quot;CR can not be Delivered, Contact Administrator&quot;); 
+} 
 }
 else{
 alert(&quot;You are not authorized to perform this action.&quot;); 
@@ -3788,17 +3788,36 @@ var result = sforce.connection.query(soql);
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
 
+
+var soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_CR__c&apos; AND Name=&apos;CR Other&apos; limit 1&quot; ;
+var result = sforce.connection.query(soql); 
+var RecTypeRegular = result.getArray(&apos;records&apos;); 
+
+
+var soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_CR__c&apos; AND Name=&apos;Standalone CR&apos; limit 1&quot; ;
+var result = sforce.connection.query(soql); 
+var RecTypeStandAlone = result.getArray(&apos;records&apos;);
+
+
 if(permissionSetName == &quot;CPA_ADM&quot;  ){ 
 
-	if((&quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Accepted&quot; || &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Sent for Signature&quot;|| &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Signed&quot; || &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Delivered&quot;) ||&quot;{!CPA_project_work_order__c.Id}&quot; == &apos;&apos; ) 
-	{ 
-		window.open(&apos;/apex/CPA_CreatePWO?id={!CPA_project_work_order__c.Id}&apos;,&quot;_self&quot;); 
-	}else{ 
-		alert(&quot;CR can be created only if associated PWO is in Accepted/Sent for Signature/Signed/Delivered status&quot;); 
-	} 
+	if(&apos;{!CPA_project_work_order__c.Id}&apos; == &apos;&apos;){
+		//alert(&quot;StandAlone CR&quot;);
+		window.open(&quot;/&quot;+&quot;{!$Label.CPA_CR_Object_Id}/e?RecordType=&quot;+RecTypeStandAlone[0].Id+&quot;&amp;retURL={!$Label.CPA_CR_Object_Id}&quot;,&quot;_self&quot;); 
+	}else{
+		//alert(&quot;Regular CR&quot;);
+		if((&quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Accepted&quot; || &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Sent for Signature&quot;|| &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Signed&quot; || &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Delivered&quot;) ||&quot;{!CPA_project_work_order__c.Id}&quot; == &apos;&apos; ) 
+		{ 
+			//window.open(&apos;/apex/CPA_CreatePWO?id={!CPA_project_work_order__c.Id}&apos;,&quot;_self&quot;); 
+			window.open(&quot;/&quot;+&quot;{!$Label.CPA_CR_Object_Id}/e?RecordType=&quot;+RecTypeRegular[0].Id+&quot;{!$Label.CPA_PWO_Name_Field_Id}={!CPA_project_work_order__c.Name}&amp;{!$Label.CPA_PWO_Name_Field_Id}_lkid={!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
+		}else{ 
+			alert(&quot;CR can be created only if associated PWO is in Accepted/Sent for Signature/Signed/Delivered status&quot;); 
+		} 
 
-	} else{ 
-	alert(&quot;CR can be created by Accenture Demand Management Team only.&quot;); 
+	}
+		
+} else{ 
+alert(&quot;CR can be created by Accenture Demand Management Team only.&quot;); 
 }</url>
     </webLinks>
     <webLinks>

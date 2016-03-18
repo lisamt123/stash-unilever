@@ -35,73 +35,36 @@ public with sharing class CPA_Query_comment_Trigger_Handler
     public void bulkBefore()
     {   
         System.debug('Entering CPA_Queries_Trigger_Handler.bulkAfter');  
-        if(triggerShouldExecute){
-            if(Trigger.isInsert || Trigger.isUpdate) {
-                System.debug('inside isInsert');
-                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-                //if(Trigger.isInsert){
-                //}
-
-                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-                //if(Trigger.isUpdate) 
-                //{
-                    // Fill the Map with Participants Chatter Group memeberships for the program chatter group
-               // } 
-                           
-			}
-           
-		}
+        
     }
     
     public void bulkAfter()
     {
         System.debug('Entering CPA_Queries_Trigger_Handler.bulkAfter');  
 
-        //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-        //if(triggerShouldExecute){ 
-        //    if(Trigger.isInsert || Trigger.isUpdate) {
-
-                //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-                //if(Trigger.isUpdate) {
-                //}
-        //    }
-       // }
+       
     }
         
     public void beforeInsert(SObject so)
     {
         System.debug('Entering CPA_Queries_Trigger_Handler.beforeInsert');
         if(triggerShouldExecute){
-			 CPA_Queries_TriggerUtil.assigneduser(trigger.new);
+             CPA_Queries_TriggerUtil.assigneduser(trigger.new);
         }
     }
     
-    public void beforeUpdate(SObject oldSo, SObject so)
-    {
-        if(triggerShouldExecute){ 
-			
-        }
-    }
+    public void beforeUpdate(SObject oldSo, SObject so){}
+    
     
 
-    public void beforeDelete(SObject so)
-    {   
- 
-    }
+    public void beforeDelete(SObject so){}
+   
     
-    public void afterInsert(SObject so) 
-    {
-        if(triggerShouldExecute){
-
-        }
-    }
+    public void afterInsert(SObject so) {}
     
-    public void afterUpdate(SObject oldSo, SObject so)
-    {
-        if(triggerShouldExecute){
-
-        }
-    }
+    
+    public void afterUpdate(SObject oldSo, SObject so){}
+    
     
     /*******************************************************************
     Purpose: This method is present in interface, hence need to override

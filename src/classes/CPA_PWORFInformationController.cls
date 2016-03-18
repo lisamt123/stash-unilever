@@ -333,7 +333,7 @@ global with sharing class CPA_PWORFInformationController {
            // }
             
         }
-        CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(pworfRec.pkl_Status__c); 
+        /*CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(pworfRec.pkl_Status__c); 
         CPA_Status_Msg__c customSettingStatusMsg1 = CPA_Status_Msg__c.getInstance(CPA_ConstantsForContractingAppClasses.READYTOSUBMIT);
         
         if(customSettingStatusMsg1!=null && customSettingStatusMsg1.Status_Message__c != null && callFromVF && objectMap.isEmpty() && pworfRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED ){
@@ -341,15 +341,42 @@ global with sharing class CPA_PWORFInformationController {
         }
         else if(customSettingStatusMsg.Status_Message__c != null && callFromVF  ){
              ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.Status_Message__c));
+        }*/
+        String strMessage = getPWORFStatus(objectMap,pworfRec.pkl_Status__c,callFromVF);
+        if(callFromVF){ 
+        	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO,strMessage));
         }
         if(!objectMap.isEmpty()){ 
-                mandatoryStringFlag = CPA_ConstantsForContractingAppClasses.MANDATORYFIELDSMESSAGE;
+             mandatoryStringFlag = CPA_ConstantsForContractingAppClasses.MANDATORYFIELDSMESSAGE;
             return false;
         }  
         
         return true; 
         
     }
+    
+    
+    /*******************************************************************
+    Purpose: This method create message for requirement fields
+    Parameters: pworfRecordId
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    string getPWORFStatus(Map<String,String> objectMap,String status,boolean vfcall){
+        CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(status); 
+        CPA_Status_Msg__c customSettingStatusMsg1 = CPA_Status_Msg__c.getInstance(CPA_ConstantsForContractingAppClasses.READYTOSUBMIT);
+        
+        if(customSettingStatusMsg1!=null && customSettingStatusMsg1.Status_Message__c != null && vfcall && objectMap.isEmpty() && status == CPA_ConstantsForContractingAppClasses.SAVED ){
+          return customSettingStatusMsg1.Status_Message__c;
+        }
+        else if(customSettingStatusMsg.Status_Message__c != null && vfcall  ){
+             return customSettingStatusMsg.Status_Message__c;
+        }
+        return customSettingStatusMsg.Status_Message__c;
+    }
+    
+    
+    
     /*******************************************************************
     Purpose: This method flags message for requirement fields
     Parameters: pworfRecordId

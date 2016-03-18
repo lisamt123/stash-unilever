@@ -8631,7 +8631,7 @@ ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Saved&quot;)
         <requireRowSelection>true</requireRowSelection>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
 
-var p = new sforce.SObject(&apos;CPA_project_work_order__c&apos;); 
+var p = new sforce.SObject(&apos;CPA_PWORF__c&apos;); 
 p.id = &quot;{!CPA_PWORF__c.Id}&quot;; 
 
 soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
@@ -8652,18 +8652,22 @@ var RecTypeStandAlone = result.getArray(&apos;records&apos;);
 
 if(permissionSetName == &quot;CPA_SMT&quot; &amp;&amp; p.id ==&apos;&apos;){
 	//alert(&quot;Stand Alone&quot;);
-	window.open(&quot;/&quot;+&quot;{!$Label.CPA_PWO_Object_Id}/e?{!$Label.CPA_PWORF_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&amp;retURL=%2F{!$Label.CPA_PWO_Object_Id}&quot;,&quot;_self&quot;);
+	window.open(&quot;/&quot;+&quot;{!$Label.CPA_PWO_Object_Id}/e?{!$Label.CPA_PWORF_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&quot;+RecTypeStandAlone[0].Id+&quot;&amp;retURL=%2F{!$Label.CPA_PWO_Object_Id}&quot;,&quot;_self&quot;);
 }else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; p.id !=&apos;&apos; ){
 	//alert(&apos;Regular&apos;);
 	if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Auto Accepted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Accepted&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Answered&quot;) 
 	{ 
-		window.open(&quot;/&quot;+&quot;{!$Label.CPA_PWO_Object_Id}/e?{!$Label.CPA_PWORF_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;);
+		window.open(&quot;/&quot;+&quot;{!$Label.CPA_PWO_Object_Id}/e?{!$Label.CPA_PWORF_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&quot;+RecTypeRegular[0].Id+&quot;&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;);
 	}else{ 
 		alert(&quot;PWO can be created only if associated PWORF is in Accepted/Auto Accepted/Answered status&quot;); 
 	}
-}else{
+}
+else if(permissionSetName == &quot;CPA_ULPM&quot; &amp;&amp; p.id ==&apos;&apos;){
+	alert(&quot;Only SMT can create Standalone PWO.&quot;);
+}
+else{
 	if(p.id ==&apos;&apos;){
-		alert(&quot;StandAlone PWO can be created by Supplier Management Team only.&quot;);
+		alert(&quot;Please create PWO by using New PWO option from Relevant PWORF Record.&quot;);
 	}
 	else{
 		alert(&quot;PWO can be created by Accenture Demand Management Team only.&quot;);
@@ -9402,6 +9406,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	if(p.TNF_Status__c == &quot;Sent for Signature&quot;){
 		p.TNF_Status__c = &quot;Signed&quot;;	
 		result = sforce.connection.update([p]); 
+//alert(result);
 		location.reload(true);
 	}else{
 		alert(&quot;TNF cannot be Signed as it is not yet Sent for Signature&quot;); 

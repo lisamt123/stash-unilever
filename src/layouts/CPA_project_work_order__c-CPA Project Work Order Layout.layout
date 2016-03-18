@@ -288,22 +288,6 @@
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
-        <label>New Section</label>
-        <layoutColumns>
-            <layoutItems>
-                <height>200</height>
-                <page>CPA_CRList</page>
-                <showLabel>false</showLabel>
-                <showScrollbars>false</showScrollbars>
-                <width>100%</width>
-            </layoutItems>
-        </layoutColumns>
-        <style>OneColumn</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
@@ -337,20 +321,6 @@
         <fields>pkl_Status__c</fields>
         <fields>CREATEDBY_USER</fields>
         <relatedList>CPA_CR__c.CPA_Project_Work_Order__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
-        <fields>txt_Cost_Name__c</fields>
-        <fields>num_Efforts__c</fields>
-        <fields>txt_Entity_Name__c</fields>
-        <fields>txt_Level__c</fields>
-        <fields>txt_Location__c</fields>
-        <fields>txt_month__c</fields>
-        <fields>num_Rate__c</fields>
-        <fields>txt_Role__c</fields>
-        <fields>num_Value__c</fields>
-        <relatedList>CPA_Commercial_Details__c.Project_Work_Order__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

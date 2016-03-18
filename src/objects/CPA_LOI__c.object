@@ -668,7 +668,7 @@
     </listViews>
     <nameField>
         <displayFormat>LOI-{00000}</displayFormat>
-        <label>LOI ID</label>
+        <label>Internal LOI ID</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
@@ -1217,31 +1217,32 @@ var records1 = result.getArray(&apos;records&apos;);
 var permissionSetName = records1[0].PermissionSet.Name; 
 
 
-if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp;  &quot;{!CPA_PWORF__c.Id}&quot; != &apos;&apos; ){
+if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; != &apos;&apos; ){ 
 
-		if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Returned&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Saved&quot;) 
-		{ 
-			alert(&quot;LOI cannot be created since associated PWORF  is in Saved/Returned/Cancelled Status&quot;); 
-		}
-		else if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Resubmitted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Submitted&quot;) 
-		{ 
-			alert(&quot;Associated PWORF should be atleast in Accepted status to created LOI.&quot;); 
-		}
-		else{
-			result = sforce.connection.query(&quot;select Id,pkl_Status__c,lkp_PWORF__c  from CPA_LOI__c where lkp_PWORF__c = &apos;{!CPA_PWORF__c.Id}&apos; AND pkl_Status__c = &apos;Cancelled&apos;&quot;);
-			var loiRecords = result.getArray(&quot;records&quot;);
+if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Returned&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Saved&quot;) 
+{ 
+alert(&quot;LOI cannot be created since associated PWORF is in Saved/Returned/Cancelled Status&quot;); 
+} 
+else if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Resubmitted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Submitted&quot;) 
+{ 
+alert(&quot;Associated PWORF should be atleast in Accepted status to created LOI.&quot;); 
+} 
+else{ 
+result = sforce.connection.query(&quot;select Id,pkl_Status__c,lkp_PWORF__c from CPA_LOI__c where lkp_PWORF__c = &apos;{!CPA_PWORF__c.Id}&apos; AND pkl_Status__c = &apos;Cancelled&apos;&quot;); 
+var loiRecords = result.getArray(&quot;records&quot;); 
 
-			if(loiRecords.length &gt;0){
-				alert(&quot;LOI cannot be create since associated PWORF contains Cancelled LOI&quot;); 
-			}else{
-				window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
-				
-			}	
-		}
-	}else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp;  &quot;{!CPA_PWORF__c.Id}&quot; == &apos;&apos;){
-	window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!$Label.CPA_LOI_Object_Id}&quot;,&quot;_self&quot;); 
-	}else{
-	alert(&quot;LOI can be created by Accenture Demand Management Team only.&quot;);
+if(loiRecords.length &gt;0){ 
+alert(&quot;LOI cannot be create since associated PWORF contains Cancelled LOI&quot;); 
+}else{ 
+window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
+
+}	
+} 
+}else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; == &apos;&apos;){
+alert(&quot;Please create LOI by using New LOI option from Relevant PWORF Record&quot;);	
+//window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!$Label.CPA_LOI_Object_Id}&quot;,&quot;_self&quot;); 
+}else{ 
+alert(&quot;LOI can be created by Accenture Demand Management Team only.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
