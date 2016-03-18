@@ -73,6 +73,8 @@ public with sharing class AA_AgentAppServiceController {
      * @modifiedby  -
      */
     public aa_Agent_Report__c convertRequestAgentReport(AA_WrapperUtility.AgentAppDataRequest objAgentApp){
+        string userids;
+        string topicids;        
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
             newObjToBeInserted.Agent_App_Unilever_Brand__c  = objAgentApp.UnileverBrandId;
             newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
@@ -87,7 +89,7 @@ public with sharing class AA_AgentAppServiceController {
             newObjToBeInserted.Competitor_Name__c = objAgentApp.CompetitorId ;
             newObjToBeInserted.Competitor_Brand__c = objAgentApp.CompetitorBrandId ;
             //Adding userids  to be mentioned in the feed and topics names  to be inserted
-        string userids;
+        
         if(objAgentApp!=null && objAgentApp.usertomentionIds!=null){
         for(string str:objAgentApp.usertomentionIds)
         {
@@ -96,7 +98,7 @@ public with sharing class AA_AgentAppServiceController {
         }
         newObjToBeInserted.TF_Mention_User__c=userids;
         }
-        string topicids;
+        
          if(objAgentApp!=null && objAgentApp.topicIds!=null){
         for(string str:objAgentApp.topicIds)
         {
