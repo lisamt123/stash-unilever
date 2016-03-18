@@ -101,7 +101,6 @@ private class AA_BaseApplicationServices_Test {
         obj1.objAgentAppDataRequest = objAgentApp;
         AA_BaseApplicationServices.invokeService(obj1);
         
-        system.debug('************==>'+baseobj);
         system.assertEquals(baseobj.message ,AA_Constants.testString);
     }
     

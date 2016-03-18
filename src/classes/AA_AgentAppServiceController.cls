@@ -38,8 +38,8 @@ public with sharing class AA_AgentAppServiceController {
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
             objResponse.agentReportId = agentAPPIDInserted[0];
             appWrapperObj.objGetAgentDataResponse  =  objResponse;
-         }catch(Exception e){
-             System.debug('Exception:' + e);
+         }catch(System.DmlException exceptiondml){
+             System.debug('Exception in DML:' + exceptiondml);
         }
         return appWrapperObj;
     }
@@ -121,6 +121,8 @@ public with sharing class AA_AgentAppServiceController {
      * @modifiedby  -
      */
     public aa_Agent_Report__c convertRequestAgentReport_Competitor(AA_WrapperUtility.AgentAppDataRequest objAgentApp){
+        string userids;
+        string topicids;
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
               newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
               newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
@@ -131,6 +133,7 @@ public with sharing class AA_AgentAppServiceController {
             newObjToBeInserted.Retailer__c  = objAgentApp.Retailer;
             newObjToBeInserted.Competitor_Brand__c  = objAgentApp.CompetitorBrandId;
             newObjToBeInserted.Competitor_Name__c  = objAgentApp.CompetitorId;
+        
         if(!String.isEmpty(objAgentApp.CategoryId)){
             newObjToBeInserted.Category__c  = objAgentApp.CategoryId;
         }
@@ -140,11 +143,11 @@ public with sharing class AA_AgentAppServiceController {
                 newObjToBeInserted.Sub_Topics__c  = objAgentApp.SubTopic;    
             }
             
-        }
-            newObjToBeInserted.Country__c = objAgentApp.CountryId;
+        }            newObjToBeInserted.Country__c = objAgentApp.CountryId;
             newObjToBeInserted.Town__c = objAgentApp.Town;
             newObjToBeInserted.longitude__c = objAgentApp.Longitude;
             newObjToBeInserted.latitude__c = objAgentApp.Latitude;
+        
         if(!String.isEmpty(objAgentApp.CodeOfConduct)){
             if(objAgentApp.CodeOfConduct == 'true'){
                 newObjToBeInserted.Is_Accepted_Code_of_Conduct__c = true;    
@@ -158,19 +161,16 @@ public with sharing class AA_AgentAppServiceController {
         newObjToBeInserted.OtherCompanyName__c=objAgentApp.OtherCompetitor;
         
         //Adding userids  to be mentioned in the feed and topics names  to be inserted
-        string userids;
         if(objAgentApp!=null && objAgentApp.usertomentionIds!=null){
         for(string str:objAgentApp.usertomentionIds)
         {
           userids=str+',';
           
-        }
-        
+        }       
         
         newObjToBeInserted.TF_Mention_User__c=userids;
         }
-        string topicids;
-        if(objAgentApp!=null && objAgentApp.topicIds!=null){
+        
         for(string str:objAgentApp.topicIds)
         {
           topicids=str+',';
@@ -178,7 +178,7 @@ public with sharing class AA_AgentAppServiceController {
         }
         
         newObjToBeInserted.TF_Topic_Name__c=topicids;
-        }
+        
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
@@ -242,7 +242,6 @@ public with sharing class AA_AgentAppServiceController {
         List <aa_Cluster__c> clusterValuesList= getClusterValues();
         wrapperUtilityObj.clusterList = new List<aa_Cluster__c>();
         wrapperUtilityObj.clusterList = clusterValuesList;
-        system.debug('List of cluster aslesha ====>'+wrapperUtilityObj.clusterList);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
         
         Map<string,aa_agent_app_custom_setting__c> objURL = aa_agent_app_custom_setting__c.getAll(); 
@@ -466,8 +465,8 @@ public with sharing class AA_AgentAppServiceController {
                                       from  aa_Agent_App_Brand_Category__c where Brand_Id__c = :CompetitorBrand];   
             }
                 
-        }Catch(Exception e){
-             System.debug('Exception:' + e);
+        }Catch(System.DmlException exceptiondml2){
+             System.debug('Exception:' + exceptiondml2);
         }
         return agentBrandCategory;
     }
