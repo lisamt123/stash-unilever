@@ -389,7 +389,7 @@
                 
                 <div class="leftbar-container bg-w8 margin-btwn-inner-container">
                     <div class="leftbar-container-header dark-blue-header" style="border-radius:6px;">
-                        {!$Label.Amr_Dashboard}
+                        {!$Label.Amr_DashboardSpace}
                     </div>
                     <div class="leftbar-container-content margin12 bg-w8" style="text-align: center;">
                         <div class="leftbar-container-content93">
@@ -485,7 +485,7 @@
                         <div style="width:100%">
        
                          <apex:pageblock > 
-                              <apex:chart height="100" width="300" data="{!PieDataSaving}">  
+                              <apex:chart height="100" width="300" data="{!PieDataSaving}" name="You v's Team Monthly">  
                                <apex:pieSeries dataField="data"  donut="50"  colorSet="#70309F,#1E4E78"> 
                                         <apex:chartLabel display="none" />                          
                                 </apex:pieSeries> 

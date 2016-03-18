@@ -1,7 +1,7 @@
 @isTest
 public class Amr_AdManagerController_Test {
     
-    static testMethod void AdManagerControllermethod_Test(){
+    static testMethod void adManagerMethod(){
         
         List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
@@ -91,7 +91,7 @@ public class Amr_AdManagerController_Test {
         system.assert(jobDetail!=null);
     }
     
-    static testMethod void submitForm_Test(){
+    static testMethod void methodToSubmitForm(){
         
         List<Amr_Job_Allocation__c> listOptionsAlloc = new List<Amr_Job_Allocation__c>();
         Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 

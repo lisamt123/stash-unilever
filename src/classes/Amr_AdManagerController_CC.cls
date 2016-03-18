@@ -338,7 +338,7 @@ public with sharing class Amr_AdManagerController_CC{
             }
             if(String.isBlank(jobDetails.Project_Details__c) && String.isBlank(jobDetails.Project_Name_Other__c) ){
                 projectDetailsFlag = TRUE;
-                projectNameFromPage = null;
+               // projectNameFromPage = null;
                
             }
             
@@ -637,6 +637,7 @@ public with sharing class Amr_AdManagerController_CC{
                     categoryName =Amr_ConstantForAdManager.NONE;
                     brandPosName =Amr_ConstantForAdManager.NONE;
                     brandNameFromPage =Amr_ConstantForAdManager.NONE;
+                    projectNameFromPage = Amr_ConstantForAdManager.NONE;
                     
                    // PageReference pageRef = new PageReference('/apex/Amr_AdManager');
                     PageReference pageRef = Page.Amr_AdManager;
@@ -700,8 +701,9 @@ public with sharing class Amr_AdManagerController_CC{
                         emailIds.add(obj.Primary_RAP_Email__c); 
                 }
             }
-            
+            system.debug('emailIds!!'+emailIds);
             List<PermissionSetAssignment> userList =  [SELECT Id,Assignee.Name,Assignee.id,Assignee.Email FROM PermissionSetAssignment where PermissionSet.Name = 'RAP' AND Assignee.Email = :emailIds ];
+           system.debug('userList!!'+userList);
             if(userList.size()>0){
                 Amr_Job_Details__Share jobShareObj  = new Amr_Job_Details__Share();
                 jobShareObj.ParentId = jobDetailsNew.JobId;

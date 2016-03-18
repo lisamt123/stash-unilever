@@ -15,7 +15,9 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
     public list<Amr_Job_Allocation__c>jobDetailCancellationList {get;set;}
     public Amr_Job_Allocation__c jobAllocation {get;set;}
     public Amr_Job_Details__c jobDetails {get;set;}
+    public String location{get;set;}
     public String broadcastMarket{get;set;}
+    public String productionActivityText{get;set;}
     public String startDate{get;set;}
     public String endDate{get;set;} 
     public String categoryName{get;set;}
@@ -60,6 +62,8 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
     public Integer TotalActiveJobPages  {get; set;}
     public Integer CurrentActivePageNumber {get;set;} 
     public String  projectNameText {get;set;}   
+    public List<SelectOption> rapNameList{get;set;} 
+    public String selectedRapName{get;set;}
     transient  String[]  listString{get;set;}
     transient  String[]  categoryString{get;set;}
     
@@ -90,6 +94,14 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
         
         listOfBrandPosition = new List<SelectOption>();
         listOfBrandPosition.add(new selectOption(NONE,NONE));
+        rapNameList = new list<selectoption>();
+         rapNameList.add(new SelectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
+          for(PermissionSetAssignment  userObj :[select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name = :Label.Amr_RAP order by Assignee.name] ){
+
+            SelectOption obj=new SelectOption(userObj.Assignee.id,userObj.Assignee.name);
+            rapNameList.add(obj);
+  
+        }
         
      //getAlertRecords();
     getJobSearchDetails();
@@ -496,6 +508,25 @@ Returns:
             
      soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Amr_ConstantForAdManager.PERCENTAGESLASH;
     soqlForCancel += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+      }
+       if(String.isNotBlank(selectedRapName) && selectedRapName != Amr_ConstantForAdManager.NONE){
+           soql += ' and AM_Job_Detail__r.ownerId = \''+String.escapeSingleQuotes(selectedRapName)+Amr_ConstantForAdManager.SLASH;
+           soqlForCancel += ' and AM_Job_Detail__r.ownerId = \''+String.escapeSingleQuotes(selectedRapName)+Amr_ConstantForAdManager.SLASH; 
+       }
+       
+       if(String.isNotBlank(jobAllocation.Job_Allocated__c) && jobAllocation.Job_Allocated__c != Amr_ConstantForAdManager.NONE){
+           soql += ' and Job_Allocated__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Allocated__c)+Amr_ConstantForAdManager.SLASH;
+           soqlForCancel += ' and Job_Allocated__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Allocated__c)+Amr_ConstantForAdManager.SLASH; 
+       }
+       if(String.isNotBlank(jobAllocation.Job_Status__c) && jobAllocation.Job_Status__c != Amr_ConstantForAdManager.NONE){
+           soql += ' and Job_Status__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Status__c)+Amr_ConstantForAdManager.SLASH;
+           soqlForCancel += ' and Job_Status__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Status__c)+Amr_ConstantForAdManager.SLASH; 
+       }
+       
+       if(String.isNotBlank(location)){
+            
+     soql += ' and AM_Job_Detail__r.Project_Leader_Country__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(location)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    soqlForCancel += ' and AM_Job_Detail__r.Project_Leader_Country__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(location)+Amr_ConstantForAdManager.PERCENTAGESLASH;
       }
      
      if(String.isNotBlank(addNumber)){

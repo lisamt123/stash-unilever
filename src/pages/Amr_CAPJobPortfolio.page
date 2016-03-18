@@ -433,17 +433,37 @@
                             <div class="job-field-input">
                                 <apex:inputField value="{!jobDetails.Allocated_Budget_euro__c}"  html-placeholder="{!$Label.Amr_Allocated_budget_euro}" />
                             </div>
-                        </div>
+                        </div>    
                         <div class="job-field-parent displayinlineblock" >                          
                             <div class="job-field-input">
-                                <apex:inputField value="{!jobDetails.Campaign_Name__c}"  html-placeholder="{!$Label.Amr_Campaign_Name}" />
+                                <apex:inputText value="{!location}"  html-placeholder="{!$Label.Amr_Location}" />
+                            </div>
+                        </div> 
+                        <div class="job-field-parent displayinlineblock">
+                            <div class="job-field-label">{!$Label.Amr_RAP_Name}</div>
+                            <div class="job-field-input">
+                                <apex:selectList label="Select the user Name"  size="1" value="{!selectedRapName}" >
+                                    <apex:selectOptions value="{!rapNameList}" />
+                                </apex:selectList>
                             </div>
                         </div>
-                        
+
                          <div class="job-field-parent displayinlineblock">
                             <div class="job-field-label">{!$Label.Amr_Stage_of_production_activity}</div>
                             <div class="job-field-input">
                                 <apex:inputField value="{!jobDetails.Stage_of_Production_Activity__c}"   />
+                            </div>
+                        </div>
+                        <div class="job-field-parent displayinlineblock">
+                            <div class="job-field-label">{!$Label.Amr_Job_Allocated}</div>
+                            <div class="job-field-input">
+                                <apex:inputField value="{!jobAllocation.Job_Allocated__c}"   />
+                            </div>
+                        </div>
+                        <div class="job-field-parent displayinlineblock">
+                            <div class="job-field-label">{!$Label.Amr_Job_Status}</div>
+                            <div class="job-field-input">
+                                <apex:inputField value="{!jobAllocation.Job_Status__c}"   />
                             </div>
                         </div>
                         
