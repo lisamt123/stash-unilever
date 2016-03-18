@@ -1,7 +1,3 @@
-src/classes/UID_StockCoverTriggerHelper_Test.cls
-src/classes/UID_StockCoverTriggerHelper_Test.cls-meta.xml
-src/groups/UID_Vic_BDM_Group.group
-src/objects/Product2.object
-src/objects/UID_Performance__c.object
-src/objects/UID_Stocked_Product__c.object
+src
+src/permissionsets
 src/permissionsets/UID_Uploader_Permission_Set.permissionset
