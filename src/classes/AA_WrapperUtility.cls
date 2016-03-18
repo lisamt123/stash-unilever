@@ -46,8 +46,8 @@ global with sharing class AA_WrapperUtility {
             public String Status;
             public String searchString;
             public String searchType;
-            public String usertomentionIds;
-            public String topicIds;
+            public List<String> usertomentionIds;
+            public List<String> topicIds;
 
             /* Other brand and company names */
             public String OtherBrandName;

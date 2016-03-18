@@ -86,7 +86,26 @@ public with sharing class AA_AgentAppServiceController {
             newObjToBeInserted.Category__c = objAgentApp.CategoryId ;
             newObjToBeInserted.Competitor_Name__c = objAgentApp.CompetitorId ;
             newObjToBeInserted.Competitor_Brand__c = objAgentApp.CompetitorBrandId ;
+            //Adding userids  to be mentioned in the feed and topics names  to be inserted
+        string userids;
+        if(objAgentApp!=null && objAgentApp.usertomentionIds!=null){
+        for(string str:objAgentApp.usertomentionIds)
+        {
+          userids=str+',';
+          
+        }
+        newObjToBeInserted.TF_Mention_User__c=userids;
+        }
+        string topicids;
+         if(objAgentApp!=null && objAgentApp.topicIds!=null){
+        for(string str:objAgentApp.topicIds)
+        {
+          topicids=str+',';
+          
+        }
         
+        newObjToBeInserted.TF_Topic_Name__c=topicids;
+        }
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get('Unilever Agent Published Report')).getRecordTypeId();
@@ -139,9 +158,27 @@ public with sharing class AA_AgentAppServiceController {
         newObjToBeInserted.OtherCompanyName__c=objAgentApp.OtherCompetitor;
         
         //Adding userids  to be mentioned in the feed and topics names  to be inserted
-        newObjToBeInserted.TF_Mention_User__c=objAgentApp.usertomentionIds;
-        newObjToBeInserted.TF_Topic_Name__c=objAgentApp.topicIds;
+        string userids;
+        if(objAgentApp!=null && objAgentApp.usertomentionIds!=null){
+        for(string str:objAgentApp.usertomentionIds)
+        {
+          userids=str+',';
+          
+        }
         
+        
+        newObjToBeInserted.TF_Mention_User__c=userids;
+        }
+        string topicids;
+        if(objAgentApp!=null && objAgentApp.topicIds!=null){
+        for(string str:objAgentApp.topicIds)
+        {
+          topicids=str+',';
+          
+        }
+        
+        newObjToBeInserted.TF_Topic_Name__c=topicids;
+        }
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
@@ -198,7 +235,7 @@ public with sharing class AA_AgentAppServiceController {
         List<aa_Country__c>  countryValuesList = getCountryValues();
         wrapperUtilityObj.countryList = new List<aa_Country__c>();
         wrapperUtilityObj.countryList = countryValuesList;
-        system.debug('List of country ====>'+wrapperUtilityObj.countryList);
+        //system.debug('List of country ====>'+wrapperUtilityObj.countryList);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
         
         //Cluster List Values
@@ -276,7 +313,7 @@ public with sharing class AA_AgentAppServiceController {
          List<Sobject> result=new list<Sobject>();
          String query;
          if(!Utility.isEmpty(SobjectApiName) && !Utility.isEmpty(commaSepratedFields)){
-            system.debug(SobjectApiName +'==='+commaSepratedFields);
+           // system.debug(SobjectApiName +'==='+commaSepratedFields);
             query = 'select ' + commaSepratedFields + ' from ' + SobjectApiName ;
             result = Database.query(query);
          }
@@ -295,7 +332,7 @@ public with sharing class AA_AgentAppServiceController {
         List<Sobject> result=new List<Sobject>();
         String query;
          if(!Utility.isEmpty(SobjectApiName) && !Utility.isEmpty(commaSepratedFields)){
-            system.debug(SobjectApiName +'==='+commaSepratedFields);
+            //system.debug(SobjectApiName +'==='+commaSepratedFields);
             query = 'select ' + commaSepratedFields + ' from ' + SobjectApiName + ' where RecordType.Name=\''+recType+'\'';
             result = Database.query(query);
          }
@@ -446,7 +483,7 @@ public with sharing class AA_AgentAppServiceController {
         Schema.DescribeFieldResult fieldResult;
         fieldResult = aa_Agent_Report__c.Source__c.getDescribe();
         List<String> sourcePickListValues = getPicklistValues(fieldResult);
-        system.debug('========sourcePickListValues=====>'+sourcePickListValues);
+       // system.debug('========sourcePickListValues=====>'+sourcePickListValues);
         return sourcePickListValues;
    }
    /**
@@ -488,6 +525,7 @@ public with sharing class AA_AgentAppServiceController {
      */    
    public AA_ApplicationWrapperObj retriveAllAgentReports(AA_ApplicationWrapperObj appWrapperObj){
   // try{
+      /// system.debug('In Retrive all reports'+appWrapperObj);
         Map<string,aa_agent_app_custom_setting__c> objURL = aa_agent_app_custom_setting__c.getAll(); 
         String urlHost =  objURL.get('Salesforce Instance URL Content').Value__c;  // Salesforce Instance URL
         String sfcURLContent =  objURL.get('SFC Content').Value__c; // URL for Image population on UI
@@ -564,8 +602,10 @@ public with sharing class AA_AgentAppServiceController {
                 {
                     soqlquery +='AND Reporting_on__c = '+AA_Constants.Escapechar+UserPref.ReportingOn__c+AA_Constants.Escapechar;
                 }
-           }else if(appWrapperObj.objAgentAppDataRequest.ApplyFilter=='true') {         
+           }else if(appWrapperObj.objAgentAppDataRequest.ApplyFilter=='true') {     
+                   
                 requestAgentDataObj=(aa_Agent_Report__c)convertRequestAgentReport(objAgentApp);
+               
                 if(requestAgentDataObj.country__c != NULL )
                 {
                    soqlquery +='AND Country__c ='+AA_Constants.Escapechar+requestAgentDataObj.country__c+AA_Constants.Escapechar;    
@@ -619,7 +659,8 @@ public with sharing class AA_AgentAppServiceController {
                 }            
             aa_Agent_App_User_Preference__c userPref = [SELECT Id,UserId__c 
                                                                FROM aa_Agent_App_User_Preference__c              
-                                                              Where UserId__c =: UserInfo.getUserId()];         
+                                                              Where UserId__c =: UserInfo.getUserId()];      
+              
             userPref.Category__c=requestAgentDataObj.Category__c;
             if(requestAgentDataObj.Country__c!= null || requestAgentDataObj.Country__c!='null')
             userPref.Country__c=requestAgentDataObj.Country__c;            
@@ -632,7 +673,8 @@ public with sharing class AA_AgentAppServiceController {
             userPref.RecordTypeId__c=recTypeId;
             userPref.Topic__c=appWrapperObj.objAgentAppDataRequest.TopicId;
             userPref.ReportingOn__c=appWrapperObj.objAgentAppDataRequest.ReportingOn;
-             update userPref;            
+         
+            update userPref;            
         }
         }        
          if(objAgentApp.SortOnMostLike!='true' || objAgentApp.SortOnMostLike==NULL){
@@ -935,14 +977,14 @@ public with sharing class AA_AgentAppServiceController {
         
             List<sObject> userList=new List<sObject>();
         
-            String searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + 'User' + '(id,name where IsActive=true ) Limit 50';
+            String searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + 'User' + '(id,name where IsActive=true ) Limit 10';
             List<List<SObject>> searchList = search.query(searchQuery); 
         
        
             for (SObject item : searchList[0]){
                 if(userinfo.getUserId() != item.Id){
         
-                    userList.add((User)item);
+                    userList.add(item);
               }
             }
            //    wrapperUtilityObj.autocompleteList=new List<User>();
@@ -956,7 +998,7 @@ public with sharing class AA_AgentAppServiceController {
         
         List<sObject> topicsList=new List<sObject>();
         
-        String searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + 'Topic' + '(id,name  ) Limit 50';
+        String searchQuery = 'FIND \'' + sanitizedSearchString + '*\' IN ALL FIELDS RETURNING ' + 'Topic' + '(id,name) Limit 10';
         List<List<SObject>> searchList = search.query(searchQuery); 
          
        

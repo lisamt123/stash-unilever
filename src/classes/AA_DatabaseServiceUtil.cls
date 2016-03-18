@@ -50,27 +50,58 @@ public with sharing class AA_DatabaseServiceUtil {
     
      /* Performs DB upsert operation with Sobject passed */
     public static List<String> insertOperation(String varAgentReportId,String contentID){
+    
+    List<string> idList=new List<string>();
+    
+    try{
         system.debug('******************* in feed insert');
-        List<String> idList = new List<String>();   
-        try{
-            system.debug('******7');    
-            FeedItem fi2 = new FeedItem();
-            fi2.body = 'New Agent File uploaded';
-            fi2.Type = 'TextPost' ;
-            if(contentID !=null && contentID != ''){
-                system.debug('******8'); 
-                fi2.RelatedRecordId = contentID;
-                fi2.Type = 'ContentPost' ;
-            }
-            fi2.Title = 'Agent File';           
-            fi2.ParentId = varAgentReportId;
-            system.debug('feed iem to be inserted '+fi2);
-            insert fi2;
+                 ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
+        feedItemInput.body = new ConnectApi.MessageBodyInput();
+        
+        feedItemInput.body.messageSegments = new List<ConnectApi.MessageSegmentInput>();
+
+        //intro
+        ConnectApi.TextSegmentInput textSegment = new ConnectApi.TextSegmentInput();
+        textSegment.text = 'New Agent File uploaded' ;
+        feedItemInput.body.messageSegments.add(textSegment);
+
+        
+             ConnectApi.ContentAttachmentInput attachmentInput = new ConnectApi.ContentAttachmentInput(); 
+             attachmentInput.contentDocumentId=contentID;
+             system.debug('attachmentInput.contentDocumentId===='+attachmentInput.contentDocumentId);  
+             feedItemInput.attachment = attachmentInput;
+             aa_Agent_Report__c objReport=[select id,TF_Mention_User__c,TF_Topic_Name__c from aa_Agent_Report__c where id=:varAgentReportId];
+             
+               string userIds=string.valueOf(objReport.TF_Mention_User__c);
+               string topicNames=string.valueOf(objReport.TF_Topic_Name__c);
+            // add the mention
+                if(userIds !=null){
+                string[] splittedids=userIds.split(',');
+                for(String ids:splittedids)
+                {
+                  
+                    ConnectApi.MentionSegmentInput mentionSegment = new ConnectApi.MentionSegmentInput();
+                    mentionSegment.id = Id.ValueOf(ids);
+                    feedItemInput.body.messageSegments.add(mentionSegment);
+                   
+                 }
+                }
+                //Add Topics
+                if(topicNames !=null)
+                {
+                string[] splittedTopics=topicNames.split(',');
+                for(string topic:splittedTopics)
+                {
+                    ConnectApi.Topics.assignTopic(null,varAgentReportId,topic);
+                 }
+                }
+            
+             ConnectApi.FeedItem new_chat = ConnectApi.ChatterFeeds.postFeedItem(null, ConnectApi.FeedType.Record, varAgentReportId, feedItemInput, null);
             
             
-            system.debug('New Feed Created --> '+ fi2.id +' With Content Id as '+contentID);
+            FeedItem objFeed=[Select id from FeedItem where parentid=:varAgentReportId];
             aa_Agent_Report__c c = [select Chatter_Post_ID__c from aa_Agent_Report__c where id = :varAgentReportId];
-            c.Chatter_Post_ID__c = fi2.id;
+            c.Chatter_Post_ID__c = objFeed.id;
             update c;
             system.debug('Chatter_Post_ID__c inserted --> ');
             idList.add(varAgentReportId);

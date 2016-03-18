@@ -133,7 +133,7 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
                 
                 //Get userlist for typeahead
                 
-                if(svcName.equals(AA_Constants.SVC_AGENT_APP_USERLIST)){
+                if(svcName.equals(AA_Constants.SVC_AGENT_APP_AUTOCOMPLETELIST)){
                     
                      AA_AgentAppServiceController objAgentAppController = new AA_AgentAppServiceController();
                      requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
@@ -180,6 +180,7 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
     }
     
     public static String createSerializedMapString(String serviceJSONObjectasString){
+    	system.debug('createSerializedMapString string should be....................'+serviceJSONObjectasString);
         String requestBodySerializedMap = '';
         try{
             if(!Utility.isEmpty(serviceJSONObjectasString)){
