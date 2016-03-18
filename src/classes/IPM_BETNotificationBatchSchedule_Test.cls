@@ -7,7 +7,7 @@
    @reference 
  */
 @isTest
-public with sharing class IPM_BETNotificationBatchSchedule_Test {
+private with sharing class IPM_BETNotificationBatchSchedule_Test {
 
 private static final String  FEED_NOT_UPDATED_ASSERT = 'Feed not Updated';
 
@@ -29,9 +29,14 @@ private static final String  FEED_NOT_UPDATED_ASSERT = 'Feed not Updated';
 
       // Verify the scheduled job hasn't run yet.
       for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed limit 50000]){
-        System.assert(!projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
+        System.assert(!projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_NOT_UPDATED_ASSERT);
       }
       Test.stopTest();
+       // Now that the scheduled job has executed after Test.stopTest(),
+        //Verify the scheduled job has run now.
+      for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed limit 50000]){
+        System.assert(projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_NOT_UPDATED_ASSERT);
+      }
 
   }
   

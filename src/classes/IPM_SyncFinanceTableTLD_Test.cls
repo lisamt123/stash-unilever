@@ -13,7 +13,6 @@ private class IPM_SyncFinanceTableTLD_Test {
     public static IPM_Financial_Year__c finYear=new IPM_Financial_Year__c();
     public static List<IPM_Financial__c> lstFinancial=new List<IPM_Financial__c>();
     public static List<IPM_Financial_Year__c> financialYearList=new List<IPM_Financial_Year__c>();
-    public static Integer noOfRecordsForBulkTest = 200;
     private static final String TESTPROJECT001_REG ='TestProject001_REG';   
     private static final String TESTPROJECT001_REG_LOC1 ='TestProject001_REG_LOC1'; 
     private static final String TESTPROJECT001_REG_LOC2 ='TestProject001_REG_LOC2';
@@ -35,9 +34,19 @@ private class IPM_SyncFinanceTableTLD_Test {
     private static final String ROLLOUT_MSG='Rollout should be present';
     private static final String TESTPROJECT001_CONSOLIDATED='TestProject001_CONSOLIDATED';
     private static final String NOT_STARTED='Not Started';
+    private static final String TESTPROJ_OPRL_GBL = 'TESTPROJ_OPRL_GBL';
+    private static final String TESTPROJ_OPRL_REG = 'TESTPROJ_OPRL_REG';
+    private static final String TESTPROJ_OPRL_LCL = 'TESTPROJ_OPRL_LCL';
     private static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
     
+    /*
+    1.  All the individual tests need unique data setup. 
+        Use of single setup method to set all the data will raise too many SOQL exception. 
+        In order to avoid the exception the data setup has been into several methods so that the data setup methods get its own governor limits.
     
+    2.  The data setup varies for test scenarios, looks like duplicate code block but not. 
+        Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
+    */
     static void setupOperationalProjects() {
  		Test.startTest();
         Date targetLaunchDate = System.today().addYears(3);
@@ -63,7 +72,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             // create project
             List<IPM_Project__c> projList = new List<IPM_Project__c>();
             IPM_Project__c projOpeGbl = IPM_TestFactory_Helper.createIPMProject(false);
-            projOpeGbl.Name='TESTPROJ_OPRL_GBL';
+            projOpeGbl.Name=TESTPROJ_OPRL_GBL;
             projOpeGbl.IPM_Project_Leader__c=globalUser.id;
             projOpeGbl.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
             projOpeGbl.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT; 
@@ -76,7 +85,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             projList.add(projOpeGbl);
             
             IPM_Project__c projOpeReg = IPM_TestFactory_Helper.createIPMProject(false);
-            projOpeReg.Name='TESTPROJ_OPRL_REG';
+            projOpeReg.Name=TESTPROJ_OPRL_REG;
             projOpeReg.IPM_Project_Leader__c=globalUser.id;
             projOpeReg.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
             projOpeReg.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT; 
@@ -89,7 +98,7 @@ private class IPM_SyncFinanceTableTLD_Test {
 			projList.add(projOpeReg);
             
             IPM_Project__c projOpeLcl = IPM_TestFactory_Helper.createIPMProject(false);
-            projOpeLcl.Name='TESTPROJ_OPRL_LCL';
+            projOpeLcl.Name=TESTPROJ_OPRL_LCL;
             projOpeLcl.IPM_Project_Leader__c=globalUser.id;
             projOpeLcl.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
             projOpeLcl.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT; 
@@ -108,7 +117,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             IPM_Financial__c fin1=new IPM_Financial__c();
             String defaultRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Default'].Id;
             fin1.RecordTypeId=defaultRecordTypeId;
-            fin1.Financial_External_ID__c='TESTPROJ_OPRL_GBL';
+            fin1.Financial_External_ID__c=TESTPROJ_OPRL_GBL;
             fin1.Parent_Project__c=projList[0].id;
             fin1.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_5;
             fin1.Target_Launch_Date__c = targetLaunchDate;
@@ -117,7 +126,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             
             IPM_Financial__c fin2=new IPM_Financial__c();
             fin2.RecordTypeId=defaultRecordTypeId;
-            fin2.Financial_External_ID__c='TESTPROJ_OPRL_REG';
+            fin2.Financial_External_ID__c=TESTPROJ_OPRL_REG;
             fin2.Regional_Project__c=projList[1].id;
             fin2.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_5;
             fin2.Target_Launch_Date__c = targetLaunchDate;
@@ -126,7 +135,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             
             IPM_Financial__c fin3=new IPM_Financial__c();
             fin3.RecordTypeId=defaultRecordTypeId;
-            fin3.Financial_External_ID__c='TESTPROJ_OPRL_LCL';
+            fin3.Financial_External_ID__c=TESTPROJ_OPRL_LCL;
             fin3.Local_Project__c=projList[2].id;
             fin3.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_5;
             fin3.Target_Launch_Date__c = targetLaunchDate;
@@ -140,13 +149,34 @@ private class IPM_SyncFinanceTableTLD_Test {
             List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE name like 'TESTPROJ_OPRL_%' limit 5];
             System.assertEquals(projlList.size(), 3,'The project size must be 3');
             
+            Set<String> projNames = new Set<String>();
+            for(IPM_Project__c proj:  projlList) {
+                projNames.add(proj.name);
+            }
+            System.assert(projNames.contains(TESTPROJ_OPRL_GBL),'The project list should contain TESTPROJ_OPRL_GBL');
+            System.assert(projNames.contains(TESTPROJ_OPRL_REG),'The project list should contain TESTPROJ_OPRL_REG');
+            System.assert(projNames.contains(TESTPROJ_OPRL_LCL),'The project list should contain TESTPROJ_OPRL_LCL');
             List<IPM_Financial__c> finList=[SELECT Name,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c like 'TESTPROJ_OPRL_%' limit 5];
             System.assertEquals(finList.size(), 3,'The financials size must be 3');
             
+            Set<String> finExtIds = new Set<String>();
+            for(IPM_Financial__c financial:  finList) {
+                finExtIds.add(financial.Financial_External_ID__c);
+            }
             
+            System.assert(finExtIds.contains(TESTPROJ_OPRL_GBL),'The Financials list should contain TESTPROJ_OPRL_GBL');
+            System.assert(finExtIds.contains(TESTPROJ_OPRL_REG),'The Financials list should contain TESTPROJ_OPRL_REG');
+            System.assert(finExtIds.contains(TESTPROJ_OPRL_LCL),'The Financials list should contain TESTPROJ_OPRL_LCL');
             
         }   	
     }
+    /*
+    1.  All the individual tests need unique data setup. 
+        Use of single setup method to set all the data will raise too many SOQL exception. 
+        In order to avoid the exception the data setup has been into several methods so that the data setup methods get its own governor limits.
+    2.  The data setup varies for test scenarios, looks like duplicate code block but not. 
+        Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
+    */
  	static void setupRegionalOriginalIdeasPhaseData(){
         Test.startTest();
         Date targetLaunchDate = System.today().addYears(3);
@@ -255,6 +285,13 @@ private class IPM_SyncFinanceTableTLD_Test {
             insert fins;
             Test.stopTest();
             
+            List<IPM_Financial__c> finList=[SELECT Name,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c like 'TestProject001_REG%' limit 5];
+            Set<String> finExtIds = new Set<String>();
+            for(IPM_Financial__c financial:  finList) {
+                finExtIds.add(financial.Financial_External_ID__c);
+            }
+            System.assert(finExtIds.contains('TestProject001_REG_CONSOLIDATED'),'The Financials list should contain TestProject001_REG_CONSOLIDATED');
+            System.assert(finExtIds.contains('TestProject001_REG_NONKEY'),'The Financials list should contain TestProject001_REG_NONKEY');
             List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE name=:TESTPROJECT001_REG limit 1];
             System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
             
@@ -273,6 +310,13 @@ private class IPM_SyncFinanceTableTLD_Test {
         }
         
     }
+    /*
+    1.  All the individual tests need unique data setup. 
+        Use of single setup method to set all the data will raise too many SOQL exception. 
+        In order to avoid the exception the data setup has been into several methods so that the data setup methods get its own governor limits.
+    2.  The data setup varies for test scenarios, looks like duplicate code block but not. 
+        Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
+    */
    static void setupIdeasPhaseData(){
         Test.startTest();
         Date targetLaunchDate = System.today().addYears(3);
@@ -397,7 +441,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             
     
             List<IPM_Project_Rollout__c>  projRollOutList=[SELECT Name, Target_Launch_Date__c FROM IPM_Project_Rollout__c WHERE name= :TESTPROJECT001_REG limit 1];
-            System.assertEquals(projRollOutList.size(), 1,PROJ_ROLLOUT_SIZE_MSG);
+            System.assertEquals(projRollOutList[0].name,TESTPROJECT001_REG ,PROJ_ROLLOUT_SIZE_MSG);
             
             System.assertEquals(targetLaunchDate, projRollOutList[0].Target_Launch_Date__c,TLD_MATCH_MSG);
     
@@ -412,6 +456,13 @@ private class IPM_SyncFinanceTableTLD_Test {
             }
         }
     }
+    /*
+    1.  All the individual tests need unique data setup. 
+        Use of single setup method to set all the data will raise too many SOQL exception. 
+        In order to avoid the exception the data setup has been into several methods so that the data setup methods get its own governor limits.
+    2.  The data setup varies for test scenarios, looks like duplicate code block but not. 
+        Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
+    */
     static void setupFeasibilityPhaseDataForLocalProject(){
         Test.startTest();
         Date targetLaunchDate = System.today().addYears(3);
@@ -637,6 +688,10 @@ private class IPM_SyncFinanceTableTLD_Test {
             System.assertEquals(2,localProjList[0].IPM_Financials_Local__r.size(),'Project financial(s) size should be 1');
         }
     }
+    /*
+    The datasetup method of this test has Test.startTest() and Test.stopTest(). 
+    So cant have another set of Test.startTest() and Test.stopTest().
+    */  
     static testMethod void testSyncFinanceTableTLD_When_LocalProjectTLD_Updated() {
         setupFeasibilityPhaseDataForLocalProject();
         Date targetLanchDate1 = System.today().addYears(4);
@@ -690,6 +745,10 @@ private class IPM_SyncFinanceTableTLD_Test {
             }
         }
     }
+    /*
+    The datasetup method of this test has Test.startTest() and Test.stopTest(). 
+    So cant have another set of Test.startTest() and Test.stopTest().
+    */  
      static testMethod void testSyncFinanceTableTLD_When_KeyLocalRolloutTLD_Updated() {
         setupIdeasPhaseData();
 
@@ -752,6 +811,10 @@ private class IPM_SyncFinanceTableTLD_Test {
         }
         
     }
+    /*
+    The datasetup method of this test has Test.startTest() and Test.stopTest(). 
+    So cant have another set of Test.startTest() and Test.stopTest().
+    */  
      static testMethod void testSyncFinanceTableTLD_When_NonkeyLocalRolloutsTLD_UpdatedToEarliest() {
         setupIdeasPhaseData();
         List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
@@ -766,7 +829,6 @@ private class IPM_SyncFinanceTableTLD_Test {
             IPM_Project_Rollout__c rollout1 = [SELECT ID, Name,IPM_Project__c,External_Id__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG_LOC1 limit 1];
             rollout1.Target_Launch_Date__c = targetLanchDate1;
             rollouts.add(rollout1);
-            //update rollout1;
             
             
             Date targetLanchDate2 = System.today().addYears(5);
@@ -777,7 +839,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             update rollouts;
     
             IPM_Project_Rollout__c reginolRollout = [SELECT ID, Name,IPM_Project__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG limit 1];
-            System.assert(reginolRollout.id!=null,ROLLOUT_MSG);
+            System.assertEquals(reginolRollout.Name,TESTPROJECT001_REG,'Rollout name must be TestProject001_REG');
             List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE IPM_Project_Rollout__c=:reginolRollout.id limit 5];
             List<ID> updatedFinancialIDList = new List<ID>();
             
@@ -823,6 +885,10 @@ private class IPM_SyncFinanceTableTLD_Test {
             }
         }
     }
+    /*
+    The datasetup method of this test has Test.startTest() and Test.stopTest(). 
+    So cant have another set of Test.startTest() and Test.stopTest().
+    */  
      static testMethod void testSyncFinanceTableTLD_When_NonkeyLocalRolloutsTLD_UpdatedToLatest() {
         setupIdeasPhaseData();
         List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
@@ -847,7 +913,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             update rollouts;
             
             IPM_Project_Rollout__c reginolRollout = [SELECT ID, Name,IPM_Project__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG limit 1];
-            System.assert(reginolRollout.id!=null);
+            System.assertEquals(reginolRollout.Name,TESTPROJECT001_REG,'Rollout name must be TestProject001_REG');
             List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE IPM_Project_Rollout__c=:reginolRollout.id limit 5];
             List<ID> updatedFinancialIDList = new List<ID>();
             
@@ -893,6 +959,10 @@ private class IPM_SyncFinanceTableTLD_Test {
             }
         }
     }
+    /*
+    The datasetup method of this test has Test.startTest() and Test.stopTest(). 
+    So cant have another set of Test.startTest() and Test.stopTest().
+    */  
     static testMethod  void testSyncFinanceTableTLD_When_NonkeyLocalRolloutsTLD_UpdatedToLatest_RegionalOriginal() {
         setupRegionalOriginalIdeasPhaseData();
         List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
@@ -917,7 +987,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             update rollouts;
             
             List<IPM_Project__c> regionalProject = [SELECT ID, Name FROM IPM_Project__c WHERE name=:TESTPROJECT001_REG limit 1];
-            System.assert(!regionalProject.isEmpty());
+            System.assertEquals(regionalProject[0].Name,TESTPROJECT001_REG,'Project name must be TestProject001_REG');
             List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE Regional_Project__c=:regionalProject[0] .id limit 5];
             List<ID> updatedFinancialIDList = new List<ID>();
             
@@ -965,6 +1035,10 @@ private class IPM_SyncFinanceTableTLD_Test {
             }
         }
     }
+    /*
+    The datasetup method of this test has Test.startTest() and Test.stopTest(). 
+    So cant have another set of Test.startTest() and Test.stopTest().
+    */  
      static testMethod void testSyncFinanceTableTLD_When_KeyLocalRolloutTLD_Updated_RegionalOriginal() {
         setupRegionalOriginalIdeasPhaseData();
 
@@ -982,7 +1056,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             update rollout1;
     
             List<IPM_Project__c> regionalProject = [SELECT ID, Name FROM IPM_Project__c WHERE name=:TESTPROJECT001_REG limit 1];
-            System.assert(!regionalProject.isEmpty());
+            System.assertEquals(regionalProject[0].Name,TESTPROJECT001_REG,'Project name must be TestProject001_REG');
             List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE Regional_Project__c=:regionalProject[0] .id limit 5];
             List<ID> updatedFinancialIDList = new List<ID>();
             
@@ -1028,6 +1102,10 @@ private class IPM_SyncFinanceTableTLD_Test {
         }     
         
     }
+    /*
+    The datasetup method of this test has Test.startTest() and Test.stopTest(). 
+    So cant have another set of Test.startTest() and Test.stopTest().
+    */  
     static testMethod void testSyncFinanceTableTLD_When_OperationalProjectsTLD_Updated() {
         setupOperationalProjects();
         
@@ -1045,8 +1123,8 @@ private class IPM_SyncFinanceTableTLD_Test {
             update projlList;
             
             // Global operation project 
-            List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c='TESTPROJ_OPRL_GBL' limit 1];
-            System.assertEquals(updatedFinancialList.size(), 1,'The financials size must be 1');
+            List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:TESTPROJ_OPRL_GBL limit 1];
+            System.assertEquals(updatedFinancialList[0].Financial_External_ID__c,TESTPROJ_OPRL_GBL,'Financial external id must be TESTPROJ_OPRL_GBL');
             System.assertEquals(targetLanchDate1,updatedFinancialList[0].Target_Launch_Date__c,TLD_MATCH_MSG);
             
             List<IPM_Financial__c> retrievedFinancialList = [Select id, Target_Launch_Date__c, 
@@ -1083,8 +1161,8 @@ private class IPM_SyncFinanceTableTLD_Test {
                 }
             }
             // Regional operation project 
-            updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c='TESTPROJ_OPRL_REG' limit 1];
-            System.assertEquals(updatedFinancialList.size(), 1,'The financials size must be 1');
+            updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:TESTPROJ_OPRL_REG limit 1];
+            System.assertEquals(updatedFinancialList[0].Financial_External_ID__c,TESTPROJ_OPRL_REG,'Financial external id must be TESTPROJ_OPRL_REG');
             System.assertEquals(targetLanchDate1,updatedFinancialList[0].Target_Launch_Date__c,TLD_MATCH_MSG);
             
             retrievedFinancialList = [  Select id, Target_Launch_Date__c, 
@@ -1121,8 +1199,8 @@ private class IPM_SyncFinanceTableTLD_Test {
                 }
             }
             // Local operation project 
-            updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c='TESTPROJ_OPRL_LCL' limit 1];
-            System.assertEquals(updatedFinancialList.size(), 1,'The financials size must be 1');
+            updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:TESTPROJ_OPRL_LCL limit 1];
+            System.assertEquals(updatedFinancialList[0].Financial_External_ID__c,TESTPROJ_OPRL_LCL,'Financial external id must be TESTPROJ_OPRL_LCL');
             System.assertEquals(targetLanchDate1,updatedFinancialList[0].Target_Launch_Date__c,TLD_MATCH_MSG);
             
             retrievedFinancialList = [  Select id, Target_Launch_Date__c, 

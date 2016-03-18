@@ -1,9 +1,11 @@
 @isTest(SeeAllData=false)
-public class IPM_ProjectOverviewCtrol_Test {
+private class IPM_ProjectOverviewCtrol_Test {
     private static Set<Id> iDs ;
     private static final String MILESTONE_CREATED='Milestone is created';
     private static final String PROJ_CREATED='Projects are created';
-    private static String sPageRefURL = 'apex/IPM_ProjectOverview?Id=';
+    private static final String sPageRefURL = 'apex/IPM_ProjectOverview?Id=';
+    private static final String GLOBAL_PL_USER = 'GLOBAL_PL';
+	private static final String REGIONAL_PL_USER = 'REGIONAL_PL';
     /***********************************
     * @Description: Test Data Creation
     * *********************************/
@@ -27,11 +29,12 @@ public class IPM_ProjectOverviewCtrol_Test {
             User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
             
             // Update LastNames to match functionalRoles
-            globalProjectLeader.lastname = 'GLOBAL_PL';
-            regionalProjectLeader.lastname = 'REGIONAL_PL';
+            globalProjectLeader.lastname = GLOBAL_PL_USER;
+            regionalProjectLeader.lastname = REGIONAL_PL_USER;
             
             List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader};
             update userList;
+            System.assertEquals(2 , [Select Id from User where Id IN (:globalProjectLeader.Id, :regionalProjectLeader.Id) limit 100].size() , 'Users are not updated successfully.');
          
             // Create Company Card information(Master Data)
             IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -73,30 +76,29 @@ public class IPM_ProjectOverviewCtrol_Test {
         In this method for Global project, regional rollouts are created, after phase changes regional rollouts gets converted to regional project.
         this whole logic need to be in the same method to test child project's status alert.
      */
-     public static testmethod void testChildProjectsIncompleteAlert()
+     private static testmethod void testChildProjectsIncompleteAlert()
      {
         iDs = new Set<ID>();
         // Get the newly created Projects from Database. 
         Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
         List<Id> globalProjectIdList = new List<Id>();
-        Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
         
         User globalProjectLeader = null;
         User regionalProjectLeader = null;
         
         // Get the list of user's for project leaders.
-        List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL')];
+        List<User> userList = [Select Id,Name,lastName from User where LastName in( :GLOBAL_PL_USER,:REGIONAL_PL_USER)];
         
         // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(userList); 
         
         for(User lUser  :userList)
         {
-            if(lUser.lastName == 'GLOBAL_PL')
+            if(lUser.lastName == GLOBAL_PL_USER)
             {
                 globalProjectLeader = lUser;
             }
-            if(lUser.lastName == 'REGIONAL_PL')
+            if(lUser.lastName == REGIONAL_PL_USER)
             {
                 regionalProjectLeader = lUser;
             }
@@ -107,10 +109,6 @@ public class IPM_ProjectOverviewCtrol_Test {
             
             List<IPM_Project__c> projectList = [Select Id,IPM_Phase__c,Name,IPM_GateKeeping_Model__c,IPM_Complexity__c,IPM_Project_Name__c
                                                     from IPM_Project__c where Name in:projectNameSet];
-            for(IPM_Project__c project : projectList)
-            {
-                projectMap.put(project.Id,project);
-            }
              
            /******************************** Create Regional Rollouts for Created Global project ****************************************/
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
@@ -149,6 +147,10 @@ public class IPM_ProjectOverviewCtrol_Test {
             {
                 globalProjectIdList.add(project.Id);    
             }
+            for(IPM_Project__c project : [Select Id, IPM_GateKeeping_Model__c from IPM_Project__c where Id IN : globalProjectIdList limit 100])
+            {
+            	System.assertEquals(IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH , project.IPM_GateKeeping_Model__c, 'Gatekeeping model is not updated properly.');
+            }
             
             // Initiate Phase Change would result in Rollout Project Creation.
             List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
@@ -156,6 +158,12 @@ public class IPM_ProjectOverviewCtrol_Test {
             update projectListPhaseChange;
             
             Test.stopTest();
+            iDs.clear();
+            for(IPM_Project__c project : projectListPhaseChange){
+            	iDs.add(project.Id);
+            }
+            for(IPM_Project__c project : [Select Id, IPM_Phase__c from IPM_Project__c where Id In : iDs limit 100])
+            	System.assertEquals( IPM_ConstantUtils.PHASE_FEASIBILITY,  project.IPM_Phase__c , 'Project phase has not been updated.');
             
             Map<Id,IPM_Milestone__c>  mileStoneMap = new Map<Id,IPM_Milestone__c>([Select IPM_Project__r.BET_MS_First_Release_Date__c,RecordTypeId,Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c limit 1000] );
             
@@ -178,6 +186,13 @@ public class IPM_ProjectOverviewCtrol_Test {
              }  
                 
             update updateMilestoneList;
+            iDs.clear();
+            for(IPM_Milestone__c milestone : updateMilestoneList)
+            {
+            	iDs.add(milestone.Id);
+            }
+            for(IPM_Milestone__c milestone : [Select Id, IPM_Due_Date__c from IPM_Milestone__c where Id IN : iDs limit 100])
+            	System.assertEquals(System.today()+5 , milestone.IPM_Due_Date__c , 'Milestone due dates are not updated properly.');
             
             IPM_Milestone__c dueDateTodayMilestone = IPM_TestFactory_Helper.createIPMMilestone(projectList[0].Id, false);
             dueDateTodayMilestone.RecordTypeId = recordtypeid;    
@@ -202,30 +217,30 @@ public class IPM_ProjectOverviewCtrol_Test {
             }
             System.assertEquals(2, [Select count() from IPM_Milestone__c where id IN: iDs],MILESTONE_CREATED);
             
-            List<IPM_Project_Document__c>  documentList  = [Select IPM_Document_Status__c from IPM_Project_Document__c 
-            where IPM_Project__c =: projectList[0].Id limit 1000];
+            List<IPM_Project_Document__c>  documentList  = [Select IPM_Document_Status__c from IPM_Project_Document__c where IPM_Project__c =: projectList[0].Id limit 1000];
             documentList[0].IPM_Document_Status__c= IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED;
             update documentList; 
             
+            System.assertEquals(IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED, [Select Id, IPM_Document_Status__c from IPM_Project_Document__c where IPM_Project__c =: projectList[0].Id limit 1000][0].IPM_Document_Status__c, 'Document status is not updated successfully.');
             
             PageReference pRef1 = new PageReference(sPageRefURL+projectList[0].Id);
         	Test.setCurrentPage(pRef1);
         
         	IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
         	IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
-        	system.assert(overCtrl1.childProjectsIncompleteAlert != null);
+        	system.assert(overCtrl1.childProjectsIncompleteAlert != null, 'There are no alerts for child projects progression through phases.');
        }
     }
 
 	//Testmethod to validate moveToPLE functionality
-    static testMethod void testmoveToPLE()
+    private static testMethod void testmoveToPLE()
     {
     	// Get the newly created Projects from Database. 
         Set<String> projectNameSet = new Set<String>{'TestComments1'};
         User globalProjectLeader = null;
         
         // Get the list of user's for project leaders.
-        List<User> userList = [Select Id,Name,lastName from User where LastName='GLOBAL_PL'];
+        List<User> userList = [Select Id,Name,lastName from User where LastName=:GLOBAL_PL_USER];
         
         // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(userList); 
@@ -245,8 +260,8 @@ public class IPM_ProjectOverviewCtrol_Test {
         IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
         
         overCtrl1.moveToPLE();
-        list<IPM_Project__c> ResultProject = [Select Id, IPM_Actual_Launch_Date__c from IPM_Project__c where Id =: projectList[0].Id];
-        System.assertEquals(Date.today(), ResultProject[0].IPM_Actual_Launch_Date__c, 'Launch Date Is Wrong');
+        for( IPM_Project__c  project : [Select Id, IPM_Actual_Launch_Date__c from IPM_Project__c where Id IN :  projectList ] )
+        	System.assertEquals(Date.today(), project.IPM_Actual_Launch_Date__c, 'Launch Date Is Wrong');
         Test.stopTest();
         }
     }

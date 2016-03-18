@@ -4,7 +4,7 @@
 * @description  This class is used to test the functionality of IPM_GatekeeperChecklist class 
 */
 @isTest
-public class IPM_GatekeeperChecklist_Test{
+private class IPM_GatekeeperChecklist_Test{
 
     public static IPM_Project__c project;// Project object initialization
     public static IPM_Project_Document__c projDoc;
@@ -14,6 +14,7 @@ public class IPM_GatekeeperChecklist_Test{
     public static List<IPM_Questionnaire__c> quesList;
     private static final string TEST_COMMENTS_STR='TestComments1';
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
+    private static final string RECORD_TYPE_UPDATED = 'Questionnaire Record Type is Updated'; 
     public static PageReference  pRef;
     public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
     public static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
@@ -72,15 +73,15 @@ public class IPM_GatekeeperChecklist_Test{
             from IPM_Project__c where Name in:projectNameSet];
             project=projectListObj[0];
             projlList=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
-            System.assertEquals(projlList[0].id,project.id);//positive test
+            System.assertEquals(projlList[0].id,project.id, 'Project insertion fails');//positive test
             for(IPM_Project__c projectObj : projectListObj) {
                 projDocList = projectObj.Project_Documents__r;
                 quesList=projectObj.IPM_Questionnaires__r;
-                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
+                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);// Positive Test;
             }
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];
-            system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id);
+            system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id, 'Project Document insertion fails'); // Positive Test;
             ipmGK=new IPM_GatekeeperChecklist();
             
         }
@@ -110,11 +111,13 @@ public class IPM_GatekeeperChecklist_Test{
             ipmGK.updateGKchecklist();
             List<IPM_Questionnaire__c>gkQuesCommentList=[select IPM_Comments__c from IPM_Questionnaire__c where Id=:ipmGK.gkCheck.Id limit 1];
             System.assertEquals(ipmGK.gkCheck.IPM_Comments__c ,gkQuesCommentList[0].IPM_Comments__c,'updated successfully');
+            System.assertEquals(ANSWERED_STR, gkQuesCommentList[0].IPM_Comments__c, 'updated successfully');// Positive Test;
             ipmGK.quesId=quesList[0].Id;
             ipmGK.cmts = false;
             ipmGK.updateGKchecklist();
             List<IPM_Questionnaire__c>gkQuesAnsList=[select IPM_GK_Answers__c from IPM_Questionnaire__c where Id=:ipmGK.gkCheck.Id limit 1];
             System.assertEquals(ipmGK.gkCheck.IPM_GK_Answers__c,gkQuesAnsList[0].IPM_GK_Answers__c,'data updated');
+            System.assertEquals(PARTLY_STR, gkQuesAnsList[0].IPM_GK_Answers__c,'data updated');// Positive Test ;
             test.stopTest();
         }
     }
@@ -146,6 +149,8 @@ public class IPM_GatekeeperChecklist_Test{
             test.startTest();
             quesList[0].RecordTypeId=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE).RecordTypeId;
             update quesList[0];
+            IPM_Questionnaire__c ipmQuestionnaire = [SELECT Id,RecordTypeId FROM IPM_Questionnaire__c WHERE Id =:quesList[0].id  LIMIT 1];
+            System.assertEquals(ipmQuestionnaire.RecordTypeId, quesList[0].RecordTypeId, RECORD_TYPE_UPDATED);//Positive Test;
             IPM_GatekeeperChecklist.recTypeTrademark=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE).RecordTypeId;
             ipmGk.projectID=project.Id;
             ipmgk.getChecklistQuestions(IPM_ConstantUtils.SC_FEASIBILITY,IPM_ConstantUtils.CHARTER_GATE);

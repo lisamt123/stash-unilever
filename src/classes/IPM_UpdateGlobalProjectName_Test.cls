@@ -17,7 +17,7 @@ private class IPM_UpdateGlobalProjectName_Test {
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static IPM_Financial_Year__c finYear=new IPM_Financial_Year__c();
     private static final string TEST_COMMENTS_STR='TestComments1';
-    private static string REGIONAL_STR='Regional';
+    private static final string REGIONAL_STR='Regional';
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static User globalUser;
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
@@ -91,11 +91,15 @@ private class IPM_UpdateGlobalProjectName_Test {
             childProj.IPM_Project_Name__c=project.Name+'_Name';
             childProj.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
             insert childProj;
+            list<IPM_Project__c>childPList=[SELECT IPM_Parent_Project__c FROM IPM_Project__c WHERE id=:childProj.id LIMIT 1];
+            system.assertEquals(childPList[0].IPM_Parent_Project__c,project.id,'Parent project id is:'+childPList[0].IPM_Parent_Project__c);
             IPM_Project__c childProjs=new IPM_Project__c();
             childProjs.IPM_Parent_Project__c=childProj.id;
             childProjs.IPM_Project_Name__c=project.Name+'_Names';
             childProjs.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
             insert childProjs;
+            list<IPM_Project__c>childsPList=[SELECT IPM_Parent_Project__c FROM IPM_Project__c WHERE id=:childProjs.id LIMIT 1];
+            system.assertEquals(childsPList[0].IPM_Parent_Project__c,childProj.id,'Parent project id is:'+childsPList[0].IPM_Parent_Project__c);
             
             geographyDetailList = [SELECT id,Name FROM MDO_Geography__c WHERE Name IN: countryNameList];
           system.assertEquals(geographyDetailList.size(),2);
@@ -132,7 +136,7 @@ private class IPM_UpdateGlobalProjectName_Test {
           
           for(IPM_Project__c projectObj : projectListObj) {
                 finList = projectObj.IPM_Financials_Consolidated__r;
-                //System.assertEquals(finList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
+                
             }
             
           finYear = IPM_TestFactory_Helper.createIPMFinancialYear(FALSE); 
@@ -147,7 +151,8 @@ private class IPM_UpdateGlobalProjectName_Test {
           finYear.Copy_Regional_to_Local__c=true;       
           
           insert finYear;        
-          system.assertNotEquals(finYear.id, null);  
+          List<IPM_Financial_Year__c> finyrList=[SELECT Charter_Approved__c FROM IPM_Financial_Year__c WHERE ID=:finYear.id LIMIT 1];
+          system.assertEquals(finyrList[0].Charter_Approved__c,true,'financial chater approver is:'+finyrList[0].Charter_Approved__c);  
         }
     }
     
@@ -168,9 +173,11 @@ private class IPM_UpdateGlobalProjectName_Test {
             project.IPM_Project_Name__c=projectName;
             project.IPM_Phase__c='Ideas';
             update project;
-            IPM_UpdateGlobalProjectName.updateChildProjects(updatedname,projectOldname);//call to update child and subchild project name
             List<IPM_Project__c>projectLists=[SELECT ID,IPM_Phase__c FROM IPM_Project__c WHERE id=:Project.id LIMIT 1];
-            system.assertEquals(projectLists[0].IPM_Phase__c, project.IPM_Phase__c);
+            system.assertEquals(projectLists[0].IPM_Phase__c, project.IPM_Phase__c,'Project phase is:'+projectLists[0].IPM_Phase__c);
+            IPM_UpdateGlobalProjectName.updateChildProjects(updatedname,projectOldname);//call to update child and subchild project name
+            List<IPM_Project__c>updatedChildProjectList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE (IPM_Parent_Project__c=:Project.id OR IPM_Parent_Project__r.IPM_Parent_Project__c =:Project.id) AND IPM_Project_Name__c like:projUpdateName+'%' LIMIT 2];
+            system.assertEquals(updatedChildProjectList.size(),2,'both childs project name got updated');
             test.stopTest();
          }
         

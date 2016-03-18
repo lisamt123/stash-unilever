@@ -71,7 +71,8 @@ private class IPM_EcoDesignSection_Test {
 		System.runAs(globalProjectLeader)
 		{   
 			
-			for(IPM_Project__c proj : projectList){
+			for(IPM_Project__c proj : projectList)
+			{
 				proj.First_Sync_To_EcoDesign__c = true;
 				proj.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
 				proj.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
@@ -86,7 +87,8 @@ private class IPM_EcoDesignSection_Test {
 
 			}
 			insert projectList;
-			system.assertEquals(projectList.size(),8,'Projects are not created');
+			List<IPM_Project__c> projectListTemp = [Select id From IPM_Project__c Where id IN : projectList ];
+			system.assert(projectListTemp.size() > 0,'Projects not created successfully');
 		}
 	}
 	
@@ -95,25 +97,33 @@ private class IPM_EcoDesignSection_Test {
 	* @Description: Validate EcoDesign functionality for Global Original Project
 	  @name validateEcoDesignSaveGlobal
 	* *********************************/
-	public static testmethod void validateEcoDesignSaveGlobal() {
+	public static testmethod void validateEcoDesignSaveGlobal() 
+	{
 		List<MDO_Geography__c> mdo_geoList = new List<MDO_Geography__c>();
 		MDO_Geography__c geo;
 		User globalUser = [Select Id,LastName from User where LastName=: GLOBAL_PL limit 1][0];
-		System.runAs(globalUser){
+		Test.startTest();
+		System.runAs(globalUser)
+		{
 			projectList = [Select id, name from IPM_Project__c limit 1000];
 			for(integer i=0 ;i<10 ;i++) {
 				geo = new MDO_Geography__c(name = TESTSTR+i);
 				mdo_geoList.add(geo);  
 			}
 			insert mdo_geoList;      
-			for(integer i=0; i<10 ; i++) {
-				if(i < 7) {
+			List<MDO_Geography__c> geoListTemp = [Select id,name From MDO_Geography__c Where id IN: mdo_geoList];
+			system.assertNotEquals(geoListTemp.size(),0,'Geography not created successfully');   
+			for(integer i=0; i<10 ; i++) 
+			{
+				if(i < 7) 
+				{
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = WITH_MCO,
 					IS_EI_Country__c = true,isActive__c = true);    
 					countryList.add(tempCountry);
 				}
-				else {
+				else 
+				{
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = WITH_MCO,
 					IS_EI_Country__c = false,isActive__c = true);    
@@ -121,14 +131,20 @@ private class IPM_EcoDesignSection_Test {
 				}
 			}
 			insert countryList;
+			List<IPM_Country__c> countryListTemp = [Select id From IPM_Country__c Where id IN : countryList];
+			system.assertNotEquals(countryListTemp.size(),0,'Countries not created successfully'); 
 			integer cnt = 1;
-			for(IPM_Country__c countryEle : countryList) {
-				if((cnt < 3 && countryEle.IS_EI_Country__c) || (cnt > 6 && !countryEle.IS_EI_Country__c)) {
+			for(IPM_Country__c countryEle : countryList) 
+			{
+				if((cnt < 3 && countryEle.IS_EI_Country__c) || (cnt > 6 && !countryEle.IS_EI_Country__c)) 
+				{
 					IPM_Assessment__c assessment = IPM_TestFactory_Helper.createAssessments(false, projectList[0].id, countryEle.id,IPM_ConstantUtils.PHASE_IDEAS );
-					if(cnt == 1 || cnt == 9) {
+					if(cnt == 1 || cnt == 9) 
+					{
 						assessment.IPM_Is_Lead_Assessment__c = true;
 					}
-					else {
+					else 
+					{
 						assessment.IPM_Is_Lead_Assessment__c = false;
 					}
 					finalAssessmentList.add(assessment);
@@ -136,6 +152,8 @@ private class IPM_EcoDesignSection_Test {
 				cnt++;
 			}    
 			insert finalAssessmentList;  
+			List<IPM_Assessment__c> finalAssessmentListTemp = [Select Id from IPM_Assessment__c where Id IN: finalAssessmentList limit 1000];
+			System.assertNotEquals(finalAssessmentListTemp.size(),0,'Assessments are not created');
 		}
 		List<IPM_Project_Document__c> projDocListWithProj = [Select id,name,IPM_GateDocuments__c From IPM_Project_Document__c limit 1000];
 		List<IPM_Project_Document_Section__c> projDocSectionList = [Select Id From IPM_Project_Document_Section__c Where IPM_Master_Section_External_Id__c =: ENVIRONMENTAL_IMPACT and  IPM_Project_Document__c =: projDocListWithProj[0].id];
@@ -147,6 +165,7 @@ private class IPM_EcoDesignSection_Test {
 		IPM_EcoDesignSection ecoDesignHandler = new IPM_EcoDesignSection();
 		System.assertEquals(ecoDesignHandler.countryAssessmentWrapListEICountries.size(),7, 'EIcountry size not matched');        
 		System.assertEquals(ecoDesignHandler.countryAssessmentWrapListNonEICountries.size(),3, 'NonEICountries size not matched');
+		Test.stopTest();
 	}  
 	
 	/***********************************
@@ -156,13 +175,16 @@ private class IPM_EcoDesignSection_Test {
 	
 	public static testmethod void validateEcoDesignSaveRegionalOriginal() {
 		List<User> userList = [Select Id,LastName from User where LastName=: GLOBAL_PL limit 1];
-		System.runAs(userList[0]){
+		Test.startTest();
+		System.runAs(userList[0])
+		{
 			//  Create User profile Information
 			List<String> projectNames = new List<String>();
 			companyCardList = [Select id from IPM_Company_Card__c limit 3]; 
 			// Create project for assignment.
 			projectList2 = IPM_TestFactory_Helper.createOriginalProjectList(false, 1);
-			for(IPM_Project__c project : projectList2) {
+			for(IPM_Project__c project : projectList2) 
+			{
 				project.IPM_Project_Name__c = 'NewOrgProj';
 				project.IPM_Company_Card__c = companyCardList[1].Id;
 				project.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
@@ -188,14 +210,18 @@ private class IPM_EcoDesignSection_Test {
 				mdo_geoList.add(geo);  
 			}
 			insert mdo_geoList;      
+			List<MDO_Geography__c> geoListTemp = [Select id,name From MDO_Geography__c Where id IN: mdo_geoList];
+			system.assertNotEquals(geoListTemp.size(),0,'Geography not created successfully');   
 			for(integer i=0; i<10 ; i++) {
-				if(i < 7) {
+				if(i < 7)
+				{
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = WITH_MCO,
 					IS_EI_Country__c = true,isActive__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
 					countryList.add(tempCountry);
 				}
-				else {
+				else 
+				{
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = WITH_MCO,
 					IS_EI_Country__c = false,isActive__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
@@ -203,15 +229,21 @@ private class IPM_EcoDesignSection_Test {
 				}
 			}
 			insert countryList;
+			List<IPM_Country__c> countryListTemp = [Select id From IPM_Country__c Where id IN : countryList];
+			system.assertNotEquals(countryListTemp.size(),0,'Countries not created successfully'); 
 			integer cnt = 1;
-			for(IPM_Country__c countryEle : countryList) {
-				if((cnt < 3 && countryEle.IS_EI_Country__c) || (cnt > 6 && !countryEle.IS_EI_Country__c)) {
+			for(IPM_Country__c countryEle : countryList) 
+			{
+				if((cnt < 3 && countryEle.IS_EI_Country__c) || (cnt > 6 && !countryEle.IS_EI_Country__c)) 
+				{
 					IPM_Assessment__c assessment = IPM_TestFactory_Helper.createAssessments(false, projectList[0].id, countryEle.id,IPM_ConstantUtils.PHASE_IDEAS );
 					
-					if(cnt == 1 || cnt == 9) {
+					if(cnt == 1 || cnt == 9) 
+					{
 						assessment.IPM_Is_Lead_Assessment__c = true;
 					}
-					else {
+					else 
+					{
 						assessment.IPM_Is_Lead_Assessment__c = false;
 					}
 					finalAssessmentList.add(assessment);
@@ -219,6 +251,8 @@ private class IPM_EcoDesignSection_Test {
 				cnt++;
 			}    
 			insert finalAssessmentList;  
+			List<IPM_Assessment__c> finalAssessmentListTemp = [Select Id from IPM_Assessment__c where Id IN: finalAssessmentList limit 1000];
+			System.assertNotEquals(finalAssessmentListTemp.size(),0,'Assessments are not created');
 		}
 		List<IPM_Project_Document__c> projDocListWithProj = [Select id,name,IPM_GateDocuments__c From IPM_Project_Document__c limit 1000];
 		List<IPM_Project_Document_Section__c> projDocSectionList = [Select Id From IPM_Project_Document_Section__c Where IPM_Master_Section_External_Id__c =: ENVIRONMENTAL_IMPACT and  IPM_Project_Document__c =: projDocListWithProj[0].id];
@@ -229,6 +263,7 @@ private class IPM_EcoDesignSection_Test {
 		IPM_EcoDesignSection ecoDesignHandler = new IPM_EcoDesignSection();
 		System.assertEquals(ecoDesignHandler.countryAssessmentWrapListEICountries.size(),7);        
 		System.assertEquals(ecoDesignHandler.countryAssessmentWrapListNonEICountries.size(),3);
+		Test.stopTest();
 	}
 	
 	/***********************************
@@ -240,6 +275,7 @@ private class IPM_EcoDesignSection_Test {
 		List<User> userList = [Select Id,LastName from User where LastName=: GLOBAL_PL limit 1];
 		List<MDO_Geography__c> mdo_geoList = new List<MDO_Geography__c>();
 		MDO_Geography__c geo;
+		Test.startTest();
 		System.runAs(userList[0]) 
 		{
 			projectList = [Select id, name,IPM_Project_Type__c,IPM_GateKeeping_Model__c, IPMProject_Span__c, IPM_Phase__c,IPM_CompanyCardText__c from IPM_Project__c  where IPMProject_Span__c =:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL limit 1000];
@@ -267,6 +303,8 @@ private class IPM_EcoDesignSection_Test {
 				}
 			}
 			insert countryList;
+			List<IPM_Country__c> countryListTemp = [Select id From IPM_Country__c Where id IN : countryList];
+			system.assertNotEquals(countryListTemp.size(),0,'Countries not created successfully'); 
 			integer cnt = 1;
 			for(IPM_Country__c countryEle : countryList) 
 			{
@@ -286,6 +324,8 @@ private class IPM_EcoDesignSection_Test {
 				cnt++;
 			}    
 			insert finalAssessmentList;
+			List<IPM_Assessment__c> finalAssessmentListTemp = [Select Id from IPM_Assessment__c where Id IN: finalAssessmentList limit 1000];
+			System.assertNotEquals(finalAssessmentListTemp.size(),0,'Assessments are not created');
 			
 			IPM_Project__c projToChangePhase = projectList[0];
 			projToChangePhase.IPM_Phase__c  = IPM_ConstantUtils.FEASIBILITY_PHASE;
@@ -336,6 +376,7 @@ private class IPM_EcoDesignSection_Test {
 			System.assertEquals(ecoDesignHandler3.countryAssessmentWrapListEICountries.size(),7); 
 			System.assertEquals(ecoDesignHandler4.countryAssessmentWrapListEICountries.size(),7); 
 		}    
+		Test.stopTest();  
 	}
 	/**
 	* @Description:  Used for testing Global, Regional and Local Project creation and associated Assessment to the Regional Projects. Check whether 
@@ -391,10 +432,10 @@ private class IPM_EcoDesignSection_Test {
 			for(IPM_Project__c project : proList)
 			{
 				// Once project is created Charter document would be available.
-				System.assertEquals(project.Project_Documents__r.size(),1);
+				System.assertEquals(project.Project_Documents__r.size(),1,'Document not created');
 
 				// Project default phase would always be set as IDEAS.
-				System.assertEquals(project.IPM_Phase__c,IPM_ConstantUtils.PHASE_IDEAS); // Phase would be always ideas for Global Project.
+				System.assertEquals(project.IPM_Phase__c,IPM_ConstantUtils.PHASE_IDEAS,'Project phase is not correct'); // Phase would be always ideas for Global Project.
 			}
 			
 			/******************************** Create Regional Rollouts for Created Global project ****************************************/
@@ -438,6 +479,8 @@ private class IPM_EcoDesignSection_Test {
 			}
 			
 			insert countryList;
+			List<IPM_Country__c> countryListTemp = [Select id From IPM_Country__c Where id IN : countryList];
+			system.assertNotEquals(countryListTemp.size(),0,'Countries not created successfully');   
 			
 			/******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
 			// Set GateKeeping Model as RCLT and start with Regional Project Creation.
@@ -458,9 +501,9 @@ private class IPM_EcoDesignSection_Test {
 			
 			update projectListPhaseChange;
 			
-			Test.stopTest();
 		}
 		
+		Test.stopTest();
 		List<IPM_Project__c> regionalProjects = new List<IPM_Project__c>();
 		
 		System.RunAs(globalProjectLeader)
@@ -476,7 +519,7 @@ private class IPM_EcoDesignSection_Test {
 			for(IPM_Project__c regionalProject : DBRegionalProjects) 
 			{
 				// Only Contract document Available at Regional Level.
-				System.assertEquals(regionalProject.Project_Documents__r.size(),1);
+				System.assertEquals(regionalProject.Project_Documents__r.size(),1,'Document not created');
 			}
 
 			List<IPM_Project__c> regionalProj = [Select id,name,IPMProject_Span__c From IPM_Project__c Where IPMProject_Span__c =: IPM_ConstantUtils.PROJECT_SPAN_REGIONAL ];
@@ -531,6 +574,8 @@ private class IPM_EcoDesignSection_Test {
 				cnt++;
 			}    
 			insert finalAssessmentList;  
+			List<IPM_Assessment__c> finalAssessmentListTemp = [Select Id from IPM_Assessment__c where Id IN: finalAssessmentList limit 1000];
+			System.assertNotEquals(finalAssessmentListTemp.size(),0,'Assessments are not created'); 
 			
 			List<IPM_Project_Document__c> projDocListWithProj = [Select id,name,IPM_GateDocuments__c From IPM_Project_Document__c limit 1000];
 			List<IPM_Project_Document_Section__c> projDocSectionList = [Select Id From IPM_Project_Document_Section__c Where IPM_Master_Section_External_Id__c =: ENVIRONMENTAL_IMPACT and  IPM_Project_Document__c =: projDocListWithProj[0].id];
@@ -591,9 +636,9 @@ private class IPM_EcoDesignSection_Test {
 			for(IPM_Project__c project : proList)
 			{
 				// Once project is created Charter document would be available.
-				System.assertEquals(project.Project_Documents__r.size(),1);
+				System.assertEquals(project.Project_Documents__r.size(),1,'Document not created');
 				// Project default phase would always be set as IDEAS.
-				System.assertEquals(project.IPM_Phase__c,IPM_ConstantUtils.PHASE_IDEAS); // Phase would be always ideas for Global Project.
+				System.assertEquals(project.IPM_Phase__c,IPM_ConstantUtils.PHASE_IDEAS,'Project phase is not correct'); // Phase would be always ideas for Global Project.
 			}
 			/******************************** Create Regional Rollouts for Created Global project ****************************************/
 			List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,proList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
@@ -651,7 +696,7 @@ private class IPM_EcoDesignSection_Test {
 			for(IPM_Project__c regionalProject : DBRegionalProjects) 
 			{
 				// Only Contract document Available at Regional Level.
-				System.assertEquals(regionalProject.Project_Documents__r.size(),1);
+				System.assertEquals(regionalProject.Project_Documents__r.size(),1,'Document not created');
 			}
 			List<IPM_Project__c> regionalProj = [Select id,name,IPMProject_Span__c From IPM_Project__c Where IPMProject_Span__c =: IPM_ConstantUtils.PROJECT_SPAN_REGIONAL ];
 			IPM_Project__c regProject = regionalProj[0];

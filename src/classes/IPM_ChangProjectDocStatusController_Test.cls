@@ -17,8 +17,8 @@ private class  IPM_ChangProjectDocStatusController_Test {
     private static List<IPM_Project_Document__c>docStatus;
     private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
     private static User stdUserForChangStatus;
-    private static final string STATUS_MATCHED_STR='status matched';// assert statements
-    private static final string STATUS_CHANGED_STR='status changed';// assert statements
+   private static final string STATUS_NOT_MATCHED_STR='status not matched';// assert statements
+    private static final string STATUS_NOT_CHANGED_STR='status not changed';// assert statements
     private static User globalUser;
     private static string REGIONAL_STR='Regional';
     private static IPM_Project__c regProject;// Project object initialization\
@@ -119,7 +119,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];
-            system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id);
+            system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id,'Project Document Sections not created');
             
             
             gateCMICountry=new IPM_Gate_CMI__c();
@@ -149,6 +149,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             List<IPM_Milestone__c>mileList1=[select Id,IPM_Active__c,IPM_Due_Date__c from IPM_Milestone__c where Id=:mileListObj[0].Id];
             System.assert(mileList1[0].IPM_Active__c,'milestones not updated');
             
+            List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where NAME='Test Local Company Card' limit 1];
             //regional project and local project creation
             childProj=new IPM_Project__c();
             childProj.IPM_Parent_Project__c=project.id;
@@ -271,12 +272,12 @@ private class  IPM_ChangProjectDocStatusController_Test {
             chngPro.updateStatus();
             update projDocList;
             docListObj=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_NOT_STARTED,STATUS_CHANGED_STR);
+            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_NOT_STARTED,STATUS_NOT_CHANGED_STR);
             
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where IPM_Project__c=:chngPro.projectId];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_NOT_STARTED,STATUS_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_NOT_STARTED,STATUS_NOT_MATCHED_STR);
             test.stopTest();
             
         }
@@ -293,12 +294,12 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             update projDocList[0];
             docListObj=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS,STATUS_CHANGED_STR);
+            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS,STATUS_NOT_CHANGED_STR);
             
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where IPM_Project__c=:chngPro.projectId];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS,STATUS_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS,STATUS_NOT_MATCHED_STR);
             test.stopTest();
             
         }
@@ -315,14 +316,14 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Stopped_Comments__c='abc';
             update projDocList;
             docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED,STATUS_CHANGED_STR);
+            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED,STATUS_NOT_CHANGED_STR);
             chngPro.submit();
             projDocList[0].IPM_Stopped_Comments__c='';
             update  projDocList;
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED,STATUS_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED,STATUS_NOT_MATCHED_STR);
             chngPro.project.Name=INVALID_NAME;
             chngPro.projectDoc.IPM_Stopped_Comments__c='testcomments';
             chngPro.stopProject();
@@ -339,11 +340,11 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             update projDocList;
             docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,STATUS_CHANGED_STR);
+            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,STATUS_NOT_CHANGED_STR);
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,STATUS_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,STATUS_NOT_MATCHED_STR);
             chngPro.project.Name=INVALID_NAME;
             chngPro.approvedWithEditsProject();
             test.stopTest();
@@ -365,12 +366,12 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             update projDocList;
             docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_CHANGED_STR);
+            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_NOT_CHANGED_STR);
             projDocList[0].IPM_Postponement_Date__c=system.today().addDays(7); 
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_NOT_MATCHED_STR);
             chngPro.project.Name=INVALID_NAME;
             chngPro.postponeProject();
             test.stopTest();
@@ -388,12 +389,12 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             update projDocList;
             docListObj=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_CHANGED_STR);
+            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_NOT_CHANGED_STR);
             
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_NOT_MATCHED_STR);
             chngPro.showValidation=true;
             chngPro.proposeProject();
             chngPro.project.Name=INVALID_NAME;
@@ -413,7 +414,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             projDocList[0].IPM_Document_Status__c=chngPro.Status;
             update projDocList;
             docListObj=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_CHANGED_STR);
+            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_NOT_CHANGED_STR);
             
             chngPro.project.IPM_GateKeeping_Model__c =IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
             
@@ -429,7 +430,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_NOT_MATCHED_STR);
        test.stopTest();
             
         }
@@ -443,11 +444,11 @@ private class  IPM_ChangProjectDocStatusController_Test {
             secOpt=chngPro.getcomplexities();
             update projDocList;
             docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
-            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED,STATUS_CHANGED_STR);
+            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED,STATUS_NOT_CHANGED_STR);
             chngPro.submit();
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
-            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED,STATUS_MATCHED_STR);
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED,STATUS_NOT_MATCHED_STR);
             chngPro.project.Name=INVALID_NAME;
             chngPro.approveProject();
             test.stopTest();

@@ -14,8 +14,8 @@ private class IPM_ChannelImageController_Test{
     private static List<IPM_Project_Document_Section__c> sectionList = new List<IPM_Project_Document_Section__c>();
    
 	private static Set<String> projectNameSet = new Set<String>{'TestComments1'};
+    private static string IMAGE_NOT_UPLOADED_SUCCESSFULLY='image not uploaded successfully';
     
-    private static string EXCEPTION_OCCURED = 'Exception occured while saving document.';
     private static string RECORD_NOT_SAVED = 'Record not saved successfully.';
     /*******************************************************************************************************
     * @description  Test Method to initialize data for test methods
@@ -47,6 +47,8 @@ private class IPM_ChannelImageController_Test{
         {
            insert projectList;
         }  
+        List<IPM_Project__c>projList=[Select Id,IPM_Category_Group__c from IPM_Project__c where Id=:projectList[0].Id Limit 1];
+        System.assertEquals(projList[0].IPM_Category_Group__c,'Household Care','Project record not saved successfully');
     }
     
     /*******************************************************************************************************
@@ -135,54 +137,54 @@ private class IPM_ChannelImageController_Test{
             ipm_channelImageController.parentId=sectionContent.Id;
             ipm_channelImageController.channelType=IPM_ConstantUtils.PREPOSITION_FIRST_IMAGE;
             pRef=ipm_channelImageController.Savedoc();
-            system.assert(ipm_channelImageController.isImageLoaded,EXCEPTION_OCCURED);
+            system.assert(ipm_channelImageController.isImageLoaded,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             
             ipm_channelImageController.channelType=IPM_ConstantUtils.PREPOSITION_SECOND_IMAGE;
             pRef=ipm_channelImageController.Savedoc();
-            system.assert(ipm_channelImageController.isImageLoaded,EXCEPTION_OCCURED);
+            system.assert(ipm_channelImageController.isImageLoaded,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             
             ipm_channelImageController.channelType=IPM_ConstantUtils.PROMOTION_FIRST_IMAGE;
             pRef=ipm_channelImageController.Savedoc();
-            system.assert(ipm_channelImageController.isImageLoaded,EXCEPTION_OCCURED);
+            system.assert(ipm_channelImageController.isImageLoaded,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             
             ipm_channelImageController.channelType=IPM_ConstantUtils.PROMOTION_SECOND_IMAGE;
             pRef=ipm_channelImageController.Savedoc();
-            system.assert(ipm_channelImageController.isImageLoaded,EXCEPTION_OCCURED);
+            system.assert(ipm_channelImageController.isImageLoaded,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             
             ipm_channelImageController.channelType=IPM_ConstantUtils.PRODUCT_FIRST_IMAGE;
             pRef=ipm_channelImageController.Savedoc();
-            system.assert(ipm_channelImageController.isImageLoaded,EXCEPTION_OCCURED);
+            system.assert(ipm_channelImageController.isImageLoaded,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             
             ipm_channelImageController.channelType=IPM_ConstantUtils.PRODUCT_SECOND_IMAGE;
             pRef=ipm_channelImageController.Savedoc();
-            system.assert(ipm_channelImageController.isImageLoaded,EXCEPTION_OCCURED);
+            system.assert(ipm_channelImageController.isImageLoaded,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             
             ipm_channelImageController.channelType=IPM_ConstantUtils.PACK_FIRST_IMAGE;
             pRef=ipm_channelImageController.Savedoc();
-            system.assert(ipm_channelImageController.isImageLoaded,EXCEPTION_OCCURED);
+            system.assert(ipm_channelImageController.isImageLoaded,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             
             ipm_channelImageController.channelType=IPM_ConstantUtils.PACK_SECOND_IMAGE;
             pRef=ipm_channelImageController.Savedoc();
-            system.assert(ipm_channelImageController.isImageLoaded,EXCEPTION_OCCURED);
+            system.assert(ipm_channelImageController.isImageLoaded,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             
             ipm_channelImageController.channelType=IPM_ConstantUtils.PRICE_FIRST_IMAGE;
             pRef=ipm_channelImageController.Savedoc();
-            system.assert(ipm_channelImageController.isImageLoaded,EXCEPTION_OCCURED);
+            system.assert(ipm_channelImageController.isImageLoaded,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             
             ipm_channelImageController.channelType=IPM_ConstantUtils.PRICE_SECOND_IMAGE;
             pRef=ipm_channelImageController.Savedoc();
-            system.assert(ipm_channelImageController.isImageLoaded,EXCEPTION_OCCURED);
+            system.assert(ipm_channelImageController.isImageLoaded,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             
             ipm_channelImageController.channelType=IPM_ConstantUtils.PLACE_FIRST_IMAGE;
             pRef=ipm_channelImageController.Savedoc();
-            system.assert(ipm_channelImageController.isImageLoaded,EXCEPTION_OCCURED);
+            system.assert(ipm_channelImageController.isImageLoaded,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             
             ipm_channelImageController.channelType=IPM_ConstantUtils.PLACE_SECOND_IMAGE;
             pRef=ipm_channelImageController.Savedoc();
-            system.assert(ipm_channelImageController.isImageLoaded,EXCEPTION_OCCURED);
+            system.assert(ipm_channelImageController.isImageLoaded,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             
             atth=ipm_channelImageController.getmyFile();
-            system.assertNotEquals(ipm_channelImageController.myfile, null,EXCEPTION_OCCURED);
+            system.assertNotEquals(ipm_channelImageController.myfile, null,IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             Test.stopTest();
         }
     }
@@ -207,7 +209,7 @@ private class IPM_ChannelImageController_Test{
             ipm_channelImageController.myfile=atth;
             ipm_channelImageController.channelType='nothing';
             pRef=ipm_channelImageController.Savedoc();
-            system.assertNotEquals(ipm_channelImageController.isImageLoaded,true, EXCEPTION_OCCURED);
+            system.assertNotEquals(ipm_channelImageController.isImageLoaded,true, IMAGE_NOT_UPLOADED_SUCCESSFULLY);
             Test.stopTest();
         }
      }

@@ -1,5 +1,5 @@
 @isTest
-public with sharing class IPM_DueDateNotificationScheduler_Test {
+private with sharing class IPM_DueDateNotificationScheduler_Test {
 
 private static final String  FEED_UPDATED_ASSERT = 'Feed Updated';
     
@@ -24,5 +24,10 @@ private static final String  FEED_UPDATED_ASSERT = 'Feed Updated';
             System.assert(!projectFeed.Body.contains(IPM_ConstantUtils.GATE_APPROVAL_DATE),FEED_UPDATED_ASSERT);
           }
             Test.StopTest();
+          //Now that the scheduled job has executed after Test.stopTest(),
+          // Verify the scheduled job has run now
+          for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed limit 50000]){
+            System.assert(projectFeed.Body.contains(IPM_ConstantUtils.GATE_APPROVAL_DATE),FEED_UPDATED_ASSERT);
+          }
     }
 }

@@ -7,18 +7,18 @@
 @Business Logic:This class invokes various test methods to validate Rollout related flows including Insert/Update/Delete of Regional/Local Rollouts.
 */
 @isTest
-public class IPM_ProjectRolloutHandler_Test
+private class IPM_ProjectRolloutHandler_Test
 {
 
-    public  static Set<String> USER_LIST= new Set<string>{'GLOBAL_PL','REGIONAL_PL','LOCAL_PL','FINANCE_PL_SECOND','FINANCE_PL'};
-    private static string GLOBAL_LASTNAME='GLOBAL_PL';
-    private static string REGIONAL_LASTNAME='REGIONAL_PL';
-    private static string LOCAL_LASTNAME='LOCAL_PL';
-    private static string FINANCE1_LASTNAME='FINANCE_PL';
-    private static string FINANCE2_LASTNAME='FINANCE_PL_SECOND';
-    private static string WITH_MCO='With MCO';
+    private static final Set<String> USER_LIST= new Set<string>{'GLOBAL_PL','REGIONAL_PL','LOCAL_PL','FINANCE_PL_SECOND','FINANCE_PL'};
+    private static final string GLOBAL_LASTNAME='GLOBAL_PL';
+    private static final string REGIONAL_LASTNAME='REGIONAL_PL';
+    private static final string LOCAL_LASTNAME='LOCAL_PL';
+    private static final string FINANCE1_LASTNAME='FINANCE_PL';
+    private static final string FINANCE2_LASTNAME='FINANCE_PL_SECOND';
+    private static final string WITH_MCO='With MCO';
     
-    public static Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
+    public static final Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
 
     /**************************************************************
     * @description: Used for Creating IPM Project data for Rollout flow test
@@ -58,6 +58,8 @@ public class IPM_ProjectRolloutHandler_Test
             List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
             insert companyCardList;
             
+            List<IPM_Company_Card__c> companyCardAssertList = [select id from IPM_Company_Card__c where id in : companyCardList];
+            system.assertEquals(3,companyCardAssertList.size(),'Number of company card inserted is not 3 ');
             // Inserting Master Data whose OWD are set to readOnly/View All    
             IPM_TestFactory_Helper.getProjectMasterData();
             
@@ -71,6 +73,8 @@ public class IPM_ProjectRolloutHandler_Test
             
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
             insert projectList; 
+            List<IPM_Project__c> projectAssertList = [select Name from IPM_Project__c where id in : projectList];
+            system.assertEquals(3,projectAssertList.size(),'Number of Compnay card created is not 3');
         }
         
         
@@ -129,25 +133,25 @@ public class IPM_ProjectRolloutHandler_Test
             Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
             
             // Get Standard Milestones from database  
-            System.assert(standardMileStoneMap.values().size() > 0);
+            System.assert(standardMileStoneMap.values().size() > 0,' No Milestones is created');
             
             /********************************Global Project Leaders Project View and Data Access****************************************/
             for(IPM_Project__c project : projectList)
             {
                 // Once project is created Charter document would be available.
-                System.assertEquals(project.Project_Documents__r.size(),1);
+                System.assertEquals(project.Project_Documents__r.size(),1,'No Project Document is created');
                 
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c);     
+                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'Task Complexity is different from project complexity');     
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size());
+                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is different from  Standard milestones size');
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1); // One for Global consolidated Financials
+                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'There will be 1 consolidated financial with respect to each project'); // One for Global consolidated Financials
                 
                 // Project default phase would always be set as IDEAS.
                 System.assertEquals(project.IPM_Phase__c,'Ideas'); // Phase would be always ideas for Global Project.
@@ -260,10 +264,10 @@ public class IPM_ProjectRolloutHandler_Test
                 IPM_Project__c parentGlobalProject = projectMap.get(parentGlobalProjectId);
                 
                 // Only Contract document Available at Regional Level.
-                System.assertEquals(regionalProject.Project_Documents__r.size(),1);
+                System.assertEquals(regionalProject.Project_Documents__r.size(),1,' No Document is created for Regional Project');
 
                 // MileStones would Copy from Parent Project. 
-                System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size());
+                System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size(),'No of Regional project milestones created is different global project');
             }
         }
         
@@ -276,19 +280,19 @@ public class IPM_ProjectRolloutHandler_Test
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0);
+                System.assert(regionalProject.Tasks__r.size()>0,'No task created for regional project');
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c);
-                    System.assertEquals(task.IPM_Phase__c,regionalProject.IPM_Phase__c);   
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Regional Project Complexity & Task complexity is different');
+                    System.assertEquals(task.IPM_Phase__c,regionalProject.IPM_Phase__c,'Regional Project & task phase is different');   
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0);
+                System.assert(regionalProject.IPM_Milestones__r.size()>0,'No milestones are created for regional project');
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3); // One for Global consolidated Financials and 2 for individual Rollouts
+                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'No Consolidated financials is created for Regional Project'); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
                 System.assertEquals(regionalProject.IPM_Phase__c,'Feasibility'); // Phase would be feasibility for Regional Projects.
@@ -355,27 +359,29 @@ public class IPM_ProjectRolloutHandler_Test
             Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
             
             // Get Standard Milestones from database  
-            System.assert(standardMileStoneMap.values().size() > 0);
+            System.assert(standardMileStoneMap.values().size() > 0,' No Milestones is created');
             
             /********************************Global Project Leaders Project View and Data Access****************************************/
             for(IPM_Project__c project : projectList)
             {
                 // Once project is created Charter document would be available.
-                System.assertEquals(project.Project_Documents__r.size(),1);
+                System.assertEquals(project.Project_Documents__r.size(),1,'No  document created for the project');
                 
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c);     
+                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'Task Complexity is different to project complexity');   
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size());
+                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is not equivalent to Standard milestones size');
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1); // One for Global consolidated Financials
+                // One for Global consolidated Financials
+                 System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'No consolidated financial created for the  project');
                 
                 // Project default phase would always be set as IDEAS.
+                // Phase would be always ideas for Global Project.
                 System.assertEquals(project.IPM_Phase__c,'Ideas'); // Phase would be always ideas for Global Project.
             }
             
@@ -509,27 +515,29 @@ public class IPM_ProjectRolloutHandler_Test
             Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
             
             // Get Standard Milestones from database  
-            System.assert(standardMileStoneMap.values().size() > 0);
+            System.assert(standardMileStoneMap.values().size() > 0,'No standard Milestones created');
             
             /********************************Global Project Leaders Project View and Data Access****************************************/
             for(IPM_Project__c project : projectList)
             {
                 // Once project is created Charter document would be available.
-                System.assertEquals(project.Project_Documents__r.size(),1);
+                System.assertEquals(project.Project_Documents__r.size(),1,'No document created for the project');
                 
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c);     
+                   System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'Task Complexity is not equivalent to project complexity');  
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size());
+                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is not equivalent to Standard milestones size');     
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1); // One for Global consolidated Financials
+                // One for Global consolidated Financials
+                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'No consolidated financial created for the project');
                 
                 // Project default phase would always be set as IDEAS.
+               // Phase would be always ideas for Global Project.
                 System.assertEquals(project.IPM_Phase__c,'Ideas'); // Phase would be always ideas for Global Project.
             }
             
@@ -669,7 +677,7 @@ public class IPM_ProjectRolloutHandler_Test
             Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
             
             // Get Standard Milestones from database  
-            System.assert(standardMileStoneMap.values().size() > 0);
+            System.assert(standardMileStoneMap.values().size() > 0,'No Standard Milestones created');
             
             /********************************Global Project Leaders Project View and Data Access****************************************/
             for(IPM_Project__c project : projectList)
@@ -680,16 +688,18 @@ public class IPM_ProjectRolloutHandler_Test
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c);     
+                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'Task Complexity is not equivalent to project complexity');  
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size());
+                 System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is not equivalent to Standard milestones size');  
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1); // One for Global consolidated Financials
+                // One for Global consolidated Financials
+                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'No consolidated financial created for the project');
                 
                 // Project default phase would always be set as IDEAS.
+               // Phase would be always ideas for Global Project.
                 System.assertEquals(project.IPM_Phase__c,'Ideas'); // Phase would be always ideas for Global Project.
             }
             
@@ -778,7 +788,7 @@ public class IPM_ProjectRolloutHandler_Test
             }
             catch(DMLException e)
             {  
-                System.assertEquals(0,size);
+                System.assertEquals(0,size,'DML is not excuted successfully');
             }
             Test.stopTest();
             
@@ -839,13 +849,13 @@ public class IPM_ProjectRolloutHandler_Test
             Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
             
             // Get Standard Milestones from database  
-            System.assert(standardMileStoneMap.values().size() > 0);
+            System.assert(standardMileStoneMap.values().size() > 0,' No Milestones created');
             
             /********************************Global Project Leaders Project View and Data Access****************************************/
             for(IPM_Project__c project : projectList)
             {
                 // Once project is created Charter document would be available.
-                System.assertEquals(project.Project_Documents__r.size(),1);
+                System.assertEquals(project.Project_Documents__r.size(),1,'No  document created for the project ');
                 
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
@@ -854,12 +864,14 @@ public class IPM_ProjectRolloutHandler_Test
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size());
+                 System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is not equivalent to Standard milestones size');  
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1); // One for Global consolidated Financials
+                // One for Global consolidated Financials
+                 System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'No consolidated financial created for the project');
                 
                 // Project default phase would always be set as IDEAS.
+               // Phase would be always ideas for Global Project.
                 System.assertEquals(project.IPM_Phase__c,'Ideas'); // Phase would be always ideas for Global Project.
             }
             
@@ -940,7 +952,7 @@ public class IPM_ProjectRolloutHandler_Test
             integer size=0;
             List<IPM_Project_Rollout__c> localRolloutUpList = new List<IPM_Project_Rollout__c>();
             List<IPM_Project__c> regProj = [Select id From IPM_Project__c Where IPMProject_Span__c = 'Global'];
-            System.assert(regProj.size() > 0);
+            System.assert(regProj.size() > 0,'No Regional project created for global Span');
             // delete local rollout      
             try {  
                 
@@ -965,7 +977,7 @@ public class IPM_ProjectRolloutHandler_Test
             }
             catch(DMLException e)
             {  
-                System.assertEquals(0,size);
+                 System.assertEquals(0,size,'DML not excuted successfully');
             }
             Test.stopTest();
         }
@@ -1023,27 +1035,29 @@ public class IPM_ProjectRolloutHandler_Test
             Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
             
             // Get Standard Milestones from database  
-            System.assert(standardMileStoneMap.values().size() > 0);
+            System.assert(standardMileStoneMap.values().size() > 0,'No Milestones created for the project');
             
             /********************************Global Project Leaders Project View and Data Access****************************************/
             for(IPM_Project__c project : projectList)
             {
                 // Once project is created Charter document would be available.
-                System.assertEquals(project.Project_Documents__r.size(),1);
+                System.assertEquals(project.Project_Documents__r.size(),1,'No  document generated for the project ');
                 
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c);     
+                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'Task Complexity is not equivalent to project complexity');  
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size());
+                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is not equivalent to Standard milestones size');  
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1); // One for Global consolidated Financials
+                // One for Global consolidated Financials
+                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'No consolidated financial created for the project');
                 
                 // Project default phase would always be set as IDEAS.
+                // Phase would be always ideas for Global Project.
                 System.assertEquals(project.IPM_Phase__c,'Ideas'); // Phase would be always ideas for Global Project.
             }
             
@@ -1134,7 +1148,7 @@ public class IPM_ProjectRolloutHandler_Test
             integer size=0;
             List<IPM_Project_Rollout__c> localRolloutUpList = new List<IPM_Project_Rollout__c>();
             List<IPM_Project__c> regProj = [Select id From IPM_Project__c Where IPMProject_Span__c = 'Global'];
-            System.assert(regProj.size() > 0);
+            System.assert(regProj.size() > 0,'No Regional project created for global Span');
             // delete local rollout      
             try {  
                 
@@ -1159,7 +1173,7 @@ public class IPM_ProjectRolloutHandler_Test
             }
             catch(DMLException e)
             {  
-                System.assertEquals(0,size);
+               System.assertEquals(0,size,'DML not executed successfully');
             }
             Test.stopTest();
         }
@@ -1218,27 +1232,29 @@ public class IPM_ProjectRolloutHandler_Test
             Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
             
             // Get Standard Milestones from database  
-            System.assert(standardMileStoneMap.values().size() > 0);
+            System.assert(standardMileStoneMap.values().size() > 0,'No Milestones created');
             
             /********************************Global Project Leaders Project View and Data Access****************************************/
             for(IPM_Project__c project : projectList)
             {
                 // Once project is created Charter document would be available.
-                System.assertEquals(project.Project_Documents__r.size(),1);
+                System.assertEquals(project.Project_Documents__r.size(),1,'No document generated for the  project ');
                 
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c);     
+                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'Task Complexity is not equivalent to project complexity');  
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size());
+                 System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is not equivalent to Standard milestones size');
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1); // One for Global consolidated Financials
+                // One for Global consolidated Financials
+                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'No consolidated financial created for the project');
                 
                 // Project default phase would always be set as IDEAS.
+                // Phase would be always ideas for Global Project.
                 System.assertEquals(project.IPM_Phase__c,'Ideas'); // Phase would be always ideas for Global Project.
             }
             
@@ -1329,7 +1345,7 @@ public class IPM_ProjectRolloutHandler_Test
             integer size=0;
             List<IPM_Project_Rollout__c> localRolloutUpList = new List<IPM_Project_Rollout__c>();
             List<IPM_Project__c> regProj = [Select id From IPM_Project__c Where IPMProject_Span__c = 'Global'];
-            System.assert(regProj.size() > 0);
+            System.assert(regProj.size() > 0,'No Regional project created for global Span');
             // delete local rollout      
             try {  
                 
@@ -1362,7 +1378,7 @@ public class IPM_ProjectRolloutHandler_Test
             }
             catch(DMLException e)
             {  
-                System.assertEquals(0,size);
+               System.assertEquals(0,size,'DML not executed successfully');
             }
             Test.stopTest();
         }

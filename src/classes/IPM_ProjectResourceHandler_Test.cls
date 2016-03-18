@@ -103,9 +103,6 @@ private class IPM_ProjectResourceHandler_Test {
             List<IPM_Project_Resource__c>bdDeleteList=[SELECT ID,IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE id=:projectRes2.id LIMIT 1];
     		system.assertEquals(bdDeleteList.isEmpty(),true,'project resource record got deleted');//positive test
             
-            PageReference pRef = new PageReference('/apex/IPM_ProjectResourceHandler?id=' + projList[0].Id);
-            Test.setCurrentPage(pRef);
-            system.assert(pRef != null,'page reference should not be null');
             IPM_ProjectResourceHandler ipmPR = new IPM_ProjectResourceHandler();
             ipmPR.afterInsert(projectRes);
             ipmPR.afterUpdate(projectRes1, projectRes);

@@ -4,17 +4,17 @@
  * @Date:05/08/2015
  * *****************************************************/
 @isTest
-public class IPM_RolloutTriggerHandler_Test {
+ private class IPM_RolloutTriggerHandler_Test {
     
-    public static IPM_Project__c project;
-    public static IPM_Project_Rollout__c proRoll=new IPM_Project_Rollout__c();
-    public static IPM_Project_Rollout__c proRollLocal=new IPM_Project_Rollout__c();
-    public static IPM_Project_Rollout__c proRollRegional=new IPM_Project_Rollout__c();
-    public static List<IPM_Project_Rollout__c> regionalRolloutList = new List<IPM_Project_Rollout__c>();
-    public static List<IPM_Project_Rollout__c> regionalRolloutListOld = new List<IPM_Project_Rollout__c>();
-    public static List<IPM_Project_Rollout__c> lstProjectRollouts=new List<IPM_Project_Rollout__c>();
-    public static Map<Id, IPM_Project_Rollout__c> mapNewProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
-    public static Map<Id, IPM_Project_Rollout__c> mapOldProjectRollouts=new Map<Id, IPM_Project_Rollout__c>(); // create another rollout and put it into this then update will work dont delete
+    private static IPM_Project__c project;
+    private static IPM_Project_Rollout__c proRoll=new IPM_Project_Rollout__c();
+    private static IPM_Project_Rollout__c proRollLocal=new IPM_Project_Rollout__c();
+    private static IPM_Project_Rollout__c proRollRegional=new IPM_Project_Rollout__c();
+    private static List<IPM_Project_Rollout__c> regionalRolloutList = new List<IPM_Project_Rollout__c>();
+    private static List<IPM_Project_Rollout__c> regionalRolloutListOld = new List<IPM_Project_Rollout__c>();
+    private static List<IPM_Project_Rollout__c> lstProjectRollouts=new List<IPM_Project_Rollout__c>();
+    private static Map<Id, IPM_Project_Rollout__c> mapNewProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
+    private static Map<Id, IPM_Project_Rollout__c> mapOldProjectRollouts=new Map<Id, IPM_Project_Rollout__c>(); // create another rollout and put it into this then update will work dont delete
     
     /***********************************
     * @Description: Test Data Creation

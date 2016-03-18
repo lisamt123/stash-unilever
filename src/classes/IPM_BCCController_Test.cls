@@ -5,23 +5,23 @@
 *************************************************************/
 
 @isTest
-public class  IPM_BCCController_Test {
-    public static IPM_Project__c project;// Project object initialization
-    public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
-    public static PageReference pRef;
+private class  IPM_BCCController_Test {
+    private static IPM_Project__c project;// Project object initialization
+    private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+    private static PageReference pRef;
     private static user testUser;
-    public static List<IPM_Country__c> countryList=new List<IPM_Country__c>();
+    private static List<IPM_Country__c> countryList=new List<IPM_Country__c>();
     private static IPM_BCCController ipmBcc;
-    public static IPM_Financial__c fin=new IPM_Financial__c();
-    private static string LOCAL_STR='Local';
-    private static string REGIONAL_STR='Regional';
+    private static IPM_Financial__c fin=new IPM_Financial__c();
+    private static final string LOCAL_STR='Local';
+    private static final string REGIONAL_STR='Regional';
     private static String geoExternalId = '';
     private static MDO_Geography__c mdo;
     /*************************************************************************
     @Description : to Intialize(insert) the data for Project, 
         IPM_Project_Rollout__c, IPM_Financial__c objects
 ***************************************************************************/
-    public static void initializeData(){
+    static void initializeData(){
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
             // user has to be created as system admin 
@@ -56,9 +56,9 @@ public class  IPM_BCCController_Test {
             System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
+            List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
             for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
             {
-                List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
                 if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
                 {
                     projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);

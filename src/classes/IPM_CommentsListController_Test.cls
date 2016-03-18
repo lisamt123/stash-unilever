@@ -28,7 +28,7 @@ private class IPM_CommentsListController_Test {
     private static final String FEEDITEM_DELETED='FeedItem Deleted';
     private static Integer countOfCommnts;
     private static IPM_Project_Document_Section__c projectDocumentSection;
-    private static final String ASSERTION_STRING= 'function not called properly';
+    
     private static final String IDEA_GRAPHIC= 'Idea / Graphic';
     
     /**************************************************************************************************************************
@@ -58,7 +58,7 @@ private class IPM_CommentsListController_Test {
         insertFeed.ParentId=''+projDocSec.id; 
         insertFeed.Type=TEXT_STR;
         insert insertFeed;
-        System.assert(insertFeed!=null);
+        System.assertNotEquals(insertFeed,null,'record properly inserted');
     }
     
     /**************************************************************************************************************************
@@ -72,7 +72,7 @@ private class IPM_CommentsListController_Test {
         PageReference pRef = new PageReference(PAGE_REFERENCE_STR+secList[0].ID);
         Test.setCurrentPage(pRef);
         IPM_CommentsListController  ipmComments = new IPM_CommentsListController();
-        System.assert(ipmComments.offsetVal>=5,OFFSET_GREATER_THAN_FIVE_MSG);
+        
         List<FeedItem> testcomments=[SELECT id, body,CreatedBy.name,CreatedDate,ParentId,InsertedById 
                                   FROM FeedItem 
                                   WHERE ParentId =: ipmComments.parentID 
@@ -97,7 +97,7 @@ private class IPM_CommentsListController_Test {
         ipmComments.CommentRecord.Body=IPM_ConstantUtils.TEST_STR;
         ipmComments.CommentRecord.Type=TEXT_STR;
         ipmComments.AddComment();
-        System.assertNotEquals(ipmComments.projDocSec,null,ASSERTION_STRING);
+        
         countOfCommnts = [Select Count() from FeedItem where ParentId =: ipmComments.parentID and type =:IPM_ConstantUtils.COMMENT_TYPE];
         System.assertNotEquals(countOfCommnts,0,COUNT_COMMENTS);
         
@@ -121,12 +121,12 @@ private class IPM_CommentsListController_Test {
         ipmComments.ParentID=secList[0].id;
         ipmComments.CommentsID=feedItemList[0].Id;
         countOfCommnts = [Select Count() from FeedItem where ParentId =: ipmComments.parentID and type =:IPM_ConstantUtils.COMMENT_TYPE];
-        system.assert(countOfCommnts==1,FEEDITEM_INSERTED);
+        system.assertEquals(countOfCommnts,1,FEEDITEM_INSERTED);
         
         ipmComments.doDelete();
         countOfCommnts = [Select Count() from FeedItem where ParentId =: ipmComments.parentID and type =:IPM_ConstantUtils.COMMENT_TYPE];
         system.assertEquals(countOfCommnts,0,FEEDITEM_DELETED);
-        System.assertNotEquals(ipmComments.projDocSec,null,ASSERTION_STRING);
+        
         test.stopTest(); 
     }
     
@@ -150,7 +150,7 @@ private class IPM_CommentsListController_Test {
         ipmComments.CommentRecord.Type=IPM_ConstantUtils.TEST_STR;
         ipmComments.AddComment();
         for(ApexPages.Message msg : ApexPages.getMessages()) {
-        System.assertEquals(msg.getSummary(), System.Label.IPM_Data_Value_Too_Large, ASSERTION_STRING);
+        System.assertEquals(msg.getSummary(), System.Label.IPM_Data_Value_Too_Large,System.Label.IPM_Data_Value_Too_Large);
         }
         test.stopTest();
      

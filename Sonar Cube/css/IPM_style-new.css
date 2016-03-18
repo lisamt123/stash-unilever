@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'UnileverDINOffcPro';    
+  src: url('../fonts/UnileverDINOffcPro.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/UnileverDINOffcPro.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/UnileverDINOffcPro.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/UnileverDINOffcPro.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/UnileverDINOffcPro.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+.ipmpanel-heading{
+	cursor: pointer;
+	font-family:'UnileverDINOffcPro', Arial;	
+}

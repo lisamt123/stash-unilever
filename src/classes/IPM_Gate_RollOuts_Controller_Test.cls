@@ -5,13 +5,14 @@
  * *****************************************************/
 
 @isTest
-public class IPM_Gate_RollOuts_Controller_Test{
+private class IPM_Gate_RollOuts_Controller_Test{
 
 	private static User platformUser;
 	private static List<IPM_Project__c> globalProjectList;
 	private static List<IPM_Project_Rollout__c> regionalRolloutList;
 	private static List<IPM_Project_Rollout__c> localRolloutList;
 	private static final String PROJ_CREATED='Projects are created';
+    private static final String REGIONAL_ROLLOUT_NAME_FAIL = 'Regional Rollout project name is not as per given';
 	private static Set<Id> iDs ;
     public static list<IPM_Country__c> countryList;
     
@@ -124,13 +125,15 @@ public class IPM_Gate_RollOuts_Controller_Test{
      
      public static testmethod void initiate()
      {
+	         Test.startTest();
          List<IPM_Project__c> projectList = [Select Id from IPM_Project__c where Name = 'TestComments1'];
          IPM_Project__c project = null;
          IPM_Gate_RollOuts_Controller gateController = new IPM_Gate_RollOuts_Controller();
          gateController.proId = projectList[0].Id;
          gateController.prepareIPMLocalToCountryWrapper();
-         System.assertEquals(gateController.regionalRollOutWrapperList.size(),2);
+	         System.assertEquals(gateController.regionalRollOutWrapperList.size(),2, 'Regional Rollouts list result size is more or leass than 2 records');
          System.assertEquals(gateController.regionalRollOutWrapperList[0].regionalRollOutName,'TestComments1_AFR');
          System.assertEquals(gateController.regionalRollOutWrapperList[1].regionalRollOutName,'TestComments1_LA');
+	         Test.stopTest();
      } 
     }

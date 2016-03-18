@@ -11,77 +11,77 @@
 @reference IPM_RolloutPlansAdd VF page, IPM_RolloutPlansRegional VF page
 */
 @isTest
-public class IPM_RolloutPlansAddController_Test{
-    public static list<IPM_Project_Rollout__c> regionalRolloutList;
-    public static list<IPM_Project_Rollout__c> localRolloutList;
-    public static  String projectId;
+private class IPM_RolloutPlansAddController_Test{
+    private static list<IPM_Project_Rollout__c> regionalRolloutList;
+    private static list<IPM_Project_Rollout__c> localRolloutList;
+    private static  String projectId;
    
-    public static MDO_Geography__c goegraphiesCluster;
-    public static MDO_Geography__c goegraphiesMCO;
+    private static MDO_Geography__c goegraphiesCluster;
+    private static MDO_Geography__c goegraphiesMCO;
     
-    public static list<IPM_Project__c> projectList;
+    private static list<IPM_Project__c> projectList;
     
-    public static boolean geoExternal;
-    public static IPM_Country__c tempCountry;
-    public static list<IPM_Company_Card__c> companyCardList;
+    private static boolean geoExternal;
+    private static IPM_Country__c tempCountry;
+    private static list<IPM_Company_Card__c> companyCardList;
   
-    public static integer dmlLimit;
-    public static MDO_Geography__c mdoAFR;
-    public static MDO_Geography__c mdoLA;
-    public static IPM_MCO_Short_Names__c shortName;
-    public static IPM_Market_Cluster_Short_Names__c mcoShortName;
-    public static List<IPM_Project__c> regionalProjectsFR;
-    public static List<IPM_Project__c> regionalProjects;
-    public static  ApexPages.Message[] pageMessages;
+    private static integer dmlLimit;
+    private static MDO_Geography__c mdoAFR;
+    private static MDO_Geography__c mdoLA;
+    private static IPM_MCO_Short_Names__c shortName;
+    private static IPM_Market_Cluster_Short_Names__c mcoShortName;
+    private static List<IPM_Project__c> regionalProjectsFR;
+    private static List<IPM_Project__c> regionalProjects;
+    private static  ApexPages.Message[] pageMessages;
     
     //Literals
-    public static string GLOBAL_PL = 'GLOBAL_PL';
-    public static string REGIONAL_PL = 'REGIONAL_PL';
-    public static string LOCAL_PL = 'LOCAL_PL';
-    public static string AFRICAN = 'African';
-    public static string GEO0060 = 'GEO0060';
-    public static string AFRICA_EMERGING_MARKETS = 'Africa Emerging Markets'; 
-    public static string LV4_GEO0085 = 'LV4_GEO0085';
-    public static string AFRICA = 'Africa';
-    public static string ANGOLA = 'Angola';
-    public static string Congo = 'Congo';
-    public static string CHAD = 'Chad';
-    public static string ASIA = 'ASIA';
-    public static string FRANCE = 'France';
-    public static string EUROPE = 'EUROPE';
-    public static string SOUTH_AFRICA = 'South Africa';
-    public static string OTHER_SOUTH_ASIA = 'Other South Asia'; 
-    public static string STATUS_ACTIVE = 'Active';
-    public static string With_MCO = 'With MCO';
-    public static string IPMROLLOUTPLANSADD_PAGE_URL = '/apex/ipm_rolloutplansadd?id='; 
-    public static string IPMROLLOUTPLANSREGIONAL_PAGE_URL = '/apex/ipm_rolloutplansregional?id=';
-    public static string GLOBAL_COUNTRIES='AG,BR';
-    public static string REGIONAL_MCO='Africa Emerging Markets,Other South Asia';
-    public static string REGIONAL_COUNTRY='Africa,Angola';
-    public static string REGIONAL_NOROLL='Congo,Chad';
-    public static string GLOBAL_UNSELECTED_COUNTRIES = 'KW,NB';
-    public static string REGIONAL_UNSELECTED_MCO = 'IN,CL,CP,JS'; //unselected mco country code
-    public static string REGIONAL_UNSELECTED_NOROLL = 'CB,KB';
-    public static string ERROR_MESSAGE='plz enter tld'; 
-    public static string AG_BR_AO = 'AG,BR,AO';
-    public static string KW = 'KW';
-    public static string NB = 'NB';
-    public static string CB = 'CB';
-    public static string BR = 'BR';
-    public static string FR = 'FR';
-    public static string SA = 'SA';
-    public static string AF = 'AF';
-    public static string LA = 'LA';
-    public static string TestComments1 = 'TestComments1';
-    public static string TestComments2 = 'TestComments2';
-    public static string TestComments3 = 'TestComments3';
-    public static string ID = 'id';
-    public static string TEST_STR = 'test';
-    private static string TASK_NOT_CREATED='tasks not created';
-    private static string TASK_COMPLEXITY_DOESNOT_MATCH='task complexity does not match regional project complexity';
-    private static string MILESTONES_NOT_CREATED='milestones not crerated';
-    private static string FINANCIAL_NOT_CREATED='financial not created';
-    private static string PHASE_NOT_FEASIBILITY='project phase is not feasibility';
+    private static final string GLOBAL_PL = 'GLOBAL_PL';
+    private static final string REGIONAL_PL = 'REGIONAL_PL';
+    private static final string LOCAL_PL = 'LOCAL_PL';
+    private static final string AFRICAN = 'African';
+    private static final string GEO0060 = 'GEO0060';
+    private static final string AFRICA_EMERGING_MARKETS = 'Africa Emerging Markets'; 
+    private static final string LV4_GEO0085 = 'LV4_GEO0085';
+    private static final string AFRICA = 'Africa';
+    private static final string ANGOLA = 'Angola';
+    private static final string Congo = 'Congo';
+    private static final string CHAD = 'Chad';
+    private static final string ASIA = 'ASIA';
+    private static final string FRANCE = 'France';
+    private static final string EUROPE = 'EUROPE';
+    private static final string SOUTH_AFRICA = 'South Africa';
+    private static final string OTHER_SOUTH_ASIA = 'Other South Asia'; 
+    private static final string STATUS_ACTIVE = 'Active';
+    private static final string With_MCO = 'With MCO';
+    private static final string IPMROLLOUTPLANSADD_PAGE_URL = '/apex/ipm_rolloutplansadd?id='; 
+    private static final string IPMROLLOUTPLANSREGIONAL_PAGE_URL = '/apex/ipm_rolloutplansregional?id=';
+    private static final string GLOBAL_COUNTRIES='AG,BR';
+    private static final string REGIONAL_MCO='Africa Emerging Markets,Other South Asia';
+    private static final string REGIONAL_COUNTRY='Africa,Angola';
+    private static final string REGIONAL_NOROLL='Congo,Chad';
+    private static final string GLOBAL_UNSELECTED_COUNTRIES = 'KW,NB';
+    private static final string REGIONAL_UNSELECTED_MCO = 'IN,CL,CP,JS'; //unselected mco country code
+    private static final string REGIONAL_UNSELECTED_NOROLL = 'CB,KB';
+    private static final string ERROR_MESSAGE='plz enter tld'; 
+    private static final string AG_BR_AO = 'AG,BR,AO';
+    private static final string KW = 'KW';
+    private static final string NB = 'NB';
+    private static final string CB = 'CB';
+    private static final string BR = 'BR';
+    private static final string FR = 'FR';
+    private static final string SA = 'SA';
+    private static final string AF = 'AF';
+    private static final string LA = 'LA';
+    private static final string TestComments1 = 'TestComments1';
+    private static final string TestComments2 = 'TestComments2';
+    private static final string TestComments3 = 'TestComments3';
+    private static final string ID = 'id';
+    private static final string TEST_STR = 'test';
+    private static final string TASK_NOT_CREATED='tasks not created';
+    private static final string TASK_COMPLEXITY_DOESNOT_MATCH='task complexity does not match regional project complexity';
+    private static final string MILESTONES_NOT_CREATED='milestones not crerated';
+    private static final string FINANCIAL_NOT_CREATED='financial not created';
+    private static final string PHASE_NOT_FEASIBILITY='project phase is not feasibility';
     
     /**************************************************************
     * @description: Used for Creating IPM Project data for Rollout flow test          

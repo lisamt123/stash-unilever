@@ -8,12 +8,10 @@
 *********************************************/
 
 @isTest
-private class IPM_AssesmentHandler_Helper_Test {
-    public static User platformUser;
+private class IPM_AssesmentHandler_Helper_Test 
+{
     public static List<IPM_Assessment__c> finalAssessmentList = new List<IPM_Assessment__c>();
-    public static List<IPM_Company_Card__c> companyCardList; 
     public static List<IPM_Project__c> projectList;
-    public static List<Id> projIdList = new List<Id>();
     /***********************************
       Description of the purpose of the method. 
       @name: insertAssessmentTest
@@ -24,7 +22,10 @@ private class IPM_AssesmentHandler_Helper_Test {
     ***********************************/
     @testSetup static void projectSetUpData() 
      {
-        System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
+		User platformUser;
+		List<IPM_Company_Card__c> companyCardList; 
+		System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
+		{
             platformUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
             
         }
@@ -42,7 +43,8 @@ private class IPM_AssesmentHandler_Helper_Test {
 
          System.runAs(platformUser)
          {
-           for(IPM_Project__c proj : projectList){
+			for(IPM_Project__c proj : projectList)
+			{
             proj.First_Sync_To_EcoDesign__c = true;
             proj.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
             proj.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
@@ -52,13 +54,14 @@ private class IPM_AssesmentHandler_Helper_Test {
           }
            insert projectList;
          }  
-         system.assertEquals(projectList.size(),8,'Projects are not created');
+		List<IPM_Project__c> projectListTemp = [Select id From IPM_Project__c Where id IN : projectList ];
+		system.assertNotEquals(projectListTemp.size(),0,'Projects not created successfully');
 
       }
     
     
-    static testMethod void testInsertAssessmentTest() {
-     
+	static testMethod void testInsertAssessmentTest() 
+	{
         // At this point Async process kicks in and starts creating Related Object information.    
         // Create Country specific information.
         List<IPM_Country__c> countryList= new List<IPM_Country__c>();
@@ -68,11 +71,14 @@ private class IPM_AssesmentHandler_Helper_Test {
             test.startTest();
             projectList = [Select Id from IPM_Project__c limit 10000];
             
-            mdm_Geography__c geo = new mdm_Geography__c(name = 'France');
+			MDO_Geography__c geo = new MDO_Geography__c(name = 'Test');
             insert geo;      
+			List<MDO_Geography__c> geoListTemp = [Select id,name From MDO_Geography__c Where id =: geo.id];
+			system.assertNotEquals(geoListTemp.size(),0,'Geography not created successfully');   
 
-            for(integer i=0; i<4 ; i++) {
-                IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = geo.Id,
+			for(integer i=0; i<4 ; i++) 
+			{
+				IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = geo.Id,
                 IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = 'With MCO',
                 IS_EI_Country__c = true, isActive__c = true);    
             
@@ -80,6 +86,8 @@ private class IPM_AssesmentHandler_Helper_Test {
             }
             
             insert countryList;
+			List<IPM_Country__c> countryListTemp = [Select id From IPM_Country__c Where id IN : countryList];
+			system.assertNotEquals(countryListTemp.size(),0,'Countries not created successfully');   
 
             for(IPM_Country__c countryEle : countryList)
             {
@@ -88,9 +96,6 @@ private class IPM_AssesmentHandler_Helper_Test {
             }       
             insert finalAssessmentList;
             
-            //to implement delete assessment on insertion of new assessment
-            IPM_TestFactory_Helper.createAssessments(false, projectList[0].id, countryList[0].id,IPM_ConstantUtils.PHASE_IDEAS );
-            IPM_TestFactory_Helper.createAssessments(true, projectList[0].id, countryList[0].id,IPM_ConstantUtils.PHASE_IDEAS );
            
             
             Id assmntId = [Select Id,IPM_Country__c from IPM_Assessment__c Where Project_Phase__c = 'Ideas' limit 1][0].IPM_Country__c;
@@ -108,7 +113,7 @@ private class IPM_AssesmentHandler_Helper_Test {
             
             List<IPM_Assessment__c> assmntsOfDeletedCountry = [Select Id from IPM_Assessment__c where IPM_Country__c =:countryToDelete.Id limit 1000];
             
-            System.assertEquals(0,assmntsOfDeletedCountry.size(),'Number of country to deleted :'+assmntsOfDeletedCountry.size());
+			System.assertEquals(assmntsOfDeletedCountry.size(),0,'Assessments are not deleted');
             test.stopTest();
         }
 
@@ -122,10 +127,12 @@ private class IPM_AssesmentHandler_Helper_Test {
       @return: none
       @throws: none
     ***********************************/
-    static testMethod void testcopyOverAssmntTest() {
-  
+	static testMethod void testcopyOverAssmntTest() 
+	{
+		List<Id> projIdList = new List<Id>();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1][0];
-        System.runAs(globalUser){
+		System.runAs(globalUser)
+		{
             test.startTest();
             projectList = [Select Id,IPM_Phase__c from IPM_Project__c limit 10000]; 
         
@@ -140,13 +147,16 @@ private class IPM_AssesmentHandler_Helper_Test {
             insert projectType;
             
             List<IPM_Country__c> countryList = IPM_TestFactory_Helper.createIPMCountryList(false,4);
-            for(IPM_Country__c countryEle : countryList){
+			for(IPM_Country__c countryEle : countryList)
+			{
                 countryEle.IPM_project__c = projectList[0].Id;
             }
             
             insert  countryList;
-            
-            for(IPM_Project__c proj : projectList){
+			List<IPM_Country__c> countryListTemp = [Select id,name From IPM_Country__c Where id IN : countryList];
+			system.assertNotEquals(countryListTemp.size(),0,'Coutries not created successfully');   
+			for(IPM_Project__c proj : projectList)
+			{
                 projIdList.add(proj.Id);
             }
             
@@ -164,11 +174,13 @@ private class IPM_AssesmentHandler_Helper_Test {
 
             IPM_TestFactory_Helper.initiateProjectPhaseChange(projIdList,globalUser);
                 
-            List<IPM_Assessment__c> noOfAssessmentNow = [Select Id from IPM_Assessment__c where IPM_Project__c =:projectList[0].Id limit 1000];
-            System.assertEquals(4,noOfAssessmentNow.Size(),'Number of Assessment is:'+noOfAssessmentNow.Size());
             test.stopTest();
+			List<IPM_Assessment__c> noOfAssessmentNow = [Select Id,Project_Phase__c from IPM_Assessment__c where IPM_Project__c =:projectList[0].Id limit 1000];
+			for(IPM_Assessment__c assmntWithChangedPhase : noOfAssessmentNow) 
+			{	
+				System.assertNotEquals(assmntWithChangedPhase.Project_Phase__c,'Capability','Assessment not is in feasibility phase');
         }
-        
+		}
     }
     
     
@@ -180,7 +192,8 @@ private class IPM_AssesmentHandler_Helper_Test {
       @return: none
       @throws: none
     ***********************************/
-    static testMethod void testAssessmentWithWrongPhase() {
+	static testMethod void testAssessmentWithWrongPhase() 
+	{
   
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1][0];
         List<IPM_Country__c> countryList= new List<IPM_Country__c>();
@@ -194,7 +207,8 @@ private class IPM_AssesmentHandler_Helper_Test {
             {
                   
                   IPM_Assessment__c assessment = IPM_TestFactory_Helper.createAssessments(false, projectList[0].id, countryEle.id,IPM_ConstantUtils.PHASE_IDEAS );
-                  if(i<4){
+				if(i<4)
+				{
                     assessment.Project_Phase__c = 'Feasibility';
                   }
                   finalAssessmentList.add(assessment);
@@ -202,10 +216,12 @@ private class IPM_AssesmentHandler_Helper_Test {
             }       
             
             //To check if error is thrown when a project with different phase is inserted
-            try{
+			try
+			{
                 insert finalAssessmentList;
             }
-            catch(Exception e){
+			catch(Exception e)
+			{
                 System.assert(e.getMessage().contains(String.valueOf(Label.IPM_EcoDesign_Assesment_Data_Wrong_Phase)), 'Message should be :'+Label.IPM_EcoDesign_Assesment_Data_Wrong_Phase);
             }
             
@@ -215,7 +231,8 @@ private class IPM_AssesmentHandler_Helper_Test {
     }
     
     
-    static testMethod void testAssessmentWithWrongCountry() {
+	static testMethod void testAssessmentWithWrongCountry() 
+	{
   
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1][0];
         List<IPM_Country__c> countryList= new List<IPM_Country__c>();
@@ -225,8 +242,10 @@ private class IPM_AssesmentHandler_Helper_Test {
             integer i=0;
             projectList = [Select Id from IPM_Project__c limit 10000];
             countryList = IPM_TestFactory_Helper.createIPMCountryList(false,8);
-            for(IPM_Country__c countryEle : countryList){
-                if(i<4){
+			for(IPM_Country__c countryEle : countryList)
+			{
+				if(i<4)
+				{
                 countryEle.IPM_project__c = projectList[i].Id;
                 i++;
                 }
@@ -234,6 +253,8 @@ private class IPM_AssesmentHandler_Helper_Test {
             }
             
             insert countryList;
+			List<IPM_Country__c> countryListTemp = [Select id,name From IPM_Country__c Where id IN : countryList];
+			system.assertNotEquals(countryListTemp.size(),0,'Coutries not created successfully');   
 
             for(IPM_Country__c countryEle : countryList)
             {
@@ -241,10 +262,12 @@ private class IPM_AssesmentHandler_Helper_Test {
                   IPM_Assessment__c assessment = IPM_TestFactory_Helper.createAssessments(false, projectList[0].id, countryEle.id,IPM_ConstantUtils.PHASE_IDEAS );
                   finalAssessmentList.add(assessment);
             }       
-            try{
+			try
+			{
                 insert finalAssessmentList;
             }
-            catch(Exception e){
+			catch(Exception e)
+			{
                 System.assert(e.getMessage().contains(String.valueOf(Label.IPM_EcoDesign_Assesment_Data_Wrong_Country)), 'Message should be :'+Label.IPM_EcoDesign_Assesment_Data_Wrong_Country);
             }
             
