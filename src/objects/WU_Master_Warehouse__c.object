@@ -1,98 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <actionOverrides>
-        <actionName>Accept</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>CancelEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Clone</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Edit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Follow</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>New</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <allowInChatterGroups>true</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Master Unilever Warehouse capacity utilization data storage</description>
     <enableActivities>true</enableActivities>
-    <enableBulkApi>true</enableBulkApi>
-    <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
-    <enableSharing>true</enableSharing>
-    <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Read</externalSharingModel>
     <fields>
         <fullName>WU_Address__c</fullName>
-        <externalId>false</externalId>
         <label>Address</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
     <fields>
         <fullName>WU_Approval_Status__c</fullName>
-        <externalId>false</externalId>
         <label>Approval Status</label>
         <length>50</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_AverageUtilization__c</fullName>
         <description>(Current Utilization of WH /Total Max or Committed Utilization)*100</description>
-        <externalId>false</externalId>
         <label>Average Pallet Utilization/Month (%)</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Average_Current_Month_Utilization__c</fullName>
-        <externalId>false</externalId>
         <label>Sum Avg Current Month Pallet Utilization</label>
         <summarizedField>WU_Warehouse_Capacity_Detail__c.WU_Current_Pallet_Utilization_Week__c</summarizedField>
         <summaryFilterItems>
@@ -102,53 +35,35 @@
         </summaryFilterItems>
         <summaryForeignKey>WU_Warehouse_Capacity_Detail__c.Master_Warehouse__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>WU_Average_Current_Utilization__c</fullName>
-        <externalId>false</externalId>
         <formula>IF( WU_Approval_Status__c =&apos;Submitted&apos;,( WU_Current_Utilization__c / WU_Prior_CommittedPalletStorage__c)*100 ,(WU_Current_Utilization__c/ WU_Committed_Max_PalletStorage__c)*100 )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Average Utilization %</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Average_Pallet_Utilization_Day__c</fullName>
-        <externalId>false</externalId>
         <formula>If( WU_Current_Month_Utilization_Type__c  = &apos;Daily&apos;, ((WU_Total_Current_Month_Utilisation__c/ WU_Committed_Max_PalletStorage__c )*100)/ IF(WU_Count_Avg_Current_Month_Utilization__c&gt;0,WU_Count_Avg_Current_Month_Utilization__c,1),null)</formula>
         <label>Average Pallet Utilization/Day %</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Average_Pallet_Utilization_Month__c</fullName>
-        <externalId>false</externalId>
         <formula>If( WU_Current_Month_Utilization_Type__c = &apos;Monthly&apos;, ((WU_Total_Current_Month_Utilisation__c/ WU_Committed_Max_PalletStorage__c )*100)/ IF(WU_Count_Avg_Current_Month_Utilization__c&gt;0,WU_Count_Avg_Current_Month_Utilization__c,1) ,IF(DAY(TODAY())=DAY(DATE(YEAR(TODAY()),MONTH(TODAY())+1,1)-1),((WU_Total_Current_Month_Utilisation__c/ WU_Committed_Max_PalletStorage__c )*100)/ IF(WU_Count_Avg_Current_Month_Utilization__c&gt;0,WU_Count_Avg_Current_Month_Utilization__c,1),null))</formula>
         <label>Average Pallet Utilization/Month %</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Average_Pallet_Utilization_Week__c</fullName>
-        <externalId>false</externalId>
         <formula>/*
 WU_Average_Pallet_Utilization__c  /IF(MOD((DAY(DATE(YEAR(TODAY()),MONTH(TODAY())+1,1)-1)),7)&gt;0,FLOOR(((DAY(DATE(YEAR(TODAY()),MONTH(TODAY())+1,1)-1))/7))+1,(DAY(DATE(YEAR(TODAY()),MONTH(TODAY())+1,1)-1))/7)
 */
@@ -157,42 +72,27 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
 ((WU_Total_Current_Month_Utilisation__c/ WU_Committed_Max_PalletStorage__c )*100)/FLOOR(WU_Count_Avg_Current_Month_Utilization__c/5),null))</formula>
         <label>Average Pallet Utilization/Week %</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Average_Pallet_Utilization__c</fullName>
-        <externalId>false</externalId>
         <formula>WU_Average_Current_Month_Utilization__c</formula>
         <label>Average Pallet Utilization %</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Average_Utilization__c</fullName>
-        <externalId>false</externalId>
         <formula>IF( WU_Approval_Status__c =&apos;Submitted&apos;,(WU_Total_Current_Month_Utilisation__c /  WU_Prior_CommittedPalletStorage__c)*100 ,(WU_Total_Current_Month_Utilisation__c/ WU_Committed_Max_PalletStorage__c)*100 )</formula>
         <label>Average Total Utilization %</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Benchmarking__c</fullName>
-        <externalId>false</externalId>
         <label>Benchmarking</label>
         <picklist>
             <picklistValues>
@@ -205,13 +105,10 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_Building_ContractType__c</fullName>
-        <externalId>false</externalId>
         <label>Building ContractType</label>
         <picklist>
             <picklistValues>
@@ -228,49 +125,32 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_CityName__c</fullName>
-        <externalId>false</externalId>
         <label>City</label>
         <length>150</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Cluster_Procurement_Manager__c</fullName>
         <description>Cluster Procurement Manager name</description>
-        <externalId>false</externalId>
         <formula>Owner:User.FirstName  + &apos; &apos;  +  Owner:User.LastName</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Cluster Procurement Manager</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Committed_Max_PalletStorage__c</fullName>
-        <externalId>false</externalId>
         <label>Committed/Max Pallet Utilization</label>
         <precision>18</precision>
         <required>true</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Count_Avg_Current_Month_Utilization__c</fullName>
-        <externalId>false</externalId>
         <label>Count Avg Current Month Utilization</label>
         <summaryFilterItems>
             <field>WU_Warehouse_Capacity_Detail__c.WU_CurrentMonth__c</field>
@@ -279,13 +159,10 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
         </summaryFilterItems>
         <summaryForeignKey>WU_Warehouse_Capacity_Detail__c.Master_Warehouse__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>WU_Country__c</fullName>
-        <externalId>false</externalId>
         <label>Country</label>
         <picklist>
             <controllingField>WU_MCO__c</controllingField>
@@ -661,13 +538,10 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_Cross_Category_Network__c</fullName>
-        <externalId>false</externalId>
         <label>Cross-Category Network</label>
         <picklist>
             <controllingField>WU_Network__c</controllingField>
@@ -703,115 +577,68 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>MultiselectPicklist</type>
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>WU_Current_Month_Utilization_Type__c</fullName>
-        <externalId>false</externalId>
         <label>Current Month Utilization Type</label>
         <length>10</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Current_Utilization__c</fullName>
-        <externalId>false</externalId>
         <label>Current Pallet Utilization Count</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_FromDate__c</fullName>
-        <externalId>false</externalId>
         <label>Utilization Start Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>WU_HandlingIn_FG__c</fullName>
-        <externalId>false</externalId>
         <label>FG</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_HandlingIn_RM_PM_SF_NPI__c</fullName>
-        <externalId>false</externalId>
         <label>RM/PM/SF/NPI</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_HandlingIn_Total__c</fullName>
-        <externalId>false</externalId>
         <label>Total</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_LandOwner__c</fullName>
-        <externalId>false</externalId>
         <label>Land Owner</label>
         <length>200</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_LocationCode__c</fullName>
-        <externalId>false</externalId>
         <label>Location Code</label>
         <length>200</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_LocationName__c</fullName>
-        <externalId>false</externalId>
         <label>Location Name</label>
         <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Logistics_MainActivity__c</fullName>
-        <externalId>false</externalId>
         <label>Logistics MainActivity</label>
         <picklist>
             <picklistValues>
@@ -876,35 +703,22 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_Logistics_ServiceProvider__c</fullName>
-        <externalId>false</externalId>
         <label>Logistics ServiceProvider</label>
         <length>200</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_MCO_SU_UsingSite__c</fullName>
-        <externalId>false</externalId>
         <label>MCO/SU UsingSite</label>
         <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_MCO__c</fullName>
-        <externalId>false</externalId>
         <label>MCO</label>
         <picklist>
             <controllingField>WU_Region__c</controllingField>
@@ -1015,13 +829,10 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_MultiUser_Facility__c</fullName>
-        <externalId>false</externalId>
         <label>Multi-User Facility</label>
         <picklist>
             <picklistValues>
@@ -1034,13 +845,10 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_Network__c</fullName>
-        <externalId>false</externalId>
         <label>Network</label>
         <picklist>
             <picklistValues>
@@ -1073,13 +881,10 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_Operations_ContractType__c</fullName>
-        <externalId>false</externalId>
         <label>Operations ContractType</label>
         <picklist>
             <picklistValues>
@@ -1108,51 +913,33 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_Previous_Month__c</fullName>
         <description>store previous month to reset total utilization</description>
-        <externalId>false</externalId>
         <label>Previous Month</label>
         <precision>2</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Prior_CommittedPalletStorage__c</fullName>
         <description>Save prior value for committed pallet storage</description>
-        <externalId>false</externalId>
         <label>Prior CommittedPalletStorage</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Procurement_Manager__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
         <label>Procurement Manager</label>
         <referenceTo>User</referenceTo>
         <relationshipName>Master_Warehouses</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>WU_Region__c</fullName>
-        <externalId>false</externalId>
         <label>Region</label>
         <picklist>
             <picklistValues>
@@ -1173,19 +960,13 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_SAPCode_s__c</fullName>
-        <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
         <label>SAP Code(s)</label>
         <length>50</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>true</unique>
     </fields>
@@ -1194,15 +975,10 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
         <externalId>true</externalId>
         <label>SAP Name(s)</label>
         <length>200</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_SiteLocation__c</fullName>
-        <externalId>false</externalId>
         <label>Site Location</label>
         <picklist>
             <picklistValues>
@@ -1215,58 +991,36 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_Storage_FG__c</fullName>
-        <externalId>false</externalId>
         <label>Storage FG</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Storage_RM_PM_SF_NPI__c</fullName>
-        <externalId>false</externalId>
         <label>Storage RM/PM/SF/NPI</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Storage_Total__c</fullName>
-        <externalId>false</externalId>
         <label>Storage Total</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_ToDate__c</fullName>
-        <externalId>false</externalId>
         <label>Utilization End Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
     <fields>
         <fullName>WU_Total_Current_Month_Utilisation__c</fullName>
-        <externalId>false</externalId>
         <label>Total Current Month Pallet Utilization</label>
         <summarizedField>WU_Warehouse_Capacity_Detail__c.WU_Current_Pallet_Utilization__c</summarizedField>
         <summaryFilterItems>
@@ -1276,27 +1030,19 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
         </summaryFilterItems>
         <summaryForeignKey>WU_Warehouse_Capacity_Detail__c.Master_Warehouse__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
     <fields>
         <fullName>WU_Total_Utilization__c</fullName>
         <description>Current Utilization of current week + Previous week’s Utilization of the same  month</description>
-        <externalId>false</externalId>
         <label>Total Pallet Utilization/Month</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Utilization_Type__c</fullName>
         <description>Capacity utilization type</description>
-        <externalId>false</externalId>
         <label>Utilization Type</label>
         <picklist>
             <picklistValues>
@@ -1311,16 +1057,12 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
                 <fullName>Monthly</fullName>
                 <default>false</default>
             </picklistValues>
-            <restrictedPicklist>true</restrictedPicklist>
             <sorted>false</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_WCI__c</fullName>
-        <externalId>false</externalId>
         <label>WCI</label>
         <picklist>
             <picklistValues>
@@ -1349,79 +1091,46 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             </picklistValues>
             <sorted>true</sorted>
         </picklist>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>WU_WMSOwner__c</fullName>
-        <externalId>false</externalId>
         <label>WMS Owner</label>
         <length>200</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_WMSType__c</fullName>
-        <externalId>false</externalId>
         <label>WMSType</label>
         <length>200</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_WMS_IT_Spend__c</fullName>
-        <externalId>false</externalId>
         <label>WMS/IT Spend (€k/year)</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>3</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_WarehouseManager_Email__c</fullName>
         <description>Warehouse Manger Email for Approvals</description>
-        <externalId>false</externalId>
         <label>Procurement Manager Email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Email</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_WarehousePOC_Email__c</fullName>
-        <externalId>false</externalId>
         <label>Warehouse POC Email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Email</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Warehouse_BuildingOwner__c</fullName>
-        <externalId>false</externalId>
         <label>Warehouse BuildingOwner</label>
         <length>200</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Warehouse_Capacity__c</fullName>
-        <externalId>false</externalId>
         <formula>IF(WU_Committed_Max_PalletStorage__c  = 0,
     0,
     ROUND((WU_Current_Utilization__c /WU_Committed_Max_PalletStorage__c ) * 100,0)
@@ -1429,34 +1138,20 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Current Pallet Utilization (%)</label>
         <precision>18</precision>
-        <required>false</required>
         <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Number</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_Year__c</fullName>
-        <externalId>false</externalId>
         <label>Year</label>
         <length>150</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>WU_ZipCode__c</fullName>
-        <externalId>false</externalId>
         <label>Zip Code</label>
         <length>50</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
     </fields>
     <label>Master Warehouse</label>
     <listViews>
@@ -1487,7 +1182,6 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             <value>AAR</value>
         </filters>
         <label>AAR</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>All</fullName>
@@ -1512,7 +1206,6 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
         </filters>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Europe</fullName>
@@ -1542,7 +1235,6 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             <value>Europe</value>
         </filters>
         <label>Europe</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>LatAM</fullName>
@@ -1572,7 +1264,6 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             <value>LatAm</value>
         </filters>
         <label>LatAM</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>My_Warehouses</fullName>
@@ -1597,7 +1288,6 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             <value>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</value>
         </filters>
         <label>My Warehouses</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>NA</fullName>
@@ -1627,16 +1317,13 @@ If( WU_Current_Month_Utilization_Type__c = &apos;Weekly&apos;,(((WU_Total_Curren
             <value>NA</value>
         </filters>
         <label>NA</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>W{0000}</displayFormat>
         <label>Salesforce Id</label>
-        <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Master Warehouses</pluralLabel>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Edit_Warehouse_Capacity</fullName>
         <active>true</active>
