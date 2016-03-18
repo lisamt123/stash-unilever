@@ -29,22 +29,12 @@
         </apex:define>
 
         <apex:define name="body">
-            <div class="contentCentered">
-                <p>Over the next 30 days you will follow a learning pathway to ensure you get the best out of your onboarding journey.</p><br/>
-                <p>
-                    The onboarding journey covers 6 subjects aimed at giving you a fast track to obtain the necessary skills to start your role.
-                    These subjects will then be linked to your Job Skill Profile at the end of you onboarding so you can continue your learning journey past the onboarding stage.
-                </p>
-                <br />
-                <p>The six subjects for onboarding are:</p>
+            <div>
+                
 
-                <apex:image id="theImage" url="{!URLFOR($Resource.PBSResources, 'img/PBSWelcomeImage.png')}" />
+                <apex:image id="theImage" style="width:950px;" url="{!URLFOR($Resource.PBSResources, 'img/PBSLandingImage.png')}" />
 
-                <div class="alertArea">
-                     <apex:image id="alert" url="{!URLFOR($Resource.PBSResources, '/img/alert_icon.png')}" width="40" height="40" />
-
-                    <strong>&nbsp; &nbsp;ACTION: Get your Learning Journey by setting up your <a href="{!$Page.MyProfile}">Profile</a></strong>
-                </div>
+                
             </div>
             </apex:define>
 

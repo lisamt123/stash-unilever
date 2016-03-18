@@ -1,102 +1,93 @@
-<apex:page html-class="noBgImage" controller="PC_ForumController" readOnly="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true">
+<apex:page html-class="noBgImage" controller="PC_ForumController_CC" readOnly="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true">
     <!-- javascript -->
     <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
     <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/bootstrap.min.js')}" />
 
     <!-- sylesheets -->
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
-    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PCContainer.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_Container.css')}" />
 
-    <div class="wrapper">
-        <div class="row topRow">
+        <div class="wrapper wrapper-sub-frame">
+        <!--<div class="row">
             <div class="col-md-12 col-lg-12">
                 <div class="heading">
-                    PlanCraft Forum
+                    PlanCraft
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12">
+                <div class="subheading">
+                    Welcome to PlanCraft. This portal brings together knowledge and best practise from across the Planning Community.
                 </div>
             </div>
         </div>
-
         <div class="row">
-            <!-- static icon -->
-            <div class="col-md-3 col-lg-3">
-                <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(PlancraftGroup))}">
-                    <div class="categories">
-                        <div class="thumbnail">
-                            <a href="{!$Page.PC_ForumGroup}?id={!PlancraftGroup.Id}">
-                                <apex:variable var="img" value="{!IF(ISBLANK(PlancraftGroup.Image_ID__c), URLFOR($Resource.PCResources, '/img/noImage.png'), '/servlet/servlet.FileDownload?file=' + PlancraftGroup.Image_ID__c)}" />
-                                <apex:image value="{!img}" html-data-container="body" html-data-toggle="popover" html-data-trigger="hover" title="{!PlancraftGroup.Title__c}" html-data-content="{!PlancraftGroup.Summary__c}" html-data-placement="right auto" />
-                            </a>
-                        </div>
+            <div class="col-md-12 col-lg-12">
+                <div class="profileArea group">
+                    <div class="headerBox">
+                        Overview
                     </div>
-                </apex:outputPanel>
-            </div>
 
-            <div class="col-md-9 col-lg-9">
-                <!--- carousel start -->
-                <apex:outputPanel layout="none" rendered="{!AND(NOT(ISBLANK(GroupList)), GroupList.size > 0)}">
-                    <div id="categories" class="carousel slide categories" data-ride="carousel">
-                        <!-- Wrapper for slides -->
-                        <apex:variable value="0" var="idx"/>
-                        <div class="carousel-inner" role="listbox">
-                            <apex:repeat value="{!GroupList}" var="page">
-                                <div class="{!IF(idx == '0', 'item active' , 'item')}">
-                                    <div class="row">
-                                        <apex:variable value="0" var="innerIdx" />
-                                        <apex:repeat value="{!page}" var="groupObj">
-                                            <div class="col-md-4 col-lg-4">
-                                                <div class="thumbnail">
-                                                    <a href="{!$Page.PC_ForumGroup}?id={!groupObj.Id}">
-                                                        <apex:variable var="img" value="{!IF(ISBLANK(groupObj.Image_ID__c), URLFOR($Resource.PCResources, '/img/noImage.png'), '/servlet/servlet.FileDownload?file=' + groupObj.Image_ID__c)}" />
-                                                        <apex:image value="{!img}" html-data-container="body" html-data-toggle="popover" html-data-trigger="hover" title="{!groupObj.Title__c}" html-data-content="{!groupObj.Summary__c}" html-data-placement="right auto" />
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </apex:repeat>
-                                    </div>
-                                </div>
-                                <apex:variable value="{!VALUE(idx) + 1}" var="idx"/>
-                            </apex:repeat>
+                    <div class="headerBox left">
+                        Coming Soon
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 col-lg-5">
+                            <apex:image value="{!URLFOR($Resource.PCResources, 'img/DEInfoArea.png')}" />
+                        </div>
+
+                        <div class="col-md-3 col-lg-3">
+                            <apex:image value="{!URLFOR($Resource.PCResources, 'img/badges.png')}" />
+                        </div>
+
+                        <div class="col-md-4 col-lg-4">
+
+                            <apex:include pageName="PC_RankingTable" />
                         </div>
                     </div>
 
-                    <apex:outputPanel layout="none" rendered="{!AND(NOT(ISBLANK(GroupList)), GroupList.size > 1)}">
-                        <nav class="carouselPager">
-                            <ul class="pager">
-                                <apex:variable value="0" var="idx"/>
-                                <apex:repeat value="{!GroupList}" var="page">
-                                    <li data-target="#categories" data-slide-to="{!idx}" class="{!IF(idx == '0', 'active' , '')}"><span>{!VALUE(idx) + 1}</span></li>
-                                    <apex:variable value="{!VALUE(idx) + 1}" var="idx"/>
-                                </apex:repeat>
-                            </ul>
-                        </nav>
-                    </apex:outputPanel>
-                </apex:outputPanel>
-
-                <!--- carousel end -->
+                </div>
             </div>
-        </div>
+        </div>-->
+
+        <!-- body -->
         <div class="row">
             <div class="col-md-3 col-lg-3 leftNav">
-
-                <div class="box">
-                    <div class="headerBox">
-                        TOP 10 FAQs
-                    </div>
-                    <ul>
-                        <knowledge:articleList articleTypes="PBS_FAQ_s__kav" articleVar="article" sortBy="mostViewed" pageSize="10">
-                            <li><a href="{!URLFOR($Action.KnowledgeArticle.View, article.id)}" target="_self">{!article.title}</a></li>
-                        </knowledge:articleList>
-                    </ul>
-                    <div class="right">
-                        <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" href="{!$Page.PBS_Library}">View Library to see more &raquo;</a>
-                    </div>
+                <div class="box center center-1">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!PBSForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_pbs.svg')}" />
+                    </a>
                 </div>
-
+                <div class="box center box-center-2">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!DPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_demandplan.svg')}" />
+                    </a>
+                </div>                
+                <div class="box center box-center-3">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!SPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_supplyplan.svg')}" />
+                    </a>
+                </div>                
+                <div class="box center box-center-4">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!DisPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_distribution.svg')}" />
+                    </a>
+                </div>                
+                <div class="box center box-center-5">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!MPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_material.svg')}" />
+                    </a>
+                </div>  
+                <div class="box center box-center-6">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!IPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_innovation.svg')}" />
+                    </a>
+                </div>                  
             </div>
             <div class="col-md-9 col-lg-9">
-                <div class="headerBox noExtraPadding">Feed</div>
+                              
                 <div class="chatterWrapper zen">
-                    <chatter:newsfeed />
+                   <chatter:newsfeed /> 
                 </div>
             </div>
         </div>

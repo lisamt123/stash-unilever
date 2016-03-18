@@ -1,17 +1,17 @@
 @isTest
 private class PC_ForumGroupController_Test {
 
-	@isTest static void loadData_noId()
+    @isTest static void loadData_noId()
     {
         Test.startTest();
 
-		PC_ForumGroupController ctrl = new PC_ForumGroupController();
+        PC_ForumGroupController_CC ctrl = new PC_ForumGroupController_CC();
         ctrl.loadData();
 
         System.assertEquals(true, ctrl.getHasMessages(), 'There should be an error message');
 
         Test.stopTest();
-	}
+    }
 
     @isTest static void loadData_withId()
     {
@@ -25,7 +25,7 @@ private class PC_ForumGroupController_Test {
 
         ApexPages.currentPage().getParameters().put('id', pc.Id);
 
-        PC_ForumGroupController ctrl = new PC_ForumGroupController();
+        PC_ForumGroupController_CC ctrl = new PC_ForumGroupController_CC();
         ctrl.loadData();
 
         System.assertEquals(false, ctrl.getHasMessages(), 'There should be no error message');

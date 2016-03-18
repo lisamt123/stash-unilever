@@ -1,4 +1,5 @@
-<apex:page html-class="noBgImage" controller="PBS_LibraryController" readOnly="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false">
+<apex:page html-class="noBgImage" controller="PBS_LibraryController_CC" readOnly="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="false">
+   
     <!-- javascript -->
     <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
     <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/bootstrap.min.js')}" />

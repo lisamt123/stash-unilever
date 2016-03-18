@@ -138,6 +138,8 @@ public with sharing class PBS_ProfileService
                 WHERE
                     UserOrGroupId = :profileObject.user__c
                 AND
+                    RowCause = 'Manual'
+                AND
                     ParentId IN (
                         SELECT
                             Id
