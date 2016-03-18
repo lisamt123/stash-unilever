@@ -73,8 +73,8 @@ public with sharing class AA_AgentAppServiceController {
      * @modifiedby  -
      */
     public aa_Agent_Report__c convertRequestAgentReport(AA_WrapperUtility.AgentAppDataRequest objAgentApp){
-        string userids;
-        string topicids;        
+        string userids='';
+        string topicids='';        
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
             newObjToBeInserted.Agent_App_Unilever_Brand__c  = objAgentApp.UnileverBrandId;
             newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
@@ -123,8 +123,8 @@ public with sharing class AA_AgentAppServiceController {
      * @modifiedby  -
      */
     public aa_Agent_Report__c convertRequestAgentReport_Competitor(AA_WrapperUtility.AgentAppDataRequest objAgentApp){
-        string userids;
-        string topicids;
+        string userids='';
+        string topicids='';
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
               newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
               newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
