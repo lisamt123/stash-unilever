@@ -3326,7 +3326,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Canada Replies,ToninGuy,Unilever Canada,Unilever Comments</value>
+            <value>Canada Replies,ToninGuy,Unilever Canada,Unilever Comments,Rexona</value>
         </filters>
         <label>CEC North America 24-7 Queue HPC</label>
         <language>en_US</language>
