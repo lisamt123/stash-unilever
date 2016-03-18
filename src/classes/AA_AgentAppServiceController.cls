@@ -39,7 +39,7 @@ public with sharing class AA_AgentAppServiceController {
             objResponse.agentReportId = agentAPPIDInserted[0];
             appWrapperObj.objGetAgentDataResponse  =  objResponse;
          }catch(System.DmlException exceptiondml){
-             System.debug('Exception in DML:' + exceptiondml);
+             System.debug('Exception in DML:' + exceptiondml.getMessage());
         }
         return appWrapperObj;
     }
@@ -468,7 +468,7 @@ public with sharing class AA_AgentAppServiceController {
             }
                 
         }Catch(System.DmlException exceptiondml2){
-             System.debug('Exception:' + exceptiondml2);
+             System.debug('Exception:' + exceptiondml2.getMessage());
         }
         return agentBrandCategory;
     }
@@ -895,9 +895,7 @@ public with sharing class AA_AgentAppServiceController {
         catch(DMLException e){
             system.debug(e.getMessage());
         }
-        catch(Exception e){
-            system.debug(e.getMessage());
-        }
+
         return appWrapperObj;
     }
     
@@ -922,8 +920,8 @@ public with sharing class AA_AgentAppServiceController {
             insert objFeed;     
                        
            }
-            catch(Exception genEx){
-            system.debug(genEx);
+            catch(DMLException genEx){
+            system.debug(genEx.getMessage());
         }
         appWrapperObj.UpdateLikeCount = true;
         return appWrapperObj;
