@@ -1,7 +1,7 @@
 <apex:page controller="Amr_JobSheetController_CC" sidebar="false" id="pageId" tabStyle="{!IF(strTabName<>null,strTabName,'RAP_Jobs_Portfolio__tab')}" docType="html-5.0">
     
     <apex:include pageName="amr_common" />
-    <apex:includeScript value="{!URLFOR($Resource.Ad_Manager,'Ad-Manager/js/production-activity.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/production-activity.js')}"/>
     <script type="text/javascript">
         function enableText() {                         
           $j('.outputIdClass').removeAttr('disabled');             
@@ -723,6 +723,25 @@
             .text-camel-case {
                 text-transform: capitalize;
             }
+            
+            .loadError {
+                color:red !important;
+                position:absolute !important;
+                top:0px !important;
+                left: 5px !important;
+                width:auto !important;
+            }
+            .loadErrorParent {
+                border:3px solid red;
+                background:#EFE4B0;
+                padding: 25px 0 10px 0;
+                position:relative;
+                margin: 12px 0;
+            }
+            .form-field-level1 {
+                background:#FFFFFF;
+            }
+            
             /* Maya CSS Ends */        
     </style>
     <apex:include pageName="amr_common_header" />
@@ -770,10 +789,8 @@
                 <div class="left popup-header">
                     Alert
                 </div>
-                <div class="right popup-close">                                
-                    <apex:commandLink styleClass="cancel-alert-popup"  >
-                        <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_ClosePopup.png')}" alt="close pop up"/>
-                    </apex:commandLink>
+                <div class="right popup-close cancel-alert-popup pointer">                                                    
+                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_ClosePopup.png')}" alt="close pop up"/>                    
                 </div>
                 <div class="clear">
                 </div>
@@ -1129,13 +1146,19 @@
                                 <div class="before inner_heading_sub_section margin-bottom10">
                                     <h4>Uniliver information</h4>
                                 </div>
-                                <div class="form-field2 padding-qm">
-                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!yourEmailAddressFlag}" style="color:Red"/> 
-                                    <apex:outputLabel >
-                                        Your Email Address
-                                        <strong></strong>
-                                        <div title="{!$ObjectType.Amr_Job_Details__c.fields.Your_Email_Address__c.inlineHelpText}"></div>                                        
-                                    </apex:outputLabel>
+                                <div class="form-field-parent">
+                                    <div class="form-field-level1">
+                                    
+                                         <div class="form-field2 padding-qm"> 
+                                         <apex:outputlabel value="{!CheckWithCMI}" rendered="{!yourEmailAddressFlag}" style="color:Red" styleclass="loadError" html-data-width="70"/> 
+                                            <apex:outputLabel >
+                                                Your Email Address
+                                                <strong></strong>
+                                                <div title="{!$ObjectType.Amr_Job_Details__c.fields.Your_Email_Address__c.inlineHelpText}"></div>                                        
+                                            </apex:outputLabel>
+                                          </div> 
+                                    
+                                    </div>
                                 </div>
                                 <div class="form-field2 widthautocomp">
                                     <apex:inputField value="{!joblist.Your_Email_Address__c}"   styleClass="your_email_address" />

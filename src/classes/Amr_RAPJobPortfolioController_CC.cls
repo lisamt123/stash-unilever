@@ -17,7 +17,8 @@ public with sharing class Amr_RAPJobPortfolioController_CC{
         public Amr_Job_Allocation__c jobAlloc {get;set;}
         public list<Amr_Job_Allocation__c> jobDetailList{get;set;} 
         public String projLeaderCluster{get;set; }
-        public String projLeaderCountry{get;set; }
+        public String projLeaderCountry{get;set; }    
+        public String allocatedBudget{get;set; } 
         public String agencyName{get;set;}
         public String brodMarket{get;set;}
         public String categoryName{get;set;}
@@ -31,6 +32,7 @@ public with sharing class Amr_RAPJobPortfolioController_CC{
         public String addNumber{get;set;}
         public String projEmail{get;set;}
         public String projectName{get;set;}
+        public String productionSupport {get;set;}
         public String startDate{get;set;}
         public String endDate{get;set;} 
         public Id chosenId {get; set;}
@@ -124,6 +126,7 @@ public with sharing class Amr_RAPJobPortfolioController_CC{
             hideAlertObj = new Amr_Alert__c();
             hideAlertObjNew= new Amr_Alert__c();
             unHideAlertList = new List<Amr_Alert__c>();
+            allocatedBudget = '';
             projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
             listString= new list<string>();
               //   listString.add(NONE);
@@ -528,6 +531,7 @@ Returns:
         addNumber = jobDetails.AdManagerText__c;
         projEmail = jobDetails.Unilever_Project_Leader_Email__c;
         projectName = jobDetails.Project_Details__c;
+        productionSupport = jobDetails.Production_Activity_Type__c;
                 
         jobDetailList = new list<Amr_Job_Allocation__c>();
          
@@ -559,12 +563,15 @@ Returns:
                soql += ' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(projLeaderCluster)+Amr_ConstantForAdManager.SLASH;
               
         }
+         if(String.isNotBlank(productionSupport)){
+        soql += ' and AM_Job_Detail__r.Production_Activity_Type__c = \''+String.escapeSingleQuotes(productionSupport)+Amr_ConstantForAdManager.SLASH;
+               
+        }
         
          if(String.isNotBlank(projLeaderCountry)){
         soql += ' and AM_Job_Detail__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(projLeaderCountry)+Amr_ConstantForAdManager.SLASH;
                
         }
-        
          if(String.isNotBlank(agencyName)){
         soql += ' and AM_Job_Detail__r.Lead_Creative_Agency_name__c = \''+String.escapeSingleQuotes(agencyName)+Amr_ConstantForAdManager.SLASH;
                
@@ -592,20 +599,20 @@ Returns:
         soql += ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(stageLogged)+Amr_ConstantForAdManager.SLASH;
               
          }
-         if(String.isNotBlank(jobAlloc.Job_Status__c)){
+         if(String.isNotBlank(jobAlloc.Job_Status__c) && jobAlloc.Job_Status__c != Amr_ConstantForAdManager.NONE){
         soql += ' and Job_Status__c = \''+jobAlloc.Job_Status__c+Amr_ConstantForAdManager.SLASH;
               
          }
-         if(String.isNotBlank(jobAlloc.Started__c)){
+         if(String.isNotBlank(jobAlloc.Started__c) && jobAlloc.Started__c != Amr_ConstantForAdManager.NONE){
         soql += ' and Started__c = \''+jobAlloc.Started__c+Amr_ConstantForAdManager.SLASH;
               
          }
-         if(String.isNotBlank(jobAlloc.Reported__c)){
+         if(String.isNotBlank(jobAlloc.Reported__c) && jobAlloc.Reported__c != Amr_ConstantForAdManager.NONE){
         soql += ' and Reported__c = \''+jobAlloc.Reported__c+Amr_ConstantForAdManager.SLASH;
               
          }
-         system.debug('jobAlloc.Job_Shared__c!!'+jobAlloc.Job_Shared__c);
-         if(String.isNotBlank(jobAlloc.Job_Shared__c)){
+
+         if(String.isNotBlank(jobAlloc.Job_Shared__c)  && jobAlloc.Job_Shared__c != Amr_ConstantForAdManager.NONE){
         soql += ' and Job_Shared__c = \''+jobAlloc.Job_Shared__c+Amr_ConstantForAdManager.SLASH;
               
          }
@@ -616,7 +623,16 @@ Returns:
          if(String.isNotBlank(projEmail)){
         soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+PERCENT;
               
-         }    /* Project name dropdown
+         } 
+         System.debug('ALLOCATED BUDGET  ->  ' + allocatedBudget);
+         if(String.isNotBlank(allocatedBudget) ){
+         String fialTotalVal = allocatedBudget.replace(Amr_ConstantForAdManager.COMMA,Amr_ConstantForAdManager.SINGLE_QUOTE);
+        soql += ' and AM_Job_Detail__r.Allocated_Budget_euro__c = '+ Double.valueOf(fialTotalVal);
+        }
+        system.debug('SOQL HERE   Budget Here -->  ' + soql);
+         
+         
+            /* Project name dropdown
          if(String.isNotBlank(projectName)){
         soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(projectName)+Amr_ConstantForAdManager.SLASH;
               
@@ -648,8 +664,8 @@ Returns:
                Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
                DateTime refDate2 = startDateFinal.addDays(1);
-               soql += ' and createdDate '+  ' >= '+ startDateFinal.formatGMT(DATE_FORMAT) ;
-               soql += ' and createdDate '+  '< '+ refDate2.formatGMT(DATE_FORMAT);
+               soql += ' and createdDate '+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ;
+               soql += ' and createdDate '+  '< '+ refDate2.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT);
                
                system.debug('soql created date'+soql);
     }

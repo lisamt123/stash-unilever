@@ -117,6 +117,13 @@
         }
     </script>
     <style type="text/css"> 
+        td.rich-tabhdr-side-cell table {
+            background:#FFFFFF !important;
+        }
+        .rich-tab-bottom-line{
+            border-bottom: 6px solid #FFFFFF !important;
+            background:#FFFFFF !important;
+        }
         .job-portfolio-container {
         background: #FFFFFF none repeat scroll 0 0;
         font-family: "dinOffPro",sans-serif;
@@ -138,7 +145,7 @@
         height:100%;
         }
         .leftbar-container1 {
-        min-height:552px;
+        min-height:438px;
         height:100%;
         }
         #navDormant{    
@@ -357,7 +364,7 @@
     <apex:include pageName="amr_common_header" />           
     <div class="job-portfolio-container">    
         <apex:form >
-            <div class="absolute padding10-10-0-0 pointer" style="right:25px;top:270px;">                  
+            <div class="absolute padding10-10-0-0 pointer" style="right:25px;top:260px;">                  
                 <div class="left bold bell-text-label">
                     {!totalAlertCount}
                 </div>
@@ -380,8 +387,8 @@
                 -->
                 <!--  -->
                 
-                <div class="leftbar-container bg-g1 margin-btwn-inner-container">
-                    <div class="leftbar-container-header dark-blue-header">
+                <div class="leftbar-container bg-w8 margin-btwn-inner-container">
+                    <div class="leftbar-container-header dark-blue-header" style="border-radius:6px;">
                         {!$Label.Amr_Dashboard}
                     </div>
                     <div class="leftbar-container-content margin12 bg-w8" style="text-align: center;">
@@ -602,7 +609,7 @@
                                 Campaign Name
                             </div> -->
                             <div class="clear  inputclass">
-                                <apex:inputField value="{!jobDetails.Campaign_Name__c}"  html-placeholder="Campaign Name" />
+                                <apex:inputField value="{!jobDetails.Campaign_Name__c}"  html-placeholder="{!$Label.Amr_Campaign_Name}" />
                             </div>
                             <div class="clear">
                             </div>
@@ -656,7 +663,7 @@
                                {!$Label.Amr_Date_logged}
                             </div>
                             <div class="clear  inputclass">
-                                <input type="text" id="datepicker"  onchange="callActionFunctionStartDate(this.value);"/> 
+                                <input type="text" id="datepicker" placeholder = "{!$Label.Amr_Date_logged}"  onchange="callActionFunctionStartDate(this.value);" /> 
                                  <!--  <apex:input  label="My date :" type="date"/> -->
                             </div>
                             <div class="clear">
@@ -714,7 +721,7 @@
                             </div>  -->
                             <div class="clear  inputclass">
                                 <!-- <apex:inputField value="{!advSearchjobDet.AM_Job_Detail__r.Allocated_Budget_euro__c}"   />-->
-                                 <apex:inputField value="{!jobDetails.Allocated_Budget_euro__c}"  html-placeholder="Allocated budget(euro)" />
+                                 <apex:inputText value="{!allocatedBudget}"  html-placeholder="Allocated budget(euro)" />
                             </div>
                             <div class="clear">
                             </div>
@@ -818,10 +825,8 @@
                             <div class="left popup-header">
                                 {!$Label.Amr_Alert}
                             </div>
-                            <div class="right popup-close">                                
-                                <apex:commandLink styleClass="cancel-alert-popup"  >
-                                    <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_ClosePopup.png')}" alt = "close image"/>
-                                </apex:commandLink>
+                            <div class="right popup-close cancel-alert-popup pointer">                                                                
+                                <img src="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/Ico_ClosePopup.png')}" alt="close image" />                                
                             </div>
                             <div class="clear">
                             </div>
@@ -865,11 +870,8 @@
                            
                        </div>
                   </div>                  
-                                    
-                <div class="dark-blue-header">
-                    Job List
-                </div>
-                <div class="margin12 bg-w8 joblist-section">
+                                                    
+                <div class="bg-w8 joblist-section">
                     <div class="tabsection">
                         <apex:outputPanel id="listRefresh" styleClass="custom1" >
                         

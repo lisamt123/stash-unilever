@@ -32,7 +32,7 @@
     <apex:include pageName="amr_common_header" />
     <div class="job-portfolio-container saving_summary_container margin-top10">
         <apex:form >
-            <div class="leftbar bg-g1">
+            <div class="leftbar bg-g1" style="width:27.3%">
                 <div class="leftbar-container bg-g1 margin-btwn-container">
                     <div class="leftbar-container-header dark-blue-header">
                         {!$Label.Amr_Search} &amp; {!$Label.Amr_Filter}
@@ -202,29 +202,25 @@
                         </div>
                     </div>  
                    -->
-                    <div class="job-field-parent displayinlineblock margin-top0imp">
-                        <div class="job-field-label">{!$Label.Amr_No_Of_Masters}</div>
+                    <div class="job-field-parent displayinlineblock margin-top0imp">                        
                         <div class="job-field-input">
-                            <apex:inputField value="{!savingObject.No_of_Masters__c}" />
+                            <apex:inputField value="{!savingObject.No_of_Masters__c}" html-placeholder="{!$Label.Amr_No_Of_Masters}" />
                         </div>
                     </div>
-                    <div class="job-field-parent displayinlineblock margin-top0imp">
-                        <div class="job-field-label">{!$Label.Amr_Duration_of_Masters}</div>
+                    <div class="job-field-parent displayinlineblock margin-top0imp">                        
                         <div class="job-field-input">
-                            <apex:inputField value="{!savingObject.Duration_of_Masters__c}" />
+                            <apex:inputField value="{!savingObject.Duration_of_Masters__c}" html-placeholder="{!$Label.Amr_Duration_of_Masters}" />
                         </div>
                     </div>
 
-                    <div class="job-field-parent displayinlineblock">
-                        <div class="job-field-label">{!$Label.Amr_Total_No_of_Films}</div>
+                    <div class="job-field-parent displayinlineblock  margin-top0imp">                        
                         <div class="job-field-input">
-                            <input type="text" class="inputTextCommon1" onchange="callActionFunctionTotalFilms(this.value);" />
+                            <input type="text" class="inputTextCommon1" onchange="callActionFunctionTotalFilms(this.value);" placeholder="{!$Label.Amr_Total_No_of_Films}"/>
                         </div>
                     </div>
-                    <div class="job-field-parent displayinlineblock">
-                        <div class="job-field-label">{!$Label.Amr_No_of_Shoot_Days}</div>
+                    <div class="job-field-parent displayinlineblock  margin-top0imp">                        
                         <div class="job-field-input">
-                            <apex:inputField value="{!savingObject.No_of_shoot_days__c}" />
+                            <apex:inputField value="{!savingObject.No_of_shoot_days__c}" html-placeholder="{!$Label.Amr_No_of_Shoot_Days}" />
                         </div>
                     </div>  <!--
                     <div class="job-field-parent displayinlineblock">
@@ -261,22 +257,19 @@
                             </apex:selectList>
                         </div>
                     </div> 
-                    <div class="job-field-parent displayinlineblock">
-                        <div class="job-field-label">&euro; Total Accepted Final Cost</div>
+                    <div class="job-field-parent displayinlineblock">                        
                         <div class="job-field-input">
-                            <apex:inputText value="{!totalAcceptedFinalCost}" />
+                            <apex:inputText value="{!totalAcceptedFinalCost}" html-placeholder="€ Total Accepted Final Cost"/>
                         </div>
                     </div>
-                    <div class="job-field-parent displayinlineblock">
-                        <div class="job-field-label">&euro; Saving – Average of quotes</div>
+                    <div class="job-field-parent displayinlineblock">                        
                         <div class="job-field-input">
-                            <apex:inputText value="{!savingAverageOfQuotes}" />
+                            <apex:inputText value="{!savingAverageOfQuotes}" html-placeholder="€ Saving – Average of quotes" />
                         </div>
                     </div>
-                    <div class="job-field-parent displayinlineblock">
-                        <div class="job-field-label">&euro; Saving – Accepted Quote</div>
+                    <div class="job-field-parent displayinlineblock">                        
                         <div class="job-field-input">
-                            <apex:inputText value="{!savingAcceptedQuotes}" />
+                            <apex:inputText value="{!savingAcceptedQuotes}" html-placeholder="€ Saving – Accepted Quote" />
                         </div>
                     </div>  <!--
                     <div class="job-field-parent displayinlineblock">
@@ -307,13 +300,13 @@
 
             </div>
             <!-- Advance search popup End  -->
-            <div class="rightbar bg-g1">
+            <div class="rightbar bg-g1" style="width:71.3%;">
                 <div class="leftbar-container bg-g1 margin-btwn-container">
                     <div class="leftbar-container-header dark-blue-header">
                         Dashboard
                     </div>
                     <div class="leftbar-container-content margin12 bg-w8" style="padding:10px 12px 0px;min-height:258px;display:{!if(permissionSetName = 'CAP','none','')}">
-                        <div class="margin-top8"  >
+                        <div class="margin-top8 left" style="width:40%;" >
                             <div class="bold">Total Submission made</div>
                             <div>
                                 <apex:chart height="110" width="90%" data="{!pieDataRap}" colorSet="#FFC000,#4472C3,#FFC000">
@@ -323,7 +316,7 @@
                                 </apex:chart>
                             </div>
                         </div>
-                        <div>
+                        <div class="left" style="width:40%;">
                             <div class="bold">Total Saving made</div>
                             <div>
                                 <apex:chart height="110" width="90%" data="{!pieSavingDataRaps}" colorSet="#70309F,#7F7F7F,#70309F">

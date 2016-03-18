@@ -339,7 +339,7 @@ Returns:
             }
          
     }
-    Boolean testSuccess;
+  
     update savObj;
    
     update acceptedQuote;
@@ -358,11 +358,7 @@ Returns:
         page.setRedirect(true); 
         return page ;
         }
-        /*if(testSuccess){
-            system.debug('inside success!!');
-        ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,'Saving updated successfully'));
-        return null;
-        }*/
+        
         }catch(Exception ex){
         	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         System.debug(ex.getmessage());

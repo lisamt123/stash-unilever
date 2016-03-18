@@ -15,6 +15,7 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
     public list<Amr_Job_Allocation__c>jobDetailCancellationList {get;set;}
     public Amr_Job_Allocation__c jobAllocation {get;set;}
     public Amr_Job_Details__c jobDetails {get;set;}
+    public String broadcastMarket{get;set;}
     public String startDate{get;set;}
     public String endDate{get;set;} 
     public String categoryName{get;set;}
@@ -367,10 +368,8 @@ Returns:
     system.debug('soqlForCancel !!'+soqlForCancel );
     
     //search
-    System.debug('EMAILLLL --->>>  ' + jobDetails.Unilever_Project_Leader_Email__c);
      String   addNumber = jobDetails.AdManagerText__c;
        String  projEmail = jobDetails.Unilever_Project_Leader_Email__c;
-    System.debug('EMAILLLL --->>>  ' + projEmail );
        String projectName = jobDetails.Project_Details__c;
    // soqlForCancel = soql;
      
@@ -499,7 +498,6 @@ Returns:
     soqlForCancel += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Amr_ConstantForAdManager.PERCENTAGESLASH;
       }
      
-    System.debug('QUERRRYYYY ->   ' + soql);
      if(String.isNotBlank(addNumber)){
         soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+PERCENT;
         soqlForCancel += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+PERCENT;
@@ -521,9 +519,7 @@ Returns:
          soqlForCancel += ' and AM_Job_Detail__r.Project_Details__r.Name LIKE \''+'%'+String.escapeSingleQuotes(projectNameText)+PERCENT; //'\'';
               
          }
-         
-         System.debug('Project Name -->>>  ' + projectNameText);
-         System.debug('Project Name Query  -->>>  ' + soql);
+
          if(String.isNotBlank(jobDetails.Project_Name_Other__c)){
         soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
         soqlForCancel += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
@@ -537,6 +533,14 @@ Returns:
         soqlForCancel += ' and AM_Job_Detail__r.Allocated_Budget_euro__c = '+Double.valueOf(allocatedBudget);
             
          }
+         System.debug('Broad Cast name -> '+ broadcastMarket);
+         if(String.isNotBlank(broadcastMarket)){
+       
+        soql += ' and AM_Job_Detail__r.Brodcast_Market__c = \''+String.escapeSingleQuotes(broadcastMarket)+Amr_ConstantForAdManager.SLASH ;  //'\'';
+         soqlForCancel += ' and AM_Job_Detail__r.Brodcast_Market__c = \''+String.escapeSingleQuotes(broadcastMarket)+Amr_ConstantForAdManager.SLASH ; //'\'';      
+        
+         }
+          System.debug('SOQL HERE  -> '+ soql );
          if (String.isNotBlank(startDate)){
    //start date creation
                system.debug('inside start date');
@@ -549,7 +553,7 @@ Returns:
                DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
                 DateTime endDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0).addDays(1);
          
-               soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.DATEFORMAT) + ' and createdDate'+  ' < '+ endDateFinal.formatGMT(Amr_ConstantForAdManager.DATEFORMAT) ;
+               soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) + ' and createdDate'+  ' < '+ endDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ;
                soqlForCancel += ' and createdDate'+  ' = '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.DATEFORMAT) ;
              
                

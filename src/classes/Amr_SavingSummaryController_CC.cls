@@ -136,7 +136,7 @@ Returns: It will return list of options.
          listOfSortOptions = new List<SelectOption>();
           listOfSortOptions.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
          listOfSortOptions.add(new selectOption('Job_Details__r.AdManagerText__c','ADManager Number'));
-         listOfSortOptions.add(new selectOption('CreatedDate','Date Savings Submitted'));
+         listOfSortOptions.add(new selectOption('CreatedDateAmr_ConstantFor','Date Savings Submitted'));
          listOfSortOptions.add(new selectOption('No_of_Masters__c','No Of Masters'));
          listOfSortOptions.add(new selectOption('Duration_of_Masters__c','Duration Of Masters'));
          listOfSortOptions.add(new selectOption('No_of_Additional_Films__c','No of Additional Films'));
@@ -200,36 +200,37 @@ Returns:
    //start date creation
    system.debug('inside start date');
    String[] startDateSplitQuote = startDate.split(' ');
-   String[] startDateSplitSlash = startDateSplitQuote[0].split('/');
+   String[] startDateSplitSlash = startDateSplitQuote[0].split(Amr_ConstantForAdManager.BACK_SLASH);
    Integer myIntDate = integer.valueOf(startDateSplitSlash[1]);
    Integer myIntMonth = integer.valueOf(startDateSplitSlash[0]);
    Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
    Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
    DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
     System.debug('DATE ->  ' + startDateFinal); 
-        //   soql += ' and createdDate'+  ' >= '+ startDateFinal.addDays(1).formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') + ' and createdDate'+  ' < '+ startDateFinal.addDays(2).formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
-           soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'HH:mm:ss\'Z\'') ;
-           
+  
+        //   soql += ' and createdDate'+  ' >= '+ startDateFinal.addDays(1).formatGMT(Amr_ConstantForAdManager.DATEFORMAT) + ' and createdDate'+  ' < '+ startDateFinal.addDays(2).formatGMT(Amr_ConstantForAdManager.DATEFORMAT) ;
+           soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT) ;
+     
            system.debug('soql created date'+soql);
     }
     if (String.isNotBlank(endDate)){
     //end date creation
    String[] endDateSplitQuote = endDate.split(' ');
-   String[] endDateSplitSlash = endDateSplitQuote[0].split('/');
+   String[] endDateSplitSlash = endDateSplitQuote[0].split(Amr_ConstantForAdManager.BACK_SLASH);
    Integer myIntDate1 = integer.valueOf(endDateSplitSlash[1]);
    Integer myIntMonth1 = integer.valueOf(endDateSplitSlash[0]);
    Integer myIntYear1 = integer.valueOf(endDateSplitSlash[2]);
    Date d1 = Date.newInstance(myIntYear1, myIntMonth1, myIntDate1);
    DateTime endDateDateFinal = DateTime.newInstance(d1.year(), d1.month(), d1.day(), 0, 0, 0);
-     
-           soql += ' and createdDate ' +  ' < '+ endDateDateFinal.addDays(1).formatGMT('yyyy-MM-dd\'T\'HH:mm:ss\'Z\'');
+  
+           soql += ' and createdDate ' +  ' < '+ endDateDateFinal.addDays(1).formatGMT(Amr_ConstantForAdManager.SECDATEFORMAT );
            
            system.debug('soql end date'+soql);
     }
    
     if(String.isNotBlank(savingObject.Production_Type__c)){
       
-    soql += ' and Production_Type__c = \''+String.escapeSingleQuotes(savingObject.Production_Type__c)+'\'';
+    soql += ' and Production_Type__c = \''+String.escapeSingleQuotes(savingObject.Production_Type__c)+Amr_ConstantForAdManager.SLASH;
    
            system.debug('soql prod type'+soql);
      }
@@ -271,76 +272,76 @@ Returns:
      
      if(String.isNotBlank(savingObject.Stage_RAP_engaged__c)){
       
-    soql += ' and Stage_RAP_engaged__c= \''+String.escapeSingleQuotes(savingObject.Stage_RAP_engaged__c)+'\'';
+    soql += ' and Stage_RAP_engaged__c= \''+String.escapeSingleQuotes(savingObject.Stage_RAP_engaged__c)+Amr_ConstantForAdManager.SLASH;
    
            system.debug('soql stage RAP engaged'+soql);
      }
      
      if(String.isNotBlank(savingObject.Script_Title__c)){
       
-    soql += ' and Script_Title__c LIKE \''+String.escapeSingleQuotes(savingObject.Script_Title__c)+'%\'';
+    soql += ' and Script_Title__c LIKE \''+String.escapeSingleQuotes(savingObject.Script_Title__c)+Amr_ConstantForAdManager.PERCENTAGESLASH ;
    
            system.debug('soql script title'+soql);
      }
      
       if(String.isNotBlank(savingObject.Scope_re_brief__c)){
       
-    soql += ' and Scope_re_brief__c= \''+String.escapeSingleQuotes(savingObject.Scope_re_brief__c)+'\'';
+    soql += ' and Scope_re_brief__c= \''+String.escapeSingleQuotes(savingObject.Scope_re_brief__c)+Amr_ConstantForAdManager.SLASH;
    
            system.debug('soql scope rebrief'+soql);
      }
       if(String.isNotBlank(savingObject.Folder_Name__c)){
       
-    soql += ' and Folder_Name__c= \''+String.escapeSingleQuotes(savingObject.Folder_Name__c)+'\'';
+    soql += ' and Folder_Name__c= \''+String.escapeSingleQuotes(savingObject.Folder_Name__c)+Amr_ConstantForAdManager.SLASH;
    
            system.debug('soql folder name'+soql);
      }
      
      if(String.isNotBlank(addNumber)){
-        soql += ' and Job_Details__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+'%\'';
+        soql += ' and Job_Details__r.AdManagerText__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+ String.escapeSingleQuotes(addNumber)+Amr_ConstantForAdManager.PERCENTAGESLASH ;
               
        } 
      if(String.isNotBlank(totalAcceptedFinalCost) ){
-         String fialTotalVal = totalAcceptedFinalCost.replace(',','');
-        soql += ' and Total_Accepted_FinalCost__c = '+ Double.valueOf(fialTotalVal);          // ''+'%'+ String.valueOf(totalAcceptedFinalCost)+'%\'';
+         String fialTotalVal = totalAcceptedFinalCost.replace(Amr_ConstantForAdManager.COMMA,Amr_ConstantForAdManager.SINGLE_QUOTE);
+        soql += ' and Total_Accepted_FinalCost__c = '+ Double.valueOf(fialTotalVal);          // ''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(totalAcceptedFinalCost)+Amr_ConstantForAdManager.PERCENTAGESLASH ;
               
        }
         if(String.isNotBlank(savingAverageOfQuotes)){
-        String fialSavingVal = savingAverageOfQuotes.replace(',','');
-        soql += ' and Saving_Average_of_Quotes__c = '+ Double.valueOf(fialSavingVal);        //  \''+'%'+ String.valueOf(savingAverageOfQuotes) +'%\'';  
+        String fialSavingVal = savingAverageOfQuotes.replace(Amr_ConstantForAdManager.COMMA,Amr_ConstantForAdManager.SINGLE_QUOTE);
+        soql += ' and Saving_Average_of_Quotes__c = '+ Double.valueOf(fialSavingVal);        //  \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAverageOfQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;  
               
        }
         if(String.isNotBlank(savingAcceptedQuotes)){
-        String fialSavingAcceptedVal = savingAcceptedQuotes.replace(',','');
-        soql += ' and Saving_Accepted_Quote_Euro__c = '+ Double.valueOf(fialSavingAcceptedVal);        //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\''; 
+        String fialSavingAcceptedVal = savingAcceptedQuotes.replace(Amr_ConstantForAdManager.COMMA,Amr_ConstantForAdManager.SINGLE_QUOTE);
+        soql += ' and Saving_Accepted_Quote_Euro__c = '+ Double.valueOf(fialSavingAcceptedVal);        //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ; 
               
        } 
        
        if(String.isNotBlank(categoryName)){
-           soql += ' and Job_Details__r.ProductCategory__r.Name LIKE \''+'%'+String.escapeSingleQuotes(categoryName)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+           soql += ' and Job_Details__r.ProductCategory__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(categoryName)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
        }
        
        if(String.isNotBlank(brandPosName)){
-           soql += ' and Job_Details__r.Brand_Position__r.Name LIKE \''+'%'+String.escapeSingleQuotes(brandPosName)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+           soql += ' and Job_Details__r.Brand_Position__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandPosName)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
        } 
        if(String.isNotBlank(brandNameFromPage)){
-           soql += ' and Job_Details__r.Brand_Final__r.Name LIKE \''+'%'+String.escapeSingleQuotes(brandNameFromPage)+'%\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+           soql += ' and Job_Details__r.Brand_Final__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandNameFromPage)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
        }
        System.debug('SQL HERE ->   ' + soql);
         if(String.isNotBlank(region) && region != Amr_ConstantForAdManager.NONE){
-           soql += ' and Job_Details__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(region)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+           soql += ' and Job_Details__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(region)+Amr_ConstantForAdManager.SLASH;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
        }
        
        if(String.isNotBlank(country) && country != Amr_ConstantForAdManager.NONE){
-           soql += ' and Job_Details__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(country)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+           soql += ' and Job_Details__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(country)+Amr_ConstantForAdManager.SLASH;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
        }    
        
        if(String.isNotBlank(budgetReponse) && budgetReponse != Amr_ConstantForAdManager.NONE){
-           soql += ' and Job_Details__r.Budget_Responsibility__c = \''+String.escapeSingleQuotes(budgetReponse)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+           soql += ' and Job_Details__r.Budget_Responsibility__c = \''+String.escapeSingleQuotes(budgetReponse)+Amr_ConstantForAdManager.SLASH;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
        }    
        
        if(String.isNotBlank(selectedRapName) && selectedRapName != Amr_ConstantForAdManager.NONE){
-           soql += ' and Job_Details__r.ownerId = \''+String.escapeSingleQuotes(selectedRapName)+'\'';       //   \''+'%'+ String.valueOf(savingAcceptedQuotes) +'%\'';               
+           soql += ' and Job_Details__r.ownerId = \''+String.escapeSingleQuotes(selectedRapName)+Amr_ConstantForAdManager.SLASH;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
        }
        
        System.debug('SQL Till Here -> '+ soql );
@@ -356,9 +357,9 @@ Returns:
          system.debug('selectedCountry'+selectedCountry);
         String str = '';
           for(String s:selectedCountry){
-              str += s+ ',';
+              str += s+ Amr_ConstantForAdManager.COMMA;
           }
-          String shLocString = '\'' + str.subString(0,str.length()-1) + '\'';
+          String shLocString = Amr_ConstantForAdManager.SLASH + str.subString(0,str.length()-1) + Amr_ConstantForAdManager.SLASH;
         soql += ' and Shoot_Location__c IN ('+shLocString+')';
         System.debug('Str -> ' + shLocString);
         System.debug('SOQL -> ' + soql);

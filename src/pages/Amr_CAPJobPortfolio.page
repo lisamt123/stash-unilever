@@ -140,16 +140,18 @@
         height:100%;
         }
         .leftbar-container1 {
-        min-height:550px;
+        min-height:438px;
         height:100%;
         }
         .data2Col {
         padding:0px !important;
         border: medium none !important;
         }
+        /*
         .tabsection tr.headerRow th div {
             max-width:30px !important;      
         }
+        */
         
         
         /*PJ*/
@@ -195,8 +197,56 @@
             background-color: rgba(0,0,0,0.3);            
             } 
          /**/
+         
+         /*scrollable table css*/            
+          .scrollbar-table-parent table.list tbody {              
+              overflow-y: auto;
+              max-height: 300px;
+              display: -moz-grid;
+              display:run-in;
+              display:-webkit-box;
+              width: 100%;
+          }
+          .scrollbar-table-parent table.list thead{
+              /*display: inline-table; */
+              display: inline-flex;               
+              width: 100%;
+              table-layout:fixed !important; 
+          }          
+          .scrollbar-table-parent table.list tbody td, .scrollbar-table-parent table.list thead th{
+              width:6em;
+          }
+          
+          .scrollbar-table-parent tr.dataRow td {
+            padding:11px 0 11px 5px !important;
+          }
+          .scrollbar-table-parent {
+                overflow-x:auto;
+            }
+          
+            
+         .scrollbar-table-parent2 table.list tbody {              
+              overflow-y: auto;
+              max-height: 300px;
+              display: -moz-grid;
+              display:run-in;
+              display:-webkit-box;
+              width: 100%;
+          }
+          .scrollbar-table-parent2 table.list thead{
+              /*display: inline-table; */
+              display: inline-flex;               
+              width: 100%;
+              table-layout:fixed !important; 
+          }          
+          .scrollbar-table-parent2 table.list tbody td, .scrollbar-table-parent2 table.list thead th{
+              width:6em;
+          }          
         
-               
+          .displayinlineblock {
+        display: inline-block;
+        vertical-align: top;
+    }     
     </style>
     <apex:pagemessages id="msgs"></apex:pagemessages>
     <!---Ad Main section---->
@@ -343,155 +393,71 @@
             <!-- Advance Search Popup Start -->
              <apex:actionRegion >    
                
-                <div class = "advance-search-popup" style = "display:none">
-                   
-                    <div class="inputpanel" >
-                            <div class="clear inputclass">
-                               {!$Label.Amr_AdManager_Number}
-                            </div>
-                            <div class="clear  inputclass">
-                             <!--   <apex:inputField value="{!advSearchjobDet.AM_Job_Detail__r.AdManagerText__c}" styleClass="test"  /> -->
-                             
-                                <apex:inputField value="{!jobDetails.AdManagerText__c}"   />
-                            </div>
-                            <div class="clear">
-                            </div>
+               <div class="advance-search-popup popup-window hide">
+                    <div class="margin-btwn-container12">
+                        <div class="left popup-header">
+                               {!$Label.Amr_Advanced_Search}
+                        </div>
+                        <div class="right popup-close cancel-advance-popup pointer">                        
+                            <img src="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/images/Ico_ClosePopup.png')}" alt="close" />                        
+                        </div>
+                        <div class="clear">
+                        </div>
                     </div>
-                    <div class="inputpanel" >
-                            <div class="clear inputclass">
-                               {!$Label.Amr_Date_logged}
+                    <div class="clear"></div>
+                    <div class="margin-btwn-inner-container" style="height:300px;">
+                        
+                        <div class="job-field-parent displayinlineblock margin-top0imp">                            
+                            <div class="job-field-input">
+                                <apex:inputField value="{!jobDetails.AdManagerText__c}" html-placeholder="{!$Label.Amr_AdManager_Number}" />
                             </div>
-                            <div class="clear  inputclass">
-                                <input type="text" id="datepicker" onchange="callActionFunctionStartDate(this.value);" /> 
-                                
+                        </div>
+                        <div class="job-field-parent displayinlineblock margin-top0imp">                            
+                            <div class="job-field-input">
+                                <input type="text" id="datepicker" onchange="callActionFunctionStartDate(this.value);" placeholder="{!$Label.Amr_Date_logged}" /> 
                             </div>
-                            <div class="clear">
+                        </div>
+                        <div class="job-field-parent displayinlineblock margin-top0imp">                            
+                            <div class="job-field-input">
+                                <apex:inputField value="{!jobDetails.Unilever_Project_Leader_Email__c}"  html-placeholder="{!$Label.Amr_Project_leader_email}" />
                             </div>
-                    </div>
-                    <div class="inputpanel" >
-                            <div class="clear inputclass">
-                                {!$Label.Amr_Project_leader_email}
+                        </div>
+                        <div class="job-field-parent displayinlineblock">
+                          <!--  <div class="job-field-label">{!$Label.Amr_Broadcast_market}</div> -->
+                            <div class="job-field-input-multiselect">
+                                <apex:inputText value="{!broadcastMarket}" html-placeholder="{!$Label.Amr_Broadcast_market}"  />
                             </div>
-                            <div class="clear  inputclass">
-                              <!--  <apex:inputField value="{!advSearchjobDet.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}"   />-->
-                              <apex:inputField value="{!jobDetails.Unilever_Project_Leader_Email__c}"   />
+                        </div>
+                       
+                        <div class="job-field-parent displayinlineblock" >                          
+                            <div class="job-field-input">
+                                <apex:inputField value="{!jobDetails.Allocated_Budget_euro__c}"  html-placeholder="{!$Label.Amr_Allocated_budget_euro}" />
                             </div>
-                            <div class="clear">
+                        </div>
+                        <div class="job-field-parent displayinlineblock" >                          
+                            <div class="job-field-input">
+                                <apex:inputField value="{!jobDetails.Campaign_Name__c}"  html-placeholder="{!$Label.Amr_Campaign_Name}" />
                             </div>
-                    </div> <!--
-                    <div class="inputpanel" >
-                            <div class="clear inputclass">
-                                Location
-                            </div>
-                            <div class="clear  inputclass">
-                               <!-- <apex:inputField value="{!advSearchjobDet.AM_Job_Detail__r.Project_Leader_Country__c}"   />-->
-                              <!--  <apex:inputField value="{!jobDetails.Project_Leader_Country__c}"   />--> <!--
-                            </div>
-                            <div class="clear">
-                            </div>
-                    </div>  -->
-                   <div class="inputpanel" >
-                            <div class="clear inputclass">
-                                {!$Label.Amr_Stage_of_production_activity}
-                            </div>
-                            <div class="clear  inputclass">
-                              
+                        </div>
+                        
+                         <div class="job-field-parent displayinlineblock">
+                            <div class="job-field-label">{!$Label.Amr_Stage_of_production_activity}</div>
+                            <div class="job-field-input">
                                 <apex:inputField value="{!jobDetails.Stage_of_Production_Activity__c}"   />
                             </div>
-                            <div class="clear">
-                            </div>
-                    </div>
-                  
-                <!--
-                    <div class="inputpanel" >
-                            <div class="clear inputclass">
-                                 {!$Label.Amr_Lead_agency_name}
-                            </div>
-                            <div class="clear  inputclass">
-                              <!--  <apex:inputField value="{!advSearchjobDet.AM_Job_Detail__r.Lead_Creative_Agency_name__c}"   />-->  <!--
-                               <apex:inputField value="{!jobDetails.Lead_Creative_Agency_name__c}"   />
-                            </div>
-                            <div class="clear">
-                            </div>
-                    </div>
-                -->
-                     <div class="inputpanel" >
-                            <div class="clear inputclass">
-                                {!$Label.Amr_Allocated_budget_euro}
-                            </div>
-                            <div class="clear  inputclass">
-                                <!-- <apex:inputField value="{!advSearchjobDet.AM_Job_Detail__r.Allocated_Budget_euro__c}"   />-->
-                                 <apex:inputField value="{!jobDetails.Allocated_Budget_euro__c}"   />
-                            </div>
-                            <div class="clear">
-                            </div>
-                    </div> <!--
-                     <div class="inputpanel" >
-                            <div class="clear inputclass">
-                               {!$Label.Amr_Production_Support}
-                            </div>
-                            <div class="clear  inputclass">
-                               <!-- <apex:inputField value="{!advSearchjobDet.AM_Job_Detail__r.Production_Activity_Type__c}"   />--> <!--
-                                <apex:inputField value="{!jobDetails.Production_Activity_Type__c}"   />
-                            </div>
-                            <div class="clear">
-                            </div>
-                    </div> -->
-            <!--
-                     <div class="inputpanel" >
-                            <div class="clear inputclass">
-                                {!$Label.Amr_Job_Status}
-                            </div>
-                            <div class="clear  inputclass">
-                              
-                                <apex:inputField value="{!jobAllocation.Job_Status__c}"   />
-                            </div>
-                            <div class="clear">
-                            </div>
-                    </div>
-                        <div class="inputpanel" >
-                            <div class="clear inputclass">
-                                 {!$Label.Amr_Job_Started}
-                            </div>
-                            <div class="clear  inputclass">
-                              
-                                <apex:inputField value="{!jobAllocation.Started__c}"   />
-                            </div>
-                            <div class="clear">
-                            </div>
-                    </div>
-                      <div class="inputpanel" >
-                            <div class="clear inputclass">
-                                {!$Label.Amr_Job_Shared}
-                            </div>
-                            <div class="clear  inputclass">
-                              
-                                <apex:inputField value="{!jobAllocation.Job_Shared__c}"   />
-                            </div>
-                            <div class="clear">
-                            </div>
-                    </div>
-                   
-                      <div class="inputpanel" >
-                            <div class="clear inputclass">
-                                {!$Label.Amr_Job_Reported}
-                            </div>
-                            <div class="clear  inputclass">
-                              
-                                <apex:inputField value="{!jobAllocation.Reported__c}"   />
-                            </div>
-                            <div class="clear">
-                            </div>
+                        </div>
+                        
                     </div>
                     
-                   -->
-                    <span class="right">
-                        <apex:commandButton value="Cancel" styleClass="cancel-advance-popup commonbtn"/>
-                    </span>
-                    <span class="right">
-                        <apex:commandButton value="Apply" action="{!getJobSearchDetails}" styleClass="apply-advance-popup commonbtn-blue"  reRender="listRefresh,lstcancelid"/>
-                    </span>
-                </div>
+                    <div>
+                        <div class="right">
+                            <apex:commandButton value="Apply" action="{!getJobSearchDetails}" styleClass="apply-advance-popup commonbtn-blue"  reRender="listRefresh,lstcancelid"/>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    
+                </div>                               
              </apex:actionRegion>
             <!-- Advance search popup End  -->
             <div class="rightbar">
@@ -539,7 +505,7 @@
                                         </apex:actionStatus>
                                     </apex:outputPanel>
                                 </div>
-                                <div style="max-height: 360px;overflow-y: auto;">
+                                <div class="scrollbar-table-parent"> <!-- style="max-height: 360px;overflow-y: auto;" -->
                                 <apex:pageBlock id="joblist_pageblock">
                                     <apex:pageBlockSection columns="1" collapsible="true">
                                         <apex:pageBlockTable value="{!activeJobsToShow}" var="job"  id="activeJobId">
@@ -637,8 +603,8 @@
                                                     </div>
                                                 </apex:outputText>
                                             </apex:column>
-                                            <apex:column value="{!job.Job_Allocated_Image__c}" headerValue="Al"/>
-                                            <apex:column value="{!job.Job_Status_Image__c}" headerValue="Acce"/>
+                                            <apex:column value="{!job.Job_Allocated_Image__c}" headerValue="Allocated"/>
+                                            <apex:column value="{!job.Job_Status_Image__c}" headerValue="Accepted"/>
                                             <!--<apex:column value="{!job.Reported_Image__c}" headerValue="Reported"/>
                                                 <apex:column value="{!job.Started_Image__c}" headerValue="Started"/>
                                                 <apex:column value="{!job.Job_Shared__c}" headerValue="Shared"/>-->
@@ -716,6 +682,7 @@
                                         <apex:commandButton value="Uncancel"  action="{!changwrapperClasseStatus}"  styleClass="commonbtn pagination" rendered="{!IF(WrapperList.size>0,true,false)}"/>
                                     </div>
                                 </div>
+                                <div class="scrollbar-table-parent2">
                                 <apex:pageBlock id="cancelled_joblist_pageblock">
                                     <apex:pageBlockSection columns="1" collapsible="true">
                                         <apex:pageBlock >
@@ -826,8 +793,8 @@
                                                     </div>
                                                 </apex:outputText>
                                             </apex:column>
-                                                <apex:column value="{!job.sObjRec.Job_Allocated_Image__c}" headerValue="A"/>
-                                                <apex:column value="{!job.sObjRec.Job_Status_Image__c}" headerValue="Acc"/>
+                                                <apex:column value="{!job.sObjRec.Job_Allocated_Image__c}" headerValue="Allocated"/>
+                                                <apex:column value="{!job.sObjRec.Job_Status_Image__c}" headerValue="Accepted"/>
                                                 <!--  <apex:column value="{!job.sObjRec.Reported_Image__c}" headerValue="Reported"/>
                                                     <apex:column value="{!job.sObjRec.Started_Image__c}" headerValue="Started"/>
                                                     <apex:column value="{!job.sObjRec.Job_Shared__c}" headerValue="Shared"/>-->
@@ -840,7 +807,7 @@
                                         <apex:outputPanel styleClass="pagination" >
                                             <apex:actionStatus id="actStatusId4" >
                                                 <apex:facet name="start" >
-                                                    <img src="/img/loading.gif" alt = "loading image" />                    
+                                                    <img src="/img/loading.gif" alt="loading image" />                    
                                                 </apex:facet>
                                             </apex:actionStatus>
                                             <apex:commandButton value="<<" action="{!beginningForCancelJobs}" disabled="{!DisablePreviousForCancelJobs}"  reRender="cancelled_joblist_pageblock,scriptRefresh" status="actStatusId4"/>
@@ -853,6 +820,7 @@
                                         </div>
                                     </apex:pageBlockSection>
                                 </apex:pageBlock>
+                            </div>
                             </div>
                     </apex:outputpanel>
                 </div>

@@ -113,19 +113,19 @@ public with sharing class Amr_JobSheetController_CC{
         
         validateSuccess = false;
         selectUsername= new list<selectoption>();
-        jobIdFromPage = ApexPages.currentPage().getParameters().get('id');
+        jobIdFromPage = ApexPages.currentPage().getParameters().get(Amr_ConstantForAdManager.ID);
         
         alert = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];          
         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];
         getDocuments();
     }catch(Exception ex){
-    	System.debug('Exception -> 1 '+ ex.getmessage());
+    	System.debug( ex.getmessage());
     } 
     try{
-            jobId = ApexPages.CurrentPage().getParameters().get('id'); 
+            jobId = ApexPages.CurrentPage().getParameters().get(Amr_ConstantForAdManager.ID); 
        }
     catch(Exception e){
-           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid Job Id'));
+           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Invalid_Job_Id));
            return;
     }
         
@@ -135,7 +135,7 @@ public with sharing class Amr_JobSheetController_CC{
             return;
      }
          
-        String message = '' + ApexPages.CurrentPage().GetParameters().Get('message');
+        String message = '' + ApexPages.CurrentPage().GetParameters().Get(label.Amr_message);
         if(message != 'null')
         {
                ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, message)); 
@@ -148,7 +148,7 @@ public with sharing class Amr_JobSheetController_CC{
             selectUsername.add(obj);
         }
         catch(Exception e){
-           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid User'));
+           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Invalid_User));
            return;
        }
         }  
@@ -161,12 +161,12 @@ public with sharing class Amr_JobSheetController_CC{
         if(userNameSet.contains(Label.Amr_CAP)){
         
             permissionSetName = Label.Amr_CAP;
-            strTabName        = 'CAP_Jobs_Portfolio__tab';
+            strTabName        = label.Amr_CAP_Jobs_Portfolio_tab;
         }else{
          
             permissionSetName = Label.Amr_RAP;
         }
-        System.debug('pRofile ->' + permissionSetName);      
+        //System.debug('pRofile ->' + permissionSetName);      
     
       
       try{
@@ -227,7 +227,7 @@ public with sharing class Amr_JobSheetController_CC{
         catch(Exception e){
         
            
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'No Job Allocation Record For LoggedIn User'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_No_Job_Allocation_Record_For_LoggedIn_User));
             return;
         }  
         
@@ -241,10 +241,10 @@ public with sharing class Amr_JobSheetController_CC{
         }
       
             selectJobPriority = new List<SelectOption>();
-            selectJobPriority.add(new SelectOption('Pending','Pending'));
-            selectJobPriority.add(new SelectOption('Priority','Priority'));
-            selectJobPriority.add(new SelectOption('Live','Live'));
-            selectJobPriority.add(new SelectOption('Dormant','Dormant')); 
+            selectJobPriority.add(new SelectOption(Amr_ConstantForAdManager.PENDING,Amr_ConstantForAdManager.PENDING));
+            selectJobPriority.add(new SelectOption(Amr_ConstantForAdManager.PRIORITY,Amr_ConstantForAdManager.PRIORITY));
+            selectJobPriority.add(new SelectOption(Amr_ConstantForAdManager.LIVE,Amr_ConstantForAdManager.LIVE));
+            selectJobPriority.add(new SelectOption(Amr_ConstantForAdManager.DORMANT,Amr_ConstantForAdManager.DORMANT)); 
      
         
         projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
@@ -266,8 +266,8 @@ public with sharing class Amr_JobSheetController_CC{
        currencyMap=new Map<String,String>();
        
        for(Amr_CurrencyConversionRate__c curr:currencyList){
-       if(selectedCountry == curr.Name+'-'+curr.Currency_Unit__c){
-           currencyMap.put('selectedCountry',String.valueOf(curr.Currency_Unit_To_Euro__c));
+       if(selectedCountry == curr.Name+Amr_ConstantForAdManager.DASH+curr.Currency_Unit__c){
+           currencyMap.put(Amr_ConstantForAdManager.SELECTEDCOUNTRY,String.valueOf(curr.Currency_Unit_To_Euro__c));
            }
        }
            
@@ -285,7 +285,7 @@ public with sharing class Amr_JobSheetController_CC{
         viewQuoteMode = true;
         editedAcceptedQuote = false;
         viewAcceptedQuote = true;
-        jobId = ApexPages.currentPage().getParameters().get('id');
+        jobId = ApexPages.currentPage().getParameters().get(Amr_ConstantForAdManager.ID);
         quoteObj = new Amr_Quote__c();
         selectedCountry1 = new List<String> {'Test'};
         List<Amr_Country_Cluster__c> countrylst=  Amr_Country_Cluster__c.getall().values();
@@ -299,7 +299,7 @@ public with sharing class Amr_JobSheetController_CC{
              userId = userinfo.getuserid();
             updateData();
         }catch(Exception ex){
-            System.debug('Exception -> 2'+ ex.getmessage());
+            System.debug( ex.getmessage());
         }
          
          
@@ -310,17 +310,14 @@ public with sharing class Amr_JobSheetController_CC{
     */       
     public void updateData(){
         try{
-            
-           
-            
-            
+             
             List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='CAP' order by Assignee.name];
             boolean flag = false;
             for(PermissionSetAssignment permissionObj:PermissionSetAssignmentList){
                  if(userId == permissionObj.Assignee.id){
                    
                     flag = true;
-                    system.debug('inside cap User===>');
+                    
                     break;
                  }
              }
@@ -389,11 +386,11 @@ public with sharing class Amr_JobSheetController_CC{
             }
       
         }catch(exception ex){
-          System.debug('Exception -> '+ ex.getmessage());
+          System.debug(ex.getmessage());
         }
     }
       
-    //public  Amr_Quote__c acceptedQuote {get;set;}
+    
     public  Document document {
         get {
           if (document == null)
@@ -422,7 +419,7 @@ public with sharing class Amr_JobSheetController_CC{
             List<selectOption> optionsNew = new List<selectOption>();
             
              if(currencyMap!=null){
-                options.add(new SelectOption(currencyMap.get('selectedCountry'),selectedCountry));
+                options.add(new SelectOption(currencyMap.get(Amr_ConstantForAdManager.SELECTEDCOUNTRY),selectedCountry));
             }else{
                 options.add(new SelectOption(STR_NONE,STR_NONE));
             }
@@ -433,13 +430,13 @@ public with sharing class Amr_JobSheetController_CC{
             Map<String,String> mapAmountToCurrency = new Map<String,String>();
         
             for (Amr_CurrencyConversionRate__c cc: lstcov){
-                if( (cc.Name+'-'+cc.Currency_Unit__c == 'USA-US $') ||  (cc.Name+'-'+cc.Currency_Unit__c == 'UK-£' ) || (cc.Name+'-'+cc.Currency_Unit__c == 'EEC-Euro' )){
-                    mapAmountToCurrency.put(cc.Name+'-'+cc.Currency_Unit__c , String.valueOf(cc.Currency_Unit_To_Euro__c));
-                    options.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+'-'+cc.Currency_Unit__c));
+                if( (cc.Name+Amr_ConstantForAdManager.DASH+cc.Currency_Unit__c == Amr_ConstantForAdManager.USAUS) ||  (cc.Name+Amr_ConstantForAdManager.DASH+cc.Currency_Unit__c == Amr_ConstantForAdManager.UK ) || (cc.Name+Amr_ConstantForAdManager.DASH+cc.Currency_Unit__c == Amr_ConstantForAdManager.EECEuro )){
+                    mapAmountToCurrency.put(cc.Name+Amr_ConstantForAdManager.DASH+cc.Currency_Unit__c , String.valueOf(cc.Currency_Unit_To_Euro__c));
+                    options.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+Amr_ConstantForAdManager.DASH+cc.Currency_Unit__c));
                     continue;
                 }   
                 else{
-                    optionsNew.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+'-'+cc.Currency_Unit__c));
+                    optionsNew.add(new SelectOption(String.valueOf(cc.Currency_Unit_To_Euro__c),cc.Name+Amr_ConstantForAdManager.DASH+cc.Currency_Unit__c));
                 }
                 
             }
@@ -457,7 +454,7 @@ public with sharing class Amr_JobSheetController_CC{
          String ProjectName = null;
          if(jobId !=null){
           ProjectName = [select Project_Details__r.name from Amr_Job_Details__c where id=: jobId].Project_Details__r.name;
-          system.debug('projectName getMethodToPassProjectNames '+ProjectName);
+          
          }
          listString= new list<string>();
          if(ProjectName !=null){
@@ -469,10 +466,10 @@ public with sharing class Amr_JobSheetController_CC{
                 listString.add(i.name);
             }
         }
-        system.debug('serialize!!'+JSON.serialize(listString));
+       
         return JSON.serialize(listString);
             }catch(Exception e){
-            system.debug('Exception ->15'+e.getmessage());
+            system.debug(e.getmessage());
             return null;
             }
     }
@@ -488,7 +485,7 @@ public with sharing class Amr_JobSheetController_CC{
                 }
            }
            }catch(Exception e){
-            system.debug('Exception ->16'+e.getmessage());
+            system.debug(e.getmessage());
            }
         }
     public pageReference getPage(){
@@ -501,18 +498,18 @@ public with sharing class Amr_JobSheetController_CC{
         if(userNameSet.contains(Label.Amr_CAP)){
         
             permissionSetName = Label.Amr_CAP;
-            PageReference pageRef = new PageReference('/apex/Amr_CAPJobPortfolio');
+            PageReference pageRef = new PageReference(label.Amr_CApJobPortFolio);
              pageRef.setRedirect(true);
              return pageRef;
         }else{
         
             permissionSetName = Label.Amr_RAP;
-             PageReference pageRef = new PageReference('/apex/Amr_RAPJobPortfolio');
+             PageReference pageRef = new PageReference(label.Amr_RAPJobPortFolio);
              pageRef.setRedirect(true);
              return pageRef;
         }
         }catch(Exception e){
-            system.debug('Exception ->17'+e.getmessage());
+            system.debug(e.getmessage());
             return null;
         }
       
@@ -529,11 +526,11 @@ public with sharing class Amr_JobSheetController_CC{
              }
           
              else{
-                system.debug('selected RAP !!! '+ selectedRAPUser);
+               
                 
-                  System.debug('CAAAP ->   ' + jobList);
+                 
                  if(jobList.Job_Cancelled__c){
-                     ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'This job has already been cancelled'));
+                     ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.ERROR,label.Amr_This_job_has_already_been_cancelled));
             
                      return null; 
                  }
@@ -548,7 +545,7 @@ public with sharing class Amr_JobSheetController_CC{
                 }
             } 
         }catch(Exception e){
-            system.debug('Exception ->18'+e.getmessage());
+            system.debug(e.getmessage());
             return null;
         }
     }
@@ -560,8 +557,8 @@ public with sharing class Amr_JobSheetController_CC{
     
     public static void jobReAllocate(String selectedRap, Id jobId, Amr_Job_Details__c jobDet){
         try{
-        System.debug('List Of RAP ->'+ selectedRap + ' Job ID -> ' + jobId );
-        System.debug('jobDet' + jobDet );
+        
+       
         List<Amr_Job_Allocation__c> jobAllocList = [select Id,Name,User__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = TRUE ]; // AND User__c = :userInfo.getUserId()
         
         for(Amr_Job_Allocation__c jAlloc : jobAllocList ){
@@ -572,7 +569,7 @@ public with sharing class Amr_JobSheetController_CC{
                 rapAllocateCheck = FALSE; 
             }
         }
-        System.debug('CHECK -> ' + rapAllocateCheck  +  'jobAllocate ->   ' +  jobAllocList );
+       
         if(!rapAllocateCheck){
             if(!jobAllocList.isEmpty()){
                 delete jobAllocList;
@@ -587,11 +584,11 @@ public with sharing class Amr_JobSheetController_CC{
             jobAllocObj.AM_Job_Detail__c = jobId;
             jobAllocObj.Is_Primary__c = TRUE;
             jobAllocObj.User__c = selectedRap ;             
-            jobAllocObj.Job_Allocated__c = 'Yes';
+            jobAllocObj.Job_Allocated__c = Amr_ConstantForAdManager.YES;
             
             jobShareObj.ParentId = jobId;
             jobShareObj.UserOrGroupId = selectedRap ;               
-            jobShareObj.AccessLevel = 'Edit';
+            jobShareObj.AccessLevel = Amr_ConstantForAdManager.EDIT;
             
     
             User userList = [Select id, email from User where Id = :selectedRap];
@@ -608,7 +605,7 @@ public with sharing class Amr_JobSheetController_CC{
            
          }  
         }catch(Exception e){
-        system.debug('Exception ->19'+e.getmessage());
+        system.debug(e.getmessage());
       
         }
     }
@@ -639,7 +636,7 @@ public with sharing class Amr_JobSheetController_CC{
           }
        }
        }catch(Exception e){
-        system.debug('Exception ->20'+e.getmessage());
+        system.debug(e.getmessage());
          return null;
        }
     }
@@ -682,7 +679,7 @@ public with sharing class Amr_JobSheetController_CC{
         update jobDetail;
     
        }catch(Exception e){
-       system.debug('Exception ->21'+e.getmessage());
+       system.debug(e.getmessage());
        
        }
     }
@@ -721,7 +718,7 @@ public with sharing class Amr_JobSheetController_CC{
            return null;
        }  
        }catch(Exception e){
-        system.debug('Exception ->22'+e.getmessage());
+        system.debug(e.getmessage());
          return null;
        }
     }  
@@ -756,12 +753,12 @@ public with sharing class Amr_JobSheetController_CC{
             return null;
        }
        else{
-       System.debug('RAAAP ->   ' + jobList);
+      
         
            if(jobList.Job_Cancelled__c){
                      jobList.Job_Cancelled__c = false;
                      jobAlloc.Job_Status__c = ''; 
-                     ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.Info,'This job has already been cancelled'));
+                     ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.Info,label.Amr_This_job_has_already_been_cancelled));
                       update jobList;
                        update jobAlloc;
                      return null; 
@@ -813,26 +810,13 @@ public with sharing class Amr_JobSheetController_CC{
        }    
     }
         
-        /*
-        public List<SelectOption> getCategoryList(){      
-        
-         listOfCategory = new List<SelectOption>();
-         
-         listOfCategory.add(new selectOption(NONE,NONE));
-         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-         
-         for(String cat: utiltyObj.categoryBrandPositionMap.keySet()){
-             listOfCategory.add(new selectOption(cat,cat));
-             system.debug('inside Category==>'+cat);
-         }
-         return listOfCategory;
-     } */
+       
      
       /* 
         Method to get all the categories.
     */ 
       public String getCategoryList(){ 
-        System.debug('cATE ->' +  JSON.serialize(categoryString));
+      
         return JSON.serialize(categoryString);
     }
      
@@ -862,20 +846,20 @@ public with sharing class Amr_JobSheetController_CC{
          
         listOfBrandPosition = new List<SelectOption>();
         listOfBrandPosition.add(new selectOption(jobList.Brand_Position__r.name,jobList.Brand_Position__r.name));
-        system.debug(jobList.Brand_Position__r.name+'==Brand Position==>'+listOfBrandPosition);
-        //listOfBrandPosition.add(new selectOption(selectedBrandPosName = jobList.Brand_Position__r.name;));
+        
+      
         return listOfBrandPosition;
          
     }   
     
     public PageReference  brandPositionListData(){    
-        System.debug('BBBBBBRANDDD ->'+ selectedCategory);  
+        
         selectedBrandPosName = null;
         brandNameFromPage = null;
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
         Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(selectedCategory);
 
-        system.debug('brandPositionListttoo----->'+brandPositionlst );
+        
 
         listOfBrandPosition = new List<SelectOption>();
         listOfBrandPosition.add(new selectOption(NONE,NONE));
@@ -890,8 +874,8 @@ public with sharing class Amr_JobSheetController_CC{
         }
          listOfBrand = new List<SelectOption>();
          listOfBrand.add(new selectOption(NONE,NONE));
-        system.debug('brandPositionListtt----->'+listOfBrandPosition);
-        system.debug('brand----->'+listOfBrand);
+        
+      
         return null;
 
     }
@@ -939,7 +923,7 @@ public with sharing class Amr_JobSheetController_CC{
                 categoryString = new list<string>();
                 Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
                 Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
-                System.debug('CAteLisgt' + categorylst);
+               
                 for(MDO_Category__c mdCat : categorylst){
                     categoryString.add(mdCat.name);
                 }
@@ -966,7 +950,7 @@ public with sharing class Amr_JobSheetController_CC{
         if(String.isNotBlank(selectedCountry)){
         Amr_CurrencyConversionRate__c currencyObject =[SELECT Currency_Unit__c,Name FROM Amr_CurrencyConversionRate__c WHERE Currency_Unit_To_Euro__c =:double.valueOf(selectedCountry) limit 1];
          
-         String currencyFinalString = currencyObject.Name+'-'+currencyObject.Currency_Unit__c;
+         String currencyFinalString = currencyObject.Name+Amr_ConstantForAdManager.DASH+currencyObject.Currency_Unit__c;
          jobList.Currency_Conversion_Country_List__c = currencyFinalString;
          selectedCountry = currencyFinalString;
         }
@@ -981,10 +965,10 @@ public with sharing class Amr_JobSheetController_CC{
             
         update jobList;
        
-         PageReference pageRef = new PageReference('/apex/Amr_JobSheet');
-         pageRef.getParameters().put('id',jobList.Id);
-         pageRef.getParameters().put('tab','job-details');
-         pageRef.getParameters().put('message', 'Successfully updated');
+         PageReference pageRef = new PageReference(label.Amr_JobSheet);
+         pageRef.getParameters().put(Amr_ConstantForAdManager.ID,jobList.Id);
+         pageRef.getParameters().put(label.Amr_tab,label.Amr_job_details);
+         pageRef.getParameters().put(label.Amr_message,label.Amr_Successfully_updated);
        
          pageRef.setRedirect(true);
          return pageRef; 
@@ -1043,7 +1027,7 @@ public with sharing class Amr_JobSheetController_CC{
              List<String> finalRapList = new List<String>();
              if(!shareCheckList.isEmpty()){
                 for(Amr_Job_Allocation__c rapAlreadyShared : shareCheckList ){
-                    String errorMsg = 'Job already Shared with ' + rapAlreadyShared.User__r.Name;
+                    String errorMsg = label.Amr_Job_already_Shared_with + rapAlreadyShared.User__r.Name;
                     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,errorMsg));
                     rapSet.add(rapAlreadyShared.User__c);
                 }
@@ -1069,7 +1053,7 @@ public with sharing class Amr_JobSheetController_CC{
                 jobShr  = new Amr_Job_Details__share ();
                 jobShr.ParentId = jobId;
                 jobShr.UserOrGroupId = eachSelectedUser;
-                jobShr.AccessLevel = 'Read';
+                jobShr.AccessLevel = Amr_ConstantForAdManager.READ;
                 jobShr.RowCause = Schema.Amr_Job_Details__share.RowCause.Manual;  
                 listOfJobShare.add(jobShr);
                 
@@ -1078,8 +1062,8 @@ public with sharing class Amr_JobSheetController_CC{
                jobAllocObj.AM_Job_Detail__c = jobId;
                jobAllocObj.Is_Primary__c = FALSE;
                jobAllocObj.User__c = eachSelectedUser;  
-               jobAllocObj.Job_Allocated__c= 'Yes';  
-               jobAllocObj.Job_Shared__c  = 'Yes';       
+               jobAllocObj.Job_Allocated__c= Amr_ConstantForAdManager.YES;  
+               jobAllocObj.Job_Shared__c  = Amr_ConstantForAdManager.YES;       
                listOfRAPJob.add(jobAllocObj);
 
           }
@@ -1090,13 +1074,13 @@ public with sharing class Amr_JobSheetController_CC{
                  jobAllocShare = new Amr_Job_Allocation__Share();
                 jobAllocShare.ParentId = jAlloc.id;
                 jobAllocShare.UserOrGroupId = jAlloc.User__c;
-                jobAllocShare.AccessLevel = 'Read';
+                jobAllocShare.AccessLevel = Amr_ConstantForAdManager.READ;
                 jobAllocShare.RowCause = Schema.Amr_Job_Details__share.RowCause.Manual;  
                 listOfSharedAllocatedJob.add(jobAllocShare); 
           }
           
           insert listOfSharedAllocatedJob;
-                  System.debug('INSERTED');
+                
           List<User> userList = [Select id, email from User where Id IN :listOfRAPSelected];
           List<String> emailAddress = new List<String>();
           for(User userEmail : userList){
@@ -1104,7 +1088,7 @@ public with sharing class Amr_JobSheetController_CC{
           }
           List<Amr_Job_Allocation__c> rapNameList = [Select id, User__r.Name, User__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND User__c IN :finalRapList AND Is_Primary__c = false];
           for(Amr_Job_Allocation__c jAlloc : rapNameList ){
-              String successMsg = 'Job shared successfully with '+ jAlloc.User__r.Name ;
+              String successMsg = label.Amr_Job_shared_successfully_with + jAlloc.User__r.Name ;
               ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,successMsg ));
           }
           jobSharedList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = False order by User__r.Name];
@@ -1113,10 +1097,10 @@ public with sharing class Amr_JobSheetController_CC{
           
       
    
-    Amr_EmailSendingClass.emailSending(jobId, emailAddress, 'Amr_RAPSharedJob');
+    Amr_EmailSendingClass.emailSending(jobId, emailAddress,label.Amr_RAPSharedJob);
  
       PageReference pageRef = Page.amr_jobsheet;
-     pageRef.getParameters().put('id',jobId);
+     pageRef.getParameters().put(Amr_ConstantForAdManager.ID,jobId);
      pageRef.setRedirect(true);
      return PageRef;
     
@@ -1143,7 +1127,7 @@ public with sharing class Amr_JobSheetController_CC{
        }
        new Amr_JobSheetController_CC();
        PageReference pageRef = Page.amr_jobsheet;
-     pageRef.getParameters().put('id',jobId);
+     pageRef.getParameters().put(Amr_ConstantForAdManager.ID,jobId);
      pageRef.setRedirect(true);
      return PageRef;
    }
@@ -1198,13 +1182,13 @@ public with sharing class Amr_JobSheetController_CC{
             LeadAgencyClusterFlag = false;
             projectDetailsFlag = false;
             productionActivityTypeFlag = false;
-            //ProjectDescriptionFlag = false;
+           
             ExecutionNameFlag = false;
             BrodcastMarketFlag = false;
             RequireMusicFlag = false;
             RequireTalentFlag = false;
             StageProductionActivity = false;
-            CheckWithCMI = 'Please fill in missing information';
+            CheckWithCMI = label.Amr_Please_fill_in_missing_information;
         
             Boolean okayToSave = true;
             validateSuccess = false;
@@ -1212,7 +1196,7 @@ public with sharing class Amr_JobSheetController_CC{
          if(jobList.Check_With_CMI__c == null){
           
           CheckWithCMIflag = true;
-          system.debug('CheckWithCMIflag'+CheckWithCMIflag);
+          
         }
         
          if(jobList.Your_Email_Address__c == null){
@@ -1351,14 +1335,14 @@ public with sharing class Amr_JobSheetController_CC{
         }
         
       if(!jobList.NewOriginalMaster__c && !jobList.LanguageAdaptionMaster__c && !jobList.Create_Additional_Material__c && !jobList.ReworkExistingMaterial__c && !jobList.BuyoutsTalent__c && !jobList.BuyoutsMusic__c ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : at least one option must be selected'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Production_activity_types_at_least_one_option_must_be_selected));
             okayToSave =false;
         }
         
         if(jobList.NewOriginalMaster__c && !jobList.NewOriginalMasterCinema__c && !jobList.NewOriginalMasterTv__c && 
             !jobList.NewOriginalMasterRadio__c && !jobList.NewOriginalMasterPrint__c && !jobList.NewOriginalMasterOutofHome__c &&
                 !jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterDigital__c && !jobList.NewOriginalMasterInternalVideo__c ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Media Channel must be selected'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_For_New_Original_Masterat_least_one_option_of_Media_Channel_must_be_selected));
             okayToSave =false;
         }
         
@@ -1366,14 +1350,14 @@ public with sharing class Amr_JobSheetController_CC{
         
          if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterOutofHome__c && !jobList.NewOriginalMasterOutofHomeMovingImage__c && 
             !jobList.NewOriginalMasterOutofHomeAudio__c && !jobList.NewOriginalMasterOutofHomeStillImage__c  ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Out of Home'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOriginMaster_at_leastoneoption_ofMedium_mustbe_selected_corres_to_outOfHo));
             okayToSave =false; 
         }
         
         
         if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterInStoreMovingImage__c && 
             !jobList.NewOriginalMasterInStoreAudio__c && !jobList.NewOriginalMasterInStoreStillImage__c  ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to In Store'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOrigiMastat_least_one_option_of_Medium_mustbe_selected_corresto_instore));
             okayToSave =false;
         }
         
@@ -1381,7 +1365,7 @@ public with sharing class Amr_JobSheetController_CC{
         if(jobList.NewOriginalMaster__c && !jobList.NewOriginalMasterCinema__c && !jobList.NewOriginalMasterTv__c && 
             !jobList.NewOriginalMasterRadio__c && !jobList.NewOriginalMasterPrint__c && !jobList.NewOriginalMasterOutofHome__c &&
                 !jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterDigital__c && !jobList.NewOriginalMasterInternalVideo__c ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Media Channel must be selected'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_For_New_Original_Masterat_least_one_option_of_Media_Channel_must_be_selected	 ));
             okayToSave =false;
         }
         
@@ -1389,21 +1373,21 @@ public with sharing class Amr_JobSheetController_CC{
       
          if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterOutofHome__c && !jobList.NewOriginalMasterOutofHomeMovingImage__c && 
             !jobList.NewOriginalMasterOutofHomeAudio__c && !jobList.NewOriginalMasterOutofHomeStillImage__c  ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Out of Home'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOriginMaster_at_leastoneoption_ofMedium_mustbe_selected_corres_to_outOfHo));
             okayToSave =false;
         }
         
         
         if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterInStoreMovingImage__c && 
             !jobList.NewOriginalMasterInStoreAudio__c && !jobList.NewOriginalMasterInStoreStillImage__c  ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to In Store'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOrigiMastat_least_one_option_of_Medium_mustbe_selected_corresto_instore));
             okayToSave =false;
         }
         
           if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterDigital__c && !jobList.NewOriginalMasterDigitalMovingImage__c && 
             !jobList.NewOriginalMasterDigitalAudio__c && !jobList.NewOriginalMasterDigitalStillImage__c  
             && !jobList.New_Original_Master_Digital_ED__c){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For New Original Master :  at least one option of Medium must be selected corresponding to Digital'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOriginMaster_at_least_one_option_of_Medium_mustbeselected_corre_todigital));
             okayToSave =false;
         }
         
@@ -1414,7 +1398,7 @@ public with sharing class Amr_JobSheetController_CC{
                 !jobList.LanguageAdaptionMasterInStore__c && 
                 !jobList.LanguageAdaptionMasterDigital__c &&
                 !jobList.LanguageAdaptionMasterInternalVideo__c ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Language_Adaption_Master_at_least_one_option_of_Medium_must_be_selected));
             okayToSave =false;
         }
         
@@ -1426,7 +1410,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.LanguageAdaptionMasterOutHomeStillImage__c && 
             !jobList.LanguageAdaptionMasterOutHomeMovingImage__c 
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to Out of Home'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_LangAdaptMaster_atleast_one_option_of_Medium_mustbe_selected_correTo_OutO));
             okayToSave =false;
         }
         
@@ -1436,7 +1420,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.LanguageAdaptionMasterInStoreStillImage__c 
             
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to In Store'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_LangAdaptMaster_atleast_oneoption_of_Medium_mustbe_selectedcorres_in_st));
             okayToSave =false;
         }
         
@@ -1445,7 +1429,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.LanguageAdaptionMasterDigitalMovingImage__c && 
             !jobList.LanguageAdaptionMasterDigitalStillImage__c && !jobList.Language_Adaptation_of_Master_Digital_ED__c
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Language Adaption Master :  at least one option of Medium must be selected corresponding to Digital'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_LanguageAdaptionMaster_least_one_optionofMedium_mustbe_selected_corr_to_Digi));
             okayToSave =false;
         }
         
@@ -1456,7 +1440,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.AdditionalSupplementaryNewMaterialOofHSI__c && 
             !jobList.AdditionalSupplementaryNewMaterialOofHA__c  
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to Out of Home'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_AdditiSuppNewMaterial_atleast_one_optionofMedium_mustbe_selected_corr_toou));
             okayToSave =false;
         }
         
@@ -1465,7 +1449,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.AdditionalSupplementaryNewMaterialInSA__c && 
             !jobList.AdditionalSupplementaryNewMaterialInSSI__c  
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to In Store'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_AdditSuppNewMaterial_at_least_one_optionofMedium_mustbeselect_cor_toinstore));
             okayToSave =false;
         }
         
@@ -1476,7 +1460,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.AdditionalSupplementaryNewMaterialDigiSI__c  &&
             !jobList.Digital_Editorial__c 
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Medium must be selected corresponding to Digital'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_AddiSuppNewMaterial_atleast_oneoptionofMedium_must_be_selected_corr_to_Dig));
             okayToSave =false;
         }
         
@@ -1489,7 +1473,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.AdditionalSupplementaryNewMaterialOOH__c &&
             !jobList.AdditionalSupplementaryNewMaterialIVideo__c
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Additional Supplementary NewMaterial :  at least one option of Media Channel must be selected'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_AdditionalSupplNewMaterial_atleast_oneoptionof_MedChannel_mustbe_sel));
             okayToSave =false;
         }
         
@@ -1500,7 +1484,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.ReworkExistingMaterialOutHomeStillImage__c
             
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to Out of Home'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_RewExistingMat_at_least_one_optionofMedium_mustbe_selected_corr_to_OOH));
             okayToSave =false;
         }
         
@@ -1510,7 +1494,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.ReworkExistingMaterialInStoreAudio__c && 
             !jobList.In_Store_Still_Image__c
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to In Store'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_ReworkExistMater_atleast_oneoption_of_Medium_mustbeselected_corr_to_inStor));
             okayToSave =false;
         }
         
@@ -1521,7 +1505,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.ReworkExistingMaterialDigitalStillImage__c  &&
             !jobList.Rework_Exisiting_Material_Digital_ED__c 
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Medium must be selected corresponding to Digital'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_RewExistMaterial_atleastone_option_of_Medium_must_be_selected_corr_to_Digi));
             okayToSave =false;
         }
         
@@ -1529,7 +1513,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.ReworkExistingMaterialInStore__c && 
             !jobList.ReworkExistingMaterialDigital__c 
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Rework Existing Material :  at least one option of Media Channel must be selected'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_ReworkExistMat_atleast_oneoption_of_Media_Channel_mustbe_selected));
             okayToSave =false;
         }
         
@@ -1540,7 +1524,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.BuyoutsTalentOutofHomeAudio__c && 
             !jobList.BuyoutsTalentOutofHomeStillImage__c
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to Out of Home'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Buyouts_Talent_atleast_one_optionofMedium_mustbe_selected_corr_to_OOH));
             okayToSave =false;
         }
         
@@ -1550,7 +1534,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.BuyoutsTalentInStoreAudio__c && 
             !jobList.BuyoutsTalentInStoreStillImage__c
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to In Store' ));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_BuyoutsTalent_at_least_oneoptionofMedium_mustbe_selected_corre_to_Instore));
             okayToSave =false;
         }
         
@@ -1562,7 +1546,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.BuyoutsTalentDigitalStillImage__c &&
             !jobList.Buyouts_Talent_Digital_ED__c
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Medium must be selected corresponding to Digital'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_BuyTalent_atleastoneoption_of_Medium_mustbe_selected_corr_to_Digital));
             okayToSave =false;
         }
         
@@ -1570,7 +1554,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.BuyoutsTalentInStore__c && 
             !jobList.BuyoutsTalentDigital__c 
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Talent :  at least one option of Media Channel must be selected'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Buyouts_Talent_at_least_one_option_of_Media_Channel_must_be_selected));
             okayToSave =false;
         }
         
@@ -1582,7 +1566,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.BuyoutsMusicOutofHomeAudio__c && 
             !jobList.BuyoutsMusicOutofHomeStillImage__c
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to Out of Home'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_BuyoutMusic_at_least_one_option_of_Medium_mustbe_selected_corre_to_OutOfHome));
             okayToSave =false;
         }
         
@@ -1594,7 +1578,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.BuyoutsMusicInternalVideo__c &&
             !jobList.BuyoutsMusicOutofHome__c
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Media Channel must be selected'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_For_Buyouts_Music_at_least_one_option_of_Media_Channel_must_be_selected));
             okayToSave =false;
         }
         
@@ -1604,7 +1588,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.BuyoutsMusicInStoreAudio__c && 
             !jobList.BuyoutsMusicInStoreStillImage__c
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to In Store'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Buyouts_Music_at_least_one_option_of_Medium_mustbe_selected_corr_to_Instore));
             okayToSave =false;
         }
         
@@ -1616,7 +1600,7 @@ public with sharing class Amr_JobSheetController_CC{
             !jobList.BuyoutsMusicDigitalStillImage__c  &&
             !jobList.Buyouts_Music_Digital_ED__c
             ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'For Buyouts Music :  at least one option of Medium must be selected corresponding to Digital'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Buyouts_Music_at_least_one_option_of_Medium_must_be_selected_corre_to_Digita));
             okayToSave =false;
         }
          
@@ -1625,7 +1609,7 @@ public with sharing class Amr_JobSheetController_CC{
                  && projectDescriptionFlag == false && campaignNameFlag== false && leadAgencyFlag == false && LeadAgencyClusterFlag== false && projectDetailsFlag == false && productionActivityTypeFlag == false && TargetAirDateFlag == false
                  && ExecutionNameFlag == false && BrodcastMarketFlag == false && RequireMusicFlag== false && RequireTalentFlag == false && StageProductionActivity == false) {
                 validateSuccess = true;
-                system.debug('validate inside');
+                
                 return null;
         }
 
@@ -1638,7 +1622,7 @@ public with sharing class Amr_JobSheetController_CC{
     
             
               if(document.body==null){
-                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Select atleast one document'));
+                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Select_atleast_one_document));
               
               }
                  
@@ -1648,7 +1632,7 @@ public with sharing class Amr_JobSheetController_CC{
                                    
               FeedItem FI = new FeedItem();
               FI.ParentId = jobIdFromPage;
-              FI.Body = 'Attachment added';
+              FI.Body = Amr_ConstantForAdManager.ATTACHMENT_ADDED;
               FI.ContentData = document.body;
               FI.ContentFileName = document.Name;
               
@@ -1683,14 +1667,14 @@ public with sharing class Amr_JobSheetController_CC{
          alertObj.Job_Id__c  = jobIdFromPage ;
         
         if(alertObj.New_Alert__c == null || alertObj.Alert_Message__c == null){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter both alert date and alert message'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Please_enter_both_alert_date_and_alert_message));
             
         }
         if(alertObj.New_Alert__c < Date.today()){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Alert date must be greater than or equal to today\'s date'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Alert_date_must_be_greater_than_or_equal_to_today_s_date));
         }
         if(alertObj.Alert_Message__c.length()>150){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Alert message should be less than 150 characters'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Alert_message_should_be_less_than_150_characters));
         }
         if(!String.isBlank(String.valueOf(alertObj.New_Alert__c)) && !String.isBlank(alertObj.Alert_Message__c) && alertObj.New_Alert__c >= Date.today() && alertObj.Alert_Message__c.length()<=150){
          insert alertObj;
@@ -1722,8 +1706,8 @@ public with sharing class Amr_JobSheetController_CC{
 
     public PageReference jobSheetPageTransfer(){
           
-           PageReference pageRef = new PageReference('/apex/Amr_JobSheet');
-           pageRef.getParameters().put('id',chosenId);
+           PageReference pageRef = new PageReference(label.Amr_JobSheet);
+           pageRef.getParameters().put(Amr_ConstantForAdManager.ID,chosenId);
            pageRef.setRedirect(true);
            return pageRef;
        }
