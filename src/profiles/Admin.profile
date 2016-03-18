@@ -981,7 +981,7 @@
         <enabled>true</enabled>
         <name>ViewSetup</name>
     </userPermissions>
-	<applicationVisibilities>
+		<applicationVisibilities>
         <application>Warehouse_Utilization</application>
         <default>false</default>
         <visible>true</visible>
@@ -1036,10 +1036,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>WU_WarehouseSearchController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_WarehouseSearchController_test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <fieldLevelSecurities>

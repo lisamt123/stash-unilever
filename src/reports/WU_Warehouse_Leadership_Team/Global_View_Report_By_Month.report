@@ -5,6 +5,7 @@
         <datatype>number</datatype>
         <developerName>FORMULA1</developerName>
         <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
         <masterLabel>Average Utilization%/Month</masterLabel>
         <scale>2</scale>
     </aggregates>

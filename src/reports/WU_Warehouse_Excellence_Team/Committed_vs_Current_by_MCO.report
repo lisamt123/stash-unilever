@@ -5,6 +5,7 @@
         <datatype>number</datatype>
         <developerName>FORMULA1</developerName>
         <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
         <masterLabel>Sum of Committed Max Pallet</masterLabel>
         <scale>2</scale>
     </aggregates>
@@ -13,6 +14,7 @@
         <datatype>number</datatype>
         <developerName>FORMULA2</developerName>
         <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
         <masterLabel>Sum of Current Pallet Utilization Count</masterLabel>
         <scale>2</scale>
     </aggregates>
