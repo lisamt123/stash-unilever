@@ -128,7 +128,7 @@ function scriptPanelLoad(){
 		
 		/* Below script works on keypress. When user presses enter key a search function is called */
 		jq( ".placeholder" ).on( "keypress", function(event) {
-			  if(event.which === 13) {                                      
+			  if(event.which == 13) {                                      
 			  callsearch();
 			  return false;        
 			  }
@@ -144,7 +144,7 @@ function scriptPanelLoad(){
             backdrop: 'static'
         });
         jq('#deleteRcountry .modal-title').html(title);
-        <!--jq('#deleteRcountry .confirmdelrollout').attr('data-result', str);-->
+        // jq('#deleteRcountry .confirmdelrollout').attr('data-result', str);
         jq('#deleteRcountry .modal-dialog').width('600px');
         jq('#deleteRcountry .modal-dialog').height('170px');
         jq('#deleteRcountry .modal-dialog').css({
@@ -155,11 +155,11 @@ function scriptPanelLoad(){
     }
 	
 	/* Below function performs the tld date check. If the condition is true it displays a tld warning modal */
-    function TLDDateCheck(param){
+    function checkTLDDate(param){
         var newTLDValue = param.value;
         tldOrignalValue = param.defaultValue;
         selectedDateField = param;
-        if(newTLDValue !== tldOrignalValue){
+        if(newTLDValue != tldOrignalValue){
             jq('#tldWarningDialog').modal('show'); 
             return false;
         }
