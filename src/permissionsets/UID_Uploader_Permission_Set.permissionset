@@ -880,7 +880,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>UID_Order_Product__c.UID_Product__c</field>
         <readable>true</readable>
     </fieldPermissions>
