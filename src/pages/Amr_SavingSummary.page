@@ -35,12 +35,12 @@
     <apex:include pageName="amr_common_header" />
     
     <style type="text/css">
-    	.compact-search-admno input{
-    		width:120px;
-    	}
-    	.compact-search-date input {
-    		width:75px;
-    	}
+        .compact-search-admno input{
+            width:120px;
+        }
+        .compact-search-date input {
+            width:75px;
+        }
     
     </style>
     <div class="job-portfolio-container saving_summary_container margin-top10">
@@ -388,7 +388,7 @@
                                                 </div>
                                             </apex:outputText>
                                         </apex:column>
-                                        <apex:column value="{!job.Total_Accepted_FinalCost__c}" headerValue="Total Accepted Final Cost" />
+                                      <!--  <apex:column value="{!job.Total_Accepted_FinalCost__c}" headerValue="Total Accepted Final Cost" /> -->
                                         <apex:column value="{!job.No_of_Masters__c}" headerValue="No Of Masters" />
                                         <apex:column value="{!job.Duration_of_Masters__c}" headerValue="Duration Of Masters" />
                                         <apex:column value="{!job.No_of_Additional_Films__c}" headerValue="No Of Additional Films" />

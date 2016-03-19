@@ -295,7 +295,7 @@ Returns: It will return submitted saving data.
             Integer i = 0;
             Date startOfMonth = Date.today().toStartOfMonth();
             Date startOfNextMonth = startOfMonth.addMonths(1);
-            Date currentDay = Date.today();
+            DateTime currentDay = DateTime.now();
             //loggedIn user
             AggregateResult[] groupedResults = [SELECT Sum(Saving_Average_of_Quotes__c)averQuote ,Sum(Saving_Accepted_Quote_Euro__c) acceptQuote FROM Amr_Saving__c Where  Job_Details__c IN : jobDetailsId and CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
                     savingSubmitted = 0;

@@ -4,7 +4,7 @@
 */
 public with sharing class Amr_JobSheetController_CC{
 
-	public String docUploaded{get;set;}
+    public String docUploaded{get;set;}
     public String projNameFromPage{get;set;}
     public String projectNameFromPage{get;set;}
     public String alertmessage{get;set;}
@@ -36,23 +36,15 @@ public with sharing class Amr_JobSheetController_CC{
     public boolean viewAcceptedQuote{get;set;}
     public Blob fileBody   {get;set;}
     public Integer QuoteNumber{get;set;}
-    public static final String STR_NONE = '--None--';
-    
-    
     public Amr_Quote__c quoteObj{get;set;}
     public Integer totalAlertCount{get; set;}
-    public static final String NONE ='--None--';
-    
-    
     public String jobStatus{get;set;}
-  
     public String selectedRapName{get;set;}
     public String selectedSecRapName{get;set;}
     public List<PermissionSetAssignment> userData {get;set;}
     public String profileName {get;set;}
     public String permissionSetName {get;set;}
     public Amr_Job_Details__c jobList{ get; set; }      
-   
     Transient  String[]  categoryString;
     public String Name{get;set;}
     public String brandPosName{get;set;}
@@ -95,21 +87,23 @@ public with sharing class Amr_JobSheetController_CC{
     public Id chosenId {get; set;} 
     public Amr_Alert__c alertObj{get;set;}
     public String NotesValue{get;set;}
+    public Amr_JobSheetHelper_CC jobSheetHelper;
    
     public List<FeedItem> documentList{get;set;}
    
     public Amr_JobSheetController_CC(){
     try{
          Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+          jobSheetHelper = new Amr_JobSheetHelper_CC();
          alertObj = new Amr_Alert__c();
          categoryString = new list<string>();
          Set<MDO_Category__c> categorylst = utiltyObj.categoryValues();
          
          listOfUserToDisplay = new List<Amr_Job_Allocation__c>();
          
-         for(MDO_Category__c mdCat : categorylst){
+            for(MDO_Category__c mdCat : categorylst){
             categoryString.add(mdCat.name);
-         }
+            }
         
         validateSuccess = false;
         selectUsername= new list<selectoption>();
@@ -119,7 +113,7 @@ public with sharing class Amr_JobSheetController_CC{
         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];
         getDocuments();
     }catch(Exception ex){
-    	System.debug( ex.getmessage());
+        System.debug( ex.getmessage());
     } 
     try{
             jobId = ApexPages.CurrentPage().getParameters().get(Amr_ConstantForAdManager.ID); 
@@ -140,8 +134,14 @@ public with sharing class Amr_JobSheetController_CC{
         {
                ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, message)); 
         }
-        
-        for(PermissionSetAssignment  userObj :[select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name = :Label.Amr_RAP AND Assignee.id != :userInfo.getUserId() order by Assignee.name] ){
+        helperMethod();
+    } 
+     
+
+     
+     public PageReference helperMethod(){
+     
+       for(PermissionSetAssignment  userObj :[select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name = :Label.Amr_RAP AND Assignee.id != :userInfo.getUserId() order by Assignee.name] ){
         
         try{
             SelectOption obj=new SelectOption(userObj.Assignee.id,userObj.Assignee.name);
@@ -149,7 +149,7 @@ public with sharing class Amr_JobSheetController_CC{
         }
         catch(Exception e){
            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Invalid_User));
-           return;
+           return null;
        }
         }  
         userData = [select PermissionSet.Name from PermissionSetAssignment  where Assignee.id = :userinfo.getUserId()];
@@ -225,10 +225,8 @@ public with sharing class Amr_JobSheetController_CC{
             
         }
         catch(Exception e){
-        
-           
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_No_Job_Allocation_Record_For_LoggedIn_User));
-            return;
+            return null;
         }  
         
         if(jobAlloc.is_Primary__c){
@@ -250,7 +248,7 @@ public with sharing class Amr_JobSheetController_CC{
         projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
         listString= new list<string>();
          
-        listString.add(NONE);
+        listString.add(Amr_ConstantForAdManager.NONE);
         For(Amr_Project_Details__c i : projNameList){
             listString.add(i.name); 
         }
@@ -292,16 +290,13 @@ public with sharing class Amr_JobSheetController_CC{
         shootLocation = new List<SelectOption>();
         for(Amr_Country_Cluster__c countryObj:countrylst){
              shootLocation.add(new SelectOption(countryObj.Country__c,countryObj.Country__c));
-            }
-            
-           
-                        
+            }                       
              userId = userinfo.getuserid();
             updateData();
         }catch(Exception ex){
             System.debug( ex.getmessage());
         }
-         
+       return null;  
          
      }
       
@@ -336,12 +331,8 @@ public with sharing class Amr_JobSheetController_CC{
                                                      BuyoutsMusicOutofHome__c,BuyoutsMusicInStore__c,BuyoutsMusicDigital__c,BuyoutsMusicInternalVideo__c 
                                                       
                                                      from Amr_Job_Details__c where id = :jobId];
+                    }
             
-           
-           
-         }
-        
-           
             if(jobId != null){
                  if(flag){
                       quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,Duration_of_Additional_Films__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,LastModifiedById, 
@@ -350,8 +341,6 @@ public with sharing class Amr_JobSheetController_CC{
 
                                ,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where Job_Details__r.id = :jobId];
                      
-                      
-                      
                  }else{
                    quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,Duration_of_Additional_Films__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,LastModifiedById, 
                                No_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,Duration_of_Masters__c,
@@ -359,7 +348,6 @@ public with sharing class Amr_JobSheetController_CC{
 
                                ,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where Job_Details__r.id = :jobId AND (CreatedById = :userId OR LastModifiedById = :userId )];
                       
-                     
                  }            
                   Set<Id>savingIds=new Set<Id>();
                       for(Amr_Saving__c saving:quoteList){
@@ -380,9 +368,6 @@ public with sharing class Amr_JobSheetController_CC{
                    Amr_Job_Details__c jobObj = [select AdManagerText__c from Amr_Job_Details__c where id = :jobId];
                    adManagerNumber = jobObj.AdManagerText__c;
                 }
-                  
-                         
-              
             }
       
         }catch(exception ex){
@@ -421,7 +406,7 @@ public with sharing class Amr_JobSheetController_CC{
              if(currencyMap!=null){
                 options.add(new SelectOption(currencyMap.get(Amr_ConstantForAdManager.SELECTEDCOUNTRY),selectedCountry));
             }else{
-                options.add(new SelectOption(STR_NONE,STR_NONE));
+                options.add(new SelectOption(Amr_ConstantForAdManager.NONE ,Amr_ConstantForAdManager.NONE ));
             }
             List<Amr_CurrencyConversionRate__c> lstcov = Amr_CurrencyConversionRate__c.getAll().values();
            
@@ -447,7 +432,12 @@ public with sharing class Amr_JobSheetController_CC{
         }
         set;
     }
-         
+  /***********************************************************************************************************************************
+Purpose:Method to pass project names
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/       
          public String getMethodToPassProjectNames(){
             try{
          projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
@@ -460,7 +450,7 @@ public with sharing class Amr_JobSheetController_CC{
          if(ProjectName !=null){
           listString.add(ProjectName);
          }
-         listString.add(NONE);
+         listString.add(Amr_ConstantForAdManager.NONE);
         For(Amr_Project_Details__c i : projNameList){
             if(ProjectName != i.name){
                 listString.add(i.name);
@@ -473,7 +463,13 @@ public with sharing class Amr_JobSheetController_CC{
             return null;
             }
     }
-    
+ /***********************************************************************************************************************************
+Purpose: Method to get shared users options
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/   
+  
     public void sharedOption(List<Amr_Job_Allocation__c> jobSharedList ){
            try{
             sharedRapOption = new List<SelectOption>();     
@@ -488,6 +484,7 @@ public with sharing class Amr_JobSheetController_CC{
             system.debug(e.getmessage());
            }
         }
+        
     public pageReference getPage(){
         try{
         userData = [select PermissionSet.Name from PermissionSetAssignment  where Assignee.id = :userinfo.getUserId()];
@@ -515,9 +512,13 @@ public with sharing class Amr_JobSheetController_CC{
       
         
     }
-     /* 
-        CAP job reallocate method, reallocates job to the selected RAP
-    */     
+ 
+ /***********************************************************************************************************************************
+Purpose: CAP job reallocate method, reallocates job to the selected RAP
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/        
      public PageReference reAllocate() {
         try{
              if(String.isBlank(jobID)){
@@ -526,9 +527,6 @@ public with sharing class Amr_JobSheetController_CC{
              }
           
              else{
-               
-                
-                 
                  if(jobList.Job_Cancelled__c){
                      ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.ERROR,label.Amr_This_job_has_already_been_cancelled));
             
@@ -549,19 +547,18 @@ public with sharing class Amr_JobSheetController_CC{
             return null;
         }
     }
-        
-     /* 
-        This method contains the logic to reallocate job functionality and is called from 
+   
+/***********************************************************************************************************************************
+Purpose:  This method contains the logic to reallocate job functionality and is called from 
         both CAP and RAP reallocate job method
-    */ 
-    
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/     
     public static void jobReAllocate(String selectedRap, Id jobId, Amr_Job_Details__c jobDet){
         try{
-        
-       
         List<Amr_Job_Allocation__c> jobAllocList = [select Id,Name,User__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = TRUE ]; // AND User__c = :userInfo.getUserId()
-        
-        for(Amr_Job_Allocation__c jAlloc : jobAllocList ){
+               for(Amr_Job_Allocation__c jAlloc : jobAllocList ){
             if(jobDet.ownerId == selectedRap){
                 rapAllocateCheck = TRUE;        
             }
@@ -574,13 +571,9 @@ public with sharing class Amr_JobSheetController_CC{
             if(!jobAllocList.isEmpty()){
                 delete jobAllocList;
             }
-           
-          
             Amr_Job_Allocation__c jobAllocObj = new Amr_Job_Allocation__c();
             Amr_Job_Details__Share jobShareObj = new Amr_Job_Details__Share();
-       
-
-                       
+                 
             jobAllocObj.AM_Job_Detail__c = jobId;
             jobAllocObj.Is_Primary__c = TRUE;
             jobAllocObj.User__c = selectedRap ;             
@@ -590,46 +583,40 @@ public with sharing class Amr_JobSheetController_CC{
             jobShareObj.UserOrGroupId = selectedRap ;               
             jobShareObj.AccessLevel = Amr_ConstantForAdManager.EDIT;
             
-    
             User userList = [Select id, email from User where Id = :selectedRap];
             if(!String.isBlank(userList.Email)){
                  jobDet.JobAllocated_Email__c = userList.email;   
             } 
        
             insert jobAllocObj;               
-            
-       
-             jobDet.OwnerId = selectedRap;
+            jobDet.OwnerId = selectedRap;
             update jobDet;
-            
-           
-         }  
+                    }  
         }catch(Exception e){
         system.debug(e.getmessage());
       
         }
     }
-        
-    /* 
-        CAP job cancel method, to cancel a particular job and send it to cancelled list.
-    */     
+  
+ /***********************************************************************************************************************************
+Purpose:  CAP job cancel method, to cancel a particular job and send it to cancelled list.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/      
     public pagereference cancelJob(){
        try{
         if(String.isBlank(jobID)){
-
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIdNotFound));
             return null;
         }
         else{
             if(jobList.Job_Cancelled__c){
-  
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobAlreadyCancelled));  
+                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobAlreadyCancelled));  
                 return null;
            } 
            else{
-
-               jobCancellation(jobList, jobId, jobAlloc);
-               
+              jobSheetHelper.jobCancellation(jobList,jobId,jobAlloc,ownerIdOfSelectedJob);
                PageReference navPage = Page.Amr_CAPJobPortfolio;
                navPage.setRedirect(true);
                return navPage;
@@ -641,53 +628,15 @@ public with sharing class Amr_JobSheetController_CC{
        }
     }
        
-    /* 
-        This method contains the logic to cancel the job and is called from 
-        both CAP and RAP cancel job method.
-    */
-    
-       
-    public void jobCancellation(Amr_Job_Details__c jobDetail, String jobId, Amr_Job_Allocation__c jobAlloc ){
-       try{
-        
-        List<String> toEmailAddress = new List<String>();
-        List<Amr_Job_Allocation__c> jbAlloc  = [select Id,Name,User__c,Job_Status__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = TRUE ];
-        jobDetail.Job_Cancelled__c = TRUE;
-        if(jbAlloc != null && !jbAlloc.isEmpty() ){
-        jbAlloc[0].Job_Status__c = Label.Amr_Job_Cancelled;
-            update jbAlloc;
-        }
-        List<Amr_Job_Allocation__c> canceledJobList = [select id, Is_Primary__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId And Is_Primary__c = false];
-        
-        List<Amr_Job_Allocation__c> jbAllocCancel = new List<Amr_Job_Allocation__c> ();
-        if(!canceledJobList.isEmpty()){
-            for(Amr_Job_Allocation__c obj : canceledJobList){
-                obj.Job_Status__c = Label.Amr_Job_Cancelled;
-                jbAllocCancel.add(obj);
-                
-            }
-             update jbAllocCancel;
-            
-        }
-        List<Amr_Job_Details__Share> cancelShareList = [Select Id from Amr_Job_Details__Share where id = :jobId AND  UserOrGroupId != :ownerIdOfSelectedJob];
-        
-        if(!cancelShareList.isEmpty()){
-            delete cancelShareList; 
-        }
-        
+   
 
-        update jobDetail;
-    
-       }catch(Exception e){
-       system.debug(e.getmessage());
-       
-       }
-    }
-       
-    /* 
-        Method contains the logic for the RAP to accept a Job.
-    */  
-    
+
+ /***********************************************************************************************************************************
+Purpose:  Method contains the logic for the RAP to accept a Job.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/     
     public PageReference acceptJob(){
        try{
         if(jobStatus == Label.Amr_Job_Accepted) {
@@ -708,12 +657,10 @@ public with sharing class Amr_JobSheetController_CC{
            joblist.Job_Accepted_Email__c = userEmail;
            joblist.Job_Status__c = 'Live';
            update joblist;
-           
-           
+                     
            List <String> userEmailList = new List<String>();
            userEmailList.add(userEmail);
-           
-       
+                
            ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,Label.Amr_JobAccepted));             
            return null;
        }  
@@ -722,11 +669,13 @@ public with sharing class Amr_JobSheetController_CC{
          return null;
        }
     }  
- 
- /* 
-        This method contains the logic to cancel job by RAP.
-    */
- 
+  
+/***********************************************************************************************************************************
+Purpose:   This method contains the logic to cancel job by RAP.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/  
     public PageReference cancelRapJob(){
         
         if(joblist.Job_Cancelled__c){
@@ -735,26 +684,28 @@ public with sharing class Amr_JobSheetController_CC{
         }
          
         else{
-            jobCancellation(jobList, jobId, jobAlloc);
+            jobSheetHelper.jobCancellation(jobList,jobId,jobAlloc,ownerIdOfSelectedJob);
             PageReference navPage = Page.Amr_RAPJobPortfolio;
             navPage.setRedirect(true);
             return navPage;
        }
     }
   
-     /* 
-        Method to reallocate a particular job by one RAP(Primary RAP) to another RAP
-    */  
+    
+  /***********************************************************************************************************************************
+Purpose:   Method to reallocate a particular job by one RAP(Primary RAP) to another RAP
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/ 
     public PageReference reAllocateRAP() {
-       
-      
+            
         if(String.isBlank(jobID)){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIdNotFound));
             return null;
        }
        else{
       
-        
            if(jobList.Job_Cancelled__c){
                      jobList.Job_Cancelled__c = false;
                      jobAlloc.Job_Status__c = ''; 
@@ -763,27 +714,28 @@ public with sharing class Amr_JobSheetController_CC{
                        update jobAlloc;
                      return null; 
            }
-        
-
             jobReAllocate(selectedRapName, jobId, jobList); 
            if(rapAllocateCheck &&  !jobList.Job_Cancelled__c){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,Label.Amr_Error_JobAlreadyAllocated));
                 return null;    
-           }
-            
+           }           
            else{
                
                ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,Label.Amr_Success_JobAllocated));
                 PageReference landingPage = Page.Amr_RAPJobPortfolio;
-                return landingPage;
-
-          }
+               return landingPage;
+         }
       }    
         
     }
-     /* 
-        Method to reallocate a particular job by one RAP(Primary RAP) to another RAP
-    */ 
+  
+      
+  /***********************************************************************************************************************************
+Purpose:   Method to reallocate a particular job by one RAP(Primary RAP) to another RAP
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/  
      public PageReference reAllocateSecRAP(){
      
          selectedRapName = selectedSecRapName;
@@ -792,11 +744,13 @@ public with sharing class Amr_JobSheetController_CC{
          return landingPage;
      
      }    
-        
-    /* 
-        Method for changing job status Live, dormant, etc.
-    */ 
-    
+   
+  /***********************************************************************************************************************************
+Purpose:   Method for changing job status Live, dormant, etc.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/  
     public PageReference changePriority(){
       
         if(String.isBlank(jobID)){
@@ -809,26 +763,29 @@ public with sharing class Amr_JobSheetController_CC{
             return null;
        }    
     }
-        
-       
-     
-      /* 
-        Method to get all the categories.
-    */ 
+ /***********************************************************************************************************************************
+Purpose:  Method to get all the categories.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/        
+
       public String getCategoryList(){ 
       
         return JSON.serialize(categoryString);
     }
-     
-     /* 
-        Method to get all the project names.
-    */ 
-    
+   
+  /***********************************************************************************************************************************
+Purpose: Method to get all the project names.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/    
      public List<SelectOption> getProjectNameList(){      
         
          listOfProjectName = new List<SelectOption>();
          List<Amr_Project_Details__c> ProjectNameList= [Select id,Name from Amr_Project_Details__c order by name limit 500];
-         listOfProjectName .add(new selectOption(NONE,NONE));
+         listOfProjectName .add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
          for(Amr_Project_Details__c cat : ProjectNameList){
              listOfProjectName.add(new selectOption(cat.Id,cat.Name));
          }
@@ -836,18 +793,17 @@ public with sharing class Amr_JobSheetController_CC{
         
          return listOfProjectName ;
      }
-   
-   /* 
-        Method to get all the brand positions on the basis of selected category.
-    */
-   
+ 
+  /***********************************************************************************************************************************
+Purpose: Method to get all the brand positions on the basis of selected category.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/   
     public List<SelectOption> getBrandPositioningList(){    
-       
-         
+                
         listOfBrandPosition = new List<SelectOption>();
         listOfBrandPosition.add(new selectOption(jobList.Brand_Position__r.name,jobList.Brand_Position__r.name));
-        
-      
         return listOfBrandPosition;
          
     }   
@@ -858,43 +814,38 @@ public with sharing class Amr_JobSheetController_CC{
         brandNameFromPage = null;
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
         Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(selectedCategory);
-
-        
-
-        listOfBrandPosition = new List<SelectOption>();
-        listOfBrandPosition.add(new selectOption(NONE,NONE));
+         listOfBrandPosition = new List<SelectOption>();
+        listOfBrandPosition.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
         Set<String> brnadPosNameSet = new Set<String>();
         for(MDO_BrandPositions__c bps : brandPositionlst){
 
             if(!brnadPosNameSet.contains(bps.brand_position_id__r.name)){
                 listOfBrandPosition.add(new selectOption(bps.brand_position_id__r.name,bps.brand_position_id__r.name));
-
                 brnadPosNameSet.add(bps.brand_position_id__r.name);
             }
         }
          listOfBrand = new List<SelectOption>();
-         listOfBrand.add(new selectOption(NONE,NONE));
-        
-      
-        return null;
-
-    }
+         listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
     
+         return null;
+    }
+   
     public void ProjectData(){
         system.debug('project-------->'+projNameFromPage);
     
     }
-  
-     
-     /* 
-        Method to get all the brand names on the basis of selected brand position.
-    */
-     
+ 
+/***********************************************************************************************************************************
+Purpose:Method to get all the brand names on the basis of selected brand position.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/     
        public List<SelectOption> getBrandList(){      
         listOfBrand = new List<SelectOption>();
        
 
-        listOfBrand.add(new selectOption(NONE,NONE));
+        listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
 
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
         Set<MDO_BrandPositions__c> brandlst = utiltyObj.brandValues(selectedCategory,selectedBrandPosName);
@@ -911,14 +862,16 @@ public with sharing class Amr_JobSheetController_CC{
         return listOfBrand;
     }
 
-/* 
-    Method to update the particular job
- */
+/***********************************************************************************************************************************
+Purpose:Method to update the job.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/
 
     public Pagereference updateJob(){
         List<MDO_BrandPositions__c> MDOBrandPositionslst =[select  brand_position_id__c,product_category_id__c,brand_id__c from MDO_BrandPositions__c where product_category_id__r.name = :categoryName AND brand_position_id__r.name = :brandPosName AND brand_id__r.name = :brandNameFromPage];
-        
-        
+              
         if(categoryString == null){
                 categoryString = new list<string>();
                 Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
@@ -930,22 +883,18 @@ public with sharing class Amr_JobSheetController_CC{
         }
        
         if(MDOBrandPositionslst.size()>0){
-                        if(categoryName !=NONE){
+                        if(categoryName !=Amr_ConstantForAdManager.NONE){
                                
                         jobList.ProductCategory__c = MDOBrandPositionslst[0].product_category_id__c ;}
-                        if(brandPosName!=NONE){
+                        if(brandPosName!=Amr_ConstantForAdManager.NONE){
                                
                         jobList.Brand_Position__c = MDOBrandPositionslst[0].brand_position_id__c ;}
-                        if(brandNameFromPage!=NONE){
+                        if(brandNameFromPage!=Amr_ConstantForAdManager.NONE){
                                 
                         jobList.Brand_Final__c = MDOBrandPositionslst[0].brand_id__c ;
-                        updateAdManagerText();
+                        jobSheetHelper.updateAdManagerText(jobList,brandNameFromPage);
                         }
         }
-        
-        
-       
-        
         
         if(String.isNotBlank(selectedCountry)){
         Amr_CurrencyConversionRate__c currencyObject =[SELECT Currency_Unit__c,Name FROM Amr_CurrencyConversionRate__c WHERE Currency_Unit_To_Euro__c =:double.valueOf(selectedCountry) limit 1];
@@ -975,10 +924,15 @@ public with sharing class Amr_JobSheetController_CC{
          }
          return null;
     }
-    
+ /***********************************************************************************************************************************
+Purpose:Method to update job once notes entered.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/  
     public PageReference updateJobForNotes(){
-    	system.debug('NOTES ==========>'+joblist.Job_Notes__c+'===text'+NotesValue);
-    	joblist.Job_Notes__c = NotesValue;
+        system.debug('NOTES ==========>'+joblist.Job_Notes__c+'===text'+NotesValue);
+        joblist.Job_Notes__c = NotesValue;
      if(joblist.Job_Notes__c != null && joblist.Job_Notes__c != ''){
          List<Amr_Job_Allocation__c> jobAllocationList = [Select id, User__r.Name, User__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId ];
          List<Amr_Job_Allocation__c> jobAllocationListUpdate  = new  List<Amr_Job_Allocation__c>();
@@ -995,26 +949,14 @@ public with sharing class Amr_JobSheetController_CC{
     
      return null;
     }
-    
-    /* 
-        Method to update Ad Manager number, if Brand name is being Updated
-    */
-    
-    public void updateAdManagerText(){
+   
+    /***********************************************************************************************************************************
+Purpose: Method for RAP(primary) to share job with other RAPs
+Parameters: 
+Returns: 
 
-        String adManText = jobList.AdManagerText__c;
-        String adManTextUpdatedStr = adManText.Right(6);
-        
-        String brandUpdatedNameStr =brandNameFromPage.left(3); 
-        String finalAdManagerNumber = brandUpdatedNameStr + adManTextUpdatedStr ;
-        
-        jobList.AdManagerText__c = finalAdManagerNumber;
-        
-    }
-    
-    /* 
-        Method for RAP(primary) to share job with other RAPs
-    */    
+************************************************************************************************************************************/  
+      
     public pagereference recordShare(){
      
         if(String.isBlank(jobID)){
@@ -1036,7 +978,7 @@ public with sharing class Amr_JobSheetController_CC{
             for(String raps : listOfRAPSelected){
                 if(!rapSet.contains(raps)){
                     finalRapList.add(raps);
-                                
+                        
                 }
             }
             
@@ -1048,16 +990,14 @@ public with sharing class Amr_JobSheetController_CC{
             Amr_Job_Allocation__Share jobAllocShare;
             
             for (String eachSelectedUser :finalRapList)
-            {
-                
+            {                
                 jobShr  = new Amr_Job_Details__share ();
                 jobShr.ParentId = jobId;
                 jobShr.UserOrGroupId = eachSelectedUser;
                 jobShr.AccessLevel = Amr_ConstantForAdManager.READ;
                 jobShr.RowCause = Schema.Amr_Job_Details__share.RowCause.Manual;  
                 listOfJobShare.add(jobShr);
-                
-              
+                              
                jobAllocObj = new Amr_Job_Allocation__c();
                jobAllocObj.AM_Job_Detail__c = jobId;
                jobAllocObj.Is_Primary__c = FALSE;
@@ -1094,9 +1034,7 @@ public with sharing class Amr_JobSheetController_CC{
           jobSharedList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = False order by User__r.Name];
           sharedListSize = jobSharedList.size();
           sharedOption(jobSharedList );
-          
-      
-   
+    
     Amr_EmailSendingClass.emailSending(jobId, emailAddress,label.Amr_RAPSharedJob);
  
       PageReference pageRef = Page.amr_jobsheet;
@@ -1107,11 +1045,13 @@ public with sharing class Amr_JobSheetController_CC{
     }  
      
    }
-   
-   /* 
-        Method for RAP(primary) to unshare job with RAPs.
-    */ 
-   public PageReference jobUnShare(){
+  /***********************************************************************************************************************************
+Purpose:  Method for RAP(primary) to unshare job with RAPs.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/ 
+     public PageReference jobUnShare(){
    
        List<Amr_Job_Details__share> listOfJobDetailShare = [Select Id from Amr_Job_Details__Share where id = :jobId AND UserOrGroupId = :selectedUnshareRapName AND UserOrGroupId != :userInfo.getUserId()];
        List<Amr_Job_Allocation__Share> listOfSharedAllocatedJob = [Select Id from Amr_Job_Allocation__Share where ParentId = :jobId AND UserOrGroupId = :selectedUnshareRapName AND UserOrGroupId != :userInfo.getUserId()];
@@ -1131,9 +1071,7 @@ public with sharing class Amr_JobSheetController_CC{
      pageRef.setRedirect(true);
      return PageRef;
    }
-   /* 
-        Method holds the logic for validation of jobsheet.
-    */ 
+   
    
     public boolean CheckWithCMIflag{get;set;}
     public boolean yourEmailAddressFlag{get;set;}
@@ -1161,7 +1099,14 @@ public with sharing class Amr_JobSheetController_CC{
     public boolean RequireTalentFlag{get;set;}
     public boolean StageProductionActivity{get;set;}
     public String CheckWithCMI{get;set;}
+    /***********************************************************************************************************************************
+Purpose: Method to validate job
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/
    public PageReference validateJobList(){
+   
             CheckWithCMIflag = false;
             yourEmailAddressFlag = false;
             unileverFinanceMemberEmailFlag = false;
@@ -1182,453 +1127,120 @@ public with sharing class Amr_JobSheetController_CC{
             LeadAgencyClusterFlag = false;
             projectDetailsFlag = false;
             productionActivityTypeFlag = false;
-           
             ExecutionNameFlag = false;
             BrodcastMarketFlag = false;
             RequireMusicFlag = false;
             RequireTalentFlag = false;
             StageProductionActivity = false;
             CheckWithCMI = label.Amr_Please_fill_in_missing_information;
-        
             Boolean okayToSave = true;
             validateSuccess = false;
             
          if(jobList.Check_With_CMI__c == null){
-          
-          CheckWithCMIflag = true;
-          
-        }
-        
+             CheckWithCMIflag = true;
+          }
          if(jobList.Your_Email_Address__c == null){
              yourEmailAddressFlag = true;
-       
-        } 
+          } 
         if(jobList.Unilever_Finance_Member_Email__c == null){
              unileverFinanceMemberEmailFlag = true;
-             
-       
-        }
+         }
         if(jobList.Final_Approver_Of_Material_Email__c== null){
              finalApproverMaterialEmailFlag = true;
-             
-        
         }
         if(String.isBlank(selectedCountry)){
             budgetAllocatedCountryFlag = true;
-            
-        
         }
-        
         if(jobList.Budget_Allocated_Input_Value__c == null){
-       
-      
-         budgetAllocatedInputFlag =  true;
-         
+            budgetAllocatedInputFlag =  true;
+         }
+        if( jobList.ProductCategory__c == null || categoryName == Amr_ConstantForAdManager.NONE){
+            categoryNameFlag = true;
         }
-        
-         if( jobList.ProductCategory__c == null || categoryName == NONE){
-        categoryNameFlag = true;
-        
-        }
-         if( jobList.Brand_Position__c == null || brandPosName == NONE){
+         if( jobList.Brand_Position__c == null || brandPosName == Amr_ConstantForAdManager.NONE){
             brandPosNameFlag = true;
-            
         }
-         if(jobList.Brand_Final__c == null || brandNameFromPage == NONE){
+         if(jobList.Brand_Final__c == null || brandNameFromPage == Amr_ConstantForAdManager.NONE){
              brandNameFromPageFlag = true;
-             
-        }
-        
-        if(jobList.Agency_Contact_Account_Director_Email__c == null){
+         }
+         if(jobList.Agency_Contact_Account_Director_Email__c == null){
             AgencyDirectorEmailFlag = true;
-           
-        }
+          }
         if(jobList.Project_Description__c == null){
             ProjectDescriptionFlag = true;
-            
-        }
+          }
         if(jobList.Campaign_Name__c == null){
              CampaignNameFlag = true;
-             
-        }
+         }
         if(jobList.Target_Air_Date__c == null){
              TargetAirDateFlag = true;
-              
-        }
- 
-       
-       
+         }
         if(jobList.Project_Leader_Cluster__c == null || jobList.Project_Leader_Country__c == null){
              projectLeaderCountryClusterFlag = true;
-             
-      
-        }
-        
+       }
         if(jobList.Function_You_Are_Part__c == null){
              FunctionYouArePartFlag = true;
-      
-        }
-        
-        if(jobList.Budget_Responsibility__c == null){
+         }
+       if(jobList.Budget_Responsibility__c == null){
             budgetResponsibilityFlag = true;
-            
-       
-        }
+         }
         if(jobList.Lead_Creative_Agency_name__c == null && jobList.Lead_Agency_Name_Other__c == null){
-       
-        leadAgencyFlag = true;
-        
-        }
+            leadAgencyFlag = true;
+          }
         if(jobList.Lead_Agency_Location_Cluster__c == null || jobList.Lead_Agency_Location_Country__c == null){
              LeadAgencyClusterFlag = true; 
-        
-        }
-        
-       if(String.isBlank(jobList.Project_Details__c) && String.isBlank(jobList.Project_Name_Other__c)){
+         }
+        if(String.isBlank(jobList.Project_Details__c) && String.isBlank(jobList.Project_Name_Other__c)){
         projectDetailsFlag = true;
         projectNameFromPage = null;
-        
-       
         }
-       
-        
-        if(jobList.Production_Activity_Type__c == null){
+       if(jobList.Production_Activity_Type__c == null){
             productionActivityTypeFlag = true;
-            
-           
-        }
-         
-        
+         }
         if(String.isBlank(jobList.Project_Description__c)){
              ProjectDescriptionFlag = true;
-           
-       
-        }
-        
-        if(String.isBlank(jobList.Execution_Name__c)){
-             
+       }
+         if(String.isBlank(jobList.Execution_Name__c)){
              ExecutionNameFlag = true;
-             
-        }
-
-         if(String.isBlank(jobList.Brodcast_Market__c)){
+         }
+        if(String.isBlank(jobList.Brodcast_Market__c)){
               BrodcastMarketFlag = true;
-              
-        
-        }
-
-        
-        if(jobList.Require_Music__c == null){
+       }
+       if(jobList.Require_Music__c == null){
             RequireMusicFlag = true;
-           
         }
-        
         if(jobList.Require_Celebrity_Talent__c == null){
             RequireTalentFlag = true;
-           
-        
-        }
+     }
         if(jobList.Stage_of_Production_Activity__c == null){
             StageProductionActivity = true;
-           
-        
-        }
-        
-      if(!jobList.NewOriginalMaster__c && !jobList.LanguageAdaptionMaster__c && !jobList.Create_Additional_Material__c && !jobList.ReworkExistingMaterial__c && !jobList.BuyoutsTalent__c && !jobList.BuyoutsMusic__c ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Production_activity_types_at_least_one_option_must_be_selected));
-            okayToSave =false;
-        }
-        
-        if(jobList.NewOriginalMaster__c && !jobList.NewOriginalMasterCinema__c && !jobList.NewOriginalMasterTv__c && 
-            !jobList.NewOriginalMasterRadio__c && !jobList.NewOriginalMasterPrint__c && !jobList.NewOriginalMasterOutofHome__c &&
-                !jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterDigital__c && !jobList.NewOriginalMasterInternalVideo__c ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_For_New_Original_Masterat_least_one_option_of_Media_Channel_must_be_selected));
-            okayToSave =false;
-        }
-        
-       
-        
-         if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterOutofHome__c && !jobList.NewOriginalMasterOutofHomeMovingImage__c && 
-            !jobList.NewOriginalMasterOutofHomeAudio__c && !jobList.NewOriginalMasterOutofHomeStillImage__c  ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOriginMaster_at_leastoneoption_ofMedium_mustbe_selected_corres_to_outOfHo));
-            okayToSave =false; 
-        }
-        
-        
-        if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterInStoreMovingImage__c && 
-            !jobList.NewOriginalMasterInStoreAudio__c && !jobList.NewOriginalMasterInStoreStillImage__c  ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOrigiMastat_least_one_option_of_Medium_mustbe_selected_corresto_instore));
-            okayToSave =false;
-        }
-        
-           
-        if(jobList.NewOriginalMaster__c && !jobList.NewOriginalMasterCinema__c && !jobList.NewOriginalMasterTv__c && 
-            !jobList.NewOriginalMasterRadio__c && !jobList.NewOriginalMasterPrint__c && !jobList.NewOriginalMasterOutofHome__c &&
-                !jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterDigital__c && !jobList.NewOriginalMasterInternalVideo__c ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_For_New_Original_Masterat_least_one_option_of_Media_Channel_must_be_selected	 ));
-            okayToSave =false;
-        }
-        
-        
-      
-         if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterOutofHome__c && !jobList.NewOriginalMasterOutofHomeMovingImage__c && 
-            !jobList.NewOriginalMasterOutofHomeAudio__c && !jobList.NewOriginalMasterOutofHomeStillImage__c  ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOriginMaster_at_leastoneoption_ofMedium_mustbe_selected_corres_to_outOfHo));
-            okayToSave =false;
-        }
-        
-        
-        if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterInStore__c && !jobList.NewOriginalMasterInStoreMovingImage__c && 
-            !jobList.NewOriginalMasterInStoreAudio__c && !jobList.NewOriginalMasterInStoreStillImage__c  ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOrigiMastat_least_one_option_of_Medium_mustbe_selected_corresto_instore));
-            okayToSave =false;
-        }
-        
-          if(jobList.NewOriginalMaster__c && jobList.NewOriginalMasterDigital__c && !jobList.NewOriginalMasterDigitalMovingImage__c && 
-            !jobList.NewOriginalMasterDigitalAudio__c && !jobList.NewOriginalMasterDigitalStillImage__c  
-            && !jobList.New_Original_Master_Digital_ED__c){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_NewOriginMaster_at_least_one_option_of_Medium_mustbeselected_corre_todigital));
-            okayToSave =false;
-        }
-        
-        if(!jobList.NewOriginalMaster__c && jobList.LanguageAdaptionMaster__c && !jobList.LanguageAdaptionMasterTv__c && 
-            !jobList.LanguageAdaptionMasterCinema__c && !jobList.LanguageAdaptionMasterRadio__c 
-            && !jobList.LanguageAdaptionMasterPrint__c && 
-                !jobList.LanguageAdaptionMasterOutofHome__c && 
-                !jobList.LanguageAdaptionMasterInStore__c && 
-                !jobList.LanguageAdaptionMasterDigital__c &&
-                !jobList.LanguageAdaptionMasterInternalVideo__c ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Language_Adaption_Master_at_least_one_option_of_Medium_must_be_selected));
-            okayToSave =false;
-        }
-        
-    
-    
-        
-         if(!jobList.NewOriginalMaster__c && jobList.LanguageAdaptionMaster__c && jobList.LanguageAdaptionMasterOutofHome__c && 
-            !jobList.LanguageAdaptionMasterOutofHomeAudio__c && 
-            !jobList.LanguageAdaptionMasterOutHomeStillImage__c && 
-            !jobList.LanguageAdaptionMasterOutHomeMovingImage__c 
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_LangAdaptMaster_atleast_one_option_of_Medium_mustbe_selected_correTo_OutO));
-            okayToSave =false;
-        }
-        
-         if(!jobList.NewOriginalMaster__c && jobList.LanguageAdaptionMaster__c && jobList.LanguageAdaptionMasterInStore__c && 
-            !jobList.LanguageAdaptionMasterInStoreAudio__c && 
-            !jobList.LanguageAdaptionMasterInStoreMovingImage__c && 
-            !jobList.LanguageAdaptionMasterInStoreStillImage__c 
-            
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_LangAdaptMaster_atleast_oneoption_of_Medium_mustbe_selectedcorres_in_st));
-            okayToSave =false;
-        }
-        
-        if(!jobList.NewOriginalMaster__c && jobList.LanguageAdaptionMaster__c && jobList.LanguageAdaptionMasterDigital__c && 
-            !jobList.LanguageAdaptionMasterDigitalAudio__c && 
-            !jobList.LanguageAdaptionMasterDigitalMovingImage__c && 
-            !jobList.LanguageAdaptionMasterDigitalStillImage__c && !jobList.Language_Adaptation_of_Master_Digital_ED__c
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_LanguageAdaptionMaster_least_one_optionofMedium_mustbe_selected_corr_to_Digi));
-            okayToSave =false;
-        }
-        
-        
-        
-        if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c && jobList.AdditionalSupplementaryNewMaterialOOH__c && 
-            !jobList.AdditionalSupplementaryNewMaterialOofHMI__c && 
-            !jobList.AdditionalSupplementaryNewMaterialOofHSI__c && 
-            !jobList.AdditionalSupplementaryNewMaterialOofHA__c  
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_AdditiSuppNewMaterial_atleast_one_optionofMedium_mustbe_selected_corr_toou));
-            okayToSave =false;
-        }
-        
-            if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c && jobList.AdditionalSupplementaryNewMaterialStore__c && 
-            !jobList.AdditionalSupplementaryNewMaterialInSMI__c && 
-            !jobList.AdditionalSupplementaryNewMaterialInSA__c && 
-            !jobList.AdditionalSupplementaryNewMaterialInSSI__c  
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_AdditSuppNewMaterial_at_least_one_optionofMedium_mustbeselect_cor_toinstore));
-            okayToSave =false;
-        }
-        
-        
-            if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c && jobList.AdditionalSupplementaryNewMaterialDigi__c && 
-            !jobList.AdditionalSupplementaryNewMaterialDigiMI__c && 
-            !jobList.AdditionalSupplementaryNewMaterialDigiA__c && 
-            !jobList.AdditionalSupplementaryNewMaterialDigiSI__c  &&
-            !jobList.Digital_Editorial__c 
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_AddiSuppNewMaterial_atleast_oneoptionofMedium_must_be_selected_corr_to_Dig));
-            okayToSave =false;
-        }
-        
-            if(!jobList.NewOriginalMaster__c && jobList.Create_Additional_Material__c &&  
-            !jobList.AdditionalSupplementaryNewMaterialStore__c && 
-            !jobList.AdditionalSupplementaryNewMaterialDigi__c &&
-            !jobList.AdditionalSupplementaryNewMaterialTv__c &&
-            !jobList.AdditionalSupplementaryNewMaterialCinema__c &&
-            !jobList.AdditionalSupplementaryNewMaterialRadio__c &&
-            !jobList.AdditionalSupplementaryNewMaterialOOH__c &&
-            !jobList.AdditionalSupplementaryNewMaterialIVideo__c
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_AdditionalSupplNewMaterial_atleast_oneoptionof_MedChannel_mustbe_sel));
-            okayToSave =false;
-        }
-        
-        
-            if(!jobList.NewOriginalMaster__c && jobList.ReworkExistingMaterial__c && jobList.ReworkExistingMaterialOutofHome__c && 
-            !jobList.ReworkExistingMaterialOutHomeMovingImage__c && 
-            !jobList.ReworkExistingMaterialOutofHomeAudio__c && 
-            !jobList.ReworkExistingMaterialOutHomeStillImage__c
-            
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_RewExistingMat_at_least_one_optionofMedium_mustbe_selected_corr_to_OOH));
-            okayToSave =false;
-        }
-        
-        
-            if(!jobList.NewOriginalMaster__c && jobList.ReworkExistingMaterial__c && jobList.ReworkExistingMaterialInStore__c && 
-            !jobList.ReworkExistingMaterialInStoreMovingImage__c && 
-            !jobList.ReworkExistingMaterialInStoreAudio__c && 
-            !jobList.In_Store_Still_Image__c
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_ReworkExistMater_atleast_oneoption_of_Medium_mustbeselected_corr_to_inStor));
-            okayToSave =false;
-        }
-        
-        
-            if(!jobList.NewOriginalMaster__c && jobList.ReworkExistingMaterial__c && jobList.ReworkExistingMaterialDigital__c && 
-            !jobList.ReworkExistingMaterialDigitalMovingImage__c && 
-            !jobList.ReworkExistingMaterialDigitalAudio__c && 
-            !jobList.ReworkExistingMaterialDigitalStillImage__c  &&
-            !jobList.Rework_Exisiting_Material_Digital_ED__c 
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_RewExistMaterial_atleastone_option_of_Medium_must_be_selected_corr_to_Digi));
-            okayToSave =false;
-        }
-        
-        if(!jobList.NewOriginalMaster__c && jobList.ReworkExistingMaterial__c && !jobList.ReworkExistingMaterialOutofHome__c && 
-            !jobList.ReworkExistingMaterialInStore__c && 
-            !jobList.ReworkExistingMaterialDigital__c 
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_ReworkExistMat_atleast_oneoption_of_Media_Channel_mustbe_selected));
-            okayToSave =false;
-        }
-        
-        
-        
-            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsTalent__c && jobList.BuyoutsTalentOutofHome__c && 
-            !jobList.BuyoutsTalentOutofHomeMovingImage__c && 
-            !jobList.BuyoutsTalentOutofHomeAudio__c && 
-            !jobList.BuyoutsTalentOutofHomeStillImage__c
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Buyouts_Talent_atleast_one_optionofMedium_mustbe_selected_corr_to_OOH));
-            okayToSave =false;
-        }
-        
-        
-            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsTalent__c && jobList.BuyoutsTalentInStore__c && 
-            !jobList.BuyoutsTalentInStoreMovingImage__c && 
-            !jobList.BuyoutsTalentInStoreAudio__c && 
-            !jobList.BuyoutsTalentInStoreStillImage__c
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_BuyoutsTalent_at_least_oneoptionofMedium_mustbe_selected_corre_to_Instore));
-            okayToSave =false;
-        }
-        
-        
-        
-            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsTalent__c && jobList.BuyoutsTalentDigital__c && 
-            !jobList.BuyoutsTalentDigitalMovingImage__c && 
-            !jobList.BuyoutsTalentDigitalAudio__c && 
-            !jobList.BuyoutsTalentDigitalStillImage__c &&
-            !jobList.Buyouts_Talent_Digital_ED__c
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_BuyTalent_atleastoneoption_of_Medium_mustbe_selected_corr_to_Digital));
-            okayToSave =false;
-        }
-        
-          if(!jobList.NewOriginalMaster__c && jobList.BuyoutsTalent__c && !jobList.BuyoutsTalentOutofHome__c && 
-            !jobList.BuyoutsTalentInStore__c && 
-            !jobList.BuyoutsTalentDigital__c 
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Buyouts_Talent_at_least_one_option_of_Media_Channel_must_be_selected));
-            okayToSave =false;
-        }
-        
-        
-        
-        
-            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsMusic__c && jobList.BuyoutsMusicOutofHome__c && 
-            !jobList.BuyoutsMusicOutofHomeMovingImage__c && 
-            !jobList.BuyoutsMusicOutofHomeAudio__c && 
-            !jobList.BuyoutsMusicOutofHomeStillImage__c
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_BuyoutMusic_at_least_one_option_of_Medium_mustbe_selected_corre_to_OutOfHome));
-            okayToSave =false;
-        }
-        
-            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsMusic__c && !jobList.BuyoutsMusicInStore__c && 
-            !jobList.BuyoutsMusicDigital__c && 
-            !jobList.BuyoutsMusicTv__c &&
-            !jobList.BuyoutsMusicCinema__c &&
-            !jobList.BuyoutsMusicRadio__c &&
-            !jobList.BuyoutsMusicInternalVideo__c &&
-            !jobList.BuyoutsMusicOutofHome__c
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_For_Buyouts_Music_at_least_one_option_of_Media_Channel_must_be_selected));
-            okayToSave =false;
-        }
-        
-        
-            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsMusic__c && jobList.BuyoutsMusicInStore__c && 
-            !jobList.BuyoutsMusicInStoreMovingImage__c && 
-            !jobList.BuyoutsMusicInStoreAudio__c && 
-            !jobList.BuyoutsMusicInStoreStillImage__c
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Buyouts_Music_at_least_one_option_of_Medium_mustbe_selected_corr_to_Instore));
-            okayToSave =false;
-        }
-        
-        
-        
-            if(!jobList.NewOriginalMaster__c && jobList.BuyoutsMusic__c && jobList.BuyoutsMusicDigital__c && 
-            !jobList.BuyoutsMusicDigitalMovingImage__c && 
-            !jobList.BuyoutsMusicDigitalAudio__c && 
-            !jobList.BuyoutsMusicDigitalStillImage__c  &&
-            !jobList.Buyouts_Music_Digital_ED__c
-            ){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Buyouts_Music_at_least_one_option_of_Medium_must_be_selected_corre_to_Digita));
-            okayToSave =false;
-        }
+         }
+         okayToSave = jobSheetHelper.productionActivityTypeValidation(okayToSave,jobList);
          
-         if( okayToSave && CheckWithCMIflag == false && yourEmailAddressFlag == false && unileverFinanceMemberEmailFlag == false && projectLeaderCountryClusterFlag == false && finalApproverMaterialEmailFlag == false && functionYouArePartFlag == false
-                 && budgetResponsibilityFlag == false && budgetAllocatedCountryFlag == false && budgetAllocatedInputFlag == false && categoryNameFlag == false && brandPosNameFlag== false && brandNameFromPageFlag == false && agencyDirectorEmailFlag == false
-                 && projectDescriptionFlag == false && campaignNameFlag== false && leadAgencyFlag == false && LeadAgencyClusterFlag== false && projectDetailsFlag == false && productionActivityTypeFlag == false && TargetAirDateFlag == false
-                 && ExecutionNameFlag == false && BrodcastMarketFlag == false && RequireMusicFlag== false && RequireTalentFlag == false && StageProductionActivity == false) {
+         if( okayToSave && !CheckWithCMIflag  && !yourEmailAddressFlag && !unileverFinanceMemberEmailFlag && !projectLeaderCountryClusterFlag  && !finalApproverMaterialEmailFlag  && !functionYouArePartFlag 
+                 && !budgetResponsibilityFlag  && !budgetAllocatedCountryFlag  && !budgetAllocatedInputFlag  && !categoryNameFlag  && !brandPosNameFlag && !brandNameFromPageFlag && !agencyDirectorEmailFlag 
+                 && !projectDescriptionFlag  && !campaignNameFlag && !leadAgencyFlag  && !LeadAgencyClusterFlag && !projectDetailsFlag  && !productionActivityTypeFlag  && !TargetAirDateFlag 
+                 && !ExecutionNameFlag  && !BrodcastMarketFlag  && !RequireMusicFlag && !RequireTalentFlag  && !StageProductionActivity ) {
                 validateSuccess = true;
-                
-                return null;
+                 return null;
         }
-
-       
-        
-   return null;
+    return null;
    }
    
+   /***********************************************************************************************************************************
+Purpose: Method to upload documents
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/
+   
    public void uploadDocument(){
-    
-            
+             
               if(document.body==null){
                  ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Select_atleast_one_document));
               
               }
-                 
                   if(document.body!=null && jobIdFromPage != null){           
-              
-             
                                    
               FeedItem FI = new FeedItem();
               FI.ParentId = jobIdFromPage;
@@ -1638,12 +1250,16 @@ public with sharing class Amr_JobSheetController_CC{
               
               insert FI;
               getDocuments();
-             
               document = new document();
         }
      
     }
-    
+    /***********************************************************************************************************************************
+Purpose: Method to get uploaded documents.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/
     public void getDocuments(){
     
        documentList= [select ContentFileName,CreatedBy.name,relatedrecordid,createdDate from FeedItem where ParentId =:jobIdFromPage];  //ContentFileName,
@@ -1651,16 +1267,17 @@ public with sharing class Amr_JobSheetController_CC{
      public Pagereference deleteDocuments(){
                
         FeedItem doc =[select Id from FeedItem where Id=:chosenDocId limit 1];
-       
         delete doc ;
-        
         getDocuments();
         return null;
     }
     
-    /* 
-        Method to create new Alert.
-    */ 
+  /***********************************************************************************************************************************
+Purpose: Method to create alerts.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/
     
      public void addNewAlert(){
 
@@ -1685,16 +1302,18 @@ public with sharing class Amr_JobSheetController_CC{
    
     }
     
-      /* 
-        Method to hide an Alert.
-    */ 
+/***********************************************************************************************************************************
+Purpose: Method to hide alert.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/
      public void alertHide(){
             
             
             List<Amr_Alert__c> alertHideList = new List<Amr_Alert__c>();
             alertHideList = [SELECT Alert_Message__c,Hide__c FROM Amr_Alert__c where id = :selectedAlert];
            if(!alertHideList.isEmpty()){
-            
             for(Amr_Alert__c alertObj : alertHideList){
                 alertObj .Hide__c = TRUE;
             }
@@ -1703,6 +1322,12 @@ public with sharing class Amr_JobSheetController_CC{
            alert = [SELECT Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c FROM Amr_Alert__c where Job_Id__c  = :jobIdFromPage and hide__c = :false AND ownerId = :userInfo.getUserID() order by New_Alert__c desc];
          totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];
         }
+/***********************************************************************************************************************************
+Purpose: Method to transfer to other page.
+Parameters: 
+Returns: 
+
+************************************************************************************************************************************/
 
     public PageReference jobSheetPageTransfer(){
           

@@ -483,9 +483,9 @@
                         </div>
                         <div class="clear"></div>
                         <div style="width:100%">
-       
+                        You v&apos;s Team Monthly
                          <apex:pageblock > 
-                              <apex:chart height="100" width="300" data="{!PieDataSaving}" name="You v's Team Monthly">  
+                              <apex:chart height="100" width="300" data="{!PieDataSaving}" >  
                                <apex:pieSeries dataField="data"  donut="50"  colorSet="#70309F,#1E4E78"> 
                                         <apex:chartLabel display="none" />                          
                                 </apex:pieSeries> 
@@ -497,12 +497,13 @@
                         
                         </div>
                         <div style="width:100%">
+                         You v&apos;s Team YTD
                             <apex:pageblock > 
-                          <apex:chart height="100" width="300" data="{!PieData}">  
-                               <apex:pieSeries dataField="data" labelField="name" donut="50" colorSet="#70AB46,#4472C3"> 
+                          <apex:chart height="100" width="300" data="{!PieData}" >  
+                               <apex:pieSeries dataField="data" labelField="name" donut="50" colorSet="#70AB46,#4472C3" > 
                                 <apex:chartLabel display="none" />  
                                </apex:pieSeries> 
-                           <apex:legend position="right"/>  
+                           <apex:legend position="right" />  
                           </apex:chart> 
                        </apex:pageblock>                                            
      

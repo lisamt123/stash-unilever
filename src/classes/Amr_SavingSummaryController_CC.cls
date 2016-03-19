@@ -120,10 +120,10 @@ public with sharing class Amr_SavingSummaryController_CC{
            
         //dashboard
        
-            Date currentDay = Date.today();
-        yourYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Accepted_Quote_Euro__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
-        globalYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Accepted_Quote_Euro__c) savCurrentCostYTD FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];   
-        savingActivitiesSubmitted = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Accepted_Quote_Euro__c) savCurrentCostYTD FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+        DateTime currentDay = DateTime.now();
+        yourYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost_of_Accepted_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+        globalYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost_of_Accepted_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];   
+        savingActivitiesSubmitted = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost_of_Accepted_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
     }
 /***********************************************************************************************************************************
 Purpose: Method to create options for sort by functionality.
@@ -614,7 +614,7 @@ Returns: It will return submitted saving data.
            // pieSavingDataRap = new List<PieWedgeData>();
             Date startOfMonth = Date.today().toStartOfMonth();
             Date startOfNextMonth = startOfMonth.addMonths(1);
-            Date currentDay = Date.today();
+            DateTime currentDay = DateTime.now();
       Boolean setFlag = false;
       List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='CAP' order by Assignee.name];
       if(PermissionSetAssignmentList.size()>0){
@@ -661,7 +661,7 @@ Returns: It will return submitted saving data.
             List<PieWedgeData> data = new List<PieWedgeData>();
             Date startOfMonth = Date.today().toStartOfMonth();
             Date startOfNextMonth = startOfMonth.addMonths(1);
-            Date currentDay = Date.today();
+            DateTime currentDay = DateTime.now();
       Boolean setFlag = false;
       List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='CAP' order by Assignee.name];
       if(PermissionSetAssignmentList.size()>0){
