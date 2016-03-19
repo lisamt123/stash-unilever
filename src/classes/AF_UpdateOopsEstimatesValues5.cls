@@ -67,6 +67,10 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 			unileverEntityNames.put(entity.id,entity.AF_Country__c );// Add id,and its unilever Country from Entity 
 			unileverCountries.add(entity.AF_Country__c);
 		}
+		retrieveMatrixTable(agencyRecords);
+		
+	}
+	public static void retrieveMatrixTable(List<AF_OOPS_Estimate__c> agencyRecords){
 		//Query for matrix Table records 
 		list<AF_Matrix_Table__c> matrixRecords=[select id, AF_Agency_Country__c,AF_Matrix_Country__c,Ready_For_PO_Conversion__c,AF_Matrix_country_Currency__c,AF_Matrix_Currency_Code__c,AF_Ready_For_PO_Country__c,AF_Ready_For_PO_Country_Currency__c,AF_Ready_For_PO_Currency_Code__c,AF_Unilver_Country__c from AF_Matrix_Table__c where AF_Agency_Country__c IN : agencyCountries And AF_Unilver_Country__c IN : unileverCountries limit 50000];
 		if(matrixRecords.size()>0)
