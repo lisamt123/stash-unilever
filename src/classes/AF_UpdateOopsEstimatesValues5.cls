@@ -148,9 +148,41 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 				{
 					if(matrixString[0]==unlieverentity && matrixString[1]==agncyentity)
 					{   
+						
 						String Matccode=mapMatrixcountry.get(mt.id);
 						string readypcode=mapReadyForPOCountry.get(mt.id);
-						if(agencyEst.AF_Status__c=='Ready for PO')
+						retrieveStatusRate(agencyEst,Matccode,readypcode,mt);
+						agencyEst.AF_Agency_Exchange_Rate__c= CurrencyMap.get(Matccode);
+						if (agencyEst.AF_Status__c=='Ready for PO' &&  agencyEst.AF_Ready_For_PO_Entry_Currency__c != null && agencyEst.AF_Ready_For_PO_Exchange_Rate__c !=null)
+						{
+							agencyEst.AF_OOPS_Matrix_Currency_Code__c = agencyEst.AF_Ready_For_PO_Entry_Currency__c;
+							agencyEst.AF_Agency_Exchange_Rate__c = agencyEst.AF_Ready_For_PO_Exchange_Rate__c;
+						}
+						else
+						{
+							agencyEst.AF_OOPS_Matrix_Currency_Code__c=matrixDataEntryCurrency.get(mt.id);
+							agencyEst.AF_MatrixCodeTemp__c = matrixDataEntryCurrency.get(mt.id);
+							agencyEst.AF_Ready_For_PO_Entry_Currency__c=matrixReadyforconversion.get(mt.id);
+							agencyEst.AF_ReadyforPoCodeTemp__c=matrixReadyforconversion.get(mt.id);
+							if(agencyEst.AF_ReadyforPoCodeTemp__c==null){
+								agencyEst.AF_ReadyforPoCodeTemp__c = matrixDataEntryCurrency.get(mt.id);
+							}
+						}
+						Testexit=true;
+						matrixString.clear();
+					}
+					else
+					{
+						MatrixRecoundCount=MatrixRecoundCount+1;
+					}  
+				} 
+				if(Testexit)
+				break;
+			}
+		}
+	}
+	public static void retrieveStatusRate(AF_OOPS_Estimate__c agencyEst,String Matccode,String readypcode,AF_Matrix_Table__c mt){
+		if(agencyEst.AF_Status__c=='Ready for PO')
 						{     
 							if(MatrixReadyforConversion.get(mt.id)!='--None--' && MatrixReadyforConversion.get(mt.id)=='GBP'){
 								agencyEst.AF_Ready_For_PO_Exchange_Rate__c= CurrencyMapforUSD.get(readypcode);
@@ -180,33 +212,5 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 							if(agencyEst.AF_Agency_Exchange_Rate__c != null && agencyEst.AF_Agency_Exchange_Rate__c!= 0 && agencyEst.AF_Estimate__c!= null)
 							agencyEst.AF_OOPS_Estimate_Local__c= agencyEst.AF_Estimate__c*agencyEst.AF_Agency_Exchange_Rate__c;
 						}  
-						agencyEst.AF_Agency_Exchange_Rate__c= CurrencyMap.get(Matccode);
-						if (agencyEst.AF_Status__c=='Ready for PO' &&  agencyEst.AF_Ready_For_PO_Entry_Currency__c != null && agencyEst.AF_Ready_For_PO_Exchange_Rate__c !=null)
-						{
-							agencyEst.AF_OOPS_Matrix_Currency_Code__c = agencyEst.AF_Ready_For_PO_Entry_Currency__c;
-							agencyEst.AF_Agency_Exchange_Rate__c = agencyEst.AF_Ready_For_PO_Exchange_Rate__c;
-						}
-						else
-						{
-							agencyEst.AF_OOPS_Matrix_Currency_Code__c=matrixDataEntryCurrency.get(mt.id);
-							agencyEst.AF_MatrixCodeTemp__c = matrixDataEntryCurrency.get(mt.id);
-							agencyEst.AF_Ready_For_PO_Entry_Currency__c=matrixReadyforconversion.get(mt.id);
-							agencyEst.AF_ReadyforPoCodeTemp__c=matrixReadyforconversion.get(mt.id);
-							if(agencyEst.AF_ReadyforPoCodeTemp__c==null){
-								agencyEst.AF_ReadyforPoCodeTemp__c = matrixDataEntryCurrency.get(mt.id);
-							}
-						}
-						Testexit=true;
-						matrixString.clear();
-					}
-					else
-					{
-						MatrixRecoundCount=MatrixRecoundCount+1;
-					}  
-				} 
-				if(Testexit)
-				break;
-			}
-		}
 	}
 }
