@@ -27,7 +27,7 @@ Public Class AF_UpdateBonusEstimatesValues5
          Double EURValue=0.0;
          set<String> agencyCountries=new set<String>();
          set<String> unileverCountries=new set<String>();
-
+         set<String> fYear=new set<String>();
          
          if(agencyRecords.size()>0)
          for(AF_Bonus_Matrix__c agencyEst:agencyRecords)
@@ -37,6 +37,13 @@ Public Class AF_UpdateBonusEstimatesValues5
 
              if(agencyEst.AF_Unilever_Entity__c!=null)       
              unileverEntity.add(agencyEst.AF_Unilever_Entity__c);// Collecting Unilever  Entities
+             
+             if(agencyEst.AF_Fiscal_Year__c!=null){       
+                 fYear.add(agencyEst.AF_Fiscal_Year__c);// Collecting Unilever  Entities
+             }
+             else{
+                fYear.add (agencyEst.AF_Fiscal_Year_FF__c);
+             }
          }
          // query for retrieve  Entities countries(Agency)
          If(AgencyEntity.size()>0)
@@ -106,7 +113,7 @@ Public Class AF_UpdateBonusEstimatesValues5
          
          
          // Query for USD Currency
-         AF_Currency__c USDCurrencyTable=[select id,Country_Currency__c,AF_Currency_Code__c,AF_Average_Exchange_Rate_To_EUR__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,Ready_For_PO_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and AF_Currency_Code__c=:'USD'  and AF_Fiscal_Year_new__c=:string.valueof(System.now().year())  Order by Createddate limit 1];
+         AF_Currency__c USDCurrencyTable=[select id,Country_Currency__c,AF_Currency_Code__c,AF_Average_Exchange_Rate_To_EUR__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,Ready_For_PO_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and AF_Currency_Code__c=:'USD'  and AF_Fiscal_Year_new__c=:fYear Order by Createddate limit 1];
          if(USDCurrencyTable!=null)
          if(USDCurrencyTable.AF_Average_Exchange_Rate_To_EUR__c!=null)
          {
@@ -117,7 +124,7 @@ Public Class AF_UpdateBonusEstimatesValues5
          
  
          // Query for Retrieve Currency Records
-         List<AF_Currency__c> currencyrecords=[select id,Country_Currency__c,Ready_For_PO_Exchange_Rate_To_EUR__c,AF_Currency_Code__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,AF_Average_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and Country_Currency__c IN:currncycodes  and AF_Fiscal_Year_new__c=:string.valueof(System.now().year()) limit 50000];
+         List<AF_Currency__c> currencyrecords=[select id,Country_Currency__c,Ready_For_PO_Exchange_Rate_To_EUR__c,AF_Currency_Code__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,AF_Average_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and Country_Currency__c IN:currncycodes  and AF_Fiscal_Year_new__c=:fYear limit 50000];
         
         if(currencyrecords.size()>0)
          for(AF_Currency__c  curren:currencyrecords)
