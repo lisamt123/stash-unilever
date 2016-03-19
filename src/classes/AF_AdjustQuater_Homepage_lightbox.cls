@@ -145,7 +145,7 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
                 if(B.Q4 && !raiseNewPOQuarters.contains(AF_Constants.QUARTER4)){
                     addquarter.add(AF_Constants.QUARTER4);
                 }
-				showPopupExtension(changedBrandName,B);
+				showPopupExtension(B);
 				showRaiseQuarter(B);
              }   
         }
@@ -159,7 +159,7 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
         }            
     }
 	
-private void showPopupExtension(String changedBrandName,wrapChechbox B){
+private void showPopupExtension(wrapChechbox B){
 				
 				if(addquarter.IsEmpty()){
                     displaypopquarter=true; 
@@ -198,7 +198,7 @@ private void showPopupExtension(String changedBrandName,wrapChechbox B){
                         displayPopup = true;
                     }
                     addquarter.sort();
-					showBrandName(changedBrandName,B);
+					showBrandName(B);
 				}
 				QuarterName = QuarterName.removeEnd(';');
                 changedBrandName = changedBrandName+ quarterformat +' ';
