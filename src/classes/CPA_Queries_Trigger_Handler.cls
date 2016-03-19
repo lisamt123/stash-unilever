@@ -56,14 +56,35 @@ public with sharing class CPA_Queries_Trigger_Handler
         }
     }
     
-
-    public void beforeDelete(SObject so) {   }
+    /*******************************************************************
+    Purpose: This method is present in interface, hence need to override here
+    Parameters: SObject
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public void beforeDelete(SObject so){
+        System.debug('This method is present in interface, hence need to override here');
+    }
    
-    
-    public void afterInsert(SObject so)  {   }
+    /*******************************************************************
+    Purpose: This method is present in interface, hence need to override here
+    Parameters: SObject
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public void afterInsert(SObject so){
+        System.debug('This method is present in interface, hence need to override here');
+    }
    
-    
-    public void afterUpdate(SObject oldSo, SObject so) {   }
+    /*******************************************************************
+    Purpose: This method is present in interface, hence need to override here
+    Parameters: SObject, SObject
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public void afterUpdate(SObject oldSo, SObject so){
+        System.debug('This method is present in interface, hence need to override here');
+    }
   
     
     /*******************************************************************
