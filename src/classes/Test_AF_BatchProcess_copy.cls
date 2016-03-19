@@ -169,7 +169,8 @@ public class Test_AF_BatchProcess_copy
      bonMat.AF_Unilever_Entity__c=entity2.Id;
      bonMat.AF_Value__c=55;
      bonMat.AF_Base_Fee_Country_Total__c =35353;
-     bonMat.AF_BonusableFee__c=86588;     
+     bonMat.AF_BonusableFee__c=86588;
+     bonMat.AF_Fiscal_Year__c=currYear;     
      insert bonMat;
      
      AF_BatchProcess_copy obj = new AF_BatchProcess_copy();
