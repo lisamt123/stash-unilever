@@ -179,7 +179,8 @@ public class Test_AF_FieldHistoryCompController
      bonMat.AF_Unilever_Entity__c=entity2.Id;
      bonMat.AF_Value__c=55;
      bonMat.AF_Base_Fee_Country_Total__c =35353;
-     bonMat.AF_BonusableFee__c=86588;     
+     bonMat.AF_BonusableFee__c=86588;
+     bonMat.AF_Fiscal_Year__c=currYear;     
      insert bonMat;
      
      AF_FieldHistoryCompController f1=new AF_FieldHistoryCompController();
@@ -354,7 +355,8 @@ Static testMethod void fieldHistoryCompController1()
      bonMat.AF_Unilever_Entity__c=entity2.Id;
      bonMat.AF_Value__c=55;
      bonMat.AF_Base_Fee_Country_Total__c =35353;
-     bonMat.AF_BonusableFee__c=86588;     
+     bonMat.AF_BonusableFee__c=86588;
+     bonMat.AF_Fiscal_Year__c=currYear;     
      insert bonMat;
      
      
@@ -530,7 +532,8 @@ Static testMethod void fieldHistoryCompController2()
      bonMat.AF_Unilever_Entity__c=entity2.Id;
      bonMat.AF_Value__c=55;
      bonMat.AF_Base_Fee_Country_Total__c =35353;
-     bonMat.AF_BonusableFee__c=86588;     
+     bonMat.AF_BonusableFee__c=86588;
+     bonMat.AF_Fiscal_Year__c=currYear;     
      insert bonMat;
      
      AF_Bonus_Matrix__c m1 = [select AF_Value__c from AF_Bonus_Matrix__c where id=:bonMat.id];

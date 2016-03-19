@@ -5270,7 +5270,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Unilever_General</fullName>
-        <booleanFilter>1 and (2 or 3 or 4 or 5 or 6 or 7)</booleanFilter>
+        <booleanFilter>1 AND ((2 OR 4 OR 7) AND 5) AND 3 AND 6 AND 8</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -5291,31 +5291,35 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>MakingLifeBetter,Making Life Better,Unilever Corporate,Canada Replies</value>
         </filters>
         <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>MakingLifeBetter,Making Life Better,Unilever Corporate,Canada Replies</value>
+            <field>Case_Brand__c</field>
+            <operation>notEqual</operation>
+            <value>Privacy,Privacy Policy</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Pending Request,Privacy,Privacy Policy,Recontact,Unilever Canada</value>
+            <value>Pending Request,Recontact,Unilever Canada,Operation in Touch</value>
         </filters>
         <filters>
-            <field>Brand__c</field>
-            <operation>equals</operation>
-            <value>Pending Request,Privacy,Privacy Policy,Recontact,Unilever Canada</value>
+            <field>CASES.SUBJECT</field>
+            <operation>contains</operation>
+            <value>www.unileverusa.com</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>notContain</operation>
+            <value>www.unilever.com.mx</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Operation in Touch</value>
         </filters>
         <filters>
-            <field>Brand__c</field>
+            <field>Case_Market__c</field>
             <operation>equals</operation>
-            <value>Operation in Touch</value>
+            <value>North America</value>
         </filters>
-        <label>CEC North America Unilever General</label>
+        <label>CEC North America 24-7 Queue General</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_North_America</role>

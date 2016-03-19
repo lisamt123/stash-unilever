@@ -131,7 +131,8 @@ public class Test_AF_BonusSummaryRemote
      bonMat.AF_Unilever_Entity__c=entity2.Id;
      bonMat.AF_Value__c=55;
      bonMat.AF_Base_Fee_Country_Total__c =35353;
-     bonmat.AF_BonusableFee__c=86588;     
+     bonmat.AF_BonusableFee__c=86588;
+     bonMat.AF_Fiscal_Year__c=currYear;     
      insert bonMat;
      
      //Invoking getBonusMatrixRecords method    

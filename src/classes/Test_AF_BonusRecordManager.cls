@@ -184,6 +184,7 @@ public class Test_AF_BonusRecordManager
      bonMat.AF_Bonus_Results__c=bonRes.Id;
      bonMat.AF_Bonus_Summary__c=bonSum.Id;
      bonMat.AF_Unilever_Entity__c=entity2.Id;
+     bonMat.AF_Fiscal_Year__c=currYear;
      insert bonMat;
      
      System.assertEquals(bonMat.AF_Agency_Entity__c, entity1.Id);      
@@ -358,6 +359,8 @@ public class Test_AF_BonusRecordManager
      bonMat.AF_Bonus_Summary__c=bonSum.Id;
      bonMat.AF_Unilever_Entity__c=entity2.Id;
      bonMat.AF_BonusableFee__c=34;
+     bonMat.AF_Fiscal_Year__c=currYear;
+     
      insert bonMat;
      
      System.assertEquals(bonMat.AF_Agency_Entity__c, entity1.Id);      
