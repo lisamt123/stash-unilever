@@ -32,7 +32,8 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
 	private list<String> validateAddQuarter=new list<String>();
 	private list<String>addQuarter=new list<String>();
 	String quarterformat;
-	String QuarterName;	
+	String QuarterName;
+	String changedBrandName;
     /**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_AdjustQuater_Homepage_lightbox
@@ -121,7 +122,6 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
     public void showPopup() {
         list<String>addQuarter=new list<String>();
         selectedBrandEstimateIds = new Set<String>();
-        String changedBrandName;
         String raiseNewPOQuarters;
         for(wrapChechbox B:QuarterEstimate){
             if(B.selected){
