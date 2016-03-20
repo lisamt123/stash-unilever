@@ -9,6 +9,7 @@
 ****************************************************************************************************************************/
 public with sharing class AF_UpdateBrandEstimateCatApproverValues
 {
+	Static String DummyUserid;
 	/**************************************************************************************
 *  @Description: this method is used to query the cateogry finance users and populate them
 *  @             in cat finance approvers fields in the brandestimate
@@ -20,7 +21,7 @@ public with sharing class AF_UpdateBrandEstimateCatApproverValues
 	{
 		List<string> BrandStrings=new list<String>();
 		list<id> userids=new list<id>();
-		String DummyUserid;
+		DummyUserid='';
 		set<id> brandids=new set<id>();
 		Map<id,string> brandMap=new Map<id,String>();
 		List<AF_Category_Brand__c> CatBrands=new  List<AF_Category_Brand__c>();
@@ -66,7 +67,11 @@ public with sharing class AF_UpdateBrandEstimateCatApproverValues
 					}
 				}    
 			} 
-			if(userids.size()==1)
+			processBrandEst(userids,Brandest);
+		}
+	}
+	public static void processBrandEst(List<id> userids,AF_Brand_Estimate__c Brandest){
+		if(userids.size()==1)
 			{
 				Brandest.AF_Cat_Finance_Approver_1__c=userids[0];
 				Brandest.AF_Cat_Finance_Approver_2__c=DummyUserid;
@@ -196,47 +201,6 @@ public with sharing class AF_UpdateBrandEstimateCatApproverValues
 				Brandest.AF_Cat_Finance_Approver_9__c=userids[8];
 				Brandest.AF_Cat_Finance_Approver_10__c=userids[9];
 			}
-		}
-	}
-	/**************************************************************************************
-*  @Description: this method is used to query the Agency users and populate them
-*  @             in Agency User fields in the brandestimate
-*  @name : UpdateOopsagency
-*  @param : BrandRecords
-*  @return: none.
-*******************************************************************************************/
-	public Static void UpdateOopsagency(AF_Brand_Estimate__c BrandRecords)
-	{
-		AF_Brand_Estimate__c ao = BrandRecords;
-		if(ao.AF_Agency__c!= null)
-		{
-			list<contact> clist = new list<contact>();
-			for(contact c : [select id,name,email,accountid from contact where accountid =: ao.AF_Agency__c and AF_Send_Email_Notification__c =: true])
-			{
-				clist.add(c);
-			}
-			if(clist.size() > 0 && clist.size()==1)
-			{
-				if(clist[0].email != null && clist[0].email != '')
-				ao.AF_AgencyUsers1__c = clist[0].email;
-			}
-			if(clist.size() > 0 && clist.size()==2)
-			{
-				if(clist[0].email != null && clist[0].email != '')
-				ao.AF_AgencyUsers1__c = clist[0].email;
-				if(clist[1].email != null && clist[1].email != '')
-				ao.AF_AgencyUsers2__c = clist[1].email;
-			}
-			if(clist.size() > 0 && clist.size()==3)
-			{
-				if(clist[0].email != null && clist[0].email != '')
-				ao.AF_AgencyUsers1__c = clist[0].email;
-				if(clist[1].email != null && clist[1].email != '')
-				ao.AF_AgencyUsers2__c = clist[1].email;
-				if(clist[2].email != null && clist[2].email != '')
-				ao.AF_AgencyUsers3__c = clist[2].email;
-			}
-		}
 	}
 	/**************************************************************************************
 *  @Description: this method is used to query the brandestimate and agency users 
