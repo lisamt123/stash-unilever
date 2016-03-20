@@ -30,115 +30,173 @@
                 newOp = $j('<option value="' + strArr[j] + '">' + strArr[j] + '</option>');
                 $j('#categoryList').append(newOp);
             }
+            /*
+            $j('.preventdefault a').click(function(e){
+            	alert('hello');
+            	e.preventDefault();
+            });
+            */
         });
     </script>
     <apex:include pageName="amr_common_header" />
     
     <style type="text/css">
         .compact-search-admno input{
-            width:120px;
+            width:130px;
         }
         .compact-search-date input {
-            width:75px;
+            width:85px;
         }
-    
+        .pablock select {
+        	width:170px;
+        }
+        .pablock input {
+        	width:130px;
+        }        
+    	#stblockRAP input{
+    		width:275px;
+    	}
+    	#stblockCAP input{
+    		width:120px;
+    	}
+    	#stblockCAP{
+    		margin-right:20px;
+    	}
+    	.bpnblock input{
+    		width:120px;
+    	}
+    	.bnblock input {
+    		width:130px;
+    	}
+    	.saving-summary-list td{
+    		border: 1px solid #e6e6e6 !important;
+    	}
+    	.apexp {
+    		overflow-x:auto !important;
+    	}
+    	.bud-res-block-big select {
+    		width:173px;
+    	}
+    	.bud-res-block select {
+    		width:170px;
+    	}
+    	.cap-dashboard .pbBody {
+    		background:#FFFFFF !important;
+    	}
+    	.cap-dashboard {
+    		min-height:318px;
+    	}
     </style>
-    <div class="job-portfolio-container saving_summary_container margin-top10">
+    <div class="job-portfolio-container saving_summary_container margin-top20">
         <apex:form >
-            <div class="leftbar bg-g1" style="width:29.3%">
+            <div class="leftbar bg-g1" style="width:33.3%">
                 <div class="leftbar-container bg-g1 margin-btwn-container">
                     <div class="leftbar-container-header dark-blue-header">
                         {!$Label.Amr_Search} &amp; {!$Label.Amr_Filter}
                     </div>
-                    <div class="leftbar-container-content margin12 bg-w8 padding12 compact-search" style="min-height:244px;"><!-- initial-search -->
-                        <div class="input-section">
-                            <div class="displayinlineblock margin-top8imp">                                
-                                <div class="compact-search-admno">
-                                    <apex:inputField value="{!jobDetailObj.AdManagerText__c}" html-placeholder="AdManager No." />
-                                </div>
+                    <div class="leftbar-container-content margin12 bg-w8 padding12 compact-search" style="min-height:{!if(permissionSetName = 'CAP','244px','200px')}"><!-- initial-search -->
+                        <div class="input-section" style="min-height:{!if(permissionSetName = 'CAP','212px','160px')}">
+                        	<div class="margin-bottom10">
+                        		<div class="left">
+		                            <div class="displayinlineblock margin-top8imp margin-right10">                                
+		                                <div class="compact-search-admno">
+		                                    <apex:inputField value="{!jobDetailObj.AdManagerText__c}" html-placeholder="AdManager No." html-autocomplete="off" />
+		                                </div>
+		                            </div>
+		                            <div class="displayinlineblock margin-top8imp margin-right10">
+		                                <div class="compact-search-date">
+		                                    <input type="text" placeholder="Start Date" class="inputTextCommon" id="datepicker2" onchange="callActionFunctionStartDate(this.value);" />
+		                                </div>
+		                            </div>
+		                            <div class="displayinlineblock margin-top8imp margin-right10">
+		                                <div class="compact-search-date">
+		                                    <input type="text" placeholder="End Date" class="inputTextCommon" id="datepicker1" onchange="callActionFunctionEndDate(this.value);" />
+		                                </div>
+		                            </div>
+	                            </div>
+	                            <div class="right margin-top8imp">
+	                            	<apex:commandLink value="Clear Filter" action="{!clearJob}" />
+	                            </div>
+	                            <div class="clear"></div> 
                             </div>
-                            <div class="displayinlineblock margin-top8imp">
-                                <div class="compact-search-date">
-                                    <input type="text" placeholder="Start Date" class="inputTextCommon" id="datepicker2" onchange="callActionFunctionStartDate(this.value);" />
-                                </div>
+                            <div class="margin-bottom10">                            
+	                            <div class="displayinlineblock pablock margin-right10">
+	                                <div class="job-field-label left margin-top8imp margin-right5">{!$Label.Amr_Production_activity_type}</div>
+	                                <div class="job-field-input left">
+	                                    <apex:inputField value="{!savingObject.Production_Type__c}" />
+	                                </div>
+	                                <div class="clear"></div>
+	                            </div>
+	                            <div class="displayinlineblock pablock right">                                
+	                                <div class="job-field-input">
+	                                    <apex:inputText value="{!categoryName}" html-placeholder="{!$Label.Amr_Category}" />
+	                                </div>
+                            	</div>	                            
                             </div>
-                            <div class="displayinlineblock margin-top8imp">
-                                <div class="compact-search-date">
-                                    <input type="text" placeholder="End Date" class="inputTextCommon" id="datepicker1" onchange="callActionFunctionEndDate(this.value);" />
-                                </div>
+                            <div class="margin-bottom10">
+	                            <div class="displayinlineblock left" id="{!if(permissionSetName = 'CAP','stblockCAP','stblockRAP')}">
+	                                <div class="job-field-input">
+	                                    <apex:inputField value="{!savingObject.Script_Title__c}" html-placeholder="Script Title" />
+	                                </div>
+		                        </div>
+	                            <div class="displayinlineblock bpnblock" style="display:{!if(permissionSetName = 'CAP','','none')}">                                
+	                                <div class="job-field-input">                                    
+	                                    <apex:inputText value="{!brandPosName}" html-placeholder="{!$Label.Amr_Brand_Position_Name}" />
+	                                </div>
+	                            </div>
+	                            <div class="displayinlineblock right bnblock">
+	                                <div class="job-field-input">
+	                                    <apex:inputText value="{!brandNameFromPage}" html-placeholder="{!$Label.Amr_Brand_Name}" />
+	                                </div>
+                            	</div>
+	                            <div class="clear"></div>
                             </div>                            
-                            <div class="displayinlineblock">
-                                <div class="job-field-label">{!$Label.Amr_Production_activity_type}</div>
-                                <div class="job-field-input">
-                                    <apex:inputField value="{!savingObject.Production_Type__c}" />
-                                </div>
-                            </div>
-                            <div class="displayinlineblock">
-                                <div class="job-field-input">
-                                    <apex:inputField value="{!savingObject.Script_Title__c}" html-placeholder="Script Title" />
-                                </div>
-                            </div>
 
-                            <div class="displayinlineblock">
-                                <!-- 
-                                <div class="job-field-label">{!$Label.Amr_Category}</div>
-                                
-                                   <select id="categoryList" size="1" onchange="transferCategoryValue(this.value)" reRender="brandPosPick" class="categorySelected"></select> -->
-                                <div class="job-field-input">
-                                    <apex:inputText value="{!categoryName}" html-placeholder="{!$Label.Amr_Category}" />
+                            <div class="cap-section" style="display:{!if(permissionSetName = 'CAP','','none')}">                                
+                                <div class="margin-bottom10">
+	                                <div class="displayinlineblock bud-res-block left">
+	                                    <div class="job-field-label left margin-top8imp margin-right10">{!$Label.Amr_Region}</div>
+	                                    <div class="job-field-input left">
+	                                        <apex:inputField value="{!jobDetailObj.Project_Leader_Cluster__c}" />
+	                                    </div>
+	                                    <div class="clear"></div>
+	                                </div>
+	                                <div class="displayinlineblock bud-res-block right">
+	                                    <div class="job-field-label left margin-top8imp margin-right10">{!$Label.Amr_Country}</div>
+	                                    <div class="job-field-input left">
+	                                        <apex:inputField value="{!jobDetailObj.Project_Leader_Country__c}" />
+	                                    </div>
+	                                    <div class="clear"></div>
+	                                </div>
+	                                <div class="clear"></div>
                                 </div>
-                            </div>
-
-                            <div class="displayinlineblock" style="display:{!if(permissionSetName = 'CAP','','none')}">                                
-                                <div class="job-field-input">                                    
-                                    <apex:inputText value="{!brandPosName}" html-placeholder="{!$Label.Amr_Brand_Position_Name}" />
-                                </div>
-                            </div>
-                            <div class="job-field-parent displayinlineblock">
-                                <div class="job-field-input">
-                                    <apex:inputText value="{!brandNameFromPage}" html-placeholder="{!$Label.Amr_Brand_Name}" />
-                                </div>
-                            </div>
-
-                            <div class="cap-section" style="display:{!if(permissionSetName = 'CAP','','none')}">
-                                <div class="job-field-parent displayinlineblock">
-                                    <div class="job-field-label">{!$Label.Amr_Budget_Responsibility}</div>
-                                    <div class="job-field-input">
+                                <div class="displayinlineblock bud-res-block-big margin-bottom10">
+                                    <div class="job-field-label left margin-top8imp margin-right10">{!$Label.Amr_Budget_Responsibility}</div>
+                                    <div class="job-field-input left">
                                         <apex:inputField value="{!jobDetailObj.Budget_Responsibility__c}" html-placeholder="Budget Responsibility" />
                                     </div>
+                                    <div class="clear"></div>
                                 </div>
-                                <div class="job-field-parent displayinlineblock">
-                                    <div class="job-field-label">{!$Label.Amr_Region}</div>
-                                    <div class="job-field-input">
-                                        <apex:inputField value="{!jobDetailObj.Project_Leader_Cluster__c}" />
+                                <div class="displayinlineblock bud-res-block-big">
+                                    <div class="job-field-label margin-top8imp margin-right10 left" style="text-align: right;width:120px;">{!$Label.Amr_RAP_Name}</div>
+                                    <div class="left">
+	                                    <apex:selectList label="Select the user Name" size="1" value="{!selectedRapName}">
+	                                        <apex:selectOptions value="{!rapNameList}" />
+	                                    </apex:selectList>
                                     </div>
-                                </div>
-                                <div class="job-field-parent displayinlineblock">
-                                    <div class="job-field-label">{!$Label.Amr_Country}</div>
-                                    <div class="job-field-input">
-                                        <apex:inputField value="{!jobDetailObj.Project_Leader_Country__c}" />
-                                    </div>
-                                </div>
-                                <div class="job-field-parent displayinlineblock">
-                                    <div class="job-field-label">{!$Label.Amr_RAP_Name}</div>
-                                    <apex:selectList label="Select the user Name" size="1" value="{!selectedRapName}">
-                                        <apex:selectOptions value="{!rapNameList}" />
-                                    </apex:selectList>
+                                    <div class="clear"></div>
                                 </div>
                             </div>
                             <div class="clear">
                             </div>
-                        </div>
-                        <div class="left bold inputclass padding-top10">
-                            <a class="advance-popup" href="#">{!$Label.Amr_Advanced_Search}</a>
-                        </div>
+                        </div>                        
                         <div class="right">
                             <div class="right">
                                 <apex:commandButton styleClass="commonbtn-blue" value="Apply" action="{!getJobSearchDetails}" reRender="listRefresh,lstcancelid" status="actionStatusJobsSorting"></apex:commandButton>
                             </div>
-                            <div class="right margin-right20">
-                                <apex:commandButton styleClass="commonbtn" value="Clear" action="{!clearJob}" />
-                            </div>
+                            <div class="right bold inputclass padding-top10 margin-right20">
+                            	<a class="advance-popup" href="#">{!$Label.Amr_Advanced_Search}</a>
+                        	</div>
                             <div class="clear">
                             </div>
                         </div>
@@ -265,14 +323,14 @@
 
             </div>
             <!-- Advance search popup End  -->
-            <div class="rightbar bg-g1" style="width:69.3%;">
+            <div class="rightbar bg-g1" style="width:65.3%;">
                 <div class="leftbar-container bg-g1 margin-btwn-container">
                     <div class="leftbar-container-header dark-blue-header">
                         Dashboard
                     </div>
-                    <div class="leftbar-container-content margin12 bg-w8" style="padding:10px 12px 0px;min-height:258px;display:{!if(permissionSetName = 'CAP','none','')}">
-                        <div class="margin-top8 left" style="width:40%;">
-                            <div class="bold">Total Submission made</div>
+                    <div class="leftbar-container-content margin12 bg-w8" style="padding:10px 12px 0px;min-height:214px;display:{!if(permissionSetName = 'CAP','none','')}">
+                        <div class="margin-top8 left" style="width:47%;">
+                            <div class="bold" style="color:#205EA5">Total Submission made</div>
                             <div>
                                 <apex:chart height="110" width="90%" data="{!pieDataRap}" colorSet="#FFC000,#4472C3,#FFC000">
                                     <apex:axis type="Numeric" position="bottom" fields="data" />
@@ -281,8 +339,8 @@
                                 </apex:chart>
                             </div>
                         </div>
-                        <div class="left" style="width:40%;">
-                            <div class="bold">Total Saving made</div>
+                        <div class="left" style="width:47%;">
+                            <div class="bold" style="color:#205EA5">Total Saving made</div>
                             <div>
                                 <apex:chart height="110" width="90%" data="{!pieSavingDataRaps}" colorSet="#70309F,#7F7F7F,#70309F">
                                     <apex:axis type="Numeric" position="bottom" fields="data" />
@@ -291,27 +349,37 @@
                                 </apex:chart>
                             </div>
                         </div>
-                        <apex:repeat value="{!yourYTDSpend}" var="var">
-                            {!var['savCurrentCostYTD']} Your YTD Spend
-                        </apex:repeat>
+                        <div class="clear">
+                        </div>
+                        <div style="color:#4CB99A;font-size:24px;margin-left:90px;margin-top:20px;">
+	                        <apex:repeat value="{!yourYTDSpend}" var="var">
+	                            {!var['savCurrentCostYTD']} Your YTD Spend
+	                        </apex:repeat>
+                        </div>
                     </div>
 
-                    <div style="display:{!if(permissionSetName = 'CAP','','none')}">
+                    <div style="display:{!if(permissionSetName = 'CAP','','none')}" class="leftbar-container-content margin12 bg-w8 cap-dashboard">
 
                         <apex:pageblock >
-                            <apex:chart height="100" width="300" data="{!pieSavingDataRaps}">
+                            <apex:chart height="200" width="600" data="{!pieSavingDataRaps}">
                                 <apex:pieSeries dataField="data" donut="50" colorSet="#70AB46,#70309F">
                                     <apex:chartLabel display="none" />
                                 </apex:pieSeries>
                                 <apex:legend position="right" />
                             </apex:chart>
                         </apex:pageblock>
-                        <apex:repeat value="{!globalYTDSpend}" var="var">
-                            {!var['savCurrentCostYTD']} Global YTD Spend
-                        </apex:repeat><br/>
-                        <apex:repeat value="{!savingActivitiesSubmitted}" var="var">
-                            {!var['savCurrentYearToDate']} No.Saving activities submitted
-                        </apex:repeat>
+                        <div style="color:#4CB99A;font-size:24px;margin-left:90px;margin-top:20px;">
+	                        <div>
+		                        <apex:repeat value="{!globalYTDSpend}" var="var">
+		                            {!var['savCurrentCostYTD']} Global YTD Spend
+		                        </apex:repeat>
+	                        </div>
+	                        <div>
+	                        	<apex:repeat value="{!savingActivitiesSubmitted}" var="var">
+	                            	{!var['savCurrentYearToDate']} No.Saving activities submitted
+	                        	</apex:repeat>
+	                        </div>
+                        </div>
 
                     </div>
 
@@ -325,7 +393,7 @@
 
             </div>
 
-            <div class="bg-g1 margin-top20 submitted-saving-list">
+            <div class="bg-g1 margin-top20 saving-summary-list">
                 <h4 class="main_inner_sectionh4">
                     Submitted Savings                    
                     <div data-id="submitted-saving-list-section" class="commonall foldclass">                                     
@@ -515,9 +583,11 @@
                                         <apex:column headerValue="Shoot Location">
                                             <apex:outputText value="{!job.Shoot_Location_Multiselect__c}" />
                                         </apex:column>
+                                        <!--  
                                         <apex:column headerValue="Stage RAP Was Engagged">
                                             <apex:outputText value="{!job.Stage_RAP_engaged__c}" />
                                         </apex:column>
+                                        -->
                                         <apex:column headerValue="Scope Of Re-Breif">
                                             <apex:outputText value="{!job.Scope_re_brief__c}" />
                                         </apex:column>
@@ -770,8 +840,12 @@
                                         <apex:column headerValue="Q4 PC Name">
                                             <apex:outputText value="{!job.Quotes__r[3].PC_name__c}" />
                                         </apex:column>
-                                        <apex:column headerValue="Q4 PC Country Location">
-                                            <apex:outputText value="{!job.Quotes__r[3].PC_Country__c}" />
+                                        <apex:column headerValue="Q4 PC Country Location">                                            
+                                            <apex:outputText >
+                                                <div class="td-overflow width80">
+                                                    {!job.Quotes__r[3].PC_Country__c}
+                                                </div>
+                                            </apex:outputText>
                                         </apex:column>
                                         <apex:column headerValue="Q4 Service Company Name">
                                             <apex:outputText value="{!job.Quotes__r[3].Service_Company_Name__c}" />

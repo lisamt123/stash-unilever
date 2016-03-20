@@ -23,7 +23,6 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
     public String categoryName{get;set;}
     public String brandPos{get;set;}
     public String brandName{get;set;}
-    String broadMarket;
     public String userName{get;set;}
     public String acceptedString;
     public String cancelledString;
@@ -72,7 +71,6 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
         try{
         jobAllocation =new Amr_Job_Allocation__c();
         jobDetails =new Amr_Job_Details__c();
-        broadMarket='';
         alertList = new List<Amr_Alert__c>();
         hideAlertObj = new Amr_Alert__c();
         unHideAlertList = new List<Amr_Alert__c>();
@@ -102,11 +100,8 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
             rapNameList.add(obj);
   
         }
-        
-     //getAlertRecords();
-    getJobSearchDetails();
-    getTotalJobs();     
-    
+     getJobSearchDetails();
+      
     //cancellation
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -128,33 +123,7 @@ Returns: It will return category records in JSON format.
         return JSON.serialize(categoryString);
     }
    
-    /* public List<SelectOption> getBrandPositioningList(){ 
-        try{ 
-         system.debug('categoryName!!'+categoryName);
-         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
-         Set<String> brandPositionlst = new Set<String>();
-         
-         for(String cat:utiltyObj.categoryBrandPositionMap.keySet()){
-            if(cat == categoryName){
-                brandPositionlst = utiltyObj.categoryBrandPositionMap.get(cat);
-            }
-            
-         }
-         
-         listOfBrandPosition = new List<SelectOption>();
-         listOfBrandPosition.add(new selectOption(NONE,NONE));
-         for(String bps : brandPositionlst){
-             listOfBrandPosition.add(new selectOption(bps,bps));
-         }
- 
-        system.debug('brandPositionList----->'+listOfBrandPosition);
-        return listOfBrandPosition;
-        }catch(Exception ex){
-            system.debug(ex.getMessage());
-            return null;
-        }
-         
-     } */
+    
 /***********************************************************************************************************************************
 Purpose: Method to get brand position records from utility class.
 Parameters: 
@@ -163,12 +132,9 @@ Returns:
 ************************************************************************************************************************************/     
        public PageReference  brandPositionListData(){  
         try{  
-        System.debug('BBBBBBRANDDD ->'+ categoryName);  
+       
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
         Set<MDO_BrandPositions__c> brandPositionlst = utiltyObj.brandPostitionValues(categoryName);
-
-        system.debug('brandPositionListttoo----->'+brandPositionlst );
-
         listOfBrandPosition = new List<SelectOption>();
         listOfBrandPosition.add(new selectOption(NONE,NONE));
         Set<String> brnadPosNameSet = new Set<String>();
@@ -180,8 +146,7 @@ Returns:
                 brnadPosNameSet.add(bps.brand_position_id__r.name);
             }
         }
-
-        system.debug('brandPositionListtt----->'+listOfBrandPosition);
+       
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
@@ -256,76 +221,8 @@ Returns: List of project names in JSON format.
            return JSON.serialize(listString);
     }
     
- /***********************************************************************************************************************************
-Purpose: Method to get count of pending,priority,dormant and live jobs.It will be useful to display on dashboard.
-Parameters: 
-Returns: 
-
-************************************************************************************************************************************/   
-    public void getTotalJobs() {
-        try{
-        TotalJobs = [SELECT count()  FROM  Amr_Job_Details__c limit 50000 ];
-        
-        system.debug('Value is !!'+TotalJobs); 
-        
-        
-        TotalPendingJobs  = [SELECT count()  FROM  Amr_Job_Details__c where  Amr_Job_Details__c.Job_Status__c = :Label.Amr_Status_Priority ];
-        TotalLiveJobs     = [SELECT count()  FROM  Amr_Job_Details__c where  Amr_Job_Details__c.Job_Status__c = :Label.Amr_Status_Live ];
-        TotalPriorityJobs = [SELECT count()  FROM  Amr_Job_Details__c where  Amr_Job_Details__c.Job_Status__c = :Label.Amr_Status_Pending ];
-        TotalDormantJobs  = [SELECT count()  FROM  Amr_Job_Details__c where  Amr_Job_Details__c.Job_Status__c = :Label.Amr_Status_Dormant ];
-        TotalSavingsJobs  = [SELECT count() from Amr_Saving__c limit 50000];
-        }catch(Exception ex){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
-            system.debug(ex.getMessage());
-        }
-    }
    
-   /*  public void getAlertRecords(){
-        alertList = [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false];
-        system.debug('alertList !!'+alertList);
-    }
-    
-    public PageReference hideAlert(){
-    
-    showUnhideRecords = false;
-    flagForButtons = false;
-    
-         system.debug('chosenAlertId !!'+chosenAlertId);
-        hideAlertObj = [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where Id=:chosenAlertId limit 1];
-         system.debug('chosenAlertId!!'+chosenAlertId);
-         For(Amr_Alert__c alert:alertList){
-             if(alert.Id == hideAlertObj.Id){
-                 alert.Hide__c = true;
-             }
-         }
-         update alertList;
-         getAlertRecords();
-         system.debug('alertList inside hide alrert!!'+alertList);
-        return null;
-    }
-    
-    public PageReference unHideAlertShow(){
-       
-        unHideAlertList = [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:true];
-        if(unHideAlertList.size()>0){
-        showUnhideRecords = true;
-        flagForButtons = true;
-        }
-        system.debug('unHideAlertList !!'+unHideAlertList );
         
-        return null;
-    }
-    
-     
-    public PageReference unHideAlertHide(){
-    
-       showUnhideRecords =false;
-       flagForButtons = false;
-       
-                
-        return null;
-    }*/
-      
 /***********************************************************************************************************************************
 Purpose: Method to create options for sort by functionality.
 Parameters: 
@@ -603,9 +500,7 @@ Returns:
      soql+=' limit 50000';
      soqlForCancel+=' limit 50000';
      system.debug('soql !!'+soql +'soqlForCancel!!'+soqlForCancel);
-     
-   // jobDetailList = Database.query(soql);
-    system.debug('jobDetailList !!'+jobDetailList );
+      
     Set<String> setJobAllocationId = new Set<String>();
      
     for(Amr_Job_Allocation__c sObj: Database.query(soql) ){
@@ -614,12 +509,10 @@ Returns:
                 jobDetailList.add(sObj ) ;
              }
      }
-    System.debug('Final List -->>  ' + jobDetailList);
+   
     //cancellation
     jobDetailCancellationList = Database.query(soqlForCancel);
-    system.debug('jobDetailCancellationList !!'+jobDetailCancellationList );
-    
-    paginationMethodForActiveJobs(jobDetailList);
+     paginationMethodForActiveJobs(jobDetailList);
        
      wrapperList = new List<wrapperClass>();
      Set<String> setJobAllocation = new Set<String>();

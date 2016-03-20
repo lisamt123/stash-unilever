@@ -142,7 +142,7 @@ public class Amr_RAPJobPortfolioController_Test {
     jobPortFolio.getDisableNextForLiveJobs();
     jobPortFolio.getDisablePreviousForLiveJobs();
     jobPortFolio.getMethodToPassProjectNames();
-    jobPortFolio.getTotalJobs();
+    //jobPortFolio.getTotalJobs();
     jobPortFolio.getTypes();
     jobPortFolio.getPieData();
     jobPortFolio.getPieDataSaving();

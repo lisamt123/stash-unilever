@@ -1,7 +1,16 @@
-/*
-    This class deals with various job releated funtionality
-    like job accept, job sharing, job update etc.
-*/
+/**********************************************************************  
+Name:  Amr_JobSheetController_CC ()  Copyright © 2015  Salesforce  
+====================================================== 
+====================================================== 
+Purpose:                                                           
+-------    This class deals with various job releated funtionality like job accept, job sharing, job update etc.                                                         
+ ====================================================== 
+ ====================================================== 
+ History                                                             
+ -------                                                             
+ VERSION   AUTHOR                        DATE              DETAIL                    Description    
+ 1.0       Mindtree                  16/12/2015      INITIAL DEVELOPMENT            CSR: 
+ ***********************************************************************/
 public with sharing class Amr_JobSheetController_CC{
 
     public String docUploaded{get;set;}
@@ -90,6 +99,10 @@ public with sharing class Amr_JobSheetController_CC{
     public Amr_JobSheetHelper_CC jobSheetHelper;
    
     public List<FeedItem> documentList{get;set;}
+     public List<Amr_Saving__c> quoteList{get;set;}
+    public List<Amr_Quote__c> quoteRelatedToSavingList{get;set;}
+ 
+    public string userId{get;set;}
    
     public Amr_JobSheetController_CC(){
     try{
@@ -292,7 +305,7 @@ public with sharing class Amr_JobSheetController_CC{
              shootLocation.add(new SelectOption(countryObj.Country__c,countryObj.Country__c));
             }                       
              userId = userinfo.getuserid();
-            updateData();
+            jobSheetHelper.updateData(jobId,jobDetailObj,quoteList,quoteRelatedToSavingList,adManagerNumber,userId);
         }catch(Exception ex){
             System.debug( ex.getmessage());
         }
@@ -300,80 +313,7 @@ public with sharing class Amr_JobSheetController_CC{
          
      }
       
-    /* 
-        This method contains the logic to update the created job
-    */       
-    public void updateData(){
-        try{
-             
-            List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='CAP' order by Assignee.name];
-            boolean flag = false;
-            for(PermissionSetAssignment permissionObj:PermissionSetAssignmentList){
-                 if(userId == permissionObj.Assignee.id){
-                   
-                    flag = true;
-                    
-                    break;
-                 }
-             }
-             if(jobId!=null){
-            jobDetailObj = [select id,AdManagerText__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,
-                                                     NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
-                                                     NewOriginalMasterInternalVideo__c,LanguageAdaptionMasterTv__c,LanguageAdaptionMasterCinema__c,LanguageAdaptionMasterRadio__c,
-                                                     LanguageAdaptionMasterPrint__c,LanguageAdaptionMasterOutofHome__c,LanguageAdaptionMasterInStore__c,LanguageAdaptionMasterDigital__c,
-                                                     LanguageAdaptionMasterInternalVideo__c,AdditionalSupplementaryNewMaterialTv__c,AdditionalSupplementaryNewMaterialCinema__c,
-                                                     AdditionalSupplementaryNewMaterialRadio__c,AdditionalSupplementaryNewMaterialPrint__c,AdditionalSupplementaryNewMaterialOOH__c,
-                                                     AdditionalSupplementaryNewMaterialStore__c,AdditionalSupplementaryNewMaterialDigi__c,AdditionalSupplementaryNewMaterialIVideo__c,
-                                                     ReworkExistingMaterialTv__c,ReworkExistingMaterialCinema__c,ReworkExistingMaterialRadio__c,ReworkExistingMaterialPrint__c,
-                                                     ReworkExistingMaterialOutofHome__c,ReworkExistingMaterialInStore__c,ReworkExistingMaterialDigital__c,ReworkExistingMaterialInternalVideo__c,
-                                                     BuyoutsTalentTv__c,BuyoutsTalentCinema__c,BuyoutsTalentInStore__c,BuyoutsTalentRadio__c,BuyoutsTalentPrint__c,BuyoutsTalentOutofHome__c,
-                                                     BuyoutsTalentDigital__c,BuyoutsTalentInternalVideo__c,BuyoutsMusicTv__c,BuyoutsMusicCinema__c,BuyoutsMusicRadio__c,BuyoutsMusicPrint__c,
-                                                     BuyoutsMusicOutofHome__c,BuyoutsMusicInStore__c,BuyoutsMusicDigital__c,BuyoutsMusicInternalVideo__c 
-                                                      
-                                                     from Amr_Job_Details__c where id = :jobId];
-                    }
-            
-            if(jobId != null){
-                 if(flag){
-                      quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,Duration_of_Additional_Films__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,LastModifiedById, 
-                               No_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c, Duration_of_Masters__c,
-                               Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,Local_Amount_of_PPC__c,Local_Currency_of_PPC_Costs__c,PPC_Costs_Euro_Amount__c,CA_Location__c,CA_Additional_agency_Name__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c
-
-                               ,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where Job_Details__r.id = :jobId];
-                     
-                 }else{
-                   quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,Duration_of_Additional_Films__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,LastModifiedById, 
-                               No_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,Duration_of_Masters__c,
-                               Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,Local_Amount_of_PPC__c,Local_Currency_of_PPC_Costs__c,PPC_Costs_Euro_Amount__c,CA_Location__c,CA_Additional_agency_Name__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c
-
-                               ,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where Job_Details__r.id = :jobId AND (CreatedById = :userId OR LastModifiedById = :userId )];
-                      
-                 }            
-                  Set<Id>savingIds=new Set<Id>();
-                      for(Amr_Saving__c saving:quoteList){
-                        savingIds.add(saving.Id);
-                      }
-                      quoteRelatedToSavingList = [select Saving_Type__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Accepted_Final_Cost_props_wardrobe__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,
-                                           Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,PPC_Costs_Euro_Amount__c,
-                                           Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,
-                                           Local_Currency_of_PPC_Costs__c,Local_Amount_of_PPC__c,CA_Costs_Euro_Amount__c,
-                                           CA_Additional_agency_Name__c,CA_Location__c,Is_Accepted__c,
-                                           Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,PC_Costs_Euro_Amount__c,
-                                           Total_Cost__c,id,Folder__c from Amr_Quote__c where Saving__c IN :savingIds ORDER BY Quote_Number__c];             //
-               
-              
-                if(quoteList.size()>0){
-                        adManagerNumber = quoteList[0].Job_Details__r.AdManagerText__c;
-                }else{
-                   Amr_Job_Details__c jobObj = [select AdManagerText__c from Amr_Job_Details__c where id = :jobId];
-                   adManagerNumber = jobObj.AdManagerText__c;
-                }
-            }
-      
-        }catch(exception ex){
-          System.debug(ex.getmessage());
-        }
-    }
+    
       
     
     public  Document document {
@@ -392,10 +332,7 @@ public with sharing class Amr_JobSheetController_CC{
         }set;
     }  
     
-    public List<Amr_Saving__c> quoteList{get;set;}
-    public List<Amr_Quote__c> quoteRelatedToSavingList{get;set;}
- 
-    public string userId{get;set;}
+   
  
   
   public List<selectOption> currencyRecords {
@@ -775,24 +712,7 @@ Returns:
         return JSON.serialize(categoryString);
     }
    
-  /***********************************************************************************************************************************
-Purpose: Method to get all the project names.
-Parameters: 
-Returns: 
-
-************************************************************************************************************************************/    
-     public List<SelectOption> getProjectNameList(){      
-        
-         listOfProjectName = new List<SelectOption>();
-         List<Amr_Project_Details__c> ProjectNameList= [Select id,Name from Amr_Project_Details__c order by name limit 500];
-         listOfProjectName .add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
-         for(Amr_Project_Details__c cat : ProjectNameList){
-             listOfProjectName.add(new selectOption(cat.Id,cat.Name));
-         }
-        
-        
-         return listOfProjectName ;
-     }
+ 
  
   /***********************************************************************************************************************************
 Purpose: Method to get all the brand positions on the basis of selected category.
@@ -843,8 +763,6 @@ Returns:
 ************************************************************************************************************************************/     
        public List<SelectOption> getBrandList(){      
         listOfBrand = new List<SelectOption>();
-       
-
         listOfBrand.add(new selectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
 
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();

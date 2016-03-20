@@ -79,7 +79,7 @@ public class Amr_CAPJobPortfolioController_Test{
         jobPortFolio.getDisableNextForCancelJobs();
         jobPortFolio.getDisablePreviousForCancelJobs();
         jobPortFolio.getMethodToPassProjectNames();
-        jobPortFolio.getTotalJobs();
+        
         system.assert(jobDetail!=null);
     
     }
