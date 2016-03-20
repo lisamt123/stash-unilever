@@ -257,7 +257,8 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
     <fields>
         <fullName>Expected_Start_Date_for_DBTD_PWO__c</fullName>
         <externalId>false</externalId>
-        <label>Expected Start Date for DBTD PWO*</label>
+        <inlineHelpText>This is mandatory if project phases are DBTD</inlineHelpText>
+        <label>Expected Start Date for DBTD PWO</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>

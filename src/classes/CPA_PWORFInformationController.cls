@@ -152,9 +152,16 @@ global with sharing class CPA_PWORFInformationController {
                 if(pworfRec.dt_Expected_start_date__c == null){
                     objectMap.put(CPA_ConstantsForContractingAppClasses.EXPECTEDSTDT ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
-                if(pworfRec.Expected_Start_Date_for_DBTD_PWO__c == null){
-                    objectMap.put(CPA_ConstantsForContractingAppClasses.EXPSTDTFORDBTDPWO ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+                //Dinesh added below code on 20/03/2016, to fix new UAT issue number 2 (P2)
+                if(pworfRec.mpkl_Project_Phases__c != null && (pworfRec.mpkl_Project_Phases__c).equalsIgnoreCase('Design;Build;Test;Deploy') && pworfRec.Expected_Start_Date_for_DBTD_PWO__c == null){
+                    objectMap.put(CPA_ConstantsForContractingAppClasses.EXPSTDTFORDBTDPWO ,'Mandatory, only when project phases are Design,Build,Test,Deploy');
                 }
+                if(pworfRec.mpkl_Project_Phases__c != null && pworfRec.mpkl_Project_Phases__c != 'Design;Build;Test;Deploy' && pworfRec.Expected_Start_Date_for_DBTD_PWO__c != null){
+                    objectMap.put(CPA_ConstantsForContractingAppClasses.EXPSTDTFORDBTDPWO ,'Mandatory, only when project phases are Design,Build,Test,Deploy');
+                }
+                //if(pworfRec.Expected_Start_Date_for_DBTD_PWO__c == null){
+                //    objectMap.put(CPA_ConstantsForContractingAppClasses.EXPSTDTFORDBTDPWO ,CPA_ConstantsForContractingAppClasses.MANDATORY);
+               // }
                 if(pworfRec.Expected_Start_Date_for_Plan_and_Analyse__c == null){
                     objectMap.put(CPA_ConstantsForContractingAppClasses.EXPECTEDPASTARTDATE ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
@@ -274,10 +281,11 @@ global with sharing class CPA_PWORFInformationController {
                         break;
                     }
                 }
-                if(!user_has_permission){                    
-                    if(pworfRec.dt_Expected_start_date__c  != null && pworfRec.dt_Expected_start_date__c  < date.today() ){
-                       objectMap.put(CPA_ConstantsForContractingAppClasses.EXPECTEDSTDT,CPA_ConstantsForContractingAppClasses.EXPECTEDSTARTDATEVALIDATION);
-                    }
+                if(!user_has_permission){
+                    //Commented below code to fix new UAT issue number 3 (P2)
+                    //if(pworfRec.dt_Expected_start_date__c  != null && pworfRec.dt_Expected_start_date__c  < date.today() ){
+                    //   objectMap.put(CPA_ConstantsForContractingAppClasses.EXPECTEDSTDT,CPA_ConstantsForContractingAppClasses.EXPECTEDSTARTDATEVALIDATION);
+                    //}
                     if(pworfRec.dt_Expected_go_live_date__c  != null && pworfRec.dt_Expected_go_live_date__c  < date.today() ){
                        objectMap.put(CPA_ConstantsForContractingAppClasses.EXPECTEDGOLIVEDATE,CPA_ConstantsForContractingAppClasses.EXPTGOLIVEDATENOTPASTDATE);
                     }                      

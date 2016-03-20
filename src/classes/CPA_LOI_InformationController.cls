@@ -52,7 +52,7 @@ global with sharing class CPA_LOI_InformationController {
     boolean CreateRequiredFieldMessage(id loiId,boolean callFromVF){
         RequiredFieldMap = new Map<String,String>();
         mandatoryStringFlag = null;
-         LoiRec = [select id,isValidated__c,cur_Total_value_in_Euro_being_requested__c,txt_Other_Phases_Covered_by_W_R__c,num_Total_value_in_being_requested_for__c,num_Total_number_of_man_days_requested__c,chk_Contract_Attached__c,pkl_Status__c,pkl_Currency__c,num_Expense_charges_of_LOI__c,txt_Internal_PWO_ID__c,dt_LOI_End_date__c,dt_LOI_Start_Date__c,mpkl_Phases_covered_by_WAR__c,txt_PWO_number__c,txt_PWO_title__c,txt_Unilever_Clarity_ID__c, eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, txt_Other_Currency__c from CPA_LOI__c where id =: loiId];
+         LoiRec = [select id,isValidated__c,cur_Total_value_in_Euro_being_requested__c,txt_Other_Phases_Covered_by_W_R__c,num_Total_value_in_being_requested_for__c,num_Total_number_of_man_days_requested__c,chk_Contract_Attached__c,pkl_Status__c,pkl_Currency__c,num_Expense_charges_of_LOI__c,txt_Internal_PWO_ID__c,dt_LOI_End_date__c,dt_LOI_Start_Date__c,mpkl_Phases_covered_by_WAR__c,txt_PWO_number__c,txt_PWO_title__c,txt_Unilever_Clarity_ID__c, eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, txt_Other_Currency__c, Total_Number_of_Man_days_being_requested__c from CPA_LOI__c where id =: loiId];
         
          if(LoiRec != null){
               if((LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED) || !callFromVF){
@@ -119,6 +119,9 @@ global with sharing class CPA_LOI_InformationController {
                 }
                 if(LoiRec.txt_Unilever_Budget_Approver_Name__c == null){
                     RequiredFieldMap.put('Unilever Budget Approver Name',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                }
+                if(LoiRec.Total_Number_of_Man_days_being_requested__c == null){
+                    RequiredFieldMap.put('W@R mandays approved at MC Rates',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
                 //Dont comment below two checks, they are needed even though we optimize above if conditions
                 if(LoiRec.dt_LOI_Start_Date__c != null && LoiRec.dt_LOI_Start_Date__c < system.today()){
