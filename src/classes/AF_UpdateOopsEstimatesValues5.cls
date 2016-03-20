@@ -111,24 +111,7 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 *  @return: none.
 *************************************************************************************/	
 	public static void retrieveCurrency(List<AF_OOPS_Estimate__c> agencyRecords,List<AF_Matrix_Table__c> matrixRecords){
-		// Query for Retrieve Currency Records
-		List<AF_Currency__c> currencyrecords;
-		try{    
-			currencyrecords=[select id,Country_Currency__c,Ready_For_PO_Exchange_Rate_To_EUR__c,AF_Currency_Code__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,AF_Average_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and Country_Currency__c IN:currncycodes  and AF_Fiscal_Year_new__c IN :fYear limit 50000];
-		}
-		catch(Exception e){
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_UpdateOopsEstimatesValues5','AF_UpdateOopsEstimatesValues5',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-		}
-		if(currencyrecords.size()>0)
-		for(AF_Currency__c  curren:currencyrecords)
-		{
-			if(curren.Country_Currency__c!=null)
-			{
-				CurrencyMap.put(curren.Country_Currency__c,curren.AF_Average_Exchange_Rate_To_EUR__c);
-				CurrencyMapforUSD.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_SGD_To_USD__c );
-				CurrencyMapforGBP.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_To_EUR__c );
-			}
-		}
+		retrieveCurrencyExt();
 		if(agencyRecords.size()>0)
 		for(AF_OOPS_Estimate__c agencyEst:agencyRecords)
 		{     
@@ -178,6 +161,26 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 				} 
 				if(Testexit)
 				break;
+			}
+		}
+	}
+	public static void retrieveCurrencyExt(){
+		// Query for Retrieve Currency Records
+		List<AF_Currency__c> currencyrecords;
+		try{    
+			currencyrecords=[select id,Country_Currency__c,Ready_For_PO_Exchange_Rate_To_EUR__c,AF_Currency_Code__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,AF_Average_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and Country_Currency__c IN:currncycodes  and AF_Fiscal_Year_new__c IN :fYear limit 50000];
+		}
+		catch(Exception e){
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_UpdateOopsEstimatesValues5','AF_UpdateOopsEstimatesValues5',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		}
+		if(currencyrecords.size()>0)
+		for(AF_Currency__c  curren:currencyrecords)
+		{
+			if(curren.Country_Currency__c!=null)
+			{
+				CurrencyMap.put(curren.Country_Currency__c,curren.AF_Average_Exchange_Rate_To_EUR__c);
+				CurrencyMapforUSD.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_SGD_To_USD__c );
+				CurrencyMapforGBP.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_To_EUR__c );
 			}
 		}
 	}
