@@ -1,3 +1,17 @@
+/**********************************************************************
+Name: CPA_testGroupNameCustomSettingClass ()
+Copyright © 2015 Salesforce
+======================================================
+======================================================
+Purpose: This Class is used to get custom setting values
+-------
+======================================================
+======================================================
+History
+-------
+VERSION     AUTHOR             DATE            DETAIL Description
+1.0         Name     16/03/2016     INITIAL DEVELOPMENT CSR:
+***********************************************************************/
 public with sharing class CPA_testGroupNameCustomSettingClass {
 /*******************************************************************
     Purpose: This method is used to set the name of groups
