@@ -43,7 +43,12 @@ public with sharing class AF_Brand_Controller_Review
 				mapgroupCR.put(AFB.id,setid);
 			}
 		}
-		for(AF_Agency_Estimate__c AgE:[select id,AF_Brand_Estimate__c,AF_Unilever_Entity__r.Controller_Group__c from AF_Agency_Estimate__c where AF_Total__c > 0 and AF_Brand_Estimate__c in:BrandId])
+		Create_Review_AgencyEst(BrandId);
+	}
+	
+	public void Create_Review_AgencyEst(set<id> BrandId)
+	{
+	for(AF_Agency_Estimate__c AgE:[select id,AF_Brand_Estimate__c,AF_Unilever_Entity__r.Controller_Group__c from AF_Agency_Estimate__c where AF_Total__c > 0 and AF_Brand_Estimate__c in:BrandId])
 		{
 			if(mapgroups.containskey(AgE.AF_Brand_Estimate__c))
 			{
@@ -73,6 +78,9 @@ public with sharing class AF_Brand_Controller_Review
 				mapgroups.put(AgE.AF_Brand_Estimate__c,setid);
 			}
 		}
+		checkReview(BrandId);
+	}
+	public void checkReview(set<id> BrandId){
 		if(!mapgroups.isempty())
 		{
 			for(id idval: mapgroups.keyset())
@@ -103,7 +111,7 @@ public with sharing class AF_Brand_Controller_Review
 				List<AF_Brand_Estimate__c> lstbrandestimates =new List<AF_Brand_Estimate__c>();
 				for(AF_Brand_Estimate__c AFB:[select id,(select id,Controller_Group__c from Controller_Reviews__r) from AF_Brand_Estimate__c where id in:BrandId])
 				{
-					AFB.AF_Status_Base_Fees__c = 'With CMCO';
+					AFB.AF_Status_Base_Fees__c = AF_Constants.BASE_FEES_WIHTCMCO;
 					lstbrandestimates.add(AFB);
 				}
 				if(!lstbrandestimates.IsEmpty())
@@ -111,7 +119,7 @@ public with sharing class AF_Brand_Controller_Review
 				for(AF_Brand_Estimate__c bEstimates:lstbrandestimates){
 					Approval.ProcessSubmitRequest request = new Approval.ProcessSubmitRequest();
 					request.setObjectId(bEstimates.Id);
-					request.setComments('Submitted for approval. Please approve.');
+					request.setComments(Label.AF_Submitted);
 					request.setNextApproverIds(new ID[]{UserInfo.getUserId()});
 					// submit the approval request for processing
 					Approval.ProcessResult result = Approval.process(request);
@@ -120,4 +128,4 @@ public with sharing class AF_Brand_Controller_Review
 		}
 		AF_CheckRecursive.run=false;
 	}
-}
+	}
