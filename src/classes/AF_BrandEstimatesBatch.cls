@@ -15,6 +15,10 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
 	List<AF_Brand_Estimate__c>  InserBrandEstimates=new List<AF_Brand_Estimate__c>();
 	String Fisyear=string.valueOf(system.now().year()-1); 
 	List<AF_Brand_Estimate__c> brandEstimateupdate=new  List<AF_Brand_Estimate__c>();
+	Set<Id> brList = new Set<Id>();
+	Map<String,String> brandEstMap = new Map<String,String>();
+	Set<Id> brandEstId=new Set<Id>();
+	list<AF_Brand_Estimate__c > abelist = new list<AF_Brand_Estimate__c >();
 	/***********************************************************************************
 *  @Description: this method is start method of the Batch class
 *  @name : start
@@ -36,13 +40,11 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
 *  @param : Database.BatchableContext
 *  @return: None.
 ***********************************************************************************************/
-	global void execute(Database.BatchableContext BC,  List<AF_Brand_Estimate__c> brandEstimateList) 
-	{  
+	global void execute(Database.BatchableContext BC,  List<AF_Brand_Estimate__c> brandEstimateList){
 		list<AF_Brand_Estimate__c > abelistUpdate = new list<AF_Brand_Estimate__c >();
 		list<AF_Agency_Estimate__c> agest_list = new list<AF_Agency_Estimate__c >();
 		list<AF_OOPS_Estimate__c> aoop_list = new list<AF_OOPS_Estimate__c>();
-		Set<Id> brandEstId=new Set<Id>();
-		list<AF_Brand_Estimate__c > abelist = [select id,Name,af_agency__r.name,brand__r.name,AF_Active__c,AF_Adaptive__c ,AF_Copied__c,AF_Agency__c,Agency_Base_Fee__c,AF_Basefee_Estimate_Initial_Quarter__c,Base_Fee_Total__c,AF_Bonus_Trigger_Date__c,Brand__c,AF_Comment_Type__c,AF_Controller_Flag__c,AF_Created_By_Batch__c,AF_Digital__c,AF_Fiscal_Year__c,AF_Measure_Bonus__c,AF_Overall_OOPS__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Traditional__c,AF_Locked__c from AF_Brand_Estimate__c where id in :brandEstimateList];
+		abelist = [select id,Name,af_agency__r.name,brand__r.name,AF_Active__c,AF_Adaptive__c ,AF_Copied__c,AF_Agency__c,Agency_Base_Fee__c,AF_Basefee_Estimate_Initial_Quarter__c,Base_Fee_Total__c,AF_Bonus_Trigger_Date__c,Brand__c,AF_Comment_Type__c,AF_Controller_Flag__c,AF_Created_By_Batch__c,AF_Digital__c,AF_Fiscal_Year__c,AF_Measure_Bonus__c,AF_Overall_OOPS__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Traditional__c,AF_Locked__c from AF_Brand_Estimate__c where id in :brandEstimateList];
 		for(AF_Brand_Estimate__c abe:abelist){
 			AF_Brand_Estimate__c  abe_new = abe.clone(false,true);
 			abe_new.AF_Fiscal_Year__c = string.valueof(system.today().year());
@@ -58,14 +60,16 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
 			brandEstId.add(abe.Id);
 			abelistUpdate.add(abe_new);
 		}
-		Set<Id> brList = new Set<Id>();
-		Map<String,String> brandEstMap = new Map<String,String>();
 		Database.SaveResult[] srList = Database.insert(abelistUpdate, false);
 		for (Database.SaveResult br : srList) {
 			if(br.issuccess()){
 				brList.add(br.Id);
 			}
 		}
+		executeHelperMethod(srList);
+	}
+	public void executeHelperMethod(Database.SaveResult[] srList){
+		list<AF_Agency_Estimate__c> agest_list = new list<AF_Agency_Estimate__c >();
 		list<AF_Brand_Estimate__c > brandEstNewList = [select af_agency__r.name,brand__r.name,AF_Fiscal_Year__c from AF_Brand_Estimate__c where Id IN:brList];
 		for(AF_Brand_Estimate__c be:brandEstNewList){
 			String uniqueCombination = be.af_agency__r.name +'-'+be.brand__r.name+'-'+Fisyear;
@@ -109,7 +113,7 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
 		if(brandEstimateupdate.size() >0) 
 		update brandEstimateupdate;  
 	}
-	/********************************************************************************************
+		/********************************************************************************************
 *  @Description: this method is finish method of the Batch class
 *  @name : finish
 *  @param : Database.BatchableContext
