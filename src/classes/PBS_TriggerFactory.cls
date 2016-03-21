@@ -59,15 +59,16 @@ public with sharing class PBS_TriggerFactory
             //handler.bulkBefore(Trigger.new, Trigger.old, operationType);
 
             // Iterate through the records to be deleted passing them to the handler.
+            /*
             if (Trigger.isDelete)
             {
-               // for (SObject so : Trigger.old)
-                //{
+               for (SObject so : Trigger.old)
+                {
                     //handler.beforeDelete(so);
-               // }
-            }
+                }
+            }*/
             // Iterate through the records to be inserted passing them to the handler.
-            else if (Trigger.isInsert)
+            if (Trigger.isInsert)
             {
                 for (SObject so : Trigger.new)
                 {
