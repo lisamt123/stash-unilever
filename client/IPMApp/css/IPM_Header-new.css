@@ -32,7 +32,7 @@
 }
 /* ===GLOBAL STYLES=== */
 /*new template styling */
-	
+	.headerSearchLeftRoundedCorner #phSearchInput{font-size:12px;}
 	.ui-autocomplete{max-height:200px;overflow:auto;}
 	.mainPagehead{display:block;float:left;margin-left:15px;padding-right:15px;}
 	html{font-size:16px;}

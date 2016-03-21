@@ -25,7 +25,7 @@ function accrdn(){
 
 /* Below function checks for the validation. If the condition is true the selected checkbox will be unchecked else it will be checked. It also calls another function 'markComplete' */		
 function myAssignedTasks(taskId, isChecked) {
-	if(isChecked !== true) {     
+	if(isChecked != true) {     
 			jq('.taskCheck input[type=checkbox]#'+taskId).closest(".recordBox").removeClass("selected");
 		}else {
 			jq('.taskCheck input[type=checkbox]#'+taskId).closest(".recordBox").addClass("selected");
@@ -81,7 +81,7 @@ jq(document).ready(function(){
 /* Below script works on click event. It triggers all the links when user press enter key. */
 	jq(document).on('keydown', '.actionBox,.alertAccordian,.moreLink,.lessLink,.expico', function() { 
 		var keyCode = (event.keyCode ? event.keyCode : event.which); 
-		if (keyCode === 13) { 
+		if (keyCode == 13) { 
 		jq(this).trigger('click'); 
 		} 
 	});

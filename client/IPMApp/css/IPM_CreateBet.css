@@ -101,11 +101,11 @@
 		border-bottom: #ccc solid 1px;
 	}
 
-	td.noSidebarCell .createNewBrandExp .ipmGetStartedTab .ipmStartedTabs li.active {
+	td.noSidebarCell .createNewBrandExp #ipmGetStartedTab .ipmStartedTabs li.active {
 		top: 3px;
 	}
 
-	td.noSidebarCell .createNewBrandExp .ipmGetStartedTab .ipmStartedTabs li {
+	td.noSidebarCell .createNewBrandExp #ipmGetStartedTab .ipmStartedTabs li {
 		top: 2px;
 	}
 	.hideOwner select{
@@ -113,3 +113,4 @@
         display: block !important;
         height: 0px !important;
     }
+	

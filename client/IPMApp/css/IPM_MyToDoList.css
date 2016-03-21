@@ -13,8 +13,6 @@
 	.pull-right{float:right;}
 
 /*Table*/
-	.ipmTableDiv .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
-
 	td.colSectionName{width: 9%;}
 	td.dueDateCol{  width: 11%;}
 	td.colTaskName{width: 9%;}
@@ -37,6 +35,7 @@
     .sortIcon{font-size: 1.2em;margin-left: 8px;}
     .deleteTask{display:none;}
     .deleteTask div{padding:20px;}
+    #ipmTableDiv .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
     .dropdown-toggle {padding: 7px;position: relative;top: -7px;left: 2px;}
     .toggleContainer{border: 1px solid #1568b6;border-radius: 20px;margin-top:0 !important;}
     .toggleContainer .icoButton{border:0;margin: 0;}

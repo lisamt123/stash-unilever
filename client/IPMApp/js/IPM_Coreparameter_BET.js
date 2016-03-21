@@ -19,7 +19,7 @@ function betCallBack() {
     jq('.inputsearch').clearSearch();
     /* Below script works on key press event. It calls a function when user press enter in search box. */
     jq(".inputsearch").on("keypress", function(event) {
-        if (event.which === 13) { 
+        if (event.which == 13) { 
             renderBets();
             return false; 
         }

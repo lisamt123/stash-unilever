@@ -77,13 +77,12 @@
 	.StatusComment .txtRight{text-align:right;}     
 	
 /* ipmModal Styles */
-	.ipmModal .modal-header{background: url(../images/pop_header.png) repeat-x !important;padding:17.5px 10px 17.5px 17.5px; border-bottom:1px #d7d7d7 solid;border-radius:3px;-webkit-border-radius:3px;}
-	.ipmModal .modal-title{color:#253b78 !important;font-weight:bold;font-size:1em;}
-	.ipmModal .modal-header button.close{border: 1px #007dbb solid;border-radius: 50%;padding: 3px 5px;color: #007dbb;width: 30px; background: #fff; margin-top:-8px;opacity: 1;}
-	.ipmModal .modal-content{border-radius:3px;height:100%;}
-	.ipmModal .modal-body{height:90%;}
-	.ipmModal .modal-dialog{margin:15px auto;}
-
+	#ipmModal .modal-header{background: url(../images/pop_header.png) repeat-x !important;padding:17.5px 10px 17.5px 17.5px; border-bottom:1px #d7d7d7 solid;border-radius:3px;-webkit-border-radius:3px;}
+	#ipmModal .modal-title{color:#253b78 !important;font-weight:bold;font-size:1em;}
+	#ipmModal .modal-header button.close{border: 1px #007dbb solid;border-radius: 50%;padding: 3px 5px;color: #007dbb;width: 30px; background: #fff; margin-top:-8px;opacity: 1;}
+	#ipmModal .modal-content{border-radius:3px;height:100%;}
+	#ipmModal .modal-body{height:90%;}
+	#ipmModal .modal-dialog{margin:15px auto;}
 	.dropdown-menu{min-width:246px;left:2px;}
 		   
 	.messageBox{color:#0f81bb;background:#dbefff;border:1px solid #007DBB;position:relative;border-radius:3px;margin-left:60px;padding:7px;}

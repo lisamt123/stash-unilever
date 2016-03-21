@@ -6,7 +6,7 @@
 var jq = jQuery.noConflict();
 /* Below script works on page load. If the conditions are true the correct carousel will be set. */
 jq(document).ready(function() {
-    if (IPMProAppCP.addtnlParameter === 'true') {
+    if (IPMProAppCP.addtnlParameter == 'true') {
         jq('#myCarousel').carousel(4);
     }
     if (window.location.search.indexOf('coreId=coreparameters') > -1) {
@@ -36,7 +36,7 @@ function resetqthree() {
 
 /* Below function performs a page reload. If the condition is true it removes a attribute from the url. */
 function checkCoreParam() {
-    if (IPMProAppCP.coreParameter === 'true') {
+    if (IPMProAppCP.coreParameter == 'true') {
         var pageURL = window.parent.location.href.replace('&BETOptions=1','');
 		window.parent.location.href = pageURL;
     }
@@ -66,13 +66,14 @@ function sliderCP(el) {
 /* Below function performs a page reload. */
 function cpredirect() {
     window.parent.location.reload(true);
+	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
 }
 
 /* Below function performs key code check. If key code is 95 it returns nothing else it returns true value. */
 function invalidChar(key)
  {
    var keycode = (key.which) ? key.which : key.keyCode; 
-   if(keycode === 95){
+   if(keycode==95){
 	  return false;
    }else{
 	  return true;

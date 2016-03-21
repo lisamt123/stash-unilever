@@ -45,7 +45,7 @@ function pagerefresh() {
 
 /* Below function performs page reload when the condition is true. It redirects to core parameters page. */
 IPMAppEP.Closepopup = new function() {
-if (IPMAppEP.isSave === true) {
+if (IPMAppEP.isSave == true) {
 	window.top.location.href = IPMAppEP.corePage + '?id=' + IPMAppEP.projectId;
 }
 };
@@ -63,7 +63,7 @@ jq(document).ready(function(){
 
 /* Below script works on click event. If the condition is true it hides the brand positioning list*/
 jq(document).click(function(e) {
-   if( e.target.id !== 'brandposListUL') {
+   if( e.target.id != 'brandposListUL') {
 	   jq(".brandposList").hide();    
    }   
 });
@@ -86,7 +86,7 @@ jq('.ipmDropbuttonscc').click(function(e) {
    var brandPositionValue = '';
    jq(".brandposList  input[type=checkbox]").each(function(e)
 	  {
-		  if(jq(this).prop('checked') === true)
+		  if(jq(this).prop('checked') == true)
 		  {   
 			  if(brandPositionValue.length > 0)
 			  {
@@ -99,7 +99,7 @@ jq('.ipmDropbuttonscc').click(function(e) {
 		  } 
 	  });
    jq('.hiddenBrand').val(brandPositionValue);
-   if(brandPositionValue === ''){
+   if(brandPositionValue == ''){
 	   jq('.brandSelValues').text(IPMAppEP.proSelectlabel);
    }
    else{
@@ -108,10 +108,58 @@ jq('.ipmDropbuttonscc').click(function(e) {
    jq(".brandposList").hide(); 
 });  
   
-if( jq('.hiddenBrand') !== null && jQuery.type(jq('.hiddenBrand')) !== 'undefined') 
+  /* Below function performs key code check. If key code is 95 it returns nothing else it returns true value. */
+function invalidChar(key)
+	{
+	   var keycode = (key.which) ? key.which : key.keyCode;
+	   if(keycode==95){
+		  return false;
+	   }else{
+		  return true;
+	   }  
+	}
+	
+	  function closepopup() 
+        {
+        	if (IPMAppEP.prosuccess) { 
+            	window.top.location.href = IPMAppEP.corePage + '?id=' + IPMAppEP.projectId; 
+            }
+        };
+	
+	jq('.ccCheck').change(function(e) {
+        if (jq('.brandposList input[type=checkbox]:checked').length > 20) {
+            jq(this).prop('checked', false);
+            jq(this).next('label').removeClass('selected');
+        }
+    });  
+	
+	 jq(".brandautocomplete").autocomplete({     
+       source : apexAccountList,        
+       select: function (event, ui) {       
+           selectedObj = ui.item;       
+       },                           
+       minLength: 1         
+    });
+
+	jq('.gateKeepingModel input[type=radio]').each(function(e){ 
+       jq(this).click(function()
+          {
+              var selectedGKModel =  jq(this).attr("value");      
+              jq(".gateKModel").hide();
+              jq('.gateKeepingModel').parents('.oprtnRadioContainer').children('.gateKModel').each(function(e)
+              {
+                  if(jq(this).attr('selectedValue') == selectedGKModel)
+                  {
+                      jq(this).show(); 
+                  }
+              });
+          });  
+    }); 
+	
+	if( jq('.hiddenBrand') !=null && jQuery.type(jq('.hiddenBrand')) != 'undefined') 
 {
    var brandPicklist = jq('.hiddenBrand').val();   
-   if(jQuery.type(brandPicklist) !== "undefined" && brandPicklist.length > 0 )
+   if(jQuery.type(brandPicklist) != "undefined" && brandPicklist.length > 0 )
    {
 	   jq('.brandSelValues').text(brandPicklist);
 	   var brandArray = brandPicklist.split(',');  
@@ -127,14 +175,52 @@ if( jq('.hiddenBrand') !== null && jQuery.type(jq('.hiddenBrand')) !== 'undefine
 				   }); 
 	   });
    }
-}
-/* Below function performs key code check. If key code is 95 it returns nothing else it returns true value. */
-function invalidChar(key)
-         {
-           var keycode = (key.which) ? key.which : key.keyCode;
-           if(keycode === 95){
-              return false;
-           }else{
-              return true;
-           }  
+}		
+
+    jq('.gateKeepingModel input[type=radio]').each(function(){            
+       var selectedGKModel = jq('.gateKeepingModel input[type=radio]:checked').attr("value");
+       jq('.gateKeepingModel').parents('.oprtnRadioContainer').children('.gateKModel').each(function(e){
+           if(jq(this).attr('selectedValue') == selectedGKModel){
+               jq(this).show(); 
+           }
+       });
+    });
+
+jq('.gcltquestions  input[type=radio]').each(function(e){ 
+       jq(this).click(function()
+          {
+              var selectedSubProjectType =  jq(this).attr("value");        
+              jq(".charterTipMsg").hide();
+              jq('.gcltquestions').parents('.oprtnRadioContainer').children('.charterTipMsg').each(function(e){
+                  if(jq(this).attr('selectedValue') == selectedSubProjectType){
+                      jq(this).show(); 
+                  }
+              });
+          });  
+    }); 
+   
+    jq('.gcltquestions input[type=radio]').each(function(){            
+       var selectedSubProjectType = jq('.gcltquestions input[type=radio]:checked').attr("value");
+       jq('.gcltquestions').parents('.oprtnRadioContainer').children('.charterTipMsg').each(function(e){
+           if(jq(this).attr('selectedValue') == selectedSubProjectType){
+               jq(this).show(); 
+           }
+       });
+    }); 
+	
+	 function checkTLDDate(){
+        var newTLDValue = jq('.dateInputBox').val();
+        if(newTLDValue != tldOrignalValue){
+            jq('#tldWarningDialog').modal('show'); 
+            return false;
         }
+        return true;
+    }
+    function revertTLDValue(){
+        jq('.dateInputBox').val(tldOrignalValue);
+    }
+    function hideTldWarningDialog(){
+        jq('#tldWarningDialog').modal('hide'); 
+    }
+    const tldOrignalValue = jq('.dateInputBox').prop("defaultValue");
+   

@@ -182,6 +182,9 @@
 	left: -18px!important;
 	width: 175px;	
 }
+#ipmDropdown .ipmButton {padding-bottom:0.8em\9!important;}
+#ipmDropdown .dropdown-menu {margin-left: 18px;max-width: 156px;min-width: 156px;}
+
 .ipmPanelHeading  .ipmBackBtn {color:#00B389!important;}
 .ipmButton.gray{background: #818181 !important;}
 

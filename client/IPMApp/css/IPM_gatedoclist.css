@@ -4,3 +4,4 @@
 	.icoButton.document{float:left;display: inline-block; width: 15px;cursor: text;height: 30px;position: relative; background: url(../images/icon-document.svg) no-repeat 50% 50%;  margin-top: -8px;margin-right: 10px;}
 	.noDataMsg{background: #E8E8E8;  color: #374454;  display: block;  padding: 10px;  text-align: center; border-radius: 4px;  font-size: 1em; margin-top: 20px;  margin-bottom: 20px;}
 	.pull-right{float:right;}
+	.icoButton.question{margin-top:10px;}

@@ -7,6 +7,7 @@
 */
  var jq = jQuery.noConflict();
  jq(document).ready(function(){
+	 hilightTaskScript();
  
  /* Below script replace a text with a specific time format. */
 	jq(".dueDate").each(function () {
@@ -71,7 +72,7 @@
 	jq('#initiateProjectBKPanel .modal-dialog').css({'margin-top':'2%','z-index':'999'});     
 });	
 
-if(IPMApp.showSuggestedMembers === true && window.location.href.indexOf("showMembers") > -1){
+if(IPMApp.showSuggestedMembers == true && window.location.href.indexOf("showMembers") > -1){
 	   document.getElementById("suggestedMembersButton").click();
    }else if (window.location.href.indexOf("createBET") > -1){
 		document.getElementById("createBETButton").click();
@@ -82,7 +83,7 @@ var statusCheckApproved = IPMApp.DocumentStatus;
   /* Below script works on click event. If the condition is true the page will be reloaded. */
 	jq("#ipmModal .close").on("click", function() 
 		{
-		   if (jq("#ipmModal .modal-title").text().indexOf("Comment") !== -1) {
+		   if (jq("#ipmModal .modal-title").text().indexOf("Comment") != -1) {
 		   window.top.location.href = IPMApp.ProjectOverviewPage+'?id='+IPMApp.projectId;
 		}
 });
@@ -115,4 +116,12 @@ function showDiv() {
  /* Below function redirects the page to Project overview page. */
 function moveToNextDoc(){
 	window.top.location.href=IPMApp.ProjectOverviewPage+'?id='+IPMApp.projectId+'&showMembers=true&createBET=true'
+}
+
+/* Below function contains the script which has the tooltip functionality. This function is called when the rerendering happens and the script will run again */
+function hilightTaskScript(){
+	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+	jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});	
+	jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
+	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }

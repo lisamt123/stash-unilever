@@ -31,6 +31,9 @@ jq(document).ready(function() {
     if (navigator.userAgent.indexOf("Trident") > -1) {
         strBrowser = "IE";
     }
+	
+	//charCount_Init();
+	
 	/* The below if's cannot be merged as it may break functionality. Also if we try to merge it with the nested one, there will be contradiction with the other sonar issue 'Reduce the number of conditional operators' */
     if (window.CKEDITOR) {
         var strFrameParent = jq(document).find('.secEditSummary').find("textarea").attr('name');
@@ -38,19 +41,20 @@ jq(document).ready(function() {
 			if (strFrameParent.indexOf(strTextAreaID) >= 0) {
 				CKEDITOR.instances[strFrameParent].on("key", function(e) {
 					var objTextArea = this.document.$.body;
-					var strText = objTextArea.textContent.replace(/ *\<[^>]*\> */g, "");
+					var strText = objTextArea.textContent;
 					
 					/* If we reduce the number of conditional operators it will contradict with the other sonar issue 'Merge this if statement with the nested one' */
-					if ((e.data.domEvent.$.keyCode === 8) || (e.data.domEvent.$.keyCode === 46) || ((e.data.domEvent.$.shiftKey) 
-						&& (e.data.domEvent.$.keyCode === 36)) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode === 35)) 
-					    || (e.data.domEvent.$.keyCode === 35) || (e.data.domEvent.$.keyCode === 36) || (e.data.domEvent.$.keyCode === 37) 
-						|| (e.data.domEvent.$.keyCode === 38) || (e.data.domEvent.$.keyCode === 39) || (e.data.domEvent.$.keyCode === 40)) {
+					if ( (e.data.domEvent.$.keyCode == 8) || (e.data.domEvent.$.keyCode == 46) || ((e.data.domEvent.$.shiftKey) 
+						&& 
+						(e.data.domEvent.$.keyCode == 36)) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode == 35)) 
+					    || (e.data.domEvent.$.keyCode == 35) || (e.data.domEvent.$.keyCode == 36) || (e.data.domEvent.$.keyCode == 37) 
+						|| (e.data.domEvent.$.keyCode == 38) || (e.data.domEvent.$.keyCode == 39) || (e.data.domEvent.$.keyCode == 40)) {
 						showCharacterCount();
 						e.cancelBubble = false;
 						e.returnValue = true;
 						return true;
 					}
-					if (strText.length === MaxLength) {
+					if (strText.length == MaxLength) {
 						e.cancelBubble = true;
 						e.returnValue = false;
 						e.cancel();
@@ -69,27 +73,28 @@ jq(document).ready(function() {
 						var objTA = jq(document.activeElement).contents().find("html").find("body")[0];
 					});
 					this.document.on("keyup", function(event) {
-						if (event.data.$.keyCode === 37 || event.data.$.keyCode === 39 || event.data.$.keyCode === 13) {
+						if (event.data.$.keyCode == 37 || event.data.$.keyCode == 39 || event.data.$.keyCode == 13) {
 							return false;
 						}
-						if (event.data.$.keyCode === 8 || event.data.$.keyCode === 46) {
+						if (event.data.$.keyCode == 8 || event.data.$.keyCode == 46) {
 							showCharacterCount();
 							return true;
 						}
 						showCharacterCount();
+
 					});
 					//paste event
 					this.document.on("paste", function(event) {
 						var strText;
-						if (strBrowser === "IE") {
+						if (strBrowser == "IE") {
 							strText = window.clipboardData.getData('Text');
-						} else if (strBrowser === "CHROME") {
+						} else if (strBrowser == "CHROME") {
 							strText = event.data.$.clipboardData.getData("text/plain");
 						}
 						var element = (this).$.body;					
 						var strFullText = strText.length;
 						if (strFullText > MaxLength) {
-							if (strBrowser === "IE") {
+							if (strBrowser == "IE") {
 								event.preventDefault ? event.preventDefault() : event.returnValue = false;
 								window.clipboardData.clearData("Text");
 								jq('#ipmDeleteModal').modal();
@@ -101,7 +106,7 @@ jq(document).ready(function() {
 									"height": "120px",
 									"margin-right": "15px"
 								});
-							} else if (strBrowser === "CHROME") {
+							} else if (strBrowser == "CHROME") {
 								event.data.preventDefault();
 								event.data.$.clipboardData.clearData();
 								jq('#ipmDeleteModal').modal();
@@ -125,8 +130,8 @@ jq(document).ready(function() {
 									el.removeAttribute('class');
 								}
 							});
-							element.innerHTML = wrapper.innerHTML;
-							strText = wrapper.textContent || wrapper.innerText;
+							element.innerHTML = wrapper.innerHTML;						
+							strText = wrapper.innerHTML.replace(/\&lt;br\&gt;/gi,"\n").replace(/(&lt;([^&gt;]+)&gt;)/gi, "");
 							showCharacterCount(strText);
 						}, 100);
 					});
@@ -158,7 +163,10 @@ jq(document).ready(function() {
         if (strFrame.indexOf(strTextAreaID) >= 0) {
             NewLineCount = 0;
             var objTextArea = jq(jq(document).find(".secEditSummary").find("iframe.cke_wysiwyg_frame")).contents().find("html").find("body")[0];
-            strTextArea = objTextArea.textContent || objTextArea.innerText;
+            //strTextArea = objTextArea.textContent || objTextArea.innerText;
+			strTextArea = objTextArea.innerText.replace(/\&lt;br\&gt;/gi,"\n").replace(/(&lt;([^&gt;]+)&gt;)/gi, "");
+			//alert("ONKEYPRESS: with RE: "+ strTextArea.length);
+			
             var rem = MaxLength - parseInt(strTextArea.length);
 
             if (rem > 0) {

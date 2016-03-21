@@ -1597,3 +1597,8 @@
 }
 .ui-lefttip .ui-tooltip-content::after{left: 20px !important;}
 .ui-lefttip{left: 10px !important;}
+
+.breakWord
+{
+   word-wrap: break-word;
+}

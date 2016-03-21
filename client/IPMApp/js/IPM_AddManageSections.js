@@ -39,7 +39,7 @@ jq(document).ready(function() {
         var $this = jq(this);
         var checkSub = $this.parents(".checkContainer").find("span input[type=checkbox]:checked").closest(".cHead").length;
         var checkNot = $this.parents(".checkContainer").find("span input[type=checkbox]").closest(".cHead").length;
-        if (checkSub === 0) {
+        if (checkSub == 0) {
             $this.parents(".checkContainer").find(".subSecDiv .checkAll").prop("checked", false);
         }
         if (checkSub >= 1) {

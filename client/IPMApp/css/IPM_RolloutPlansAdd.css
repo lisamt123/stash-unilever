@@ -57,8 +57,6 @@
         width: 100%;
     }
     /*Table*/
-	.ipmTableDiv .SecButtonSet .icoButton {display: inline-block;width: 30px;margin: 0 5px; height: 30px; border: 1px solid #1568b6;border-radius: 50%;-webkit-border-radius: 50%; -moz-border-radius: 50%;}
-
     
     .ipmTable.table-bordered {
         table-layout: fixed;
@@ -151,7 +149,16 @@
     .deleteTask div {
         padding: 20px;
     }
-    
+    #ipmTableDiv .SecButtonSet .icoButton {
+        display: inline-block;
+        width: 30px;
+        margin: 0 5px;
+        height: 30px;
+        border: 1px solid #1568b6;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+    }
     .dropdown-toggle {
         padding: 7px;
         position: relative;
@@ -428,7 +435,9 @@
     .addrolloutsec {
         background-color: #f8f8f8;
     }
-    
+    #editsection {
+        display: none;
+    }
     .dblock {
         display: block;
     }
@@ -483,6 +492,13 @@
     .editsectn {
         text-align: right;
         margin-right: 13px;
+    }
+    #editblock tr td {
+        border-top: 0;
+    }
+    table #editblock {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.17);
+        border: 1px solid #2262A0;
     }
     .fa-chevron-right {
         color: #A2A697;
@@ -808,3 +824,12 @@
 }
 .ui-lefttip .ui-tooltip-content::after{left: 20px !important;}
 .ui-lefttip{left: 10px !important;}
+
+
+.ieAlign
+{
+   width: 158px;
+   padding: 10px 5px;
+   margin-right: 15px;
+}
+

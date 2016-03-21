@@ -3,7 +3,7 @@
 .ipmFunnelPanel {
     bottom: 4px;
 }
-.ipmAddMemberModal .modal-body {
+#ipmAddMemberModal .modal-body {
     height: 90% !important;
 }
 .noPadright {
@@ -88,7 +88,7 @@
 .teamSpacing {
     margin: 20px 0;
 }
-.teammembers {
+#teammembers {
     margin-top: 20px;
 }
 .expandTool {
@@ -256,10 +256,10 @@ img[data-lead='true'] {
 }
 /* Modal Styles */
 
-.ipmAddMemberModal .modal-header button.close {
+#ipmAddMemberModal .modal-header button.close {
     bottom: 0 !important;
 }
-.ipmAddMemberModal .modal-header {
+#ipmAddMemberModal .modal-header {
     height: 60px;
 }
 .nav {
@@ -269,7 +269,7 @@ img[data-lead='true'] {
 
 .deleteButtoncontainer{    margin: 12px 0 0 0 ;  width: 190px;}
 .buttonMarginRight {  margin-right: 15px;}
-.ipmModalDelete .modal-header{height:32%;}
+#ipmModalDelete .modal-header{height:32%;}
 .DelDesc{margin-top:10px;display:block;}
 .proInit {
     text-align: center;
@@ -280,6 +280,7 @@ img[data-lead='true'] {
     width: 99%;
 	opacity: 0.9;
     height: 100%;
+    background:#fff url('../images/ajax-loader.gif') no-repeat center 14%!important;
 }
-.imp_proInit {background:#fff url('../images/ajax-loader.gif') no-repeat center 14%;}
-.ipmModalDelete .modal-body{height:auto !important;}
+
+#ipmModalDelete .modal-body{height:auto !important;}

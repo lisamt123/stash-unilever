@@ -9,19 +9,18 @@
 	.icoButton.question{line-height:30px;}
    
 /* Tab styles */     
-    .ipmUpdateStatusTab .ipmTabContent { width:100%; }
-    .ipmUpdateStatusTab .panel {background:transparent;}
-    .ipmUpdateStatusTab .ipmStatusTabs {padding:0 0 0 40px; margin:0; border-bottom:2px solid #6C9A40}
-    .ipmUpdateStatusTab .ipmStatusTabs li {display:inline-block;color:#666;padding:20px 40px; font-weight:bold;cursor:pointer;}
-    .imp_ipmUpdateStatusTab.ipmStatusTabs li {margin-left:10px;}
-	.ipmUpdateStatusTab .ipmStatusTabs li.active{background:#F3FCEB;border:2px solid #96B87B; color:#496E0F; position:relative; top:5px; border-bottom:2px solid #F3FCEB; cursor:pointer; border-top-left-radius:3px; border-top-right-radius:3px;-moz-border-top-left-radius:3px; -moz-border-top-right-radius:3px;-webkit-border-top-left-radius:3px; -webkit-border-top-right-radius:3px;}
+    #ipmUpdateStatusTab .ipmTabContent { width:100%; }
+    #ipmUpdateStatusTab .panel {background:transparent;}
+    #ipmUpdateStatusTab .ipmStatusTabs {padding:0 0 0 40px; margin:0; border-bottom:2px solid #6C9A40}
+    #ipmUpdateStatusTab .ipmStatusTabs li {margin-left:10px !important;display:inline-block;color:#666666;padding:20px 40px; font-weight:bold;cursor:pointer;}
+    #ipmUpdateStatusTab .ipmStatusTabs li.active{background:#F3FCEB;border:2px solid #96B87B; color:#496E0F; position:relative; top:5px; border-bottom:2px solid #F3FCEB; cursor:pointer; border-top-left-radius:3px; border-top-right-radius:3px;-moz-border-top-left-radius:3px; -moz-border-top-right-radius:3px;-webkit-border-top-left-radius:3px; -webkit-border-top-right-radius:3px;}
     .sContainer{background:#F3FCEB;padding:10px;}
     .StatusContent{margin-top:20px;}
     .StatusLabel{display:block;text-align:center;margin-bottom: 20px;}
     .statusButtonContainer .ipmButton{margin-right:15px;}
     .statusButtonContainer{margin-top: 20px;margin-bottom: 20px;height: 50px;}
-	.highlightRed{background:#FDE7E9;border-bottom: #FDE7E9;color:#E50100;}
-	.highlightBgred{background:#FDE7E9;}
+	.highlightRed{background:#FDE7E9 !important;border-bottom: #FDE7E9 !important;color:#E50100 !important;}
+	.highlightBgred{background:#FDE7E9 !important;}
 	
 /* custom tooltip styles */
     .toolTipMsg{background:#fafafa;border:1px #c9c9c9 solid; border-radius:2px;color:#364354;font-size:0.82em;position:relative;}          
@@ -33,10 +32,9 @@
     .notapprovePointer::before{left:418px;}
     .discardPointer::before{left:580px;}
     .ml5{margin-left:5px;}
-    .proInit {text-align: center; position:absolute; z-index:100; right:0; width:25%; height:20%; }
-	.imp_proInit{background:#fff url(../images/ajax-loader.gif) no-repeat 0 0;}
-
-	/* comment area styles */
+    .proInit {text-align: center; position:absolute; z-index:100; right:0; width:25%; height:20%; background:#fff url(../images/ajax-loader.gif) no-repeat 0 0!important;}
+    
+/* comment area styles */
 	.textareaContainer{background:#F9F9F9;padding: 10px;}
 	.textareaContainer textarea{width:99%;height: 90px;}
 	.commentHeader{color:#364353;display:block;margin-bottom:10px;font-weight:bold;font-size: 1.4em;}
@@ -47,16 +45,15 @@
     .nominateContainer{padding: 10px;  background-color: #F3FCEB;}
     .leaderTable{border-spacing: 0;border-collapse: collapse;background: #fff; border-radius: 3px;overflow:hidden;  width: 100%;  table-layout: fixed;}
     .rounded{border-radius: 50%;width:40px;padding: 10px;}
-    .imp_leaderTable td{border-top:0;}
+    .leaderTable td{border-top:0 !important;}
     .leaderTable td:first-child{text-align:center;width:10%;}
     .leaderName {color: #3B506F;  display: block;  font-weight: bold;  float: left;font-size: 14px;margin-right: 5px;}
-    .leaderMail{font-size: 14px;}
-	.imp_leaderMail{color: #015FB7;}
+    .leaderMail{color: #015FB7 !important;font-size: 14px;}
     .leadersList{ height: 214px;  overflow: auto;margin-top: 10px;}
     .leaderbox{width:80%}
     .disableButton{background:#F0F0F0;color:#AAA;padding:0.625em;margin-right:15px;font-weight:bold;font-size:14px;cursor:pointer;border-radius:5px;border:1px solid #CDCDCD;display: inline-block;  line-height: 1em;  top: 2px;  position: relative;}
     .apprDesc{display: block; margin-bottom: 20px;}
 	.nominateContainer .clear_input_div{float: left;}
 	.clearfix{clear:both;}
-	.highlightRed.active{top:2px;}
+	.highlightRed.active{top:2px !important;}
 	input[type=text]::-ms-clear {display: none; width:0; height:0;}

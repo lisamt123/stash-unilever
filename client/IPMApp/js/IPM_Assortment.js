@@ -34,10 +34,10 @@ jq(document).ready(function() {
 		
 /* Below script is to hide the dropdown list on click event if condition is true */
     jq(document).click(function(e) {
-        if (e.target.id !== 'assortList2') {
+        if (e.target.id != 'assortList2') {
             jq("#assortList2").hide();
         }
-        if (e.target.id !== 'assortList1') {
+        if (e.target.id != 'assortList1') {
             jq("#assortList1").hide();
         }
     });
@@ -92,14 +92,14 @@ function refreshAssort(){
 /* Below function performs the reset functionality */
 function resetCheckboxes(elem, selectedValues) {
     var selectedValuesArr = [];
-    if (selectedValues !== '' && selectedValues !== undefined) {
+    if (selectedValues != '' && selectedValues != undefined) {
         selectedValuesArr = selectedValues.split(',');
     }
 	
 /* Below script is used to check the checkboxes based on the checkbox value. If value matches and condition is true the checkbox will be checked and also it will be disabled */
     jq(elem).find('input:checkbox').each(function() {
         var val = jq(this).attr('value');
-        if (jq.inArray(val, selectedValuesArr) !== -1) {
+        if (jq.inArray(val, selectedValuesArr) != -1) {
             jq(this).prop('checked', true);
 			jq(this).prop('disabled', true);
             jq(this).next('label').addClass('selected');
@@ -172,14 +172,14 @@ function assortmentscript() {
             jq('.assortList1').hide();
             selectedValues = IPMAPPAssortment.selectedValues;
         }
-        if (selectedValues !== '' && selectedValues !== undefined) {
+        if (selectedValues != '' && selectedValues != undefined) {
             selectedValuesArr = selectedValues.split(',');
         }
 		
 /* Below script is used to check the checkboxes based on the checkbox value. If value matches and condition is true the checkbox will be checked and also it will be disabled */
         jq(this).find('.dropdown-menu input[type="checkbox"]').each(function() {
             var val = jq(this).attr('value');
-            if (jq.inArray(val, selectedValuesArr) !== -1) {
+            if (jq.inArray(val, selectedValuesArr) != -1) {
                 jq(this).prop('checked', true);
 				jq(this).prop('disabled', true);
                 jq(this).next('label').addClass('selected');
@@ -217,14 +217,14 @@ function assortmentscript() {
         } else if (jq(this).hasClass('ipmAssortCusReset')) {
             selectedValues = IPMAPPAssortment.selectedValues;
         }
-        if (selectedValues !== '' && selectedValues !== undefined) {
+        if (selectedValues != '' && selectedValues != undefined) {
             selectedValuesArr = selectedValues.split(',');
         }
 		
 /* Below script is used to check the checkboxes based on the checkbox value. If value matches and condition is true the checkbox will be checked and also it will be disabled */
         jq(this).closest('ul.dropdown-menu').find('input:checkbox').each(function() {
             var val = jq(this).attr('value');
-            if (jq.inArray(val, selectedValuesArr) !== -1) {
+            if (jq.inArray(val, selectedValuesArr) != -1) {
                 jq(this).prop('checked', true);
 				jq(this).prop('disabled', true);
                 jq(this).next('label').addClass('selected');

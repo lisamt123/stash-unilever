@@ -748,3 +748,5 @@ input[type=text]::-ms-clear {display: none; width:0; height:0;}
 .rollouttable .expico{margin-left:5px;}
 .rollouttable .rollsubhead{float:left;}
 .deleteButtoncontainer{width:189px;}
+th div.proLeaderColumn span:last-child{width:87%;}
+.misaligned{border-color: #ff0000 !important;}

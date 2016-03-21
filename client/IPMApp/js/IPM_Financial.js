@@ -41,7 +41,7 @@ function finScriptCallBack() {
 
 /* Below function validates for a condition. If user enters any key within the set of keys provided in the condition the value will returned as false. */
 function defKeyPrev() {
-    if ((event.keyCode < 48 && event.keyCode !== 46) || (event.keyCode > 57 && event.keyCode !== 190 && event.keyCode !== 110)) {
+    if ((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) {
         return false;
     }
 }
@@ -51,7 +51,7 @@ jq(document).ready(function() {
         var $this = jq(this);
         $this.find('td.iPLBorderGay:first').addClass('finTabletr');
     });
-	
+	hilightTaskScript();
 /* Below script works on click event. If the condition is true it hides the Financial Filter. Also it removes angle left class and replaces it with angle right css class. */
     jq(document).on('click', '.finArrow', function() {
         var $this = jq(this);
@@ -195,4 +195,8 @@ function accordion(elem) {
         jq(elem).next('.recCount').removeClass('collapsed');
         jq(elem).next('.recCount').addClass('expanded');
     }
+}
+
+function hilightTaskScript(){
+	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' },tooltipClass:'info_tip'});
 }

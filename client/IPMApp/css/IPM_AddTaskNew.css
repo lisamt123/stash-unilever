@@ -12,42 +12,42 @@
 	.input-group .input-group-addon {position: absolute;top: 283px;right: 25px;} 
 	 .pull-right{float:right;} 
 /*ipmButton Styles */
-	.imp_green{background:#81bf42;}
-	.imp_green:hover{background:#56843b;}
-	.addTask .ipmButtonGroup{margin-bottom: 8%;} 
+	.ipmButton.green{background:#81bf42 !important;}
+	.ipmButton.green:hover{background:#56843b !important;}
+	#addTask .ipmButtonGroup{margin-bottom: 8%;} 
 	 
  /* lookup search icon*/
 	.lookupInput a{margin-left: -9%;}
 	.phaseModal,.gatedocModal{width:48%;float:left;}
 	.gatedocModal{margin-right:10px;}
-	.messageTable td ul li{margin-left:0;}
-	.messageTable td ul{padding-left:0;margin-top: -25px;}
-	.message .messageTable .messageCell{margin-top:-6px;float:left;}
+	.messageTable td ul li{margin-left:0 !important;}
+	.messageTable td ul{padding-left:0 !important;margin-top: -25px !important;}
+	.message .messageTable .messageCell{margin-top:-6px !important;float:left;}
 	.errorMsg{padding: 10px;background: #ffebec;border-radius: 3px;margin-top: 15px;}
-	.error{border:1px solid #e03729;}
+	.error{border:1px solid #e03729 !important;}
 	.errorMsg:before,.custErr:before{left: 10%;position: absolute;border-top: 1px #ffebec solid;border-right: 1px #ffebec solid;background: #ffebec;content: " ";height: 15px;width: 15px;-ms-transform: rotate(-45deg);transform: rotate(-45deg);}
 	.errorMsg:before{top: 73px;}
 	.custErr:before{top: 78px;}
 	.dateInput .dateInputBox{width:66%;}
 	.input-group-addon{padding: 0;margin-top: -3px;width: 1px;background:none; border:none;color: #007dbb;font-size: 1.3em; left:66%; top:283px; position:absolute;}
 	body{height:100%;}
-	.EditTask .ipmButtonGroup{height:10%;margin-bottom:10px;}
-	.EditTask{float:left;height:100%;overflow:auto;}
-	.datePicker{top:250px;}
+	#EditTask .ipmButtonGroup{height:10%;margin-bottom:10px;}
+	#EditTask{float:left;height:100%;overflow:auto;}
+	.datePicker{top:250px !important;}
 	.buttonMarginRight{margin-right:15px;}
 	.functionError .errorMsg:before {  top: 39px;}
 	
 	.infoM3 .msgIcon, .infoMedium,.errorM3 .msgIcon, .errorMedium{display:none;}
-	.errorM3 .messageTable .messageText h4,.errorM3 .messageTable .messageText{color:#C73E36;font-weight:normal;}
+	.errorM3 .messageTable .messageText h4,.errorM3 .messageTable .messageText{color:#C73E36 !important;font-weight:normal !important;}
 	.errorM3 .messageText::before{content:url('../images/red_i_icon.png');position:absolute; left: 10px;}
-	.errorM3 .messageTable .messageText{margin-left:35px;} 
+	.errorM3 .messageTable .messageText{margin-left:35px !important;} 
 	.infoM3 .messageText::before{content:url('../images/success_icon.png');position:absolute; left: 10px;top: 5px;}
-	.infoM3 .messageTable .messageText{margin-left:35px;} 
+	.infoM3 .messageTable .messageText{margin-left:35px !important;} 
 	.infoM3 .messageTable .messageText h4{display:none;}
-	.message .errorM3{background-color: #FFEBEC;}
-	.errorM6, .errorM4, .errorM3, .errorM2, .errorS1{background-color: #FFEBEC;border:1px solid #E9C3BA;}
+	.message .errorM3{background-color: #FFEBEC !important;}
+	.errorM6, .errorM4, .errorM3, .errorM2, .errorS1{background-color: #FFEBEC !important;border:1px solid #E9C3BA !important;}
 	.message{position: relative;  }
-	.dateFormat {display:none;}
+	.dateFormat {display:none!important;}
 .ErrMsg {
   color: #d74c3b;
   width: 50%;
@@ -96,4 +96,4 @@
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
-.imp_Edittask .message{margin:10px 0;}
+#EditTask .message{margin:10px 0 !important;}

@@ -39,14 +39,14 @@ var jq=jQuery.noConflict();
 		srchTxt.val(srchTxt.attr('placeholder'));
 		jq(document).on('keypress, keydown','[placeholder]',function() {
 			var input = jq(this);
-			if (input.val() === input.attr('placeholder')) {
+			if (input.val() == input.attr('placeholder')) {
 				input.val('');
 				input.removeClass('placeholder');
 			}
 		})
 		jq('[placeholder]').blur(function() {
 			var input = jq(this);
-			if (input.val() === '' || input.val() === input.attr('placeholder')) {
+			if (input.val() == '' || input.val() == input.attr('placeholder')) {
 				input.addClass('placeholder');
 				input.val(input.attr('placeholder'));
 			}
@@ -129,19 +129,19 @@ var jq=jQuery.noConflict();
 				}
 				
 				//MCO
-				if($radio.attr('id').indexOf('grp1') !== -1)
+				if($radio.attr('id').indexOf('grp1') !=-1)
 				{
 					selectedMCOs.push(countryCode);
 				}
 				
 				//Country
-				if($radio.attr('id').indexOf('grp2') !== -1)
+				if($radio.attr('id').indexOf('grp2') !=-1)
 				{
 					selectedCountries.push(countryCode);	
 				}
 				
 				//No Rollouts
-				if($radio.attr('id').indexOf('grp3') !== -1)
+				if($radio.attr('id').indexOf('grp3') !=-1)
 				{
 					selectedNoRollouts.push(countryCode);	
 				} 			
@@ -156,7 +156,7 @@ var jq=jQuery.noConflict();
 		for(counter=0;counter<selectedNoRollouts.length;counter++)
 		{
 			var selectedNoRollout = selectedNoRollouts[counter];
-			if(jq.inArray(selectedNoRollout,intiallySelectedNoRollouts) === -1)
+			if(jq.inArray(selectedNoRollout,intiallySelectedNoRollouts) == -1)
 			{
 				noRolloutAdded = true;
 				break;
@@ -171,7 +171,7 @@ var jq=jQuery.noConflict();
 		{
 			var countryCode = intiallySelectedMCOs[counter];
 			
-			if(jq.inArray(countryCode,selectedMCOs) === -1)
+			if(jq.inArray(countryCode,selectedMCOs) == -1)
 			{
 				unselectedMCOs.push(countryCode);
 			}
@@ -181,7 +181,7 @@ var jq=jQuery.noConflict();
 		{
 			var countryCode = intiallySelectedCountries[counter];
 			
-			if( jq.inArray(countryCode,selectedCountries) === -1)
+			if( jq.inArray(countryCode,selectedCountries) == -1)
 			{
 				unselectedCountries.push(countryCode);
 			}
@@ -190,7 +190,7 @@ var jq=jQuery.noConflict();
 		for(counter=0;counter<intiallySelectedNoRollouts.length;counter++)
 		{
 			var countryCode = intiallySelectedNoRollouts[counter];
-			if( jq.inArray(countryCode,selectedNoRollouts) === -1)
+			if( jq.inArray(countryCode,selectedNoRollouts) == -1)
 			{
 				unselectedNoRollouts.push(countryCode);
 			}

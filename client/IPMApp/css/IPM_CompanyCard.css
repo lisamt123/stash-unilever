@@ -3,16 +3,16 @@
     .inputField select {width: 100%;border-radius: 3px;border: 1px #a8a8a8 solid;color: #565656;}
     .pb20{padding-bottom:20px;}
     .pt20{padding-top:20px;}
-	.ipmSelect .imp_multiSelect {height: auto;}
-	.inputField .imp_multiSelect {height: auto;}
-	.message .errorM3{background-color: #FFEBEC; height:30px;}
+	.ipmSelect .multiSelect {height: auto !important;}
+	.inputField .multiSelect {height: auto !important;}
+	.message .errorM3{background-color: #FFEBEC !important; height:30px;}
     
     /* content container */
     
     .ccContainer{width:100%;float:left;border-radius: 4px;background-color: #f8f8f8;border-top: 3px solid #ef2b2d;border-bottom: 1px solid #eaeaea;border-left: 1px solid #eaeaea;border-right: 1px solid #eaeaea;}
     .ccButtonContainer{clear:both;margin: 20px 40px;}
-    .imp_multiSelect {height:100px; min-width:90%;}
-    .multiSelectPicklistTable select{height:auto;}
+    .multiSelect{height:100px !important; min-width:90%;}
+    .multiSelectPicklistTable select{height:auto !important;}
     .ErrMsg{color:#d74c3b;width:55%;display:block;padding: 10px;background: #ffebec;border-radius: 3px;margin-top: 15px;}
     .ErrMsg:before{left: 3%;top: 63px;}
     .ManagedErrMsg,.ManagedErrMsgLocal{position:relative;color:#d74c3b;width:100%;display:block;padding: 10px;background: #ffebec;border-radius: 3px;margin-top: 15px;}

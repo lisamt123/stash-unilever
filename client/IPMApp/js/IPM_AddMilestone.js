@@ -19,7 +19,7 @@ function pageclose() {
 }
 /* Below function performs a redirection based on a condition. If the condition is true it will redirect to Project setup page. If it is false it will redirect to Tasklist page*/
 function pagecloseProSetUp() {
-    if (IPMAppComp.ProjectWizard !== '' || IPMAppComp.ProjectWizard != null) {
+    if (IPMAppComp.ProjectWizard != '' || IPMAppComp.ProjectWizard != null) {
         window.top.location.href = IPMAppComp.pageRefProSetupView + '?Pid=' + IPMAppComp.projectId + '&Milestoneid=milestones';
     } else {
         window.top.location.href = IPMAppComp.pageRefTask + '?id=' + IPMAppComp.projectId;

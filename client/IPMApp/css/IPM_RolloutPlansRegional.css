@@ -847,7 +847,6 @@ a.noDecoration:hover {
 }
 .smalllinfo, .smalllinfo1, .smalllinfo2
 { 
-    right: 5px;
     top: 2px;
 }
 .pull-right
@@ -892,3 +891,5 @@ a.noDecoration:hover {
 }
 .ui-lefttip .ui-tooltip-content::after{left: 20px !important;}
 .ui-lefttip{left: 10px !important;}
+
+.rollinfotitle{float:left;}

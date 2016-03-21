@@ -25,7 +25,7 @@ jq(document).ready(function() {
 		/*docFilterCont.find("input[type=checkbox]").prop("checked", true);
 		docFilterCont.find("label").addClass("selected");*/
 	var stop = IPMAppAllprojects.stop;
-	if( stop === 'true')
+	if( stop == 'true')
         {   	
 			docFilterCont.find("input[type=checkbox]:not('.statusAll')").prop("checked", true);
 			docFilterCont.find('.checkStopped').next('label').addClass('stopProject');
@@ -69,7 +69,7 @@ jq(document).ready(function() {
     ipmAccordionCont.find(".pHead span.expico-square").removeClass("fa-minus");
     ipmAccordionCont.find(".pHead span.expico-square").addClass("fa-plus");
 	 jq('.ipmCheckbox input[type=checkbox]').each(function(){
-          if(jq(this).attr('data-html') === 'disabled')
+          if(jq(this).attr('data-html') == 'disabled')
           {
               jq(this).attr("disabled", true);
 			  jq(this).prop("checked",false)
@@ -77,3 +77,8 @@ jq(document).ready(function() {
           }
       });
 });
+
+window.onload = function () {
+        jq('#not-active').css('display','block');
+       //document.getElementById("not-active").style.display = "block";
+       }

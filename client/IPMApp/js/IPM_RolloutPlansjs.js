@@ -144,7 +144,6 @@ function scriptPanelLoad(){
             backdrop: 'static'
         });
         jq('#deleteRcountry .modal-title').html(title);
-        // jq('#deleteRcountry .confirmdelrollout').attr('data-result', str);
         jq('#deleteRcountry .modal-dialog').width('600px');
         jq('#deleteRcountry .modal-dialog').height('170px');
         jq('#deleteRcountry .modal-dialog').css({

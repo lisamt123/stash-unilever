@@ -13,7 +13,7 @@ function pageclose() {
 }
 /* Below function checks a condition. If the condition is true it will redirect to Gate Document section editor page. If condition is false it will redirect to Task List Page */
 function pagecloseNewTask(){ 
-	if (IPMAppComp.redirectToGateDocument === 'true') { 
+	if (IPMAppComp.redirectToGateDocument == 'true') { 
 			window.top.location.href = IPMAppComp.pageRefProjDocSec + '?Id=' + IPMAppComp.projectId + '&' + IPMAppComp.redirectToGateDocumentUrl + '=' + IPMAppComp.docSecList; 
 	} else { 
 			window.top.location.href = IPMAppComp.TasklistPageRef + '?id=' + IPMAppComp.projectId; 

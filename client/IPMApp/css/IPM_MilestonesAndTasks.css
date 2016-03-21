@@ -229,7 +229,7 @@
      .colAssignee {
          height: 17px;
      }
-     .ipmTimeLine {
+     #ipmTimeLine {
          margin-bottom: 20px;
      }
      .filterIcon {
@@ -252,7 +252,7 @@
      .taskphaseHeader {
          width: 130px !important;
      }
-     .addMilestone {
+     #addMilestone {
          margin-top: 5px;
          padding-right: 0 !important;
          float: right;
@@ -387,7 +387,7 @@
      .deleteTask div {
          padding: 20px;
      }
-     .ipmTableDiv .SecButtonSet .icoButton {
+     #ipmTableDiv .SecButtonSet .icoButton {
          display: inline-block;
          width: 30px;
          margin: 0 5px;
@@ -466,13 +466,13 @@
      .pagemessageBoxDiv {
          margin-top: 30px !important;
      }
-     .milestoneList table th:last-child {
+     #milestoneList table th:last-child {
          text-align: right!important;
      }
      .ipmTaskRow table th:last-child {
          text-align: right!important;
      }
-     .ipmTableDiv .SecButtonSet {
+     #ipmTableDiv .SecButtonSet {
          display: inline-block;
          text-align: right;
          margin-top: 7px;
@@ -633,7 +633,7 @@
 	.fltrbrdrRight{border-right: 1px solid #252525;}
 	.proLoader,.transBox {position:relative;} 
    	.proLoader .proInit {text-align: center; position:absolute; z-index:100; top:0; left:0; opacity:0.9; -moz-opacity:0.9; -webkit-opacity:0.9; filter:alpha(opacity=90); width:100%; height:100%; background:#fff url(../images/ajax-loader.gif) no-repeat 50% 50%!important;}
-	.sortDueDate1, .sortDueDate {float:right!important;font-size: 1.2em; margin-left: 8px; cursor: pointer;}
+	#sortDueDate1, #sortDueDate {float:right!important;font-size: 1.2em; margin-left: 8px; cursor: pointer;}
 	.transBox .proInit {text-align: center; position:absolute; z-index:100; top:0; left:0; opacity:0.9; -moz-opacity:0.9; -webkit-opacity:0.9; filter:alpha(opacity=90); width:100%; height:100%; background:#fff url(../images/ajax-loader.gif) no-repeat 50% 50%!important;}
 	
 	.ipmTaskRow  a.smallllinfo
@@ -680,3 +680,7 @@
 .ui-lefttip .ui-tooltip-content::after{left: 20px !important;}
 .ui-lefttip{left: 10px !important;}
 	
+.font-Small
+{
+	  font-size:11px;
+}

@@ -58,7 +58,7 @@
 		
 		/* Below script works on keypress. When user presses enter key a search function is called */
 	    jq('#srchTxt').keypress(function(e) {
-	        if (e.which === 13) {
+	        if (e.which == 13) {
 	            sProjects(srchTxt.value);
 	            return false;
 	        }
@@ -74,10 +74,10 @@
 	            jq(this).prop('checked', false);
 	            jq(this).next('label').removeClass('selected');
 	        });
-	        if (selectedValuesArr !== '' && selectedValuesArr.length !== 0) {
+	        if (selectedValuesArr != '' && selectedValuesArr.length != 0) {
 	            jq('.completedFilter .dropdown-menu input[type="checkbox"]').each(function() {
 	                var val = jq(this).attr('value');
-	                if (jq.inArray(val, selectedValuesArr) !== -1) {
+	                if (jq.inArray(val, selectedValuesArr) != -1) {
 	                    jq(this).prop('checked', true);
 	                    jq(this).next().addClass('selected');
 	                } else {
@@ -97,7 +97,7 @@
 	        var icoButton = jq('.completedFilter .dropdown-toggle .icoButton');
        		var selectedValues = IPMAppTD.isCompleteTasks.trim();
       		var selectedValuesArr = selectedValues.split(',');
-	      	if (selectedValues === ''  || selectedValuesArr === '') 
+	      	if (selectedValues == ''  || selectedValuesArr == '') 
 	       	{
 	       		icoButton.removeClass('filter-selected');
 	       		icoButton.addClass('filter');
@@ -112,7 +112,7 @@
 	        var icoButton = jq('.projectFilter .dropdown-toggle .icoButton');
        		var selectedValues = IPMAppTD.projectName.trim();
       		var selectedValuesArr = selectedValues.split(',');
-	      	if (selectedValues === ''  || selectedValuesArr === '') 
+	      	if (selectedValues == ''  || selectedValuesArr == '') 
 	       	{
 	       		icoButton.removeClass('filter-selected');
 	       		icoButton.addClass('filter');
@@ -135,10 +135,10 @@
 	            jq(this).prop('checked', false);
 	            jq(this).next('label').removeClass('selected');
 	        });
-	        if (selectedValuesArr !== '' && selectedValuesArr.length !== 0) {
+	        if (selectedValuesArr != '' && selectedValuesArr.length != 0) {
 	            jq('.brandFilter .dropdown-menu input[type="checkbox"]').each(function() {
 	                var val = jq(this).attr('value');
-	                if (jq.inArray(val, selectedValuesArr) !== -1) {
+	                if (jq.inArray(val, selectedValuesArr) != -1) {
 	                    jq(this).prop('checked', true);
 	                    jq(this).next().addClass('selected');
 	                } else {
@@ -158,7 +158,7 @@
 	        var icoButton = jq('.brandFilter .dropdown-toggle .icoButton');
        		var selectedValues = IPMAppTD.brandName.trim();
       		var selectedValuesArr = selectedValues.split(',');
-	      	if (selectedValues === ''  || selectedValuesArr === '') 
+	      	if (selectedValues == ''  || selectedValuesArr == '') 
 	       	{
 	       		icoButton.removeClass('filter-selected');
 	       		icoButton.addClass('filter');
@@ -175,10 +175,10 @@
 	            jq(this).prop('checked', false);
 	            jq(this).next('label').removeClass('selected');
 	        });
-	        if (selectedValuesArr !== '' && selectedValuesArr.length !== 0) {
+	        if (selectedValuesArr != '' && selectedValuesArr.length != 0) {
 	            jq('.categoryFilter .dropdown-menu input[type="checkbox"]').each(function() {
 	                var val = jq(this).attr('value');
-	                if (jq.inArray(val, selectedValuesArr) !== -1) {
+	                if (jq.inArray(val, selectedValuesArr) != -1) {
 	                    jq(this).prop('checked', true);
 	                    jq(this).next().addClass('selected');
 	                } else {
@@ -198,7 +198,7 @@
 	        var icoButton = jq('.categoryFilter .dropdown-toggle .icoButton');
        		var selectedValues = IPMAppTD.categoryName.trim();
       		var selectedValuesArr = selectedValues.split(',');
-	      	if (selectedValues === ''  || selectedValuesArr === '') 
+	      	if (selectedValues == ''  || selectedValuesArr == '') 
 	       	{
 	       		icoButton.removeClass('filter-selected');
 	       		icoButton.addClass('filter');
@@ -215,10 +215,10 @@
 	            jq(this).prop('checked', false);
 	            jq(this).next('label').removeClass('selected');
 	        });
-	        if (selectedValuesArr !== '' && selectedValuesArr.length !== 0) {
+	        if (selectedValuesArr != '' && selectedValuesArr.length != 0) {
 	            jq('.phaseFilter .dropdown-menu input[type="checkbox"]').each(function() {
 	                var val = jq(this).attr('value');
-	                if (jq.inArray(val, selectedValuesArr) !== -1) {
+	                if (jq.inArray(val, selectedValuesArr) != -1) {
 	                    jq(this).prop('checked', true);
 	                    jq(this).next().addClass('selected');
 	                } else {
@@ -238,7 +238,7 @@
 	        var icoButton = jq('.phaseFilter .dropdown-toggle .icoButton');
        		var selectedValues = IPMAppTD.phase.trim();
       		var selectedValuesArr = selectedValues.split(',');
-	      	if (selectedValues === ''  || selectedValuesArr === '') 
+	      	if (selectedValues == ''  || selectedValuesArr == '') 
 	       	{
 	       		icoButton.removeClass('filter-selected');
 	       		icoButton.addClass('filter');
@@ -302,7 +302,7 @@
 	
 	/* Below function checks for a condition. If the condition is true it highlights the row by adding a different css class which adds a color. */
 	function myAssignedTasks(taskId, isChecked) {
-	    if (isChecked !== 'true') {
+	    if (isChecked != 'true') {
 	        jq('.taskCheck input[type=checkbox]#' + taskId).closest("tr").removeClass("selected");
 	    } else {
 	        jq('.taskCheck input[type=checkbox]#' + taskId).closest("tr").addClass("selected");
@@ -367,10 +367,10 @@
 	    var selectedValuesArr = selectedValues.split(',');
 	    jq('.projectFilter .dropdown-toggle .icoButton').removeClass('filter');
 	    jq('.projectFilter .dropdown-toggle .icoButton').addClass('filter-selected');
-	    if (selectedValuesArr !== '' && selectedValuesArr.length !== 0) {
+	    if (selectedValuesArr != '' && selectedValuesArr.length != 0) {
 	        jq('.projectFilter .dropdown-menu input[type="checkbox"]').each(function() {
 	            var val = jq(this).attr('value');
-	            if (jq.inArray(val, selectedValuesArr) !== -1) {
+	            if (jq.inArray(val, selectedValuesArr) != -1) {
 	                jq(this).prop('checked', true);
 	                jq(this).next().addClass('selected');
 	            } else {

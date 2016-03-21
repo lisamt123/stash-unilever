@@ -9,7 +9,7 @@
 				function callbackLoadAction() {
 				    jq(document).on('click', '#ipmDeleteModal .removeTask', function() {
 				        var taskId = '';
-				        if (taskId !== jq(this).attr('value')) {
+				        if (taskId != jq(this).attr('value')) {
 				            taskId = jq(this).attr('value');
 				            deleteTask(taskId);
 				            jq("#ipmDeleteModal").modal('hide');
@@ -17,7 +17,7 @@
 				    });
 				    /* Below script works on click event for the phase filter. If the condition is true the options for the drop down list will be appended. */
 				    jq(document).on('show.bs.dropdown', '.phaseFilter', function() {
-				        if (jq('.phaseFilter ul.phase').length === 0) {
+				        if (jq('.phaseFilter ul.phase').length == 0) {
 				            var dropDownList = jq('#phaseFilterDiv').html();
 				            jq(this).append(dropDownList);
 				        }
@@ -27,10 +27,10 @@
 				        jq('.phaseFilter .dropdown-toggle .icoButton').addClass('filter-selected');
 						
 					/* Below script checks a condition for the phase filter. If the condition is true the checkbox will be checked. */
-				        if (selectedValuesArr.length !== 0) {
+				        if (selectedValuesArr.length != 0) {
 				            jq('.phaseFilter .dropdown-menu input[type="checkbox"]').each(function() {
 				                var val = jq(this).attr('value');
-				                if (jq.inArray(val, selectedValuesArr) !== -1) {
+				                if (jq.inArray(val, selectedValuesArr) != -1) {
 				                    jq(this).prop('checked', true);
 				                    jq(this).next('label').addClass('selected');
 				                } else {
@@ -42,7 +42,7 @@
 				    });
 				    /* Below script works on click event for user filter. If the condition is true the options for the drop down list will be appended. */
 				    jq(document).on('show.bs.dropdown', '.userFilter', function() {
-				        if (jq('.userFilter ul.user').length === 0) {
+				        if (jq('.userFilter ul.user').length == 0) {
 				            var dropDownList = jq('#userFilterDiv').html();
 				            jq(this).append(dropDownList);
 				        }
@@ -52,10 +52,10 @@
 				        var selectedValuesArr = selectedValues.split(',');
 						
 					/* Below script checks a condition for the user filter. If the condition is true the checkbox will be checked. */
-				        if (selectedValuesArr.length !== 0) {
+				        if (selectedValuesArr.length != 0) {
 				            jq('.userFilter .dropdown-menu input[type="checkbox"]').each(function() {
 				                var val = jq(this).attr('value');
-				                if (jq.inArray(val, selectedValuesArr) !== -1) {
+				                if (jq.inArray(val, selectedValuesArr) != -1) {
 				                    jq(this).prop('checked', true);
 				                    jq(this).next('label').addClass('selected');
 				                } else {
@@ -74,7 +74,7 @@
 				        var icoButton = jq('.completedFilterT .dropdown-toggle .icoButton');
 		         		var selectedValues = IPMAppComp.isCompleteTasks.trim();
 		        		var selectedValuesArr = selectedValues.split(',');
-			        	if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
+			        	if (selectedValues.length == 0  || selectedValuesArr.length == 0) 
 			        	{
 			        		icoButton.removeClass('filter-selected');
 			        		icoButton.addClass('filter');
@@ -89,7 +89,7 @@
 				        var icoButton = jq('.userFilter .dropdown-toggle .icoButton');
 		         		var selectedValues = IPMAppComp.assignee.trim();
 		        		var selectedValuesArr = selectedValues.split(',');
-			        	if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
+			        	if (selectedValues.length == 0  || selectedValuesArr.length == 0) 
 			        	{
 			        		icoButton.removeClass('filter-selected');
 			        		icoButton.addClass('filter');
@@ -105,7 +105,7 @@
 				    	var icoButton = jq('.phaseFilter .dropdown-toggle .icoButton');
 		         		var selectedValues = IPMAppComp.selectedValues.trim();
 		        		var selectedValuesArr = selectedValues.split(',');
-			        	if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
+			        	if (selectedValues.length == 0  || selectedValuesArr.length == 0) 
 			        	{
 			        		icoButton.removeClass('filter-selected');
 			        		icoButton.addClass('filter');
@@ -117,10 +117,10 @@
 				        var selectedValuesArr = selectedValues.split(',');
 				        jq('.completedFilterT .dropdown-toggle .icoButton').removeClass('filter');
 				        jq('.completedFilterT .dropdown-toggle .icoButton').addClass('filter-selected');
-				        if (selectedValuesArr.length !== 0) {
+				        if (selectedValuesArr.length != 0) {
 				            jq('.completedFilterT .dropdown-menu input[type="checkbox"]').each(function() {
 				                var val = jq(this).attr('value');
-				                if (jq.inArray(val, selectedValuesArr) !== -1) {
+				                if (jq.inArray(val, selectedValuesArr) != -1) {
 				                    jq(this).prop('checked', true);
 				                    jq(this).next('label').addClass('selected');
 				                } else {
@@ -220,7 +220,7 @@
 				function selectCheckBox(element, filterName, arr) {
 				    jq('.' + filterName + ' .dropdown-menu input[type="checkbox"]').each(function() {
 				        var val = jq(this).attr('value');
-				        if (jq.inArray(val, arr) !== -1) {
+				        if (jq.inArray(val, arr) != -1) {
 				            jq(element).prop('checked', true);
 				            jq(element).next('label').addClass('selected');
 				        } else {
@@ -232,7 +232,7 @@
 					the modal title, modal body's content as per the condition. */
 				function myFunc(str, isLst, gateName, secName) {
 				    var errMsg = ''
-				    if (isLst === 'true') {
+				    if (isLst == 'true') {
 				        errMsg = 'All To-do\'s correlating to the ' + gateName + ' Section ' + secName + '  have been removed. Would you like to remove this section from the ' + gateName + ' Document?';
 				    } else {
 				        errMsg = IPMAppComp.errMsg;
@@ -248,7 +248,7 @@
 				}
 				/* Below function checks for a condition. If the condition is true it highlights the row by adding a different css class which adds a color. */
 				function myAssignedTasks(taskId, isChecked) {
-				    if (isChecked !== 'true') {
+				    if (isChecked != 'true') {
 				        jq('.taskCheck input[type=checkbox]#' + taskId).closest("tr").removeClass("selected");
 				    } else {
 				        jq('.taskCheck input[type=checkbox]#' + taskId).closest("tr").addClass("selected");
@@ -258,4 +258,5 @@
 				}
 				jq(document).ready(function() {
 				    jq('.sortIcon').addClass('fa-angle-down');
+					jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});	
 				});
