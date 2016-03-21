@@ -5,6 +5,16 @@ src/approvalProcesses/WU_Master_Warehouse__c.WU_Committed_Pallet_Capacity_Change
 src/classes
 src/classes/WU_CreateCapacityDetails.cls
 src/classes/WU_CreateCapacityDetails.cls-meta.xml
+src/classes/WU_CreateCapacityDetails_Test.cls
+src/classes/WU_CreateCapacityDetails_Test.cls-meta.xml
+src/classes/WU_MultiCreateMultiEdit_Test.cls
+src/classes/WU_MultiCreateMultiEdit_Test.cls-meta.xml
+src/classes/WU_SetCurrentMonthBatch_Scheduler_Test.cls
+src/classes/WU_SetCurrentMonthBatch_Scheduler_Test.cls-meta.xml
+src/classes/WU_SetCurrentMonthBatch_Test.cls
+src/classes/WU_SetCurrentMonthBatch_Test.cls-meta.xml
+src/classes/WU_WarehouseSearchController_test.cls
+src/classes/WU_WarehouseSearchController_test.cls-meta.xml
 src/classes/WU_MultiCreateMultiEdit.cls
 src/classes/WU_MultiCreateMultiEdit.cls-meta.xml
 src/classes/WU_SetCurrentMonthBatch.cls
@@ -32,6 +42,8 @@ src/email/Warehouse_Utilization/WU_Warehouse_Committed_StoragetoPOC.email-meta.x
 src/email/Warehouse_Utilization-meta.xml
 src/groups
 src/groups/WU_AAR_Region.group
+src/groups/WU_Warehouse_Excellence_Team.group
+src/groups/WU_Warehouse_Leadership_Team.group
 src/labels
 src/labels/CustomLabels.labels
 src/layouts
@@ -45,6 +57,7 @@ src/objects/WMS_Settings__c.object
 src/objects/WU_Master_Warehouse__c.object
 src/objects/WU_UtilizationType__c.object
 src/objects/WU_Warehouse_Capacity_Detail__c.object
+src/objects/WU_Permission_Set_Name__c.object
 src/pages
 src/pages/WU_MultiCreateMultiEdit.page
 src/pages/WU_MultiCreateMultiEdit.page-meta.xml
@@ -53,6 +66,8 @@ src/pages/WU_WarehouseSearchPage.page-meta.xml
 src/permissionsets
 src/permissionsets/WU_Logistics_Leadership_Team.permissionset
 src/permissionsets/WU_Warehouse_Excellence_Operations.permissionset
+src/permissionsets/WU_Warehouse_Excellence_Operations_Chatter_Only.permissionset
+src/permissionsets/WU_Logistics_Leadership_Team_for_Chatter_Only.permissionset
 src/reportTypes
 src/reportTypes/Warehouse_Utilization.reportType
 src/reportTypes/WU_Warehouse_Capacity_Detail.reportType
@@ -68,3 +83,9 @@ src/triggers/WU_UpdateMasterWarehouse.trigger-meta.xml
 src/workflows
 src/workflows/WU_Master_Warehouse__c.workflow
 src/workflows/WU_Warehouse_Capacity_Detail__c.workflow
+src/flows
+src/flows/WU_MasterWarehouseUpdationChanges-4.flow
+src/profiles
+src/profiles/Admin.profile
+
+
