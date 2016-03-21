@@ -7,7 +7,6 @@
    @Version : 1.0
    @reference : none
   ****************************************************************************************************************************/
-  /*Sonar Exception for with sharing*/
 public class AF_ApprovalProcessForBrandEstController
 {
     public String brandEstimateId {get;set;}
@@ -65,7 +64,7 @@ public class AF_ApprovalProcessForBrandEstController
         try{
             if(RejectComment==''){
                 ref=null;
-                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter the comments'));
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Comments));
             }
             else if(Actoridset.size()>0)
             {
@@ -82,7 +81,7 @@ public class AF_ApprovalProcessForBrandEstController
                     AfC.AF_Comments__c=RejectComment;
                     AfC.AF_Parent_Record_Id__c=brandEstimateId;
                     AfC.AF_Public__c=true;
-                    AfC.AF_Parent_Object_Type__c='AF_Brand_Estimate__c';
+                    AfC.AF_Parent_Object_Type__c=AF_Constants.SOBJECT_BRANDESTIMATE_APINAME;
                     insert AfC;
                     TempConstructor();
                     displayPopupRejComment=false;
@@ -95,7 +94,7 @@ public class AF_ApprovalProcessForBrandEstController
                 else
                 {
                     ref=null;
-                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'You are not allowed to Approve the record'));
+                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Approve_record));
                 }
             }    
         }catch(Exception e)
@@ -136,7 +135,7 @@ public class AF_ApprovalProcessForBrandEstController
                 }
                 else
                 {
-                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'You are not allowed to Approve the record'));
+                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Approve_record));
                     ref=null;
                 }
             }
@@ -178,7 +177,7 @@ public class AF_ApprovalProcessForBrandEstController
                 else
                 {
                     ref=null;
-                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'You are not allowed to Approve the record'));
+                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Approve_record));
                 }
             }    
         }Catch(Exception ex)
@@ -248,7 +247,7 @@ public class AF_ApprovalProcessForBrandEstController
         {    
             Targetprocess=[select Id, TargetObjectId, isDeleted, Status From ProcessInstance Where isDeleted = false and TargetObjectId =:brandEstimateId  and status='Pending' limit 1]; 
             BrandEstRecord=[select id,AF_Pilot_Model__c,AF_No_Bonus__c,AF_Basefee_Estimate_Initial_Quarter__c,AF_Category_Finance_Flag__c,Brand__c,AF_Fiscal_Year__c,AF_Category_Finance_Approved__c,AF_CMCO_Rejected__c,AF_Status_Base_Fees__c,AF_Agency__c,AF_Controller_Flag__c,ExceptionsComplete__c,AF_No_of_Central_Billing__c from AF_Brand_Estimate__c  where id=:brandEstimateId  limit 1 ];
-            if(BrandEstRecord.AF_Category_Finance_Flag__c>0 && BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY && LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency'){
+            if(BrandEstRecord.AF_Category_Finance_Flag__c>0 && BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY && LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
                 lstofAgencyEst=[select id,AF_Category_Finance_Flag__c from AF_Agency_Estimate__c where AF_Brand_Estimate__r.id=:brandEstimateId];
             }
             StatusofBrand=BrandEstRecord.AF_Status_Base_Fees__c;
@@ -260,14 +259,14 @@ public class AF_ApprovalProcessForBrandEstController
                 Actoridset.add(pis.ActorId) ;
             }   
         }
-        if(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance' && BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE &&  BrandEstRecord.AF_Category_Finance_Flag__c>0){
+        if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE && BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE &&  BrandEstRecord.AF_Category_Finance_Flag__c>0){
             IsCatFinanceEdited=true;
         }
-        if(LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency'){
+        if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
             isAgency = true;
         }
-        if((BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY && LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency') || 
-                (BrandEstRecord.AF_Status_Base_Fees__c=='With CMCO' && LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User'))
+        if((BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY && LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY) || 
+                (BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WIHTCMCO && LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER))
         {
             ApprovalButton=true;            
         }
@@ -295,7 +294,7 @@ public class AF_ApprovalProcessForBrandEstController
         Boolean myresult = mycheck.CheckCountryBreakdown(ParentId);
         if((BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY || BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE) && myresult )
         {
-            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please indicate the country breakdown percentage within UK');
+            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,Label.AF_Country_Breakdown);
             apexpages.addmessage(msg); 
             return null;
         }
@@ -316,13 +315,13 @@ public class AF_ApprovalProcessForBrandEstController
         Boolean myresult = mycheck.CheckCountryBreakdown(ParentId);
         if(BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE && myresult )
         {
-            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please indicate the country breakdown percentage within UK');
+            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,Label.AF_Country_Breakdown);
             apexpages.addmessage(msg); 
             return null;
         }
         AF_BonusRecordManager bonusRecordManager = new AF_BonusRecordManager();
         if(bonusRecordManager.BonusThresholdValidationCheck((BrandEstRecord))) {
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Bonus Thresholds are not created for all Unilever Entity Countries'));
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Thershold_Entity));
             return null;
         }else{
             if(BrandEstRecord.AF_Category_Finance_Flag__c>0)
@@ -340,7 +339,7 @@ public class AF_ApprovalProcessForBrandEstController
             }
             else if(BrandEstRecord.AF_Category_Finance_Flag__c==0)
             {
-                BrandEstRecord.AF_Status_Base_Fees__c='With CMCO';
+                BrandEstRecord.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_WIHTCMCO;
                 update BrandEstRecord;
                 Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
                 req1.setComments('Submitting request for approval automatically ');
@@ -378,7 +377,7 @@ public class AF_ApprovalProcessForBrandEstController
     {
         pagereference ref;
         if(brandEstimateId!=null && brandEstimateId!='')
-        if( (LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency' && BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY)|| (LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance' && BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE)|| (LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' && BrandEstRecord.AF_Status_Base_Fees__c=='With CMCO')) 
+        if( (LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY && BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY)|| (LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE && BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE)|| (LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' && BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WIHTCMCO)) 
         {
             if(lstofAgencyEst.size()>0){
                 list<AF_Agency_Estimate__c>updatedlist=new list<AF_Agency_Estimate__c>();
@@ -408,7 +407,7 @@ public class AF_ApprovalProcessForBrandEstController
         else 
         {
             ref=null;
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'You Can not Submit Approval ,Beacuse your Agecy Fee user type  is Different with Brand Estimate status'));
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Brandestimate_Status));
         }
         return null;
     }
@@ -431,9 +430,9 @@ public class AF_ApprovalProcessForBrandEstController
             errormsg = errormsg+'}';
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,errormsg));
         }
-        else if ((BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE||BrandEstRecord.AF_Status_Base_Fees__c=='With CMCO') && myresult)    
+        else if ((BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE||BrandEstRecord.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WIHTCMCO) && myresult)    
         {
-            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,'Please indicate the country breakdown percentage within UK');
+            apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.ERROR,Label.AF_Country_Breakdown);
             apexpages.addmessage(msg); 
         }
         else
