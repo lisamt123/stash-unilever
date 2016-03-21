@@ -951,8 +951,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 	        remainingChar=countLimit;
     	}
     }    
-	@testVisible private void renderedConditions(){
-        if((project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) && projDocSec.IPM_Master_Section_External_Id__c.equals(IPM_ConstantUtils.CU_AND_COMPLEXITY) && !project.IPM_Phase__c.equals(IPM_ConstantUtils.PHASE_IDEAS))
+	 @testVisible private void renderedConditions(){
+        if((project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) && projDocSec.IPM_Master_Section_External_Id__c.equals(IPM_ConstantUtils.CU_AND_COMPLEXITY))
         ||(!project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) && projDocSec.IPM_Master_Section_External_Id__c.equals(IPM_ConstantUtils.CU_AND_COMPLEXITY) && (project.IPMProject_Span__c.equals(IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL) 
         || project.IPMProject_Span__c.equals(IPM_ConstantUtils.PROJECT_SPAN_LOCAL)|| project.IPM_Phase__c.equals(IPM_ConstantUtils.PHASE_IDEAS)))){
             isCUandComplexity=true;
