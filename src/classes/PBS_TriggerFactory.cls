@@ -56,15 +56,15 @@ public with sharing class PBS_TriggerFactory
         if (Trigger.isBefore)
         {
             // Call the bulk before to handle any caching of data and enable bulkification
-            handler.bulkBefore(Trigger.new, Trigger.old, operationType);
+            //handler.bulkBefore(Trigger.new, Trigger.old, operationType);
 
             // Iterate through the records to be deleted passing them to the handler.
             if (Trigger.isDelete)
             {
-                for (SObject so : Trigger.old)
-                {
-                    handler.beforeDelete(so);
-                }
+               // for (SObject so : Trigger.old)
+                //{
+                    //handler.beforeDelete(so);
+               // }
             }
             // Iterate through the records to be inserted passing them to the handler.
             else if (Trigger.isInsert)
@@ -86,7 +86,7 @@ public with sharing class PBS_TriggerFactory
         else
         {
             // Call the bulk after to handle any caching of data and enable bulkification
-            handler.bulkAfter(Trigger.new, Trigger.old, operationType);
+            //handler.bulkAfter(Trigger.new, Trigger.old, operationType);
 
             // Iterate through the records deleted passing them to the handler.
             if (Trigger.isDelete)
@@ -137,7 +137,7 @@ public with sharing class PBS_TriggerFactory
     {
         if (soType == PBS_Profile__c.sObjectType) {
             return new PBS_ProfileHandler();
-        } else if (soType == Training_Track__c.sObjectType) {
+        } else if (soType == Almond__Training_Track__c.sObjectType) {
             return new PBS_TrainingTrackHandler();
         } else if (soType == PC_Group__c.sObjectType) {
             return new PC_GroupHandler();

@@ -5,11 +5,11 @@ public with sharing class PBS_TrainingTrackHandler implements PBS_Trigger {
     /**
      * List<Training_Track__Share> toAdd list of sharings to be added
      */
-    List<Training_Track__Share> toAdd    = new List<Training_Track__Share>();
+    List<Almond__Training_Track__Share> toAdd    = new List<Almond__Training_Track__Share>();
     /**
      * List<Training_Track__Share> toAdd list of sharings to be removed
      */
-    List<Training_Track__Share> toRemove = new List<Training_Track__Share>();
+    List<Almond__Training_Track__Share> toRemove = new List<Almond__Training_Track__Share>();
 
     /**
      * This method is called prior to execution of a BEFORE trigger.
@@ -80,7 +80,7 @@ public with sharing class PBS_TrainingTrackHandler implements PBS_Trigger {
      */
     public void afterInsert(SObject so) {
         PBS_ProfileService.PBS_ProfileWithoutSharing serviceClass = new PBS_ProfileService.PBS_ProfileWithoutSharing();
-        toAdd.addAll(serviceClass.getNewSharingForTrainingTrack((Training_Track__c) so));
+        toAdd.addAll(serviceClass.getNewSharingForTrainingTrack((Almond__Training_Track__c) so));
     }
 
     /**
@@ -90,8 +90,8 @@ public with sharing class PBS_TrainingTrackHandler implements PBS_Trigger {
      * @param SObject so New object
      */
     public void afterUpdate(SObject oldSo, SObject so) {
-        Training_Track__c oldObj = (Training_Track__c) oldSo;
-        Training_Track__c obj    = (Training_Track__c) so;
+        Almond__Training_Track__c oldObj = (Almond__Training_Track__c) oldSo;
+        Almond__Training_Track__c obj    = (Almond__Training_Track__c) so;
 
         // skip if nothing important changed
         if (!PBS_ProfileService.isUpdateRequired(obj, oldObj)) {
@@ -110,7 +110,7 @@ public with sharing class PBS_TrainingTrackHandler implements PBS_Trigger {
      */
     public void afterDelete(SObject so) {
         PBS_ProfileService.PBS_ProfileWithoutSharing serviceClass = new PBS_ProfileService.PBS_ProfileWithoutSharing();
-        toRemove.addAll(serviceClass.getExistingSharingForTrainingTrack( (Training_Track__c) so ));
+        toRemove.addAll(serviceClass.getExistingSharingForTrainingTrack( (Almond__Training_Track__c) so ));
     }
 
     /**
@@ -120,7 +120,7 @@ public with sharing class PBS_TrainingTrackHandler implements PBS_Trigger {
      */
     public void afterUndelete(SObject so) {
         PBS_ProfileService.PBS_ProfileWithoutSharing serviceClass = new PBS_ProfileService.PBS_ProfileWithoutSharing();
-        toAdd.addAll(serviceClass.getNewSharingForTrainingTrack((Training_Track__c) so));
+        toAdd.addAll(serviceClass.getNewSharingForTrainingTrack((Almond__Training_Track__c) so));
     }
 
     /**

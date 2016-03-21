@@ -8,11 +8,11 @@ public with sharing class PBS_ProfileHandler implements PBS_Trigger
     /**
      * List<Training_Track__Share> toAdd list of sharings to be added
      */
-    List<Training_Track__Share> toAdd    = new List<Training_Track__Share>();
+    List<Almond__Training_Track__Share> toAdd    = new List<Almond__Training_Track__Share>();
     /**
      * List<Training_Track__Share> toAdd list of sharings to be removed
      */
-    List<Training_Track__Share> toRemove = new List<Training_Track__Share>();
+    List<Almond__Training_Track__Share> toRemove = new List<Almond__Training_Track__Share>();
 
     /**
      * This method is called prior to execution of a BEFORE trigger.

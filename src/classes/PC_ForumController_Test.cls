@@ -1,11 +1,11 @@
 @isTest
 private class PC_ForumController_Test
 {
-	private static final string STR_TEST = 'test1';
-	private static final string NO_PLAN_GROUP = 'There should be no plancraft group';
-	private static final string INVALID_PLAN_GROUP = 'Plancraft group is invalid';
-	private static final string PUBLISH_FLAG  = 'Only groups with Published flag set to true should be visible';
-	
+    private static final string STR_TEST = 'test1';
+    private static final string NO_PLAN_GROUP = 'There should be no plancraft group';
+    private static final string INVALID_PLAN_GROUP = 'Plancraft group is invalid';
+    private static final string PUBLISH_FLAG  = 'Only groups with Published flag set to true should be visible';
+    
     @isTest static void getGroupList()
     {
         Test.startTest();
