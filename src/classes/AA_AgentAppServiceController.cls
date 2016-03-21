@@ -827,7 +827,7 @@ public with sharing class AA_AgentAppServiceController {
         appWrapperObj.TotalAgentReports=TotalAgentReports;                    
        
         return appWrapperObj;
-    }
+    } 
     
     /* Most like Reports results */
       public AA_ApplicationWrapperObj retrieveAgentReportsOnMostliked(AA_ApplicationWrapperObj appWrapperObj)
