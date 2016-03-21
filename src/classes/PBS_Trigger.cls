@@ -13,7 +13,7 @@ public interface PBS_Trigger
      * @param List<SObject> oldList List of old objects / before modifications
      * @param String operationType Information if this is an update, insert, delete or undelete
      */
-    void bulkBefore(List<sObject> newData, List<sObject> oldData, String operationType);
+   // void bulkBefore(List<sObject> newData, List<sObject> oldData, String operationType);
 
     /**
      * This method is called prior to execution of an AFTER trigger.
@@ -23,7 +23,7 @@ public interface PBS_Trigger
      * @param List<SObject> oldList List of old objects / before modifications
      * @param String operationType Information if this is an update, insert, delete or undelete
      */
-    void bulkAfter(List<sObject> newData, List<sObject> oldData, String operationType);
+   // void bulkAfter(List<sObject> newData, List<sObject> oldData, String operationType);
 
     /**
      * This method is called iteratively for each record to be inserted during a BEFORE trigger.
@@ -46,7 +46,7 @@ public interface PBS_Trigger
      *
      * @param SObject so Object to delete
      */
-    void beforeDelete(SObject so);
+   // void beforeDelete(SObject so);
 
     /**
      * This method is called iteratively for each record inserted during an AFTER trigger.

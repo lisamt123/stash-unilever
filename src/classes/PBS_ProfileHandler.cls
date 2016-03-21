@@ -22,10 +22,11 @@ public with sharing class PBS_ProfileHandler implements PBS_Trigger
      * @param List<SObject> oldList List of old objects / before modifications
      * @param String operationType Information if this is an update, insert, delete or undelete
      */
+      /* 
     public void bulkBefore(List<SObject> newList, List<SObject> oldList, String operationType) {
         // just to make sonar happy that there are no empty methods
         System.debug(Logginglevel.DEBUG, 'In bulk before');
-    }
+    }*/
 
     /**
      * This method is called prior to execution of an AFTER trigger.
@@ -35,10 +36,11 @@ public with sharing class PBS_ProfileHandler implements PBS_Trigger
      * @param List<SObject> oldList List of old objects / before modifications
      * @param String operationType Information if this is an update, insert, delete or undelete
      */
+      /* 
     public void bulkAfter(List<SObject> newList, List<SObject> oldList, String operationType) {
         // just to make sonar happy that there are no empty methods
         System.debug(Logginglevel.DEBUG, 'In bulk after');
-    }
+    }*/
 
     /**
      * This method is called iteratively for each record to be inserted during a BEFORE trigger.
@@ -67,10 +69,11 @@ public with sharing class PBS_ProfileHandler implements PBS_Trigger
      *
      * @param SObject so Object to delete
      */
+    /* 
     public void beforeDelete(SObject so) {
         // just to make sonar happy that there are no empty methods
         System.debug(Logginglevel.DEBUG, 'In before delete');
-    }
+    }*/
 
     /**
      * This method is called iteratively for each record inserted during an AFTER trigger.
