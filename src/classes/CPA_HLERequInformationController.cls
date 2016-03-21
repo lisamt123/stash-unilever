@@ -57,6 +57,8 @@ global with sharing class CPA_HLERequInformationController {
         if((hleRec.pkl_Status__c == 'Saved'  || !callFromVF)){
             if(hleRec.txt_Assumptions__c  == null) 
                  RequiredFieldMap.put('Assumptions',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.pkl_HLE_type__c  == null) 
+                 RequiredFieldMap.put('HLE Type',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Background__c  == null) 
                  RequiredFieldMap.put('Background',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.ph_UBPR_Contact_No__c  == null) 

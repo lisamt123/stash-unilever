@@ -10,8 +10,9 @@ Record types.
 ======================================================
 History
 -------
-VERSION     AUTHOR     DATE            DETAIL Description
-1.0         Name       01/01/2016     INITIAL DEVELOPMENT CSR:
+VERSION     AUTHOR        DATE            DETAIL Description
+1.0         Name          01/01/2016     INITIAL DEVELOPMENT CSR:
+1.1         Shreyas M     20/03/2016     Changes for Blend Rate
 ***********************************************************************/
 public with sharing class CPA_CRListController { 
     
@@ -36,8 +37,7 @@ public with sharing class CPA_CRListController {
     public CPA_CRListController(ApexPages.StandardController stdController) {
          this.PwoObj = (CPA_project_work_order__c)stdController.getRecord();
             pwoId = this.PwoObj.Id;
-            PwoObjList = new List<CPA_project_work_order__c>();
-           
+            PwoObjList = new List<CPA_project_work_order__c>();           
             innerCrObj = new List<InnerCrList>();
             Blendrate = 0;
             effortstotal =0;
@@ -65,22 +65,27 @@ public with sharing class CPA_CRListController {
     public  void  getPwoList() {
     
             integer countOFCR =1;
-    
+           decimal TotalCosetBlendrate = 0; 
+           decimal TotalResourse = 0;
            CPA_project_work_order__c PwoRs =  [Select Id,Name,num_Estimated_Value_of_PWO__c,num_Expense_charges_of_work_order__c,num_Estimated_Man_days_of_PWO__c,num_Total_work_order_charge__c,num_Effort_Cost__c From CPA_project_work_order__c Where Id=:pwoId];
          
            if(PwoRs !=null) {
             PwoObjList.add(PwoRs);
-            if(Integer.valueOf(PwoRs.num_Effort_Cost__c) !=null && Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c) !=null && Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c)>0) {
-                Blendrate1 = Blendrate = Integer.valueOf(PwoRs.num_Effort_Cost__c) /Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c);
+            
+                
+            if( PwoRs.num_Effort_Cost__c !=null &&  PwoRs.num_Estimated_Man_days_of_PWO__c !=null &&  PwoRs.num_Estimated_Man_days_of_PWO__c>0) {
+                Blendrate1 = Blendrate =  PwoRs.num_Effort_Cost__c / PwoRs.num_Estimated_Man_days_of_PWO__c;
+                TotalCosetBlendrate = TotalCosetBlendrate + (PwoRs.num_Estimated_Man_days_of_PWO__c * Blendrate);
+                TotalResourse = TotalResourse + PwoRs.num_Estimated_Man_days_of_PWO__c;
             }
-               if(Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c) !=null){
-                effortstotal += Integer.valueOf(PwoRs.num_Estimated_Man_days_of_PWO__c);
+               if( PwoRs.num_Estimated_Man_days_of_PWO__c !=null){
+                effortstotal +=  PwoRs.num_Estimated_Man_days_of_PWO__c;
                 }
-              if(Integer.valueOf(PwoRs.num_Total_work_order_charge__c) !=null){ 
-                    costtotal += Integer.valueOf(PwoRs.num_Total_work_order_charge__c);
+              if( PwoRs.num_Estimated_Value_of_PWO__c !=null){ 
+                    costtotal +=  PwoRs.num_Estimated_Value_of_PWO__c;
               }
-              if(Integer.valueOf(PwoRs.num_Expense_charges_of_work_order__c) !=null){ 
-                    expensetotal += Integer.valueOf(PwoRs.num_Expense_charges_of_work_order__c);
+              if( PwoRs.num_Expense_charges_of_work_order__c !=null){ 
+                    expensetotal +=  PwoRs.num_Expense_charges_of_work_order__c;
               }
                 blendratetotal+=Blendrate;
             
@@ -91,24 +96,27 @@ public with sharing class CPA_CRListController {
                 
                  innerCrObj.add(new InnerCrList(i));
                  innerCrObj[i-1].name = rs.Name;
-                 innerCrObj[i-1].efforts = Integer.valueOf(rs.num_Total_Resource_Efforts_CR__c);
-                 innerCrObj[i-1].totalcost = Integer.valueOf(rs.num_Total_charge_of_CR__c);
-                 innerCrObj[i-1].expense = Integer.valueOf(rs.num_Total_Expenses_of_CR__c);
-                    if(Integer.valueOf(rs.num_Total_charge_of_CR__c) !=null && Integer.valueOf(rs.num_Total_Resource_Efforts_CR__c) !=null && Integer.valueOf(rs.num_Total_Resource_Efforts_CR__c)>0) {
-                         Blendrate1 = innerCrObj[i-1].BlendRate=Integer.valueOf(rs.num_Effort_Cost__c)/Integer.valueOf(rs.num_Total_Resource_Efforts_CR__c);
+                 innerCrObj[i-1].efforts =  rs.num_Total_Resource_Efforts_CR__c;
+                 innerCrObj[i-1].totalcost =  rs.num_Total_charge_of_CR__c;
+                 innerCrObj[i-1].expense =  rs.num_Total_Expenses_of_CR__c;
+                    if( rs.num_Total_charge_of_CR__c !=null &&  rs.num_Total_Resource_Efforts_CR__c !=null &&  rs.num_Total_Resource_Efforts_CR__c>0) {
+                         Blendrate1 = innerCrObj[i-1].BlendRate= rs.num_Varied_Target_Blend_Rate__c;
                          blendratetotal+=innerCrObj[i-1].BlendRate;
+                         TotalCosetBlendrate = TotalCosetBlendrate + (innerCrObj[i-1].BlendRate *rs.num_Total_Resource_Efforts_CR__c);
                     }
-                if(Integer.valueOf(rs.num_Total_Resource_Efforts_CR__c) !=null){    
-                    effortstotal += Integer.valueOf(rs.num_Total_Resource_Efforts_CR__c);
+                if( rs.num_Total_Resource_Efforts_CR__c !=null){    
+                    effortstotal +=  rs.num_Total_Resource_Efforts_CR__c;
+                    TotalResourse = TotalResourse + rs.num_Total_Resource_Efforts_CR__c;
                 }
-                if(Integer.valueOf(rs.num_Total_charge_of_CR__c) !=null){ 
-                    costtotal += Integer.valueOf(rs.num_Total_charge_of_CR__c);
+                if( rs.num_Total_charge_of_CR__c !=null){ 
+                    costtotal +=  rs.num_Total_charge_of_CR__c;
                 }
-                 if(Integer.valueOf(rs.num_Effort_Cost__c) !=null){ 
-                    totalBlendrate += Integer.valueOf(rs.num_Effort_Cost__c);
+                 if( rs.num_Effort_Cost__c !=null){ 
+                    totalBlendrate +=  rs.num_Effort_Cost__c;
+                    
                 }
-                if(Integer.valueOf(rs.num_Total_Expenses_of_CR__c) !=null){ 
-                    expensetotal += Integer.valueOf(rs.num_Total_Expenses_of_CR__c);
+                if( rs.num_Total_Expenses_of_CR__c !=null){ 
+                    expensetotal +=  rs.num_Total_Expenses_of_CR__c;
                 }
                 if(rs.pkl_Status__c != CPA_ConstantsForContractingAppClasses.SAVED && rs.pkl_Status__c != CPA_ConstantsForContractingAppClasses.CANCELLED && rs.pkl_Status__c != CPA_ConstantsForContractingAppClasses.RETURNED ){
                     countOFCR = countOFCR+1;
@@ -118,8 +126,8 @@ public with sharing class CPA_CRListController {
             }
             
            }
-           if(effortstotal!= null && totalBlendrate !=null && totalBlendrate >0 && effortstotal>0){
-           blendratetotal = blendratetotal/countOFCR;
+           if(blendratetotal!= null && TotalCosetBlendrate !=null && TotalCosetBlendrate >0 && blendratetotal>0){
+           blendratetotal = TotalCosetBlendrate/TotalResourse;
       }
     }
     
@@ -132,7 +140,7 @@ public with sharing class CPA_CRListController {
     public List<CPA_CR__c> getCrList(String Id) {
           List<CPA_CR__c> crList = new List<CPA_CR__c>();
       
-          crList =[Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Effort_Cost__c,num_Total_charge_of_CR__c,pkl_Status__c,num_Expense_charges_of_CR__c,num_Total_Resource_Efforts_CR__c,num_Total_Expenses_of_CR__c From CPA_CR__c Where CPA_Project_Work_Order__c =:Id ];
+          crList =[Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Effort_Cost__c,num_Total_charge_of_CR__c,pkl_Status__c,num_Expense_charges_of_CR__c,num_Total_Resource_Efforts_CR__c,num_Total_Expenses_of_CR__c,num_Varied_Target_Blend_Rate__c From CPA_CR__c Where CPA_Project_Work_Order__c =:Id ];
           
           if(crList.size() > 0) {
           List<CPA_CR__c >lstTemp = new List<CPA_CR__c >();
@@ -141,7 +149,8 @@ public with sharing class CPA_CRListController {
                     objCR.num_Effort_Cost__c = 0;
                     objCR.num_Total_Expenses_of_CR__c = 0;
                     objCR.num_Total_Resource_Efforts_CR__c = 0;   
-                    objCR.num_Total_charge_of_CR__c =0;             
+                    objCR.num_Total_charge_of_CR__c =0; 
+                    objCR.num_Varied_Target_Blend_Rate__c =0;
                 }
                 lstTemp.add(objCR);
             }

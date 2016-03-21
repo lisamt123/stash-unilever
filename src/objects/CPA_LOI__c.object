@@ -1220,9 +1220,9 @@ var permissionSetName = records1[0].PermissionSet.Name;
 
 if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; != &apos;&apos; ){ 
 
-if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Returned&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Saved&quot;) 
+if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Returned&quot; ||&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Withhold&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Saved&quot;) 
 { 
-alert(&quot;LOI cannot be created since associated PWORF is in Saved/Returned/Cancelled Status&quot;); 
+alert(&quot;LOI cannot be created since associated PWORF is in Saved/Withhold/Returned/Cancelled Status&quot;); 
 } 
 else if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Resubmitted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Submitted&quot;) 
 { 

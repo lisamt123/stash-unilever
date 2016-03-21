@@ -56,15 +56,7 @@ global with sharing class CPA_LOI_InformationController {
         
          if(LoiRec != null){
               if((LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SAVED || LoiRec.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED) || !callFromVF){
-              /*
-                  //Uncomment below code in Release 2
-                    String strToSplit = String.valueOf(LoiRec);
-                    //CPA_MandatoryFieldsUtil abc = new CPA_MandatoryFieldsUtil();
-                    Map<String, String> dataMap = new Map<String, String>();
-                    RequiredFieldMap = CPA_MandatoryFieldsUtil.validateMandatoryFields('CPA_LOIMandatoryMessages__c', strToSplit);
-                    System.debug('RequiredFieldMap ###### ' + RequiredFieldMap);
-                */
-                
+
                 if(LoiRec.pkl_Currency__c == null){
                  RequiredFieldMap.put('Currency',CPA_ConstantsForContractingAppClasses.MANDATORY);  
                 }
@@ -93,8 +85,6 @@ global with sharing class CPA_LOI_InformationController {
                     RequiredFieldMap.put('PWO title',CPA_ConstantsForContractingAppClasses.MANDATORY);          
                 if(LoiRec.pkl_Status__c == null)
                     RequiredFieldMap.put('Status',CPA_ConstantsForContractingAppClasses.MANDATORY);         
-                /*if(LoiRec.txt_Unilever_Clarity_ID__c == null)
-                    RequiredFieldMap.put('Unilever Clarity ID',CPA_ConstantsForContractingAppClasses.MANDATORY); */
                 if(LoiRec.dt_LOI_Start_Date__c == null)
                     RequiredFieldMap.put('LOI Start Date','LOI Start Date is mandatory');
                 
