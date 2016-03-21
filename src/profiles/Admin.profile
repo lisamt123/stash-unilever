@@ -1042,7 +1042,6 @@
         <apexClass>WU_WarehouseSearchController_test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Address__c</field>
