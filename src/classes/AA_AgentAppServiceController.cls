@@ -93,19 +93,20 @@ public with sharing class AA_AgentAppServiceController {
         if(objAgentApp!=null && objAgentApp.usertomentionIds!=null){
         for(string str:objAgentApp.usertomentionIds)
         {
-          userids=str+',';
+          userids=userids+str+',';
           
         }
+        userids=userids.removeEnd(',');
         newObjToBeInserted.TF_Mention_User__c=userids;
         }
-        
+         
          if(objAgentApp!=null && objAgentApp.topicIds!=null){
         for(string str:objAgentApp.topicIds)
         {
-          topicids=str+',';
+          topicids=topicids+str+',';
           
         }
-        
+        topicids=topicids.removeEnd(',');
         newObjToBeInserted.TF_Topic_Name__c=topicids;
         }
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
@@ -166,18 +167,20 @@ public with sharing class AA_AgentAppServiceController {
         if(objAgentApp!=null && objAgentApp.usertomentionIds!=null){
         for(string str:objAgentApp.usertomentionIds)
         {
-          userids=str+',';
+          userids=userids+str+',';
           
         }       
-        
+        userids=userids.removeEnd(',');
         newObjToBeInserted.TF_Mention_User__c=userids;
         }
         
         for(string str:objAgentApp.topicIds)
         {
-          topicids=str+',';
+          topicids=topicids+str+',';
           
         }
+         
+          topicids=topicids.removeEnd(',');
         
         newObjToBeInserted.TF_Topic_Name__c=topicids;
         
@@ -823,12 +826,6 @@ public with sharing class AA_AgentAppServiceController {
         Integer TotalAgentReports=database.countQuery(countquery);
         appWrapperObj.TotalAgentReports=TotalAgentReports;                    
        
-                                    
-    //    }catch(DMLException e){
-    //        system.debug(e.getMessage());        }
-    //    catch(Exception e){
-    //        system.debug(e.getMessage());
-    //    }      
         return appWrapperObj;
     }
     
