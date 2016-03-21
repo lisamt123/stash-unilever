@@ -21,7 +21,7 @@ public with sharing class PBS_TrainingTrackHandler implements PBS_Trigger {
      */
     public void bulkBefore(List<SObject> newList, List<SObject> oldList, String operationType) {
         // just to make sonar happy that there are no empty methods
-        System.debug(Logginglevel.DEBUG, 'In bulk before');
+        
     }
 
     /**
@@ -34,7 +34,7 @@ public with sharing class PBS_TrainingTrackHandler implements PBS_Trigger {
      */
     public void bulkAfter(List<SObject> newList, List<SObject> oldList, String operationType) {
         // just to make sonar happy that there are no empty methods
-        System.debug(Logginglevel.DEBUG, 'In bulk after');
+        
     }
 
     /**
@@ -45,7 +45,7 @@ public with sharing class PBS_TrainingTrackHandler implements PBS_Trigger {
      */
     public void beforeInsert(SObject so) {
         // just to make sonar happy that there are no empty methods
-        System.debug(Logginglevel.DEBUG, 'In before insert');
+        
     }
 
     /**
@@ -56,7 +56,7 @@ public with sharing class PBS_TrainingTrackHandler implements PBS_Trigger {
      */
     public void beforeUpdate(SObject oldSo, SObject so) {
         // just to make sonar happy that there are no empty methods
-        System.debug(Logginglevel.DEBUG, 'In before update');
+        
     }
 
     /**
@@ -66,7 +66,7 @@ public with sharing class PBS_TrainingTrackHandler implements PBS_Trigger {
      */
     public void beforeDelete(SObject so) {
         // just to make sonar happy that there are no empty methods
-        System.debug(Logginglevel.DEBUG, 'In before delete');
+        
     }
 
     /**
