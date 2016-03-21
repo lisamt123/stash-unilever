@@ -390,12 +390,12 @@
             <name>CPA_CR_Saved_returned</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <field>CPA_CR__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Saved,Returned</value>
+            <value>Returned</value>
         </criteriaItems>
         <criteriaItems>
             <field>CPA_CR__c.chk_isStandalone_CR__c</field>

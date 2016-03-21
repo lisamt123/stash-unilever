@@ -301,7 +301,7 @@
                 <height>200</height>
                 <page>CPA_CRList</page>
                 <showLabel>false</showLabel>
-                <showScrollbars>false</showScrollbars>
+                <showScrollbars>true</showScrollbars>
                 <width>100%</width>
             </layoutItems>
         </layoutColumns>
