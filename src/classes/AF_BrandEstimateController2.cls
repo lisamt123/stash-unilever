@@ -50,6 +50,8 @@ global with sharing class AF_BrandEstimateController2
 	public Boolean hideDeleteLink{get;set;}
 	set<String> BIds = new set<String>();
 	private static String AF_BrandEstiamte_Controller2=  'AF_BrandEstimateController2';
+	Boolean isDig_Trad;
+	list<AF_Bonus_Threshold__c> bonusInsertList;
 	/*************************************************************************************
 *  @Description: this method is used to query and display BrandEstimate Traditional figure
 *  @name : TraditionalDisplay
@@ -171,10 +173,10 @@ global with sharing class AF_BrandEstimateController2
 			IsCMCO_Fin_User=false;
 			User userObj = new User();
 			userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
-			if(userObj.AF_Agency_Fees_User_Type__c=='CMCO Super User' ){
+			if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER ){
 				IsCMCO_Fin_User=true;
 			}
-			else if(userObj.AF_Agency_Fees_User_Type__c=='Category Finance'){
+			else if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE){
 				IsCMCO_Fin_User=true;
 			}
 			else{
@@ -193,7 +195,7 @@ global with sharing class AF_BrandEstimateController2
 					CalculateTotal();
 					ispilotModel=BrandEstimateObj.AF_Pilot_Model__c;
 					NoBonusCheck=BrandEstimateObj.AF_No_Bonus__c;
-					if(BrandEstimateObj.AF_Status_Base_Fees__c == 'Ready for PO'){
+					if(BrandEstimateObj.AF_Status_Base_Fees__c == AF_Constants.BASE_FEES_READYFORPO){
 						ReadyforPO = true;
 					}
 					if(BrandEstimateObj.AF_Status_Base_Fees__c == AF_Constants.BASE_FEES_READYFORPO && BrandEstimateObj.AF_Basefee_Estimate_Initial_Quarter__c.contains(AF_Constants.QUARTER4)){
@@ -316,20 +318,20 @@ global with sharing class AF_BrandEstimateController2
 			listSameCountry = [select id,AF_Bonus_Threshold__c,AF_Bonus_Threshold__r.Year__c from AF_Sub_Result__c where AF_country__c =:countryToDelete and AF_Period__c=null and AF_Bonus_Threshold__c=:bonusId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year())];
 			List<AF_Sub_Result__c> subresult=new List<AF_Sub_Result__c>();
 			List<AF_Sub_Result__c> delsubresultDraft=new List<AF_Sub_Result__c>();
-			subresult = [select id from AF_Sub_Result__c where AF_country__c =:countryToDelete and AF_Period__c!=null and AF_Status__c='Submitted' and AF_Bonus_Threshold__c=:bonusId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year())];
+			subresult = [select id from AF_Sub_Result__c where AF_country__c =:countryToDelete and AF_Period__c!=null and AF_Status__c=:AF_Constants.STATUS_SUBMITTED and AF_Bonus_Threshold__c=:bonusId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year())];
 			if(listSameCountry.size()==1 && subresult.size()==0){
 				delBonusThreshold = [select id,Year__c from AF_Bonus_Threshold__c where id = :listSameCountry[0].AF_Bonus_Threshold__c and Year__c=:string.valueof(System.Today().year())];
 				delete delBonusThreshold;
 			}
 			else if(listSameCountry.size()==1 && subresult.size()>0){
-				delsubresultDraft = [select id from AF_Sub_Result__c where AF_country__c =:countryToDelete and AF_Status__c!='Submitted' and AF_Bonus_Threshold__c=:bonusId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year())];
+				delsubresultDraft = [select id from AF_Sub_Result__c where AF_country__c =:countryToDelete and AF_Status__c!=:AF_Constants.STATUS_SUBMITTED and AF_Bonus_Threshold__c=:bonusId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year())];
 				if(delsubresultDraft.size()>0){
 					delete delsubresultDraft; 
 				}
 			}
 			else{
 				try{
-					delSubResult = [select Id from AF_Sub_Result__c where AF_deletion_key__c = :delKey and AF_Bonus_Threshold__c=:bonusId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year()) and AF_Status__c!='Submitted'];
+					delSubResult = [select Id from AF_Sub_Result__c where AF_deletion_key__c = :delKey and AF_Bonus_Threshold__c=:bonusId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year()) and AF_Status__c!=:AF_Constants.STATUS_SUBMITTED];
 					if(delSubResult.size()>0){
 						delete delSubResult;
 					}
@@ -344,7 +346,7 @@ global with sharing class AF_BrandEstimateController2
 				}
 				catch(Exception e){
 					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_BrandEstiamte_Controller2,'delCounrtyRecord',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-					apexpages.addmessage(new apexpages.message(apexpages.severity.Error,'This Threshold is in use by Matrix and cannot be deleted'));  
+					apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Thershold_Used));  
 				}
 			}
 		}
@@ -386,7 +388,7 @@ global with sharing class AF_BrandEstimateController2
 	{
 		Countrynames = new List<SelectOption>();
 		Countrynames.add(new selectoption('','Country'));
-		List<AF_Entity__c> UEntity=[select id,name,AF_Country__c from AF_Entity__c where RecordType.Name =:'Unilever Entity' order by AF_Country__c ASC]; 
+		List<AF_Entity__c> UEntity=[select id,name,AF_Country__c from AF_Entity__c where RecordType.Name =:AF_Constants.RT_UNILEVER_ENTITY order by AF_Country__c ASC]; 
 		for(AF_Entity__c UE:UEntity)
 		{
 			Countrynames.add(new selectoption(UE.id,UE.AF_Country__c));
@@ -423,15 +425,15 @@ global with sharing class AF_BrandEstimateController2
 	{        
 		try
 		{
-			if(BrandEstimateObj.AF_Status_Base_Fees__c == 'Initiate'){
-				BrandEstimateObj.AF_Status_Base_Fees__c='With agency';
+			if(BrandEstimateObj.AF_Status_Base_Fees__c == AF_Constants.BASE_FEES_INITIATE){
+				BrandEstimateObj.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_WITH_AGENCY;
 			}
 			BrandEstimateObj.IsUpdate__c = true;
 			TraditionalDisplay = TraditionalDisplay.Remove(',');
 			DigitalDisplay = DigitalDisplay.Remove(',');
 			AdaptationDisplay = AdaptationDisplay.Remove(',');
 			update BrandEstimateObj;
-			apexpages.addmessage(new apexpages.message(apexpages.severity.info,'Records successfully saved'));  
+			apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Records_saved));  
 		}
 		catch(DMLException ex)
 		{           
@@ -448,35 +450,14 @@ global with sharing class AF_BrandEstimateController2
 ***********************************************************************************************/
 	public void SaveBonusThresholds(){
 		list<AF_Sub_Result__c>bonus_latestlist=new list<AF_Sub_Result__c>();
-		list<AF_Bonus_Threshold__c> bonusInsertList = new list<AF_Bonus_Threshold__c>();
-		AF_Bonus_Threshold__c btInsertRecords;
-		set<String> countrySet = new set<String>();
+		bonusInsertList = new list<AF_Bonus_Threshold__c>();
 		Integer counter=0;
 		System.Savepoint previousSnapShot = Database.setSavepoint();
-		Boolean isDig_Trad=false;//03-09-2014 traditional or digital should be selected
+		isDig_Trad=false;//03-09-2014 traditional or digital should be selected
 		Set<String> delBonusThresholdCountry = new Set<String>();
 		Try{
 			if(BonusThresholds.size()>0){
-				For(wrapbonus bonus_thresolds:BonusThresholds){
-					btInsertRecords  = new AF_Bonus_Threshold__c();
-					//03-09-2014 traditional or digital should be selected
-					if(!bonus_thresolds.bonusthresholds.AF_Digital__c && !bonus_thresolds.bonusthresholds.AF_Traditional__c){
-						isDig_Trad=true;
-					}
-					if(!countrySet.contains(bonus_thresolds.bonusthresholds.AF_country__c)){
-						btInsertRecords.Brand_Name__c=brandid;
-						btInsertRecords.Agency_Name__c = agencyid;
-						btInsertRecords.Year__c = Fyear;
-						btInsertRecords.AF_Country__c = bonus_thresolds.bonusthresholds.AF_country__c;
-						btInsertRecords.Id = bonus_thresolds.bonusthresholds.AF_Bonus_Threshold__c;
-						countrySet.add(bonus_thresolds.bonusthresholds.AF_country__c);
-						bonusInsertList.add(btInsertRecords);
-					}
-					if(bonus_thresolds.bonusthresholds.AF_Country__c==null){
-						counter++;
-						Apexpages.addmessage(new apexpages.message(apexpages.severity.ERROR,  'Please select the country'));
-					}
-				}
+				bonusCountryValidation(BonusThresholds,counter);
 				if(test.isrunningtest()){
 					counter=0;
 					isDig_Trad=false;
@@ -512,11 +493,11 @@ global with sharing class AF_BrandEstimateController2
 					upsert bonus_latestlist;
 					BonusThresholds.Clear();
 					addwrapper();
-					Apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,  'Records successfully saved' ));
+					Apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,  Label.AF_Records_saved ));
 					bonusThresholdValidation();
 				}
 				else if(isDig_Trad){
-					ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.INFO,'Please select \'Traditional\' or \'Digital\'');
+					ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.INFO,Label.AF_Select_Trad_Digital);
 					ApexPages.addMessage(myMsg);
 				}
 			}else{
@@ -526,9 +507,39 @@ global with sharing class AF_BrandEstimateController2
 		catch(DMLException ex){
 			Database.Rollback(previousSnapShot);
 			if(!(ex.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'))){
-				Apexpages.addmessage(new apexpages.message(apexpages.severity.ERROR,  'Unique threshold failing'));
+				Apexpages.addmessage(new apexpages.message(apexpages.severity.ERROR,  Label.AF_Thershold_Failing));
 			}
 		}
+	}
+	/*****************************************************************************************
+*  @Description: this method is used validation of country picklist choose by users
+*  @name : bonusCountryValidation
+*  @param : list<wrapbonus>
+*  @return: None.
+***********************************************************************************************/
+	public void bonusCountryValidation(list<wrapbonus> BonusThresholds,Integer counter){
+	AF_Bonus_Threshold__c btInsertRecords;
+	set<String> countrySet = new set<String>();
+	For(wrapbonus bonus_thresolds:BonusThresholds){
+		btInsertRecords  = new AF_Bonus_Threshold__c();
+		//03-09-2014 traditional or digital should be selected
+		if(!bonus_thresolds.bonusthresholds.AF_Digital__c && !bonus_thresolds.bonusthresholds.AF_Traditional__c){
+			isDig_Trad=true;
+		}
+		if(!countrySet.contains(bonus_thresolds.bonusthresholds.AF_country__c)){
+			btInsertRecords.Brand_Name__c=brandid;
+			btInsertRecords.Agency_Name__c = agencyid;
+			btInsertRecords.Year__c = Fyear;
+			btInsertRecords.AF_Country__c = bonus_thresolds.bonusthresholds.AF_country__c;
+			btInsertRecords.Id = bonus_thresolds.bonusthresholds.AF_Bonus_Threshold__c;
+			countrySet.add(bonus_thresolds.bonusthresholds.AF_country__c);
+			bonusInsertList.add(btInsertRecords);
+		}
+		if(bonus_thresolds.bonusthresholds.AF_Country__c==null){
+			counter++;
+			Apexpages.addmessage(new apexpages.message(apexpages.severity.ERROR,  Label.AF_Select_Country));
+		}
+	}
 	}
 	/*****************************************************************************************
 *  @Description: this method is used to reload the page
@@ -656,7 +667,7 @@ global with sharing class AF_BrandEstimateController2
 		}
 		else{
 			NoBonusCheck = false;
-			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,'Please uncheck the pilot Model flag and delete all the Bonus Thresholds'));  
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Pilot_Model));  
 		}
 	}
 	/*****************************************************************************************
@@ -684,7 +695,7 @@ global with sharing class AF_BrandEstimateController2
 			catch(Exception e){
 				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_BrandEstiamte_Controller2,'checkpilot',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				ispilotModel=true;
-				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,'Only '+BT_Remuneration[0].CreatedBy.Name+' the record owner can uncheck the pilot Model'));  
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,'Only '+BT_Remuneration[0].CreatedBy.Name+Label.AF_Uncheck_pilot));  
 			}
 		}
 	}
@@ -726,11 +737,11 @@ global with sharing class AF_BrandEstimateController2
 					}
 					getPilotmethod();
 					if(ispilotModel)
-					apexpages.addmessage(new apexpages.message(apexpages.severity.info,'You have confirmed that your Brand is on the Pilot Model and that Quantitative Bonus Tracking is therefore not applicable'));  
+					apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Quantative_Bonus));  
 				}
 				else
 				{
-					ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.INFO,'Please select \'Traditional\' or \'Digital\'');
+					ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.INFO,Label.AF_Select_Trad_Digital);
 					ApexPages.addMessage(myMsg);
 				}
 			}
