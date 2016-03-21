@@ -52,8 +52,8 @@ jq(document).ready(function() {
         td.style.textAlign = 'left';
     };
     FinancialData = [
+        ["Click Here To Paste(Ctrl + V) Your Data", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
         ["INNOVATION YEAR", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-        ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
         ["", "", "", "", "", "GROSS P&L", "", "", "", "", "INCREMENTAL P&L", "", "", ""],
         ["", "", "", "", "Y0", "Y1", "Y2", "Y3", "Y4", "Y5", "Y1", "Y2", "Y3", "Y4", "Y5"],
         ["Value Market Share ", " % ", "", "", "", "", "", "", "", "", "", "", "", "", ""],
@@ -131,7 +131,7 @@ jq(document).ready(function() {
             if (row === 0) {
                 cellProperties.renderer = headerRenderer;
             } else if (row === 1) {
-                cellProperties.renderer = headerRenderer2;
+                cellProperties.renderer = headerRenderer;
             } else if (row === 2) {
                 cellProperties.renderer = headerRenderer2;
             } else if (row === 3) {
