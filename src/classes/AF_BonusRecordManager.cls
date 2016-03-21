@@ -22,6 +22,9 @@ Global with sharing class AF_BonusRecordManager {
 	public String MatrixErrorMessage {get;set;}
 	public Boolean IsMatrixError {get;set;}
 	Global set<string> ExceptionList = new set<string>();
+	List<AF_Agency_Estimate__c> filteredAgencyEstimateCollection = new List<AF_Agency_Estimate__c>();
+	set<Id> BonusThresholdIds;
+	List<AF_Bonus_Matrix__c> objCollection;
 	/*****************************************************************************************************************************
 @Author :Cognizant
 @name : AF_BonusRecordManager
@@ -120,20 +123,18 @@ Global with sharing class AF_BonusRecordManager {
 	@testVisible private List<AF_Bonus_Matrix__c> BonusMultiObjectFactory(AF_Brand_Estimate__c pBrandEstimate, List<AF_Agency_Estimate__c> pAgencyEstimateCollection)
 	{
 		set<Id> BonusThresholdId = new set<Id>();
+		BonusThresholdIds = new set<Id>();
 		IsMatrixError = false;
 		if(pBrandEstimate.AF_Pilot_Model__c){IsPilotModel=true;}else{IsPilotModel=false;}
-		List<AF_Bonus_Matrix__c> objCollection = new List<AF_Bonus_Matrix__c>();
-		set<Id> BonusThresholdIds = new set<Id>();
+		objCollection = new List<AF_Bonus_Matrix__c>();
 		List<AF_Bonus_Threshold__c> BonusThresholdCollection = [Select a.Year__c,a.Country_Name__c, a.SystemModstamp, a.OwnerId, a.Name, a.LastViewedDate,  a.Id,a.Brand_Name__c, a.Bonus_Measure__c, a.Agency_Name__c, a.AF_Unique_Thresholds__c, a.AF_Traditional__c, a.AF_Stretching__c, a.AF_Pilot_Model__c, a.AF_Outstanding__c, a.AF_Minimum__c, a.AF_Digital__c, a.AF_Country__c, a.AF_Country_Full_Name__c, a.AF_Category__c, a.AF_Brand_Estimate__c, a.AF_Bonusable_Fee__c From AF_Bonus_Threshold__c a where Agency_Name__c=:pBrandEstimate.AF_Agency__c and Brand_Name__c=:pBrandEstimate.Brand__c and Year__c =: pBrandEstimate.AF_Fiscal_Year__c ];
 		if(BonusThresholdCollection.size()>0){
 			for(AF_Bonus_Threshold__c b:BonusThresholdCollection){
 				BonusThresholdId.add(b.Id);
 			}
 		}
-		List<AF_Agency_Estimate__c> filteredAgencyEstimateCollection = new List<AF_Agency_Estimate__c>(); 
 		List<AF_Bonus_Summary__c> BonusSummarys = [Select a.Name, a.Id, a.AF_Status__c, a.AF_Fiscal_Year__c, a.AF_Brand__c, a.AF_Agency__c From AF_Bonus_Summary__c a where a.AF_Brand__c = : pBrandEstimate.Brand__c AND a.AF_Agency__c = : pBrandEstimate.AF_Agency__c AND a.AF_Fiscal_Year__c = : pBrandEstimate.AF_Fiscal_Year__c LIMIT 1];
 		set<string> UnileverEntityCollection = new set<string>();
-		set<string> UnileverEntityWithBonusThresholdCollection = new set<string>();
 		for(AF_Bonus_Summary__c bs : BonusSummarys)
 		{
 			BonusSummary = bs; //set the bonus summer to be used.
@@ -159,6 +160,21 @@ Global with sharing class AF_BonusRecordManager {
 		{
 			System.debug(ex);   
 		}
+		bonusThresholdException(IsPilotModel,pBrandEstimate,BonusThresholdCollection);
+		if(!IsMatrixError)
+		{
+			bonusAgencyEstExt(BonusThresholdCollection,IsPilotModel,pAgencyEstimateCollection);
+			objCollection = bonusMatrixCreation(BonusThresholdCollection,IsPilotModel,BonusThresholdId,pBrandEstimate);
+		}           
+		return objCollection;   
+	}
+	/**********************************************************************
+*  @Description: this method is used to query and display the validation msg of displaying BonusThreshold countries
+*  @name : bonusThresholdException
+*  @param : Boolean,AF_Brand_Estimate__c,List<AF_Bonus_Threshold__c>
+*  @return : none
+*************************************************************************/	
+	public void bonusThresholdException(Boolean IsPilotModel,AF_Brand_Estimate__c pBrandEstimate,List<AF_Bonus_Threshold__c> BonusThresholdCollection){
 		if(!IsPilotModel)
 		{
 			Map<String,Double> CountryNameAndTotalCollection = new Map<String,Double>();            
@@ -199,84 +215,98 @@ Global with sharing class AF_BonusRecordManager {
 				}
 			}
 		}
-		if(!IsMatrixError)
+	}
+	/*********************************************************************************************************
+*  @Description: this method is used to unilever Entities added in Bonus Thresholds
+*  @name : bonusThresholdException
+*  @param : List<AF_Bonus_Threshold__c>,Boolean,List<AF_Agency_Estimate__c>
+*  @return : none
+***************************************************************************************************************/	
+	public void bonusAgencyEstExt(List<AF_Bonus_Threshold__c> BonusThresholdCollection,Boolean IsPilotModel,List<AF_Agency_Estimate__c> pAgencyEstimateCollection){
+		set<string> UnileverEntityWithBonusThresholdCollection = new set<string>();
+		for(AF_Bonus_Threshold__c bonusThreshold : BonusThresholdCollection) 
+		{           
+			BonusThresholdIds.add(bonusThreshold.Id);
+			if(!UnileverEntityWithBonusThresholdCollection.contains(bonusThreshold.Country_Name__c))
+			{
+				UnileverEntityWithBonusThresholdCollection.add(bonusThreshold.Country_Name__c);          
+			}           
+		}
+		if(!IsPilotModel)
 		{
+			for(AF_Agency_Estimate__c agencyEstimate : pAgencyEstimateCollection)
+			{
+				if(UnileverEntityWithBonusThresholdCollection.contains(agencyEstimate.AF_Unilever_Entity_Name__c))
+				{
+					filteredAgencyEstimateCollection.add(agencyEstimate);                                   
+				}
+			}
+		}
+		else if(IsPilotModel)
+		{
+			for(AF_Agency_Estimate__c agencyEstimate : pAgencyEstimateCollection)
+			{
+				filteredAgencyEstimateCollection.add(agencyEstimate);
+			}           
+		}
+	}
+	/*********************************************************************************************************
+*  @Description: this method is used to insert the Bonus Matrix records
+*  @name : bonusMatrixCreation
+*  @param : List<AF_Bonus_Threshold__c>,Boolean,set<Id>
+*  @return : none
+***************************************************************************************************************/	
+	public List<AF_Bonus_Matrix__c> bonusMatrixCreation(List<AF_Bonus_Threshold__c> BonusThresholdCollection,Boolean IsPilotModel,set<Id> BonusThresholdId,AF_Brand_Estimate__c pBrandEstimate){
+		if(BonusThresholdCollection.size() > 0)     
+		{                   
+			Map<Id,AF_Bonus_Results__c> BonusResultsCollection = new Map<Id,AF_Bonus_Results__c>([Select a.Name,a.AF_Total_Remuneration__c, a.AF_Bonus_Thresholds__c From AF_Bonus_Results__c a where a.AF_Bonus_Thresholds__c IN : BonusThresholdIds AND a.RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Annual').getRecordTypeId()]);                                     
+			List<AF_Sub_Result__c> listSubResult = [select AF_Digital__c,AF_Traditional__c,AF_Bonus_Threshold__c from AF_Sub_Result__c where AF_Bonus_Threshold__c IN :BonusThresholdId];
+			objCollection = new List<AF_Bonus_Matrix__c>();
 			for(AF_Bonus_Threshold__c bonusThreshold : BonusThresholdCollection) 
-			{           
-				BonusThresholdIds.add(bonusThreshold.Id);
-				if(!UnileverEntityWithBonusThresholdCollection.contains(bonusThreshold.Country_Name__c))
-				{
-					UnileverEntityWithBonusThresholdCollection.add(bonusThreshold.Country_Name__c);          
-				}           
-			}
-			if(!IsPilotModel)
-			{
-				for(AF_Agency_Estimate__c agencyEstimate : pAgencyEstimateCollection)
-				{
-					if(UnileverEntityWithBonusThresholdCollection.contains(agencyEstimate.AF_Unilever_Entity_Name__c))
+			{   
+				if(!IsPilotModel)
+				{                                                   
+					for(AF_Bonus_Results__c br :  BonusResultsCollection.Values())
 					{
-						filteredAgencyEstimateCollection.add(agencyEstimate);                                   
-					}
-				}
-			}
-			else if(IsPilotModel)
-			{
-				for(AF_Agency_Estimate__c agencyEstimate : pAgencyEstimateCollection)
-				{
-					filteredAgencyEstimateCollection.add(agencyEstimate);
-				}           
-			}
-			if(BonusThresholdCollection.size() > 0)     
-			{                   
-				Map<Id,AF_Bonus_Results__c> BonusResultsCollection = new Map<Id,AF_Bonus_Results__c>([Select a.Name,a.AF_Total_Remuneration__c, a.AF_Bonus_Thresholds__c From AF_Bonus_Results__c a where a.AF_Bonus_Thresholds__c IN : BonusThresholdIds AND a.RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Annual').getRecordTypeId()]);                                     
-				List<AF_Sub_Result__c> listSubResult = [select AF_Digital__c,AF_Traditional__c,AF_Bonus_Threshold__c from AF_Sub_Result__c where AF_Bonus_Threshold__c IN :BonusThresholdId];
-				objCollection = new List<AF_Bonus_Matrix__c>();
-				for(AF_Bonus_Threshold__c bonusThreshold : BonusThresholdCollection) 
-				{   
-					if(!IsPilotModel)
-					{                                                   
-						for(AF_Bonus_Results__c br :  BonusResultsCollection.Values())
-						{
-							if(br.AF_Bonus_Thresholds__c == bonusThreshold.Id)
-							{                        
-								for(AF_Agency_Estimate__c agencyEstimate : filteredAgencyEstimateCollection)
+						if(br.AF_Bonus_Thresholds__c == bonusThreshold.Id)
+						{                        
+							for(AF_Agency_Estimate__c agencyEstimate : filteredAgencyEstimateCollection)
+							{
+								if(bonusThreshold.Country_Name__c == agencyEstimate.AF_Unilever_Entity_Name__c)
 								{
-									if(bonusThreshold.Country_Name__c == agencyEstimate.AF_Unilever_Entity_Name__c)
-									{
-										AF_Bonus_Matrix__c objItem = BonusMatrixSingleFactory(agencyEstimate,BonusSummary,br,bonusThreshold,listSubResult);
-										objCollection.add(objItem); 
-									}                           
-								}
-							}   
-						}                   
-					}
-					else
-					{   
-						for(AF_Agency_Estimate__c agencyEstimate : filteredAgencyEstimateCollection)
-						{                       
-							AF_Bonus_Matrix__c objItem = BonusMatrixSingleFactory(agencyEstimate,BonusSummary,null,bonusThreshold,null);
-							objCollection.add(objItem);                                                     
-						}
-					}
-					if(IsPilotModel)
-					{
-						objCollection = PilotModelBonusMatrixGenerator(pBrandEstimate,objCollection, GlobalBonusResults,bonusThreshold);                    
-					}               
-				} 
-				if(objCollection.size() > 0)
-				{
-					try
-					{                       
-						insert objCollection; //this DML in the FOR LOOP
-					}
-					catch(DMLException ex)
-					{
-						System.debug(ex);
-					}       
+									AF_Bonus_Matrix__c objItem = BonusMatrixSingleFactory(agencyEstimate,BonusSummary,br,bonusThreshold,listSubResult);
+									objCollection.add(objItem); 
+								}                           
+							}
+						}   
+					}                   
 				}
+				else
+				{   
+					for(AF_Agency_Estimate__c agencyEstimate : filteredAgencyEstimateCollection)
+					{                       
+						AF_Bonus_Matrix__c objItem = BonusMatrixSingleFactory(agencyEstimate,BonusSummary,null,bonusThreshold,null);
+						objCollection.add(objItem);                                                     
+					}
+				}
+				if(IsPilotModel)
+				{
+					objCollection = PilotModelBonusMatrixGenerator(pBrandEstimate,objCollection, GlobalBonusResults,bonusThreshold);                    
+				}               
+			} 
+			if(objCollection.size() > 0)
+			{
+				try
+				{                       
+					insert objCollection; //this DML in the FOR LOOP
+				}
+				catch(DMLException ex)
+				{
+					System.debug(ex);
+				}       
 			}
-		}           
-		return objCollection;   
+		}
+		return objCollection;
 	}
 	/*****************************************************************************************************************************
 @Author :Cognizant
