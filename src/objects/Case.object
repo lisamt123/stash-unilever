@@ -5270,7 +5270,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Unilever_General</fullName>
-        <booleanFilter>1 AND ((2 OR 4 OR 7) AND 5) AND 3 AND 6 AND 8</booleanFilter>
+        <booleanFilter>1 AND ((2 OR 4 OR 7) aND 5) AND 3 AND 6 AND 8</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -5893,6 +5893,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CASES.STATUS</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>Country__c</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Mine</filterScope>
