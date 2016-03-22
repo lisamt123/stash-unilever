@@ -46,6 +46,7 @@ public  with sharing class AF_MatrixAgencySummary {
 	public List<String> quarterOops;
 	public Integer ytgValue{get;set;}
 	public String ytgColour{get;set;}
+	set<String> oopsEstimateStatusUpdate;
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_MatrixAgencySummary
@@ -233,7 +234,7 @@ public  with sharing class AF_MatrixAgencySummary {
 **********************************************************************************************/
 	public pagereference submit(){
 		List<AF_OOPS_Actual__c> updateOopsActual = new List<AF_OOPS_Actual__c>();
-		set<String> oopsEstimateStatusUpdate = new set<String>();
+		oopsEstimateStatusUpdate = new set<String>();
 		for(AF_OOPS_Actual__c oops:oopsActListObj){
 			integer i=0;
 			String quarterValue = oops.Quarter__c;
@@ -267,25 +268,28 @@ public  with sharing class AF_MatrixAgencySummary {
 				}
 			}
 		}
-		list<AF_OOPS_Estimate__c> submit_OOPS_Estimate = new list<AF_OOPS_Estimate__c>();
+		submitExt(updateOopsActual);
+		return null;
+	}
+ public void submitExt(List<AF_OOPS_Actual__c> updateOopsActual1){
+	list<AF_OOPS_Estimate__c> submit_OOPS_Estimate = new list<AF_OOPS_Estimate__c>();
 		submit_OOPS_Estimate=[Select name,AF_Status__c from AF_OOPS_Estimate__c where AF_OOPS_Actual__r.id IN :oopsEstimateStatusUpdate];
 		list<AF_OOPS_Estimate__c>updatedopps_est=new list<AF_OOPS_Estimate__c>();
 		for(AF_OOPS_Estimate__c oops_est:submit_OOPS_Estimate){
 			oops_est.AF_Status__c =AF_Constants.OOPS_ACTUAL_READYFORPO;
 			updatedopps_est.add(oops_est);
 		}
-		if(updateOopsActual.size()>0){
+		if(updateOopsActual1.size()>0){
 			try{
-				update updateOopsActual;
+				update updateOopsActual1;
 				update updatedopps_est;
 			}
 			catch(Exception e){
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_MatrixAgencySummary','submit',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_MatrixAgencySummary','submitExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				system.debug(e);
 			}
 		}
-		return null;
-	}
+ }
 	/*****************************************************************************************
 *  @Description: this method is used to Approve the OOPSActual Amounts
 *  @name : grApprove
