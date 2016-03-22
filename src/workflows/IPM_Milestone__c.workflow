@@ -16,7 +16,7 @@
             <field>IPM_Project_Leader_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Due_Date_in_the_past2</template>
     </alerts>
     <fieldUpdates>

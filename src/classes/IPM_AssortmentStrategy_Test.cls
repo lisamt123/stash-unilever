@@ -7,13 +7,13 @@
 @isTest
 private class IPM_AssortmentStrategy_Test {
     
-    public static IPM_Project__c project;// Project object initialization
+    private static IPM_Project__c project;// Project object initialization
     
-    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
-    public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
-    public static IPM_Project_Rollout__c projRoll;
-    public static User stdUserForAssort;
-    public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
+    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
+    private static IPM_Project_Rollout__c projRoll;
+    private static User stdUserForAssort;
+    private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static PageReference pRef;
     private static IPM_AssortmentStrategy  ipmAssort;
     private static final string TEST_COMMENTS_STR='TestComments1';
@@ -22,7 +22,7 @@ private class IPM_AssortmentStrategy_Test {
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static User globalUser;
     private static final String TEST_TESTING='Test,Testing';
-    public static IPM_Project_Document_Section_Content__c projDocSecCon;
+    private static IPM_Project_Document_Section_Content__c projDocSecCon;
     private static final string HYPERMARKET_STR='HyperMarket';
     private static final string INCUMBENT_STR='CU CIF BANO REP ECON DOYP 450ML DOM';
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
@@ -130,6 +130,7 @@ private class IPM_AssortmentStrategy_Test {
             Test.setCurrentPage(pRef);
             
             ipmAssort=new IPM_AssortmentStrategy ();
+            System.assertEquals(ipmAssort.isEditable,false,'To check read only or editable');
             
         }
     }

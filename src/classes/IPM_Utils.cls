@@ -31,16 +31,6 @@ public without sharing class IPM_Utils {
 
     
     public static String Y1 = 'Y1';
-    public static String y2012 = '2012';
-    public static String y2013 = '2013';
-    public static String y2014 = '2014';
-    public static String y2015 = '2015';
-    public static String y2016 = '2016';
-    public static String y2017 = '2017';
-    public static String y2018 = '2018';
-    public static String y2019 = '2019';
-    public static String y2020 = '2020';
-    public static String y2021 = '2021';
     public static String n0 = '0';
     public static String n1 = '1';
     public static String n2 = '2';

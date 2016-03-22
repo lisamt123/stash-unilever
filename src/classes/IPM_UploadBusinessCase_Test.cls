@@ -8,10 +8,10 @@
   ****************************************************************************************************************************/
 
 @isTest
-public class IPM_UploadBusinessCase_Test {
-    public static User u1 = new User();
-    public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
-    public static final String EMPTY_LIST = 'list empty';
+private class IPM_UploadBusinessCase_Test {
+    private static User u1 = new User();
+    private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+    private static final String EMPTY_LIST = 'list empty';
 /**********************************************************************
     *  @Description: Test Method to initialize data for the other test methods
     *  @name : testIPM_UploadBusinessCase
@@ -35,13 +35,18 @@ public class IPM_UploadBusinessCase_Test {
                 att1.filebody = b;
                 att1.filename = 'Att1';
                 att1.saveBusinessCase();
+                List<Attachment>attList=[SELECT ParentId FROM Attachment WHERE ParentId=:projectList[0].id LIMIT 1];
+                system.assertEquals(attList.size(),1,'attachment got created');         
                           
                 
                 IPM_UploadBusinessCase att = new IPM_UploadBusinessCase();
                 att.filebody = b;
                 Test.setCurrentPageReference(new PageReference('Page.myPage')); 
-                System.currentPageReference().getParameters().put('parentId', projectList[0].id);
+                System.currentPageReference().getParameters().put('parentId', projectList[1].id);
                 att.saveBusinessCase();
+                List<Attachment>attsList=[SELECT ParentId FROM Attachment WHERE ParentId=:projectList[1].id LIMIT 1];
+                system.assertEquals(attsList.size(),0,'attachment is not created');         
+                 
             }
         test.stoptest();
         

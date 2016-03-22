@@ -257,7 +257,7 @@
                                                                         </apex:outputPanel>
                                                                     </apex:outputPanel>
                                                                     <!-- Rendered when project is updateable as per logged in user's rights and there is no error in controller-->    
-                                                                    <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,NOT(isEditMode))}">   
+                                                                    <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,NOT(isEditMode))}"> 
 <!-- Rendered when project phase is not PLE and type is operational-->  
                                                                         <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c == 'Operational')}">
                                                                          <div class="ipmButton primary" onclick="editRecord();">{!$Label.IPM_EDIT}</div>

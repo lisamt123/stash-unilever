@@ -215,13 +215,13 @@ private with sharing class IPM_CoreParameters_Test {
             sic.IPM_Coreparameter.BET__c = null; 
             sic.getCoreparameterConfig();
             sic.getAllQuestions();
-            system.assertEquals(sic.IPM_Coreparameter.IPM_Answer_of_Q2__c, null, 'answer number two should be null');
+            system.assertEquals(sic.IPM_Coreparameter.IPM_Answer_of_Q2__c, system.Label.IPM_Not_Applicable_Core, 'answer number two should be '+system.Label.IPM_Not_Applicable_Core);
             sic.IPM_Coreparameter.IPM_ProjectSubType__c = IPM_ConstantUtils.IPM_BLG;
             sic.IPM_Coreparameter.IPM_Answer_of_Q3__c = IPM_ConstantUtils.BASE;
             sic.getCoreparameterConfig();
             sic.getAllQuestions();
             sic.showMessage();
-            system.assertEquals(sic.IPM_Coreparameter.IPM_Answer_of_Q3__c, null, 'answer number three should be null');
+            system.assertEquals(sic.IPM_Coreparameter.IPM_Answer_of_Q3__c, system.Label.IPM_Not_Applicable_Core, 'answer number three should be '+system.Label.IPM_Not_Applicable_Core);
             sic.answerone_STR = IPM_ConstantUtils.IMPROVEMENT;
             sic.answertwo_STR = IPM_ConstantUtils.NOCHANGE;
             sic.answerthree_STR = IPM_ConstantUtils.BASE;
@@ -239,7 +239,7 @@ private with sharing class IPM_CoreParameters_Test {
             system.assertEquals(sic.selCat, Laundry_STR, 'Project category should be ' + space_STR + Laundry_STR);
             sic.answerthree_STR = IPM_ConstantUtils.BASE;
             sic.resetAnswer();
-            system.assertEquals(String.isBlank(sic.answerthree_STR), true, 'answer three value should be reset');
+            system.assertEquals(String.isBlank(sic.answerthree_STR), false, 'answer three value should be reset');
             sic.resetAnswer();
             // bet specific newly addded
             BET_BETWrapper bWrapper = new BET_BETWrapper();
@@ -260,6 +260,7 @@ private with sharing class IPM_CoreParameters_Test {
     static testmethod void  testgetCoreStrategicIntent(){
          initializedData();
          system.RunAs(userInitialize) {
+           Test.startTest();
              sic.answerone_STR=IPM_ConstantUtils.IMPROVEMENT;
              sic.answertwo_STR=IPM_ConstantUtils.NOCHANGE;
              sic.answerthree_STR=IPM_ConstantUtils.BASE;
@@ -269,6 +270,7 @@ private with sharing class IPM_CoreParameters_Test {
              sic.IPM_Coreparameter.IPM_ProjectSubType__c = IPM_ConstantUtils.IPM_BLG;
              sic.getCoreStrategicIntent();
             system.assertEquals(sic.IPM_Coreparameter.IPM_ProjectSubType__c,IPM_ConstantUtils.IPM_BLG,'Load Strategic Intent For BLG Project'); 
+           Test.stopTest();
          }
     }
         
@@ -325,7 +327,7 @@ private with sharing class IPM_CoreParameters_Test {
             sic.answertwo_STR = Variant;
             sic.answerAnswer();//save answer
             List<IPM_Project__c>projectList=[SELECT IPM_Answer_of_Q2__c FROM IPM_Project__c WHERE ID=:ProjectWithOutBoss.id LIMIT 1];
-            system.assertEquals(projectList[0].IPM_Answer_of_Q2__c, Variant, common_STR + space_STR + Variant);
+            system.assertEquals(projectList[0].IPM_Answer_of_Q2__c, Variant, common_STR + space_STR +Variant);
             sic.IPM_Coreparameter.Name='InvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectname';
             sic.answerAnswer();//save answer
             Test.stopTest();

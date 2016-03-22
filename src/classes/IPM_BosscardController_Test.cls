@@ -5,7 +5,7 @@
  * *****************************************************/
 @isTest
 
-public class IPM_BosscardController_Test{
+private class IPM_BosscardController_Test{
     private static IPM_Bosscard__c ipmBosscards  = new IPM_Bosscard__c();
     private static User loginUser = new User();
     private static User u = new User();
@@ -15,10 +15,15 @@ public class IPM_BosscardController_Test{
     private static final String TEST_CONTENT =  'fox jumped over a lazy dog';
     private static final String MDOCATEGORY_NAME='Household Care';
     public static IPM_SoqlUtilities soqlUtility;
+  private static final string PLATFORM_LASTNAME='PLATFORM_USER';
+  private static final string IPMUSER_LASTNAME ='IPMUSER_LASTNAME';
+  private static final string IPM_COMPANYCARD='Test bosscard company card';
+  private static string bosscarName='Test Boss card';
     /*********************************************************************
     * @Description: This method is used to initialize data for test class
     * *******************************************************************/
-    static  void initializeData(){
+    @TestSetup static  void initializeData(){
+      
         //Insert User
         u = IPM_TestFactory_Helper.createUser(false);
         insert u;
@@ -36,7 +41,7 @@ public class IPM_BosscardController_Test{
             
             //Insert Company Card
             compCard=IPM_TestFactory_Helper.createGlobalCompanyCard(false);
-            compCard.Name='Test bosscard company card';
+            compCard.Name=IPM_COMPANYCARD;
             compCard.IPM_Managed_Category__c=MDOCATEGORY_NAME;
             compCard.IPM_Currency__c='10';
             compCard.IPM_TxtGeographical_Scope__c='Global';
@@ -66,6 +71,7 @@ public class IPM_BosscardController_Test{
             ipmBosscards = IPM_TestFactory_Helper.createIPMBosscard(false);
             ipmBosscards.IPM_Bosscard_Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
             ipmBosscards.IPM_Company_Card__c=compCard.id;
+            ipmBosscards.IPM_BosscardName__c=bosscarName;
             insert ipmBosscards;
             List<IPM_Bosscard__c>bossList=[SELECT IPM_Bosscard_Status__c FROM IPM_Bosscard__c WHERE ID=:ipmBosscards.id LIMIT 1];
             System.AssertEquals(bossList[0].IPM_Bosscard_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS, 'Bosscard status is:'+bossList[0].IPM_Bosscard_Status__c); //Positive test
@@ -118,13 +124,31 @@ public class IPM_BosscardController_Test{
         
     }
     
+    /********************************************************************
+    * @Description: This method is used to call Page referecnce         
+    * *******************************************************************/
+    
+    static void callPageReference(){
+      
+      ipmBosscards=[SELECT id,Name,IPM_Company_Card__c FROM IPM_Bosscard__c WHERE IPM_BosscardName__c=:bosscarName LIMIT 1];
+      loginUser=[SELECT ID FROM USER WHERE LastName=:PLATFORM_LASTNAME LIMIT 1]; 
+      u=[SELECT ID FROM USER WHERE LastName=:IPMUSER_LASTNAME LIMIT 1];
+    compCard=[SELECT ID,Name,IPM_TxtGeographical_Scope__c FROM IPM_Company_Card__c WHERE Name=:IPM_COMPANYCARD LIMIT 1]; 
+      PageReference pageRef = Page.IPM_Bosscard;
+        Test.setCurrentPageReference(pageRef);
+        ApexPages.CurrentPage().getparameters().put('id', ipmBosscards.id);
+        ApexPages.StandardController sc = new ApexPages.standardController(ipmBosscards);
+        sic = new Ipm_BosscardController (sc);
+    
+    }
     
     /********************************************************************
     * @Description: This method is used to call parameterized constructor
     *               and getListOfQuarter method of the main class           
     * *******************************************************************/
     static testMethod void testGetListOfQuarter(){
-        initializeData();
+
+    callPageReference();
         Test.startTest();
         soqlUtility = new IPM_SoqlUtilities();
         IPM_SoqlUtilities.IPM_ProjectID='';
@@ -142,7 +166,8 @@ public class IPM_BosscardController_Test{
     *               and getBrandPos method of the main class           
     * *******************************************************************/
     static testMethod void testGetBrandPos(){
-        initializeData();
+        
+    callPageReference();
         Test.startTest();
         system.runAs(LoginUser){
             sic.selCat=MDOCATEGORY_NAME;
@@ -160,7 +185,8 @@ public class IPM_BosscardController_Test{
     *               and getCategory method of the main class           
     * *******************************************************************/
     static testMethod void testGetCategory(){
-        initializeData();
+
+    callPageReference();
         Test.startTest();
         system.runAs(LoginUser){
             sic.selectedCompany=ipmBosscards.IPM_Company_Card__c;
@@ -176,11 +202,12 @@ public class IPM_BosscardController_Test{
     * *******************************************************************/
     
     static testMethod void testGetAllcompanycard(){
-        initializeData();
+
+    callPageReference();
         Test.startTest();
         system.runAs(LoginUser){
             List<SelectOption> lstOptions = sic.getAllcompanycard();
-            System.assert(!lstOptions.isEmpty());//positive test
+            System.assert(!lstOptions.isEmpty(),'company card list can not be empty');//positive test
         }
         Test.stopTest();  
     } 
@@ -190,8 +217,8 @@ public class IPM_BosscardController_Test{
     *               and save method of the main class           
     * *******************************************************************/  
     static testMethod void testSave(){
-        
-        initializeData();
+
+    callPageReference();
         Test.startTest();
         system.runAs(LoginUser){
             sic.bosscard.IPM_BosscardName__c = 'TestWithBoss';
@@ -251,7 +278,8 @@ public class IPM_BosscardController_Test{
     * *******************************************************************/
     
     static testMethod void testPDFAfterApproved(){
-        initializeData();
+
+    callPageReference();
         Test.startTest();
         system.runAs(LoginUser){
             sic.bosscard.IPM_BosscardName__c = 'TestBossPDF';
@@ -275,7 +303,8 @@ public class IPM_BosscardController_Test{
     * *******************************************************************/
     
     static testMethod void testremoveApprover(){
-        initializeData();
+
+    callPageReference();
         Test.startTest();
         system.runAs(LoginUser){
             sic.removeApprover();
@@ -296,8 +325,9 @@ public class IPM_BosscardController_Test{
     * *******************************************************************/
     
     static testMethod void removeBosscardLogo(){
-        initializeData();
-        Test.startTest();
+
+    callPageReference();
+    Test.startTest();
         system.runAs(LoginUser){
             sic.bossId='';
             sic.showMsg();
@@ -324,8 +354,10 @@ public class IPM_BosscardController_Test{
     * *******************************************************************/
     
     static testMethod void testCancelBosscard(){
-        initializeData();
-        Test.startTest();
+
+        callPageReference();
+        
+    Test.startTest();
         system.runAs(LoginUser){
             sic.bosscard.IPM_IsSaved__c=true;
             sic.cancelBosscard();
@@ -351,7 +383,8 @@ public class IPM_BosscardController_Test{
     *               and DeleteBosscard method of the main class           
     * *******************************************************************/
     static testMethod void testDeleteBosscard(){
-        initializeData();
+
+    callPageReference();
         Test.startTest();
         system.runAs(LoginUser){
             id projectid=IPM_BosscardController.DeleteBosscard(ipmBosscards.id);
@@ -366,16 +399,17 @@ public class IPM_BosscardController_Test{
     *               and getIpmuserType method of the main class           
     * *******************************************************************/
     static testMethod void testGetIpmuserType(){
-        initializeData();
+
+    callPageReference();
         Test.startTest();
         system.runAs(LoginUser){
             sic.getIpmuserType();
-            System.assertEquals(true, sic.isEditable);//positive test
+            System.assertEquals(true, sic.isEditable,'User not have an edit access');//positive test
             sic.bosscard.IPM_Bosscard_Status__c=IPM_ConstantUtils.IPM_BOSS_INPROGRESS;
             sic.isEditable=true;
             sic.isPL=true;
             sic.renderedConditions();
-			sic.bosscard.IPM_Is_Accepted__c=true;
+      sic.bosscard.IPM_Is_Accepted__c=true;
             sic.bosscard.IPM_Bosscard_Status__c=IPM_ConstantUtils.IPM_BOSS_NOT_APPROVED;
             sic.isEditable=false;
             sic.renderedConditions();
@@ -391,7 +425,7 @@ public class IPM_BosscardController_Test{
             sic.renderedConditions();
             sic.bosscard.IPM_Bosscard_Status__c=IPM_ConstantUtils.IPM_BOSS_APPROVED;
             sic.renderedConditions();
-            system.assertEquals(sic.changeBossStatusCCS,IPM_ConstantUtils.IPM_BOSS_CSS_COMPLETED);
+            system.assertEquals(sic.changeBossStatusCCS,IPM_ConstantUtils.IPM_BOSS_CSS_COMPLETED,'Bosscard status is not completed');
             
            
         }
@@ -401,14 +435,15 @@ public class IPM_BosscardController_Test{
     *@Description : For hidding the save message.
     *********************************************************************************/  
     static testMethod void testhideSaveMsg() {
-        initializeData();
+
+    callPageReference();
         Test.startTest();
         system.runAs(LoginUser){
             sic.searchprojectpahse(); 
             sic.getBrandposition();
             sic.saveMsg=true;
             sic.hideSaveMsg();//save message should be false
-            System.assertEquals(sic.saveMsg,false);//positive test
+            System.assertEquals(sic.saveMsg,false,'Show the Bosscard Save Message');//positive test
         }
         Test.stopTest(); 
         
@@ -417,16 +452,17 @@ public class IPM_BosscardController_Test{
     *@Description : For Duplicate bosscard
     *********************************************************************************/  
     static testMethod void testsearchDuplicateBosscard() {
-        initializeData();
+
+    callPageReference();
         Test.startTest();
         system.runAs(LoginUser){
             sic.bosscardId=ipmBosscards.id;
             sic.bosscard.IPM_BosscardName__c='TestwithBoss';
             sic.searchDuplicateBosscard();//check for duplicate bosscard name
-            System.assertEquals(sic.isBosscardNameBlank,true);//positive test
+            System.assertEquals(sic.isBosscardNameBlank,true,'Bosscard Name is not Blank');//positive test
             sic.isBosscardNameBlank=false;
             sic.hideBosscardSuggetion();
-            System.assertEquals(sic.isBosscardNameBlank,true);//positive test
+            System.assertEquals(sic.isBosscardNameBlank,true,'Bosscard Name is not Blank');//positive test
         } 
         Test.stopTest(); 
         

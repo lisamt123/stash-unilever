@@ -4,17 +4,18 @@
  * @Date:05/08/2015
  * *****************************************************/
 @isTest
-public class IPM_RolloutTriggerHandler_Test {
+
+ private class IPM_RolloutTriggerHandler_Test {
     
-    public static IPM_Project__c project;
-    public static IPM_Project_Rollout__c proRoll=new IPM_Project_Rollout__c();
-    public static IPM_Project_Rollout__c proRollLocal=new IPM_Project_Rollout__c();
-    public static IPM_Project_Rollout__c proRollRegional=new IPM_Project_Rollout__c();
-    public static List<IPM_Project_Rollout__c> regionalRolloutList = new List<IPM_Project_Rollout__c>();
-    public static List<IPM_Project_Rollout__c> regionalRolloutListOld = new List<IPM_Project_Rollout__c>();
-    public static List<IPM_Project_Rollout__c> lstProjectRollouts=new List<IPM_Project_Rollout__c>();
-    public static Map<Id, IPM_Project_Rollout__c> mapNewProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
-    public static Map<Id, IPM_Project_Rollout__c> mapOldProjectRollouts=new Map<Id, IPM_Project_Rollout__c>(); // create another rollout and put it into this then update will work dont delete
+    private static IPM_Project__c project;
+    private static IPM_Project_Rollout__c proRoll=new IPM_Project_Rollout__c();
+    private static IPM_Project_Rollout__c proRollLocal=new IPM_Project_Rollout__c();
+    private static IPM_Project_Rollout__c proRollRegional=new IPM_Project_Rollout__c();
+    private static List<IPM_Project_Rollout__c> regionalRolloutList = new List<IPM_Project_Rollout__c>();
+    private static List<IPM_Project_Rollout__c> regionalRolloutListOld = new List<IPM_Project_Rollout__c>();
+    private static List<IPM_Project_Rollout__c> lstProjectRollouts=new List<IPM_Project_Rollout__c>();
+    private static Map<Id, IPM_Project_Rollout__c> mapNewProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
+    private static Map<Id, IPM_Project_Rollout__c> mapOldProjectRollouts=new Map<Id, IPM_Project_Rollout__c>(); // create another rollout and put it into this then update will work dont delete
     
     /***********************************
     * @Description: Test Data Creation
@@ -43,7 +44,8 @@ public class IPM_RolloutTriggerHandler_Test {
             regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{userList[1],userList[1],userList[1]});
             insert regionalRolloutList;
             
-           
+            List<IPM_Project_Rollout__c> assertRolloutList = [select id from IPM_Project_Rollout__c where IPM_Rollout_Span__c = :IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL];
+            system.assertEquals(6,assertRolloutList.size(),'Regional Rollout not created');
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
             for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
@@ -64,6 +66,8 @@ public class IPM_RolloutTriggerHandler_Test {
             List<IPM_Project_Rollout__c> localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{userList[2]});  
             insert localRolloutList; 
             
+            List<IPM_Project_Rollout__c> assertLocalRolloutList = [select id from IPM_Project_Rollout__c where IPM_Rollout_Span__c = :IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL ];
+            system.assertEquals(6,assertLocalRolloutList.size(),'Local Rollout not created');
             
             
             // Create Country specific information.
@@ -105,15 +109,19 @@ public class IPM_RolloutTriggerHandler_Test {
         //initializeData();
         //lstProjectRollouts.add(proRollRegional);
        
-        
+        set<Id> rolloutId = new Set<Id>();
         IPM_RolloutTriggerHandler ipmRollHand=new IPM_RolloutTriggerHandler();
         ipmRollHand.processUpdate(mapNewProjectRollouts,mapNewProjectRollouts);
+        for(IPM_Project_Rollout__c rollout : regionalRolloutList)
+        {
+            rolloutId.add(rollout.id);
+        }
         
         ipmRollHand.processInsert(regionalRolloutList);
         ipmRollHand.processDelete(regionalRolloutList);
        
-        List<IPM_Project_Rollout__c> projRollOutList=[SELECT ID,RecordTypeId,IPM_Rollout_Project__c,Market_Cluster__c,Target_Launch_Date__c,IPM_Regional_PL__c FROM IPM_Project_Rollout__c limit 1000];
-        System.assertEquals(projRollOutList.size(), 12,'one rollout deleted');
+        List<IPM_Project_Rollout__c> projRollOutList=[SELECT ID FROM IPM_Project_Rollout__c where id in :rolloutId];
+        System.assertEquals(0,projRollOutList.size(),'no rollout deleted');
         test.stopTest(); 
     }
     

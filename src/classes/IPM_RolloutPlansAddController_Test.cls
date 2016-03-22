@@ -11,77 +11,81 @@
 @reference IPM_RolloutPlansAdd VF page, IPM_RolloutPlansRegional VF page
 */
 @isTest
-public class IPM_RolloutPlansAddController_Test{
-    public static list<IPM_Project_Rollout__c> regionalRolloutList;
-    public static list<IPM_Project_Rollout__c> localRolloutList;
-    public static  String projectId;
+private class IPM_RolloutPlansAddController_Test{
    
-    public static MDO_Geography__c goegraphiesCluster;
-    public static MDO_Geography__c goegraphiesMCO;
+    private static list<IPM_Project_Rollout__c> regionalRolloutList;
+    private static list<IPM_Project_Rollout__c> localRolloutList;
     
-    public static list<IPM_Project__c> projectList;
+   
+    private static MDO_Geography__c goegraphiesCluster;
+    private static MDO_Geography__c goegraphiesMCO;
     
-    public static boolean geoExternal;
-    public static IPM_Country__c tempCountry;
-    public static list<IPM_Company_Card__c> companyCardList;
+    private static list<IPM_Project__c> projectList;
+    
+    private static boolean geoExternal;
+    private static IPM_Country__c tempCountry;
+    private static list<IPM_Company_Card__c> companyCardList;
   
-    public static integer dmlLimit;
-    public static MDO_Geography__c mdoAFR;
-    public static MDO_Geography__c mdoLA;
-    public static IPM_MCO_Short_Names__c shortName;
-    public static IPM_Market_Cluster_Short_Names__c mcoShortName;
-    public static List<IPM_Project__c> regionalProjectsFR;
-    public static List<IPM_Project__c> regionalProjects;
-    public static  ApexPages.Message[] pageMessages;
+   
+    private static MDO_Geography__c mdoAFR;
+    private static MDO_Geography__c mdoLA;
+    private static IPM_MCO_Short_Names__c shortName;
+    private static IPM_Market_Cluster_Short_Names__c mcoShortName;
+    private static List<IPM_Project__c> regionalProjectsFR;
+    private static List<IPM_Project__c> regionalProjects;
+    private static  ApexPages.Message[] pageMessages;
     
     //Literals
-    public static string GLOBAL_PL = 'GLOBAL_PL';
-    public static string REGIONAL_PL = 'REGIONAL_PL';
-    public static string LOCAL_PL = 'LOCAL_PL';
-    public static string AFRICAN = 'African';
-    public static string GEO0060 = 'GEO0060';
-    public static string AFRICA_EMERGING_MARKETS = 'Africa Emerging Markets'; 
-    public static string LV4_GEO0085 = 'LV4_GEO0085';
-    public static string AFRICA = 'Africa';
-    public static string ANGOLA = 'Angola';
-    public static string Congo = 'Congo';
-    public static string CHAD = 'Chad';
-    public static string ASIA = 'ASIA';
-    public static string FRANCE = 'France';
-    public static string EUROPE = 'EUROPE';
-    public static string SOUTH_AFRICA = 'South Africa';
-    public static string OTHER_SOUTH_ASIA = 'Other South Asia'; 
-    public static string STATUS_ACTIVE = 'Active';
-    public static string With_MCO = 'With MCO';
-    public static string IPMROLLOUTPLANSADD_PAGE_URL = '/apex/ipm_rolloutplansadd?id='; 
-    public static string IPMROLLOUTPLANSREGIONAL_PAGE_URL = '/apex/ipm_rolloutplansregional?id=';
-    public static string GLOBAL_COUNTRIES='AG,BR';
-    public static string REGIONAL_MCO='Africa Emerging Markets,Other South Asia';
-    public static string REGIONAL_COUNTRY='Africa,Angola';
-    public static string REGIONAL_NOROLL='Congo,Chad';
-    public static string GLOBAL_UNSELECTED_COUNTRIES = 'KW,NB';
-    public static string REGIONAL_UNSELECTED_MCO = 'IN,CL,CP,JS'; //unselected mco country code
-    public static string REGIONAL_UNSELECTED_NOROLL = 'CB,KB';
-    public static string ERROR_MESSAGE='plz enter tld'; 
-    public static string AG_BR_AO = 'AG,BR,AO';
-    public static string KW = 'KW';
-    public static string NB = 'NB';
-    public static string CB = 'CB';
-    public static string BR = 'BR';
-    public static string FR = 'FR';
-    public static string SA = 'SA';
-    public static string AF = 'AF';
-    public static string LA = 'LA';
-    public static string TestComments1 = 'TestComments1';
-    public static string TestComments2 = 'TestComments2';
-    public static string TestComments3 = 'TestComments3';
-    public static string ID = 'id';
-    public static string TEST_STR = 'test';
-    private static string TASK_NOT_CREATED='tasks not created';
-    private static string TASK_COMPLEXITY_DOESNOT_MATCH='task complexity does not match regional project complexity';
-    private static string MILESTONES_NOT_CREATED='milestones not crerated';
-    private static string FINANCIAL_NOT_CREATED='financial not created';
-    private static string PHASE_NOT_FEASIBILITY='project phase is not feasibility';
+    private static final string GLOBAL_PL = 'GLOBAL_PL';
+    private static final string REGIONAL_PL = 'REGIONAL_PL';
+    private static final string LOCAL_PL = 'LOCAL_PL';
+    private static final string AFRICAN = 'African';
+    private static final string GEO0060 = 'GEO0060';
+    private static final string AFRICA_EMERGING_MARKETS = 'Africa Emerging Markets'; 
+    private static final string LV4_GEO0085 = 'LV4_GEO0085';
+    private static final string AFRICA = 'Africa';
+    private static final string ANGOLA = 'Angola';
+    private static final string Congo = 'Congo';
+    private static final string CHAD = 'Chad';
+    private static final string ASIA = 'ASIA';
+    private static final string FRANCE = 'France';
+    private static final string EUROPE = 'EUROPE';
+    private static final string SOUTH_AFRICA = 'South Africa';
+    private static final string OTHER_SOUTH_ASIA = 'Other South Asia'; 
+    private static final string STATUS_ACTIVE = 'Active';
+    private static final string With_MCO = 'With MCO';
+    
+    private static PageReference pageRef= Page.ipm_rolloutplansadd;
+    private static PageReference pageRefRegional= Page.ipm_rolloutplansregional;
+    
+    
+    private static final string GLOBAL_COUNTRIES='AG,BR';
+    private static final string REGIONAL_MCO='Africa Emerging Markets,Other South Asia';
+    private static final string REGIONAL_COUNTRY='Africa,Angola';
+    private static final string REGIONAL_NOROLL='Congo,Chad';
+    private static final string GLOBAL_UNSELECTED_COUNTRIES = 'KW,NB';
+    private static final string REGIONAL_UNSELECTED_MCO = 'IN,CL,CP,JS'; //unselected mco country code
+    private static final string REGIONAL_UNSELECTED_NOROLL = 'CB,KB';
+    private static final string ERROR_MESSAGE='plz enter tld'; 
+    private static final string AG_BR_AO = 'AG,BR,AO';
+    private static final string KW = 'KW';
+    private static final string NB = 'NB';
+    private static final string CB = 'CB';
+    private static final string BR = 'BR';
+    private static final string FR = 'FR';
+    private static final string SA = 'SA';
+    private static final string AF = 'AF';
+    private static final string LA = 'LA';
+    private static final string TestComments1 = 'TestComments1';
+    private static final string TestComments2 = 'TestComments2';
+    private static final string TestComments3 = 'TestComments3';
+    private static final string ID = 'id';
+    private static final string TEST_STR = 'test';
+    private static final string TASK_NOT_CREATED='tasks not created';
+    private static final string TASK_COMPLEXITY_DOESNOT_MATCH='task complexity does not match regional project complexity';
+    private static final string MILESTONES_NOT_CREATED='milestones not crerated';
+    private static final string FINANCIAL_NOT_CREATED='financial not created';
+    private static final string PHASE_NOT_FEASIBILITY='project phase is not feasibility';
     
     /**************************************************************
     * @description: Used for Creating IPM Project data for Rollout flow test          
@@ -107,7 +111,10 @@ public class IPM_RolloutPlansAddController_Test{
             
             List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
             update userList;
-         
+            
+            list<User> assertUsrList = [select Id from User where lastname =: GLOBAL_PL];
+            system.assertEquals(1,assertUsrList.size(),'Global User not created');
+            
             // Create Company Card information(Master Data)
             IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
             IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
@@ -115,6 +122,10 @@ public class IPM_RolloutPlansAddController_Test{
             
             companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
             insert companyCardList;
+            
+            List<IPM_Company_Card__c> ccAssertList = [select id from IPM_Company_Card__c where IPM_Company_Type__c =: IPM_ConstantUtils.COMPANY_CARD_GLOBAL];
+            system.assertEquals(2,ccAssertList.size(),'Global Company card not created');
+            
             
             goegraphiesCluster = new MDO_Geography__c();
             goegraphiesCluster.Name = AFRICAN;
@@ -124,7 +135,9 @@ public class IPM_RolloutPlansAddController_Test{
             goegraphiesCluster.mdm_id__c=GEO0060;
             insert goegraphiesCluster;
            
-              
+            List<MDO_Geography__c> geoAssertList = [Select Id,Name from MDO_Geography__c where Name = 'AFRICAN' limit 1];
+            system.assertEquals(geoAssertList[0].Name,goegraphiesCluster.Name,'No Geography of this name exist');
+             
             goegraphiesMCO = new MDO_Geography__c();
             goegraphiesMCO.Name = AFRICA_EMERGING_MARKETS;
             goegraphiesMCO.parent_L2__c =goegraphiesCluster.id;
@@ -165,8 +178,16 @@ public class IPM_RolloutPlansAddController_Test{
         System.runAs(globalProjectLeader)
         {   
             projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
-            insert projectList; 
-      }
+            insert projectList;
+            
+            set<Id> projId = new set<Id>();
+            for(IPM_Project__c proj : projectList)
+            {
+                projId.add(proj.id);   
+            }
+            List<IPM_Project__c> projectAssertList = [Select Id,Name from IPM_Project__c where id in : projId];
+            system.assertEquals(3,projectAssertList.size(),'count of Project inserted is not 3'); 
+       }
      }
   
     /*************************************************************************************
@@ -218,7 +239,7 @@ public class IPM_RolloutPlansAddController_Test{
             regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
             insert regionalRolloutList;
             
-            dmlLimit = Limits.getDMLStatements();
+            
           
           
           
@@ -241,7 +262,7 @@ public class IPM_RolloutPlansAddController_Test{
             
            
             
-            dmlLimit = Limits.getDMLStatements();
+            
           
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>();
@@ -287,7 +308,7 @@ public class IPM_RolloutPlansAddController_Test{
          
             update countryList;
             
-            dmlLimit = Limits.getDMLStatements();
+            
           
         
            //******************************** Initiate Phase Change and Regional Project Creation  ****************************************
@@ -303,7 +324,14 @@ public class IPM_RolloutPlansAddController_Test{
             
             update projectList;
             
-            dmlLimit = Limits.getDMLStatements();
+            set<Id> projAssertId = new set<Id>();
+            for(IPM_Project__c proj : projectList)
+            {
+                projAssertId.add(proj.id);   
+            }
+            
+            List<IPM_Project__c> assertProjList = [select Id  from IPM_Project__c where id in :projAssertId ];
+            system.assertEquals(3,assertProjList.size(),'Regional Project not created');
           
           
             for(IPM_Project__c project : projectList)
@@ -318,7 +346,6 @@ public class IPM_RolloutPlansAddController_Test{
            
             Test.StopTest();
           
-            dmlLimit = Limits.getDMLStatements();
             
             
             
@@ -342,7 +369,6 @@ public class IPM_RolloutPlansAddController_Test{
             
             List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c,(Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];  
             
-            dmlLimit = Limits.getDMLStatements();
             
                
             for(IPM_Project__c regionalProject : DBRegionalProjects) 
@@ -360,8 +386,6 @@ public class IPM_RolloutPlansAddController_Test{
             
             
         }
-        
-        dmlLimit = Limits.getDMLStatements();
         
         
         //******************************** Regional Project Leader View for Regional Projects  ****************************************
@@ -391,15 +415,14 @@ public class IPM_RolloutPlansAddController_Test{
                 
             }
         }
-        dmlLimit = Limits.getDMLStatements();
+       
         
-        
-        system.RunAs(globalProjectLeader)
-      {
+       system.RunAs(globalProjectLeader)
+       {
+          
+          Test.setCurrentPage(pageRef);
           ApexPages.currentPage().getParameters().put(ID,projectList[0].Id);
-          PageReference pRef = new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+projectList[0].Id);
-          Test.setCurrentPageReference(pRef);
-          projectId = ApexPages.currentPage().getParameters().get(ID);
+          
           
          
           irp.project=projectList[0];
@@ -489,7 +512,6 @@ public class IPM_RolloutPlansAddController_Test{
           irp.processRegionalCountryRollouts();
           irp.setCountryCodes = new Set<String>{AF}; //regionalCountry put into this 
           
-          dmlLimit = Limits.getDMLStatements();
           
           //********************************************************************************  
 
@@ -639,27 +661,30 @@ public class IPM_RolloutPlansAddController_Test{
           
           
           if(!regionalProjects.isEmpty()){
-            PageReference pRefRegional = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+regionalProjects[0].Id);
-            Test.setCurrentPageReference(pRefRegional); 
+            
+            Test.setCurrentPage(pageRefRegional);
+            ApexPages.currentPage().getParameters().put(ID,regionalProjects[0].Id);
+            
+           
           }
           
-          dmlLimit = Limits.getDMLStatements();
           
           
           PageReference rolloutPlansExpected = Page.IPM_RolloutPlans; 
           PageReference rolloutPlansActual = irp.redirectPage();
           irp.cancel();
           
-          System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()),'Url is not as expected');
+          System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()),'It is not Rollout Home Page');
         
+          Test.setCurrentPage(pageRef);
           ApexPages.currentPage().getParameters().put(ID,null);
-          Test.setCurrentPageReference(new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+null));
+          
           irp.cancel();
           irp.redirectPage();
            
           ApexPages.currentPage().getParameters().put(ID,null);
-          PageReference pRefReg = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+null);
-          Test.setCurrentPageReference(pRefReg);
+         
+          Test.setCurrentPage(pageRefRegional);
           irp.cancel();
           irp.redirectPage();    
             
@@ -696,6 +721,9 @@ public class IPM_RolloutPlansAddController_Test{
         regionalProjects= IPM_TestFactory_Helper.projectSetUpRegional(2,regionalProjectLeader); 
         insert regionalProjects;
         
+        List<IPM_Project__c> regProjAssert = [select id from IPM_Project__c where id in : regionalProjects];
+        system.assertEquals(2,regProjAssert.size(),'Regional Project not created');
+        
         List<id> regionalProjId = new List<Id>();
         for(IPM_Project__c regionalProject : regionalProjects)
         {
@@ -725,9 +753,9 @@ public class IPM_RolloutPlansAddController_Test{
         
         System.RunAs(regionalProjectLeader)
         {
-          PageReference pRefRegional = new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+regionalProjects[0].Id);
-          Test.setCurrentPageReference(pRefRegional);
           
+          Test.setCurrentPage(pageRefRegional);
+          ApexPages.currentPage().getParameters().put(id,regionalProjects[0].Id);
           irp.globalCountries='KK,WW';
           irp.regionalMco='WESR EURO,SOUTH AMERICA';
           irp.regionalCountry=REGIONAL_COUNTRY;
@@ -771,12 +799,13 @@ public class IPM_RolloutPlansAddController_Test{
           irp.generateRollouts();
            
          
-          dmlLimit = Limits.getDMLStatements();
+
           
-          
+          Test.setCurrentPage(pageRef);
           ApexPages.currentPage().getParameters().put(ID,null);
-          PageReference pRef = new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+null);
-          Test.setCurrentPageReference(pRef);
+          
+         
+           
            irp.cancel();
            irp.redirectPage();
            irp.changeMCO();
@@ -794,9 +823,10 @@ public class IPM_RolloutPlansAddController_Test{
            irp.setCountryNoRolls =null;
            irp.setCountryNoRollsUnselected =null;
            irp.processCountryCodeLists();
-          PageReference pRefreg = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+null);
-          Test.setCurrentPageReference(pRefreg);
-           
+          
+           Test.setCurrentPage(pageRefRegional);
+           ApexPages.currentPage().getParameters().put('Id',null);
+            
            PageReference rolloutPlans = Page.IPM_RolloutPlans;
            rolloutPlans.getParameters().put(IPM_ConstantUtils.SF_ID, null); 
             rolloutPlans.getParameters().put(IPM_ConstantUtils.EDITMODE, IPM_ConstantUtils.EDITMODE_FALSE );               
@@ -812,7 +842,7 @@ public class IPM_RolloutPlansAddController_Test{
           
           test.StopTest();
           pageMessages = ApexPages.getMessages();
-          System.assertEquals(true, pageMessages.isEmpty(),'Error messages generated');
+          System.assertEquals(true, pageMessages.isEmpty(),'Error in page');
            
         }
         
@@ -869,10 +899,7 @@ public class IPM_RolloutPlansAddController_Test{
             regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
             insert regionalRolloutList;
             
-            dmlLimit = Limits.getDMLStatements();
-          
-          
-          
+           
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
             for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
@@ -892,8 +919,7 @@ public class IPM_RolloutPlansAddController_Test{
             
            
             
-            dmlLimit = Limits.getDMLStatements();
-          
+            
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>();
             List<MDO_Geography__c> mdoCountryList = [select id,ISO_3166_1_Code__c,Name,parent_L2__c,geography_type__c,mdm_id__c,Status__c from MDO_Geography__c where Name in (:AFRICA,:ANGOLA) ];
@@ -938,8 +964,7 @@ public class IPM_RolloutPlansAddController_Test{
          
             update countryList;
             
-            dmlLimit = Limits.getDMLStatements();
-          
+            
         
            //******************************** Initiate Phase Change and Regional Project Creation  ****************************************
             
@@ -954,9 +979,7 @@ public class IPM_RolloutPlansAddController_Test{
             
             update projectList;
             
-            dmlLimit = Limits.getDMLStatements();
-          
-          
+           
             for(IPM_Project__c project : projectList)
             {
                 globalProjectIdList.add(project.Id);    
@@ -969,8 +992,6 @@ public class IPM_RolloutPlansAddController_Test{
            
             Test.StopTest();
           
-            dmlLimit = Limits.getDMLStatements();
-            
             
             
         }
@@ -992,9 +1013,7 @@ public class IPM_RolloutPlansAddController_Test{
             
             List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c,(Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];  
             
-            dmlLimit = Limits.getDMLStatements();
             
-               
             for(IPM_Project__c regionalProject : DBRegionalProjects) 
             {
                Id parentGlobalProjectId = regionalProject.IPM_Parent_Project__c;
@@ -1011,8 +1030,7 @@ public class IPM_RolloutPlansAddController_Test{
             
         }
         
-        dmlLimit = Limits.getDMLStatements();
-        
+      
         
         //******************************** Regional Project Leader View for Regional Projects  ****************************************
         System.RunAs(regionalProjectLeader)
@@ -1041,15 +1059,14 @@ public class IPM_RolloutPlansAddController_Test{
                 
             }
         }
-        dmlLimit = Limits.getDMLStatements();
-        
-        
+       
         system.RunAs(globalProjectLeader)
-      {
+        {
+          Test.setCurrentPage(pageRef);
           ApexPages.currentPage().getParameters().put(ID,projectList[0].Id);
-          PageReference pRef = new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+projectList[0].Id);
-          Test.setCurrentPageReference(pRef);
-          projectId = ApexPages.currentPage().getParameters().get(ID);
+         
+          
+          
           
          
           irp.project=projectList[0];
@@ -1140,8 +1157,7 @@ public class IPM_RolloutPlansAddController_Test{
           irp.processRegionalCountryRollouts();
           irp.setCountryCodes = new Set<String>{AF}; //regionalCountry put into this 
           
-          dmlLimit = Limits.getDMLStatements();
-          
+         
           //********************************************************************************  
 
           irp2.project=projectList[0];
@@ -1284,27 +1300,28 @@ public class IPM_RolloutPlansAddController_Test{
           //******************************************************************
 
           if(!regionalProjects.isEmpty()){
-            PageReference pRefRegional = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+regionalProjects[0].Id);
-            Test.setCurrentPageReference(pRefRegional); 
+            
+            Test.setCurrentPage(pageRefRegional); 
+            apexPages.currentPage().getParameters().put(Id,regionalProjects[0].Id);
           }
           
-          dmlLimit = Limits.getDMLStatements();
-          
+       
           
           PageReference rolloutPlansExpected = Page.IPM_RolloutPlans; 
           PageReference rolloutPlansActual = irp.redirectPage();
           irp.cancel();
           
-          System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()));
+          System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()),'It is not Rollout Home Page');
         
+          Test.setCurrentPage(pageRefRegional);
           ApexPages.currentPage().getParameters().put(ID,null);
-          Test.setCurrentPageReference(new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+null));
+          
           irp.cancel();
           irp.redirectPage();
            
           ApexPages.currentPage().getParameters().put(ID,null);
-          PageReference pRefReg = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+null);
-          Test.setCurrentPageReference(pRefReg);
+          Test.setCurrentPage(pageRef);
+        
           irp.cancel();
           irp.redirectPage();    
             
@@ -1363,9 +1380,6 @@ public class IPM_RolloutPlansAddController_Test{
             regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
             insert regionalRolloutList;
             
-            dmlLimit = Limits.getDMLStatements();
-          
-          
           
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
@@ -1386,8 +1400,7 @@ public class IPM_RolloutPlansAddController_Test{
             
            
             
-            dmlLimit = Limits.getDMLStatements();
-          
+            
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>();
             List<MDO_Geography__c> mdoCountryList = [select id,ISO_3166_1_Code__c,Name,parent_L2__c,geography_type__c,mdm_id__c,Status__c from MDO_Geography__c where Name in (:AFRICA,:ANGOLA) ];
@@ -1432,8 +1445,7 @@ public class IPM_RolloutPlansAddController_Test{
          
             update countryList;
             
-            dmlLimit = Limits.getDMLStatements();
-          
+           
         
            //******************************** Initiate Phase Change and Regional Project Creation  ****************************************
             
@@ -1448,7 +1460,6 @@ public class IPM_RolloutPlansAddController_Test{
             
             update projectList;
             
-            dmlLimit = Limits.getDMLStatements();
           
           
             for(IPM_Project__c project : projectList)
@@ -1463,9 +1474,7 @@ public class IPM_RolloutPlansAddController_Test{
            
             Test.StopTest();
           
-            dmlLimit = Limits.getDMLStatements();
-            
-            
+           
             
         }
         
@@ -1486,8 +1495,7 @@ public class IPM_RolloutPlansAddController_Test{
             
             List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c,(Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];  
             
-            dmlLimit = Limits.getDMLStatements();
-            
+           
                
             for(IPM_Project__c regionalProject : DBRegionalProjects) 
             {
@@ -1505,9 +1513,7 @@ public class IPM_RolloutPlansAddController_Test{
             
         }
         
-        dmlLimit = Limits.getDMLStatements();
-        
-        
+
         //******************************** Regional Project Leader View for Regional Projects  ****************************************
         System.RunAs(regionalProjectLeader)
         {
@@ -1535,17 +1541,12 @@ public class IPM_RolloutPlansAddController_Test{
                 
             }
         }
-        dmlLimit = Limits.getDMLStatements();
-        
-        
+       
         system.RunAs(globalProjectLeader)
       {
+          Test.setCurrentPage(pageRef);
           ApexPages.currentPage().getParameters().put(ID,projectList[0].Id);
-          PageReference pRef = new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+projectList[0].Id);
-          Test.setCurrentPageReference(pRef);
-          projectId = ApexPages.currentPage().getParameters().get(ID);
           
-         
           irp.project=projectList[0];
           irp.globalCountries=GLOBAL_COUNTRIES;
           irp.regionalMco=REGIONAL_MCO;
@@ -1617,30 +1618,27 @@ public class IPM_RolloutPlansAddController_Test{
           irp.processRegionalCountryRollouts();
           irp.setCountryCodes = new Set<String>{AF}; //regionalCountry put into this 
           
-          dmlLimit = Limits.getDMLStatements();
           
           if(!regionalProjects.isEmpty()){
-            PageReference pRefRegional = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+regionalProjects[0].Id);
-            Test.setCurrentPageReference(pRefRegional); 
+            Test.setCurrentPage(pageRefRegional); 
+            apexPages.currentPage().getParameters().put(Id,regionalProjects[0].Id);
           }
 
-          dmlLimit = Limits.getDMLStatements();
           
           
           PageReference rolloutPlansExpected = Page.IPM_RolloutPlans; 
           PageReference rolloutPlansActual = irp.redirectPage();
           irp.cancel();
           
-          System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()));
+          System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()),'It is not Rollout Home Page ');
         
           ApexPages.currentPage().getParameters().put(ID,null);
-          Test.setCurrentPageReference(new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+null));
+          Test.setCurrentPage(pageRef);
           irp.cancel();
           irp.redirectPage();
            
           ApexPages.currentPage().getParameters().put(ID,null);
-          PageReference pRefReg = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+null);
-          Test.setCurrentPageReference(pRefReg);
+          Test.setCurrentPage(pageRefRegional);
           irp.cancel();
           irp.redirectPage();    
 
@@ -1692,9 +1690,6 @@ public class IPM_RolloutPlansAddController_Test{
             regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
             insert regionalRolloutList;
             
-            dmlLimit = Limits.getDMLStatements();
-          
-          
           
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
@@ -1715,8 +1710,7 @@ public class IPM_RolloutPlansAddController_Test{
             
            
             
-            dmlLimit = Limits.getDMLStatements();
-          
+           
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>();
             List<MDO_Geography__c> mdoCountryList = [select id,ISO_3166_1_Code__c,Name,parent_L2__c,geography_type__c,mdm_id__c,Status__c from MDO_Geography__c where Name in (:AFRICA,:ANGOLA) ];
@@ -1761,7 +1755,6 @@ public class IPM_RolloutPlansAddController_Test{
          
             update countryList;
             
-            dmlLimit = Limits.getDMLStatements();
           
         
            //******************************** Initiate Phase Change and Regional Project Creation  ****************************************
@@ -1777,8 +1770,6 @@ public class IPM_RolloutPlansAddController_Test{
             
             update projectList;
             
-            dmlLimit = Limits.getDMLStatements();
-          
           
             for(IPM_Project__c project : projectList)
             {
@@ -1792,10 +1783,7 @@ public class IPM_RolloutPlansAddController_Test{
            
             Test.StopTest();
           
-            dmlLimit = Limits.getDMLStatements();
-            
-            
-            
+
         }
         
         regionalProjects = new List<IPM_Project__c>();
@@ -1828,15 +1816,13 @@ public class IPM_RolloutPlansAddController_Test{
                 
             }
         }
-        dmlLimit = Limits.getDMLStatements();
-        
-        
+       
         system.RunAs(globalProjectLeader)
-      {
+        {
+          Test.setCurrentPageReference(pageRef);
           ApexPages.currentPage().getParameters().put(ID,projectList[0].Id);
-          PageReference pRef = new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+projectList[0].Id);
-          Test.setCurrentPageReference(pRef);
-          projectId = ApexPages.currentPage().getParameters().get(ID);
+         
+          
           
          
           irp.project=projectList[0];
@@ -1917,29 +1903,31 @@ public class IPM_RolloutPlansAddController_Test{
           irp.processRegionalCountryRollouts();
           irp.setCountryCodes = new Set<String>{AF}; //regionalCountry put into this 
           
-          dmlLimit = Limits.getDMLStatements();
+         
     
       if(!regionalProjects.isEmpty()){
-            PageReference pRefRegional = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+regionalProjects[0].Id);
-            Test.setCurrentPageReference(pRefRegional); 
+            
+            Test.setCurrentPage(pageRefRegional); 
+            apexPages.currentPage().getParameters().put(Id,regionalProjects[0].Id);
+            
           }
-          dmlLimit = Limits.getDMLStatements();
+          
           PageReference rolloutPlansExpected = Page.IPM_RolloutPlans; 
           PageReference rolloutPlansActual = irp.redirectPage();
           irp.cancel();
           
-          System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()));
+          System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()),'It is not Rollout Home Page');
         
-        ApexPages.currentPage().getParameters().put(ID,null);
-          Test.setCurrentPageReference(new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+null));
-           irp.cancel();
-           irp.redirectPage();
-           
-           ApexPages.currentPage().getParameters().put(ID,null);
-          PageReference pRefReg = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+null);
-          Test.setCurrentPageReference(pRefReg);
-           irp.cancel();
-           irp.redirectPage();    
+          Test.setCurrentPage(pageRef);
+          ApexPages.currentPage().getParameters().put(ID,null);
+          
+          irp.cancel();
+          irp.redirectPage();
+          
+          Test.setCurrentPage(pageRefRegional); 
+          ApexPages.currentPage().getParameters().put(ID,null);
+          irp.cancel();
+          irp.redirectPage();    
 
       } 
    
@@ -1993,10 +1981,7 @@ public class IPM_RolloutPlansAddController_Test{
             regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
             insert regionalRolloutList;
             
-            dmlLimit = Limits.getDMLStatements();
-          
-          
-          
+           
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
             for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
@@ -2016,8 +2001,7 @@ public class IPM_RolloutPlansAddController_Test{
             
            
             
-            dmlLimit = Limits.getDMLStatements();
-          
+         
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>();
             List<MDO_Geography__c> mdoCountryList = [select id,ISO_3166_1_Code__c,Name,parent_L2__c,geography_type__c,mdm_id__c,Status__c from MDO_Geography__c where Name in (:AFRICA,:ANGOLA) ];
@@ -2062,8 +2046,7 @@ public class IPM_RolloutPlansAddController_Test{
          
             update countryList;
             
-            dmlLimit = Limits.getDMLStatements();
-          
+
         
            //******************************** Initiate Phase Change and Regional Project Creation  ****************************************
             
@@ -2078,9 +2061,7 @@ public class IPM_RolloutPlansAddController_Test{
             
             update projectList;
             
-            dmlLimit = Limits.getDMLStatements();
-          
-          
+           
             for(IPM_Project__c project : projectList)
             {
                 globalProjectIdList.add(project.Id);    
@@ -2093,8 +2074,7 @@ public class IPM_RolloutPlansAddController_Test{
            
             Test.StopTest();
           
-            dmlLimit = Limits.getDMLStatements();
-            
+          
             
             
         }
@@ -2129,16 +2109,11 @@ public class IPM_RolloutPlansAddController_Test{
                 
             }
         }
-        dmlLimit = Limits.getDMLStatements();
-        
-        
+      
         system.RunAs(globalProjectLeader)
-      {
+       {
+          Test.setCurrentPage(pageRef);
           ApexPages.currentPage().getParameters().put(ID,projectList[0].Id);
-          PageReference pRef = new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+projectList[0].Id);
-          Test.setCurrentPageReference(pRef);
-          projectId = ApexPages.currentPage().getParameters().get(ID);
-          
          
           irp.project=projectList[0];
           irp.globalCountries=GLOBAL_COUNTRIES;
@@ -2217,29 +2192,30 @@ public class IPM_RolloutPlansAddController_Test{
           irp.processRegionalCountryRollouts();
           irp.setCountryCodes = new Set<String>{AF}; //regionalCountry put into this 
           
-          dmlLimit = Limits.getDMLStatements();
+         
           
           if(!regionalProjects.isEmpty()){
-            PageReference pRefRegional = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+regionalProjects[0].Id);
-            Test.setCurrentPageReference(pRefRegional); 
+            
+            Test.setCurrentPage(pageRefRegional); 
+            apexPages.currentPage().getParameters().put(Id,regionalProjects[0].Id);
           }
           
-          dmlLimit = Limits.getDMLStatements();
-    
+          
           PageReference rolloutPlansExpected = Page.IPM_RolloutPlans; 
           PageReference rolloutPlansActual = irp.redirectPage();
           irp.cancel();
           
-          System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()));
+          System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()),'It is not Rollout Home Page');
         
+          Test.setCurrentPage(pageRef);
           ApexPages.currentPage().getParameters().put(ID,null);
-          Test.setCurrentPageReference(new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+null));
+          
           irp.cancel();
           irp.redirectPage();
            
+          Test.setCurrentPage(pageRefRegional);
           ApexPages.currentPage().getParameters().put(ID,null);
-          PageReference pRefReg = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+null);
-          Test.setCurrentPageReference(pRefReg);
+          
           irp.cancel();
           irp.redirectPage();    
       } 

@@ -596,7 +596,7 @@
                                             <div class="buttonmarRight pull-left">
                                                 <input type="button" onClick="backTab(this)" class="milestones ipmButton" value="Back"/>
                                             </div>
-                                            <div class="buttonmarRight pull-left actionBox" value="/apex/IPM_ProjectOverview?id={!projectId}">
+                                            <div class="buttonmarRight pull-left actionBox" value="{!URLFOR($Page.IPM_ProjectOverview,null,[id=projectId])}">
                                                 <input type="button" class="ipmButton primary" value="Save and Continue"/>
                                             </div> 
                                         </div>
@@ -972,10 +972,8 @@
                            jq('#ipmGetStartedTab .ipmStartedTabs li:first').addClass('active');
                            jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent:first').show();
                        });
-    jq(document).on('click', '.editMilestoneBtn, .editTaskBtn', function(e){
-        e.preventDefault ? e.preventDefault() : e.returnValue = false; 
-        openEditModal(this);
-    });
+    ipmModal('#editMilestone', 'Edit Milestone', '30%', '65%', '2%');
+    ipmModal('#editTask', 'Edit To-Dos', '30%', '80%', '2%');
     
     jq('.proRoute input[type=radio]').each(function(e){ 
         jq(this).click(function(){

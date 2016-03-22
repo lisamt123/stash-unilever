@@ -3,7 +3,7 @@
 */
 
 @isTest
-public class  IPM_Resource_Allocation_Test {
+private class  IPM_Resource_Allocation_Test {
     public static IPM_Project__c project;// Project object initialization
     public static List<IPM_Project__c> projectListObj = new List<IPM_Project__c>();
     public static List<IPM_Project__c> projectList= new List<IPM_Project__c>();
@@ -46,7 +46,7 @@ public class  IPM_Resource_Allocation_Test {
         }       
         
         List<User>userLists=[SELECT id FROM user WHERE id=:stdUserForResourceAllocation.id LIMIT 1];
-        System.AssertEquals(userLists[0].id, stdUserForResourceAllocation.id,'user id is:'+userLists[0].id);//positive test
+        System.AssertEquals(userLists[0].id, stdUserForResourceAllocation.id,'user insertion fails:'+userLists[0].id);//positive test
         
         // Create Company Card information 
         globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -57,7 +57,7 @@ public class  IPM_Resource_Allocation_Test {
         List<IPM_Company_Card__c>  companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
         List<IPM_Company_Card__c>comList=[select Id,IPM_TxtGeographical_Scope__c, IPM_Managed_Category__c,IPM_Market_Cluster__c from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
-        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card insertion fails');
         IPM_User_Profile__c userProfs=new IPM_User_Profile__c();
         userProfs.IPM_User__c = readOnlyUser.Id;
         userProfs.IPM_User_Role__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE;
@@ -65,13 +65,15 @@ public class  IPM_Resource_Allocation_Test {
         userProfs.IPM_User_Category__c=CATE_LAUNDRY;
         userProfs.IPM_Company_Card__c=regionalCompanyCard.id;
         insert userProfs;
+		IPM_User_Profile__c userProfile = [SELECT Id FROM IPM_User_Profile__c WHERE Id = : userProfs.id];
+		System.assertEquals(userProfile.id,userProfs.id, 'User Profile insertion fails');
         IPM_TestFactory_Helper.getProjectMasterData();
         projectListObj = IPM_TestFactory_Helper.projectSetUp(1,stdUserForResourceAllocation);
         System.runAs(stdUserForResourceAllocation) {
             insert projectListObj;
             List<IPM_Project__c> projlList1=[SELECT ID,Deputy_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPMProject_Span__c,
             IPM_Technical_Project_Leader__c,IPM_Company_Card__c,IPM_Category_Text__c ,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
-            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name is not validated');//positive test
             project=projectListObj[0];
         }
        
@@ -101,7 +103,7 @@ public class  IPM_Resource_Allocation_Test {
             update project;
             List<IPM_Project__c> projlList1=[SELECT id,IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPMProject_Span__c,
             IPM_Technical_Project_Leader__c,IPM_Company_Card__c,IPM_Category_Text__c ,Deputy_Project_Leader__c,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
-            System.assertEquals(projlList1[0].Deputy_Project_Leader__c,globalUser.Id,'project updated');//positive test
+            System.assertEquals(projlList1[0].Deputy_Project_Leader__c,globalUser.Id,'project updation fails');//positive test
             
             projectResRecord = IPM_TestFactory_Helper.createIPMProjectResource(project.Id,false);
             projectResRecord.IPM_User__c=globalUser.Id;
@@ -112,7 +114,7 @@ public class  IPM_Resource_Allocation_Test {
             insert projectResRecord;
             
             List<IPM_Project_Resource__c>resList=[select Id,IPM_Role_Type__c from IPM_Project_Resource__c where Id=:projectResRecord.Id limit 1];
-            System.assertEquals(resList[0].IPM_Role_Type__c,IPM_ConstantUtils.TEAM_RND,'resource record created');//positive test
+            System.assertEquals(resList[0].IPM_Role_Type__c,IPM_ConstantUtils.TEAM_RND,'resource record insertion fails');//positive test
             
             projRollOut=new IPM_Project_Rollout__c();
             projRollOut= IPM_TestFactory_Helper.createIPMProjectRollout(false);
@@ -135,7 +137,7 @@ public class  IPM_Resource_Allocation_Test {
             insert projRollOut; 
             
             List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c ,Id,Finance_Member__c,IPM_Regional_PL__c,RecordTypeId,Name,Market_Cluster_Name__c,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(Select Id,Country_Name__c from IPM_Countries_Local__r) from IPM_Project_Rollout__c WHERE ID =:projRollOut.ID LIMIT 1];
-            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
+            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout is not created');//positive test
             
             List<IPM_User_Profile__c>uProfileList=new List<IPM_User_Profile__c>();
             userProf=new IPM_User_Profile__c();
@@ -151,7 +153,7 @@ public class  IPM_Resource_Allocation_Test {
             insert uProfileList; 
              
             List<IPM_User_Profile__c>userProfList=[select Id,IPM_User_Role__c,IPM_Company_Card__c,IPM_Company_Card__r.RecordTypeId from IPM_User_Profile__c where Id=:userProf.Id limit 1];
-            system.assertEquals(userProfList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,'user profile created');
+            system.assertEquals(userProfList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,'user profile insertion fails');
             
             pRef = Page.IPM_Resource_Allocation;
             pRef.getParameters().put(rolloutString,projRollOut.Id); // put it in the page
@@ -197,7 +199,7 @@ public class  IPM_Resource_Allocation_Test {
             userProf.IPM_User_Role__c=IPM_ConstantUtils.IPM_ROLE_RD;
             update userProf;
             List<IPM_User_Profile__c>userProfList=[select Id,IPM_User_Role__c,IPM_Company_Card__c,IPM_Company_Card__r.RecordTypeId from IPM_User_Profile__c where Id=:userProf.Id limit 1];
-            system.assertEquals(userProfList[0].IPM_User_Role__c,IPM_ConstantUtils.IPM_ROLE_RD,'user profile updated');
+            system.assertEquals(userProfList[0].IPM_User_Role__c,IPM_ConstantUtils.IPM_ROLE_RD,'user profile updation fails');
             Map<id,id> projUserMap = new Map<id,id>();
             projUserMap.put(project.id,globalUser.Id);
             ipmResAlloccation.isPLEdit=true;
@@ -220,7 +222,7 @@ public class  IPM_Resource_Allocation_Test {
             userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.IPM_ROLE_RD,FUNCTION_NOT_CALL_PROPERLY);
             
-            system.assertEquals(ipmResAlloccation.RoleType,IPM_ConstantUtils.IPM_ROLE_GUEST); //positive test
+            system.assertEquals(ipmResAlloccation.RoleType,IPM_ConstantUtils.IPM_ROLE_GUEST,'User Role type is not validated'); //positive test
             ipmResAlloccation.RoleType='Project Leader';
             ipmResAlloccation.getSameCategory(); 
             userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
@@ -235,17 +237,20 @@ public class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.SearchTeambyCat= IPM_ConstantUtils.TEAM_ALLCATEGORY; 
             ipmResAlloccation.RoleType = '';   
             ipmResAlloccation.getSameCategory();  
-            system.assertEquals(ipmResAlloccation.SearchTeambyCat,IPM_ConstantUtils.TEAM_ALLCATEGORY);//Positive test 
+            system.assertEquals(ipmResAlloccation.SearchTeambyCat,IPM_ConstantUtils.TEAM_ALLCATEGORY,'Team Category is not validated');//Positive test 
             userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.IPM_ROLE_RD,FUNCTION_NOT_CALL_PROPERLY);
             userProf.IPM_User_Role__c=IPM_ConstantUtils.PROJECT_LEADER;
             update userProf;
+			IPM_user_profile__c userProfile = [SELECT Id,IPM_User_Role__c FROM IPM_user_profile__c WHERE Id =:userProf.id]; 
+			System.assertEquals(IPM_ConstantUtils.PROJECT_LEADER,userProfile.IPM_User_Role__c , 'User Role Is updated');
+			
             ipmResAlloccation.SearchTeambyCat= IPM_ConstantUtils.TEAM_ALLCATEGORY; 
             ipmResAlloccation.RoleType =IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE;   
             ipmResAlloccation.getSameCategory();  
             
             userProfList=[select Id,IPM_User_Role__c,IPM_Company_Card__c,IPM_Company_Card__r.RecordTypeId from IPM_User_Profile__c where Id=:userProf.Id limit 1];
-            system.assertEquals(userProfList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,'user profile updated');
+            system.assertEquals(userProfList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,'user profile updation fail');
             pageMessages = ApexPages.getMessages();  
         }
         Test.stopTest(); 
@@ -265,6 +270,8 @@ public class  IPM_Resource_Allocation_Test {
             IPM_Resource_Allocation.wrapperclass wrp=new IPM_Resource_Allocation.wrapperclass(userProList[0]);
             wrp.checkboxuser=true;
             ipmResAlloccation.getSameCategory();
+            System.assertEquals(true, wrp.checkboxuser,'Wraaper Check box Fails');
+            
             userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
             ipmResAlloccation.teamMembers.clear();
@@ -442,6 +449,9 @@ public class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.getSameCategoryRolloutProfiles();
             userProf.IPM_User_Role__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE;
             update userProf;
+			IPM_user_profile__c userProfile = [SELECT Id,IPM_User_Role__c FROM IPM_user_profile__c WHERE Id =:userProf.id]; 
+			System.assertEquals(IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE,userProfile.IPM_User_Role__c , 'User Role is not  updated');
+			
             ipmResAlloccation.isLeaderTypeFL=true;
             ipmResAlloccation.isLeaderTypePL=false;
             ipmResAlloccation.category=USER_CATE;
@@ -499,6 +509,8 @@ public class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.assignLeaderMember();
             projRollout.recordTypeId=Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(); 
             update projRollout;
+			IPM_Project_Rollout__c projectRollout = [SELECT recordTypeId FROM IPM_Project_Rollout__c WHERE Id =: projRollout.id];
+			System.assertEquals(Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(),projRollout.recordTypeId,'Rollout type is invalid');
             ipmResAlloccation.assignLeaderMember();
             rolloutList1=[select Id,Name,Market_Cluster_Name__c,IPM_Regional_PL__c,Finance_Member__c,RecordTypeId,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(Select Id,Country_Name__c from IPM_Countries_Local__r)  FROM IPM_Project_Rollout__c where Id=:projRollout.Id];
             System.assertEquals(rolloutList1[0].Finance_Member__c ,globalUser.Id,FUNCTION_NOT_CALL_PROPERLY);

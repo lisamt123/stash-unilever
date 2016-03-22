@@ -3,7 +3,7 @@
 *@Description:This page is used to display the overall information about the project.
 *@Author: Cognizant
 *@Created Date: 03/01/2015
-*@Copyright Â© 2015  Unilever  
+*@Copyright © 2015  Unilever  
 *************************************************************************
 -->
 
@@ -736,7 +736,7 @@
                                                     <div class="row">    
                                                         <div class="col-sm-12">
                                                             <span class="skipDesc">
-                                                                    <c:BET_UpsertBET ProjectId="{!ProjectId}" Project_name="{!project.name}" Category_name="{!CategoryGroupId}" category="{!categryId}" Brand_Position="{!BrandPositionId}" OwnerId="{!project.IPM_Project_Leader__c}" TLD="{!project.IPM_Target_Launch_Dates__c}" Description="{!project.IPM_Project_Description__c}" callback="{!URLFOR('/apex/IPM_BETSuggestedMembers?id=' +projectId+'&showMembers=true&BETId=')}"   CallbackSkip="{!URLFOR('/apex/ipm_projectoverview?id=' +projectId)}" />                                                                    
+                                                                    <c:BET_UpsertBET ProjectId="{!ProjectId}" Project_name="{!project.name}" Category_name="{!CategoryGroupId}" category="{!categryId}" Brand_Position="{!BrandPositionId}" OwnerId="{!project.IPM_Project_Leader__c}" TLD="{!project.IPM_Target_Launch_Dates__c}" Description="{!project.IPM_Project_Description__c}" callback="{!URLFOR($Page.IPM_BETSuggestedMembers,null,[id=projectId ,showMembers=true] )+'&BETId='}"   CallbackSkip="{!URLFOR($Page.IPM_ProjectOverview,null,[id=project.id])}" />                                                                    
                                                             </span>
                                                         </div>            
                                                     </div>  
@@ -760,7 +760,7 @@
                                                     <div class="row"> 
                                                         <div class="col-sm-12">
                                                             <span class="skipDesc">                                                         
-                                                                    <c:BET_SuggestMembers BetID="{!IF(BETId!=null,BETId,requestedBETId)}" ProjectID="{!ProjectId}" Callback="{!URLFOR('/apex/ipm_projectoverview?id=' +project.id)}" Suggested_Members="{!suggestedMembersList}" User_buckets="{!memberBucketList}" Suggested_Managers="{!suggestedManagerList}" usedInPopup="true"/>
+                                                                    <c:BET_SuggestMembers BetID="{!IF(BETId!=null,BETId,requestedBETId)}" ProjectID="{!ProjectId}" Callback="{!URLFOR($Page.IPM_ProjectOverview,null,[id=project.id])}" Suggested_Members="{!suggestedMembersList}" User_buckets="{!memberBucketList}" Suggested_Managers="{!suggestedManagerList}" usedInPopup="true"/>
                                                             </span>
                                                         </div>            
                                                     </div>  
