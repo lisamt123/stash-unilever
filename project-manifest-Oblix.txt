@@ -8,6 +8,8 @@ src/classes/Oblix_CampaignCreateHelper.cls
 src/classes/Oblix_CampaignCreateHelper.cls-meta.xml
 src/classes/Oblix_AssetHandler_Test.cls
 src/classes/Oblix_AssetHandler_Test.cls-meta.xml
+src/classes/Oblix_CalculatorLogic.cls
+src/classes/Oblix_CalculatorLogic.cls-meta.xml
 src/classes/Oblix_CampaignStageController.cls
 src/classes/Oblix_CampaignStageController.cls-meta.xml
 src/classes/Oblix_CampaignStageController_Test.cls
