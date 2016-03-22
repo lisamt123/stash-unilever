@@ -25,6 +25,10 @@
                 <name>CPA_Project_Work_Order_Accepted_date</name>
                 <type>FieldUpdate</type>
             </action>
+            <action>
+                <name>CPA_PWO_Previous_Status_value</name>
+                <type>FieldUpdate</type>
+            </action>
         </approvalActions>
         <assignedApprover>
             <approver>

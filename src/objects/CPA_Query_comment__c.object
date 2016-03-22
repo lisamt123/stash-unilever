@@ -54,7 +54,7 @@
     <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>CR_ID__c</fullName>
         <externalId>false</externalId>
@@ -93,16 +93,30 @@
     </fields>
     <fields>
         <fullName>LookupCPA_Queries__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
         <description>This captures responses to any queries regarding vendor contract management.</description>
         <externalId>false</externalId>
         <label>Queries</label>
         <referenceTo>CPA_Queries__c</referenceTo>
+        <relationshipLabel>Submit Responses</relationshipLabel>
         <relationshipName>CPA_Query_comments</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>PWO_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>LookupCPA_Queries__r.PWO_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PWO ID</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Pworf_ID__c</fullName>
@@ -115,6 +129,18 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Query_Creator__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Query Creator</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Submit_Responses</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>RTXTQuery_Comments__c</fullName>
@@ -157,5 +183,27 @@
     </nameField>
     <pluralLabel>Submit Responses</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>Submit_New_Response</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Submit New Response</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;{!$User.Id}&quot; +   &apos;  &apos;  + &quot;{!CPA_Queries__c.CreatedById}&quot;);
+if(permissionSetName == &quot;CPA_{!CPA_Queries__c.Assigned_to__c}&quot; || permissionSetName == &quot;CPA_SMT&quot; || &quot;{!$User.Id}&quot; == &quot;{!CPA_Queries__c.CreatedById}&quot;){ 
+	window.open(&quot;/&quot;+&quot;{!$Label.CPA_query_response_URL_Object_ID}/e?{!$Label.CPA_query_response_URL_id}={!CPA_Queries__c.Name}&amp;{!$Label.CPA_query_response_URL_id}_lkid={!CPA_Queries__c.Id}&amp;retURL=%2F{!CPA_Queries__c.Id}&quot;,&quot;_self&quot;); 
+}else{ 
+ alert(&apos;Query is assigned to &apos;+&quot;{!CPA_Queries__c.Assigned_to__c}&quot; +&apos;, So you are not authorized to perform this action.&apos;);
+}</url>
+    </webLinks>
 </CustomObject>

@@ -47,10 +47,10 @@ public with sharing class CPA_SelectRecordTypeController {
         schemeList = new List<RecordType>();
         List<SelectOption> optionsList = new List<SelectOption>();
         try {
-        
+        schemeList = [SELECT Id,DeveloperName,Name,Description FROM RecordType Where Name IN('CR Other','Standalone CR')] ;
             objName = findObjectNameFromRecordIdPrefix(pworfId );
         
-            if(objName =='CPA_PWORF__c') {
+            /*if(objName =='CPA_PWORF__c') {
                 titleText = CPA_ConstantsForContractingAppClasses.PWO;
                 schemeList = [SELECT Id,DeveloperName,Name,Description FROM RecordType Where Name IN('PWO','Standalone PWO')] ;
             } if(objName =='CPA_project_work_order__c')  {
@@ -59,7 +59,7 @@ public with sharing class CPA_SelectRecordTypeController {
             }if(objName =='CPA_PWORF__c' && flagState =='Loi') {
                 titleText = CPA_ConstantsForContractingAppClasses.LOI;
                 schemeList = [SELECT Id,DeveloperName,Name,Description FROM RecordType Where Name IN('LOI Other','LOI Submitted')] ;
-            }
+            }*/
             if(!schemeList.isEmpty()) {
                 //optionsList.add(new SelectOption('None','None'));
                 for(RecordType schemeRs:schemeList) {
@@ -82,7 +82,7 @@ public with sharing class CPA_SelectRecordTypeController {
     ********************************************************************/
     public PageReference redirectToPageNewItem() {  
         String UrlLink ='';
-        if(objName =='CPA_PWORF__c') {
+       /* if(objName =='CPA_PWORF__c') {
             CPA_PWORF__c Rs= [Select Id,Name From CPA_PWORF__c Where Id=:pworfId];
             
             UrlLink = '/'+CPA_ConstantsForContractingAppClasses.CPA_PWO_OBJECT_ID +'/e?retURL='+Rs.Id+'&RecordType='+recordtypeId+Label.CPA_PWORF_Name_Filed_Id+'='+Rs.Name+Label.CPA_PWORF_Name_Filed_Id+'_lkid='+Rs.Id;
@@ -96,9 +96,31 @@ public with sharing class CPA_SelectRecordTypeController {
         }if(objName =='CPA_project_work_order__c'){   
         
             CPA_project_work_order__c Rscr= [Select Id,Name From CPA_project_work_order__c Where Id=:pworfId];
-              
-            UrlLink = '/'+CPA_ConstantsForContractingAppClasses.CPA_CR_ID+'/e?retURL='+Rscr.ID+'&RecordType='+recordtypeId+Label.CPA_PWO_Name_Field_Id+'='+Rscr.Name+Label.CPA_PWO_Name_Field_Id+'_lkid='+Rscr.Id;
+              if(Rscr!=null){
+                  UrlLink = '/'+CPA_ConstantsForContractingAppClasses.CPA_CR_ID+'/e?retURL='+Rscr.ID+'&RecordType='+recordtypeId+Label.CPA_PWO_Name_Field_Id+'='+Rscr.Name+Label.CPA_PWO_Name_Field_Id+'_lkid='+Rscr.Id;
+              }else{
+                  UrlLink = '/'+CPA_ConstantsForContractingAppClasses.CPA_CR_ID+'/e?retURL='+Rscr.ID+'&RecordType='+recordtypeId+"&retURL=%2F"+CPA_ConstantsForContractingAppClasses.CPA_CR_ID;
+              }
+            
         }
+        else {
+            
+        }*/
+        //if(objName =='CPA_project_work_order__c'){   
+        if(pworfId !=null && pworfId != ''){
+            CPA_project_work_order__c Rscr= [Select Id,Name From CPA_project_work_order__c Where Id=:pworfId];
+              if(Rscr!=null){
+                  UrlLink = '/'+CPA_ConstantsForContractingAppClasses.CPA_CR_ID+'/e?retURL='+Rscr.ID+'&RecordType='+recordtypeId+Label.CPA_PWO_Name_Field_Id+'='+Rscr.Name+Label.CPA_PWO_Name_Field_Id+'_lkid='+Rscr.Id;
+              }else{
+                  UrlLink = '/'+CPA_ConstantsForContractingAppClasses.CPA_CR_ID+'/e?retURL='+CPA_ConstantsForContractingAppClasses.CPA_CR_ID+'&RecordType='+recordtypeId;
+              }
+        }else{
+            UrlLink = '/'+CPA_ConstantsForContractingAppClasses.CPA_CR_ID+'/e?retURL='+CPA_ConstantsForContractingAppClasses.CPA_CR_ID+'&RecordType='+recordtypeId;
+        }
+            
+            
+       // }
+        
         PageReference massPageUrl = new PageReference(UrlLink);
         massPageUrl.setRedirect(true);
             
