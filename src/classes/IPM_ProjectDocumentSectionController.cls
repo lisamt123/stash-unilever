@@ -297,6 +297,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         else if(projDocSec.IPM_Section_Sequence__c==lastSec){
             showNext=false;
         }
+        renderedConditions();
+        
     }
     
     /****************************************************************************************************************************************************************
