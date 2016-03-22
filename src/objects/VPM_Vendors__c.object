@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>VPM - Used as an object to demonstrate looking up and matching data vs a list of Vendors. Highly likely this will be used just for testing purposes then removed once the SAP link is in place.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>VPM_City__c</fullName>
+        <description>Used for storing City data from / to SAP</description>
+        <externalId>false</externalId>
+        <label>City</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ECCEntries__c</fullName>
+        <description>For storing which SAP ECC/s the vendor is a part of</description>
+        <externalId>false</externalId>
+        <label>ECC Entries</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Street1__c</fullName>
+        <description>Vendor street address, referred to as Street 1 in SAP</description>
+        <externalId>false</externalId>
+        <label>Street</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorCode__c</fullName>
+        <description>The SAP code reference for the Vendor</description>
+        <externalId>false</externalId>
+        <label>Vendor Code</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorName__c</fullName>
+        <description>The name of the Vendor</description>
+        <externalId>false</externalId>
+        <label>Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ZIPPostcode__c</fullName>
+        <description>Vendor postcode as per SAP</description>
+        <externalId>false</externalId>
+        <label>ZIP/Postcode</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VP_VendorFullDetails__c</fullName>
+        <description>Provides a text summary of the important SAP matching fields for display within the Advanced form. Not interfaced with SAP</description>
+        <externalId>false</externalId>
+        <formula>VPM_VendorName__c &amp; &quot;, &quot; &amp;  VPM_Street1__c &amp; &quot;, &quot; &amp; VPM_City__c &amp; &quot;, &quot; &amp; VPM_ZIPPostcode__c &amp;&quot; | ECC: &quot;&amp; VPM_ECCEntries__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Vendor Full Details</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Vendor</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>VPM_VendorName__c</columns>
+        <columns>VPM_City__c</columns>
+        <columns>VPM_Street1__c</columns>
+        <columns>VPM_ZIPPostcode__c</columns>
+        <columns>VPM_VendorCode__c</columns>
+        <columns>VPM_ECCEntries__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>VEN-{0000000}</displayFormat>
+        <label>Vendor ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Vendors</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

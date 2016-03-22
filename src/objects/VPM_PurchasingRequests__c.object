@@ -1,0 +1,4054 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>VPM - Used to store the data to allow an end user to make a purchasing request that is reassigned to and approved by FLS, Finance, Procurement and MDM Ops. This could branch out to a Vendor Request interfaced with SAP, or to an Ariba Purchasing Requisition.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>VPM_AlreadyBeenInvoiced__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to capture on the Purchasing Request form whether an invoice has already been received. Used for statistics and assessment from FLS, does not get written to SAP.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select this option if you have already received an invoice from the Vendor for the product/s</inlineHelpText>
+        <label>Already Been Invoiced?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ApprovalsCompleted__c</fullName>
+        <description>System field used to record whether the Approval Processes from Procurement and Finance are completed so statuses and record reassignment changes can be handled by Process Builder.</description>
+        <externalId>false</externalId>
+        <label>Approvals Completed</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_BusinessRequestorSubmitted__c</fullName>
+        <description>System field used to record whether the Business Requestor has submitted the request so Process Builder can take care of the status and reassignment changes</description>
+        <externalId>false</externalId>
+        <label>Business Requestor Submitted</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_City__c</fullName>
+        <description>Stores the City value as completed by the Business Requestor or FLS. Interfaces with SAP.</description>
+        <externalId>false</externalId>
+        <label>Vendor City</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Comments__c</fullName>
+        <description>Used by the Business Requestor to record any comments that may be helpful to the FLS as they qualify the Vendor / Ariba requirements during their assessment. No interface with SAP.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please enter any additional information that will help the FLS team to process your request.</inlineHelpText>
+        <label>Comments</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>VPM_CommodityNameIfKnown__c</fullName>
+        <description>Entered by the Business Requestor as free text. This will be checked and recorded according to the SAP requirements in the &apos;VPM_CommodityName__c&apos; field by the FLS. No interface with SAP for this field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If you know the Commodity name, enter it here.</inlineHelpText>
+        <label>Commodity Name (if known)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_CommodityName__c</fullName>
+        <description>Used by Advanced Users to accurately record the Commodity Name vs SAP values. Field interfaced with SAP.</description>
+        <externalId>false</externalId>
+        <label>Commodity Name</label>
+        <picklist>
+            <picklistValues>
+                <fullName>12160000 - Additives</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12190000 - Solvents</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12350000 - Compounds &amp; mixtures</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12352500 - Chemical intermediates &amp; fixatives</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>24121500 - Prototype Packaging</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>41100000 - Laboratory &amp; scientific equipment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>41120000 - Laboratory supplies &amp; fixtures</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>81140000 - Laboratory services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_CompanyCode__c</fullName>
+        <description>Completed by Advanced Users to record the company code as per the values in SAP. Field interfaced with SAP.</description>
+        <externalId>false</externalId>
+        <label>Company Code</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Austria (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Belgium (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bulgaria (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Corporate Centre NL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Corporate Centre UK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Czech Republic / Slovakia (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Denmark (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Europe (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finland (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>France (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Germany (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Greece (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hungary (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ireland (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italy (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Netherlands (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Norway (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Poland (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Portugal (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>R&amp;D NL (URDV)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>R&amp;D UK (Colworth)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>R&amp;D UK (Port Sunlight)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Romania (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Serbia (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spain (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sweden (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Switzerland (MSO/SU)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UASCC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UBMS CH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UEIT UK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UKI (MSO/SU/R&amp;D/UEIT)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>US</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>USCC CH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>USCC NL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_DaysWithMDMOps__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <description>VPM - Number of days request was worked upon by MDM Ops</description>
+        <externalId>false</externalId>
+        <label>Days with MDM Ops</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_DayswithFLS__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <description>VPM - Number of days for which request is being worked upon by FLS team</description>
+        <externalId>false</externalId>
+        <label>Days with FLS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_DayswithFinance__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <description>VPM - Number of days for which request is being worked upon by Finance Team</description>
+        <externalId>false</externalId>
+        <label>Days with Finance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_DayswithProcurement__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <description>VPM - Days for which request was worked upon by Procurement Group.</description>
+        <externalId>false</externalId>
+        <label>Days with Procurement</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_FLSSubmitted__c</fullName>
+        <description>System field to record when the FLS have submitted their additions to the request. Used by Process Builder to drive status change, approvals and reassignment</description>
+        <externalId>false</externalId>
+        <label>FLS Submitted</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_FinanceApprovalRequired__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - Checkbox used to determine whether Finance Approval is required. Set, if necessary, in Purchasing Request Advanced Form Flow.</description>
+        <externalId>false</externalId>
+        <label>Finance Approval Required</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_FinanceSubmitted__c</fullName>
+        <description>System field used to record that Finance have finished with their changes to the form details. This field triggers Process Builder to handle other elements of the process. Not integrated with SAP.</description>
+        <externalId>false</externalId>
+        <label>Finance Submitted</label>
+        <picklist>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_Finance_Team_Section__c</fullName>
+        <externalId>false</externalId>
+        <label>Finance Team Section</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_MDMOpsSubmitted__c</fullName>
+        <description>System field used to record when MDM Ops have submitted their changes ready for SAP processing. Used by Process Builder to amend statuses.</description>
+        <externalId>false</externalId>
+        <label>MDM Ops Submitted</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ProcurementApprovalRequired__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - Checkbox used to determine whether Procurement Approval is required. Set, if necessary, in Purchasing Request Advanced Form Flow.</description>
+        <externalId>false</externalId>
+        <label>Procurement Approval Required</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ProcurementSection__c</fullName>
+        <externalId>false</externalId>
+        <label>Procurement Section</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ProcurementSubmitted__c</fullName>
+        <description>VPM - System field to record when the Procurement  have submitted their additions to the request. Used by Process Builder to drive status change, approvals and reassignment</description>
+        <externalId>false</externalId>
+        <label>Procurement Submitted</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_PurchasingCountry__c</fullName>
+        <defaultValue>$User.Country</defaultValue>
+        <description>Completed as free text by the Business Requestor to describe the Country the product is being purchased for. Qualified according to SAP requirements by Advanced Users in the VPM_CompanyCode field</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the Country you want to make the purchase for.</inlineHelpText>
+        <label>Purchasing Country</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_RequestGroupTime__c</fullName>
+        <description>VPM - Time at which request was assigned to specific group.</description>
+        <externalId>false</externalId>
+        <label>Request Group Time</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>VPM_RequestLastWithGroup__c</fullName>
+        <description>VPM - Group which worked last on the request for approval or rework. Triggered by Purchasing Request Stages Process.</description>
+        <externalId>false</externalId>
+        <label>Request Last With Group</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Business Requestor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FLS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Procurement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MDM Ops</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ReworkToBusReq_c__c</fullName>
+        <description>VPM - Used to Capture the  rework status</description>
+        <externalId>false</externalId>
+        <label>Rework To Business Requestor</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_Spend__c</fullName>
+        <description>Entered by the Business Requestor initially before being used as assessment criteria by Advanced Users. No interface with SAP.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The estimated spend for the request.</inlineHelpText>
+        <label>Spend</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>VPM_Status__c</fullName>
+        <description>System field updated by Process Builder depending on the route and assignment of the request. Critical for E2E and system reporting. Does not interface with SAP.</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Draft Request</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FLS Review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FLS Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FLS Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FLS Requested Re-Work</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approval Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance Requested Re-Work</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Procurement Requested Re-Work</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Procurement Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Procurement Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MDM Ops Review</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BPM Record Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global MDM Processing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ECC Processing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Request Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ariba Approval Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ariba Finance Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <restrictedPicklist>true</restrictedPicklist>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_Street1__c</fullName>
+        <description>Entered by the Business Requestor and potentially modified / updated by Advanced Users. Used to help search for and identify Vendors. Interfaces with SAP.</description>
+        <externalId>false</externalId>
+        <label>Street Address</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_TargetECC__c</fullName>
+        <description>Used to identify the target ECC for extension. Used by the integration to indicate the appropriate Interface.</description>
+        <externalId>false</externalId>
+        <label>Target ECC</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_TotalDaysWorked__c</fullName>
+        <description>VPM - Total days for which request was worked upon by all teams</description>
+        <externalId>false</externalId>
+        <formula>VPM_DayswithFLS__c  +  VPM_DayswithFinance__c  +  VPM_DayswithProcurement__c  +  VPM_DaysWithMDMOps__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Days Worked</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorContactDetail__c</fullName>
+        <description>Used by the Business Requestor to record his/her contact email address for the Vendor. Could be pushed to SAP to create or update a record. Interfaces with SAP.</description>
+        <externalId>false</externalId>
+        <label>Vendor Contact Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorName__c</fullName>
+        <description>Free text entry for the Business Requestor to enter on the Rapid form the Vendor name in mind. Can be amended by Advanced Users and used to match existing SAP vendors. Interfaces with SAP.</description>
+        <externalId>false</externalId>
+        <label>Vendor Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_WhatAreYouBuying__c</fullName>
+        <description>Free text option to allow the Business Requestor completing a rapid form to enter a short description of the items buying. This helps the Advanced Users assess the request. No interface with SAP.</description>
+        <externalId>false</externalId>
+        <label>What are you Buying?</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ZIPPostcode__c</fullName>
+        <description>Entered by the Business Requestor or Advanced User to help with the Vendor matching process. Could be used for record create or extends. Interfaces with SAP.</description>
+        <externalId>false</externalId>
+        <label>ZIP/Postcode</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Purchasing Request</label>
+    <listViews>
+        <fullName>All_Requests</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>VPM_ApprovalsCompleted__c</columns>
+        <columns>VPM_BusinessRequestorSubmitted__c</columns>
+        <columns>VPM_Comments__c</columns>
+        <columns>VPM_CommodityName__c</columns>
+        <columns>VPM_Status__c</columns>
+        <columns>VPM_Finance_Team_Section__c</columns>
+        <columns>VPM_ProcurementSection__c</columns>
+        <columns>VPM_FinanceSubmitted__c</columns>
+        <columns>VPM_ProcurementSubmitted__c</columns>
+        <columns>VPM_ProcurementApprovalRequired__c</columns>
+        <columns>VPM_FinanceApprovalRequired__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Requests</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>FLSQueue_VPM_PurchasingRequests</fullName>
+        <columns>NAME</columns>
+        <columns>VPM_VendorName__c</columns>
+        <columns>VPM_Status__c</columns>
+        <columns>VPM_PurchasingCountry__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Queue</filterScope>
+        <label>FLS Queue</label>
+        <language>en_US</language>
+        <queue>VPM_FLSQueue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>FinanceQueue_VPM_PurchasingRequests</fullName>
+        <columns>NAME</columns>
+        <columns>VPM_VendorName__c</columns>
+        <columns>VPM_WhatAreYouBuying__c</columns>
+        <columns>VPM_PurchasingCountry__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>VPM_Status__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Queue</filterScope>
+        <label>Finance Queue</label>
+        <language>en_US</language>
+        <queue>VPM_FinanceQueue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>MDMOpsQueue_VPM_PurchasingRequests</fullName>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>VPM_Status__c</columns>
+        <columns>VPM_VendorName__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Queue</filterScope>
+        <label>MDM Ops Queue</label>
+        <language>en_US</language>
+        <queue>VPM_MDMOpsQueue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Requests</fullName>
+        <columns>NAME</columns>
+        <columns>VPM_Status__c</columns>
+        <columns>VPM_VendorName__c</columns>
+        <columns>VPM_WhatAreYouBuying__c</columns>
+        <columns>VPM_Spend__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Requests</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ProcurementQueue_VPM_PurchasingRequests</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Procurement Queue</label>
+        <queue>VPM_ProcurementQueue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>PuReq-{000000000}</displayFormat>
+        <label>Purchasing Request ID</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Purchasing Requests</pluralLabel>
+    <recordTypeTrackFeedHistory>true</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>VPM_PurReq</fullName>
+        <active>true</active>
+        <description>Request raised by a Business Requestor</description>
+        <label>Purchasing Request</label>
+        <picklistValues>
+            <picklist>VPM_ApprovalsCompleted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CommodityName__c</picklist>
+            <values>
+                <fullName>12160000 - Additives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12190000 - Solvents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12350000 - Compounds %26 mixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12352500 - Chemical intermediates %26 fixatives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24121500 - Prototype Packaging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41100000 - Laboratory %26 scientific equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41120000 - Laboratory supplies %26 fixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81140000 - Laboratory services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CompanyCode__c</picklist>
+            <values>
+                <fullName>Austria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre NL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic %2F Slovakia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D NL %28URDV%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Colworth%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Port Sunlight%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UASCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UBMS CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UEIT UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UKI %28MSO%2FSU%2FR%26D%2FUEIT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC NL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FLSSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FinanceSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_MDMOpsSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ProcurementSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestLastWithGroup__c</picklist>
+            <values>
+                <fullName>Business Requestor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Status__c</picklist>
+            <values>
+                <fullName>Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BPM Record Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Request</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>ECC Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global MDM Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_PurReqVendorCreate</fullName>
+        <active>true</active>
+        <description>Request qualified as needing a Vendor Create in SAP</description>
+        <label>Purchasing Request (Vendor Create)</label>
+        <picklistValues>
+            <picklist>VPM_ApprovalsCompleted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CommodityName__c</picklist>
+            <values>
+                <fullName>12160000 - Additives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12190000 - Solvents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12350000 - Compounds %26 mixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12352500 - Chemical intermediates %26 fixatives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24121500 - Prototype Packaging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41100000 - Laboratory %26 scientific equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41120000 - Laboratory supplies %26 fixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81140000 - Laboratory services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CompanyCode__c</picklist>
+            <values>
+                <fullName>Austria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre NL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic %2F Slovakia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D NL %28URDV%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Colworth%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Port Sunlight%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UASCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UBMS CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UEIT UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UKI %28MSO%2FSU%2FR%26D%2FUEIT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC NL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FLSSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FinanceSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_MDMOpsSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ProcurementSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestLastWithGroup__c</picklist>
+            <values>
+                <fullName>Business Requestor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Status__c</picklist>
+            <values>
+                <fullName>Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BPM Record Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ECC Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global MDM Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_PurReqVendorExtend</fullName>
+        <active>true</active>
+        <description>Request qualified as needing a Vendor Extend in SAP</description>
+        <label>Purchasing Request (Vendor Extend)</label>
+        <picklistValues>
+            <picklist>VPM_ApprovalsCompleted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CommodityName__c</picklist>
+            <values>
+                <fullName>12160000 - Additives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12190000 - Solvents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12350000 - Compounds %26 mixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12352500 - Chemical intermediates %26 fixatives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24121500 - Prototype Packaging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41100000 - Laboratory %26 scientific equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41120000 - Laboratory supplies %26 fixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81140000 - Laboratory services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CompanyCode__c</picklist>
+            <values>
+                <fullName>Austria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre NL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic %2F Slovakia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D NL %28URDV%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Colworth%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Port Sunlight%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UASCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UBMS CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UEIT UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UKI %28MSO%2FSU%2FR%26D%2FUEIT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC NL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FLSSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FinanceSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_MDMOpsSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ProcurementSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestLastWithGroup__c</picklist>
+            <values>
+                <fullName>Business Requestor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Status__c</picklist>
+            <values>
+                <fullName>Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BPM Record Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ECC Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global MDM Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_PurReqVendorMaintain</fullName>
+        <active>true</active>
+        <description>Request qualified as needing a Vendor Maintain in SAP</description>
+        <label>Purchasing Request (Vendor Maintain)</label>
+        <picklistValues>
+            <picklist>VPM_ApprovalsCompleted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CommodityName__c</picklist>
+            <values>
+                <fullName>12160000 - Additives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12190000 - Solvents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12350000 - Compounds %26 mixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12352500 - Chemical intermediates %26 fixatives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24121500 - Prototype Packaging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41100000 - Laboratory %26 scientific equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41120000 - Laboratory supplies %26 fixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81140000 - Laboratory services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CompanyCode__c</picklist>
+            <values>
+                <fullName>Austria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre NL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic %2F Slovakia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D NL %28URDV%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Colworth%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Port Sunlight%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UASCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UBMS CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UEIT UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UKI %28MSO%2FSU%2FR%26D%2FUEIT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC NL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FLSSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FinanceSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_MDMOpsSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ProcurementSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestLastWithGroup__c</picklist>
+            <values>
+                <fullName>Business Requestor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Status__c</picklist>
+            <values>
+                <fullName>Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BPM Record Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ECC Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global MDM Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_PurRequis</fullName>
+        <active>true</active>
+        <description>Purchase Requisition Request raised by a Business Requestor</description>
+        <label>Purchase Requisition</label>
+        <picklistValues>
+            <picklist>VPM_ApprovalsCompleted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CommodityName__c</picklist>
+            <values>
+                <fullName>12160000 - Additives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12190000 - Solvents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12350000 - Compounds %26 mixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12352500 - Chemical intermediates %26 fixatives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24121500 - Prototype Packaging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41100000 - Laboratory %26 scientific equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41120000 - Laboratory supplies %26 fixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81140000 - Laboratory services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CompanyCode__c</picklist>
+            <values>
+                <fullName>Austria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre NL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic %2F Slovakia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D NL %28URDV%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Colworth%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Port Sunlight%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UASCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UBMS CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UEIT UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UKI %28MSO%2FSU%2FR%26D%2FUEIT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC NL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FLSSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FinanceSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_MDMOpsSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ProcurementSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestLastWithGroup__c</picklist>
+            <values>
+                <fullName>Business Requestor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Status__c</picklist>
+            <values>
+                <fullName>Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BPM Record Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Request</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>ECC Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global MDM Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_PurRequisVendorCreate</fullName>
+        <active>true</active>
+        <description>Purchase Requsition Request qualified as needing a Vendor Create in SAP</description>
+        <label>Purchase Requisition (Vendor Create)</label>
+        <picklistValues>
+            <picklist>VPM_ApprovalsCompleted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CommodityName__c</picklist>
+            <values>
+                <fullName>12160000 - Additives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12190000 - Solvents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12350000 - Compounds %26 mixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12352500 - Chemical intermediates %26 fixatives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24121500 - Prototype Packaging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41100000 - Laboratory %26 scientific equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41120000 - Laboratory supplies %26 fixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81140000 - Laboratory services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CompanyCode__c</picklist>
+            <values>
+                <fullName>Austria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre NL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic %2F Slovakia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D NL %28URDV%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Colworth%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Port Sunlight%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UASCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UBMS CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UEIT UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UKI %28MSO%2FSU%2FR%26D%2FUEIT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC NL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FLSSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FinanceSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_MDMOpsSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ProcurementSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestLastWithGroup__c</picklist>
+            <values>
+                <fullName>Business Requestor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Status__c</picklist>
+            <values>
+                <fullName>Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BPM Record Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ECC Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global MDM Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_PurRequisVendorExtend</fullName>
+        <active>true</active>
+        <description>Purchase Requisition Request qualified as needing a Vendor Extend in SAP</description>
+        <label>Purchase Requisition (Vendor Extend)</label>
+        <picklistValues>
+            <picklist>VPM_ApprovalsCompleted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CommodityName__c</picklist>
+            <values>
+                <fullName>12160000 - Additives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12190000 - Solvents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12350000 - Compounds %26 mixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12352500 - Chemical intermediates %26 fixatives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24121500 - Prototype Packaging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41100000 - Laboratory %26 scientific equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41120000 - Laboratory supplies %26 fixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81140000 - Laboratory services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CompanyCode__c</picklist>
+            <values>
+                <fullName>Austria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre NL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic %2F Slovakia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D NL %28URDV%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Colworth%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Port Sunlight%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UASCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UBMS CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UEIT UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UKI %28MSO%2FSU%2FR%26D%2FUEIT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC NL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FLSSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FinanceSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_MDMOpsSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ProcurementSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestLastWithGroup__c</picklist>
+            <values>
+                <fullName>Business Requestor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Status__c</picklist>
+            <values>
+                <fullName>Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BPM Record Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ECC Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global MDM Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>VPM_PurRequisVendorMaintain</fullName>
+        <active>true</active>
+        <description>Purchase Requisition Request qualified as needing a Vendor Maintain in SAP</description>
+        <label>Purchase Requisition (Vendor Maintain)</label>
+        <picklistValues>
+            <picklist>VPM_ApprovalsCompleted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CommodityName__c</picklist>
+            <values>
+                <fullName>12160000 - Additives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12190000 - Solvents</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12350000 - Compounds %26 mixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12352500 - Chemical intermediates %26 fixatives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>24121500 - Prototype Packaging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41100000 - Laboratory %26 scientific equipment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41120000 - Laboratory supplies %26 fixtures</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>81140000 - Laboratory services</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CompanyCode__c</picklist>
+            <values>
+                <fullName>Austria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Belgium %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgaria %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre NL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Corporate Centre UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech Republic %2F Slovakia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Denmark %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ireland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Netherlands %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Norway %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Poland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portugal %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D NL %28URDV%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Colworth%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>R%26D UK %28Port Sunlight%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbia %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sweden %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Switzerland %28MSO%2FSU%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UASCC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UBMS CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UEIT UK</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UKI %28MSO%2FSU%2FR%26D%2FUEIT%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>US</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC CH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USCC NL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FLSSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_FinanceSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_MDMOpsSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ProcurementSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestLastWithGroup__c</picklist>
+            <values>
+                <fullName>Business Requestor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_Status__c</picklist>
+            <values>
+                <fullName>Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Approval Pending</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ariba Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BPM Record Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Draft Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ECC Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FLS Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global MDM Processing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MDM Ops Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Procurement Requested Re-Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Request Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>VPM_VendorName__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>VPM_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Re_Work</fullName>
+        <availability>online</availability>
+        <description>This is the generic button for rework. When this button is clicked it will assign the record to last worked queue.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Re Work</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;/soap/ajax/34.0/connection.js&apos;)} 
+{ 
+	var pur = new sforce.SObject(&quot;VPM_PurchasingRequests__c&quot;); 
+	pur.id=&quot;{!VPM_PurchasingRequests__c.Id}&quot;; 
+	var currentstatus=&quot;{!VPM_PurchasingRequests__c.VPM_Status__c}&quot;; 
+	if(currentstatus.indexOf(&apos;Draft&apos;) &gt;= 0 ) 
+	{ 
+		pur.VPM_BusinessRequestorSubmitted__c=&apos;Yes&apos;; 
+		result = sforce.connection.update([pur]); 
+		window.location.reload();	
+	} 
+	if (VPM_RequestLastWithGroup__c == &apos;FLS&apos; &amp;&amp; VPM_Status__c &lt;&gt; &apos;FLS Requested Re-Work&apos;)
+	{
+		var result = sforce.connection.query(&quot;Select  QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;FLS Queue&apos; Limit 1&quot;); 
+		if (result[&apos;size&apos;] == 1){ 
+			var queue_records = result[&apos;records&apos;]; 
+			pur VPM_Status__c = &apos;FLS Requested Re-Work&apos;;
+			pur.OwnerId=queue_records[&apos;QueueId&apos;];
+				result = sforce.connection.update([pur]); 
+				window.location.reload(); 
+		}
+	}
+	if (VPM_RequestLastWithGroup__c == &apos;Procurement&apos; &amp;&amp; VPM_Status__c &lt;&gt; &apos;Procurement Requested Re-Work&apos;)
+	{
+		var result = sforce.connection.query(&quot;Select  QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;Procurement&apos; Limit 1&quot;); 
+		if (result[&apos;size&apos;] == 1){ 
+			var queue_records = result[&apos;records&apos;]; 
+			pur VPM_Status__c = &apos;Procurement Requested Re-Work&apos;;
+			pur.OwnerId=queue_records[&apos;QueueId&apos;];
+				result = sforce.connection.update([pur]); 
+				window.location.reload(); 
+		}
+	}
+	if (VPM_RequestLastWithGroup__c == &apos;Finance&apos; &amp;&amp; VPM_Status__c &lt;&gt; &apos;Finance Requested Re-Work&apos;)
+	{
+		var result = sforce.connection.query(&quot;Select  QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;Finance Queue&apos; Limit 1&quot;); 
+		if (result[&apos;size&apos;] == 1){ 
+			var queue_records = result[&apos;records&apos;]; 
+			pur VPM_Status__c = &apos;Finance Requested Re-Work&apos;;
+			pur.OwnerId=queue_records[&apos;QueueId&apos;];
+				result = sforce.connection.update([pur]); 
+				window.location.reload(); 
+		}
+	}
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>VPM_AdvancedForm</fullName>
+        <availability>online</availability>
+        <description>VPM -  Button to take the user to advanced form.</description>
+        <displayType>button</displayType>
+        <height>1000</height>
+        <linkType>page</linkType>
+        <masterLabel>Advanced Form</masterLabel>
+        <openType>sidebar</openType>
+        <page>VPM_AdvancedForm</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>VPM_AdvancedFormCSS</fullName>
+        <availability>online</availability>
+        <description>Advanced Form being worked upon by CSS developer.</description>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Advanced Form CSS</masterLabel>
+        <openType>sidebar</openType>
+        <page>VPM_AdvancedForm_V1</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>VPM_AdvancedFormFLS</fullName>
+        <availability>online</availability>
+        <description>Button to send the user to the Advanced form. Checks if the approval has been completed first.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Advanced Form</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
+
+var criteria1 = &quot;{!VPM_PurchasingRequests__c.VPM_Status__c}&quot;; 
+
+if(criteria1==&quot;FLS Review&quot;) 
+{alert(&quot;Please Approve / Reject the Request before completing the Advanced Form&quot;); 
+} 
+else { 
+navigateToUrl(&apos;flow/VPM_PurchasingRequestAdvancedForm?VPM_PurchasingRequestID={!VPM_PurchasingRequests__c.Id}&apos;); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>VPM_BusinessReqSubmit</fullName>
+        <availability>online</availability>
+        <description>Button to trigger the record updates via Process Builder necessary when the Business Requestor has submitted the form</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Submit Request</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;/soap/ajax/34.0/connection.js&apos;)} 
+{ 
+var pur = new sforce.SObject(&quot;VPM_PurchasingRequests__c&quot;); 
+pur.id=&quot;{!VPM_PurchasingRequests__c.Id}&quot;; 
+var currentstatus=&quot;{!VPM_PurchasingRequests__c.VPM_Status__c}&quot;; 
+if(currentstatus.indexOf(&apos;Draft&apos;) &gt;= 0 ) 
+{ 
+pur.VPM_BusinessRequestorSubmitted__c=&apos;Yes&apos;; 
+result = sforce.connection.update([pur]); 
+window.location.reload(); 
+} 
+else if (currentstatus.indexOf(&apos;FLS Review&apos;)&gt;=0)
+{
+
+var result = sforce.connection.query(&quot;Select  QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;FLS Queue&apos; Limit 1&quot;); 
+if (result[&apos;size&apos;] == 1){ 
+	var queue_records = result[&apos;records&apos;]; 
+	pur.OwnerId=queue_records[&apos;QueueId&apos;];
+        result = sforce.connection.update([pur]); 
+        window.location.reload(); 
+}
+}
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>VPM_ReworkToBusinessRequestor</fullName>
+        <availability>online</availability>
+        <description>Updates a field that triggers a process that reassigns the record to the creator</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Rework to Business Requestor</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&apos;/soap/ajax/34.0/connection.js&apos;)} 
+{ 
+var pur = new sforce.SObject(&quot;VPM_PurchasingRequests__c&quot;); 
+pur.id=&quot;{!VPM_PurchasingRequests__c.Id}&quot;; 
+pur.VPM_ReworkToBusReq_c__c=&apos;Yes&apos;; 
+pur.ownerId = &quot;{!VPM_PurchasingRequests__c.CreatedById}&quot;;
+pur.VPM_Status__c=&apos;FLS Requested Re-Work&apos; ;
+result = sforce.connection.update([pur]); 
+window.location.reload(); 
+}</url>
+    </webLinks>
+</CustomObject>
