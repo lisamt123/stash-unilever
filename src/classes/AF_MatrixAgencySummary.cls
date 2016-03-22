@@ -93,25 +93,11 @@ public  with sharing class AF_MatrixAgencySummary {
 		Q4ApprovalStatus='';
 		quarterOops = new List<String>();
 		lst_OOPS_Estimate=new list<AF_OOPS_Estimate__c>();
-		tempOopsRecord = new AF_OOPS_Actual__c();
 		isCMCO = false;
 		isProcurement = false;
 		isController = false;
 		isFinanace = false;
-		User userObj = new User();
-		userObj = [Select id, AF_UserTypeText__c from User where id=:UserInfo.getUserId()];
-		//check whether logged in User is Agency or CMCO User
-		if(userObj.AF_UserTypeText__c=='Agency'){
-			//if Agency User then make AgencyFlag true
-			isAgencyFlag=true;
-		}
-		if(userObj.AF_UserTypeText__c=='CMCO Super User' || userObj.AF_UserTypeText__c=='Agency' ){
-			//if Agency User then make AgencyFlag true
-			ISCMCOSUAgency=true;
-		}
-		if(userObj.AF_UserTypeText__c=='Category Finance'|| userObj.AF_UserTypeText__c=='CMCO Super User'){
-			isFinanace = true;
-		}
+		identifyLoggedUser();
 		//get OOPS Actual detail associated to this Brand and Agency
 		oopsActObj = new AF_OOPS_Actual__c();
 		oopsActListObj = new List<AF_OOPS_Actual__c>();
@@ -138,26 +124,58 @@ public  with sharing class AF_MatrixAgencySummary {
 				quarterOops = q.split(';');
 			}
 		}
+		oopsQuarterStatus();
+	}
+	/***********************************************************************************
+*  @Description: this method is used to get the status of each quarter OOPS
+*  @name : oopsQuarterStatus
+*  @param : none
+*  @return: none.
+*************************************************************************************/
+	public void oopsQuarterStatus(){
+		tempOopsRecord = new AF_OOPS_Actual__c();
 		for(AF_OOPS_Actual__c oops:oopsActListObj){
 			String quarterValue = oops.Quarter__c;
 			if(quarterValue!=null){
-				if(quarterValue.contains('Q1')){
+				if(quarterValue.contains(AF_Constants.QUARTER1)){
 					tempOopsRecord.AF_Q1__c = oops.AF_Q1__c;
 					tempOopsRecord.AF_Q1_Approval_Status__c = oops.AF_Q1_Approval_Status__c;
 				}
-				if(quarterValue.contains('Q2')){
+				if(quarterValue.contains(AF_Constants.QUARTER2)){
 					tempOopsRecord.AF_Q2__c = oops.AF_Q2__c;
 					tempOopsRecord.AF_Q2_Approval_Status__c = oops.AF_Q2_Approval_Status__c;
 				}
-				if(quarterValue.contains('Q3')){
+				if(quarterValue.contains(AF_Constants.QUARTER3)){
 					tempOopsRecord.AF_Q3__c = oops.AF_Q3__c;
 					tempOopsRecord.AF_Q3_Approval_Status__c=oops.AF_Q3_Approval_Status__c;
 				}
-				if(quarterValue.contains('Q4')){
+				if(quarterValue.contains(AF_Constants.QUARTER4)){
 					tempOopsRecord.AF_Q4__c = oops.AF_Q4__c;
 					tempOopsRecord.AF_Q4_Approval_Status__c = oops.AF_Q4_Approval_Status__c;
 				}
 			}
+		}
+	}
+	/***********************************************************************************
+*  @Description: this method is used to identify which user has logged in
+*  @name : identifyLoggedUser
+*  @param : none
+*  @return: none.
+*************************************************************************************/
+	public void identifyLoggedUser(){
+		User userObj = new User();
+		userObj = [Select id, AF_UserTypeText__c from User where id=:UserInfo.getUserId()];
+		//check whether logged in User is Agency or CMCO User
+		if(userObj.AF_UserTypeText__c==AF_Constants.UT_AGENCY){
+			//if Agency User then make AgencyFlag true
+			isAgencyFlag=true;
+		}
+		if(userObj.AF_UserTypeText__c==AF_Constants.UT_CMCP_SUPERUSER || userObj.AF_UserTypeText__c==AF_Constants.UT_AGENCY ){
+			//if Agency User then make AgencyFlag true
+			ISCMCOSUAgency=true;
+		}
+		if(userObj.AF_UserTypeText__c==AF_Constants.UT_CATEGORY_FINANCE|| userObj.AF_UserTypeText__c==AF_Constants.UT_CMCP_SUPERUSER){
+			isFinanace = true;
 		}
 	}
 	/***********************************************************************************
@@ -220,27 +238,27 @@ public  with sharing class AF_MatrixAgencySummary {
 			integer i=0;
 			String quarterValue = oops.Quarter__c;
 			if(quarterValue!=null){
-				if(quarterValue.contains('Q1') && tempOopsRecord.AF_Q1__c!=oops.AF_Q1__c && tempOopsRecord.AF_Q1__c!=0 && tempOopsRecord.AF_Q1__c!=null){
+				if(quarterValue.contains(AF_Constants.QUARTER1) && tempOopsRecord.AF_Q1__c!=oops.AF_Q1__c && tempOopsRecord.AF_Q1__c!=0 && tempOopsRecord.AF_Q1__c!=null){
 					oops.AF_Q1__c = tempOopsRecord.AF_Q1__c ;
-					oops.AF_Status__c='With Category Finance';
+					oops.AF_Status__c=AF_Constants.CATEGORY_FINANCE;
 					oopsEstimateStatusUpdate.add(oops.Id);
 					i++;
 				}
-				if(quarterValue.contains('Q2') && tempOopsRecord.AF_Q2__c!=oops.AF_Q2__c && tempOopsRecord.AF_Q2__c!=0 && tempOopsRecord.AF_Q2__c!=null){
+				if(quarterValue.contains(AF_Constants.QUARTER2) && tempOopsRecord.AF_Q2__c!=oops.AF_Q2__c && tempOopsRecord.AF_Q2__c!=0 && tempOopsRecord.AF_Q2__c!=null){
 					oops.AF_Q2__c = tempOopsRecord.AF_Q2__c ;
-					oops.AF_Status__c='With Category Finance';
+					oops.AF_Status__c=AF_Constants.CATEGORY_FINANCE;
 					oopsEstimateStatusUpdate.add(oops.Id);
 					i++;
 				}
-				if(quarterValue.contains('Q3') && tempOopsRecord.AF_Q3__c!=oops.AF_Q3__c && tempOopsRecord.AF_Q3__c!=0 && tempOopsRecord.AF_Q3__c!=null){
+				if(quarterValue.contains(AF_Constants.QUARTER3) && tempOopsRecord.AF_Q3__c!=oops.AF_Q3__c && tempOopsRecord.AF_Q3__c!=0 && tempOopsRecord.AF_Q3__c!=null){
 					oops.AF_Q3__c = tempOopsRecord.AF_Q3__c ;
-					oops.AF_Status__c='With Category Finance';
+					oops.AF_Status__c=AF_Constants.CATEGORY_FINANCE;
 					oopsEstimateStatusUpdate.add(oops.Id);
 					i++;
 				}
-				if(quarterValue.contains('Q4') && tempOopsRecord.AF_Q4__c!=oops.AF_Q4__c && tempOopsRecord.AF_Q4__c!=0 && tempOopsRecord.AF_Q4__c!=null){
+				if(quarterValue.contains(AF_Constants.QUARTER4) && tempOopsRecord.AF_Q4__c!=oops.AF_Q4__c && tempOopsRecord.AF_Q4__c!=0 && tempOopsRecord.AF_Q4__c!=null){
 					oops.AF_Q4__c = tempOopsRecord.AF_Q4__c ;
-					oops.AF_Status__c='With Category Finance';
+					oops.AF_Status__c=AF_Constants.CATEGORY_FINANCE;
 					oopsEstimateStatusUpdate.add(oops.Id);
 					i++;
 				}
@@ -279,27 +297,27 @@ public  with sharing class AF_MatrixAgencySummary {
 		for(AF_OOPS_Actual__c oops:oopsActListObj){
 			String quarterValue = oops.Quarter__c;
 			if(quarterValue!=null){
-				if(quarterValue.contains('Q1')){
+				if(quarterValue.contains(AF_Constants.QUARTER1)){
 					if(q1Flag){
-						oops.AF_Q1_Approval_Status__c='Approved';
+						oops.AF_Q1_Approval_Status__c=AF_Constants.STATUS_APPROVED;
 						oops.AF_Status__c=AF_Constants.OOPS_ACTUAL_READYFORPO;
 					}
 				}
-				if(quarterValue.contains('Q2')){
+				if(quarterValue.contains(AF_Constants.QUARTER2)){
 					if(q2Flag){
-						oops.AF_Q2_Approval_Status__c='Approved';
+						oops.AF_Q2_Approval_Status__c=AF_Constants.STATUS_APPROVED;
 						oops.AF_Status__c=AF_Constants.OOPS_ACTUAL_READYFORPO;
 					}
 				}
-				if(quarterValue.contains('Q3')){
+				if(quarterValue.contains(AF_Constants.QUARTER3)){
 					if(q3Flag){
-						oops.AF_Q3_Approval_Status__c='Approved';
+						oops.AF_Q3_Approval_Status__c=AF_Constants.STATUS_APPROVED;
 						oops.AF_Status__c=AF_Constants.OOPS_ACTUAL_READYFORPO;
 					}
 				}
-				if(quarterValue.contains('Q4')){
+				if(quarterValue.contains(AF_Constants.QUARTER4)){
 					if(q4Flag){
-						oops.AF_Q4_Approval_Status__c='Approved';
+						oops.AF_Q4_Approval_Status__c=AF_Constants.STATUS_APPROVED;
 						oops.AF_Status__c=AF_Constants.OOPS_ACTUAL_READYFORPO;
 					}
 				}
@@ -322,27 +340,27 @@ public  with sharing class AF_MatrixAgencySummary {
 		for(AF_OOPS_Actual__c oops:oopsActListObj){
 			String quarterValue = oops.Quarter__c;
 			if(quarterValue!=null){
-				if(quarterValue.contains('Q1')){
+				if(quarterValue.contains(AF_Constants.QUARTER1)){
 					if(q1Flag){
-						oops.AF_Q1_Approval_Status__c='Rejected';
+						oops.AF_Q1_Approval_Status__c=AF_Constants.STATUS_REJECTED;
 						oops.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
 					}
 				}
-				if(quarterValue.contains('Q2')){
+				if(quarterValue.contains(AF_Constants.QUARTER2)){
 					if(q2Flag){
-						oops.AF_Q2_Approval_Status__c='Rejected';
+						oops.AF_Q2_Approval_Status__c=AF_Constants.STATUS_REJECTED;
 						oops.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
 					}
 				}
-				if(quarterValue.contains('Q3')){
+				if(quarterValue.contains(AF_Constants.QUARTER3)){
 					if(q3Flag){
-						oops.AF_Q3_Approval_Status__c='Rejected';
+						oops.AF_Q3_Approval_Status__c=AF_Constants.STATUS_REJECTED;
 						oops.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
 					}
 				}
-				if(quarterValue.contains('Q4')){
+				if(quarterValue.contains(AF_Constants.QUARTER4)){
 					if(q4Flag){
-						oops.AF_Q4_Approval_Status__c='Rejected';
+						oops.AF_Q4_Approval_Status__c=AF_Constants.STATUS_REJECTED;
 						oops.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
 					}
 				}
@@ -368,16 +386,16 @@ public  with sharing class AF_MatrixAgencySummary {
 				updatedopps_est.add(oops_est);
 			}
 			for(String s:quarterOops){
-				if(s=='Q1'){
+				if(s==AF_Constants.QUARTER1){
 					oopsActObj.AF_Status_Q1__c=AF_Constants.BASE_FEES_WITH_AGENCY;
 				}
-				if(s=='Q2'){
+				if(s==AF_Constants.QUARTER2){
 					oopsActObj.AF_Status_Q2__c=AF_Constants.BASE_FEES_WITH_AGENCY;
 				}
-				if(s=='Q3'){
+				if(s==AF_Constants.QUARTER3){
 					oopsActObj.AF_Status_Q3__c=AF_Constants.BASE_FEES_WITH_AGENCY;
 				}
-				if(s=='Q4'){
+				if(s==AF_Constants.QUARTER4){
 					oopsActObj.AF_Status_Q4__c=AF_Constants.BASE_FEES_WITH_AGENCY;
 				}
 			}
