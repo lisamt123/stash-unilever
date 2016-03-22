@@ -46,39 +46,9 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 				}
 			}
 			// UpdateCatFinanceApprover Trigger Logic Ends
+			bulkBeforeExt();
 		}
-		if(Trigger.isUpdate)
-		{
-			// Af_locking Logic Starts
-			Set<Id> userinContextSet = new Set<Id>();
-			Set<Id> userWithPermSet = new Set<Id>();
-			List<AF_Brand_Estimate__c> brandEstimateList = (List<AF_Brand_Estimate__c>)trigger.new;
-			Map<Id,AF_Brand_Estimate__c> existingBrandEstMap = (Map<Id,AF_Brand_Estimate__c>)trigger.OldMap;
-			for(AF_Brand_Estimate__c incomingBrandEst : brandEstimateList)
-			{
-				AF_Brand_Estimate__c existingBrandEst = existingBrandEstMap.get(incomingBrandEst.id);
-				if(existingBrandEst.AF_Locked__c && incomingBrandEst.AF_Locked__c)
-				{
-					userinContextSet.add(UserInfo.getUserId());
-				}
-			}
-			for(permissionsetassignment incontextPermSet : [SELECT AssigneeId,Id,PermissionSetId FROM PermissionSetAssignment WHERE PermissionSet.name=: AF_Constants.PERM_CMCO_SUPERUSER and assigneeid in: userinContextSet LIMIT 10000])
-			{
-				if(incontextPermSet.assigneeId != null)
-				{
-					userWithPermSet.add(incontextPermSet.assigneeId);
-				}
-			}
-			for(AF_Brand_Estimate__c incomingBrandEst : brandEstimateList)
-			{
-				AF_Brand_Estimate__c existingBrandEst = (AF_Brand_Estimate__c)existingBrandEstMap.get(incomingBrandEst.id);
-				if(existingBrandEst.AF_Locked__c && incomingBrandEst.AF_Locked__c && !userWithPermSet.contains(userinfo.getuserid()))
-				{
-					incomingBrandEst.adderror('Record is locked, CMCO Super user can only edit this records');
-				}
-			}
-			// Af_locking Logic Ends    
-		}       
+		      
 	}
 	/***********************************************************************************
 *  @Description: this method is derived as a part of trigger factory
@@ -257,6 +227,45 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 			AF_BonusRecordManagerAsyncWrapper.CreateMultiObjectRecordsAsync(BrandEstids);
 		}
 		// Af_AfterInsertBrandEstShare Trigger Logic Ends
+		 addFinallyExt();
+	}
+	
+	public void bulkBeforeExt(){
+		if(Trigger.isUpdate)
+		{
+			// Af_locking Logic Starts
+			Set<Id> userinContextSet = new Set<Id>();
+			Set<Id> userWithPermSet = new Set<Id>();
+			List<AF_Brand_Estimate__c> brandEstimateList = (List<AF_Brand_Estimate__c>)trigger.new;
+			Map<Id,AF_Brand_Estimate__c> existingBrandEstMap = (Map<Id,AF_Brand_Estimate__c>)trigger.OldMap;
+			for(AF_Brand_Estimate__c incomingBrandEst : brandEstimateList)
+			{
+				AF_Brand_Estimate__c existingBrandEst = existingBrandEstMap.get(incomingBrandEst.id);
+				if(existingBrandEst.AF_Locked__c && incomingBrandEst.AF_Locked__c)
+				{
+					userinContextSet.add(UserInfo.getUserId());
+				}
+			}
+			for(permissionsetassignment incontextPermSet : [SELECT AssigneeId,Id,PermissionSetId FROM PermissionSetAssignment WHERE PermissionSet.name=: AF_Constants.PERM_CMCO_SUPERUSER and assigneeid in: userinContextSet LIMIT 10000])
+			{
+				if(incontextPermSet.assigneeId != null)
+				{
+					userWithPermSet.add(incontextPermSet.assigneeId);
+				}
+			}
+			for(AF_Brand_Estimate__c incomingBrandEst : brandEstimateList)
+			{
+				AF_Brand_Estimate__c existingBrandEst = (AF_Brand_Estimate__c)existingBrandEstMap.get(incomingBrandEst.id);
+				if(existingBrandEst.AF_Locked__c && incomingBrandEst.AF_Locked__c && !userWithPermSet.contains(userinfo.getuserid()))
+				{
+					incomingBrandEst.adderror(Label.AF_Record_Locked);
+				}
+			}
+			// Af_locking Logic Ends    
+		} 
+	}
+	
+	public void addFinallyExt(){
 		// AF_POreport_Delete Trigger logic Starts
 		if(!BrandPOEstids.isEmpty()){
 			try{
@@ -279,6 +288,6 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 				system.debug(e);
 			}
 		}
-		// AF_POreport_Delete Trigger logic Finshes 
+		// AF_POreport_Delete Trigger logic Finshes
 	}
 }
