@@ -1,16 +1,16 @@
-public with sharing class Oblix_CampaignAddAssetController extends Oblix_SWOPparentController {
+public with sharing class AddAssetController extends Oblix_SWOPparentController {
     
-    public Oblix_AddAssetPageHelper helper { get; set; }
+    public AddAssetPageHelper helper { get; set; }
 
 
-    public Oblix_CampaignAddAssetController() {
-        System.debug('### projectId: ' + ApexPages.currentPage().getParameters().get('projectId'));
-        helper = new Oblix_AddAssetPageHelper(ApexPages.currentPage().getParameters().get('projectId'),
-                                        ApexPages.currentPage().getParameters().get('assetId'));
+    public AddAssetController() {
+    	System.debug('### projectId: ' + ApexPages.currentPage().getParameters().get('projectId'));
+    	helper = new AddAssetPageHelper(ApexPages.currentPage().getParameters().get('projectId'),
+    									ApexPages.currentPage().getParameters().get('assetId'));
 
-        if (helper.map_campaign_for_calculator.keySet().size() == 1) {
-            selected_project = helper.map_campaign_for_calculator.get(helper.projectId);
-        }
+    	if (helper.map_campaign_for_calculator.keySet().size() == 1) {
+			selected_project = helper.map_campaign_for_calculator.get(helper.projectId);
+		}
     }
 
 
@@ -47,4 +47,7 @@ public with sharing class Oblix_CampaignAddAssetController extends Oblix_SWOPpar
         campaignSummaryPage.setRedirect(True);
         return campaignSummaryPage;
     }
+    
+
+
 }

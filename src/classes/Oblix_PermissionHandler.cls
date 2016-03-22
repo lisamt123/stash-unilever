@@ -248,10 +248,10 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and sow status
     				allow user to adjust fee
     ********************************************************************************/
-    public static Boolean canAdjustFee(String sow_status, Id sow_id){
+    public static Boolean canAdjustFee(String sow_status, Id sow_id, String campaign_status){
     	// only UL1, UL2, SuperUser and Sysadmin can adjust fee
     	// if not already approved
-    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
+    	if ( (!isLocked(sow_id) && campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;
@@ -286,10 +286,10 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and sow status
     				allow user to Add/Update/Delete campaign items
     ********************************************************************************/
-    public static Boolean canManageCampaign(String sow_status, Id sow_id){
+    public static Boolean canManageCampaign(String sow_status, Id sow_id, String campaign_status){
     	// only UL1, UL2, SuperUser and Sysadmin can manage campaign
     	// if not already approved
-    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
+    	if ( (!isLocked(sow_id) && campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;
@@ -305,10 +305,10 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and sow status
     				allow user to Add/Update/Delete Asset Basket Items
     ********************************************************************************/
-    public static Boolean canManageAssetBasket(String sow_status, Id sow_id){
+    public static Boolean canManageAssetBasket(String sow_status, Id sow_id, String campaign_status){
     	// only UL1, UL2, SuperUser and Sysadmin can manage asset basket
     	// if not already approved
-    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
+    	if ( (!isLocked(sow_id) && campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED  && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;

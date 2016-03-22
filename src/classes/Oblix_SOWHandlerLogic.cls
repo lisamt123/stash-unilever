@@ -153,6 +153,8 @@ public with sharing class Oblix_SOWHandlerLogic {
             brandCatKey_UserIds_map.get(brandCatKey).add(up);
         }
 
+        System.debug('brandCatKey_UserIds_map: ' + JSON.serialize(brandCatKey_UserIds_map));
+
         return brandCatKey_UserIds_map;
     }
 
@@ -190,6 +192,8 @@ public with sharing class Oblix_SOWHandlerLogic {
             }
 
         }
+
+        System.debug('sharesToInsert: ' + JSON.serialize(sharesToInsert));
 
         return sharesToInsert;
 

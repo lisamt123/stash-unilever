@@ -2,7 +2,7 @@
 private class Oblix_CampaignStageLogic_Test {
 
 	@isTest static void Oblix_CampaignStageLogic_Test(){
-		User u = Oblix_TestUtils.createTestUser();
+		User u = Oblix_TestUtils.createQA1User();
         System.runAs(u) {
         	MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -27,7 +27,7 @@ private class Oblix_CampaignStageLogic_Test {
 	}
 
 	@isTest static void Oblix_CampaignStageLogic_Test2(){
-		User u = Oblix_TestUtils.createTestUser();
+		User u = Oblix_TestUtils.createQA1User();
         System.runAs(u) {
         	MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME,Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);

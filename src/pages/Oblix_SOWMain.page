@@ -1,4 +1,4 @@
-<apex:page sidebar="false" controller="Oblix_SowMainController" docType="html-5.0" showHeader="false" standardStylesheets="false">
+<apex:page sidebar="false" controller="Oblix_SOWMainController" docType="html-5.0" showHeader="false" standardStylesheets="false">
 
     <apex:composition template="Oblix_OuterPageTemplate">
 

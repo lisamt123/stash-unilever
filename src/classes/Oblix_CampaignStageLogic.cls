@@ -72,8 +72,8 @@ public with sharing class Oblix_CampaignStageLogic{
     
     public Oblix_SOW_Projects__c sow_project_in_scope {get;set;}
 
-    public String s_selected_projected_stage{get; private set;}
-    public String s_selected_completed_stage{get; private set;}
+    public String s_selected_projected_stage{get; set;}
+    public String s_selected_completed_stage{get; set;}
     public Integer i_fees_for_this_financial_year {get; private set;}
 
 
@@ -300,16 +300,30 @@ public with sharing class Oblix_CampaignStageLogic{
         system.debug('###is i_percentage_of_fee_this_year : '+i_percentage_of_fee_this_year);
         system.debug('###is sow_project_in_scope.Campaign_Total_Fees__c : '+sow_project_in_scope.Campaign_Total_Fees__c);
         
-        if (NULL != i_percentage_of_fee_this_year && NULL != sow_project_in_scope.Campaign_Total_Fees__c && i_percentage_of_fee_this_year == 100 ){
-            i_fees_for_this_financial_year = Integer.valueOf(sow_project_in_scope.Campaign_Total_Fees__c);
+        i_fees_for_this_financial_year = calculateFeesForThisFY(i_percentage_of_fee_this_year, sow_project_in_scope.Campaign_Total_Fees__c);
+
+        //if (NULL != i_percentage_of_fee_this_year && NULL != sow_project_in_scope.Campaign_Total_Fees__c && i_percentage_of_fee_this_year == 100 ){
+        //    i_fees_for_this_financial_year = Integer.valueOf(sow_project_in_scope.Campaign_Total_Fees__c);
+        //}
+        //else if (NULL != i_percentage_of_fee_this_year && NULL != sow_project_in_scope.Campaign_Total_Fees__c ){
+        //    i_fees_for_this_financial_year = Integer.valueOf((i_percentage_of_fee_this_year * sow_project_in_scope.Campaign_Total_Fees__c / 100).round(System.RoundingMode.Up));
+        //}
+        //else{
+        //    i_fees_for_this_financial_year = 0;
+        //}
+        system.debug('###i_fees_for_this_financial_year : '+i_fees_for_this_financial_year);
+    }
+
+    public static Integer calculateFeesForThisFY(Decimal campaign_percentage, Decimal total_fees){
+        if (NULL != campaign_percentage && NULL != total_fees && campaign_percentage == 100 ){
+            return (Integer) total_fees.round(System.RoundingMode.HALF_EVEN);
         }
-        else if (NULL != i_percentage_of_fee_this_year && NULL != sow_project_in_scope.Campaign_Total_Fees__c ){
-            i_fees_for_this_financial_year = Integer.valueOf((i_percentage_of_fee_this_year * sow_project_in_scope.Campaign_Total_Fees__c / 100).round(System.RoundingMode.Up));
+        else if (NULL != campaign_percentage && NULL != total_fees ){
+            return Integer.valueOf((campaign_percentage * total_fees / 100).round(System.RoundingMode.HALF_EVEN));
         }
         else{
-            i_fees_for_this_financial_year = 0;
+            return 0;
         }
-        system.debug('###i_fees_for_this_financial_year : '+i_fees_for_this_financial_year);
     }
     
     /********************************************************************

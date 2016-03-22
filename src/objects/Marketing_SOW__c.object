@@ -54,9 +54,50 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
+    <fieldSets>
+        <fullName>Oblix_SOW_Main</fullName>
+        <description>Obilx_SOW_Main</description>
+        <displayedFields>
+            <field>Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Brand_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Agency_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>SOW_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Oblix_Current_FY_Total__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Oblix_SOW_Main</label>
+    </fieldSets>
     <fieldSets>
         <fullName>Oblix_SOW_Main_Detail</fullName>
         <description>SOW Main Detail Create</description>
@@ -250,6 +291,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Agency_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Oblix_AgencyEstimate__r.Name</formula>
+        <label>Agency</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Agency_SOW_Approver_Name_2__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -391,6 +443,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Brand_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>OblixBrand__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Brand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Currency__c</fullName>
@@ -643,7 +707,7 @@
         <externalId>false</externalId>
         <formula>Total_Campaigns_This_FY__c +  OblixTotalOtherItemsFees__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Current FY Total</label>
+        <label>Current SOW Total</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -767,16 +831,11 @@
         <lookupFilter>
             <active>false</active>
             <filterItems>
-                <field>MDO_Category__c.parent_L5__c</field>
+                <field>MDO_Category__c.parent_L2__c</field>
                 <operation>equals</operation>
-                <value></value>
+                <valueField>$Source.BigOblixProductCategory__c</valueField>
             </filterItems>
-            <filterItems>
-                <field>MDO_Category__c.parent_L4__c</field>
-                <operation>notEqual</operation>
-                <value></value>
-            </filterItems>
-            <isOptional>false</isOptional>
+            <isOptional>true</isOptional>
         </lookupFilter>
         <referenceTo>MDO_Category__c</referenceTo>
         <relationshipLabel>SWOP (SmallProductCategory)</relationshipLabel>

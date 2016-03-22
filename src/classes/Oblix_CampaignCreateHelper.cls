@@ -28,6 +28,16 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
         set;
     }
 
+    public Boolean doClone {
+        get{
+            if(doClone == null){
+                doClone = ApexPages.currentPage().getParameters().containsKey('clone') && ApexPages.currentPage().getParameters().get('clone') == 'true';
+            }
+            return doClone;
+        }
+        set;
+    }
+
     public Boolean isEdit {
         get {
             if (projectId == null) {

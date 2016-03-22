@@ -11,7 +11,7 @@
 
 ******************************************************************************************/
 
-public with sharing class Oblix_SowMainController extends Oblix_SWOPparentController{
+public with sharing class Oblix_SOWMainController extends Oblix_SWOPparentController{
 
     public String selectedSowId {get; set;}
     public Boolean can_create_sow {
@@ -128,26 +128,26 @@ public with sharing class Oblix_SowMainController extends Oblix_SWOPparentContro
 
     public String attachmentToRemove {get; set;}
     
-    public static PageReference reportFolderURL {
-        get{
+    //public static PageReference reportFolderURL {
+    //    get{
             
-            if(reportFolderURL == null){
+    //        if(reportFolderURL == null){
                 
-                List<Folder> reportFolderIdList = [SELECT Id FROM Folder WHERE Name =: Oblix_Constants.SWOPReportFolder];
-                if(!reportFolderIdList.isEmpty()){
-                    reportFolderURL = new PageReference('/' + reportFolderIdList[0].Id);
-                }
+    //            List<Folder> reportFolderIdList = [SELECT Id FROM Folder WHERE Name =: Oblix_Utils.SWOP_REPORT_FOLDER];
+    //            if(!reportFolderIdList.isEmpty()){
+    //                reportFolderURL = new PageReference('/' + reportFolderIdList[0].Id);
+    //            }
                 
-            }
+    //        }
             
-            return reportFolderURL;
+    //        return reportFolderURL;
             
-        } set;
-    }
+    //    } set;
+    //}
     
-    public PageReference forwardToReportFolder(){
-        return reportFolderURL;
-    }
+    //public PageReference forwardToReportFolder(){
+    //    return reportFolderURL;
+    //}
 
 
     public Oblix_SowMainController() {

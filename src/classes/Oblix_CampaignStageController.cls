@@ -19,7 +19,7 @@ public with sharing class Oblix_CampaignStageController {
 		
 		// only commit to database if auto-save is set to true
 		if (b_auto_save)
-			stage_identifier.saveStage();	
+			stage_identifier.saveStage();
 
 		return null;
 
