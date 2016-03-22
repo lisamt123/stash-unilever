@@ -35,7 +35,6 @@ global with sharing class CPA_LOI_InformationController {
       }
     }
      //below constructor will be call from webservice call
-    
     public CPA_LOI_InformationController(){}
     /*
      * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
@@ -113,7 +112,6 @@ global with sharing class CPA_LOI_InformationController {
                 if(LoiRec.Total_Number_of_Man_days_being_requested__c == null){
                     RequiredFieldMap.put('W@R mandays approved at MC Rates',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
-                //Dont comment below two checks, they are needed even though we optimize above if conditions
                 if(LoiRec.dt_LOI_Start_Date__c != null && LoiRec.dt_LOI_Start_Date__c < system.today()){
                     RequiredFieldMap.put('LOI Start Date','LOI Start Date can not be a date from the past.');
                 }
@@ -136,7 +134,6 @@ global with sharing class CPA_LOI_InformationController {
 
          
         if(!RequiredFieldMap.isEmpty()){ 
-            // ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, 'Bellow field are mandatory to Submit the record'));          
             mandatoryStringFlag = System.Label.CPA_Mandatory_Fields_Message;
             return false;
         }  

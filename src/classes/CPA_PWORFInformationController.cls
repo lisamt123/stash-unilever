@@ -18,8 +18,7 @@ global with sharing class CPA_PWORFInformationController {
  Public CPA_PWORF__c pworfRecord;
  public Map<String,String> objectMap {get; set;}
  public String mandatoryStringFlag {get; set;}   
-  
-  boolean callFromVF = false;
+boolean callFromVF = false;
   
     /*******************************************************************
     Purpose: Below constructor will be call from VF page
@@ -283,7 +282,7 @@ global with sharing class CPA_PWORFInformationController {
                        objectMap.put(CPA_ConstantsForContractingAppClasses.EXPECTEDGOLIVEDATE,CPA_ConstantsForContractingAppClasses.EXPTGOLIVEDATENOTPASTDATE);
                     }                      
                 }
-            }//else if(pworfRec.RecordType.name == 'Resource Augmentation' ){
+            }
             else if(pworfRec.RecordTypeid == RArecordType){
                 if(pworfRec.txt_Role_Level_1_13__c == null){
                     objectMap.put(CPA_ConstantsForContractingAppClasses.ROLELEVEL ,CPA_ConstantsForContractingAppClasses.MANDATORY);
@@ -301,9 +300,7 @@ global with sharing class CPA_PWORFInformationController {
                     objectMap.put(CPA_ConstantsForContractingAppClasses.INDICATIVETIMELINESTDATE ,CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
             }
-            //if(callFromVF){
                     PWORFrelatedCheck(pworfRecId);
-           // }
         }
         String strMessage = getPWORFStatus(objectMap,pworfRec.pkl_Status__c,callFromVF);
         if(callFromVF){ 
