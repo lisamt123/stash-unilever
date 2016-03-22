@@ -726,7 +726,7 @@ public class IPM_FinancialController_Test {
             ipmFinCon.checkCountry=false;
             ipmFinCon.updateCountry();
             ctr = [select Calculation_Index__c from IPM_Country__c limit 1];
-            system.assert(ctr.Calculation_Index__c == false,'calculation index field not updated');
+            system.assert(!ctr.Calculation_Index__c,'calculation index field not updated');
 
             ipmFinCon.next();
             system.assertEquals(ipmFinCon.isNavigation, false);
