@@ -7,7 +7,6 @@
 @isTest
 private class IPM_CreateProject_Test {
     
-    private static IPM_Bosscard__c boss;
     /***************************************************
     * @Description: Test invoke constructor of the class
     * **************************************************/

@@ -11,7 +11,6 @@ class IPM_BETHelper_Test {
     private final static String Feasibility = IPM_ConstantUtils.PHASE_FEASIBILITY;
     private final static String Rollout = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
     private final static String Local = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-    private final static String MarketReady = IPM_ConstantUtils.PHASE_MARKET_READY;
     private final static String GlobalCompanyCard = IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
     private final static String Completed = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
     private final static String Regional = IPM_ConstantUtils.COMPANY_CARD_REGIONAL;
@@ -20,7 +19,6 @@ class IPM_BETHelper_Test {
     private final static String IPM_ProjectType = 'IPM_ProjectType';
     private final static String IPM_BET_Search_Test = 'IPM_BET_Search_Test';
     private final static String FinalRelease = 'Final Release';
-    private final static String RCLT = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
     private final static String MANAGER_ACCESS = IPM_ConstantUtils.BET_MANAGER_ACCESS;
     private final static String USER_LAST_NAME = 'PLATFORM_USER';
     private final static String BLANK_STRING = IPM_ConstantUtils.BLANK;
@@ -692,6 +690,7 @@ class IPM_BETHelper_Test {
             IPM_BETHelper.updatePhaseBETMSFinalRelease(betRecord1.Id);
 
             System.assertEquals([Select IPM_Phase__c from IPM_Milestone__c where Id = : IPMsam1[0].id OR Id = : IPMsam1[1].id limit 1].IPM_Phase__c, proj0.IPM_Phase__c, 'Failed to update milestone phase');
+            
             Test.StopTest();
         }
     }

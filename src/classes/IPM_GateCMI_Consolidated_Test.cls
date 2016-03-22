@@ -7,7 +7,6 @@
 private class IPM_GateCMI_Consolidated_Test{
 
     private static IPM_Project__c project;// Project object initialization
-    private static IPM_Project_Document__c projDoc;
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static IPM_GateCMI_Consolidated ipm_gatecmiConsolidated;
@@ -104,7 +103,7 @@ private class IPM_GateCMI_Consolidated_Test{
     *@Description : to call  the method for IPM_CMIGateSectionController object 
             
     ***************************************************************************/
-            static testMethod void getConsolidateCMI(){
+            static testMethod void dotest1(){
                 initializeTestMethodData();
                 Test.startTest();
                 system.RunAs(globalUser){

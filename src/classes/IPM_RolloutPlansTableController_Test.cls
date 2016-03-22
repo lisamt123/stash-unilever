@@ -19,16 +19,12 @@ private class IPM_RolloutPlansTableController_Test{
     private static List<IPM_Project_Rollout__c> regionalRolloutList;
     private static final String CANCEL_REDIRECT ='cancelRedirect' ;
     private static final String TESTPROJECT = 'TestComments1';
-    private static String cancelRedirect;    
-    private static String editMode='';
-    private static List<IPM_Project__c> globalProjectList;
-    private static List<IPM_Project__c> lstRegionalProjects;
+   
     
     private static final String ID_PARAMETER = 'Id';
     private static  PageReference pageRef = Page.ipm_rolloutplansadd;
     //PageReference pageRef = new PageReference('/apex/ipm_rolloutplansadd?id='+projectList[0].Id);
     
- 
     @testSetup static void projectSetUp()  
     {
       System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
@@ -219,15 +215,11 @@ private class IPM_RolloutPlansTableController_Test{
             irp.doShowPLName = true;
             irp.doShowFLName = true;
             
-            
-            editMode=''; 
              
             system.currentPageReference().getParameters().put(CANCEL_REDIRECT, 'cancelRedirect');
             
-            cancelRedirect = ApexPages.currentPage().getParameters().get(CANCEL_REDIRECT);
             irp.checkRollouts();
             system.currentPageReference().getParameters().put(IPM_ConstantUtils.EDITMODE,IPM_ConstantUtils.EDITMODE_TRUE);
-            editMode = ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.EDITMODE);
             irp.editRollout();
             irp.cancelRollout();
             system.currentPageReference().getParameters().put(ID_PARAMETER , projectList[0].Id);
@@ -304,7 +296,7 @@ static testMethod void RegionalOrignalTest()
             List<IPM_Project_Rollout__c>proRoll=[select Id,IPM_Project__c from IPM_Project_Rollout__c where Id=:irp.selectedMCORollout];
             System.assertEquals(proRoll.size(),0,'rollout not deleted');
            
-           Test.stopTest();
+            Test.stopTest();
        
         }
      

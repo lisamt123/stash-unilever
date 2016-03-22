@@ -10,7 +10,6 @@
 private class IPM_NewTask_Test{
     
     private static User platformUser;
-    private static User userBDRole;
     private static list<IPM_Project__c> projectList;
     private static list<IPM_Project__c> projectDetailList;
     private static set<Id> projDocId;
@@ -20,7 +19,7 @@ private class IPM_NewTask_Test{
     private static final String PROJ_ID_STR = 'projectId';
     private static final String PROJDOCSEC_ID_STR='projDocSecId';
     private static final String  USER_NAME ='PLATFORM_USER';
-	private static final String  TASK_NAME ='Test task modified';
+    private static final String  TASK_NAME ='Test task modified';
     private static final Id PROJECT_TASK_ID = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
     private static final Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8'};
     
@@ -35,7 +34,7 @@ private class IPM_NewTask_Test{
      {
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
             platformUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
-            userBDRole = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.FUNCTIONAL_ROLE_BD);
+            IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.FUNCTIONAL_ROLE_BD);
         }
         // Create Company Card information 
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -52,6 +51,7 @@ private class IPM_NewTask_Test{
          System.runAs(platformUser)
          { 
             insert projectList;
+             
             //check if the created projects are having the same complexity type as assigned while creating
             list<IPM_Project__c> projectsResultList = [SELECT Id,IPM_Phase__c,IPM_Complexity__c FROM IPM_Project__c where Name IN:projectNameSet];
             for(IPM_Project__c project : projectsResultList)
@@ -59,7 +59,8 @@ private class IPM_NewTask_Test{
                 system.assertEquals(project.IPM_Complexity__c,IPM_ConstantUtils.COMPLEXITY_FULL,'Projects are not created');
             }
          }  
-         
+        
+        
          
       }
     
@@ -71,7 +72,6 @@ private class IPM_NewTask_Test{
       @throws: none
     ***********************************/
     public static void initializedData(){
-        
         
 
         projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,
@@ -127,8 +127,8 @@ private class IPM_NewTask_Test{
         projRes.IPM_User__c = userId;
         projRes.IPM_Role_Type__c =IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
         insert projRes;
-            
-		//check if project resources are created
+        
+        //check if project resources are created
         list<IPM_Project_Resource__c> projResList = [SELECT Id,IPM_User__c,IPM_Project__c FROM IPM_Project_Resource__c WHERE IPM_User__c=:userId];
         system.assertEquals(projResList[0].IPM_Project__c,projectId,'Project Resources are not added for project');
             
@@ -163,7 +163,7 @@ private class IPM_NewTask_Test{
         Test.startTest();
             initializedData();
             
-			//create task
+             //create task
              IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].Id, false);
              task.IPM_Task_Name__c = 'Test Task';
              task.IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
@@ -181,8 +181,8 @@ private class IPM_NewTask_Test{
             List<SelectOption> optionList = taskview.getFuntionalRolelist();
             task.IPM_Function__c = string.valueOf(optionList[0]);
             taskview.doSaveTasks();
-           
-			//check if task are creted from milestone and todospage and has project leader as defult assignee
+            
+            //check if task are creted from milestone and todospage and has project leader as defult assignee
             list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Assignee__c,IPM_Active__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
             for(IPM_Task__c tsk: taskResult)
             {
@@ -204,8 +204,7 @@ private class IPM_NewTask_Test{
         Test.startTest();
             initializedData();
             
-                             
-			//create task from associated todos             
+            //create task from associated todos             
              IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].Id, false);
              task.IPM_Task_Name__c = 'Test Task associated Todos';
              task.RecordTypeId = PROJECT_TASK_ID;
@@ -218,8 +217,8 @@ private class IPM_NewTask_Test{
              IPM_NewTask taskview = new IPM_NewTask(sc);
              taskview.tasks = task;
              taskview.doSaveTasks();
-           
-			 //check if task is created through associated todo's page default values shouled be assigned
+             
+             //check if task is created through associated todo's page default values shouled be assigned
              list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Project_Document_Section__c,IPM_Function__c,IPM_Active__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
              for(IPM_Task__c tsk: taskResult)
              {
@@ -242,9 +241,10 @@ private class IPM_NewTask_Test{
         Test.startTest();
             initializedData();
             
-			//create task
+            //create task
             list<IPM_Task__c> taskList = [SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Function__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=true];
             IPM_Task__c task11 = taskList[0];
+            
             // check if tasks are present
             system.assertEquals(task11.IPM_Task_Name__c!=TASK_NAME,true, 'IPM_Task_Name__c Not Matched');
             
@@ -253,13 +253,13 @@ private class IPM_NewTask_Test{
             
             ApexPages.StandardController sc = new ApexPages.StandardController(task11);
             
-			//change task name and save
+            //change task name and save
             IPM_NewTask taskview =new IPM_NewTask(sc);
             taskview.tasks = task11;
             task11.IPM_Task_Name__c = TASK_NAME;
             taskview.doSaveTasks();
            
-			//check if the task is modified
+           //check if the task is modified
             list<IPM_Task__c> taskResult = [SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c WHERE id=:task11.id];
             system.assertEquals(taskResult[0].IPM_Task_Name__c,TASK_NAME,'Task name is different');
            
@@ -308,8 +308,8 @@ private class IPM_NewTask_Test{
         {
         Test.startTest();
             initializedData();
-            
-			// create task
+             
+             // create task
              IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].Id, false);
              
              task.IPM_Function__c = IPM_Utils.SupplyChain;
@@ -322,15 +322,15 @@ private class IPM_NewTask_Test{
              putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
             
              ApexPages.StandardController sc = new ApexPages.StandardController(task);
-            
-			//save task with task name null
+             
+             //save task with task name null
              IPM_NewTask taskview =new IPM_NewTask(sc);
              taskview.tasks = task;
              List<SelectOption> optionSectionList = taskview.getSectionlist();
              system.assertEquals(!optionSectionList.isEmpty(),true,'Task List not populated as expected');
              taskview.doSaveTasks();
-        
-			 // check if task with name null is not saved 
+             
+             // check if task with name null is not saved 
              list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c 
                                             WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
              system.assertEquals(taskResult.size(),0 , 'Record Size Not Matched');
@@ -348,9 +348,8 @@ private class IPM_NewTask_Test{
         Test.startTest();
             initializedData();
              
-			//create task with due date in past
+             //create task with due date in past
              IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].Id, false);
-            
              task.IPM_Function__c = 'PL';
              task.IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
              task.IPM_Type_of_Gate__c = IPM_ConstantUtils.CHARTER_GATE;
@@ -362,7 +361,7 @@ private class IPM_NewTask_Test{
             
              ApexPages.StandardController sc = new ApexPages.StandardController(task);
             
-			// save task with past due date
+            // save task with past due date
              IPM_NewTask taskview =new IPM_NewTask(sc);
              taskview.tasks = task;
              taskview.doSaveTasks();
@@ -400,7 +399,7 @@ private class IPM_NewTask_Test{
             }
             update updatedMilestoneList;
             
-			//check if milestone has been created with assigend due date
+            //check if milestone has been created with assigend due date
             list<IPM_Milestone__c> mileList =[SELECT Id,Name,IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Project__c=: projectDetailList[0].Id and IPM_Phase__c = :projectDetailList[0].IPM_Phase__c];
             
             for(IPM_Milestone__c milestone :mileList)
@@ -416,13 +415,13 @@ private class IPM_NewTask_Test{
             
             ApexPages.StandardController sc = new ApexPages.StandardController(taskList[0]);
             
-		   //update the task daue date greater than milestone due date
+            //update the task daue date greater than milestone due date
             IPM_NewTask taskview =new IPM_NewTask(sc);
             taskview.tasks = taskList[0];
             taskList[0].IPM_Due_Date1__c = System.today() + 30;
             taskview.doSaveTasks();
            
-			//check if task is updated with due date as per milestone due date
+           //check if task is updated with due date as per milestone due date
            list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IPM_Due_Date1__c=:(System.today() + 30)];
            system.assertEquals(taskResult.isEmpty(),true, system.label.IPM_TaskDueDateErrorMsg);
           
@@ -470,16 +469,7 @@ private class IPM_NewTask_Test{
         }
     } 
     
-            
-            
-            
-   
-                
-                
-                
-                
-                
-                
+
     /***********************************
       @name: createTaskFromAssociatedToDosTabByFO
       @Description: Functional owner should be able to insert task in system at associated todos tab. should have default values
@@ -508,8 +498,8 @@ private class IPM_NewTask_Test{
                  IPM_NewTask taskview = new IPM_NewTask(sc);
                  taskview.tasks = task;
                  taskview.doSaveTasks();
-               
-				// check if the task is inserted with defult assigned values
+                
+                // check if the task is inserted with defult assigned values
                  list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Project_Document_Section__c,IPM_Function__c,IPM_Active__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
                  for(IPM_Task__c tsk: taskResult)
                  {
@@ -522,7 +512,7 @@ private class IPM_NewTask_Test{
     } 
     /***********************************
       @name: testProjectWithExternalApproach
-       @Description: when project approach is external then task should not be visible on page.
+      @Description: when project approach is external then task should not be visible on page.
     ***********************************/
     public static TestMethod void testProjectWithExternalApproach(){
        User globalUser = [Select Id,LastName from User where LastName=:USER_NAME limit 1];

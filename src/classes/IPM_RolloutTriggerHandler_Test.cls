@@ -4,18 +4,10 @@
  * @Date:05/08/2015
  * *****************************************************/
 @isTest
-
  private class IPM_RolloutTriggerHandler_Test {
     
-    private static IPM_Project__c project;
-    private static IPM_Project_Rollout__c proRoll=new IPM_Project_Rollout__c();
-    private static IPM_Project_Rollout__c proRollLocal=new IPM_Project_Rollout__c();
-    private static IPM_Project_Rollout__c proRollRegional=new IPM_Project_Rollout__c();
     private static List<IPM_Project_Rollout__c> regionalRolloutList = new List<IPM_Project_Rollout__c>();
-    private static List<IPM_Project_Rollout__c> regionalRolloutListOld = new List<IPM_Project_Rollout__c>();
-    private static List<IPM_Project_Rollout__c> lstProjectRollouts=new List<IPM_Project_Rollout__c>();
     private static Map<Id, IPM_Project_Rollout__c> mapNewProjectRollouts=new Map<Id, IPM_Project_Rollout__c>();
-    private static Map<Id, IPM_Project_Rollout__c> mapOldProjectRollouts=new Map<Id, IPM_Project_Rollout__c>(); // create another rollout and put it into this then update will work dont delete
     
     /***********************************
     * @Description: Test Data Creation
@@ -48,9 +40,11 @@
             system.assertEquals(6,assertRolloutList.size(),'Regional Rollout not created');
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
+            
             for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
             {
-                List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+                 List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+               
                 if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
                 {
                     projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
@@ -58,7 +52,7 @@
                 projectRolloutList.add(projectRollout);
                 projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
                 mapNewProjectRollouts.put(projectRollout.IPM_Project__c,projectRollout);
-               
+              
                
             }
               
@@ -87,7 +81,7 @@
                 
                 //MDO_Geography__c mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId);
                
-                
+                // Here for geography we creat entry in country objects
                 IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
                 IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
                 

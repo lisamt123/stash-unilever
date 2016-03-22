@@ -7,20 +7,16 @@
 public class IPM_GateDocumentController_Test{    
     private static IPM_Project__c project;// Project object initialization
   
-    private static IPM_Project_Document__c projDoc;
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
-    private static List<SelectOption> secOpt=new List<SelectOption>();
     private static final string PROJECT_DOC_NOT_CREATED='Project Document not created';
     private static PageReference  pRef;
     private static IPM_GateDocumentController ipmGateDocContrl;
     private static final string TEST_COMMENTS_STR='TestComments1';
-    private static final string TEST_MSG_STR='function executed';
     private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
     private static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static User globalUser;
-    private static List<IPM_Questionnaire__c> quesList;
     private static List<IPM_Milestone__c> mileList;
     private static IPM_ProjectIntermediateController interCon;
     private static IPM_Project_Document_Section__c docSec;
@@ -111,7 +107,6 @@ public class IPM_GateDocumentController_Test{
             System.assertEquals(projlList[0].id,project.id, 'Projects not creatd properly');//positive test
             for(IPM_Project__c projectObj : projectListObj) {
                 projDocList = projectObj.Project_Documents__r;
-                quesList=projectObj.IPM_Questionnaires__r;
                 mileList=projectObj.IPM_Milestones__r;
                 System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_NOT_CREATED);
             }

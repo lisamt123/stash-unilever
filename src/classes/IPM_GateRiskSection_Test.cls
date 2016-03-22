@@ -7,7 +7,6 @@
 private class IPM_GateRiskSection_Test{
 
     private static IPM_Project__c project;// Project object initialization
-    private static IPM_Project_Document__c projDoc;
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static List<IPM_Project_Document_Section__c> projectDocSecListObj =new List<IPM_Project_Document_Section__c>();
     private static List<IPM_Project__c>projectListObj;
@@ -16,7 +15,6 @@ private class IPM_GateRiskSection_Test{
     private static List<IPM_Questionnaire__c> quesList;
     private static final string TEST_COMMENTS_STR='TestComments1';
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
-    private static PageReference  pRef;
     private static final string COMMENTS_STR='this is comment string';
     private static User globalUser;
     private static User stdUserForRiskSec;
@@ -78,13 +76,13 @@ private class IPM_GateRiskSection_Test{
             quesList[0].IPM_Active_RQS__c=true;
             quesList[0].IPM_Contract_Score__c =IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE;
             update quesList;
-            quesListObj=[select Id,RecordTypeId,IPM_Active_RQS__c from IPM_Questionnaire__c where Id=:quesList[0].Id];
-            System.assertEquals(quesListObj[0].IPM_Active_RQS__c,true,'RQS question activated');
+            quesListObj=[select Id,RecordTypeId from IPM_Questionnaire__c where Id=:quesList[0].Id];
+            System.assertEquals(quesListObj[0].RecordTypeId,Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RQS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId,'ques not created');
             
             quesList[1].RecordTypeId=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId;
             update quesList;
-            quesListObj=[select Id,RecordTypeId,IPM_Active_RQS__c from IPM_Questionnaire__c where Id=:quesList[1].Id];
-            System.assertEquals(quesListObj[0].IPM_Active_RQS__c,false,'RQS question not activated');
+            quesListObj=[select Id,RecordTypeId from IPM_Questionnaire__c where Id=:quesList[1].Id];
+            System.assertEquals(quesListObj[0].RecordTypeId,Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId,'ques not created');
             
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];            
@@ -133,8 +131,8 @@ private class IPM_GateRiskSection_Test{
             quesListObj=[select Id,RecordTypeId from IPM_Questionnaire__c where Id=:quesList[0].Id];
             System.assertEquals(quesListObj[0].RecordTypeId,Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.CORPORATE_RISK_QUESTIONNAIRE_RECORDTYPE).RecordTypeId,'ques not created');          
             ipm_gaterisksection.rmpPlan();
-            List<IPM_Questionnaire__c> CRQuestionsListObj=[select Id,RecordTypeId,IPM_Is_Added_Question__c from IPM_Questionnaire__c where Id=:ipm_gaterisksection.displayCRQuestionsList[0].Id];
-            system.assertEquals(CRQuestionsListObj[0].IPM_Is_Added_Question__c,false,'CR questions is there in list');
+            List<IPM_Questionnaire__c> CRQuestionsListObj=[select Id,RecordTypeId from IPM_Questionnaire__c where Id=:ipm_gaterisksection.displayCRQuestionsList[0].Id];
+            system.assertEquals(CRQuestionsListObj[0].RecordTypeId,Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.CORPORATE_RISK_QUESTIONNAIRE_RECORDTYPE).RecordTypeId,'CR questions is there in list');
             test.stopTest();
             
             

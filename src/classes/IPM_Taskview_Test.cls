@@ -17,7 +17,6 @@ private class IPM_Taskview_Test{
     private static final String  PROJECT_NAME ='TestComments1';
     private static final String  GLOBAL_PL ='GLOBAL_PL';
     private static final String  GLOBAL_BD_OWNER ='GLOBAL_BD_OWNER';
-    private static final Set<String> userNameSet = new Set<String>{GLOBAL_PL,GLOBAL_BD_OWNER};
     private static final Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8','TestComments9','TestComments10'};
     private static User adminUser = IPM_TestFactory_Helper.createUserAdmin(true);
     
@@ -120,7 +119,7 @@ private class IPM_Taskview_Test{
             insert projectResourceResultList;
             
             //check if the created project resources having the same BD role as assigned 
-            insertProjRescourceList= [SELECT Id,IPM_Role_Type__c FROM IPM_Project_Resource__c];
+            insertProjRescourceList= [SELECT Id,IPM_Role_Type__c FROM IPM_Project_Resource__c LIMIT 500];
             for(IPM_Project_Resource__c projectResource : insertProjRescourceList)
             {
                 system.assertEquals(projectResource.IPM_Role_Type__c,IPM_ConstantUtils.IPM_ROLE_BD_MARKETING,'Projects Resources are note created');

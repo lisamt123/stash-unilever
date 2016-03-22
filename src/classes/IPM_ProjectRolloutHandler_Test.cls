@@ -23,6 +23,10 @@ private class IPM_ProjectRolloutHandler_Test
     private Static User financeLeader= null;
     private Static User financeLeaderSecond = null;
     private static final Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
+    private static String IDEAS = 'Ideas';
+    private static String PROJECT_MILESTONE_NOT_EQUIVALENT_STANDARD_MILESTONE = 'Project Milestones size is not equivalent to Standard milestones size';
+    private static String TASK_COMPLEXITY_NOT_EQUIVALENT_PROJECT_COMPLEXITY = 'Task Complexity is not equivalent to project complexity';
+    private static String NO_CONSOLIDATED_FINANCIAL_CREATED = 'No consolidated financial created for the project';
 
     /**************************************************************
     * @description: Used for Creating IPM Project data for Rollout flow test
@@ -174,7 +178,7 @@ private class IPM_ProjectRolloutHandler_Test
                 System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'There will be 1 consolidated financial with respect to each project'); // One for Global consolidated Financials
                 
                 // Project default phase would always be set as IDEAS.
-                System.assertEquals(project.IPM_Phase__c,'Ideas','Global Project phase is not Ideas'); // Phase would be always ideas for Global Project.
+                System.assertEquals(project.IPM_Phase__c,IDEAS,'Global Project phase is not Ideas'); // Phase would be always ideas for Global Project.
             }
             
             /******************************** Create Regional Rollouts for Created Global project ****************************************/
@@ -260,7 +264,7 @@ private class IPM_ProjectRolloutHandler_Test
             Test.stopTest();
         }
         
-        
+       
         //
         List<IPM_Project__c> regionalProjects = new List<IPM_Project__c>();
         
@@ -374,6 +378,7 @@ private class IPM_ProjectRolloutHandler_Test
             Map<Id,IPM_Milestone__c>  standardMileStoneMap = new Map<Id,IPM_Milestone__c>([Select Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c where IPM_Type_of_Milestone__c ='Standard' AND recordTypeId =:mileMasterRecordType AND IPM_Project_Type__c='Original' ] );
             
             // Get Standard Milestones from database  
+           
             System.assert(standardMileStoneMap.values().size() > 0,' No Milestones is created');
             
             /********************************Global Project Leaders Project View and Data Access****************************************/
@@ -389,14 +394,14 @@ private class IPM_ProjectRolloutHandler_Test
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is not equivalent to Standard milestones size');
+                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),PROJECT_MILESTONE_NOT_EQUIVALENT_STANDARD_MILESTONE);
                 
                 // Once project is created , Consolidated financials are getting generated.
                 // One for Global consolidated Financials
                  System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'No consolidated financial created for the  project');
                 // Project default phase would always be set as IDEAS.
                 // Phase would be always ideas for Global Project.
-                System.assertEquals(project.IPM_Phase__c,'Ideas','Global Project phase is not idea');
+                System.assertEquals(project.IPM_Phase__c,IDEAS,'Global Project phase is not idea');
             }
             
             /******************************** Create Regional Rollouts for Created Global project ****************************************/
@@ -538,17 +543,17 @@ private class IPM_ProjectRolloutHandler_Test
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                   System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'Task Complexity is not equivalent to project complexity');  
+                   System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,TASK_COMPLEXITY_NOT_EQUIVALENT_PROJECT_COMPLEXITY);  
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is not equivalent to Standard milestones size');     
+                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),PROJECT_MILESTONE_NOT_EQUIVALENT_STANDARD_MILESTONE);     
                 // Once project is created , Consolidated financials are getting generated.
                 // One for Global consolidated Financials
-                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'No consolidated financial created for the project');
+                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,NO_CONSOLIDATED_FINANCIAL_CREATED);
                 // Project default phase would always be set as IDEAS.
                // Phase would be always ideas for Global Project.
-                System.assertEquals(project.IPM_Phase__c,'Ideas','Global Project phase is not Idea');
+                System.assertEquals(project.IPM_Phase__c,IDEAS,'Global Project phase is not Idea');
             }
             
             /******************************** Create Regional Rollouts for Created Global project ****************************************/
@@ -697,17 +702,17 @@ private class IPM_ProjectRolloutHandler_Test
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'Task Complexity is not equivalent to project complexity');  
+                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,TASK_COMPLEXITY_NOT_EQUIVALENT_PROJECT_COMPLEXITY);  
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                 System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is not equivalent to Standard milestones size');  
+                 System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),PROJECT_MILESTONE_NOT_EQUIVALENT_STANDARD_MILESTONE);  
                 // Once project is created , Consolidated financials are getting generated.
                 // One for Global consolidated Financials
-                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'No consolidated financial created for the project');
+                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,NO_CONSOLIDATED_FINANCIAL_CREATED);
                 // Project default phase would always be set as IDEAS.
                // Phase would be always ideas for Global Project.
-                System.assertEquals(project.IPM_Phase__c,'Ideas','Global Project phase is not Ideas');
+                System.assertEquals(project.IPM_Phase__c,IDEAS,'Global Project phase is not Ideas');
             }
             
             /******************************** Create Regional Rollouts for Created Global project ****************************************/
@@ -867,18 +872,17 @@ private class IPM_ProjectRolloutHandler_Test
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                   System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'Task Complexity is not equivalent to project complexity');  
+                   System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,TASK_COMPLEXITY_NOT_EQUIVALENT_PROJECT_COMPLEXITY);  
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                 System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is not equivalent to Standard milestones size');  
-                
+                 System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),PROJECT_MILESTONE_NOT_EQUIVALENT_STANDARD_MILESTONE);  
                 // Once project is created , Consolidated financials are getting generated.
                 // One for Global consolidated Financials
-                 System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'No consolidated financial created for the project');
+                 System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,NO_CONSOLIDATED_FINANCIAL_CREATED);
                 // Project default phase would always be set as IDEAS.
                // Phase would be always ideas for Global Project.
-                System.assertEquals(project.IPM_Phase__c,'Ideas','Global Project phase is not idea');
+                System.assertEquals(project.IPM_Phase__c,IDEAS,'Global Project phase is not idea');
             }
             
             /******************************** Create Regional Rollouts for Created Global project ****************************************/
@@ -1051,17 +1055,17 @@ private class IPM_ProjectRolloutHandler_Test
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'Task Complexity is not equivalent to project complexity');  
+                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,TASK_COMPLEXITY_NOT_EQUIVALENT_PROJECT_COMPLEXITY);  
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is not equivalent to Standard milestones size');  
+                System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),PROJECT_MILESTONE_NOT_EQUIVALENT_STANDARD_MILESTONE);  
                 // Once project is created , Consolidated financials are getting generated.
                 // One for Global consolidated Financials
-                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'No consolidated financial created for the project');
+                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,NO_CONSOLIDATED_FINANCIAL_CREATED);
                 // Project default phase would always be set as IDEAS.
                 // Phase would be always ideas for Global Project.
-                System.assertEquals(project.IPM_Phase__c,'Ideas','Global Project phase is not ideas');
+                System.assertEquals(project.IPM_Phase__c,IDEAS,'Global Project phase is not ideas');
             }
             
             /******************************** Create Regional Rollouts for Created Global project ****************************************/
@@ -1245,18 +1249,18 @@ private class IPM_ProjectRolloutHandler_Test
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'Task Complexity is not equivalent to project complexity');  
+                    System.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,TASK_COMPLEXITY_NOT_EQUIVALENT_PROJECT_COMPLEXITY);  
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                 System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),'Project Milestones size is not equivalent to Standard milestones size');
+                 System.assertEquals(project.IPM_Milestones__r.size(),standardMileStoneMap.size(),PROJECT_MILESTONE_NOT_EQUIVALENT_STANDARD_MILESTONE);
                 
                 // Once project is created , Consolidated financials are getting generated.
                 // One for Global consolidated Financials
-                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,'No consolidated financial created for the project');
+                System.assertEquals(project.IPM_Financials_Consolidated__r.size(),1,NO_CONSOLIDATED_FINANCIAL_CREATED);
                 // Project default phase would always be set as IDEAS.
                 // Phase would be always ideas for Global Project.
-                System.assertEquals(project.IPM_Phase__c,'Ideas','Global Project phase is not Ideas');
+                System.assertEquals(project.IPM_Phase__c,IDEAS,'Global Project phase is not Ideas');
                 
             }
             
@@ -1370,6 +1374,7 @@ private class IPM_ProjectRolloutHandler_Test
                     localRolloutUpList.add(locRollout);  
                 }
                 update localRolloutUpList;
+                
                 
                 delete deleteLocalRolloutList;
                 

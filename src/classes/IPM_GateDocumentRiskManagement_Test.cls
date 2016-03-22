@@ -20,6 +20,7 @@ public class IPM_GateDocumentRiskManagement_Test{
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static User globalUser;
     private static User stdUserForRiskMang;
+    private static String QUESTIONANNAIRE_NOT_UPDATED = 'Questionannaire not updated properly';
 
     /*************************************************************************************************************************
     * @description Test Data
@@ -97,7 +98,7 @@ public class IPM_GateDocumentRiskManagement_Test{
             quesList[0].RecordTypeId=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId;
             update quesList[0];
             List<IPM_Questionnaire__c> questList = [Select id, RecordTypeId from IPM_Questionnaire__c where id=:quesList[0].Id];
-            system.assertEquals(questList[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, 'Questionannaire not updated properly');
+            system.assertEquals(questList[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.projectId=projectListObj[0].Id;
             ipm_gateRiskManage.qId=quesList[0].Id;
             IPM_GateDocumentRiskManagement.questions=new List<IPM_Questionnaire__c>();
@@ -123,7 +124,7 @@ public class IPM_GateDocumentRiskManagement_Test{
             quesList[0].RecordTypeId=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId;
             update quesList[0];
             List<IPM_Questionnaire__c> questList = [Select id, RecordTypeId from IPM_Questionnaire__c where id=:quesList[0].Id];
-            system.assertEquals(questList[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, 'Questionannaire not updated properly');
+            system.assertEquals(questList[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.projectId=projectListObj[0].Id;
             ipm_gateRiskManage.qId=quesList[0].Id;
             ipm_gateRiskManage.getRecords();  
@@ -132,7 +133,7 @@ public class IPM_GateDocumentRiskManagement_Test{
             quesList[0].IPM_RQS_Gate_Type__c=IPM_ConstantUtils.CHARTER_GATE;
             update quesList[0];
             List<IPM_Questionnaire__c> questList1 = [Select id, RecordTypeId from IPM_Questionnaire__c where id=:quesList[0].Id];
-            system.assertEquals(questList1[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RQS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, 'Questionannaire not updated properly');
+            system.assertEquals(questList1[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RQS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.projDocType=IPM_ConstantUtils.CHARTER_GATE;
             ipm_gateRiskManage.getRecords(); 
             ipm_gateRiskManage.projDocType=IPM_ConstantUtils.CONTRACT_GATE;
@@ -141,7 +142,7 @@ public class IPM_GateDocumentRiskManagement_Test{
             quesList[0].IPM_Is_Added_Question__c=false;
             update quesList[0];
             List<IPM_Questionnaire__c> questList2 = [Select id, IPM_Active_RQS__c from IPM_Questionnaire__c where id=:quesList[0].Id];
-            system.assertEquals(questList2[0].IPM_Active_RQS__c, false, 'Questionannaire not updated properly');
+            system.assertEquals(questList2[0].IPM_Active_RQS__c, false, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.getPOSList();
             ipm_gateRiskManage.generateMitigationPlan();
             ipm_gateRiskManage.getRecords(); 
@@ -178,7 +179,7 @@ public class IPM_GateDocumentRiskManagement_Test{
             quesList[0].IPM_Score__c = IPM_ConstantUtils.POS_QUESTIONNAIRE_SCORE;
             update quesList[0];
             List<IPM_Questionnaire__c> questList = [Select id, RecordTypeId from IPM_Questionnaire__c where id=:quesList[0].Id];
-            system.assertEquals(questList[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, 'Questionannaire not updated properly');
+            system.assertEquals(questList[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.POS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.projectId=projectListObj[0].Id;
             ipm_gateRiskManage.rqsSeqActiveNumberCharter=new List<String>();
             ipm_gateRiskManage.rqsSeqActiveNumberCharter.add('1');
@@ -191,12 +192,12 @@ public class IPM_GateDocumentRiskManagement_Test{
             quesList[0].IPM_Sequence_Number__c=1;
             update quesList[0];
             List<IPM_Questionnaire__c> questList1 = [Select id, RecordTypeId from IPM_Questionnaire__c where id=:quesList[0].Id];
-            system.assertEquals(questList1[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RQS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, 'Questionannaire not updated properly');
+            system.assertEquals(questList1[0].RecordTypeId, Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RQS_QUESTIONNAIRE_RECORDTYPE).RecordTypeId, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.proceed();
             quesList[0].IPM_Sequence_Number__c=2;
             update quesList[0];
             List<IPM_Questionnaire__c> questList2 = [Select id, IPM_Sequence_Number__c from IPM_Questionnaire__c where id=:quesList[0].Id];
-            system.assertEquals(questList2[0].IPM_Sequence_Number__c, 2, 'Questionannaire not updated properly');
+            system.assertEquals(questList2[0].IPM_Sequence_Number__c, 2, QUESTIONANNAIRE_NOT_UPDATED);
             ipm_gateRiskManage.proceed();
             List<IPM_Questionnaire__c>quesListObj=[SELECT Id FROM IPM_Questionnaire__c where IPM_Project__c =:ipm_gateRiskManage.projectId limit 1];
             System.assertEquals(quesListObj[0].Id,quesList[0].Id,'questioannaire not present');

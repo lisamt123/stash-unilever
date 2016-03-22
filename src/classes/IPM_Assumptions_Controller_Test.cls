@@ -6,7 +6,6 @@
 @isTest
 private class IPM_Assumptions_Controller_Test{    
     private static IPM_Project__c project;// Project object initialization
-    private static IPM_Project_Document__c projDoc;
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static User stdUserForAssumption;
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
@@ -15,13 +14,10 @@ private class IPM_Assumptions_Controller_Test{
     private static IPM_Assumptions_Controller ipmAssumContrl;
     private static final string TEST_COMMENTS_STR='TestComments1';
     private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
-    private static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static IPM_Project_Document_Section_Content__c projectDocSecConListObj=new IPM_Project_Document_Section_Content__c();
     private static User globalUser;
-    private static List<IPM_Questionnaire__c> quesList;
     private static IPM_Project_Document_Section__c docSec;
-    private static IPM_Project_Document__c document;
     private static final string SAVE_ASSUMPTION_STR='assumption saved';
     private static final string ASSUMPTION_DATA_STR='assumption data';
     private static List<IPM_Project_Document_Section_Content__c> conList=new List<IPM_Project_Document_Section_Content__c>();
@@ -62,7 +58,7 @@ private class IPM_Assumptions_Controller_Test{
     /*************************************************************************************************************************
     * @description Test Data
     */
-    static void initializeTestMethodData(){
+    public static void initializeTestMethodData(){
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
@@ -71,14 +67,11 @@ private class IPM_Assumptions_Controller_Test{
             (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID,IPM_Project__c from IPM_Questionnaires__r)
             from IPM_Project__c where Name in:projectNameSet];
             project=projectListObj[0];
-            projlList=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
            
             for(IPM_Project__c projectObj : projectListObj) {
                 projDocList = projectObj.Project_Documents__r;
-                quesList=projectObj.IPM_Questionnaires__r;
                 System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
             }
-            document=projDocList[0];
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];
             
@@ -108,7 +101,7 @@ private class IPM_Assumptions_Controller_Test{
         }
     }
 
-    static testMethod void testSaveAssumptions(){
+    public static testMethod void testSaveAssumptions(){
         initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();
@@ -189,7 +182,7 @@ private class IPM_Assumptions_Controller_Test{
     }
     
     
-    static testMethod void testNegativeScenario(){
+    public static testMethod void testNegativeScenario(){
         initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();

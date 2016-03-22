@@ -10,14 +10,11 @@ private class IPM_Team_Assignment_Controller_Test{
     private static IPM_Bosscard__c Bosscard;  
     private static final string FEASIBILITY_STR = 'Feasibility';
     private static List<IPM_Project__c> listIPMProjects;
-    private static string projectId;
     private static IPM_Project_Resource__c  ipmProjectResource;
-    private static IPM_Project_Resource__c  ipmProjectResource1;
     private static IPM_Project_Resource__c  ipmProjectResource2;
     private static IPM_Project_Resource__c  ipmProjectResource3;
     private static IPM_Project_Resource__c  ipmProjectResource4;
     private static IPM_Project_Resource__c  ipmProjectResource5;
-    private static IPM_Project_Resource__c  ipmProjectResource6;
     private static final String ERR_MSG = 'Failed to create project resource with the specified project Id.';
     private static final String ERR_MSG_USER = 'Failed to create user record.';
 
@@ -55,7 +52,6 @@ private class IPM_Team_Assignment_Controller_Test{
         //adding  project into listIPMProjects list
         listIPMProjects=new List<IPM_Project__c> ();
         listIPMProjects.add(project);
-        projectId=ApexPages.currentPage().getParameters().get('project.id');
         System.assertEquals(project.IPM_Bosscard__c, [Select IPM_Bosscard__c from IPM_Project__c  where Id =:project.Id ].IPM_Bosscard__c,'Failed to update bosscard on the project. ');
         
         //creating  project  resources 
