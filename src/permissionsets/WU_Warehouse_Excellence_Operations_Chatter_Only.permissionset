@@ -6,53 +6,53 @@
     </applicationVisibilities>
     <classAccesses>
         <apexClass>WU_CreateCapacityDetails</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>WU_MultiCreateMultiEdit</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>WU_SetCurrentMonthBatch</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>WU_SetCurrentMonthBatch_Scheduler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>WU_SetWarehousePOCHandler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>WU_SetWarehousePOCHandler_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>WU_TestFactory_Helper</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>WU_UpdateMasterWarehouseHandler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>WU_WarehouseSearchController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <description>Warehouse LLT user permissions</description>
+    <description>Created for Chatter Only Users to access Warehouse App</description>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Address__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Approval_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_AverageUtilization__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -92,17 +92,17 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Benchmarking__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Building_ContractType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_CityName__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -117,147 +117,147 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Country__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Cross_Category_Network__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Current_Month_Utilization_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Current_Utilization__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_FromDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_HandlingIn_FG__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_HandlingIn_RM_PM_SF_NPI__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_HandlingIn_Total__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_LandOwner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_LocationCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_LocationName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Logistics_MainActivity__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Logistics_ServiceProvider__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_MCO_SU_UsingSite__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_MCO__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_MultiUser_Facility__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Network__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Operations_ContractType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Previous_Month__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Prior_CommittedPalletStorage__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Procurement_Manager__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Region__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_SAPCode_s__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_SAPName_s__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_SiteLocation__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Storage_FG__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Storage_RM_PM_SF_NPI__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Storage_Total__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_ToDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -267,47 +267,47 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Total_Utilization__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Utilization_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_WCI__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_WMSOwner__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_WMSType__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_WMS_IT_Spend__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_WarehouseManager_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_WarehousePOC_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Warehouse_BuildingOwner__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -317,12 +317,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_Year__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Master_Warehouse__c.WU_ZipCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -347,22 +347,22 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Warehouse_Capacity_Detail__c.Test_Time_Based_WF__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Warehouse_Capacity_Detail__c.WFUpdateCheckbox__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Warehouse_Capacity_Detail__c.WU_Committed_Max_PalletStorage__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Warehouse_Capacity_Detail__c.WU_CurrentMonth__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -372,7 +372,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Warehouse_Capacity_Detail__c.WU_Current_Pallet_Utilization__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -387,30 +387,30 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Warehouse_Capacity_Detail__c.WU_Uncheck_Current_Month__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Warehouse_Capacity_Detail__c.WU_Utilization_End_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Warehouse_Capacity_Detail__c.WU_Utilization_Start_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>WU_Warehouse_Capacity_Detail__c.WU_Utilization_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <label>WU-Logistics Leadership Team</label>
+    <label>WU-Warehouse Excellence Operations Chatter Only</label>
     <objectPermissions>
-        <allowCreate>false</allowCreate>
+        <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>WU_Master_Warehouse__c</object>
@@ -419,7 +419,7 @@
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
-        <allowEdit>false</allowEdit>
+        <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>WU_Warehouse_Capacity_Detail__c</object>
@@ -427,7 +427,7 @@
     </objectPermissions>
     <pageAccesses>
         <apexPage>WU_MultiCreateMultiEdit</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>WU_WarehouseSearchPage</apexPage>
@@ -439,11 +439,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>WU_Master_Warehouse__c.New_Warehouse_Capacity</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
         <tab>Data_Entry</tab>
-        <visibility>None</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>WU_Master_Warehouse__c</tab>
@@ -453,7 +453,7 @@
         <tab>WU_Warehouse_Search</tab>
         <visibility>Visible</visibility>
     </tabSettings>
-    <userLicense>Salesforce Platform</userLicense>
+    <userLicense>Chatter Only</userLicense>
     <userPermissions>
         <enabled>true</enabled>
         <name>ApiEnabled</name>
@@ -476,15 +476,7 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>CreateReportFolders</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>EditMyDashboards</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>EditMyReports</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -500,19 +492,11 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>ManageReportsInPubFolders</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>MassInlineEdit</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>RunReports</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewMyTeamsDashboards</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

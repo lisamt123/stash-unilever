@@ -40,7 +40,7 @@
         <apexClass>WU_WarehouseSearchController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <description>Warehouse LLT user permissions</description>
+    <description>Created for Chatter Only Users to access Warehouse App</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_Address__c</field>
@@ -406,7 +406,7 @@
         <field>WU_Warehouse_Capacity_Detail__c.WU_Utilization_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <label>WU-Logistics Leadership Team</label>
+    <label>WU-Logistics Leadership Team for Chatter Only</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -453,7 +453,7 @@
         <tab>WU_Warehouse_Search</tab>
         <visibility>Visible</visibility>
     </tabSettings>
-    <userLicense>Salesforce Platform</userLicense>
+    <userLicense>Chatter Only</userLicense>
     <userPermissions>
         <enabled>true</enabled>
         <name>ApiEnabled</name>
@@ -476,15 +476,7 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>CreateReportFolders</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>EditMyDashboards</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>EditMyReports</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -500,19 +492,11 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>ManageReportsInPubFolders</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>MassInlineEdit</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
         <name>RunReports</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewMyTeamsDashboards</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
