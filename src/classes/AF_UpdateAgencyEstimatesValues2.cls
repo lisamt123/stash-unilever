@@ -235,7 +235,12 @@ public with sharing Class AF_UpdateAgencyEstimatesValues2
 		}
 		else 
 		{
-			agencyEst.AF_Agency_Spot_Rate__c=null; 
+			retrieveStatusRateExt(agencyEst,Matccode);
+			
+		}
+	}
+	public static void retrieveStatusRateExt(AF_Agency_Estimate__c agencyEst,String Matccode){
+		agencyEst.AF_Agency_Spot_Rate__c=null; 
 			agencyEst.AF_Agency_Exchange_Rate__c= CurrencyMap.get(Matccode);
 			if(agencyEst.AF_Agency_Exchange_Rate__c != null && agencyEst.AF_Agency_Exchange_Rate__c!= 0 && agencyEst.AF_Traditional__c  != null)
 			agencyEst.AF_Traditional_Local__c = agencyEst.AF_Traditional__c*agencyEst.AF_Agency_Exchange_Rate__c;
@@ -243,6 +248,6 @@ public with sharing Class AF_UpdateAgencyEstimatesValues2
 			agencyEst.AF_Digital_Local__c =agencyEst.AF_Digital__c*agencyEst.AF_Agency_Exchange_Rate__c ;
 			if(agencyEst.AF_Agency_Exchange_Rate__c  != null && agencyEst.AF_Agency_Exchange_Rate__c!= 0 && agencyEst.AF_Adaptation__c != null) 
 			agencyEst.AF_Adaptation_Local__c = agencyEst.AF_Adaptation__c*agencyEst.AF_Agency_Exchange_Rate__c ;
-		}
 	}
+	
 }
