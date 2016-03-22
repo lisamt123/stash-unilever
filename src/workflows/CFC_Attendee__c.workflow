@@ -11,47 +11,6 @@
         <senderType>DefaultWorkflowUser</senderType>
         <template>Conference_App/Conference_Event_Reminder</template>
     </alerts>
-    <alerts>
-        <fullName>Event_Reminder</fullName>
-        <description>Event Reminder</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Attendee__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>LastModifiedById</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Core_NC_Event_Reminder_Mail</template>
-    </alerts>
-    <alerts>
-        <fullName>Event_Reminder_To_Attendee</fullName>
-        <description>Event Reminder</description>
-        <protected>false</protected>
-        <recipients>
-            <field>LastModifiedById</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Core_NC_Event_Reminder_Mail</template>
-    </alerts>
-    <alerts>
-        <fullName>Test_Reminder</fullName>
-        <description>Test_Reminder</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Attendee__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <recipients>
-            <field>LastModifiedById</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Core_NC_Event_Reminder_Mail</template>
-    </alerts>
     <rules>
         <fullName>Conference App Event Reminder</fullName>
         <active>true</active>
