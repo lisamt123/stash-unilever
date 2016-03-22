@@ -39,6 +39,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>RenderAsDisabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Item will be rendered but will not be clickable</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Item will be rendered but will not be clickable</inlineHelpText>
+        <label>Render As Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>SectionOtherPages__c</fullName>
         <description>Comma separated list of pages in the same section</description>
         <externalId>false</externalId>

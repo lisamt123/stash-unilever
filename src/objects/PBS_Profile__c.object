@@ -47,7 +47,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Object holds user profiles for PBS app</description>
+    <description>Object holds user profiles for Plancraft app</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -149,7 +149,6 @@
         <inlineHelpText>User role</inlineHelpText>
         <label>User Role</label>
         <referenceTo>PBS_Standard_Job_Profile__c</referenceTo>
-        <relationshipLabel>PBS Profiles</relationshipLabel>
         <relationshipName>PBS_Profiles</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>true</reparentableMasterDetail>
@@ -157,7 +156,7 @@
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
-    <label>PBS Profile</label>
+    <label>Plancraft Profile</label>
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
@@ -174,7 +173,16 @@
         <label>PBS Profile Name</label>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>PBS Profiles</pluralLabel>
-    <searchLayouts/>
+    <pluralLabel>Plancraft Profiles</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>User__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Geography__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>user_role__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Work_Level__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>User__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Geography__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>user_role__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Work_Level__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>
