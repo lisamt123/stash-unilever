@@ -244,7 +244,17 @@ public with sharing class AF_SubResultHandler implements ITrigger{
 				if(!UpdateSubResult.isEmpty()){
 					update UpdateSubResult;
 				}
-				for(AF_Bonus_Results__c  Bonus:BonusList){
+				andFinallyBonusListUpdate();
+				
+			}
+			catch(Exception e)
+			{
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				system.debug(e);
+			}
+	}
+	public void andFinallyBonusListUpdate(){
+		for(AF_Bonus_Results__c  Bonus:BonusList){
 					for(AF_Sub_Result__c Sub:(List<AF_Sub_Result__c>)trigger.old){
 						if(Sub.AF_Period__c!=null){
 							Decimal Amt=0;
@@ -275,12 +285,6 @@ public with sharing class AF_SubResultHandler implements ITrigger{
 				if(!UpdateBonus.isEmpty()){
 					update UpdateBonus;
 				}
-			}
-			catch(Exception e)
-			{
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-				system.debug(e);
-			}
 	}
 	public void andFinallyUpdateExt(){
 		if(AF_CheckRecursiveBonusQuarterly.run){
