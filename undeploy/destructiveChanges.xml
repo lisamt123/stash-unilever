@@ -5,13 +5,17 @@
 		<members>IPM_PDStandardPage</members>
 		<members>IPM_PSStandardPage</members>
 		<members>IPM_ProjectStandardPage</members>
+		<members>IPM_FileUpload</members>
+		<members>IPM_UploadBusinessCase</members>
 		<name>ApexPage</name>
 	</types>
 	<types>
-		<members>IPM_CountryTriggerHandler</members>		<members>IPM_FinancialTriggerHandler_Test</members>		<members>IPM_FinancialYearTriggerHandler_Test</members>		<members>IPM_GenericExtCtrl</members>		<members>IPM_GetHelpDoc_Test</members>		<members>IPM_QuestionnaireHandler</members>		<name>ApexClass</name>
+		<members>IPM_CountryTriggerHandler</members>		<members>IPM_FinancialTriggerHandler_Test</members>		<members>IPM_FinancialYearTriggerHandler_Test</members>
+		<members>IPM_ProjectSectionContentHelper_Test</members>
+		<members>IPM_Test_ProjectUtility</members>
+		<members>IPM_Utils_Test</members>		<members>IPM_GenericExtCtrl</members>		<members>IPM_QuestionnaireHandler</members>		<name>ApexClass</name>
 	</types>
 	<types>
-		<members>IPM_Project_Document_Section_Trigger</members>
 		<members>IPM_QuestionnaireTrigger</members>
 		<name>ApexTrigger</name>
 	</types>	
