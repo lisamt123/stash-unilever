@@ -20,7 +20,7 @@ function callEditTask() {
         });
     });
 	
-
+}
 callEditTask();
 /* Below function checks if the condition is true it redirects to Project setup page else it redirects to Task List page. */
 function pageclose() {

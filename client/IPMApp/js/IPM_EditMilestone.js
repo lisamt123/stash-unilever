@@ -14,7 +14,7 @@ function callMilestone() {
         updateTasksMileStones();
     });
 	
-
+}
 callMilestone();
 /* Below function performs the page redirection to Task list page. */
 function pageclose() {
