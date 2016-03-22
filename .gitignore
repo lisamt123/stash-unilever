@@ -25,9 +25,16 @@ Referenced Packages
 ehthumbs.db
 Thumbs.db
 .gradle/*
-# Files breaking git for Windows users 
+
+# Files breaking git for Windows users #
 ######################
 ***HELP***.homePageComponent
 
+# unused folders #
+###
+lib/*
+datascript/*
+
 # Not adding package.xml as it is built dynamically from the src folder contents
 src/package.xml
+
