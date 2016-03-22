@@ -77,7 +77,7 @@
                             <div class="panel-group pageHelpToolbar clearfix">
                                 <div class="row clearfix mt15 mb15">
                                     <div class="col-sm-10 greytxt pull-left">
-                                        <apex:outputText value="{!projDocSec.IPM_Section_Help_Text_Long__c }"/>
+                                        <apex:outputText value="{!projDocSec.IPM_Section__r.IPM_Section_Help_Text__c}"/>
                                     </div>
                                     <div class="col-sm-2 SecButtonSet pull-right">
                                         <div class="row">                          
