@@ -20,7 +20,6 @@ private class IPM_CommentsListController_Test {
     private static IPM_Project_Document_Section__c projDocSec;
     private static FeedItem insertFeed;
     private static final String PAGE_REFERENCE_STR='apex/IPMCommentsPage?id=';
-    private static final String OFFSET_GREATER_THAN_FIVE_MSG='Offset Value Should be Greater than Five';
     private static final String COUNT_COMMENTS='Count of Comments Should be Greater than Zero';
     private static final String TEXT_STR='TextPost';
     private static final String TEST_DATA='This is comment Test';

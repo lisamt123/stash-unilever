@@ -7,14 +7,12 @@
 public class IPM_GateDocumentRiskManagement_Test{
 
     private static IPM_Project__c project;// Project object initialization
-    private static IPM_Project_Document__c projDoc;
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static IPM_GateDocumentRiskManagement ipm_gateRiskManage;
     private static List<IPM_Questionnaire__c> quesList;
     private static final string TEST_COMMENTS_STR='TestComments1';
     private static final string PROJECT_DOC_NOT_CREATED='Project Document not created';
-    private static PageReference  pRef;
     private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
     private static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();

@@ -11,7 +11,6 @@ private class IPM_AssortmentStrategy_Test {
     
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
-    private static IPM_Project_Rollout__c projRoll;
     private static User stdUserForAssort;
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static PageReference pRef;
@@ -63,7 +62,6 @@ private class IPM_AssortmentStrategy_Test {
             insert regionalRolloutList;
             List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
             System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
-            projRoll=regionalRolloutList[0];
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
             for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
             {

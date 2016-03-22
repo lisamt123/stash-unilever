@@ -412,13 +412,6 @@ public class IPM_FinancialController_Test {
              system.assertEquals(ipmFinCon.showMisalignedConfirmbtn, true);
              
              ipmFinCon.refreshFromLocal();
-             IPM_Financial__c selF = [select Copy_Local_to_Regional__c from IPM_Financial__c where id=: regionalOrigFin.id];
-             ///system.assertEquals(selF.Copy_Local_to_Regional__c, true); //Keep this line commented
-             
-             ipmFinCon.refreshFromRegional();
-             selF = [select Copy_Regional_to_Local__c from IPM_Financial__c where id=: regionalOrigFin.id];
-             ///system.assertEquals(selF.Copy_Regional_to_Local__c, true); //Keep this line commented
-             
              //asserts are in source method for callCtrlAction calls    
              callCtrlAction(ipmFinCon, EXEC_PART_3);
              callCtrlAction(ipmFinCon, EXEC_PART_4);

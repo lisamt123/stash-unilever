@@ -5,7 +5,6 @@
  */
 @isTest
 private class IPM_ProjectResourceHandler_Test {
-    private static IPM_Project__c project;
     private static IPM_Project_Resource__c projectRes;
     private static IPM_Project_Resource__c projectRes1;
     private static IPM_Project_Resource__c projectRes2;
@@ -79,33 +78,33 @@ private class IPM_ProjectResourceHandler_Test {
             projectRes = IPM_TestFactory_Helper.createIPMProjectResource(projList[0].id, false);
             projectRes.IPM_Role_Type__c = 'Finance';
             insert projectRes;
-    		
-    		List<IPM_Project_Resource__c>finList=[SELECT ID,IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE id=:projectRes.id LIMIT 1];
-    		system.assertEquals(finList[0].IPM_Role_Type__c,projectRes.IPM_Role_Type__c,'User role type is'+finList[0].IPM_Role_Type__c);//positive test
-    		
-    		
+            
+            List<IPM_Project_Resource__c>finList=[SELECT ID,IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE id=:projectRes.id LIMIT 1];
+            system.assertEquals(finList[0].IPM_Role_Type__c,projectRes.IPM_Role_Type__c,'User role type is'+finList[0].IPM_Role_Type__c);//positive test
+            
+            
             projectRes1 = IPM_TestFactory_Helper.createIPMProjectResource(projList[0].id, false);
             projectRes1.IPM_Role_Type__c = BD_ROLE_TYPE;
             projectRes1.Id = projectRes.Id;
             projectRes.IPM_User__c = userInfo.getUserId();
             update projectRes1;
-    		
-    		List<IPM_Project_Resource__c>bdList=[SELECT ID,IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE id=:projectRes1.id LIMIT 1];
-    		system.assertEquals(bdList[0].IPM_Role_Type__c,BD_ROLE_TYPE,'User role type is'+bdList[0].IPM_Role_Type__c);//positive test
-    		
-    		
+            
+            List<IPM_Project_Resource__c>bdList=[SELECT ID,IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE id=:projectRes1.id LIMIT 1];
+            system.assertEquals(bdList[0].IPM_Role_Type__c,BD_ROLE_TYPE,'User role type is'+bdList[0].IPM_Role_Type__c);//positive test
+            
+            
             projectRes2 = IPM_TestFactory_Helper.createIPMProjectResource(projList[0].id, false);
             projectRes2.IPM_Role_Type__c = BD_ROLE_TYPE;
             projectRes.IPM_User__c = userInfo.getUserId();
             insert projectRes2;
             
             List<IPM_Project_Resource__c>bdUList=[SELECT ID,IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE id=:projectRes2.id LIMIT 1];
-    		system.assertEquals(bdUList[0].IPM_Role_Type__c,BD_ROLE_TYPE,'User role type is'+bdUList[0].IPM_Role_Type__c);//positive test
-    		
+            system.assertEquals(bdUList[0].IPM_Role_Type__c,BD_ROLE_TYPE,'User role type is'+bdUList[0].IPM_Role_Type__c);//positive test
+            
             delete projectRes2;
             List<IPM_Project_Resource__c>bdDeleteList=[SELECT ID,IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE id=:projectRes2.id LIMIT 1];
-    		system.assertEquals(bdDeleteList.isEmpty(),true,'project resource record got deleted');//positive test
-    		
+            system.assertEquals(bdDeleteList.isEmpty(),true,'project resource record got deleted');//positive test
+            
             IPM_ProjectResourceHandler ipmPR = new IPM_ProjectResourceHandler();
             ipmPR.afterInsert(projectRes);
             ipmPR.afterUpdate(projectRes1, projectRes);
@@ -164,11 +163,11 @@ private class IPM_ProjectResourceHandler_Test {
             projectList[1].Deputy_Project_Leader__c = UserInfo.getuserId();
             
             insert  new List<IPM_Project__c> {projectList[0],projectList[1]};
-        	
-        	List<IPM_Project__c>betPList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE BET__c=: betRecord1.Id  LIMIT 2];
-        	system.assertEquals(betPList.size(),2,'BET Projects got created');
+            
+            List<IPM_Project__c>betPList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE BET__c=: betRecord1.Id  LIMIT 2];
+            system.assertEquals(betPList.size(),2,'BET Projects got created');
         
-        	
+            
             projectList[2].IPM_Project_Name__c = 'testPrjct2';
             projectList[2].IPM_Parent_Project__c = projectList[1].id;
             projectList[2].IPM_Project_Type__c = 'Rollout';
@@ -184,7 +183,7 @@ private class IPM_ProjectResourceHandler_Test {
             };
             
             List<IPM_Project__c>regionalPList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE id=: projectList[2].id  LIMIT 1];
-        	system.assertEquals(regionalPList[0].IPM_Project_Name__c,projectList[2].IPM_Project_Name__c,'project name is:'+regionalPList[0].IPM_Project_Name__c);
+            system.assertEquals(regionalPList[0].IPM_Project_Name__c,projectList[2].IPM_Project_Name__c,'project name is:'+regionalPList[0].IPM_Project_Name__c);
         
             
             List<IPM_Project_Resource__c> prjResrcList= IPM_TestFactory_Helper.createIPMProjectResourceList(false,2);

@@ -67,8 +67,8 @@ private class IPM_DueDateNotificationBatch_Test {
          for(IPM_Project__c eachProj : updatedList) {
            iDs.add(eachProj.Id);
          }
-         List<IPM_Project__c> masterProj=[Select IPM_Project_Type__c from IPM_Project__c where id in:iDs];
-         for(IPM_Project__c eachProj:masterProj)
+         List<IPM_Project__c> masterProjList=[Select IPM_Project_Type__c from IPM_Project__c where id in:iDs];
+         for(IPM_Project__c eachProj:masterProjList)
          {
          	System.assertEquals(eachProj.IPM_Project_Type__c,IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_NOT_UPDATED);
          }	

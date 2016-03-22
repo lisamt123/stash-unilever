@@ -10,6 +10,7 @@ private class IPM_ProjDocSectionController_Test{
     private static final string SECTION_NOT_UPDATED = 'section not updated properly';
     private static final string PROJ_RESOURCE_NOT_UPDATED = 'project resource not updated properly';
     private static final string PROJ_DOC_SEC_ID_STR = 'projdocsecid';
+	private static final string SAVE_FAILED = 'save failed';
     private static final string GATE_DOC_SECTION_ACCESS_2 = 'trade_promotion_strategy,country_feedback_requirements';
     private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     private static List<IPM_Project__c> projectListObj = new List<IPM_Project__c>();
@@ -257,7 +258,7 @@ private class IPM_ProjDocSectionController_Test{
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.save();
-            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID, 'Save failed');
+            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID, SAVE_FAILED);
         }
         Test.stopTest();
     }
@@ -288,7 +289,7 @@ private class IPM_ProjDocSectionController_Test{
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.save();
-            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID, 'Save failed');
+            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID, SAVE_FAILED);
         }
         Test.stopTest();
     }
@@ -319,7 +320,7 @@ private class IPM_ProjDocSectionController_Test{
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.save();
-            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID, 'Save failed');
+            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID,SAVE_FAILED);
         }
         Test.stopTest();
     }
@@ -350,7 +351,7 @@ private class IPM_ProjDocSectionController_Test{
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.save();
-            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID, 'Save failed');
+            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID, SAVE_FAILED);
         }
         Test.stopTest();
     }
@@ -381,7 +382,7 @@ private class IPM_ProjDocSectionController_Test{
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.save();
-            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID, 'Save failed');
+            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID,SAVE_FAILED);
         }
         testResource.IPM_Role_Type__c = 'BB';
         update testResource; 
@@ -429,7 +430,7 @@ private class IPM_ProjDocSectionController_Test{
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.isChecked = 'true';
             projDocSecControl.save();
-            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID, 'Save failed');
+            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID,SAVE_FAILED);
             
             projDocSecControl.isFlagedNext = 'true';
             projDocSecControl.pagination();
