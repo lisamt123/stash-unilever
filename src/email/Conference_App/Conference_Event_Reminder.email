@@ -1,0 +1,15 @@
+Dear  {!CFC_Attendee__c.Attendee__c}<br/><br/>
+
+You are due to attend {!CFC_Attendee__c.TF_Event_Name__c} from {!CFC_Attendee__c.TF_Event_From_Date__c} to {!CFC_Attendee__c.TF_Event_To_Date__c}.
+<br/><br/>
+In order to maximize the value from your conference attendance, Unilever is keen to promote the sharing of insights and knowledge across the organization. Therefore please ensure you use the Conferencing app to share your conference real time updates, photos and any material you gather from before, during and after the conference. This is all done through our enterprise wide social tool Chatter!
+<br/><br/>
+The conferencing app works both through the Salesforce1 mobile app  
+
+ <a href="com.salesforce.salesforce1://entity/view?entityId={!CFC_Attendee__c.EventId__c}">Mobile</a>
+  and via your desktop 
+<a href="{!CFC_Attendee__c.TF_SF_Base_Url__c}{!CFC_Attendee__c.EventId__c}">Desktop</a> . You can use these links to view the conferencing app or update your attendance if you are not due to attend.
+<br/><br/>
+Kind regards
+<br/><br/>
+Jane Moran
