@@ -49,9 +49,10 @@ global with sharing class AF_BrandEstimateController2
 	public Boolean ReadyforPO{get;set;}
 	public Boolean hideDeleteLink{get;set;}
 	set<String> BIds = new set<String>();
-	private static String AF_BrandEstiamte_Controller2=  'AF_BrandEstimateController2';
+	private static string AF_BrandEstiamte_Controller2=AF_BrandEstimateController2.class.getName();
 	Boolean isDig_Trad;
 	list<AF_Bonus_Threshold__c> bonusInsertList;
+	Integer counter;
 	/*************************************************************************************
 *  @Description: this method is used to query and display BrandEstimate Traditional figure
 *  @name : TraditionalDisplay
@@ -233,7 +234,7 @@ global with sharing class AF_BrandEstimateController2
 	public void bonusThresholdValidation(){
 		if(!ispilotModel && !NoBonusCheck){
 			Integer i=0;
-			String errormsg = 'The Thresholds entered do not match the Unilever entity/entities in the Base Fees matrix. Please resolve the following mismatches by setting Bonus Threshold for Unilever entities:{';
+			String errormsg = Label.AF_Thershold_Setting;
 			AF_BonusRecordManager bonusRecordManager = new AF_BonusRecordManager();
 			if(bonusRecordManager.BonusThresholdValidationCheck(BrandEstimateObj)) {
 				for(String countryNames:bonusRecordManager.ExceptionList){
@@ -335,14 +336,14 @@ global with sharing class AF_BrandEstimateController2
 					if(delSubResult.size()>0){
 						delete delSubResult;
 					}
-					Integer counter=-1;
+					Integer counter1=-1;
 					for(wrapbonus bt:BonusThresholds){
-						counter++;
+						counter1++;
 						if(bt.bonusthresholds.Id == delCountryId){
 							break;
 						}
 					}
-					BonusThresholds.remove(counter);
+					BonusThresholds.remove(counter1);
 				}
 				catch(Exception e){
 					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_BrandEstiamte_Controller2,'delCounrtyRecord',e.getMessage(),e.getTypeName(),e.getStackTraceString());
@@ -451,7 +452,7 @@ global with sharing class AF_BrandEstimateController2
 	public void SaveBonusThresholds(){
 		list<AF_Sub_Result__c>bonus_latestlist=new list<AF_Sub_Result__c>();
 		bonusInsertList = new list<AF_Bonus_Threshold__c>();
-		Integer counter=0;
+		counter=0;
 		System.Savepoint previousSnapShot = Database.setSavepoint();
 		isDig_Trad=false;//03-09-2014 traditional or digital should be selected
 		Set<String> delBonusThresholdCountry = new Set<String>();
@@ -506,7 +507,7 @@ global with sharing class AF_BrandEstimateController2
 		}  
 		catch(DMLException ex){
 			Database.Rollback(previousSnapShot);
-			if(!(ex.getMessage().contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'))){
+			if(!(ex.getMessage().contains(AF_Constants.EXCEPTION_FIELD_CUSTOM_VALIDATION_EXCEPTION))){
 				Apexpages.addmessage(new apexpages.message(apexpages.severity.ERROR,  Label.AF_Thershold_Failing));
 			}
 		}
@@ -746,7 +747,7 @@ global with sharing class AF_BrandEstimateController2
 				}
 			}
 		}Catch(DmlException ex){
-			if((ex.getMessage()).contains('ENTITY_IS_LOCKED')){
+			if((ex.getMessage()).contains(AF_Constants.EXCEPTION_ENTITY_IS_LOCKED)){
 				Apexpages.addmessage(new Apexpages.message(Apexpages.severity.error,system.label.AF_PiliotError_message));
 			}
 		}
