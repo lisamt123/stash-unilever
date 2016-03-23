@@ -57,6 +57,58 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Reconciliation_Account__c</fullName>
+        <description>VPM - specifies the details of the Vendors Reconciliation Account.</description>
+        <externalId>false</externalId>
+        <label>Reconciliation Account</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_AccountGroup__c</fullName>
+        <description>Account Group - works with Trade Partner Type to define ECC account group</description>
+        <externalId>false</externalId>
+        <label>Account Group</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_AccountHolderName__c</fullName>
+        <description>VPM - Captures the Account Holder Name Which is linked to the Vendor.</description>
+        <externalId>false</externalId>
+        <label>Account Holder Name</label>
+        <length>60</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_AchillesRegistrationCode__c</fullName>
+        <description>VPM - specifies the Achilles Registration Code.</description>
+        <externalId>false</externalId>
+        <label>Achilles Registration Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_AdvancedFormSubmitted__c</fullName>
         <description>System field to record when the FLS have submitted their additions to the request. Used by Process Builder to drive status change, approvals and reassignment</description>
         <externalId>false</externalId>
@@ -78,6 +130,17 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_AlreadyAvailableSupplierUse__c</fullName>
+        <description>This field to track Why can&apos;t an already available supplier be used?</description>
+        <externalId>false</externalId>
+        <label>Already Available Supplier Use</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>VPM_AlreadyBeenInvoiced__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Used to capture on the Purchasing Request form whether an invoice has already been received. Used for statistics and assessment from FLS, does not get written to SAP.</description>
@@ -88,6 +151,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_AnnualEstimatedSpend__c</fullName>
+        <externalId>false</externalId>
+        <label>Annual Estimated Spend</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_ApprovalsCompleted__c</fullName>
@@ -112,6 +188,59 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_BankAccountNumber__c</fullName>
+        <description>VPM - Captures the Account Number of the Bank Account Which is linked to this Vendor</description>
+        <externalId>false</externalId>
+        <label>Bank Account Number</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_BankControlKey__c</fullName>
+        <externalId>false</externalId>
+        <label>Bank Control Key</label>
+        <length>2</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_BankCountryKey__c</fullName>
+        <externalId>false</externalId>
+        <label>Bank Country Key</label>
+        <picklist>
+            <picklistValues>
+                <fullName>BCK-1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_BankKey__c</fullName>
+        <externalId>false</externalId>
+        <label>Bank Key</label>
+        <length>15</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_BusinessRequestorSubmitted__c</fullName>
         <description>System field used to record whether the Business Requestor has submitted the request so Process Builder can take care of the status and reassignment changes</description>
         <externalId>false</externalId>
@@ -134,6 +263,23 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_CashManagementGroup__c</fullName>
+        <description>VPM - specifies the Vendor&apos;s Cash Management Group.</description>
+        <externalId>false</externalId>
+        <label>Cash Management Group</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cash Management Group 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>VPM_City__c</fullName>
         <description>Stores the City value as completed by the Business Requestor or FLS. Interfaces with SAP.</description>
         <externalId>false</externalId>
@@ -147,6 +293,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_CollectionAuthorization__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Collection Authorization</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_Comments__c</fullName>
         <description>Used by the Business Requestor to record any comments that may be helpful to the FLS as they qualify the Vendor / Ariba requirements during their assessment. No interface with SAP.</description>
         <externalId>false</externalId>
@@ -157,6 +313,30 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>VPM_CommodityClass__c</fullName>
+        <externalId>false</externalId>
+        <label>Commodity Class</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_CommodityFamily__c</fullName>
+        <externalId>false</externalId>
+        <label>Commodity Family</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_CommodityNameIfKnown__c</fullName>
@@ -375,6 +555,57 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_CountryRequestingVendor__c</fullName>
+        <externalId>false</externalId>
+        <label>Country Requesting Vendor</label>
+        <picklist>
+            <picklistValues>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_Country__c</fullName>
+        <externalId>false</externalId>
+        <label>Country</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Customer__c</fullName>
+        <description>VPM - specifies the Customer details associated with the Vendor.</description>
+        <externalId>false</externalId>
+        <label>Customer</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_DUNSHierarchyInvestigationReq__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>DUNS Hierarchy Investigation Required</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_DaysWithMDMOps__c</fullName>
         <defaultValue>0.0</defaultValue>
         <description>VPM - Number of days request was worked upon by MDM Ops</description>
@@ -435,6 +666,58 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_DetailsTypeCheck__c</fullName>
+        <description>VPM - based on the Supplier Financial Stability Check.</description>
+        <externalId>false</externalId>
+        <label>Details of Type of Check</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>VPM_District__c</fullName>
+        <description>VPM -</description>
+        <externalId>false</externalId>
+        <label>District</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ECCSystem__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field tracks  if it is in ECC system</description>
+        <externalId>false</externalId>
+        <label>ECC System</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ExceptionType__c</fullName>
+        <description>VPM - Field specifies that what type of Exception does the vendor belong to, if the Vendor is an Exception.</description>
+        <externalId>false</externalId>
+        <label>Exception Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ExcType 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>VPM_FinanceApprovalRequired__c</fullName>
         <defaultValue>false</defaultValue>
         <description>VPM - Checkbox used to determine whether Finance Approval is required. Set, if necessary, in Purchasing Request Advanced Form Flow.</description>
@@ -479,6 +762,92 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_GlobalAuthorisationGroup__c</fullName>
+        <externalId>false</externalId>
+        <label>Global Authorisation Group</label>
+        <picklist>
+            <picklistValues>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_HouseNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>House Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_IBAN__c</fullName>
+        <externalId>false</externalId>
+        <label>IBAN</label>
+        <length>34</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_IsInvoiceReceived__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To track is there already an invoice received</description>
+        <externalId>false</externalId>
+        <label>Is Invoice Already Received?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_IsVendorException__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - System Field which specifies if the Vendor is an Exception or not.</description>
+        <externalId>false</externalId>
+        <label>Is Vendor An Exception?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_IsVendorSME__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - System Field which specifies if the Vendor is Small To Medium Enterprise.</description>
+        <externalId>false</externalId>
+        <label>Is Vendor An SME?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_MDMOpsSubmitted__c</fullName>
         <description>System field used to record when MDM Ops have submitted their changes ready for SAP processing. Used by Process Builder to amend statuses.</description>
         <externalId>false</externalId>
@@ -498,6 +867,95 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_OrderingEmailAddress__c</fullName>
+        <description>VPM - System field which contains the ordering Email Address of the Vendor</description>
+        <externalId>false</externalId>
+        <label>Ordering Email Address</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PartnerBankType__c</fullName>
+        <externalId>false</externalId>
+        <label>Partner Bank Type</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PaymentMethod__c</fullName>
+        <description>VPM - specifies the list of Payment Methods for the Vendor.</description>
+        <externalId>false</externalId>
+        <label>Payment Method</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Payment Method 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_PaymentTerms__c</fullName>
+        <description>VPM - specifies the terms of payment for the Vendor.</description>
+        <externalId>false</externalId>
+        <label>Payment Terms</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>VPM_PhoneExtension_c__c</fullName>
+        <description>VPM - Phone Extension details of the vendor.</description>
+        <externalId>false</externalId>
+        <label>Phone Extension</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>VPM_PoCreationSystem__c</fullName>
+        <externalId>false</externalId>
+        <label>PO Creation System</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_PostCode__c</fullName>
+        <externalId>false</externalId>
+        <label>VPM_PostCode__c</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_ProcurementApprovalRequired__c</fullName>
@@ -559,6 +1017,68 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_PurchasingOrganisation__c</fullName>
+        <description>VPM - specifies the Purchasing Organization.</description>
+        <externalId>false</externalId>
+        <label>Purchasing Organisation</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Purchasing Organisation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_RapidFormComments__c</fullName>
+        <externalId>false</externalId>
+        <label>Rapid Form Comments</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ReasonNoFinancialCheck__c</fullName>
+        <description>VPM - specify the Reasons for No financial check.</description>
+        <externalId>false</externalId>
+        <label>Reason For No financial check</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ReferenceSpecificationsBankDetail__c</fullName>
+        <externalId>false</externalId>
+        <label>Reference Specifications For Bank Detail</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Region__c</fullName>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_RequestGroupTime__c</fullName>
         <description>VPM - Time at which request was assigned to specific group.</description>
         <externalId>false</externalId>
@@ -603,6 +1123,22 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_RequestorCountry__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor Country</label>
+        <picklist>
+            <picklistValues>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>VPM_ReworkToBusReq_c__c</fullName>
         <description>VPM - Used to Capture the  rework status</description>
         <externalId>false</externalId>
@@ -622,6 +1158,52 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_SMEComment__c</fullName>
+        <description>VPM - Comments on the Vendor, if the Vendor is a Small To Medium Enterprise.</description>
+        <externalId>false</externalId>
+        <label>SME Comment</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>VPM_SearchTerm__c</fullName>
+        <externalId>false</externalId>
+        <label>Search Term</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ServicesItemsToPurchase_c__c</fullName>
+        <externalId>false</externalId>
+        <label>Item/Services To Purchase</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>VPM_SortKey__c</fullName>
+        <description>VPM - specifies the key for sorting according to assignment numbers.</description>
+        <externalId>false</externalId>
+        <label>Sort Key</label>
+        <length>15</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_Spend__c</fullName>
@@ -745,6 +1327,28 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_SupplierAchillesRegistration__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - specifies the Supplier Achilles Registration.</description>
+        <externalId>false</externalId>
+        <label>Supplier Achilles Registration</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_SupplierFinancialStabilityCheck__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>VPM - Checks if the Suppliers is Financial Stable or not.</description>
+        <externalId>false</externalId>
+        <label>Supplier Financial Stability Check</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_TargetECC__c</fullName>
         <description>Used to identify the target ECC for extension. Used by the integration to indicate the appropriate Interface.</description>
         <externalId>false</externalId>
@@ -756,6 +1360,58 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_TaxJurisdictionCode__c</fullName>
+        <description>VPM - specifies the Vendor Tax Jurisdiction details.</description>
+        <externalId>false</externalId>
+        <label>Tax Jurisdiction Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_TaxNumber1__c</fullName>
+        <description>VPM - specifies the Tax Details of the Vendor.</description>
+        <externalId>false</externalId>
+        <label>Tax Number 1</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_TaxNumber3__c</fullName>
+        <description>VPM - specifies the Tax Details of the Vendor.</description>
+        <externalId>false</externalId>
+        <label>Tax Number 3</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Telephone__c</fullName>
+        <description>VPM - Telephone Number of the Vendor</description>
+        <externalId>false</externalId>
+        <label>Telephone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
     </fields>
     <fields>
         <fullName>VPM_TotalDaysWorked__c</fullName>
@@ -773,6 +1429,45 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_TradePartnerType__c</fullName>
+        <description>This field to track works with Account Group to define ECC account group</description>
+        <externalId>false</externalId>
+        <label>Trade Partner Type</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VATRegistrationNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>VAT Registration Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorCode__c</fullName>
+        <description>Stores the Vendor Code value as completed by the Business Requestor or FLS. Interfaces with SAP</description>
+        <externalId>false</externalId>
+        <label>Vendor Code</label>
+        <length>22</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_VendorContactDetail__c</fullName>
         <description>Used by the Business Requestor to record his/her contact email address for the Vendor. Could be pushed to SAP to create or update a record. Interfaces with SAP.</description>
         <externalId>false</externalId>
@@ -782,6 +1477,30 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorName1__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor Name 1</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorName2__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor Name 2</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -796,6 +1515,40 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorSubType__c</fullName>
+        <description>This field differentiates vendor sub type</description>
+        <externalId>false</externalId>
+        <label>Vendor Sub Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorType__c</fullName>
+        <description>This field categorize vendor</description>
+        <externalId>false</externalId>
+        <label>Vendor Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Vendor 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_WhatAreYouBuying__c</fullName>
@@ -850,9 +1603,9 @@
         <columns>RECORDTYPE</columns>
         <columns>CREATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
-        <label>FLS Queue</label>
+        <label>FLS</label>
         <language>en_US</language>
-        <queue>VPM_FLSQueue</queue>
+        <queue>VPM_FLS</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -867,9 +1620,9 @@
         <columns>VPM_Status__c</columns>
         <columns>CREATED_DATE</columns>
         <filterScope>Queue</filterScope>
-        <label>Finance Queue</label>
+        <label>Finance</label>
         <language>en_US</language>
-        <queue>VPM_FinanceQueue</queue>
+        <queue>VPM_Finance</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -883,9 +1636,9 @@
         <columns>CREATEDBY_USER</columns>
         <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
-        <label>MDM Ops Queue</label>
+        <label>MDM Ops</label>
         <language>en_US</language>
-        <queue>VPM_MDMOpsQueue</queue>
+        <queue>VPM_MDMOps</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -906,8 +1659,8 @@
     <listViews>
         <fullName>ProcurementQueue_VPM_PurchasingRequests</fullName>
         <filterScope>Queue</filterScope>
-        <label>Procurement Queue</label>
-        <queue>VPM_ProcurementQueue</queue>
+        <label>Procurement</label>
+        <queue>VPM_Procurement</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -950,6 +1703,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_BankCountryKey__c</picklist>
+            <values>
+                <fullName>BCK-1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -957,6 +1717,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CashManagementGroup__c</picklist>
+            <values>
+                <fullName>Cash Management Group 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1143,6 +1910,20 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_CountryRequestingVendor__c</picklist>
+            <values>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ExceptionType__c</picklist>
+            <values>
+                <fullName>ExcType 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_FinanceSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1150,6 +1931,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_GlobalAuthorisationGroup__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1165,6 +1953,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_PaymentMethod__c</picklist>
+            <values>
+                <fullName>Payment Method 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ProcurementSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1172,6 +1967,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_PurchasingOrganisation__c</picklist>
+            <values>
+                <fullName>Purchasing Organisation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1195,6 +1997,13 @@
             </values>
             <values>
                 <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestorCountry__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1289,6 +2098,20 @@
             </values>
             <values>
                 <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorType__c</picklist>
+            <values>
+                <fullName>Vendor 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1321,6 +2144,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_BankCountryKey__c</picklist>
+            <values>
+                <fullName>BCK-1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1328,6 +2158,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CashManagementGroup__c</picklist>
+            <values>
+                <fullName>Cash Management Group 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1514,6 +2351,20 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_CountryRequestingVendor__c</picklist>
+            <values>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ExceptionType__c</picklist>
+            <values>
+                <fullName>ExcType 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_FinanceSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1521,6 +2372,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_GlobalAuthorisationGroup__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1536,6 +2394,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_PaymentMethod__c</picklist>
+            <values>
+                <fullName>Payment Method 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ProcurementSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1543,6 +2408,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_PurchasingOrganisation__c</picklist>
+            <values>
+                <fullName>Purchasing Organisation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1566,6 +2438,13 @@
             </values>
             <values>
                 <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestorCountry__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1660,6 +2539,20 @@
             </values>
             <values>
                 <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorType__c</picklist>
+            <values>
+                <fullName>Vendor 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1692,6 +2585,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_BankCountryKey__c</picklist>
+            <values>
+                <fullName>BCK-1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1699,6 +2599,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CashManagementGroup__c</picklist>
+            <values>
+                <fullName>Cash Management Group 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1885,6 +2792,20 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_CountryRequestingVendor__c</picklist>
+            <values>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ExceptionType__c</picklist>
+            <values>
+                <fullName>ExcType 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_FinanceSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1892,6 +2813,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_GlobalAuthorisationGroup__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1907,6 +2835,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_PaymentMethod__c</picklist>
+            <values>
+                <fullName>Payment Method 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ProcurementSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1914,6 +2849,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_PurchasingOrganisation__c</picklist>
+            <values>
+                <fullName>Purchasing Organisation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1937,6 +2879,13 @@
             </values>
             <values>
                 <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestorCountry__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2031,6 +2980,20 @@
             </values>
             <values>
                 <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorType__c</picklist>
+            <values>
+                <fullName>Vendor 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2063,6 +3026,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_BankCountryKey__c</picklist>
+            <values>
+                <fullName>BCK-1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2070,6 +3040,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CashManagementGroup__c</picklist>
+            <values>
+                <fullName>Cash Management Group 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2256,6 +3233,20 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_CountryRequestingVendor__c</picklist>
+            <values>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ExceptionType__c</picklist>
+            <values>
+                <fullName>ExcType 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_FinanceSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2263,6 +3254,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_GlobalAuthorisationGroup__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2278,6 +3276,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_PaymentMethod__c</picklist>
+            <values>
+                <fullName>Payment Method 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ProcurementSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2285,6 +3290,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_PurchasingOrganisation__c</picklist>
+            <values>
+                <fullName>Purchasing Organisation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2308,6 +3320,13 @@
             </values>
             <values>
                 <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestorCountry__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2402,6 +3421,20 @@
             </values>
             <values>
                 <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorType__c</picklist>
+            <values>
+                <fullName>Vendor 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2434,6 +3467,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_BankCountryKey__c</picklist>
+            <values>
+                <fullName>BCK-1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2441,6 +3481,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CashManagementGroup__c</picklist>
+            <values>
+                <fullName>Cash Management Group 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2627,6 +3674,20 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_CountryRequestingVendor__c</picklist>
+            <values>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ExceptionType__c</picklist>
+            <values>
+                <fullName>ExcType 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_FinanceSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2634,6 +3695,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_GlobalAuthorisationGroup__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2649,6 +3717,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_PaymentMethod__c</picklist>
+            <values>
+                <fullName>Payment Method 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ProcurementSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2656,6 +3731,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_PurchasingOrganisation__c</picklist>
+            <values>
+                <fullName>Purchasing Organisation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2679,6 +3761,13 @@
             </values>
             <values>
                 <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestorCountry__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2773,6 +3862,20 @@
             </values>
             <values>
                 <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorType__c</picklist>
+            <values>
+                <fullName>Vendor 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2805,6 +3908,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_BankCountryKey__c</picklist>
+            <values>
+                <fullName>BCK-1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2812,6 +3922,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CashManagementGroup__c</picklist>
+            <values>
+                <fullName>Cash Management Group 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2998,6 +4115,20 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_CountryRequestingVendor__c</picklist>
+            <values>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ExceptionType__c</picklist>
+            <values>
+                <fullName>ExcType 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_FinanceSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3005,6 +4136,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_GlobalAuthorisationGroup__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3020,6 +4158,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_PaymentMethod__c</picklist>
+            <values>
+                <fullName>Payment Method 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ProcurementSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3027,6 +4172,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_PurchasingOrganisation__c</picklist>
+            <values>
+                <fullName>Purchasing Organisation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3050,6 +4202,13 @@
             </values>
             <values>
                 <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestorCountry__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3144,6 +4303,20 @@
             </values>
             <values>
                 <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorType__c</picklist>
+            <values>
+                <fullName>Vendor 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3176,6 +4349,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_BankCountryKey__c</picklist>
+            <values>
+                <fullName>BCK-1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3183,6 +4363,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CashManagementGroup__c</picklist>
+            <values>
+                <fullName>Cash Management Group 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3369,6 +4556,20 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_CountryRequestingVendor__c</picklist>
+            <values>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ExceptionType__c</picklist>
+            <values>
+                <fullName>ExcType 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_FinanceSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3376,6 +4577,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_GlobalAuthorisationGroup__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3391,6 +4599,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_PaymentMethod__c</picklist>
+            <values>
+                <fullName>Payment Method 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ProcurementSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3398,6 +4613,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_PurchasingOrganisation__c</picklist>
+            <values>
+                <fullName>Purchasing Organisation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3421,6 +4643,13 @@
             </values>
             <values>
                 <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestorCountry__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3515,6 +4744,20 @@
             </values>
             <values>
                 <fullName>Vendor Code Received</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorType__c</picklist>
+            <values>
+                <fullName>Vendor 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3547,6 +4790,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_BankCountryKey__c</picklist>
+            <values>
+                <fullName>BCK-1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_BusinessRequestorSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3554,6 +4804,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_CashManagementGroup__c</picklist>
+            <values>
+                <fullName>Cash Management Group 1</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3740,6 +4997,20 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_CountryRequestingVendor__c</picklist>
+            <values>
+                <fullName>UK</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_ExceptionType__c</picklist>
+            <values>
+                <fullName>ExcType 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_FinanceSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3747,6 +5018,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_GlobalAuthorisationGroup__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3762,6 +5040,13 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_PaymentMethod__c</picklist>
+            <values>
+                <fullName>Payment Method 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ProcurementSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3769,6 +5054,13 @@
             </values>
             <values>
                 <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_PurchasingOrganisation__c</picklist>
+            <values>
+                <fullName>Purchasing Organisation</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3792,6 +5084,13 @@
             </values>
             <values>
                 <fullName>Procurement</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_RequestorCountry__c</picklist>
+            <values>
+                <fullName>UK</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3889,6 +5188,20 @@
                 <default>false</default>
             </values>
         </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorSubType__c</picklist>
+            <values>
+                <fullName>Vendor Sub Type 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>VPM_VendorType__c</picklist>
+            <values>
+                <fullName>Vendor 1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
     </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
@@ -3898,61 +5211,6 @@
         <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
-    <webLinks>
-        <fullName>Re_Work</fullName>
-        <availability>online</availability>
-        <description>This is the generic button for rework. When this button is clicked it will assign the record to last worked queue.</description>
-        <displayType>button</displayType>
-        <linkType>javascript</linkType>
-        <masterLabel>Re Work</masterLabel>
-        <openType>onClickJavaScript</openType>
-        <protected>false</protected>
-        <url>{!REQUIRESCRIPT(&apos;/soap/ajax/34.0/connection.js&apos;)} 
-{ 
-	var pur = new sforce.SObject(&quot;VPM_PurchasingRequests__c&quot;); 
-	pur.id=&quot;{!VPM_PurchasingRequests__c.Id}&quot;; 
-	var currentstatus=&quot;{!VPM_PurchasingRequests__c.VPM_Status__c}&quot;; 
-	if(currentstatus.indexOf(&apos;Draft&apos;) &gt;= 0 ) 
-	{ 
-		pur.VPM_BusinessRequestorSubmitted__c=&apos;Yes&apos;; 
-		result = sforce.connection.update([pur]); 
-		window.location.reload();	
-	} 
-	if (VPM_RequestLastWithGroup__c == &apos;FLS&apos; &amp;&amp; VPM_Status__c &lt;&gt; &apos;FLS Requested Re-Work&apos;)
-	{
-		var result = sforce.connection.query(&quot;Select  QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;FLS Queue&apos; Limit 1&quot;); 
-		if (result[&apos;size&apos;] == 1){ 
-			var queue_records = result[&apos;records&apos;]; 
-			pur VPM_Status__c = &apos;FLS Requested Re-Work&apos;;
-			pur.OwnerId=queue_records[&apos;QueueId&apos;];
-				result = sforce.connection.update([pur]); 
-				window.location.reload(); 
-		}
-	}
-	if (VPM_RequestLastWithGroup__c == &apos;Procurement&apos; &amp;&amp; VPM_Status__c &lt;&gt; &apos;Procurement Requested Re-Work&apos;)
-	{
-		var result = sforce.connection.query(&quot;Select  QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;Procurement&apos; Limit 1&quot;); 
-		if (result[&apos;size&apos;] == 1){ 
-			var queue_records = result[&apos;records&apos;]; 
-			pur VPM_Status__c = &apos;Procurement Requested Re-Work&apos;;
-			pur.OwnerId=queue_records[&apos;QueueId&apos;];
-				result = sforce.connection.update([pur]); 
-				window.location.reload(); 
-		}
-	}
-	if (VPM_RequestLastWithGroup__c == &apos;Finance&apos; &amp;&amp; VPM_Status__c &lt;&gt; &apos;Finance Requested Re-Work&apos;)
-	{
-		var result = sforce.connection.query(&quot;Select  QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;Finance Queue&apos; Limit 1&quot;); 
-		if (result[&apos;size&apos;] == 1){ 
-			var queue_records = result[&apos;records&apos;]; 
-			pur VPM_Status__c = &apos;Finance Requested Re-Work&apos;;
-			pur.OwnerId=queue_records[&apos;QueueId&apos;];
-				result = sforce.connection.update([pur]); 
-				window.location.reload(); 
-		}
-	}
-}</url>
-    </webLinks>
     <webLinks>
         <fullName>VPM_AdvancedForm</fullName>
         <availability>online</availability>

@@ -4,7 +4,6 @@
     <customButtons>VPM_AdvancedForm</customButtons>
     <customButtons>VPM_AdvancedFormCSS</customButtons>
     <customButtons>VPM_ReworkToBusinessRequestor</customButtons>
-    <customButtons>Re_Work</customButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -28,6 +27,18 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>VPM_ReworkToBusReq_c__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_District__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_IsVendorSME__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_SortKey__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

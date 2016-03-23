@@ -64,7 +64,7 @@
         <fullName>VPM_ChangeOwnerToFLSQueue</fullName>
         <description>VPM - Sets the Owner as FLS Queue on entering approval process.</description>
         <field>OwnerId</field>
-        <lookupValue>VPM_FLSQueue</lookupValue>
+        <lookupValue>VPM_FLS</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>Change Owner To FLS Queue</name>
         <notifyAssignee>false</notifyAssignee>
@@ -76,7 +76,7 @@
         <fullName>VPM_ChangeOwnerToFinanceQueue</fullName>
         <description>VPM - Sets the Owner to Finance Queue on entering Approval Process</description>
         <field>OwnerId</field>
-        <lookupValue>VPM_FinanceQueue</lookupValue>
+        <lookupValue>VPM_Finance</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>Change Owner To Finance Queue</name>
         <notifyAssignee>false</notifyAssignee>
@@ -88,7 +88,7 @@
         <fullName>VPM_ChangeOwnerToMDMOpsQueue</fullName>
         <description>VPM - Sets the Owner as MDM Ops Queue on entering approval process.</description>
         <field>OwnerId</field>
-        <lookupValue>VPM_MDMOpsQueue</lookupValue>
+        <lookupValue>VPM_MDMOps</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>Change Owner To MDM Ops Queue</name>
         <notifyAssignee>false</notifyAssignee>
@@ -100,7 +100,7 @@
         <fullName>VPM_ChangeOwnerToProcurement_Queue</fullName>
         <description>VPM - Sets the Owner as Procurement Queue on entering Approval Process.</description>
         <field>OwnerId</field>
-        <lookupValue>VPM_ProcurementQueue</lookupValue>
+        <lookupValue>VPM_Procurement</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>Change Owner To Procurement Queue</name>
         <notifyAssignee>false</notifyAssignee>
