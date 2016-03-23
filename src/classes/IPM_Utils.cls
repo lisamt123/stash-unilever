@@ -31,16 +31,6 @@ public without sharing class IPM_Utils {
 
     
     public static String Y1 = 'Y1';
-    public static String y2012 = '2012';
-    public static String y2013 = '2013';
-    public static String y2014 = '2014';
-    public static String y2015 = '2015';
-    public static String y2016 = '2016';
-    public static String y2017 = '2017';
-    public static String y2018 = '2018';
-    public static String y2019 = '2019';
-    public static String y2020 = '2020';
-    public static String y2021 = '2021';
     public static String n0 = '0';
     public static String n1 = '1';
     public static String n2 = '2';
@@ -539,11 +529,20 @@ public without sharing class IPM_Utils {
         Schema.DescribeSObjectResult sObjectDescribe = Schema.getGlobalDescribe().get(SObjectName).getDescribe();
         
         Map<String,Schema.SObjectField> sobjectFieldMap = sObjectDescribe.fields.getMap();
+        Map<String, Schema.FieldSet> fieldSetMap = sObjectDescribe.fieldSets.getMap();
+        Set<String> excludedFieldSet = new Set<String>();
+        if(!fieldSetMap.isEmpty() && fieldSetMap.containsKey('IPM_Exclude_Fields')) 
+        {
+        	for(Schema.FieldSetMember fieldSetMem : fieldSetMap.get('IPM_Exclude_Fields').getFields()) 
+        	{ 
+        		excludedFieldSet.add(fieldSetMem.getFieldPath());
+        	}
+        }
         
         for(String fieldAPIName :  sobjectFieldMap.keySet())
         {   
             Schema.DescribeFieldResult fieldDescribe = sobjectFieldMap.get(fieldAPIName).getDescribe(); 
-            if(!mandatoryStandardFieldSet.contains(fieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() ) )
+            if(!mandatoryStandardFieldSet.contains(fieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() ) && !excludedFieldSet.contains(fieldAPIName))
             {
                 queryStr += ' '+fieldAPIName+',';
             }
