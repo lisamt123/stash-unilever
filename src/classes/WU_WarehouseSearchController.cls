@@ -6,7 +6,7 @@
 public class WU_WarehouseSearchController {
 
      
-    private Integer PAGESIZE= 15;
+    private Integer PAGESIZE= 30;
     public WU_Master_Warehouse__c warehouseCapacity {get;set;}
     public WU_Master_Warehouse__c warehouseCapacityLookuP {get;set;}
     public string sSAP {get;set;}

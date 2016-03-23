@@ -78,8 +78,8 @@ public with sharing class CPA_PWORF_TriggerUtil{
             // display if the reqeust was successful
             reqlist.add(req);
             isSubmitted = true;
-        }else if(oldPWORFList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.AUTOACCEPT &&   newPWORFList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.AUTOACCEPT){
-                setId.add(newPWORFList[i].Id);      
+        }else if( !oldPWORFList[i].chk_isAutoAccepted__c &&   newPWORFList[i].chk_isAutoAccepted__c){
+            setId.add(newPWORFList[i].Id);      
         }else if((oldPWORFList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.WITHHOLD &&   newPWORFList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.WITHHOLD)|| (oldPWORFList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newPWORFList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED) || (oldPWORFList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newPWORFList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED) ){
             WithholdsetId.add(newPWORFList[i]);
         }

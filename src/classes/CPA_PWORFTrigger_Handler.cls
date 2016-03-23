@@ -99,9 +99,9 @@ public with sharing class CPA_PWORFTrigger_Handler
     public void afterInsert(SObject so) 
     {
         //Commented below empty if condition because of SonarQube issue - Avoid empty if statements
-       // if(triggerShouldExecute){
-            
-       // }
+        //if(triggerShouldExecute){
+         //   CPA_PWORFAgeing.calcualteAgeing(trigger.new); // to set the Ageing Days.
+        //}
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
@@ -113,7 +113,7 @@ public with sharing class CPA_PWORFTrigger_Handler
             // 04/04/2016 :- Shreyas  : This method to unlock the PWORF from approval process.
             CPA_PWORF_TriggerUtil.unlockPworf(trigger.new);
              //CPA_PWORF_TriggerUtil.updateSLAData(trigger.new);
-            // CPA_PWORFAgeing.calcualteAgeing(trigger.new); // to set the Ageing Days.
+           // CPA_PWORFAgeing.calcualteAgeing(trigger.new); // to set the Ageing Days.
              //Dinesh added below line for search testing, please dont remove this line
              //9/2 - commented because, generating PWO ID either from LIO or PWO
              //CPA_CalculationOfBusinessDaysForSLADates.forSearch(trigger.old,trigger.new);

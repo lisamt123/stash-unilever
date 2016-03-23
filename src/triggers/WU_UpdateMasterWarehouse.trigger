@@ -8,11 +8,11 @@ trigger WU_UpdateMasterWarehouse on WU_Warehouse_Capacity_Detail__c(Before Inser
   
         //if (Trigger.isInsert && Trigger.isBefore)
         //{
-        	
+        //	WU_UpdateMasterWarehouseHandler.onAfterUpdate(trigger.new, trigger.newMap);
         //}
         if(Trigger.isUpdate && Trigger.isAfter)
         {
-            WU_UpdateMasterWarehouseHandler.onAfterUpdate(trigger.oldMap, trigger.new, trigger.newMap);
+            WU_UpdateMasterWarehouseHandler.onAfterUpdate(trigger.oldMap,trigger.new, trigger.newMap);
         }
 
 }

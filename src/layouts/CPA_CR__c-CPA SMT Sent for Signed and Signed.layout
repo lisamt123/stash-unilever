@@ -45,7 +45,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_Unilever_Reference__c</field>
+                <field>fml_Pworf_Clarity_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -55,7 +55,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>auto_Internal_CR_ID__c</field>
+                <field>Name</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

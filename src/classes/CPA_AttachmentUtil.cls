@@ -8,8 +8,10 @@ Purpose:
  ====================================================== 
  History                                                             
  -------                                                             
- VERSION  AUTHOR                        DATE              DETAIL                    Description    
- 1.0      Shreyas Mangalvedhekar        21/12/2015      INITIAL DEVELOPMENT          CSR: 
+ VERSION  AUTHOR                        DATE              DETAIL                                        Description    
+ 1.0      Shreyas Mangalvedhekar        21/12/2015      INITIAL DEVELOPMENT                              CSR: 
+ 1.1      Shreyas Mangalvedhekar        16/03/2015      use of Custom Label                              CSR: 
+ 1.2      Shreyas Mangalvedhekar        21/03/2015      Varied Target Blend Rate* marked blank           CSR: 
  ***********************************************************************/
 
 public with sharing class CPA_AttachmentUtil {
@@ -193,8 +195,8 @@ public with sharing class CPA_AttachmentUtil {
             }
         }
         listComDetail = [Select Id, Name , CR__c,Project_Work_Order__c from CPA_Commercial_Details__c where Project_Work_Order__c IN : setPWOID OR CR__c IN :setCRID];
-        List<CPA_project_work_order__c>lstPWO = [Select chk_Excel_Attached__c,ID,num_Expense_charges_of_work_order__c,pec_Expense__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,Name,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_Authorisation_man_days__c from CPA_project_work_order__c where ID IN :setPWOID];
-        List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c  from CPA_CR__c where ID IN:  setCRID];
+        List<CPA_project_work_order__c>lstPWO = [Select chk_Excel_Attached__c,ID,num_Expense_charges_of_work_order__c,pec_Expense__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,Name,num_Estimated_Man_days_of_PWO__c,num_RMS_value__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_Effort_Cost__c,num_Authorisation_man_days__c,num_Varied_Target_Blend_Rate__c from CPA_project_work_order__c where ID IN :setPWOID];
+        List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c,num_Total_Resource_Cost_CR__c,num_Effort_Cost__c,num_Delta_Efforts__c,num_Total_Resource_Efforts_CR__c,num_Total_Expenses_of_CR__c,num_Varied_Target_Blend_Rate__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c  from CPA_CR__c where ID IN:  setCRID];
         List<CPA_project_work_order__c>  lstTemp = new List<CPA_project_work_order__c>();
         List<CPA_CR__c> lstTempCR = new List<CPA_CR__c>();
         
@@ -211,7 +213,11 @@ public with sharing class CPA_AttachmentUtil {
                 obj.num_Total_work_order_charge__c=NULL;
                 obj.num_Authorisation_charges__c =NULL;
                 obj.num_Authorisation_man_days__c =NULL;
+                obj.num_Effort_Cost__c =NULL;
+                obj.num_RMS_value__c = NULL;
+                obj.num_Varied_Target_Blend_Rate__c = NULL;
                 obj.chk_Excel_Attached__c = false;
+                
                 lstTemp.add(obj);
             }
             for(CPA_CR__c obj1 : lstCR){
@@ -226,6 +232,14 @@ public with sharing class CPA_AttachmentUtil {
                 obj1.num_Authorisation_man_days__c = NULL;
                 obj1.num_RMS_value__c = NULL;
                 obj1.chk_Contract_Excel_Attached__c = false;
+                obj1.num_Total_Resource_Cost_CR__c =NULL;
+                obj1.num_Effort_Cost__c =NULL;
+                obj1.num_Delta_Efforts__c = NULL;
+                obj1.num_Total_Resource_Efforts_CR__c = NULL;
+                obj1.num_Total_Expenses_of_CR__c  = NULL;
+                obj1.num_Varied_Target_Blend_Rate__c = NULL;
+                obj1.pec_Estimated_Off_shore__c =NULL;
+                obj1.pec_Estimated_On_shore__c= NULL;
                 lstTempCR.add(obj1);
             }
             if(lstTemp !=null && lstTemp.size()>0){
@@ -397,7 +411,7 @@ public with sharing class CPA_AttachmentUtil {
         List<CPA_project_work_order__c> lstUpdatePWO = new List < CPA_project_work_order__c>();
         
         
-        List<CPA_project_work_order__c>lstPWO = [Select ID,num_Expense_charges_of_work_order__c,pec_Expense__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,Name,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_Authorisation_man_days__c from CPA_project_work_order__c where ID IN :setPWOID];
+        List<CPA_project_work_order__c>lstPWO = [Select ID,num_Expense_charges_of_work_order__c,pec_Expense__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,Name,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Varied_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_RMS_value__c,num_Authorisation_man_days__c,num_Effort_Cost__c from CPA_project_work_order__c where ID IN :setPWOID];
         
         if(lstPWO !=null && setPWOID !=null){
             for(CPA_project_work_order__c objPWO : lstPWO){
@@ -467,12 +481,12 @@ public with sharing class CPA_AttachmentUtil {
                         intOther = intOther +  objCOm.num_Value__c;
                     }
                 }
-                objPWO.num_Estimated_Value_of_PWO__c = (intCostResource + intRMS + intContingencyCharges + intNonPayroll + intAuthorisation+intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
+                objPWO.num_Estimated_Value_of_PWO__c = (intCostResource  + intContingencyCharges + intNonPayroll +intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
                 objPWO.num_Estimated_Man_days_of_PWO__c = intTotalmandays;
                 if(intTotalmandays> 0){
-                    objPWO.num_Target_Blend_Rate__c = intCostResource / intTotalmandays;
+                    objPWO.num_Varied_Target_Blend_Rate__c = intCostResource / intTotalmandays;
                 }else {
-                    objPWO.num_Target_Blend_Rate__c =0;
+                    objPWO.num_Varied_Target_Blend_Rate__c =0;
                 }
                 objPWO.num_Authorisation_charges__c = intAuthorisation;
                 objPWO.num_Authorisation_man_days__c = intAuthorisationman;
@@ -483,12 +497,14 @@ public with sharing class CPA_AttachmentUtil {
                 }
                 if(intCostResource>0){
                     objPWO.pec_Expense__c = (intIndicativeExpenses/intCostResource)*100;
+                    objPWO.num_Effort_Cost__c  = intCostResource;
                 }else {
                     objPWO.pec_Expense__c = 0;
                 }
                 objPWO.chk_Excel_Attached__c = true;
                 objPWO.num_Total_work_order_charge__c= objPWO.num_Estimated_Value_of_PWO__c;
-                
+                objPWO.num_RMS_value__c =intRMS;
+                objPWO.num_Effort_Cost__c  = intCostResource;
                 lstUpdatePWO.add(objPWO);
             }
         
@@ -507,7 +523,7 @@ public with sharing class CPA_AttachmentUtil {
     
         map<ID,list<CPA_Commercial_Details__c>> mapCRComDetai = new map<ID,list<CPA_Commercial_Details__c>>();      
         List<CPA_CR__c> lstUpdateCR = new List < CPA_CR__c>();
-        List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c  from CPA_CR__c where ID IN:  setCRID];
+        List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c,num_Effort_Cost__c,num_Total_Resource_Cost_CR__c ,num_Total_Resource_Efforts_CR__c from CPA_CR__c where ID IN:  setCRID];
         
         if(lstCR !=null && setCRID !=null){
             for(CPA_CR__c objCR : lstCR){
@@ -580,8 +596,9 @@ public with sharing class CPA_AttachmentUtil {
                         intOther = intOther +  objCOm.num_Value__c;
                     }
                 }
-                objCR.num_Estimated_Value_of_CR__c = (intCostResource + intRMS + intContingencyCharges + intNonPayroll + intAuthorisation+intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
+                objCR.num_Estimated_Value_of_CR__c = (intCostResource + intContingencyCharges + intNonPayroll +intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
                 objCR.num_Estimated_Man_days_of_CR__c = intTotalmandays;
+                objCR.num_Total_Resource_Efforts_CR__c = intTotalmandays;
                 if(intTotalmandays> 0){
                   objCR.num_Varied_Target_Blend_Rate__c =  intCostResource / intTotalmandays;
                 }else {
@@ -590,9 +607,11 @@ public with sharing class CPA_AttachmentUtil {
                 objCR.num_Authorisation_charges__c = intAuthorisation;
                 objCR.num_Authorisation_man_days__c = intAuthorisationman;
                 objCR.num_Expense_charges_of_CR__c  =intIndicativeExpenses;
-                
+                objCR.num_RMS_value__c  =intRMS;
                 if(intCostResource!=null& intCostResource > 0){
                     objCR.pec_Expense__c = (intIndicativeExpenses/ intCostResource)*100;
+                    objCR.num_Effort_Cost__c  = intCostResource;
+                    objCR.num_Total_Resource_Cost_CR__c = intCostResource;
                 }else {
                     objCR.pec_Expense__c = 0;
                 }
