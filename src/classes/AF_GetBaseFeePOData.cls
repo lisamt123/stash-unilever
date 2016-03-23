@@ -8,6 +8,20 @@
 @reference : none
 ****************************************************************************************************************************/
 global with sharing class AF_GetBaseFeePOData{
+	static Decimal calc;
+	static Decimal calcPO;
+	static Decimal total;
+	static Decimal previousval;                                                
+	static Decimal quarters;
+	static Decimal quartersdone;
+	static Decimal calcTL;
+	static Decimal calcDL;
+	static Decimal calcAL;
+	static Decimal totalTL;
+	static Decimal totalAL;
+	static Decimal totalDL;
+	static Decimal totalOOPSEUROTL;
+	static Decimal calcTLOOPSEURO;
 	@future
 	public static void CreatePOReportFromAgencyEstimate(Set<ID> AgencyEstimateIds,Boolean deletePOReport)
 	{
@@ -16,7 +30,7 @@ global with sharing class AF_GetBaseFeePOData{
 		List<af_po_report__c> lstpoupdate = new List<af_po_report__c>();
 		List<af_po_report__c> deletePOReportList = new List<af_po_report__c>();
 		Map<ID,ID> mapPO = new Map<ID,ID>();
-		List<af_po_report__c> lstpochk = new List<af_po_report__c>([select id,AF_Agency_Estimate_ID__c from af_po_report__c where AF_PO_Report_Type__c= 'Base Fees']);
+		List<af_po_report__c> lstpochk = new List<af_po_report__c>([select id,AF_Agency_Estimate_ID__c from af_po_report__c where AF_PO_Report_Type__c= :AF_Constants.BASEFEES_REPORT_TYPE]);
 		for(af_po_report__c myagest:lstpochk)
 		{
 			mapPO.put(myagest.AF_Agency_Estimate_ID__c,myagest.id);
@@ -104,7 +118,7 @@ global with sharing class AF_GetBaseFeePOData{
 		List<af_po_report__c> lstpoupdate = new List<af_po_report__c>();
 		List<af_po_report__c> deletePOReportList = new List<af_po_report__c>();
 		Map<ID,ID> mapPO = new Map<ID,ID>();
-		List<af_po_report__c> lstpochk = new List<af_po_report__c>([select id,AF_Agency_Estimate_ID__c from af_po_report__c where AF_PO_Report_Type__c= 'Base Fees' LIMIT 50000]);
+		List<af_po_report__c> lstpochk = new List<af_po_report__c>([select id,AF_Agency_Estimate_ID__c from af_po_report__c where AF_PO_Report_Type__c= :AF_Constants.BASEFEES_REPORT_TYPE LIMIT 50000]);
 		for(af_po_report__c myagest:lstpochk)
 		{
 			mapPO.put(myagest.AF_Agency_Estimate_ID__c,myagest.id);
@@ -191,7 +205,7 @@ global with sharing class AF_GetBaseFeePOData{
 		List<af_po_report__c> lstpoupdate = new List<af_po_report__c>();
 		List<af_po_report__c> deletePOReportList = new List<af_po_report__c>();
 		Map<ID,ID> mapPO = new Map<ID,ID>();
-		List<af_po_report__c> lstpochk = new List<af_po_report__c>([select id,AF_Oops_Estimate_ID__c from af_po_report__c where AF_PO_Report_Type__c= 'OOPS']);
+		List<af_po_report__c> lstpochk = new List<af_po_report__c>([select id,AF_Oops_Estimate_ID__c from af_po_report__c where AF_PO_Report_Type__c= :AF_Constants.OOPS_REPORT_TYPE]);
 		for(af_po_report__c myagest:lstpochk)
 		{
 			mapPO.put(myagest.AF_Oops_Estimate_ID__c,myagest.id);
@@ -269,7 +283,7 @@ global with sharing class AF_GetBaseFeePOData{
 		set<String> baseFeeKey = new set<String>();
 		set<String> oopsKey = new set<String>();
 		for(String key:CompundKeys){
-			if(compundKeyReportType.get(key)=='Base Fees'){
+			if(compundKeyReportType.get(key)==AF_Constants.BASEFEES_REPORT_TYPE){
 				baseFeeKey.add(key);
 			}
 			else{
@@ -277,12 +291,12 @@ global with sharing class AF_GetBaseFeePOData{
 			}
 		}
 		if(baseFeeKey.size()>0){
-			po_Report_List = [select AF_Total__c,AF_CountNoQuarters__c,AF_OverridePO_Digital_LC__c,AF_OverridePO_Traditional_LC__c,AF_OverridePO_Adaptation_LC__c,AF_Traditional_Local__c,AF_Digital_Local__c,AF_PO_Report_Type__c,AF_Adaptation_Local__c,af_max_quarter__c,AF_QuatersAlreadyDone__c,AF_Calculated_PO_Value_Formula__c,AF_Previous_Quarter_Value__c,AF_Compound_Key__c,AF_Calculate_Tradition_Local__c,AF_Previous_Quarter_Value_TL__c,AF_Calculate_Digital_Local__c,AF_Previous_Quarter_Value_DL__c,AF_Calculate_Adaptation_Local__c,AF_Previous_Quarter_Value_AL__c from AF_PO_Report__c where AF_PO_Report_Type__c='Base Fees' and AF_Compound_Key__c in:baseFeeKey order by AF_Compound_Key__c,AF_QuatersAlreadyDone__c ASC];
+			po_Report_List = [select AF_Total__c,AF_CountNoQuarters__c,AF_OverridePO_Digital_LC__c,AF_OverridePO_Traditional_LC__c,AF_OverridePO_Adaptation_LC__c,AF_Traditional_Local__c,AF_Digital_Local__c,AF_PO_Report_Type__c,AF_Adaptation_Local__c,af_max_quarter__c,AF_QuatersAlreadyDone__c,AF_Calculated_PO_Value_Formula__c,AF_Previous_Quarter_Value__c,AF_Compound_Key__c,AF_Calculate_Tradition_Local__c,AF_Previous_Quarter_Value_TL__c,AF_Calculate_Digital_Local__c,AF_Previous_Quarter_Value_DL__c,AF_Calculate_Adaptation_Local__c,AF_Previous_Quarter_Value_AL__c from AF_PO_Report__c where AF_PO_Report_Type__c=:AF_Constants.BASEFEES_REPORT_TYPE and AF_Compound_Key__c in:baseFeeKey order by AF_Compound_Key__c,AF_QuatersAlreadyDone__c ASC];
 			calculateBaseOopsvalues(po_Report_List);
 		}
 		po_Report_List.clear();
 		if(oopsKey.size()>0){
-			po_Report_List = [select AF_Total__c,AF_OverridePO_Traditional_LC__c,AF_Previous_Quarter_Value_TL_OOPSEuro__c,AF_CountNoQuarters__c,AF_Traditional_Local__c,AF_Digital_Local__c,AF_PO_Report_Type__c,AF_Adaptation_Local__c,af_max_quarter__c,AF_QuatersAlreadyDone__c,AF_Calculated_PO_Value_Formula__c,AF_Previous_Quarter_Value__c,AF_Compound_Key__c,AF_Calculate_Tradition_Local__c,AF_Previous_Quarter_Value_TL__c,AF_Calculate_Digital_Local__c,AF_Previous_Quarter_Value_DL__c,AF_Calculate_Adaptation_Local__c,AF_Previous_Quarter_Value_AL__c,AF_Traditional__c from AF_PO_Report__c where AF_PO_Report_Type__c='OOPS' and AF_Compound_Key__c in:oopsKey order by AF_Compound_Key__c,AF_QuatersAlreadyDone__c ASC];
+			po_Report_List = [select AF_Total__c,AF_OverridePO_Traditional_LC__c,AF_Previous_Quarter_Value_TL_OOPSEuro__c,AF_CountNoQuarters__c,AF_Traditional_Local__c,AF_Digital_Local__c,AF_PO_Report_Type__c,AF_Adaptation_Local__c,af_max_quarter__c,AF_QuatersAlreadyDone__c,AF_Calculated_PO_Value_Formula__c,AF_Previous_Quarter_Value__c,AF_Compound_Key__c,AF_Calculate_Tradition_Local__c,AF_Previous_Quarter_Value_TL__c,AF_Calculate_Digital_Local__c,AF_Previous_Quarter_Value_DL__c,AF_Calculate_Adaptation_Local__c,AF_Previous_Quarter_Value_AL__c,AF_Traditional__c from AF_PO_Report__c where AF_PO_Report_Type__c=:AF_Constants.OOPS_REPORT_TYPE and AF_Compound_Key__c in:oopsKey order by AF_Compound_Key__c,AF_QuatersAlreadyDone__c ASC];
 			calculateBaseOopsvalues(po_Report_List);
 		}
 	} 
@@ -299,20 +313,20 @@ global with sharing class AF_GetBaseFeePOData{
 		integer i=0;
 		if(po_Report_List.size()>0){
 			for(AF_PO_Report__c poReport:po_Report_List){
-				Decimal calc=0.0;
-				Decimal calcPO=0.0;
-				Decimal total=0;
-				Decimal previousval=0.0;                                                
-				Decimal quarters=0;
-				Decimal quartersdone=0;
-				Decimal calcTL=0.0;
-				Decimal calcDL=0.0;
-				Decimal calcAL=0.0;
-				Decimal totalTL=0;
-				Decimal totalAL=0;
-				Decimal totalDL=0;
-				Decimal totalOOPSEUROTL=0;
-				Decimal calcTLOOPSEURO=0.0;
+				calc=0.0;
+				calcPO=0.0;
+				total=0;
+				previousval=0.0;                                                
+				quarters=0;
+				quartersdone=0;
+				calcTL=0.0;
+				calcDL=0.0;
+				calcAL=0.0;
+				totalTL=0;
+				totalAL=0;
+				totalDL=0;
+				totalOOPSEUROTL=0;
+				calcTLOOPSEURO=0.0;
 				if(!uniqueKey.contains(poReport.AF_Compound_Key__c)){
 					poReport.AF_Previous_Quarter_Value__c =0;
 					poReport.AF_Previous_Quarter_Value_TL__c =0;
@@ -323,54 +337,21 @@ global with sharing class AF_GetBaseFeePOData{
 				}
 				else{
 					//PO value calculation
-					if(po_Report_List[i-1].AF_Previous_Quarter_Value__c == null) {previousval=0;} else {previousval=po_Report_List[i-1].AF_Previous_Quarter_Value__c;}
-					if(po_Report_List[i-1].AF_CountNoQuarters__c==null){quarters=0;}else{quarters=po_Report_List[i-1].AF_CountNoQuarters__c;}
-					if(po_Report_List[i-1].AF_QuatersAlreadyDone__c==null){quartersdone=0;}else{quartersdone=po_Report_List[i-1].AF_QuatersAlreadyDone__c;}
-					if(po_Report_List[i-1].AF_Total__c==null){total=0;}else{total=po_Report_List[i-1].AF_Total__c;}
-					calcPO=calcPO+(total*((quarters+ quartersdone)/4) - previousval);                       
-					poReport.AF_PO_Total__c =calcPO;
+					poReport = POValueCalc(i,po_Report_List,poReport);
+					
 					//Previous Quarter value Calculation
 					if(po_Report_List[i-1].AF_Total__c==null){total=0;}else{total=po_Report_List[i-1].AF_Total__c;}
 					calc = calc+(total * (quarters+ quartersdone)/4);
 					poReport.AF_Previous_Quarter_Value__c=calc;
 					//Traditional Previous Quarter value Calculation
-					//if(poReport.AF_PO_Report_Type__c == 'Base Fees'){
-					if(po_Report_List[i-1].AF_Traditional_Local__c==null){totalTL=0;}else{totalTL=po_Report_List[i-1].AF_Traditional_Local__c;}
-					calcTL = calcTL+(totalTL * (quarters+ quartersdone)/4);
-					if(po_Report_List[i-1].AF_OverridePO_Traditional_LC__c==null){
-						poReport.AF_Previous_Quarter_Value_TL__c=calcTL;
-					}
-					else{
-						poReport.AF_Previous_Quarter_Value_TL__c = po_Report_List[i-1].AF_OverridePO_Traditional_LC__c + po_Report_List[i-1].AF_Previous_Quarter_Value_TL__c;
-					}
-					if(poReport.AF_PO_Report_Type__c == 'OOPS'){
-						if(po_Report_List[i-1].AF_Traditional__c==null){totalOOPSEUROTL=0;}else{totalOOPSEUROTL=po_Report_List[i-1].AF_Traditional__c;}
-						calcTLOOPSEURO = calcTLOOPSEURO+(totalOOPSEUROTL * (quarters+ quartersdone)/4);
-						poReport.AF_Previous_Quarter_Value_TL_OOPSEuro__c=calcTLOOPSEURO;
-					}
-					// }             
+					poReport = POTradCalc(i,po_Report_List,poReport);
+					          
 					//Adapation Previous Quarter value Calculation
-					if(poReport.AF_PO_Report_Type__c == 'Base Fees'){
-						if(po_Report_List[i-1].AF_Adaptation_Local__c==null){totalAL=0;}else{totalAL=po_Report_List[i-1].AF_Adaptation_Local__c;}
-						calcAL = calcAL+(totalAL * (quarters+ quartersdone)/4);
-						if(po_Report_List[i-1].AF_OverridePO_Adaptation_LC__c==null){
-							poReport.AF_Previous_Quarter_Value_AL__c=calcAL;
-						}
-						else{
-							poReport.AF_Previous_Quarter_Value_AL__c = po_Report_List[i-1].AF_OverridePO_Adaptation_LC__c + po_Report_List[i-1].AF_Previous_Quarter_Value_AL__c;
-						}
-					}             
+					poReport = POAdaptCalc(i,po_Report_List,poReport);
+					         
 					//Digital Previous Quarter value Calculation
-					if(poReport.AF_PO_Report_Type__c == 'Base Fees'){
-						if(po_Report_List[i-1].AF_Digital_Local__c==null){totalDL=0;}else{totalDL=po_Report_List[i-1].AF_Digital_Local__c;}
-						calcDL = calcDL+(totalDL * (quarters+ quartersdone)/4);
-						if(po_Report_List[i-1].AF_OverridePO_Digital_LC__c==null){
-							poReport.AF_Previous_Quarter_Value_DL__c=calcDL;
-						}
-						else{
-							poReport.AF_Previous_Quarter_Value_DL__c = po_Report_List[i-1].AF_OverridePO_Digital_LC__c + po_Report_List[i-1].AF_Previous_Quarter_Value_DL__c;
-						}
-					}
+					poReport = PODigitalCalc(i,po_Report_List,poReport);
+					
 				}
 				i++;
 				updateList.add(poReport);
@@ -380,5 +361,58 @@ global with sharing class AF_GetBaseFeePOData{
 				update  updateList;
 			}
 		}
-	}   
+	}  
+	public static AF_PO_Report__c POValueCalc(Integer i,List<AF_PO_Report__c> po_Report_List,AF_PO_Report__c poReport){
+		if(po_Report_List[i-1].AF_Previous_Quarter_Value__c == null) {previousval=0;} else {previousval=po_Report_List[i-1].AF_Previous_Quarter_Value__c;}
+		if(po_Report_List[i-1].AF_CountNoQuarters__c==null){quarters=0;}else{quarters=po_Report_List[i-1].AF_CountNoQuarters__c;}
+		if(po_Report_List[i-1].AF_QuatersAlreadyDone__c==null){quartersdone=0;}else{quartersdone=po_Report_List[i-1].AF_QuatersAlreadyDone__c;}
+		if(po_Report_List[i-1].AF_Total__c==null){total=0;}else{total=po_Report_List[i-1].AF_Total__c;}
+		calcPO=calcPO+(total*((quarters+ quartersdone)/4) - previousval);                       
+		poReport.AF_PO_Total__c =calcPO;
+		return poReport;
+	}
+    public static AF_PO_Report__c POTradCalc(Integer i,List<AF_PO_Report__c> po_Report_List,AF_PO_Report__c poReport){
+		if(po_Report_List[i-1].AF_Traditional_Local__c==null){totalTL=0;}else{totalTL=po_Report_List[i-1].AF_Traditional_Local__c;}
+					calcTL = calcTL+(totalTL * (quarters+ quartersdone)/4);
+					if(po_Report_List[i-1].AF_OverridePO_Traditional_LC__c==null){
+						poReport.AF_Previous_Quarter_Value_TL__c=calcTL;
+					}
+					else{
+						poReport.AF_Previous_Quarter_Value_TL__c = po_Report_List[i-1].AF_OverridePO_Traditional_LC__c + po_Report_List[i-1].AF_Previous_Quarter_Value_TL__c;
+					}
+					if(poReport.AF_PO_Report_Type__c == AF_Constants.OOPS_REPORT_TYPE){
+						if(po_Report_List[i-1].AF_Traditional__c==null){totalOOPSEUROTL=0;}else{totalOOPSEUROTL=po_Report_List[i-1].AF_Traditional__c;}
+						calcTLOOPSEURO = calcTLOOPSEURO+(totalOOPSEUROTL * (quarters+ quartersdone)/4);
+						poReport.AF_Previous_Quarter_Value_TL_OOPSEuro__c=calcTLOOPSEURO;
+					}
+		return poReport;
+	}
+
+	public static AF_PO_Report__c POAdaptCalc(Integer i,List<AF_PO_Report__c> po_Report_List,AF_PO_Report__c poReport){
+		if(poReport.AF_PO_Report_Type__c == AF_Constants.BASEFEES_REPORT_TYPE){
+						if(po_Report_List[i-1].AF_Adaptation_Local__c==null){totalAL=0;}else{totalAL=po_Report_List[i-1].AF_Adaptation_Local__c;}
+						calcAL = calcAL+(totalAL * (quarters+ quartersdone)/4);
+						if(po_Report_List[i-1].AF_OverridePO_Adaptation_LC__c==null){
+							poReport.AF_Previous_Quarter_Value_AL__c=calcAL;
+						}
+						else{
+							poReport.AF_Previous_Quarter_Value_AL__c = po_Report_List[i-1].AF_OverridePO_Adaptation_LC__c + po_Report_List[i-1].AF_Previous_Quarter_Value_AL__c;
+						}
+					} 
+		return poReport;				
+	}
+	
+	public static AF_PO_Report__c PODigitalCalc(Integer i,List<AF_PO_Report__c> po_Report_List,AF_PO_Report__c poReport){
+		if(poReport.AF_PO_Report_Type__c == AF_Constants.BASEFEES_REPORT_TYPE){
+						if(po_Report_List[i-1].AF_Digital_Local__c==null){totalDL=0;}else{totalDL=po_Report_List[i-1].AF_Digital_Local__c;}
+						calcDL = calcDL+(totalDL * (quarters+ quartersdone)/4);
+						if(po_Report_List[i-1].AF_OverridePO_Digital_LC__c==null){
+							poReport.AF_Previous_Quarter_Value_DL__c=calcDL;
+						}
+						else{
+							poReport.AF_Previous_Quarter_Value_DL__c = po_Report_List[i-1].AF_OverridePO_Digital_LC__c + po_Report_List[i-1].AF_Previous_Quarter_Value_DL__c;
+						}
+					}
+		return poReport;
+	}
 }
