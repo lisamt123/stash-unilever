@@ -21,6 +21,7 @@ public with sharing class AF_subResult_Helper{
 	static List<AF_Bonus_Results__c> bonusResultQuartList = new List<AF_Bonus_Results__c>();
 	static List<AF_Bonus_Results__c> bonusResultList = new List<AF_Bonus_Results__c>();
 	static Integer counter;
+	static Set<Id> bonusResultCreated = new Set<Id>();
 	/*****************************************************************************************
 *  @Description: this method is used to create the sub result records based on the bonus thershold
 *  @             and bonus result  record type and it will calculate the quant
@@ -44,41 +45,8 @@ public with sharing class AF_subResult_Helper{
 			}
 		}
 		counter =0;
-		Set<Id> bonusResultCreated = new Set<Id>();
-		if(BonusQuarterlySubResult.size()>0){
-			List<AF_Bonus_Results__c> tempBonusResult = new List<AF_Bonus_Results__c>();
-			try{
-				tempBonusResult = [select AF_Bonus_Thresholds__c,AF_Bonusable_Fees__c,AF_Period__c,AF_Status__c,AF_Locked__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN :BonusQuarterlySubResult and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Quarterly').getRecordTypeId() and AF_Period__c IN:QuaterSet];
-			}
-			catch(Exception e){
-				system.debug(e);
-			}
-			if(tempBonusResult.size()!=BonusQuarterlySubResult.size()){
-				counter=1;
-			}
-			for(AF_Bonus_Results__c bonusResult : tempBonusResult){
-				bonusResultCreated.add(bonusResult.AF_Bonus_Thresholds__c);
-				if(bonusResult.AF_Period__c==AF_Constants.QUARTER1){
-					bonusResult.AF_Bonusable_Fees__c = bonusfeesQ1.get(bonusResult.AF_Bonus_Thresholds__c);
-					bonusResult.AF_Quant_Bonus_Value__c = quantBonusQ1.get(bonusResult.AF_Bonus_Thresholds__c);
-					bonusResult.AF_Status__c = status.get(bonusResult.AF_Bonus_Thresholds__c);
-					bonusResult.AF_Locked__c = Lock.get(bonusResult.AF_Bonus_Thresholds__c);
-				}
-				else if(bonusResult.AF_Period__c==AF_Constants.QUARTER2){
-					bonusResult.AF_Bonusable_Fees__c = bonusfeesQ2.get(bonusResult.AF_Bonus_Thresholds__c);
-					bonusResult.AF_Quant_Bonus_Value__c = quantBonusQ2.get(bonusResult.AF_Bonus_Thresholds__c);
-					bonusResult.AF_Status__c = status.get(bonusResult.AF_Bonus_Thresholds__c);
-					bonusResult.AF_Locked__c = Lock.get(bonusResult.AF_Bonus_Thresholds__c);
-				}
-				else if(bonusResult.AF_Period__c==AF_Constants.QUARTER3){
-					bonusResult.AF_Bonusable_Fees__c = bonusfeesQ3.get(bonusResult.AF_Bonus_Thresholds__c);
-					bonusResult.AF_Quant_Bonus_Value__c = quantBonusQ3.get(bonusResult.AF_Bonus_Thresholds__c);
-					bonusResult.AF_Status__c = status.get(bonusResult.AF_Bonus_Thresholds__c);
-					bonusResult.AF_Locked__c = Lock.get(bonusResult.AF_Bonus_Thresholds__c);
-				}
-				bonusResultQuartList.add(bonusResult);
-			}
-		}
+		subResultStatusCalc(BonusQuarterlySubResult,QuaterSet,status,Lock);
+		
 		if(counter ==1){
 			List<AF_Bonus_Results__c> bonusquart = new List<AF_Bonus_Results__c>();
 			for(Id bt:BonusQuarterlySubResultMap.keySet()){
@@ -254,6 +222,42 @@ public with sharing class AF_subResult_Helper{
 						}
 					}
 				}
+			}
+		}
+	}
+	public static void subResultStatusCalc(Set<Id> BonusQuarterlySubResult,Set<String> QuaterSet,Map<Id,String> status,Map<Id,Boolean> Lock){
+		if(BonusQuarterlySubResult.size()>0){
+			List<AF_Bonus_Results__c> tempBonusResult = new List<AF_Bonus_Results__c>();
+			try{
+				tempBonusResult = [select AF_Bonus_Thresholds__c,AF_Bonusable_Fees__c,AF_Period__c,AF_Status__c,AF_Locked__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN :BonusQuarterlySubResult and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Quarterly').getRecordTypeId() and AF_Period__c IN:QuaterSet];
+			}
+			catch(Exception e){
+				system.debug(e);
+			}
+			if(tempBonusResult.size()!=BonusQuarterlySubResult.size()){
+				counter=1;
+			}
+			for(AF_Bonus_Results__c bonusResult : tempBonusResult){
+				bonusResultCreated.add(bonusResult.AF_Bonus_Thresholds__c);
+				if(bonusResult.AF_Period__c==AF_Constants.QUARTER1){
+					bonusResult.AF_Bonusable_Fees__c = bonusfeesQ1.get(bonusResult.AF_Bonus_Thresholds__c);
+					bonusResult.AF_Quant_Bonus_Value__c = quantBonusQ1.get(bonusResult.AF_Bonus_Thresholds__c);
+					bonusResult.AF_Status__c = status.get(bonusResult.AF_Bonus_Thresholds__c);
+					bonusResult.AF_Locked__c = Lock.get(bonusResult.AF_Bonus_Thresholds__c);
+				}
+				else if(bonusResult.AF_Period__c==AF_Constants.QUARTER2){
+					bonusResult.AF_Bonusable_Fees__c = bonusfeesQ2.get(bonusResult.AF_Bonus_Thresholds__c);
+					bonusResult.AF_Quant_Bonus_Value__c = quantBonusQ2.get(bonusResult.AF_Bonus_Thresholds__c);
+					bonusResult.AF_Status__c = status.get(bonusResult.AF_Bonus_Thresholds__c);
+					bonusResult.AF_Locked__c = Lock.get(bonusResult.AF_Bonus_Thresholds__c);
+				}
+				else if(bonusResult.AF_Period__c==AF_Constants.QUARTER3){
+					bonusResult.AF_Bonusable_Fees__c = bonusfeesQ3.get(bonusResult.AF_Bonus_Thresholds__c);
+					bonusResult.AF_Quant_Bonus_Value__c = quantBonusQ3.get(bonusResult.AF_Bonus_Thresholds__c);
+					bonusResult.AF_Status__c = status.get(bonusResult.AF_Bonus_Thresholds__c);
+					bonusResult.AF_Locked__c = Lock.get(bonusResult.AF_Bonus_Thresholds__c);
+				}
+				bonusResultQuartList.add(bonusResult);
 			}
 		}
 	}
