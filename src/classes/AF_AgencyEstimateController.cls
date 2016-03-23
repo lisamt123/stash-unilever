@@ -76,7 +76,8 @@ public with sharing class AF_AgencyEstimateController
 	public String overridePONumber{get;set;}
 	public String brandEstQuarter;
 	public Boolean POOverrideDisplay{get;set;}
-	private static string AF_AgencyEstimateController = 'AF_AgencyEstimateController';
+	private static string className_STR=AF_AgencyEstimateController.class.getName();
+	
 	/**********************************************************************
 *  @Description: this method is used to populate Traditional values 
    @			 and display in the page.
@@ -250,7 +251,7 @@ public with sharing class AF_AgencyEstimateController
 		posDelete =0;
 		CMCORO = false;
 		IsCentralHub = true; 
-		ActivePanel='Agency Estimate';
+		ActivePanel=AF_Constants.AGENCY_ESTIMATE;
 		ParentId = ApexPages.currentPage().getParameters().get('Id');    
 		GetCountry();
 		EntityException = new AF_Entity_Exception__c(); 
@@ -263,37 +264,7 @@ public with sharing class AF_AgencyEstimateController
 		OverrideTotal=0;
 		brandEstQuarter='';
 		POOverrideDisplay = false;
-		LoggedinUser=[SELECT id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c,profile.name  FROM  User  WHERE id=:Userinfo.getuserid()   AND IsActive=true  ORDER BY CreatedDate LIMIT 50000];             
-		if(LoggedinUser.AF_Agency_Fees_User_Type__c!=null){
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Regional Category Finance'){
-				isPOEditable=true;
-			}
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY ){
-				isAgencyEstEditable=true;
-			} 
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Procurement'  ||  LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
-				IsReadonlyPO=true;
-			}
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE|| LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Procurement' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Regional Category Finance'||LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY ){
-				IsShowPOTab=true;
-			}  
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
-				isAgency= true;
-			}
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE){
-				isCatFinance= true;
-			}
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User'){
-				isCMCO= true;
-				CMCORO=true;
-			}
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c=='Procurement' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller'){
-				isControllerPro = true;
-			}
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER){
-				isCMCOSuperUser = true;
-			}
-		}
+		identifyLoggedUser();
 		cmcoEditDateList = [SELECT AF_CMCO_Rights__c FROM AF_CMCO__c LIMIT 1];
 		if(cmcoEditDateList.size()>0){
 			if(cmcoEditDateList[0].AF_CMCO_Rights__c){
@@ -312,7 +283,7 @@ public with sharing class AF_AgencyEstimateController
 				UnileverEntityName = AgencyEstimate.AF_Unilever_Entity_Name__c;
 				AgencyEntityName = AgencyEstimate.AF_Agency_Entity_Name__c;
 				IsCentralHub = AgencyEstimate.AF_CentralBilling__c;
-				if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c=='Ready for PO'){
+				if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_READYFORPO){
 					IsReadyforPO=true;
 					if(AgencyEstimate.AF_Quarter_PO_Raised__c!=null){
 						PoValue=(AgencyEstimate.AF_Quarter_PO_Raised__c);
@@ -321,18 +292,18 @@ public with sharing class AF_AgencyEstimateController
 					SetDisplayValues();
 				}
 				//Added by Reetha for access rights of agency Users
-				if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c=='With Agency'){
+				if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY){
 					fieldsReadOnly = true;
 				}
-				if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c=='With Category Finance'){
+				if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE){
 					catFieldsReadOnly = true;
 				}
-				if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c=='With CMCO'){
+				if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WIHTCMCO){
 					cmcoFieldsReadOnly = true;
 				}
 				if(AgencyEstimate.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c!=null){
 					brandEstQuarter = AgencyEstimate.AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c;
-					if(!brandEstQuarter.contains('Q4')){
+					if(!brandEstQuarter.contains(AF_Constants.QUARTER4)){
 						POOverrideDisplay = true;
 					}
 				}
@@ -350,7 +321,7 @@ public with sharing class AF_AgencyEstimateController
 					poReportObj = [SELECT AF_Calculate_Tradition_Local__c,AF_Calculate_Adaptation_Local__c,AF_Calculate_Digital_Local__c,AF_PO_Value_Total_LC__c from AF_PO_Report__c where AF_Agency_Estimate_ID__c=:ParentId];
 				}
 				catch(Exception ex){
-					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'AF_AgencyEstimateController',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_AgencyEstimateController',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 
 				}
 				if(AgencyEstimate.AF_OverridePO_Adaptation_LC__c!=null)
@@ -380,8 +351,8 @@ public with sharing class AF_AgencyEstimateController
 				AgencyEntityName = AF_Utils.EntityNameValue(ApexPages.currentPage().getParameters().get('aid'));                                                
 			}                
 		}
-		if((AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c=='With Agency' && LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY) || 
-				(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c=='With Category Finance' && LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE) ||
+		if((AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY&& LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY) || 
+				(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE && LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE) ||
 				LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER)
 		{
 			SubmitButtonDisplay=true;            
@@ -390,6 +361,39 @@ public with sharing class AF_AgencyEstimateController
 		{
 			SubmitButtonDisplay=false;
 		} 
+	}
+	public void identifyLoggedUser(){
+		LoggedinUser=[SELECT id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c,profile.name  FROM  User  WHERE id=:Userinfo.getuserid()   AND IsActive=true  ORDER BY CreatedDate LIMIT 50000];             
+		if(LoggedinUser.AF_Agency_Fees_User_Type__c!=null){
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE){
+				isPOEditable=true;
+			}
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY ){
+				isAgencyEstEditable=true;
+			} 
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT  ||  LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
+				IsReadonlyPO=true;
+			}
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE|| LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE||LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY ){
+				IsShowPOTab=true;
+			}  
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
+				isAgency= true;
+			}
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE){
+				isCatFinance= true;
+			}
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER){
+				isCMCO= true;
+				CMCORO=true;
+			}
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER){
+				isControllerPro = true;
+			}
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER){
+				isCMCOSuperUser = true;
+			}
+		}
 	}
 	/**********************************************************************
 *  @Description: this method is used to call the wrapper method 
@@ -477,7 +481,7 @@ public with sharing class AF_AgencyEstimateController
 			AgencyEstimate.AF_OverridePO_Adaptation_LC__c = overrideAdapt;
 			update AgencyEstimate;
 			overridePONumber = AgencyEstimate.AF_PO_Number__c;
-			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved'));
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved));
 		}    
 	}
 	/**********************************************************************
@@ -500,7 +504,7 @@ public with sharing class AF_AgencyEstimateController
 		OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Traditional_LC__c;
 		if(OverrideTotal>AgencyEstimate.AF_LC_Total__c){
 			errMsgOverride=true;
-			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,'POOverride value cannot be more than the BaseFee'));
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Pooveride));
 		}
 		if(!errMsgOverride){
 			update AgencyEstimate;
@@ -511,9 +515,9 @@ public with sharing class AF_AgencyEstimateController
 				poReportObj = [SELECT AF_Calculate_Tradition_Local__c,AF_Calculate_Adaptation_Local__c,AF_Calculate_Digital_Local__c,AF_PO_Value_Total_LC__c from AF_PO_Report__c where AF_Agency_Estimate_ID__c=:ParentId];
 			}
 			catch(Exception ex){
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'OverridePO',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'OverridePO',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			}
-			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved')); 
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved)); 
 		}
 	}
 	/**********************************************************************
@@ -529,13 +533,13 @@ public with sharing class AF_AgencyEstimateController
 		try
 		{
 			upsert AgencyEstimate;
-			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved'));    
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved));    
 		}
 		catch(DMLException ex)
 		{
-			pageRef = new PageReference('/apex/AF_CloseAndRefresh?IsError=true');
+			pageRef = new PageReference(AF_Constants.CLOSE_REFRESH);
 			pageRef.setRedirect(true);        
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AgencyEstimateController','Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
 		}
 		return pageRef;
 	}
@@ -563,18 +567,18 @@ public with sharing class AF_AgencyEstimateController
 			UpdateEntityEX();
 			ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.info,system.label.AF_AgencyEstimateSuccess);
 			ApexPages.addMessage(myMsg);
-			if(IsCentralHub)  ActivePanel='Country Breakdown';
+			if(IsCentralHub)  ActivePanel=AF_Constants.COUNTRY_BREAKDOWN;
 			return null; 
 		}
 		catch(Exception ex)
 		
 		{
 			String str = ex.getMessage();
-			if(str.contains('DMLException')){
-				ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Record Can not be saved'));
+			if(str.contains(AF_Constants.DML_EXCEPTION)){
+				ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Record_Unsaved));
 			}
-			else if(str.contains('NoAccessException')){
-				ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'User does not have access'));
+			else if(str.contains(AF_Constants.NO_ACCESS_EXCEPTION)){
+				ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_User_Access));
 			}
 			return null;            
 		}
@@ -673,7 +677,7 @@ public with sharing class AF_AgencyEstimateController
 		catch(DMLException ex)
 		{
 			ApexPages.addMessages(ex);
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'SaveEntityException',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SaveEntityException',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
 			pageRef = null;
 		}
 		return pageRef;         
@@ -756,8 +760,8 @@ public with sharing class AF_AgencyEstimateController
 		catch(DMLException ex)
 		{
 			ApexPages.addMessages(ex);
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(), AF_AgencyEstimateController,'DeleteException',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
-			pageRef = new PageReference('/apex/AF_CloseAndRefresh?IsError=true');
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(), className_STR,'DeleteException',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
+			pageRef = new PageReference(AF_Constants.CLOSE_REFRESH);
 			pageRef.setRedirect(true);
 			pageRef = null;             
 		}
@@ -771,7 +775,7 @@ public with sharing class AF_AgencyEstimateController
 **********************************************************************/
 	public PageReference AddComment()
 	{
-		PageReference pageRef = new PageReference('/apex/AF_AddComment?Id=' + ParentId);
+		PageReference pageRef = new PageReference(AF_Constants.ADD_COMMENT + ParentId);
 		pageRef.setRedirect(true);
 		return pageRef;
 	}
@@ -790,7 +794,7 @@ public with sharing class AF_AgencyEstimateController
 		Map<String, Schema.SObjectField> field_map = sobject_describe.fields.getMap();
 		List<Schema.PicklistEntry> pick_list_values = field_map.get('AF_Country__c').getDescribe().getPickListValues();
 		Countrynames = new List<SelectOption>();
-		Countrynames.add(new selectoption('','--Country--'));
+		Countrynames.add(new selectoption('',AF_Constants.AF_COUNTRY_DELIM));
 		for (Schema.PicklistEntry a : pick_list_values) {
 			Countrynames.add(new selectOption(a.getValue(), a.getValue()));
 		}
@@ -843,7 +847,7 @@ public with sharing class AF_AgencyEstimateController
 				for(integer j=i+1;j<Wrapperlist.size();j++){
 					if(Wrapperlist[i].EntityEx.AF_Country__c == Wrapperlist[j].EntityEx.AF_Country__c){
 						counter++;
-						apexpages.addmessage(new apexpages.message(apexpages.severity.Error,'Selected country already exists'));
+						apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Country_selected));
 					}
 				}
 			}
@@ -859,13 +863,13 @@ public with sharing class AF_AgencyEstimateController
 					updated_entity_ex.add(entity_ex_new);
 					if(ent.EntityEx.AF_Country__c==null){
 						counterSave=1;
-						Apexpages.addmessage(new apexpages.message(apexpages.severity.ERROR,  'Please select the country'));
+						Apexpages.addmessage(new apexpages.message(apexpages.severity.ERROR, Label.AF_Select_Country));
 					}
 				}
 				if(counterSave==0){
 					if(!(totalper>100)){
 						upsert updated_entity_ex;
-						apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved')); 
+						apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved)); 
 						CallEntityWrapper();
 					}
 					else{
@@ -875,7 +879,7 @@ public with sharing class AF_AgencyEstimateController
 			}
 		}
 		catch(exception ex){
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'SaveEntityExceptionRecords',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SaveEntityExceptionRecords',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 		}
 	}   
 	/**********************************************************************
