@@ -53,10 +53,30 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>VPM_AdvancedFormSubmitted__c</fullName>
+        <description>System field to record when the FLS have submitted their additions to the request. Used by Process Builder to drive status change, approvals and reassignment</description>
+        <externalId>false</externalId>
+        <label>Advanced Form Submitted</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <fields>
         <fullName>VPM_AlreadyBeenInvoiced__c</fullName>
         <defaultValue>false</defaultValue>
@@ -413,27 +433,6 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>VPM_FLSSubmitted__c</fullName>
-        <description>System field to record when the FLS have submitted their additions to the request. Used by Process Builder to drive status change, approvals and reassignment</description>
-        <externalId>false</externalId>
-        <label>FLS Submitted</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Yes</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>No</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>VPM_FinanceApprovalRequired__c</fullName>
@@ -929,6 +928,17 @@
         <description>Request raised by a Business Requestor</description>
         <label>Purchasing Request</label>
         <picklistValues>
+            <picklist>VPM_AdvancedFormSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ApprovalsCompleted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1129,17 +1139,6 @@
             </values>
             <values>
                 <fullName>USCC NL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_FLSSubmitted__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1300,6 +1299,17 @@
         <description>Request qualified as needing a Vendor Create in SAP</description>
         <label>Purchasing Request (Vendor Create)</label>
         <picklistValues>
+            <picklist>VPM_AdvancedFormSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ApprovalsCompleted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1500,17 +1510,6 @@
             </values>
             <values>
                 <fullName>USCC NL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_FLSSubmitted__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1671,6 +1670,17 @@
         <description>Request qualified as needing a Vendor Extend in SAP</description>
         <label>Purchasing Request (Vendor Extend)</label>
         <picklistValues>
+            <picklist>VPM_AdvancedFormSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ApprovalsCompleted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -1871,17 +1881,6 @@
             </values>
             <values>
                 <fullName>USCC NL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_FLSSubmitted__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2042,6 +2041,17 @@
         <description>Request qualified as needing a Vendor Maintain in SAP</description>
         <label>Purchasing Request (Vendor Maintain)</label>
         <picklistValues>
+            <picklist>VPM_AdvancedFormSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ApprovalsCompleted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2242,17 +2252,6 @@
             </values>
             <values>
                 <fullName>USCC NL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_FLSSubmitted__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2413,6 +2412,17 @@
         <description>Purchase Requisition Request raised by a Business Requestor</description>
         <label>Purchase Requisition</label>
         <picklistValues>
+            <picklist>VPM_AdvancedFormSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ApprovalsCompleted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2613,17 +2623,6 @@
             </values>
             <values>
                 <fullName>USCC NL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_FLSSubmitted__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2784,6 +2783,17 @@
         <description>Purchase Requsition Request qualified as needing a Vendor Create in SAP</description>
         <label>Purchase Requisition (Vendor Create)</label>
         <picklistValues>
+            <picklist>VPM_AdvancedFormSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ApprovalsCompleted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2984,17 +2994,6 @@
             </values>
             <values>
                 <fullName>USCC NL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_FLSSubmitted__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3155,6 +3154,17 @@
         <description>Purchase Requisition Request qualified as needing a Vendor Extend in SAP</description>
         <label>Purchase Requisition (Vendor Extend)</label>
         <picklistValues>
+            <picklist>VPM_AdvancedFormSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ApprovalsCompleted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3355,17 +3365,6 @@
             </values>
             <values>
                 <fullName>USCC NL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_FLSSubmitted__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3526,6 +3525,17 @@
         <description>Purchase Requisition Request qualified as needing a Vendor Maintain in SAP</description>
         <label>Purchase Requisition (Vendor Maintain)</label>
         <picklistValues>
+            <picklist>VPM_AdvancedFormSubmitted__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_ApprovalsCompleted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3726,17 +3736,6 @@
             </values>
             <values>
                 <fullName>USCC NL</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>VPM_FLSSubmitted__c</picklist>
-            <values>
-                <fullName>No</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

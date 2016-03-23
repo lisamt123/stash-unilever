@@ -1,0 +1,19 @@
+<apex:page standardController="VPM_PurchasingRequests__c">  
+<apex:stylesheet value="{!URLFOR($Resource.vpmstyles, 'vpmstyles.css')}" />
+    <script type = "text/javascript">
+    window.onload=function() {
+        var criteria1 = "{!VPM_PurchasingRequests__c.VPM_Status__c}"; 
+
+        if(criteria1=="FLS Review") {
+        alert("Please Approve / Reject the Request before completing the Advanced Form");
+        //return false;
+        }
+    };
+    </script>
+
+    <flow:interview name="VPM_PurchasingRequestAdvancedForm" finishLocation="/{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}" >    
+        <apex:param name="VPM_PurchasingRequestID" value="{!VPM_PurchasingRequests__c.Id}"/>    
+    </flow:interview>
+    
+    <apex:detail subject="{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c == 'FLS Review'}" showChatter="true"/>
+</apex:page>
