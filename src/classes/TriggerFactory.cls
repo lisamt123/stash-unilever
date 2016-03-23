@@ -1,8 +1,8 @@
 /**
-* Class TriggerFactory
-*
-* Used to instantiate and execute Trigger Handlers associated with sObjects.
-*/
+ * Class TriggerFactory
+ *
+ * Used to instantiate and execute Trigger Handlers associated with sObjects.
+ */
 public with sharing class TriggerFactory
 {
     /**
@@ -123,14 +123,11 @@ public with sharing class TriggerFactory
         if (soType == Oblix_SOW_Projects__c.sObjectType){
             return new Oblix_ProjectHandler();
 
-
         }if (soType == Oblix_Marketing_SOW_Project_Splits__c.sObjectType){
             return new Oblix_SplitHandler(); 
 
-
         }if (soType == Marketing_SOW__c.sObjectType){
             return new Oblix_SOWHandler(); 
-
 
         }if (soType == Oblix_Project_Assets__c.sObjectType){
             return new Oblix_AssetHandler(); 
@@ -139,8 +136,7 @@ public with sharing class TriggerFactory
             return new Oblix_UserPermissionHandler();
             
         }
-
-                        
+		
         if (soType == FAU_Webinar_Participant__c.sObjectType)
         {
             return new FAU_Webinar_ParticipantHandler();
@@ -175,10 +171,6 @@ public with sharing class TriggerFactory
         if (soType == IPM_Project_Document__c.sObjectType){
             return new IPM_ProjectDocumentHandler();
         }
-
-
-
-
          if (soType == IPM_Project_Document_Section_Content__c.sObjectType){
             return new IPM_ProjectDocumentSectionContentHandler();
         }        
@@ -203,10 +195,10 @@ public with sharing class TriggerFactory
         if (soType == IPM_Assessment__c.sObjectType){
             return new IPM_AssesmentHandler();
         }
-                        if (soType == Core_Approval_Details__c.sObjectType){
+		if (soType == Core_Approval_Details__c.sObjectType){
             return new Core_CA_LineItem_Handler();
         }
-        if (soType == CFC_Attendee__c.sObjectType){
+		if (soType == CFC_Attendee__c.sObjectType){
             return new CFC_Attendee_Handler();
         }
         return null;
