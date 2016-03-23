@@ -4683,7 +4683,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Mexico_Queue_Case</fullName>
-        <booleanFilter>(1 AND (2 OR 3) AND 4)</booleanFilter>
+        <booleanFilter>(1 AND (2 OR 3 or 5) AND 4)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Case_Brand__c</columns>
         <columns>NAME</columns>
@@ -4712,6 +4712,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CASES.STATUS</field>
             <operation>equals</operation>
             <value>New</value>
+        </filters>
+        <filters>
+            <field>CASES.SUBJECT</field>
+            <operation>contains</operation>
+            <value>www.unilever.com.mx</value>
         </filters>
         <label>CEC North America Mexico Queue</label>
         <language>en_US</language>
@@ -5270,7 +5275,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Unilever_General</fullName>
-        <booleanFilter>1 AND ((2 OR 4 OR 7) aND 5) AND 3 AND 6 AND 8</booleanFilter>
+        <booleanFilter>(2 or 3 or 4 or 5) and 1 and 6</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Country__c</columns>
         <columns>Case_Brand__c</columns>
@@ -5279,7 +5284,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
@@ -5293,7 +5298,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>notEqual</operation>
-            <value>Privacy,Privacy Policy</value>
+            <value>Privacy</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
@@ -5301,26 +5306,17 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Pending Request,Recontact,Unilever Canada,Operation in Touch</value>
         </filters>
         <filters>
-            <field>CASES.SUBJECT</field>
-            <operation>contains</operation>
-            <value>www.unileverusa.com</value>
+            <field>Case_Brand__c</field>
+            <operation>equals</operation>
         </filters>
         <filters>
             <field>CASES.SUBJECT</field>
             <operation>notContain</operation>
             <value>www.unilever.com.mx</value>
         </filters>
-        <filters>
-            <field>Case_Brand__c</field>
-            <operation>equals</operation>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>equals</operation>
-            <value>North America</value>
-        </filters>
         <label>CEC North America 24-7 Queue General</label>
         <language>en_US</language>
+        <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <role>CEC_Manager_North_America</role>
             <role>CEC_User_North_America</role>
@@ -6113,6 +6109,40 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <sharedTo>
             <role>CEC_Manager_DACH</role>
             <role>CEC_User_DACH</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Voice_of_the_Consumer</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>NAME</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>Product_UPC__c</columns>
+        <columns>CEC_Product_Reporting_Name__c</columns>
+        <columns>Reason_L5_desc__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <filters>
+            <field>Country__c</field>
+            <operation>lessOrEqual</operation>
+            <value>United States - English</value>
+        </filters>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Email</value>
+        </filters>
+        <label>Voice of the Consumer</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
