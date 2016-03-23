@@ -8,7 +8,7 @@
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PCContainer.css')}" />
 
-   <apex:composition template="LMS_Template">  
+   <apex:composition template="almond__LMS_Template">  
         
    <apex:define name="body">
                      
