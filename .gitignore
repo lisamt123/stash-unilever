@@ -1,5 +1,5 @@
 # IDE setup #
-######################
+#############
 *.sublime-project
 *.sublime-settings
 *.sublime-workspace
@@ -27,14 +27,26 @@ Thumbs.db
 .gradle/*
 
 # Files breaking git for Windows users #
-######################
+########################################
 ***HELP***.homePageComponent
 
-# unused folders #
-###
+# Unused folders #
+##################
+bin/*
+client/*
 lib/*
-datascript/*
+scripts/*
 
-# Not adding package.xml as it is built dynamically from the src folder contents
+# Unused files #
+##################
+antbuild.xml
+build.properties
+build.xml
+*.sh
+PackageALL.xml
+project*.txt
+
+# Not adding package.xml as it is built dynamically from the src folder contents #
+##################################################################################
 src/package.xml
 
