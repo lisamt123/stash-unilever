@@ -273,7 +273,37 @@ public with sharing class AF_AgencyEstimateController
 		}   
 		if(ApexPages.currentPage().getParameters().get('Id') != null)
 		{
-			IsUpdate = true;
+			constructorExt();
+			      
+		}
+		else
+		{
+			if(ApexPages.currentPage().getParameters().get('bid') != null && ApexPages.currentPage().getParameters().get('aid') != null && ApexPages.currentPage().getParameters().get('uid') != null)
+			{
+				IsUpdate = false;
+				IsInsert = true;
+				IsCentralHub = false;
+				AgencyEstimate = new AF_Agency_Estimate__c();                   
+				AgencyEstimate.AF_Brand_Estimate__c = ApexPages.currentPage().getParameters().get('bid'); 
+				AgencyEstimate.AF_Unilever_Entity__c = ApexPages.currentPage().getParameters().get('uid');
+				AgencyEstimate.AF_Agency_Entity__c = ApexPages.currentPage().getParameters().get('aid');  
+				UnileverEntityName = AF_Utils.EntityNameValue(ApexPages.currentPage().getParameters().get('uid'));
+				AgencyEntityName = AF_Utils.EntityNameValue(ApexPages.currentPage().getParameters().get('aid'));                                                
+			}                
+		}
+		if((AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY&& LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY) || 
+				(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE && LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE) ||
+				LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER)
+		{
+			SubmitButtonDisplay=true;            
+		}
+		Else
+		{
+			SubmitButtonDisplay=false;
+		} 
+	}
+	public void constructorExt(){
+		IsUpdate = true;
 			IsInsert = false;               
 			AgencyEstimate = [SELECT Id,AF_OverridePO_Adaptation_LC__c,AF_OverridePO_Digital_LC__c,AF_OverridePO_Traditional_LC__c,AF_Category_Finance_Flag__c,AF_Total_USD__c,AF_Total_Local__c,Traditional_USD_Formula__c,AF_Digital_USD_Formula__c,Adaptation_USD_Formula__c,AF_IsCrossborder__c,AF_Ready_For_PO_Entry_Currency__c,AF_Agency_Spot_Rate__c,AF_Quarter_PO_Raised__c,AF_PO_Value__c,AF_Adaptation__c,AF_PO_Number__c,AF_Brand_Estimate__r.AF_CMCO_Rejected__c,AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c,AF_Brand_Estimate__r.AF_Status_Base_Fees__c,AF_Is_Unilever_Central_Hub__c,AF_CentralBilling__c, AF_Unilever_Entity_Name__c,AF_Agency_Entity_Name__c,AF_isLocked__c, AF_Digital__c, AF_Traditional__c,AF_Agency_Entity__c,AF_Unilever_Entity__c,AF_Total__c,AF_Matrix_Data_Entry_Currency__c, AF_Traditional_Local__c, AF_Digital_Local__c, AF_Adaptation_Local__c,AF_Agency_Exchange_Rate__c,AF_CentralBillingMessage__c,AF_LC_Traditional__c,AF_LC_Digital__c,AF_LC_Adaptation__c,AF_LC_Total__c  FROM AF_Agency_Estimate__c WHERE Id = : ParentId];
 			EntityExceptionCollection = [SELECT Id, AF_Agency_Estimate__c, AF_Value_Euro__c,AF_Value__c,AF_Country__c FROM AF_Entity_Exception__c where AF_Agency_Estimate__c = : ParentId];
@@ -334,33 +364,7 @@ public with sharing class AF_AgencyEstimateController
 				overrideDigital = AgencyEstimate.AF_OverridePO_Digital_LC__c;
 				overrideAdapt = AgencyEstimate.AF_OverridePO_Adaptation_LC__c;
 				overridePONumber = AgencyEstimate.AF_PO_Number__c;
-			}            
-		}
-		else
-		{
-			if(ApexPages.currentPage().getParameters().get('bid') != null && ApexPages.currentPage().getParameters().get('aid') != null && ApexPages.currentPage().getParameters().get('uid') != null)
-			{
-				IsUpdate = false;
-				IsInsert = true;
-				IsCentralHub = false;
-				AgencyEstimate = new AF_Agency_Estimate__c();                   
-				AgencyEstimate.AF_Brand_Estimate__c = ApexPages.currentPage().getParameters().get('bid'); 
-				AgencyEstimate.AF_Unilever_Entity__c = ApexPages.currentPage().getParameters().get('uid');
-				AgencyEstimate.AF_Agency_Entity__c = ApexPages.currentPage().getParameters().get('aid');  
-				UnileverEntityName = AF_Utils.EntityNameValue(ApexPages.currentPage().getParameters().get('uid'));
-				AgencyEntityName = AF_Utils.EntityNameValue(ApexPages.currentPage().getParameters().get('aid'));                                                
-			}                
-		}
-		if((AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WITH_AGENCY&& LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY) || 
-				(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c==AF_Constants.CATEGORY_FINANCE && LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE) ||
-				LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER)
-		{
-			SubmitButtonDisplay=true;            
-		}
-		Else
-		{
-			SubmitButtonDisplay=false;
-		} 
+			}  
 	}
 	public void identifyLoggedUser(){
 		LoggedinUser=[SELECT id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c,profile.name  FROM  User  WHERE id=:Userinfo.getuserid()   AND IsActive=true  ORDER BY CreatedDate LIMIT 50000];             
