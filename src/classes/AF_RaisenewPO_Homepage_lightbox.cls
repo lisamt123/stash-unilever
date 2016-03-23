@@ -37,6 +37,9 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 	Integer counter;
 	Integer countOfSelectedBaseFee;
 	public Boolean displayPopup{get;set;}
+	String newQuarter;
+	List<String> gapQuarter;
+	private static string className_STR=AF_RaisenewPO_Homepage_lightbox.class.getName();
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_RaisenewPO_Homepage_lightbox
@@ -73,7 +76,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 			sortDir = AF_Constants.SORT_ORDER_ASC;    
 		}
 		else{
-			sortDir = sortDir.equals(AF_Constants.SORT_ORDER_ASC) ? 'desc' : AF_Constants.SORT_ORDER_ASC;
+			sortDir = sortDir.equals(AF_Constants.SORT_ORDER_ASC) ? AF_Constants.SORT_ORDER_DESC : AF_Constants.SORT_ORDER_ASC;
 		}
 		String soql = 'select name,AF_Basefee_Estimate_Initial_Quarter__c,AF_RaiseNewPOQuarters__c,AF_BackupQuarter__c,AF_Pilot_Model__c,Archived_BrandEstimate_Quarter__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,Brand__r.Name,AF_Agency__r.Name,Brand__c,AF_Fiscal_Year__c from AF_Brand_Estimate__c where AF_Status_Base_Fees__c = \'Ready for PO\' and AF_Fiscal_Year__c =\''+year+'\'  and AF_Active__c=True and AF_Controller_Flag__c=False order by name';
 		soql = soql +' '+sortDir+' '+ 'limit 49999';
@@ -88,16 +91,16 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 				Quarters  = eachBrandEstimate.AF_BackupQuarter__c;
 				backupBrandQuarter.put(eachBrandEstimate.Id,eachBrandEstimate.AF_BackupQuarter__c);
 				if(Quarters != null){
-					if(Quarters.contains('Q1')){
+					if(Quarters.contains(AF_Constants.QUARTER1)){
 						Quarter1 = true;
 					}
-					if(Quarters.contains('Q2')){
+					if(Quarters.contains(AF_Constants.QUARTER2)){
 						Quarter2 = true;
 					}
-					if(Quarters.contains('Q3')){
+					if(Quarters.contains(AF_Constants.QUARTER3)){
 						Quarter3 = true;
 					}
-					if(Quarters.contains('Q4')){
+					if(Quarters.contains(AF_Constants.QUARTER4)){
 						Quarter4 = true;
 					}
 				}
@@ -107,7 +110,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 		}
 		if(QuarterEstimate.size()==0){
 			noBrandEstimateRecords = false;
-			apexpages.addmessage(new apexpages.message(apexpages.severity.info,'There are no valid records to raise a new PO'));    
+			apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_RaiseNewPO_ValidRecords));    
 		}
 		else{
 			noBrandEstimateRecords = true;
@@ -125,7 +128,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 		list<String> validateAddQuarter=new list<String>();
 		countOfSelectedBaseFee =0;
 		selectedBrandEstimateIds = new Set<String>();
-		List<String> gapQuarter = new List<String>();
+		gapQuarter = new List<String>();
 		List<String>addQuarter=new List<String>();
 		String newBrandName='';
 		String quarterformat='';
@@ -137,26 +140,12 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 				brandQuarter = '';
 				newBrandName = '';
 				quarterformat='';
-				String newQuarter='';
+				newQuarter='';
 				newBrandName = B.BrandRecord.Brand__r.Name +'-';     
 				newBrandName=newBrandName+B.BrandRecord.AF_Agency__r.Name;
 				counter=0;
-				if(B.Q1){
-					newQuarter = newQuarter+'Q1;';
-					gapQuarter.add('Q1');
-				}
-				if(B.Q2){
-					newQuarter = newQuarter+'Q2;';
-					gapQuarter.add('Q2');
-				}
-				if(B.Q3){
-					newQuarter = newQuarter+'Q3;';
-					gapQuarter.add('Q3');
-				}
-				if(B.Q4){
-					newQuarter = newQuarter+'Q4;';
-					gapQuarter.add('Q4');
-				}
+				quarterCalc(B);
+				
 				newQuarter = newQuarter.removeEnd(';');
 				tempvalueMap.put(B.BrandRecord.Id,newQuarter);
 				List<String> tempSplit = new List<String>();
@@ -180,7 +169,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 				}
 				if(counter==0 && countOfSelectedBaseFee!=0){
 					displayPopup = False;
-					apexpages.addmessage(new apexpages.message(apexpages.severity.info,'Please select the Coresponding Quarter also'));    
+					apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Select_Quarter));    
 				}
 				else{
 					String missQuarter='';
@@ -201,7 +190,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 						pos = String.ValueOf(lastQuarter-i);
 						if(!missQuarter.contains(pos)){
 							displayPopup = false;
-							apexpages.addmessage(new apexpages.message(apexpages.severity.error,'Quarters are missing'));
+							apexpages.addmessage(new apexpages.message(apexpages.severity.error,Label.AF_Missing_Quarters));
 							break;
 						}
 						else{
@@ -242,7 +231,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 				if(B.BrandRecord.AF_Adaptive__c!=null)
 				createBrand.AF_Adaptive__c = B.BrandRecord.AF_Adaptive__c;
 				createBrand.Archived_BrandEstimate_Quarter__c = newQuarter;
-				createBrand.AF_Status_Base_Fees__c = 'With Agency';
+				createBrand.AF_Status_Base_Fees__c = AF_Constants.BASE_FEES_WITH_AGENCY;
 				createBrand.AF_BackupQuarter__c = newQuarter;
 				// added to track the raise new po quarters
 				if(B.BrandRecord.AF_RaiseNewPOQuarters__c==null){
@@ -286,10 +275,29 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 		}
 		if(countOfSelectedBaseFee==0 && QuarterEstimate.size()>0)
 		{   displayPopup = False;
-			apexpages.addmessage(new apexpages.message(apexpages.severity.info,'Please select Current base fee name,Which you want to Archive')); 
-			sortDir = sortDir.equals(AF_Constants.SORT_ORDER_ASC) ? 'desc' : AF_Constants.SORT_ORDER_ASC;
+			apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Select_Current_BaseFee)); 
+			sortDir = sortDir.equals(AF_Constants.SORT_ORDER_ASC) ?AF_Constants.SORT_ORDER_DESC : AF_Constants.SORT_ORDER_ASC;
 			queryBrandEstimate();
 		}
+	}
+	
+	public void quarterCalc(wrapChechbox B){
+		if(B.Q1){
+					newQuarter = newQuarter+'Q1;';
+					gapQuarter.add(AF_Constants.QUARTER1);
+				}
+				if(B.Q2){
+					newQuarter = newQuarter+'Q2;';
+					gapQuarter.add(AF_Constants.QUARTER2);
+				}
+				if(B.Q3){
+					newQuarter = newQuarter+'Q3;';
+					gapQuarter.add(AF_Constants.QUARTER3);
+				}
+				if(B.Q4){
+					newQuarter = newQuarter+'Q4;';
+					gapQuarter.add(AF_Constants.QUARTER4);
+				}
 	}
 	/***********************************************************************************
 *  @Description: this method is used to insert the BrandEstimate and AgencyEstimate
@@ -345,7 +353,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 					newRecord.AF_Digital__c =  newAgencyRecord.AF_Digital__c;
 					newRecord.AF_Traditional__c =  newAgencyRecord.AF_Traditional__c;
 					newRecord.AF_Previous_PO_Value__c = newAgencyRecord.AF_Quarter_PO_Raised__c;
-					newRecord.AF_Status__c = 'With Agency';
+					newRecord.AF_Status__c = AF_Constants.BASE_FEES_WITH_AGENCY;
 					if(noOfOldQuarters.size()>0)
 					newRecord.AF_Previous_Quarters_Done__c = noOfOldQuarters.size();
 					createAgencyEstimate.add(newRecord);
@@ -355,11 +363,11 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 		try{
 			if(createAgencyEstimate.size()>0){
 				insert  createAgencyEstimate;
-				apexpages.addmessage(new apexpages.message(apexpages.severity.info,'BrandEstimate are archived and new Quarters are created'));
+				apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Brandestimate_Archived));
 			}
 		}
 		catch(Exception e){
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_RaisenewPO_Homepage_lightbox','saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		}
 		displayPopup = False;
 		//SendEmailNotification();
