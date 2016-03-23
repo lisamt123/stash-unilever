@@ -458,7 +458,7 @@ global with sharing class AF_BrandEstimateController2
 		Set<String> delBonusThresholdCountry = new Set<String>();
 		Try{
 			if(BonusThresholds.size()>0){
-				bonusCountryValidation(BonusThresholds,counter);
+				bonusCountryValidation(BonusThresholds);
 				if(test.isrunningtest()){
 					counter=0;
 					isDig_Trad=false;
@@ -518,7 +518,7 @@ global with sharing class AF_BrandEstimateController2
 *  @param : list<wrapbonus>
 *  @return: None.
 ***********************************************************************************************/
-	public void bonusCountryValidation(list<wrapbonus> BonusThresholds,Integer counter){
+	public void bonusCountryValidation(list<wrapbonus> BonusThresholds){
 	AF_Bonus_Threshold__c btInsertRecords;
 	set<String> countrySet = new set<String>();
 	For(wrapbonus bonus_thresolds:BonusThresholds){
