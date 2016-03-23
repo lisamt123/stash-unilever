@@ -10518,6 +10518,16 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
+        <fullName>LocalIdentifier_Length_Validation</fullName>
+        <active>true</active>
+        <description>CEC : This will validate the  Local Identifier Length for Brazil user. It should contain 11 digits numbers</description>
+        <errorConditionFormula>IF( ( ( $UserRole.Name  = &apos;CEC Manager - Brazil&apos;) || ( $UserRole.Name  = &apos;CEC User -  Brazil&apos;) || ( $UserRole.Name  = &apos;CEC User - Planitox Brazil&apos;)) &amp;&amp;  Local_Identifier__c  &lt;&gt; null ,
+	(NOT( ISNUMBER( SUBSTITUTE(SUBSTITUTE(  Local_Identifier__c , &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) ) ||LEN(SUBSTITUTE(SUBSTITUTE( Local_Identifier__c, &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) &lt;&gt; 11),
+	false)</errorConditionFormula>
+        <errorDisplayField>Local_Identifier__c</errorDisplayField>
+        <errorMessage>Invalid CPF number (Should contain 11 digit numeric value)</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Pitch_Email_or_Phone_Mandatory</fullName>
         <active>true</active>
         <description>Pitch users are required to enter either an Email address or a Phone number.</description>
