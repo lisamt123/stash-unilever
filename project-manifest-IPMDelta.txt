@@ -2,6 +2,15 @@ src
 src/classes
 src/classes/IPM_ProjectDocumentSectionController.cls
 src/classes/IPM_ProjectDocumentSectionController.cls-meta.xml
+src/classes/IPM_Utils.cls
+src/classes/IPM_Utils.cls-meta.xml
+src/pages
+src/pages/IPM_GateDocument.page
+src/pages/IPM_GateDocument.page-meta.xml
+src/pages/IPM_GateDocumentPDF.page
+src/pages/IPM_GateDocumentPDF.page-meta.xml
+src/pages/IPM_ProjectDocumentSectionEditor.page
+src/pages/IPM_ProjectDocumentSectionEditor.page-meta.xml
 src/staticresources
 src/staticresources/IPM_Resource.resource
 src/staticresources/IPM_Resource.resource-meta.xml
