@@ -1059,6 +1059,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Local Identifier No Special Char --></label>
+        <name>Local_Identifier_No_Special_Char__c</name>
+    </fields>
+    <fields>
         <label><!-- Local Identifier --></label>
         <name>Local_Identifier__c</name>
     </fields>

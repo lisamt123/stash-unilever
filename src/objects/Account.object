@@ -1462,6 +1462,18 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Local_Identifier_No_Special_Char__c</fullName>
+        <description>CEC This field will hold 11 digits for Brazil user and for other users it will hold as value as Local Identifier</description>
+        <externalId>false</externalId>
+        <label>Local Identifier No Special Char</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Local_Identifier__c</fullName>
         <description>CEC Local Identifier  will hold CPF (government issued ID) for consumers</description>
         <externalId>false</externalId>

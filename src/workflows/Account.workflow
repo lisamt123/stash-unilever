@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Workflow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
         <fullName>CEC_Account_Email_Notification</fullName>
         <ccEmails>ulcecsupport.in@capgemini.com</ccEmails>
@@ -21,7 +21,7 @@
     <fieldUpdates>
         <fullName>CEC_LocalIdentifierNoSpecialChar_Update</fullName>
         <description>CEC : Remove the special &amp; whitespace character from the standard &apos;Local_Identifier__c&apos; field and update the custom field Local_Identifier_No_Special_Char__c.</description>
-        <field xsi:nil="true"/>
+        <field>Local_Identifier_No_Special_Char__c</field>
         <formula>SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE( Local_Identifier__c , &quot; &quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;), &quot;.&quot;,&quot;&quot;),&quot;+&quot;,&quot;&quot;), &quot;(&quot;, &quot;&quot;), &quot;)&quot;, &quot;&quot;)</formula>
         <name>CEC LocalIdentifierNoSpecialChar Update</name>
         <notifyAssignee>false</notifyAssignee>
@@ -31,7 +31,7 @@
     <fieldUpdates>
         <fullName>CEC_LocalIdentifierSpecialChar_Update</fullName>
         <description>CEC  This will update Local_Identifier_No_Special_Char__c field with Local_Identifier__c</description>
-        <field xsi:nil="true"/>
+        <field>Local_Identifier_No_Special_Char__c</field>
         <formula>Local_Identifier__c</formula>
         <name>CEC LocalIdentifier Update</name>
         <notifyAssignee>false</notifyAssignee>
