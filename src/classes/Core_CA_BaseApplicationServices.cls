@@ -7,7 +7,13 @@
 */
 @RestResource (urlMapping='/AppService/*')
 global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationServices{
-
+    
+    /* -- SONAR Issue explanation -- 
+       This class is called from Core_CA_RemoteServiceCallController which Accept the request JSON from the UI and the required apex
+       method will be called and the Response JSON will be sent, to differentiate which method to be called according to the JSON value 
+       there are multiple if and else condtion and it has code for MyApproval App and Ideation APP thats leading to the Npath complexity.
+    */
+    
     @HttpPost
     webservice static Core_CA_BaseApplicationWrapper invokeService(Core_CA_ApplicationWrapper appWrapperObj){
 
@@ -54,6 +60,8 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
                       responseObj = (Core_CA_BaseApplicationWrapper)Core_CA_LineItemDetail.getLineItemDetailGTES(appWrapperObj);      
                     if(appWrapperObj.lineItemDetailRequest.RequestType.equals(Core_CA_AppConstants.DATA_REQUEST_TYPE_ARIBA))
                       responseObj = (Core_CA_BaseApplicationWrapper)Core_CA_LineItemDetail.getLineItemDetailAriba(appWrapperObj);        
+                    if(appWrapperObj.lineItemDetailRequest.RequestType.equals(Core_CA_AppConstants.DATA_REQUEST_TYPE_INVOICE))
+                      responseObj = (Core_CA_BaseApplicationWrapper)Core_CA_LineItemDetail.getLineItemDetailInvoice(appWrapperObj);
                 }
                 
                 //Ideation Services
@@ -136,14 +144,15 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
                     responseObj = (Core_CA_BaseApplicationWrapper)Core_CA_ApproveRejectAction.postApproveRejectAction(appWrapperObj);
                 }
                
-                if(svcName.equals(Core_CA_AppConstants.SVC_EMAIL_DOMAIN_GET)){
+                /*if(svcName.equals(Core_CA_AppConstants.SVC_EMAIL_DOMAIN_GET)){
                     //appWrapperObj.retListFromServer = UtilityHelper.getEmailDomainList();
                     //responseObj = appWrapperObj;
                 }
                 if(svcName.equals(Core_CA_AppConstants.SVC_EMAIL_DOMAIN_UPDATE)){
                     //appWrapperObj.retListFromServer = UtilityHelper.processNewEmailDomainList(appWrapperObj.postListToServer);
                     //responseObj = appWrapperObj;
-                }
+
+                }*/
             }            
             else{/* Case of invalid service requested */
                 responseObj = handleInvalidSvcNameReq( responseObj );
@@ -165,21 +174,23 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
     
     
     public static Core_CA_BaseApplicationWrapper constructResponseBody(Core_CA_BaseApplicationWrapper responseObj, Object exceptionObj ){
-        if(Utility.isEmpty(responseObj)) responseObj = new Core_CA_ApplicationWrapper();
+        Core_CA_BaseApplicationWrapper responseObjj = responseObj;
+        if(Utility.isEmpty(responseObjj)) responseObjj = new Core_CA_ApplicationWrapper();
         if( exceptionObj instanceOf Core_CA_BaseServiceException || exceptionObj instanceOf Exception) {
-            responseObj.message   = Core_CA_AppConstants.ERROR_MSG_UNEXPECTED_ERROR_OCCURED;
-            responseObj.statusCode = Core_CA_AppConstants.RESPONSE_FAILURE_ERROR_CODE;
+            responseObjj.message   = Core_CA_AppConstants.ERROR_MSG_UNEXPECTED_ERROR_OCCURED;
+            responseObjj.statusCode = Core_CA_AppConstants.RESPONSE_FAILURE_ERROR_CODE;
         }
-        return (Core_CA_BaseApplicationWrapper)responseObj;
+        return (Core_CA_BaseApplicationWrapper)responseObjj;
     }
 
     /* Updates error code and error message for invalid service name cases */
    
     public static Core_CA_BaseApplicationWrapper handleInvalidSvcNameReq(Core_CA_BaseApplicationWrapper responseObj){
-        if(Utility.isEmpty(responseObj)) responseObj = new Core_CA_ApplicationWrapper();
-        responseObj.statusCode   =   Core_CA_AppConstants.RESPONSE_FAILURE_ERROR_CODE;
-        responseObj.message     =   Core_CA_AppConstants.SVC_RESP_MESSAGE_INVALID_SVCNAME;
-        return (Core_CA_BaseApplicationWrapper)responseObj;
+        Core_CA_BaseApplicationWrapper responseObje = responseObj;
+        if(Utility.isEmpty(responseObje)) responseObje = new Core_CA_ApplicationWrapper();
+        responseObje.statusCode   =   Core_CA_AppConstants.RESPONSE_FAILURE_ERROR_CODE;
+        responseObje.message     =   Core_CA_AppConstants.SVC_RESP_MESSAGE_INVALID_SVCNAME;
+        return (Core_CA_BaseApplicationWrapper)responseObje;
     }
     private static String createSerializedMapString(String serviceJSONObjectasString){
         String requestBodySerializedMap = '';

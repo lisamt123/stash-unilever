@@ -24,6 +24,8 @@ public  class CPA_InformationController_Test {
     static testmethod void PWORFInformationController_Test() {
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
+         CPA_Status_Msg__c READYTOSUBMIT= CPA_testStatusMsgCustomSettingClass.createTest_READYTOSUBMIT();
+        insert READYTOSUBMIT;
         CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
         insert objPworf;
 
@@ -76,6 +78,8 @@ public  class CPA_InformationController_Test {
     static testmethod void  PWOInformationController_Test() {
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
+        CPA_Status_Msg__c READYTOSUBMIT= CPA_testStatusMsgCustomSettingClass.createTest_READYTOSUBMIT();
+        insert READYTOSUBMIT;
         Test.startTest();
         
         CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
@@ -124,6 +128,8 @@ public  class CPA_InformationController_Test {
     static testmethod void  LOIInformationController_Test() {
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
+        CPA_Status_Msg__c READYTOSUBMIT= CPA_testStatusMsgCustomSettingClass.createTest_READYTOSUBMIT();
+        insert READYTOSUBMIT;
         
         /*CPA_LOIMandatoryMessages__c objMSG = CPA_testCustomSettingClass_util.createTest_LOI_message();
         insert objMSG;*/
@@ -183,6 +189,8 @@ public  class CPA_InformationController_Test {
     static testmethod void  CRInformationController_Test() {
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
+        CPA_Status_Msg__c READYTOSUBMIT= CPA_testStatusMsgCustomSettingClass.createTest_READYTOSUBMIT();
+        insert READYTOSUBMIT;
         Test.startTest();
         
         CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
@@ -243,6 +251,8 @@ public  class CPA_InformationController_Test {
     static testmethod void  CNFInformationController_Test() {
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
+        CPA_Status_Msg__c READYTOSUBMIT= CPA_testStatusMsgCustomSettingClass.createTest_READYTOSUBMIT();
+        insert READYTOSUBMIT;
         ID CNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_CNF_RecordTypeId ).getRecordTypeId();
         Test.startTest();
         
@@ -289,6 +299,8 @@ public  class CPA_InformationController_Test {
     static testmethod void  TNFInformationController_Test() {
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
+        CPA_Status_Msg__c READYTOSUBMIT= CPA_testStatusMsgCustomSettingClass.createTest_READYTOSUBMIT();
+        insert READYTOSUBMIT;
         Test.startTest();
         
         CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
@@ -336,6 +348,8 @@ public  class CPA_InformationController_Test {
     static testmethod void  HLERequestInformationController_Test(){
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
+        CPA_Status_Msg__c READYTOSUBMIT= CPA_testStatusMsgCustomSettingClass.createTest_READYTOSUBMIT();
+        insert READYTOSUBMIT;
         Test.startTest();
         CPA_HLE_Request__c objHLE = new CPA_HLE_Request__c();
         objHLE.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SAVED;
@@ -361,6 +375,8 @@ public  class CPA_InformationController_Test {
     static testmethod void  BPEInformationController_Test(){
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
+        CPA_Status_Msg__c READYTOSUBMIT= CPA_testStatusMsgCustomSettingClass.createTest_READYTOSUBMIT();
+        insert READYTOSUBMIT;
         CPA_Status_Msg__c acceptedStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg1();
         ID BPERecordType = Schema.SObjectType.CPA_HLE_Request__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_BPE_Recordtype).getRecordTypeId();
 
@@ -395,6 +411,8 @@ public  class CPA_InformationController_Test {
     static testmethod void  HLEInformationController_Test(){
         CPA_Status_Msg__c saveStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg();
         insert saveStatus;
+        CPA_Status_Msg__c READYTOSUBMIT= CPA_testStatusMsgCustomSettingClass.createTest_READYTOSUBMIT();
+        insert READYTOSUBMIT;
         Id HLERecordType = Schema.SObjectType.CPA_HLE_Request__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_HLE_Recordtype).getRecordTypeId();
         CPA_Status_Msg__c acceptedStatus = CPA_testStatusMsgCustomSettingClass.createTest_CPA_Status_Msg1();
         insert acceptedStatus;

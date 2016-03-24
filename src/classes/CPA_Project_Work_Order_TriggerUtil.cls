@@ -191,7 +191,29 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
             }       
         }
         
-        
+  /*******************************************************************
+    Purpose: This method used to cancel the CR record when PWO is terminated
+    Parameters: 
+    Returns: PageReference
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static list<CPA_CR__c> associatedCRCancel(List<CPA_project_work_order__c> oldPWORecList, List<CPA_project_work_order__c> newPWORecList){
+		set<Id> setPwoId = new set<Id>();
+		for(Integer i = 0; i < newPWORecList.size(); i++){
+			if(oldPWORecList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.Terminated &&   newPWORecList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.Terminated){
+				setPwoId.add(newPWORecList[i].id);
+			}
+		}
+		List<CPA_CR__c> crRec = [select id,ltxta_Reason_for_Cancellation__c,pkl_Status__c,CPA_Project_Work_Order__c  from CPA_CR__c where pkl_Status__c !='Cancelled' and CPA_Project_Work_Order__c IN:setPwoId];
+        if(crRec!= null && crRec.size()>0){
+            for(CPA_CR__c cr:crRec){
+                cr.ltxta_Reason_for_Cancellation__c = CPA_ConstantsForContractingAppClasses.PWOISTERMINATED;
+                cr.pkl_Status__c= CPA_ConstantsForContractingAppClasses.CANCELLED;
+            }
+            return crRec;
+        }
+		return null;
+    }     
         
         
     /** Method Name : autoPopulateValues

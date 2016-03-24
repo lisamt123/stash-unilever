@@ -428,6 +428,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_Date_of_Request_field_update</fullName>
+        <description>Set date for creation as Date of Request i.e TODAY()</description>
+        <field>dt_Date_Of_Request__c</field>
+        <formula>Today()</formula>
+        <name>CPA Date of Request field update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_Owner_Update_to_VDM</fullName>
         <field>OwnerId</field>
         <lookupValue>CAP_VDM_Queue</lookupValue>
@@ -484,6 +494,16 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWORF_IsAccepted_True</fullName>
+        <field>chk_isAccepted__c</field>
+        <literalValue>1</literalValue>
+        <name>CPA PWORF IsAccepted True</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_PWORF_Recall</fullName>
@@ -646,6 +666,15 @@ null)),null)</formula>
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_PWORF_isAutoAccepted_true</fullName>
+        <field>chk_isAutoAccepted__c</field>
+        <literalValue>1</literalValue>
+        <name>CPA PWORF isAutoAccepted true</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_PWORF_return_SLA1_date_null</fullName>
         <field>dat_Expected_SLA1_Date__c</field>
         <name>CPA PWORF return SLA1 date null</name>
@@ -748,15 +777,6 @@ null)),null)</formula>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>CPA_uncheck_Validate</fullName>
-        <field>isValidated__c</field>
-        <literalValue>0</literalValue>
-        <name>CPA uncheck Validate</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Cancelled_Action_field_Udate</fullName>
         <description>PWORF is Cancelled.</description>
         <field>txt_Action__c</field>
@@ -853,35 +873,37 @@ null)),null)</formula>
             <name>CPA_PWORF_Accepted_Date_Update</name>
             <type>FieldUpdate</type>
         </actions>
-        <actions>
-            <name>CPA_PWORF_Submitted_SLA2_Date</name>
-            <type>FieldUpdate</type>
-        </actions>
         <active>true</active>
         <criteriaItems>
             <field>CPA_PWORF__c.pkl_Status__c</field>
             <operation>equals</operation>
             <value>Accepted</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>CPA_PWORF__c.chk_isAutoAccepted__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>CPA PWORF Auto Accepted</fullName>
         <actions>
-            <name>CPA_PWORF_Auto_Accepted_Email_Alert</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Auto_Accepted_Action_field_Udate</name>
+            <name>Update_Status</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>CPA_PWORF__c.pkl_Status__c</field>
+            <field>CPA_PWORF__c.chk_isAutoAccepted__c</field>
             <operation>equals</operation>
-            <value>Auto Accepted</value>
+            <value>True</value>
         </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
+        <criteriaItems>
+            <field>CPA_PWORF__c.chk_isAccepted__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>CPA PWORF Cancelled</fullName>
@@ -916,7 +938,19 @@ null)),null)</formula>
     <rules>
         <fullName>CPA PWORF Cloned%2FCreated</fullName>
         <actions>
+            <name>CPA_Date_of_Request_field_update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_Return_SLA2_date_null</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CPA_PWORF_Submitted_date_null</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_return_SLA1_date_null</name>
             <type>FieldUpdate</type>
         </actions>
         <actions>
@@ -937,10 +971,6 @@ null)),null)</formula>
         </actions>
         <actions>
             <name>CPA_uncheck_IScancel</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_uncheck_Validate</name>
             <type>FieldUpdate</type>
         </actions>
         <actions>
@@ -1039,11 +1069,23 @@ null)),null)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
+                <name>CPA_PWORF_Auto_Accepted_Email_Alert</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Auto_Accepted_Action_field_Udate</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <actions>
                 <name>CPA_PWORF_Auto_Accepted_Date_Update</name>
                 <type>FieldUpdate</type>
             </actions>
             <actions>
                 <name>CPA_PWORF_Submitted_SLA2_Date</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <actions>
+                <name>CPA_PWORF_isAutoAccepted_true</name>
                 <type>FieldUpdate</type>
             </actions>
             <actions>

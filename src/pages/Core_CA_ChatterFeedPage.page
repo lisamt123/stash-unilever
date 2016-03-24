@@ -49,7 +49,20 @@
           pointer-events: none;
           cursor: default;
     }
-    @media (max-width: 480px) { 
+    @media (max-width: 480px)
+        .feedPagePadding {
+            width: 95%;
+            margin-bottom: 60px;
+            margin-left:10px; 
+        }
+    }
+    input#richTextPlaceholderInput {
+        display: none;
+    }
+    #richTextPlaceholderInput {
+        display: none;
+    }
+   <!-- @media (max-width: 480px) { 
         .feedPagePadding{
             width: 448px;
             margin-bottom: 60px;
@@ -76,7 +89,7 @@
             margin-bottom: 60px;
             margin-left:10px; 
         }
-    }   
+    } -->  
     
     
 </style>

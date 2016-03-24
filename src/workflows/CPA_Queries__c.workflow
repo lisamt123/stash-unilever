@@ -158,7 +158,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>(   CR_ID__c    &lt;&gt; null) &amp;&amp;  ISCHANGED( OwnerId)</formula>
+        <formula>(   CR_ID__c    &lt;&gt; null) &amp;&amp;  ISCHANGED(  Assigned_to__c )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -194,7 +194,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>(   LOI_ID__c    &lt;&gt; null) &amp;&amp;  ISCHANGED( OwnerId)</formula>
+        <formula>(   LOI_ID__c    &lt;&gt; null) &amp;&amp;  ISCHANGED(  Assigned_to__c )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -217,7 +217,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>( PWO_ID__c  &lt;&gt; null) &amp;&amp;  ISCHANGED( OwnerId)</formula>
+        <formula>( PWO_ID__c  &lt;&gt; null) &amp;&amp;  ISCHANGED(  Assigned_to__c )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -240,7 +240,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>(  Pworf_ID__c   &lt;&gt; null) &amp;&amp;  ISCHANGED( OwnerId)</formula>
+        <formula>(  Pworf_ID__c   &lt;&gt; null) &amp;&amp;  ISCHANGED(  Assigned_to__c )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

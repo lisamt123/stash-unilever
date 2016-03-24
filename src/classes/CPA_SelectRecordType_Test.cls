@@ -15,30 +15,7 @@ VERSION  AUTHOR    DATE              DETAIL                 Description
 @isTest
 public class CPA_SelectRecordType_Test {
     
-    /*******************************************************************
-    Purpose: This method is used to create record type tests
-    Parameters: 
-    Returns: 
-    Throws [Exceptions]: 
-    ********************************************************************/
-     public static testMethod void getRecordTypeList_tst() {
-     
-     CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
-     objPworf.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
-     insert objPworf;
-         
-       Test.startTest(); 
-       
-        Apexpages.currentPage().getParameters().put('id',objPworf.id);
-        CPA_SelectRecordTypeController controller= new CPA_SelectRecordTypeController();
-        controller.redirectToPageNewItem();
-        
-        System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED ==  objPworf.pkl_Status__c);   
-         controller.cancelRedirect();
-        
-        Test.stopTest();
-     
-     }
+   
      /*******************************************************************
     Purpose: This method is used to create record type tests
     Parameters: 

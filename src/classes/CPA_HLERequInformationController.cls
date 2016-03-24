@@ -47,16 +47,18 @@ global with sharing class CPA_HLERequInformationController {
         mandatoryStringFlag = null;
         estimateFlag = null;
         hleRec = [SELECT Estimates_Status__c,pkl_Status__c, isValidated__c, dt_Date_raised__c,dt_Planned_end_date__c,dt_Planned_start_date__c,eml_AAL_Email__c,eml_UBPR_Email__c,eml_UIOS_Email__c,Id,mpkl_PFS_If_yes_what_is_the_source__c,Name,OwnerId,PFS_Is_there_approved_funding_for_this__c,ph_AAL_Contact_No__c,ph_UBPR_Contact_No__c,ph_UIOS_Contact_No__c,pkl_Business_area__c,pkl_HLE_type__c,txt_AAL_Name__c,txt_Accenture_skill_types_required__c,txt_Additional_information__c,txt_Assumptions__c,txt_Background__c,txt_Dependencies__c,txt_NA_Notes__c,txt_Project_description_specification__c,txt_Project_type__c,txt_Request_ID__c,txt_Risks_and_issues__c,txt_RQ_Query__c,txt_Software_Licensing_requirements__c,txt_Status__c,txt_Support_impact__c,txt_Technologies__c,txt_Title__c,txt_UBPR_Name__c,txt_UIOS_Name__c,txt_UL_reference__c,Estimate_Type__c,txt_BPE_Accenture_Demand_ID__c ,txt_BPE_Unilever_Demand_ID__c ,txt_BPE_Title__c ,txt_BPE_Accenture_Project_Manager__c,num_BPE_Effort_in_man_days__c,txt_BPE_Key_assumptions__c,txt_HLE_Accenture_estimated_project_char__c,txt_HLE_Accenture_reference__c,txt_HLE_Assumptions_Risks_Qualifying__c,txt_HLE_Commercial_caveats__c,ph_HLE_PB_Contact_No__c,eml_HLE_PB_Email__c,num_HLE_Estimated_man_days__c,txt_HLE_PB_Name__c,dt_HLE_Preparation_date__c,txt_HLE_Project_charging_mechanism__c, HLE_Proposed_high_level_plan_timelines__c,txt_HLE_Scope__c,txt_HLE_Skill_Resources_Blend_rate__c,txt_HLE_Solution_overview_approach__c,recordtypeid,txt_Other_Project_funding_Source__c  FROM CPA_HLE_Request__c where id =:hleRecId];
-		Id HLERecordType = Schema.SObjectType.CPA_HLE_Request__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_HLE_Recordtype).getRecordTypeId();
-		ID BPERecordType = Schema.SObjectType.CPA_HLE_Request__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_BPE_Recordtype).getRecordTypeId();
-		
-		CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(hleRec.pkl_Status__c);
+        Id HLERecordType = Schema.SObjectType.CPA_HLE_Request__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_HLE_Recordtype).getRecordTypeId();
+        ID BPERecordType = Schema.SObjectType.CPA_HLE_Request__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_BPE_Recordtype).getRecordTypeId();
+        
+        CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(hleRec.pkl_Status__c);
         if(customSettingStatusMsg.HLE_Request_Status_Msg__c != null  && callFromVF){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.HLE_Request_Status_Msg__c));
         }
         if((hleRec.pkl_Status__c == 'Saved'  || !callFromVF)){
             if(hleRec.txt_Assumptions__c  == null) 
                  RequiredFieldMap.put('Assumptions',CPA_ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.pkl_HLE_type__c  == null) 
+                 RequiredFieldMap.put('HLE Type',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Background__c  == null) 
                  RequiredFieldMap.put('Background',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.ph_UBPR_Contact_No__c  == null) 
@@ -65,8 +67,10 @@ global with sharing class CPA_HLERequInformationController {
                  RequiredFieldMap.put('Contact No ','MANDATORY in Unilever innovation owner/SME section');
             if(hleRec.ph_AAL_Contact_No__c  == null) 
                  RequiredFieldMap.put('Contact No  ','MANDATORY in Accenture Area lead section');
-             
-                          
+
+            if(hleRec.pkl_Business_area__c  == null) 
+                RequiredFieldMap.put('Business Area',CPA_ConstantsForContractingAppClasses.MANDATORY);
+                                      
             if(hleRec.dt_Date_raised__c == null || hleRec.dt_Date_raised__c < system.today()) 
                  RequiredFieldMap.put('Date raised','It is Mandatory and should not be before today date');
             if(hleRec.txt_Dependencies__c  == null) 
