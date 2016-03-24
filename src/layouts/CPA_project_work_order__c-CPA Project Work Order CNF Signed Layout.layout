@@ -47,10 +47,6 @@
                 <behavior>Readonly</behavior>
                 <field>lkp_Linked_PWO__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_Project_requestor_Name__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -71,10 +67,6 @@
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>eml_Project_requestor_Email__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

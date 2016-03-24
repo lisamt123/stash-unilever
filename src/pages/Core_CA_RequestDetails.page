@@ -64,12 +64,21 @@
        <!-- Open request tab -->
        <apex:tab label="Open Requests" name="openReq" id="tabOpenReq" style="width:100%;font-family: Arial;">
             <apex:pageBlock > 
-                <!--Loading Animation-->
+                <!--
+                
+                
+                
+                
+                
+                
+                
+                
+                 Animation-->
                  <apex:actionstatus id="statusOpenReq">
                      <apex:facet name="start">
                          <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;height: 100%;opacity:0.65;width:100%;"> 
                              <div class="waitingHolder" style=" top:10 px;width: 91px;">
-                                 <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                                 <img class="waitingImage" src="/img/loading.gif" alt="loading" title="Please Wait..." />
                                  <span class="waitingDescription">Please Wait...</span>
                              </div>
                          </div>
@@ -80,7 +89,7 @@
                 <span id="refreshOpenreq" style="float: right; font-family: Arial; font-size: 100%; font-weight: normal; font-style: normal; color: rgb(0, 125, 187); cursor: pointer;margin-bottom: .5em;">
                     <apex:commandlink id="refrshImg" style="color:blue;text-decoration:none;" status="statusOpenReq" action="{!paginationOpenCount}" reRender="Panel1,openPaginationtop,pageblckOpen,openPaginationbottom,noOpenRecordPanel" >
                         <apex:image url="{!URLFOR($Resource.Core_CA_RefreshImg)}" style="vertical-align:text-bottom;" alt="Refresh"/ >
-                        <span style="font-size: 15px;font-weight: 600;font-family: Arial;"><font color="#007DB"> Refresh </font> </span>
+                        <span style="font-size: 15px;font-weight: 600;font-family: Arial;color=#007DB">Refresh</span>
                     </apex:commandlink>
                 </span>
                
@@ -128,7 +137,7 @@
                      <apex:facet name="start">
                          <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb;height: 100%;opacity:0.65;width:100%;"> 
                              <div class="waitingHolder" style=" top:10 px;width: 91px;">
-                                 <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                                 <img class="waitingImage" src="/img/loading.gif" alt="loading" title="Please Wait..." />
                                  <span class="waitingDescription">Please Wait...</span>
                              </div>
                          </div>
@@ -139,7 +148,7 @@
                 <span id="refreshClosedreq" style="float: right; font-family: Arial; font-size: 100%; font-weight: normal; font-style: normal; color: rgb(0, 125, 187); cursor: pointer;margin-bottom: .5em;">
                     <apex:commandlink id="refrshImg" style="color:blue;text-decoration:none;" status="statusClosedReq" action="{!paginationClosedCount}" reRender="Panel2,closePaginationtop,pageBlckClose,closePaginationbottom,noClosedRecordPanel" >
                         <apex:image url="{!URLFOR($Resource.Core_CA_RefreshImg)}" style="vertical-align:text-bottom;" alt="Refresh"/ >
-                        <span style="font-size: 15px;font-weight: 600;font-family: Arial;"><font color="#007DB"> Refresh </font> </span>
+                        <span style="font-size: 15px;font-weight: 600;font-family: Arial;color=#007DB"> Refresh </span>
                     </apex:commandlink>
                 </span>
                 

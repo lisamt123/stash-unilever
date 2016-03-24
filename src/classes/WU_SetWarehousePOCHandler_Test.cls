@@ -15,17 +15,23 @@ public class WU_SetWarehousePOCHandler_Test
     	WarehouseCapacityList = WU_TestFactory_Helper.insertWUWarehouseList(50);
     }
     
+    static void assignPermissionSet()
+    {
+    	WU_TestFactory_Helper.assignPermSet();
+    }
+    
     /*************************************************************************
     *@Description : to Intialize(insert, update) the data for warehouse capacity
     ***************************************************************************/
     static testMethod void positiveScenarios(){ 
-        createData();
-        test.startTest();
-        //WarehouseCapacityList=WU_TestFactory_Helper.insertWUWarehouseList(50);
-        system.assert(!WarehouseCapacityList.isEmpty());
         
+        assignPermissionSet();
         system.runAs(WU_TestFactory_Helper.ur)
         {
+        	createData();
+	        test.startTest();
+	        //WarehouseCapacityList=WU_TestFactory_Helper.insertWUWarehouseList(50);
+	        system.assert(!WarehouseCapacityList.isEmpty());
         	WU_MultiCreateMultiEdit muliCreateEdit = new WU_MultiCreateMultiEdit();
         	system.debug(':::::::::list size is'+muliCreateEdit.masterWarehouseList.size());
         	system.assertEquals(muliCreateEdit.masterWarehouseList.size(),WarehouseCapacityList.size());
@@ -44,9 +50,11 @@ public class WU_SetWarehousePOCHandler_Test
     
     static testMethod void positiveCreateNewCapacity()
     {
-    	createData();
+    	assignPermissionSet();
+    	
     	system.runAs(WU_TestFactory_Helper.ur)
     	{
+    		createData();
     		WU_MultiCreateMultiEdit muliCreateEdit = new WU_MultiCreateMultiEdit();
     		system.assertEquals(muliCreateEdit.masterWarehouseList.size(),WarehouseCapacityList.size());
     		
@@ -60,9 +68,11 @@ public class WU_SetWarehousePOCHandler_Test
     
     static testMethod void positiveUpdateCapacity()
     {
-    	createData();
+    	assignPermissionSet();
+    	
     	system.runAs(WU_TestFactory_Helper.ur)
     	{
+    		createData();
     		WU_MultiCreateMultiEdit muliCreateEdit = new WU_MultiCreateMultiEdit();
     		system.assertEquals(muliCreateEdit.masterWarehouseList.size(),WarehouseCapacityList.size());
     		

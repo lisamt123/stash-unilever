@@ -20,6 +20,7 @@ public with sharing class CPA_CRTrigger_Handler
     
     CPA_Trigger_Pattern__c objCRPattern = CPA_Trigger_Pattern__c.getValues(CPA_ConstantsForContractingAppClasses.CRTRIGGERNAME);
     boolean triggerShouldExecute = objCRPattern.chk_Check_Run__c;
+    List<CPA_project_work_order__c> lstPWOUpdate = new List<CPA_project_work_order__c>();
     // Constructor
     public CPA_CRTrigger_Handler()
     {
@@ -113,6 +114,7 @@ public with sharing class CPA_CRTrigger_Handler
         if(triggerShouldExecute){
            CPA_CR_TriggerUtil.submitforApproval(trigger.old,trigger.new);
            CPA_CR_TriggerUtil.recallApproval(trigger.old,trigger.new);
+           lstPWOUpdate  = CPA_CR_TriggerUtil.CalculatePOWCost(trigger.old,trigger.new);
         }
     }
     
@@ -135,7 +137,11 @@ public with sharing class CPA_CRTrigger_Handler
      */
     public void andFinally()
     {
-        System.debug('Entering CPA_CRTrigger_Handler.andFinally');     
+        System.debug('Entering CPA_CRTrigger_Handler.andFinally');   
+         if(lstPWOUpdate!=null && lstPWOUpdate.size()>0)  
+        {
+             CPA_Utilities.saveDatabase(CPA_ConstantsForContractingAppClasses.UPDATECONSTANT, lstPWOUpdate  , false);
+        }  
         System.debug('Exiting CPA_CRTrigger_Handler.andFinally');
     }
 

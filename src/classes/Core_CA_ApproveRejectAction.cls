@@ -1,16 +1,18 @@
 global with sharing class Core_CA_ApproveRejectAction {
     
+    public static  Boolean Success=false;
+    
     global static Core_CA_WrapperUtility.MyApprovalPostResponse postApproveRejectAction(Core_CA_ApplicationWrapper appWrapperObj) {
         Core_CA_WrapperUtility.MyApprovalPostResponse objPostResponse=new Core_CA_WrapperUtility.MyApprovalPostResponse();
-        Boolean Success;
+       
         try{
             Success = UpdateApproveRejectAction(appWrapperObj);
             objPostResponse=processResponseApproveRejectAction(appWrapperObj);
            // system.debug('%%%%'+appWrapperObj);
         }
-        catch(Core_CA_BaseServiceException baseServEx){ 
+        /*catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-        }
+        }*/
         catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_CA_ApproveRejectAction : postApproveRejectAction method ', ex);
         }
@@ -44,18 +46,45 @@ global with sharing class Core_CA_ApproveRejectAction {
     }*/
     
     global static Boolean UpdateApproveRejectAction(Core_CA_ApplicationWrapper appWrapperObj){
-        Boolean Success;
+       
         try{
-            Core_Approver_Details__c approver=[SELECT Action__c,Comments__c,Interested_Party__c,Role__c,Source_System__c,Status__c,Visible_to_Supplier__c FROM Core_Approver_Details__c WHERE Id=: appWrapperObj.myApprovalPostRequest.ApproverId];
-            if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Approve'){
+            Core_Approver_Details__c approver=[SELECT Action__c,Comments__c,Interested_Party__c,Role__c,Source_System__c,Status__c,Visible_to_Supplier__c,Interested_Party_Details__c,Action_Date__c,Name,Approval_Header__c   FROM Core_Approver_Details__c WHERE Id=: appWrapperObj.myApprovalPostRequest.ApproverId];
+            if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Approve' && approver.Source_System__c !='Invoice'){
                 approver.Status__c='Approved';
                 approver.Comments__c=appWrapperObj.myApprovalPostRequest.CommentDesc;
                 approver.Send_to_Source_System__c = 'Yes';
                 if(approver.Source_System__c=='Ariba') approver.Visible_to_Supplier__c = Boolean.valueof(appWrapperObj.myApprovalPostRequest.CommentVisibleToUser);
                     update approver;
             }
-            else if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Reject'){ 
+            else if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Reject' && approver.Source_System__c !='Invoice'){ 
                 approver.Status__c='Rejected';
+                approver.Comments__c=appWrapperObj.myApprovalPostRequest.CommentDesc;
+                approver.Send_to_Source_System__c = 'Yes';
+                update approver;
+            }
+            //Need to minimise the code
+            else if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Rework' && approver.Source_System__c=='Clarity' ){ 
+                approver.Status__c='Rework';
+                approver.Comments__c=appWrapperObj.myApprovalPostRequest.CommentDesc;
+                approver.Send_to_Source_System__c = 'Yes';
+                update approver;
+            }
+            else if(approver.Source_System__c=='Invoice'){
+                /*Logic to retain old comment */
+                if(approver.Comments__c != null && approver.Comments__c !=''){
+                    Core_Approver_Details__c newApprover = new Core_Approver_Details__c();
+                    newApprover.Comments__c = approver.Comments__c;
+                    newApprover.Interested_Party_Details__c = approver.Interested_Party_Details__c;
+                    newApprover.Action_Date__c = approver.Action_Date__c;
+                    newApprover.Approval_Header__c = approver.Approval_Header__c ;
+                    newApprover.Name = approver.Name;
+                    newApprover.Source_System__c= approver.Source_System__c;
+                    insert newApprover;
+                }
+                /*End */
+                if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='QWV')approver.Status__c='Query with Vendor';
+                if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='RTAP')approver.Status__c='Return to AP';
+                if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Approve')approver.Status__c='Approved';
                 approver.Comments__c=appWrapperObj.myApprovalPostRequest.CommentDesc;
                 approver.Send_to_Source_System__c = 'Yes';
                 update approver;
@@ -92,9 +121,9 @@ global with sharing class Core_CA_ApproveRejectAction {
             objPostResponse.UpdateFunctionType=appWrapperObj.myApprovalPostRequest.UpdateFunctionType;
             objPostResponse.UpdatedBy=Userinfo.getuserId();//appWrapperObj.myApprovalPostRequest.UpdatedBy; 
         }
-        catch(Core_CA_BaseServiceException baseServEx){ 
+        /*catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
-        }
+        }*/
         catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_CA_ApproveRejectAction : processResponseApproveRejectAction method ', ex);
         }

@@ -190,4 +190,54 @@ private class CPA_PWORF_PWO_UtilMethods_Test {
            
         Test.stopTest();    
     }
+ /*******************************************************************
+    Purpose: This method is used to cover QueryTrigger utill class
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_Query_Util_Test(){
+        
+        CPA_Trigger_Pattern__c queryTriggerPattern = CPA_testStatusMsgCustomSettingClass.createTest_QueryTriggerPattern();
+        insert queryTriggerPattern;
+        CPA_Group__c groupSMT =CPA_testGroupNameCustomSettingClass.createTest_CPA_Group();
+        insert groupSMT;
+        CPA_Group__c groupULPM =CPA_testGroupNameCustomSettingClass.createTest_CPA_GroupULPM();
+        insert groupULPM;
+        Test.startTest();
+        	CPA_PWORF__c objPworf12 = CPA_testPWORFClass_util.createTest_RA_PWORF();
+            insert objPworf12;
+            CPA_Queries__c query = CPA_testPWORFClass_util.createTest_query(objPworf12);
+            insert query;
+            query.Assigned_to__c = 'ULPM';
+        	update query;
+        Test.stopTest();
+        CPA_Queries__c ow = [select Id,ownerid from CPA_Queries__c where id =: query.id limit 1];
+        Group groupName = [select Id,name from Group where name = 'CPA ULPM' limit 1];
+        System.assert (groupName.id == ow.ownerid);
+    }
+    /*******************************************************************
+    Purpose: This method is used to cover QueryTrigger utill class
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_QueryComment_Util_Test(){
+        
+        CPA_Trigger_Pattern__c queryCommentTriggerPattern = CPA_testStatusMsgCustomSettingClass.createTest_Query_commentTriggerPattern();
+        insert queryCommentTriggerPattern;
+        CPA_Group__c groupSMT =CPA_testGroupNameCustomSettingClass.createTest_CPA_Group();
+        insert groupSMT;
+        Test.startTest();
+        	CPA_PWORF__c objPworf12 = CPA_testPWORFClass_util.createTest_RA_PWORF();
+            insert objPworf12;
+            CPA_Queries__c query = CPA_testPWORFClass_util.createTest_query(objPworf12);
+            insert query;
+            CPA_Query_comment__c queryComment = CPA_testPWORFClass_util.createTest_queryComment(query);
+            insert queryComment;
+        Test.stopTest();
+        CPA_Queries__c qu = [select Id,createdbyid from CPA_Queries__c where id=:query.id];
+        CPA_Query_comment__c qucom = [select Id,Query_Creator__c from CPA_Query_comment__c where id=:queryComment.id];
+        System.assert (qu.createdbyid == qucom.Query_Creator__c);
+    }
 }

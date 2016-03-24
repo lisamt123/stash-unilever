@@ -23,6 +23,7 @@ public with sharing class CPA_PWOTrigger_Handler
     boolean triggerShouldExecute = objPWOPattern.chk_Check_Run__c;
     List<CPA_PWORF__c> lstPWORFUpdate = new List<CPA_PWORF__c>();
     List<CPA_TAT__c> lstTATforUpdate = new List<CPA_TAT__c>();
+    List<CPA_CR__c> lstCRforUpdate = new List<CPA_CR__c>();
     // Constructor
     public CPA_PWOTrigger_Handler()
     {
@@ -124,6 +125,7 @@ public with sharing class CPA_PWOTrigger_Handler
            lstPWORFUpdate  = CPA_Project_Work_Order_TriggerUtil.submitforApproval(trigger.old,trigger.new);
             CPA_Project_Work_Order_TriggerUtil.recallApproval(trigger.old,trigger.new);
             CPA_CNFTNF_TriggerUtil.CNFTNF_HistoricalData(trigger.old,trigger.new);
+            lstCRforUpdate = CPA_Project_Work_Order_TriggerUtil.associatedCRCancel(trigger.old,trigger.new);
         }
     }
     
@@ -149,6 +151,9 @@ public with sharing class CPA_PWOTrigger_Handler
         if(lstTATforUpdate !=null && lstTATforUpdate.size()>0)  
         {
              CPA_Utilities.saveDatabase(CPA_ConstantsForContractingAppClasses.INSERTCONSTANT, lstTATforUpdate , false);
+        }
+        if(lstCRforUpdate !=null && lstCRforUpdate.size()>0){
+            CPA_Utilities.saveDatabase(CPA_ConstantsForContractingAppClasses.UPDATECONSTANT, lstCRforUpdate , false);
         }
         if(lstPWORFUpdate !=null && lstPWORFUpdate.size()>0   ){
            CPA_Utilities.saveDatabase(CPA_ConstantsForContractingAppClasses.UPDATECONSTANT, lstPWORFUpdate , false); 

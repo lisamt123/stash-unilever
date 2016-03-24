@@ -84,6 +84,12 @@ src/classes/CPA_PWORFTrigger_Handler.cls
 src/classes/CPA_PWORFTrigger_Handler.cls-meta.xml
 src/classes/CPA_PWOTrigger_Handler.cls
 src/classes/CPA_PWOTrigger_Handler.cls-meta.xml
+src/classes/CPA_Queries_Trigger_Handler.cls
+src/classes/CPA_Queries_Trigger_Handler.cls-meta.xml
+src/classes/CPA_Queries_TriggerUtil.cls
+src/classes/CPA_Queries_TriggerUtil.cls-meta.xml
+src/classes/CPA_Query_comment_Trigger_Handler.cls
+src/classes/CPA_Query_comment_Trigger_Handler.cls-meta.xml
 src/classes/CPA_ReturnController_Test.cls
 src/classes/CPA_ReturnController_Test.cls-meta.xml
 src/classes/CPA_SelectRecordType_Test.cls
@@ -94,6 +100,8 @@ src/classes/CPA_testContractClass.cls
 src/classes/CPA_testContractClass.cls-meta.xml
 src/classes/CPA_testCustomSettingClass_util.cls
 src/classes/CPA_testCustomSettingClass_util.cls-meta.xml
+src/classes/CPA_testGroupNameCustomSettingClass.cls
+src/classes/CPA_testGroupNameCustomSettingClass.cls-meta.xml
 src/classes/CPA_testPWORFClass_util.cls
 src/classes/CPA_testPWORFClass_util.cls-meta.xml
 src/classes/CPA_testStatusMsgCustomSettingClass.cls
@@ -198,6 +206,8 @@ src/email/CPA_Email_Template/CPA_Project_Work_Order_Submitted.email
 src/email/CPA_Email_Template/CPA_Project_Work_Order_Submitted.email-meta.xml
 src/email/CPA_Email_Template/CPA_PWO_Query_Reassigned.email
 src/email/CPA_Email_Template/CPA_PWO_Query_Reassigned.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWO_query_Responded.email
+src/email/CPA_Email_Template/CPA_PWO_query_Responded.email-meta.xml
 src/email/CPA_Email_Template/CPA_PWO_query_Submitted.email
 src/email/CPA_Email_Template/CPA_PWO_query_Submitted.email-meta.xml
 src/email/CPA_Email_Template/CPA_PWORF_Cancelled_by_SMT.email
@@ -206,6 +216,8 @@ src/email/CPA_Email_Template/CPA_PWORF_Cancelled_by_ULPM.email
 src/email/CPA_Email_Template/CPA_PWORF_Cancelled_by_ULPM.email-meta.xml
 src/email/CPA_Email_Template/CPA_PWORF_Query_Reassigned.email
 src/email/CPA_Email_Template/CPA_PWORF_Query_Reassigned.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_query_Responded.email
+src/email/CPA_Email_Template/CPA_PWORF_query_Responded.email-meta.xml
 src/email/CPA_Email_Template/CPA_PWORF_query_Submitted.email
 src/email/CPA_Email_Template/CPA_PWORF_query_Submitted.email-meta.xml
 src/email/CPA_Email_Template/CPA_PWORF_Request_for_Cancellation.email
@@ -401,6 +413,10 @@ src/triggers/CPA_Project_Work_Order_Triggers.trigger
 src/triggers/CPA_Project_Work_Order_Triggers.trigger-meta.xml
 src/triggers/CPA_PWORF_Trigger.trigger
 src/triggers/CPA_PWORF_Trigger.trigger-meta.xml
+src/triggers/CPA_QueriesTrigger.trigger
+src/triggers/CPA_QueriesTrigger.trigger-meta.xml
+src/triggers/CPA_ResponseTrigger.trigger
+src/triggers/CPA_ResponseTrigger.trigger-meta.xml
 src
 src/workflows
 src/workflows/CPA_CR__c.workflow

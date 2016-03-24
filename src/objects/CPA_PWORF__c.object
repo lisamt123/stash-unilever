@@ -257,7 +257,8 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
     <fields>
         <fullName>Expected_Start_Date_for_DBTD_PWO__c</fullName>
         <externalId>false</externalId>
-        <label>Expected Start Date for DBTD PWO*</label>
+        <inlineHelpText>This is mandatory if project phases are DBTD</inlineHelpText>
+        <label>Expected Start Date for DBTD PWO</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -563,7 +564,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <fullName>Overall_purpose_or_function_of_the_proje__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Please enter a description the overall purpose or function of the project.</inlineHelpText>
+        <inlineHelpText>Please enter a description for the overall purpose or funtion of the project</inlineHelpText>
         <label>Overall Purpose/Function of the Project*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -919,6 +920,26 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Request for Cancel</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>chk_isAccepted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isAccepted</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>chk_isAutoAccepted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isAutoAccepted</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1507,12 +1528,12 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <label>Breach Applicable</label>
         <picklist>
             <picklistValues>
-                <fullName>YES</fullName>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>NO</fullName>
-                <default>false</default>
+                <fullName>No</fullName>
+                <default>true</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -1647,12 +1668,12 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <label>Penalty Applicable</label>
         <picklist>
             <picklistValues>
-                <fullName>YES</fullName>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>NO</fullName>
-                <default>false</default>
+                <fullName>No</fullName>
+                <default>true</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -2712,11 +2733,11 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <picklistValues>
             <picklist>pkl_Breach_Applicable__c</picklist>
             <values>
-                <fullName>NO</fullName>
-                <default>false</default>
+                <fullName>No</fullName>
+                <default>true</default>
             </values>
             <values>
-                <fullName>YES</fullName>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2803,11 +2824,11 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <picklistValues>
             <picklist>pkl_Penalty_Applicable__c</picklist>
             <values>
-                <fullName>NO</fullName>
-                <default>false</default>
+                <fullName>No</fullName>
+                <default>true</default>
             </values>
             <values>
-                <fullName>YES</fullName>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2954,10 +2975,6 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             </values>
             <values>
                 <fullName>Project Work Package</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Resource Secondment</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3243,11 +3260,11 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <picklistValues>
             <picklist>pkl_Breach_Applicable__c</picklist>
             <values>
-                <fullName>NO</fullName>
-                <default>false</default>
+                <fullName>No</fullName>
+                <default>true</default>
             </values>
             <values>
-                <fullName>YES</fullName>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3334,11 +3351,11 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <picklistValues>
             <picklist>pkl_Penalty_Applicable__c</picklist>
             <values>
-                <fullName>NO</fullName>
-                <default>false</default>
+                <fullName>No</fullName>
+                <default>true</default>
             </values>
             <values>
-                <fullName>YES</fullName>
+                <fullName>Yes</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3469,7 +3486,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
             <picklist>pkl_Request_Type__c</picklist>
             <values>
                 <fullName>Resource Secondment</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>

@@ -14,7 +14,7 @@ public with sharing class WU_UpdateMasterWarehouseHandler{
     }
    
     
-    public static void onAfterUpdate(Map<Id, WU_Warehouse_Capacity_Detail__c>  oldMapItems, List<WU_Warehouse_Capacity_Detail__c> updatedItems, Map<Id, WU_Warehouse_Capacity_Detail__c> newMapItems) {
+    public static void onAfterUpdate(Map<Id, WU_Warehouse_Capacity_Detail__c> oldMapItems,List<WU_Warehouse_Capacity_Detail__c> updatedItems, Map<Id, WU_Warehouse_Capacity_Detail__c> newMapItems) {
         setMasterWarehouseIds = new Set<Id>();
         List<WU_Master_Warehouse__c> masterWarehouseList = new List<WU_Master_Warehouse__c>();
         List<WU_Master_Warehouse__c> masterWarehouseListToUpdate = new List<WU_Master_Warehouse__c>();

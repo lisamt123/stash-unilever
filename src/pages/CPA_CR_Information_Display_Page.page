@@ -1,8 +1,7 @@
 <apex:page standardController="CPA_CR__c" extensions="CPA_CRInformationController">
-  <apex:form style="overflow:auto;height:250px"  >
+  <apex:form >
   <apex:pageBlock >
-      <apex:pageMessages />
-   
+      <apex:pageMessages />   
        <apex:pageBlock rendered="{!mandatoryStringFlag != null}">
        <apex:pageMessage summary="{!mandatoryStringFlag}"
                       severity="warning"

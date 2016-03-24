@@ -4,8 +4,6 @@
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
-        <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Information</label>
         <layoutColumns>
@@ -151,29 +149,27 @@
         <label>Current Utilization Details</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>WU_FromDate__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>WU_Utilization_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>WU_ToDate__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
                 <field>WU_Current_Utilization__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
-        <customLabel>false</customLabel>
-        <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>System Information</label>
         <layoutColumns>
@@ -192,7 +188,6 @@
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
-        <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
         <layoutColumns/>
@@ -218,15 +213,4 @@
         <fields>Comments</fields>
         <relatedList>RelatedProcessHistoryList</relatedList>
     </relatedLists>
-    <showEmailCheckbox>false</showEmailCheckbox>
-    <showHighlightsPanel>false</showHighlightsPanel>
-    <showInteractionLogPanel>false</showInteractionLogPanel>
-    <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
-    <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
-    <summaryLayout>
-        <masterLabel>00h8A000000EX0o</masterLabel>
-        <sizeX>4</sizeX>
-        <sizeY>0</sizeY>
-        <summaryLayoutStyle>Default</summaryLayoutStyle>
-    </summaryLayout>
 </Layout>

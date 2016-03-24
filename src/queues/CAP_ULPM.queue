@@ -21,9 +21,6 @@
         <sobjectType>CPA_Queries__c</sobjectType>
     </queueSobject>
     <queueSobject>
-        <sobjectType>CPA_Query_comment__c</sobjectType>
-    </queueSobject>
-    <queueSobject>
         <sobjectType>CPA_Requirements_and_Deliverables__c</sobjectType>
     </queueSobject>
     <queueSobject>
