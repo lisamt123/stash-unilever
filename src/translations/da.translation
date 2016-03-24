@@ -1241,6 +1241,10 @@
         <name>CEC_Latitude</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC Local Indentifier --></label>
+        <name>CEC_Local_Indentifier</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_Longitude --></label>
         <name>CEC_Longitude</name>
     </customLabels>
@@ -11125,6 +11129,24 @@
         <sections>
             <label><!-- Users --></label>
             <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Live Agent Session --></description>
+        <label><!-- Live Agent Session --></label>
+        <name>Live_Agent_Session</name>
+        <sections>
+            <label><!-- Live Agent Sessions --></label>
+            <name>Live Agent Sessions</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Live Chat Transcripts --></description>
+        <label><!-- Live Chat Transcripts --></label>
+        <name>Live_Chat_Transcripts</name>
+        <sections>
+            <label><!-- Live Chat Transcripts --></label>
+            <name>Live Chat Transcripts</name>
         </sections>
     </reportTypes>
     <reportTypes>

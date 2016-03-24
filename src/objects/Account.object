@@ -1462,6 +1462,18 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Local_Identifier_No_Special_Char__c</fullName>
+        <description>CEC This field will hold 11 digits for Brazil user and for other users it will hold as value as Local Identifier</description>
+        <externalId>false</externalId>
+        <label>Local Identifier No Special Char</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Local_Identifier__c</fullName>
         <description>CEC Local Identifier  will hold CPF (government issued ID) for consumers</description>
         <externalId>false</externalId>
@@ -10517,6 +10529,16 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <searchResultsAdditionalFields>PC_ADDRESS2_ZIP</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>LocalIdentifier_Length_Validation</fullName>
+        <active>true</active>
+        <description>CEC : This will validate the  Local Identifier Length for Brazil user. It should contain 11 digits numbers</description>
+        <errorConditionFormula>IF( ( ( $UserRole.Name  = &apos;CEC Manager - Brazil&apos;) || ( $UserRole.Name  = &apos;CEC User -  Brazil&apos;) || ( $UserRole.Name  = &apos;CEC User - Planitox Brazil&apos;)) &amp;&amp;  Local_Identifier__c  &lt;&gt; null ,
+	(NOT( ISNUMBER( SUBSTITUTE(SUBSTITUTE(  Local_Identifier__c , &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) ) ||LEN(SUBSTITUTE(SUBSTITUTE( Local_Identifier__c, &quot;.&quot;, &quot;&quot;), &quot;-&quot;, &quot;&quot;) ) &lt;&gt; 11),
+	false)</errorConditionFormula>
+        <errorDisplayField>Local_Identifier__c</errorDisplayField>
+        <errorMessage>Invalid CPF number (Should contain 11 digit numeric value)</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>Pitch_Email_or_Phone_Mandatory</fullName>
         <active>true</active>

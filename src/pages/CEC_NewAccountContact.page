@@ -57,6 +57,10 @@
                         <apex:inputText value="{!newConsumer.Lastname}"/>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$Label.CEC_Local_Indentifier}"/>
+                        <apex:inputField value="{!newConsumer.Local_Identifier__c}" id="consumerLocalIdentifier" />
+                    </apex:pageBlockSectionItem>						
+                    <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.CEC_PostCode}"/>                        
                         <apex:inputField id="vf_account_postalcode" value="{!newConsumer.PersonMailingPostalCode}"/>
                     </apex:pageBlockSectionItem>
@@ -112,7 +116,13 @@
                         </apex:column>                        
                         <apex:column width="30%" styleClass="more top">
                             <apex:outputLabel value="Show more"/>
-                        </apex:column>                                            
+                        </apex:column>                
+                        <apex:column width="20%" styleClass="results-label local-identifier" breakBefore="true">
+                            <apex:outputLabel value="Local Identifier:"/>
+                        </apex:column>		
+                        <apex:column width="80%" colspan="2" styleClass="results-data local-identifier">
+                            <apex:outputLabel value="{!dupe.consumer.Local_Identifier_No_Special_Char__c}"/>
+                        </apex:column>						
                         <apex:column width="20%" styleClass="results-label partial-address" breakBefore="true">
                             <apex:outputLabel value="Address:"/>
                         </apex:column>
@@ -268,15 +278,16 @@
 
                 $('.more').click(function () {
                     $(this).parent().find('td').toggleClass('current');
-                    $(this).parent().nextAll().eq(0).find('.partial-address').toggle();
-                    $(this).parent().nextAll().eq(1).find('.full-address').toggle().toggleClass('current');
-                    $(this).parent().nextAll().eq(2).find('.email').toggleClass('current');
-                    $(this).parent().nextAll().eq(3).find('.phone').toggleClass('bottom').toggleClass('current');
-                    $(this).parent().nextAll().eq(4).find('.additional').toggle().toggleClass('current').toggleClass('current-case-divider');
-                    $(this).parent().nextAll().eq(5).find('.additional').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(0).find('.local-identifier').toggleClass('current');
+					$(this).parent().nextAll().eq(1).find('.partial-address').toggle();
+                    $(this).parent().nextAll().eq(2).find('.full-address').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(3).find('.email').toggleClass('current');
+                    $(this).parent().nextAll().eq(4).find('.phone').toggleClass('bottom').toggleClass('current');
+                    $(this).parent().nextAll().eq(5).find('.additional').toggle().toggleClass('current').toggleClass('current-case-divider');
                     $(this).parent().nextAll().eq(6).find('.additional').toggle().toggleClass('current');
                     $(this).parent().nextAll().eq(7).find('.additional').toggle().toggleClass('current');
                     $(this).parent().nextAll().eq(8).find('.additional').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(9).find('.additional').toggle().toggleClass('current');
                 });
 
                 $('.results-footer .btn').click(function (e) {

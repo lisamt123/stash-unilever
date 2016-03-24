@@ -92,7 +92,7 @@
         <description>CEC: To fetch the case data based on the Q10 value</description>
         <externalId>false</externalId>
         <formula>IF(Q10__c == &apos;&apos;,&apos;&apos;, &quot;&amp;q10=&quot; &amp; IF( Q10__c == &quot;CaseNumber&quot;, Case_Id__r.CaseNumber ,
-IF(Q10__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName )
+IF(Q10__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName  &amp;&apos; &apos;  &amp;  $User.LastName )
  ,
 IF(Q10__c == &quot;CaseOrigin&quot;,  TEXT(Case_Id__r.Origin) ,
 IF(Q10__c == &quot;CaseOpenedDate&quot;,  LEFT(TEXT( Case_Id__r.CreatedDate ), 16) ,
@@ -131,7 +131,7 @@ IF(Q10__c == &quot;Verbatim&quot;, Case_Id__r.Subject, &quot;&quot;))))))))))))<
         <description>CEC: To fetch the case data based on the Q11 value</description>
         <externalId>false</externalId>
         <formula>IF(Q11__c == &apos;&apos;,&apos;&apos;, &quot;&amp;q11=&quot; &amp; IF( Q11__c == &quot;CaseNumber&quot;, Case_Id__r.CaseNumber ,
-IF(Q11__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName )
+IF(Q11__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName  &amp;&apos; &apos;  &amp;  $User.LastName )
  ,
 IF(Q11__c == &quot;CaseOrigin&quot;,  TEXT(Case_Id__r.Origin) ,
 IF(Q11__c == &quot;CaseOpenedDate&quot;,  LEFT(TEXT( Case_Id__r.CreatedDate ), 16) ,
@@ -171,7 +171,7 @@ IF(Q11__c == &quot;Verbatim&quot;, Case_Id__r.Subject, &quot;&quot;))))))))))))<
         <description>CEC: To fetch the case data based on the Q12 value</description>
         <externalId>false</externalId>
         <formula>IF(Q12__c == &apos;&apos;,&apos;&apos;, &quot;&amp;q12=&quot; &amp; IF( Q12__c == &quot;CaseNumber&quot;, Case_Id__r.CaseNumber , 
-IF(Q12__c == &quot;CaseOwner&quot;, IF( ISBLANK( Case_Id__r.Owner:User.Id ), Case_Id__r.Owner:Queue.QueueName , Case_Id__r.Owner:User.FirstName ) 
+IF(Q12__c == &quot;CaseOwner&quot;, IF( ISBLANK( Case_Id__r.Owner:User.Id ), Case_Id__r.Owner:Queue.QueueName , Case_Id__r.Owner:User.FirstName  &amp;&apos; &apos;  &amp;  $User.LastName ) 
 , 
 IF(Q12__c == &quot;CaseOrigin&quot;, TEXT(Case_Id__r.Origin) , 
 IF(Q12__c == &quot;CaseOpenedDate&quot;, LEFT(TEXT( Case_Id__r.CreatedDate ), 16) , 
@@ -211,7 +211,7 @@ IF(Q12__c == &quot;Verbatim&quot;, Case_Id__r.Subject, &quot;&quot;))))))))))))<
         <description>CEC: To fetch the case data based on the Q2 value</description>
         <externalId>false</externalId>
         <formula>IF(Q2__c == &apos;&apos;,&apos;&apos;, &quot;&amp;q2=&quot; &amp; IF( Q2__c == &quot;CaseNumber&quot;, Case_Id__r.CaseNumber ,
-IF(Q2__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName )
+IF(Q2__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName  &amp;&apos; &apos;  &amp;  $User.LastName  )
  ,
 IF(Q2__c == &quot;CaseOrigin&quot;,  TEXT(Case_Id__r.Origin) ,
 IF(Q2__c == &quot;CaseOpenedDate&quot;,  LEFT(TEXT( Case_Id__r.CreatedDate ), 16) ,
@@ -250,7 +250,7 @@ IF(Q2__c == &quot;Verbatim&quot;, Case_Id__r.Subject, &quot;&quot;))))))))))))</
         <description>CEC: To fetch the case data based on the Q3 value</description>
         <externalId>false</externalId>
         <formula>IF(Q3__c == &apos;&apos;,&apos;&apos;, &quot;&amp;q3=&quot; &amp; IF( Q3__c == &quot;CaseNumber&quot;, Case_Id__r.CaseNumber ,
-IF(Q3__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName )
+IF(Q3__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName  &amp;&apos; &apos;  &amp;  $User.LastName )
  ,
 IF(Q3__c == &quot;CaseOrigin&quot;,  TEXT(Case_Id__r.Origin) ,
 IF(Q3__c == &quot;CaseOpenedDate&quot;,  LEFT(TEXT( Case_Id__r.CreatedDate ), 16) ,
@@ -289,7 +289,7 @@ IF(Q3__c == &quot;Verbatim&quot;, Case_Id__r.Subject, &quot;&quot;))))))))))))</
         <description>CEC: To fetch the case data based on the Q4 value</description>
         <externalId>false</externalId>
         <formula>IF(Q4__c == &apos;&apos;,&apos;&apos;, &quot;&amp;q4=&quot; &amp; IF( Q4__c == &quot;CaseNumber&quot;, Case_Id__r.CaseNumber ,
-IF(Q4__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName )
+IF(Q4__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName  &amp;&apos; &apos;  &amp;  $User.LastName )
  ,
 IF(Q4__c == &quot;CaseOrigin&quot;,  TEXT(Case_Id__r.Origin) ,
 IF(Q4__c == &quot;CaseOpenedDate&quot;,  LEFT(TEXT( Case_Id__r.CreatedDate ), 16) ,
@@ -328,7 +328,7 @@ IF(Q4__c == &quot;Verbatim&quot;, Case_Id__r.Subject, &quot;&quot;))))))))))))</
         <description>CEC: To fetch the case data based on the Q5 value</description>
         <externalId>false</externalId>
         <formula>IF(Q5__c == &apos;&apos;,&apos;&apos;, &quot;&amp;q5=&quot; &amp; IF( Q5__c == &quot;CaseNumber&quot;, Case_Id__r.CaseNumber ,
-IF(Q5__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName )
+IF(Q5__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName  &amp;&apos; &apos;  &amp;  $User.LastName )
  ,
 IF(Q5__c == &quot;CaseOrigin&quot;,  TEXT(Case_Id__r.Origin) ,
 IF(Q5__c == &quot;CaseOpenedDate&quot;,  LEFT(TEXT( Case_Id__r.CreatedDate ), 16) ,
@@ -367,7 +367,7 @@ IF(Q5__c == &quot;Verbatim&quot;, Case_Id__r.Subject, &quot;&quot;))))))))))))</
         <description>CEC: To fetch the case data based on the Q6 value</description>
         <externalId>false</externalId>
         <formula>IF(Q6__c == &apos;&apos;,&apos;&apos;, &quot;&amp;q6=&quot; &amp; IF( Q6__c == &quot;CaseNumber&quot;, Case_Id__r.CaseNumber ,
-IF(Q6__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName )
+IF(Q6__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName   &amp;&apos; &apos;  &amp;  $User.LastName)
  ,
 IF(Q6__c == &quot;CaseOrigin&quot;,  TEXT(Case_Id__r.Origin) ,
 IF(Q6__c == &quot;CaseOpenedDate&quot;,  LEFT(TEXT( Case_Id__r.CreatedDate ), 16) ,
@@ -406,7 +406,7 @@ IF(Q6__c == &quot;Verbatim&quot;, Case_Id__r.Subject, &quot;&quot;))))))))))))</
         <description>CEC: To fetch the case data based on the Q7 value</description>
         <externalId>false</externalId>
         <formula>IF(Q7__c == &apos;&apos;,&apos;&apos;, &quot;&amp;q7=&quot; &amp; IF( Q7__c == &quot;CaseNumber&quot;, Case_Id__r.CaseNumber ,
-IF(Q7__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName )
+IF(Q7__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName  &amp;&apos; &apos;  &amp;  $User.LastName )
  ,
 IF(Q7__c == &quot;CaseOrigin&quot;,  TEXT(Case_Id__r.Origin) ,
 IF(Q7__c == &quot;CaseOpenedDate&quot;,  LEFT(TEXT( Case_Id__r.CreatedDate ), 16) ,
@@ -445,7 +445,7 @@ IF(Q7__c == &quot;Verbatim&quot;, Case_Id__r.Subject, &quot;&quot;))))))))))))</
         <description>CEC: To fetch the case data based on the Q8 value</description>
         <externalId>false</externalId>
         <formula>IF(Q8__c == &apos;&apos;,&apos;&apos;, &quot;&amp;q8=&quot; &amp; IF( Q8__c == &quot;CaseNumber&quot;, Case_Id__r.CaseNumber ,
-IF(Q8__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName )
+IF(Q8__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName  &amp;&apos; &apos;  &amp;  $User.LastName )
  ,
 IF(Q8__c == &quot;CaseOrigin&quot;,  TEXT(Case_Id__r.Origin) ,
 IF(Q8__c == &quot;CaseOpenedDate&quot;,  LEFT(TEXT( Case_Id__r.CreatedDate ), 16) ,
@@ -484,7 +484,7 @@ IF(Q8__c == &quot;Verbatim&quot;, Case_Id__r.Subject, &quot;&quot;))))))))))))</
         <description>CEC: To fetch the case data based on the Q9 value</description>
         <externalId>false</externalId>
         <formula>IF(Q9__c == &apos;&apos;,&apos;&apos;, &quot;&amp;q9=&quot; &amp; IF( Q9__c == &quot;CaseNumber&quot;, Case_Id__r.CaseNumber ,
-IF(Q9__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName )
+IF(Q9__c == &quot;CaseOwner&quot;, IF( ISBLANK(  Case_Id__r.Owner:User.Id  ), Case_Id__r.Owner:Queue.QueueName  ,  Case_Id__r.Owner:User.FirstName  &amp;&apos; &apos;  &amp;  $User.LastName )
  ,
 IF(Q9__c == &quot;CaseOrigin&quot;,  TEXT(Case_Id__r.Origin) ,
 IF(Q9__c == &quot;CaseOpenedDate&quot;,  LEFT(TEXT( Case_Id__r.CreatedDate ), 16) ,

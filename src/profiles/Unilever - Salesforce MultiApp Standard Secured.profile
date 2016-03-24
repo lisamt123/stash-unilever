@@ -1516,6 +1516,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CEC_AlertHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CEC_AnonymiseConsumerBatchScheduler_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1569,6 +1573,18 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CEC_ChequeProcess</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_ClearAlertData_BatchScheduler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_ClearAlertTrackerItem_BatchScheduler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_ClearAlertTracker_Batch</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1661,6 +1677,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CEC_TestAlertActionTriggerHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_TestDataFactory</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -9182,6 +9202,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Local_Identifier_No_Special_Char__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Local_Identifier__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -13368,11 +13393,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAQ_Enhanced__kav.Related_PDF__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FAQ_Enhanced__kav.Rich_Text__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -29927,6 +29947,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>cec_Alert_Tracker__c.Alert_Tracker_Item_count__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>cec_Alert_Tracker__c.Current_Threshold__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -35631,6 +35656,10 @@
         <startAddress>83.199.0.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
+        <endAddress>83.200.7.92</endAddress>
+        <startAddress>83.200.7.92</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
         <endAddress>83.209.255.255</endAddress>
         <startAddress>83.209.0.0</startAddress>
     </loginIpRanges>
@@ -36059,6 +36088,10 @@
         <startAddress>166.49.0.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
+        <endAddress>166.49.229.86</endAddress>
+        <startAddress>166.49.229.86</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
         <endAddress>166.171.255.255</endAddress>
         <startAddress>166.171.0.0</startAddress>
     </loginIpRanges>
@@ -36203,6 +36236,10 @@
         <startAddress>213.61.0.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
+        <endAddress>213.78.108.94</endAddress>
+        <startAddress>213.78.108.94</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
         <endAddress>213.83.255.255</endAddress>
         <startAddress>213.83.0.0</startAddress>
     </loginIpRanges>
@@ -36233,6 +36270,10 @@
     <loginIpRanges>
         <endAddress>217.110.255.255</endAddress>
         <startAddress>217.110.0.0</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>217.110.122.170</endAddress>
+        <startAddress>217.110.122.170</startAddress>
     </loginIpRanges>
     <loginIpRanges>
         <endAddress>217.247.255.255</endAddress>

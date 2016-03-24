@@ -18,6 +18,10 @@
         <name>Alert_Chatter_User_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Alert Retention Days --></label>
+        <name>Alert_Retention_Days__c</name>
+    </fields>
+    <fields>
         <label><!-- Cosmetovigilence CaseId Reference --></label>
         <name>Cosmetovigilence_CaseId_Reference__c</name>
     </fields>
@@ -48,6 +52,11 @@
     <fields>
         <label><!-- LiveChatQuestionaireId --></label>
         <name>LiveChatQuestionaireId__c</name>
+    </fields>
+    <fields>
+        <help><!-- Seperate the CEC roles by a seperator &apos;;&apos; --></help>
+        <label><!-- Local Identifier Special roles --></label>
+        <name>Local_Identifier_Special_roles__c</name>
     </fields>
     <fields>
         <label><!-- Mulesoft User Id --></label>
