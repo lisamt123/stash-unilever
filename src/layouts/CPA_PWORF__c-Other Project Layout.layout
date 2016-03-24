@@ -88,10 +88,6 @@
                 <behavior>Readonly</behavior>
                 <field>dt_Date_Of_Request__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Latest_PWO_Status__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

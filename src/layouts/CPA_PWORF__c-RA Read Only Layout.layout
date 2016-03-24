@@ -137,10 +137,6 @@
                 <behavior>Readonly</behavior>
                 <field>dt_Date_Of_Request__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Latest_PWO_Status__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -241,13 +237,13 @@
                 <field>pkl_Breach_Applicable__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>dat_Revised_Submission_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>pkl_Penalty_Applicable__c</field>
             </layoutItems>
         </layoutColumns>

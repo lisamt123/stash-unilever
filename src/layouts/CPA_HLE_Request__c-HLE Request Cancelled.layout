@@ -15,7 +15,7 @@
                 <height>200</height>
                 <page>CPA_HLE_Request_Information_Display_Page</page>
                 <showLabel>false</showLabel>
-                <showScrollbars>true</showScrollbars>
+                <showScrollbars>false</showScrollbars>
                 <width>100%</width>
             </layoutItems>
         </layoutColumns>
@@ -230,7 +230,7 @@
                 <field>mpkl_PFS_If_yes_what_is_the_source__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>txt_Other_Project_funding_Source__c</field>
             </layoutItems>
         </layoutColumns>
