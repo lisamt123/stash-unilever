@@ -1516,6 +1516,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CEC_AlertHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CEC_AnonymiseConsumerBatchScheduler_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1569,6 +1573,18 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CEC_ChequeProcess</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_ClearAlertData_BatchScheduler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_ClearAlertTrackerItem_BatchScheduler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_ClearAlertTracker_Batch</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1662,6 +1678,10 @@
     <classAccesses>
         <apexClass>CEC_TestAlertActionTriggerHelper</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CEC_TestDataFactory</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CEC_Test_FulfilmentQualityCheckHelper</apexClass>
@@ -9181,6 +9201,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Account.Local_Identifier_No_Special_Char__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Account.Local_Identifier__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -13367,11 +13392,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAQ_Enhanced__kav.Related_PDF__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>FAQ_Enhanced__kav.Rich_Text__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -29922,6 +29942,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Alert_Tracker__c.Alert_Threshold__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>cec_Alert_Tracker__c.Alert_Tracker_Item_count__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

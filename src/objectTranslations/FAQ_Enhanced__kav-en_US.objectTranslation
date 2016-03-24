@@ -41,10 +41,6 @@
         <name>Related_PDF__c</name>
     </fields>
     <fields>
-        <label><!-- Rich Text --></label>
-        <name>Rich_Text__c</name>
-    </fields>
-    <fields>
         <label><!-- Sensitive Text --></label>
         <name>Sensitive_Text__c</name>
     </fields>

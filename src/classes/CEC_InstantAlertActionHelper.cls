@@ -170,11 +170,11 @@ public without sharing class CEC_InstantAlertActionHelper {
         Case caseObj;        
         String caseMarket; 
         Set<Id> allAlertRuleIdSet = null;
-        List<String> caseL0ProductCategoryList = new List<String>();
-        List<String> caseL2ProductCategoryList = new List<String>();
-        List<String> caseL4ProductCategoryList = new List<String>();
-        List<String> caseNoProdSizeDescList = new List<String>();        
-        List<String> caseR5ReasonCodeList = new List<String>();
+        Set<String> caseL0ProductCategoryList = new Set<String>();
+        Set<String> caseL2ProductCategoryList = new Set<String>();
+        Set<String> caseL4ProductCategoryList = new Set<String>();
+        Set<String> caseNoProdSizeDescList = new Set<String>();        
+        Set<String> caseR5ReasonCodeList = new Set<String>();
         String l0ProductCategoryConcatValue, l2ProductCategoryConcatValue, l4ProductCategoryConcatValue, r5ReasonCodeConcatValue; 
         
         for(Id caseIdItr : caseIds){
@@ -395,9 +395,9 @@ public without sharing class CEC_InstantAlertActionHelper {
                                 alertTracker.Trigger_Batch__c = TRUE;
                                 // Add the alert tracker in the master list to do the insert
                                 masterAlertTrackerList.add(alertTracker);
-                                // Add the alert tracker to the map in the wrapper per Case Id.
-                                alertWrapper.addAlertTracker(caseObj.Id, alertTracker);
                             }
+                            // Add the alert tracker to the map in the wrapper per Case Id.
+                            alertWrapper.addAlertTracker(caseObj.Id, alertTracker);
                         }                        
                     }
                 }
@@ -415,7 +415,7 @@ public without sharing class CEC_InstantAlertActionHelper {
         Method to create the Alert Tracker Items records for the cases.
     ********************************************************************/
     private void createAlertTrackerItems() {
-        System.debug('Entering createAlertTrackerItems() method');
+        System.debug('Entering createAlertTrackerItems() method. alertRuleWrapperMap = ' + alertRuleWrapperMap);
         if(alertRuleWrapperMap.size()> 0) {
             cec_Alert_Tracker_Item__c alertTrackerItem;
             List<cec_Alert_Tracker_Item__c> masterAlertTrackerItemList = new List<cec_Alert_Tracker_Item__c>();

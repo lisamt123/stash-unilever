@@ -16,7 +16,7 @@
     })(); 
     </script>
     
-    
+    <head><meta name="viewport" content="width=device-width, initial-scale=1"></meta></head>
     <form method='post' id='prechatForm'>
         <div class="centered">
             <a style="font-weight:bold;">What's your Name? </a><a style="color:red;">*</a> <br/> 

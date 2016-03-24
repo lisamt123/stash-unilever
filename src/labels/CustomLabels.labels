@@ -2225,6 +2225,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Latitude</value>
     </labels>
     <labels>
+        <fullName>CEC_Local_Indentifier</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC Local Indentifier</shortDescription>
+        <value>Local Indentifier</value>
+    </labels>
+    <labels>
         <fullName>CEC_Longitude</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>

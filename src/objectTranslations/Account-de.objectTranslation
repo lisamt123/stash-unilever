@@ -1059,6 +1059,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Local Identifier No Special Char --></label>
+        <name>Local_Identifier_No_Special_Char__c</name>
+    </fields>
+    <fields>
         <label><!-- Local Identifier --></label>
         <name>Local_Identifier__c</name>
     </fields>
@@ -1682,6 +1686,10 @@
         <label><!-- Secondary Account --></label>
         <name>UID_Secondary_Account</name>
     </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Invalid CPF number (Should contain 11 digit numeric value) --></errorMessage>
+        <name>LocalIdentifier_Length_Validation</name>
+    </validationRules>
     <validationRules>
         <errorMessage><!-- Either Email or Phone must be filled in. --></errorMessage>
         <name>Pitch_Email_or_Phone_Mandatory</name>
