@@ -1917,7 +1917,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_ApproveRejectAction</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Approve_Reject_Test</apexClass>
@@ -1937,7 +1937,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_BaseApplicationServicesTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_BaseApplicationWrapper</apexClass>
@@ -1949,7 +1949,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_BaseServiceException_Test</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_HeaderApproveController</apexClass>
@@ -1961,7 +1961,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Header_Handler</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_HelpContentController</apexClass>
@@ -1977,6 +1977,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_LineItemDetail</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>Core_CA_LineItem_Handler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1997,11 +2001,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_RemoteServiceCallControllerTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_RequestDetail</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_RequestDetailsController</apexClass>
@@ -2013,11 +2017,11 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_Test_MobileAPP</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_WrapperUtility</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_IC_AppConstants</apexClass>
@@ -12591,6 +12595,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Core_Approval_Header__c.All_years__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Core_Approval_Header__c.Amount_Paid_Card__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -12617,6 +12626,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Application_URL__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approval_Header__c.Approval_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -12876,6 +12890,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Core_Approval_Header__c.Total_Budget__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Core_Approval_Header__c.Total_Expenses_Amount__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -13012,6 +13031,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approver_Details__c.Status__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Core_Approver_Details__c.TF_CreatedDate__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -33181,6 +33205,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>uw_BET__c.Final_release_otif__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>uw_BET__c.FirstReleaseDate__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -33192,6 +33221,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>uw_BET__c.First_release_date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>uw_BET__c.First_release_otif__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -34052,6 +34086,10 @@
         <recordType>Core_Approval_Details__c.GTES</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Core_Approval_Details__c-Line Details Ariba_FeedBased</layout>
+        <recordType>Core_Approval_Details__c.Invoice</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Core_Approval_Header__c-Ariba_FeedBased</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -34060,7 +34098,15 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Core_Approval_Header__c-Ariba_FeedBased</layout>
+        <recordType>Core_Approval_Header__c.Clarity</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Core_Approval_Header__c-Ariba_FeedBased</layout>
         <recordType>Core_Approval_Header__c.GTES</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Core_Approval_Header__c-Ariba_FeedBased</layout>
+        <recordType>Core_Approval_Header__c.Invoice</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Core_Approver_Details__c-Approver_Ariba_FeedBased</layout>
@@ -34071,7 +34117,15 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Core_Approver_Details__c-Approver_Ariba_FeedBased</layout>
+        <recordType>Core_Approver_Details__c.Clarity</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Core_Approver_Details__c-Approver_Ariba_FeedBased</layout>
         <recordType>Core_Approver_Details__c.GTES</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Core_Approver_Details__c-Approver_Ariba_FeedBased</layout>
+        <recordType>Core_Approver_Details__c.Invoice</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Course_Attachment__c-FA_Course Attachment Layout</layout>
@@ -35925,8 +35979,16 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Core_CA_ApprovalDetailPage</apexPage>
+        <apexPage>Core_CA_AdditionalProjectFinance</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApprovalCommentDetailPage</apexPage>
         <enabled>false</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApprovalDetailPage</apexPage>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_ApprovalDetails</apexPage>
@@ -35937,16 +35999,28 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>Core_CA_ApprovalFinancialBenefits</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Core_CA_ApprovalHomePage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>Core_CA_ApprovalKeyIndicators</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Core_CA_ApprovalRequestAribaLineDetail</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_ApprovalRequestGETSLineDetail</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_ApprovalRequestInvoiceLineDetail</apexPage>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_ApproveRejectActionPage</apexPage>
@@ -35965,6 +36039,10 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>Core_CA_DateCommentDetailPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>Core_CA_HeaderApprove</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -35974,6 +36052,10 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_IPHelp</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Core_CA_InvoiceChatterFeedPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -37231,7 +37313,17 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Core_Approval_Details__c.Invoice</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Core_Approval_Header__c.Ariba</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Core_Approval_Header__c.Clarity</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
@@ -37241,12 +37333,27 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Core_Approval_Header__c.Invoice</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Core_Approver_Details__c.Ariba</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
+        <recordType>Core_Approver_Details__c.Clarity</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
         <recordType>Core_Approver_Details__c.GTES</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>Core_Approver_Details__c.Invoice</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

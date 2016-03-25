@@ -369,7 +369,7 @@
         <name>Deletion_Date__c</name>
     </fields>
     <fields>
-        <help><!-- Add text that will help others search for your Brand Experience --></help>
+        <help><!-- Add text that will help others search for your brand experience. If the text was copied over from an IPM project, editing this text will not modify the description of the IPM Navigator project, and only affects the description field of your BET. --></help>
         <label><!-- Description --></label>
         <name>Description__c</name>
     </fields>
@@ -386,6 +386,10 @@
         <name>Final_release_date__c</name>
     </fields>
     <fields>
+        <label><!-- Final release otif --></label>
+        <name>Final_release_otif__c</name>
+    </fields>
+    <fields>
         <label><!-- First Release Date --></label>
         <name>FirstReleaseDate__c</name>
     </fields>
@@ -396,6 +400,10 @@
     <fields>
         <label><!-- First release date --></label>
         <name>First_release_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- First release otif --></label>
+        <name>First_release_otif__c</name>
     </fields>
     <fields>
         <help><!-- Test --></help>

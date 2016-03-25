@@ -217,6 +217,10 @@
             <translation><!-- GTES --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Invoice</masterLabel>
+            <translation><!-- Invoice --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Remedy</masterLabel>
             <translation><!-- Remedy --></translation>
         </picklistValues>
@@ -315,6 +319,17 @@
             <section>Room Details</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>Line Details Invoice_FeedBased</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
     <quickActions>
         <label><!-- Approve --></label>
         <name>Approve</name>
@@ -330,6 +345,10 @@
     <recordTypes>
         <label><!-- GTES --></label>
         <name>GTES</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Invoice --></label>
+        <name>Invoice</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
