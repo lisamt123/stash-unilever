@@ -17,6 +17,10 @@
         <name>Advance_Amount__c</name>
     </fields>
     <fields>
+        <label><!-- All years --></label>
+        <name>All_years__c</name>
+    </fields>
+    <fields>
         <label><!-- Amount-Paid Card --></label>
         <name>Amount_Paid_Card__c</name>
     </fields>
@@ -39,6 +43,10 @@
     <fields>
         <label><!-- Application URL --></label>
         <name>Application_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Type --></label>
+        <name>Approval_Type__c</name>
     </fields>
     <fields>
         <label><!-- Company Name --></label>
@@ -228,8 +236,16 @@
             <translation><!-- Ariba --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Clarity</masterLabel>
+            <translation><!-- Clarity --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>GTES</masterLabel>
             <translation><!-- GTES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invoice</masterLabel>
+            <translation><!-- Invoice --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Remedy</masterLabel>
@@ -301,6 +317,10 @@
         <name>Title_Summary__c</name>
     </fields>
     <fields>
+        <label><!-- Total Budget --></label>
+        <name>Total_Budget__c</name>
+    </fields>
+    <fields>
         <label><!-- Total Expenses Amount --></label>
         <name>Total_Expenses_Amount__c</name>
     </fields>
@@ -329,6 +349,17 @@
         <sections>
             <label><!-- Requisition Details --></label>
             <section>Requisition Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Clarity_FeedBased</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
         </sections>
     </layouts>
     <layouts>
@@ -362,6 +393,17 @@
             <section>PreTrip Passenger Info</section>
         </sections>
     </layouts>
+    <layouts>
+        <layout>Invoice_FeedBased</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
     <quickActions>
         <label><!-- Approve --></label>
         <name>Approve</name>
@@ -375,8 +417,16 @@
         <name>Ariba</name>
     </recordTypes>
     <recordTypes>
+        <label><!-- Clarity --></label>
+        <name>Clarity</name>
+    </recordTypes>
+    <recordTypes>
         <label><!-- GTES --></label>
         <name>GTES</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Invoice --></label>
+        <name>Invoice</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

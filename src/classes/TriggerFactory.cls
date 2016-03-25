@@ -195,6 +195,9 @@ public with sharing class TriggerFactory
         if (soType == IPM_Assessment__c.sObjectType){
             return new IPM_AssesmentHandler();
         }
+		if (soType == Core_Approval_Details__c.sObjectType){
+            return new Core_CA_LineItem_Handler();
+        }
         return null;
     }
 

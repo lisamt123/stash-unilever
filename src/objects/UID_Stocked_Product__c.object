@@ -107,6 +107,7 @@
     </fields>
     <fields>
         <fullName>UID_Stocked_Product_External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
         <label>Stocked Product External ID</label>
         <length>255</length>
@@ -114,7 +115,7 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
+        <unique>true</unique>
     </fields>
     <label>Stocked Product</label>
     <listViews>
