@@ -22,7 +22,7 @@
         <fields>Status__c</fields>
         <fields>Visible_to_Supplier__c</fields>
         <includeSessionId>false</includeSessionId>
-        <integrationUser>ariba.system@unilever.com</integrationUser>
+        <integrationUser>deploy.system@unilever.com</integrationUser>
         <name>Core CA IP Ariba OutboundMessage</name>
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>
@@ -40,7 +40,7 @@
         <fields>Role__c</fields>
         <fields>Status__c</fields>
         <includeSessionId>false</includeSessionId>
-        <integrationUser>clarity.system@unilever.com</integrationUser>
+        <integrationUser>deploy.system@unilever.com</integrationUser>
         <name>Core CA IP Clarity OutboundMessage</name>
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>
@@ -55,7 +55,7 @@
         <fields>Interested_Party_Email__c</fields>
         <fields>Status__c</fields>
         <includeSessionId>false</includeSessionId>
-        <integrationUser>gtes.system@unilever.com</integrationUser>
+        <integrationUser>deploy.system@unilever.com</integrationUser>
         <name>Core CA IP GTES Approve OutboundMessage</name>
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>
@@ -71,7 +71,7 @@
         <fields>Interested_Party_Email__c</fields>
         <fields>Status__c</fields>
         <includeSessionId>false</includeSessionId>
-        <integrationUser>gtes.system@unilever.com</integrationUser>
+        <integrationUser>deploy.system@unilever.com</integrationUser>
         <name>Core CA IP GTES Reject OutboundMessage</name>
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>
@@ -87,7 +87,7 @@
         <fields>Interested_Party_Email__c</fields>
         <fields>Status__c</fields>
         <includeSessionId>false</includeSessionId>
-        <integrationUser>invoice.system@unilever.com</integrationUser>
+        <integrationUser>deploy.system@unilever.com</integrationUser>
         <name>Core CA IP Invoice OutboundMessage</name>
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>
