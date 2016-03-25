@@ -36,12 +36,24 @@
             <translation><!-- DRFT --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>PAPP</masterLabel>
+            <translation><!-- PAPP --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>PREP</masterLabel>
             <translation><!-- PREP --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>QUER</masterLabel>
+            <translation><!-- QUER --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>REJC</masterLabel>
             <translation><!-- REJC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>REWO</masterLabel>
+            <translation><!-- REWO --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>SUBM</masterLabel>
@@ -138,6 +150,14 @@
             <translation><!-- EMP --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>END</masterLabel>
+            <translation><!-- END --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OTH</masterLabel>
+            <translation><!-- OTH --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>PRE</masterLabel>
             <translation><!-- PRE --></translation>
         </picklistValues>
@@ -194,8 +214,16 @@
             <translation><!-- Ariba --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Clarity</masterLabel>
+            <translation><!-- Clarity --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>GTES</masterLabel>
             <translation><!-- GTES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invoice</masterLabel>
+            <translation><!-- Invoice --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Remedy</masterLabel>
@@ -210,9 +238,25 @@
             <translation><!-- Approved --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Query With Vendor</masterLabel>
+            <translation><!-- Query With Vendor --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Rejected</masterLabel>
             <translation><!-- Rejected --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>Return to AP</masterLabel>
+            <translation><!-- Return to AP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rework</masterLabel>
+            <translation><!-- Rework --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- TF_CreatedDate --></label>
+        <name>TF_CreatedDate__c</name>
     </fields>
     <fields>
         <label><!-- TF_Header_Status --></label>
@@ -273,8 +317,16 @@
         <name>Ariba</name>
     </recordTypes>
     <recordTypes>
+        <label><!-- Clarity --></label>
+        <name>Clarity</name>
+    </recordTypes>
+    <recordTypes>
         <label><!-- GTES --></label>
         <name>GTES</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Invoice --></label>
+        <name>Invoice</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

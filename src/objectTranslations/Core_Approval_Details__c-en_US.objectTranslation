@@ -217,6 +217,10 @@
             <translation><!-- GTES --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Invoice</masterLabel>
+            <translation><!-- Invoice --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Remedy</masterLabel>
             <translation><!-- Remedy --></translation>
         </picklistValues>
@@ -330,6 +334,10 @@
     <recordTypes>
         <label><!-- GTES --></label>
         <name>GTES</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Invoice --></label>
+        <name>Invoice</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
