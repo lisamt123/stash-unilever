@@ -55,7 +55,6 @@
     </alerts>
     <alerts>
         <fullName>Warehouse_capacity_below_committed_capacity</fullName>
-        <ccEmails>vaishali.thite@cognizant.com</ccEmails>
         <description>Warehouse capacity below committed capacity!</description>
         <protected>false</protected>
         <recipients>
