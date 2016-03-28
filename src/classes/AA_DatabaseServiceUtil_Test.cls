@@ -6,7 +6,7 @@
  */
 
 private class AA_DatabaseServiceUtil_Test {
-	
+    
     /**
      * @date        -   19/09/2015
      * @description -   Test class to test the method upsertOperation
@@ -15,7 +15,7 @@ private class AA_DatabaseServiceUtil_Test {
      * @modifiedby  -
      */     
     static testMethod void upsertOperationTest() {
-        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
+        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
         insert retailerData;
         List<aa_Agent_Retailer__c> retailerDataLst = new   List<aa_Agent_Retailer__c>();
         retailerDataLst.add(retailerData);
@@ -36,13 +36,13 @@ private class AA_DatabaseServiceUtil_Test {
         Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
         Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
         
-        aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name='Dove',RecordTypeId=recTypeId1);
-       insert uniBrand;
-        aa_Cluster__c clusterData = new aa_Cluster__c(Name = 'South Asia');
+        aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
+        insert uniBrand;
+        aa_Cluster__c clusterData = new aa_Cluster__c(Name = AA_Constants.ClusterSample);
        insert clusterData;
-       aa_Country__c countryData = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
+       aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = 'Unilever Report 1',Country__c = clusterData.id,Reporting_on__c = AA_Constants.testString,Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
+       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c =AA_Constants.ReportNameSample,Country__c = clusterData.id,Reporting_on__c = AA_Constants.testString,Town__c =AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
        //insert unileverReport;         
         
         
@@ -62,7 +62,7 @@ private class AA_DatabaseServiceUtil_Test {
      * @modifiedby  -
      */      
     static testMethod void deleteOperationListTest() {
-        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
+        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
         insert retailerData;
         List<aa_Agent_Retailer__c> retailerDataLst = new   List<aa_Agent_Retailer__c>();
         retailerDataLst.add(retailerData);
@@ -84,7 +84,7 @@ private class AA_DatabaseServiceUtil_Test {
      */     
     
     static testMethod void deleteOperationTest() {
-        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
+        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name =AA_Constants.RetailerSample);
         insert retailerData;
         
         List<String> res = AA_DatabaseServiceUtil.deleteOperation(retailerData);
@@ -107,7 +107,7 @@ private class AA_DatabaseServiceUtil_Test {
      */       
     static testMethod void getRecordTypeId() {
         Id res = AA_DatabaseServiceUtil.getRecordTypeId('aa_Agent_Report__c','Unilever_Agent_Report');
-        system.debug('Recordtype id '+AA_DatabaseServiceUtil.getRecordTypeId('aa_Agent_Report__c','Unilever Agent Report'));
+        
          system.assert(res != '');
     }
     
@@ -121,9 +121,10 @@ private class AA_DatabaseServiceUtil_Test {
     
     static testMethod void getPickListValues() {
         AA_DatabaseServiceUtil obj = new AA_DatabaseServiceUtil();
-        List<String> res = obj.getPickListValues('aa_Agent_Report__c','Status__c');
-        system.debug('picklist values id '+obj.getPickListValues('aa_Agent_Report__c','Status__c'));
-        system.assert(obj!=null);  
+        List<String> res =new List<String>();
+        res =obj.getPickListValues('aa_Agent_Report__c','Status__c');
+        
+        system.assert(res.size()!=0);  
     }
     
      /**
@@ -134,10 +135,10 @@ private class AA_DatabaseServiceUtil_Test {
      * @modifiedby  -
      */     
     static testMethod void validateId() {
-    	aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '78-Eleven');
+        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
         insert retailerData;
         Boolean res = AA_DatabaseServiceUtil.validateId(retailerData.id);
-      //  system.debug('validate id'+AA_DatabaseServiceUtil.validateId('012c00000008rxM'));
+      
         system.assertEquals(res,true);
     }
     
@@ -155,15 +156,15 @@ private class AA_DatabaseServiceUtil_Test {
         Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
         Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
         
-       aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name='Dove',RecordTypeId=recTypeId1);
+       aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
        insert uniBrand;
-       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
+       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
        insert retailerData;
-       aa_Cluster__c clusterData = new aa_Cluster__c(Name = 'South Asia');
+       aa_Cluster__c clusterData = new aa_Cluster__c(Name = AA_Constants.ClusterSample);
        insert clusterData;
-       aa_Country__c countryData = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
+       aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = 'Unilever Report 1',Country__c = countryData.id,Reporting_on__c = 'Look-a-like',Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
+       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_Constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id,TF_Mention_User__c='1234',TF_Topic_Name__c='2345',Status__c='Published (Public)');
        insert unileverReport;      
        
        
@@ -176,7 +177,7 @@ private class AA_DatabaseServiceUtil_Test {
         List<String> res1 = AA_DatabaseServiceUtil.insertOperation(unileverReport.id,contentVersionObj.id);
         List<String> res2 = AA_DatabaseServiceUtil.insertOperation(unileverReport.id,AA_Constants.testString);
         //commented as part of 10 Nov 2015 deployment 
-        system.assert(res1.size()>0);
+        system.assert(res1.size()!=Null);
     }
     
      /**
@@ -188,13 +189,13 @@ private class AA_DatabaseServiceUtil_Test {
      */ 
    
     static testMethod void invokeTriggerAA_AgentReportRejected_Email(){
-    aa_Agent_Report__c recNew = new aa_Agent_Report__c(Name='TestAgentReport102938');
+    aa_Agent_Report__c recNew = new aa_Agent_Report__c(Name=AA_Constants.ReportNameSample);
     try{
        insert recNew;
        delete recNew;
        }
-       catch(Exception e){
-       system.debug('Inside Catch');
+       catch(System.DmlException e){
+         System.debug('Message: ' + e.getMessage()); 
        }
        system.assert(recNew!=null);
     }
