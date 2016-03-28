@@ -11,6 +11,9 @@ global with sharing class AF_BrandEstimateRemote {
 	static String strongStrt;
 	static String strongEnd;
 	static String tdCloseTagEst;
+	static Boolean isLocked;
+	static Decimal colTotalA;
+	static String archiveImg;
     public AF_BrandEstimateRemote(ApexPages.StandardController stdController) {
         
     }
@@ -49,7 +52,7 @@ global with sharing class AF_BrandEstimateRemote {
     global static Map<String, String> getAgencyEstimateRecords(String agencyId, String brandEstimateId) {
         tdCloseTagEst = '</td>';
         String trOpenTag = '<tr>', trCloseTag = '</tr>';
-        Boolean isLocked = false;
+        isLocked = false;
         strongStrt = '<Strong>';
 		strongEnd = '</strong>';
         Set<String> columnsSet = new Set<String>();
@@ -59,8 +62,9 @@ global with sharing class AF_BrandEstimateRemote {
 		colTraditional=0;
 		colDigital=0;
 		colAdaptation=0;
+		colTotalA = 0;
         Integer rowTotal = 0, rowTraditional = 0, rowDigital = 0, rowAdaptation =0;
-        Decimal colTotalA = 0, rowTotalA = 0;
+        Decimal rowTotalA = 0;
         List<AF_Agency_Estimate__c> agencyEstimates = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
                                                                 AF_Total_Local__c,AF_Total__c, AF_IsCrossborder__c, AF_isComment__c, AF_Brand_Estimate__r.AF_Locked__c,
                                                                Matrix_Currency_Code__c,AF_Brand_Estimate__c, AF_Brand_Estimate__r.AF_Agency__c,AF_IsCrossBorderImage__c,
@@ -87,9 +91,7 @@ global with sharing class AF_BrandEstimateRemote {
         // These are those Unilever Entities which are not created as a record for Agency Estimates.
         colDetail = ''; //Column variable which gets added to the map finally.
         rowDetail = ''; //Row variable which gets added to the map finally.
-        String imgPath = AF_Utils.isAgencyUser(UserInfo.getUserId()) ? Label.AF_AgencyUrlLink : Label.AF_UrlLink;
-        String archiveImg = '<img class=\"archive\" src="' + imgPath + '/resource/' + AF_Utils.getResourceURL('AF_DataTables') + '/AF_DataTables/AF_DataTables/examples/resources/remove_icon.png"'; 
-        archiveImg += ' height="18" width="18" />';
+        
         /* This is the first row of the matrix which actually calculates the Columnwise totals.*/
         rowDetail += trOpenTag;
         rowDetail += '<td class=\"headFirstRow\">' + strongStrt + 'Unilever Entities' + strongEnd + tdCloseTagEst;
@@ -97,21 +99,9 @@ global with sharing class AF_BrandEstimateRemote {
 		//Calling the ordered Column method
 		orderedColMethod();
         rowDetail += trCloseTag;
-        Integer i=2;
         //Display the distinct Columns from the agency estimates.
-        for(String eachCol : orderedColumn) {
-            colTotal = 0;colTotalA = 0;
-            for(String eachRow : orderedRow) {
-                String keyMatch = eachCol+'-'+eachRow; //column Vs row
-                if(agencyULRelationMap.containsKey(keyMatch)) {
-                    colTotal += truncateDecimal(agencyULRelationMap.get(keyMatch).AF_Total__c/1000);
-                    colTotalA += agencyULRelationMap.get(keyMatch).AF_Total__c;
-                }
-            }
-            String dispArchiveImg = (colTotalA > 0 || isLocked) ?  '' : archiveImg;
-            colDetail += '<th id=\'' + i + '\' isDisplay=\'y\'>' + eachCol + dispArchiveImg + '</th>';
-            i++;
-        }
+		orderedRowMethod();
+             
         /* Columns part is completed. */
         /* Following displays all the rows in the matrix.*/
         for(String eachRow : orderedRow) {
@@ -180,7 +170,32 @@ global with sharing class AF_BrandEstimateRemote {
             }
             rowDetail += '</a>' + tdCloseTagEst;
         }
-	}  	
+	} 
+     /*****************************************************************************
+*  @Description: this method is to calculate the row totals
+*  @name : orderedRowMethod
+*  @param : none
+*  @return : none
+*************************************************************************/
+	public static void orderedRowMethod(){
+	Integer i=2;
+	String imgPath = AF_Utils.isAgencyUser(UserInfo.getUserId()) ? Label.AF_AgencyUrlLink : Label.AF_UrlLink;
+    archiveImg = '<img class=\"archive\" src="' + imgPath + '/resource/' + AF_Utils.getResourceURL('AF_DataTables') + '/AF_DataTables/AF_DataTables/examples/resources/remove_icon.png"'; 
+    archiveImg += ' height="18" width="18" />';
+	for(String eachCol : orderedColumn) {
+            colTotal = 0;colTotalA = 0;
+            for(String eachRow : orderedRow) {
+                String keyMatch = eachCol+'-'+eachRow; //column Vs row
+                if(agencyULRelationMap.containsKey(keyMatch)) {
+                    colTotal += truncateDecimal(agencyULRelationMap.get(keyMatch).AF_Total__c/1000);
+                    colTotalA += agencyULRelationMap.get(keyMatch).AF_Total__c;
+                }
+            }
+            String dispArchiveImg = (colTotalA > 0 || isLocked) ?  '' : archiveImg;
+            colDetail += '<th id=\'' + i + '\' isDisplay=\'y\'>' + eachCol + dispArchiveImg + '</th>';
+            i++;
+        }
+	} 	
      /*****************************************************************************
 *  @Description: this method is to calculate the total of each row and column  
 *  @ and display's the row and column total on mouseover, the total value
