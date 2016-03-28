@@ -223,6 +223,10 @@
                 <behavior>Readonly</behavior>
                 <field>PFS_Is_there_approved_funding_for_this__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txta_Reason_for_Cancellation__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

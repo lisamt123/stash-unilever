@@ -1,4 +1,4 @@
-<messaging:emailTemplate subject="PWORF: {!RelatedTo.auto_PWORF_ID__c} submitted by {!RelatedTo.ftxt_Unilever_Project_Manager_Name__c}" recipientType="User" relatedToType="CPA_PWORF__c">
+<messaging:emailTemplate subject="{!RelatedTo.auto_PWORF_ID__c} : {!RelatedTo.pkl_Status__c}" recipientType="User" relatedToType="CPA_PWORF__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
     A PWORF with ID: {!RelatedTo.auto_PWORF_ID__c}  is submitted by {!RelatedTo.ftxt_Unilever_Project_Manager_Name__c} on {!RelatedTo.dat_Submitted_Date__c} . <br/><br/>

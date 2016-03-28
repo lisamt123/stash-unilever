@@ -230,6 +230,14 @@
             <type>group</type>
         </recipients>
         <recipients>
+            <recipient>CAP_ULFT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULPM_group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
             <recipient>CAP_ULPT_Group</recipient>
             <type>group</type>
         </recipients>

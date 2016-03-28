@@ -17,10 +17,6 @@
         <allowDelegate>false</allowDelegate>
         <approvalActions>
             <action>
-                <name>CAP_Email_after_PWORF_is_Accepted</name>
-                <type>Alert</type>
-            </action>
-            <action>
                 <name>CAP_Manually_Accepted</name>
                 <type>FieldUpdate</type>
             </action>
@@ -55,10 +51,6 @@
                 <name>CAP_PWORF_returned</name>
                 <type>FieldUpdate</type>
             </action>
-            <action>
-                <name>CAP_PWORF_returned_by_VDM</name>
-                <type>Alert</type>
-            </action>
         </rejectionActions>
     </approvalStep>
     <emailTemplate>CPA_Email_Template/CPA_PWORF_Submitted_by_ULPM</emailTemplate>
@@ -90,10 +82,6 @@
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
-            <name>CPA_Email_PWORF_is_Submitted</name>
-            <type>Alert</type>
-        </action>
-        <action>
             <name>CPA_Owner_Update_to_VDM</name>
             <type>FieldUpdate</type>
         </action>
@@ -111,10 +99,6 @@
         <action>
             <name>Approval_Comment_Required_for_PWORF</name>
             <type>FieldUpdate</type>
-        </action>
-        <action>
-            <name>CAP_Pworf_Withhold</name>
-            <type>Alert</type>
         </action>
         <action>
             <name>CPA_PWORF_Recall</name>
