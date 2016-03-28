@@ -1,0 +1,111 @@
+<apex:page html-class="noBgImage" controller="PC_ForumController_CC" readOnly="true" docType="html-5.0" sidebar="false" showHeader="false" standardStylesheets="true">
+    <!-- javascript -->
+    <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/jquery-1.12.0.min.js')}" />
+    <apex:includeScript value="{!URLFOR($Resource.PCResources, '/js/bootstrap.min.js')}" />
+
+    <!-- sylesheets -->
+    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/bootstrap.min.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.PCResources, '/css/PC_Container.css')}" />
+
+        <div class="wrapper wrapper-sub-frame">
+        <!--<div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="heading">
+                    PlanCraft
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12">
+                <div class="subheading">
+                    Welcome to PlanCraft. This portal brings together knowledge and best practise from across the Planning Community.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <div class="profileArea group">
+                    <div class="headerBox">
+                        Overview
+                    </div>
+
+                    <div class="headerBox left">
+                        Coming Soon
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 col-lg-5">
+                            <apex:image value="{!URLFOR($Resource.PCResources, 'img/DEInfoArea.png')}" />
+                        </div>
+
+                        <div class="col-md-3 col-lg-3">
+                            <apex:image value="{!URLFOR($Resource.PCResources, 'img/badges.png')}" />
+                        </div>
+
+                        <div class="col-md-4 col-lg-4">
+
+                            <apex:include pageName="PC_RankingTable" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>-->
+
+        <!-- body -->
+        <div class="row">
+            <div class="col-md-3 col-lg-3 leftNav">
+                <div class="box center center-1">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!PBSForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_pbs.svg')}" />
+                    </a>
+                </div>
+                <div class="box center box-center-2">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!DPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_demandplan.svg')}" />
+                    </a>
+                </div>                
+                <div class="box center box-center-3">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!SPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_supplyplan.svg')}" />
+                    </a>
+                </div>                
+                <div class="box center box-center-4">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!DisPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_distribution.svg')}" />
+                    </a>
+                </div>                
+                <div class="box center box-center-5">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!MPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_material.svg')}" />
+                    </a>
+                </div>  
+                <div class="box center box-center-6">
+                    <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.PC_ForumGroup}?id={!IPForumGroupId.Id}" target="innerFrame">
+                        <apex:image title="PBS" value="{!URLFOR($Resource.PCResources, 'img/hexicons_innovation.svg')}" />
+                    </a>
+                </div>                  
+            </div>
+            <div class="col-md-9 col-lg-9">
+                              
+                <div class="chatterWrapper zen">
+                   <chatter:newsfeed /> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $('#categories').carousel({
+            interval: 5000
+        });
+
+        $('#categories').on('slide.bs.carousel', function (event) {
+            var idx = $('#categories .item').index(event.relatedTarget);
+            $('.carouselPager li.active').removeClass('active');
+            if (idx > -1) {
+                $('.carouselPager li').eq(idx).addClass('active');
+            }
+        });
+
+        $('.categories img').popover();
+    </script>
+</apex:page>
