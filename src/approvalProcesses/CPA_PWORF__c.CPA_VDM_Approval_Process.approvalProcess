@@ -32,10 +32,6 @@
                 <name>CPA_PWORF_IsAccepted_True</name>
                 <type>FieldUpdate</type>
             </action>
-            <action>
-                <name>CPA_PWORF_Submitted_SLA2_Date</name>
-                <type>FieldUpdate</type>
-            </action>
         </approvalActions>
         <assignedApprover>
             <approver>
@@ -102,11 +98,11 @@
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>CPA_PWORF_Submitted_SLA1_Date</name>
+            <name>CPA_PWORF_Submit_Resubmit_SLA1</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>CPA_PWORF_Submitted_SLA2_Date</name>
+            <name>CPA_PWORF_Submit_Resubmit_SLA2</name>
             <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>

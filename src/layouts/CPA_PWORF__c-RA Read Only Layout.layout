@@ -123,10 +123,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txta_Other_Request_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>pkl_Business_Area__c</field>
             </layoutItems>
             <layoutItems>
@@ -136,10 +132,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>dt_Date_Of_Request__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Latest_PWO_Status__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -241,13 +233,13 @@
                 <field>pkl_Breach_Applicable__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>dat_Revised_Submission_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>pkl_Penalty_Applicable__c</field>
             </layoutItems>
         </layoutColumns>
@@ -309,16 +301,17 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>High_Level_Description_del__c</fields>
+        <fields>OWNER.FIRST_NAME</fields>
+        <fields>OWNER.LAST_NAME</fields>
         <fields>Requirement_Type_del__c</fields>
-        <fields>New_or_changed_requirement_del__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <fields>OBJECT_ID</fields>
         <relatedList>CPA_Requirements_and_Deliverables__c.PWORF_Requirement_Deliverables__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>E_mail__c</fields>
         <fields>Telephone__c</fields>
+        <fields>OWNER.FIRST_NAME</fields>
+        <fields>OWNER.LAST_NAME</fields>
         <relatedList>CPA_Key_Contacts__c.PWORF__c</relatedList>
     </relatedLists>
     <relatedLists>
