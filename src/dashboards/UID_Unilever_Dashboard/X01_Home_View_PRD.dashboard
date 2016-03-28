@@ -6,7 +6,7 @@
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Distributor User</values>
+            <values>ANANT INTERNATIONAL LIMITED</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
@@ -14,7 +14,71 @@
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
+            <values>BNG TRADING</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>COCOGE</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>D&amp;Q INTERNATIONAL DISTRIBUTORS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>D&amp;Q SAIPAN CO.,LTD</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>ESSOR IMPORT SARL</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>FEDERATED DISTRIBUTORS INCORPORATED</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>GETZ BROS. PHILIPPINES INC.</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>GRAND DRAGON ENTERPRISES</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>ISLAND SUPPLY COMPANY PTE LTD</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>LF ASIA DISTRIBUTION</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
             <values>LISUN IMPORTACAO E EXPORTACAO - RRASIA</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>MIKONOS SARL</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>MORGAN VERNEX</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>MOTIBHAI &amp; COMPANY</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>SOCALAIT</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>SOCALAIT SA</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>YEES COLD STORAGE SEAFOOD LTD</values>
         </dashboardFilterOptions>
         <name>Distributor</name>
     </dashboardFilters>
@@ -59,6 +123,10 @@
                 <axisBinding>y</axisBinding>
                 <column>FORMULA1</column>
             </chartSummary>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>FORMULA2</column>
+            </chartSummary>
             <componentType>Column</componentType>
             <dashboardFilterColumns>
                 <column>Account.Orders__r$UID_Distributor__c</column>
@@ -69,7 +137,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <header>Monthly Secondary Sales Value (USD,Mil)</header>
+            <header>Monthly Secondary Sales Value vs JBP (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_01_Home_View/Monthly_Secondary_Sales_Value_USDMil_PRD</report>
             <showPercentage>false</showPercentage>
@@ -257,7 +325,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Channel__c</groupingColumn>
-            <header>Channel-wise Secondary Sales Value (Cases)</header>
+            <header>Channel-wise Secondary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_01_Home_View/Channel_wise_SecondarySalesValueUSD_PRD</report>
             <showPercentage>true</showPercentage>
