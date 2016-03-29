@@ -1,9 +1,9 @@
-<messaging:emailTemplate subject="Request to withhold PWORF: {!RelatedTo.Name} by {!RelatedTo.ftxt_Unilever_Project_Manager_Name__c}" recipientType="User" relatedToType="CPA_PWORF__c">
+<messaging:emailTemplate subject="{!RelatedTo.Pworf_ID__c} : Request for Withhold" recipientType="User" relatedToType="CPA_Queries__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
-    {!RelatedTo.ftxt_Unilever_Project_Manager_Name__c}  has requested to withhold the PWORF with ID: {!RelatedTo.Name} on {!NOW()} . <br/><br/>
+    {!RelatedTo.LastModifiedBy.Name}  has requested to withhold the PWORF with ID: {!RelatedTo.Pworf_ID__c} on {!NOW()} . <br/><br/>
 
-    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.LookupPWORF_Name__c} ">{!RelatedTo.Pworf_ID__c} </a> <br/><br/>
 
 Regards, <br/><br/>
 

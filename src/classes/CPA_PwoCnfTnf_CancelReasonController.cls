@@ -52,17 +52,7 @@ public with sharing class CPA_PwoCnfTnf_CancelReasonController{
         }
       
       }
-      /*
-        pkl_Status__c
-        txta_Reason_for_Cancellation__c
-        
-        CNF_Status__c
-        ltxta_CNF_Reason_for_Cancellation__c
-        
-        TNF_Status__c
-        txta_TNF_Reason_for_Cancellation__c
       
-      */
       
     /*******************************************************************
     Purpose: This method stores the cancel reason
@@ -86,7 +76,7 @@ public with sharing class CPA_PwoCnfTnf_CancelReasonController{
         }
         
         update pwoRec;
-        if(crRec != null && crRec.size() > 0){
+        if(recordType == CPA_ConstantsForContractingAppClasses.PWO && crRec != null && crRec.size() > 0){
             crCancel(crRec);
         }                
         PageReference ReturnPage = new PageReference('/' + pwoRec.id); 

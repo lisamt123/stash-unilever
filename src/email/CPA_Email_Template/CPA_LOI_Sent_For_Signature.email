@@ -1,7 +1,7 @@
-<messaging:emailTemplate subject="LOI with ID {!RelatedTo.Name} is Sent for Signature by {!RelatedTo.LastModifiedBy.Name}" recipientType="User" relatedToType="CPA_LOI__c">
+<messaging:emailTemplate subject="{!RelatedTo.Name} : Sent for Signature" recipientType="User" relatedToType="CPA_LOI__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
-    A LOI with ID {!RelatedTo.Name} is Sent for Signature by {!RelatedTo.LastModifiedBy.Name} on {!RelatedTo.dat_Sent_for_Signature_Date__c}. <br/><br/>
+    A LOI with ID {!RelatedTo.Name} is Sent for Signature by {!RelatedTo.LastModifiedBy.Name} on {!Today()}. <br/><br/>
 
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
 

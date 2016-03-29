@@ -137,10 +137,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Latest_PWO_Status__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>dat_Resubmitted_Date__c</field>
             </layoutItems>
         </layoutColumns>
@@ -511,7 +507,7 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>pkl_Penalty_Applicable__c</field>
             </layoutItems>
             <layoutItems>
@@ -526,7 +522,7 @@
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>dat_Revised_Submission_Date__c</field>
             </layoutItems>
         </layoutColumns>
@@ -561,6 +557,10 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>High_Level_Description_del__c</fields>
+        <fields>OWNER.FIRST_NAME</fields>
+        <fields>OWNER.LAST_NAME</fields>
+        <fields>Requirement_Type_del__c</fields>
         <relatedList>CPA_Requirements_and_Deliverables__c.PWORF_Requirement_Deliverables__c</relatedList>
     </relatedLists>
     <relatedLists>
@@ -575,10 +575,11 @@
         <fields>NAME</fields>
         <fields>E_mail__c</fields>
         <fields>Telephone__c</fields>
+        <fields>OWNER.FIRST_NAME</fields>
+        <fields>OWNER.LAST_NAME</fields>
         <relatedList>CPA_Key_Contacts__c.PWORF__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
         <fields>pkl_Attribute_Type__c</fields>
         <fields>txt_Value__c</fields>
         <relatedList>CPA_User_Defined_Attribute__c.lkp_PWORF__c</relatedList>
