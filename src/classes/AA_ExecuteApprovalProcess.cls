@@ -41,6 +41,7 @@ global with sharing class AA_ExecuteApprovalProcess{
             AgentReportObj.ownerId=queueID.get('CI Manager Latin America Queue');
             
         }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='NAMET & RUB'){
+        
             
             AgentReportObj.ownerId=queueID.get('CI Manager NametRub Queue');
            
@@ -65,7 +66,7 @@ global with sharing class AA_ExecuteApprovalProcess{
                 AgentReportObj.ownerId=queueID.get('CI Manager Default Queue');
         }             
                  
-        system.debug('owner changed to ===>'+AgentReportObj.ownerId);
+       
         
         AgentReportObj.status__c = 'CI Manager Approval Pending';
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
@@ -79,10 +80,10 @@ global with sharing class AA_ExecuteApprovalProcess{
 
     public PageReference executeApprovalfromMobile(){
          
-         system.debug('inside Mobile=========>');
+         
          
          String reportId=ApexPages.currentPage().getParameters().get('id'); 
-         system.debug('=========Id'+reportId);
+         
          
         // if(reportId!=null)
         // {
@@ -90,7 +91,7 @@ global with sharing class AA_ExecuteApprovalProcess{
           
          if(AgentReportObj.Approve_Reject__c=='Approve' || AgentReportObj.Approve_Reject__c=='Reject' || AgentReportObj.status__c=='Published (Public)' || AgentReportObj.status__c=='Published (Private)' ){
              
-             system.debug('Record already approved or rejected can not reassign');
+             
              return null;
              
          }else{
@@ -105,45 +106,43 @@ global with sharing class AA_ExecuteApprovalProcess{
              }
                       
              if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Africa'){
-                 system.debug('**************Africa');
+                 
                 AgentReportObj.ownerId=queueID.get('CI Manager Africa Queue');
           
              }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Europe'){
-                 system.debug('**************Europe');
+                 
                 AgentReportObj.ownerId=queueID.get('CI Manager Europe Queue');
          
              }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Latin America'){
-                system.debug('**************Latin America');
+                
                 AgentReportObj.ownerId=queueID.get('CI Manager Latin America Queue');
              
              }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='NAMET & RUB'){
-                system.debug('**************NAMET & RUB');
+                
                 AgentReportObj.ownerId=queueID.get('CI Manager NametRub Queue');
              
              }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='North America'){
-                 system.debug('**************North America');
+                
                 AgentReportObj.ownerId=queueID.get('CI Manager North America Queue');
          
              }else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='South Asia'){
-                 system.debug('**************South Asia');
+               
                 AgentReportObj.ownerId=queueID.get('CI Manager South Asia Queue');
                 
              } else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='North Asia'){
-                system.debug('**************North Asia');
+                
                 AgentReportObj.ownerId=queueID.get('CI Manager North Asia Queue');
                 
              } else if(AgentReportObj.Country__r.Cluster_Id__r.Name=='SEAA'){
-                system.debug('************** SEAA Queue');
+              
                 AgentReportObj.ownerId=queueID.get('CI Manager SEAA Queue');
          
              }else{
                  
                  AgentReportObj.ownerId = queueID.get('CI Manager Default Queue');
-                 system.debug('************** Default Queue');
-             }         
+                              }         
                  
-       system.debug('owner changed to ===>'+AgentReportObj.ownerId);
-       system.debug('object to be '+AgentReportObj);
+      
            
        AgentReportObj.status__c = 'CI Manager Approval Pending';
         if(!validateForm()){
@@ -172,13 +171,13 @@ global with sharing class AA_ExecuteApprovalProcess{
     public void OwnerAssginment(){
         
         String reportId=ApexPages.currentPage().getParameters().get('id'); 
-        system.debug('=========Id'+reportId);
+        
         if(reportId!=Null){
         aa_Agent_Report__c AgentReportObj = [select Report_Title__c,Retailer__r.Name,name,Category__r.Name,Competitor_Brand__r.Name,Competitor_Name__r.Name,Country__r.Name,status__c ,Approve_Reject__c,Country__c,ownerId,Country__r.Cluster_Id__r.Name, id from aa_Agent_Report__c where id = :reportId ];
          AgentReportDisplay = new aa_Agent_Report__c();
          AgentReportDisplay = AgentReportObj ;
         if(AgentReportObj.Approve_Reject__c=='Approve' || AgentReportObj.Approve_Reject__c=='Reject' || AgentReportObj.status__c=='Published (Public)' || AgentReportObj.status__c=='Published (Private)' ){
-             system.debug('Record already approved or rejected can not reassign');
+           
              
         }else{
            
@@ -189,9 +188,7 @@ global with sharing class AA_ExecuteApprovalProcess{
            {
               queueID.put(que.Queue.Name,que.QueueId);
            }
-           system.debug('**************'+queueID);
-           system.debug('==============>'+queueID.get('CI Manager Africa Queue'));
-           
+                     
            if(AgentReportObj.Country__r.Cluster_Id__r.Name=='Africa')
            {
             
@@ -248,12 +245,10 @@ global with sharing class AA_ExecuteApprovalProcess{
         PageReference  pageRef;
          try{
              String reportId = ApexPages.currentPage().getParameters().get('id'); 
-             system.debug('=========Id'+reportId);
              
-             aa_Agent_Report__c AgentReportObj = [select Report_Title__c,recordTypeId,status__c ,Approve_Reject__c,Country__c,ownerId,Country__r.Cluster_Id__r.Name, id from aa_Agent_Report__c where id = :reportId ];
-            /* if(!validateForm()){
-                return null;
-             }*/
+             
+             aa_Agent_Report__c AgentReportObj = [select Report_Title__c,recordTypeId,status__c ,Approve_Reject__c,Country__c,ownerId,Country__r.Cluster_Id__r.Name, id,TF_Mention_User__c,TF_Topic_Name__c,CreatedById from aa_Agent_Report__c where id = :reportId ];
+            
              AgentReportObj.Comments__c = AgentReportObjNew.Comments__c;
              AgentReportObj.Approve_Reject__c = 'Approve';
              List<RecordType> recordTypeObj =  [select name,id from RecordType where name = 'Competitor Report'];
@@ -262,6 +257,7 @@ global with sharing class AA_ExecuteApprovalProcess{
                 AgentReportObj.Status__c = 'Published (Public)';
                 AgentReportObj.Approved_By__c=Userinfo.getUserId();
                 AgentReportObj.Approved_On__c=system.now();
+                AA_DatabaseServiceUtil.sendToChatter(Id.valueof(AgentReportObj.id),AgentReportObj.CreatedById, AgentReportObj.Report_Title__c, AgentReportObj.id,AgentReportObj.Country__c,AgentReportObj.TF_Mention_User__c,AgentReportObj.TF_Topic_Name__c);
              }else           
              
              if(AgentReportObj.Status__c == 'CI Manager Approval Pending'){
@@ -275,7 +271,7 @@ global with sharing class AA_ExecuteApprovalProcess{
                 AgentReportObj.recordTypeId = recordTypeObj[0].id;
              }
              
-             system.debug('agent Report=======>'+AgentReportObj);
+             
              
              update AgentReportObj;
              
@@ -299,7 +295,7 @@ global with sharing class AA_ExecuteApprovalProcess{
         PageReference  pageRef;
         try{
             String reportId = ApexPages.currentPage().getParameters().get('id'); 
-             system.debug('=========Id'+reportId);
+             
              
              aa_Agent_Report__c AgentReportObj = [select Report_Title__c,recordTypeId,status__c ,Approve_Reject__c,Country__c,ownerId,Country__r.Cluster_Id__r.Name, id from aa_Agent_Report__c where id = :reportId ];
               if(!validateForm()){

@@ -40,7 +40,7 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.Longitude = AA_Constants.LongSample;
        objAgentApp.RecordTypeId = recTypeId;
        objAgentApp.usertomentionIds=userList; 
-       objAgentApp.topicIds=topicList; 
+        objAgentApp.topicIds=topicList; 
              
        obj.convertRequestAgentReport(objAgentApp);
        AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
@@ -78,7 +78,7 @@ private class AA_AgentAppServiceController_Test {
        insert clusterData;
        aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Report_Description__c = AA_Constants.Stringwhatever ,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,TF_Mention_User__c='00518000000pth8',TF_Topic_Name__c='0TOE00000004jUX');
+       aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Report_Description__c = AA_Constants.Stringwhatever ,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,TF_Mention_User__c='12345',TF_Topic_Name__c='2345');
        insert competitorReport;
        List<string> userList=new List<string>{'1234','3456'};
        List<string> topicList=new List<string>{'1234','3456'};
