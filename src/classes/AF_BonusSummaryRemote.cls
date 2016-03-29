@@ -8,6 +8,19 @@
 @reference : none
 ****************************************************************************************************************************/
 global with sharing class AF_BonusSummaryRemote {
+	static List<String> orderedColumn = new List<String>();
+	static List<String> orderedRow = new List<String>();
+	static Integer colTotalA;
+	static Integer colTotal;
+	static String rowDetail;
+	static Map<String, AF_Bonus_Matrix__c> bonusULRelationMap  = new Map<String, AF_Bonus_Matrix__c>();
+	static String strongStrt;
+	static String strongEnd;
+	static String tdCloseTagEst;
+	static String archiveImg;
+	static String  colDetail;
+	static Map<String, AF_Entity__c> agencyNameMap= new Map<String, AF_Entity__c>();
+	static Map<String, String> ulNameMap = new Map<String, String>();
 	public AF_BonusSummaryRemote(ApexPages.StandardController stdController) {}
 	/***********************************************************************************
 *  @Description: this method is used to query and frame the rows and columns of the 
@@ -19,13 +32,16 @@ global with sharing class AF_BonusSummaryRemote {
 *************************************************************************************/	
 	@remoteAction
 	global static Map<String, String> getBonusMatrixRecords(String agencyId, String bonusSummaryId) {
-		String tdCloseTag = '</td>', trOpenTag = '<tr>', trCloseTag = '</tr>';
-		String strongStrt = '<Strong>', strongEnd = '</strong>';
+		tdCloseTagEst= '</td>';
+		String trOpenTag = '<tr>', trCloseTag = '</tr>';
+		strongStrt = '<Strong>';
+		strongEnd = '</strong>';
 		Set<String> columnsSet = new Set<String>();
 		Set<String> rowsSet = new Set<String>();
 		Map<String, String> ulbonusMatrixMap  = new Map<String, String>();
-		Integer colTotal = 0, rowTotal = 0, rowLocalTotal=0, rowTotalA = 0, colTotalA = 0;
-		Map<String, AF_Bonus_Matrix__c> bonusULRelationMap  = new Map<String, AF_Bonus_Matrix__c>();
+		colTotal = 0;
+		colTotalA=0;
+		Integer rowTotal = 0, rowLocalTotal=0, rowTotalA = 0;
 		List<AF_Bonus_Matrix__c> bonusEstimates  = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
 		AF_Bonus_Summary__c, AF_Value__c, AF_BonusMatrixCode__c, AF_IsCrossBorderImage__c,
 		AF_Bonus_Local_Value__c,AF_isCommentImage__c
@@ -37,25 +53,60 @@ global with sharing class AF_BonusSummaryRemote {
 			eachAgencyEstimate);
 			rowsSet.add(eachAgencyEstimate.AF_Unilever_Entity__r.Name);
 		}
-		List<String> orderedColumn = AF_BrandEstimateRemote.fillList(columnsSet);
+		orderedColumn = AF_BrandEstimateRemote.fillList(columnsSet);
 		orderedColumn.sort();
-		List<String> orderedRow = AF_BrandEstimateRemote.fillList(rowsSet);
+		orderedRow = AF_BrandEstimateRemote.fillList(rowsSet);
 		orderedRow.sort();
-		Map<String, AF_Entity__c> agencyNameMap = AF_BrandEstimateRemote.getAllAgencyEntities(agencyId);
-		Map<String, String> ulNameMap = AF_BrandEstimateRemote.getUnileverEntitiesByName();
+		agencyNameMap = AF_BrandEstimateRemote.getAllAgencyEntities(agencyId);
+		ulNameMap = AF_BrandEstimateRemote.getUnileverEntitiesByName();
 		List<String> agenciesToSelect = AF_BrandEstimateRemote.getAgencyEntities(agencyId, bonusSummaryId, 'AF_Bonus_Summary__c'); 
 		// These are the Agency Entities which are not created as Agency Estimates.
 		List<String> ulEntitiesToSelect = AF_BrandEstimateRemote.getUnileverEntities(bonusSummaryId, 'AF_Bonus_Summary__c'); 
 		// These are those Unilever Entities which are not created as a record for Agency Estimates.
-		String  colDetail = ''; //Column variable which gets added to the map finally.
-		String rowDetail = ''; //Row variable which gets added to the map finally.
+		colDetail = ''; //Column variable which gets added to the map finally.
+		rowDetail = ''; //Row variable which gets added to the map finally.
 		String imgPath = AF_Utils.isAgencyUser(UserInfo.getUserId()) ? Label.AF_AgencyUrlLink : Label.AF_UrlLink;
-		String archiveImg = '<img class=\"archive\" src="' + imgPath + '/resource/' + AF_Utils.getResourceURL('AF_DataTables') + '/AF_DataTables/AF_DataTables/examples/resources/remove_icon.png"'; 
+		archiveImg = '<img class=\"archive\" src="' + imgPath + '/resource/' + AF_Utils.getResourceURL('AF_DataTables') + '/AF_DataTables/AF_DataTables/examples/resources/remove_icon.png"'; 
 		archiveImg += ' height="18" width="18" />';
 		/* This is the first row of the matrix which actually calculates the Columnwise totals.*/
 		rowDetail += trOpenTag;
-		rowDetail += '<td class=\"headFirstRow\">' + strongStrt + 'Unilever Entities' + strongEnd + tdCloseTag;
-		rowDetail += '<td class=\"totalCell\">' + strongStrt + 'Total' + strongEnd + tdCloseTag;
+		rowDetail += '<td class=\"headFirstRow\">' + strongStrt + 'Unilever Entities' + strongEnd + tdCloseTagEst;
+		rowDetail += '<td class=\"totalCell\">' + strongStrt + 'Total' + strongEnd + tdCloseTagEst;
+		orderedRowMethodBonus();
+		rowDetail += trCloseTag;
+		orderedColMethodBonus();
+		/* Columns part is completed. */
+		/* Following displays all the rows in the matrix.*/
+		for(String eachRow : orderedRow) {
+			rowDetail += trOpenTag;
+			rowTotal = 0;rowTotalA=0;
+			for(String eachCol : orderedColumn) { //Actual Agency Estimate Record's totals goes here..
+				String keyMatch = eachCol+'-'+eachRow; //column Vs row
+				if(bonusULRelationMap .containsKey(keyMatch)) {
+					/* commented for incident No:INC000097270556 */
+					/* commented for incident No:INC000097270556 */
+					rowLocalTotal += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Bonus_Local_Value__c/1000);
+					rowTotalA += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c);
+				}
+			}
+			String dispArchiveImg = rowTotalA > 0 ?  '' : archiveImg;
+			rowDetail += '<td align=\"center\" class=\"headRow">'+ strongStrt +  eachRow + dispArchiveImg + strongEnd + tdCloseTagEst;
+			/* Added for incident No:INC000097270556 */
+			rowTotal = AF_BrandEstimateRemote.truncateDecimal(Decimal.valueOf(rowTotalA)/1000);
+			/* Added for incident No:INC000097270556 */
+			String dispRowTotal = (rowTotal > 0) ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormatted(rowTotal) : '';
+			String dispRowTotalA = (rowTotalA > 0) ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormatted(rowTotalA) : '';
+			rowDetail += '<td title=\"\" class=\"totalCell details-control';
+			rowDetail += '\" t=\"' + dispRowTotalA + '\" d=\"tot\" a=\"ob\">';
+			rowDetail += '<a l e=\"' + dispRowTotal + '\">' + strongStrt + dispRowTotal + strongEnd + '</a>' + tdCloseTagEst;
+			getBonusRecordsExt(bonusSummaryId,eachRow);
+			rowDetail += trCloseTag;
+		}
+		ulbonusMatrixMap .put('1', colDetail);
+		ulbonusMatrixMap .put('2', rowDetail);
+		return ulbonusMatrixMap ;
+	}
+	public static void orderedRowMethodBonus(){
 		for(String eachCol : orderedColumn) { //Actual Agency Estimate Record's totals goes here..
 			colTotal = 0;colTotalA=0;
 			for(String eachRow : orderedRow) {
@@ -73,9 +124,11 @@ global with sharing class AF_BonusSummaryRemote {
 			String dispColTotalA = (colTotal > 0) ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormatted(colTotalA) : '';
 			rowDetail += '<td align=\"center\" title=\"\" class=\"totalCell details-control';
 			rowDetail += '\" t=\"' + dispColTotalA + '\" d=\"tot\" a=\"ob\">';
-			rowDetail += '<a l e=\"' + dispColTotal + '\">' + strongStrt + dispColTotal + strongEnd + '</a>' + tdCloseTag;
+			rowDetail += '<a l e=\"' + dispColTotal + '\">' + strongStrt + dispColTotal + strongEnd + '</a>' + tdCloseTagEst;
 		}
-		rowDetail += trCloseTag;
+	}
+	
+	public static void orderedColMethodBonus(){
 		Integer i=2;
 		//Display the distinct Columns from the agency estimates.
 		for(String eachCol : orderedColumn) {
@@ -91,45 +144,19 @@ global with sharing class AF_BonusSummaryRemote {
 			colDetail += '<th id=\'' + i + '\' isDisplay=\'y\'>' + eachCol + dispArchiveImg + '</th>';
 			i++;
 		}
-		/* Columns part is completed. */
-		/* Following displays all the rows in the matrix.*/
-		for(String eachRow : orderedRow) {
-			rowDetail += trOpenTag;
-			rowTotal = 0;rowTotalA=0;
-			for(String eachCol : orderedColumn) { //Actual Agency Estimate Record's totals goes here..
+	}
+	
+	public static void getBonusRecordsExt(String bonusSummaryId,String eachRow){
+		for(String eachCol : orderedColumn) { //Display the agency estimate records
 				String keyMatch = eachCol+'-'+eachRow; //column Vs row
 				if(bonusULRelationMap .containsKey(keyMatch)) {
-					/* commented for incident No:INC000097270556 */
-					/* commented for incident No:INC000097270556 */
-					rowLocalTotal += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Bonus_Local_Value__c/1000);
-					rowTotalA += AF_BrandEstimateRemote.truncateDecimal(bonusULRelationMap .get(keyMatch).AF_Value__c);
-				}
-			}
-			String dispArchiveImg = rowTotalA > 0 ?  '' : archiveImg;
-			rowDetail += '<td align=\"center\" class=\"headRow">'+ strongStrt +  eachRow + dispArchiveImg + strongEnd + tdCloseTag;
-			/* Added for incident No:INC000097270556 */
-			rowTotal = AF_BrandEstimateRemote.truncateDecimal(Decimal.valueOf(rowTotalA)/1000);
-			/* Added for incident No:INC000097270556 */
-			String dispRowTotal = (rowTotal > 0) ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormatted(rowTotal) : '';
-			String dispRowTotalA = (rowTotalA > 0) ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormatted(rowTotalA) : '';
-			rowDetail += '<td title=\"\" class=\"totalCell details-control';
-			rowDetail += '\" t=\"' + dispRowTotalA + '\" d=\"tot\" a=\"ob\">';
-			rowDetail += '<a l e=\"' + dispRowTotal + '\">' + strongStrt + dispRowTotal + strongEnd + '</a>' + tdCloseTag;
-			for(String eachCol : orderedColumn) { //Display the agency estimate records
-				String keyMatch = eachCol+'-'+eachRow; //column Vs row
-				if(bonusULRelationMap .containsKey(keyMatch)) {
-					rowDetail += processBonusRow(true, bonusULRelationMap .get(keyMatch), bonusULRelationMap , null, null, null);
+					rowDetail += processBonusRow(true, bonusULRelationMap .get(keyMatch),null, null, null);
 				}else {
 					String aId = (agencyNameMap != null && agencyNameMap.get(eachCol) != null) ? agencyNameMap.get(eachCol).Id : null;
 					String uId = (ulNameMap != null && ulNameMap.get(eachRow) != null) ? ulNameMap.get(eachRow) : '';
-					rowDetail += processBonusRow(false, null, bonusULRelationMap , aId, uId, bonusSummaryId);
+					rowDetail += processBonusRow(false, null,aId, uId, bonusSummaryId);
 				}
 			}
-			rowDetail += trCloseTag;
-		}
-		ulbonusMatrixMap .put('1', colDetail);
-		ulbonusMatrixMap .put('2', rowDetail);
-		return ulbonusMatrixMap ;
 	}
 	/***********************************************************************************
 *  @Description: this method is used display the total of each row and column of the matrix
@@ -139,8 +166,7 @@ global with sharing class AF_BonusSummaryRemote {
 *  @return: String.
 *************************************************************************************/	
 	public static String processBonusRow(Boolean isValue, AF_Bonus_Matrix__c agSObj, 
-	Map<String, AF_Bonus_Matrix__c> bonusULRelationMap, 
-	String aId, String uId, String bId) {
+		String aId, String uId, String bId) {
 		String tdCloseTag = '</td>',lBreak = '<br/>', spacer = ' ';
 		String rowDetailToReturn = '';
 		String href;
