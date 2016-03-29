@@ -710,6 +710,10 @@
             <name>CPA_PWO_Previous_Status_value</name>
             <type>FieldUpdate</type>
         </actions>
+        <actions>
+            <name>CPA_Record_type_CPA_PWO_Submitted</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <criteriaItems>
             <field>CPA_project_work_order__c.pkl_Status__c</field>
@@ -925,7 +929,7 @@
         <criteriaItems>
             <field>CPA_project_work_order__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Submitted,Resubmitted,Accepted,Sent for Signature</value>
+            <value>Submitted,Resubmitted</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
