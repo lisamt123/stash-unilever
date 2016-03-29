@@ -485,7 +485,7 @@
         <criteriaItems>
             <field>CPA_LOI__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Signed,Sent for Signature</value>
+            <value>Sent for Signature</value>
         </criteriaItems>
         <triggerType>onAllChanges</triggerType>
     </rules>

@@ -169,11 +169,9 @@
     </fields>
     <label>Submit Response</label>
     <listViews>
-        <fullName>All_Submit_Responses</fullName>
-        <columns>NAME</columns>
+        <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>Query Reference {0}</displayFormat>

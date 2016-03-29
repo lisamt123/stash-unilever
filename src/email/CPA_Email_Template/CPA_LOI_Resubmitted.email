@@ -1,7 +1,7 @@
-<messaging:emailTemplate subject="LOI with ID {!RelatedTo.Name} is Resubmitted by {!RelatedTo.txt_Accenture_Project_Manager__c}" recipientType="User" relatedToType="CPA_LOI__c">
+<messaging:emailTemplate subject="{!RelatedTo.Name} : Resubmitted" recipientType="User" relatedToType="CPA_LOI__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
-    A LOI with ID {!RelatedTo.Name} is Resubmitted by {!RelatedTo.txt_Accenture_Project_Manager__c} on {!RelatedTo.dat_Resubmitted_Date__c}. <br/><br/>
+    A LOI with ID {!RelatedTo.Name} is Resubmitted by {!RelatedTo.txt_Accenture_Project_Manager__c} on {!Today()}. <br/><br/>
 
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
 

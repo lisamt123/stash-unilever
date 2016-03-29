@@ -946,6 +946,16 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>chk_isReSubmitted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isReSubmitted</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>chk_isReturned__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>

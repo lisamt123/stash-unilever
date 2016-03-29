@@ -100,7 +100,8 @@ public with sharing class CPA_CRListController {
                  innerCrObj[i-1].totalcost =  rs.num_Total_charge_of_CR__c;
                  innerCrObj[i-1].expense =  rs.num_Total_Expenses_of_CR__c;
                     if( rs.num_Total_charge_of_CR__c !=null &&  rs.num_Total_Resource_Efforts_CR__c !=null &&  rs.num_Total_Resource_Efforts_CR__c>0) {
-                         Blendrate1 = innerCrObj[i-1].BlendRate= rs.num_Varied_Target_Blend_Rate__c;
+                        // Blendrate1 = innerCrObj[i-1].BlendRate= rs.num_Varied_Target_Blend_Rate__c;
+                        Blendrate1 = innerCrObj[i-1].BlendRate=rs.num_Effort_Cost__c / rs.num_Total_Resource_Efforts_CR__c;
                          blendratetotal+=innerCrObj[i-1].BlendRate;
                          TotalCosetBlendrate = TotalCosetBlendrate + (innerCrObj[i-1].BlendRate *rs.num_Total_Resource_Efforts_CR__c);
                     }

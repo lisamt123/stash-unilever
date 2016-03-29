@@ -16,7 +16,7 @@
                 <height>200</height>
                 <page>CPA_HLE_Request_Information_Display_Page</page>
                 <showLabel>false</showLabel>
-                <showScrollbars>true</showScrollbars>
+                <showScrollbars>false</showScrollbars>
                 <width>100%</width>
             </layoutItems>
         </layoutColumns>
