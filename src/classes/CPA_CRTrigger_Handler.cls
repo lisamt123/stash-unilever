@@ -93,6 +93,7 @@ public with sharing class CPA_CRTrigger_Handler
             CPA_CR_TriggerUtil.requireApprovalComments(trigger.new);
             //  CPA_CR_TriggerUtil.unlockrecord(trigger.old,trigger.new);
             CPA_CR_TriggerUtil.calculateDelta(trigger.old,trigger.new);
+            CPA_CR_TriggerUtil.checkPWOTermination(trigger.new,trigger.old);
         }
     }
     

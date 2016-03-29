@@ -137,7 +137,7 @@ public with sharing class CPA_PWORF_TriggerUtil{
         String strStatus = newPWORFList[0].pkl_Status__c;
         String strOldStatus = OldPWORFList[0].pkl_Status__c;
         Date dt1 = Date.today();
-        if(strStatus.equalsIgnoreCase('Accepted') || strStatus.equalsIgnoreCase('Auto Accepted')){
+        if(strStatus.equalsIgnoreCase('Accepted')){
             newPWORFList[0].dat_SLA1_Accepted_Date__c = dt1;
         }else if(!strStatus.equalsIgnoreCase('Answered')){
             newPWORFList[0].dat_SLA1_Accepted_Date__c = null;
@@ -227,6 +227,9 @@ public with sharing class CPA_PWORF_TriggerUtil{
                     }
                 }
             }
+            if(newPWORFList[0].txt_SLA1__c !=null && newPWORFList[0].txt_SLA1__c.isNumeric()){newPWORFList[0].num_Number_of_SLA1_Days__c = Integer.valueof(newPWORFList[0].txt_SLA1__c.trim());}
+			if(newPWORFList[0].txt_SLA2__c !=null && newPWORFList[0].txt_SLA2__c.isNumeric()){newPWORFList[0].num_Number_of_SLA2_Days__c = Integer.valueof(newPWORFList[0].txt_SLA2__c.trim());}
+            
             //update pworfRec;
         }//Submitted if condition
     }

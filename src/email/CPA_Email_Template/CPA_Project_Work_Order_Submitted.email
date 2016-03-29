@@ -1,4 +1,4 @@
-<messaging:emailTemplate subject="PWO with ID {!RelatedTo.Name} is Submitted by {!RelatedTo.txt_Accenture_Project_Manager__c}" recipientType="User"  relatedToType="CPA_project_work_order__c" >
+<messaging:emailTemplate subject="{!RelatedTo.Name} : Submitted" recipientType="User"  relatedToType="CPA_project_work_order__c" >
 <messaging:htmlEmailBody >
 Hi,<br/><br/>
 

@@ -29,6 +29,10 @@
                 <name>CPA_PWO_Previous_Status_value</name>
                 <type>FieldUpdate</type>
             </action>
+            <action>
+                <name>CPA_Record_type_CPA_PWO_Submitted</name>
+                <type>FieldUpdate</type>
+            </action>
         </approvalActions>
         <assignedApprover>
             <approver>

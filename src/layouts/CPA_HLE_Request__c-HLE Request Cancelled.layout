@@ -15,7 +15,7 @@
                 <height>200</height>
                 <page>CPA_HLE_Request_Information_Display_Page</page>
                 <showLabel>false</showLabel>
-                <showScrollbars>true</showScrollbars>
+                <showScrollbars>false</showScrollbars>
                 <width>100%</width>
             </layoutItems>
         </layoutColumns>
@@ -223,6 +223,10 @@
                 <behavior>Readonly</behavior>
                 <field>PFS_Is_there_approved_funding_for_this__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txta_Reason_for_Cancellation__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -230,7 +234,7 @@
                 <field>mpkl_PFS_If_yes_what_is_the_source__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>txt_Other_Project_funding_Source__c</field>
             </layoutItems>
         </layoutColumns>
