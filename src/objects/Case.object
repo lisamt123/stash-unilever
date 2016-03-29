@@ -4139,6 +4139,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>CEC_North_America_Claims_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
+        <columns>L3_Product_Category__c</columns>
         <columns>Case_Brand__c</columns>
         <columns>CEC_Product_Hierarchy__c</columns>
         <columns>Country__c</columns>
