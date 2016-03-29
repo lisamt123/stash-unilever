@@ -34,18 +34,21 @@
         <field>Vep_Visitor__c.Date_To__c</field>
     </columns>
     <columns>
-        <field>Vep_Visitor__c.In_Visit__c</field>
+        <field>Vep_Visitor__c.Visitor_Entry_Date__c</field>
+    </columns>
+    <columns>
+        <field>Vep_Visitor__c.Visitor_Exit_Date__c</field>
     </columns>
     <filter>
         <criteriaItems>
-            <column>Vep_Visitor__c.Date_From__c</column>
-            <operator>lessThan</operator>
-            <value>1/10/2016</value>
+            <column>Vep_Visitor__c.Visitor_Entry_Date__c</column>
+            <operator>notEqual</operator>
+            <value></value>
         </criteriaItems>
         <criteriaItems>
-            <column>Vep_Visitor__c.Date_To__c</column>
-            <operator>lessThan</operator>
-            <value>1/10/2016</value>
+            <column>Vep_Visitor__c.Visitor_Exit_Date__c</column>
+            <operator>equals</operator>
+            <value></value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

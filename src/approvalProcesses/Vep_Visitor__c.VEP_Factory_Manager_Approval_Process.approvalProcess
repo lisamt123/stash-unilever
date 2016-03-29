@@ -13,7 +13,7 @@
         <allowDelegate>false</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>Factory_Manager__c</name>
+                <name>Person_to_Meet__c</name>
                 <type>relatedUserField</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -25,7 +25,7 @@
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <criteriaItems>
-            <field>Vep_Visitor__c.Factory_Manager__c</field>
+            <field>Vep_Visitor__c.Person_to_Meet__c</field>
             <operation>notEqual</operation>
         </criteriaItems>
         <criteriaItems>
@@ -41,6 +41,10 @@
     </entryCriteria>
     <finalApprovalActions>
         <action>
+            <name>VEP_Changeto_Readonly_Layout</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>VEP_Send_Approved_Email_to_Visitor_Alert</name>
             <type>Alert</type>
         </action>
@@ -49,8 +53,12 @@
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>
-    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
+        <action>
+            <name>VEP_Changeto_Readonly_Layout</name>
+            <type>FieldUpdate</type>
+        </action>
         <action>
             <name>VEP_Send_Rejected_Email_to_visitor_Alert</name>
             <type>Alert</type>
@@ -60,7 +68,7 @@
             <type>FieldUpdate</type>
         </action>
     </finalRejectionActions>
-    <finalRejectionRecordLock>true</finalRejectionRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <label>VEP Factory Manager Approval Process</label>
     <recordEditability>AdminOnly</recordEditability>
     <showApprovalHistory>true</showApprovalHistory>

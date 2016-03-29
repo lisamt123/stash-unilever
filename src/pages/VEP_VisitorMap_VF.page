@@ -434,6 +434,16 @@
                   </span>
                 </a>
               </li>
+              
+              <li>
+                <a href="/04i" target="_blank">
+                  <span class="icon fa fa-hand-o-up">
+                  </span>
+                  <span class="title">
+                    Items to Approve
+                  </span>
+                </a>
+              </li>
            
               
             </ul>
@@ -447,8 +457,9 @@
       <div class="container-fluid">
         <div class="side-body padding-top">
           <div class="row  no-margin-bottom padding-right padding-bottom">
-            <apex:outputPanel id="mPanel">
+            
               <c:VEP_AutoComplete allowClear="true" syncManualEntry="false" importJquery="true" labelField="Name" SObject="Vep_Factory__c" valueField="Id" targetField="{!targetField}" style="width:70%"/>
+              <apex:outputPanel id="mPanel">
               <input class="btn btn-primary" type="button" id="SF"  value="Search"  onclick="SearchFactDetails()"/>
               <input type="hidden"  id="latVal" value="{!Factorydetails.Latitude__c}"/>
               <input type="hidden"  id="longVal" value="{!Factorydetails.Longitude__c}"/>

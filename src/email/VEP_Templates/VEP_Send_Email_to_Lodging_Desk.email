@@ -10,5 +10,5 @@ Please Approve/reject the Request<br/><br/>
 <br/><br/>
 Thanks&Regards,
 <br/>
-{!Vep_Visitor__c.Name}
+{!Vep_Visitor__c.Name}<br/>
 {!Vep_Visitor__c.Email__c}

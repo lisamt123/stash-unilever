@@ -1,40 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <recordTypes>
-        <fullName>Request</fullName>
+        <fullName>Request_Readonly</fullName>
         <active>true</active>
-        <label>Request</label>
+        <label>Request Readonly</label>
     </recordTypes>
-    <recordTypes>
-        <fullName>Request_on_Behalf</fullName>
-        <active>true</active>
-        <label>Request on Behalf</label>
-    </recordTypes>
-    <validationRules>
-        <fullName>VEP_Contact_should_be_number</fullName>
-        <active>true</active>
-        <errorConditionFormula>!ISNUMBER( Contact__c ) &amp;&amp;  !ISBLANK(Contact__c)</errorConditionFormula>
-        <errorDisplayField>Contact__c</errorDisplayField>
-        <errorMessage>Please Enter a Valid Number</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>VEP_Date_To_is_grater_than_Date_From</fullName>
-        <active>true</active>
-        <errorConditionFormula>Date_To__c &lt; Date_From__c</errorConditionFormula>
-        <errorDisplayField>Date_To__c</errorDisplayField>
-        <errorMessage>Must be greater than or equal to From Date</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>VEP_Reason_For_Other_should_be_Filled</fullName>
-        <active>true</active>
-        <errorConditionFormula>(ISPICKVAL( Reason_for_Visit__c , &apos;Other&apos;) &amp;&amp;  ISBLANK( Reason_for_Visit_Other__c ) || (!ISPICKVAL( Reason_for_Visit__c , &apos;Other&apos;) &amp;&amp; !ISBLANK(Reason_for_Visit_Other__c)))</errorConditionFormula>
-        <errorDisplayField>Reason_for_Visit_Other__c</errorDisplayField>
-        <errorMessage>Field is required if Reason for Visit is &quot;Other&quot;</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>VEP_Visit_Must_be_a_Future_Date</fullName>
-        <active>true</active>
-        <errorConditionFormula>Date_From__c &lt; Today() || Date_To__c &lt; Today()</errorConditionFormula>
-        <errorMessage>Visit Must be a Future Date</errorMessage>
-    </validationRules>
 </CustomObject>
