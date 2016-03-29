@@ -22,15 +22,17 @@ public with sharing class VEP_MapFactory_CC{
     public boolean showRequests{get; set;}
     public boolean showROB{get; set;}
     public String ListViewId{get; set;}
+    User loggedinuser = new User();
     
         
     public VEP_MapFactory_CC(){  
         try{
         showFactoryList= true;
         showDetailPage= false;
+        loggedinuser = [select id,name,email,MobilePhone,Phone,Department from user where id=:userinfo.getuserid()];
         factoryList = new List<Vep_Factory__c>();        
         factoryList = [select id,name,Factory_Details__c,Factory_Image_Code__c,Latitude__c,Longitude__c from Vep_Factory__c limit 200];
-        AggregateResult[] listCount = [select count(id) sCount, status__c status from Vep_Visitor__c where (status__c='Approved' OR Status__c='Rejected' OR Status__c='Pending Approval' OR Status__c='Pending Visit') and email__c=:userinfo.getUserEmail() Group By Status__c];     
+        AggregateResult[] listCount = [select count(id) sCount, status__c status from Vep_Visitor__c where (status__c='Approved' OR Status__c='Rejected' OR Status__c='Pending Approval' OR Status__c='Pending Visit') Group By Status__c];     
         approvedCount = 0;
         rejectedCount = 0;
         pendingCount = 0;
@@ -115,6 +117,14 @@ public with sharing class VEP_MapFactory_CC{
         redirectPage.getParameters().put(label.VEP_Factory_Name_Id,Factorydetails.name);
         redirectPage.getParameters().put('Name',userinfo.getname());
         redirectPage.getParameters().put(label.VEP_Visitor_Email_Id,userinfo.getuseremail());
+        if(loggedinuser.Phone!=null){
+            redirectPage.getParameters().put(label.VEP_Visitor_Contact_Id,loggedinuser.Phone);
+        }
+        if(loggedinuser.mobilePhone!=null){
+            redirectPage.getParameters().put(label.VEP_Visitor_Contact_Id,loggedinuser.mobilePhone);
+        }
+        redirectPage.getParameters().put(label.VEP_Visitor_Department_id,loggedinuser.department);
+        redirectPage.getParameters().put('retURL','apex/VEP_VisitorMap_VF');
         return redirectPage;
     }
     public pagereference gotoVFORMROB(){
@@ -125,7 +135,7 @@ public with sharing class VEP_MapFactory_CC{
         redirectPage.setRedirect(true);
         redirectPage.getParameters().put('RecordType',robRecordTypeId);
         redirectPage.getParameters().put(label.VEP_Factory_Name_Id,Factorydetails.name);
-        
+        redirectPage.getParameters().put('retURL','apex/VEP_VisitorMap_VF');
         return redirectPage;
     }
 
