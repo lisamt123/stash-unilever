@@ -70,6 +70,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_AccNumOfAlternativePayee__c</fullName>
+        <externalId>false</externalId>
+        <label>Account Number of the Alternative Payee</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_AccountGroup__c</fullName>
         <description>Account Group - works with Trade Partner Type to define ECC account group</description>
         <externalId>false</externalId>
@@ -107,6 +119,28 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_AddressTimeZone__c</fullName>
+        <externalId>false</externalId>
+        <label>Address Time Zone</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_AdoptScanDate__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Adopt Scan Date</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>VPM_AdvancedFormSubmitted__c</fullName>
@@ -188,6 +222,28 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_Authorization__c</fullName>
+        <externalId>false</externalId>
+        <label>Authorization</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_AutomaticPurchaseOrderGeneration__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>AutoGeneration of Purchase Order allowed</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_BankAccountNumber__c</fullName>
         <description>VPM - Captures the Account Number of the Bank Account Which is linked to this Vendor</description>
         <externalId>false</externalId>
@@ -241,6 +297,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_BankName__c</fullName>
+        <externalId>false</externalId>
+        <label>Bank Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_BusinessRequestorSubmitted__c</fullName>
         <description>System field used to record whether the Business Requestor has submitted the request so Process Builder can take care of the status and reassignment changes</description>
         <externalId>false</externalId>
@@ -263,6 +331,18 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_Bypass__c</fullName>
+        <externalId>false</externalId>
+        <label>Bypass</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_CashManagementGroup__c</fullName>
         <description>VPM - specifies the Vendor&apos;s Cash Management Group.</description>
         <externalId>false</externalId>
@@ -280,10 +360,34 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_CheckDoubleInvoices__c</fullName>
+        <externalId>false</externalId>
+        <label>Check Double Invoices</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_City__c</fullName>
         <description>Stores the City value as completed by the Business Requestor or FLS. Interfaces with SAP.</description>
         <externalId>false</externalId>
         <label>Vendor City</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_ClerksInternet__c</fullName>
+        <externalId>false</externalId>
+        <label>Clerks Internet (Remittance Email addres</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -701,6 +805,30 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>VPM_Email2__c</fullName>
+        <externalId>false</externalId>
+        <label>e-mail 2</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Email3__c</fullName>
+        <externalId>false</externalId>
+        <label>e-mail 3</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_ExceptionType__c</fullName>
         <description>VPM - Field specifies that what type of Exception does the vendor belong to, if the Vendor is an Exception.</description>
         <externalId>false</externalId>
@@ -716,6 +844,78 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_Extension2__c</fullName>
+        <externalId>false</externalId>
+        <label>Extension 2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Extension3__c</fullName>
+        <externalId>false</externalId>
+        <label>Extension 3</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_FaxExtension__c</fullName>
+        <externalId>false</externalId>
+        <label>Fax Extension</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_FaxNumber2__c</fullName>
+        <externalId>false</externalId>
+        <label>Fax number  2</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_FaxNumber3__c</fullName>
+        <externalId>false</externalId>
+        <label>Fax number  3</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Fax__c</fullName>
+        <externalId>false</externalId>
+        <label>Fax</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_FinanceApprovalRequired__c</fullName>
@@ -762,6 +962,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_GRbasedIV__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>GR based IV</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>VPM_GlobalAuthorisationGroup__c</fullName>
         <externalId>false</externalId>
         <label>Global Authorisation Group</label>
@@ -803,6 +1013,90 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_IBMBPMRequestorCountry__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor Country (IBM BPM)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_IBMBPMRequestorEmail__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor Email (IBM BPM)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_IBMBPMRequestorName__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor Name (IBM BPM)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_IBMBPMRequestorRole__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor Role (IBM BPM)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_IBMBPMRequestorTelephone__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor Telephone (IBM BPM)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_IndividualSpec__c</fullName>
+        <externalId>false</externalId>
+        <label>Individual spec</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Industry__c</fullName>
+        <externalId>false</externalId>
+        <label>Industry</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_IsInvoiceReceived__c</fullName>
         <defaultValue>false</defaultValue>
         <description>To track is there already an invoice received</description>
@@ -836,10 +1130,100 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>VPM_Language__c</fullName>
+        <externalId>false</externalId>
+        <label>Language</label>
+        <picklist>
+            <picklistValues>
+                <fullName>English</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>German</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>VPM_Location__c</fullName>
         <externalId>false</externalId>
         <label>Location</label>
         <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_MDMBPMOriginatoEmail__c</fullName>
+        <externalId>false</externalId>
+        <label>Originator Email (MDM BPM)</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_MDMBPMRequestDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Request Date (MDM BPM)</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>VPM_MDMBPMRequestorDepartment__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor Department (MDM BPM)</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_MDMBPMRequestorEmail__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor Email (MDM BPM)</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_MDMBPMRequestorName__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor Name (MDM BPM)</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_MDMBPMRequestorPhone__c</fullName>
+        <externalId>false</externalId>
+        <label>Requestor Phone (MDM BPM)</label>
+        <length>20</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -869,6 +1253,18 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_OrderCurrency__c</fullName>
+        <externalId>false</externalId>
+        <label>Order Currency</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_OrderingEmailAddress__c</fullName>
         <description>VPM - System field which contains the ordering Email Address of the Vendor</description>
         <externalId>false</externalId>
@@ -878,6 +1274,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_POBox__c</fullName>
+        <externalId>false</externalId>
+        <label>PO Box</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -922,7 +1330,7 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-        <fullName>VPM_PhoneExtension_c__c</fullName>
+        <fullName>VPM_PhoneExtension__c</fullName>
         <description>VPM - Phone Extension details of the vendor.</description>
         <externalId>false</externalId>
         <label>Phone Extension</label>
@@ -1139,7 +1547,7 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>VPM_ReworkToBusReq_c__c</fullName>
+        <fullName>VPM_ReworkToBusReq__c</fullName>
         <description>VPM - Used to Capture the  rework status</description>
         <externalId>false</externalId>
         <label>Rework To Business Requestor</label>
@@ -1158,6 +1566,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_SAPECCComments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments (SAP ECC)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_SMEComment__c</fullName>
@@ -1183,7 +1603,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>VPM_ServicesItemsToPurchase_c__c</fullName>
+        <fullName>VPM_ServicesItemsToPurchase__c</fullName>
         <externalId>false</externalId>
         <label>Item/Services To Purchase</label>
         <required>false</required>
@@ -1209,15 +1629,15 @@
         <fullName>VPM_Spend__c</fullName>
         <description>Entered by the Business Requestor initially before being used as assessment criteria by Advanced Users. No interface with SAP.</description>
         <externalId>false</externalId>
-        <inlineHelpText>The estimated spend for the request.</inlineHelpText>
+        <inlineHelpText>Enter the expected Spend plus a description</inlineHelpText>
         <label>Spend</label>
-        <precision>18</precision>
+        <length>255</length>
         <required>false</required>
-        <scale>2</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Currency</type>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_Status__c</fullName>
@@ -1327,6 +1747,30 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_Street2__c</fullName>
+        <externalId>false</externalId>
+        <label>Street 2</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Street3__c</fullName>
+        <externalId>false</externalId>
+        <label>Street 3</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_SupplierAchillesRegistration__c</fullName>
         <defaultValue>false</defaultValue>
         <description>VPM - specifies the Supplier Achilles Registration.</description>
@@ -1347,6 +1791,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_SwiftKey__c</fullName>
+        <externalId>false</externalId>
+        <label>Swift Key</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_TargetECC__c</fullName>
@@ -1389,6 +1845,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_TaxNumber2__c</fullName>
+        <externalId>false</externalId>
+        <label>Tax Number 2</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_TaxNumber3__c</fullName>
         <description>VPM - specifies the Tax Details of the Vendor.</description>
         <externalId>false</externalId>
@@ -1403,6 +1871,30 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>VPM_Telephone2__c</fullName>
+        <externalId>false</externalId>
+        <label>Telephone 2</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_Telephone3__c</fullName>
+        <externalId>false</externalId>
+        <label>Telephone 3</label>
+        <length>200</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_Telephone__c</fullName>
         <description>VPM - Telephone Number of the Vendor</description>
         <externalId>false</externalId>
@@ -1412,6 +1904,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>VPM_TermsOfPayment__c</fullName>
+        <externalId>false</externalId>
+        <label>Terms of payment</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_TotalDaysWorked__c</fullName>
@@ -1452,6 +1956,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorClassification__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor Classification</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1508,6 +2024,19 @@
         <description>Free text entry for the Business Requestor to enter on the Rapid form the Vendor name in mind. Can be amended by Advanced Users and used to match existing SAP vendors. Interfaces with SAP.</description>
         <externalId>false</externalId>
         <label>Vendor Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VPM_VendorPhone__c</fullName>
+        <description>VPM -  Used to capture vendor phone number</description>
+        <externalId>false</externalId>
+        <label>Vendor Phone</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1942,6 +2471,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Language__c</picklist>
+            <values>
+                <fullName>English</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>German</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_MDMOpsSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2008,7 +2548,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <picklist>VPM_ReworkToBusReq__c</picklist>
             <values>
                 <fullName>No</fullName>
                 <default>false</default>
@@ -2383,6 +2923,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Language__c</picklist>
+            <values>
+                <fullName>English</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>German</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_MDMOpsSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2449,7 +3000,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <picklist>VPM_ReworkToBusReq__c</picklist>
             <values>
                 <fullName>No</fullName>
                 <default>false</default>
@@ -2824,6 +3375,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Language__c</picklist>
+            <values>
+                <fullName>English</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>German</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_MDMOpsSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -2890,7 +3452,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <picklist>VPM_ReworkToBusReq__c</picklist>
             <values>
                 <fullName>No</fullName>
                 <default>false</default>
@@ -3265,6 +3827,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Language__c</picklist>
+            <values>
+                <fullName>English</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>German</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_MDMOpsSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3331,7 +3904,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <picklist>VPM_ReworkToBusReq__c</picklist>
             <values>
                 <fullName>No</fullName>
                 <default>false</default>
@@ -3706,6 +4279,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Language__c</picklist>
+            <values>
+                <fullName>English</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>German</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_MDMOpsSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -3772,7 +4356,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <picklist>VPM_ReworkToBusReq__c</picklist>
             <values>
                 <fullName>No</fullName>
                 <default>false</default>
@@ -4147,6 +4731,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Language__c</picklist>
+            <values>
+                <fullName>English</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>German</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_MDMOpsSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -4213,7 +4808,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <picklist>VPM_ReworkToBusReq__c</picklist>
             <values>
                 <fullName>No</fullName>
                 <default>false</default>
@@ -4588,6 +5183,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Language__c</picklist>
+            <values>
+                <fullName>English</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>German</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_MDMOpsSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -4654,7 +5260,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <picklist>VPM_ReworkToBusReq__c</picklist>
             <values>
                 <fullName>No</fullName>
                 <default>false</default>
@@ -5029,6 +5635,17 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>VPM_Language__c</picklist>
+            <values>
+                <fullName>English</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>German</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>VPM_MDMOpsSubmitted__c</picklist>
             <values>
                 <fullName>No</fullName>
@@ -5095,7 +5712,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>VPM_ReworkToBusReq_c__c</picklist>
+            <picklist>VPM_ReworkToBusReq__c</picklist>
             <values>
                 <fullName>No</fullName>
                 <default>false</default>
@@ -5211,6 +5828,25 @@
         <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>VPM_VendorEmailorVendorPhoneMandatory</fullName>
+        <active>false</active>
+        <description>VPM - Validation rule to make Vendor Phone or Vendor Email mandatory .</description>
+        <errorConditionFormula>AND(
+ISBLANK(VPM_VendorContactDetail__c),
+ISBLANK(VPM_VendorPhone__c)
+)</errorConditionFormula>
+        <errorDisplayField>VPM_AccountGroup__c</errorDisplayField>
+        <errorMessage>Please Enter either Vendor Email or Phone Number</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>VPM_VendorPhoneOnlyNumeric</fullName>
+        <active>true</active>
+        <description>VPM - Validate to check only  Numeric character allowed</description>
+        <errorConditionFormula>AND(NOT(ISBLANK(VPM_VendorPhone__c)), 
+NOT(REGEX(VPM_VendorPhone__c, &quot;\\D*?(\\d\\D*?){10}&quot;)))</errorConditionFormula>
+        <errorMessage>Please enter only Numeric character</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>VPM_AdvancedForm</fullName>
         <availability>online</availability>

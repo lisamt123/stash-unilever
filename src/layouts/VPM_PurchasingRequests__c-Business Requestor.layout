@@ -2,8 +2,6 @@
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>VPM_BusinessReqSubmit</customButtons>
     <customButtons>VPM_AdvancedForm</customButtons>
-    <customButtons>VPM_AdvancedFormCSS</customButtons>
-    <customButtons>VPM_ReworkToBusinessRequestor</customButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -24,22 +22,6 @@
                 <behavior>Edit</behavior>
                 <field>VPM_CommodityNameIfKnown__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_ReworkToBusReq_c__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_District__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_IsVendorSME__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_SortKey__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -48,11 +30,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>VPM_AccountHolderName__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>VPM_AlreadyBeenInvoiced__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VPM_AdvancedFormSubmitted__c</field>
+                <field>VPM_BankAccountNumber__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -81,6 +67,10 @@
                 <behavior>Edit</behavior>
                 <field>VPM_VendorContactDetail__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_VendorPhone__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -94,37 +84,8 @@
                 <behavior>Required</behavior>
                 <field>VPM_Comments__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_DayswithFLS__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_DayswithFinance__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_DaysWithMDMOps__c</field>
-            </layoutItems>
         </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_RequestLastWithGroup__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_RequestGroupTime__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_DayswithProcurement__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>VPM_TotalDaysWorked__c</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>

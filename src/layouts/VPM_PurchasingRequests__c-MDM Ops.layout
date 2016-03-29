@@ -27,22 +27,6 @@
                 <behavior>Edit</behavior>
                 <field>VPM_ZIPPostcode__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_ReworkToBusReq_c__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_District__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_IsVendorSME__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VPM_SortKey__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -56,6 +40,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>VPM_City__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VPM_VendorPhone__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
