@@ -152,7 +152,6 @@
                         <div class="ipmAcrdnExpand">
                             <apex:repeat value="{!projectTolocalRolloutToCountryMap[regionalProjectID]}" var="localRolloutId">
                                 <apex:variable var="localRollout" value="{!lstcompleteRollout[localRolloutId]}" />
-                                <apex:variable var="localProject" value="{!lstcompleteProjects[localRollout.Local_Project__c]}" rendered="{!NOT(ISNULL(localRollout.Local_Project__c))}"/>
                                 
                                 <div class="pt20">
                                     <table class="rollouttable editable">                                 
