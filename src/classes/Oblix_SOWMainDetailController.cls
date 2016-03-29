@@ -97,7 +97,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     //}
 
 
-    public Oblix_SowMainDetailController() {
+    public Oblix_SOWMainDetailController() {
 
         String sow_id = ApexPAges.currentPage().getParameters().get('sowId');
         selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL), null);
@@ -106,7 +106,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             li_campaign_and_non_campaign_items = new List<CampaignNonCampaignItems>();
 
             // get campaigns
-            for(Oblix_SOW_Projects__c campaign : [SELECT Id, Name, OblixRegion__c, Selected_Countries__c, Campaign_Status__c, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, 
+            for(Oblix_SOW_Projects__c campaign : [SELECT Id, Name, OblixRegion__c, Selected_Countries__c, First_3_selected_countries__c, Campaign_Status__c, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, 
                 Projected_Stage__c, Completed_Stage__c, Value_To_BePaid_Manual_Override__c, Campaign_Total_Fees__c, Percentage_of_Fee_for_this_FY__c  FROM Oblix_SOW_Projects__c WHERE Financial_Year__c = :selected_sow.Id LIMIT 500]){
                 li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Campaign', campaign, can_edit));
             }

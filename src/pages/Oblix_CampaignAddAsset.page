@@ -38,12 +38,20 @@
                         <tr>
                             <td class="SOW_header_value_title">Campaign Fees Total</td>
                             <td class="SOW_header_value">
-                                <h2>€{!helper.basket_total_fee}</h2>
+                                <h2>€
+                                    <apex:outputText value="{0, number,###,###,##0}">
+                                        <apex:param value="{!helper.basket_total_fee}" />
+                                    </apex:outputText>
+                                </h2>
                             </td>
                         </tr>
                         <tr>
                             <td class="SOW_header_value_subtitle">Fees to be Paid in Current FY</td>
-                            <td class="SOW_header_value_subvalue">€{!helper.total_fees_this_FY}</td>
+                            <td class="SOW_header_value_subvalue">€ 
+                                    <apex:outputText value="{0, number,###,###,##0}">
+                                        <apex:param value="{!helper.total_fees_this_FY}" />
+                                    </apex:outputText>
+                            </td>
                         </tr>
                     </table>
                 </apex:outputPanel>
@@ -67,7 +75,7 @@
                                 <div class="oblix-type-navigation panel panel-default">
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
-                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{!offeringWrapper.index}" aria-expanded="{!if(offeringWrapper.index == 0,'true','false')}" aria-controls="collapse{!offeringWrapper.index}">{!offeringWrapper.type_name}<img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/plus.png')}" width="14" height="14" class="pull-right"/></a>
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{!offeringWrapper.index}" aria-expanded="{!if(offeringWrapper.index == 0,'true','false')}" aria-controls="collapse{!offeringWrapper.index}">{!offeringWrapper.type_name}<img alt="add assets plus" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/plus.png')}" width="14" height="14" class="pull-right"/></a>
                                         </h4>
                                     </div>
                                     <div id="collapse{!offeringWrapper.index}" class="oblix-type-container panel-collapse collapse {!if(offeringWrapper.index == 0,'in','')}" role="tabpanel">
@@ -224,11 +232,19 @@
                             <div class="asset_shopping_basket_total">
                                 <div class="row asset_basket_row">
                                     <p class="asset_shopping_basket_total_fee_text">Campaign Fees Total</p>
-                                    <h2 class="asset_shopping_basket_total_fee_value">€{!helper.basket_total_fee}</h2>
+                                    <h2 class="asset_shopping_basket_total_fee_value">
+                                    €
+                                    <apex:outputText value="{0, number,###,###,##0}">
+                                        <apex:param value="{!helper.basket_total_fee}" />
+                                    </apex:outputText>
+                                    </h2>
                                 </div>
                                 <div class="row asset_basket_row">
                                     <p class="asset_shopping_basket_total_FY_text">Fees to be Paid in Current FY</p>
-                                    <p class="asset_shopping_basket_total_FY_value">€{!helper.total_fees_this_FY}</p>
+                                    <p class="asset_shopping_basket_total_FY_value">€ 
+                                    <apex:outputText value="{0, number,###,###,##0}">
+                                        <apex:param value="{!helper.total_fees_this_FY}" />
+                                    </apex:outputText></p>
                                 </div>
                             </div>
                         </apex:outputPanel>

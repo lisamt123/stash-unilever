@@ -84,20 +84,21 @@ private class Oblix_SOWMainController_Test {
         List<Marketing_SOW__c> superuserSOWList;
         List<Marketing_SOW__c> administratorSOWList;
 
+        // s.m added limit as per sonar issue 
         System.runAs(ul1){
-            ul1SOWList = [SELECT Id, Name, OblixBrand__c, SmallProductCategory__c FROM Marketing_SOW__c];
+            ul1SOWList = [SELECT Id, Name, OblixBrand__c, SmallProductCategory__c FROM Marketing_SOW__c LIMIT 1000];
         }
         System.runAs(ul2){
-            ul2SOWList = [SELECT Id, Name, OblixBrand__c, SmallProductCategory__c FROM Marketing_SOW__c];
+            ul2SOWList = [SELECT Id, Name, OblixBrand__c, SmallProductCategory__c FROM Marketing_SOW__c LIMIT 1000];
         }
         System.runAs(ul3){
-            ul3SOWList = [SELECT Id, Name, OblixBrand__c, SmallProductCategory__c FROM Marketing_SOW__c];
+            ul3SOWList = [SELECT Id, Name, OblixBrand__c, SmallProductCategory__c FROM Marketing_SOW__c LIMIT 1000];
         }
         System.runAs(superuser){
-            superuserSOWList = [SELECT Id, Name, OblixBrand__c, SmallProductCategory__c FROM Marketing_SOW__c];
+            superuserSOWList = [SELECT Id, Name, OblixBrand__c, SmallProductCategory__c FROM Marketing_SOW__c LIMIT 1000];
         }
 
-        administratorSOWList = [SELECT Id, Name, OblixBrand__c, SmallProductCategory__c FROM Marketing_SOW__c];
+        administratorSOWList = [SELECT Id, Name, OblixBrand__c, SmallProductCategory__c FROM Marketing_SOW__c LIMIT 1000];
 
         Test.stopTest();
 

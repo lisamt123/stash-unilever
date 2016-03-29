@@ -1,7 +1,7 @@
 <apex:page showHeader="false" docType="html-5.0" sidebar="false" controller="Oblix_CampaignSummaryController" standardStylesheets="true" action="{!checkUserHasPermissionToSOW}">
     <apex:composition template="Oblix_OuterPageTemplate">
         <apex:define name="top_breadcrumb">
-            <a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_project.Name}
+            <a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="{!URLFOR($Page.oblix_sowmaindetail)}?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_project.Name}
         </apex:define>
 
         <apex:define name="header_text">
@@ -32,19 +32,21 @@
                             </td>
                             <td class="SOW_header_value_title">Campaign Fees Total</td>
                             <td class="SOW_header_value">
-                                <h2>€
-                                    <apex:outputText value="{0, number,###,###,##0}">
+                                <h2>
+                                    <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
                                         <apex:param value="{!stage_identifier.sow_project_in_scope.Campaign_Fees_Total__c}" />
                                     </apex:outputText>
+                                    <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                                 </h2>
                             </td>
                         </tr>
                         <tr>
                             <td class="SOW_header_value_subtitle">Fees to be Paid in Current FY</td>
                             <td class="SOW_header_value_subvalue">
-                                    €<apex:outputText value="{0, number,###,###,##0}">
+                                    <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
                                         <apex:param value="{!stage_identifier.i_fees_for_this_financial_year}" />
                                     </apex:outputText>
+                                    <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                             </td>
                         </tr>
                     </table>
@@ -213,7 +215,21 @@
                                 </tr>
                                 <tr>
                                     <td class="campaign_summary_information_titles">Clusters / Countries</td>
-                                    <td colspan="2" class="expandMore campaign_summary_countries_cell_width">{!selected_project.Selected_Countries__c}</td>
+                                    <td colspan="2" class="campaign_summary_countries_cell_width">
+                                        <apex:outputPanel styleClass="expandMoreCountries" rendered="{!selected_project.First_3_selected_countries__c <> selected_project.Selected_Countries__c}">
+                                            <div id="countryPreview">
+                                                <div>{!selected_project.First_3_selected_countries__c}</div>
+                                                <a href="#">Read more</a>
+                                            </div>
+                                            <div id="countryFullList" class="hidden">
+                                                <div>{!selected_project.Selected_Countries__c}</div>
+                                                <a href="#">Close</a>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!selected_project.First_3_selected_countries__c == selected_project.Selected_Countries__c}">
+                                            {!selected_project.Selected_Countries__c}
+                                        </apex:outputPanel>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="campaign_summary_information_titles">Investment Priority</td>
@@ -402,7 +418,7 @@
         <apex:define name="page_scripts">
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignSummary.js')}"/>
             <script type="text/javascript">
-                
+
             </script>
             <!--<script>
                 $(document).ready(function() {

@@ -137,7 +137,8 @@ public with sharing class Oblix_SOWHandlerLogic {
             brandIds.add(sow.OblixBrand__c);
         }
         
-        List<Oblix_User_Permission__c> userPermissions = [SELECT Id, CategoryBrand_id__r.Brand_id__c, CategoryBrand_id__r.Product_Category_Id__c, User_id__c, RecordTypeId, Level_of_Access__c
+        List<Oblix_User_Permission__c> userPermissions = [SELECT Id, CategoryBrand_id__r.Brand_id__c, CategoryBrand_id__r.Product_Category_Id__c, User_id__c, RecordTypeId, Level_of_Access__c,
+                                                                User_id__r.Contact.AccountId
                                                             FROM Oblix_User_Permission__c 
                                                             WHERE CategoryBrand_id__r.Brand_id__c IN :brandIds 
                                                                 AND CategoryBrand_id__r.Product_Category_Id__c IN :bigCIds];
@@ -176,7 +177,10 @@ public with sharing class Oblix_SOWHandlerLogic {
 
                 for(Oblix_User_Permission__c userPermission : brandCatKey_UserIds_map.get(brandCatKey)){
 
-                    if(sow.OwnerId != userPermission.User_id__c){
+                    if(sow.OwnerId != userPermission.User_id__c &&
+                        ( (userPermission.RecordTypeId == Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER) 
+                            || 
+                          (userPermission.RecordTypeId == Oblix_Utils.RT_USER_PERMISSION_AGENCY_USER && userPermission.User_id__r.Contact.AccountId == sow.Oblix_AgencyEstimate__c) )){
 
                         Marketing_SOW__Share ms = new Marketing_SOW__Share();
                         ms.ParentId = sow.Id;

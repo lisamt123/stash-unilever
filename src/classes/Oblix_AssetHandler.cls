@@ -19,9 +19,11 @@ public with sharing class Oblix_AssetHandler implements ITrigger {
     {
         if(Trigger.isInsert || Trigger.isUpdate ){
             //lstProjectAgencies = Oblix_TR03AssetProjectScoreCalculator.retrieveProjectAgency(Trigger.New);
+            return;
         }
         if(Trigger.isDelete){
             //lstProjectAgencies = Oblix_TR03AssetProjectScoreCalculator.retrieveProjectAgency(Trigger.Old);
+            return;
         }
     }
         

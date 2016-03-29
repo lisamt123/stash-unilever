@@ -1,9 +1,10 @@
-<apex:page sidebar="false" controller="Oblix_SOWMainDetailController" docType="html-5.0" showHeader="false" standardStylesheets="true" action="{!checkUserHasPermissionToSOW}">
+<apex:page sidebar="false" controller="Oblix_SowMainDetailController" docType="html-5.0" showHeader="false" standardStylesheets="true" action="{!checkUserHasPermissionToSOW}">
 
     <apex:composition template="Oblix_OuterPageTemplate">
 
         <apex:define name="top_breadcrumb">
-            <a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_sow.Name}        
+            <!-- <a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_sow.Name} -->
+            <a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_sow.Name}
         </apex:define>
         <apex:define name="header_text">
             {!selected_sow.Name}
@@ -52,29 +53,29 @@
                         <td class="SOW_header_value_title">SOW total</td>
                         <td class="SOW_header_value">
                             <h2>
-                               €
-                                <apex:outputText value="{0, number,###,###,##0}">
+                                <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
                                     <apex:param value="{!selected_sow.Total_Campaigns_This_FY__c+selected_sow.OblixTotalOtherItemsFees__c}" />
                                 </apex:outputText>
+                                <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                             </h2>
                         </td>
                     </tr>
                     <tr>
                         <td class="SOW_header_value_subtitle">Campaign total</td>
                         <td class="SOW_header_value_subvalue">
-                            €
-                            <apex:outputText value="{0, number,###,###,##0}">
+                            <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
                                 <apex:param value="{!selected_sow.Total_Campaigns_This_FY__c}" />
                             </apex:outputText>
+                            <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                         </td>
                     </tr>
                     <tr>
                         <td class="SOW_header_value_subtitle">Non-campaign total</td>
                         <td class="SOW_header_value_subvalue">
-                        €
-                        <apex:outputText value="{0, number,###,###,##0}">
+                        <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
                                 <apex:param value="{!selected_sow.OblixTotalOtherItemsFees__c}" />
                             </apex:outputText>
+                            <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                         </td>
                     </tr>
                 </table>
@@ -225,8 +226,8 @@
                     <li class="active"><a href="#red" data-toggle="tab">Related SOW items</a></li>
                     <li><a href="#orange" data-toggle="tab">Related SOW Conversation</a></li>
                     <li><a href="#yellow" data-toggle="tab">Campaign Timeline</a></li>
-                    <a class="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" rendered="{!IF(can_manage_campaign,true,false)}" href="{!$Page.Oblix_CampaignCreate + '?sowId=' + selected_sow.Id}">ADD CAMPAIGN</a>
-                    <a class="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign" rendered="{!IF(can_manage_campaign,true,false)}" href="{!$Page.Oblix_SOWNonCampaignCreate + '?sowId=' + selected_sow.Id}">ADD NON-CAMPAIGN</a>
+                    <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" href="{!$Page.Oblix_CampaignCreate + '?sowId=' + selected_sow.Id}">ADD CAMPAIGN</a></apex:outputPanel>
+                    <apex:outputPanel rendered="{!can_manage_campaign}"><a class="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign" href="{!$Page.Oblix_SOWNonCampaignCreate + '?sowId=' + selected_sow.Id}">ADD NON-CAMPAIGN</a></apex:outputPanel>
                 </ul>
             </div>
             <!--            Welcome message to start building SOW -->
@@ -264,12 +265,27 @@
                                     <tbody>
                                         <apex:repeat value="{!li_campaign_and_non_campaign_items}" var="campaign_and_non_campaign">
                                             <apex:outputPanel rendered="{!campaign_and_non_campaign.s_object_type == 'Campaign'}">
-                                                <tr class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled','')} camp" data-href="{!$Page.oblix_campaignsummary}?projectId={!campaign_and_non_campaign.dynamic_object['Id']}">
+                                                <tr class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled','')} camp" data-href="{!$Page.Oblix_CampaignSummary}?projectId={!campaign_and_non_campaign.dynamic_object['Id']}">
                                                     <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
                                                     <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
                                                     <td>{!campaign_and_non_campaign.dynamic_object['OblixRegion__c']}</td>
-                                                    <td ><div class="countriesSelected"> {!campaign_and_non_campaign.dynamic_object['Selected_Countries__c']}</div></td>
+                                                    <td>
+                                                        <apex:outputPanel styleClass="expandMoreCountries" rendered="{!campaign_and_non_campaign.dynamic_object['First_3_selected_countries__c'] <> campaign_and_non_campaign.dynamic_object['Selected_countries__c']}">
+                                                            <div class="countryPreview">
+                                                                <div class="countryList">{!campaign_and_non_campaign.dynamic_object['First_3_selected_countries__c']}</div>
+                                                                <a href="#">Read more</a>
+                                                            </div>
+                                                            <div class="countryFullList hidden">
+                                                                <div class="countryList">{!campaign_and_non_campaign.dynamic_object['Selected_countries__c']}</div>
+                                                                <a href="#">Close</a>
+                                                            </div>
+                                                        </apex:outputPanel>
+                                                        <apex:outputPanel rendered="{!campaign_and_non_campaign.dynamic_object['First_3_selected_countries__c'] == campaign_and_non_campaign.dynamic_object['Selected_countries__c']}">
+                                                            {!campaign_and_non_campaign.dynamic_object['Selected_countries__c']}
+                                                        </apex:outputPanel>
+                                                        <!--<div class="countriesSelected"> {!campaign_and_non_campaign.dynamic_object['Selected_Countries__c']}</div>-->
+                                                    </td>
                                                     <td class="table_progress_bar_styling">
                                                         <div id="crumbs">
                                                             <p class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled_text', '')}">
@@ -304,15 +320,17 @@
                                                             </ul>
                                                         </div>
                                                     </td>
-                                                    <td>€&nbsp;
-                                                        <apex:outputText value="{0, number,###,###,##0}">
+                                                    <td>
+                                                        <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
                                                             <apex:param value="{!campaign_and_non_campaign.dynamic_object['Total_Fees_for_Project__c']}" />
                                                         </apex:outputText>
+                                                        <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                                                     </td>
-                                                    <td>€&nbsp;
-                                                        <apex:outputText value="{0, number,###,###,##0}">
+                                                    <td>
+                                                        <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
                                                             <apex:param value="{!campaign_and_non_campaign.dynamic_object['Value_to_be_paid_in_Current_FY__c']}" />
                                                         </apex:outputText>
+                                                        <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                                                     </td>
                                                 </tr>
                                             </apex:outputPanel>
@@ -325,10 +343,11 @@
                                                     <td>{!campaign_and_non_campaign.dynamic_object['OblixCountry__r.Name']}</td>
                                                     <td></td>
                                                     <td></td>
-                                                    <td>€&nbsp;
-                                                        <apex:outputText value="{0, number,###,###,##0}">
+                                                    <td>
+                                                        <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
                                                             <apex:param value="{!campaign_and_non_campaign.dynamic_object['OblixOtherItemFee__c']}" />
                                                         </apex:outputText>
+                                                        <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                                                     </td>
                                                 </tr>
                                             </apex:outputPanel>
@@ -368,9 +387,7 @@
             $(document).ready(function() {
                 $('[id$="rejectButton"]').attr('disabled', 'disabled');
             });
-            $('tr[data-href]').on("click", function() {
-                document.location = $(this).data('href');
-            });
+
             </script>
         </apex:define>
     </apex:composition>

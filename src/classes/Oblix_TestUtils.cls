@@ -7,14 +7,15 @@ public with sharing class Oblix_TestUtils {
     public static final String DEFAULT_SMALL_PROD_CAT_NAME = 'testsmallproductcategory';
     public static final String DEFAULT_BIG_PROD_CAT_NAME = 'testbigproductcategory';
     
+    private static final String EN_US  = 'en_us';
     private Oblix_TestUtils(){}
     
     public static User createTestUser(){
         Profile profile = [Select Id from Profile where Name='System Administrator' or Name='Système Administrateur'];       
      
         User user = new User(Alias = 'test123', Email = 'standarduser@unilever.com', 
-          EmailEncodingKey = 'UTF-8', LastName = 'af test', LanguageLocaleKey = 'en_US', 
-          LocaleSidKey = 'en_US', ProfileId = profile.Id,firstname = 'sf test one', 
+          EmailEncodingKey = 'UTF-8', LastName = 'af test', LanguageLocaleKey = EN_US, 
+          LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'sf test one', 
           TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
           UserName = 'testuser@test123321.com');
         insert user; 
@@ -27,8 +28,8 @@ public with sharing class Oblix_TestUtils {
         PermissionSet permission_set = [SELECT Id FROM PermissionSet WHERE Name = 'Oblix_SWOP_UL_1_V1'];
      
         User user = new User(Alias = 'QA1', Email = 'standarduser@unilever.com.qa1', 
-        EmailEncodingKey = 'UTF-8', LastName = 'qa1 test', LanguageLocaleKey = 'en_US', 
-        LocaleSidKey = 'en_US', ProfileId = profile.Id,firstname = 'qa1user', 
+        EmailEncodingKey = 'UTF-8', LastName = 'qa1 test', LanguageLocaleKey = EN_US, 
+        LocaleSidKey = EN_US, ProfileId = profile.Id,firstname = 'qa1user', 
         TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
         UserName = 'testuser@test123321.com');
         insert user; 
@@ -198,7 +199,7 @@ public with sharing class Oblix_TestUtils {
         insert createCampaigns(number_of_campaigns, sow_id, brand_led_growth, scale_1, scale_2, campaign_idea);
 
         Map<Id, Oblix_SOW_Projects__c> map_campaigns_with_related = new Map<Id, Oblix_SOW_Projects__c>((List<Oblix_SOW_Projects__c>)
-            [SELECT Name, Financial_Year__c, Campaign_Countries__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c FROM Oblix_SOW_Projects__c]);
+            [SELECT Name, Financial_Year__c, Campaign_Countries__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c FROM Oblix_SOW_Projects__c LIMIT 1000]);
         
 
         List<Oblix_Marketing_SOW_Project_Splits__c> list_project_splits = new List<Oblix_Marketing_SOW_Project_Splits__c>();
@@ -222,10 +223,10 @@ public with sharing class Oblix_TestUtils {
             ,Name,Number_of_Agency_Hub_Splits__c,Number_of_Markets_for_Preview__c,Number_of_Previews__c,OblixClonedFromParentProject__c,OblixProjectSplitPercentage_Comment__c,OblixRegion__c
             ,Oblix_ProjectBoxNumber__c,Other_Kinds_of_Research__c,Overall_Project_Complete__c,Percentage_of_Fee_for_Next_FY__c,Percentage_of_Fee_for_this_FY__c,Platform__c,Preview_Date__c
             ,Production_Completion_Date__c,Projected_Stage__c,ProjectTotalAssetscore__c,Project_Completion_Date__c,Project_Finish_Date__c,Project_Priority__c,Project_Scale_1__c,Project_Scale_2__c
-            ,Project_Stage__c,Project_Start_Date__c,Region__c,Selected_Countries__c,Should_legal_review_this_project__c,Start_of_TV_production__c,Stimulus_Requirements__c,Timescale_Notes__c
+            ,Project_Stage__c,Project_Start_Date__c,Region__c,Selected_Countries__c, First_3_selected_countries__c,Should_legal_review_this_project__c,Start_of_TV_production__c,Stimulus_Requirements__c,Timescale_Notes__c
             ,Total_Adapt_Fees__c,Total_Asset_Deliverables__c,Total_Digital_Fee__c,Total_Fees_for_Project__c,Total_Locations__c,Total_Project_Score__c,Total_Value_Driver__c,Value_To_BePaid_Manual_Override__c
             ,Value_to_be_paid_in_Current_FY__c, (SELECT Actual_Delivery_Date__c,Additional_Description__c,Agency_Projects__c,Asset_Description__c,Asset_name__c,Asset_Picklist__c,Asset_Scoring_Number__c
-            ,Asset_Title__c,Asset_Total_Score__c,Asset_Type__c,Calculator_Question__c,Category__c,Channels__c,FULL_Description__c,Location__c,Name,OblixClonedFromParentAsset__c,Option_Name__c,Quantity__c
+            ,Asset_Title__c,Asset_Total_Score__c,Asset_Type__c,Calculator_Question__c,Category__c,Channels__c,FULL_Description__c,Description__c,Location__c,Name,OblixClonedFromParentAsset__c,Option_Name__c,Quantity__c
             ,RecordTypeId,Sub_Category__c,SystemModstamp,Target_Delivery_Date__c,MDM_id__c,Asset_Score__c FROM Agency_Project_Assets__r)
             , (SELECT Name,OblixCountry__c,Percentage__c,Project_Splits__c,OblixCountry__r.Name FROM Marketing_SOW_Project_Splits__r) 
             FROM Oblix_SOW_Projects__c WHERE Id in : map_campaigns_with_related.keySet()]);
@@ -574,8 +575,8 @@ public with sharing class Oblix_TestUtils {
     public static User createMarketingUser(String name){
         Profile profile = [SELECT Id FROM Profile WHERE Name='Marketing User'];
         return new User(Alias = name+'ut', Email = name+'unittest@unilever.com', 
-            EmailEncodingKey = 'UTF-8', LastName = 'LastName', LanguageLocaleKey = 'en_US', 
-            LocaleSidKey = 'en_US', ProfileId = profile.Id, FirstName = name, 
+            EmailEncodingKey = 'UTF-8', LastName = 'LastName', LanguageLocaleKey = EN_US, 
+            LocaleSidKey = EN_US, ProfileId = profile.Id, FirstName = name, 
             TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
             UserName = name+'@unilever.com.unittest');
     }

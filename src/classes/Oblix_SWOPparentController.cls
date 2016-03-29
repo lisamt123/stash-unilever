@@ -49,6 +49,12 @@ public with sharing virtual class Oblix_SWOPparentController {
         }
     }
 
+    public Boolean can_see_financial_fields {
+        get{
+            return Oblix_PermissionHandler.canSeeFinancialField(selected_sow.SOW_Status__c);
+        }
+    }
+
     public Oblix_SWOPparentController() {
 
     }

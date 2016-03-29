@@ -75,7 +75,7 @@
                 <div class="header_divider_vertical"></div>
                 <div class="header_panel_text">
                     <h2>Hi  {!$User.FirstName} {!$User.LastName }, Welcome to SWOP the Scope of Work Online Planner</h2>
-                    <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!marketing_SOW.Id}">{!marketing_SOW.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;Add non-campaign items
+                    <p><a href="{!URLFOR($Page.oblix_sowmain)}">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="{!URLFOR($Page.oblix_sowmaindetail)}?sowId={!marketing_SOW.Id}">{!marketing_SOW.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;Add non-campaign items
                     </p>
                 </div>
                 <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">

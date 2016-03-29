@@ -210,7 +210,7 @@ public with sharing class Oblix_AddAssetPageHelper {
 	public void addAssetToBasket() {
         try {
     		Oblix_AssetOfferingWrapper.AssetWrapper asset_to_add_to_basket = 
-    			initialiseAssetWrapper(projectId,
+    			Oblix_AssetOfferingWrapper.initialiseAssetWrapper(projectId,
     								   selectedAssetName,
     								   selectedAssetOtherName,
                                        selectedAssetMDMId, 
@@ -248,7 +248,7 @@ public with sharing class Oblix_AddAssetPageHelper {
 
         try {
     		Oblix_AssetOfferingWrapper.AssetWrapper asset_to_update_in_basket = 
-                initialiseAssetWrapper(projectId,
+                Oblix_AssetOfferingWrapper.initialiseAssetWrapper(projectId,
     								   selectedAssetName,
     								   selectedAssetOtherName,
                                        selectedAssetMDMId, 
@@ -390,6 +390,7 @@ public with sharing class Oblix_AddAssetPageHelper {
             update assets;
         } else {
             //Already more than one asset with the same MDM ID is linked to the project - do nothing
+            return;
         }
 	}
 
@@ -502,20 +503,6 @@ public with sharing class Oblix_AddAssetPageHelper {
 		}
 
 		return itemsInBasketMap;
-	}
-
-	public Oblix_AssetOfferingWrapper.AssetWrapper initialiseAssetWrapper(Id campaignId, String assetName, String otherName, String mdmdId, Integer quantity, String notes) {
-
-		System.debug('## otherName: ' + otherName);
-		Oblix_AssetOfferingWrapper.AssetWrapper assetWrapper = Oblix_AssetOfferingWrapper.getAssetWrapperByMDMId(mdmdId);
-		assetWrapper.campaign_id = campaignId;
-		assetWrapper.asset_name = assetName;
-		assetWrapper.other_name = otherName.trim();
-		assetWrapper.quantity_in_basket = quantity;
-		assetWrapper.other_description_info = notes;
-		assetWrapper.mdm_id = mdmdId;
-
-		return assetWrapper;
 	}
 
 }

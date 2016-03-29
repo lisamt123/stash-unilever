@@ -43,24 +43,26 @@ public with sharing class Oblix_SplitHandler_Test {
 
                 delete list_project_splits_to_insert;
 
-                // cause error by inserting splits which dont add up to 100%
-                list_project_splits_to_insert = Oblix_TestUtils.createProjectSplits(project.id, 4);
-                list_project_splits_to_insert[0].Percentage__c = 10;
+                // S.M. this is now handled in VF controllers instead of trigger handler
 
-                save_result = Database.insert(list_project_splits_to_insert, false);
+                //// cause error by inserting splits which dont add up to 100%
+                //list_project_splits_to_insert = Oblix_TestUtils.createProjectSplits(project.id, 4);
+                //list_project_splits_to_insert[0].Percentage__c = 10;
+
+                //save_result = Database.insert(list_project_splits_to_insert, false);
                 
-                has_error = false;
-                error_msg = '';
+                //has_error = false;
+                //error_msg = '';
 
-                for(Database.SaveResult ur : save_result){ 
-                    if (!ur.isSuccess()){
-                        has_error = true;
-                        error_msg = buildErrorMessage(ur.getErrors());
-                    }
-                }
+                //for(Database.SaveResult ur : save_result){ 
+                //    if (!ur.isSuccess()){
+                //        has_error = true;
+                //        error_msg = buildErrorMessage(ur.getErrors());
+                //    }
+                //}
 
-                System.assertEquals(true, has_error);
-                System.assertEquals('Error: Total Percentage for this project is below 100%, please raise it' + '\n', error_msg);
+                //System.assertEquals(true, has_error);
+                //System.assertEquals('Error: Total Percentage for this project is below 100%, please raise it' + '\n', error_msg);
 
 
 

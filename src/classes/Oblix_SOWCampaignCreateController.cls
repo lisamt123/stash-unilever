@@ -62,6 +62,21 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             campaignHelper.selectedProject.Selected_Countries__c = campaignHelper.selectedProject.Campaign_Countries__c;
             campaignHelper.selectedProject.Selected_Countries__c = addSpacesInCSV(campaignHelper.selectedProject.Selected_Countries__c);
         }
+
+        //Prepare a list of up to 3 first clusters and/or countries
+        List<String> first3Countries = new List<String>();
+        Integer countryCounter = 0;
+        System.debug('Selected Countries: ' + campaignHelper.selectedProject.Selected_Countries__c);
+        for(String country : campaignHelper.selectedProject.Selected_Countries__c.split('[/,]')){
+            first3Countries.add(country.trim());
+            countryCounter++;
+            if (countryCounter >= 3) {
+                break;
+            }
+        }
+        campaignHelper.selectedProject.First_3_selected_countries__c = String.join(first3Countries, ', ');
+        System.debug('First 3 Selected Countries: ' + campaignHelper.selectedProject.First_3_selected_countries__c);
+
         System.DEBUG('Set Changes Countries : ' + campaignHelper.selectedProject.Campaign_Countries__c);
         System.DEBUG('Set Changes Region : ' + campaignHelper.selectedProject.OblixRegion__c);
         setCampaignScaleOne(selectedMainRegions, tempCountries);
@@ -119,6 +134,18 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         campaignHelper.selectedProject.OblixRegion__c = 'Global';
         campaignHelper.selectedProject.Campaign_Countries__c = 'Global';
         campaignHelper.selectedProject.Selected_Countries__c = campaignHelper.selectedProject.Campaign_Countries__c;
+
+        //Prepare a list of up to 3 first clusters and/or countries
+        List<String> first3Countries = new List<String>();
+        Integer countryCounter = 0;
+        for(String country : campaignHelper.selectedProject.Selected_Countries__c.split('[/,]')){
+            first3Countries.add(country.trim());
+            countryCounter++;
+            if (countryCounter >= 3) {
+                break;
+            }
+        }
+        campaignHelper.selectedProject.First_3_selected_countries__c = String.join(first3Countries, ', ');
     }
 
     public void setCampaignScale() {

@@ -47,7 +47,7 @@ public with sharing class Oblix_UserPermissionHandlerLogic {
 			brandCatKeys.add(cb.brand_id__c + '_' + cb.product_Category_Id__c);
 		}
 
-		List<Marketing_SOW__c> affectedSOWs_unfiltered = [SELECT Id, OblixBrand__c, SmallProductCategory__c, Unilever_SOW_Approver_Name__c, Agency_SOW_Approver_Name__c, OwnerId
+		List<Marketing_SOW__c> affectedSOWs_unfiltered = [SELECT Id, OblixBrand__c, SmallProductCategory__c, Unilever_SOW_Approver_Name__c, Agency_SOW_Approver_Name__c, OwnerId, Oblix_AgencyEstimate__c
 												FROM Marketing_SOW__c 
 												WHERE OblixBrand__c IN :brandIds 
 													AND SmallProductCategory__c IN :categoryIds];

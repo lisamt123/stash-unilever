@@ -96,7 +96,6 @@ public with sharing class Oblix_CalculatorLogic {
 	public static Map<Id, Decimal> getTotalProjectScore(Map<Id, Decimal> map_project_driver_score, Map<Id, Decimal> map_total_asset_score){
 		Map<Id, Decimal> midd_project_total_score = new Map<Id, Decimal>();
 
-		Oblix_SOW_Projects__c project;
 		Decimal total_project_score = 0;
 
 		for (Id id : map_project_driver_score.keySet()){
@@ -118,14 +117,20 @@ public with sharing class Oblix_CalculatorLogic {
 		Decimal basket_score;
 		Oblix_SOW_Projects__c campaign_in_scope;
 
+
 		for (Id campaign_id : map_projects.keySet()){
+
 
 			basket_score = 0;
 			campaign_in_scope = map_projects.get(campaign_id);
+
+			//system.debug('## 1- campaign_id: ' + campaign_id + ' - campaign_in_scope.Agency_Project_Assets__r.size(): ' + campaign_in_scope.Agency_Project_Assets__r.size());
 			
 			if (NULL != campaign_in_scope && campaign_in_scope.Agency_Project_Assets__r.size() > 0){
 
 				for (Oblix_Project_Assets__c asset : campaign_in_scope.Agency_Project_Assets__r){
+
+					//system.debug('## asset id: ' + asset.id + ' - asset.Asset_Score__c: ' + asset.Asset_Score__c + ' - asset.Quantity__c: ' +  asset.Quantity__c);
 
 					if (NULL != asset.Asset_Score__c && NULL != asset.Quantity__c){
 						basket_score += asset.Asset_Score__c * asset.Quantity__c;
@@ -185,7 +190,7 @@ public with sharing class Oblix_CalculatorLogic {
 					point_score = getCountryBoxCalculator().getPointScore(box_number, project.Financial_Year__r.Financial_Year__c
 						, project_split.OblixCountry__r.Name.toUpperCase());
 
-					system.debug('## 3- project_id: ' + project_id + ' - point_score: ' + point_score + ' - Financial_Year__c: ' + project.Financial_Year__r.Financial_Year__c + ' - project_split.OblixCountry__r.Name: '+ project_split.OblixCountry__r.Name);
+					//system.debug('## 3- project_id: ' + project_id + ' - point_score: ' + point_score + ' - Financial_Year__c: ' + project.Financial_Year__r.Financial_Year__c + ' - project_split.OblixCountry__r.Name: '+ project_split.OblixCountry__r.Name);
 
 					if (NULL == point_score){
             			throw new MissingDataException('NO_CALCULATOR_DATA_SPECIFIED for country Name: ' + project_split.OblixCountry__r.Name + ' - Financial Year: ' + project.Financial_Year__r.Financial_Year__c + ' - Project Score: ' + point_score);
@@ -219,7 +224,7 @@ public with sharing class Oblix_CalculatorLogic {
 
 			if (NULL != project && NULL != project.Financial_Year__r.Financial_Year__c && project_score>0){
 
-				system.debug('## 1- project_id: ' + project_id + ' - project_score: ' + project_score + ' - Financial_Year__c: ' +  project.Financial_Year__r.Financial_Year__c);
+				//system.debug('## 1- project_id: ' + project_id + ' - project_score: ' + project_score + ' - Financial_Year__c: ' +  project.Financial_Year__r.Financial_Year__c);
 				// get the box number for the given project financial year and total project score
 				box_number = getFinancialYearCalculator().getBoxNumberAsFieldFormat(project_score, project.Financial_Year__r.Financial_Year__c);
 
@@ -233,7 +238,7 @@ public with sharing class Oblix_CalculatorLogic {
 	@TestVisible
 	private static Decimal calculateFeeBySplitAndPointScore(Decimal point_score, Decimal split_percentage ){
 		
-		Decimal fee_for_split;
+		Decimal fee_for_split = 0;
 		if (NULL != point_score && point_score>0 && NULL != split_percentage && split_percentage >0){
 			fee_for_split = point_score * split_percentage / 100;
 		}
@@ -308,25 +313,28 @@ public with sharing class Oblix_CalculatorLogic {
 	}
 
 
+	private static CalculatorRangeWrapper financial_year_calculator;
 
 	public static CalculatorRangeWrapper getFinancialYearCalculator(){
 
 		//Map<Id,Oblix_Calculator__c> map_calculator = getCalculatorRecords();
-		CalculatorRangeWrapper financial_year_calculator;
 
+		if (NULL != financial_year_calculator){
+			return financial_year_calculator;
+		}
 		// check in the cache first
-		//Cache.SessionPartition session_partition = Cache.Session.getPartition('OblixCalculator');
+		// Cache.SessionPartition session_partition = Cache.Session.getPartition('OblixCalculator');
 		if (Cache.Org.contains('local.Oblix.CalculatorBoxRange')){
-			system.debug('## getting values from cache');
+			//system.debug('## getting values from cache');
 			financial_year_calculator = (CalculatorRangeWrapper) Cache.Org.get('local.Oblix.CalculatorBoxRange');
 		}
 		else{ 
-			system.debug('## setting values to cache');
+			//system.debug('## setting values to cache');
 			// get box range record types only
 			String soql_query = 'SELECT Points_Low__c, Points_High__c, Financial_Year__c, Box_Range__c FROM Oblix_Calculator__c ';
 			soql_query += ' WHERE RecordTypeId = \'' + Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Box_Range') + '\'';
 
-			system.debug('##soql_query: '+soql_query);
+			//system.debug('##soql_query: '+soql_query);
 			List<Oblix_Calculator__c> oblix_calculator = Database.query(soql_query);
 			financial_year_calculator = new CalculatorRangeWrapper(oblix_calculator);
             //Cache.Org.put('local.Oblix.CalculatorBoxRange', financial_year_calculator);
@@ -336,25 +344,32 @@ public with sharing class Oblix_CalculatorLogic {
 
 	} 
 
+	// store it as a static to avoid querying it multiple times in the same
+	// execution cotext
+    private static CalculatorCountryBoxWrapper country_box_calculator;
 
 	public static CalculatorCountryBoxWrapper getCountryBoxCalculator(){
 
 		//Map<Id,Oblix_Calculator__c> map_calculator = getCalculatorRecords();
-		CalculatorCountryBoxWrapper country_box_calculator;
+		//CalculatorCountryBoxWrapper country_box_calculator;
+
+		if (NULL != country_box_calculator){
+			return country_box_calculator;
+		}
 
 		// check in the cache first
 		//Cache.SessionPartition session_partition = Cache.Session.getPartition('OblixCalculator');
 		if (Cache.Org.contains('local.Oblix.CalculatorCountryBox')){
-			system.debug('## getting values from cache');
+			//system.debug('## getting values from cache');
 			country_box_calculator = (CalculatorCountryBoxWrapper) Cache.Org.get('local.Oblix.CalculatorCountryBox');
 		}
 		else{ 
-			system.debug('## setting values to cache');
+			//system.debug('## setting values to cache');
 			// get box range record types only
 			String soql_query = 'SELECT ' + String.join(Oblix_Utils.getfieldsByObject('Oblix_Calculator__c'), ',') + ' FROM Oblix_Calculator__c ';
 			soql_query += ' WHERE RecordTypeId = \'' + Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Country_Box_Number') + '\'';
 
-			system.debug('##soql_query: '+soql_query);
+			//system.debug('##soql_query: '+soql_query);
 			List<Oblix_Calculator__c> oblix_calculator = Database.query(soql_query);
 			country_box_calculator = new CalculatorCountryBoxWrapper(oblix_calculator);
             //Cache.Org.put('local.Oblix.CalculatorCountryBox', country_box_calculator);
@@ -364,17 +379,22 @@ public with sharing class Oblix_CalculatorLogic {
 
 	}
 
+	private static Map<Id,Oblix_Calculator__c> map_calculator;
 
 	public static Map<Id,Oblix_Calculator__c> getCalculatorRecords(){
 
-		Map<Id,Oblix_Calculator__c> map_calculator;
-		// check in the cache first
+		// check the map in static variable first
+		if (NULL != map_calculator){
+			return map_calculator;
+		}
+
+		// then check in the cache first
 		if (Cache.Org.contains('local.Oblix.calculator')){
-			system.debug('## getting values from cache');
+			//system.debug('## getting values from cache');
 			map_calculator = (Map<Id,Oblix_Calculator__c>) Cache.Org.get('local.Oblix.calculator');
 		}
 		else{ 
-			system.debug('## setting values to cache');
+			//system.debug('## setting values to cache');
 			List<String> li_fields_to_query = Oblix_Utils.getfieldsByObject('Oblix_Calculator__c');
 			String soql_query = 'SELECT ' + String.join(li_fields_to_query, ',') + ' FROM Oblix_Calculator__c';
 
@@ -382,7 +402,7 @@ public with sharing class Oblix_CalculatorLogic {
             //Cache.Org.put('local.Oblix.calculator', map_calculator);
 		}
 
-		system.debug(map_calculator);
+		//system.debug(map_calculator);
 		return map_calculator;
 	}
 
@@ -405,10 +425,10 @@ public with sharing class Oblix_CalculatorLogic {
 
 		public Decimal getPointScore(String box_number, String financial_year, String country_name){
 
-			Decimal point_score;
+			Decimal point_score = 0;
 			String calculator_key = buildKey(financial_year, country_name);
 
-			system.debug('## calculator_key: ' + calculator_key + ' - box_number: ' + box_number + ' - map_oblix_calculator: ' + json.serialize(map_oblix_calculator));
+			//system.debug('## calculator_key: ' + calculator_key + ' - box_number: ' + box_number + ' - map_oblix_calculator: ' + json.serialize(map_oblix_calculator));
 
 			if (map_oblix_calculator.containsKey(calculator_key) && NULL!= map_oblix_calculator.get(calculator_key) && NULL!=box_number
 				&& NULL!=map_oblix_calculator.get(calculator_key).get(box_number)){
@@ -420,7 +440,7 @@ public with sharing class Oblix_CalculatorLogic {
 		}
 
 		private String buildKey(String financial_year, String country_name){
-			String calculator_key;
+			String calculator_key = '';
 			if (String.isNotBlank(financial_year) && String.isNotBlank(country_name)){
 				calculator_key = financial_year + '_' + country_name;
 			}
@@ -450,24 +470,28 @@ public with sharing class Oblix_CalculatorLogic {
 		}
 
 		public String getBoxNumber(Decimal score, String financial_year){
-			system.debug('## TESTING: li_calculator_range: ' + json.serialize(li_calculator_range) + ' - score: ' + score + ' - financial_year: ' + financial_year);
+			//system.debug('## TESTING: li_calculator_range: ' + json.serialize(li_calculator_range) + ' - score: ' + score + ' - financial_year: ' + financial_year);
 			if (!li_calculator_range.isEmpty()){
 				for (CalculatorRecordWrapper cal_rec : li_calculator_range){
 					if (score > cal_rec.point_low_value && score <= cal_rec.point_high_value && financial_year == cal_rec.financial_year){
-						system.debug('## TESTING: found match: ' + cal_rec.box_range);
+						//system.debug('## TESTING: found match: ' + cal_rec.box_range);
 						return cal_rec.box_range;
 					}
 				}
 			}
-			system.debug('## TESTING: no match found!');
+			//system.debug('## TESTING: no match found!');
 
 			// no match found!
 			return NULL;
 		}
 
 		public String formatBoxNumberToField(String box_number){
+			// S.M. had to add this variable to get passed sonar Avoid reassigning parameters issue
+			String formatted_box_number;
+
 			if (String.isNotBlank(box_number)){
-				box_number = box_number.replace(' ', '_') + '__c';
+				formatted_box_number = box_number.replace(' ', '_') + '__c';
+				box_number = formatted_box_number;
 			}
 			return box_number;
 		}

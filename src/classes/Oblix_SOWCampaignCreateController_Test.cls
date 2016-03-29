@@ -363,7 +363,8 @@ private class Oblix_SOWCampaignCreateController_Test {
                 PageReference redirectPage = campaignCreateController.setAgencyHubSplit();
             Test.stopTest();      
 
-            List<Oblix_SOW_Projects__c> projects = [SELECT Id FROM Oblix_SOW_Projects__c];
+            // S.M. added limit to pass sonar test
+            List<Oblix_SOW_Projects__c> projects = [SELECT Id FROM Oblix_SOW_Projects__c LIMIT 1000];
             System.assertEquals(2, projects.size());
             System.assertEquals((new PageReference('/apex/oblix_campaignsummary?projectId=' + campaignCreateController.campaignHelper.selectedProject.Id)).getUrl(), redirectPage.getUrl());
 

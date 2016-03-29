@@ -1,8 +1,21 @@
+/*****************************************************************************************
+* @author       Slavko Skular
+* @date         2016-03-22
+* @description  Tests for the SOWMainDetailController
+*
+*    --------------------------------------------------------------------------
+*    Developer                  Date                Description
+*    --------------------------------------------------------------------------
+*   
+*    Slavko Skular              2016-03-22          Created.
+
+******************************************************************************************/
+
 @isTest
 private class Oblix_SOWMainDetailController_Test {
 
 	private static final String PROJECT_TXT = 'Project';
-	private enum Permission {CAN_EDIT, CAN_DELETE, CAN_APPROVE, CAN_REJECT, CAN_SUBMIT}
+	private enum Permission {CAN_EDIT, CAN_DELETE, CAN_APPROVE, CAN_REJECT, CAN_SUBMIT, CAN_DELETE_ATTACHMENT, CAN_ADD_ATTACHMENT, CAN_MANAGE_CAMPAIGN, CAN_MANAGE_NON_CAMPAIGN}
 
 	private static Marketing_SOW__c mSow;
 	private static User ul1;
@@ -10,6 +23,7 @@ private class Oblix_SOWMainDetailController_Test {
 	private static User ul3;
 	private static User superuser;
 
+	// TODO: test submit, approve, reject; test add/delete attachments
 	@isTest static void testCampaignNonCampaignList() {
 
 		initTestData();
@@ -20,26 +34,65 @@ private class Oblix_SOWMainDetailController_Test {
         Test.startTest();
 
         Integer numberOfSOWItems = controllerInstance.li_campaign_and_non_campaign_items.size();
-        Boolean canEditSOW = controllerInstance.can_edit;
-        Boolean canDeleteSOW = controllerInstance.can_delete_sow;
-        Boolean canApproveSOW = controllerInstance.can_approve_sow;
-        Boolean canRejectSOW = controllerInstance.can_reject_sow;
-        Boolean canSubmitSOW = controllerInstance.can_submit_for_approval;
-        Boolean showSubmit = controllerInstance.show_submit;
+
+        Map<Permission, Boolean> ul1Permissions;
+        Map<Permission, Boolean> ul2Permissions;
+        Map<Permission, Boolean> ul3Permissions;
+        Map<Permission, Boolean> superuserPermissions;
+
+        Boolean showSubmitUL1;
+        Boolean showSubmitUL2;
+        Boolean showSubmitUL3;
+        Boolean showSubmitSuperuser;
+
+        Boolean sow_approvers_defined;
+
+        System.runAs(ul1){
+        	ul1Permissions = getUserPermissions(controllerInstance);
+        	showSubmitUL1 = controllerInstance.show_submit;
+        }
+        System.runAs(ul2){
+        	ul2Permissions = getUserPermissions(controllerInstance);
+        	showSubmitUL2 = controllerInstance.show_submit;
+        }
+        System.runAs(ul3){
+        	ul3Permissions = getUserPermissions(controllerInstance);
+        	showSubmitUL3 = controllerInstance.show_submit;
+        }
+        System.runAs(superuser){
+        	superuserPermissions = getUserPermissions(controllerInstance);
+        	showSubmitSuperuser = controllerInstance.show_submit;
+        }
             
         Test.stopTest();
 
         System.assertEquals(4, numberOfSOWItems);
 
+        System.assertEquals(true, showSubmitUL1);
+        System.assertEquals(true, showSubmitUL2);
+        System.assertEquals(true, showSubmitUL3);
+        System.assertEquals(true, showSubmitSuperuser);
+
 
     }
 
-    private static Map<String, Boolean> getUserPermissions(){
-    	Map<String, Boolean> up = new Map<String, Boolean>();
+    private static Map<Permission, Boolean> getUserPermissions(Oblix_SowMainDetailController controllerInstance){
+    	Map<Permission, Boolean> up = new Map<Permission, Boolean>();
+
+    	up.put(Permission.CAN_EDIT, controllerInstance.can_edit);
+    	up.put(Permission.CAN_DELETE, controllerInstance.can_delete_sow);
+    	up.put(Permission.CAN_APPROVE, controllerInstance.can_approve_sow);
+    	up.put(Permission.CAN_REJECT, controllerInstance.can_reject_sow);
+    	up.put(Permission.CAN_SUBMIT, controllerInstance.can_submit_for_approval);
+    	up.put(Permission.CAN_DELETE_ATTACHMENT, controllerInstance.can_delete_attachment);
+    	up.put(Permission.CAN_ADD_ATTACHMENT, controllerInstance.can_add_attachment);
+    	up.put(Permission.CAN_MANAGE_CAMPAIGN, controllerInstance.can_manage_campaign);
+    	up.put(Permission.CAN_MANAGE_NON_CAMPAIGN, controllerInstance.can_manage_non_campaign);
 
     	return up;
     }
 
+    // TODO: add user-brand UserPermission records that define approvers and test approval buttons
     private static void initTestData(){
 
     	Map<String, User> testUsers = Oblix_TestUtils.createTestUsers();

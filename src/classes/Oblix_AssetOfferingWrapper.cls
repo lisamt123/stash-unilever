@@ -62,9 +62,9 @@ public with sharing class Oblix_AssetOfferingWrapper {
     public Map<String, AssetTypeWrapper> map_asset_type_wrapper {get;set;}
     private static Id wrapper_campaign_id;
 
-    public static Map<String, AssetWrapper> map_of_mdm_id_to_asset;
+    public static Map<String, AssetWrapper> map_of_mdm_id_to_asset;// = new Map<String, AssetWrapper>();
     //public Map<String, AssetWrapper> map_mdm_id_to_asset;
-    public static Oblix_AssetOfferingWrapper asset_offering;
+    public static Oblix_AssetOfferingWrapper asset_offering;// = new Oblix_AssetOfferingWrapper();
     //public Oblix_AssetOfferingWrapper asset_offering_instance;
     //public Oblix_AssetOfferingWrapper asset_offering_instance;
 
@@ -85,7 +85,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
             // temp
             //Cache.Org.put('local.Oblix.AssetScoring', '');
 
-            if (NULL != asset_offering ){
+            if (NULL != asset_offering){
                 system.debug('## getting values static');
                 return asset_offering;
             }
@@ -136,7 +136,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
     ********************************************************************************/
     public static AssetWrapper getAssetWrapperByMDMId(String mdm_id){
 
-        AssetWrapper asset_wrapper_to_return;
+        AssetWrapper asset_wrapper_to_return = new AssetWrapper();
         
         // if the static variable does not exist
         // then call it to initialise
@@ -201,7 +201,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
     ********************************************************************************/
     public static AssetWrapper convertAssetToItemInBasket(Oblix_Project_Assets__c asset){
 
-        AssetWrapper newBasketItem;
+        AssetWrapper newBasketItem = new AssetWrapper();
 
         // if the static variable does not exist
         // then call it to initialise
@@ -315,6 +315,19 @@ public with sharing class Oblix_AssetOfferingWrapper {
         return li_asset_sobject;
     }
 
+    public static AssetWrapper initialiseAssetWrapper(Id campaignId, String assetName, String otherName, String mdmdId, Integer quantity, String notes) {
+
+        System.debug('## otherName: ' + otherName);
+        AssetWrapper assetWrapper = getAssetWrapperByMDMId(mdmdId);
+        assetWrapper.campaign_id = campaignId;
+        assetWrapper.asset_name = assetName;
+        assetWrapper.other_name = otherName.trim();
+        assetWrapper.quantity_in_basket = quantity;
+        assetWrapper.other_description_info = notes;
+        assetWrapper.mdm_id = mdmdId;
+
+        return assetWrapper;
+    }
 
     /*******************************************************************************
     * @author       Execloud ©
@@ -656,5 +669,6 @@ public with sharing class Oblix_AssetOfferingWrapper {
         }
 
     }
+
 
 }

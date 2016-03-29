@@ -4,6 +4,8 @@ private class Oblix_Ctrl04OverrideProjectNew_Test {
 
     static testMethod void ValueDriversProjectTest(){
         User u = Oblix_TestUtils.createTestUser();
+        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             Test.startTest();
 
@@ -38,6 +40,7 @@ private class Oblix_Ctrl04OverrideProjectNew_Test {
 
     static testMethod void CloneProjectTest(){
         User u = Oblix_TestUtils.createTestUser();
+        insert Oblix_TestUtils.createOblixCustomSettings();
         System.runAs(u) {
             Test.startTest();
 
@@ -59,7 +62,7 @@ private class Oblix_Ctrl04OverrideProjectNew_Test {
 
             controller.project = project;
 
-            controller.CloneProject();
+            //controller.CloneProject();
 
             Test.stopTest();
 
@@ -75,6 +78,7 @@ private class Oblix_Ctrl04OverrideProjectNew_Test {
     static testMethod void myUnitTest() {
 
         User u = Oblix_TestUtils.createTestUser();
+        insert Oblix_TestUtils.createOblixCustomSettings();
 	     
 	    System.runAs(u){
 	     	Marketing_SOW__c marketingSow = new Marketing_SOW__c();
