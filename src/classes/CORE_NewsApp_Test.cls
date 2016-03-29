@@ -1,4 +1,4 @@
-/*
+/***
   Class Name: CORE_NewsApp_Test
   Author : Mindtree
   Date: 1 Nov 2015
@@ -8,8 +8,9 @@
                            2.Core_NC_NewsCenterControllerHelper
                            3.Core_NC_NewsWrapperClass
                            4.Core_NC_NewsDetailWrapperClass 
+						   
 
-*/
+***/
 
 @isTest //(Seealldata=false)
 public class CORE_NewsApp_Test{
