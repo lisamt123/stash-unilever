@@ -11,6 +11,7 @@ History
 -------
 VERSION     AUTHOR           DATE            DETAIL Description
 1.0         Dinesh Girase    29/01/2016     INITIAL DEVELOPMENT CSR:
+1.1        Dinesh            27/03/2016    Added Project Description
 ***********************************************************************/
 public class CPA_ConstantsForContractingAppClasses{
 
@@ -246,6 +247,6 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String CPA_PWORF_ALL_RECORDTYPE = 'Other';
     public static final String CPA_PWORF_RA_RECORDTYPE = 'Resource Augmentation';
     
-       
+    public static final String PROJECTDESCRIPTION = 'Project Description';   
 
 }

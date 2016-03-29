@@ -96,10 +96,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Latest_PWO_Status__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Related_CRs__c</field>
             </layoutItems>
         </layoutColumns>
@@ -123,10 +119,6 @@
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>pkl_Request_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txta_Other_Request_Type__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -282,20 +274,20 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>High_Level_Description_del__c</fields>
+        <fields>OWNER.FIRST_NAME</fields>
+        <fields>OWNER.LAST_NAME</fields>
         <fields>Requirement_Type_del__c</fields>
-        <fields>New_or_changed_requirement_del__c</fields>
-        <fields>CREATEDBY_USER</fields>
-        <fields>OBJECT_ID</fields>
         <relatedList>CPA_Requirements_and_Deliverables__c.PWORF_Requirement_Deliverables__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>E_mail__c</fields>
         <fields>Telephone__c</fields>
+        <fields>OWNER.FIRST_NAME</fields>
+        <fields>OWNER.LAST_NAME</fields>
         <relatedList>CPA_Key_Contacts__c.PWORF__c</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
         <fields>pkl_Attribute_Type__c</fields>
         <fields>txt_Value__c</fields>
         <relatedList>CPA_User_Defined_Attribute__c.lkp_PWORF__c</relatedList>

@@ -4,6 +4,7 @@
     <customButtons>btn_Signed</customButtons>
     <customButtons>Delivered</customButtons>
     <customButtons>btn_Cancel_CR</customButtons>
+    <customButtons>btn_Reason_for_Return</customButtons>
     <excludeButtons>Clone</excludeButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>Edit</excludeButtons>

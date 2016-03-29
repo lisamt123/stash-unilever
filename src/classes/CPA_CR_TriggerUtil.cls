@@ -101,11 +101,7 @@ public with sharing class CPA_CR_TriggerUtil{
         }
         if(setPWOID.size()>0 && setPWOID!=null){
             for(CPA_project_work_order__c objPWO : [Select Id,pkl_Status__c from CPA_project_work_order__c where Id IN: setPWOID]){
-               /* if(objPWO.chk_isCNF_TNF__c == true){
-                    objPWO.addError('CR cant be created, because CNF is created ');             
-                }*/
                 mapPWO.put(objPWO.Id,objPWO);
-                
             }   
              for(CPA_CR__c objCR : newCNFList){
                 if(mapPWO.get(objCR.CPA_Project_Work_Order__c)!= null && (mapPWO.get(objCR.CPA_Project_Work_Order__c).pkl_Status__c == 'Sent For Closure' || mapPWO.get(objCR.CPA_Project_Work_Order__c).pkl_Status__c == 'Closed')){
@@ -117,11 +113,7 @@ public with sharing class CPA_CR_TriggerUtil{
                 } 
             }
         }
-        /*for(CPA_CR__c objCR : newCNFList){
-            if(objCR.RecordtypeId == null){
-                setPWOID.add(objCR.CPA_Project_Work_Order__c);
-            }
-        }*/
+        
      } 
      
      /* Justification: We are prepopulating some values from Parent record, to check whether those fields are not null
@@ -281,11 +273,7 @@ public with sharing class CPA_CR_TriggerUtil{
                 CPA_project_work_order__c newPWO =new CPA_project_work_order__c();
                 
                 newPWO.RecordtypeId = StandaloneRecordtype;
-                //newPWO.RecordtypeId = label.CPA_Standalone_PWO_RecordTypeId; //Replaceing Custom label with query : Shreyas 10th March 2016
-                /*
-                newPWO.lkp_Unilever_budget_approver__c = objCR.lkp_Unilever_budget_approver__c;
-                newPWO.lkp_Unilever_content_approver__c  = objCR.lkp_Unilever_content_approver__c;
-                */
+                
                 newPWO.eml_Unilever_Content_Approver_Email__c = objCR.eml_Unilever_Content_Approver_Email__c;
                 newPWO.txt_Unilever_Content_Approver_Name__c = objCR.txt_Unilever_Content_Approver_Name__c;
                 newPWO.eml_Unilever_Budget_Approver_Email__c = objCR.eml_Unilever_Budget_Approver_Email__c; 
@@ -294,18 +282,18 @@ public with sharing class CPA_CR_TriggerUtil{
                 
                 newPWO.txt_Unilever_Project_Name__c = objCR.txta_Unilever_Project_Name__c;
                 newPWO.txt_Unilever_Reference__c = objCR.txt_Unilever_Reference__c;
-                //newPWO.pec_Variance__c = pec_Variance__c;
+                
                 newPWO.chk_isStandalone_CR__c = true;
                 newPWO.txt_Unilever_Reference__c = objCR.txt_Unilever_Reference__c;
                 newPWO.mpkl_Project_Phases__c = objCR.pkl_Project_Phases__c;
                 newPWO.txt_PWO_number__c = objCR.PWO_number__c;
                 newPWO.pkl_Region__c = objCR.Region_impacted__c;
-               // newPWO.num_Varied_Target_Blend_Rate__c = objCR.num_Varied_Target_Blend_Rate__c;
+               
                 newPWO.txt_Accenture_Project_Manager__c = objCR.txt_Accenture_Project_Manager__c;
                 newPWO.dt_Expected_End_date__c =    objCR.dt_CR_End_date__c;
                 newPWO.dt_Expected_Start_Date__c = objCR.dt_CR_Start_Date__c;
-                //newPWO.Currency__c = objCR.pkl_Currency__c;
-               // newPWO.txt_Other_Currency__c =objCR.txt_Other_Currency__c;
+               
+               
                 newPWO.txt_Other_Project_Phases__c = objCR.txt_Other_Project_Phases__c;
                 newPWO.pkl_Status__c = 'Saved';
                 newPWO.txt_Linked_Standalone_CR__c = objCR.id;
@@ -351,7 +339,7 @@ public with sharing class CPA_CR_TriggerUtil{
             objCR.CPA_Project_Work_Order__c = pwo;
             ListnewCR.add(objCR);
         }
-        //update ListnewCR;
+        
         }
     }
     
@@ -388,7 +376,7 @@ public with sharing class CPA_CR_TriggerUtil{
             
             for(CPA_project_work_order__c obj : lstPWO){
                 Approval.unLockResult lrList = Approval.unlock(obj, false);
-                //CPA_project_work_order__c pwo = pworfmap.get(obj.id);
+                
                 obj.txt_CNF_CR_number__c = pwomap.get(obj.id);
                 
                 lstTemp.add(obj);                    
@@ -446,17 +434,22 @@ public with sharing class CPA_CR_TriggerUtil{
                 mapPWOIDCR.put(lstCR1[0].CPA_Project_Work_Order__c,lstCR1[0]);
                  
             }
-            
-            
+            //Added below decimal variable by Dinesh on 25/03/2016 to fix SonarQube issue
+            //Avoid idempotent operations (like assigning a variable to itself)
+            Decimal decEffortCost = 0.0;
             for(CPA_CR__c objCRTEmp :lstCR ){
                 if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c)==null ){
                     if(mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c)!=null && mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c!=null){
-                        //objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c;
+                       objCRTEmp.num_Total_Expenses_of_CR__c = objCRTEmp.num_Expense_charges_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Expense_charges_of_work_order__c;
                         objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Man_days_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Man_days_of_PWO__c;
                         objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Estimated_Value_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c;
+                        objCRTEmp.num_Total_Resource_Efforts_CR__c = objCRTEmp.num_Estimated_Man_days_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Man_days_of_PWO__c;
+                        objCRTEmp.num_Effort_Cost__c = objCRTEmp.num_Effort_Cost__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Effort_Cost__c;
                     }else if(objCRTEmp.num_Estimated_Value_of_CR__c !=null){
+                        decEffortCost = objCRTEmp.num_Effort_Cost__c;
                         objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c ;  
-                                           
+                        objCRTEmp.num_Effort_Cost__c = decEffortCost;
+                        objCRTEmp.num_Total_Expenses_of_CR__c = objCRTEmp.num_Expense_charges_of_CR__c;                 
                     }else {
                         objCRTEmp.num_Delta_Efforts__c =0;
                     }
@@ -465,7 +458,7 @@ public with sharing class CPA_CR_TriggerUtil{
                     if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c)!=null){
                         if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).Id == objCRTEmp.Id && mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c!= null){
                             objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Man_days_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Man_days_of_PWO__c;
-                           // objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Delta_Efforts__c;
+                           
                            objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Estimated_Value_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c;
                             objCRTEmp.num_Effort_Cost__c = objCRTEmp.num_Effort_Cost__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Effort_Cost__c;
                             objCRTEmp.num_Total_Resource_Efforts_CR__c = objCRTEmp.num_Estimated_Man_days_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Man_days_of_PWO__c;
@@ -473,11 +466,12 @@ public with sharing class CPA_CR_TriggerUtil{
                         } else if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).Id == objCRTEmp.Id && mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c== null){
                             objCRTEmp.num_Delta_Efforts__c = 0;
                             objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Estimated_Value_of_CR__c;
+                            objCRTEmp.num_Total_Expenses_of_CR__c = objCRTEmp.num_Expense_charges_of_CR__c; 
                         }
                       else{
                           if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_CR__c != null){
                           objCRTEmp.num_Delta_Efforts__c =objCRTEmp.num_Estimated_Man_days_of_CR__c  - mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Man_days_of_CR__c;
-                          //objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Delta_Efforts__c;
+                          
                           objCRTEmp.num_Effort_Cost__c = objCRTEmp.num_Effort_Cost__c - mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).num_Total_Resource_Cost_CR__c; 
                           objCRTEmp.num_Total_Resource_Efforts_CR__c = objCRTEmp.num_Estimated_Man_days_of_CR__c - mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Man_days_of_CR__c;
                           objCRTEmp.num_Total_Expenses_of_CR__c = objCRTEmp.num_Expense_charges_of_CR__c - mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).num_Expense_charges_of_CR__c;
@@ -516,36 +510,42 @@ public with sharing class CPA_CR_TriggerUtil{
  
     }
         
-    
-    listCR = [Select Id,num_Total_charge_of_CR__c,CPA_project_work_order__c,pkl_Status__c from CPA_CR__c where ID IN: setCRID];   
-    for(CPA_project_work_order__c objPWOMap : [Select Id,num_Total_work_order_charge__c,num_Estimated_Value_of_PWO__c from CPA_project_work_order__c where ID IN: setPWOID]){
-        mapPWO.put(objPWOMap.Id,objPWOMap);
-    }   
-    for (ID objPWOID :setPWOID ){
-        List<CPA_CR__c> lstTemp = new List<CPA_CR__c>();
-        for(CPA_CR__c objCR : listCR){
-            if(objCR.CPA_project_work_order__c == objPWOID){
-                lstTemp.add(objCR);
+        if(setPWOID !=null){
+            listCR = [Select Id,num_Total_charge_of_CR__c,CPA_project_work_order__c,pkl_Status__c from CPA_CR__c where CPA_project_work_order__c IN: setPWOID];   
+            for(CPA_project_work_order__c objPWOMap : [Select Id,num_Total_work_order_charge__c,num_Estimated_Value_of_PWO__c from CPA_project_work_order__c where ID IN: setPWOID]){
+                mapPWO.put(objPWOMap.Id,objPWOMap);
+            }   
+            for (ID objPWOID :setPWOID ){
+                List<CPA_CR__c> lstTemp = new List<CPA_CR__c>();
+                for(CPA_CR__c objCR : listCR){
+                    if(objCR.CPA_project_work_order__c == objPWOID){
+                        lstTemp.add(objCR);
+                    }
+                }
+                mapPWOtoListCR.put(objPWOID,lstTemp);           
+            }
+            for(ID objPWOID :setPWOID){
+                double dobCosttoadd = 0;
+                double dobCosttoSub = 0;
+                for(CPA_CR__c objCR : mapPWOtoListCR.get(objPWOID)){
+                    if(objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.ACCEPTED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SIGNED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SentForClosure  || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.DELIVERED){
+                     dobCosttoadd = dobCosttoadd+objCR.num_Total_charge_of_CR__c;
+                 }
+                }
+                if( mapPWO.get(objPWOID) !=null ){
+                    CPA_project_work_order__c objPWOUpdate = mapPWO.get(objPWOID);
+                    if(mapPWO.get(objPWOID).num_Estimated_Value_of_PWO__c!= null){
+                        objPWOUpdate.num_Total_work_order_charge__c = (objPWOUpdate.num_Estimated_Value_of_PWO__c + dobCosttoadd);
+                        listPWOUpdate.add(objPWOUpdate);
+                    }
+                    
+                    system.debug('objPWOUpdate-->'+objPWOUpdate);
+                }       
+                
             }
         }
-        mapPWOtoListCR.put(objPWOID,lstTemp);           
-    }
-    for(ID objPWOID :setPWOID){
-        double dobCosttoadd = 0;
-        double dobCosttoSub = 0;
-        for(CPA_CR__c objCR : mapPWOtoListCR.get(objPWOID)){
-            if(objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.ACCEPTED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SIGNED || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.SentForClosure  || objCR.pkl_Status__c == CPA_ConstantsForContractingAppClasses.DELIVERED){
-             dobCosttoadd = dobCosttoadd+objCR.num_Total_charge_of_CR__c;
-         }
-        }
-        if( mapPWO.get(objPWOID) !=null){
-            CPA_project_work_order__c objPWOUpdate = mapPWO.get(objPWOID);
-            objPWOUpdate.num_Total_work_order_charge__c = (objPWOUpdate.num_Estimated_Value_of_PWO__c + dobCosttoadd);
-            listPWOUpdate.add(objPWOUpdate);
-            system.debug('objPWOUpdate-->'+objPWOUpdate);
-        }       
-        
-    }
+    
+    
     if(listPWOUpdate!=null && listPWOUpdate.size()>0){
         return listPWOUpdate;
     }
@@ -553,5 +553,73 @@ public with sharing class CPA_CR_TriggerUtil{
     return null;        
         
     }
+     /** Method Name : checkPWOTermination
+    * Parameter   : newCRList,oldCRList
+    * Return type : None
+    * Author      : Shreyas Mangalvedhekar  
+    * Description : This method make the Approval comments require
+    */
+    public static void checkPWOTermination(List<CPA_CR__c> newCRList,List<CPA_CR__c> oldCRList){
+ 
+  // Create a map that stores all the objects that require editing 
+  Map<Id, CPA_CR__c> approvalStatements = new Map<Id, CPA_CR__c>{};
+  Map<Id, CPA_CR__c> oldCRS = new Map<Id, CPA_CR__c>{};
+  set<Id> setPWO = new set<ID>();
+  map<ID,CPA_project_work_order__c> mapPWO = new map<ID,CPA_project_work_order__c> ();
+  
+  for(CPA_CR__c objCR1 :oldCRList ){
+      oldCRS.put(objCR1.Id,objCR1);
+  }
+  for(CPA_CR__c objCR: newCRList){
+      setPWO.add(objCR.CPA_project_work_order__c);
+  }
+  for(CPA_project_work_order__c ojPWO : [Select Id, pkl_Status__c from CPA_project_work_order__c where Id IN:setPWO]){
+      mapPWO.put(ojPWO.Id,ojPWO);
+  }
+  for(CPA_CR__c inv: newCRList)
+  {
+    // Put all objects for update that require a comment check in a map,
+    // so we only have to use 1 SOQL query to do all checks
+    CPA_project_work_order__c objPWO = mapPWO.get(inv.CPA_project_work_order__c);
+    if ( objPWO !=null && ((inv.pkl_Status__c == CPA_ConstantsForContractingAppClasses.ACCEPTED && oldCRS.get(inv.Id).pkl_Status__c != CPA_ConstantsForContractingAppClasses.ACCEPTED) || (inv.pkl_Status__c == CPA_ConstantsForContractingAppClasses.RETURNED  && oldCRS.get(inv.Id).pkl_Status__c != CPA_ConstantsForContractingAppClasses.RETURNED) )&&(objPWO.pkl_Status__c ==CPA_ConstantsForContractingAppClasses.REQUESTFORTERMINATION || objPWO.pkl_Status__c ==CPA_ConstantsForContractingAppClasses.SentForTermination || objPWO.pkl_Status__c ==CPA_ConstantsForContractingAppClasses.Terminated  ))
+    { 
+      approvalStatements.put(inv.Id, inv);      
+    }
+  }  
+   
+  if (!approvalStatements.isEmpty())  
+  {
+    // If there are some approvals to be reviewed for approval, then
+    // get the most recent process instance for each object.
+    List<Id> processInstanceIds = new List<Id>{};
     
+    for (CPA_CR__c invs : [SELECT (SELECT ID
+                                              FROM ProcessInstances
+                                              ORDER BY CreatedDate DESC
+                                              LIMIT 1)
+                                      FROM CPA_CR__c
+                                      WHERE ID IN :approvalStatements.keySet()])
+    {
+        processInstanceIds.add(invs.ProcessInstances[0].Id);
+    }
+       
+    // Now that we have the most recent process instances, we can check
+    // the most recent process steps for comments.  
+    for (ProcessInstance pi : [SELECT TargetObjectId,
+                                   (SELECT Id, StepStatus, Comments 
+                                    FROM Steps
+                                    ORDER BY CreatedDate DESC
+                                    LIMIT 1 )
+                               FROM ProcessInstance
+                               WHERE Id IN :processInstanceIds
+                               ORDER BY CreatedDate DESC])
+    {       
+      // If no comment exists, then prevent the object from saving.                 
+      
+        approvalStatements.get(pi.TargetObjectId).addError(
+         '<br/><br/><Strong style= "color:red">Error: </Strong><b>CR Cannot be Accepted / Returned, as PWO set for Termination</b><br/><br/>');
+      
+    }                                       
+  }
+}
 }
