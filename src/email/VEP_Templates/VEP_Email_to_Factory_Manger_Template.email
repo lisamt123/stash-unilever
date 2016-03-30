@@ -1,4 +1,4 @@
-Hello {!Vep_Visitor__c.Factory_Manager_Name__c},
+Hello {!Vep_Visitor__c.Person_to_Meet__c},
 <br/><br/>
 A Factory Request has been requested by {!Vep_Visitor__c.Name} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c}<br/><br/>
 Base Location: {!Vep_Visitor__c.Base_Location__c}<br/>

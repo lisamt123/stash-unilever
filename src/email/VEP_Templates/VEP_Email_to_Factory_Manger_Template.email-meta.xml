@@ -5,13 +5,13 @@
     <name>VEP_Email to Factory Manger Template</name>
     <style>none</style>
     <subject>Factory Visit Request</subject>
-    <textOnly>Hello {!Vep_Visitor__c.Factory_Manager_Name__c},
+    <textOnly>Hello {!Vep_Visitor__c.Person_to_Meet__c},
 
 A Factory Request has been requested by {!Vep_Visitor__c.Name} from {!Vep_Visitor__c.Date_From__c} to {!Vep_Visitor__c.Date_To__c}
 
 Base Location: {!Vep_Visitor__c.Base_Location__c}
 Reason for visit: {!Vep_Visitor__c.Reason_for_Visit__c}
-Person to Meet: {!Vep_Visitor__c.Person_to_Meet__c}
+Person to Meet: {!Vep_Visitor__c.00Nc0000001NXDZ}
 
 Health Details:
 {!If(Vep_Visitor__c.Are_you_suffering_from_Asthma__c &amp;&amp; Vep_Visitor__c.Have_you_felt_any_chest_pain_recently__c &amp;&amp; Vep_Visitor__c.Have_you_felt_any_chest_pain_recently__c &amp;&amp; Vep_Visitor__c.Do_you_use_any_Inhaler__c &amp;&amp; Vep_Visitor__c.Do_you_have_any_chronicbreathing_problem__c &amp;&amp; Vep_Visitor__c.Are_you_allergic_to_dust_or_smoke__c &amp;&amp; Vep_Visitor__c.Need_help_when_heavybreathingencounterd__c,&apos; &apos;,&apos;NA

@@ -14236,6 +14236,20 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>Please click on the correct URL that you have received</value>
     </labels>
     <labels>
+        <fullName>VEP_Visitor_Contact_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Visitor Contact Id</shortDescription>
+        <value>00Nc0000001NXDo</value>
+    </labels>
+    <labels>
+        <fullName>VEP_Visitor_Department_id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VEP Visitor Department id</shortDescription>
+        <value>00Nc0000001NXCq</value>
+    </labels>
+    <labels>
         <fullName>VEP_Visitor_Email_Id</fullName>
         <language>en_US</language>
         <protected>false</protected>
