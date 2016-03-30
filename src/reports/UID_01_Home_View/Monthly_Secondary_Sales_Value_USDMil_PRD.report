@@ -9,6 +9,15 @@
         <masterLabel>Secondary Sales</masterLabel>
         <scale>2</scale>
     </aggregates>
+    <aggregates>
+        <calculatedFormula>Order.UID_IOP_Value__c:MAX</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>FORMULA2</developerName>
+        <isActive>true</isActive>
+        <isCrossBlock>false</isCrossBlock>
+        <masterLabel>JBP Value</masterLabel>
+        <scale>2</scale>
+    </aggregates>
     <chart>
         <backgroundColor1>#FFFFFF</backgroundColor1>
         <backgroundColor2>#FFFFFF</backgroundColor2>
@@ -41,6 +50,10 @@
         <field>Account.Orders__r.Order_Products__r$UID_Material_ID__c</field>
     </columns>
     <columns>
+        <field>Account.Orders__r$OrderNumber</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
         <field>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c</field>
     </columns>
     <filter>

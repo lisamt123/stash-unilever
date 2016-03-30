@@ -1,0 +1,37 @@
+src
+src/classes
+src/classes/CFC_Attendee_Handler.cls
+src/classes/CFC_Attendee_Handler.cls-meta.xml
+src/classes/CFC_Conference_Test.cls
+src/classes/CFC_Conference_Test.cls-meta.xml
+src/classes/CFC_EventsController.cls
+src/classes/CFC_EventsController.cls-meta.xml
+src/classes/CFC_EventsWrapper.cls
+src/classes/CFC_EventsWrapper.cls-meta.xml
+src/classes/TriggerFactory.cls
+src/classes/TriggerFactory.cls-meta.xml
+src/aura
+src/aura/CFC_EventHome
+src/aura/CFC_EventList
+src/aura/CFC_EventListItem
+src/aura/CFC_Filter
+src/aura/CFC_HandleEvent
+src/aura/CFC_Sort
+src/triggers
+src/triggers/CFC_AddAttendeesName.trigger
+src/triggers/CFC_AddAttendeesName.trigger-meta.xml
+src/objects
+src/objects/CFC_Attendee__c.object
+src/objects/CFC_Event__c.object
+src/objects/CFC_Events__c.object
+src/objects/CFC_ReportingGA__c.object
+src/layouts
+src/layouts/CFC_Attendee__c-Attendee Layout.layout
+src/layouts/CFC_Events__c-Create Event.layout
+src/layouts/CFC_Events__c-Event Layout.layout
+src/layouts/Event-Event Layout.layout
+src/permissionsets
+src/permissionsets/Conference_App_Admin.permissionset
+src/permissionsets/Conference_App_User.permissionset
+src/quickActions
+src/quickActions/CFC_Events__c.Attend.quickAction
