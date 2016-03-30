@@ -11,9 +11,9 @@ Requesting to travel to factory {!Vep_Visitor__c.Factory_to_Visit__c} from {!Vep
 
 Please Approve/Reject the request
 
-Approve: https://unilever--scpaperles--c.cs14.visual.force.com/apex/VEP_VisitorStatus_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}&amp;TravelStatus=Approved
+Approve: {!Vep_Visitor__c.BaseUrl__c}apex/VEP_VisitorStatus_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}&amp;TravelStatus=Approved
 
-Reject; https://unilever--scpaperles--c.cs14.visual.force.com/apex/VEP_VisitorStatus_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}&amp;TravelStatus=Rejected
+Reject: {!Vep_Visitor__c.BaseUrl__c}apex/VEP_VisitorStatus_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}&amp;TravelStatus=Rejected
 
 
 Thanks&amp;Regards,

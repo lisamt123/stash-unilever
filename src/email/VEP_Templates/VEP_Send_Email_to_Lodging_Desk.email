@@ -4,9 +4,9 @@ Requesting to travel to factory {!Vep_Visitor__c.Factory_to_Visit__c} from {!Vep
 <br/><br/>
 Please Approve/reject the Request<br/><br/>
 
-<a  href="https://unilever--scpaperles--c.cs14.visual.force.com/apex/VEP_VisitorStatus_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}&LodgingStatus=Approved" style="color: #009900;">Approve</a>
+<a  href="{!Vep_Visitor__c.BaseUrl__c}apex/VEP_VisitorStatus_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}&LodgingStatus=Approved" style="color: #009900;">Approve</a>
 
-<a  href="https://unilever--scpaperles--c.cs14.visual.force.com/apex/VEP_VisitorStatus_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}&LodgingStatus=Rejected" style="color: Red">Reject</a>
+<a  href="{!Vep_Visitor__c.BaseUrl__c}apex/VEP_VisitorStatus_VF?VEPnumber={!Vep_Visitor__c.VEP_Number__c}&LodgingStatus=Rejected" style="color: Red">Reject</a>
 <br/><br/>
 Thanks&Regards,
 <br/>
