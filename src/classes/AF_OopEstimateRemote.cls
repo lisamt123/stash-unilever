@@ -22,6 +22,14 @@ global with sharing class AF_OopEstimateRemote {
 	static Map<String, String> ulNameMap=new Map<String, String>();
 	static String strongStrt;
 	static String strongEnd;
+	static Integer total;
+	static String crsBrdrImg;
+	static String rowDetailToReturn;
+	static String currCode;
+	static Integer totalA;
+	static Integer totalLocalA;
+	static Integer totalLocal;
+	static Decimal totalWithoutRounding;
 	public AF_OopEstimateRemote(ApexPages.StandardController stdController) {}
 	@remoteAction
 	/***********************************************************************************
@@ -164,22 +172,30 @@ global with sharing class AF_OopEstimateRemote {
 *************************************************************************************/
 	public static String processOopsRow(Boolean isValue, AF_OOPS_Estimate__c agSObj, 
 		String aId, String uId, String bId) {
-		String tdCloseTag = '</td>', lBreak = '<br/>', spacer = ' ';
-		String rowDetailToReturn = '';
-		String href;
+		String tdCloseTag = '</td>';
+		rowDetailToReturn = '';
 		if(isValue) {
-			Integer total = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Estimate__c/1000);
-			Integer totalLocal = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_EstimateLocal__c/1000);
-			Integer totalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Estimate__c);
-			Integer totalLocalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_EstimateLocal__c);
-			Decimal totalWithoutRounding = agSObj.AF_Estimate__c/1000;
-			String currCode = agSObj.AF_OOPS_Matrix_Currency_Code__c != null ? agSObj.AF_OOPS_Matrix_Currency_Code__c : '';
+			total = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Estimate__c/1000);
+			totalLocal = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_EstimateLocal__c/1000);
+			totalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Estimate__c);
+			totalLocalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_EstimateLocal__c);
+			totalWithoutRounding = agSObj.AF_Estimate__c/1000;
+			currCode = agSObj.AF_OOPS_Matrix_Currency_Code__c != null ? agSObj.AF_OOPS_Matrix_Currency_Code__c : '';
+			processOopsExt(agSObj);
+			rowDetailToReturn += '</div></a>';
+			rowDetailToReturn += tdCloseTag;
+		}
+		return rowDetailToReturn;
+	}
+	
+	public static void processOopsExt(AF_OOPS_Estimate__c agSObj){
+			String lBreak = '<br/>', spacer = ' ';
+			String href;
 			String disptotal = agSObj.AF_Estimate__c > 0 ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
 			String dispLocalTotal = agSObj.AF_EstimateLocal__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocal) : '';
 			String disptotalA = agSObj.AF_Estimate__c > 0 ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(totalA) : '';
 			String dispLocalTotalA = agSObj.AF_EstimateLocal__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocalA) : '';
-			String cmntImg =  '';
-			String crsBrdrImg =  agSObj.AF_IsCrossBorderImage__c != null ? agSObj.AF_IsCrossBorderImage__c : '';
+			crsBrdrImg =  agSObj.AF_IsCrossBorderImage__c != null ? agSObj.AF_IsCrossBorderImage__c : '';
 			href = 'apex/af_oopsEstimate?id='+agSObj.Id;
 			rowDetailToReturn += '<td title=\"\" class=\"details-control\"';
 			rowDetailToReturn += ' t=\"' + disptotalA + '\" d=\"' + dispLocalTotalA + '\" a=\"ob\">';
@@ -191,6 +207,7 @@ global with sharing class AF_OopEstimateRemote {
 			rowDetailToReturn += 'class=\"modalButton3\"';
 			rowDetailToReturn += ' e=\"' + disptotal + '\"';
 			rowDetailToReturn += ' l=\"' + dispLocalTotal + '\">';
+			String cmntImg =  '';
 			if(total != 0) {
 				rowDetailToReturn += crsBrdrImg + '<br/>' + cmntImg;
 				rowDetailToReturn += '</div><div align=\"center\" class=\"agencyCOlcanter\">' + AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormatted(total);
@@ -202,9 +219,5 @@ global with sharing class AF_OopEstimateRemote {
 			}else {
 				rowDetailToReturn += cmntImg;
 			}
-			rowDetailToReturn += '</div></a>';
-			rowDetailToReturn += tdCloseTag;
-		}
-		return rowDetailToReturn;
 	}
 }
