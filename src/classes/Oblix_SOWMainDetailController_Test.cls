@@ -14,7 +14,7 @@
 @isTest
 private class Oblix_SOWMainDetailController_Test {
 
-	private static final String PROJECT_TXT = 'Project';
+	//private static final String PROJECT_TXT = 'Project';
 	private enum Permission {CAN_EDIT, CAN_DELETE, CAN_APPROVE, CAN_REJECT, CAN_SUBMIT, CAN_DELETE_ATTACHMENT, CAN_ADD_ATTACHMENT, CAN_MANAGE_CAMPAIGN, CAN_MANAGE_NON_CAMPAIGN}
 
 	private static Marketing_SOW__c mSow;
@@ -45,23 +45,28 @@ private class Oblix_SOWMainDetailController_Test {
         Boolean showSubmitUL3;
         Boolean showSubmitSuperuser;
 
-        Boolean sow_approvers_defined;
+        //Boolean sow_approvers_defined;
 
         System.runAs(ul1){
         	ul1Permissions = getUserPermissions(controllerInstance);
         	showSubmitUL1 = controllerInstance.show_submit;
+            system.assertNotEquals(NULL, ul1Permissions, 'Expecting this to be populated with permissions!');
         }
         System.runAs(ul2){
         	ul2Permissions = getUserPermissions(controllerInstance);
         	showSubmitUL2 = controllerInstance.show_submit;
+            system.assertNotEquals(NULL, ul2Permissions, 'Expecting this to be populated with permissions!');
         }
         System.runAs(ul3){
         	ul3Permissions = getUserPermissions(controllerInstance);
         	showSubmitUL3 = controllerInstance.show_submit;
+            system.assertNotEquals(NULL, ul3Permissions, 'Expecting this to be populated with permissions!');
         }
         System.runAs(superuser){
         	superuserPermissions = getUserPermissions(controllerInstance);
         	showSubmitSuperuser = controllerInstance.show_submit;
+
+            system.assertNotEquals(NULL, superuserPermissions, 'Expecting this to be populated with permissions!');
         }
             
         Test.stopTest();

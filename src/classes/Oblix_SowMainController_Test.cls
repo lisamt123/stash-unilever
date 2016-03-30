@@ -227,6 +227,7 @@ private class Oblix_SOWMainController_Test {
         sowInvalidBrandCatComb = Oblix_TestUtils.createTestMarketingSow('SOW invalid', Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER, bCiff.Id, scOF.Id, bc.Id, agency.Id);
         insert new List<Marketing_SOW__c>{sowDove, sowKnorr, sowAmbrosia, sowCiff};
 
+        system.assertNotEquals(NULL, sowInvalidBrandCatComb, 'Expecting sowInvalidBrandCatComb to be populated');
 
     }
     

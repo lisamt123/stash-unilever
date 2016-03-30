@@ -112,27 +112,23 @@ public with sharing class Oblix_ProjectHandlerLogic {
         // set scores and fees - new way of setting
         // S.M. 2016-03-29 Had to rewrite this section to bypass sonar NPath complexity of 972 issue
 
-        campaign_to_adjust.Total_Value_Driver__c = (NULL != midd_project_business_drive_score && midd_project_business_drive_score.containsKey(campaign_to_adjust.Id))
-            ? midd_project_business_drive_score.get(campaign_to_adjust.Id)
-            : campaign_to_adjust.Total_Value_Driver__c;
+        // Check the map and set value driver score
+        setCampaignField(midd_project_business_drive_score,'Total_Value_Driver__c', campaign_to_adjust);
+        
+        // Check the map and set value driver score
+        setCampaignField(midd_project_asset_total,'ProjectTotalAssetscore__c', campaign_to_adjust);
 
-        campaign_to_adjust.ProjectTotalAssetscore__c = (NULL != midd_project_asset_total && midd_project_asset_total.containsKey(campaign_to_adjust.Id))
-            ? midd_project_asset_total.get(campaign_to_adjust.Id)
-            : campaign_to_adjust.ProjectTotalAssetscore__c;
+        // Check the map and set value driver score
+        setCampaignField(midd_project_total_score,'Total_Project_Score__c', campaign_to_adjust);
+        
+        // Check the map and set value driver score
+        setCampaignField(map_campaign_id_campaign_fee,'Total_Fees_for_Project__c', campaign_to_adjust);
 
-        campaign_to_adjust.Total_Project_Score__c = (NULL != midd_project_total_score && midd_project_total_score.containsKey(campaign_to_adjust.Id))
-            ? midd_project_total_score.get(campaign_to_adjust.Id)
-            : campaign_to_adjust.Total_Project_Score__c;
-
-        campaign_to_adjust.Total_Fees_for_Project__c = (NULL != map_campaign_id_campaign_fee && map_campaign_id_campaign_fee.containsKey(campaign_to_adjust.Id))
-            ? map_campaign_id_campaign_fee.get(campaign_to_adjust.Id)
-            : campaign_to_adjust.Total_Fees_for_Project__c;
-
-        campaign_to_adjust.Oblix_ProjectBoxNumber__c = (NULL != map_campaign_id_box_number && map_campaign_id_box_number.containsKey(campaign_to_adjust.Id))
-            ? map_campaign_id_box_number.get(campaign_to_adjust.Id)
-            : campaign_to_adjust.Oblix_ProjectBoxNumber__c;
+        // Check the map and set value driver score
+        setCampaignField(map_campaign_id_box_number,'Oblix_ProjectBoxNumber__c', campaign_to_adjust);
 
         // set scores and fees - old way of setting
+        // S.M. 2016-03-29 Had to rewrite this section to bypass sonar NPath complexity of 972 issue
 
         //if (NULL != midd_project_business_drive_score && midd_project_business_drive_score.containsKey(campaign_to_adjust.Id)){
 
@@ -158,6 +154,30 @@ public with sharing class Oblix_ProjectHandlerLogic {
 
         //    campaign_to_adjust.Oblix_ProjectBoxNumber__c = map_campaign_id_box_number.get(campaign_to_adjust.Id);
         //}
+    }
+
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-03-30
+    * @description  To resolve Sonar issue around NPath complexity of 12500 creating
+                    a method to check the map and assign to the correct field
+    ********************************************************************************/
+    private static void setCampaignField(Map<Id, Decimal> map_to_read, String field_to_assign, Oblix_SOW_Projects__c campaign_to_adjust ){
+        if (NULL != map_to_read && map_to_read.containsKey(campaign_to_adjust.Id)){
+            campaign_to_adjust.put(field_to_assign,map_to_read.get(campaign_to_adjust.Id));
+        }
+    }
+
+    /*******************************************************************************
+    * @author       Execloud ©
+    * @date         2016-03-30
+    * @description  To resolve Sonar issue around NPath complexity of 12500 creating
+                    a method to check the map and assign to the correct field
+    ********************************************************************************/
+    private static void setCampaignField(Map<Id, String> map_to_read, String field_to_assign, Oblix_SOW_Projects__c campaign_to_adjust ){
+        if (NULL != map_to_read && map_to_read.containsKey(campaign_to_adjust.Id)){
+            campaign_to_adjust.put(field_to_assign,map_to_read.get(campaign_to_adjust.Id));
+        }
     }
 
     /*******************************************************************************

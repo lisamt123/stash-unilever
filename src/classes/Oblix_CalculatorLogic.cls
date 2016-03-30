@@ -491,9 +491,8 @@ public with sharing class Oblix_CalculatorLogic {
 
 			if (String.isNotBlank(box_number)){
 				formatted_box_number = box_number.replace(' ', '_') + '__c';
-				box_number = formatted_box_number;
 			}
-			return box_number;
+			return formatted_box_number;
 		}
 	}
 
