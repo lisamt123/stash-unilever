@@ -433,8 +433,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             a.IPM_Stopped__c= p.Is_Archieved__c?IPM_ConstantUtils.OTIF_YES:'';
             
             if(String.isNotBlank(p.IPMProject_Span__c) && !p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) && (!p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)) && p.IPM_Phase__c.equalsignorecase(IPM_ConstantUtils.PHASE_IDEAS))
-            a.IPM_Key_NonKey__c = p.IPM_Project_Rollout__r.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO; 
-
+			{
+				a.IPM_Key_NonKey__c = p.IPM_Project_Rollout__r.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO; 
+			}
+            
             if(String.isNotBlank(p.IPMProject_Span__c) && (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) || p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional))){
                 a.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
             }else if(String.isNotBlank(p.IPMProject_Span__c) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
