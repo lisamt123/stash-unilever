@@ -18,6 +18,7 @@ global with sharing class AF_BrandEstimateRemote {
 	static String trCloseTag;
 	static Map<String, AF_Entity__c> agencyNameMap = new Map<String, AF_Entity__c>();
 	static Map<String, String> ulNameMap = new Map<String, String>();
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
     public AF_BrandEstimateRemote(ApexPages.StandardController stdController) {
         
     }
@@ -281,17 +282,7 @@ global with sharing class AF_BrandEstimateRemote {
             rowDetailToReturn += 'data-target=\"#myModal3\"';
             rowDetailToReturn += ' e=\"' + dispTotal + '\" l=\"' + dispLocalTotal + '\"';
             rowDetailToReturn += ' class=\"modalButton3\">';
-            if(total != 0) {
-                rowDetailToReturn += '<div class="imageHolder" style=\"float:left;height:100%\">' + crsBrdrImg + cmntImg;
-                rowDetailToReturn += '</div><div>' + AF_Constants.AF_CURRENCY_EUR1  + currencyFormatted(total);
-                rowDetailToReturn = agSObj.AF_Total__c != agSObj.AF_Total_Local__c ? rowDetailToReturn + lBreak + currCode + ' ' + currencyFormatted(totalLocal) : rowDetailToReturn;
-            } else if(totalWithoutRounding > 0 && totalWithoutRounding <= 499){
-                rowDetailToReturn += '<div style=\"float:left;height:100%\">' + crsBrdrImg + '<br/>' + cmntImg;
-                rowDetailToReturn += '</div><div>' + 'EUR 0';
-                rowDetailToReturn = agSObj.AF_Total__c != agSObj.AF_Total_Local__c ? rowDetailToReturn + lBreak + currCode + ' ' + currencyFormatted(totalLocal) : rowDetailToReturn;
-            } else {
-                rowDetailToReturn += cmntImg != null ? cmntImg : ' ';
-            }
+            
             
             rowDetailToReturn += '</div></a>';
             rowDetailToReturn += tdCloseTag;
@@ -594,11 +585,32 @@ global with sharing class AF_BrandEstimateRemote {
         }
         
         if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
+        	try{
             insert entityListsToCreate;
+        	}
+        	catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+	        }
         }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME){
+        	try{
             insert entityOopsListsToCreate;
+        	}
+        	catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+	        }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
+        	try{
             insert entityBonusListsToCreate;
+        	}
+        	catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+	        }
         }
     }
     
@@ -619,18 +631,30 @@ global with sharing class AF_BrandEstimateRemote {
             }
             catch(Exception e){
                 AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
             }
         }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
             for(AF_OOPS_Estimate__c eachOopsEstimate : archiveOopsEstimatesPerUnileverEntity(rowName, sObjectId)) {
                 oopsEstimatesToDelete.add(eachOopsEstimate);
             }
+            try{
             delete oopsEstimatesToDelete;
+            }
+            catch(Exception e){
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
+            }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
             for(AF_Bonus_Matrix__c eachBonusMatrix : archiveBonusMatrixPerUnileverEntity(rowName, sObjectId)) {
                 bonusMatrixToDelete.add(eachBonusMatrix);
             }
+            try{
             delete bonusMatrixToDelete;
+            }
+            catch(Exception e){
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
+            }
         }
     }
     
@@ -649,6 +673,7 @@ global with sharing class AF_BrandEstimateRemote {
             }
             catch(Exception e){
             AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
             }
         }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
             for(AF_OOPS_Estimate__c eachOopsEstimate : archiveOopsEstimatesPerAgencyEntity(colsArr, sObjectId)) {
@@ -659,12 +684,19 @@ global with sharing class AF_BrandEstimateRemote {
             }
             catch(Exception e){
             AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete));
             }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
             for(AF_Bonus_Matrix__c eachBonusMatrix : archiveBonusMatrixPerAgencyEntity(colsArr, sObjectId)) {
                 bonusMatrixToDelete.add(eachBonusMatrix);
             }
+            try{
             delete bonusMatrixToDelete;
+            }
+            catch(Exception e){
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete));
+            }
         }
     }
       /*****************************************************************************
@@ -731,11 +763,32 @@ global with sharing class AF_BrandEstimateRemote {
         }
         
         if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
+        	try{
             insert entityListsToCreate;
+        	}
+        	catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+	        }
         }else if(sobjectName ==AF_Constants.SOBJECT_OOPSACTUAL_APINAME){
+        	try{
             insert entityOopsListsToCreate;
+        	}
+        	catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+	        }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
+        	try{
             insert entityBonusListsToCreate;
+        	}
+        	catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+	        }
         }
     }
     
@@ -783,9 +836,23 @@ global with sharing class AF_BrandEstimateRemote {
         }
         
         if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
+        	try{
             insert entityListsToCreate;
+        	}
+        	catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addSingleULAGEntity',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+	        }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
+        	try{
             insert entityBonusListsToCreate;
+        	}
+        	catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addSingleULAGEntity',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+	        }
         }
         
     }
@@ -913,7 +980,14 @@ global with sharing class AF_BrandEstimateRemote {
             }
             
             if(!lstBonusThresholdToInsert.isEmpty()){
+            	try{
                 insert lstBonusThresholdToInsert;
+            	}
+            	catch(Exception e)
+		        {
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'createThresholds',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+		        }
             }
        }
     }
