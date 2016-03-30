@@ -177,7 +177,7 @@ global with sharing class AA_ExecuteApprovalProcess{
          AgentReportDisplay = new aa_Agent_Report__c();
          AgentReportDisplay = AgentReportObj ;
         if(AgentReportObj.Approve_Reject__c=='Approve' || AgentReportObj.Approve_Reject__c=='Reject' || AgentReportObj.status__c=='Published (Public)' || AgentReportObj.status__c=='Published (Private)' ){
-           //system.debug('Record already approved or rejected can not reassign');
+           system.debug('Record already approved or rejected can not reassign');
              
         } else{
            
