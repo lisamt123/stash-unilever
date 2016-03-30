@@ -4195,7 +4195,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>CPA_LOI__c.LOI_Submitted</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>CPA_PWORF__c.All</recordType>
