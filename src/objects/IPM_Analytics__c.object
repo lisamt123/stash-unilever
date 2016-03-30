@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Custom object for holding analytic details</description>
@@ -53,10 +52,9 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>IPM_1st_Full_Year_Gross_TO_BD__c</fullName>
         <description>1st Full Year Gross TO (BD)</description>
@@ -385,6 +383,7 @@
     </fields>
     <fields>
         <fullName>IPM_Gross_TO_Y0_BD__c</fullName>
+        <description>Gross To BD Year Y0</description>
         <externalId>false</externalId>
         <label>IPM Gross TO Y0(BD)</label>
         <precision>18</precision>
@@ -492,6 +491,7 @@
     </fields>
     <fields>
         <fullName>IPM_IC_NBU__c</fullName>
+        <description>IC/NBU</description>
         <externalId>false</externalId>
         <label>IPM IC NBU</label>
         <length>10</length>
@@ -592,6 +592,7 @@
     </fields>
     <fields>
         <fullName>IPM_Project_Description__c</fullName>
+        <description>Project Description</description>
         <externalId>false</externalId>
         <label>IPM Project Description</label>
         <length>255</length>
@@ -887,6 +888,7 @@
     </fields>
     <fields>
         <fullName>IPM_iTO_Y1_BD__c</fullName>
+        <description>ITO BD Year Y1</description>
         <externalId>false</externalId>
         <label>IPM iTO Y1(BD)</label>
         <precision>18</precision>
@@ -991,7 +993,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-
 <fields>
         <fullName>IPM_Fast_Track_Project__c</fullName>
         <description>To indicate Project is Fast Track or Not</description>
@@ -1003,7 +1004,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-
 <fields>
         <fullName>IPM_Stopped__c</fullName>
         <description>To Indicate whether project is stopped or not</description>
@@ -1015,7 +1015,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-
 <fields>
         <fullName>IPM_Key_NonKey__c</fullName>
         <description>To indicate KeyMCO or not</description>
@@ -1047,5 +1046,5 @@
     </nameField>
     <pluralLabel>IPM Analytics</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>
