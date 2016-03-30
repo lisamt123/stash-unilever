@@ -12,6 +12,16 @@
         <apexClass>UID_StockCoverTriggerHelper_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	
+	<classAccesses>
+        <apexClass>UID_StockProductUtility_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>UID_StockProductUtility</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>	
+	
     <fieldPermissions>
         <editable>true</editable>
         <field>Account.AccountNumber</field>
@@ -1005,6 +1015,13 @@
         <field>UID_Performance__c.UID_Year__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>UID_Performance__c.UID_Order_RecordType_c__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+		
     <fieldPermissions>
         <editable>true</editable>
         <field>UID_Stocked_Product_Summary__c.UID_Avail_Quantity__c</field>
@@ -1115,6 +1132,18 @@
         <field>UID_Stocked_Product_Summary__c.UID_WS_Price__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>UID_Stocked_Product_Summary__c.UID_Stock_Product_Summary_Ranking__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>UID_Stocked_Product_Summary__c.UID_Summarized_Invoice_Value__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
     <fieldPermissions>
         <editable>true</editable>
         <field>UID_Stocked_Product__c.UID_Distributor__c</field>
@@ -1247,5 +1276,13 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ApiEnabled</name>
+    </userPermissions>
+	<userPermissions>
+        <enabled>true</enabled>
+        <name>RunReports</name>
+    </userPermissions>
+	<userPermissions>
+        <enabled>true</enabled>
+        <name>ExportReport</name>
     </userPermissions>
 </PermissionSet>

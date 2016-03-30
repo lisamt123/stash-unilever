@@ -60,7 +60,7 @@ PREVGROUPVAL(UID_Order_Product__c.UID_Order_Quantity__c:SUM, Order.EffectiveDate
     <groupingsDown>
         <dateGranularity>Month</dateGranularity>
         <field>Account.Orders__r$EffectiveDate</field>
-        <sortOrder>Desc</sortOrder>
+        <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Market Growth - Primary Sales (M) (Q)</name>
     <params>
