@@ -181,15 +181,7 @@ global with sharing class AF_OopEstimateRemote {
 			totalLocalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_EstimateLocal__c);
 			totalWithoutRounding = agSObj.AF_Estimate__c/1000;
 			currCode = agSObj.AF_OOPS_Matrix_Currency_Code__c != null ? agSObj.AF_OOPS_Matrix_Currency_Code__c : '';
-			processOopsExt(agSObj);
-			rowDetailToReturn += '</div></a>';
-			rowDetailToReturn += tdCloseTag;
-		}
-		return rowDetailToReturn;
-	}
-	
-	public static void processOopsExt(AF_OOPS_Estimate__c agSObj){
-			String lBreak = '<br/>', spacer = ' ';
+			String spacer = ' ';
 			String href;
 			String disptotal = agSObj.AF_Estimate__c > 0 ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
 			String dispLocalTotal = agSObj.AF_EstimateLocal__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocal) : '';
@@ -207,6 +199,15 @@ global with sharing class AF_OopEstimateRemote {
 			rowDetailToReturn += 'class=\"modalButton3\"';
 			rowDetailToReturn += ' e=\"' + disptotal + '\"';
 			rowDetailToReturn += ' l=\"' + dispLocalTotal + '\">';
+			processOopsExt(agSObj);
+			rowDetailToReturn += '</div></a>';
+			rowDetailToReturn += tdCloseTag;
+		}
+		return rowDetailToReturn;
+	}
+	
+	public static void processOopsExt(AF_OOPS_Estimate__c agSObj){
+			String lBreak = '<br/>';
 			String cmntImg =  '';
 			if(total != 0) {
 				rowDetailToReturn += crsBrdrImg + '<br/>' + cmntImg;
