@@ -2494,15 +2494,15 @@ if(permissionSetName == &quot;CPA_ULPM&quot;){
 if(p.pkl_Status__c == &quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; || p.pkl_Status__c == &quot;Saved&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
 window.open(&apos;/apex/CPA_HLE_Cancel_Reason?id=&apos;+&quot;{!CPA_HLE_Request__c.Id}&quot;,&quot;_self&quot;); 
 }else if (p.pkl_Status__c == &quot;Accepted&quot; || p.pkl_Status__c == &quot;Answered&quot;){ 
-alert(&quot;Can not Cancel HLE as it is already Accepted/Answered. Please contact Supplier Management Team&quot;); 
+alert(&quot;Cannot Cancel HLE as it is already Accepted/Answered. Please contact Supplier Management Team&quot;); 
 }else if (p.pkl_Status__c == &quot;Cancelled&quot;){ 
-alert(&quot;Can not Cancel HLE as it is already cancelled&quot;); 
+alert(&quot;Cannot Cancel HLE as it is already cancelled&quot;); 
 } 
 }else if(permissionSetName == &quot;CPA_SMT&quot;) { 
 if(p.pkl_Status__c != &quot;Cancelled&quot;){ 
 window.open(&apos;/apex/CPA_HLE_Cancel_Reason?id=&apos;+&quot;{!CPA_HLE_Request__c.Id}&quot;,&quot;_self&quot;); 
 }else{
-alert(&quot;Can not Cancel HLE as it is already Cancelled&quot;); 
+alert(&quot;Cannot Cancel HLE as it is already Cancelled&quot;); 
 }
 }else alert(&quot;You are not authorized to cancel this request.&quot;); 
 
@@ -2545,7 +2545,7 @@ var bpe = CPA_BPE[0].Id;
 
 if( permissionSetName == &quot;CPA_ADM&quot;){
 	if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; || p.pkl_Status__c ==&quot;Saved&quot; || p.pkl_Status__c ==&quot;Returned&quot;){ 
-		alert(&quot;Can not Estimate HLE Request as it is not yet Accepted&quot;); 
+		alert(&quot;Cannot Estimate HLE Request as it is not yet Accepted&quot;); 
 	} 
 	else if(p.pkl_Status__c ==&quot;Accepted&quot; ){
 		if(p.Estimate_Type__c == &quot;BPE&quot;){ 	
@@ -2557,9 +2557,9 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 			alert(&quot;Please select Type of Estimate&quot;);
 		} 
 	}else if(p.pkl_Status__c ==&quot;Cancelled&quot; ){ 
-		alert(&quot;Can not Estimate HLE Request as it is Cancelled&quot;); 
+		alert(&quot;Cannot Estimate HLE Request as it is Cancelled&quot;); 
 	} else if(p.pkl_Status__c ==&quot;Answered&quot; ){ 
-		alert(&quot;Can not Estimate as it is already Estimated&quot;); 
+		alert(&quot;Cannot Estimate as it is already Estimated&quot;); 
 	}
 } 
 else{ 
@@ -2661,7 +2661,7 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 			location.reload(true); 
 		}else {alert(&quot;Estimates are already submitted&quot;); } 
 	}else { 
-	alert(&quot;Estimates can not be submitted, Due to Required fields are missing&quot;); 
+	alert(&quot;Estimates cannot be submitted, Due to Required fields are missing&quot;); 
 	} 
 } 
 else{ alert(&quot;You are not authorized to perform this action.&quot;); }</url>
@@ -2698,7 +2698,7 @@ if(p.isValidated__c == &quot;1&quot;){
     }
 } 
 else { 
-    alert(&quot;HLE Request can not be submitted, as Required fields are missing.&quot;); 
+    alert(&quot;HLE Request cannot be submitted, as Required fields are missing.&quot;); 
 }</url>
     </webLinks>
 </CustomObject>

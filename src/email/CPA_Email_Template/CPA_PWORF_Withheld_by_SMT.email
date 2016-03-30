@@ -1,4 +1,4 @@
-<messaging:emailTemplate subject="{!RelatedTo.auto_PWORF_ID__c} : {!RelatedTo.pkl_Status__c}" recipientType="User" relatedToType="CPA_PWORF__c">
+<messaging:emailTemplate subject="{!RelatedTo.auto_PWORF_ID__c} : Withheld " recipientType="User" relatedToType="CPA_PWORF__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
     A PWORF with ID: {!RelatedTo.auto_PWORF_ID__c}  is withheld by {!RelatedTo.LastModifiedBy.Name} on {!RelatedTo.dat_Withhold_Date__c} . <br/><br/>

@@ -158,4 +158,26 @@ public with sharing class CPA_testCustomSettingClass_util {
         
     }
     */
+    /*******************************************************************
+    Purpose: This method is used to set SLA data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public static CPA_SLAConfiguration__c createTest_SLAdata(){
+
+        CPA_SLAConfiguration__c sla = new CPA_SLAConfiguration__c();
+        sla.Name ='Large Project';
+        sla.DBTD_SLA2__c = '5';
+        sla.Others_SLA1__c = '3';
+        sla.Others_SLA2__c = '5';
+        sla.PADBTD_SLA1__c = '3';
+        sla.PADBTD_SLA2__c = '5';
+        sla.PA_SLA1__c = '3';
+        sla.PA_SLA2__c = '5';
+        sla.RA_SLA1__c = '3';
+        sla.RA_SLA2__c = '5';       
+        return sla;
+        
+    }
 }

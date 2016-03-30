@@ -2676,7 +2676,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_PWORF__c.txta_ITC_Resources_Utilisation__c</field>
         <readable>true</readable>
     </fieldPermissions>

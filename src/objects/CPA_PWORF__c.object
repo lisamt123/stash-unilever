@@ -3620,8 +3620,8 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <validationRules>
         <fullName>CPA_PWORF_Name_cant_be_changed</fullName>
         <active>true</active>
-        <errorConditionFormula>IF(AND (!ISNEW(),OR((ISPICKVAL( pkl_Status__c ,&apos;Accepted&apos;)),(ISPICKVAL( pkl_Status__c ,&apos;Auto Accepted&apos;)),(ISPICKVAL( pkl_Status__c ,&apos;Answered&apos;)),(ISPICKVAL( pkl_Status__c ,&apos;Cancelled&apos;))),ISCHANGED(Name)),true,false)</errorConditionFormula>
-        <errorMessage>PWORF Name cant be changed after it get Accepted</errorMessage>
+        <errorConditionFormula>IF(AND (!ISNEW(),NOT(ISPICKVAL( pkl_Status__c ,&apos;Saved&apos;)),ISCHANGED(Name)),true,false)</errorConditionFormula>
+        <errorMessage>PWORF Name cant be changed.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Cost_Center_Details</fullName>

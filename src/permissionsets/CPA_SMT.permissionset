@@ -1770,12 +1770,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_LOI__c.dt_LOI_End_date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_LOI__c.dt_LOI_Start_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1800,7 +1800,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_LOI__c.lkp_PWORF__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1875,12 +1875,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_LOI__c.txt_Other_Currency__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_LOI__c.txt_Other_Phases_Covered_by_W_R__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1890,7 +1890,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_LOI__c.txt_PWO_title__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3290,7 +3290,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_project_work_order__c.eml_TNF_Unilever_Contact_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3840,7 +3840,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_project_work_order__c.txt_TNF_Unilever_Contact_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
