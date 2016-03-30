@@ -21,6 +21,15 @@ global with sharing class AF_BonusSummaryRemote {
 	static String  colDetail;
 	static Map<String, AF_Entity__c> agencyNameMap= new Map<String, AF_Entity__c>();
 	static Map<String, String> ulNameMap = new Map<String, String>();
+	static Integer total;
+	static String rowDetailToReturn;
+	static String crsBrdrImg;
+	static String cmntImg;
+	static Integer totalA;
+	static Integer totalLocalA;
+	static String currCode;
+	static Decimal totalWithoutRounding;
+	static Integer totalLocal;
 	public AF_BonusSummaryRemote(ApexPages.StandardController stdController) {}
 	/***********************************************************************************
 *  @Description: this method is used to query and frame the rows and columns of the 
@@ -167,19 +176,19 @@ global with sharing class AF_BonusSummaryRemote {
 *************************************************************************************/	
 	public static String processBonusRow(Boolean isValue, AF_Bonus_Matrix__c agSObj, 
 		String aId, String uId, String bId) {
-		String tdCloseTag = '</td>',lBreak = '<br/>', spacer = ' ';
-		String rowDetailToReturn = '';
+		String tdCloseTag = '</td>',spacer = ' ';
+		rowDetailToReturn = '';
 		String href;
 		if(isValue) {
-			Integer total = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Value__c/1000);
-			Decimal totalWithoutRounding = agSObj.AF_Value__c/1000;
-			Integer totalLocal = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Bonus_Local_Value__c/1000);
-			Integer totalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Value__c);
-			Integer totalLocalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Bonus_Local_Value__c);
-			String cmntImg =  agSObj.AF_isCommentImage__c != null ? agSObj.AF_isCommentImage__c : '';
-			String crsBrdrImg =  agSObj.AF_IsCrossBorderImage__c != null ? agSObj.AF_IsCrossBorderImage__c : '';
+			total = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Value__c/1000);
+			totalWithoutRounding = agSObj.AF_Value__c/1000;
+			totalLocal = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Bonus_Local_Value__c/1000);
+			totalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Value__c);
+			totalLocalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Bonus_Local_Value__c);
+			cmntImg =  agSObj.AF_isCommentImage__c != null ? agSObj.AF_isCommentImage__c : '';
+			crsBrdrImg =  agSObj.AF_IsCrossBorderImage__c != null ? agSObj.AF_IsCrossBorderImage__c : '';
 			href = 'apex/af_bonusEstimate?id='+agSObj.Id;
-			String currCode = agSObj.AF_BonusMatrixCode__c != null ? agSObj.AF_BonusMatrixCode__c : '';
+			currCode = agSObj.AF_BonusMatrixCode__c != null ? agSObj.AF_BonusMatrixCode__c : '';
 			String disptotal = agSObj.AF_Value__c > 0 ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
 			String dispLocalTotal = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocal) : '';
 			String disptotalA = agSObj.AF_Value__c > 0 ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(totalA) : '';
@@ -194,10 +203,25 @@ global with sharing class AF_BonusSummaryRemote {
 			rowDetailToReturn += ' e=\"' + disptotal + '\"';
 			rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';
 			rowDetailToReturn += ' class=\"modalButton3\">';
-			
+			processBonusRowExt();
 			rowDetailToReturn += '</div></a>';
 			rowDetailToReturn += tdCloseTag;
 		}
 		return rowDetailToReturn;
+	}
+	
+	public static void processBonusRowExt(){
+		String lBreak = '<br/>';
+		if(total != 0) {
+				rowDetailToReturn += '<div style=float:left;>' + crsBrdrImg + '<br/>' + cmntImg;
+				rowDetailToReturn += '</div><div align=\"center\">' + AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormatted(total);
+				rowDetailToReturn = totalA != totalLocalA ? rowDetailToReturn + lBreak + currCode + ' ' + AF_BrandEstimateRemote.currencyFormatted(totalLocal) : rowDetailToReturn;
+			} else if(totalWithoutRounding > 0 && totalWithoutRounding <= 499){
+				rowDetailToReturn += '<div style=float:left;>' + crsBrdrImg + '<br/>' + cmntImg;
+				rowDetailToReturn += '</div><div align=\"center\">' + AF_Constants.AF_CURRENCY_EUR + ' 0';
+				rowDetailToReturn = totalA != totalLocalA ? rowDetailToReturn + lBreak + currCode + ' ' + AF_BrandEstimateRemote.currencyFormatted(totalLocal) : rowDetailToReturn;
+			}else {
+				rowDetailToReturn += cmntImg;
+			}
 	}
 }
