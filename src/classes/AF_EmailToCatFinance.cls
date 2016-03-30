@@ -9,12 +9,13 @@
 public with sharing class AF_EmailToCatFinance 
 {
 	List<AF_Brand_Estimate__c> lstBrandEstimate=new list<AF_Brand_Estimate__c>();
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	public AF_EmailToCatFinance()
 	{
 		string year_url=ApexPages.CurrentPage().getParameters().get('Year');
-		lstBrandEstimate=[SELECT Id,name,AF_Fiscal_Year__c,Brand__r.Name,AF_Notified_To_CatFinance__c FROM AF_Brand_Estimate__c WHERE AF_Status_Base_Fees__c = 'Initiate' AND AF_Active__c = true AND AF_Locked__c = false AND AF_Created_By_Batch__c = true AND AF_Notified_To_CatFinance__c = false AND AF_Fiscal_Year__c =:year_url];
+		lstBrandEstimate=[SELECT Id,name,AF_Fiscal_Year__c,Brand__r.Name,AF_Notified_To_CatFinance__c FROM AF_Brand_Estimate__c WHERE AF_Status_Base_Fees__c = :AF_Constants.BASE_FEES_INITIATE AND AF_Active__c = true AND AF_Locked__c = false AND AF_Created_By_Batch__c = true AND AF_Notified_To_CatFinance__c = false AND AF_Fiscal_Year__c =:year_url];
 		if(lstBrandEstimate.size()==0)
-		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info,'No records to notify'));
+		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info,Label.AF_No_Records_To_Notify));
 	}
 	public boolean displayPopup {get; set;}
 	/***********************************************************************************
@@ -28,7 +29,7 @@ public with sharing class AF_EmailToCatFinance
 		if(lstBrandEstimate.size()>0)
 		{        
 			Map<string,string> mapusers=new Map<string,string>();
-			List<PermissionSetAssignment> permissionSetAssign=[SELECT Assignee.email,Assignee.name,Id,PermissionSetId FROM PermissionSetAssignment where PermissionSet.name=:'AF_Category_Finance'];
+			List<PermissionSetAssignment> permissionSetAssign=[SELECT Assignee.email,Assignee.name,Id,PermissionSetId FROM PermissionSetAssignment where PermissionSet.name=:AF_Constants.PERM_FINANCE_CAT];
 			if(permissionSetAssign.size()>0)
 			{
 				for(PermissionSetAssignment assignment : permissionSetAssign)
@@ -67,13 +68,20 @@ public with sharing class AF_EmailToCatFinance
 				{     
 					Messaging.sendEmail(emailslist);
 				}
+				try{
 				update BrandEstimates;
 				displayPopup =true;
+				}
+				catch(Exception e)
+				{
+					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'confirm',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+					apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+				}
 			}
 		}
 		Else
 		{
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info,'No records to notify'));
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info,Label.AF_No_Records_To_Notify));
 		}
 		return null;
 	}
@@ -85,7 +93,6 @@ public with sharing class AF_EmailToCatFinance
 *************************************************************************************/
 	public void closePopup() 
 	{ 
-		system.debug('control is inside Closepopup action method');
 		displayPopup = false;    
 	}
 }

@@ -19,12 +19,20 @@ public class AF_Constants
 	public static final String ANNUAL_BONUS_QUAL = '5';
 	public static final String CATEGORY_FINANCE = 'With Category Finance'; 
 	public static final string CATEGORY_FINANCE_Bonus_Quarterly='W/Cat Finance';
+	public static final string BASE_FEES_WITH_AGENCY_DRAFT='With Agency (Draft)';
 	public static final String YEAR = 'year';
 	public static final String STATUS_DRAFT = 'Draft';
 	public static final String STATUS_NONE = 'None';
 	public static final String STATUS_SUBMITTED = 'Submitted';
 	public static final String IS_PILOT = 'IsPilot';
 	public static final String NULL_Key = 'Null';
+	public static final String TRADITIONAL='Trad';
+	public static final String DIGITAL='Digital';
+	public static final String TRADITIONAL_DIGITAL='TD';
+	public static final String CATEGORY_OPTION='SCC';
+	public static final String FISCALYEAR='2014';
+	public static final String YTG_RED='red';
+	public static final String YTG_BLACK='black';
 	/* SObject API Name */
 	public static final String SOBJECT_BRANDESTIMATE_APINAME = 'AF_Brand_Estimate__c';
 	public static final String SOBJECT_AGENCYESTIMATE_APINAME = 'AF_Agency_Estimate__c';
@@ -33,6 +41,7 @@ public class AF_Constants
 	public static final String SOBJECT_CONTROLLER_REVIEW_APINAME = 'AF_Controller_Review__c';
 	public static final String SOBJECT_OOPSESTIMATE_APINAME = 'AF_OOPS_Estimate__c';
 	public static final String SOBJECT_OOPSACTUAL_APINAME = 'AF_OOPS_Actual__c';
+	public static final String SOBJECT_BONUSRESULT_APINAME='AF_Bonus_Results__c';
 	public static final String SOBJECT_CATEGORY_BRAND = 'AF_Category_Brand__c';
 	/* Permission Set */
 	public static final String PERM_CMCO_SUPERUSER = 'AF_CMCO_Super_User';
@@ -66,8 +75,27 @@ public class AF_Constants
 	public static final String AF_SEMICOLON_DELIM = ';';
 	public static final String AF_HYPHEN_DELIM = '-';
 	public static final String AF_NONE_DELIM = '--None--';
+	public static final String AF_BRAND_DELIM='--Brand--';
+	public static final String AF_Agency_DELIM='--Agency--';
+	public static final String AF_COUNTRY_DELIM='--Country--';
+	/*Page Reference*/
+	public static final String CLOSE_REFRESH='/apex/AF_CloseAndRefresh?IsError=true';
+	public static final String ADD_COMMENT='/apex/AF_AddComment?Id=';
+	public static final String REDIRECT='/00O/o';
+	public static final String SEND_EMAIL_CATEGORYFINANCE='/apex/AF_Sendemail_categoryfinance';
+	public static final String AGENCY_MATRIX='/apex/AF_UL_AgencyMatrix?Id=';
+	public static final String EDIT_COMMENT='/apex/AF_EditComment';
+	public static final String USER_SEARCHPAGE='/apex/af_usersearchpage';
+	
 	/*Page Parameters*/
 	public static final String CATEGORY = 'category'; 
+	public static final String ALL_BRANDS='All Brands';
+	public static final String MY_BRANDS='My Brands';
+	public static final String AGENCYPROCESS_IMAGE='/resource/x25Progress';
+	public static final String CATEGORYPROCESS_IMAGE='/resource/x50Progress';
+	public static final String CMCOPROCESS_IMAGE='/resource/x75Progress';
+	public static final String READYFORPO_IMAGE='/resource/x100Progress';
+	public static final String ZIPCODE_FOCUS='zipCodeFocus();';
 	//public static final String YEAR = 'Year';
 	/*Quarters*/
 	public static final String QUARTER1 = 'Q1';
@@ -98,6 +126,7 @@ public class AF_Constants
 	public static final String  EXCEEDED_BY = ' exceeded by ';
 	public static final String  MISSING_BY = ' missing by ';
 	public static final String  EURO = ' Euro';
+	public static final String  RESULT_TYPE_QUARTERLY='Quarterly';
 	/*Status */
 	public static final String  STATUS_APPROVED = 'Approved';
 	public static final String  STATUS_REJECTED = 'Rejected';
@@ -133,6 +162,7 @@ public class AF_Constants
 	public static final string TEST_ASSERT_MSG_CATEGORY = 'The Category record is inserted';
 	public static final string TEST_QUAL_VALUE ='Qualitative Value';
 	public static final string TEST_BONUS_THRESHOLD ='Bonus Threshold';
+	public static final string TEST_ANNUAL_BONUS='AF_AnnualBonus';
 	public static final string TEST_CURRENCY_COUNTRY = 'Ecuador';
 	public static final string TEST_COUNTRY_CODE = 'Eucador-USD';
 	public static final string TEST_CURRENCY_UNIT ='US $';
@@ -142,6 +172,7 @@ public class AF_Constants
 	public static final string TEST_USER_EMAIL ='standarduserc@unilever.com';
 	public static final string TEST_EMAIL_ENCODING_KEY ='EmailEncodingKey';
 	public static final string TEST_USER_LASTNAME ='Test Userc';
+	public static final string TEST_USER_FIRSTNAME ='test';
 	public static final string TEST_EmailEncodingKey ='UTF-8';
 	public static final string TEST_TimeZoneSidKey ='Europe/London';
 	public static final string TEST_AF_Category ='Test Beveragesc';

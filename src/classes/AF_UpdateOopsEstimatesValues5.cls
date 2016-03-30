@@ -29,6 +29,8 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 	static Integer MatrixRecoundCount=0;
 	static set<String> agencyCountries=new set<String>();
 	static set<String> unileverCountries=new set<String>();
+	private static string className_STR=AF_UpdateOopsEstimatesValues5.class.getName();
+	
 	/***********************************************************************************
 *  @Description: this method is used to calculate the local currency of OOPSEstimate
 *  @name : UpdateExchageRates
@@ -94,7 +96,7 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 					currncycodes.add(readyforPo);
 					ReadyForPOEntryCurrency.put(mtable.id,mtable.AF_Ready_For_PO_Currency_Code__c);
 				}
-				if(mtable.Ready_For_PO_Conversion__c!='--None--')
+				if(mtable.Ready_For_PO_Conversion__c!=AF_Constants.AF_NONE_DELIM)
 				MatrixReadyforConversion.put(mtable.id,mtable.Ready_For_PO_Conversion__c);
 				matrixCountries=new list<string>();
 				matrixCountries.add(mtable.AF_Unilver_Country__c);
@@ -136,7 +138,7 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 						string readypcode=mapReadyForPOCountry.get(mt.id);
 						retrieveStatusRate(agencyEst,Matccode,readypcode,mt);
 						agencyEst.AF_Agency_Exchange_Rate__c= CurrencyMap.get(Matccode);
-						if (agencyEst.AF_Status__c=='Ready for PO' &&  agencyEst.AF_Ready_For_PO_Entry_Currency__c != null && agencyEst.AF_Ready_For_PO_Exchange_Rate__c !=null)
+						if (agencyEst.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO &&  agencyEst.AF_Ready_For_PO_Entry_Currency__c != null && agencyEst.AF_Ready_For_PO_Exchange_Rate__c !=null)
 						{
 							agencyEst.AF_OOPS_Matrix_Currency_Code__c = agencyEst.AF_Ready_For_PO_Entry_Currency__c;
 							agencyEst.AF_Agency_Exchange_Rate__c = agencyEst.AF_Ready_For_PO_Exchange_Rate__c;
@@ -171,7 +173,7 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 			currencyrecords=[select id,Country_Currency__c,Ready_For_PO_Exchange_Rate_To_EUR__c,AF_Currency_Code__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,AF_Average_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and Country_Currency__c IN:currncycodes  and AF_Fiscal_Year_new__c IN :fYear limit 50000];
 		}
 		catch(Exception e){
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_UpdateOopsEstimatesValues5','AF_UpdateOopsEstimatesValues5',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_UpdateOopsEstimatesValues5',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		}
 		if(currencyrecords.size()>0)
 		for(AF_Currency__c  curren:currencyrecords)
@@ -185,13 +187,13 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 		}
 	}
 	public static void retrieveStatusRate(AF_OOPS_Estimate__c agencyEst,String Matccode,String readypcode,AF_Matrix_Table__c mt){
-		if(agencyEst.AF_Status__c=='Ready for PO')
+		if(agencyEst.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO)
 						{     
-							if(MatrixReadyforConversion.get(mt.id)!='--None--' && MatrixReadyforConversion.get(mt.id)=='GBP'){
+							if(MatrixReadyforConversion.get(mt.id)!=AF_Constants.AF_NONE_DELIM && MatrixReadyforConversion.get(mt.id)==AF_Constants.AF_CURRENCY_GBP){
 								agencyEst.AF_Ready_For_PO_Exchange_Rate__c= CurrencyMapforUSD.get(readypcode);
 								agencyEst.AF_ReadyforPOExchangeRateTemp__c= CurrencyMapforUSD.get(readypcode);
 							}
-							else if(MatrixReadyforConversion.get(mt.id)!='--None--' && MatrixReadyforConversion.get(mt.id)=='USD'){
+							else if(MatrixReadyforConversion.get(mt.id)!=AF_Constants.AF_NONE_DELIM && MatrixReadyforConversion.get(mt.id)==AF_Constants.AF_CURRENCY_USD){
 								agencyEst.AF_Ready_For_PO_Exchange_Rate__c= CurrencyMapforGBP.get(readypcode);
 								agencyEst.AF_ReadyforPOExchangeRateTemp__c= CurrencyMapforGBP.get(readypcode);
 							}

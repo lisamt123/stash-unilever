@@ -45,10 +45,10 @@ public class AFBrandEstimateStCtrlExtSummary {
 		brandEstimateId = ApexPages.currentPage().getParameters().get('id');
 		AF_Brand_Estimate__c mybrand = [select AF_Category_Name__c,AF_Category_Finance_Flag__c,AF_Category_Finance_Approved__c,Base_Fee_Total__c,AF_Status_Base_Fees__c,AF_ProgressImage_Reviews__c,AF_ProgressImage__c from AF_Brand_Estimate__c where id=:brandEstimateId];
 		statusProcess=mybrand.AF_Status_Base_Fees__c;
-		if(statusProcess=='with agency')  statusProcessImage='/resource/x25Progress' ; 
-		if(statusProcess=='with category finance')  statusProcessImage='/resource/x50Progress' ; 
-		if(statusProcess=='with CMCO')  statusProcessImage='/resource/x75Progress' ; 
-		if(statusProcess=='Ready for PO')  statusProcessImage='/resource/x100Progress' ; 
+		if(statusProcess==AF_Constants.BASE_FEES_WITH_AGENCY)  statusProcessImage=AF_Constants.AGENCYPROCESS_IMAGE ; 
+		if(statusProcess==AF_Constants.CATEGORY_FINANCE)  statusProcessImage=AF_Constants.CATEGORYPROCESS_IMAGE ; 
+		if(statusProcess==AF_Constants.BASE_FEES_WIHTCMCO)  statusProcessImage=AF_Constants.CMCOPROCESS_IMAGE ; 
+		if(statusProcess==AF_Constants.BASE_FEES_READYFORPO)  statusProcessImage=AF_Constants.READYFORPO_IMAGE ; 
 		totalUnileverFee=0;
 		totalAgencyFee=0;
 		totalCroBordFee=0;

@@ -145,18 +145,18 @@
                </tr>
                <tr class="entityRow">
                   <td class="unileverEntityCell">
-                     <span class="unileverEntityLable">Unilever Entity</span>  
+                     <span class="unileverEntityLable">{!$Label.AF_Unilever_Entity}</span>  
                      <span class="unileverEntityoutputTxt">{!oopsEstimate.Unilever_Entity_Name__c}
                      </span>
                   </td>
                   <td class="agencyEntityCell">
-                     <span class="agencyEntityLable">Agency Entity</span> 
+                     <span class="agencyEntityLable">{!$Label.AF_Agency_Entity}</span> 
                      <span class="agencyEntityoutputTxt"> {!oopsEstimate.Agency_Entity_Name__c}
                      </span>  
                   </td>
                   <br/>
                   <td class="oopsEstimateLable">
-                     <apex:outputText >OOPS Estimate</apex:outputText>
+                     <apex:outputText >{!$Label.AF_OOPS_Estimate}</apex:outputText>
                   </td>
                   <td class="oopsEstimateValueCell">
                      <span class="euroTxt">€ </span>
@@ -173,7 +173,7 @@
                </tr>
                <tr class="overrideOOPSEstimateRow">
                   <td class="overrideOOPSEstimateCell">
-                     <apex:outputText >Override OOPS Estimate</apex:outputText>
+                     <apex:outputText >{!$Label.AF_OOPS_Override}</apex:outputText>
                   </td>
                   <td class="OverrideEuroCell">
                      <span class="OverrideEuroLable">€ </span>
@@ -232,7 +232,7 @@
                <tr>
                   <td class="textAlignC">
                      <span class="poNumLable" style="font-size:15.7px">
-                        <apex:outputLabel >PO Number</apex:outputLabel>
+                        <apex:outputLabel >{!$Label.AF_PO_Number}</apex:outputLabel>
                      </span>
                   </td>
                </tr>

@@ -5,7 +5,7 @@
 * @description Exception Logging utility for IPM application
 */
 
-global with sharing class AF_ExceptionLoggingHelper {
+global class AF_ExceptionLoggingHelper {
     
     
     public static final String EXCEPTION_LOGGER_DEFAULT_APP_NAME = 'IPM-NG';

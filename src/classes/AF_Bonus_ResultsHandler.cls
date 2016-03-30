@@ -53,7 +53,7 @@ public without sharing class AF_Bonus_ResultsHandler implements iTrigger
         // AF_PreventQual Trigger Logic Starts
         if(bonusResultInstance.AF_Qual__c!=null && (bonusResultInstance.AF_Qual__c > decimal.valueof(custom_Qualatative.name) || bonusResultInstance.AF_Qual__c==0) )
         {
-            bonusResultInstance.adderror('Please enter qual value between 1-5');
+            bonusResultInstance.adderror(Label.AF_Enter_Qual);
         }
         // AF_PreventQual Trigger Logic Ends
     }
@@ -70,7 +70,7 @@ public without sharing class AF_Bonus_ResultsHandler implements iTrigger
         // AF_PreventQual Trigger Logic Starts
         if(bonusResultInstance.AF_Qual__c!=null && (bonusResultInstance.AF_Qual__c > decimal.valueof(custom_Qualatative.name) || bonusResultInstance.AF_Qual__c==0 ) )
         {
-            bonusResultInstance.adderror('Please enter qual value between 1-5');
+            bonusResultInstance.adderror(Label.AF_Enter_Qual);
         }
         // AF_PreventQual Trigger Logic Ends
     }

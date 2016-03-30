@@ -23,8 +23,8 @@ public with sharing class AF_OOPSRecordManager
 	private AF_OOPS_Settings__c CustomSettings {get;set;}
 	public String MatrixErrorMessage {get;set;}
 	public Boolean IsMatrixError {get;set;}
-	private static String  AF_OOPSRecordManager= 'AF_OOPSRecordManager';
 	Boolean bulkmethod=false;
+	private static string className_STR=AF_OOPSRecordManager.class.getName();
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_OOPSRecordManager
@@ -98,8 +98,9 @@ public with sharing class AF_OOPSRecordManager
 				{
 					oopsEstimate.addError(ex);
 				}
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,
-				'bulkRecalculateOOPSEstimates',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());              
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,
+				'bulkRecalculateOOPSEstimates',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());   
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update));            
 			}
 		}  
 	}
@@ -126,8 +127,9 @@ public with sharing class AF_OOPSRecordManager
 				{
 					oopsEstimate.addError(ex);
 				}
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,
-				'recalculateOOPSEstimates',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());              
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,
+				'recalculateOOPSEstimates',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());      
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update));         
 			}
 		}
 	}
@@ -177,7 +179,7 @@ public with sharing class AF_OOPSRecordManager
 							OOPSActual.AF_Fiscal_year__c = BrandEstimate.AF_Fiscal_Year__c; 
 							OOPSActual.Name = BrandEstimate.Name;
 							OOPSActual.Overall__c = OverallPercentage; 
-							OOPSActual.AF_Status__c = 'With Category Finance';
+							OOPSActual.AF_Status__c = AF_Constants.CATEGORY_FINANCE;
 							OOPSActual.AF_AgencyUsers1__c = BrandEstimate.AF_AgencyUsers1__c;
 							OOPSActual.AF_AgencyUsers2__c = BrandEstimate.AF_AgencyUsers2__c;
 							OOPSActual.AF_AgencyUsers3__c = BrandEstimate.AF_AgencyUsers3__c;
@@ -199,7 +201,8 @@ public with sharing class AF_OOPSRecordManager
 				insert oopInsertList;
 			}
 			catch(Exception e){
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,'LoadOOPActualSingleRecord',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'LoadOOPActualSingleRecord',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 			}
 		}  
 	}
@@ -227,7 +230,7 @@ public with sharing class AF_OOPSRecordManager
 		}
 		catch(DMLException ex)
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,'LoadBrandEstimateCollectionById',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'LoadBrandEstimateCollectionById',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			for(AF_Brand_Estimate__c brandEstimate : BrandEstimateCollection.values())
 			{
 				brandEstimate.addError(ex);
@@ -305,8 +308,9 @@ public with sharing class AF_OOPSRecordManager
 		}
 		catch(DMLException ex)
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,'CreateOOPSEstimateRecords',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'CreateOOPSEstimateRecords',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			BrandEstimate.addError(ex);
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 		}
 		return oopsEstimateCollection;
 	}
@@ -418,7 +422,9 @@ public with sharing class AF_OOPSRecordManager
 		}
 		catch(DMLException ex)
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,'DeleteOOPSActualRecordsByCollection',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'DeleteOOPSActualRecordsByCollection',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
 			for(AF_OOPS_Actual__c oopsActual : OOPSActualCollection)
 			{
 				oopsActual.addError(ex);

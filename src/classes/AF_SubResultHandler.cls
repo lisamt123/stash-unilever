@@ -250,7 +250,7 @@ public with sharing class AF_SubResultHandler implements ITrigger{
 			catch(Exception e)
 			{
 				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-				system.debug(e);
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 			}
 	}
 	public void andFinallyBonusListUpdate(){
@@ -283,7 +283,14 @@ public with sharing class AF_SubResultHandler implements ITrigger{
 					}
 				}
 				if(!UpdateBonus.isEmpty()){
+					try{
 					update UpdateBonus;
+					}
+					catch(Exception e)
+				        {
+				            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinallyBonusListUpdate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+				        }
 				}
 	}
 	public void andFinallyUpdateExt(){
@@ -375,6 +382,7 @@ public with sharing class AF_SubResultHandler implements ITrigger{
 					upsert subresultinsert;
 				}catch(exception e){
 					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+					apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
 				}
 			}
 	}

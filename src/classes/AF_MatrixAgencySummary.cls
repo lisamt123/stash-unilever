@@ -47,6 +47,7 @@ public  with sharing class AF_MatrixAgencySummary {
 	public Integer ytgValue{get;set;}
 	public String ytgColour{get;set;}
 	set<String> oopsEstimateStatusUpdate;
+	private static string className_STR=AF_MatrixAgencySummary.class.getName();
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_MatrixAgencySummary
@@ -58,7 +59,7 @@ public  with sharing class AF_MatrixAgencySummary {
 		AF_ApproveActualsCtrl actConst = new AF_ApproveActualsCtrl();
 		ytgValue = actConst.getTotalSum();
 		if(ytgValue > oopsActObj.AF_OOPS_Estimate__c)
-		{ytgColour='red';}else{ytgColour='black';}
+		{ytgColour=AF_Constants.YTG_RED;}else{ytgColour=AF_Constants.YTG_BLACK;}
 	}
 	/***********************************************************************************
 *  @Description: this method is used to query and display the OOPS details to the user
@@ -215,13 +216,13 @@ public  with sharing class AF_MatrixAgencySummary {
 			FROM AF_OOPS_Actual__c 
 			WHERE Id =:oopsActObj.Id];
 			if(oopsActObj1.AF_Number_of_0_or_null_OOPS_estimates__c > 0) {
-				msg = 'Successfully Refreshed';
+				msg = Label.AF_Refreshed;
 			}else {
-				msg = 'Successfully Refreshed, There are entities in the OOPS matrix that do not exist in the base fee.';
+				msg = Label.AF_OOPS_Donot_Exist;
 			}
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, msg));
 		}catch(DMLException dml){
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_MatrixAgencySummary','save',dml.getMessage(),dml.getTypeName(),dml.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'save',dml.getMessage(),dml.getTypeName(),dml.getStackTraceString());
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.fatal,dml.getMessage()));
 		}
 	}
@@ -285,8 +286,8 @@ public  with sharing class AF_MatrixAgencySummary {
 				update updatedopps_est;
 			}
 			catch(Exception e){
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_MatrixAgencySummary','submitExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-				system.debug(e);
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 			}
 		}
  }
@@ -329,7 +330,13 @@ public  with sharing class AF_MatrixAgencySummary {
 			}
 		}
 		if(updateOopsActual.size()>0){
+			try{
 			update updateOopsActual;
+			}
+			catch(Exception e){
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'grApprove',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+			}
 		}
 		return null;
 	}
@@ -372,7 +379,13 @@ public  with sharing class AF_MatrixAgencySummary {
 			}
 		}
 		if(updateOopsActual.size()>0){
+			try{
 			update updateOopsActual;
+			}
+			catch(Exception e){
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'grReject',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+			}
 		}
 		return null;
 	}
@@ -408,7 +421,7 @@ public  with sharing class AF_MatrixAgencySummary {
 			update oopsActObj;
 			update updatedopps_est;
 		}catch(DMLException dml){
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_MatrixAgencySummary','SubmitOverall',dml.getMessage(),dml.getTypeName(),dml.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SubmitOverall',dml.getMessage(),dml.getTypeName(),dml.getStackTraceString());
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.fatal,dml.getMessage()));
 		}
 	} 

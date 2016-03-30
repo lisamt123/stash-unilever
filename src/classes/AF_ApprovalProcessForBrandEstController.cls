@@ -42,6 +42,7 @@ public class AF_ApprovalProcessForBrandEstController
 	private static string AF_ApprovalProcessForBrandEstController = 'AF_ApprovalProcessForBrandEstController';
 	private static String CATEGORY_ASSIGNMENT=  'category=';
 	private static String YEAR_ASSIGNMENT=  'year=';
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/**********************************************************************
 *  @Description: this method is used to display the Rejection popup msg
 *  @name : RejectBrandEstComment
@@ -82,7 +83,14 @@ public class AF_ApprovalProcessForBrandEstController
 					AfC.AF_Parent_Record_Id__c=brandEstimateId;
 					AfC.AF_Public__c=true;
 					AfC.AF_Parent_Object_Type__c=AF_Constants.SOBJECT_BRANDESTIMATE_APINAME;
+					try{
 					insert AfC;
+					}
+					catch(Exception e)
+			        {
+			            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'RejectBrandWithComments',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+			            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+			        }
 					TempConstructor();
 					displayPopupRejComment=false;
 					displayPopup=false;
@@ -337,7 +345,14 @@ public class AF_ApprovalProcessForBrandEstController
 			if(BrandEstRecord.AF_Category_Finance_Flag__c>0)
 			{
 				BrandEstRecord.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_WITH_AGENCY;
+				try{
 				update BrandEstRecord;
+				}
+				catch(Exception e)
+		        {
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'Submit',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+		        }
 				list<AF_Controller_Review__c> ACR=new list<AF_Controller_Review__c>();
 				for(AF_Controller_Review__c afc:[select id,Review_Completed__c from AF_Controller_Review__c where Brand_Estimate__c=:BrandEstRecord.id limit 50000])
 				{
@@ -345,12 +360,27 @@ public class AF_ApprovalProcessForBrandEstController
 					ACR.add(afc);
 				}
 				if(ACR.size()>0)
+				try{
 				update ACR;
+				}
+				catch(Exception e)
+		        {
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'Submit',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+		        }
+				
 			}
 			else if(BrandEstRecord.AF_Category_Finance_Flag__c==0)
 			{
 				BrandEstRecord.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_WIHTCMCO;
+				try{
 				update BrandEstRecord;
+				}
+				catch(Exception e)
+		        {
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'Submit',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+		        }
 				Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
 				req1.setComments('Submitting request for approval automatically ');
 				req1.setObjectId(brandEstimateId);

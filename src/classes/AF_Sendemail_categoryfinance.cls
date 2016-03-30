@@ -21,7 +21,7 @@ public with sharing class AF_Sendemail_categoryfinance
 	public AF_Sendemail_categoryfinance()
 	{
 		displayPopup = false;
-		for(emailtemplate e:[select id,name,body,subject from emailtemplate where name =: 'AF_Email_CatFinance'])
+		for(emailtemplate e:[select id,name,body,subject from emailtemplate where name =: AF_Constants.EMAIL_TEMPLATE_FINANCE])
 		{
 			if(e.id != null && e.body != null)
 			{
@@ -40,7 +40,7 @@ public with sharing class AF_Sendemail_categoryfinance
 	{
 		List<Id> lstusers=new List<Id>();
 		string emails='';
-		List<PermissionSetAssignment> permissionSetAssign=[SELECT AssigneeId,Id,PermissionSetId FROM PermissionSetAssignment where PermissionSet.name=:'AF_Category_Finance'];
+		List<PermissionSetAssignment> permissionSetAssign=[SELECT AssigneeId,Id,PermissionSetId FROM PermissionSetAssignment where PermissionSet.name=:AF_Constants.PERM_FINANCE_CAT];
 		if(permissionSetAssign.size()>0){
 			for(PermissionSetAssignment assignment:permissionSetAssign){
 				lstusers.add(assignment.AssigneeId);
@@ -66,7 +66,7 @@ public with sharing class AF_Sendemail_categoryfinance
 			messaging.sendemailresult[] r =Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
 			if(r[0].issuccess())
 			{
-				ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.info,'Email is sent successfully');
+				ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.info,Label.AF_Sent_Email);
 				ApexPages.addMessage(myMsg);
 				displayPopup = true;
 			}

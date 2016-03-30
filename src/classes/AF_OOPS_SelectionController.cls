@@ -28,7 +28,7 @@ public with sharing class AF_OOPS_SelectionController {
 		isAgencyFlag=false;
 		User userObj = new User();
 		userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
-		if(userObj.AF_Agency_Fees_User_Type__c=='Agency'){
+		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
 			isAgencyFlag=true;
 		}
 		oopsActuals = [SELECT Name, AF_Status__c,oopsEstimateStatus__c FROM AF_OOPS_Actual__c  WHERE AF_Brand__c = :brandId AND AF_Agency_lk__c = :agencyId AND AF_Fiscal_year__c = :fiscalYear order by createddate desc];

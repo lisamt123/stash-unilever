@@ -270,7 +270,7 @@
                                       </div>    
                                     <div class="wid90P floatL">    
                                            <div class="bonusableFeeCont">
-                                              Bonusable Fee
+                                              {!$Label.AF_Bonusable_Fee}
                                            </div>
                                        <div class="bonusableFeeValue">
                                               <apex:outputText value="{0,number,###,###,###}">
@@ -281,7 +281,7 @@
       </div> <!-- First Div closed -->
       <div class="seconddiv_bonus">
                              <div class="overallBonusPercentChatCont"> 
-                                   <div class="overallBonusPercentChatLable"> Overall Bonus Percentage </div >
+                                   <div class="overallBonusPercentChatLable"> {!$Label.AF_OverAll_Bonus}</div >
                                    <canvas id="mycrosscanvas" height="100" width="100" class="overallBonusPercentChatDonut"></canvas>
                                      <span class="overallBonusPercentChatDonutLableValue">   <apex:outputText styleclass="overallText" value="{0,number,###,###,###}">
                                              €<apex:param value="{!totalquant_qual}"/>
@@ -290,7 +290,7 @@
                              </div>
                              <div class="centerdiv_bonus"> </div>
                               <div class="quantitativeBonusCont"> 
-                                    <div class="quantitativeBonusLable">Quantitative Bonus </div >
+                                    <div class="quantitativeBonusLable">{!$Label.AF_Quantitative_Bonus}</div >
                                    <canvas id="mycrosscanvasQuant" height="100" width="100" class="quantitativeBonusDonut"></canvas>
                                  <span class="quantitativeBonusValue"> 
                                     <apex:outputText styleclass="quantText" value="{0,number,###,###,###}">
@@ -299,7 +299,7 @@
                                  </span>  
                              </div>
                              <div class="qualitativeBonusCont"> 
-                                    <div class="qualitativeBonusLable"> Qualitative Bonus </div >
+                                    <div class="qualitativeBonusLable">{!$Label.AF_Qualitative_Bonus}</div >
                                    <canvas id="mycrosscanvasQual" height="100" width="100" class="qualitativeBonusDonut"></canvas>
                                   <span class="qualitativeBonusValue"> 
                                     <apex:outputText styleclass="qualText" value="{0,number,###,###,###}">
@@ -366,7 +366,7 @@
     <div id="gridPanel">
     <div align="right" class="fontSize16P">{!$Label.Matrix_Currency_Desc}</div>
         <div class="agencyBar">
-            <div align="left" class="agencyLeft">Agency Entities</div>
+            <div align="left" class="agencyLeft">{!$Label.AF_Agency_Entities}</div>
             <div align="right" class="agencyRight">
             <div id="colPanel" align="right" class="floatR marginT-10P">
                 <select multiple="multiple" id="agCol" class="marginR10P wid140PX toggle-vis"/>

@@ -27,6 +27,7 @@ public with sharing class AF_BonusMatrixSummary {
 	public Boolean IsReadyForPO{get;set;}
 	public Boolean isCatFinance{get;set;}
 	public Boolean isAgencyFlag{get;set;}
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_BonusMatrixSummary
@@ -52,10 +53,10 @@ public with sharing class AF_BonusMatrixSummary {
 		isAgencyFlag=false;
 		User userObj = new User();
 		userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
-		if(userObj.AF_Agency_Fees_User_Type__c=='Category Finance'){
+		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE){
 			isCatFinance=true;
 		}
-		if(userObj.AF_Agency_Fees_User_Type__c=='Agency'){
+		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
 			isAgencyFlag=true;
 		}
 		bonusSummaryObj=[SELECT AF_Status__c,AF_Agency__c,AF_Agency__r.Name,AF_Brand__c,AF_Brand__r.Name,AF_Fiscal_Year__c,AF_Bonus_Matrix_Value__c,AF_Is_Pilot_Model__c,
@@ -66,7 +67,7 @@ public with sharing class AF_BonusMatrixSummary {
 		BrandId=bonusSummaryObj.AF_Brand__c;
 		AgencyId=bonusSummaryObj.AF_Agency__c;
 		String year=bonusSummaryObj.AF_Fiscal_Year__c;
-		if(bonusSummaryObj.AF_Status__c=='Ready For PO'){
+		if(bonusSummaryObj.AF_Status__c==AF_Constants.BONUS_SUMMARY_READYFORPO){
 			IsReadyForPO=true;
 		}
 		decimal BonusTarget1=0;
@@ -80,7 +81,7 @@ public with sharing class AF_BonusMatrixSummary {
 		AF_Bonus_Value_Bm__c,AF_Bonusable_Fees__c,AF_Total_bonus_fees__c,
 		AF_Total_Bonus__c,AF_Quant_Bonus_Value__c,AF_Qual_Bonus_Value__c
 		FROM AF_Bonus_Results__c 
-		WHERE AF_Bonus_Thresholds__c IN:ids AND recordType.Name='Bonus Annual']){
+		WHERE AF_Bonus_Thresholds__c IN:ids AND recordType.Name=:AF_Constants.ANNUAL_BONUS_REC_TYPE]){
 			if(bonusResultObj.AF_Total_Bonus_Value__c==null)
 			bonusResultObj.AF_Total_Bonus_Value__c=0;
 			overallBonus+=bonusResultObj.AF_Total_Bonus_Value__c;
@@ -140,17 +141,31 @@ public with sharing class AF_BonusMatrixSummary {
 	public pagereference SubmitforStatus(){
 		List<AF_Bonus_Matrix__c> bonusMatrixList = new List<AF_Bonus_Matrix__c>();
 		if(bonusableFee==0){
-			apexpages.addmessage(new apexpages.message(apexpages.severity.info,'Please submit the Annual Bonus,and proceed'));
+			apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Annual_Bonus));
 		}
 		else if(remainingAllowances==0){
-			bonusSummaryObj.AF_Status__c='Ready For PO';
+			bonusSummaryObj.AF_Status__c=AF_Constants.BONUS_SUMMARY_READYFORPO;
+			try{
 			update bonusSummaryObj;
+			}
+			 catch(Exception e)
+		        {
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SubmitforStatus',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+		        }
 			for(AF_Bonus_Matrix__c BM:bonusSummaryObj.Bonus_Matrix__r){
-				BM.AF_Status__c = 'Ready For PO';
+				BM.AF_Status__c = AF_Constants.BONUS_SUMMARY_READYFORPO;
 				bonusMatrixList.add(BM);
 			}
 			if(bonusMatrixList.size()>0){
+				try{
 				update bonusMatrixList;
+				}
+				catch(Exception e)
+		        {
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SubmitforStatus',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+		        }
 			}
 			IsReadyForPO=true;
 		}

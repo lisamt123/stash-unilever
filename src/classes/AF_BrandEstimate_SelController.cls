@@ -27,7 +27,7 @@ public with sharing class AF_BrandEstimate_SelController {
 		fiscalYear = ApexPages.currentPage().getParameters().get('fy');
 		User userObj = new User();
 		userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
-		if(userObj.AF_Agency_Fees_User_Type__c=='Agency'){
+		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
 			isAgencyFlag=true;
 		}
 		brandEstimates = [SELECT Name, AF_Status_Base_Fees__c FROM AF_Brand_Estimate__c 

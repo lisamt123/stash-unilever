@@ -9,6 +9,7 @@
   ****************************************************************************************************************************/
 global with sharing class AF_BonusQuaterlyEmailToCatFinance implements Database.Batchable<sobject>
 {
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
     global String query='select AF_Q1__c,AF_Q2__c,AF_Q3__c from AF_BonusQuarterly_Quarterdates__c';
     /***********************************************************************************
 *  @Description: this method is start method of the Batch class
@@ -36,16 +37,23 @@ global with sharing class AF_BonusQuaterlyEmailToCatFinance implements Database.
                 NewEmailRecord.sendEmailBonusQuartToCatFinance__c = true;
                 NewEmailRecord.Financial_Year__c =  String.valueOf(System.Today().year());
                 if(DayofMonth=='5'){
-                    NewEmailRecord.AF_Quarter__c = 'Q1';
+                    NewEmailRecord.AF_Quarter__c = AF_Constants.QUARTER1;
                 }
                 else if(DayofMonth=='9'){
-                    NewEmailRecord.AF_Quarter__c = 'Q2';
+                    NewEmailRecord.AF_Quarter__c = AF_Constants.QUARTER2;
                 }
                 else if(DayofMonth=='11'){
-                    NewEmailRecord.AF_Quarter__c = 'Q3';
+                    NewEmailRecord.AF_Quarter__c = AF_Constants.QUARTER3;
                 }
                 NewEmailRecord.URL_link_to_Agency_Fees__c = Label.AF_UrlLink;
+                try{
                 insert NewEmailRecord;
+                }
+                catch(Exception e)
+        		{
+            			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'execute',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+        		}
             }
         }
     }

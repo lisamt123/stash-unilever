@@ -29,6 +29,7 @@ public with sharing class AF_CustomSetting{
 	public List<AF_AnnualBonus_Qual__c> annualBonusQualList{get;set;}
 	public AF_OOPS_Settings__c oopsPercentage{get;set;}
 	public AF_Links__c afLinks{get;set;}
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/***********************************************************************************
 *  @Description: this contructor method will refer the custom setting 
 *  @name : AF_CustomSetting
@@ -71,7 +72,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitCustomSetting(){
+		try{
 		update setting.getQuarterlyBonus();
+		}
+		catch(Exception e)
+		{
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitCustomSetting',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update));
+		}
 	}
 	/***********************************************************************************
 *  @Description: this method will get the triggerDate
@@ -80,7 +88,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitTriggerDate(){
+		try{
 		upsert emailAlerts.gettriggerDate();
+		}
+		catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitTriggerDate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+	        }
 	}
 	/***********************************************************************************
 *  @Description: this method will get the AgencyEmailAlerts
@@ -89,7 +104,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitAgencyEmailAlerts(){
+		try{
 		upsert emailAlerts.getAgencyEmailAlerts();
+		}
+		catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitAgencyEmailAlerts',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+	        }
 	}
 	/***********************************************************************************
 *  @Description: this method will get the AgencyBonus
@@ -98,7 +120,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitAgencyBonusMap(){
+		try{
 		upsert emailAlerts.getAgencyBonus();
+		}
+		catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitAgencyBonusMap',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+	        }
 	}
 	/***********************************************************************************
 *  @Description: this method will get the LinkList
@@ -107,7 +136,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitBonusLink(){
+		try{
 		upsert bonusLinkList;
+		}
+		catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitBonusLink',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+	        }
 	}
 	/***********************************************************************************
 *  @Description: this method will get the DummyID
@@ -116,7 +152,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitDummyUserId(){
+		try{
 		upsert emailAlerts.getDummyID();
+		}
+		catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitDummyUserId',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+	        }
 	}
 	/***********************************************************************************
 *  @Description: this method will get the CMCORights
@@ -125,7 +168,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitAFCMCO(){
+		try{
 		upsert emailAlerts.getCMCORights();
+		}
+		catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitAFCMCO',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+	        }
 	}
 	/***********************************************************************************
 *  @Description: this method will get the CatFinance
@@ -134,7 +184,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitCatFinThreshold(){
+		try{
 		upsert emailAlerts.getCatFinance();
+		}
+		catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitCatFinThreshold',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+	        }
 	}
 	/***********************************************************************************
 *  @Description: this method will get the BrandtriggerDate
@@ -143,7 +200,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitbrandTriggerDate(){
+		try{
 		upsert emailAlerts.getBrandtriggerDate();
+		}
+		catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitbrandTriggerDate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+	        }
 	}
 	/***********************************************************************************
 *  @Description: this method will get the BonusQuarterly
@@ -152,7 +216,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitBonusQuarterly(){
+		try{
 		upsert emailAlerts.getBonusQuarterly();
+		}
+		catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitBonusQuarterly',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+	        }
 	}
 	/***********************************************************************************
 *  @Description: this method will get the AnnualBonus
@@ -161,7 +232,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitAnnualBonusQual(){
+		try{
 		upsert emailAlerts.getAnnualBonus();
+		}
+		catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitAnnualBonusQual',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+	        }
 	}
 	/***********************************************************************************
 *  @Description: this method will get the OopsPercent
@@ -170,7 +248,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitoopsPercentage(){
+		try{
 		update emailAlerts.getOopsPercent();
+		}
+		catch(Exception e)
+		{
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitoopsPercentage',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+		}
 	}
 	/***********************************************************************************
 *  @Description: this method will get the AFLinks
@@ -179,7 +264,14 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
 	public void submitAFLinks(){
+		try{
 		upsert emailAlerts.getAFLinks();
+		}
+		catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'submitAFLinks',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+	        }
 	}
 	/***********************************************************************************
 *  @Description: this method is used to pass the date parameters to string

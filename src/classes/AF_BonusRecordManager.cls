@@ -24,6 +24,7 @@ Global with sharing class AF_BonusRecordManager {
 	Global set<string> ExceptionList = new set<string>();
 	List<AF_Agency_Estimate__c> filteredAgencyEstimateCollection = new List<AF_Agency_Estimate__c>();
 	set<Id> BonusThresholdIds;
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	List<AF_Bonus_Matrix__c> objCollection;
 	/*****************************************************************************************************************************
 @Author :Cognizant
@@ -300,9 +301,10 @@ Global with sharing class AF_BonusRecordManager {
 				{                       
 					insert objCollection; //this DML in the FOR LOOP
 				}
-				catch(DMLException ex)
+				catch(DMLException e)
 				{
-					System.debug(ex);
+					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'bonusMatrixCreation',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+					apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 				}       
 			}
 		}
@@ -331,9 +333,10 @@ Global with sharing class AF_BonusRecordManager {
 				obj.AF_Is_Pilot_Model__c = pBrandEstimate.AF_Pilot_Model__c;//Adding pilot model to bonus summary from brand estimate    
 				insert obj;                     
 			}
-			catch(DMLException ex)
+			catch(DMLException e)
 			{
-				System.debug(ex);
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'BonusSummarySingleFactory',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 			}       
 		}                                           
 		return obj;
@@ -363,9 +366,10 @@ Global with sharing class AF_BonusRecordManager {
 				if(pRecordTypeId != null){obj.RecordTypeId = pRecordTypeId;}
 				insert obj;                 
 			}
-			catch(DMLException ex)
+			catch(DMLException e)
 			{
-				System.debug(ex);
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'BonusResultSingleFactory',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 			}       
 		}   
 		return obj;
@@ -445,9 +449,10 @@ Global with sharing class AF_BonusRecordManager {
 				AddCountryTotal(pBonusThreshold.AF_Country__c, BonusableFee);
 				obj.AF_Base_Fee_Country_Total__c = CountryTotalMap.get(pBonusThreshold.AF_Country__c);
 			}
-			catch(DMLException ex)
+			catch(DMLException e)
 			{
-				System.debug(ex);
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'BonusMatrixSingleFactory',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				 
 			}
 		}
 		return obj;

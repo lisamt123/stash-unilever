@@ -439,6 +439,7 @@ global with sharing class AF_BrandEstimateController2
 		catch(DMLException ex)
 		{           
 			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_BrandEstiamte_Controller2,'Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());                       
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 		}
 		return null;
 	}
@@ -749,6 +750,7 @@ global with sharing class AF_BrandEstimateController2
 		}Catch(DmlException ex){
 			if((ex.getMessage()).contains(AF_Constants.EXCEPTION_ENTITY_IS_LOCKED)){
 				Apexpages.addmessage(new Apexpages.message(Apexpages.severity.error,system.label.AF_PiliotError_message));
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 			}
 		}
 	}

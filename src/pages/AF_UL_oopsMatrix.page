@@ -288,7 +288,7 @@
                      <div class="brandLable"><b>{!oopsActObj.AF_Brand__r.name}</b> | <b> {!oopsActObj.AF_Agency_lk__r.name} </b>    </div>
                      <div class="oopsLableCont">
                         <div class="oopsLable">
-                           <apex:outputLabel > OOPS </apex:outputLabel>
+                           <apex:outputLabel > {!$Label.AF_OOPS} </apex:outputLabel>
                         </div>
                         <div class="oopsLableValue">
                            <apex:outputPanel id="out1">
@@ -301,7 +301,7 @@
                      </div>
                      <div class="baseFeesCont">
                         <div class="baseFeesLable">
-                           Base Fees 
+                           {!$Label.AF_Base_Fee} 
                         </div>
                         <div class="baseFeesValue">
                            <apex:outputText value="{0,number,###,###,###}">
@@ -312,7 +312,7 @@
                      </div>
                      <div class="ytgCont">
                         <div class="ytgLable">
-                           YTG 
+                           {!$Label.AF_YTG} 
                         </div>
                         <div class="ytgValue" style="color:{!ytgColour};">
                            <apex:outputText value="{0,number,###,###,###}">
@@ -334,7 +334,7 @@
                   </div>
                   <!-- First Div closed -->
                   <div class="seconddiv">
-                     <div class="chartLableCBPOlable"> Cross Border PO</div >
+                     <div class="chartLableCBPOlable"> {!$Label.AF_Cross_Border_Po}</div >
                      <div class="chartImgCBPO">
                         <canvas id="mycrosscanvas" height="100" width="100" style="width: 100px; height: 100px;  text-align: center;"></canvas>
                         <div  class="chartImgLable">
@@ -427,7 +427,7 @@
                      <div id="gridPanel">
                         <div align="right" class="fontSize16P">{!$Label.Matrix_Currency_Desc}</div>
                         <div class="agencyBar">
-                           <div align="left" class="agencyLeft">Agency Entities</div>
+                           <div align="left" class="agencyLeft">{!$Label.AF_Agency_Entities}</div>
                            <div align="right" class="agencyRight">
                               <div id="colPanel" align="right">
                                  <select multiple="multiple" class="toggle-vis multipleDrop" id="agCol"/>

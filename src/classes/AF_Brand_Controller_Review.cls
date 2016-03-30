@@ -13,6 +13,7 @@ public with sharing class AF_Brand_Controller_Review
 	Map<id,set<string>> mapgroups = new Map<id,set<string>>();
 	list<AF_Controller_Review__c> lstReview=new list<AF_Controller_Review__c>();
 	Map<id,set<string>> mapgroupCR = new Map<id,set<string>>();
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/***********************************************************************************
 *  @Description: this method is used to query and check's the review for all
 *  @              records in brandestimate and update it in controller review object
@@ -100,7 +101,14 @@ public with sharing class AF_Brand_Controller_Review
 		}
 		if(!lstReview.isempty())
 		{
+			try{
 			insert lstReview;
+			}
+			catch(Exception e)
+		        {
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'checkReview',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+		        }
 		}
 		else
 		{
@@ -115,7 +123,14 @@ public with sharing class AF_Brand_Controller_Review
 					lstbrandestimates.add(AFB);
 				}
 				if(!lstbrandestimates.IsEmpty())
+				try{
 				update lstbrandestimates;
+				}
+				 catch(Exception e)
+		        {
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'checkReview',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+		        }
 				for(AF_Brand_Estimate__c bEstimates:lstbrandestimates){
 					Approval.ProcessSubmitRequest request = new Approval.ProcessSubmitRequest();
 					request.setObjectId(bEstimates.Id);

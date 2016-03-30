@@ -29,7 +29,7 @@ public with sharing class AF_middlebonusmatrix {
 		url_year=ApexPages.currentPage().getParameters().get('Year');
 		User userObj = new User();
 		userObj = [select AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
-		if(userObj.AF_Agency_Fees_User_Type__c=='Agency'){
+		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
 			isAgencyFlag=true;
 		}
 		List<AF_Agency_Bonus_Access__c> agencyAccessList = AF_Agency_Bonus_Access__c.getall().values();

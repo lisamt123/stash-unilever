@@ -12,7 +12,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
     // AF_CreateBonusResultTrigger Logic Starts
     private List<AF_Bonus_Results__c> bonusResultObjList = new List<AF_Bonus_Results__c>();
     private Id annualBonusRecordTypeId = null;
-    private string ErrorMessage='Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding';
+    private string ErrorMessage=Label.AF_Thershold_Fields;
     /***********************************************************************************
 *  @Description: This method is derived as per trigger factory
 *           
@@ -33,7 +33,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
     public void bulkAfter()
     {
         // AF_CreateBonusResultTrigger Logic Starts
-        annualBonusRecordTypeId = [SELECT id FROM recordType WHERE name=:AF_Constants.ANNUAL_BONUS_REC_TYPE AND SobjectType='AF_Bonus_Results__c'].Id;
+        annualBonusRecordTypeId = [SELECT id FROM recordType WHERE name=:AF_Constants.ANNUAL_BONUS_REC_TYPE AND SobjectType=:AF_Constants.SOBJECT_BONUSRESULT_APINAME].Id;
         // AF_CreateBonusResultTrigger Logic Ends
     }
      /********************************************************************************************

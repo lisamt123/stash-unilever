@@ -34,6 +34,7 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
 	String quarterformat;
 	String QuarterName;
 	String changedBrandName;
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
     /**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_AdjustQuater_Homepage_lightbox
@@ -60,7 +61,7 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
         QuarterEstimate =  new list<wrapChechbox>();
         queryBrandEstimateRecords = new List<AF_Brand_Estimate__c>();
         if(sortDir ==  null){
-            sortDir = 'asc';    
+            sortDir =AF_Constants.SORT_ORDER_ASC;    
         }
         else{
             sortDir = AF_Constants.SORT_ORDER_ASC.equals(sortDir)?  AF_Constants.SORT_ORDER_DESC: AF_Constants.SORT_ORDER_ASC ;
@@ -208,7 +209,7 @@ private void showPopupExtension(wrapChechbox B){
                 ChangedBrand.put(B.BrandRecord.Id,changedBrandName);
                 ChangedQuarter.put(B.BrandRecord.Id,QuarterName);
 }
-public void showBrandName(String changedBrandName,wrapChechbox B){
+public void showBrandName(wrapChechbox B){
 					quarterformat='';
 					quarterformat='';
                     //Quarter Formats like Q1-Q4
@@ -268,11 +269,12 @@ public void showRaiseQuarter(wrapChechbox B){
             displayPopup = false;
             queryBrandEstimate();
             apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,Label.AF_Base_Fee_Updated));  // selected records have been saved
-            ControlToFocus = 'zipCodeFocus();';
+            ControlToFocus = AF_Constants.ZIPCODE_FOCUS;
         }
         catch(Exception e)
         {
-            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AdjustQuater_Homepage_lightbox','saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
         }
     }
     /**********************************************************************

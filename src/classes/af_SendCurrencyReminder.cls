@@ -9,6 +9,7 @@
   ****************************************************************************************************************************/
 global with sharing class af_SendCurrencyReminder implements Database.Batchable<sobject>{
  global string emailcat='select AF_CurrencyUpdateRequired__c  from Send_Email__c';
+ private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
     /***********************************************************************************
 *  @Description: this is the execute method of the Batch class
 *  @name : execute
@@ -35,7 +36,14 @@ global with sharing class af_SendCurrencyReminder implements Database.Batchable<
     {
       Send_Email__c mynewmail = new Send_Email__c();
       mynewmail.AF_CurrencyUpdateRequired__c = true;
+      try{
       insert mynewmail;
+      }
+      catch(Exception e)
+      	{
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'execute',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+        }
     }
     }
     /***********************************************************************************

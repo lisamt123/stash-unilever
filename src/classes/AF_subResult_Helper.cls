@@ -22,6 +22,7 @@ public with sharing class AF_subResult_Helper{
 	static List<AF_Bonus_Results__c> bonusResultList = new List<AF_Bonus_Results__c>();
 	static Integer counter;
 	static Set<Id> bonusResultCreated = new Set<Id>();
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/*****************************************************************************************
 *  @Description: this method is used to create the sub result records based on the bonus thershold
 *  @             and bonus result  record type and it will calculate the quant
@@ -82,14 +83,35 @@ public with sharing class AF_subResult_Helper{
 				}
 			}
 			if(bonusquart.size()>0){
+				try{
 				upsert bonusquart;
+				}
+				catch(Exception e)
+		        {
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'subResultCalc',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+		        }
 			}
 		} 
 		if(bonusResultList.size()>0){
+			try{
 			upsert bonusResultList;
+			}
+			catch(Exception e)
+		        {
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'subResultCalc',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+		        }
 		}
 		if(bonusResultQuartList.size()>0){
+			try{
 			upsert bonusResultQuartList;
+			}
+			catch(Exception e)
+		        {
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'subResultCalc',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+		        }
 		}
 	}
 	public static void subResultCalcExt(List<AF_Sub_Result__c> queryListofSubResult){

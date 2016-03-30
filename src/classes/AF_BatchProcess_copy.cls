@@ -17,7 +17,7 @@ public with sharing class AF_BatchProcess_copy {
 	public pagereference confirm()
 	{
 		String Fisyear=string.valueOf(system.now().year()-1);
-		String statusBasefee='Ready for PO';
+		String statusBasefee=AF_Constants.BASE_FEES_READYFORPO;
 		string query = 'SELECT id,Name FROM AF_Brand_Estimate__c WHERE AF_Status_Base_Fees__c =' + '\'' +statusBasefee +'\''+' AND AF_Fiscal_Year__c ='+'\''+Fisyear+'\' and AF_Copied__c= false and AF_Locked__c = false and AF_Active__c = true';
 		AF_BrandEstimatesBatch batchApex=new AF_BrandEstimatesBatch(query);
 		ID batchprocessid = Database.executeBatch(batchApex,1);
@@ -30,7 +30,7 @@ public with sharing class AF_BatchProcess_copy {
 *  @return: pagereference.
 ***************************************************************************************************/
 	public pagereference displayMsg(){
-		apexpages.addmessage(new apexpages.message(apexpages.severity.info,'Records have been submitted for processsing'));
+		apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Records_Processing));
 		return null;
 	}
 }

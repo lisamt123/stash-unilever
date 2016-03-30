@@ -34,6 +34,7 @@ public with sharing class AF_MultiSelectComponent{
 	public List<String> perIdName{get;set;}
 	public set<String> permissionIds{get;set;}
 	public String uid{get;set;}
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	public AF_MultiSelectComponent(){
 		uid=ApexPages.currentPage().getParameters().get('userid');
 		searchGroups();
@@ -288,7 +289,14 @@ public with sharing class AF_MultiSelectComponent{
 			}
 		}
 		if(gmList.size()>0){
-			insert gmList;
+			try{
+				insert gmList;
+			}
+			catch(Exception e)
+			{
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveGroups',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert));
+			}
 		}
 		List<String> deletegmIds=new List<String>();
 		for(String s:newDeletedList){
@@ -300,7 +308,14 @@ public with sharing class AF_MultiSelectComponent{
 		}
 		List<GroupMember> deleteRemovedMem = [select id from GroupMember where id IN :deletegmIds and UserOrGroupId=:uid];
 		if(deleteRemovedMem.size()>0){
-			delete deleteRemovedMem;
+			try{
+				delete deleteRemovedMem;
+			}
+			catch(Exception e)
+			{
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveGroups',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
+			}
 		}
 		searchGroups();
 	}
@@ -340,7 +355,14 @@ public with sharing class AF_MultiSelectComponent{
 			}
 		}
 		if(pList.size()>0){
-			insert pList;
+			try{
+				insert pList;
+			}
+			catch(Exception e)
+			{
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'savePermission',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+			}
 		}
 		List<String> deletepermIds=new List<String>();
 		for(String s:newDeletedList){
@@ -352,7 +374,14 @@ public with sharing class AF_MultiSelectComponent{
 		}
 		List<PermissionSetAssignment> deleteRemovedMem = [select id from PermissionSetAssignment where PermissionSetId IN :deletepermIds and Assigneeid=:uid];
 		if(deleteRemovedMem.size()>0){
-			delete deleteRemovedMem;
+			try{
+				delete deleteRemovedMem;
+			}
+			catch(Exception e)
+			{
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'savePermission',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
+			}
 		}
 		searchPermissionSet();
 	}
@@ -363,7 +392,7 @@ public with sharing class AF_MultiSelectComponent{
 *  @return: none.
 *************************************************************************************/      
 	public pagereference redirectBack(){
-		PageReference newocp = new PageReference('/apex/af_usersearchpage');
+		PageReference newocp = new PageReference(AF_Constants.USER_SEARCHPAGE);
 		newocp.setRedirect(true);
 		return newocp;
 	}

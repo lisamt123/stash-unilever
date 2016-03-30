@@ -15,6 +15,7 @@ public with sharing class AF_OopsActualStdCtrlExt {
 	public String ParentRecordType {get;set;}
 	public AF_OOPS_Actual__c oopsActual {get;set;}
 	public Boolean noEstimates {get;set;}
+	private static string className_STR=AF_OopsActualStdCtrlExt.class.getName();
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_OopsActualStdCtrlExt
@@ -53,7 +54,7 @@ public with sharing class AF_OopsActualStdCtrlExt {
 		}
 		catch(DMLException ex)
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OopsActualStdCtrlExt','SaveRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SaveRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			pageRef.setRedirect(true);
 			pageRef = null;             
 		}

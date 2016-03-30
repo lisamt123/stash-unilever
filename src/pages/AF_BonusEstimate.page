@@ -62,12 +62,12 @@
          <span class="fontB marginL16P"> <apex:outputText ></apex:outputText></span>
          </td>
          <td class="entityCell">
-                 <span>Unilever Entity</span>  
+                 <span>{!$Label.AF_Unilever_Entity}</span>  
                 <span>{!BonusMatrixObj.Unilever_Entity_Name__c}
             </span>
             </td>
         <td class="entityCell2">
-                  <span>Agency Entity</span> 
+                  <span>{!$Label.AF_Agency_Entity}</span> 
                 <span> {!BonusMatrixObj.Agency_Entity_Name__c}
                 </span>  
             </td>
@@ -89,7 +89,7 @@
      </tr>
  <tr class="overrideBonusValue">
                <td class="overrideBonusValueCell">
-               <apex:outputText >Override Bonus Value</apex:outputText>
+               <apex:outputText >{!$Label.AF_Override_Bonus_Value}</apex:outputText>
                </td>
                <td class="overrideBonusValueInput">
                     <span class="overrideBonusValueInputEuro">€ </span>
@@ -141,7 +141,7 @@
     <tr>
     <td class="wid150PX">
     <span class="poNumberLabel">
-         <apex:outputLabel >PO Number</apex:outputLabel>
+         <apex:outputLabel >{!$Label.AF_PO_Number}</apex:outputLabel>
          </span>
     </td>
     </tr>

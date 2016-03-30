@@ -29,6 +29,8 @@ public with sharing class AF_BonusMatrixOverrideController
 	public boolean isPOEditable{get;set;}
 	public boolean isBonusEstimateEdit{get;set;}
 	public string bonus_summaryid;
+	private static string className_STR=AF_BonusMatrixOverrideController.class.getName();
+	
 	/**********************************************************************
 *  @Description: this method is used to get and set the BonusEstimate value.
 *  @name : BonusMatrixValue
@@ -83,16 +85,16 @@ public with sharing class AF_BonusMatrixOverrideController
 			bonusresultid=new set<String>();
 			LoggedinUser=[select id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c,profile.name  from  User  where id=:Userinfo.getuserid()   and IsActive=true  Order by CreatedDate Limit 50000];             
 			if(LoggedinUser.AF_Agency_Fees_User_Type__c!=null){
-				if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Regional Category Finance'){
+				if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE){
 					isPOEditable=true;
 				}
-				if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance'){
+				if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE){
 					isBonusEstimateEdit=true;
 				}
-				if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Procurement'   || LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency'){
+				if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.BASE_FEES_PROCUREMENT   || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
 					IsReadonlyPO=true;
 				}
-				if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance'|| LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Procurement' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Regional Category Finance'|| LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency' ){
+				if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE|| LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.BASE_FEES_PROCUREMENT || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE|| LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY ){
 					IsShowPOTab=true;
 				}  
 			}
@@ -106,7 +108,7 @@ public with sharing class AF_BonusMatrixOverrideController
 				fyear= BonusMatrixObj.AF_Fiscal_Year__c;
 				bonus_summaryid=BonusMatrixObj.AF_Bonus_Summary__r.id;
 				EsLocal=BonusMatrixObj.AF_Bonus_Local_Value__c;
-				if(BonusMatrixObj.AF_Bonus_Summary__r.AF_Status__c=='Ready for PO'){
+				if(BonusMatrixObj.AF_Bonus_Summary__r.AF_Status__c==AF_Constants.BONUS_SUMMARY_READYFORPO){
 					IsReadyforPO=true;
 				}
 				listofbonusmatrix=[Select id,AF_Bonus_Results__r.id,AF_Value__c from AF_Bonus_Matrix__c where AF_Bonus_Summary__r.id=:bonus_summaryid];
@@ -137,7 +139,7 @@ public with sharing class AF_BonusMatrixOverrideController
 		}
 		catch(Exception ex) 
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusMatrixOverrideController','AF_BonusMatrixOverrideController',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_BonusMatrixOverrideController',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			
 		}
 	}
@@ -154,23 +156,23 @@ public with sharing class AF_BonusMatrixOverrideController
 			if(BonusMatrixValue!=null){
 				Decimal pureMatrixBonus = Decimal.valueof(BonusMatrixValue.Remove(','))+totalMatrixbonus;
 				if(pureMatrixBonus>math.round(totalbonusresult)){
-					apexpages.addmessage(new apexpages.message(apexpages.severity.Error,' Override Bonus Value can not be more than Total Bonus. Override Bonus: ' + pureMatrixBonus + ' Total Bonus: ' + math.round(totalbonusresult)));                  
+					apexpages.addmessage(new apexpages.message(apexpages.severity.Error, Label.AF_Override_Bonus + pureMatrixBonus + ' Total Bonus: ' + math.round(totalbonusresult)));                  
 				}
 				else{
 					BonusMatrixObj.AF_Overidden__c = true;
 					update BonusMatrixObj;
 					CalculateLocalC();
-					apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved'));          
+					apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved));          
 				}
 			}
 		}
 		catch(Exception ex)
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusMatrixOverrideController','Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			BonusMatrixObj.AF_Overidden__c = true;
 			update BonusMatrixObj;
 			CalculateLocalC();
-			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved'));  
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved));  
 		}
 		return null;
 	}
@@ -200,7 +202,7 @@ public with sharing class AF_BonusMatrixOverrideController
 			}
 		}
 		catch(exception ex){
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusMatrixOverrideController','CalculateLocalC',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'CalculateLocalC',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			if(BonusMatrixValue==''){
 				EsLocal=0;
 			}
@@ -213,7 +215,13 @@ public with sharing class AF_BonusMatrixOverrideController
 *  @return: none.
 *******************************************************************************************/
 	public void SavePo(){
+		try{
 		update BonusMatrixObj;
-		apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved'));          
+		apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved)); 
+		}
+		catch(exception ex){
+		AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'CalculateLocalC',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+		apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+		}         
 	}            
 }

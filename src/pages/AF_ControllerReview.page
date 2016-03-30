@@ -73,7 +73,7 @@
             </div>
          </div>
          <div class="heading_main">
-            <h1 class="heading_text"> Reviews</h1>
+            <h1 class="heading_text">{!$Label.AF_Reviews}</h1>
          </div>
          <apex:pageBlock id="blockrefersh">
             <apex:pageMessages id="pm1"></apex:pageMessages>

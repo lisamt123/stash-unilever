@@ -22,6 +22,7 @@ public with sharing class AF_DocumentListCompController{
 	public AF_OOPS_Actual__c oopsRecord{get;set;}
 	public AF_Bonus_Summary__c bonusRecord{get;set;}
 	public Boolean status{get;set;}
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_DocumentListCompController
@@ -34,7 +35,7 @@ public with sharing class AF_DocumentListCompController{
 		status = false;
 		brandEstRecord = new AF_Brand_Estimate__c();
 		userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
-		if(userObj.AF_Agency_Fees_User_Type__c=='Agency'){
+		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
 			isAgencyFlag=true;
 		}              
 		if(ApexPages.currentPage().getParameters().get('id') != null)
@@ -63,19 +64,19 @@ public with sharing class AF_DocumentListCompController{
 		}
 		if(ParentRecordId.startsWith(System.Label.AF_BrandEstimateId)){
 			brandEstRecord = [select AF_Status_Base_Fees__c from AF_Brand_Estimate__c where id=:ParentRecordId];
-			if(brandEstRecord.AF_Status_Base_Fees__c == 'Ready for PO'){
+			if(brandEstRecord.AF_Status_Base_Fees__c == AF_Constants.BASE_FEES_READYFORPO){
 				status = true;
 			}
 		}
 		else if(ParentRecordId.startsWith(System.Label.AF_oopsActualId)){
 			oopsRecord = [select AF_Status__c from AF_OOPS_Actual__c where id=:ParentRecordId];
-			if(oopsRecord.AF_Status__c == 'Ready for PO'){
+			if(oopsRecord.AF_Status__c == AF_Constants.BASE_FEES_READYFORPO){
 				status = true;
 			}
 		}
 		else if(ParentRecordId.startsWith(System.Label.AF_BonusSummaryId)){
 			bonusRecord = [select AF_Status__c from AF_Bonus_Summary__c where id=:ParentRecordId];
-			if(bonusRecord.AF_Status__c == 'Ready for PO'){
+			if(bonusRecord.AF_Status__c == AF_Constants.BASE_FEES_READYFORPO){
 				status = true;
 			}
 		}
@@ -91,7 +92,14 @@ public with sharing class AF_DocumentListCompController{
 		if(docId != ''){
 			Attachment docDel = new Attachment();
 			docDel = [select Id from Attachment where Id=:docId and ParentId =:ParentRecordId];
+			try{
 			delete docDel;
+			}
+			catch(Exception e)
+			{
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'delDocument',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+			}
 		}
 	}
 	public class CustomException extends Exception {}    

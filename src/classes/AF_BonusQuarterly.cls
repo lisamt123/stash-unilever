@@ -57,8 +57,10 @@ public with sharing class AF_BonusQuarterly {
     public decimal sum_of_bonus_basefee_onload {get;set;}
     public Boolean displaySubmitButton{get;set;}
     public Boolean displaySubmitSave{get;set;}
-    private static String Digital = 'Digital';
-    private static String Trad = 'Trad';
+    private static String Digital = AF_Constants.DIGITAL;
+    private static String Trad = AF_Constants.TRADITIONAL;
+    private static String Bonus_Thershold=AF_Constants.TEST_BONUS_THRESHOLD;
+    private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
     /**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_BonusQuarterly
@@ -66,7 +68,7 @@ public with sharing class AF_BonusQuarterly {
 *  @return : none
 *************************************************************************/      
     public  AF_BonusQuarterly() {
-        Quarterinfo='Q1';
+        Quarterinfo=AF_Constants.QUARTER1;
         sum_of_bonus_basefee=0;
         CallBonusQuarterly();
     }
@@ -115,7 +117,7 @@ public with sharing class AF_BonusQuarterly {
         displaySubmitButton = false;
         User userObj = new User();
         userObj = [select Id, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
-        if(userObj.AF_Agency_Fees_User_Type__c=='CMCO Super User'|| userObj.AF_Agency_Fees_User_Type__c=='Category Finance')
+        if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER|| userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE)
         {
             IsEditable=true;
         }
@@ -123,7 +125,7 @@ public with sharing class AF_BonusQuarterly {
         if(Pilot_model.size()>0){
             if(Pilot_model.get(0).AF_Pilot_Model__c){
                 showmainblock=false; 
-                apexpages.addmessage(new apexpages.message(apexpages.severity.info,'You have confirmed that your Brand Estimates is on the remuneration Pilot Model and that Quant Bonus tracking is therefore not applicable'));
+                apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Brand_Remuneration));
             }
             else{
                 showmainblock=true;
@@ -255,7 +257,7 @@ public with sharing class AF_BonusQuarterly {
                         showmainblock=True;
                         if(setofnonthreshold_country.size()>0 && !Pilot_model.get(0).AF_No_Bonus__c){
                             displaySubmitButton = true; 
-                            Apexpages.addmessage(new apexpages.message(apexpages.severity.WARNING,  'The Thresholds entered do not match the Unilever entity/entities in the Base Fees matrix. Please resolve the following mismatches by setting Bonus Threshold for Unilever entities: '+ ' '+ setofnonthreshold_country ));
+                            Apexpages.addmessage(new apexpages.message(apexpages.severity.WARNING,  Label.AF_Thershold_Mismatch+ ' '+ setofnonthreshold_country ));
                         }
                     }
                     Map<String,Integer> EntityAmtMap = new Map<String,Integer>();
@@ -399,20 +401,20 @@ public with sharing class AF_BonusQuarterly {
             if(newbonus.total_bonus_fees!=null){
                 sum_of_bonus_basefee=sum_of_bonus_basefee+newbonus.total_bonus_fees; //01-09-2014
                 if (newbonus.bonusResObj.AF_Quant__c>=newbonus.Outstanding_bonus) {
-                    AF_QuarterlyBonus__c Custom_Bonusthreshold=AF_QuarterlyBonus__c.getInstance('Bonus Threshold');
+                    AF_QuarterlyBonus__c Custom_Bonusthreshold=AF_QuarterlyBonus__c.getInstance(Bonus_Thershold);
                     Decimal bonus_outstanding=Custom_Bonusthreshold.Outstanding__c; 
                     Quantvalue=bonus_outstanding;
                     newbonus.bonusResObj.AF_Quant_Bonus__c=Quantvalue.setScale(2, RoundingMode.HALF_UP);
                 } 
                 else if (newbonus.bonusResObj.AF_Quant__c>=newbonus.Streching_bonus & newbonus.bonusResObj.AF_Quant__c<newbonus.Outstanding_bonus) {
-                    AF_QuarterlyBonus__c Custom_Bonusthreshold=AF_QuarterlyBonus__c.getInstance('Bonus Threshold');
+                    AF_QuarterlyBonus__c Custom_Bonusthreshold=AF_QuarterlyBonus__c.getInstance(Bonus_Thershold);
                     Decimal bonus_stretching=Custom_Bonusthreshold.Stretching__c; 
                     Decimal bonus_min=Custom_Bonusthreshold.Minimum__c;
                     Quantvalue=bonus_stretching+ bonus_min* (newbonus.bonusResObj.AF_Quant__c-newbonus.Streching_bonus)/(newbonus.Outstanding_bonus-newbonus.Streching_bonus)  ;
                     newbonus.bonusResObj.AF_Quant_Bonus__c=Quantvalue.setScale(2, RoundingMode.HALF_UP);
                 } 
                 else if (newbonus.bonusResObj.AF_Quant__c>=newbonus.Minimum_bonus & newbonus.bonusResObj.AF_Quant__c<newbonus.Streching_bonus) {
-                    AF_QuarterlyBonus__c Custom_Bonusthreshold=AF_QuarterlyBonus__c.getInstance('Bonus Threshold');
+                    AF_QuarterlyBonus__c Custom_Bonusthreshold=AF_QuarterlyBonus__c.getInstance(Bonus_Thershold);
                     Decimal bonus_minimum=Custom_Bonusthreshold.Minimum__c; 
                     Quantvalue=bonus_minimum + bonus_minimum * (newbonus.bonusResObj.AF_Quant__c-newbonus.Minimum_bonus)/(newbonus.Streching_bonus-newbonus.Minimum_bonus)  ;
                     newbonus.bonusResObj.AF_Quant_Bonus__c=Quantvalue.setScale(2, RoundingMode.HALF_UP);  
@@ -451,7 +453,7 @@ public with sharing class AF_BonusQuarterly {
             for(wrapbonus w_bonus:QuartelyBonus){
                 if(w_bonus.total_bonus_fees!=null){    
                     w_bonus.bonusResObj.AF_Bonus_Threshold__c=w_bonus.bonus_threshold_id;
-                    w_bonus.bonusResObj.Af_status__c='Draft';
+                    w_bonus.bonusResObj.Af_status__c=AF_Constants.STATUS_DRAFT;
                     w_bonus.bonusResObj.AF_Period__c=Quarterinfo;
                     if(w_bonus.bonusResObj.AF_Quant__c==null){
                         bException=true;
@@ -465,7 +467,7 @@ public with sharing class AF_BonusQuarterly {
                 AF_Sub_Result__c bonus_latestlocalList=new AF_Sub_Result__c();
                 if(w_bonus.total_bonus_fees!=null){ 
                     bonus_latestlocalList.AF_Bonus_Threshold__c = w_bonus.bonus_threshold_id;
-                    bonus_latestlocalList.Af_status__c = 'Draft';
+                    bonus_latestlocalList.Af_status__c = AF_Constants.STATUS_DRAFT;
                     bonus_latestlocalList.AF_Period__c = Quarterinfo;
                     bonus_latestlocalList.AF_Bonusable_Fees__c = w_bonus.total_bonus_fees;
                     bonus_latestlocalList.Bonus_Measure__c = w_bonus.Bonus_Threshold_Measure;
@@ -492,33 +494,40 @@ public with sharing class AF_BonusQuarterly {
         validateTotal = Totals_BonusMeasureTrad+Totals_BonusMeasureDigital;
         String validationError;
         if(bException){
-            String validationErrorMsg = 'Please enter the Quant fields';
+            String validationErrorMsg = Label.AF_Quant;
             apexpages.addmessage(new apexpages.message(apexpages.severity.Error,validationErrorMsg));
         }
         else if(sum_of_bonus_basefee!=validateTotal){
-            validationError='Manual adjustment to Bonusable fees must reconcile back to Base Fee Matrix.';
+            validationError=Label.AF_Reconcile;
             Decimal Validationdifference= sum_of_bonus_basefee-validateTotal;
             Decimal Validationdifferencer =Validationdifference;
             if (Validationdifferencer <0) Validationdifferencer=Validationdifferencer*-1;
-            validationError = validationError + 'Target ';
+            validationError = validationError + AF_Constants.TARGET;
             if (Validationdifference>0)
             {
-                validationError=validationError +' exceeded by ';
+                validationError=validationError +AF_Constants.EXCEEDED_BY;
             }
             else
             {
-                validationError=validationError +' missing by ';    
+                validationError=validationError +AF_Constants.MISSING_BY;    
             }
             validationError = validationError+ Validationdifferencer;
-            validationError = validationError+ ' Euro';
+            validationError = validationError+ AF_Constants.EURO;
             apexpages.addmessage(new apexpages.message(apexpages.severity.Error,validationError));
         }
         else{
             if(!bonus_latestlist.isEmpty()){
+            	try{
                 upsert bonus_latestlist;
                 displaySubmitSave = true;
-                apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,'Record has been successfully saved'));
+                apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,Label.AF_Record_Success));
                 success=1;
+            	}
+            	catch(Exception e)
+       			 {
+            		AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdateBonus',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            		apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+        		 }
             }
         }
         if(success==1)
@@ -537,16 +546,23 @@ public with sharing class AF_BonusQuarterly {
         for(wrapbonus w_bonus:QuartelyBonus){
             if(w_bonus.total_bonus_fees!=null){    
                 w_bonus.bonusResObj.AF_Bonus_Threshold__c=w_bonus.bonus_threshold_id;
-                w_bonus.bonusResObj.Af_status__c='Submitted';
+                w_bonus.bonusResObj.Af_status__c=AF_Constants.STATUS_SUBMITTED;
                 w_bonus.bonusResObj.AF_Locked__c=true;
                 w_bonus.bonusResObj.AF_Period__c=Quarterinfo;
                 bonus_latestlist.add(w_bonus.bonusResObj);   
             }   
         }
         if(!bonus_latestlist.isEmpty()){
+        	try{
             upsert bonus_latestlist;
             IsSave=false;
-            apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,'Record has been successfully submitted'));
+            apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,Label.AF_Record_Submitted));
+        	}
+        	catch(Exception e)
+        		{
+            		AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'ConfirmBonus',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            		apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
+        		}
         }
     }        
     /***********************************************************************************

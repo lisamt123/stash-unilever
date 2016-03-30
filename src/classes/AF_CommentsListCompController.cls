@@ -28,6 +28,7 @@ public with sharing class AF_CommentsListCompController{
 	public Id myCreateId{get;set;}
 	public Boolean bCMCOSuperUser{get;set;}
 	public Id LoggedId{get;set;}
+	private static string className_STR=AF_CommentsListCompController.class.getName();
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_CommentsListCompController
@@ -41,13 +42,13 @@ public with sharing class AF_CommentsListCompController{
 		LoggedId = UserInfo.getUserId();
 		User userObj = new User();
 		userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
-		if(userObj.AF_Agency_Fees_User_Type__c=='Agency'){
+		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
 			isAgencyFlag=true;
 		}
-		if(userObj.AF_Agency_Fees_User_Type__c=='CMCO User'){
+		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER){
 			isCMCOUser=true;
 		}  
-		if(userObj.AF_Agency_Fees_User_Type__c=='CMCO Super User'){
+		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER){
 			bCMCOSuperUser=true;
 		}   
 		IsDisplayed = false;        
@@ -92,7 +93,7 @@ public with sharing class AF_CommentsListCompController{
 	public PageReference EditComment()
 	{
 		ReturnPageURL = ParentRecordId;
-		PageReference pageRef =  new PageReference('/apex/AF_EditComment');
+		PageReference pageRef =  new PageReference(AF_Constants.EDIT_COMMENT);
 		pageRef.getParameters().put('Id', CommentId);
 		pageRef.getParameters().put('rp', ReturnPageURL);
 		pageRef.setRedirect(true);  
@@ -113,7 +114,14 @@ public with sharing class AF_CommentsListCompController{
 			}
 		}
 		if(i==commentsList.size()){
+			try{
 			update commentsList;
+			}
+			catch(Exception e)
+			{
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SaveCommentEdit',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update));
+			}
 		}
 	}
 	/**********************************************************************
@@ -139,7 +147,8 @@ public with sharing class AF_CommentsListCompController{
 		}
 		catch(Exception ex)
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CommentsListCompController','SaveComment',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SaveComment',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 		}
 	}
 	/**********************************************************************
@@ -151,21 +160,21 @@ public with sharing class AF_CommentsListCompController{
 	private void MapToLookups(AF_Comments__c pCommentRecord) 
 	{
 		// this is a helper method that detects ParentObjectType and assign the id to specific looup fields
-		if(ParentObjectType == 'AF_Brand_Estimate__c'){
+		if(ParentObjectType == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME){
 			pCommentRecord.AF_Brand_Estimate__c = ParentRecordId; 
-			UpdateIsCommentOnRecord('AF_Brand_Estimate__c', ParentRecordId);
+			UpdateIsCommentOnRecord(AF_Constants.SOBJECT_BRANDESTIMATE_APINAME, ParentRecordId);
 		}
-		if(ParentObjectType == 'AF_Agency_Estimate__c'){
+		if(ParentObjectType == AF_Constants.SOBJECT_AGENCYESTIMATE_APINAME){
 			pCommentRecord.AF_Agency_Estimate__c = ParentRecordId; 
-			UpdateIsCommentOnRecord('AF_Agency_Estimate__c', ParentRecordId);
+			UpdateIsCommentOnRecord(AF_Constants.SOBJECT_AGENCYESTIMATE_APINAME, ParentRecordId);
 		}
-		if(ParentObjectType == 'AF_Bonus_Summary__c'){
+		if(ParentObjectType == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
 			pCommentRecord.AF_Bonus_Summary__c = ParentRecordId;
 		}
-		if(ParentObjectType == 'AF_Bonus_Matrix__c'){
+		if(ParentObjectType == AF_Constants.SOBJECT_BONUS_MATRIX_APINAME){
 			pCommentRecord.AF_Bonus__c = ParentRecordId;
 		}
-		if(ParentObjectType == 'AF_OOPS_Estimate__c'){
+		if(ParentObjectType == AF_Constants.SOBJECT_OOPSESTIMATE_APINAME){
 			pCommentRecord.AF_OOPS_Estimate__c = ParentRecordId;
 		}        
 	}
@@ -177,7 +186,7 @@ public with sharing class AF_CommentsListCompController{
 **********************************************************************/ 
 	private void UpdateIsCommentOnRecord(string pObjectType, Id pObjectId)
 	{   
-		if(pObjectType == 'AF_Brand_Estimate__c'){
+		if(pObjectType == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME){
 			try{
 				AF_Brand_Estimate__c objBE    = [select Id, AF_isComment__c from AF_Brand_Estimate__c where Id = : pObjectId];
 				if(objBE != null){
@@ -185,10 +194,11 @@ public with sharing class AF_CommentsListCompController{
 					update objBE;
 				}
 			}catch(DMLException ex){
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CommentsListCompController','UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 			}
 		}
-		if(pObjectType == 'AF_Agency_Estimate__c'){
+		if(pObjectType == AF_Constants.SOBJECT_AGENCYESTIMATE_APINAME){
 			try{ 
 				AF_Agency_Estimate__c objAE = [select Id, AF_isComment__c from AF_Agency_Estimate__c where Id = : pObjectId];
 				if(objAE != null){
@@ -196,17 +206,19 @@ public with sharing class AF_CommentsListCompController{
 					update objAE;
 				}
 			}catch(DMLException ex){
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CommentsListCompController','UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 			}
 		}
-		if(pObjectType == 'AF_OOPS_Estimate__c'){
+		if(pObjectType == AF_Constants.SOBJECT_OOPSESTIMATE_APINAME){
 			try{AF_OOPS_Estimate__c objOE  = [select Id, AF_isComment__c from AF_OOPS_Estimate__c where Id = : pObjectId];
 				if(objOE != null){
 					objOE.AF_isComment__c = true; 
 					update objOE;
 				}
 			}catch(DMLException ex){
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_CommentsListCompController','UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 			}
 		}        
 	}
@@ -220,7 +232,7 @@ public with sharing class AF_CommentsListCompController{
 	public void editCommentByUsers(){
 		if(myCreateId!=UserInfo.getUserId() && !bCMCOSuperUser){
 			myCommentId=null;
-			apexpages.addmessage(new apexpages.message(apexpages.severity.info,'Comment cannot be Changed')); 
+			apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Comment)); 
 		}
 	}
 }

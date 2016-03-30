@@ -33,7 +33,7 @@ public with sharing class AF_FieldHistoryCompController {
 		if(ApexPages.currentPage().getParameters().get('CHParentId') != null){ParentRecordId = ApexPages.currentPage().getParameters().get('CHParentId');}
 		User userObj = new User();
 		userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
-		if(userObj.AF_Agency_Fees_User_Type__c=='Agency'){
+		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
 			isAgencyFlag=true;
 		}              
 		wrp = new List<WrapperHistory>();
@@ -47,9 +47,9 @@ public with sharing class AF_FieldHistoryCompController {
 		List<String> args = new String[]{'0','number','###,###,##0.00'};
 		try
 		{
-			if(ParentObjectType == 'AF_Agency_Estimate__c')
+			if(ParentObjectType == AF_Constants.SOBJECT_AGENCYESTIMATE_APINAME)
 			{
-				ParentObjectType = 'AF_Agency_Estimate__c';  
+				ParentObjectType = AF_Constants.SOBJECT_AGENCYESTIMATE_APINAME;  
 				if(IsViewAll == 'true')
 				{
 					AgencyEstimateHistoryCollection = [Select a.ParentId, a.OldValue, a.NewValue, a.IsDeleted, a.Id, a.Field, a.CreatedDate, a.CreatedBy.Name From AF_Agency_Estimate__History a WHERE a.ParentId = :  ParentRecordId ORDER BY CreatedDate DESC ];
@@ -89,7 +89,7 @@ public with sharing class AF_FieldHistoryCompController {
 					}
 				} 
 			}            
-			else if(ParentObjectType == 'AF_OOPS_Estimate__c')
+			else if(ParentObjectType == AF_Constants.SOBJECT_OOPSESTIMATE_APINAME)
 			{
 				if(IsViewAll == 'true')
 				{
@@ -137,9 +137,9 @@ public with sharing class AF_FieldHistoryCompController {
 					}
 				} 
 			}
-			else if(ParentObjectType == 'AF_Bonus_Matrix__c')               
+			else if(ParentObjectType == AF_Constants.SOBJECT_BONUS_MATRIX_APINAME)               
 			{
-				ParentObjectType = 'AF_Bonus_Matrix__c';
+				ParentObjectType = AF_Constants.SOBJECT_BONUS_MATRIX_APINAME;
 				if(IsViewAll == 'true')
 				{
 					BonusMatrixHistoryCollection = [Select a.ParentId, a.OldValue, a.NewValue, a.IsDeleted, a.Id, a.Field, a.CreatedDate, a.CreatedBy.Name From AF_Bonus_Matrix__History a WHERE a.ParentId = :  ParentRecordId ORDER BY CreatedDate DESC];
@@ -179,9 +179,9 @@ public with sharing class AF_FieldHistoryCompController {
 					}
 				}                           
 			} 
-			else if(ParentObjectType == 'AF_Controller_Review__c')               
+			else if(ParentObjectType == AF_Constants.SOBJECT_CONTROLLER_REVIEW_APINAME)               
 			{
-				ParentObjectType = 'AF_Controller_Review__c';
+				ParentObjectType = AF_Constants.SOBJECT_CONTROLLER_REVIEW_APINAME;
 				if(IsViewAll == 'true')
 				{
 					ControllerReviewHistoryCollection = [Select a.ParentId, a.OldValue, a.NewValue, a.IsDeleted, a.Id, a.Field, a.CreatedDate, a.CreatedBy.Name From AF_Controller_Review__History a WHERE a.ParentId = :  ParentRecordId ORDER BY CreatedDate DESC];

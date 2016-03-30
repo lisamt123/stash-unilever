@@ -20,6 +20,7 @@ public with sharing class AF_BrandEstimateStdCtrlExt {
 	public boolean isAgencyFlag{get;set;} //to check whether logged in user is partner user or not
 	public boolean isAgencyFlag1{get;set;}
 	public boolean iscmcoAgencyFlag{get;set;}
+	private static string className_STR=AF_BrandEstimateStdCtrlExt.class.getName();
 	/*************************************************************************************
 *  @Description: this constructor method is used to query the users and records from the brandestiamte object
 *  @name : AF_BrandEstimateStdCtrlExt
@@ -31,7 +32,7 @@ public with sharing class AF_BrandEstimateStdCtrlExt {
 		iscmcoAgencyFlag=false;
 		User userObj = new User();
 		userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
-		if(userObj.AF_Agency_Fees_User_Type__c=='Agency'){
+		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
 			isAgencyFlag=true;
 		}
 		brandEstimateId = ApexPages.currentPage().getParameters().get('id');
@@ -46,9 +47,9 @@ public with sharing class AF_BrandEstimateStdCtrlExt {
 			progressValue = eachBrandEstimate.AF_ProgressImage__c;
 			progressReviewValue = eachBrandEstimate.AF_ProgressImage_Reviews__c;
 			agencyId = BrandEstimateObj.AF_Agency__c;
-			if((userObj.AF_Agency_Fees_User_Type__c=='CMCO User'||userObj.AF_Agency_Fees_User_Type__c=='CMCO Super User'||userObj.AF_Agency_Fees_User_Type__c=='Controller')&&eachBrandEstimate.AF_No_of_Reviews__c>0)
+			if((userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER||userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER||userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER)&&eachBrandEstimate.AF_No_of_Reviews__c>0)
 			iscmcoAgencyFlag=true;
-			if((userObj.AF_Agency_Fees_User_Type__c=='CMCO User' ||userObj.AF_Agency_Fees_User_Type__c=='Controller' || userObj.AF_Agency_Fees_User_Type__c=='Procurement' || userObj.AF_Agency_Fees_User_Type__c=='CMCO Super User' )&& eachBrandEstimate.AF_No_of_Reviews__c>0){
+			if((userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER ||userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER )&& eachBrandEstimate.AF_No_of_Reviews__c>0){
 				isAgencyFlag1=true;
 			}
 			else
@@ -69,16 +70,17 @@ public with sharing class AF_BrandEstimateStdCtrlExt {
 *************************************************************************************/      
 	public PageReference SetStatus()
 	{           
-		PageReference pageRef = new PageReference('/apex/AF_UL_AgencyMatrix?Id=' + brandEstimateId);        
+		PageReference pageRef = new PageReference(AF_Constants.AGENCY_MATRIX + brandEstimateId);        
 		pageRef.setRedirect(true);
 		try
 		{               
-			BrandEstimateObj.AF_Status_Base_Fees__c = 'Ready for PO';
+			BrandEstimateObj.AF_Status_Base_Fees__c = AF_Constants.BASE_FEES_READYFORPO;
 			update BrandEstimateObj;                                       
 		}  
 		catch(Exception ex) 
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateStdCtrlExt','SetStatus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SetStatus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			 apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 		}                                                              
 		return pageRef;        
 	}

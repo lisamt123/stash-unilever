@@ -17,6 +17,7 @@ public with sharing class AF_OOPSActualHandler implements ITrigger{
 	// AF_OopsPOreport_Delete Trigger Logic Starts 
 	private Set<Id> OOPSDeleteActualIds = new Set<Id>();
 	// AF_OopsPOreport_Delete Trigger Logic Ends
+	private static string className_STR=AF_OOPSActualHandler.class.getName();
 	/***********************************************************************************
 *  @Description: this method is used to add the records to the list whose 
 *                status is with category finance              
@@ -167,7 +168,8 @@ public with sharing class AF_OOPSActualHandler implements ITrigger{
 			catch(Exception e)
 			{
 				system.debug(e);
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPS_ActualHandler','andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete));
 			}
 		}
 		// AF_OopsPOreport_Delete Trigger Logic Ends

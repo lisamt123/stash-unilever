@@ -36,7 +36,7 @@
   <apex:outputPanel >
   <div class="digitalCont">
     
-      <span class="marginL4P">Digital 
+      <span class="marginL4P">{!$Label.AF_Digital} 
         <span class="marginL61P">&euro;</span>
         <apex:outputText value="{0,number,###,###,###}" >
         <apex:param value="{!Totals_BonusMeasureDigital}"/>
@@ -44,7 +44,7 @@
   </div>
   <div class="traditionalCont">
          
-          <span class="marginL2P">Traditional
+          <span class="marginL2P">{!$Label.AF_Traditional}
            <span class="marginL30P">&euro;</span>
          <apex:outputText value="{0,number,###,###,###}">
           <apex:param value="{!Totals_BonusMeasureTrad}"/>
@@ -236,7 +236,7 @@
  <apex:form >
     <apex:outputpanel rendered="{!AF_Pilot_Model}">
     <apex:pageBlock id="pg2">
-    <div class="bonusableFeesLabel2">Bonusable Fees </div>
+    <div class="bonusableFeesLabel2">{!$Label.AF_Annual_Bonus_Fees}</div>
         
   
 

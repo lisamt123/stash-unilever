@@ -51,7 +51,7 @@ public with sharing class AF_OOPSEstimateHandler implements ITrigger {
 			}
 			for(AF_OOPS_Estimate__c OOPSEstimateOldtrigger :(List<AF_OOPS_Estimate__c>)trigger.old){
 				If(errordisplay)
-				OOPSEstimateOldtrigger.adderror('please check the base fees');
+				OOPSEstimateOldtrigger.adderror(Label.AF_Base_Fees);
 			} 
 		}
 	}

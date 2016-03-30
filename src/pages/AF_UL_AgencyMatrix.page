@@ -316,7 +316,7 @@
                         <div class="companyName"><b>{!categoryNameStr}</b></div>
                         <div class="UnileverBaseFeesCont">
                            <div class="UnileverLable">
-                              <apex:outputLabel rendered="{!!isAgencyFlag}"> Unilever Base Fees </apex:outputLabel>
+                              <apex:outputLabel rendered="{!!isAgencyFlag}"> {!$Label.AF_Unilever_Base_Fees} </apex:outputLabel>
                            </div >
                            <div class="FeeAmount">
                               <apex:outputText value="{0,number,###,###,###}" rendered="{!!isAgencyFlag}">
@@ -326,7 +326,7 @@
                            </div>
                         </div>
                         <div class="AgencyBaseFeesCont">
-                           <div class="AgencyLable">Agency Base Fees&nbsp; </div>
+                           <div class="AgencyLable">{!$Label.AF_Agency_Base_Fees} </div>
                            <div class="FeeAmount">
                               <apex:outputText value="{0,number,###,###,###}">
                                  €
@@ -338,11 +338,11 @@
                      <!-- First Div closed -->
                      <div class="seconddiv">
                         <div>
-                           <div class="CrossBorder_PO"> Cross Border PO</div >
+                           <div class="CrossBorder_PO"> {!$Label.AF_Cross_Border_Po} </div >
                            <div class="Div_Space">&nbsp;&nbsp;&nbsp;&nbsp;</div >
-                           <div class="Traditional"> Traditional </div >
-                           <div class="Digital"> Digital </div >
-                           <div class="Adaptation"> Adaptation </div >
+                           <div class="Traditional"> {!$Label.AF_Traditional} </div >
+                           <div class="Digital"> {!$Label.AF_Digital} </div >
+                           <div class="Adaptation"> {!$Label.AF_Adapation} </div >
                         </div>
                         <div>
                            <div class="Chart_CrossBorder">
@@ -475,7 +475,7 @@
                         <div class="col-lg-12 charttable_agency padding0P">
                            <div align="right" class="fontSize16P">{!$Label.Matrix_Currency_Desc}</div>
                            <div class="agencyBar">
-                              <div align="left" class="agencyLeft">Agency Entities</div>
+                              <div align="left" class="agencyLeft">{!$Label.AF_Agency_Entities}</div>
                               <div align="right" class="agencyRight">
                                  <div id="colPanel" align="right">
                                     <select multiple="multiple" class="toggle-vis dropMutiple" id="agCol"/>

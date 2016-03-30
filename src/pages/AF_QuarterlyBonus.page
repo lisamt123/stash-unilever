@@ -73,11 +73,11 @@
                </apex:selectList>
             </apex:outputpanel>
             <div class="clearB"></div>
-            <div class="BonusableFeeLable">Bonusable Fees</div>
+            <div class="BonusableFeeLable">{!$Label.AF_Bonusable_Fees}</div>
             <apex:outputPanel id="Trad_Digi">
                <div class="digitalLable">
                   <span class="marginL4P">
-                     Digital 
+                     {!$Label.AF_Digital} 
                      <span class="marginL61P">&euro;</span>
                      <apex:outputText value="{0,number,###,###,###}"  >
                         <apex:param value="{!Totals_BonusMeasureDigital}"/>
@@ -87,7 +87,7 @@
                </div>
                <div class="traditionalLable">
                   <span class="marginL2P">
-                     Traditional
+                     {!$Label.AF_Traditional}
                      <span class="marginL30P">&euro;</span>
                      <apex:outputText value="{0,number,###,###,###}">
                         <apex:param value="{!Totals_BonusMeasureTrad}"/>

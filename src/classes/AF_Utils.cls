@@ -42,7 +42,7 @@ public with sharing class AF_Utils
 	}
 	public static Boolean isAgencyUser(String userId) {
 		Boolean valueToReturn = false;
-		Integer usercnt = [SELECT COUNT() FROM User WHERE Id = :userId AND AF_Agency_Fees_User_Type__c='Agency'];
+		Integer usercnt = [SELECT COUNT() FROM User WHERE Id = :userId AND AF_Agency_Fees_User_Type__c=:AF_Constants.UT_AGENCY];
 		valueToReturn = usercnt == 1 ? true : false;
 		return valueToReturn;
 	}

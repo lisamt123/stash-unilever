@@ -25,6 +25,7 @@ public with sharing class AF_OOPSEstimateController {
 	public Boolean isCMCOSuperUser{get;set;}
 	public String oopsQuarter;
 	public Boolean POOverrideDisplay1{get;set;}
+	private static string className_STR=AF_OOPSEstimateController.class.getName();
 	/***********************************************************************************
 *  @Description: this method is used as a getter and setter method for OOPSEstimate records
 *  @name : OppsEstimatesValue
@@ -79,29 +80,29 @@ public with sharing class AF_OOPSEstimateController {
 		}
 		LoggedinUser=[select id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c,profile.name  from  User  where id=:Userinfo.getuserid()   and IsActive=true  Order by CreatedDate Limit 50000];             
 		if(LoggedinUser.AF_Agency_Fees_User_Type__c!=null){
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Regional Category Finance'){
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE){
 				isPOEditable=true;
 			}
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance' ){
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE ){
 				isOopsEditable=true;
 			}
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Procurement'  || LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency'){
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT  || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
 				IsReadonlyPO=true;
 			}
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance'|| LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Procurement' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Regional Category Finance' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency' ){
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE|| LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY ){
 				IsShowPOTab=true;
 			}  
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User'){
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER){
 				isCMCOSuperUser = true;
 			}
 		}
 		if(oopsEstimate.AF_Estimate__c != null){oopsEstimate.AF_Estimate__c = oopsEstimate.AF_Estimate__c.setscale(2);}      
 		EsLocal= oopsEstimate.AF_EstimateLocal__c;
-		if(oopsEstimate.AF_OOPS_Actual__r.AF_Status__c=='with agency' && LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance')
+		if(oopsEstimate.AF_OOPS_Actual__r.AF_Status__c==AF_Constants.BASE_FEES_WITH_AGENCY && LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE)
 		{
 			Buttondisplay=true;
 		}
-		Else if(oopsEstimate.AF_OOPS_Actual__r.AF_Status__c=='with category finance' && LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency')
+		Else if(oopsEstimate.AF_OOPS_Actual__r.AF_Status__c==AF_Constants.CATEGORY_FINANCE && LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY)
 		{
 			Buttondisplay=true;
 		}
@@ -109,12 +110,12 @@ public with sharing class AF_OOPSEstimateController {
 		{
 			Buttondisplay=false;
 		}
-		if(oopsEstimate.AF_Status__c=='Ready for PO'){
+		if(oopsEstimate.AF_Status__c==AF_Constants.OOPS_ACTUAL_READYFORPO){
 			IsReadyforPO=true;
 		}
 		if(oopsEstimate.AF_OOPS_Actual__r.Quarter__c!=null){
 			oopsQuarter = oopsEstimate.AF_OOPS_Actual__r.Quarter__c;
-			if(!oopsQuarter.contains('Q4')){
+			if(!oopsQuarter.contains(AF_Constants.QUARTER4)){
 				POOverrideDisplay1 = true;
 			}
 		}
@@ -136,11 +137,12 @@ public with sharing class AF_OOPSEstimateController {
 			oopsEstimate.IsUpdate__c = true;   
 			update oopsEstimate;
 			CalculateLocalC();
-			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved'));  
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved));  
 		}
 		catch(DMLException ex)
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPSEstimateController','Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update));
 		}
 		return null;
 	}
@@ -168,7 +170,7 @@ public with sharing class AF_OOPSEstimateController {
 			EsLocal=Decimal.valueof(oopsvalue)*oopsEstimate.AF_Agency_Exchange_Rate__c;
 		}
 		Catch(exception e){
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPSEstimateController','CalculateLocalC',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'CalculateLocalC',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 			if(OppsEstimatesValue==''){
 				EsLocal=null;
 			}
@@ -184,9 +186,16 @@ public with sharing class AF_OOPSEstimateController {
 		if(polist.AF_PO_Number__c != null){
 			if(overrideEstimate != polist.AF_Override_Estimate_Local__c)
 			polist.AF_Override_Estimate_Local__c = overrideEstimate;
+			try{
 			update polist;
+			}
+			catch(Exception e)
+			{
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SavePO',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            	apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+			}
 			overridePONumber = polist.AF_PO_Number__c;
-			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved')); 
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved)); 
 		}      
 	}
 	/***************************************************************************************
@@ -218,12 +227,19 @@ public with sharing class AF_OOPSEstimateController {
 		if(overridePONumber != polist.AF_PO_Number__c)
 		polist.AF_PO_Number__c = overridePONumber;
 		if(polist.AF_Override_Estimate_Local__c > EsLocal){
-			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,'You cannot enter amount greater than local value')); 
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Local_value)); 
 		}
 		else{
+			try{
 			update polist;
+			}
+			catch(Exception e)
+			{
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'OverridePO',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            	apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update));
+			}
 			overrideEstimate = polist.AF_Override_Estimate_Local__c;
-			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved'));
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved));
 		}   
 	}
 }

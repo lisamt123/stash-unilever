@@ -8,6 +8,8 @@
    @reference : none
   ****************************************************************************************************************************/
 public with sharing class AF_AfterUpdateBonusResHandler {
+private static string className_STR=AF_AfterUpdateBonusResHandler.class.getName();
+	
 	/***********************************************************************************
 *  @Description: this method is used to call the updateBonusMatrix method
 *  @name : AF_AfterUpdHandler
@@ -21,7 +23,14 @@ public with sharing class AF_AfterUpdateBonusResHandler {
 			BonusResultIds.add(brandResults.Id);          
 		}
 		List<String> bonResultsStrList = new List<String>(BonusResultIds);
+		try{
 		updateBonusMatrix(bonResultsStrList);
+		}
+		catch(Exception e)
+        {
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_AfterUpdHandler',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+        }
 	}
 	/***********************************************************************************
 *  @Description: this method is used to update the Bonus Matrix
@@ -39,7 +48,8 @@ public with sharing class AF_AfterUpdateBonusResHandler {
 				update BonusMatrixCollection;
 			}
 			catch(Exception ex){
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AfterUpdateBonusResHandler','updateBonusMatrix',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'updateBonusMatrix',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 			}
 		}  
 	}   

@@ -198,12 +198,12 @@ jQuery( function() {
                <table align="center" >
                   <tr>
                      <td class="unileverEntityCell">
-                        <span class="unileverEntityCellLable">Unilever Entity</span>  
+                        <span class="unileverEntityCellLable">{!$Label.AF_Unilever_Entity}</span>  
                         <span class="unileverEntityCellTxtoutput">{!AgencyEstimate.AF_Unilever_Entity_Name__c}
                         </span>
                      </td>
                      <td class="agencyEntityCell">
-                        <span class="agencyEntityCellLable">Agency Entity</span> 
+                        <span class="agencyEntityCellLable">{!$Label.AF_Agency_Entity}</span> 
                         <span class="agencyEntityCellTxtoutput"> {!AgencyEstimate.AF_Agency_Entity_Name__c}
                         </span>  
                      </td>
@@ -221,7 +221,7 @@ jQuery( function() {
                         </td>
                         <td class="paddingR10P">
                            <span class="traditionalCellLable">
-                           Traditional
+                           {!$Label.AF_Traditional}
                            </span>
                            <apex:outputpanel rendered="{!IsReadyforPO}">
                               <span class="traditionalTxtLable">
@@ -239,7 +239,7 @@ jQuery( function() {
                         </td>
                         <td class="paddingR10P">
                            <span class="digitalCell">
-                           Digital
+                           {!$Label.AF_Digital}
                            </span>
                            <apex:outputpanel rendered="{!IsReadyforPO}">
                               <span class="digitalTxtoutput">
@@ -257,7 +257,7 @@ jQuery( function() {
                         </td>
                         <td class="paddingR30P">
                            <span class="adaptationLable">
-                           Adaptation
+                           {!$Label.AF_Adapation}
                            </span>
                            <apex:outputpanel rendered="{!IsReadyforPO}">
                               <span class="adaptationTxtoutput">
@@ -273,7 +273,7 @@ jQuery( function() {
                         </td>
                         <td class="totalCell">
                            <span>
-                           Total
+                           {!$Label.AF_Total}
                            </span>
                            <span class="totalTxtOutput">
                               <apex:outputText value="{0,number,###,###,###}" id="totalFigure2" styleClass="values_Unileverestimate" style="margin-left:-40px;width:163px;">
@@ -290,7 +290,7 @@ jQuery( function() {
                         </td>
                         <td class="paddingR30P">
                            <span class="exRateLable">
-                           Ex Rate
+                           {!$Label.AF_EX_Rate}
                            </span>  
                            <apex:outputPanel styleClass="exRateTxtOutput">
                               <apex:outputText ></apex:outputText>
@@ -554,7 +554,7 @@ jQuery( function() {
                         <table class="poNumberAlone">
                            <tr>
                               <td>
-                                 <span class="fontSize16 fontWeightB">PO Number</span>
+                                 <span class="fontSize16 fontWeightB">{!$Label.AF_PO_Number}</span>
                               </td>
                            </tr>
                            <tr>
@@ -578,7 +578,7 @@ jQuery( function() {
                         <table class="tableTitleStyle">
                            <tr>
                               <td>
-                                 <span class="fontSize16 fontWeightB">PO Amount Override</span>
+                                 <span class="fontSize16 fontWeightB">{!$Label.AF_PO_Override}</span>
                               </td>
                            </tr>
                            <tr>
@@ -590,19 +590,19 @@ jQuery( function() {
                         <table Align="center" class="lastGrid" id="table1">
                            <tr>
                               <td>
-                                 <span>Currency</span>
+                                 <span>{!$Label.AF_Currency}</span>
                               </td>
                               <td>
-                                 <span>Traditional</span>
+                                 <span>{!$Label.AF_Traditional}</span>
                               </td>
                               <td>
-                                 <span>Digital</span>
+                                 <span>{!$Label.AF_Digital}</span>
                               </td>
                               <td>
-                                 <span>Adaptation</span>
+                                 <span>{!$Label.AF_Adapation}</span>
                               </td>
                               <td>
-                                 <span>Total</span>
+                                 <span>{!$Label.AF_Total}</span>
                               </td>
                            </tr>
                            <tr>

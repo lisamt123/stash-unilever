@@ -22,6 +22,7 @@ global with sharing class AF_GetBaseFeePOData{
 	static Decimal totalDL;
 	static Decimal totalOOPSEUROTL;
 	static Decimal calcTLOOPSEURO;
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	@future
 	public static void CreatePOReportFromAgencyEstimate(Set<ID> AgencyEstimateIds,Boolean deletePOReport)
 	{
@@ -99,7 +100,14 @@ global with sharing class AF_GetBaseFeePOData{
 			database.update(lstpoUpdate);
 		}
 		if(deletePOReportList.size()>0){
+			try{
 			delete deletePOReportList;
+			}
+			catch(Exception e)
+			{
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'CreatePOReportFromAgencyEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete));
+			}
 		}
 		lstpo.clear();
 		lstpoUpdate.clear();
@@ -187,7 +195,14 @@ global with sharing class AF_GetBaseFeePOData{
 			database.update(lstpoUpdate);
 		}
 		if(deletePOReportList.size()>0){
+			try{
 			delete deletePOReportList;
+			}
+			 catch(Exception e)
+			 {
+			 	AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'BatchcreatePOReportFromAgencyEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+			 	apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
+			 }
 		}
 		lstpo.clear();
 		lstpoUpdate.clear();
@@ -267,7 +282,14 @@ global with sharing class AF_GetBaseFeePOData{
 			database.update(lstpoUpdate);
 		}
 		if(deletePOReportList.size()>0){
+			try{
 			delete deletePOReportList;
+			}
+			catch(Exception e)
+			{
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'CreatePOReportFromOopsEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
+			}
 		}
 		lstpo.clear();
 		lstpoUpdate.clear();
@@ -358,7 +380,14 @@ global with sharing class AF_GetBaseFeePOData{
 				uniqueKey.add(poReport.AF_Compound_Key__c);
 			}
 			if(updateList.size()>0){
+				try{
 				update  updateList;
+				}
+				catch(Exception e)
+				{
+					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'calculateBaseOopsvalues',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+					apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+				}
 			}
 		}
 	}  

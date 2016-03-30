@@ -483,9 +483,16 @@ public with sharing class AF_AgencyEstimateController
 			AgencyEstimate.AF_OverridePO_Digital_LC__c = overrideDigital;
 			if(overrideAdapt != AgencyEstimate.AF_OverridePO_Adaptation_LC__c)
 			AgencyEstimate.AF_OverridePO_Adaptation_LC__c = overrideAdapt;
+			try{
 			update AgencyEstimate;
 			overridePONumber = AgencyEstimate.AF_PO_Number__c;
 			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved));
+			}
+			catch(Exception e)
+        	{
+            	AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdatPO',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            	apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+        	}	
 		}    
 	}
 	/**********************************************************************
@@ -543,7 +550,8 @@ public with sharing class AF_AgencyEstimateController
 		{
 			pageRef = new PageReference(AF_Constants.CLOSE_REFRESH);
 			pageRef.setRedirect(true);        
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());    
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert));  
 		}
 		return pageRef;
 	}
@@ -607,7 +615,14 @@ public with sharing class AF_AgencyEstimateController
 				}
 			}
 			if(updatedenitytexception.size()>0){
+				try{
 				update updatedenitytexception;
+				}
+				catch(Exception e)
+        		{
+            		AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdateEntityEX',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            		apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+       			}
 			}
 			Wrapperlist.clear();
 			TotalPercent=0;
@@ -638,7 +653,14 @@ public with sharing class AF_AgencyEstimateController
 		if(delCountryId!=''){
 			AF_Entity_Exception__c delEntity = new AF_Entity_Exception__c();
 			delEntity = [SELECT Id FROM AF_Entity_Exception__c WHERE Id=:delCountryId];
+			try{
 			delete delEntity;
+			}
+			catch(Exception e)
+        	{
+            	AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'delCounrtyRecord',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            	apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
+        	}
 			Integer counter=-1;
 			for(Entitywrapper ent:Wrapperlist){
 				counter++;
@@ -682,6 +704,7 @@ public with sharing class AF_AgencyEstimateController
 		{
 			ApexPages.addMessages(ex);
 			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SaveEntityException',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 			pageRef = null;
 		}
 		return pageRef;         
@@ -764,7 +787,8 @@ public with sharing class AF_AgencyEstimateController
 		catch(DMLException ex)
 		{
 			ApexPages.addMessages(ex);
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(), className_STR,'DeleteException',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());     
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(), className_STR,'DeleteException',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());  
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete));    
 			pageRef = new PageReference(AF_Constants.CLOSE_REFRESH);
 			pageRef.setRedirect(true);
 			pageRef = null;             
@@ -884,6 +908,7 @@ public with sharing class AF_AgencyEstimateController
 		}
 		catch(exception ex){
 			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SaveEntityExceptionRecords',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
 		}
 	}   
 	/**********************************************************************

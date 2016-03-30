@@ -158,7 +158,7 @@ jQuery( function() {
                   <tr>
                      <td class="padL20">
                         <span class="fiscalYear">
-                           Financial Year:
+                           {!$Label.AF_Financial_Year}
                            <apex:OutputText value="{!BrandEstimateObj.AF_Fiscal_Year__c}" id="financialYear" StyleClass="values_estimate" />
                         </span>
                      </td>
@@ -173,7 +173,7 @@ jQuery( function() {
                         <apex:image id="isRequired" value="{!$Resource.AF_isRequired}" width="2" height="21" styleClass="marginT30"/>
                      </td>
                      <td class="paddingR10">
-                        <span class="labelName">Traditional: </span>                             
+                        <span class="labelName">{!$Label.AF_Traditional_Value} </span>                             
                         <apex:inputText value="{!TraditionalDisplay}"  id="traditionalInput" styleClass="values1 number" >
                            <apex:actionSupport event="onmouseout" 
                               action="{!CalculateTotal}" 
@@ -181,7 +181,7 @@ jQuery( function() {
                         </apex:inputText>
                      </td>
                      <td class="paddingR10">
-                        <span class="labelName">Digital:</span>            
+                        <span class="labelName">{!$Label.AF_Digital_Value}</span>            
                         <apex:inputText value="{!DigitalDisplay}"  styleClass="values1 number" >
                            <apex:actionSupport event="onmouseout" 
                               action="{!CalculateTotal}" 
@@ -189,7 +189,7 @@ jQuery( function() {
                         </apex:inputText>
                      </td>
                      <td class="paddingR10">
-                        <span class="labelName">Adaptation:</span>                       
+                        <span class="labelName">{!$Label.AF_Adaptation_Value}</span>                       
                         <apex:inputText value="{!AdaptationDisplay}" styleClass="values1 number" >
                            <apex:actionSupport event="onmouseout" 
                               action="{!CalculateTotal}" 
@@ -197,7 +197,7 @@ jQuery( function() {
                         </apex:inputText>
                      </td>
                      <td>
-                        <span class="labelName">Unilever Estimate:</span>                       
+                        <span class="labelName">{!$Label.AF_Unilever_Estimate}</span>                       
                         <apex:outputText value="{0,number,###,###,###}" id="totalFigure" styleClass="values_Unileverestimate">
                            <apex:param value="{!TotalDisplayN}"/>
                         </apex:outputText>
@@ -243,7 +243,7 @@ jQuery( function() {
                   <apex:inputcheckbox value="{!ispilotModel}" styleClass="checkbox_pilotmodel">
                      <apex:actionSupport action="{!checkpilot}" event="onclick" reRender="pm3,pilotmainpage,out1,Remuneration" disabled="{!Not(IsCMCO_Fin_User)}"/>
                   </apex:inputcheckbox>
-                  <apex:outputLabel styleClass="pilotModelLable">Pilot Model</apex:outputLabel>
+                  <apex:outputLabel styleClass="pilotModelLable">{!$Label.AF_Pilot_Model_Bonus}</apex:outputLabel>
                   <br/>
                   <br/>
                   <apex:outputtext value="{!$Label.AF_UBFLB_Type_of_Fees}" id="pageinstructions3" styleClass="toggle_span pilotModelLabletxt" />
@@ -312,7 +312,7 @@ jQuery( function() {
             <apex:inputcheckbox value="{!NoBonusCheck}" >
                <apex:actionSupport action="{!bonusCheck}" event="onclick" reRender="MainForm,pm4" />
             </apex:inputcheckbox>
-            <apex:outputLabel styleClass="noBonusOutlable">No Bonus</apex:outputLabel>
+            <apex:outputLabel styleClass="noBonusOutlable">{!$Label.AF_NoBonus}</apex:outputLabel>
          </apex:tab>
       </apex:tabPanel>
       <apex:actionFunction name="clearapexmessage" action="{!clearErrorMsg}" rerender="BrandEstimate,Bonus_Thresholds"/>

@@ -322,14 +322,35 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 			updateAgencyEstimate.add(agencyEstimate);
 		}
 		if(updateBrandEstimate.size()>0){
+			try{
 			update updateBrandEstimate;
+			}
+			catch(Exception e)
+        	{
+            	AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            	apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+        	}
 		}
 		if(updateAgencyEstimate.size()>0){
+			try{
 			update updateAgencyEstimate;
+			}
+			catch(Exception e)
+        		{
+            		AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            		apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+        		}
 		}
 		if(createBrandEstimate.size()>0 && selectedBrandEstimateIds.size()>0)
 		{
+			try{
 			insert createBrandEstimate;
+			}
+			catch(Exception e)
+			{
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            	apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert));
+			}
 		}
 		for(AF_Brand_Estimate__c f:createBrandEstimate){
 			newBrandEstimateIds.add(f.Id);
@@ -368,6 +389,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 		}
 		catch(Exception e){
 			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert));
 		}
 		displayPopup = False;
 		//SendEmailNotification();
@@ -411,7 +433,14 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 				}
 			}
 		}
+		try{
 		insert Send_Email_List;
+		}
+		catch(Exception e)
+        {
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SendEmailNotification',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
+        }
 	}
 	/***********************************************************************************
 *  @Description: this wrapper class to display the brandestimate and quarters

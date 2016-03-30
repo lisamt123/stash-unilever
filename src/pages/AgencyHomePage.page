@@ -397,7 +397,7 @@
                         <div class="Product_Name"><b>{!categoryNameStr}</b></div>
                         <div class="Unilever_Fees">
                            <div class="Unilever_Label">
-                              <apex:outputLabel rendered="{!!isAgencyFlag}"> Unilever Base Fees </apex:outputLabel>
+                              <apex:outputLabel rendered="{!!isAgencyFlag}"> {!$Label.AF_Unilever_Base_Fees} </apex:outputLabel>
                            </div >
                            <div class="Unilever_Amount">
                               <apex:outputText value="{0,number,###,###,###}" rendered="{!!isAgencyFlag}" title="{!$Label.af_lp_UnileverBaseFee}">
@@ -407,7 +407,7 @@
                            </div>
                         </div>
                         <div class="Agency_Fees">
-                           <div class="Agency_Label">Agency Base Fees </div>
+                           <div class="Agency_Label">{!$Label.AF_Agency_Base_Fees} </div>
                            <div class="Agency_Amount">
                               <apex:outputText value="{0,number,###,###,###}" title="{!$Label.af_lp_AgencyFeeTarget}">
                                  €
@@ -419,11 +419,11 @@
                      <!-- First Div closed -->
                      <div class="seconddiv">
                         <div>
-                           <div class="CrossBorder_PO"> Cross Border PO</div >
+                           <div class="CrossBorder_PO"> {!$Label.AF_Cross_Border_Po} </div >
                            <div class="Div_Space">&nbsp;&nbsp;&nbsp;&nbsp;</div >
-                           <div class="Traditional"> Traditional </div >
-                           <div class="Digital"> Digital </div >
-                           <div class="Adaptation"> Adaptation </div >
+                           <div class="Traditional"> {!$Label.AF_Traditional} </div >
+                           <div class="Digital"> {!$Label.AF_Digital} </div >
+                           <div class="Adaptation"> {!$Label.AF_Adapation} </div >
                         </div>
                         <div>
                            <div class="Chart_CrossBorder">
@@ -554,7 +554,7 @@
                                                 <table>
                                                    <tr>
                                                       <td class="firstlabelName" style="width:209px">
-                                                         <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Annual_Base_Fee_Target}">Unilever Targets</apex:outputLink>
+                                                         <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Annual_Base_Fee_Target}">{!$Label.AF_Unilever_Targets}</apex:outputLink>
                                                       </td>
                                                       <td>
                                                          <apex:outputLink onclick="TargetBaseFees('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}','{!Best.Id}');return false;" html-data-toggle="modal" html-data-target="#myModal" html-data-backdrop="static" html-data-src="/apex/AF_BrandEstimate?Id={!Best.Id}" title="{!$Label.AF_LP_Base_Fee_Targets}" id="theLink" styleClass="custom-link modalButton firstlabelValue">
@@ -570,7 +570,7 @@
                                              <table class="secondValueCont">
                                                 <tr>
                                                    <td class="wid132P">
-                                                      <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Running_Total}">Agency Base Fee</apex:outputLink>
+                                                      <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Running_Total}">{!$Label.AF_Agency_Base_Fee}</apex:outputLink>
                                                    </td>
                                                    <td class="secondValueAmount">
                                                       <apex:outputText value="{0,number,###,###,###}" title="{!$Label.AF_LP_Running_Total}">
@@ -583,17 +583,17 @@
                                              <table class="Tile_Grid">
                                                 <thead>
                                                    <tr>
-                                                      <th width="17%">Process</th>
-                                                      <th width="16%">Status</th>
-                                                      <th width="14%">Cross Border PO</th>
-                                                      <th width="7%">Action</th>
+                                                      <th width="17%">{!$Label.AF_Process}</th>
+                                                      <th width="16%">{!$Label.AF_Status}</th>
+                                                      <th width="14%">{!$label.AF_Cross_Border_Po}</th>
+                                                      <th width="7%">{!$label.AF_Action}</th>
                                                    </tr>
                                                 </thead>
                                                 <tbody>
                                                    <tr>
                                                       <td >
                                                          <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="apex/AF_UL_BrandEstimate_Matrices?bId={!Best.Brand__c}&fy={!financialYear}&aId={!Best.AF_Agency__c}&brandvalue={!selectedBrandOption}&category={!categoryNameStr}+'::'+{!CategoryId}&Year={!financialYear}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
-                                                            title="{!$Label.AF_LP_Enter_BF_estimates} {!$Label.AF_LP_Naming_Convention}">Base Fee Matrix</a>
+                                                            title="{!$Label.AF_LP_Enter_BF_estimates} {!$Label.AF_LP_Naming_Convention}">{!$Label.AF_Base_Fee_Matrix}</a>
                                                       </td>
                                                       <td >
                                                          <apex:outputField value="{!best.AF_Status_Base_Fees__c}" rendered="{!IF(best.AF_Status_Base_Fees__c!='With Category Finance','true','false')}"></apex:outputField>
@@ -621,7 +621,7 @@
                                                    <tr>
                                                       <td >
                                                          <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="apex/AF_UL_OOPS_SelectMatrices?bId={!Best.Brand__c}&fy={!financialYear}&aId={!Best.AF_Agency__c}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
-                                                            title="{!$Label.AF_LP_y81a}">OOPS Matrix</a>
+                                                            title="{!$Label.AF_LP_y81a}">{!$Label.AF_OOPS_Matrix}</a>
                                                       </td>
                                                       <td >
                                                          <apex:outputField value="{!best.AF_Status_OOPs_Estimate__c}" rendered="{!IF(best.AF_Status_OOPs_Estimate__c!='with category finance','true','false')}"/>
@@ -646,7 +646,7 @@
                                                       <tr>
                                                          <td>
                                                             <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="/apex/AF_QuarterlyBonus?Brandid={!Best.Brand__c}&Year={!financialYear}&Agencyid={!Best.AF_Agency__c}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
-                                                               title="{!$Label.AF_LP_2nyf}">Bonus Quarterly</a>
+                                                               title="{!$Label.AF_LP_2nyf}">{!$Label.AF_Bonus_Quarterly}</a>
                                                          </td>
                                                          <td>
                                                             <apex:outputField value="{!best.AF_Bonus_Quaterly_Status__c}" rendered="{!!best.AF_Pilot_Model__c}" />
@@ -666,7 +666,7 @@
                                                          <td>
                                                             <apex:outputpanel rendered="{!!Best.AF_No_Bonus__c}">
                                                                <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="apex/AF_middlebonusmatrix?Brandid={!Best.Brand__c}&Year={!financialYear}&Agencyid={!Best.AF_Agency__c}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
-                                                                  title="{!$Label.AF_LP_ey31}">Bonus Matrix</a>
+                                                                  title="{!$Label.AF_LP_ey31}">{!$Label.AF_Bonus_Matrix}</a>
                                                             </apex:outputpanel>
                                                          </td>
                                                          <td>

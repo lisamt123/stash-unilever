@@ -21,6 +21,7 @@ public with sharing class AF_BrandAgencyCombinationController
 	Public boolean showFailure{get; set;}
 	public boolean finalPanel{get;set;}
 	public boolean displayPopup {get; set;}
+	private static string className_STR=AF_BrandAgencyCombinationController.class.getName();
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_BrandAgencyCombinationController
@@ -45,8 +46,8 @@ public with sharing class AF_BrandAgencyCombinationController
 	public List<SelectOption> getBrands()
 	{
 		brandNames= new list<selectoption>();
-		brandNames.add(new selectoption('--None--','--Brand--'));
-		List<AF_Category_Brand__c> brands =[select id,name from AF_Category_Brand__c where RecordType.Name =:'Brand' order by name];
+		brandNames.add(new selectoption(AF_Constants.AF_NONE_DELIM,AF_Constants.AF_BRAND_DELIM));
+		List<AF_Category_Brand__c> brands =[select id,name from AF_Category_Brand__c where RecordType.Name =:AF_Constants.RT_BRAND order by name];
 		for(AF_Category_Brand__c brand:brands)
 		{
 			brandNames.add(new selectoption(brand.id+'::'+brand.name,brand.name));
@@ -62,8 +63,8 @@ public with sharing class AF_BrandAgencyCombinationController
 	public List<SelectOption> getAgencies()
 	{
 		AgencyNames = new List<SelectOption>();
-		AgencyNames.add(new selectoption('--None--','--Agency--'));
-		List<Account> Accounts=[select id,name from account where RecordType.Name =:'Agency Fee']; 
+		AgencyNames.add(new selectoption(AF_Constants.AF_NONE_DELIM,AF_Constants.AF_Agency_DELIM));
+		List<Account> Accounts=[select id,name from account where RecordType.Name =:AF_Constants.RT_AGENCY_FEE]; 
 		for(Account acc:Accounts)
 		{
 			AgencyNames.add(new selectoption(acc.id+'::'+acc.name,acc.name));
@@ -78,13 +79,13 @@ public with sharing class AF_BrandAgencyCombinationController
 *************************************************************************************/
 	public void Save() 
 	{
-		if(selectedoption==Null ||selectedoption == '--None--')
+		if(selectedoption==Null ||selectedoption == AF_Constants.AF_NONE_DELIM)
 		{
-			ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,'The Brand/Please Select Brand'));
+			ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,Label.AF_Select_Brand));
 		}
-		else if(selectedoptionAgency==Null ||selectedoptionAgency == '--None--' )
+		else if(selectedoptionAgency==Null ||selectedoptionAgency == AF_Constants.AF_NONE_DELIM )
 		{
-			ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,'The Agency/Please Select Agency'));
+			ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,Label.AF_Select_Agency));
 		}
 		else
 		{
@@ -100,18 +101,19 @@ public with sharing class AF_BrandAgencyCombinationController
 				try
 				{
 					insert newBrand;
-					ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Confirm,' The Brand/Agency Combination has been successfully created'));
+					ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Confirm,Label.AF_Agency_Brand_Created));
 				}
 				catch(Exception ex)
 				{
-					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog (AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandAgencyCombinationController',
+					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog (AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,
 					'save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+					apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 				}
 			}
 			else
 			{  
 				finalPanel=true;
-				ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'This Brand/Agency Combination already exists,please restart the PO process using the"Raise New PO" button on the home page'));
+				ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Agency_Brand_Exists));
 			} 
 		}  
 	}

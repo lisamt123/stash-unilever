@@ -16,6 +16,7 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 	private Set<id> BrandEstids = new Set<id>();    
 	private List<AF_Agency_Estimate__c> updateAgencyEstimates=new List<AF_Agency_Estimate__c>();
 	private List<AF_Agency_Estimate__c> poReportAgencyEstimates=new List<AF_Agency_Estimate__c>();
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	// Af_AfterInsertBrandEstShare Trigger Logic Ends
 	/***********************************************************************************
 *  @Description: this method is used to query and update the record based on the user type
@@ -215,11 +216,25 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 		// Af_AfterInsertBrandEstShare Trigger Logic Starts
 		If( !updateAgencyEstimates.isEmpty() )
 		{
+			try{
 			update updateAgencyEstimates;
+			}
+			 catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+	        }
 		}
 		If( !poReportAgencyEstimates.isEmpty() )
 		{
+			try{
 			update poReportAgencyEstimates;
+			}
+			 catch(Exception e)
+	        {
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+	        }
 		}
 		if( !BrandEstids.isEmpty() )
 		{
@@ -274,11 +289,25 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 				{
 					if(Trigger.isUpdate && Trigger.isAfter)
 					{
+						try{
 						update agencyEstRecordList;
+						}
+						 catch(Exception e)
+					        {
+					            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addFinallyExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+					            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+					        }
 					}
 					else if(Trigger.isDelete && Trigger.isBefore)
 					{
+						try{
 						delete agencyEstRecordList;
+						}
+						catch(Exception e)
+					        {
+					            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addFinallyExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+					            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
+					        }
 					}
 				}
 			}

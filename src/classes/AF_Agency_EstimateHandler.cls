@@ -35,7 +35,7 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
 	Decimal TradAmount =0.0;
 	Decimal DigitalAmount =0.0;
 	Decimal TDTotal =0.0;
-	Integer trigger_count=0;    
+	Integer trigger_count=0;   
 	public void bulkBefore()
 	{
 		if(Trigger.isDelete){
@@ -268,7 +268,14 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
 				updatedSubResult.add(sub);
 			}
 			if(!updatedSubResult.isEmpty()){
+				try{
 				update updatedSubResult;
+				}
+				catch(Exception e)
+		        {
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'finallySubResultList',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+		        }
 			}
 		}
 	}

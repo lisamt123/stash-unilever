@@ -19,6 +19,7 @@ public with sharing class AF_EditComment
 	public Boolean IsAdd {get;set;}            
 	public Boolean IsDisplayed {get;set;}
 	public String ReturnPageURL {get;set;}
+	private static string className_STR=AF_EditComment.class.getName();
 	/***********************************************************************************
 *  @Description: this method is used to query and edit the comments
 *  @name : AF_EditComment
@@ -46,7 +47,7 @@ public with sharing class AF_EditComment
 *************************************************************************************/  
 	public PageReference SaveComment()
 	{
-		PageReference pageRef = new PageReference('/apex/AF_UL_AgencyMatrix?Id='+ReturnPage);
+		PageReference pageRef = new PageReference(AF_Constants.AGENCY_MATRIX+ReturnPage);
 		pageRef.setRedirect(true);                       
 		try
 		{
@@ -57,10 +58,11 @@ public with sharing class AF_EditComment
 		}
 		catch(Exception ex)
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_EditComment','SaveComment',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SaveComment',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 		}
 		//return pageRef;
-		apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,'Successfully updated'));
+		apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,Label.AF_Updated_successfully));
 		return null;
 	}                    
 	public class CustomException extends Exception {}

@@ -35,45 +35,7 @@
    <!-- Common_Style File Start -->
    <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
    <!-- Common_Style File End -->
-   <script>
-      function redirection()
-      {
-      
-      var brandid='{!brandvalue1}';
-      var catageoryname="{!catageory1}";
-      catageoryname = catageoryname.replace(/ /g,'');
-      catageoryname = catageoryname.replace(/'/g,'');
-      var fyear='{!year1}';
-       if({!isAgency}){
-           var url = '{!$Label.AF_AgencyUrlLink}/apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear;
-           
-           parent.location.assign(url);   
-          }
-       else{
-           parent.location.assign('/apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear);
-       }
-      }
-      
-      function redirectionOnReject(comment)
-      {
-      
-      
-      if(comment!=''){
-      var brandid='{!brandvalue1}';
-      var catageoryname="{!catageory1}";
-      catageoryname = catageoryname.replace(/ /g,'');
-      catageoryname = catageoryname.replace(/'/g,'');
-      var fyear='{!year1}';
-      if({!isAgency}){
-          var url = '{!$Label.AF_AgencyUrlLink}/apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear;
-           parent.location.assign(url);   
-          }
-       else{
-              parent.location.assign('/apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear);
-       }
-      }
-          }
-   </script>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'AF_ApprovalProcessForBrandEstimates.js')}"></script>
    <apex:Pagemessages id="pmg"/>
    <apex:attribute name="ParentRecordValue" type="String" AssignTo="{!ParentId}" Description="The parent record that the component is to work with." />
    <apex:attribute name="brandvalue" type="String" AssignTo="{!brandvalue1}" Description="for return to home page with exact values" />

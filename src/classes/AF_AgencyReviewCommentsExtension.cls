@@ -11,6 +11,7 @@ public with sharing class AF_AgencyReviewCommentsExtension{
 	public AF_Brand_Estimate__c brandEstimate {get; set;}
 	public boolean checkReview {get; set;}
 	public String controllerReviewId{get;set;}
+	private static string className_STR=AF_AgencyReviewCommentsExtension.class.getName();
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_AgencyReviewCommentsExtension
@@ -40,7 +41,7 @@ public with sharing class AF_AgencyReviewCommentsExtension{
 *********************************************************************************************/
 	public PageReference saveControllerReview(){
 		if(checkReview){
-			apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.info,' You cannot edit as its in Approval process');
+			apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.info,Label.AF_Approval_Process);
 			apexpages.addmessage(msg);
 			return null;
 		}
@@ -53,20 +54,20 @@ public with sharing class AF_AgencyReviewCommentsExtension{
 			update brandEstimate.Controller_Reviews__r;
 			//Check if all reviews have been completed
 			if (count == brandEstimate.Controller_Reviews__r.size()){
-				brandEstimate.AF_Status_Base_Fees__c = 'With CMCO';
+				brandEstimate.AF_Status_Base_Fees__c = AF_Constants.BASE_FEES_WIHTCMCO;
 				update brandEstimate;
 				Approval.ProcessSubmitRequest request = new Approval.ProcessSubmitRequest();
 				request.setObjectId(brandEstimate.Id);
-				request.setComments('Submitted for approval. Please approve.');
+				request.setComments(Label.AF_Submitted);
 				request.setNextApproverIds(new ID[]{UserInfo.getUserId()});
 				// submit the approval request for processing
 				Approval.ProcessResult result = Approval.process(request);
 			}
-			apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.Confirm,'Record successfully saved');
+			apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.Confirm,Label.AF_Record_saved);
 			apexpages.addmessage(msg); 
 		}catch(Exception ex){
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AgencyReviewCommentsExtension','saveControllerReview',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
-			apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.Confirm, 'Reviews Complete');
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveControllerReview',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			apexpages.Message msg = new Apexpages.Message(ApexPages.Severity.Confirm, Label.AF_Review_Completed);
 			apexpages.addmessage(msg);  
 		}
 		return null;

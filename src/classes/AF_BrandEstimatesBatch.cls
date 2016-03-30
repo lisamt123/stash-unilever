@@ -10,7 +10,7 @@
 global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<sObject>
 {
 	global final String query;
-	String statusBasefee='Ready for PO';
+	String statusBasefee=AF_Constants.BASE_FEES_READYFORPO;
 	List<AF_Brand_Estimate__c> brandEstimateList=new  List<AF_Brand_Estimate__c>();
 	List<AF_Brand_Estimate__c>  InserBrandEstimates=new List<AF_Brand_Estimate__c>();
 	String Fisyear=string.valueOf(system.now().year()-1); 
@@ -19,6 +19,7 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
 	Map<String,String> brandEstMap = new Map<String,String>();
 	Set<Id> brandEstId=new Set<Id>();
 	list<AF_Brand_Estimate__c > abelist = new list<AF_Brand_Estimate__c >();
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/***********************************************************************************
 *  @Description: this method is start method of the Batch class
 *  @name : start
@@ -49,8 +50,8 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
 			AF_Brand_Estimate__c  abe_new = abe.clone(false,true);
 			abe_new.AF_Fiscal_Year__c = string.valueof(system.today().year());
 			abe_new.Name=abe_new.brand__r.name+'-'+ abe_new.af_agency__r.name +'-Q1-' +abe_new.AF_Fiscal_Year__c;
-			abe_new.AF_Basefee_Estimate_Initial_Quarter__c ='Q1';
-			abe_new.AF_Status_Base_Fees__c = 'Initiate';
+			abe_new.AF_Basefee_Estimate_Initial_Quarter__c =AF_Constants.QUARTER1;
+			abe_new.AF_Status_Base_Fees__c = AF_Constants.BASE_FEES_INITIATE;
 			abe_new.AF_Locked__c  = false;
 			abe_new.AF_Created_By_Batch__c = true;
 			abe_new.AF_Traditional__c = 0;
@@ -86,7 +87,7 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
 							AF_Agency_Estimate__c aecopy = ae.clone(false,true);
 							aecopy.AF_Brand_Estimate__c = br.Id;
 							aecopy.AF_Fiscal_Year__c = string.valueof(system.today().year());
-							aecopy.AF_Quarter__c = 'Q1';
+							aecopy.AF_Quarter__c = AF_Constants.QUARTER1;
 							aecopy.AF_Locked__c = false;
 							agest_list.add(aeCopy);
 						}
@@ -100,8 +101,9 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
 		} 
 		catch(exception ex) 
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog (AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimatesBatch',
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog (AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,
 			'execute',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert));
 		}
 		for(AF_Brand_Estimate__c abe:abelist){
 			if(!abe.AF_Locked__c) {      
@@ -111,7 +113,14 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
 			}
 		} 
 		if(brandEstimateupdate.size() >0) 
+		try{
 		update brandEstimateupdate;  
+		}
+		catch(Exception e)
+		{
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,className_STR,e.getMessage(),e.getTypeName(),e.getStackTraceString());
+			 apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+		}
 	}
 		/********************************************************************************************
 *  @Description: this method is finish method of the Batch class

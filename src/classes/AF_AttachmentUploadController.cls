@@ -9,6 +9,8 @@
   ****************************************************************************************************************************/
 public with sharing class AF_AttachmentUploadController{
 	// Declaration of getters and setters 
+	private static string className_STR=AF_AttachmentUploadController.class.getName();
+	
 	public boolean UploadDocument{get;set;}
 	public boolean CloseButton{get;set;}
 	public List<AF_OOPS_Actual__c> oopsRecord{get;set;}
@@ -62,11 +64,11 @@ public with sharing class AF_AttachmentUploadController{
 		oopsUpdateRecord = new List<AF_OOPS_Actual__c>();
 		if(attachment.ContentType=='')
 		{
-			ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Type is mandatory,Please Select Type'));
+			ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Select_Type));
 		}
 		else if(attachment.description=='')
 		{
-			ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Add Comments is mandatory,Please Enter Description'));
+			ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Add_Comment));
 		}
 		else
 		{
@@ -79,24 +81,31 @@ public with sharing class AF_AttachmentUploadController{
 				AF_Cat_Finance_Action_Q3__c,AF_Cat_Finance_Action_Q4__c,AF_Agency_Action_Q1__c,AF_Agency_Action_Q2__c,AF_Agency_Action_Q3__c,AF_Agency_Action_Q4__c 
 				FROM AF_OOPS_Actual__c where id=:Pid];
 				if(oopsRecord.size()>0){
-					if(quarter=='Q1'){
+					if(quarter==AF_Constants.QUARTER1){
 						oopsRecord[0].AF_Q1_Backup__c = true;
 						oopsUpdateRecord.add(oopsRecord[0]);
 					}
-					else if(quarter=='Q2'){
+					else if(quarter==AF_Constants.QUARTER2){
 						oopsRecord[0].AF_Q2_Backup__c = true;
 						oopsUpdateRecord.add(oopsRecord[0]);
 					}
-					else if(quarter=='Q3'){
+					else if(quarter==AF_Constants.QUARTER3){
 						oopsRecord[0].AF_Q3_Backup__c = true;
 						oopsUpdateRecord.add(oopsRecord[0]);
 					}
-					else if(quarter=='Q4'){
+					else if(quarter==AF_Constants.QUARTER4){
 						oopsRecord[0].AF_Q4_Backup__c = true;
 						oopsUpdateRecord.add(oopsRecord[0]);
 					}
 					if(oopsUpdateRecord.size()>0){
+						try{
 						update oopsUpdateRecord;
+						}
+						 catch(Exception e)
+				        {
+				            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UploadFile',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
+				        }
 					}
 				}
 			}
@@ -105,18 +114,18 @@ public with sharing class AF_AttachmentUploadController{
 				insert attachment;
 				UploadDocument=false;
 				CloseButton=true;
-				ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,'The document has been successfully uploaded'));
+				ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO,Label.AF_Document_Saved));
 			} 
 			catch (Exception e) 
 			{
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AttachmentUploadController','UploadFile',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-				
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UploadFile',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 				// As of now we are able to upload all kind of attachments whoes size is below 5 10mb , will be update the code if we are
 				// not able to upload any kind of files like .htm etc.,
 				String str = e.getMessage();
-				if(str.contains('REQUIRED_FIELD_MISSING'))
+				if(str.contains(AF_Constants.REQUIRED_FIELD_MISSING))
 				{
-					ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Please attach a file and then try to upload'));
+					ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Attach_File));
 				}
 			} 
 			finally 

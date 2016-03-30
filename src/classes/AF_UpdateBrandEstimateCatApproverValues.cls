@@ -39,7 +39,7 @@ public with sharing class AF_UpdateBrandEstimateCatApproverValues
 		{
 			brandMap.put(cb.id,cb.Name);
 		}
-		List<User> users=[select id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c  from  User  where  AF_UserTypeText__c=:'Category Finance'  and IsActive=true  Order by CreatedDate Limit 50000];
+		List<User> users=[select id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c  from  User  where  AF_UserTypeText__c=:AF_Constants.UT_CATEGORY_FINANCE  and IsActive=true  Order by CreatedDate Limit 50000];
 		if(BrandRecords.size()>0)
 		for( AF_Brand_Estimate__c Brandest:BrandRecords)
 		{  
