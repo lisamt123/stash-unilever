@@ -176,9 +176,8 @@ global with sharing class AF_BonusSummaryRemote {
 *************************************************************************************/	
 	public static String processBonusRow(Boolean isValue, AF_Bonus_Matrix__c agSObj, 
 		String aId, String uId, String bId) {
-		String tdCloseTag = '</td>',spacer = ' ';
+		String tdCloseTag = '</td>';
 		rowDetailToReturn = '';
-		String href;
 		if(isValue) {
 			total = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Value__c/1000);
 			totalWithoutRounding = agSObj.AF_Value__c/1000;
@@ -187,9 +186,20 @@ global with sharing class AF_BonusSummaryRemote {
 			totalLocalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Bonus_Local_Value__c);
 			cmntImg =  agSObj.AF_isCommentImage__c != null ? agSObj.AF_isCommentImage__c : '';
 			crsBrdrImg =  agSObj.AF_IsCrossBorderImage__c != null ? agSObj.AF_IsCrossBorderImage__c : '';
-			href = 'apex/af_bonusEstimate?id='+agSObj.Id;
 			currCode = agSObj.AF_BonusMatrixCode__c != null ? agSObj.AF_BonusMatrixCode__c : '';
-			String disptotal = agSObj.AF_Value__c > 0 ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
+			processBonusRowExt(agSObj);
+			rowDetailToReturn += '</div></a>';
+			rowDetailToReturn += tdCloseTag;
+		}
+		return rowDetailToReturn;
+	}
+	
+	public static void processBonusRowExt(AF_Bonus_Matrix__c agSObj){
+		String lBreak = '<br/>';
+		String href;
+		String spacer = ' ';
+		href = 'apex/af_bonusEstimate?id='+agSObj.Id;
+		String disptotal = agSObj.AF_Value__c > 0 ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
 			String dispLocalTotal = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocal) : '';
 			String disptotalA = agSObj.AF_Value__c > 0 ? AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormattedDecimal(totalA) : '';
 			String dispLocalTotalA = agSObj.AF_Bonus_Local_Value__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocalA) : '';
@@ -203,15 +213,6 @@ global with sharing class AF_BonusSummaryRemote {
 			rowDetailToReturn += ' e=\"' + disptotal + '\"';
 			rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';
 			rowDetailToReturn += ' class=\"modalButton3\">';
-			processBonusRowExt();
-			rowDetailToReturn += '</div></a>';
-			rowDetailToReturn += tdCloseTag;
-		}
-		return rowDetailToReturn;
-	}
-	
-	public static void processBonusRowExt(){
-		String lBreak = '<br/>';
 		if(total != 0) {
 				rowDetailToReturn += '<div style=float:left;>' + crsBrdrImg + '<br/>' + cmntImg;
 				rowDetailToReturn += '</div><div align=\"center\">' + AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormatted(total);
