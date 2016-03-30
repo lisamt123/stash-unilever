@@ -35,3 +35,5 @@ src/permissionsets/Conference_App_Admin.permissionset
 src/permissionsets/Conference_App_User.permissionset
 src/quickActions
 src/quickActions/CFC_Events__c.Attend.quickAction
+src/tabs
+src/tabs/Conferences.tab
