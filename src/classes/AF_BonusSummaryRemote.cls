@@ -194,17 +194,7 @@ global with sharing class AF_BonusSummaryRemote {
 			rowDetailToReturn += ' e=\"' + disptotal + '\"';
 			rowDetailToReturn += ' l=\"' + dispLocalTotal + '\"';
 			rowDetailToReturn += ' class=\"modalButton3\">';
-			if(total != 0) {
-				rowDetailToReturn += '<div style=float:left;>' + crsBrdrImg + '<br/>' + cmntImg;
-				rowDetailToReturn += '</div><div align=\"center\">' + AF_Constants.AF_CURRENCY_EUR + ' ' + AF_BrandEstimateRemote.currencyFormatted(total);
-				rowDetailToReturn = totalA != totalLocalA ? rowDetailToReturn + lBreak + currCode + ' ' + AF_BrandEstimateRemote.currencyFormatted(totalLocal) : rowDetailToReturn;
-			} else if(totalWithoutRounding > 0 && totalWithoutRounding <= 499){
-				rowDetailToReturn += '<div style=float:left;>' + crsBrdrImg + '<br/>' + cmntImg;
-				rowDetailToReturn += '</div><div align=\"center\">' + AF_Constants.AF_CURRENCY_EUR + ' 0';
-				rowDetailToReturn = totalA != totalLocalA ? rowDetailToReturn + lBreak + currCode + ' ' + AF_BrandEstimateRemote.currencyFormatted(totalLocal) : rowDetailToReturn;
-			}else {
-				rowDetailToReturn += cmntImg;
-			}
+			
 			rowDetailToReturn += '</div></a>';
 			rowDetailToReturn += tdCloseTag;
 		}
