@@ -17,7 +17,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_BOSSCARD_Archival_Mail_Alert</template>
     </alerts>
     <alerts>
@@ -27,18 +27,8 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_template_to_Notify_Auto_Deletion_of_Bosscard_after_6_months_of_inactivity2</template>
-    </alerts>
-    <alerts>
-        <fullName>IPM_Email_to_Notify_Bosscard_In_Activity_for_30_Day</fullName>
-        <description>IPM Email to Notify Bosscard In-Activity for 30 Day</description>
-        <protected>false</protected>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>IPM_Emails/IPM_Email_template_to_Notify_Bosscard_In_Activity_for_30_Day</template>
     </alerts>
     <fieldUpdates>
         <fullName>IPM_BOSSCARD_Archival_Update</fullName>

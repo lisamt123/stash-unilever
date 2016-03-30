@@ -9,7 +9,7 @@
 
 
 <apex:component controller="IPM_RolloutPlansTableController" allowDML="true"> 
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_EditProject.css')}"/>  
+     
 
     <apex:outputPanel rendered="{!isError}">
         <div class="finGreyBG">
@@ -132,14 +132,14 @@
                                             
                                         </th>
                                         <th scope="col" width="180px" colspan="1">
-                                        	<apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                	<apex:image styleClass="rounded" url="{!regionalProject.IPM_Project_Leader__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                                    <apex:image styleClass="rounded" url="{!regionalProject.IPM_Project_Leader__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
                                             <apex:outputField value="{!regionalProject.IPM_Project_Leader__c}"/>
                                         </th>
                                         <th scope="col" width="120px" colspan="1">
-                                        	<apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                	<apex:image styleClass="rounded" url="{!regionalProject.IPM_Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                                    <apex:image styleClass="rounded" url="{!regionalProject.IPM_Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
                                             <apex:outputField value="{!regionalProject.IPM_Finance_Member__c}"/>
                                         </th>
@@ -178,6 +178,7 @@
                                             <td scope="col" width="60px">
                                                 <div class="incHeight">              
                                                     <span class="key wordwrap">
+                                                    <!-- This render condition will check if rollout is keyMCO and local project is null and project phase is ideas -->
                                                         <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(localRollout.KeyMCO__c,localRollout.Local_Project__c == null,project.IPM_Phase__c=='Ideas')}"/>
                                                     </span>
                                                 </div>
@@ -192,19 +193,19 @@
                                                 <apex:outputField value="{!localRollout.IPM_Status__c}"/>
                                             </td>
                                             <td scope="col" width="180px">
-                                            	
-                                            	<apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                	<apex:image styleClass="rounded" url="{!localRollout.IPM_Regional_PL__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
-                                           		</apex:outputPanel>
-                                           		
+                                                
+                                                <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                                    <apex:image styleClass="rounded" url="{!localRollout.IPM_Regional_PL__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                                </apex:outputPanel>
+                                                
                                                 <apex:outputField value="{!localRollout.IPM_Regional_PL__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>
                                             <td scope="col" width="120px">
-                                            	
-                                            	<apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
-                                                	<apex:image styleClass="rounded" url="{!localRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
-                                           		</apex:outputPanel>
-                                            	
+                                                
+                                                <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                                    <apex:image styleClass="rounded" url="{!localRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                                </apex:outputPanel>
+                                                
                                                 <apex:outputField value="{!localRollout.Finance_Member__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>                
                                         </tr>                                    
@@ -284,7 +285,7 @@
                                             </apex:outputPanel>
                                         </th>
                                         
-                                        <th scope="col" width="120px" colspan="1"> 
+                                        <th scope="col" width="130px" colspan="1"> 
                                             <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
                                                 <apex:image styleClass="rounded" url="{!regionalRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
@@ -339,6 +340,7 @@
                                                 </div>
                                             </td>
                                             <td scope="col" width="100px">
+                                            	<!-- This render condition will check if rollout is eidtable and edit mode and rollout status is leader -->
                                                 <apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), false, true)}"/>
                                                 <apex:inputField value="{!lstcompleteRollout[localRolloutId].IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), true, false)}"/>
                                             </td>
@@ -346,7 +348,7 @@
                                                 <div class="incHeight">
                                                 </div>
                                             </td>
-                                            <td scope="col" width="120px">
+                                            <td scope="col" width="130px">
                                                 <div>
                                                 </div>
                                             </td>                
@@ -479,43 +481,4 @@
             </div>
         </div>
     </div>
-<script>
-    function deleteRcountries() {
-        var title = jq('.delrout').attr('value');
-        jq('#deleteRcountry').modal({
-            show: true,
-            keyboard: false,
-            backdrop: 'static'
-        });
-        jq('#deleteRcountry .modal-title').html(title);
-        <!--jq('#deleteRcountry .confirmdelrollout').attr('data-result', str);-->
-        jq('#deleteRcountry .modal-dialog').width('600px');
-        jq('#deleteRcountry .modal-dialog').height('170px');
-        jq('#deleteRcountry .modal-dialog').css({
-            'margin-top': '10%',
-            'z-index': '999'
-        });
-        jq(".confirmdelrollout").addClass("removerollout");
-    }
-    function TLDDateCheck(param){
-        var newTLDValue = param.value;
-        tldOrignalValue = param.defaultValue;
-        selectedDateField = param;
-        if(newTLDValue != tldOrignalValue){
-            jq('#tldWarningDialog').modal('show'); 
-            return false;
-        }
-        return true;
-    }
-    function revertTLDValue(){
-        selectedDateField.value = tldOrignalValue;
-    }
-    function hideTldWarningDialog(){
-        jq('#tldWarningDialog').modal('hide'); 
-    }
-    var tldOrignalValue = "";
-    var selectedDateField = "";
- 
-  
-</script>
 </apex:component>

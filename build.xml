@@ -137,6 +137,32 @@
   </target>
   <target name="validateIPM" depends="validateNoTests"/>
   <!-- ***************************************************************************** -->
+  <!-- Validate the  set of Clarity Approvals meta-data before deployment with few Test Classes      -->
+  <!-- ***************************************************************************** -->
+  <target name="validateCA">
+    <echo level="info">Testing the deployment of Clarity Approvals</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      testLevel="RunSpecifiedTests"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="src"
+      pollWaitMillis="${sfdc.pollWaitMillis}"
+      maxPoll="${sfdc.maxPoll}">
+          <runTest>Core_CA_Approve_Reject_Test</runTest>
+          <runTest>Core_CA_BaseApplicationServicesTest</runTest>
+          <runTest>Core_CA_BaseServiceException_Test</runTest>
+          <runTest>CORE_CA_ReminderAlert_Batch_Test</runTest>
+          <runTest>Core_CA_RemoteServiceCallControllerTest</runTest>
+          <runTest>Core_CA_Test</runTest>
+          <runTest>Core_CA_Test_MobileAPP</runTest>
+    </sf:deploy>
+  </target>  
+  <!-- ***************************************************************************** -->
   <!-- Validate the  set of IPM NG meta-data before deployment with few Test Classes      -->
   <!-- ***************************************************************************** -->
   <target name="validateIPMTest1">
