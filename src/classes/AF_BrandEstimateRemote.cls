@@ -19,6 +19,13 @@ global with sharing class AF_BrandEstimateRemote {
 	static Map<String, AF_Entity__c> agencyNameMap = new Map<String, AF_Entity__c>();
 	static Map<String, String> ulNameMap = new Map<String, String>();
 	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
+	static String rowDetailToReturn;
+	static Integer total;
+	static String crsBrdrImg;
+	static String cmntImg;
+	static String currCode;
+	static Integer totalLocal;
+	static Decimal totalWithoutRounding;
     public AF_BrandEstimateRemote(ApexPages.StandardController stdController) {
         
     }
@@ -221,15 +228,15 @@ global with sharing class AF_BrandEstimateRemote {
 *************************************************************************/  
     public static String processAgencyRow(Boolean isValue, AF_Agency_Estimate__c agSObj, 
                                           String aId, String uId, String bId) {
-        String tdCloseTag = '</td>',Space = ' ', lBreak = '<br/>', euro = 'EUR';
-        String rowDetailToReturn = '';
+        String tdCloseTag = '</td>',Space = ' ',euro = 'EUR';
+        rowDetailToReturn = '';
          String href;
         if(isValue) {
-            String currCode = agSObj.Matrix_Currency_Code__c != null ? agSObj.Matrix_Currency_Code__c : '';
-            Integer total = truncateDecimal(agSObj.AF_Total__c/1000);
+            currCode = agSObj.Matrix_Currency_Code__c != null ? agSObj.Matrix_Currency_Code__c : '';
+            total = truncateDecimal(agSObj.AF_Total__c/1000);
             Integer totalA = truncateDecimal(agSObj.AF_Total__c);
-            Decimal totalWithoutRounding = agSObj.AF_Total__c/1000;
-            Integer totalLocal = truncateDecimal(agSObj.AF_Total_Local__c/1000);
+            totalWithoutRounding = agSObj.AF_Total__c/1000;
+            totalLocal = truncateDecimal(agSObj.AF_Total_Local__c/1000);
             Integer totalLocalA = truncateDecimal(agSObj.AF_Total_Local__c);
             Integer traditionalK =  agSObj.AF_Traditional__c != null ? truncateDecimal(agSObj.AF_Traditional__c/1000) : 0;
             Integer adaptationK =  agSObj.AF_Adaptation__c != null ? truncateDecimal(agSObj.AF_Adaptation__c/1000) : 0; 
@@ -265,8 +272,8 @@ global with sharing class AF_BrandEstimateRemote {
             String dispTraditionalLocalK = traditionalLocalA > 0 ? '/' + currCode + space + currencyFormattedDecimal(traditionalLocalK) : '/' + space;
             String dispAdaptationLocalK = adaptationLocalA > 0 ? '/' + currCode + space + currencyFormattedDecimal(adaptationLocalK) : '/' + space;
             href = 'apex/af_agencyestimate?id='+agSObj.Id;
-            String cmntImg =  agSObj.AF_isCommentImage__c != null ? agSObj.AF_isCommentImage__c : '';
-            String crsBrdrImg =  agSObj.AF_IsCrossBorderImage__c != null ? agSObj.AF_IsCrossBorderImage__c : '';
+            cmntImg =  agSObj.AF_isCommentImage__c != null ? agSObj.AF_isCommentImage__c : '';
+            crsBrdrImg =  agSObj.AF_IsCrossBorderImage__c != null ? agSObj.AF_IsCrossBorderImage__c : '';
             String dispTotal = totalA > 0 ? euro + space + currencyFormatted(total) : '';
             String dispLocalTotal = totalLocalA > 0 ? currCode + space + currencyFormatted(totalLocal) : '';
             rowDetailToReturn += '<td title=\"\" class=\"details-control\" t=\"' + dispTraditional + dispTraditionalLocal;
@@ -282,14 +289,28 @@ global with sharing class AF_BrandEstimateRemote {
             rowDetailToReturn += 'data-target=\"#myModal3\"';
             rowDetailToReturn += ' e=\"' + dispTotal + '\" l=\"' + dispLocalTotal + '\"';
             rowDetailToReturn += ' class=\"modalButton3\">';
-            
-            
+            processAgencyRowExt(agSObj);			        
             rowDetailToReturn += '</div></a>';
             rowDetailToReturn += tdCloseTag;
         }
 
         return rowDetailToReturn;
     }
+	
+	public static void processAgencyRowExt(AF_Agency_Estimate__c agSObj){
+		String lBreak = '<br/>';
+		if(total != 0) {
+                rowDetailToReturn += '<div class="imageHolder" style=\"float:left;height:100%\">' + crsBrdrImg + cmntImg;
+                rowDetailToReturn += '</div><div>' + AF_Constants.AF_CURRENCY_EUR1  + currencyFormatted(total);
+                rowDetailToReturn = agSObj.AF_Total__c != agSObj.AF_Total_Local__c ? rowDetailToReturn + lBreak + currCode + ' ' + currencyFormatted(totalLocal) : rowDetailToReturn;
+            } else if(totalWithoutRounding > 0 && totalWithoutRounding <= 499){
+                rowDetailToReturn += '<div style=\"float:left;height:100%\">' + crsBrdrImg + '<br/>' + cmntImg;
+                rowDetailToReturn += '</div><div>' + 'EUR 0';
+                rowDetailToReturn = agSObj.AF_Total__c != agSObj.AF_Total_Local__c ? rowDetailToReturn + lBreak + currCode + ' ' + currencyFormatted(totalLocal) : rowDetailToReturn;
+            } else {
+                rowDetailToReturn += cmntImg != null ? cmntImg : ' ';
+            }
+	}
     
     public static Map<String, String> getAgencyEntitiesFromName(Set<String> agencyNames, String agencyId) {
         
