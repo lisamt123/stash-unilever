@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>All WU Warehouse system configuration settings e.g. POC Profile</description>
+    <fields>
+        <fullName>Warehouse_ManagerProfiles__c</fullName>
+        <description>manager profiles</description>
+        <label>Warehouse ManagerProfiles</label>
+        <length>255</length>
+        <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Warehouse_Profiles__c</fullName>
+        <description>Warehouse POC will be the owner who will manage the capacity utilization data for warehouse</description>
+        <label>Warehouse Profiles</label>
+        <length>255</length>
+        <type>Text</type>
+    </fields>
+    <label>WU WMS Configurations</label>
+</CustomObject>

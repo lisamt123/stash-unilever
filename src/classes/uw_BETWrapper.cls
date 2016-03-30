@@ -11,26 +11,26 @@ application
 History
 -------
 VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
-1.0 -   Maciej Krol         	26/11/2014     	INITIAL DEVELOPMENT
+1.0 -   Maciej Krol             26/11/2014      INITIAL DEVELOPMENT
 1.1 -   Piotr Czechumski        10/09/2015      Add to BetSearchItem fields Group category, category, brand position, brand
 **********************************************************************/
 
 /*******************************************************************
-	Purpose: Main wrapper class which is returend for all RemoteActions executed
-	in Bet application on home page 
-	********************************************************************/
+    Purpose: Main wrapper class which is returend for all RemoteActions executed
+    in Bet application on home page 
+    ********************************************************************/
 public with sharing class uw_BETWrapper {
-	public String message=null;
+    public String message=null;
     public String status=null;
     public Map<String, Object> data=null;
     public String error=null;   
 
-	public uw_BETWrapper(String cMessage, String cStatus, Map<String, Object> cData, String cError) {
-		this.message = cMessage;
+    public uw_BETWrapper(String cMessage, String cStatus, Map<String, Object> cData, String cError) {
+        this.message = cMessage;
         this.status = cStatus;
         this.data = cData;
         this.error = cError;
-	}
+    }
 
     /*******************************************************************
     Purpose: Sub class which is a wrapper used in search method is placeholder
@@ -211,10 +211,10 @@ public with sharing class uw_BETWrapper {
         }
     }
 
-	/*******************************************************************
-	Purpose: Sub class which is a wrapper used in getBET method and 
+    /*******************************************************************
+    Purpose: Sub class which is a wrapper used in getBET method and 
     is responsible for presenting data for single BET record
-	********************************************************************/
+    ********************************************************************/
     public class BetSearchItem{
         public String betId;
         public String betName;
@@ -252,6 +252,7 @@ public with sharing class uw_BETWrapper {
         public String betIconLocation; 
         public Datetime betLaunchDate;
         public String betOwnerId;
+        public String betVisibility;
 
 
         public String groupCategory;
@@ -284,20 +285,20 @@ public with sharing class uw_BETWrapper {
             
             this.betId = betId;
             this.betName = betName;
-        	this.betDescription = betDescription;
-        	this.betBrandName = betBrandName;
-        	this.betRegion = betRegion; 
-        	this.betProjectName = betProjectName;
+            this.betDescription = betDescription;
+            this.betBrandName = betBrandName;
+            this.betRegion = betRegion; 
+            this.betProjectName = betProjectName;
             this.betIPMProjectName = betIPMProjectName;
             if(!String.isBlank(this.betIPMProjectName)){
                 this.betProjectName = this.betIPMProjectName;
             }
-        	this.betStatus = betStatus;
-        	this.betLastUpdated = betLastUpdated;
-        	this.betActive = betActive;
-        	this.betHasAccess = betHasAccess;  
-        	this.betOwner = betOwner;     
-            this.betOwnerName = betOwnerName; 	
+            this.betStatus = betStatus;
+            this.betLastUpdated = betLastUpdated;
+            this.betActive = betActive;
+            this.betHasAccess = betHasAccess;  
+            this.betOwner = betOwner;     
+            this.betOwnerName = betOwnerName;   
             this.betBrandKeyword = betBrandKeyword;
             this.betCategoryKeyword = betCategoryKeyword;
             this.betOwnerKeyword = betOwnerKeyword;
@@ -321,6 +322,7 @@ public with sharing class uw_BETWrapper {
             this.betProjectId = bet.Inoplan_Project__c;
             this.betIPMProjectName = String.isBlank(bet.IPM_Project__r.Name) ? bet.Inoplan_Project_Keyword_Search__c : bet.IPM_Project__r.Name;
             this.betIPMProjectId = bet.IPM_Project__c;
+            this.betVisibility=bet.sharing__C;
             if(!String.isBlank(this.betIPMProjectId)){
                 this.betProjectName = this.betIPMProjectName;
             }
