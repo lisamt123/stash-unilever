@@ -98,10 +98,10 @@ public with sharing class IPM_ProjectTriggerHandler
             }
                
                     
-            if(projideset != null && projideset.size()>0)
+            if(projideset != null && !projideset.isEmpty())
             {
                 projectmap = new Map<id,IPM_Project__c>([select id from IPM_Project__c where Id IN: projideset]);
-                if(projectmap != null && projectmap.size()>0)
+                if(projectmap != null && !projectmap.isEmpty())
                 {  
                     IPM_GroupManagement.groupmemberupdate(projectmap.keyset());  
                 }  
@@ -139,7 +139,7 @@ public with sharing class IPM_ProjectTriggerHandler
             }
 
         }
-        if(projideset != null && projideset.size()>0)
+        if(projideset != null && !projideset.isEmpty())
         {
             IPM_GroupManagement.queueCreation(projideset); 
         }

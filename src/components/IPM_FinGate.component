@@ -83,22 +83,27 @@
             <tr>
                 <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
                 <td class="fintleblubg">
+                	<!-- Condition for checking consolidated financial or not -->
                     <apex:outputText rendered="{!NOT(isConsolidated)}">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputField value="{!currentFinancial.Volume_Unit_Global__c}"/>
                         </apex:outputPanel>
     
                         <!-- Regional Values -->
+                         <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputField value="{!currentFinancial.Volume_Unit_Regional__c}"/>
                         </apex:outputPanel>
     
                         <!-- Local Values -->
+                         <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputField value="{!currentFinancial.Volume_Unit_Local__c}"/>
                         </apex:outputPanel>
                     </apex:outputText>
+                    <!-- Condition for checking consolidated financial or not -->
                     <apex:outputText rendered="{!isConsolidated}">
                         {!$Label.IPM_TOTAL_UNITS}
                     </apex:outputText>
@@ -130,6 +135,7 @@
             </tr>
 
             <!-- Volume Tons -->
+            <!-- Condition for checking consolidated financial or not -->
             <apex:outputText rendered="{!isConsolidated}">
                 <tr>
                     <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
@@ -337,6 +343,7 @@
                     <td width="30%" class="fintleblubg">&euro; &#39;000</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.NPV_Global__c}" />
@@ -344,6 +351,7 @@
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.NPV_Regional__c}" />
@@ -351,6 +359,7 @@
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.NPV_Local__c}" />
@@ -363,16 +372,19 @@
                     <td width="30%" class="fintleblubg">{!$Label.IPM_PERCENTAGE}</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{!currentFinancial.IRR_Global__c}"/>
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{!currentFinancial.IRR_Regional__c}"/>
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{!currentFinancial.IRR_Local__c}"/>
                         </apex:outputPanel>
@@ -383,6 +395,7 @@
                     <td width="30%" class="fintleblubg">{!$Label.IPM_Fin_Years}</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.Payback_Global__c}" />
@@ -390,6 +403,7 @@
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.Payback_Regional__c}" />
@@ -397,6 +411,7 @@
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.Payback_Local__c}" />
@@ -414,6 +429,7 @@
                     <td width="30%" class="fintleblubg">&euro; &#39;000</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.CAPEX_Global__c}" />
@@ -421,6 +437,7 @@
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.CAPEX_Regional__c}" />
@@ -428,6 +445,7 @@
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.CAPEX_Local__c}" />
@@ -440,6 +458,7 @@
                     <td width="30%" class="fintleblubg">&euro; &#39;000</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.BIC_Global__c}" />
@@ -447,6 +466,7 @@
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.BIC_Regional__c}" />
@@ -454,6 +474,7 @@
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.BIC_Local__c}" />
@@ -470,6 +491,7 @@
                     <td width="70%" class="finproject fintleblubg">{!$Label.ipmFinSummaryGMbps}</td>
                     <td width="30%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Global__c}" />
@@ -477,6 +499,7 @@
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Regional__c}" />
@@ -484,6 +507,7 @@
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Local__c}" />
@@ -495,6 +519,7 @@
                     <td width="50%" class="finproject fintleblubg">{!$Label.ipmFinSummaryPBObps}</td>
                     <td width="50%" class="blueBorder">
                         <!-- Global Values -->
+                        <!-- Condition for checking field suffix is global or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Global__c}" />
@@ -502,6 +527,7 @@
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Regional__c}" />
@@ -509,6 +535,7 @@
                         </apex:outputPanel>
 
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Local__c}" />
@@ -585,22 +612,27 @@
             <tr>
                 <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
                 <td class="fintleblubg">
+                <!-- Condition for checking consolidated financial or not -->
                     <apex:outputText rendered="{!NOT(isConsolidated)}">
+                    <!-- Condition for checking field suffix is global or not -->
                         <!-- Global Values -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputField value="{!currentFinancial.Volume_Unit_Global__c}"/>
                         </apex:outputPanel>
     
                         <!-- Regional Values -->
+                        <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
                             <apex:outputField value="{!currentFinancial.Volume_Unit_Regional__c}"/>
                         </apex:outputPanel>
     
                         <!-- Local Values -->
+                        <!-- Condition for checking field suffix is local or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Local',TRUE,FALSE)}">
                             <apex:outputField value="{!currentFinancial.Volume_Unit_Local__c}"/>
                         </apex:outputPanel>
                     </apex:outputText>
+                     <!-- Condition for checking consolidated financial or not -->
                     <apex:outputText rendered="{!isConsolidated}">
                         {!$Label.IPM_TOTAL_UNITS}
                     </apex:outputText>
@@ -629,6 +661,7 @@
             </tr>
 
             <!-- Volume Tons -->
+             <!-- Condition for checking consolidated financial or not -->
             <apex:outputText rendered="{!isConsolidated}">
                 <tr>
                     <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
