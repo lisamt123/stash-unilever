@@ -14,9 +14,7 @@ src/classes/Core_NC_NewsWrapperClass.cls
 src/classes/Core_NC_NewsWrapperClass.cls-meta.xml
 src/aura
 src/aura/CORE_NC_ChatterShareComponent
-src/aura/CORE_NC_FilterComponent
-src/aura/CORE_NC_Share
-src/aura/CORE_NC_SwitchingBase
-src/aura/Core_NC_NewsDetail
-src/aura/Core_NC_NewsList
-src/aura/Core_NC_PaulsBlogList
+src/aura/CORE_NC_ChatterShareComponent/CORE_NC_ChatterShareComponent.cmp
+src/aura/CORE_NC_ChatterShareComponent/CORE_NC_ChatterShareComponent.cmp-meta.xml
+src/aura/CORE_NC_ChatterShareComponent/CORE_NC_ChatterShareComponent.css
+src/aura/CORE_NC_ChatterShareComponent/CORE_NC_ChatterShareComponentController.js
