@@ -177,9 +177,9 @@ global with sharing class AA_ExecuteApprovalProcess{
          AgentReportDisplay = new aa_Agent_Report__c();
          AgentReportDisplay = AgentReportObj ;
         if(AgentReportObj.Approve_Reject__c=='Approve' || AgentReportObj.Approve_Reject__c=='Reject' || AgentReportObj.status__c=='Published (Public)' || AgentReportObj.status__c=='Published (Private)' ){
-           
+           //system.debug('Record already approved or rejected can not reassign');
              
-        }else{
+        } else{
            
            List<QueueSobject> queues=[Select q.SobjectType, q.QueueId, q.Id ,q.Queue.Name From QueueSobject q where q.SobjectType ='aa_agent_report__c'];
            Map<string,string> queueID=new Map<string,string>();
