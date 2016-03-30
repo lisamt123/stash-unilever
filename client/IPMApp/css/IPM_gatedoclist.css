@@ -1,6 +1,0 @@
-	.oldGDList{margin: 10px 0;}
-	.oldDoc{border-bottom:1px #ddd solid;padding:10px;font-weight:bold;color:#007DBB; font-size: 0.8em;}
-	.oldGDList .oldDoc:nth-child(even){background:#f8f8f8;}
-	.icoButton.document{float:left;display: inline-block; width: 15px;cursor: text;height: 30px;position: relative; background: url(../images/icon-document.svg) no-repeat 50% 50%;  margin-top: -8px;margin-right: 10px;}
-	.noDataMsg{background: #E8E8E8;  color: #374454;  display: block;  padding: 10px;  text-align: center; border-radius: 4px;  font-size: 1em; margin-top: 20px;  margin-bottom: 20px;}
-	.pull-right{float:right;}

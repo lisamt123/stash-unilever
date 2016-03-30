@@ -1,8 +1,0 @@
-.question-icon, .question-icon-left {
-        	display: inline-block;
-        	width: 13px;
-        	height: 13px;
-        	margin-left: 5px;
-        	background: url(../images/question-mark.png) center center/100% no-repeat;
-        	cursor: pointer;
-}

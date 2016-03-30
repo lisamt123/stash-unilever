@@ -1,3 +1,0 @@
-Account a = new Account();
-a.Name='VelumaniTest44';
-insert a;
