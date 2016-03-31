@@ -133,23 +133,8 @@ public with sharing class AF_AgencyHomePageController {
             selectedBrandValue=Selectbrandval_url;
             selectedBrandOption=Selectbrandval_url;
         }
-        if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
-            isAgencyFlag=true;
-            for(AF_isBonusLinkForAgency__c bonusObj : AF_isBonusLinkForAgency__c.getAll().values()){
-                if(bonusObj.Bonus_Date__c<=Date.Today() && bonusObj.Name==AF_Constants.QUARTERLY_BONUS_REC_TYPE){
-                    isBonusQuartFlag=true;
-                }if(bonusObj.Bonus_Date__c<=Date.Today() && bonusObj.Name==AF_Constants.ANNUAL_BONUS_REC_TYPE){
-                    isBonusYearFlag=true;
-                }
-            }
-        }else if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER){
-            isCMCOSuperFlag=true;
-        }else if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE|| userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE || userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER){
-            isNonCMCONFinFlag=true;
-        }
-        if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER){
-            IsCMCOFinance = true;
-        }
+		checkLoggedUserType(userObj);
+        
         //Iterate each record to display it as Picklist values
         for(AF_Category_Brand__c catBrandObj: [select Id, Name,AF_Super_category__c from AF_Category_Brand__c where recordType.Name=:AF_Constants.RT_CATEGORY AND Name IN :categoryList order by Name asc]){
             if(catBrandObj.Name == AF_Constants.TEST_CATEGORYNAME){
@@ -232,6 +217,26 @@ public with sharing class AF_AgencyHomePageController {
             else if(permissionSetName==AF_Constants.PERM_FINANCE_REG_CAT){
                 IsCatFinanceRegional=true;
             }
+        }
+	}
+	
+	public void checkLoggedUserType(User userObj){
+		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
+            isAgencyFlag=true;
+            for(AF_isBonusLinkForAgency__c bonusObj : AF_isBonusLinkForAgency__c.getAll().values()){
+                if(bonusObj.Bonus_Date__c<=Date.Today() && bonusObj.Name==AF_Constants.QUARTERLY_BONUS_REC_TYPE){
+                    isBonusQuartFlag=true;
+                }if(bonusObj.Bonus_Date__c<=Date.Today() && bonusObj.Name==AF_Constants.ANNUAL_BONUS_REC_TYPE){
+                    isBonusYearFlag=true;
+                }
+            }
+        }else if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCP_SUPERUSER){
+            isCMCOSuperFlag=true;
+        }else if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE|| userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER || userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_REGIONAL_CATEGORY_FINANCE || userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_PROCUREMENT || userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER){
+            isNonCMCONFinFlag=true;
+        }
+        if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CMCO_USER){
+            IsCMCOFinance = true;
         }
 	}
     /***********************************************************************************
