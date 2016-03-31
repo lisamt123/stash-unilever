@@ -7,6 +7,7 @@ History
 
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  28-09-2015  Initial
+1.1        blessy.voola@accenture.com 24-Mar-2016    Do not send notification to inactive BET owner
 *************************************************************************************/
 /* Helper class takes sharing settings from its 'parent' */
 public class BET_BETChangesLogger {
@@ -46,7 +47,7 @@ public class BET_BETChangesLogger {
     Returns: -
     Throws: -
   *************************************************************/
-  public void logChanges(){	
+  public void logChanges(){ 
     Map<Id, List<String>> feedsMap = fillFeeds();
     if(!feedsMap.isEmpty()){
       BET_BETHandlerClsHelper.insertFeeds(feedsMap);
@@ -106,13 +107,13 @@ public class BET_BETChangesLogger {
   *************************************************************/
   private List<String> addDifferences(uw_BET__c oldRecord,uw_BET__c newRecord ){
     List<String> diffs = new List<String>();
-	  addBETDifferences(oldRecord,newRecord,diffs);
-	  addCategoryBrandDifferences(oldRecord,newRecord,diffs);
+      addBETDifferences(oldRecord,newRecord,diffs);
+      addCategoryBrandDifferences(oldRecord,newRecord,diffs);
     return diffs;
   }
   
   private void addBETDifferences(uw_BET__c oldRecord,uw_BET__c newRecord,List<String> diffs){
-  	if(oldRecord.Status__c != newRecord.Status__c){
+    if(oldRecord.Status__c != newRecord.Status__c){
       diffs.add(BET_STATUS_CHANGED+oldRecord.Status__c+BET_TO+newRecord.Status__c);
     }
 
@@ -127,6 +128,9 @@ public class BET_BETChangesLogger {
       } else {
         diffs.add(PROJECT_TXT+projectsMap.get(newRecord.IPM_Project__c)+LEAD_PROJECT+newRecord.name);
         IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(newRecord.IPM_Project__c);
+        //Do not send notification if BET owner is inactive
+        User owner=[select id,isactive from User where id=:newRecord.ownerid];
+        if(owner.isactive)
         BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(newRecord,project); 
       }
     }
@@ -145,7 +149,7 @@ public class BET_BETChangesLogger {
   }
   
   private void addCategoryBrandDifferences(uw_BET__c oldRecord,uw_BET__c newRecord,List<String> diffs){
-  	if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
+    if(oldRecord.Category_Group__c != newRecord.Category_Group__c){
       diffs.add(BET_CATEGORY_GROUP_CHANGED+categoryGroupsMap.get(oldRecord.Category_Group__c)+BET_TO+categoryGroupsMap.get(newRecord.Category_Group__c));
     }
 
