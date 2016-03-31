@@ -40685,6 +40685,10 @@
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>Agent_App</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Article__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
