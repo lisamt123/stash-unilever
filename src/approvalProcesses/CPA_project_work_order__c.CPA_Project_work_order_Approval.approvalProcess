@@ -176,6 +176,10 @@
                 <type>FieldUpdate</type>
             </action>
             <action>
+                <name>CPA_Record_type_CPA_TNF</name>
+                <type>FieldUpdate</type>
+            </action>
+            <action>
                 <name>CPA_Termination_Notification_Form_Return</name>
                 <type>FieldUpdate</type>
             </action>
