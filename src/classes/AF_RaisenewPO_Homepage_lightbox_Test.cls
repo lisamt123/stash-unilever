@@ -16,6 +16,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
 	private static String BrandName;
 	private static string selectedQuarters;
 	private String selectedId;
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : raisenewPO_Homepage_lightbox
@@ -236,6 +237,7 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
 				delete AgencyEsitmate;
 			}
 			catch(Exception e){
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_RaisenewPO_Homepage_lightbox1',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 			}        
 			List<AF_Currency__c> AFCurrency = AF_TestFactory_Helper.insertAFcurrencyList(1,true);
 			List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c LIMIT 1];

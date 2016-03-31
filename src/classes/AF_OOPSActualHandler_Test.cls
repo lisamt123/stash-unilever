@@ -12,6 +12,7 @@ public class AF_OOPSActualHandler_Test
 	Static Integer IcurrYear = System.Today().year();
 	Static string currYear=string.valueof(IcurrYear);
 	static user UserForAF_OOPSActualHandler ;
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/***********************************************************************************
 *  @Description: this method will the test data
 *  @name : AF_Bonus_ResultsHandler
@@ -69,6 +70,7 @@ public class AF_OOPSActualHandler_Test
 			try{
 				delete OopsactualList ;
 			}catch(Exception e){
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_OOPSActualHandler_Test',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 			}
 			AF_OOPSActualHandler acthandler = new AF_OOPSActualHandler();
 			AF_OOPS_Actual__c oldso = new AF_OOPS_Actual__c();

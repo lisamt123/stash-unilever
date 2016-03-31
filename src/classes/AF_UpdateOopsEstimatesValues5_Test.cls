@@ -12,6 +12,7 @@ public class AF_UpdateOopsEstimatesValues5_Test
 	Static Integer IcurrYear = System.Today().year();
 	Static string currYear=string.valueof(IcurrYear);
 	static user userforOOPsEstimatevalues1;
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : updateOopsEstimatesValues5
@@ -64,6 +65,7 @@ public class AF_UpdateOopsEstimatesValues5_Test
 			try{
 				insert AFCurrencyQuerylist;
 			}catch(Exception e){
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'updateOopsEstimatesValues',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 			}
 			List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c where Id IN:AFCurrencyQuerylist LIMIT 1];
 			System.Assert(AFCurrencyQuery[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);
@@ -278,6 +280,7 @@ public class AF_UpdateOopsEstimatesValues5_Test
 			try{
 				insert AFCurrencyQuerylist;
 			}catch(Exception e){
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'updateOopsEstimatesValues3',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 			}
 			List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c where Id IN:AFCurrencyQuerylist LIMIT 1];
 			System.Assert(AFCurrencyQuery[0].Id != null, AF_TestFactory_Helper.CURRENCY_RECORD);

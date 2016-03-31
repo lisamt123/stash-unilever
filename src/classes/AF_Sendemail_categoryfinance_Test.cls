@@ -10,6 +10,7 @@
 public class AF_Sendemail_categoryfinance_Test
 { 
 	static user userforcategoryfinance;
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : sendMailCatFinance
@@ -33,6 +34,7 @@ public class AF_Sendemail_categoryfinance_Test
 			try{
 				sendMailCatFin.send();
 			}catch(exception e){
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'sendMailCatFinance',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 			}
 			sendMailCatFin.closePopup();            
 		}

@@ -12,6 +12,7 @@ public class AF_SubResultHandler_Test
     Private Static Integer IcurrYear = System.Today().year();
     Private Static string currYear=string.valueof(IcurrYear);
     static user userForsubResult;
+    private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
     /**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : AF_SubResultHandler
@@ -162,6 +163,7 @@ public class AF_SubResultHandler_Test
             insert subResultlist;
             update subResultlist;
             }catch(Exception e){
+            	AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_SubResultHandler',e.getMessage(),e.getTypeName(),e.getStackTraceString());
             }
             AF_Sub_Result__c sub =new AF_Sub_Result__c();
             //insert sub result
@@ -180,6 +182,7 @@ public class AF_SubResultHandler_Test
                 delete subResultlist;
             }
             catch(Exception e){
+            	AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_SubResultHandler',e.getMessage(),e.getTypeName(),e.getStackTraceString());
             }
             //Insert Bonus Results.
             List<AF_Bonus_Results__c> BonusResultList = AF_TestFactory_Helper.insertBonusResults(1,true);
@@ -371,6 +374,7 @@ public class AF_SubResultHandler_Test
                 delete subResultlist;
             }
             catch(Exception e){
+            	AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_SubResultHandler1',e.getMessage(),e.getTypeName(),e.getStackTraceString());
             }
             //Insert Bonus Results.
             List<AF_Bonus_Results__c> BonusResultList = AF_TestFactory_Helper.insertBonusResultsquarterly(1,false);
