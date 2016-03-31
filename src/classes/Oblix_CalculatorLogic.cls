@@ -487,7 +487,7 @@ public with sharing class Oblix_CalculatorLogic {
 
 		public String formatBoxNumberToField(String box_number){
 			// S.M. had to add this variable to get passed sonar Avoid reassigning parameters issue
-			String formatted_box_number;
+			String formatted_box_number = '';
 
 			if (String.isNotBlank(box_number)){
 				formatted_box_number = box_number.replace(' ', '_') + '__c';

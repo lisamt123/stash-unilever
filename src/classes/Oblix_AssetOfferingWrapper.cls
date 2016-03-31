@@ -62,11 +62,11 @@ public with sharing class Oblix_AssetOfferingWrapper {
     public Map<String, AssetTypeWrapper> map_asset_type_wrapper {get;set;}
     private static Id wrapper_campaign_id;
 
-    public static Map<String, AssetWrapper> map_of_mdm_id_to_asset;// = new Map<String, AssetWrapper>();
-    //public Map<String, AssetWrapper> map_mdm_id_to_asset;
-    public static Oblix_AssetOfferingWrapper asset_offering;// = new Oblix_AssetOfferingWrapper();
-    //public Oblix_AssetOfferingWrapper asset_offering_instance;
-    //public Oblix_AssetOfferingWrapper asset_offering_instance;
+    //public static Map<String, AssetWrapper> map_of_mdm_id_to_asset;// = new Map<String, AssetWrapper>();
+    ////public Map<String, AssetWrapper> map_mdm_id_to_asset;
+    //public static Oblix_AssetOfferingWrapper asset_offering;// = new Oblix_AssetOfferingWrapper();
+    ////public Oblix_AssetOfferingWrapper asset_offering_instance;
+    ////public Oblix_AssetOfferingWrapper asset_offering_instance;
 
 
     /*******************************************************************************
@@ -85,9 +85,9 @@ public with sharing class Oblix_AssetOfferingWrapper {
             // temp
             //Cache.Org.put('local.Oblix.AssetScoring', '');
 
-            if (NULL != asset_offering){
+            if (NULL != Oblix_Utils.asset_offering){
                 system.debug('## getting values static');
-                return asset_offering;
+                return Oblix_Utils.asset_offering;
             }
 
             //check in the cache first
@@ -107,8 +107,8 @@ public with sharing class Oblix_AssetOfferingWrapper {
 //IR                Cache.Org.put('local.Oblix.AssetScoring', oblix_asset_scoring);
             }
 
-            asset_offering = new Oblix_AssetOfferingWrapper(oblix_asset_scoring);
-            return asset_offering;
+            Oblix_Utils.asset_offering = new Oblix_AssetOfferingWrapper(oblix_asset_scoring);
+            return Oblix_Utils.asset_offering;
 
     }
     public Oblix_AssetOfferingWrapper(){}
@@ -140,13 +140,13 @@ public with sharing class Oblix_AssetOfferingWrapper {
         
         // if the static variable does not exist
         // then call it to initialise
-        if (NULL == Oblix_AssetOfferingWrapper.asset_offering){
+        if (NULL == Oblix_Utils.asset_offering){
             getAssetOfferingWrapper();
         }
 
         //system.debug('##map_mdm_id_to_asset: ' + map_mdm_id_to_asset);
-        if (NULL != Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset && Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset.containsKey(mdm_id)){
-            asset_wrapper_to_return = Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset.get(mdm_id);
+        if (NULL != Oblix_Utils.map_of_mdm_id_to_asset && Oblix_Utils.map_of_mdm_id_to_asset.containsKey(mdm_id)){
+            asset_wrapper_to_return = Oblix_Utils.map_of_mdm_id_to_asset.get(mdm_id);
         }
 
         return asset_wrapper_to_return;
@@ -205,17 +205,17 @@ public with sharing class Oblix_AssetOfferingWrapper {
 
         // if the static variable does not exist
         // then call it to initialise
-        if (NULL == Oblix_AssetOfferingWrapper.asset_offering){
+        if (NULL == Oblix_Utils.asset_offering){
             getAssetOfferingWrapper();
         }
 
         // initialise 
         // loop through the stored assets and return list of asset wrapper
         
-        if (NULL != Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset && Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset.containsKey(asset.mdm_id__c) 
-                && NULL != Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset.get(asset.mdm_id__c)) {
+        if (NULL != Oblix_Utils.map_of_mdm_id_to_asset && Oblix_Utils.map_of_mdm_id_to_asset.containsKey(asset.mdm_id__c) 
+                && NULL != Oblix_Utils.map_of_mdm_id_to_asset.get(asset.mdm_id__c)) {
 
-            newBasketItem = Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset.get(asset.mdm_id__c).clone();
+            newBasketItem = Oblix_Utils.map_of_mdm_id_to_asset.get(asset.mdm_id__c).clone();
             
             newBasketItem.asset_name = asset.Asset_name__c; // confirm which one should be used? Asset_Title__c vs. Asset_Name__c ? which one?
             newBasketItem.other_name = asset.Location__c;
@@ -243,15 +243,15 @@ public with sharing class Oblix_AssetOfferingWrapper {
 
         // if the static variable does not exist
         // then call it to initialise
-        if (NULL == Oblix_AssetOfferingWrapper.asset_offering){
+        if (NULL == Oblix_Utils.asset_offering){
             getAssetOfferingWrapper();
         }
 
         // initialise 
         // loop through the stored assets and return list of asset wrapper
         for (Oblix_Project_Assets__c asset : stored_assets){
-            if (NULL != Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset && Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset.containsKey(asset.mdm_id__c) 
-                    && NULL != Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset.get(asset.mdm_id__c)) {
+            if (NULL != Oblix_Utils.map_of_mdm_id_to_asset && Oblix_Utils.map_of_mdm_id_to_asset.containsKey(asset.mdm_id__c) 
+                    && NULL != Oblix_Utils.map_of_mdm_id_to_asset.get(asset.mdm_id__c)) {
                 
                 AssetWrapper newBasketItem = convertAssetToItemInBasket(asset);
 
@@ -655,12 +655,12 @@ public with sharing class Oblix_AssetOfferingWrapper {
                 this.campaign_id = Oblix_AssetOfferingWrapper.wrapper_campaign_id;
             }
             
-            if (NULL == Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset){
-                Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset = new Map<String, AssetWrapper>();
+            if (NULL == Oblix_Utils.map_of_mdm_id_to_asset){
+                Oblix_Utils.map_of_mdm_id_to_asset = new Map<String, AssetWrapper>();
             }
 
             // we need to get access to map_of_mdm_id_to_asset map which exists at the top level of Oblix_AssetOfferingWrapper
-            Oblix_AssetOfferingWrapper.map_of_mdm_id_to_asset.put(this.mdm_id, this);
+            Oblix_Utils.map_of_mdm_id_to_asset.put(this.mdm_id, this);
             
         }
 

@@ -222,8 +222,8 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
 
         try{
 
-            selected_project.Completed_Stage__c = stage_identifier.s_selected_completed_stage;
-            selected_project.Projected_Stage__c = stage_identifier.s_selected_projected_stage;
+            selected_project.Completed_Stage__c = stage_identifier_pop_up.s_selected_completed_stage;
+            selected_project.Projected_Stage__c = stage_identifier_pop_up.s_selected_projected_stage;
             
             selected_project.Percentage_of_Fee_for_this_FY__c = stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year;
             selected_project.Campaign_Status__c = Oblix_Utils.CAMPAIGN_STATUS_CANCELLED;

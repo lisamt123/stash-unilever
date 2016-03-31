@@ -83,7 +83,7 @@ public with sharing class Oblix_SOWHandlerLogic {
                     populates the unilever and agency approvers maps passed in by
                     reference
     ********************************************************************************/
-    public static void retrieveBrandCategoryApprovers(List<Marketing_SOW__c> newSOWs, Map<String, Set<Id>> brandCatKey_unileverApproverIds_map, Map<String, Set<Id>> brandCatKey_agencyApproverIds_map){
+    public static void retrieveBrandCategoryApprovers(List<Marketing_SOW__c> newSOWs, Map<String, Set<Id>> brandCatKey_unileverApproverIds_map, Map<String, Set<Id>> brandCatAGKey_agencyApproverIds_map){
 
         // get approvers for categories of SOWs in scope
         Set<Id> bigCIds = new Set<Id>();
@@ -92,7 +92,7 @@ public with sharing class Oblix_SOWHandlerLogic {
             bigCIds.add(sow.SmallProductCategory__c);
             brandIds.add(sow.OblixBrand__c);
         }
-        List<Oblix_User_Permission__c> userPermissions = [SELECT Id, CategoryBrand_id__r.Brand_id__c, CategoryBrand_id__r.Product_Category_Id__c, User_id__c, RecordTypeId
+        List<Oblix_User_Permission__c> userPermissions = [SELECT Id, CategoryBrand_id__r.Brand_id__c, CategoryBrand_id__r.Product_Category_Id__c, User_id__c, RecordTypeId, Agency_ID__c
                                                             FROM Oblix_User_Permission__c 
                                                             WHERE CategoryBrand_id__r.Brand_id__c IN :brandIds 
                                                                 AND CategoryBrand_id__r.Product_Category_Id__c IN :bigCIds 
@@ -101,6 +101,7 @@ public with sharing class Oblix_SOWHandlerLogic {
         // build a map of brandId_bigcategoryId as keys and list of approver ids as values, which we will use to populate approver fields on SOWs
         for(Oblix_User_Permission__c up : userPermissions){
             String brandCatKey = up.CategoryBrand_id__r.Brand_id__c + '_' + up.CategoryBrand_id__r.Product_Category_Id__c;
+            String brandCatAGKey = brandCatKey + '_' + up.Agency_ID__c;
             if(up.RecordTypeId == Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER){
                 // S.M. 20160209 - sonar issue resolved by avoid checking == false and use ! instead
                 if(!brandCatKey_unileverApproverIds_map.containsKey(brandCatKey)){
@@ -110,11 +111,11 @@ public with sharing class Oblix_SOWHandlerLogic {
                 brandCatKey_unileverApproverIds_map.get(brandCatKey).add(up.User_id__c);
             } else if (up.RecordTypeId == Oblix_Utils.RT_USER_PERMISSION_AGENCY_USER){
                 // S.M. 20160209 - sonar issue resolved by avoid checking == false and use ! instead
-                if(!brandCatKey_agencyApproverIds_map.containsKey(brandCatKey)){
+                if(!brandCatAGKey_agencyApproverIds_map.containsKey(brandCatAGKey)){
                     Set<Id> approverIds = new Set<Id>();
-                    brandCatKey_agencyApproverIds_map.put(brandCatKey, approverIds);
+                    brandCatAGKey_agencyApproverIds_map.put(brandCatAGKey, approverIds);
                 }
-                brandCatKey_agencyApproverIds_map.get(brandCatKey).add(up.User_id__c);
+                brandCatAGKey_agencyApproverIds_map.get(brandCatAGKey).add(up.User_id__c);
             }
         }
 
@@ -224,13 +225,14 @@ public with sharing class Oblix_SOWHandlerLogic {
                     Brand and Big Category fields to be populated. Expects that there
                     is at least one approver for brand-category defined.
     ********************************************************************************/
-    public static Boolean setSOWApprovers(Marketing_SOW__c sow, Map<String, Set<Id>> brandCatKey_unileverApproverIds_map, Map<String, Set<Id>> brandCatKey_agencyApproverIds_map){
+    public static Boolean setSOWApprovers(Marketing_SOW__c sow, Map<String, Set<Id>> brandCatKey_unileverApproverIds_map, Map<String, Set<Id>> brandCatAGKey_agencyApproverIds_map){
 
         Boolean isChanged = false;
 
         // populate approvers on SOWs. Currently only one approver is populated, but the system allows as many as there are approver fields on SOW
         if(String.isNotEmpty(sow.OblixBrand__c) && String.isNotEmpty(sow.SmallProductCategory__c)){
             String brandCatKey = sow.OblixBrand__c + '_' + sow.SmallProductCategory__c;
+            String brandCatAGKey = brandCatKey + '_' + sow.Oblix_AgencyEstimate__c;
 
             if(brandCatKey_unileverApproverIds_map != null && brandCatKey_unileverApproverIds_map.containsKey(brandCatKey)){
                 Set<Id> unileverApprovers = brandCatKey_unileverApproverIds_map.get(brandCatKey);
@@ -247,8 +249,8 @@ public with sharing class Oblix_SOWHandlerLogic {
                 sow.Unilever_SOW_Approver_Name__c = null;
             }
 
-            if(brandCatKey_agencyApproverIds_map != null && brandCatKey_agencyApproverIds_map.containsKey(brandCatKey)){
-                Set<Id> agencyApprovers = brandCatKey_agencyApproverIds_map.get(brandCatKey);
+            if(brandCatAGKey_agencyApproverIds_map != null && brandCatAGKey_agencyApproverIds_map.containsKey(brandCatAGKey)){
+                Set<Id> agencyApprovers = brandCatAGKey_agencyApproverIds_map.get(brandCatAGKey);
                 // change only if needed
                 // S.M. 20160209 - sonar issue resolved by avoid checking == false and use ! instead
                 if(!agencyApprovers.contains(sow.Agency_SOW_Approver_Name__c)){

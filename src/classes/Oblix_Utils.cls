@@ -27,6 +27,10 @@ public with sharing class Oblix_Utils {
     private static Map<String, Map<String, Schema.SObjectField>> fieldsByObject = new Map<String, Map<String, Schema.SObjectField>>();
 
 
+
+    public static Map<String, Oblix_AssetOfferingWrapper.AssetWrapper> map_of_mdm_id_to_asset;
+    public static Oblix_AssetOfferingWrapper asset_offering;
+
     //Used to Wrap RecordType By Object
     public static Map<string, ID> MapRecordType(String ObjectName) {
 
@@ -832,13 +836,45 @@ public with sharing class Oblix_Utils {
         return map_string_settings.get(label_value).Attribute_1__c;
     }
 
+
+    public static List<Oblix_Settings__c> getOblixSettingsListNameStartsWith(String setting_name_prefix){
+        
+        List<Oblix_Settings__c> matchingValues = new List<Oblix_Settings__c>();
+        for (String settingName : oblix_settings.keySet()) {
+            if (settingName.startsWith(setting_name_prefix)) {
+                matchingValues.add(oblix_settings.get(settingName));
+            }
+        }
+        if (matchingValues.size() == 0) {
+            throw new MissingCustomSettingException('NO_CUSTOM_SETTING_SPECIFIED for setting_name_prefix: ' + setting_name_prefix);
+            return null;
+        }
+        return matchingValues;
+    }
+
+
+    public static Map<String, Oblix_Settings__c> getOblixSettingsMapNameStartsWith(String setting_name_prefix){
+        
+        Map<String, Oblix_Settings__c> matchingValues = new Map<String, Oblix_Settings__c>();
+        for (String settingName : oblix_settings.keySet()) {
+            if (settingName.startsWith(setting_name_prefix)) {
+                matchingValues.put(settingName, oblix_settings.get(settingName));
+            }
+        }
+        if (matchingValues.keySet().size() == 0) {
+            throw new MissingCustomSettingException('NO_CUSTOM_SETTING_SPECIFIED for setting_name_prefix: ' + setting_name_prefix);
+            return null;
+        }
+        return matchingValues;
+    }
+
     /********************************************************************************
     *                                                                               *
     *                                  CONSTANTS                                    *
     *                                                                               *
     ********************************************************************************/
 
-    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v5';
+    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v6';
 
     public static final String SOW_STATUS_APPROVED_BY_AGENCY = 'Approved';
     public static final String SOW_STATUS_AWAITING_UNILEVER_APPROVAL = 'Awaiting Unilever Approval';

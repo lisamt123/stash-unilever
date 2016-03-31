@@ -72,8 +72,8 @@ public with sharing class Oblix_UserPermissionHandlerLogic {
                     populates the unilever and agency approvers maps passed in by
                     reference. (uses existing Oblix_SOWHandlerLogic method)
     ********************************************************************************/
-	public static void retrieveBrandCategoryApprovers(List<Marketing_SOW__c> affectedSOWs, Map<String, Set<Id>> brandCatKey_unileverApproverIds_map, Map<String, Set<Id>> brandCatKey_agencyApproverIds_map){
-		Oblix_SOWHandlerLogic.retrieveBrandCategoryApprovers(affectedSOWs, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
+	public static void retrieveBrandCategoryApprovers(List<Marketing_SOW__c> affectedSOWs, Map<String, Set<Id>> brandCatKey_unileverApproverIds_map, Map<String, Set<Id>> brandCatAGKey_agencyApproverIds_map){
+		Oblix_SOWHandlerLogic.retrieveBrandCategoryApprovers(affectedSOWs, brandCatKey_unileverApproverIds_map, brandCatAGKey_agencyApproverIds_map);
 	}
 
 
@@ -85,12 +85,12 @@ public with sharing class Oblix_UserPermissionHandlerLogic {
     				unlocked, set SOW approvers (uses existing Oblix_SOWHandlerLogic
     				method)
     ********************************************************************************/
-	public static void updateSOWApprovers(List<Marketing_SOW__c> affectedSOWs, Map<String, Set<Id>> brandCatKey_unileverApproverIds_map, Map<String, Set<Id>> brandCatKey_agencyApproverIds_map){
+	public static void updateSOWApprovers(List<Marketing_SOW__c> affectedSOWs, Map<String, Set<Id>> brandCatKey_unileverApproverIds_map, Map<String, Set<Id>> brandCatAGKey_agencyApproverIds_map){
 
 		List<Marketing_SOW__c> sowsToUpdate = new List<Marketing_SOW__c>();
 
 		for(Marketing_SOW__c sow : affectedSOWs){
-			if(Oblix_SOWHandlerLogic.setSOWApprovers(sow, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map)){
+			if(Oblix_SOWHandlerLogic.setSOWApprovers(sow, brandCatKey_unileverApproverIds_map, brandCatAGKey_agencyApproverIds_map)){
 				sowsToUpdate.add(sow);
 			}
 		}

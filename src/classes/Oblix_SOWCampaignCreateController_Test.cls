@@ -61,23 +61,24 @@ private class Oblix_SOWCampaignCreateController_Test {
             Test.startTest();
                 campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c = Oblix_TestUtils.createCountries(1);
                 campaignCreateController.setInfoCountries();
-                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Constants.Innovation_Projects_Market1);
+                
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_1'));
 
                 campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c = Oblix_TestUtils.createCountries(4);
                 campaignCreateController.setInfoCountries();
-                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Constants.Innovation_Projects_Market2);
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_2'));
 
                 campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c = Oblix_TestUtils.createCountries(8);
                 campaignCreateController.setInfoCountries();
-                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Constants.Innovation_Projects_Market3);
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_3'));
 
                 campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c = Oblix_TestUtils.createCountries(13);
                 campaignCreateController.setInfoCountries();
-                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Constants.Innovation_Projects_Market4);
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_4'));
 
                 campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c = Oblix_TestUtils.createCountries(20);
                 campaignCreateController.setInfoCountries();
-                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Constants.Innovation_Projects_Market5);
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_5'));
 
                 campaignCreateController.selectedMainRegions = '1region';
                 campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c = '';
@@ -102,7 +103,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             
             Test.startTest();
                 campaignCreateController.setCampaignScaleOneGlobal();
-                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Constants.Innovation_Projects_Market5);
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_5'));
                 System.assertEquals(campaignCreateController.campaignHelper.selectedProject.OblixRegion__c,'Global');
                 System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c,'Global');
                 

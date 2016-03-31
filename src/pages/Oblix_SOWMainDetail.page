@@ -1,4 +1,4 @@
-<apex:page sidebar="false" controller="Oblix_SowMainDetailController" docType="html-5.0" showHeader="false" standardStylesheets="true" action="{!checkUserHasPermissionToSOW}">
+<apex:page sidebar="false" controller="Oblix_SOWMainDetailController" docType="html-5.0" showHeader="false" standardStylesheets="true" action="{!checkUserHasPermissionToSOW}">
 
     <apex:composition template="Oblix_OuterPageTemplate">
 
@@ -293,27 +293,27 @@
                                                             </p>
                                                             <ul>
                                                                 <li>
-                                                                    <div title="Briefing" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[0].s_css_class_name}">
+                                                                    <div title="Briefing" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[0].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Strategy & Planning" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[1].s_css_class_name}">
+                                                                    <div title="Strategy & Planning" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[1].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Creative Ideation" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[2].s_css_class_name}">
+                                                                    <div title="Creative Ideation" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[2].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Creative Execution" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[3].s_css_class_name}">
+                                                                    <div title="Creative Execution" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[3].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Production" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[4].s_css_class_name}">
+                                                                    <div title="Production" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[4].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>

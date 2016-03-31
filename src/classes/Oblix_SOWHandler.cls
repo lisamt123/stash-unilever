@@ -10,7 +10,7 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
 
     //Map<Id, MDO_CategoryBrands__c> mids_campaign_id_category_brand = new Map<Id, MDO_CategoryBrands__c>();
     Map<String, Set<Id>> brandCatKey_unileverApproverIds_map = new Map<String, Set<Id>>();
-    Map<String, Set<Id>> brandCatKey_agencyApproverIds_map = new Map<String, Set<Id>>();
+    Map<String, Set<Id>> brandCatAGKey_agencyApproverIds_map = new Map<String, Set<Id>>();
     Map<String, List<Oblix_User_Permission__c>> brandCatKey_UserPermissions_map = new Map<String, List<Oblix_User_Permission__c>>();
     List<Marketing_SOW__Share> li_sharesToInsert = new List<Marketing_SOW__Share>();
 
@@ -29,7 +29,7 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
                 //mids_campaign_id_category_brand = Oblix_SOWHandlerLogic.retrieveBrandCategoriesForSOW(Trigger.New, NULL);
 
             // get all user permissions that define approvers for each brand-category combination of SOWs in this scope
-            Oblix_SOWHandlerLogic.retrieveBrandCategoryApprovers(Trigger.New, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
+            Oblix_SOWHandlerLogic.retrieveBrandCategoryApprovers(Trigger.New, brandCatKey_unileverApproverIds_map, brandCatAGKey_agencyApproverIds_map);
         }
 
         if (Trigger.isUpdate){
@@ -43,12 +43,12 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
             List<Marketing_SOW__c> newList = (List<Marketing_SOW__c>) Trigger.new;
             for(Marketing_SOW__c sow : newList){
                 Marketing_SOW__c oldSow = (Marketing_SOW__c) Trigger.oldMap.get(sow.Id);
-                if(sow.OblixBrand__c != oldSow.OblixBrand__c || sow.SmallProductCategory__c != oldSow.SmallProductCategory__c){
+                if(sow.OblixBrand__c != oldSow.OblixBrand__c || sow.SmallProductCategory__c != oldSow.SmallProductCategory__c || sow.Oblix_AgencyEstimate__c != oldSow.Oblix_AgencyEstimate__c){
                     liso_changed_brand_smallc.add(sow);
                 }
             }
             if(!liso_changed_brand_smallc.isEmpty()){
-                Oblix_SOWHandlerLogic.retrieveBrandCategoryApprovers(liso_changed_brand_smallc, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
+                Oblix_SOWHandlerLogic.retrieveBrandCategoryApprovers(liso_changed_brand_smallc, brandCatKey_unileverApproverIds_map, brandCatAGKey_agencyApproverIds_map);
             }
         }
     }
@@ -99,7 +99,7 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
         //if (!b_initiated_from_vf_page)
         //    Oblix_SOWHandlerLogic.adjustBrandCategoriesForSOW((Marketing_SOW__c) so, mids_campaign_id_category_brand);
         // set approvers to SOWs in this scope
-        Oblix_SOWHandlerLogic.setSOWApprovers((Marketing_SOW__c) so, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
+        Oblix_SOWHandlerLogic.setSOWApprovers((Marketing_SOW__c) so, brandCatKey_unileverApproverIds_map, brandCatAGKey_agencyApproverIds_map);
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
@@ -112,8 +112,8 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
         Marketing_SOW__c sow = (Marketing_SOW__c) so;
         Marketing_SOW__c oldSow = (Marketing_SOW__c) oldSo;
         // set approvers to SOWs in this scope
-        if((sow.OblixBrand__c != oldSow.OblixBrand__c) || (sow.SmallProductCategory__c != oldSow.SmallProductCategory__c)){
-            Oblix_SOWHandlerLogic.setSOWApprovers(sow, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
+        if((sow.OblixBrand__c != oldSow.OblixBrand__c) || (sow.SmallProductCategory__c != oldSow.SmallProductCategory__c) || (sow.Oblix_AgencyEstimate__c != oldSow.Oblix_AgencyEstimate__c)){
+            Oblix_SOWHandlerLogic.setSOWApprovers(sow, brandCatKey_unileverApproverIds_map, brandCatAGKey_agencyApproverIds_map);
         }
     }
      

@@ -12,54 +12,43 @@ public with sharing class Oblix_CampaignStageLogic{
     public static final String CSS_PROGRESS_STARTED = 'chevron_in_progress';
     public static final String CSS_PROGRESS_COMPLETED = 'chevron_completed';
 
-    // final strings used for stage identifier
-    public static final String STAGE_PROJECT_BRIEFING = 'Briefing';
-    public static final String STAGE_PROJECT_STRATEGY = 'Strategy & Planning';
-    public static final String STAGE_PROJECT_IDEATIOIN = 'Creative Ideation';
-    public static final String STAGE_PROJECT_EXECUTION = 'Creative Execution';
-    public static final String STAGE_PROJECT_PRODUCTION = 'Production';
-
-
-    /*******************************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-09
-    * @description  static map to hold relationship between stage number and stage name
-    ********************************************************************************/
-    public static Map<Integer, String> mis_stages_number_name {
+    //containers for valid project stages and their parameters
+    public static List<Oblix_Settings__c> stageList {
         get{
-            if (NULL == mis_stages_number_name)
-                mis_stages_number_name = new Map<Integer, String>{0=>STAGE_PROJECT_BRIEFING, 1=>STAGE_PROJECT_STRATEGY, 2=> STAGE_PROJECT_IDEATIOIN, 3=>STAGE_PROJECT_EXECUTION, 4=>STAGE_PROJECT_PRODUCTION };
-            
-            return mis_stages_number_name;
+            if (stageList != null) {
+                return stageList;
+            }
+            stageList = Oblix_Utils.getOblixSettingsListNameStartsWith('PROJECT_STAGE_');
+            return stageList;
         }
     }
 
-    /*******************************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-09
-    * @description  static map to hold relationship between stage name and stage number
-    ********************************************************************************/
-    public static Map<String, Integer> mis_stages_name_number {
+    public static Map<String, Oblix_Settings__c> stagesByLabel {
         get{
-            if (NULL == mis_stages_name_number)
-                mis_stages_name_number = new Map<String, Integer>{STAGE_PROJECT_BRIEFING=>0, STAGE_PROJECT_STRATEGY=>1, STAGE_PROJECT_IDEATIOIN=>2, STAGE_PROJECT_EXECUTION=>3, STAGE_PROJECT_PRODUCTION=>4 };
-
-            return mis_stages_name_number;
+            if (stagesByLabel != null) {
+                return stagesByLabel;
+            }
+            stagesByLabel = new Map<String, Oblix_Settings__c>();
+            for (Oblix_Settings__c stage : stageList) {
+                stagesByLabel.put(stage.Label__c, stage);
+            }
+            return stagesByLabel;
         }
+        set;
     }
 
-    /*******************************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-09
-    * @description  static map to hold relationship between stage number and stage percentage
-    ********************************************************************************/
-    public static Map<Integer, Integer> mii_stage_percentage {
-        get{
-            if (NULL == mii_stage_percentage)
-                mii_stage_percentage = new Map<Integer, Integer>{0=>10, 1=>20, 2=>30, 3=>25, 4=>15};
-
-            return mii_stage_percentage;
+    public static Map<Integer, Oblix_Settings__c> stagesByOrder {
+        get {
+            if (stagesByOrder != null) {
+                return stagesByOrder;
+            }
+            stagesByOrder = new Map<Integer, Oblix_Settings__c>();
+            for (Oblix_Settings__c stage : stageList) {
+                stagesByOrder.put(Integer.valueOf(stage.Attribute_1__c), stage);
+            }
+            return stagesByOrder;
         }
+        set;
     }
     
 
@@ -82,62 +71,39 @@ public with sharing class Oblix_CampaignStageLogic{
     * @date         2016-01-09
     * @description  instance list to hold projected stages containing stage object
     ********************************************************************************/
-    public List<Stage> li_projected_stages {
+    public Map<Integer, Stage> projected_stages {
         get{
-            if (null==li_projected_stages){
-                li_projected_stages = new List<Stage>();
-                Integer stage_number = 0;
+            if (null==projected_stages){
+                projected_stages = new Map<Integer, Stage>();
 
-                for (String stage: Oblix_Utils.getStageList()){
-                    li_projected_stages.add(new Stage(false, stage, stage_number, false));
-                    stage_number ++;
+                for (Integer i : stagesByOrder.keySet()){
+                    //Default to all selectable and selected (DE218)
+                    projected_stages.put(i, new Stage(true, i, stagesByOrder.get(i).Label__c, true, true));
                 }
             }
-        return li_projected_stages;
+        return projected_stages;
 
         }
         set;
     }
 
-    /*******************************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-09
-    * @description  instance list to hold projected stages containing stage object
-    ********************************************************************************/
-    public List<StageCSS> lis_stage_css_class {
-        get{
-            if (null==lis_stage_css_class){
-                lis_stage_css_class = new List<StageCSS>();
-                Integer stage_number = 0;
-
-                for (String stage: Oblix_Utils.getStageList()){
-                    lis_stage_css_class.add(new StageCSS(stage_number,CSS_PROGRESS_NOT_STARTED));
-                    stage_number ++;
-                }
-            }
-        return lis_stage_css_class;
-
-        }
-        set;
-    }
 
     /*******************************************************************************
     * @author       Shahin Movahedi
     * @date         2016-01-09
     * @description  instance list to hold completed stages containing stage object
     ********************************************************************************/
-    public List<Stage> li_completed_stages {
+    public Map<Integer, Stage> completed_stages {
         get{
-            if (null==li_completed_stages){
-                li_completed_stages = new List<Stage>();
-                Integer stage_number = 0;
+            if (null==completed_stages){
+                completed_stages = new Map<Integer, Stage>();
 
-                for (String stage: Oblix_Utils.getStageList()){
-                    li_completed_stages.add(new Stage(false, stage,stage_number, true));
-                    stage_number ++;
+                for (Integer i : stagesByOrder.keySet()){
+                    //Default to all selectable but not selected
+                    completed_stages.put(i, new Stage(false, i, stagesByOrder.get(i).Label__c, true, false));
                 }
             }
-        return li_completed_stages;
+        return completed_stages;
 
         }
         set;
@@ -171,12 +137,15 @@ public with sharing class Oblix_CampaignStageLogic{
         b_is_completion_selectable = true;
 
         // S.M. all projected stages should be set to true by default DE218
-        sow_project_in_scope.Projected_Stage__c = STAGE_PROJECT_PRODUCTION;
+        //sow_project_in_scope.Projected_Stage__c = STAGE_PROJECT_PRODUCTION;
+        sow_project_in_scope.Stage_Projected_CFY__c = String.join(new List<String>(stagesByLabel.keyset()), ';');
+        sow_project_in_scope.Stage_Completed_CFY__c = '';
         //sow_project_in_scope.Completed_Stage__c = STAGE_PROJECT_BRIEFING;
         sow_project_in_scope.Campaign_Total_Adjustment__c = 0;
         sow_project_in_scope.Percentage_of_Fee_for_this_FY__c = 100;
         
-        setStageAndCSS(sow_project_in_scope.Projected_Stage__c, sow_project_in_scope.Completed_Stage__c,true,true);
+        //setStageAndCSS(sow_project_in_scope.Projected_Stage__c, sow_project_in_scope.Completed_Stage__c,true,true);
+        initStages();
         calculateFeesForThisYear();
 
     }
@@ -204,92 +173,75 @@ public with sharing class Oblix_CampaignStageLogic{
     * @date         2016-01-09
     * @description  Oblix_CampaignStageLogic constructor
     ********************************************************************************/
-    public Oblix_CampaignStageLogic(Oblix_SOW_Projects__c sow_project, boolean is_projection_selectable, boolean is_completeion_selectable){
+    public Oblix_CampaignStageLogic(Oblix_SOW_Projects__c sow_project, boolean is_projection_selectable, boolean is_completion_selectable){
 
         b_is_projection_selectable = is_projection_selectable;
-        b_is_completion_selectable = is_completeion_selectable;
+        b_is_completion_selectable = is_completion_selectable;
 
         sow_project_in_scope = sow_project;
-        setStageAndCSS(sow_project.Projected_Stage__c, sow_project.Completed_Stage__c,true,true);
+        //setStageAndCSS(sow_project.Projected_Stage__c, sow_project.Completed_Stage__c,true,true);
+        initStages();
+
+
         calculateFeesForThisYear();
-
     }
 
-    private Integer getStageLevel(String stage_name){
-
-        if (NULL!=mis_stages_name_number && mis_stages_name_number.containsKey(stage_name))
-            return mis_stages_name_number.get(stage_name);
-        else
-            return -1;
-    }
 
     /*******************************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-09
-    * @description  for the given projected and completion stages set the correct
-                    CSS class, selected and selectable checkboxes
+    * @author       Ivan Ribakov
+    * @date         2016-03-30
+    * @description  helper method to initialise stage wrapper objects
     ********************************************************************************/
-    private void setStageAndCSS(String projected_stage, String completion_stage, Boolean set_projected, Boolean set_completion ){
-        
-        // get the stage number for completion and projection stages
-        Integer i_projection_level = getStageLevel(projected_stage);
+    public void initStages() {
 
-        Integer i_completion_level =  getStageLevel(completion_stage);
+        String currentProjectedValue = (String)sow_project_in_scope.get('Stage_Projected_CFY__c');
+        currentProjectedValue = (currentProjectedValue == null) ? '' : currentProjectedValue;
+        List<String> currentProjectedValueList = currentProjectedValue.split(';');
+        Set<String> currentProjectedValueSet = new Set<String>(currentProjectedValueList);
 
-        system.debug('##1 i_projection_level:  ' + i_projection_level + ' ## i_completion_level:  ' + i_completion_level + ' - projected_stage: ' + projected_stage + ' - completion_stage: ' + completion_stage) ;
+        String currentCompletedValue = (String)sow_project_in_scope.get('Stage_Completed_CFY__c');
+        currentCompletedValue = (currentCompletedValue == null) ? '' : currentCompletedValue;
+        List<String> currentCompletedValueList = currentCompletedValue.split(';');
+        Set<String> currentCompletedValueSet = new Set<String>(currentCompletedValueList);
 
-        Boolean force_recalculate_completion = false;
-        //if the projected is set lower than completion need to recalculate
-        if (i_projection_level < i_completion_level){
-            i_completion_level = i_projection_level;
-            force_recalculate_completion = true;
-        }
+        for (Integer i : projected_stages.keySet()) {
+            Stage projectedStage = projected_stages.get(i);
+            Stage completedStage = completed_stages.get(i);
 
-        system.debug('##2 i_projection_level:  ' + i_projection_level + ' ## i_completion_level:  ' + i_completion_level + ' force_recalculate_completion: ' + force_recalculate_completion) ;
-
-        // set the percentage of fee for this year to zero and calculate in the correct value in the loop below
-        i_percentage_of_fee_this_year = set_projected 
-            ? 0
-            : i_percentage_of_fee_this_year;
-
-        i_agency_Percentage_of_fees_this_year = set_completion || force_recalculate_completion
-            ? 0
-            : i_agency_Percentage_of_fees_this_year;
-
-        for (Integer i=0; i < 5; i++){
-
-
-            // if set projected TRUE is passed in, set the values
-            if (set_projected){
-                setProjectedAttributes(i, i_projection_level);
+            //Projected INIT
+            //override projected stage selectability if "b_is_projection_selectable" flag is FALSE
+            if (!b_is_projection_selectable) {
+                projectedStage.b_is_stage_selectable = false;
+            } else {
+                //TODO: Rollover changes - consider PFY projected stages in order to disable some in CFY
             }
-            
-            // if set completion TRUE is passed in, set the values also if the projected is set lower than completion re-calculate
-            if (set_completion ||  force_recalculate_completion){
-                setCompletionAttributes(i,i_completion_level);
+            if (currentProjectedValueSet.contains(projectedStage.s_stage_name)) {
+                projectedStage.b_is_stage_selected = true;
+                completedStage.b_is_stage_selectable = true; //If stage is projected - ensure that completed stage is "active"
+            } else {
+                projectedStage.b_is_stage_selected = false;
             }
 
-            setCompletionCSS(i, i_projection_level, i_completion_level);
 
-            // also set projection seletable value by checking b_is_projection_selectable
-            li_projected_stages[i].b_is_stage_selectable = b_is_projection_selectable;
-
-            // also set completion selectable value by checkig b_is_completion_selectable
-            li_completed_stages[i].b_is_stage_selectable = b_is_completion_selectable && li_projected_stages[i].b_is_stage_selected
-                ? true
-                : false;
-            //li_completed_stages[i].b_is_stage_selectable = false;
-
-        }
-        if(sow_project_in_scope.Value_To_BePaid_Manual_Override__c){
-                i_percentage_of_fee_this_year = Integer.valueOf(sow_project_in_scope.Percentage_of_Fee_for_this_FY__c);
-                i_fees_for_this_financial_year = Integer.valueOf(sow_project_in_scope.Value_to_be_paid_in_Current_FY__c);
-                system.debug('###i_fees_for_this_financial_year : '+i_fees_for_this_financial_year);
+            //Completed INIT
+            //override completed stage selectability if "b_is_completion_selectable" flag is FALSE
+            if (!b_is_completion_selectable) {
+                completedStage.b_is_stage_selectable = false;
+            }
+            if (currentCompletedValueSet.contains(completedStage.s_stage_name)) {
+                completedStage.b_is_stage_selected = true;
+            } else {
+                completedStage.b_is_stage_selected = false;
+            }            
         }
 
-        s_selected_projected_stage = mis_stages_number_name.get(i_projection_level);// sow_project_in_scope.Projected_Stage__c;
-        s_selected_completed_stage = mis_stages_number_name.get(i_completion_level); //sow_project_in_scope.Completed_Stage__c;
+        s_selected_projected_stage = currentProjectedValue;
+        s_selected_completed_stage = currentCompletedValue;
     }
+
+
+
+
 
     /*******************************************************************************
     * @author       Shahin Movahedi
@@ -325,72 +277,7 @@ public with sharing class Oblix_CampaignStageLogic{
             return 0;
         }
     }
-    
-    /********************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-08
-    * @description  Depending on the item index set completion CSS and completed
-                    stages
-    *********************************************************************/
-    private void setCompletionAttributes(Integer index_to_check, Integer i_completion_level){
-           
-        // set completion css and boolean
-        if (index_to_check <= i_completion_level){
-            li_completed_stages[index_to_check].b_is_stage_selected = true;
-            i_agency_Percentage_of_fees_this_year += mii_stage_percentage.get(index_to_check);
-        }
-        else{   
-            li_completed_stages[index_to_check].b_is_stage_selected = false;
-        } 
 
-        // resetting the values if -1 is passed in
-        if (-1 == i_completion_level){
-            li_completed_stages[index_to_check].b_is_stage_selected = false;
-        }
-
-
-    }
-
-
-    
-    /********************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-08
-    * @description  Depending on the item index set projected CSS and projected
-                    stages
-    *********************************************************************/
-    private void setProjectedAttributes(Integer index_to_check, Integer i_projection_level){
-
-        // set projected css and boolean
-        if (index_to_check <= i_projection_level){
-            li_projected_stages[index_to_check].b_is_stage_selected = true;
-            //li_completed_stages[index_to_check].b_is_stage_selectable = true;
-            i_percentage_of_fee_this_year += mii_stage_percentage.get(index_to_check);
- 
-        }
-        else{
-            li_projected_stages[index_to_check].b_is_stage_selected = false;
-        }
-    }
-    
-    /********************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-08
-    * @description  Set CSS based on Projection and Completion stages
-    *********************************************************************/
-    private void setCompletionCSS(Integer index_to_check, Integer i_projection_level, Integer i_completion_level){
-
-        // set projected css and boolean
-        if (index_to_check <= i_completion_level){
-            lis_stage_css_class[index_to_check].s_css_class_name = CSS_PROGRESS_COMPLETED;
-        }
-        else if (index_to_check <= i_projection_level){
-            lis_stage_css_class[index_to_check].s_css_class_name = CSS_PROGRESS_STARTED;   
-        }
-        else{
-            lis_stage_css_class[index_to_check] = new StageCSS(index_to_check,CSS_PROGRESS_NOT_STARTED);        
-        }
-    }
 
     /********************************************************************
     * @author       Shahin Movahedi
@@ -404,118 +291,166 @@ public with sharing class Oblix_CampaignStageLogic{
     public void saveStage(){
         system.debug('## saving stage for campaign: '  + sow_project_in_scope.name);
         upsert sow_project_in_scope;
-
-
     }
 
-    public void setStageAttributes(Boolean set_projected, Boolean set_completion ){
 
-        // ensure that the i_completion_level is never greater than i_projection_level !
-        // if it is set the to the highest projection level
-        //sow_project_in_scope.Completed_Stage__c = mis_stages_name_number.get(sow_project_in_scope.Completed_Stage__c) > mis_stages_name_number.get(sow_project_in_scope.Projected_Stage__c)
-        //    ? sow_project_in_scope.Projected_Stage__c
-        //    : sow_project_in_scope.Completed_Stage__c;
 
-        system.debug('## sow_project_in_scope.Projected_Stage__c: ' + sow_project_in_scope.Projected_Stage__c + ' - sow_project_in_scope.Completed_Stage__c: ' + sow_project_in_scope.Completed_Stage__c);
+    /*******************************************************************************
+    * @author       Ivan Ribakov
+    * @date         2016-03-30
+    ********************************************************************************/
+    public void toggleProjectedStage(String val){
 
-        // workout the stage by the attributes
-        setStageAndCSS(s_selected_projected_stage, s_selected_completed_stage, set_projected,set_completion);
+        String currentValue = (String)sow_project_in_scope.get('Stage_Projected_CFY__c');
+        currentValue = (currentValue == null) ? '' : currentValue;
+        List<String> currentValueList = currentValue.split(';');
+        Set<String> currentValueSet = new Set<String>(currentValueList);
+
+        String currentCompletedValue = (String)sow_project_in_scope.get('Stage_Completed_CFY__c');
+        currentCompletedValue = (currentCompletedValue == null) ? '' : currentCompletedValue;
+        List<String> currentCompletedValueList = currentCompletedValue.split(';');
+        Set<String> currentCompletedValueSet = new Set<String>(currentCompletedValueList);
+
+        Integer stage_number = Integer.valueOf(stagesByLabel.get(val).Attribute_1__c);
+        Stage projected_stage_wrapper = projected_stages.get(stage_number);
+        Stage completed_stage_wrapper = completed_stages.get(stage_number);
+
+        if (currentValueSet.contains(val)) {
+            currentValueSet.remove(val);
+            currentCompletedValueSet.remove(val);
+            projected_stage_wrapper.b_is_stage_selected = false;
+
+            completed_stage_wrapper.b_is_stage_selectable = false;
+            completed_stage_wrapper.b_is_stage_selected = false;
+        } else {
+            currentValueSet.add(val);
+            projected_stage_wrapper.b_is_stage_selected = true;
+
+            completed_stage_wrapper.b_is_stage_selectable = true;
+            completed_stage_wrapper.b_is_stage_selected = false;
+        }
+
         calculateFeesForThisYear();
 
         // set percentage projection and completion
         sow_project_in_scope.Agency_Percentage_of_Fees_to_this_FY__c = i_agency_Percentage_of_fees_this_year;
         sow_project_in_scope.Percentage_of_Fee_for_this_FY__c = i_percentage_of_fee_this_year;
 
+        //setStageAttributes(false,true);
 
-        system.debug('## saved stage: ' + sow_project_in_scope);
+        String newValue = String.join(new List<String>(currentValueSet), ';');
+        sow_project_in_scope.put('Stage_Projected_CFY__c', newValue);
+
+        String newCompletedValue = String.join(new List<String>(currentCompletedValueSet), ';');
+        sow_project_in_scope.put('Stage_Completed_CFY__c', newValue);
+
+        s_selected_projected_stage = newValue;
+        s_selected_completed_stage = currentCompletedValue;
     }
+
+
+
     /*******************************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-09
-    * @description  The logic to work out the correct checkboxes depending on the
-                    user selection and the prior value of the checkbox
+    * @author       Ivan Ribakov
+    * @date         2016-03-30
     ********************************************************************************/
-    private String getStageNameByValues(String new_val, String old_val){
-        // 1) the current stage name is the same as the one being set, means the user unchecking the stage
-        //      this means the stage prior to the one user clicked on needs to be passed back
-        // 2) the current stage number is greater than the one the user selected
-        //      this means the stage prior to the one user clicked on needs to be passed back
+    public void toggleCompletionStage(String val){
 
-        if (new_val == old_val && mis_stages_name_number.get(old_val) == 0){
-            return null;
-        }
-        else if (mis_stages_name_number.get(old_val) > mis_stages_name_number.get(new_val) || (new_val == old_val)){
-            // get the stage prior to the one clicked on
-            return mis_stages_number_name.get(mis_stages_name_number.get(new_val)-1);
-        }
-        else{
-            return new_val;
-        }
-    }
-    /*******************************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-09
-    * @description  depending on prior stage status and the new selection, need to 
-                    select the correct set of stage numbers in the sequence or 
-                    deselect the stages if not in the correct sequence
-    ********************************************************************************/
-    public void setCompletionStage(String new_val, String old_val){
+        String currentValue = (String)sow_project_in_scope.get('Stage_Completed_CFY__c');
+        currentValue = (currentValue == null) ? '' : currentValue;
+        List<String> currentValueList = currentValue.split(';');
+        Set<String> currentValueSet = new Set<String>(currentValueList);
 
-        s_selected_completed_stage = getStageNameByValues(new_val, old_val);
-        system.debug('## sow_project_in_scope.Completed_Stage__c: ' + sow_project_in_scope.Completed_Stage__c + ' - new_val: ' + new_val + ' - old_val: ' + old_val);
-        setStageAttributes(false,true);
-        sow_project_in_scope.Completed_Stage__c = s_selected_completed_stage;
-    }
+        Integer stage_number = Integer.valueOf(stagesByLabel.get(val).Attribute_1__c);
+        Stage stage_wrapper = completed_stages.get(stage_number);
 
-    /*******************************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-09
-    * @description  depending on prior stage status and the new selection, need to 
-                    select the correct set of stage numbers in the sequence or 
-                    deselect the stages if not in the correct sequence
-    ********************************************************************************/
-    public void setProjectedStage(String new_val, String old_val){
-        sow_project_in_scope.Value_To_BePaid_Manual_Override__c = false;
-        s_selected_projected_stage = getStageNameByValues(new_val, old_val);
-        system.debug('## sow_project_in_scope.Projected_Stage__c: ' + sow_project_in_scope.Projected_Stage__c + ' - new_val: ' + new_val + ' - old_val: ' + old_val);
-        setStageAttributes(true,false);
-        sow_project_in_scope.Projected_Stage__c = s_selected_projected_stage;
+        if (currentValueSet.contains(val)) {
+            currentValueSet.remove(val);
+            stage_wrapper.b_is_stage_selected = false;
+        } else {
+            currentValueSet.add(val);
+            stage_wrapper.b_is_stage_selected = true;
+        }
+
+        calculateFeesForThisYear();
+
+        // set percentage projection and completion
+        sow_project_in_scope.Agency_Percentage_of_Fees_to_this_FY__c = i_agency_Percentage_of_fees_this_year;
+        sow_project_in_scope.Percentage_of_Fee_for_this_FY__c = i_percentage_of_fee_this_year;
+
+        //setStageAttributes(false,true);
+
+        String newValue = String.join(new List<String>(currentValueSet), ';');
+        sow_project_in_scope.put('Stage_Completed_CFY__c', newValue);
+
+        s_selected_completed_stage = newValue;
     }
 
+
+
+
+
+
+
+
     /*******************************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-09
+    * @author       Ivan Ribakov
+    * @date         2016-03-30
     * @description  wrapper class to hold the stage attributes
     ********************************************************************************/
     public class Stage{
-        public boolean b_is_stage_selected {get;set;}
-        public String s_stage_name {get;set;}
+        
         public Integer i_stage_number {get;set;}
-        public boolean b_is_stage_selectable {get;set;}
+        public String s_stage_name {get;set;}
+        public Boolean b_is_stage_projected {get;set;} //TRUE  if wrapper represents projected stage,
+                                                       //FALSE if wrapper represents completed stage
+
+        public Boolean b_is_stage_selectable {
+            get;
+            set{
+                b_is_stage_selectable = value;
+                calculateCSS();
+            }
+        }
+        public boolean b_is_stage_selected {
+            get;
+            set{
+                b_is_stage_selected = value;
+                calculateCSS();
+            }
+        }
+
+        public String s_css_class_name {get;set;}
+        
         //public Integer i_stage_percentage {get;set;}
 
-        public Stage(boolean is_complete, String stage_name, Integer stage_number, Boolean is_selectable ){
-            b_is_stage_selected = is_complete;
-            s_stage_name = stage_name;
+        public Stage(Boolean is_projected, Integer stage_number, String stage_name, Boolean is_selectable, boolean is_complete ){
+            b_is_stage_projected = is_projected;
             i_stage_number = stage_number;
+            s_stage_name = stage_name;
             b_is_stage_selectable = is_selectable;
+            b_is_stage_selected = is_complete;
             //i_stage_percentage = stage_percentage;
 
         }
-    }
 
-    /*******************************************************************************
-    * @author       Shahin Movahedi
-    * @date         2016-01-09
-    * @description  wrapper class to hold the stage CSS number and class name
-    ********************************************************************************/
-    public class StageCSS{
-        public Integer i_stage_number {get;set;}
-        public String s_css_class_name {get;set;}
-
-        public StageCSS(Integer stage_number, String css_class){
-            i_stage_number = stage_number;
-            s_css_class_name = css_class;
+        private void calculateCSS() {
+            
+            if (b_is_stage_projected) { //CSS styles for projected chevrons
+                //TODO
+            } else { //CSS styles for completed chevrons
+                if (!b_is_stage_selectable) {
+                    s_css_class_name = CSS_PROGRESS_NOT_STARTED;
+                } else if (b_is_stage_selectable && !b_is_stage_selected) {
+                    s_css_class_name = CSS_PROGRESS_STARTED;
+                } else if (b_is_stage_selectable && b_is_stage_selected) {
+                    s_css_class_name = CSS_PROGRESS_COMPLETED;
+                }
+            }
         }
     }
+
+
+
+
 }

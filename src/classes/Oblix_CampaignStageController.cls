@@ -15,7 +15,7 @@ public with sharing class Oblix_CampaignStageController {
     ********************************************************************************/
 	public PageReference setCompletionStageIdentifier(){
 		// check if the stage user clicked on was checked/unchecked before by looking at the status of the campaign in scope
-		stage_identifier.setCompletionStage(s_completion_stage, stage_identifier.sow_project_in_scope.Completed_Stage__c);
+		stage_identifier.toggleCompletionStage(s_completion_stage);
 		
 		// only commit to database if auto-save is set to true
 		if (b_auto_save)
@@ -32,7 +32,7 @@ public with sharing class Oblix_CampaignStageController {
     ********************************************************************************/
 	public PageReference setProjectedStageIdentifier(){
 		// check if the stage user clicked on was checked/unchecked before by looking at the status of the campaign in scope
-		stage_identifier.setProjectedStage(s_projection_stage, stage_identifier.sow_project_in_scope.Projected_Stage__c);
+		stage_identifier.toggleProjectedStage(s_projection_stage);
 
 		// only commit to database if auto-save is set to true
 		if (b_auto_save)

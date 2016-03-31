@@ -25,8 +25,8 @@ public with sharing class Oblix_PermissionHandler {
     private static final String UL1_PERMISSION_SET = 'Oblix_SWOP_UL_1_V1';
     private static final String UL2_PERMISSION_SET = 'Oblix_SWOP_UL_2_V1';
     private static final String UL3_PERMISSION_SET = 'Oblix_SWOP_UL_3_V1';
-    private static final String AG1_PERMISSION_SET = 'Oblix_SWOP_AG_1_V1';
-    private static final String AG2_PERMISSION_SET = 'Oblix_SWOP_AG_2_V1';
+    private static final String AG1_PERMISSION_SET = 'Oblix_SWOP_AG_1_Agency';
+    private static final String AG2_PERMISSION_SET = 'Oblix_SWOP_AG_2_Agency';
     private static final String UL_SUPER_USER_PERMISSION_SET = 'Oblix_SWOP_Super_User_V1';
 
 

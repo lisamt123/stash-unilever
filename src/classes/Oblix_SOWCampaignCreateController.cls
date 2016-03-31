@@ -110,27 +110,33 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             campaignHelper.selectedProject.Project_Scale_1__c = null;
         } else if (!lstCountriesString.isEmpty()) {
             if (lstCountriesString.size() == 1) {
-                campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market1;
+                campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_1');    
+                //campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market1;
             } else if (lstCountriesString.size() > 1 && lstCountriesString.size() <= 5) {
-                campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market2;
+                campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_2');
+                //campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market2;
             } else if (lstCountriesString.size() > 5 && lstCountriesString.size() <= 10) {
-                campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market3;
+                campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_3');
+                //campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market3;
             } else if (lstCountriesString.size() > 10 && lstCountriesString.size() <= 15) {
-                campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market4;
+                campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_4');
+                //campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market4;
             } else if (lstCountriesString.size() > 15) {
-                campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
+                campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_5');
+                //campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
             }
         } else {
             campaignHelper.selectedProject.Project_Scale_1__c = null;
         }
         if (campaignHelper.selectedProject.OblixRegion__c != null && campaignHelper.selectedProject.OblixRegion__c.startsWith('Global')) {
-            campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
+            campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_5');
+            //campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
         }
         System.DEBUG('Project Scale Set : ' + campaignHelper.selectedProject.Project_Scale_1__c);
     }
 
     public void setCampaignScaleOneGlobal() {
-        campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
+        campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Utils.getOblixSettingLabel('SCORE_INNOVATION_PROJECT_MARKET_5');
         campaignHelper.selectedProject.OblixRegion__c = 'Global';
         campaignHelper.selectedProject.Campaign_Countries__c = 'Global';
         campaignHelper.selectedProject.Selected_Countries__c = campaignHelper.selectedProject.Campaign_Countries__c;
@@ -242,8 +248,8 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     }
 
     public void setCampaignStages() {
-        campaignHelper.selectedProject.Completed_Stage__c = stage_identifier.s_selected_completed_stage;
-        campaignHelper.selectedProject.Projected_Stage__c = stage_identifier.s_selected_projected_stage;
+        campaignHelper.selectedProject.Stage_Completed_CFY__c = stage_identifier.s_selected_completed_stage;
+        campaignHelper.selectedProject.Stage_Projected_CFY__c = stage_identifier.s_selected_projected_stage;
         campaignHelper.selectedProject.Percentage_of_Fee_for_this_FY__c = stage_identifier.sow_project_in_scope.Percentage_of_Fee_for_this_FY__c;
 
     }
