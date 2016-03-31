@@ -49,10 +49,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CPA_ConstantsForPworfAging</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CPA_ContractInformationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -106,10 +102,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_MandatoryFieldsUtil</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CPA_PWORFAgeing</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -173,10 +165,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CPA_ScheduleBatchProrfAgeUpdate</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CPA_SelectRecordTypeController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -195,10 +183,6 @@
     <classAccesses>
         <apexClass>CPA_attachment_Trigger_Handler</apexClass>
         <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CPA_batchProrfAgeUpdate</apexClass>
-        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_testContractClass</apexClass>
