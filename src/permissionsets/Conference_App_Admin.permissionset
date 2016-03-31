@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Conference App Admin</description>
     <label>Conference App Admin</label>
-    <tabSettings>
-        <tab>Conferences</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <userLicense>Salesforce</userLicense>
+    <userLicense>Salesforce Platform</userLicense>
 </PermissionSet>
