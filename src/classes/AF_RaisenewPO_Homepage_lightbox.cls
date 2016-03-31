@@ -40,6 +40,9 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 	String newQuarter;
 	List<String> gapQuarter;
 	private static string className_STR=AF_RaisenewPO_Homepage_lightbox.class.getName();
+	List<String>addQuarter=new List<String>();
+	String brandQuarter;
+	String newBrandName;
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_RaisenewPO_Homepage_lightbox
@@ -124,15 +127,13 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 *  @return: none.
 *************************************************************************************/
 	public void showPopup(){
-		createBrandEstimate = new list<AF_Brand_Estimate__c>();
 		list<String> validateAddQuarter=new list<String>();
 		countOfSelectedBaseFee =0;
 		selectedBrandEstimateIds = new Set<String>();
 		gapQuarter = new List<String>();
-		List<String>addQuarter=new List<String>();
-		String newBrandName='';
+		newBrandName='';
 		String quarterformat='';
-		String brandQuarter='';
+		brandQuarter='';
 		displayPopup = true;
 		for(wrapChechbox B:QuarterEstimate){
 			if(B.selected){
@@ -148,22 +149,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 				
 				newQuarter = newQuarter.removeEnd(';');
 				tempvalueMap.put(B.BrandRecord.Id,newQuarter);
-				List<String> tempSplit = new List<String>();
-				if(tempvalueMap.size()>0){
-					for(String key:backupBrandQuarter.keySet()){  
-						for(String keyNewValue:tempvalueMap.keySet()){ 
-							if(key==keyNewValue && tempvalueMap.get(keyNewValue)!=backupBrandQuarter.get(key)){
-								tempSplit = tempvalueMap.get(keyNewValue).split(';');
-								for(String t:tempSplit){
-									if(!backupBrandQuarter.get(key).contains(t)){
-										addquarter.add(t);
-									}
-								}
-								counter =1;
-							}
-						}
-					}
-				}
+				createBackupQuarter();
 				if(counter==1){
 					this.selectedBrandEstimateIds.add(B.BrandRecord.Id);
 				}
@@ -215,6 +201,57 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 				brandQuarter = brandQuarter.removeEnd(';');
 				newBrandName = newBrandName+'-'+quarterformat +' ';
 				newBrandName=newBrandName + B.BrandRecord.AF_Fiscal_Year__c;
+				createNewBrandEst(B);
+			}
+		}
+		if(countOfSelectedBaseFee==0 && QuarterEstimate.size()>0)
+		{   displayPopup = False;
+			apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Select_Current_BaseFee)); 
+			sortDir = sortDir.equals(AF_Constants.SORT_ORDER_ASC) ?AF_Constants.SORT_ORDER_DESC : AF_Constants.SORT_ORDER_ASC;
+			queryBrandEstimate();
+		}
+	}
+	
+	public void createBackupQuarter(){
+		List<String> tempSplit = new List<String>();
+				if(tempvalueMap.size()>0){
+					for(String key:backupBrandQuarter.keySet()){  
+						for(String keyNewValue:tempvalueMap.keySet()){ 
+							if(key==keyNewValue && tempvalueMap.get(keyNewValue)!=backupBrandQuarter.get(key)){
+								tempSplit = tempvalueMap.get(keyNewValue).split(';');
+								for(String t:tempSplit){
+									if(!backupBrandQuarter.get(key).contains(t)){
+										addquarter.add(t);
+									}
+								}
+								counter =1;
+							}
+						}
+					}
+				}
+	}
+	
+	public void quarterCalc(wrapChechbox B){
+		if(B.Q1){
+					newQuarter = newQuarter+'Q1;';
+					gapQuarter.add(AF_Constants.QUARTER1);
+				}
+				if(B.Q2){
+					newQuarter = newQuarter+'Q2;';
+					gapQuarter.add(AF_Constants.QUARTER2);
+				}
+				if(B.Q3){
+					newQuarter = newQuarter+'Q3;';
+					gapQuarter.add(AF_Constants.QUARTER3);
+				}
+				if(B.Q4){
+					newQuarter = newQuarter+'Q4;';
+					gapQuarter.add(AF_Constants.QUARTER4);
+				}
+	}
+	
+	public void createNewBrandEst(wrapChechbox B){
+		createBrandEstimate = new list<AF_Brand_Estimate__c>();
 				AF_Brand_Estimate__c createBrand = new AF_Brand_Estimate__c();
 				createBrand.name = newBrandName;
 				createBrand.Brand__c = B.BrandRecord.Brand__c;
@@ -271,33 +308,6 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 				createBrand.CreatedUserEmail__c = UserInfo.getUserEmail();
 				createBrand.AF_Pilot_Model__c = B.BrandRecord.AF_Pilot_Model__c;
 				createBrandEstimate.add(createBrand);
-			}
-		}
-		if(countOfSelectedBaseFee==0 && QuarterEstimate.size()>0)
-		{   displayPopup = False;
-			apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Select_Current_BaseFee)); 
-			sortDir = sortDir.equals(AF_Constants.SORT_ORDER_ASC) ?AF_Constants.SORT_ORDER_DESC : AF_Constants.SORT_ORDER_ASC;
-			queryBrandEstimate();
-		}
-	}
-	
-	public void quarterCalc(wrapChechbox B){
-		if(B.Q1){
-					newQuarter = newQuarter+'Q1;';
-					gapQuarter.add(AF_Constants.QUARTER1);
-				}
-				if(B.Q2){
-					newQuarter = newQuarter+'Q2;';
-					gapQuarter.add(AF_Constants.QUARTER2);
-				}
-				if(B.Q3){
-					newQuarter = newQuarter+'Q3;';
-					gapQuarter.add(AF_Constants.QUARTER3);
-				}
-				if(B.Q4){
-					newQuarter = newQuarter+'Q4;';
-					gapQuarter.add(AF_Constants.QUARTER4);
-				}
 	}
 	/***********************************************************************************
 *  @Description: this method is used to insert the BrandEstimate and AgencyEstimate
