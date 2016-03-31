@@ -30,6 +30,10 @@
         <name>Cosmetovigilence_Questionnaire_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Debit Card Expiry Days --></label>
+        <name>Debit_Card_Expiry_Days__c</name>
+    </fields>
+    <fields>
         <label><!-- Factory Investigation Survey ID --></label>
         <name>Factory_Investigation_Survey_ID__c</name>
     </fields>

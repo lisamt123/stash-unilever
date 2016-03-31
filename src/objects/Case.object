@@ -345,6 +345,18 @@ Brand__c
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Case_ISO_Country_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>Country__r.Country__r.ISO_3166_1_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case ISO Country Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Case_Market_Mapping_Country_Id__c</fullName>
         <description>Case Market Mapping Country (Unilever Geography Record Id)</description>
         <externalId>false</externalId>
@@ -561,6 +573,10 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
         <label>Country Name</label>
         <picklist>
             <picklistValues>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Austria</fullName>
                 <default>false</default>
             </picklistValues>
@@ -569,7 +585,27 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Canada</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Costa Rica</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -578,6 +614,14 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
             </picklistValues>
             <picklistValues>
                 <fullName>Denmark</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>El Salvador</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -598,6 +642,14 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
             </picklistValues>
             <picklistValues>
                 <fullName>Greece</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Honduras</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -633,11 +685,27 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>None</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Norway</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Peru</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -666,6 +734,14 @@ IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/
             </picklistValues>
             <picklistValues>
                 <fullName>United States</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Venezuela</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>true</sorted>
@@ -1571,6 +1647,10 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
             </picklistValues>
             <picklistValues>
                 <fullName>Web</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web North America</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -4136,6 +4216,15 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_North_America_Canada_DIN_Queue_Case</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC North America Canada DIN Queue</label>
+        <queue>CEC_North_America_Canada_DIN_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_North_America_Canada_Privacy</fullName>
         <columns>Case_Brand__c</columns>
         <columns>Country__c</columns>
@@ -6402,6 +6491,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <picklistValues>
             <picklist>Country_Name__c</picklist>
             <values>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Austria</fullName>
                 <default>false</default>
             </values>
@@ -6410,7 +6503,27 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Costa Rica</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6419,6 +6532,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Denmark</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>El Salvador</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6439,6 +6560,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>Greece</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honduras</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6474,11 +6603,27 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>None</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Norway</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peru</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6507,6 +6652,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>United States</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6581,10 +6734,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <values>
                 <fullName>Phone</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>SMS %2F Text Messages</fullName>
-                <default>false</default>
             </values>
             <values>
                 <fullName>Social</fullName>
@@ -6897,7 +7046,47 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <picklistValues>
             <picklist>Country_Name__c</picklist>
             <values>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Canada</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Costa Rica</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>El Salvador</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Honduras</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6905,7 +7094,31 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peru</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Venezuela</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6965,10 +7178,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <values>
                 <fullName>Phone</fullName>
                 <default>true</default>
-            </values>
-            <values>
-                <fullName>SMS %2F Text Messages</fullName>
-                <default>false</default>
             </values>
             <values>
                 <fullName>Social</fullName>

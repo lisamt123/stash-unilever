@@ -1177,6 +1177,22 @@
         <name>CEC_Create_Button</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_DebitCardDetails_Already_Added --></label>
+        <name>CEC_DebitCardDetails_Already_Added</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_DebitCardDetails_Input_Fields_Missing --></label>
+        <name>CEC_DebitCardDetails_Input_Fields_Missing</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_DebitCardDetails_InsufficientPrivileges --></label>
+        <name>CEC_DebitCardDetails_InsufficientPrivileges</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_DebitCardDetails_No_Active_DebitCard_For_Country --></label>
+        <name>CEC_DebitCardDetails_No_Active_DebitCard_For_Country</name>
+    </customLabels>
+    <customLabels>
         <label>Bitte definieren Sie welche Details bekannt sind.</label>
         <name>CEC_Detail_Request_Info</name>
     </customLabels>

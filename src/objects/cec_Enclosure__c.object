@@ -91,6 +91,10 @@
         <label>Country</label>
         <picklist>
             <picklistValues>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Austria</fullName>
                 <default>false</default>
             </picklistValues>
@@ -99,11 +103,35 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Bosnia and Herzegovina</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Bulgaria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Costa Rica</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -116,6 +144,14 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Denmark</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>El Salvador</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -136,6 +172,14 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Greece</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Honduras</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -175,6 +219,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Mlodova, Republic of</fullName>
                 <default>false</default>
             </picklistValues>
@@ -187,7 +235,23 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Norway</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Peru</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -235,14 +299,14 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Mexico</fullName>
+                <fullName>Uruguay</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Canada</fullName>
+                <fullName>Venezuela</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
+            <sorted>true</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>

@@ -713,6 +713,19 @@
         <name>Date_Anonymized__c</name>
     </fields>
     <fields>
+        <label><!-- Debit Card Expiry Date --></label>
+        <name>Debit_Card_Expiry_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Debit Card Number --></label>
+        <name>Debit_Card_Number__c</name>
+        <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Debit Card Status --></label>
+        <name>Debit_Card_Status__c</name>
+    </fields>
+    <fields>
         <label><!-- Demandware Customer No --></label>
         <name>Demandware_ID__c</name>
     </fields>
@@ -1640,6 +1653,10 @@
         <sections>
             <label><!-- Additional Address Information --></label>
             <section>Additional Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Debit Card --></label>
+            <section>Debit Card</section>
         </sections>
         <sections>
             <label><!-- Preferences --></label>

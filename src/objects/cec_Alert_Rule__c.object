@@ -267,6 +267,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Brazil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Czech Republic</fullName>
                 <default>false</default>
             </picklistValues>
@@ -295,6 +299,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Middle Americas</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Nordic</fullName>
                 <default>false</default>
             </picklistValues>
@@ -308,6 +316,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Southern Cone</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
