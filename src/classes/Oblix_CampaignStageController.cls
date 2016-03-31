@@ -3,6 +3,15 @@ public with sharing class Oblix_CampaignStageController {
 	// component attributes set by container
 	public Oblix_CampaignStageLogic stage_identifier {get;set;}
 	public Boolean b_auto_save {get;set;}
+    public Integer display_mode {
+        get{
+            if(display_mode == null) {
+                return 1;
+            }
+            return display_mode;
+        }
+        set;
+    }
 
 	// local component attributes 
 	public String s_completion_stage {get;set;}

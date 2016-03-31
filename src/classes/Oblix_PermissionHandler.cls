@@ -24,7 +24,7 @@ public with sharing class Oblix_PermissionHandler {
 
     private static final String UL1_PERMISSION_SET = 'Oblix_SWOP_UL_1_V1';
     private static final String UL2_PERMISSION_SET = 'Oblix_SWOP_UL_2_V1';
-    private static final String UL3_PERMISSION_SET = 'Oblix_SWOP_UL_3_V1';
+    private static final String UL3_PERMISSION_SET = 'Oblix_SWOP_UL3_4_V1';
     private static final String AG1_PERMISSION_SET = 'Oblix_SWOP_AG_1_Agency';
     private static final String AG2_PERMISSION_SET = 'Oblix_SWOP_AG_2_Agency';
     private static final String UL_SUPER_USER_PERMISSION_SET = 'Oblix_SWOP_Super_User_V1';
@@ -120,7 +120,7 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canSeeFinancialField(String sow_status){
     	// only UL1, UL2, SuperUser and Sysadmin can see financial fields
     	// or if the sow is approved by Unilever/awaiting agency approval
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
+    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasUL3permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
     		|| Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY == sow_status
             || Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL == sow_status
             || Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC == sow_status){
@@ -329,7 +329,7 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canSubmitForApproval(String sow_status){
     	// only UL2, UL1, SuperUser and Sysadmin can send sow for approval
     	// if not already approved
-        if ( (hasUL2permissionSet() || hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin() || hasAG1permissionSet())
+        if ( (hasUL2permissionSet() || hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status
                 && Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status

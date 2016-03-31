@@ -188,7 +188,7 @@
                         <p class="{!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled_text', '')}">
                             {!if(selected_project.Campaign_Status__c == 'Cancelled', 'Campaign Cancelled','')}
                         </p>
-                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component" /> 
+                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component" displayMode="2"/> 
                     </div>             
                         <div class="campaign_summary_info_table">
                             <table class="campaign_summary_information camp_sum_table_left_width">
@@ -332,7 +332,8 @@
                                     <div class="expandMore">{!selected_project.Jobs_to_be_Done__c}</div><!-- <a href="">more</a> --></td>
                                 </tr>
                             </table>
-                        </div>    
+                        </div>
+                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component_bottom" displayMode="3"/> 
                     </div>   
                 </div>
                 <hr class="divider" />

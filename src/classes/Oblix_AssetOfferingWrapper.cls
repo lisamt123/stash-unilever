@@ -655,17 +655,22 @@ public with sharing class Oblix_AssetOfferingWrapper {
                 this.campaign_id = Oblix_AssetOfferingWrapper.wrapper_campaign_id;
             }
             
+
+            buildTheMapOfMDMDandAssets();
+            
+        }
+
+        public Decimal getPointScoreForQuantity(){
+            return point_Score * quantity_in_basket;
+        }
+
+        private void buildTheMapOfMDMDandAssets(){
             if (NULL == Oblix_Utils.map_of_mdm_id_to_asset){
                 Oblix_Utils.map_of_mdm_id_to_asset = new Map<String, AssetWrapper>();
             }
 
             // we need to get access to map_of_mdm_id_to_asset map which exists at the top level of Oblix_AssetOfferingWrapper
             Oblix_Utils.map_of_mdm_id_to_asset.put(this.mdm_id, this);
-            
-        }
-
-        public Decimal getPointScoreForQuantity(){
-            return point_Score * quantity_in_basket;
         }
 
     }
