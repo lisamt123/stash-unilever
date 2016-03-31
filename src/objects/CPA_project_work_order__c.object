@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
@@ -51,6 +52,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -9297,13 +9299,22 @@ var permissionSetName = records1[0].PermissionSet.Name;
 //alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
 
 if( permissionSetName == &quot;CPA_SMT&quot;){  
-	if(p.TNF_Status__c == &quot;Accepted&quot;){ 
+	if(p.TNF_Status__c == &quot;Submitted&quot; ||p.TNF_Status__c == &quot;Resubmitted&quot;){ 
+		alert(&quot;TNF cannot be Sent for Signature as it is not yet Accepted&quot;); 
+	}else if(p.TNF_Status__c == &quot;Cancelled&quot; || p.TNF_Status__c == &quot;Returned&quot;){ 
+		alert(&quot;TNF cannot be Sent for Signature as it is in Cancelled/Returned status.&quot;); 
+	}else if(p.TNF_Status__c == &quot;Accepted&quot;){ 
 		p.TNF_Status__c = &quot;Sent for Signature&quot;;	
 		result = sforce.connection.update([p]); 
-		location.reload(true); 
-	}else{ 
-		alert(&quot;TNF cannot be Sent for Signature as it is not yet Accepted&quot;); 
-	} 
+		location.reload(true);	
+	}else if(p.TNF_Status__c == &quot;Sent for Signature&quot; || p.TNF_Status__c == &quot;Signed&quot;){ 
+		alert(&quot;TNF cannot be Sent for Signature as it is already Signed/Sent for Signature.&quot;); 
+	}else if(p.TNF_Status__c == &quot;Delivered&quot;){ 
+		alert(&quot;TNF cannot be Sent for Signature as it is already Delivered.&quot;); 
+	}else
+	{ 
+		alert(&quot;TNF can be Sent for Signature if it is in Accepted Status.&quot;); 
+	}  
 }else{ 
 	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>

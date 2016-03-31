@@ -953,7 +953,7 @@
             <name>CPA_Record_type_CPA_TNF</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>CPA_project_work_order__c.TNF_Status__c</field>
             <operation>equals</operation>

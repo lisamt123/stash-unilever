@@ -117,9 +117,9 @@ global with sharing class CPA_HLERequInformationController {
                  RequiredFieldMap.put('Funding approved?',CPA_ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.PFS_Is_there_approved_funding_for_this__c  == 'Yes' && hleRec.mpkl_PFS_If_yes_what_is_the_source__c == null ) 
                  RequiredFieldMap.put('If yes, what is the source?',CPA_ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.PFS_Is_there_approved_funding_for_this__c  == 'Yes' && hleRec.mpkl_PFS_If_yes_what_is_the_source__c == 'Other' &&  hleRec.txt_Other_Project_funding_Source__c == null) 
+            if(hleRec.PFS_Is_there_approved_funding_for_this__c  == 'Yes' && hleRec.mpkl_PFS_If_yes_what_is_the_source__c != null && hleRec.mpkl_PFS_If_yes_what_is_the_source__c.contains(CPA_ConstantsForContractingAppClasses.OTHER)  &&  hleRec.txt_Other_Project_funding_Source__c == null) 
                  RequiredFieldMap.put('Other Project funding Source',CPA_ConstantsForContractingAppClasses.MANDATORY);  
-            if(hleRec.mpkl_PFS_If_yes_what_is_the_source__c != 'Other' &&  hleRec.txt_Other_Project_funding_Source__c != null) 
+            if(hleRec.txt_Other_Project_funding_Source__c != null && !hleRec.mpkl_PFS_If_yes_what_is_the_source__c.contains(CPA_ConstantsForContractingAppClasses.OTHER)) 
                  RequiredFieldMap.put('Other Project funding Source','"Other Project funding Source" should be only entered when "Source" is Others');
              
            

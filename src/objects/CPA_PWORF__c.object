@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This object holds Project Work Order Request Form (PWORF) details which is used for supplier/vendor management.
@@ -54,6 +55,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -3620,8 +3622,8 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <validationRules>
         <fullName>CPA_PWORF_Name_cant_be_changed</fullName>
         <active>true</active>
-        <errorConditionFormula>IF(AND (!ISNEW(),OR((ISPICKVAL( pkl_Status__c ,&apos;Accepted&apos;)),(ISPICKVAL( pkl_Status__c ,&apos;Auto Accepted&apos;)),(ISPICKVAL( pkl_Status__c ,&apos;Answered&apos;)),(ISPICKVAL( pkl_Status__c ,&apos;Cancelled&apos;))),ISCHANGED(Name)),true,false)</errorConditionFormula>
-        <errorMessage>PWORF Name cant be changed after it get Accepted</errorMessage>
+        <errorConditionFormula>IF(AND (!ISNEW(),NOT(ISPICKVAL( pkl_Status__c ,&apos;Saved&apos;)),ISCHANGED(Name)),true,false)</errorConditionFormula>
+        <errorMessage>PWORF Name cant be changed.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Cost_Center_Details</fullName>
