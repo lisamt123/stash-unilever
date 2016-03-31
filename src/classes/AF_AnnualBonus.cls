@@ -72,6 +72,8 @@ public with sharing class AF_AnnualBonus {
 	 map<String,map<String,boolean>> bonus_Threshold_Trad_Dig_BM_MapTemp = new map<String,map<String,boolean>>();
 	 map<string,AF_Sub_Result__c>mapBonus_result=new map<string,AF_Sub_Result__c>();
 	 Map<String,Integer> EntityAmtMap = new Map<String,Integer>();
+	 Map<String,Integer> BonusMeasureShowMap = new Map<String,Integer>();
+	 Map<String,Integer> BonusMeasureCalcMap = new Map<String,Integer>();
     /*End code refactoring*/
     /**********************************************************************
 *  @Description: Contructor method
@@ -164,11 +166,11 @@ public with sharing class AF_AnnualBonus {
                 }
             }
             
-            Decimal totalbonusval=0;
+            
 			annualBonusTradDigitalCalc();
            
             sum_of_bonusable_fees=Totals_BonusMeasureTrad+Totals_BonusMeasureDigital;
-            Map<String,Integer> BonusMeasureCalcMap = new Map<String,Integer>();
+            
             for(String countryName:Countryname_BT){
                 String countryDigital = countryName + '::' + 'D';
                 String countryTrad = countryName + '::' + 'T';
@@ -193,7 +195,7 @@ public with sharing class AF_AnnualBonus {
             }
             Integer totalBMCalc=0;
             Integer BMDiff =0;
-            Map<String,Integer> BonusMeasureShowMap = new Map<String,Integer>();
+            
             for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List){
                 string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
                 Integer count=0;
@@ -221,98 +223,8 @@ public with sharing class AF_AnnualBonus {
                     loopBM= loopBM+1;
                 }
             }
-            for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List)
-            {
-                AF_AnnualBonus_Qual__c Custom_Qualatative=AF_AnnualBonus_Qual__c.getInstance(AF_Qualitative_value);  
-                string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
-                if(mapBonus_result.containskey(bonus_Threshold_Obj.AF_Unique_Thresholds__c)){
-                    if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==0 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==null){
-                        if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c!=null){
-                            qual_per = mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c;
-                        }
-                        else{
-                            qual_per=0;
-                        }
-                        if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
-                            Qual_value=Custom_Qualatative.X1__c;
-                            sum_of_qual_value=sum_of_qual_value + Qual_value;
-                        }
-                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==3){
-                            if(BonusMeasureShowMap.get(strBM)!=null){
-                                Qual_value=BonusMeasureShowMap.get(strBM)*Custom_Qualatative.X3__c/100;
-                                sum_of_qual_value=sum_of_qual_value + Qual_value;
-                            }
-                        }
-                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==4){
-                            if(BonusMeasureShowMap.get(strBM)!=null){
-                                Qual_value=BonusMeasureShowMap.get(strBM)*Custom_Qualatative.X4__c/100;
-                                sum_of_qual_value=sum_of_qual_value + Qual_value;
-                            }
-                        }
-                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==5){
-                            if(BonusMeasureShowMap.get(strBM)!=null){
-                                Qual_value=BonusMeasureShowMap.get(strBM)*Custom_Qualatative.X5__c/100;
-                                sum_of_qual_value=sum_of_qual_value + Qual_value;
-                            }
-                        }
-                    }
-                    else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c!=0){
-                        if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c!=null){
-                            qual_per = mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual_Per__c;
-                        }
-                        else{
-                            qual_per=0;
-                        }
-                        if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
-                            Qual_value=Custom_Qualatative.X1__c;
-                            sum_of_qual_value=sum_of_qual_value + Qual_value;
-                        }
-                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==3){
-                            if(BonusMeasureShowMap.get(strBM)!=null){
-                                Qual_value=Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c)*Custom_Qualatative.X3__c/100;
-                                sum_of_qual_value=sum_of_qual_value + Qual_value;
-                            }
-                        }
-                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==4){
-                            if(BonusMeasureShowMap.get(strBM)!=null){
-                                Qual_value=Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c)*Custom_Qualatative.X4__c/100;
-                                sum_of_qual_value=sum_of_qual_value + Qual_value;
-                            }
-                        }
-                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==5){
-                            if(BonusMeasureShowMap.get(strBM)!=null){
-                                Qual_value=Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c)*Custom_Qualatative.X5__c/100;
-                                sum_of_qual_value=sum_of_qual_value + Qual_value;
-                            }
-                        }
-                    }
-                }  
-                else{
-                    Qual_value=0;
-                    qual_per=0; 
-                }
-                Integer count=0;
-                String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
-                String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
-                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Digital)){
-                    count = BonusMeasureCalcMap.get(countryDigital);
-                }
-                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Trad)){
-                    count = count+BonusMeasureCalcMap.get(countryTrad);
-                }
-                if(mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c) && (mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==0 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==null)){
-                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c,bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c),count,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
-                }else if(!mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c)){
-                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c,bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,new AF_Sub_Result__c(),count,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
-                }
-                else if(mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c) && mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c!=0){
-                    Integer newAmt = Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c);
-                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c,bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c),newAmt,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
-                }
-                if(totalbonusval==0){
-                    noDisplayQuarterly = false;
-                }
-            }
+			annualBonusQualQuantPerCalc(Bonus_SubResult_List);
+          
         } 
         if(AF_Pilot_Model)
         {
@@ -511,6 +423,101 @@ public with sharing class AF_AnnualBonus {
             }
             catch(Exception ex){
            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_AnnualBonus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString()); 
+            }
+	}
+	public void annualBonusQualQuantPerCalc(List<AF_Sub_Result__c> Bonus_SubResult_List){
+		  Decimal totalbonusval=0;
+		  for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List)
+            {
+                AF_AnnualBonus_Qual__c Custom_Qualatative=AF_AnnualBonus_Qual__c.getInstance(AF_Qualitative_value);  
+                string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
+                if(mapBonus_result.containskey(bonus_Threshold_Obj.AF_Unique_Thresholds__c)){
+                    if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==0 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==null){
+                        if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c!=null){
+                            qual_per = mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c;
+                        }
+                        else{
+                            qual_per=0;
+                        }
+                        if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
+                            Qual_value=Custom_Qualatative.X1__c;
+                            sum_of_qual_value=sum_of_qual_value + Qual_value;
+                        }
+                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==3){
+                            if(BonusMeasureShowMap.get(strBM)!=null){
+                                Qual_value=BonusMeasureShowMap.get(strBM)*Custom_Qualatative.X3__c/100;
+                                sum_of_qual_value=sum_of_qual_value + Qual_value;
+                            }
+                        }
+                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==4){
+                            if(BonusMeasureShowMap.get(strBM)!=null){
+                                Qual_value=BonusMeasureShowMap.get(strBM)*Custom_Qualatative.X4__c/100;
+                                sum_of_qual_value=sum_of_qual_value + Qual_value;
+                            }
+                        }
+                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==5){
+                            if(BonusMeasureShowMap.get(strBM)!=null){
+                                Qual_value=BonusMeasureShowMap.get(strBM)*Custom_Qualatative.X5__c/100;
+                                sum_of_qual_value=sum_of_qual_value + Qual_value;
+                            }
+                        }
+                    }
+                    else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c!=0){
+                        if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c!=null){
+                            qual_per = mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual_Per__c;
+                        }
+                        else{
+                            qual_per=0;
+                        }
+                        if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
+                            Qual_value=Custom_Qualatative.X1__c;
+                            sum_of_qual_value=sum_of_qual_value + Qual_value;
+                        }
+                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==3){
+                            if(BonusMeasureShowMap.get(strBM)!=null){
+                                Qual_value=Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c)*Custom_Qualatative.X3__c/100;
+                                sum_of_qual_value=sum_of_qual_value + Qual_value;
+                            }
+                        }
+                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==4){
+                            if(BonusMeasureShowMap.get(strBM)!=null){
+                                Qual_value=Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c)*Custom_Qualatative.X4__c/100;
+                                sum_of_qual_value=sum_of_qual_value + Qual_value;
+                            }
+                        }
+                        else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==5){
+                            if(BonusMeasureShowMap.get(strBM)!=null){
+                                Qual_value=Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c)*Custom_Qualatative.X5__c/100;
+                                sum_of_qual_value=sum_of_qual_value + Qual_value;
+                            }
+                        }
+                    }
+                }  
+                else{
+                    Qual_value=0;
+                    qual_per=0; 
+                }
+                Integer count=0;
+                String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
+                String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
+                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Digital)){
+                    count = BonusMeasureCalcMap.get(countryDigital);
+                }
+                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Trad)){
+                    count = count+BonusMeasureCalcMap.get(countryTrad);
+                }
+                if(mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c) && (mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==0 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c==null)){
+                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c,bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c),count,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
+                }else if(!mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c)){
+                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c,bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,new AF_Sub_Result__c(),count,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
+                }
+                else if(mapBonus_result.containsKey(bonus_Threshold_Obj.AF_Unique_Thresholds__c) && mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c!=0){
+                    Integer newAmt = Integer.valueOf(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Bonusable_Fees__c);
+                    QuartelyBonus.add(new wrapbonus(0,Qual_value,qual_per,bonus_Threshold_Obj.AF_Bonus_Threshold__c,bonus_Threshold_Obj.AF_Country__r.AF_Country__c,bonus_Threshold_Obj.AF_Minimum__c,bonus_Threshold_Obj.AF_Stretching__c,bonus_Threshold_Obj.AF_Outstanding__c,mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c),newAmt,bonus_Threshold_Obj.Bonus_Measure__c,countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)));
+                }
+                if(totalbonusval==0){
+                    noDisplayQuarterly = false;
+                }
             }
 	}
     /*********************************************************************************
