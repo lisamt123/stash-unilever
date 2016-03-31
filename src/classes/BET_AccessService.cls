@@ -132,7 +132,7 @@ public without sharing class BET_AccessService {
 				requestIds.add(mrequest.id);
 			}
 			if(!requestIds.isEmpty()){
-//Do not send notification if BET owner is inactive
+				//Do not send notification if BET owner is inactive
            uw_Bet__c betowner = [select id,name,ownerId from uw_Bet__c where id=:betId];
             User owner=[select id,isactive from User where id=:betowner.ownerid];
             if(owner.isactive)
