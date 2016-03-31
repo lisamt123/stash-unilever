@@ -11,7 +11,6 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
 {  
     Private Static Integer IcurrYear = System.Today().year();
     Private Static string currYear=string.valueof(IcurrYear);
-    private static String agencyFeesUserType = 'Agency';
     private static String Fyear = 'Year';
     Private static user usrforlightbox;
     /**********************************************************************

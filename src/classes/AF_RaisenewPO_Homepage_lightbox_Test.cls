@@ -12,10 +12,6 @@ public class AF_RaisenewPO_Homepage_lightbox_Test
 	Private Static Integer IcurrYear = System.Today().year();
 	Private Static string currYear=string.valueof(IcurrYear); 
 	Private static user RaisenewPO_Homepage_lightbox; 
-	private Static Boolean RaisePo;
-	private static String BrandName;
-	private static string selectedQuarters;
-	private String selectedId;
 	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/**********************************************************************
 *  @Description: This method will have Test data.
