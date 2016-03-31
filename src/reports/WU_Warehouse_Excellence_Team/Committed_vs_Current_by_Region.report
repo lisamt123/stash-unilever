@@ -24,6 +24,9 @@
     <columns>
         <field>CHILD_NAME</field>
     </columns>
+    <columns>
+        <field>WU_Master_Warehouse__c.WU_LocationName__c</field>
+    </columns>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
@@ -37,7 +40,7 @@
     </params>
     <reportType>CustomEntityCustomEntity$WU_Master_Warehouse__c$WU_Warehouse_Capacity_Detail__c</reportType>
     <scope>user</scope>
-    <showDetails>false</showDetails>
+    <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>WU_Master_Warehouse__c.WU_ToDate__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

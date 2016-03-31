@@ -24,6 +24,9 @@
     <columns>
         <field>CHILD_NAME</field>
     </columns>
+    <columns>
+        <field>WU_Master_Warehouse__c.WU_LocationName__c</field>
+    </columns>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
