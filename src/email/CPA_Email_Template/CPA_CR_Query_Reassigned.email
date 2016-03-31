@@ -1,10 +1,10 @@
-<messaging:emailTemplate subject="Query Reassigned for {!RelatedTo.CR_ID__c} with ID {!RelatedTo.Name} by {!RelatedTo.Capture_creator__c}" recipientType="User"  relatedToType="CPA_Queries__c" >
+<messaging:emailTemplate subject="{!RelatedTo.CR_ID__c} : Query Reassigned" recipientType="User"  relatedToType="CPA_Queries__c" >
 <messaging:htmlEmailBody >
 Hi,<br/><br/>
 
 {!RelatedTo.Capture_creator__c} has reassigned query posted on {!RelatedTo.CR_ID__c} with ID {!RelatedTo.Name} on {!RelatedTo.Createddate}.<br/>
 
-You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.LookupCR_Query__c} ">{!RelatedTo.CR_ID__c} </a> <br/><br/>
 
 Regards,<br/><br/>
 Automation Contract System
