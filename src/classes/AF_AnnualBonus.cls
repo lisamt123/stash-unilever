@@ -170,59 +170,9 @@ public with sharing class AF_AnnualBonus {
 			annualBonusTradDigitalCalc();
            
             sum_of_bonusable_fees=Totals_BonusMeasureTrad+Totals_BonusMeasureDigital;
+            annualBonusTotalTradDigitalCalc();
+            annualBonusBMCalc(Bonus_SubResult_List);
             
-            for(String countryName:Countryname_BT){
-                String countryDigital = countryName + '::' + 'D';
-                String countryTrad = countryName + '::' + 'T';
-                Integer count=0;
-                Integer Amt =0;
-                Integer calc=0;
-                count = countryBMMap.get(countryDigital);
-                Amt = EntityAmtMap.get(countryDigital);
-                if(count>0 && Amt!=null){
-                    calc = integer.valueof(Amt/count);
-                }
-                BonusMeasureCalcMap.put(countryDigital,calc);
-                count=0;
-                Amt =0;
-                calc=0;
-                count = countryBMMap.get(countryTrad);
-                Amt = EntityAmtMap.get(countryTrad);
-                if(count>0 && Amt!=null){
-                    calc = integer.valueof(Amt/count);
-                }
-                BonusMeasureCalcMap.put(countryTrad,calc);
-            }
-            Integer totalBMCalc=0;
-            Integer BMDiff =0;
-            
-            for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List){
-                string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
-                Integer count=0;
-                String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
-                String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
-                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Digital)){
-                    count = BonusMeasureCalcMap.get(countryDigital);
-                }
-                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Trad)){
-                    count = count+BonusMeasureCalcMap.get(countryTrad);
-                }
-                BonusMeasureShowMap.put(strBM,count);
-                totalBMCalc = totalBMCalc + count;
-            }
-            BMDiff = integer.valueof(sum_of_bonusable_fees) - totalBMCalc;
-            Integer loopBM=0;
-            for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List)
-            {
-                string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
-                Integer count=0;
-                if(countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)>1 && loopBM==0){
-                    count = BonusMeasureShowMap.get(strBM);
-                    count = count + BMDiff;
-                    BonusMeasureShowMap.put(strBM,count);
-                    loopBM= loopBM+1;
-                }
-            }
 			annualBonusQualQuantPerCalc(Bonus_SubResult_List);
           
         } 
@@ -517,6 +467,64 @@ public with sharing class AF_AnnualBonus {
                 }
                 if(totalbonusval==0){
                     noDisplayQuarterly = false;
+                }
+            }
+	}
+	
+	public void annualBonusTotalTradDigitalCalc(){
+		 for(String countryName:Countryname_BT){
+                String countryDigital = countryName + '::' + 'D';
+                String countryTrad = countryName + '::' + 'T';
+                Integer count=0;
+                Integer Amt =0;
+                Integer calc=0;
+                count = countryBMMap.get(countryDigital);
+                Amt = EntityAmtMap.get(countryDigital);
+                if(count>0 && Amt!=null){
+                    calc = integer.valueof(Amt/count);
+                }
+                BonusMeasureCalcMap.put(countryDigital,calc);
+                count=0;
+                Amt =0;
+                calc=0;
+                count = countryBMMap.get(countryTrad);
+                Amt = EntityAmtMap.get(countryTrad);
+                if(count>0 && Amt!=null){
+                    calc = integer.valueof(Amt/count);
+                }
+                BonusMeasureCalcMap.put(countryTrad,calc);
+            }
+	}
+	
+	public void annualBonusBMCalc(List<AF_Sub_Result__c> Bonus_SubResult_List){
+		Integer totalBMCalc=0;
+            Integer BMDiff =0;
+            
+            for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List){
+                string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
+                Integer count=0;
+                String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
+                String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
+                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Digital)){
+                    count = BonusMeasureCalcMap.get(countryDigital);
+                }
+                if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Trad)){
+                    count = count+BonusMeasureCalcMap.get(countryTrad);
+                }
+                BonusMeasureShowMap.put(strBM,count);
+                totalBMCalc = totalBMCalc + count;
+            }
+            BMDiff = integer.valueof(sum_of_bonusable_fees) - totalBMCalc;
+            Integer loopBM=0;
+            for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List)
+            {
+                string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
+                Integer count=0;
+                if(countryCountMap.get(bonus_Threshold_Obj.AF_Country__r.AF_Country__c)>1 && loopBM==0){
+                    count = BonusMeasureShowMap.get(strBM);
+                    count = count + BMDiff;
+                    BonusMeasureShowMap.put(strBM,count);
+                    loopBM= loopBM+1;
                 }
             }
 	}
