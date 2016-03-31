@@ -33,7 +33,8 @@ private class CPA_PWORF_PWO_UtilMethods_Test {
         insert CancelMsg;
         CPA_Status_Msg__c AutoAcceMsg = CPA_testStatusMsgCustomSettingClass.createTest_AutoAcceMsg();
         insert AutoAcceMsg;
-    
+    	CPA_SLAConfiguration__c sla = CPA_testCustomSettingClass_util.createTest_SLAdata();
+        insert sla;
     }       
     /*******************************************************************
     Purpose: This method is used to cover PWORF utilities
