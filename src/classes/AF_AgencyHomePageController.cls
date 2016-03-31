@@ -86,25 +86,8 @@ public with sharing class AF_AgencyHomePageController {
 		agencySetId = new set<Id>();
 		uniqueBrandEstMap = new map<String, AF_Brand_Estimate__c>();
         List<PermissionSetAssignment> permissionSetAssign =[select PermissionSet.Name from PermissionSetAssignment where Assignee.Id = :userId and (PermissionSet.Name like'%CMCO%' or PermissionSet.Name like'%Category%' or PermissionSet.Name like'%Agency%' or PermissionSet.Name like'%Procurement%' or PermissionSet.Name like'%Controllers%')  order by PermissionSet.Name];
-        for (PermissionSetAssignment Names:permissionSetAssign )
-        {
-            string permissionSetName = Names.PermissionSet.Name;
-            if(permissionSetName.contains(AF_Constants.PERM_CMCO)){
-                isCMCO=true;
-            }
-            else if(permissionSetName==AF_Constants.PERM_FINANCE_CAT){
-                isFinance=true;
-            }
-            else if(permissionSetName.contains(AF_Constants.PERM_CONTROLLER)){
-                isController=true;
-            }
-            else if(permissionSetName.contains(AF_Constants.PERM_PROCURMENT)){
-                isProcurement=true;
-            }
-            else if(permissionSetName==AF_Constants.PERM_FINANCE_REG_CAT){
-                IsCatFinanceRegional=true;
-            }
-        }
+        checkLoggedUserPermissionSet(permissionSetAssign);
+		
         User userObj = new User();
         userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
         AgencyAccountName=userObj.Contact.Account.Name;          
@@ -224,6 +207,33 @@ public with sharing class AF_AgencyHomePageController {
             className_STR,ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
         }
     }
+    /***********************************************************************************
+*  @Description: this method is used to check the permissionset assigned for users
+*  @name : checkLoggedUserPermissionSet
+*  @param : List<PermissionSetAssignment>
+*  @return: none.
+*************************************************************************************/
+	public void checkLoggedUserPermissionSet(List<PermissionSetAssignment> permissionSetAssign){
+		for (PermissionSetAssignment Names:permissionSetAssign )
+        {
+            string permissionSetName = Names.PermissionSet.Name;
+            if(permissionSetName.contains(AF_Constants.PERM_CMCO)){
+                isCMCO=true;
+            }
+            else if(permissionSetName==AF_Constants.PERM_FINANCE_CAT){
+                isFinance=true;
+            }
+            else if(permissionSetName.contains(AF_Constants.PERM_CONTROLLER)){
+                isController=true;
+            }
+            else if(permissionSetName.contains(AF_Constants.PERM_PROCURMENT)){
+                isProcurement=true;
+            }
+            else if(permissionSetName==AF_Constants.PERM_FINANCE_REG_CAT){
+                IsCatFinanceRegional=true;
+            }
+        }
+	}
     /***********************************************************************************
 *  @Description: this method is used to provide drop down options for Financial Year
 *  @name : getfinancialYearOption
