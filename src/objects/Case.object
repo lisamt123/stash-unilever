@@ -3282,7 +3282,30 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <label>CEC NA Product UPC LIST</label>
         <language>en_US</language>
         <sharedTo>
-            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_NA_Reason_Code_List</fullName>
+        <columns>Reason_L1_desc__c</columns>
+        <columns>Reason_L3_desc__c</columns>
+        <columns>Reason_L5_desc__c</columns>
+        <columns>Country__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Reason_L1_desc__c</field>
+            <operation>greaterThan</operation>
+            <value>!</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>North America</value>
+        </filters>
+        <label>CEC NA Reason Code List</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_User_North_America</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -3336,7 +3359,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Q-tips,Caress</value>
+            <value>Q-tips,Caress,Anti Perspirant Info,Dove Men+Care</value>
         </filters>
         <label>CEC North America 24-7 Queue HPC</label>
         <language>en_US</language>
@@ -3631,12 +3654,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>I Can&apos;t Believe It&apos;s Not Butter!,ICantBelieveItsNotButter,Klondike,Knorr,Lipton</value>
+            <value>I Cant Believe Its Not Butter,Klondike,Knorr,Lipton</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
             <operation>equals</operation>
-            <value>Lipton Kitchens (soups &amp; mixes,Lipton Soup Secrets,Lipton_CA-EN,LiptonKitchens</value>
+            <value>Lipton Kitchens,Lipton Soup Secrets,Lipton_CA-EN,Lipton Cup a Soup</value>
         </filters>
         <filters>
             <field>Case_Brand__c</field>
@@ -5666,7 +5689,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-            <value>New</value>
+            <value>New,Escalated</value>
         </filters>
         <filters>
             <field>Language__c</field>
@@ -6156,7 +6179,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Vacation_Queue_DACH</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -6189,6 +6212,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
             <value>bfric</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>equals</operation>
+            <value>Mavonba</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>
