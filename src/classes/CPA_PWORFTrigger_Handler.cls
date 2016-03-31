@@ -86,7 +86,7 @@ public with sharing class CPA_PWORFTrigger_Handler
             //Dinesh added below code [17/02] to generate internal PWO ID
             //later on move this method to CPA_PWORF_TriggerUtil class
             CPA_CalculationOfBusinessDaysForSLADates.generateInternalPWOID(trigger.old,trigger.new);
-            
+            CPA_PWORF_TriggerUtil.restrictULPMtoUpdate(trigger.old,trigger.new);
         }
     }
     

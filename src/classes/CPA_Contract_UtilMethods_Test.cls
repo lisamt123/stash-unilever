@@ -133,9 +133,15 @@ private class CPA_Contract_UtilMethods_Test {
             CPA_CR__c objCR1 = CPA_testContractClass.standAloneCR();
             objCR1.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
             objCR1.num_Effort_Cost__c =20;
-            insert objCR1;   
+            insert objCR1;
+        	objCR1.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;              
+            update objCR1;
+        	CPA_CR__c objCR2 = CPA_testContractClass.standAloneCR();
+            objCR2.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
+            objCR2.num_Effort_Cost__c =20;
+            insert objCR2;
         Test.stopTest();    
-        System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objCR1.pkl_Status__c); 
+        System.assert (CPA_ConstantsForContractingAppClasses.SUBMITTED == objCR1.pkl_Status__c); 
     }
         /*******************************************************************
     Purpose: This method is used to cover CR utilities

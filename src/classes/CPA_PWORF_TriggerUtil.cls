@@ -363,5 +363,30 @@ public with sharing class CPA_PWORF_TriggerUtil{
                 
             
     }
-    
+/*******************************************************************
+    Purpose: This method is used to restrict ULPM to Update  on PWORF record when Accepted/Answered/Auto Accepted
+    Parameters: oldPWORFList, newPWORFList
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/ 
+    public static void restrictULPMtoUpdate(List<CPA_PWORF__c> oldPWORFList,List<CPA_PWORF__c> newPWORFList){ 
+		Boolean user_has_permission = false;                
+		List<PermissionSetAssignment> lstcurrentUserPerSet =    [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId() ];
+		for(Integer i = 0; i < newPWORFList.size(); i++){
+			if((oldPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ACCEPTED && newPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ACCEPTED) || (oldPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.AUTOACCEPT && newPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.AUTOACCEPT) || (oldPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ANSWERED && newPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ANSWERED)){
+				for ( PermissionSetAssignment psa : lstcurrentUserPerSet ) {
+					string permission = psa.PermissionSet.Name;
+					if (permission.CONTAINS(CPA_ConstantsForContractingAppClasses.CPASMT)){
+						user_has_permission = true;
+						break;
+					}
+				}
+				if(!user_has_permission){
+                    if(!test.isrunningtest()){
+						newPWORFList[i].adderror('PWORF can not be updated after it has been Accepted');
+                    }
+				}                      
+			}
+		}
+	}    
 }
