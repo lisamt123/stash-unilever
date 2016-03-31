@@ -64,6 +64,14 @@ public with sharing class AF_AnnualBonus {
     private static String AF_Qualitative_value=AF_Constants.TEST_QUAL_VALUE;
     private static string className_STR=AF_Constants.TEST_ANNUAL_BONUS;
     public Boolean showSubmit{get;set;}
+	private set<string> agencyEstUnqStr = new set<string>();
+	Map<String,Integer> countryBMMap= new Map<String,Integer>();
+	map<String,Integer> countryCountMap = new map<String,Integer>();
+	map<String,map<String,boolean>> bonus_Threshold_Trad_Dig_BM_Map = new map<String,map<String,boolean>>();
+	List<AF_Sub_Result__c> Bonus_SubResult_List = new List<AF_Sub_Result__c>();
+	 map<String,map<String,boolean>> bonus_Threshold_Trad_Dig_BM_MapTemp = new map<String,map<String,boolean>>();
+	 map<string,AF_Sub_Result__c>mapBonus_result=new map<string,AF_Sub_Result__c>();
+	 Map<String,Integer> EntityAmtMap = new Map<String,Integer>();
     /*End code refactoring*/
     /**********************************************************************
 *  @Description: Contructor method
@@ -124,16 +132,9 @@ public with sharing class AF_AnnualBonus {
             No_Bonus_Check = Pilot_model.get(0).AF_No_Bonus__c;
         }
         if(!AF_Pilot_Model){
-            set<string> agencyEstUnqStr = new set<string>();
-            map<String,map<String,boolean>> bonus_Threshold_Trad_Dig_BM_Map = new map<String,map<String,boolean>>();
-            map<String,Integer> countryCountMap = new map<String,Integer>();
-            map<String,map<String,boolean>> bonus_Threshold_Trad_Dig_BM_MapTemp = new map<String,map<String,boolean>>();
-            set<Id> bonusThId= new set<Id>();
             //new variables
             list<AF_Bonus_Threshold__c> Bonus_Result_list= new list<AF_Bonus_Threshold__c>();
-            List<AF_Sub_Result__c> Bonus_SubResult_List = new List<AF_Sub_Result__c>();
             Set<Id> btId = new Set<Id>();
-            Map<String,Integer> countryBMMap= new Map<String,Integer>();
             Bonus_Result_list=[SELECT id FROM AF_Bonus_Threshold__c WHERE Agency_Name__c =:agency_id AND Brand_Name__c=:Brand_id AND Year__c=:current_year order by AF_Country__r.AF_Country__c ASC ];
             if(Bonus_Result_list.size()>0){
                 for(AF_Bonus_Threshold__c bt:Bonus_Result_list){
@@ -143,95 +144,12 @@ public with sharing class AF_AnnualBonus {
             Bonus_SubResult_List = [SELECT AF_Qual_Per__c,AF_Comment__c,AF_Quant__c,AF_Total_Bonus__c,AF_Qual__c,AF_Country__r.AF_Country__c,AF_Country__r.name,Bonus_Measure__c,AF_Locked__c,AF_country__c,AF_Bonus_Threshold__c,AF_Bonus_Threshold__r.Brand_Name__c,AF_Bonus_Threshold__r.Agency_Name__c,AF_Bonus_Threshold__r.Year__c,AF_Digital__c,AF_Traditional__c,AF_Minimum__c,AF_Stretching__c,AF_Outstanding__c,AF_Unique_Thresholds__c,AF_Quant_Bonus_Value__c,AF_Total_Bonus_Value__c,AF_Bonusable_Fees__c,AF_Quant_Bonus__c from AF_Sub_Result__c where AF_Bonus_Threshold__c IN :btId and AF_Period__c=null];
             if(Bonus_SubResult_List.size()>0){
                 showmainblock=true;
-                for(AF_Sub_Result__c bonus_SubResult_Obj:Bonus_SubResult_List){
-                    Countryname_BT.add(bonus_SubResult_Obj.AF_Country__r.AF_Country__c);
-                    string brandname_id=bonus_SubResult_Obj.AF_Bonus_Threshold__r.Brand_Name__c;
-                    string agencyname_id=bonus_SubResult_Obj.AF_Bonus_Threshold__r.Agency_Name__c;
-                    string str=agencyname_id+'::'+ brandname_id+'::'+bonus_SubResult_Obj.AF_Country__r.AF_Country__c+'::'+bonus_SubResult_Obj.AF_Bonus_Threshold__r.Year__c;
-                    agencyEstUnqStr.add(str);
-                    bonusThId.add(bonus_SubResult_Obj.AF_Bonus_Threshold__c);
-                    String countryDigital = bonus_SubResult_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
-                    String countryTrad = bonus_SubResult_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
-                    Integer count=0;
-                    if(bonus_SubResult_Obj.AF_Digital__c){
-                        if(!countryBMMap.containsKey(countryDigital)){
-                            countryBMMap.put(countryDigital,1);
-                        }
-                        else{
-                            count = countryBMMap.get(countryDigital);
-                            count=count +1;
-                            countryBMMap.put(countryDigital,count);
-                        }
-                    }
-                    if(bonus_SubResult_Obj.AF_Traditional__c){
-                        if(!countryBMMap.containsKey(countryTrad)){
-                            countryBMMap.put(countryTrad,1);
-                        }
-                        else{
-                            count = countryBMMap.get(countryTrad);
-                            count=count +1;
-                            countryBMMap.put(countryTrad,count);
-                        }
-                    }
-                    Integer unileverContCount =0;
-                    if(!countryCountMap.containsKey(bonus_SubResult_Obj.AF_Country__r.AF_Country__c)){
-                        unileverContCount = unileverContCount + 1;
-                        countryCountMap.put(bonus_SubResult_Obj.AF_Country__r.AF_Country__c,unileverContCount);
-                    }
-                    else{
-                        unileverContCount = countryCountMap.get(bonus_SubResult_Obj.AF_Country__r.AF_Country__c);
-                        unileverContCount = unileverContCount+1;
-                        countryCountMap.put(bonus_SubResult_Obj.AF_Country__r.AF_Country__c,unileverContCount);
-                    }
-                    String BMStr = bonus_SubResult_Obj.AF_Unique_Thresholds__c;
-                    map<String,boolean> tradDigMapBM = new map<String,boolean>();
-                    tradDigMapBM.put(Digital,bonus_SubResult_Obj.AF_Digital__c);
-                    tradDigMapBM.put(Trad,bonus_SubResult_Obj.AF_Traditional__c);
-                    bonus_Threshold_Trad_Dig_BM_Map.put(BMStr,tradDigMapBM);
-                }
-                for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List){
-                    String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
-                    String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
-                    map<String,boolean> tradDigMapBMtemp = new map<String,boolean>();
-                    string brandname_id=bonus_Threshold_Obj.AF_Bonus_Threshold__r.Brand_Name__c;
-                    string agencyname_id=bonus_Threshold_Obj.AF_Bonus_Threshold__r.Agency_Name__c;
-                    String StrTemp = agencyname_id+'::'+ brandname_id+'::'+bonus_Threshold_Obj.AF_Country__r.AF_Country__c+'::'+bonus_Threshold_Obj.AF_Bonus_Threshold__r.Year__c;
-                    if(countryBMMap.size()>0){
-                        if(countryBMMap.get(countryDigital)>0 && countryBMMap.get(countryTrad) >0){
-                            tradDigMapBMtemp.put(Trad,true);
-                            tradDigMapBMtemp.put(Digital,true);
-                        }
-                        else if(countryBMMap.get(countryDigital)>0){
-                            tradDigMapBMtemp.put(Digital,true);
-                            tradDigMapBMtemp.put(Trad,false);
-                        }
-                        else if(countryBMMap.get(countryTrad)>0){
-                            tradDigMapBMtemp.put(Trad,true);
-                            tradDigMapBMtemp.put(Digital,false);
-                        }
-                        bonus_Threshold_Trad_Dig_BM_MapTemp.put(StrTemp,tradDigMapBMtemp);
-                    }
-                } 
+				annualBonusConstructorExt(Bonus_SubResult_List);
+				annualBonusDigitalTradExt(Bonus_SubResult_List);
+                
             }
-            map<string,AF_Sub_Result__c>mapBonus_result=new map<string,AF_Sub_Result__c>();
-            for(AF_Sub_Result__c bonusResObj:Bonus_SubResult_List){
-                mapBonus_result.put(bonusResObj.AF_Unique_Thresholds__c,bonusResObj);
-                if(bonusResObj.AF_Quant_Bonus_Value__c!=null){
-                    sum_of_bonus_val=sum_of_bonus_val + integer.valueof(bonusResObj.AF_Quant_Bonus_Value__c);
-                }
-                if(bonusResObj.AF_Total_Bonus_Value__c!=null){
-                    sum_of_quant_qual_value=sum_of_quant_qual_value + bonusResObj.AF_Total_Bonus_Value__c;
-                }
-                if(bonusResObj.AF_Bonusable_Fees__c!=null){
-                    sum_of_bonusable_fees_onload=sum_of_bonusable_fees_onload+bonusResObj.AF_Bonusable_Fees__c;
-                    if(sum_of_bonusable_fees_onload>0)
-                    sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/sum_of_bonusable_fees_onload)*100);
-                }
-                if(bonusResObj.AF_Quant_Bonus__c!=null){
-                    if(sum_of_bonusable_fees_onload>0)
-                    sum_of_bonus_per=math.round((sum_of_bonus_val/sum_of_bonusable_fees_onload)*100);
-                }
-            }
+            annualBonusQuantQualExt(Bonus_SubResult_List);
+            
             list<AF_Agency_Estimate__c> oddagencylist=new   list<AF_Agency_Estimate__c>();
             set<String> setofnonthreshold_country = new set<String>();
             oddagencylist=[Select ID,AF_Total__c,AF_Unilever_Entity__r.AF_Country__c from AF_Agency_Estimate__c where AF_Unilever_Entity__r.AF_Country__c !=:Countryname_BT and AF_Agency_Entity__r.AF_Agency__c=:agency_id.substring(0,15) and AF_Brand_Id__c=:Brand_id.substring(0,15) and AF_Brand_Estimate__r.AF_Active__c=True and AF_Fiscal_Year__c=:current_year];
@@ -245,45 +163,10 @@ public with sharing class AF_AnnualBonus {
                     Apexpages.addmessage(new apexpages.message(apexpages.severity.WARNING, Label.AF_BonusThershold_Mismatch+ ' '+ setofnonthreshold_country ));
                 }
             }
-            Map<String,Integer> EntityAmtMap = new Map<String,Integer>();
+            
             Decimal totalbonusval=0;
-            for(AF_Agency_Estimate__c agEstObj:[Select id,AF_Total__c,AF_Bonus_Agency_Formula__c,name,Agency_Account__c,Brand__c, AF_Unilever_Entity__c,AF_Digital__c,AF_Traditional__c,AF_Unilever_Entity__r.AF_Country__c from AF_Agency_Estimate__c where AF_Bonus_Agency_Formula__c IN :agencyEstUnqStr and AF_Brand_Estimate__r.AF_Active__c=True])
-            {
-                String UEntityTrad= agEstObj.AF_Unilever_Entity__r.AF_Country__c + '::' + 'T';
-                String UEntityDigital = agEstObj.AF_Unilever_Entity__r.AF_Country__c + '::' + 'D';
-                Integer TradValue=0;
-                Integer DigitalValue=0;
-                if(!EntityAmtMap.containsKey(UEntityDigital)){
-                    DigitalValue = DigitalValue + (integer.valueof(agEstObj.AF_Digital__c));
-                    EntityAmtMap.put(UEntityDigital,DigitalValue);
-                }
-                else{
-                    DigitalValue = EntityAmtMap.get(UEntityDigital);
-                    DigitalValue = DigitalValue + (integer.valueof(agEstObj.AF_Digital__c));
-                    EntityAmtMap.put(UEntityDigital,DigitalValue);
-                }
-                if(!EntityAmtMap.containsKey(UEntityTrad)){
-                    TradValue = TradValue + (integer.valueof(agEstObj.AF_Traditional__c));
-                    EntityAmtMap.put(UEntityTrad,TradValue);
-                }
-                else{
-                    TradValue = EntityAmtMap.get(UEntityTrad);
-                    TradValue = TradValue + (integer.valueof(agEstObj.AF_Traditional__c));
-                    EntityAmtMap.put(UEntityTrad,TradValue);
-                }
-                if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c)!=null){
-                    if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Digital) && bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Trad)){
-                        Totals_BonusMeasureDigital = Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
-                        Totals_BonusMeasureTrad = Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
-                    }
-                    else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Digital)){
-                        Totals_BonusMeasureDigital = Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
-                    }
-                    else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Trad)){
-                        Totals_BonusMeasureTrad = Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
-                    }
-                }
-            } 
+			annualBonusTradDigitalCalc();
+           
             sum_of_bonusable_fees=Totals_BonusMeasureTrad+Totals_BonusMeasureDigital;
             Map<String,Integer> BonusMeasureCalcMap = new Map<String,Integer>();
             for(String countryName:Countryname_BT){
@@ -433,7 +316,169 @@ public with sharing class AF_AnnualBonus {
         } 
         if(AF_Pilot_Model)
         {
-            bonusTradDigitalFee = 0;
+            annualBonusPilotModel(agency_id,Brand_id,current_year);
+		}	
+    }
+	
+    /*********************************************************************************
+*  @Description: this method is used to as an extension of the construtor
+*  @param : none
+*  @return: none.
+***************************************************************************************/	
+	public void annualBonusConstructorExt(List<AF_Sub_Result__c> Bonus_SubResult_List){
+		for(AF_Sub_Result__c bonus_SubResult_Obj:Bonus_SubResult_List){
+                    Countryname_BT.add(bonus_SubResult_Obj.AF_Country__r.AF_Country__c);
+                    string brandname_id=bonus_SubResult_Obj.AF_Bonus_Threshold__r.Brand_Name__c;
+                    string agencyname_id=bonus_SubResult_Obj.AF_Bonus_Threshold__r.Agency_Name__c;
+                    string str=agencyname_id+'::'+ brandname_id+'::'+bonus_SubResult_Obj.AF_Country__r.AF_Country__c+'::'+bonus_SubResult_Obj.AF_Bonus_Threshold__r.Year__c;
+                    agencyEstUnqStr.add(str);
+                    String countryDigital = bonus_SubResult_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
+                    String countryTrad = bonus_SubResult_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
+                    Integer count=0;
+                    if(bonus_SubResult_Obj.AF_Digital__c){
+                        if(!countryBMMap.containsKey(countryDigital)){
+                            countryBMMap.put(countryDigital,1);
+                        }
+                        else{
+                            count = countryBMMap.get(countryDigital);
+                            count=count +1;
+                            countryBMMap.put(countryDigital,count);
+                        }
+                    }
+                    if(bonus_SubResult_Obj.AF_Traditional__c){
+                        if(!countryBMMap.containsKey(countryTrad)){
+                            countryBMMap.put(countryTrad,1);
+                        }
+                        else{
+                            count = countryBMMap.get(countryTrad);
+                            count=count +1;
+                            countryBMMap.put(countryTrad,count);
+                        }
+                    }
+                    Integer unileverContCount =0;
+                    if(!countryCountMap.containsKey(bonus_SubResult_Obj.AF_Country__r.AF_Country__c)){
+                        unileverContCount = unileverContCount + 1;
+                        countryCountMap.put(bonus_SubResult_Obj.AF_Country__r.AF_Country__c,unileverContCount);
+                    }
+                    else{
+                        unileverContCount = countryCountMap.get(bonus_SubResult_Obj.AF_Country__r.AF_Country__c);
+                        unileverContCount = unileverContCount+1;
+                        countryCountMap.put(bonus_SubResult_Obj.AF_Country__r.AF_Country__c,unileverContCount);
+                    }
+                    String BMStr = bonus_SubResult_Obj.AF_Unique_Thresholds__c;
+                    map<String,boolean> tradDigMapBM = new map<String,boolean>();
+                    tradDigMapBM.put(Digital,bonus_SubResult_Obj.AF_Digital__c);
+                    tradDigMapBM.put(Trad,bonus_SubResult_Obj.AF_Traditional__c);
+                    bonus_Threshold_Trad_Dig_BM_Map.put(BMStr,tradDigMapBM);
+                }
+	}
+    /**********************************************************************************************
+*  @Description: this method is used to as an extension of the construtor for Trad and Digital Map
+*  @param : none
+*  @return: none.
+***************************************************************************************************/	
+	public void annualBonusDigitalTradExt(List<AF_Sub_Result__c> Bonus_SubResult_List){
+		for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List){
+                    String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
+                    String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
+                    map<String,boolean> tradDigMapBMtemp = new map<String,boolean>();
+                    string brandname_id=bonus_Threshold_Obj.AF_Bonus_Threshold__r.Brand_Name__c;
+                    string agencyname_id=bonus_Threshold_Obj.AF_Bonus_Threshold__r.Agency_Name__c;
+                    String StrTemp = agencyname_id+'::'+ brandname_id+'::'+bonus_Threshold_Obj.AF_Country__r.AF_Country__c+'::'+bonus_Threshold_Obj.AF_Bonus_Threshold__r.Year__c;
+                    if(countryBMMap.size()>0){
+                        if(countryBMMap.get(countryDigital)>0 && countryBMMap.get(countryTrad) >0){
+                            tradDigMapBMtemp.put(Trad,true);
+                            tradDigMapBMtemp.put(Digital,true);
+                        }
+                        else if(countryBMMap.get(countryDigital)>0){
+                            tradDigMapBMtemp.put(Digital,true);
+                            tradDigMapBMtemp.put(Trad,false);
+                        }
+                        else if(countryBMMap.get(countryTrad)>0){
+                            tradDigMapBMtemp.put(Trad,true);
+                            tradDigMapBMtemp.put(Digital,false);
+                        }
+                        bonus_Threshold_Trad_Dig_BM_MapTemp.put(StrTemp,tradDigMapBMtemp);
+                    }
+                } 
+	}
+   /**********************************************************************************************
+*  @Description: this method is used to as an extension of the construtor Quant,Qual calculation
+*  @param : none
+*  @return: none.
+***************************************************************************************************/	
+	public void annualBonusQuantQualExt(List<AF_Sub_Result__c> Bonus_SubResult_List){
+		for(AF_Sub_Result__c bonusResObj:Bonus_SubResult_List){
+                mapBonus_result.put(bonusResObj.AF_Unique_Thresholds__c,bonusResObj);
+                if(bonusResObj.AF_Quant_Bonus_Value__c!=null){
+                    sum_of_bonus_val=sum_of_bonus_val + integer.valueof(bonusResObj.AF_Quant_Bonus_Value__c);
+                }
+                if(bonusResObj.AF_Total_Bonus_Value__c!=null){
+                    sum_of_quant_qual_value=sum_of_quant_qual_value + bonusResObj.AF_Total_Bonus_Value__c;
+                }
+                if(bonusResObj.AF_Bonusable_Fees__c!=null){
+                    sum_of_bonusable_fees_onload=sum_of_bonusable_fees_onload+bonusResObj.AF_Bonusable_Fees__c;
+                    if(sum_of_bonusable_fees_onload>0)
+                    sum_of_quant_qual_percent=math.round((sum_of_quant_qual_value/sum_of_bonusable_fees_onload)*100);
+                }
+                if(bonusResObj.AF_Quant_Bonus__c!=null){
+                    if(sum_of_bonusable_fees_onload>0)
+                    sum_of_bonus_per=math.round((sum_of_bonus_val/sum_of_bonusable_fees_onload)*100);
+                }
+            }
+	}
+   /**********************************************************************************************
+*  @Description: this method is used to as an extension of the construtor Trad,Digital calculation
+*  @param : none
+*  @return: none.
+***************************************************************************************************/		
+	public void annualBonusTradDigitalCalc(){
+		 for(AF_Agency_Estimate__c agEstObj:[Select id,AF_Total__c,AF_Bonus_Agency_Formula__c,name,Agency_Account__c,Brand__c, AF_Unilever_Entity__c,AF_Digital__c,AF_Traditional__c,AF_Unilever_Entity__r.AF_Country__c from AF_Agency_Estimate__c where AF_Bonus_Agency_Formula__c IN :agencyEstUnqStr and AF_Brand_Estimate__r.AF_Active__c=True])
+            {
+                String UEntityTrad= agEstObj.AF_Unilever_Entity__r.AF_Country__c + '::' + 'T';
+                String UEntityDigital = agEstObj.AF_Unilever_Entity__r.AF_Country__c + '::' + 'D';
+                Integer TradValue=0;
+                Integer DigitalValue=0;
+                if(!EntityAmtMap.containsKey(UEntityDigital)){
+                    DigitalValue = DigitalValue + (integer.valueof(agEstObj.AF_Digital__c));
+                    EntityAmtMap.put(UEntityDigital,DigitalValue);
+                }
+                else{
+                    DigitalValue = EntityAmtMap.get(UEntityDigital);
+                    DigitalValue = DigitalValue + (integer.valueof(agEstObj.AF_Digital__c));
+                    EntityAmtMap.put(UEntityDigital,DigitalValue);
+                }
+                if(!EntityAmtMap.containsKey(UEntityTrad)){
+                    TradValue = TradValue + (integer.valueof(agEstObj.AF_Traditional__c));
+                    EntityAmtMap.put(UEntityTrad,TradValue);
+                }
+                else{
+                    TradValue = EntityAmtMap.get(UEntityTrad);
+                    TradValue = TradValue + (integer.valueof(agEstObj.AF_Traditional__c));
+                    EntityAmtMap.put(UEntityTrad,TradValue);
+                }
+                if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c)!=null){
+                    if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Digital) && bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Trad)){
+                        Totals_BonusMeasureDigital = Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
+                        Totals_BonusMeasureTrad = Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
+                    }
+                    else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Digital)){
+                        Totals_BonusMeasureDigital = Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
+                    }
+                    else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Trad)){
+                        Totals_BonusMeasureTrad = Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
+                    }
+                }
+            } 
+	}
+   /*********************************************************************************
+*  @Description: this method is used to calculate the Quant Bonus for the Annual Bonus
+*  @name : Calculate_Bonus
+*  @param : none
+*  @return: none.
+***************************************************************************************/	
+	public void annualBonusPilotModel(String agency_id,String Brand_id,String current_year){
+		bonusTradDigitalFee = 0;
             Decimal renumRating = 0;
             Decimal renumPercentage=0;
             Decimal renumAmt=0.0;
@@ -467,8 +512,7 @@ public with sharing class AF_AnnualBonus {
             catch(Exception ex){
            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_AnnualBonus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString()); 
             }
-        }
-    }
+	}
     /*********************************************************************************
 *  @Description: this method is used to calculate the Quant Bonus for the Annual Bonus
 *  @name : Calculate_Bonus
@@ -731,6 +775,7 @@ public with sharing class AF_AnnualBonus {
             }
         }
     }
+	
     /***************************************************************************************
 *  @Description: this method is used to update and Lock the calculated 
    @             Bonus value for the Annual Bonus
