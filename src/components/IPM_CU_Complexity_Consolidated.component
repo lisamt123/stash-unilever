@@ -1,0 +1,54 @@
+<!--  
+*************************************************************************
+*@Description: Component used to consolidate the CU and COmplexity for Global Docs
+*@Author: Cognizant
+*@Created Date: 22/10/2015
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+
+<apex:component Controller="IPM_CU_Complexity_Consolidated" allowDML="false">
+
+    <apex:attribute name="getProjId" description="projectId" type="String" assignTo="{!projectId}"/>
+    <apex:attribute name="getGateType" description="gateType" type="String" assignTo="{!gateType}"/>
+    <apex:attribute name="isGateDoc" description="gateDocument" type="Boolean" assignTo="{!isGateDocument}"/>
+    <apex:outputPanel layout="block" styleClass="pull-left cuconsolidated">   
+        <apex:repeat value="{!secContentList}" var="secCon"> 
+            <apex:outputPanel layout="block" styleClass="cucountryProName">
+                <apex:outputField value="{!secCon.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Name__c}" styleClass="countryProName"/>
+            </apex:outputPanel>
+            <apex:outputText styleClass="cuConsQuestion" value="{!$Label.IPM_NET_EFFECT_ON_THE_NUM_OF_CU}"></apex:outputText>
+          	<!-- Checking condition for CU complexity increased or not -->
+            <apex:outputPanel layout="block" styleClass="cuConsolidatedContent" rendered="{!IF(secCon.IPM_Increased_By__c!=null,true,false)}" >
+                <apex:outputPanel layout="block" styleClass="cuLeftBlock">
+                    <apex:outputField value="{!secCon.IPM_Project_Effect__c}"/>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="cuRightBlock">
+                    <apex:outputField value=" {!secCon.IPM_Increased_By__c}" />
+                </apex:outputPanel>
+            </apex:outputPanel>
+           <!-- Checking condition for CU complexity decreased or not -->
+            <apex:outputPanel layout="block" styleClass="cuConsolidatedContent" rendered="{!IF(secCon.IPM_Decreased_By__c!=null,true,false)}" >
+                <apex:outputPanel layout="block" styleClass="cuLeftBlock">
+                    <apex:outputField value="{!secCon.IPM_Project_Effect__c} "/>
+                </apex:outputPanel>
+                <apex:outputPanel layout="block" styleClass="cuRightBlock">
+                    <apex:outputField value=" {!secCon.IPM_Decreased_By__c}"/>
+                </apex:outputPanel>
+            </apex:outputPanel>
+            <!-- Checking condition for CU complexity no effect -->
+             
+            
+            
+            <apex:outputPanel layout="block" styleClass="cuConsolidatedContent" rendered="{!IF(AND(secCon.IPM_Increased_By__c==null,secCon.IPM_Decreased_By__c==null),true,false)}" >
+                <apex:outputPanel layout="block" styleClass="cuConsolidatedAnswer">
+                    <apex:outputText value="{!$Label.IPM_NO_EFFECT} "/>
+                </apex:outputPanel>
+                
+            </apex:outputPanel>
+            
+            
+              
+       </apex:repeat>
+</apex:outputPanel>
+</apex:component>

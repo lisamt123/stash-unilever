@@ -1,0 +1,64 @@
+<!--  
+*************************************************************************
+*@Description:This component is used for getting the history of changes for the gate document section 
+*@Author: Cognizant
+*@Created Date: 26/12/2014
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+
+<apex:component controller="IPM_ObjectAllHistoryComponentController">
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.min.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Header-new.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Styles.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Buttons.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Modal.css')}"/>        
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'assets/font-awesome/css/font-awesome.min.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ObjectHistory.css')}" />
+<!-- Attribute Definition -->
+<apex:attribute name="myObjectName" description="Object we wish to view the history of" type="SObject" required="true" assignTo="{!myObject}" />
+<apex:attribute name="getProjectId" description="Project Id for which section history is required" type="Id" required="true" assignTo="{!projectId}" />
+<apex:attribute name="getSectionId" description="Section Id for which history is required" type="Id" required="false" assignTo="{!sectionId}" />
+<apex:attribute name="recordLimitCount" description="Number of lines of history to display" type="Integer" required="false" assignTo="{!recordLimit}" />
+<!-- Object History Related List -->
+<div class="col-xs-12 secUsersHistory">
+<div class="tlCircle"></div>
+<div>
+<div class="panel-group">
+    <apex:repeat value="{!ObjectHistory}" var="History">
+    <div class="row ">
+    <div class="col-xs-2">
+    <apex:Image styleClass="circular ipmImage" url="{!History.whoImage}" /> 
+    </div>
+    <div class="col-xs-10 listHistory">
+    <div class="col-xs-12">
+     <div class="row username">
+        <apex:outputText value="{!History.who}" />
+     </div>
+    </div>
+    <div class="col-xs-12">
+     <div class="row date">
+        <apex:outputText value="{!History.thedate}" />
+     </div>
+    </div>
+    <div class="col-xs-12">
+     <div class="row action">
+     <!-- Below rendered is used to provide history -->
+     <apex:outputPanel rendered="{!if(sectionId==NULL,True,False)}">
+      <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!projectId}&projDocSecId={!History.recordLink}" target="_top">  
+      <apex:outputText value="{!History.action}" Escape="FALSE"/></a>  <apex:outputText value="{!History.actionType}"/>  <apex:outputText value="{!History.who}" />
+     </apex:outputPanel>
+     <!-- Below rendered is used to provide history-->
+     <apex:outputPanel rendered="{!!if(sectionId==NULL,True,False)}">
+       <apex:outputText value="{!History.action}" Escape="FALSE"/>  <apex:outputText value="{!History.actionType}"/>  <apex:outputText value="{!History.who}" />
+     </apex:outputPanel>
+     </div>
+    </div>
+    </div> 
+    </div>   
+    </apex:repeat>    
+</div>
+</div>
+<div class="tlCircle"></div>
+</div>
+</apex:component>

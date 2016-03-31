@@ -1,0 +1,43 @@
+<!--  
+*************************************************************************
+*@Description:This component is used <…..>
+*@Author: Cognizant
+*@Created Date: 16/03/2015 
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+
+<apex:component >
+    <apex:attribute name="activeItem" type="String" description="Pass the Active Tab Item"/>
+    <apex:attribute name="projSpan" type="String" description="Pass the Project Span" />
+    <apex:attribute name="projID" type="Id" description="Pass the Project Id"/>
+    <div class="ipmNavMenuDiv">
+        <nav class="navbar navbar-default" role="navigation">          
+            <div class="collapse navbar-collapse" id="ipm-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="tabOdd {!IF(activeItem=='overview', 'active', '')}"><a href="{!$Page.IPM_ProjectOverview}?id={!projID}"><span>{!$Label.IPM_Overview}</span></a></li>
+                    <li class="tabEven {!IF(activeItem=='milestonesAndTasks', 'active', '')}"><a href="{!$Page.IPM_Tasklist}?id={!projID}"><span>{!$Label.IPM_MilestoneAndTodo}</span></a></li>
+                    <li class="tabOdd {!IF(activeItem=='gateDocument', 'active', '')}"><a href="{!$Page.IPM_Bcc_Document}?id={!projID}"><span>{!$Label.IPM_BB} {!$Label.IPM_Document}</span></a></li>
+                    <li role="presentation" class="tabEven dropdown {!IF(activeItem=='coreParameters', 'active', '')}{!IF(activeItem=='rolloutPlan', 'active', '')}{!IF(activeItem=='financials', 'active', '')}">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                          <span>{!$Label.IPM_Essentials}<div class="caret"></div></span>
+                        </a>
+                    <ul class="dropdown-menu" role="menu">
+                    <li class="{!IF(activeItem=='coreParameters', 'active', '')}"><a href="{!$Page.IPM_CoreParameters}?id={!projID}"><span>{!$Label.IPM_PROJECT} {!$Label.IPM_Parameters}</span></a></li>
+                   <!-- Below rendered is used to enable navigation to rolloutplan for global -->
+                    <apex:outputPanel rendered="{!projSpan='Global'}">
+                    <li class="{!IF(activeItem=='rolloutPlan', 'active', '')}"><a href="{!$Page.IPM_RolloutPlans}?id={!projID}"><span>{!$Label.IPM_RolloutPlan}</span></a></li>
+                    </apex:outputPanel>
+                   <!-- Below rendered is used to enable navigation to rolloutplan for regional -->
+                    <apex:outputPanel rendered="{!projSpan='Regional'}">
+                    <li class="{!IF(activeItem=='rolloutPlan', 'active', '')}"><a href="{!$Page.IPM_RolloutPlansRegional}?id={!projID}"><span>{!$Label.IPM_RolloutPlan}</span></a></li>
+                    </apex:outputPanel>
+                    <li class="{!IF(activeItem=='financials', 'active', '')}"><a href="{!$Page.IPM_Financial}?id={!projID}"><span> {!$Label.IPM_FINANCIALS}</span></a></li>
+                    </ul>
+                    </li>
+                    <li class="tabOdd {!IF(activeItem=='teamAssignment', 'active', '')}"><a href="{!$Page.IPM_Team}?id={!projID}"><span>{!$Label.IPM_Team}</span></a></li>   
+                </ul>
+            </div>
+        </nav>
+    </div>
+</apex:component>

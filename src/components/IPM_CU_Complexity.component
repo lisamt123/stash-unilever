@@ -1,0 +1,129 @@
+<apex:component Controller="IPM_CU_Complexity_Controller" allowDML="true" >
+    
+    <apex:attribute name="gateType" description="gateType" type="String" assignTo="{!typeOfGate}"/>
+    <apex:attribute name="phaseName" description="phase" type="String" assignTo="{!phase}"/>
+    <apex:attribute name="getSectionId" description="sectionID" type="String" assignTo="{!projectSecId}"/>
+    <apex:attribute name="isEdit" description="Editable" type="Boolean" assignTo="{!isEditable}"/>
+    <apex:attribute name="proSpan" description="projectSpan" type="String" assignTo="{!projSpan}"/>
+    <apex:attribute name="proModel" description="projectModel" type="String" assignTo="{!projModel}"/>
+    <apex:outputPanel layout="block" styleClass="panel altBGcolor pull-left">
+     <!-- Checking condition for editable -->
+                                                           <apex:outputPanel layout="block" styleClass="panelMessage" rendered="{!isEdit}">
+                                                                <apex:outputText value="{!$Label.IPM_DOES_APPEAR_IN_GATE_DOC}" styleClass="asterisk"/>
+                                                            </apex:outputPanel>
+                                                            
+     <!-- Checking condition for charter gate document -->                                                       
+     <apex:outputPanel layout="block" id="cuComplexCharter" rendered="{!IF(gateType='Charter',true,false)}">
+     
+       <apex:outputPanel layout="block" styleClass="cusText pull-left">
+           <apex:outputText value="{!$Label.IPM_TOTAL_CU_COUNT_IMPACT}"/> 
+       </apex:outputPanel>   
+        <!-- Checking condition for editable -->
+     <apex:outputPanel layout="block" styleClass="secEditorNavList cuSelectList pull-left" rendered="{!isEdit}">
+        
+        <apex:inputField value="{!projDocSecCon.IPM_Total_Cu_Count_Impact__c}" onChange="saveTotalCuCount('{!projDocSecCon.Id}',this.value)" />
+     </apex:outputPanel>
+     <!-- Checking condition for read only -->
+     <apex:outputPanel styleClass="secEditorNavList cuSelectList pull-left" rendered="{!!isEdit}">
+         
+        <apex:outputField value="{!projDocSecCon.IPM_Total_Cu_Count_Impact__c}"/>
+     </apex:outputPanel>
+         </apex:outputPanel>
+         <!-- Checking condition for contract,market ready and market deployment gate document -->
+    <apex:outputPanel id="cuComplexContract" rendered="{!IF(OR(gateType='Contract',gateType='Market Ready',gateType='Market Deployment'),true,false)}">
+       <!-- Checking condition for read only -->
+       <apex:outputPanel layout="block" styleClass="col-sm-12" rendered="{!IF(isEdit=false,true,false)}">
+        <div class="noOfCu">
+        <apex:outputText value="{!$Label.IPM_NET_EFFECT_ON_THE_NUM_OF_CU}">
+     
+        </apex:outputText>
+         </div>
+           <apex:outputText value="{!projDocSecCon.IPM_Project_Effect__c}"/>
+           <!-- Checking CU complexity increased or not -->
+         <apex:outputPanel rendered="{!IF(projDocSecCon.IPM_Project_Effect__c='Increase in complexity by',true,false)}">
+            <apex:outputField value="{!projDocSecCon.IPM_Increased_By__c}"/>
+             </apex:outputPanel>
+             <!-- Checking CU complexity decreased or not -->
+            <apex:outputPanel rendered="{!IF(projDocSecCon.IPM_Project_Effect__c='Decrease in complexity by',true,false)}">
+            <apex:outputField value="{!projDocSecCon.IPM_Decreased_By__c}"/>
+             </apex:outputPanel>
+            </apex:outputPanel>
+           <!-- Checking condition for editable -->
+        <apex:outputPanel layout="block" styleClass="cuCount col-sm-12" rendered="{!IF(isEdit=true,true,false)}">
+        	<!-- Checking condition for contract or market ready gate document, model gclt & rclt and span global -->
+            <apex:outputPanel rendered="{!IF(AND(proSpan='Global',proModel='GCLT & RCLT',OR(gateType='Contract',gateType='Market Ready')),true,false)}">
+                <div>{!$Label.IPM_RES_REG_CON_GATE}</div>
+           </apex:outputPanel>
+           <!-- Checking condition for market ready gate document, model gclt & rclt and span global -->
+           <apex:outputPanel rendered="{!IF(AND(proSpan='Global',proModel='GCLT & RCLT',gateType='Market Ready'),true,false)}">
+                 <div>{!$Label.IPM_RES_REG_MAR_GATE}</div>
+           </apex:outputPanel>
+       <div class="noOfCu">
+        <apex:outputText value="{!$Label.IPM_NET_EFFECT_ON_THE_NUM_OF_CU}">
+     
+        </apex:outputText>
+         </div>
+           <div class="cuRadio ipmRadioButton ">
+           <apex:selectRadio value="{!projDocSecCon.IPM_Project_Effect__c}" onchange="saveProjectEffect('{!projDocSecCon.Id}',this.value)" >
+                <span><apex:selectOptions value="{!projEffect}"></apex:selectOptions></span>
+           </apex:selectRadio>
+           </div>
+         <div class="cuContainerTextBox">
+            <div class="cuRadioTextBox"></div>
+            <div class="cuRadioTextBox">
+            	<!-- Checking CU complexity increased or not -->
+                <apex:outputPanel rendered="{!IF(projDocSecCon.IPM_Project_Effect__c='Increase in complexity by',true,false)}">
+                
+                <apex:inputField styleClass="numInput" value="{!projDocSecCon.IPM_Increased_By__c}" onChange="saveIncOrDecBy('{!projDocSecCon.Id}',this.value,'{!projDocSecCon.IPM_Project_Effect__c}')" />  
+                <div class="cuInfoContainer">
+                    <span class="SecButtonSet">    
+                        <a class="icoButton info" title="{!$Label.IPM_CU_INFO}"></a>
+                    </span>
+                </div> 
+                </apex:outputPanel>
+                
+            </div>
+            <div class="cuRadioTextBox">
+            	<!-- Checking CU complexity decreased or not -->
+                <apex:outputPanel rendered="{!IF(projDocSecCon.IPM_Project_Effect__c='Decrease in complexity by',true,false)}">
+                 
+                <apex:inputField styleClass="numInput" value="{!projDocSecCon.IPM_Decreased_By__c}" onChange="saveIncOrDecBy('{!projDocSecCon.Id}',this.value,'{!projDocSecCon.IPM_Project_Effect__c}')" />
+                <div class="cuInfoContainer">
+                    <span class="SecButtonSet">
+                        <a class="icoButton info" title="{!$Label.IPM_CU_INFO}"></a>
+                    </span> 
+                </div>
+                </apex:outputPanel>
+            </div>
+          </div> 
+    </apex:outputPanel>
+   
+        </apex:outputPanel> 
+        </apex:outputPanel>
+    
+    <apex:actionFunction name="saveTotalCuCount" action="{!saveCuCount}" reRender="cuComplexCharter,numberScript" oncomplete="hilightTaskScript()">
+            <apex:param name="firstParam" assignTo="{!projDocSecConId}" value=""/>
+            <apex:param name="secondParam" assignTo="{!CuCount}" value=""/>
+            </apex:actionFunction>
+    
+    <apex:actionFunction name="saveIncOrDecBy" action="{!saveIncOrDec}" reRender="cuComplexContract,numberScript" oncomplete="hilightTaskScript()">
+            <apex:param name="firstParam" assignTo="{!projDocSecConId}" value=""/>
+            <apex:param name="secondParam" assignTo="{!incDecBy}" value=""/>
+            <apex:param assignTo="{!isIncDecBy}" name="IsDec" value=""/>
+            </apex:actionFunction>
+            
+             <apex:actionFunction name="saveProjectEffect" action="{!saveNetProjectEffect}" reRender="cuComplexContract,numberScript" oncomplete="hilightTaskScript()">
+            <apex:param name="firstParam" assignTo="{!projDocSecConId}" value=""/>
+            <apex:param name="secondParam" assignTo="{!projectEffect}" value=""/>
+            </apex:actionFunction>
+    <apex:outputPanel id="numberScript">
+        <script>
+            var jq = jQuery.noConflict();
+            jq(document).ready(function() {                                    
+                jq('.numInput').keypress(function(key) {  
+                    if(key.charCode < 48 || key.charCode > 57  || this.value.length == 0 && key.which == 48) return false;
+                });
+            }); 
+        </script> 
+    </apex:outputPanel>       
+</apex:component>

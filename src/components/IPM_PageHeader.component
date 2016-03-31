@@ -1,0 +1,29 @@
+<!-- 
+***********************************************
+*@Description: This component is used to display page header.
+*@Author: Cognizant
+*@Created Date: 02/01/2015
+*@Copyright © 2015  Unilever 
+************************************************
+-->
+
+<apex:component >    
+    <apex:attribute name="count" type="String" description="this is the count"/>
+    <apex:attribute name="pageTitle" type="String" description="this is the page title"/>
+  <div class="ipmPageHeaderDiv"> 
+  <div class="heading2 ipmHeading blue">
+     <div class="row ipmPageHeader">        
+        <div class="mainPagehead">
+          <span class="pageTitle">{!pageTitle}</span>
+        </div>
+<!-- Below rendered is used to show count -->       
+        <apex:outputPanel rendered="{! IF(OR(count==''),'false','true')}">
+            <div class="col-sm-2 headingBorder" id="taskCount">
+                {!count}
+            </div>
+        </apex:outputPanel>        
+     </div>
+  </div> 
+  <div class="headerpbl"></div>  
+  </div>     
+</apex:component>

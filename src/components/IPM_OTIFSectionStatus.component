@@ -1,0 +1,93 @@
+<!-- 
+***********************************************
+*@Description: This component is used <…..>
+*@Author: Cognizant
+*@Created Date: 23/01/2015
+*@Copyright © 2015  Unilever 
+************************************************
+-->
+<apex:component controller="IPM_OTIFStatusController" allowDML="true">
+<apex:attribute name="otfType" description="Describes Table or Releated Section" type="String" required="true" assignTo="{!otifType}" />
+<apex:attribute name="getSectionId" description="Pass the section id as parameter" type="ID" required="true" assignTo="{!projDocSecId}" />
+<apex:attribute name="IsEdtable" description="show on gateDocument as read only" type="Boolean" required="false" assignTo="{!Iseditable}" />
+<!-- Below rendered condition used for checking whether secConList is empty or not -->
+<apex:outputPanel layout="block" rendered="{!AND(secConList!=null,secConList.size>0)}">  
+<apex:outputPanel layout="block" id="ren">
+<div class="altBGcolor">
+  <table class="ipmTable table table-bordered gkTable otifTable mt20"> 
+  <tbody> 
+ <tr>
+     <td>
+         <div class="panelMessage"><span class="asterisk">{!$Label.IPM_DOES_APPEAR_IN_GATE_DOC}</span></div>
+     </td>
+ </tr>
+  <tr>   
+    <th>{!$Label.IPM_OTIF_MEASURE}</th> 
+ </tr>
+  <apex:repeat value="{!secConList}" var="con">
+  <!-- Below rendered condition used for checking master ids -->
+ <apex:outputPanel rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c==con.Section_Content_Ext_Id__c,true,false)}">
+ 
+  <tr>   
+    <td>
+     <apex:outputText value="{!con.IPM_OTIF_Measure__c}"/>
+    </td>
+</tr>
+<tr>  
+    <td> 
+    <!--Below rendered condition is used for showing slider if is editable is true-->
+    <apex:outputPanel rendered="{!Iseditable}">                      
+                         <!--Below rendered condition is used for showing slider-->
+                    <apex:outputPanel rendered="{!con.IPM_OTIF_No_of_Status__c=4}" styleClass="sliderOTIF5">
+                    <input type="hidden" class="" id="answer{!con.Id}" name="answer" value="{!con.IPM_OTIF_Status__c}"/> 
+                                 <div class="sld5 legendSld">
+                                   <label for="s0" onclick="changeStatus('{!con.Id}','');" class="info" title="Select">{!$Label.IPM_SELECT}</label>
+                                   <input type="radio" name="score" id="s0" value="{!$Label.IPM_OTIF_N_A}" />
+                                   <label for="s1" onclick="changeStatus('{!con.Id}','{!$Label.IPM_OTIF_GREEN}');" class="info" title="{!con.IPM_OTIF_HelpText_Green__c}">{!$Label.IPM_OTIF_GREEN}</label>
+                                   <input type="radio" name="score" id="s1" value="{!$Label.IPM_OTIF_GREEN}"/>
+                                   <label for="s2" onclick="changeStatus('{!con.Id}','{!$Label.IPM_OTIF_AMBER}');" class="info" title="{!con.IPM_OTIF_HelpText_Amber__c}">{!$Label.IPM_OTIF_AMBER}</label>
+                                   <input type="radio" name="score" id="s2" value="{!$Label.IPM_OTIF_AMBER}"  />
+                                   <label for="s3" onclick="changeStatus('{!con.Id}','{!$Label.IPM_OTIF_RED}');" class="info" title="{!con.IPM_OTIF_HelpText_Red__c}">{!$Label.IPM_OTIF_RED}</label>
+                                   <input type="radio" name="score" id="s3" value="{!$Label.IPM_OTIF_RED}"  />  
+                                   <label for="s4" onclick="changeStatus('{!con.Id}','{!$Label.IPM_NO_APPLICABLE}');" class="info" title="{!con.IPM_OTIF_HelpText_NA__c}">{!$Label.IPM_OTIF_N_A}</label>
+                                   <input type="radio" name="score" id="s4" value="{!$Label.IPM_NO_APPLICABLE}" />
+                                           
+                             </div> 
+                                
+                                </apex:outputPanel>
+                               <!--Below rendered condition is used for showing slider-->
+                                <apex:outputPanel rendered="{!con.IPM_OTIF_No_of_Status__c=3}" styleClass="sliderOTIF" >
+                                <input type="hidden" class="" id="answer{!con.Id}" name="answer" value="{!con.IPM_OTIF_Status__c}"/> 
+                                <div class="sld4 legendSld">
+                                   <label for="s0" class="info" onclick="changeStatus('{!con.Id}','');" title="Select">{!$Label.IPM_SELECT}</label>
+                                   <input type="radio" name="score" id="s0" value="" />
+                                   <label for="s1" onclick="changeStatus('{!con.Id}','{!$Label.IPM_OTIF_GREEN}');" class="info" title="{!con.IPM_OTIF_HelpText_Green__c}">{!$Label.IPM_OTIF_GREEN}</label>
+                                   <input type="radio" name="score" id="s1" value="{!$Label.IPM_OTIF_GREEN}"/>
+                                   <label for="s2" onclick="changeStatus('{!con.Id}','{!$Label.IPM_OTIF_RED}');" class="info" title="{!con.IPM_OTIF_HelpText_Red__c}">{!$Label.IPM_OTIF_RED}</label>
+                                   <input type="radio" name="score" id="s2" value="{!$Label.IPM_OTIF_RED}"  /> 
+                                   <label for="s3" onclick="changeStatus('{!con.Id}','{!$Label.IPM_NO_APPLICABLE}');" class="info" title="{!con.IPM_OTIF_HelpText_NA__c}">{!$Label.IPM_OTIF_N_A}</label>
+                                   <input type="radio" name="score" id="s3" value="{!$Label.IPM_NO_APPLICABLE}" />                   
+                             </div> 
+                                </apex:outputPanel>
+                    </apex:outputPanel> 
+                    <!--Below rendered condition is used for output text-->
+             <apex:outputText rendered="{!!Iseditable}"><div class="gkcStatus {!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)}">{!con.IPM_OTIF_Status__c}</div></apex:outputtext>
+          
+    </td>
+    </tr>   
+  </apex:outputPanel>
+  </apex:repeat>
+ </tbody>
+</table>  
+</div>
+</apex:outputPanel>
+<apex:actionFunction name="callupdateOtifList" action="{!updateOTIFStatus}" reRender="">
+<apex:param name="FirstParam" assignTo="{!secConId}" value="" />
+<apex:param name="SecondParam" assignTo="{!status}" value="" />
+</apex:actionFunction>
+<script> 
+var IPMAppOTS = {select:'{!$Label.IPM_SELECT}', green:'{!$Label.IPM_OTIF_GREEN}', amber:'{!$Label.IPM_OTIF_AMBER}', red:'{!$Label.IPM_OTIF_RED}', na:'{!$Label.IPM_NO_APPLICABLE}'};            
+</script>
+<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_OTIFSectionStatus.js')}" type="text/javascript"></script>
+</apex:outputPanel> 
+</apex:component>

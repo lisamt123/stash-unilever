@@ -1,0 +1,35 @@
+<!--  
+*************************************************************************************************************************************************************
+*@Description:Component to highlight the phase of the project. Used for the Header Progress bar.
+*@Author: Cognizant
+*@Created Date: 26/12/2014 
+*@Copyright © 2015  Unilever  
+*************************************************************************************************************************************************************
+-->
+<apex:component id="ipmFunnelRevamp" controller="IPM_FunnelController">
+<apex:attribute name="project" assignTo="{!ipmProject}" description="Project Object for displaying Phases " type="IPM_Project__c" required="true" />
+    <div class="row">
+        <div class="col-sm-12">           
+            <div class="basic panel ipmFunnelPanel">
+                <div class="progress-wrap">
+                    <ul class="progress-bar {!IF(ipmProject.IPM_Project_Type__c = 'Operational', 'pleProgress', '' )}">
+                        <li class="first {!IF(ipmProject.IPM_Phase__c != '', 'completed', '')}"><span>{!if(project.IPM_Bosscard_Status__c,$Label.IPM_BOSSCARD,$Label.IPM_INITIATION)}</span></li>
+                    
+                        <apex:variable value="{!0}" var="counter"/>
+                        <apex:repeat value="{!associatedProjectPhases}" var="phase" >
+                            <apex:variable var="counter" value="{!counter + 1}"/>
+                           <!-- Below rendered is enabled if pahse is equal to the project phase-->
+                           <apex:variable var="currentProjectPhaseSeq" value="{!counter}" rendered="{!phase==ipmProject.IPM_Phase__c}"/>
+                        </apex:repeat> 
+                        
+                        <apex:variable value="{!1}" var="rowNum"/>
+                        <apex:repeat value="{!associatedProjectPhases}" var="phase" >
+                            <li class="{! IF(rowNum==(associatedProjectPhases.size),'last','next')} {!IF(AND(phase = 'PLE',ipmProject.IPM_project_Type__c = 'Operational'), 'plePhase', '' )} {!IF(rowNum<currentProjectPhaseSeq,'completed',IF(rowNum == currentProjectPhaseSeq,'visited','' ))}" ><span>{!phase}</span></li>
+                            <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+                        </apex:repeat>  
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</apex:component>
