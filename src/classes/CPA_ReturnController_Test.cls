@@ -24,7 +24,7 @@ public class CPA_ReturnController_Test {
     static testmethod void LOIreturnController_Test() {
        
         
-        CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();
+        CPA_PWORF__c objPworf = CPA_testPWORFClass_util.createTest_other_PWORF();      
         insert objPworf;
         
         objPworf.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED ;
@@ -42,6 +42,7 @@ public class CPA_ReturnController_Test {
         CPA_LOI__c objLOIfINAL1 = [Select Id,pkl_Status__c from CPA_LOI__c where id= :objLOI.id ];
     
         CPA_PWORF__c objPworf1 = CPA_testPWORFClass_util.createTest_other_PWORF();
+        objPworf1.name = objPworf.name+'test123'+system.now();
         insert objPworf1;
         
         objPworf1.pkl_Status__c =CPA_ConstantsForContractingAppClasses.ACCEPTED ;

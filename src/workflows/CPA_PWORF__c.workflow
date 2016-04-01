@@ -1257,6 +1257,52 @@ null)),null)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
+        <fullName>CPA PWORF Cloned%2FCreated Updated New</fullName>
+        <actions>
+            <name>CPA_Date_of_Request_field_update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_Return_SLA2_date_null</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_Submitted_date_null</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_PWORF_return_SLA1_date_null</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_Reason_for_Cancellation</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_Resubmitted_Date_update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_Status_Saved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_isCancelled_Pworf_update_false</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_uncheck_IScancel</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_PWORF__c.pkl_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Saved</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
         <fullName>CPA PWORF Cloned%2FCreated updated</fullName>
         <actions>
             <name>CPA_Date_of_Request_field_update</name>
@@ -1298,7 +1344,7 @@ null)),null)</formula>
             <name>Saved_Action_field_Udate</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>CPA_PWORF__c.pkl_Status__c</field>
             <operation>notEqual</operation>
