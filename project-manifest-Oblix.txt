@@ -196,6 +196,8 @@ src/pages/Oblix_VF07_SOWNew.page
 src/pages/Oblix_VF07_SOWNew.page-meta.xml
 src/pages/Oblix_VF08_ProjectEdit.page
 src/pages/Oblix_VF08_ProjectEdit.page-meta.xml
+src/pages/Oblix_VF09_nonCampaignEdit.page
+src/pages/Oblix_VF09_nonCampaignEdit.page-meta.xml
 src/reportTypes/Oblix_Assets.reportType
 src/reportTypes/Oblix_Marketing_SOW.reportType
 src/reportTypes/Oblix_SWOP_Calculator.reportType

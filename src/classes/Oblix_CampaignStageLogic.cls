@@ -62,7 +62,15 @@ public with sharing class Oblix_CampaignStageLogic{
     public Integer i_agency_Percentage_of_fees_this_year {get;set;}
     public Boolean b_is_projection_selectable {get;set;}
     public Boolean b_is_completion_selectable {get;set;}
-    private Boolean b_manual_override_on = false;
+    public Boolean b_manual_override_on {
+        get{
+            if (b_manual_override_on == null) {
+                b_manual_override_on = false;
+            }
+            return b_manual_override_on;
+        }
+        set;
+    }
     //public List<Boolean> lib_is_stage_projected {get;set;}
     //public List<Boolean> lib_is_stage_completed {get;set;}
     
@@ -226,7 +234,7 @@ public with sharing class Oblix_CampaignStageLogic{
             Stage completedStage = completed_stages.get(i);
 
             initProjectedStages(projectedStage, projectedValueSet, pastFYProjectedValueSet);
-            initCompletedStages(completedStage, completedValueSet, pastFYProjectedValueSet, pastFYCompletedValueSet);
+            initCompletedStages(completedStage, projectedValueSet, completedValueSet, pastFYProjectedValueSet, pastFYCompletedValueSet);
             
         }
 
@@ -281,13 +289,14 @@ public with sharing class Oblix_CampaignStageLogic{
     * @description  helper method to initialise stage wrapper objects
     ********************************************************************************/
     private void initCompletedStages(Stage completedStage, 
+                                     Set<String> projectedValueSet,
                                      Set<String> completedValueSet, 
                                      Set<String> pastFYProjectedValueSet, 
                                      Set<String> pastFYCompletedValueSet) {
         //Completed INIT
-        //PARAMETERS affecting selectability: b_is_completion_selectable and pastFYProjectedValueSet
+        //PARAMETERS affecting selectability: b_is_completion_selectable, projectedValueSet and pastFYProjectedValueSet
         //DEFAULT from completed_stages getter - true
-        if (!b_is_completion_selectable || pastFYProjectedValueSet.contains(completedStage.s_stage_name)) {
+        if (!b_is_completion_selectable || !projectedValueSet.contains(completedStage.s_stage_name) || pastFYProjectedValueSet.contains(completedStage.s_stage_name)) {
             completedStage.b_is_stage_selectable = false;
         }
 
@@ -498,6 +507,7 @@ public with sharing class Oblix_CampaignStageLogic{
         public boolean b_is_stage_selected {
             get;
             set{
+                System.debug('### stage ' + s_stage_name + ' selected: ' + value);
                 b_is_stage_selected = value;
                 calculateCSS();
             }

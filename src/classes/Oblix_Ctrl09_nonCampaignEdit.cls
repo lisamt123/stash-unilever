@@ -2,8 +2,7 @@
 //      THE CONTENT OF THIS CLASS HAS BEEN COMMENT OUT AS THIS CLASS IS NO LONGER USED
 //      AS PART OF CODE REFACTORING, NEW CLASSES HAVE REPLACED THESE
 //      S.M. 2016-03-30
-//******************************************************************************************************
-
+//****************************************************************************************************** 
 
 /**
     About
