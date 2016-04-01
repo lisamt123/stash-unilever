@@ -87,7 +87,7 @@ public with sharing class Oblix_PermissionHandler {
     ********************************************************************************/
     public static Boolean hasEditAccess(Id sow_id){
         // SS 20160214 - added check if a record is locked. Only system administrator should be able to edit locked records
-        if ( !isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin() ){
+        if ( !isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) || isSystemAdmin() ){
     		return true;
     	}
     	else{
@@ -142,9 +142,9 @@ public with sharing class Oblix_PermissionHandler {
     	// only UL1, UL2, SuperUser and Sysadmin can delete SOW and only if
     	// the sow is not approved or locked
         // SS 20160214 added check if a record is locked
-    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
+    	if ( isSystemAdmin() || (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()))
     		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status)){
+    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
     		return true;
     	}
     	else{
@@ -162,9 +162,9 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canSetCompletionStage(String sow_status){
     	// only UL1, UL2, SuperUser and Sysadmin can set 
     	// the sow is not approved
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
+    	if (isSystemAdmin() || (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet())
     		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status)){
+    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
     		return true;
     	}
     	else{
@@ -182,9 +182,9 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canSetProjectedStage(String sow_status){
     	// only UL1, UL2, SuperUser and Sysadmin can set 
     	// the sow is not approved
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
+    	if (isSystemAdmin() || (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet())
     		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status)){
+    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
     		return true;
     	}
     	else{
@@ -233,9 +233,9 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canCancelCampaign(String sow_status){
     	// only UL1, UL2, SuperUser and Sysadmin can cancel campaigns
     	// if not already approved
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
+    	if (isSystemAdmin() || (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet())
     		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status)){
+    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
     		return true;
     	}
     	else{
@@ -252,9 +252,9 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canAdjustFee(String sow_status, Id sow_id, String campaign_status){
     	// only UL1, UL2, SuperUser and Sysadmin can adjust fee
     	// if not already approved
-    	if ( (!isLocked(sow_id) && campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
+    	if (isSystemAdmin() || (!isLocked(sow_id) && campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet())
     		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status)){
+    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
     		return true;
     	}
     	else{
@@ -271,9 +271,9 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canManageNonCampaign(String sow_status, Id sow_id){
     	// only UL1, UL2, SuperUser and Sysadmin can manage non campaign
     	// if not already approved
-    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
+    	if (isSystemAdmin() || (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()))
     		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status)){
+    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
     		return true;
     	}
     	else{
@@ -290,9 +290,9 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canManageCampaign(String sow_status, Id sow_id, String campaign_status){
     	// only UL1, UL2, SuperUser and Sysadmin can manage campaign
     	// if not already approved
-    	if ( (!isLocked(sow_id) && (campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
+    	if (isSystemAdmin() || (!isLocked(sow_id) && (campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()))
     		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status)){
+    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
     		return true;
     	}
     	else{
@@ -309,9 +309,9 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canManageAssetBasket(String sow_status, Id sow_id, String campaign_status){
     	// only UL1, UL2, SuperUser and Sysadmin can manage asset basket
     	// if not already approved
-    	if ( (!isLocked(sow_id) && (campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED)  && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
+    	if (isSystemAdmin() || (!isLocked(sow_id) && (campaign_status != Oblix_Utils.CAMPAIGN_STATUS_CANCELLED)  && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()))
     		&& 
-    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status)){
+    		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status) && (Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status)){
     		return true;
     	}
     	else{

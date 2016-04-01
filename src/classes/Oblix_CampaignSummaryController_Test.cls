@@ -3,6 +3,7 @@ private class Oblix_CampaignSummaryController_Test {
 
 	@isTest static void Oblix_CampaignSummaryController_Test(){
 		User u = Oblix_TestUtils.createTestUser();
+        insert Oblix_TestUtils.createOblixCustomSettings();
         System.runAs(u) {
         	
             Test.startTest();

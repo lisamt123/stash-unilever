@@ -185,9 +185,11 @@
             <div class="row">
                 <div class="col-lg-9 confirm_assets_accordion">
                     <div class="chevron_width_control {!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled','')}">
-                        <p class="{!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled_text', '')}">
-                            {!if(selected_project.Campaign_Status__c == 'Cancelled', 'Campaign Cancelled','')}
-                        </p>
+                        <apex:outputText rendered="{!selected_project.Campaign_Status__c == 'Cancelled'}">
+                            <p class="{!if(selected_project.Campaign_Status__c == 'Cancelled', 'project_cancelled_text', '')}">
+                                Campaign cancelled. To reopen this Campaign please contact the <a href="mailto:liliya.ivanova@unilever.com" target="_top">administrator</a>
+                            </p>
+                        </apex:outputText>
                         <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component" displayMode="2"/> 
                     </div>             
                         <div class="campaign_summary_info_table">
