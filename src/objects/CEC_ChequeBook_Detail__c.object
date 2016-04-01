@@ -119,6 +119,32 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Currency_Decimal_Text__c</fullName>
+        <description>CEC: Currency Decimal Text  will hold Textual version of decimal currency, e.g. CENTS</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Textual version of decimal currency, e.g. CENTS</inlineHelpText>
+        <label>Currency Decimal Text</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Currency_Text__c</fullName>
+        <description>CEC: Currency Text  will hold Textual version of currency, e.g. DOLLARS</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Textual version of currency, e.g. DOLLARS</inlineHelpText>
+        <label>Currency Text</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Currency__c</fullName>
         <description>CEC - Currency    This will be either USD or CAD</description>
         <externalId>false</externalId>
@@ -216,14 +242,86 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <label>ChequeBook Detail</label>
+    <label>CheckBook Detail</label>
+    <listViews>
+        <fullName>Active_NA_Check_Books</fullName>
+        <columns>NAME</columns>
+        <columns>Cheque_Book__c</columns>
+        <columns>Country__c</columns>
+        <columns>Product_Category_Name__c</columns>
+        <columns>Starting_Number__c</columns>
+        <columns>Last_Cheque_Number__c</columns>
+        <columns>Currency__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>United States,Canada,Mexico</value>
+        </filters>
+        <label>NA Check Books - Active</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_North_America</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Cheque_Book__c</columns>
+        <columns>Active__c</columns>
+        <columns>Country__c</columns>
+        <columns>Product_Category_Name__c</columns>
+        <columns>Starting_Number__c</columns>
+        <columns>Last_Cheque_Number__c</columns>
+        <columns>Currency__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>_All</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_North_America</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Inactive_NA_Check_Books</fullName>
+        <columns>NAME</columns>
+        <columns>Cheque_Book__c</columns>
+        <columns>Country__c</columns>
+        <columns>Product_Category_Name__c</columns>
+        <columns>Starting_Number__c</columns>
+        <columns>Last_Cheque_Number__c</columns>
+        <columns>Currency__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Country_Name__c</field>
+            <operation>equals</operation>
+            <value>United States,Canada,Mexico</value>
+        </filters>
+        <label>NA Check Books - Inactive</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CEC_Manager_North_America</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>CB-{0000000}</displayFormat>
         <label>ChequeBook Details Number</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>ChequeBook Details</pluralLabel>
+    <pluralLabel>CheckBook Details</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

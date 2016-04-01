@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
-	<fieldUpdates>
+    <fieldUpdates>
         <fullName>UID_UpdateOrderReportDateField</fullName>
         <field>UID_Report_Date__c</field>
         <formula>EffectiveDate</formula>
@@ -45,4 +45,3 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
-

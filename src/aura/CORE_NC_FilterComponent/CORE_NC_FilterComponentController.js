@@ -127,12 +127,4 @@
         var selectEvent = $A.get("e.c:CORE_NC_FilterEvent");
         selectEvent.setParams({"selectedFilter": FilterType,"displayFilterPage":false }).fire();
     },
-      
-    /*doneRendering: function(component, event, helper) {       
-        //document.body.scrollTop = document.documentElement.scrollTop = 0;
-        //setTimeout(window.scrollTo(0,0),2000);
-        window.scrollTo(0,0);
-        document.getElementById("test").focus();
-        //alert("Hello"+document.getElementById("test"));        
-    }*/
 })

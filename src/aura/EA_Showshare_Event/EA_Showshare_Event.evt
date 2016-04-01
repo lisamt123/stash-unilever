@@ -1,3 +1,5 @@
 <aura:event type="APPLICATION" description="Event template" >
     <aura:attribute name="activity" type="Everyday_Activity__c"/>
+    <aura:attribute name="pagename" type="string"/>
+    <aura:attribute name="index" type="integer"/>
 </aura:event>

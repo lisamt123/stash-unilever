@@ -545,6 +545,14 @@
         <errorMessage><!-- Unable to create Fulfilment with empty &apos;Type&apos; information. Select appropriate &apos;Country&apos; value to proceed. --></errorMessage>
         <name>FulfilmentType_MandatoryCheck</name>
     </validationRules>
+    <validationRules>
+        <errorMessage><!-- Refund value exceeded Max refund value  limit. --></errorMessage>
+        <name>Max_Refund_value_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Refund value cannot be updated as cheque has already been sent. --></errorMessage>
+        <name>RefundValue_Not_Editable_ChequeSent</name>
+    </validationRules>
     <webLinks>
         <label><!-- Add_Cheque_Details --></label>
         <name>Add_Cheque_Details</name>

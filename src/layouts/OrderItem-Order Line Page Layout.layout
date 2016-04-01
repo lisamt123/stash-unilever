@@ -44,9 +44,9 @@
         <fields>Quantity</fields>
     </miniLayout>
     <multilineLayoutFields>Product2Id</multilineLayoutFields>
-    <multilineLayoutFields>OrderId</multilineLayoutFields>
-    <multilineLayoutFields>UnitPrice</multilineLayoutFields>
     <multilineLayoutFields>Quantity</multilineLayoutFields>
+    <multilineLayoutFields>UnitPrice</multilineLayoutFields>
+    <multilineLayoutFields>OrderId</multilineLayoutFields>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>

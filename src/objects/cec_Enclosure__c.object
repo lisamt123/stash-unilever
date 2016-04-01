@@ -77,6 +77,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Company__c</fullName>
+        <externalId>false</externalId>
+        <label>Company</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Country__c</fullName>
         <externalId>false</externalId>
         <label>Country</label>
@@ -237,6 +247,16 @@
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Enclosure_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Enclosure Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Enclosure_Quantity__c</fullName>
@@ -559,8 +579,16 @@
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>Enclosure_Code__c</columns>
+        <columns>Total_Inventory_Quantity__c</columns>
+        <columns>Total_Used_Quantity__c</columns>
+        <columns>Active__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -658,6 +686,8 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Enclosures</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Enclosure_Quantity__c</lookupDialogsAdditionalFields>
+    </searchLayouts>
     <sharingModel>Private</sharingModel>
 </CustomObject>

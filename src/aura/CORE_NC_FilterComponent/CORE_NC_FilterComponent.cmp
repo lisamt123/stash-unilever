@@ -27,12 +27,12 @@
             <!--filter menu options--> 
             <div class="filtePannel">        
                 <div onclick="{!c.showAllActive}" aura:id="showAll">       					Show all topics   		 </div>  
-                <div onclick="{!c.showCategoriesActive}" aura:id="showCategories">          Categories and brands    </div>
+                <div onclick="{!c.showCategoriesActive}" aura:id="showCategories">          Categories &amp; Brands    </div>
                 <div onclick="{!c.showInnovationActive}" aura:id="showInnovation">          Innovation   			 </div>
                 <div onclick="{!c.showLeadershipActive}" aura:id="showLeadership">          Leadership   			 </div>
                 <div onclick="{!c.showMarketplaceActive}" aura:id="showMarketplace">        Marketplace  			 </div>
                 <div onclick="{!c.showPeopleActive}" aura:id="showPeople">        			Our People   			 </div>
-                <div onclick="{!c.showPerformanceActive}" aura:id="showPerformance">        Performance and Strategy </div>
+                <div onclick="{!c.showPerformanceActive}" aura:id="showPerformance">        Performance &amp; Strategy </div>
                 <div onclick="{!c.showSustainableActive}" aura:id="showSustainable">        Sustainable Living    	 </div>
             </div>
         </div>

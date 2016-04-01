@@ -6,7 +6,7 @@
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Distributor User</values>
+            <values>ANANT INTERNATIONAL LIMITED</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
@@ -14,7 +14,71 @@
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
+            <values>BNG TRADING</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>COCOGE</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>D&amp;Q INTERNATIONAL DISTRIBUTORS</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>D&amp;Q SAIPAN CO.,LTD</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>ESSOR IMPORT SARL</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>FEDERATED DISTRIBUTORS INCORPORATED</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>GETZ BROS. PHILIPPINES INC.</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>GRAND DRAGON ENTERPRISES</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>ISLAND SUPPLY COMPANY PTE LTD</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>LF ASIA DISTRIBUTION</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
             <values>LISUN IMPORTACAO E EXPORTACAO - RRASIA</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>MIKONOS SARL</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>MORGAN VERNEX</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>MOTIBHAI &amp; COMPANY</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>SOCALAIT</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>SOCALAIT SA</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>YEES COLD STORAGE SEAFOOD LTD</values>
         </dashboardFilterOptions>
         <name>Distributor</name>
     </dashboardFilters>
@@ -59,6 +123,14 @@
             <operator>equals</operator>
             <values>10</values>
         </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>11</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>12</values>
+        </dashboardFilterOptions>
         <name>Report Month</name>
     </dashboardFilters>
     <dashboardType>SpecifiedUser</dashboardType>
@@ -99,9 +171,8 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Stocked_Product_Value__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
             <componentType>LineGrouped</componentType>
             <dashboardFilterColumns>
@@ -159,9 +230,8 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
             <componentType>LineGrouped</componentType>
             <dashboardFilterColumns>
@@ -211,7 +281,7 @@
             <report>UID_Inventory_and_Stock_Cover_View/Monthly_Stock_Cover_Days_Final</report>
             <showPercentage>false</showPercentage>
             <showValues>true</showValues>
-            <sortBy>RowLabelDescending</sortBy>
+            <sortBy>RowValueAscending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
         <components>
@@ -281,9 +351,8 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Stocked_Product_Value__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
             <componentType>ColumnGrouped</componentType>
             <dashboardFilterColumns>
@@ -340,9 +409,8 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
             <componentType>ColumnGrouped</componentType>
             <dashboardFilterColumns>
@@ -538,6 +606,36 @@
             <showPercentage>false</showPercentage>
             <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <axisBinding>y</axisBinding>
+                <column>FORMULA3</column>
+            </chartSummary>
+            <componentType>Bar</componentType>
+            <dashboardFilterColumns>
+                <column>Account$Name</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Auto</displayUnits>
+            <drillEnabled>false</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Product_Name__c</groupingColumn>
+            <header>Stock Cover for 20 Best Selling SKUs (Days)</header>
+            <legendPosition>Bottom</legendPosition>
+            <maxValuesDisplayed>20</maxValuesDisplayed>
+            <report>UID_Inventory_and_Stock_Cover_View/Top_Secondary_Sales_with_Stock_Cover</report>
+            <showPercentage>false</showPercentage>
+            <showPicturesOnCharts>false</showPicturesOnCharts>
+            <showValues>true</showValues>
+            <sortBy>RowLabelDescending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>

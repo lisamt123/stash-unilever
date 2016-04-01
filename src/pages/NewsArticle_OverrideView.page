@@ -1,14 +1,10 @@
 <apex:page standardController="News_Article__c" extensions="NewsArticle_OverrideViewCon"><!-- action="{!routeOnLoad}"  > Commented to avoid routeonLoad-->
 <!-- <apex:pageMessage summary="{!$Label.NewsArticleRedirectMessage}" severity="info" strength="1" rendered="{!bolmessage}" />-->
-<script type = "text/javascript">
-
-   
-    window.onload=function(){ 
+<script type = "text/javascript">window.onload=function(){ 
          var email={!Email};
          if(email=='0')               
          history.go(-1);            
-    }; 
-
+    };
     // alternative to load event
      document.onreadystatechange = function () {
         if (document.readyState == "complete"){ 
@@ -26,14 +22,12 @@
               }             
            } 
         }
-        
         if(email=='1')
         {        
-        window.open('{!strRedirectURL}','_parent');      
+            window.open('{!strRedirectURL}','_parent');      
         }        
-            return;
-       } 
-    
+        return;
+       }
   </script> 
 
 <style>

@@ -148,6 +148,12 @@ public with sharing class TriggerFactory
 			return new Oblix_UserPermissionHandler();
 		}
 		
+		if (soType == Core_Approval_Details__c.sObjectType){
+            return new Core_CA_LineItem_Handler();
+        }
+		 if (soType == CFC_Attendee__c.sObjectType){
+            return new CFC_Attendee_Handler();
+        } 
 		return null;
 	}
 }

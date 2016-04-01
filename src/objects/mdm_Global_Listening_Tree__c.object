@@ -67,6 +67,15 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Exclude_From_CSAT__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: If checked, cases with this reason code will be excluded from CSAT survey.</description>
+        <externalId>false</externalId>
+        <label>Exclude From CSAT</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>L1_Code__c</fullName>
         <externalId>false</externalId>
         <label>L1 Code</label>

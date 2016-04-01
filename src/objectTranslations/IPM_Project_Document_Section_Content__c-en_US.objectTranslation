@@ -232,6 +232,10 @@
             <translation><!-- Differentiation --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Endurance</masterLabel>
+            <translation><!-- Endurance --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Expensiveness</masterLabel>
             <translation><!-- Expensiveness --></translation>
         </picklistValues>
@@ -708,6 +712,10 @@
     <fields>
         <label><!-- IPM Consumer Evidence Logo Id --></label>
         <name>IPM_Consumer_Evidence_Logo_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Consumer Evidence Priority --></label>
+        <name>IPM_Consumer_Evidence_Priority__c</name>
     </fields>
     <fields>
         <label><!-- IPM Consumer Unit --></label>

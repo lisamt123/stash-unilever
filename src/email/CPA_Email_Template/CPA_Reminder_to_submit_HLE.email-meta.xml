@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>35.0</apiVersion>
+    <available>true</available>
+    <description>Reminder to submit high level estimates or Ballpark estimates</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CPA Reminder to submit HLE</name>
+    <style>none</style>
+    <subject>Reminder to provide a Clarity ID to PWORF:</subject>
+    <type>visualforce</type>
+</EmailTemplate>

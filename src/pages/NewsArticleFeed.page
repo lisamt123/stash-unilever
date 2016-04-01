@@ -39,128 +39,83 @@ font-size: 12px;
 <p>Commenting is open to everyone. We ask that you comment in English so your views can be understood by the majority of our readers. You can find out more in the full guidelines at the footer of this page.</p>
 
 
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-  <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script> 
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script> 
          var cmdLinkVFID = '{!$Component.theForm.likeCommandLink}';
-</script>
+    </script>
     
-<script>
-
-$j = jQuery.noConflict();
- 
- $j(document).ready(function(){       
-     modifyDisplay();  
-     
-     <!--$j('.emptyfeed').html('There are no comments.Be the first to comment.');-->
-     
-     /*****IFRAME Scroll Fix - START*********/
-     sendDocumentHeightToParent();
-     
-     var showMoreClickVal = $j('.cxshowmorefeeditemscontainer > a').attr('onclick');
-     $j('.cxshowmorefeeditemscontainer > a').attr('onclick',showMoreClickVal + ';window.setTimeout(sendDocumentHeightToParent,1500)'); 
-     /**********IFRAME Scroll Fix - END **********/ 
-     
-     $j('#refreshChatterFeed').on("click",function() {
-         refreshChatterFeedAF(); 
-     });
-          
-     if({!NOT(ISNULL(NewsArticleLikeRec))}){
-         disableLikeClick();
-     }
-});
-
-$j( document ).on( "click", ".topic", function(e) {         
-        var url=$j(this).attr('href'); 
-        if(url!=null){ 
-        window.open(url,'_blank');
-        return false;
+    <script>
+        $j = jQuery.noConflict(); 
+        $j(document).ready(function(){       
+             modifyDisplay(); sendDocumentHeightToParent();     
+             var showMoreClickVal = $j('.cxshowmorefeeditemscontainer > a').attr('onclick');
+             $j('.cxshowmorefeeditemscontainer > a').attr('onclick',showMoreClickVal + ';window.setTimeout(sendDocumentHeightToParent,1500)');  
+             $j('#refreshChatterFeed').on("click",function() {  refreshChatterFeedAF();  });         
+             if({!NOT(ISNULL(NewsArticleLikeRec))}){  disableLikeClick();  }
+        }); 
+        $j( document ).on( "click", ".topic", function(e) {         
+                var url=$j(this).attr('href'); 
+                if(url!=null){ 
+                    window.open(url,'_blank'); return false;
+                } else { return false; }
+        });    
+        function sendDocumentHeightToParent() {
+             var parent_url = decodeURIComponent(document.location.hash.replace(/^#/, ''));
+             if(parent_url !=''){  top.postMessage((document.body.scrollHeight).toString(), parent_url); }
         }
-        else
-        { 
-        return false;
+        function hideRefreshWheel() { $j('#refreshAnimation').hide(); $j('#chatterFeedContainer').show(); modifyDisplay(); }
+        function modifyDisplay() {
+            $j('a[href^="https://"]').attr('target','_blank'); $j('a.feeditemtimestamp').attr('target','_blank');
+            $j('a.contentThumbnail-a').hide();  $j('span.feeditemseparatingdot').hide();  $j('a.more-file-actions').hide();     
+        } 
+        function esc(myid) { return '#' + myid.replace(/(:|\.)/g,'\\\\$1'); }    
+        function disableLikeClick(){
+           $j(esc(cmdLinkVFID)).attr('onclick', ''); $j(esc(cmdLinkVFID)).css('cursor', 'default');
         }
-});
+    </script>
     
-function sendDocumentHeightToParent()
-{
-     var parent_url = decodeURIComponent(document.location.hash.replace(/^#/, ''));
-     if(parent_url !=''){
-         top.postMessage((document.body.scrollHeight).toString(), parent_url);
-     }
-}
-
-function callToLogGA(val)
-{ 
-     var parent_url = decodeURIComponent(document.location.hash.replace(/^#/, ''));
-     if(parent_url !=''){
-         top.postMessage(val, parent_url);
-     }
-     return true;
-}
-function CallToGoogleAnalyticEventTagging()
-{
-   try
-   {
-       //Share Button
-       var clickval_share = $j('#publishersharebutton').attr('onclick');
-       if (clickval_share.indexOf("callToLogGA") == -1)
-       {$j('#publishersharebutton').attr('onclick',clickval_share+'return callToLogGA("ga_shared");');}
-    
-       //Comment Button
-       $j('.cxchattersubmit').each(function(){
-           var clickval_cmnt = $j(this).attr('onclick');
-           if (clickval_cmnt.indexOf("callToLogGA") == -1)
-           {$j(this).attr('onclick',clickval_cmnt+'return callToLogGA("ga_commented");');}
-       });
-         }
-    catch(e){}
-}
-
-function showRefreshWheel(){
-    $j('#chatterFeedContainer').hide();   
-    $j('#refreshAnimation').show();
-    $j('#publisherattachtext').show();
-}
-
-
-function hideRefreshWheel(){
-    $j('#refreshAnimation').hide();
-    $j('#chatterFeedContainer').show();
-    
-    modifyDisplay();         
-}
-
-function modifyDisplay(){
-   $j('a[href^="https://"]').attr('target','_blank');
-    $j('a.feeditemtimestamp').attr('target','_blank');
-    $j('a.contentThumbnail-a').hide();
-    $j('span.feeditemseparatingdot').hide();
-    $j('a.more-file-actions').hide();     
-} 
-
-function esc(myid) 
-{
-   return '#' + myid.replace(/(:|\.)/g,'\\\\$1');
-}
-    
-function disableLikeClick(){
-   $j(esc(cmdLinkVFID)).attr('onclick', '');
-   $j(esc(cmdLinkVFID)).css('cursor', 'default');
-}
-</script>
-<style>
-#refreshAnimation{
-    position: absolute;
-    top: 60%;
-    left: 20%;
-    margin-top: -50px;
-    margin-left: -50px;
-    width: 100px;
-    height: 100px;
-}​
-</style>
+    <script>
+        function callToLogGA(val) { 
+             var parent_url = decodeURIComponent(document.location.hash.replace(/^#/, ''));
+             if(parent_url !=''){
+                 top.postMessage(val, parent_url);
+             }
+             return true;
+        }
+        function CallToGoogleAnalyticEventTagging() {
+           try {
+               //Share Button
+               var clickval_share = $j('#publishersharebutton').attr('onclick');
+               if (clickval_share.indexOf("callToLogGA") == -1)
+               {$j('#publishersharebutton').attr('onclick',clickval_share+'return callToLogGA("ga_shared");');}
+            
+               //Comment Button
+               $j('.cxchattersubmit').each(function(){
+                   var clickval_cmnt = $j(this).attr('onclick');
+                   if (clickval_cmnt.indexOf("callToLogGA") == -1)
+                   {$j(this).attr('onclick',clickval_cmnt+'return callToLogGA("ga_commented");');}
+               });
+            } catch(e){}
+        } 
+        function showRefreshWheel() {
+            $j('#chatterFeedContainer').hide();   
+            $j('#refreshAnimation').show();
+            $j('#publisherattachtext').show();
+        }
+    </script>
+    <style>
+        #refreshAnimation{
+            position: absolute;
+            top: 60%;
+            left: 20%;
+            margin-top: -50px;
+            margin-left: -50px;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 
 <apex:form id="theForm"  >
     
@@ -185,7 +140,7 @@ function disableLikeClick(){
      <span id="refreshChatterFeed" style="margin-right: 50%; vertical-align: middle; float: left; font-family: Arial; font-size: 100%; font-weight: normal; font-style: normal; color: rgb(0, 125, 187); cursor: pointer;Position:left:10px;">
         <apex:commandlink action="{!doNothing}" id="refrshImg" onComplete="init();" style="color:blue;text-decoration:none;" reRender="chatterFeedContainerPanel,chatterFeedContainer,likeCount,commentCount" status="myStatus">
             <apex:image url="{!URLFOR($Resource.NewsArticle_Statics, '/img/u141_normal.png')}" style="vertical-align:text-bottom;" alt="Refresh"/ >
-            <span><font color="#007DB"> Refresh </font> </span>
+            <span style="color:#007DB"> Refresh </span>
         </apex:commandlink>
         
     </span>

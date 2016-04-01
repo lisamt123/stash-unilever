@@ -71,37 +71,40 @@ public class CEC_IRIProductLocatorController {
     ********************************************************************/ 
     public void IRISearch(){
         try{
-        Http http = new Http();
-        HttpRequest req = new HttpRequest();
-        //req.setEndpoint('http://productlocator.infores.com/productlocator/servlet/ProductLocatorEngine?clientid=10&productfamilyid=UNIL&searchradius=20&producttype=upc&productid=1111126614&zip=07006');
-        req.setEndpoint('http://productlocator.infores.com/productlocator/servlet/ProductLocatorEngine?clientid='+ IRIClientId +'&productfamilyid='+ IRIProdFamilyId +'&searchradius=20&producttype=upc&productid='+ prodCode +'&zip=' + postCode + '&storesperpage=' + pageSize );
-        req.setMethod('GET');
-        HttpResponse res = http.send(req);
-        errMsg = '';        
-        
-        //CEC_IRIWrapper cecIRIWrap = new CEC_IRIWrapper();
-        Dom.Document docx = new Dom.Document();
-        docx.load(res.getBody());
-        dom.XmlNode xroot = docx.getrootelement();
-        
-        stores = new List<CEC_IRIWrapper.STORE>();
-
-        if(xroot.getAttributeValue(xroot.getAttributeKeyAt(0), xroot.getAttributeKeyNsAt(0)) == '0'){
-            stores = parseStoreInfo(res.getBody());
-            if(stores.size()== 0){
-                errMsg = 'No store information is available for this product';
+            Http http = new Http();
+            HttpRequest req = new HttpRequest();
+            //req.setEndpoint('http://productlocator.infores.com/productlocator/servlet/ProductLocatorEngine?clientid=10&productfamilyid=UNIL&searchradius=20&producttype=upc&productid=1111126614&zip=07006');
+            if(postCode == null)
+                postCode = '';
+            req.setEndpoint('http://productlocator.infores.com/productlocator/servlet/ProductLocatorEngine?clientid='+ IRIClientId +'&productfamilyid='+ IRIProdFamilyId +'&searchradius=20&producttype=upc&productid='+ prodCode +'&zip=' + postCode.mid(0,5) + '&storesperpage=' + pageSize );
+            req.setMethod('GET');
+            HttpResponse res = http.send(req);
+            errMsg = '';        
+            
+            //CEC_IRIWrapper cecIRIWrap = new CEC_IRIWrapper();
+            Dom.Document docx = new Dom.Document();
+            docx.load(res.getBody());
+            dom.XmlNode xroot = docx.getrootelement();
+            
+            stores = new List<CEC_IRIWrapper.STORE>();
+    
+            if(xroot.getAttributeValue(xroot.getAttributeKeyAt(0), xroot.getAttributeKeyNsAt(0)) == '0'){
+                stores = parseStoreInfo(res.getBody());
+                if(stores.size()== 0){
+                    errMsg = 'No store information is available for this product';
+                }
+            }
+            else if(xroot.getAttributeValue(xroot.getAttributeKeyAt(0), xroot.getAttributeKeyNsAt(0)) == '1'){
+                errMsg = parseErrorMsg(res.getBody());
+            }
+            else{
+                errMsg = 'Unable to fetch product details due to technical issue. Please contact sys admin';
+            }
+            if(errMsg != ''){
+               ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ErrMsg));
+               errMsg = '';
             }
         }
-        else if(xroot.getAttributeValue(xroot.getAttributeKeyAt(0), xroot.getAttributeKeyNsAt(0)) == '1'){
-            errMsg = parseErrorMsg(res.getBody());
-        }
-        else{
-            errMsg = 'Unable to fetch product details due to technical issue. Please contact sys admin';
-        }
-        if(errMsg != ''){
-           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ErrMsg));
-           errMsg = '';
-        }}
         catch(exception e){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Unable to fetch product details due to technical issue. Please contact sys admin'));
         }

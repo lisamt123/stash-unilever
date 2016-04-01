@@ -88,6 +88,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CEC_Case_Origin_to_Social_Media</fullName>
+        <description>CEC: Updates the case origin to social media</description>
+        <field>Origin</field>
+        <literalValue>Social</literalValue>
+        <name>CEC Case Origin to Social Media</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CEC_Case_Origin_to_email</fullName>
         <description>CEC: sets the Case Origin to Email</description>
         <field>Origin</field>
@@ -141,6 +151,16 @@
         <field>Market__c</field>
         <literalValue>Nordic</literalValue>
         <name>CEC Nordic Market Field Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CEC_Set_Case_Status_to_Close</fullName>
+        <description>CEC: This will set Case Status to close.</description>
+        <field>Status</field>
+        <literalValue>Closed</literalValue>
+        <name>CEC Set Case Status to Close</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -275,6 +295,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
+        <booleanFilter>(1 OR 3) AND 2</booleanFilter>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
@@ -284,8 +305,46 @@
             <field>Case.Country_Name__c</field>
             <operation>notEqual</operation>
         </criteriaItems>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>contains</operation>
+            <value>Email North America CS</value>
+        </criteriaItems>
         <description>CEC : To update the Case Origin field.</description>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC Auto close social cases after 7 days</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Social</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Awaiting Information from Consumer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Product_Code__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.CEC_Reason_Code__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>CEC :This will automatically close a &apos;social&apos; case after 7 days if no response has been received to the initial response from the CEC so that effective housekeeping of cases is maintained</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>CEC_Set_Case_Status_to_Close</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>Case.LastModifiedDate</offsetFromField>
+            <timeLength>7</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
     </rules>
     <rules>
         <fullName>CEC Close Case Survey</fullName>
@@ -316,6 +375,21 @@
         </criteriaItems>
         <description>To copy the Description of the cases created.</description>
         <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC Social Media Case Origin Update</fullName>
+        <actions>
+            <name>CEC_Case_Origin_to_Social_Media</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Social Media North America</value>
+        </criteriaItems>
+        <description>CEC: This workflow is used to update the case origin to social media</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>CEC_Email_AutoResponse</fullName>

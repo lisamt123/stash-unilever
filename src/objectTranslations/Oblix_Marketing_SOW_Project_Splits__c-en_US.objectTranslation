@@ -9,6 +9,10 @@
         <value>SWOP Campaign Splits</value>
     </caseValues>
     <fields>
+        <label><!-- Enforce Trigger Update --></label>
+        <name>Enforce_Trigger_Update__c</name>
+    </fields>
+    <fields>
         <label><!-- Country --></label>
         <name>OblixCountry__c</name>
         <relationshipLabel><!-- SWOP Campaign Splits --></relationshipLabel>

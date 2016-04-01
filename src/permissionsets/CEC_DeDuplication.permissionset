@@ -2820,14 +2820,7 @@
         <apexClass>IPM_FinancialHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_FinancialTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_FinancialTriggerHandler_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+
     <classAccesses>
         <apexClass>IPM_FinancialValueWrapper</apexClass>
         <enabled>false</enabled>
@@ -3324,14 +3317,7 @@
         <apexClass>IPM_UserProfileHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+
     <classAccesses>
         <apexClass>IPM_Utils</apexClass>
         <enabled>false</enabled>

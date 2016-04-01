@@ -661,7 +661,7 @@
     <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Add text that will help others search for your Brand Experience</inlineHelpText>
+        <inlineHelpText>Add text that will help others search for your brand experience. If the text was copied over from an IPM project, editing this text will not modify the description of the IPM Navigator project, and only affects the description field of your BET.</inlineHelpText>
         <label>Description</label>
         <length>10000</length>
         <trackFeedHistory>false</trackFeedHistory>
@@ -706,6 +706,18 @@ DATE(YEAR(Launch_Date__c), MONTH(Launch_Date__c)-6, 1)
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Final_release_otif__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND( NOT(ISNULL(FinalReleaseDate__c)), NOT(ISNULL(Final_Release_Due_Date__c))),IF(FinalReleaseDate__c &gt; Final_Release_Due_Date__c, &quot;Late&quot; , &quot;On Time&quot;), &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Final release otif</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FirstReleaseDate__c</fullName>
         <externalId>false</externalId>
         <label>First Release Date</label>
@@ -739,6 +751,18 @@ DATE(YEAR(Launch_Date__c)-1, 6, 30)
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>First_release_otif__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND( NOT(ISNULL(FirstReleaseDate__c)), NOT(ISNULL(First_Release_Due_Date__c))),IF(FirstReleaseDate__c &gt; First_Release_Due_Date__c, &quot;Late&quot; , &quot;On Time&quot;), &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>First release otif</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Font_Colour__c</fullName>

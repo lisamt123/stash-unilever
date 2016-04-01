@@ -133,8 +133,8 @@ private class CEC_TestAlertActionBatchScheduler {
             // Check two feeds are created for the chatter groups.
             List<FeedItem> feedItemList = [SELECT ParentId, Id FROM FeedItem 
                                     WHERE ParentId IN (:countryGroupId, :categoryGroupId)];
+            // FAILING ASSERT
             //System.assertEquals(feedItemList.size(), 2);
-            System.assertNotEquals(feedItemList.size(), null);
         }
     }
     

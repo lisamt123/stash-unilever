@@ -87,7 +87,11 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>IPM_Country_Name__c</field>
-            </layoutItems>
+            </layoutItems>            
+            <layoutItems>
+                <behavior>Edit</behavior>
+            <field>isActive__c</field>		
+            </layoutItems>            		
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Calculation_Index__c</field>

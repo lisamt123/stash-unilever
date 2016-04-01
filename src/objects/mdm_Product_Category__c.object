@@ -338,67 +338,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>OOH_EAN__c</fullName>
-        <externalId>false</externalId>
-        <label>EAN</label>
-        <length>20</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>OOH_ProductIDN2__c</fullName>
-        <externalId>false</externalId>
-        <label>Product ID N2</label>
-        <length>24</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>OOH_ProductIDN5__c</fullName>
-        <externalId>false</externalId>
-        <label>Product ID N5</label>
-        <length>8</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>OOH_ProductIDN6__c</fullName>
-        <externalId>false</externalId>
-        <label>Product ID N6</label>
-        <length>18</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>OOH_ProductSAPCode__c</fullName>
-        <externalId>true</externalId>
-        <label>Product SAP Code</label>
-        <length>20</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>OOH_UnitsinBox__c</fullName>
-        <externalId>false</externalId>
-        <label>Units in Box</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Product_Form_Code__c</fullName>
         <externalId>false</externalId>
         <label>Product Form Code</label>
@@ -504,22 +443,6 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Product Categories</pluralLabel>
-    <recordTypes>
-        <fullName>UL_Products</fullName>
-        <active>false</active>
-        <label>UL Products</label>
-        <picklistValues>
-            <picklist>Corp_Prod_Grouping_Active_Status__c</picklist>
-            <values>
-                <fullName>Active</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Inactive</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
     <searchLayouts>
         <lookupDialogsAdditionalFields>L2_Product_Category__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Corp_Brand_Name__c</lookupDialogsAdditionalFields>
