@@ -1,7 +1,0 @@
-src
-src/reports
-src/reports/IPM_Reports
-src/reports/IPM_Reports/IPM_Sustainability_Report.report
-src/reports/IPM_Reports/Project_Gate_Document.report
-src/reports/IPM_Reports/Project_Milestones.report
-src/reports/IPM_Reports/Project_Parameters.report
