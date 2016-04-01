@@ -2608,13 +2608,6 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>012180000000BZu</value>
     </labels>
     <labels>
-        <fullName>CPA_Default_URL</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CPA default URl</shortDescription>
-        <value>https://unilever--chazwa.cs23.my.salesforce.com/</value>
-    </labels>
-    <labels>
         <fullName>CPA_HLE_Recordtype</fullName>
         <language>en_US</language>
         <protected>false</protected>
