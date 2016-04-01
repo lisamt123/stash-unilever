@@ -20,7 +20,6 @@ public class AF_Constants
 	public static final String CATEGORY_FINANCE = 'With Category Finance'; 
 	public static final string CATEGORY_FINANCE_Bonus_Quarterly='W/Cat Finance';
 	public static final string BASE_FEES_WITH_AGENCY_DRAFT='With Agency (Draft)';
-	public static final String YEAR = 'year';
 	public static final String STATUS_DRAFT = 'Draft';
 	public static final String STATUS_NONE = 'None';
 	public static final String STATUS_SUBMITTED = 'Submitted';
@@ -33,6 +32,25 @@ public class AF_Constants
 	public static final String FISCALYEAR='2014';
 	public static final String YTG_RED='red';
 	public static final String YTG_BLACK='black';
+	public static final String COUNTRY='AF_Country__c';
+	public static final String BRANDVALUE='brandvalue';
+	public static final String BRANDID='Brandid';
+	public static final String AGENCYID='Agencyid';
+	public static final String PARENTID='parentId';
+	public static final String QUARTER='quarter';
+	public static final String COUNTRY_TOTAL='CountryTotal';
+	public static final String COUNTRY_NAME='CountryName';
+	public static final String IS_ERROR='IsError';
+	public static final String ERRORMESSAGE='ErrorMessage';
+	public static final String TOTAL='total';
+	public static final String USERID='userid';
+	//public static final String YEAR = 'year';
+	/*Attachment Types*/
+	public static final String SOW='SOW';
+	public static final String SCOPE_OF_WORK='Scope Of Work';
+	public static final String FEE_TEMPLATE='Fee Template Summary';
+	public static final String DOCUMENTS='Other Documents';
+	public static final String OTHER='Other';
 	/* SObject API Name */
 	public static final String SOBJECT_BRANDESTIMATE_APINAME = 'AF_Brand_Estimate__c';
 	public static final String SOBJECT_AGENCYESTIMATE_APINAME = 'AF_Agency_Estimate__c';
@@ -96,7 +114,7 @@ public class AF_Constants
 	public static final String CMCOPROCESS_IMAGE='/resource/x75Progress';
 	public static final String READYFORPO_IMAGE='/resource/x100Progress';
 	public static final String ZIPCODE_FOCUS='zipCodeFocus();';
-	//public static final String YEAR = 'Year';
+	public static final String YEAR = 'Year';
 	/*Quarters*/
 	public static final String QUARTER1 = 'Q1';
 	public static final String QUARTER2 = 'Q2';

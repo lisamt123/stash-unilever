@@ -15,11 +15,11 @@ public class AF_AgencyHomePageController_Test
     Static string currYear1=string.valueof(IcurrYear1);
     Static Integer IcurrYear2 = System.Today().year()-2;
     Static string currYear2=string.valueof(IcurrYear2);
-    Private static final string category='category';
-    Private static final string year='Year';
+    Private static final string category=AF_Constants.CATEGORY;
+    Private static final string year=AF_Constants.YEAR;
     Private static final string brandvalue='brandvalue';
-    Private static final string mybrand='My Brands';
-    Private static final string allbrands='All Brands';
+    Private static final string mybrand=AF_Constants.MY_BRANDS;
+    Private static final string allbrands=AF_Constants.ALL_BRANDS;
     Private static user AgencyHomePage;
     /***********************************************************************************
 *  @Description: this method will the test data

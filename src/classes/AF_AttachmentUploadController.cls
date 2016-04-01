@@ -24,8 +24,8 @@ public with sharing class AF_AttachmentUploadController{
 		}
 		set;
 	}
-	String Pid=ApexPages.currentPage().getParameters().get('parentId');
-	String quarter = ApexPages.currentPage().getParameters().get('quarter');
+	String Pid=ApexPages.currentPage().getParameters().get(AF_Constants.PARENTID);
+	String quarter = ApexPages.currentPage().getParameters().get(AF_Constants.QUARTER);
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_AttachmentUploadController
@@ -37,8 +37,8 @@ public with sharing class AF_AttachmentUploadController{
 		CtTypes = new List<SelectOption>();
 		UploadDocument=true;
 		CloseButton=false;
-		CtTypes.add(new SelectOption('SOW','Scope Of Work'));
-		CtTypes.add(new SelectOption('Fee Template Summary','Fee Template Summary'));
+		CtTypes.add(new SelectOption(AF_Constants.SOW,AF_Constants.SCOPE_OF_WORK));
+		CtTypes.add(new SelectOption(AF_Constants.FEE_TEMPLATE,AF_Constants.FEE_TEMPLATE));
 		if(quarter != null) {
 			for(String eachQuarter : AF_ApproveActualsCtrl.docQuarterMap.keySet()) {
 				if(eachQuarter == quarter) {
@@ -50,7 +50,7 @@ public with sharing class AF_AttachmentUploadController{
 				CtTypes.add(new SelectOption(AF_ApproveActualsCtrl.docQuarterMap.get(eachQuarter),AF_ApproveActualsCtrl.docQuarterMap.get(eachQuarter)));   
 			}
 		}
-		CtTypes.add(new SelectOption('Other Documents','Other'));
+		CtTypes.add(new SelectOption(AF_Constants.DOCUMENTS,AF_Constants.OTHER));
 	}
 	/***********************************************************************************
 *  @Description: this method is used to upload documents 

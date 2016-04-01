@@ -126,6 +126,7 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 *************************************************************************************/
 	public void beforeUpdate(SObject oldSo, SObject so)
 	{
+		/*Method is Blank as this handler doesnot handle any beforeUpdate*/
 	}
 	/**********************************************************************************************
 *  @Description: this method is iteratively for each record to be deleted during a BEFORE trigger
@@ -149,6 +150,7 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 *************************************************************************************/
 	public void afterInsert(SObject so)
 	{
+		/*Method is Blank as this handler doesnot handle any afterInsert*/
 	}
 	/**********************************************************************************************
 *  @Description: this method is iteratively for each record updated during an AFTER trigger
@@ -185,6 +187,7 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 *************************************************************************************/
 	public void afterDelete(SObject so)
 	{
+		/*Method is Blank as this handler doesnot handle any afterDelete*/
 	}
 	/***************************************************************************************
 *  @Description: this method is used to query and update the record in the object, based on
@@ -195,6 +198,7 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 *************************************************************************************/
 	public void andFinally()
 	{  
+		string  andfinally='andFinally';
 		// UpdateCatFinanceApprover Trigger Logic Starts
 		if( !UpdateOopsagencyList.isEmpty() )
 		{
@@ -221,7 +225,7 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 			}
 			 catch(Exception e)
 	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,andfinally,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 	        }
 		}
@@ -232,7 +236,7 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 			}
 			 catch(Exception e)
 	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,andfinally,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 	        }
 		}
@@ -281,6 +285,7 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 	}
 	
 	public void addFinallyExt(){
+		string addFinallyExt='addFinallyExt';
 		// AF_POreport_Delete Trigger logic Starts
 		if(!BrandPOEstids.isEmpty()){
 			try{
@@ -294,7 +299,7 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 						}
 						 catch(Exception e)
 					        {
-					            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addFinallyExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+					            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addFinallyExt,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 					            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 					        }
 					}
@@ -305,7 +310,7 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 						}
 						catch(Exception e)
 					        {
-					            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addFinallyExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+					            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addFinallyExt,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 					            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
 					        }
 					}
@@ -313,7 +318,7 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
 			}
 			catch(Exception e)
 			{
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_Brand_EstimateHandler','andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addFinallyExt,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				system.debug(e);
 			}
 		}

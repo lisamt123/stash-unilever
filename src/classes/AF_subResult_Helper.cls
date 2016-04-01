@@ -33,7 +33,7 @@ public with sharing class AF_subResult_Helper{
 	public static void subResultCalc(List<AF_Sub_Result__c> queryListofSubResult,Map<Id,String> status,Map<Id,Boolean> Lock,Set<Id>  BonusAnnualSubResult,Map<Id,String> BonusQuarterlySubResultMap,Set<String> QuaterSet,Set<Id> BonusQuarterlySubResult){
 		subResultCalcExt(queryListofSubResult);
 		subResultBonusFeesCalc(queryListofSubResult);
-
+        string subResultCalc='subResultCalc';
 		if(BonusAnnualSubResult.size()>0){
 			for(AF_Bonus_Results__c bonusResult : [select AF_Bonus_Thresholds__c,AF_Bonusable_Fees__c,AF_Status__c,AF_Locked__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN :BonusAnnualSubResult and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Annual').getRecordTypeId()]){
 				bonusResult.AF_Bonusable_Fees__c = bonusfeesAnnualMap.get(bonusResult.AF_Bonus_Thresholds__c);
@@ -59,7 +59,7 @@ public with sharing class AF_subResult_Helper{
 						b.AF_Bonus_Thresholds__c = bt;
 						b.AF_Status__c = AF_Constants.STATUS_DRAFT;
 						b.AF_Period__c = BonusQuarterlySubResultMap.get(bt);
-						b.RecordTypeId=Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Quarterly').getRecordTypeId();
+						b.RecordTypeId=Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get(AF_Constants.QUARTERLY_BONUS_REC_TYPE).getRecordTypeId();
 						bonusquart.add(b);
 					}
 					else if(BonusQuarterlySubResultMap.get(bt)==AF_Constants.QUARTER2){
@@ -68,7 +68,7 @@ public with sharing class AF_subResult_Helper{
 						b.AF_Bonus_Thresholds__c = bt;
 						b.AF_Status__c = AF_Constants.STATUS_DRAFT;
 						b.AF_Period__c = BonusQuarterlySubResultMap.get(bt);
-						b.RecordTypeId=Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Quarterly').getRecordTypeId();
+						b.RecordTypeId=Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get(AF_Constants.QUARTERLY_BONUS_REC_TYPE).getRecordTypeId();
 						bonusquart.add(b);
 					}
 					else if(BonusQuarterlySubResultMap.get(bt)==AF_Constants.QUARTER3){
@@ -77,7 +77,7 @@ public with sharing class AF_subResult_Helper{
 						b.AF_Bonus_Thresholds__c = bt;
 						b.AF_Status__c = AF_Constants.STATUS_DRAFT;
 						b.AF_Period__c = BonusQuarterlySubResultMap.get(bt);
-						b.RecordTypeId=Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Quarterly').getRecordTypeId();
+						b.RecordTypeId=Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get(AF_Constants.QUARTERLY_BONUS_REC_TYPE).getRecordTypeId();
 						bonusquart.add(b);
 					}
 				}
@@ -88,7 +88,7 @@ public with sharing class AF_subResult_Helper{
 				}
 				catch(Exception e)
 		        {
-		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'subResultCalc',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultCalc,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
 		        }
 			}
@@ -99,7 +99,7 @@ public with sharing class AF_subResult_Helper{
 			}
 			catch(Exception e)
 		        {
-		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'subResultCalc',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultCalc,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
 		        }
 		}
@@ -109,7 +109,7 @@ public with sharing class AF_subResult_Helper{
 			}
 			catch(Exception e)
 		        {
-		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'subResultCalc',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,subResultCalc,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
 		        }
 		}
@@ -251,7 +251,7 @@ public with sharing class AF_subResult_Helper{
 		if(BonusQuarterlySubResult.size()>0){
 			List<AF_Bonus_Results__c> tempBonusResult = new List<AF_Bonus_Results__c>();
 			try{
-				tempBonusResult = [select AF_Bonus_Thresholds__c,AF_Bonusable_Fees__c,AF_Period__c,AF_Status__c,AF_Locked__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN :BonusQuarterlySubResult and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Quarterly').getRecordTypeId() and AF_Period__c IN:QuaterSet];
+				tempBonusResult = [select AF_Bonus_Thresholds__c,AF_Bonusable_Fees__c,AF_Period__c,AF_Status__c,AF_Locked__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN :BonusQuarterlySubResult and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get(AF_Constants.QUARTERLY_BONUS_REC_TYPE).getRecordTypeId() and AF_Period__c IN:QuaterSet];
 			}
 			catch(Exception e){
 				system.debug(e);

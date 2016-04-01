@@ -111,9 +111,9 @@ public with sharing class AF_BonusQuarterly {
         Totals_BonusMeasureTrad =0;
         Totals_BonusMeasureDigital=0;
         QuartelyBonus=new list<wrapbonus>();
-        String Brand_id = ApexPages.currentPage().getParameters().get('Brandid');
-        String agency_id=ApexPages.currentPage().getParameters().get('Agencyid');
-        String current_year=ApexPages.currentPage().getParameters().get('Year');
+        String Brand_id = ApexPages.currentPage().getParameters().get(AF_Constants.BRANDID);
+        String agency_id=ApexPages.currentPage().getParameters().get(AF_Constants.AGENCYID);
+        String current_year=ApexPages.currentPage().getParameters().get(AF_Constants.YEAR);
         displaySubmitButton = false;
         User userObj = new User();
         userObj = [select Id, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];

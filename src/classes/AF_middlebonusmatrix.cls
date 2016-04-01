@@ -24,9 +24,9 @@ public with sharing class AF_middlebonusmatrix {
 	public AF_middlebonusmatrix (){
 		isAgencyFlag=false;
 		isAgencyAccess = false;
-		url_brandid=ApexPages.currentPage().getParameters().get('Brandid');
-		url_agencyid=ApexPages.currentPage().getParameters().get('Agencyid');
-		url_year=ApexPages.currentPage().getParameters().get('Year');
+		url_brandid=ApexPages.currentPage().getParameters().get(AF_Constants.BRANDID);
+		url_agencyid=ApexPages.currentPage().getParameters().get(AF_Constants.AGENCYID);
+		url_year=ApexPages.currentPage().getParameters().get(AF_Constants.YEAR);
 		User userObj = new User();
 		userObj = [select AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
 		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){

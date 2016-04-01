@@ -36,7 +36,7 @@ public with sharing class AF_MultiSelectComponent{
 	public String uid{get;set;}
 	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	public AF_MultiSelectComponent(){
-		uid=ApexPages.currentPage().getParameters().get('userid');
+		uid=ApexPages.currentPage().getParameters().get(AF_Constants.USERID);
 		searchGroups();
 		searchPermissionSet();
 	}
@@ -260,6 +260,7 @@ public with sharing class AF_MultiSelectComponent{
 *  @return: none.
 *************************************************************************************/     
 	public void saveGroups(){
+		string saveGroups='saveGroups';
 		List<GroupMember> gmList = new List<GroupMember>();
 		Set<String> deleteGroupsSet = new Set<String>();
 		Set<String> addGroupsSet = new Set<String>();
@@ -294,7 +295,7 @@ public with sharing class AF_MultiSelectComponent{
 			}
 			catch(Exception e)
 			{
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveGroups',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,saveGroups,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert));
 			}
 		}
@@ -313,7 +314,7 @@ public with sharing class AF_MultiSelectComponent{
 			}
 			catch(Exception e)
 			{
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'saveGroups',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,saveGroups,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
 			}
 		}
@@ -326,6 +327,7 @@ public with sharing class AF_MultiSelectComponent{
 *  @return: none.
 *************************************************************************************/    
 	public void savePermission(){
+		string savePermission='savePermission';
 		List<PermissionSetAssignment> pList = new List<PermissionSetAssignment>();
 		Set<String> deleteGroupsSet = new Set<String>();
 		Set<String> addGroupsSet = new Set<String>();
@@ -360,7 +362,7 @@ public with sharing class AF_MultiSelectComponent{
 			}
 			catch(Exception e)
 			{
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'savePermission',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,savePermission,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 			}
 		}
@@ -379,7 +381,7 @@ public with sharing class AF_MultiSelectComponent{
 			}
 			catch(Exception e)
 			{
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'savePermission',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,savePermission,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
 			}
 		}

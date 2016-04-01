@@ -82,6 +82,7 @@ public with sharing class AF_Brand_Controller_Review
 		checkReview(BrandId);
 	}
 	public void checkReview(set<id> BrandId){
+		string CHECK_REVIEW='checkReview';
 		if(!mapgroups.isempty())
 		{
 			for(id idval: mapgroups.keyset())
@@ -106,7 +107,7 @@ public with sharing class AF_Brand_Controller_Review
 			}
 			catch(Exception e)
 		        {
-		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'checkReview',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,CHECK_REVIEW,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 		        }
 		}
@@ -128,7 +129,7 @@ public with sharing class AF_Brand_Controller_Review
 				}
 				 catch(Exception e)
 		        {
-		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'checkReview',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,CHECK_REVIEW,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 		        }
 				for(AF_Brand_Estimate__c bEstimates:lstbrandestimates){

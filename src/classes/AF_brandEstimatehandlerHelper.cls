@@ -100,6 +100,7 @@ global with sharing class AF_brandEstimatehandlerHelper{
 **************************************************************************************************************/
 	@future
 	public static void oopsActualhandlerMethod(Set<String> brandSet){
+		string oopsActualhandlerMethod='oopsActualhandlerMethod';
 		List<AF_OOPS_Actual__c> oopsActualList = new  List<AF_OOPS_Actual__c>();
 		List<AF_OOPS_Actual__c> oopsActualWithcatList = new  List<AF_OOPS_Actual__c>();
 		List<AF_OOPS_Actual__c> oopsWithAgencyList = new  List<AF_OOPS_Actual__c>();
@@ -124,7 +125,7 @@ global with sharing class AF_brandEstimatehandlerHelper{
 			}
 			catch(Exception e)
 	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'oopsActualhandlerMethod',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,oopsActualhandlerMethod,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 	        }
 		}
@@ -134,7 +135,7 @@ global with sharing class AF_brandEstimatehandlerHelper{
 			}
 			catch(Exception e)
 	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'oopsActualhandlerMethod',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,oopsActualhandlerMethod,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 	        }
 		}
@@ -149,7 +150,7 @@ global with sharing class AF_brandEstimatehandlerHelper{
 			}
 			catch(Exception e)
 	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'oopsActualhandlerMethod',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,oopsActualhandlerMethod,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 	        }
 		}

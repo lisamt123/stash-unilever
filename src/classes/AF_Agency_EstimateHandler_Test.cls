@@ -220,7 +220,7 @@ public class AF_Agency_EstimateHandler_Test
 			}
 			insert subResultlist;
 			List<AF_Sub_Result__c> subResultQuery = [SELECT Id,AF_Bonus_Threshold__c FROM AF_Sub_Result__c WHERE ID IN : subResult LIMIT 1];
-			System.assertEquals(subResultQuery[0].AF_Bonus_Threshold__c ,BonusThreshold[0].Id,' SubResult Record inserted');
+			System.assertEquals(subResultQuery[0].AF_Bonus_Threshold__c ,BonusThreshold[0].Id,AF_TestFactory_Helper.SUBRESULT_RECORD);
 			AF_Agency_EstimateHandler agencyhand = new AF_Agency_EstimateHandler();
 			AF_Agency_Estimate__c so = new AF_Agency_Estimate__c();
 			AF_Agency_Estimate__c oldso =new AF_Agency_Estimate__c();

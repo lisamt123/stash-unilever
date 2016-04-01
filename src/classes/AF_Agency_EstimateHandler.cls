@@ -66,6 +66,7 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
 	}
 	public void bulkAfter()
 	{
+		/*Method is Blank as this handler doesnot handle any bulkAfter*/
 	}
 	/********************************************************************************************
 *  @Description: This method is called iteratively for each record to be inserted during a BEFORE

@@ -63,9 +63,9 @@ public with sharing class AF_AgencyHomePageController {
 *************************************************************************/
     public AF_AgencyHomePageController()
     {
-        string category_name_url=ApexPages.CurrentPage().getParameters().get('category');
-        string year_url=ApexPages.CurrentPage().getParameters().get('Year');
-        String Selectbrandval_url=ApexPages.CurrentPage().getParameters().get('brandvalue');
+        string category_name_url=ApexPages.CurrentPage().getParameters().get(AF_Constants.CATEGORY);
+        string year_url=ApexPages.CurrentPage().getParameters().get(AF_Constants.YEAR);
+        String Selectbrandval_url=ApexPages.CurrentPage().getParameters().get(AF_Constants.BRANDVALUE);
         IsCMCO=false;
         IsFinance=false;
         IsProcurement=false;

@@ -45,7 +45,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             List<AF_Brand_Estimate__c> BrandEst = AF_TestFactory_Helper.insertAFBrandEstList(1,true);
             List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c LIMIT 2]; 
             System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
-            ApexPages.currentPage().getParameters().put('Category',AFCategoryBrand[0].id);
+            ApexPages.currentPage().getParameters().put(AF_Constants.RT_CATEGORY,AFCategoryBrand[0].id);
             ApexPages.currentPage().getParameters().put(Fyear,currYear);    
             AF_AdjustQuater_Homepage_lightbox adjHome=new AF_AdjustQuater_Homepage_lightbox();
             adjHome.saveBrandEstimate();
@@ -102,7 +102,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c LIMIT 2]; 
             System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
             List<AF_AdjustQuater_Homepage_lightbox.wrapChechbox> brandEstimateRecords=new List<AF_AdjustQuater_Homepage_lightbox.wrapChechbox>();
-            ApexPages.currentPage().getParameters().put('Category',cb[0].id);
+            ApexPages.currentPage().getParameters().put(AF_Constants.RT_CATEGORY,cb[0].id);
             ApexPages.currentPage().getParameters().put('brandEstimate',BrandEstList[0].id);
             ApexPages.currentPage().getParameters().put(Fyear,currYear);    
             AF_AdjustQuater_Homepage_lightbox adjHome=new AF_AdjustQuater_Homepage_lightbox();
@@ -162,7 +162,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c LIMIT 2]; 
             System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRANDESTIMATE_RECORD);
             List<AF_AdjustQuater_Homepage_lightbox.wrapChechbox> brandEstimateRecords=new List<AF_AdjustQuater_Homepage_lightbox.wrapChechbox>();
-            ApexPages.currentPage().getParameters().put('Category',cb[0].id);
+            ApexPages.currentPage().getParameters().put(AF_Constants.RT_CATEGORY,cb[0].id);
             ApexPages.currentPage().getParameters().put(Fyear,currYear);    
             AF_AdjustQuater_Homepage_lightbox adjHome=new AF_AdjustQuater_Homepage_lightbox();
             AF_AdjustQuater_Homepage_lightbox.wrapChechbox wr=new AF_AdjustQuater_Homepage_lightbox.wrapChechbox(BrandEstList[0],BrandEstList[0].Name,true,true,true,true);
@@ -219,7 +219,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             List<AF_Brand_Estimate__c> BrandEstQuery =[SELECT Brand__c FROM AF_Brand_Estimate__c LIMIT 2]; 
             System.assertEquals(BrandEstQuery[0].Brand__c, brandQuery[0].id,AF_TestFactory_Helper.BRAND_RECORD);
             List<AF_AdjustQuater_Homepage_lightbox.wrapChechbox> brandEstimateRecords=new List<AF_AdjustQuater_Homepage_lightbox.wrapChechbox>();
-            ApexPages.currentPage().getParameters().put('Category',Cb[0].id);
+            ApexPages.currentPage().getParameters().put(AF_Constants.RT_CATEGORY,Cb[0].id);
             ApexPages.currentPage().getParameters().put(Fyear,currYear);    
             AF_AdjustQuater_Homepage_lightbox adjHome=new AF_AdjustQuater_Homepage_lightbox();
             AF_AdjustQuater_Homepage_lightbox.wrapChechbox wr = new AF_AdjustQuater_Homepage_lightbox.wrapChechbox(BrandEstList[0],BrandEstList[0].Name,true,true,true,true);

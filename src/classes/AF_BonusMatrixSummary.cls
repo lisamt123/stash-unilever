@@ -139,6 +139,7 @@ public with sharing class AF_BonusMatrixSummary {
 *  @return: pagereference
 **********************************************************************/
 	public pagereference SubmitforStatus(){
+		string Submit_for_status='SubmitforStatus';
 		List<AF_Bonus_Matrix__c> bonusMatrixList = new List<AF_Bonus_Matrix__c>();
 		if(bonusableFee==0){
 			apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Annual_Bonus));
@@ -150,7 +151,7 @@ public with sharing class AF_BonusMatrixSummary {
 			}
 			 catch(Exception e)
 		        {
-		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SubmitforStatus',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,Submit_for_status,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 		        }
 			for(AF_Bonus_Matrix__c BM:bonusSummaryObj.Bonus_Matrix__r){
@@ -163,7 +164,7 @@ public with sharing class AF_BonusMatrixSummary {
 				}
 				catch(Exception e)
 		        {
-		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'SubmitforStatus',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+		            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,Submit_for_status,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 		        }
 			}

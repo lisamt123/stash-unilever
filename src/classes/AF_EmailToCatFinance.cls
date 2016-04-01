@@ -12,7 +12,7 @@ public with sharing class AF_EmailToCatFinance
 	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	public AF_EmailToCatFinance()
 	{
-		string year_url=ApexPages.CurrentPage().getParameters().get('Year');
+		string year_url=ApexPages.CurrentPage().getParameters().get(AF_Constants.YEAR);
 		lstBrandEstimate=[SELECT Id,name,AF_Fiscal_Year__c,Brand__r.Name,AF_Notified_To_CatFinance__c FROM AF_Brand_Estimate__c WHERE AF_Status_Base_Fees__c = :AF_Constants.BASE_FEES_INITIATE AND AF_Active__c = true AND AF_Locked__c = false AND AF_Created_By_Batch__c = true AND AF_Notified_To_CatFinance__c = false AND AF_Fiscal_Year__c =:year_url];
 		if(lstBrandEstimate.size()==0)
 		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info,Label.AF_No_Records_To_Notify));

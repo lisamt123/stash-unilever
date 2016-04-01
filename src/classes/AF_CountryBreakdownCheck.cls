@@ -32,7 +32,7 @@ public with sharing class AF_CountryBreakdownCheck {
 				{
 					//Now check they all add up to 100%
 					for (AggregateResult ar : lstAgEStExc){
-						if(ar.get('total')!=100.00) retResult=true;
+						if(ar.get(AF_Constants.TOTAL)!=100.00) retResult=true;
 					}
 				}
 			}

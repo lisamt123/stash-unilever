@@ -455,7 +455,7 @@ public class AF_ApprovalProcessForBrandEstController
 ********************************************************************************************************/   
 	public  void ApproveBrandEst()
 	{
-		String errormsg = 'The Thresholds entered do not match the Unilever entity/entities in the Base Fees matrix. Please resolve the following mismatches by setting Bonus Threshold for Unilever entities:{';
+		String errormsg = Label.AF_Thershold_Setting;
 		AF_BonusRecordManager bonusRecordManager = new AF_BonusRecordManager();
 		AF_CountryBreakdownCheck mycheck = new AF_CountryBreakdownCheck();
 		Boolean myresult = mycheck.CheckCountryBreakdown(ParentId);
@@ -495,7 +495,7 @@ public class AF_ApprovalProcessForBrandEstController
 	public void TrueControllerFlag()
 	{
 		try{
-			if(LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' &&  Targetprocess.size()==0)
+			if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CONTROLLER &&  Targetprocess.size()==0)
 			{
 				if(Controllerflag)
 				{
@@ -508,7 +508,7 @@ public class AF_ApprovalProcessForBrandEstController
 			}
 			else
 			{
-				ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'You cannot flag the record'));
+				ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,Label.AF_Flag_Record));
 			}
 		}catch(exception ex)
 		{
@@ -552,7 +552,7 @@ public class AF_ApprovalProcessForBrandEstController
 		}
 		catch(exception ex)
 		{
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'TrueControllerFlag',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'changeBrandStatus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 		}
 	}
 }

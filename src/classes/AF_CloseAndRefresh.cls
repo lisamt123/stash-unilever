@@ -24,7 +24,7 @@ public with sharing class AF_CloseAndRefresh {
 	{
 		try
 		{
-			if(ApexPages.currentPage().getParameters().get('IsError') != 'true')
+			if(ApexPages.currentPage().getParameters().get(AF_Constants.IS_ERROR) != 'true')
 			{	
 				IsCloseAndRefresh = true;
 				IsError = false;
@@ -35,9 +35,9 @@ public with sharing class AF_CloseAndRefresh {
 				IsError = true;
 				ShowStandardMessage = true;
 				ShowCustomMessage = false;
-				if(ApexPages.currentPage().getParameters().get('ErrorMessage') != null)
+				if(ApexPages.currentPage().getParameters().get(AF_Constants.ERRORMESSAGE) != null)
 				{
-					ErrorMessage = ApexPages.currentPage().getParameters().get('ErrorMessage');
+					ErrorMessage = ApexPages.currentPage().getParameters().get(AF_Constants.ERRORMESSAGE);
 					ShowStandardMessage = false;
 					ShowCustomMessage = true;
 				}	        	        	        	      	

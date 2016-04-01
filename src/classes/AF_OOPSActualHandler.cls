@@ -61,6 +61,7 @@ public with sharing class AF_OOPSActualHandler implements ITrigger{
 *************************************************************************************/   
 	public void bulkAfter()
 	{
+		/*Method is Blank as this handler doesnot handle any beforeAfter*/
 	}
 	/********************************************************************************************
 *  @Description: This method is derived as a part of trigger factory
@@ -71,6 +72,7 @@ public with sharing class AF_OOPSActualHandler implements ITrigger{
 *************************************************************************************/   
 	public void beforeInsert(SObject so)
 	{
+		/*Method is Blank as this handler doesnot handle any beforeInsert*/
 	}
 	/********************************************************************************************
 *  @Description: This method is derived as a part of trigger factory
@@ -81,6 +83,7 @@ public with sharing class AF_OOPSActualHandler implements ITrigger{
 *************************************************************************************/ 
 	public void beforeUpdate(SObject oldSo, SObject so)
 	{
+		/*Method is Blank as this handler doesnot handle any beforeUpdate*/
 	}
 	/********************************************************************************************
 *  @Description: This method is called iteratively for each record to be deleted during a 
@@ -106,7 +109,7 @@ public with sharing class AF_OOPSActualHandler implements ITrigger{
 *************************************************************************************/ 
 	public void afterInsert(SObject so)
 	{
-		//derived as a part of trigger factory
+		/*Method is Blank as this handler doesnot handle any afterInsert*/	
 	}
 	/*************************************************************************************************
 *  @Description: This method is called iteratively for each record updated during an AFTER
@@ -135,7 +138,7 @@ public with sharing class AF_OOPSActualHandler implements ITrigger{
 *************************************************************************************/ 
 	public void afterDelete(SObject so)
 	{
-		//derived as a part of trigger factory
+		/*Method is Blank as this handler doesnot handle any afterDelete*/	
 	}
 	/******************************************************************************************************
 *  @Description: This method is called once all records have been processed by the trigger. Use this 

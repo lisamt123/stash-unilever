@@ -48,6 +48,7 @@ public with sharing class AF_SubResultHandler implements ITrigger{
 *************************************************************************************/
 	public void bulkBefore()
 	{
+		/*Method is Blank as this handler doesnot handle any bulkBefore*/
 	}
 	/***********************************************************************************
 *  @Description: This method is called prior to execution of an AFTER trigger. Use this to cache
@@ -333,7 +334,7 @@ public with sharing class AF_SubResultHandler implements ITrigger{
 				try{
 					update Subresultupdate;
 				}catch(exception e){
-					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinallyUpdateExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				}
 			}
 	}
@@ -381,7 +382,7 @@ public with sharing class AF_SubResultHandler implements ITrigger{
 				try{
 					upsert subresultinsert;
 				}catch(exception e){
-					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinally',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'andFinallyInsertExt',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 					apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Upsert)); 
 				}
 			}

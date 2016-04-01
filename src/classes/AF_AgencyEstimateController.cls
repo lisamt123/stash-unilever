@@ -820,7 +820,7 @@ public with sharing class AF_AgencyEstimateController
 		Schema.sObjectType sobject_type = AF_Entity_Exception__c.getSObjectType();
 		Schema.DescribeSObjectResult sobject_describe = sobject_type.getDescribe();
 		Map<String, Schema.SObjectField> field_map = sobject_describe.fields.getMap();
-		List<Schema.PicklistEntry> pick_list_values = field_map.get('AF_Country__c').getDescribe().getPickListValues();
+		List<Schema.PicklistEntry> pick_list_values = field_map.get(AF_Constants.COUNTRY).getDescribe().getPickListValues();
 		Countrynames = new List<SelectOption>();
 		Countrynames.add(new selectoption('',AF_Constants.AF_COUNTRY_DELIM));
 		for (Schema.PicklistEntry a : pick_list_values) {

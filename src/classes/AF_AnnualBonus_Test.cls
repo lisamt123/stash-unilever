@@ -15,8 +15,9 @@ public class AF_AnnualBonus_Test
     private static String bonusMeasure ='BM1';
     private static String Brandid = 'Brandid';
     private static String Agencyid = 'Agencyid';
-    private static String Year = 'Year';
+    private static String Year = AF_Constants.YEAR;
     private static String ANNUAL_BONUS='The AnnualBonus records are inserted';
+    private static String QUARTERLY_BONUS='The QuarterlyBonus records are inserted';
     /***********************************************************************************
 *  @Description: this method will the test data
 *  @name : AFannualBonus
@@ -255,7 +256,7 @@ public class AF_AnnualBonus_Test
             }
             insert QuarterlyBonuslist;
             List<AF_QuarterlyBonus__c> QuarterlyBonusQuery = [SELECT ID FROM AF_QuarterlyBonus__c WHERE ID IN : QuarterlyBonus LIMIT 1];
-            System.Assert(QuarterlyBonusQuery[0].Id != null, 'The QuarterlyBonus records are inserted');
+            System.Assert(QuarterlyBonusQuery[0].Id != null, QUARTERLY_BONUS);
             //Insert Currency
             List<AF_Currency__c> AFCurrency = AF_TestFactory_Helper.insertAFcurrencyList(1,true);
             List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c where Id IN:AFCurrency LIMIT 1];
@@ -420,7 +421,7 @@ public class AF_AnnualBonus_Test
             }
             insert QuarterlyBonuslist;
             List<AF_QuarterlyBonus__c> QuarterlyBonusQuery = [SELECT ID FROM AF_QuarterlyBonus__c WHERE ID IN : QuarterlyBonus LIMIT 1];
-            System.Assert(QuarterlyBonusQuery[0].Id != null, 'The QuarterlyBonus records are inserted');
+            System.Assert(QuarterlyBonusQuery[0].Id != null, QUARTERLY_BONUS);
             //Insert Currency
             List<AF_Currency__c> AFCurrency = AF_TestFactory_Helper.insertAFcurrencyList(1,true);
             List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c where Id IN:AFCurrency LIMIT 1];
@@ -598,7 +599,7 @@ public class AF_AnnualBonus_Test
             }
             insert QuarterlyBonuslist;
             List<AF_QuarterlyBonus__c> QuarterlyBonusQuery = [SELECT ID FROM AF_QuarterlyBonus__c WHERE ID IN : QuarterlyBonus LIMIT 1];
-            System.Assert(QuarterlyBonusQuery[0].Id != null, 'The QuarterlyBonus records are inserted');
+            System.Assert(QuarterlyBonusQuery[0].Id != null, QUARTERLY_BONUS);
             //Insert Currency
             List<AF_Currency__c> AFCurrency = AF_TestFactory_Helper.insertAFcurrencyList(1,true);
             List<AF_Currency__c> AFCurrencyQuery = [SELECT Id FROM AF_Currency__c where Id IN:AFCurrency LIMIT 1];

@@ -35,7 +35,7 @@ public with sharing class AF_BrandAgencyCombinationController
 		finalPanel=false;
 		getBrands();  
 		getAgencies();
-		financialYear=ApexPages.currentPage().getParameters().get('Year');
+		financialYear=ApexPages.currentPage().getParameters().get(AF_Constants.YEAR);
 	}
 	/***********************************************************************************
 *  @Description: this method is used to query and get the Brand picklist values

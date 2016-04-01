@@ -101,7 +101,7 @@ Global with sharing class AF_BonusRecordManager {
 			}
 			for(AF_Brand_Estimate__c brandEstimate : BrandEstimateCollection)
 			{
-				if(brandEstimate.AF_Basefee_Estimate_Initial_Quarter__c.contains('Q4') && !brandEstimate.AF_No_Bonus__c)
+				if(brandEstimate.AF_Basefee_Estimate_Initial_Quarter__c.contains(AF_Constants.QUARTER4) && !brandEstimate.AF_No_Bonus__c)
 				{
 					BonusMatrixCollection = BonusMultiObjectFactory(brandEstimate, AgencyEstimateCollection);
 				}               
@@ -184,8 +184,8 @@ Global with sharing class AF_BonusRecordManager {
 			{
 				for (AggregateResult ar : AgencyEstimateTotalCountByCountry)
 				{       
-					if(Double.valueof(ar.get('CountryTotal')) > 0)      
-					CountryNameAndTotalCollection.put(String.ValueOf(ar.get('CountryName')),Double.valueof(ar.get('CountryTotal')));                                
+					if(Double.valueof(ar.get(AF_Constants.COUNTRY_TOTAL)) > 0)      
+					CountryNameAndTotalCollection.put(String.ValueOf(ar.get(AF_Constants.COUNTRY_NAME)),Double.valueof(ar.get(AF_Constants.COUNTRY_TOTAL)));                                
 				}               
 			}
 			Boolean result = false;
@@ -362,7 +362,7 @@ Global with sharing class AF_BonusRecordManager {
 				obj.AF_Total_bonus_fees__c = 0.00;
 				obj.AF_Bonusable_Fees__c = 0.00;
 				obj.AF_Locked__c = false;
-				obj.AF_Status__c = 'None';
+				obj.AF_Status__c = AF_Constants.STATUS_NONE;
 				if(pRecordTypeId != null){obj.RecordTypeId = pRecordTypeId;}
 				insert obj;                 
 			}
@@ -544,7 +544,7 @@ Global with sharing class AF_BonusRecordManager {
 		set<string> CountryNames =  new set<string>(); 
 		set<string> BonusThresholdCountryNames = new set<string>(); 
 		if(!pBrandEstimate.AF_Pilot_Model__c && !pBrandEstimate.AF_No_Bonus__c){
-			if(pBrandEstimate.AF_Status_Base_Fees__c == 'With Category Finance' && pBrandEstimate.AF_Basefee_Estimate_Initial_Quarter__c.contains('Q4'))
+			if(pBrandEstimate.AF_Status_Base_Fees__c == AF_Constants.CATEGORY_FINANCE && pBrandEstimate.AF_Basefee_Estimate_Initial_Quarter__c.contains(AF_Constants.QUARTER4))
 			{
 				Map<String,Double> CountryNameAndTotalCollection = new Map<String,Double>();            
 				List<AggregateResult> AgencyEstimateTotalCountByCountry = [SELECT SUM(AF_Total__c) CountryTotal,AF_Unilever_Entity__r.AF_Country__c CountryName FROM AF_Agency_Estimate__c  where AF_Brand_Estimate__c=: pBrandEstimate.Id GROUP BY AF_Unilever_Entity__r.AF_Country__c];
@@ -553,8 +553,8 @@ Global with sharing class AF_BonusRecordManager {
 				{
 					for (AggregateResult ar : AgencyEstimateTotalCountByCountry)
 					{       
-						if(Double.valueof(ar.get('CountryTotal')) > 0)      
-						CountryNameAndTotalCollection.put(String.ValueOf(ar.get('CountryName')),Double.valueof(ar.get('CountryTotal')));                                
+						if(Double.valueof(ar.get(AF_Constants.COUNTRY_TOTAL)) > 0)      
+						CountryNameAndTotalCollection.put(String.ValueOf(ar.get(AF_Constants.COUNTRY_NAME)),Double.valueof(ar.get(AF_Constants.COUNTRY_TOTAL)));                                
 					}               
 				}
 				if(CountryNameAndTotalCollection.size() > 0)

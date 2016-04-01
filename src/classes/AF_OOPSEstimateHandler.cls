@@ -64,6 +64,7 @@ public with sharing class AF_OOPSEstimateHandler implements ITrigger {
 *************************************************************************************/
 	public void bulkAfter()
 	{
+		/*Method is Blank as this handler doesnot handle any bulkAfter*/
 	}
 	/*********************************************************************************************
 *  @Description: This method is called iteratively for each record to be inserted during a BEFORE
@@ -152,6 +153,7 @@ public with sharing class AF_OOPSEstimateHandler implements ITrigger {
 *************************************************************************************/
 	public void afterDelete(SObject so)
 	{
+		/*Method is Blank as this handler doesnot handle any afterDelete*/
 	}
 	/**************************************************************************************
 *  @Description: This method is called once all records have been processed by the trigger.

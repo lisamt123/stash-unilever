@@ -22,6 +22,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
 *************************************************************************************/
     public void bulkBefore()
     {
+    	/*Method is Blank as this handler doesnot handle any bulkBefore*/
     }
      /***********************************************************************************
 *  @Description: This method is called prior to execution of an AFTER trigger. 
@@ -97,7 +98,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
 *************************************************************************************/
     public void beforeDelete(SObject so)
     {
-        
+    	/*Method is Blank as this handler doesnot handle any beforeDelete*/
     }
    /********************************************************************************************
 *  @Description: This method is called iteratively for each record inserted during an AFTER
@@ -129,6 +130,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
 *************************************************************************************/
     public void afterUpdate(SObject oldSo, SObject so)
     {
+    	/*Method is Blank as this handler doesnot handle any afterDelete*/
     }
     /********************************************************************************************
 *  @Description: This method is derived as a part of trigger factory
@@ -139,7 +141,7 @@ public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
 *************************************************************************************/
     public void afterDelete(SObject so)
     {
-        //derived as a part of trigger factory
+       /*Method is Blank as this handler doesnot handle any afterDelete*/
     }
      /*************************************************************************************************
 *  @Description: This method is called once all records have been processed by the trigger. Use this 

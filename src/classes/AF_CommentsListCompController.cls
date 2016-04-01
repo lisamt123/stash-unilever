@@ -186,6 +186,7 @@ public with sharing class AF_CommentsListCompController{
 **********************************************************************/ 
 	private void UpdateIsCommentOnRecord(string pObjectType, Id pObjectId)
 	{   
+		STRING UpdateIsCommentOnRecord='UpdateIsCommentOnRecord';
 		if(pObjectType == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME){
 			try{
 				AF_Brand_Estimate__c objBE    = [select Id, AF_isComment__c from AF_Brand_Estimate__c where Id = : pObjectId];
@@ -194,7 +195,7 @@ public with sharing class AF_CommentsListCompController{
 					update objBE;
 				}
 			}catch(DMLException ex){
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,UpdateIsCommentOnRecord,ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 			}
 		}
@@ -206,7 +207,7 @@ public with sharing class AF_CommentsListCompController{
 					update objAE;
 				}
 			}catch(DMLException ex){
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,UpdateIsCommentOnRecord,ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 			}
 		}
@@ -217,7 +218,7 @@ public with sharing class AF_CommentsListCompController{
 					update objOE;
 				}
 			}catch(DMLException ex){
-				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdateIsCommentOnRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,UpdateIsCommentOnRecord,ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Update)); 
 			}
 		}        

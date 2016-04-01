@@ -31,6 +31,7 @@ public with sharing Class AF_UpdateAgencyEstimatesValues2
 	static Double EURValue=0.0;
 	static List<String> AgencyEntitycountry =new List<String>();
 	static List<String> unileverEntitycountry =new List<String>();
+	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/***********************************************************************************
 *  @Description: this method is used to calculate the local currency for the entity
 *  @             based on the currency current fiscal year and average exchange rate in
@@ -172,7 +173,7 @@ public with sharing Class AF_UpdateAgencyEstimatesValues2
 			USDCurrencyTable=[select id,Country_Currency__c,AF_Currency_Code__c ,AF_Average_Exchange_Rate_To_EUR__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,Ready_For_PO_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and AF_Currency_Code__c=:AF_Constants.AF_CURRENCY_USD  and AF_Fiscal_Year_new__c IN :fYear  Order by Createddate limit 1];
 		}
 		catch(Exception ex){
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_UpdateAgencyEstimatesValues2','UpdateExchageRates',
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdateExchageRates',
 			ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 		}
 		if(USDCurrencyTable!=null)
@@ -186,7 +187,7 @@ public with sharing Class AF_UpdateAgencyEstimatesValues2
 			currencyrecords =[select id,Country_Currency__c,AF_Currency_Code__c ,AF_Average_Exchange_Rate_To_EUR__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,Ready_For_PO_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and Country_Currency__c IN:currncycodes  and AF_Fiscal_Year_new__c IN :fYear limit 50000];
 		}
 		catch(Exception ex){
-			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_UpdateAgencyEstimatesValues2','UpdateExchageRates',
+			AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'UpdateExchageRates',
 			ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 		}
 		if(currencyrecords.size()>0)

@@ -45,8 +45,8 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
         sortDir =null;
         displaypopquarter=false;
         /** Get Category and FYear from Homepage **/           
-        Category=ApexPages.currentPage().getParameters().get('category');
-        Year=ApexPages.currentPage().getParameters().get('Year');     
+        Category=ApexPages.currentPage().getParameters().get(AF_Constants.CATEGORY);
+        Year=ApexPages.currentPage().getParameters().get(AF_Constants.YEAR);     
         /** Call QueryBrandEstimate Method **/
         queryBrandEstimate();
     }
