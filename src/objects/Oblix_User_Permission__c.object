@@ -60,7 +60,7 @@
     <fields>
         <fullName>Agency_ID__c</fullName>
         <externalId>false</externalId>
-        <formula>User_id__r.Contact.AccountId</formula>
+        <formula>CASESAFEID( User_id__r.Contact.AccountId )</formula>
         <label>Agency ID</label>
         <required>false</required>
         <trackTrending>false</trackTrending>

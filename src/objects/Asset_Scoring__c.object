@@ -277,6 +277,8 @@
         <columns>mdm_id__c</columns>
         <columns>RECORDTYPE</columns>
         <columns>Layout_Order__c</columns>
+        <columns>Asset_Option_Description__c</columns>
+        <columns>Sub_Category_Description__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
