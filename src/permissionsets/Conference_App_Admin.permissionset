@@ -98,5 +98,4 @@
         <recordType>CFC_Events__c.CFC_Edit_Other</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
-	<userLicense></userLicense>
 </PermissionSet>
