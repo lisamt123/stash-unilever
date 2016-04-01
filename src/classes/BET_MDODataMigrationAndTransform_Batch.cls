@@ -47,7 +47,7 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
         return Database.getQueryLocator(query);
     }
 
-    global void execute(Database.BatchableContext BC, List<sObject> scope) {
+	global void execute(Database.BatchableContext BC, List<sObject> scope) {
         try{
             update proceedWithDataTransormation((List<uw_Bet__c>)scope);
         } catch (DmlException e){
@@ -65,7 +65,7 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
         List<uw_Bet__c> betsForUpdate = new List<uw_Bet__c>();
         List<uw_Bet__c> betsForErrors = new List<uw_Bet__c>();
         for(uw_Bet__c bet : scope) {
-            
+           
                 System.debug('Step 1 : Retriving category group by name : ' +  bet.Category__r.name.toUpperCase('en'));
                 MDO_Category__c categoryGroup = categoryGroups.get(bet.Category__r.name.toUpperCase('en'));
                 System.debug('Step 2 : Retrieved category group : ' + categoryGroup);
