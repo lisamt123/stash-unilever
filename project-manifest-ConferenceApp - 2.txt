@@ -1,0 +1,5 @@
+src/objects
+src/objects/CFC_Attendee__c.object
+src/objects/CFC_Events__c.object
+src/permissionsets
+src/permissionsets/Conference_App_Admin.permissionset
