@@ -67,6 +67,10 @@
         <name>CEC_User_Reference__c</name>
     </fields>
     <fields>
+        <label><!-- Debit Card Refund Limit --></label>
+        <name>Debit_Card_Refund_Limit__c</name>
+    </fields>
+    <fields>
         <help><!-- Ability to change the article content in the front end (the button Edit will be visible) --></help>
         <label><!-- Edit Article Template Front End --></label>
         <name>Edit_Article_Template_Front_End__c</name>
@@ -591,6 +595,10 @@
             <translation><!-- Benelux --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Czech Republic</masterLabel>
             <translation><!-- Czech Republic --></translation>
         </picklistValues>
@@ -619,6 +627,10 @@
             <translation><!-- Italy --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Middle Americas</masterLabel>
+            <translation><!-- Middle Americas --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Nordic</masterLabel>
             <translation><!-- Nordic --></translation>
         </picklistValues>
@@ -633,6 +645,10 @@
         <picklistValues>
             <masterLabel>Portugal</masterLabel>
             <translation><!-- Portugal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Southern Cone</masterLabel>
+            <translation><!-- Southern Cone --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Spain</masterLabel>

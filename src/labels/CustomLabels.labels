@@ -2100,6 +2100,38 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Create</value>
     </labels>
     <labels>
+        <fullName>CEC_DebitCardDetails_Already_Added</fullName>
+        <categories>CEC:DebitCard_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_DebitCardDetails_Already_Added</shortDescription>
+        <value>Debit Card details are already been added</value>
+    </labels>
+    <labels>
+        <fullName>CEC_DebitCardDetails_Input_Fields_Missing</fullName>
+        <categories>CEC:DebitCard_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_DebitCardDetails_Input_Fields_Missing</shortDescription>
+        <value>Mandatory information is not present (Date of Birth, Account, Country, Mailing Address, Local Identifier)</value>
+    </labels>
+    <labels>
+        <fullName>CEC_DebitCardDetails_InsufficientPrivileges</fullName>
+        <categories>CEC:DebitCard_Details_Error</categories>
+        <language>en_GB</language>
+        <protected>false</protected>
+        <shortDescription>CEC_DebitCardDetails_InsufficientPrivileges</shortDescription>
+        <value>Insufficient Privileges to add/update Debit Card details to Fulfilment</value>
+    </labels>
+    <labels>
+        <fullName>CEC_DebitCardDetails_No_Active_DebitCard_For_Country</fullName>
+        <categories>CEC:DebitCard_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_DebitCardDetails_No_Active_DebitCard_For_Country</shortDescription>
+        <value>There is no Active debit card present for this country</value>
+    </labels>
+    <labels>
         <fullName>CEC_Detail_Request_Info</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>

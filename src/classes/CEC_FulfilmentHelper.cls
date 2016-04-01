@@ -206,6 +206,8 @@ This method is being called from CEC_ChequeProcess class which is called from "A
         return result;  
     }
     
+    
+    
     /**
 This method is used to insert records in FulfilmentEnclosure object based on Enclosure details selected on Fulfillment Object.
 */
@@ -420,13 +422,13 @@ This method is used to delete records in FulfillmentEnclosure object based on En
         }  
         
     }                    
-
+    
     /**
 This method is used to convert Refund Value on Fulfilment Object  in words.
 */
     public void convertRefundValueToWords(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap){
         system.debug(' In convertRefundValueToWords Method');
-
+        
         if (!fulfilmentList.isEmpty()){
             try{
                 for (cec_Fulfilment__c fulfilmentObj : fulfilmentList){
@@ -440,15 +442,197 @@ This method is used to convert Refund Value on Fulfilment Object  in words.
                                 System.debug('Final result is  ' + result );
                                 fulfilmentObj.Refund_Value_in_Words__c = result;                        
                             }
-                    }
+                        }
                 }
             } catch(Exception e) {
                 System.debug(e.getMessage()); 
                 throw e;
             }           
         }
-            
-
+        
+        
     } 
+    
+    
+    /**
+This method is used to get the latest cheque number based on Brand , Country & Product Category from ChequeBook_Detail__c. 
+This method is being called from CEC_ChequeProcess class which is called from "Add Cheque Details" button on Fulfillment object.
+@param : fulfilmentId - 
+@return : Wrapper  class which will have status and message as o/p.
+*/  
+    
+    public CEC_DebitCardProcess.debitProcessWrapperResponse updateDebitCardDetails(string fulfilmentId){
+        CEC_DebitCardProcess.debitProcessWrapperResponse  result =  new CEC_DebitCardProcess.debitProcessWrapperResponse();
+        try{
+            cec_Fulfilment__c    fulfilment      = [Select Id,Debit_Card_Number__c,Date_of_Birth__c,case__r.Accountid,Country__c,case__r.Country__r.name, Local_Identifier__c,Mailing_Address__c,Account_Card_Number__c, Issue_Card__c
+                                                    From cec_Fulfilment__c 
+                                                    Where id = :fulfilmentId limit 1 ];
+            
+            
+            system.debug('fulfilment @@@+ ' + fulfilment);
+            system.debug('case__r.Accountid @@@+ ' + fulfilment.case__r.Accountid);
+            
+            if (fulfilment.Account_Card_Number__c != null && fulfilment.Issue_Card__c == true){
+                List<CEC_Debit_Card_Detail__c> debitCardQuery = [Select Id,Status__c,Cancelled_Date__c
+                                                                 From CEC_Debit_Card_Detail__c 
+                                                                 Where Name   =:fulfilment.Account_Card_Number__c  and
+                                                                 Account_Id__c          =:fulfilment.case__r.Accountid       and
+                                                                 Active__c              = true limit 1 ];
+                
+                
+                
+                if (debitCardQuery.size() > 0 ){
+                    debitCardQuery[0].Status__c = CEC_Constants.CANCELLED;
+                    debitCardQuery[0].Active__c = false;
+                    debitCardQuery[0].Cancelled_Date__c = System.now();
+                    update debitCardQuery;                
+                    
+                }
+            }   
+            
+            List<CEC_Debit_Card_Detail__c> debitCardQuery1 = [Select Id,Name,Status__c,Expiry_Date__c
+                                                              From CEC_Debit_Card_Detail__c 
+                                                              Where Status__c       in (:CEC_Constants.ISSUED , :CEC_Constants.REACTIVATED) and
+                                                              Account_Id__c   = :fulfilment.case__r.Accountid and 
+                                                              Country_Name__c = :fulfilment.Country__c    and 
+                                                              Active__c       = true
+                                                              limit 1 ];
+            
+            system.debug('debitCardQuery1 @@@ ' + debitCardQuery1);
+            system.debug('fulfilment.case__r.Country__c @@@ ' + fulfilment.Country__c);
+            system.debug('fulfilment.Country__c @@@ ' + fulfilment.Country__c);
+            system.debug('fulfilment.Country__c  @@@ ' + fulfilment.Country__c );
+            system.debug('fulfilment.Account_Id__c @@@ ' + fulfilment.case__r.Accountid);
+            
+            
+            if (debitCardQuery1.size() > 0){
+                cec_Org_Settings__c OrgSetting    = cec_Org_Settings__c.getOrgDefaults();
+                debitCardQuery1[0].Expiry_Date__c = DateTime.Now().addDays(integer.valueof(OrgSetting.Debit_Card_Expiry_Days__c));
+                debitCardQuery1[0].Status__c      = CEC_Constants.REACTIVATED;
+                update debitCardQuery1;  
+                
+                fulfilment.Debit_Card_Number__c =   debitCardQuery1[0].id;
+                update fulfilment; 
+                
+                result.status = 'S';
+                result.message = 'Success';             
+                
+            } 
+            else {
+                
+                List<CEC_Debit_Card_Detail__c> debitCardQuery2 = [Select Id,Name,Status__c,Expiry_Date__c,Issued_Date__c,Account_Id__c
+                                                                  From CEC_Debit_Card_Detail__c 
+                                                                  Where Status__c        = :CEC_Constants.STATUS_NEW  and
+                                                                  Country_Name__c = :fulfilment.Country__c    and 
+                                                                  Active__c       = true
+                                                                  order by Issued_Date__c desc
+                                                                  limit 1 ];
+                
+                system.debug('debitCardQuery2 @@@ ' + debitCardQuery2);
+                
+                if (debitCardQuery2.size() > 0){
+                    cec_Org_Settings__c OrgSetting = cec_Org_Settings__c.getOrgDefaults();
+                    debitCardQuery2[0].Expiry_Date__c = DateTime.Now().addDays(integer.valueof(OrgSetting.Debit_Card_Expiry_Days__c));
+                    debitCardQuery2[0].Issued_Date__c = DateTime.Now();
+                    debitCardQuery2[0].Status__c      = CEC_Constants.Issued;
+                    debitCardQuery2[0].Account_Id__c  = fulfilment.case__r.Accountid;
+                    update debitCardQuery2;      
+                    system.debug('debitCardQuery2 @#@# '+ debitCardQuery2);
+                    
+                    //fulfilment.Debit_Card_Id__c     =   debitCardQuery2[0].id;
+                    fulfilment.Debit_Card_Number__c =   debitCardQuery2[0].id;
+                    update fulfilment;           
+                    system.debug('fulfilment @#@# '+ fulfilment);
+                    system.debug('fulfilment.Debit_Card_Number__c @#@# '+ fulfilment.Debit_Card_Number__c);
+                    
+                    Account acctQuery = [select Id,     Debit_Card_Number__c  from account where id = :fulfilment.case__r.Accountid LIMIT 1];
+                    acctQuery.Debit_Card_Number__c = fulfilment.Debit_Card_Number__C ;   
+                    update AcctQuery;
+                    system.debug('AcctQuery @#@# '+ AcctQuery);
+                    
+                    result.status = 'S';
+                    result.message = 'Success';             
+                    
+                } 
+                else {
+                    result.status = 'E';
+                    result.message = Label.CEC_DebitCardDetails_No_Active_DebitCard_For_Country;// there is no Active debit card present for this country
+                    
+                }           
+            }
+            system.debug('  my result' + result);
+        }catch(Exception e){               
+            System.debug('Exception in CEC_FulfilmentHelper.updateDebitCardDetails method ' + e.getMessage());
+            result.status = 'E';
+            result.message = e.getMessage();  
+        }
+        System.debug('@@@@ result@@@@' + result);
+        return result;  
+    }
+    
+    /**
+This method is used to update debit card value after fulfillment approval. 
+@param : fulfilment List- List of new values from trigger context variable
+oldFulfilmentMap - Trigger context variable for old details
+*/ 
+    public void updateDebitCardValue(List<cec_Fulfilment__c> fulfilmentList,Map<Id,cec_Fulfilment__c> oldFulfilmentMap){
+        system.debug(' In updateDebitCardValue Method : fulfilmentList = ' + fulfilmentList);
+        system.debug(' In updateDebitCardValue Method : oldFulfilmentMap = ' + oldFulfilmentMap);
+        
+        List<CEC_Debit_Card_Detail__c> debitCardListToUpdate = new List<CEC_Debit_Card_Detail__c>();
+        CEC_Debit_Card_Detail__c debitCardDetailObj = new CEC_Debit_Card_Detail__c();
+        for(cec_Fulfilment__c fulfilment : fulfilmentList){
+            if(fulfilment.isApproved__c && 
+               oldFulfilmentMap.get(fulfilment.Id).isApproved__c != fulfilment.isApproved__c &&
+               fulfilment.Debit_Card_Number__c != null && 
+               fulfilment.Debit_Card_Value__c != null) {
+                   debitCardDetailObj = new CEC_Debit_Card_Detail__c(  Id = fulfilment.Debit_Card_Number__c ,
+                                                                     Card_Value__c = fulfilment.Debit_Card_Detail_Card_Value__c +
+                                                                     fulfilment.Debit_Card_Value__c);
+                   System.debug('@@@debitCardDetailObj '+ debitCardDetailObj);
+                   debitCardListToUpdate.add(debitCardDetailObj);
+               }
+        }
+        System.debug('@@debitCardListToUpdate size' +debitCardListToUpdate.size());
+        if(!debitCardListToUpdate.isEmpty()){
+            update debitCardListToUpdate;
+        }
+    }
+    
+    /**
+This method is used to update Account details for DOB and Local Identifier
+@param :fulfilment List- List of new values from trigger context variable
+oldFulfilmentMap - Trigger context variable for old details
+*/
+    public void updateAccountDetails(List<cec_Fulfilment__c> fulfilmentList,Map<Id,cec_Fulfilment__c> oldFulfilmentMap){
+        system.debug(' In updateDebitCardValue Method : fulfilmentList = ' + fulfilmentList);
+        system.debug(' In updateDebitCardValue Method : oldFulfilmentMap = ' + oldFulfilmentMap);
+        try {
+            List<Account> accountList = new List<Account>();
+            for(cec_Fulfilment__c fulfilment : fulfilmentList) {
+                if ((fulfilment.Date_of_Birth__c != null && 
+                     oldFulfilmentMap.get(fulfilment.Id).Date_of_Birth__c != fulfilment.Date_of_Birth__c) ||
+                    (String.isNotBlank(fulfilment.Local_Identifier__c) && 
+                     oldFulfilmentMap.get(fulfilment.Id).Local_Identifier__c != fulfilment.Local_Identifier__c)) {
+                         Account accountObj = new Account(   Id = fulfilment.Account_Id__c,
+                                                          PersonBirthdate = fulfilment.Date_of_Birth__c,
+                                                          Local_Identifier__c = fulfilment.Local_Identifier__c);
+                         accountList.add(accountObj); 
+                     }            
+            }
+            if(!accountList.isEmpty())
+                update accountList;
+        } catch (DmlException e) {
+            for(cec_Fulfilment__c fulfilment : fulfilmentList) { 
+                if(e.getMessage().contains(CEC_Constants.LOCALIDENTIFIER_CPF)) {
+                    fulfilment.addError(e.getDMLMessage(0)); 
+                } else {
+                    fulfilment.addError(e.getMessage());
+                }
+            }
+        } catch (Exception e) {
+            throw e;            
+        }        
+    }
     
 }

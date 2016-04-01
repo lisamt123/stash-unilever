@@ -100,6 +100,10 @@
         <label><!-- Country Name --></label>
         <name>Country_Name__c</name>
         <picklistValues>
+            <masterLabel>Argentina</masterLabel>
+            <translation><!-- Argentina --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Austria</masterLabel>
             <translation><!-- Austria --></translation>
         </picklistValues>
@@ -108,8 +112,16 @@
             <translation><!-- Belgium --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Bolivia</masterLabel>
+            <translation><!-- Bolivia --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Bosnia and Herzegovina</masterLabel>
             <translation><!-- Bosnia and Herzegovina --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brazil</masterLabel>
+            <translation><!-- Brazil --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Bulgaria</masterLabel>
@@ -118,6 +130,18 @@
         <picklistValues>
             <masterLabel>Canada</masterLabel>
             <translation><!-- Canada --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chile</masterLabel>
+            <translation><!-- Chile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colombia</masterLabel>
+            <translation><!-- Colombia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Costa Rica</masterLabel>
+            <translation><!-- Costa Rica --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Croatia</masterLabel>
@@ -130,6 +154,14 @@
         <picklistValues>
             <masterLabel>Denmark</masterLabel>
             <translation><!-- Denmark --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ecuador</masterLabel>
+            <translation><!-- Ecuador --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>El Salvador</masterLabel>
+            <translation><!-- El Salvador --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Estonia</masterLabel>
@@ -150,6 +182,14 @@
         <picklistValues>
             <masterLabel>Greece</masterLabel>
             <translation><!-- Greece --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guatemala</masterLabel>
+            <translation><!-- Guatemala --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Honduras</masterLabel>
+            <translation><!-- Honduras --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Hungary</masterLabel>
@@ -204,8 +244,24 @@
             <translation><!-- Netherlands --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Nicaragua</masterLabel>
+            <translation><!-- Nicaragua --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Norway</masterLabel>
             <translation><!-- Norway --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Panama</masterLabel>
+            <translation><!-- Panama --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paraguay</masterLabel>
+            <translation><!-- Paraguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Peru</masterLabel>
+            <translation><!-- Peru --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Poland</masterLabel>
@@ -250,6 +306,14 @@
         <picklistValues>
             <masterLabel>United States</masterLabel>
             <translation><!-- United States --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uruguay</masterLabel>
+            <translation><!-- Uruguay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Venezuela</masterLabel>
+            <translation><!-- Venezuela --></translation>
         </picklistValues>
     </fields>
     <fields>

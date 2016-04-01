@@ -390,6 +390,57 @@ public with sharing class CEC_CaseTriggerHelperTest {
             Test.stopTest();
             
         }
-    } 
+    }
+    
+    static testMethod void testCaseDescriptionParsing(){
+        list<Case> testCaseList = new list<Case>();
+        mdm_Case_Product__c caseProduct = new mdm_Case_Product__c();
+        caseProduct.Name = 'Apex Unit Test';
+        caseProduct.Brand__c ='TESTBRAND';
+        caseProduct.Active_for_CEC__c = true;
+        caseProduct.ISO_Country_Code__c = 'US';
+        caseProduct.Consumer_Product_Descriptor_Local_Lang__c = 'Knorr Chicken Soup Local';
+        caseProduct.Consumer_Product_Descriptor_no_size__c = 'Knorr Chicken Soup';
+        caseProduct.GTIN_EAN_UPC_Code__c = 'TestUPC';       
+        insert caseProduct;
+        
+        mdm_Geography__c  geographyUS = new mdm_Geography__c(Name='US');
+        insert geographyUS;
+        
+        cec_store__c aStore = new cec_store__c();
+        aStore.Name = 'WindowMart';
+        insert aStore;      
+        
+        testCaseList = CEC_TestDataFactory.createBlankTestCases(4, 'Web North America');
+        testCaseList[0].Description = 'FIRSTNAME : NNNNN \n LASTNAME : LLLLL \n EMAIL: NABCDEFGLLLLL@caseparsing.com \n BRAND :NAGESH \n ADDRESS1:121 ABCD Street \n CITY: London] \n [STATE: VA] \n ZIP: 572014 \n COUNTRY: USA \n STORE NAME: Sams club \n';
+        testCaseList[1].Description = 'FIRSTNAME : Naga \n LASTNAME : Raju \n EMAIL: nagaRaju@caseparsing.com <mailto: nagaRaju@caseparsing.com> \n BRAND :TESTBRANDS \n ADDRESS1:121 ABCD Street \n CITY: London] \n [STATE: VA] \n ZIP: 572014 \n COUNTRY: USA \n STORE NAME: TestMart \n UPC: TestUPC \n';
+        testCaseList[2].Description = 'FIRSTNAME : Naga \n LASTNAME : Raju \n EMAIL: nagaRaju@caseparsing.com \n BRAND :TESTBRAND \n ADDRESS1:121 ABCD Street \n CITY: London] \n [STATE: VA] \n ZIP: 572014 \n COUNTRY: USA \n STORE NAME: WindowMart \n UPC: TtUPC \n';
+        testCaseList[3].Description = 'FIRSTNAME : Naga \n LASTNAME : Raaju \n EMAIL: nagaRaaju@caseparsing.com \n BRAND :TESTBRAND \n ADDRESS1:121 ABCD Street \n CITY: London] \n [STATE: VA] \n ZIP: 572014 \n COUNTRY: US \n STORE NAME: WindowMart \n UPC: TestUPC \n';
+        
+        Test.StartTest();
+            insert testCaseList;
+        Test.StopTest();
+        
+        list<Account> assertAccount = [SELECT id, PersonEmail, LastName, FirstName, PersonMailingPostalCode, PersonMailingCountry, PersonMailingState,
+                    (SELECT id, Brand__c, CEC_Product__c, Store__c, Origin FROM Cases) FROM Account WHERE PersonEmail LIKE '%caseparsing%' LIMIT 5000];
+        list<Case> assertCase = [Select Id, Origin, caseNumber FROM Case WHERE SuppliedEmail LIKE '%caseparsing%' LIMIT 5000];
+        
+        //System.assertEquals('Web', assertCase[0].Origin);
+        System.assertEquals(4, assertAccount.size());
+        System.assertEquals(4, assertCase.size());
+system.debug('assertAccount :'+assertAccount);
+        for(Account acc :assertAccount){
+            if(acc.PersonEmail == 'nagaRaju@caseparsing.com'){
+                System.assertEquals('Raju',acc.LastName);
+                System.assertEquals('572014',acc.PersonMailingPostalCode);
+                
+            }else if(acc.PersonEmail == 'nagaRaaju@caseparsing.com'){
+                System.assertEquals('Naga',acc.FirstName);
+                System.assertEquals('Raaju',acc.LastName);
+                System.assertEquals('VA',acc.PersonMailingState);
+            }
+        }
+         
+    }
     
 }

@@ -21,7 +21,7 @@ public class CEC_UserDefaultSettingTriggerHelperTest {
                                                     'CEC_Business_Admin','CEC_Knowledge_Manager','CEC_Automated_User'};
         List<String> groupList = new List<String>{'CEC - Knowledge Manager'};
 
-        User cecTestUser = CEC_TestDataFactory.createUser('System Administrator','CEC Global Head');
+        User cecTestUser = CEC_TestDataFactory.createUser('System Administrator','CEC Global Head','cectestuser@test00DE0000000bbLj.org');
         CEC_TestDataFactory.assignPermissionSet(cecTestUser.Id, permissionSetsToBeAssigned);
         CEC_TestDataFactory.addToGroup(cecTestUser.Id, groupList);
         

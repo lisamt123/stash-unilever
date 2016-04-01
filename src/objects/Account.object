@@ -966,6 +966,37 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <type>DateTime</type>
     </fields>
     <fields>
+        <fullName>Debit_Card_Expiry_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Debit_Card_Number__r.Expiry_Date__c</formula>
+        <label>Debit Card Expiry Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Debit_Card_Number__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>CEC This will hold debit card number</description>
+        <externalId>false</externalId>
+        <label>Debit Card Number</label>
+        <referenceTo>CEC_Debit_Card_Detail__c</referenceTo>
+        <relationshipLabel>Accounts</relationshipLabel>
+        <relationshipName>Accounts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Debit_Card_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>Debit_Card_Number__r.Active__c</formula>
+        <label>Debit Card Status</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Demandware_ID__c</fullName>
         <description>TO: Unique identifier of Demandware Customer Id</description>
         <externalId>true</externalId>
