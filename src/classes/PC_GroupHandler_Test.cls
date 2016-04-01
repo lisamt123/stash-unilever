@@ -3,7 +3,6 @@
  *
  * @author Krzysztof Wasniowski <k.wasniowski@polsource.com>
  */
- 
 @isTest
 private class PC_GroupHandler_Test
 {

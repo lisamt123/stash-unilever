@@ -171,11 +171,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>PBS_Profile__c.user_role__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>PBS_Wiki__kav.Group_Name__c</field>
         <readable>true</readable>
