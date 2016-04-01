@@ -250,6 +250,9 @@ public with sharing class Oblix_CampaignStageLogic{
             }      
         }
 
+        system.debug('### after - initStages - projected : '+projected_stages);
+        system.debug('### after - initStages - completed : '+completed_stages);
+
         s_selected_projected_stage = currentProjectedValue;
         s_selected_completed_stage = currentCompletedValue;
     }
@@ -335,24 +338,26 @@ public with sharing class Oblix_CampaignStageLogic{
         Stage completed_stage_wrapper = completed_stages.get(stage_number);
 
         if (currentValueSet.contains(val)) {
+            //Unticked
             i_percentage_of_fee_this_year -= projected_stage_wrapper.i_stage_percentage;
-            currentValueSet.remove(val);
-            currentCompletedValueSet.remove(val);
             projected_stage_wrapper.b_is_stage_selected = false;
-
+            currentValueSet.remove(val);
             
             if (completed_stage_wrapper.b_is_stage_selected) {
                 i_agency_Percentage_of_fees_this_year -= completed_stage_wrapper.i_stage_percentage;
             }
             completed_stage_wrapper.b_is_stage_selectable = false;
             completed_stage_wrapper.b_is_stage_selected = false;
+            currentCompletedValueSet.remove(val);
         } else {
+            //Ticked
             i_percentage_of_fee_this_year += projected_stage_wrapper.i_stage_percentage;
-            currentValueSet.add(val);
             projected_stage_wrapper.b_is_stage_selected = true;
+            currentValueSet.add(val);
 
             completed_stage_wrapper.b_is_stage_selectable = true;
             completed_stage_wrapper.b_is_stage_selected = false;
+            currentCompletedValueSet.remove(val);
         }
 
         calculateFeesForThisYear();
@@ -363,14 +368,14 @@ public with sharing class Oblix_CampaignStageLogic{
 
         //setStageAttributes(false,true);
 
-        String newValue = String.join(new List<String>(currentValueSet), ';');
+        String newValue          = String.join(new List<String>(currentValueSet), ';');
         sow_project_in_scope.put(CAMPIGN_PROJECTED_STAGE_CFY_FIELD_NAME, newValue);
 
         String newCompletedValue = String.join(new List<String>(currentCompletedValueSet), ';');
         sow_project_in_scope.put(CAMPIGN_COMPLETED_STAGE_CFY_FIELD_NAME, newCompletedValue);
 
         s_selected_projected_stage = newValue;
-        s_selected_completed_stage = currentCompletedValue;
+        s_selected_completed_stage = newCompletedValue;
     }
 
 

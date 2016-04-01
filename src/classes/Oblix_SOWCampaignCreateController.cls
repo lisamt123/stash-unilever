@@ -340,7 +340,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
 
     private List<Oblix_Project_Assets__c> cloneCampaignAssets(Id projectCloneId){
         List<Oblix_Project_Assets__c> assets = [SELECT Actual_Delivery_Date__c,Additional_Description__c,Agency_Projects__c,Asset_Description__c,Asset_name__c,Asset_Picklist__c,Asset_Scoring_Number__c
-                            ,Asset_Title__c,Asset_Total_Score__c,Asset_Type__c,Calculator_Question__c,Category__c,Channels__c,FULL_Description__c,Location__c,Name
+                            ,Asset_Title__c,Asset_Total_Score__c,Asset_Type__c,Calculator_Question__c,Category__c,Channels__c,FULL_Description__c,Location__c,Name, Description__c
                             ,OblixClonedFromParentAsset__c,Option_Name__c,Quantity__c,RecordTypeId,Sub_Category__c,SystemModstamp,Target_Delivery_Date__c,MDM_id__c,Asset_Score__c
                         FROM Oblix_Project_Assets__c WHERE Agency_Projects__c =: campaignHelper.selectedProject.Id];
         List<Oblix_Project_Assets__c> assetClones = new List<Oblix_Project_Assets__c>();

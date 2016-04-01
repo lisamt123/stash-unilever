@@ -30,6 +30,7 @@ public with sharing class Oblix_Utils {
 
     public static Map<String, Oblix_AssetOfferingWrapper.AssetWrapper> map_of_mdm_id_to_asset;
     public static Oblix_AssetOfferingWrapper asset_offering;
+    public static Id wrapper_campaign_id;
 
     //Used to Wrap RecordType By Object
     public static Map<string, ID> MapRecordType(String ObjectName) {

@@ -60,7 +60,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
 	
     // top level wrapper which will contain Type/Subgroup/option/asset structure
     public Map<String, AssetTypeWrapper> map_asset_type_wrapper {get;set;}
-    private static Id wrapper_campaign_id;
+    //private static Id wrapper_campaign_id;
 
     //public static Map<String, AssetWrapper> map_of_mdm_id_to_asset;// = new Map<String, AssetWrapper>();
     ////public Map<String, AssetWrapper> map_mdm_id_to_asset;
@@ -160,7 +160,7 @@ public with sharing class Oblix_AssetOfferingWrapper {
     ********************************************************************************/
     public Oblix_AssetOfferingWrapper(List<Asset_Scoring__c>  asset_scorings, Id campaign_id){
         this(asset_scorings);
-        wrapper_campaign_id = campaign_id;
+        Oblix_Utils.wrapper_campaign_id = campaign_id;
 
     }
     /*******************************************************************************
@@ -623,8 +623,8 @@ public with sharing class Oblix_AssetOfferingWrapper {
             this(asset_score, type_index, sub_category_index, option_index, index);
             
             // if campaign_id is set at the parent class then set it here
-            if (NULL != Oblix_AssetOfferingWrapper.wrapper_campaign_id){
-                this.campaign_id = Oblix_AssetOfferingWrapper.wrapper_campaign_id;
+            if (NULL != Oblix_Utils.wrapper_campaign_id){
+                this.campaign_id = Oblix_Utils.wrapper_campaign_id;
             }
         }
 
@@ -651,8 +651,8 @@ public with sharing class Oblix_AssetOfferingWrapper {
             
 
             // if campaign_id is set at the parent class then set it here
-            if (NULL != Oblix_AssetOfferingWrapper.wrapper_campaign_id){
-                this.campaign_id = Oblix_AssetOfferingWrapper.wrapper_campaign_id;
+            if (NULL != Oblix_Utils.wrapper_campaign_id){
+                this.campaign_id = Oblix_Utils.wrapper_campaign_id;
             }
             
 
