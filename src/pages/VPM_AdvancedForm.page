@@ -14,6 +14,12 @@
     <flow:interview name="VPM_PurchasingRequestAdvancedForm" finishLocation="/{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}" >    
         <apex:param name="VPM_PurchasingRequestID" value="{!VPM_PurchasingRequests__c.Id}"/>    
     </flow:interview>
+
+    <apex:relatedList subject="{!VPM_PurchasingRequests__c}" list="CombinedAttachments" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}">
+    <apex:facet name="footer">
+        <apex:outputLink value="Guidance for uploading documents" onclick="alert('Hello World');return false;">Guidance for uploading documents</apex:outputLink>
+    </apex:facet>
+    </apex:relatedList>
     
     <apex:detail subject="{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c == 'FLS Review'}" showChatter="true"/>
 </apex:page>
