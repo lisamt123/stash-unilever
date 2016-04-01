@@ -160,8 +160,11 @@ public with sharing class Oblix_AssetOfferingWrapper {
     ********************************************************************************/
     public Oblix_AssetOfferingWrapper(List<Asset_Scoring__c>  asset_scorings, Id campaign_id){
         this(asset_scorings);
-        Oblix_Utils.wrapper_campaign_id = campaign_id;
+        setCampaignId(campaign_id);
+    }
 
+    private void setCampaignId(Id campaign_id){
+        Oblix_Utils.wrapper_campaign_id = campaign_id;
     }
     /*******************************************************************************
     * @author       Execloud ©
@@ -621,13 +624,16 @@ public with sharing class Oblix_AssetOfferingWrapper {
         public AssetWrapper( Asset_Scoring__c asset_score, Integer type_index, Integer sub_category_index, Integer option_index, Integer index, Id asset_id){
             
             this(asset_score, type_index, sub_category_index, option_index, index);
-            
+            setCampaignId(campaign_id);            
+
+        }
+
+        private void setCampaignId(Id campaign_id){
             // if campaign_id is set at the parent class then set it here
             if (NULL != Oblix_Utils.wrapper_campaign_id){
                 this.campaign_id = Oblix_Utils.wrapper_campaign_id;
             }
         }
-
         /*******************************************************************************
         * @author       Execloud ©
         * @date         2016-02-17
@@ -650,16 +656,13 @@ public with sharing class Oblix_AssetOfferingWrapper {
             this.is_active = asset_score.Is_Active__c;
             
 
-            // if campaign_id is set at the parent class then set it here
-            if (NULL != Oblix_Utils.wrapper_campaign_id){
-                this.campaign_id = Oblix_Utils.wrapper_campaign_id;
-            }
+            setCampaignId(campaign_id);
             
 
             buildTheMapOfMDMDandAssets();
             
         }
-
+        
         public Decimal getPointScoreForQuantity(){
             return point_Score * quantity_in_basket;
         }
