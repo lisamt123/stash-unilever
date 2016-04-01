@@ -36806,10 +36806,6 @@ Create Libaries and Content</description>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-        <tab>News_Centre</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>OV_Brand__c</tab>
         <visibility>None</visibility>
     </tabSettings>

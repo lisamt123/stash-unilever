@@ -5711,33 +5711,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>Dot_com</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <filters>
-            <field>CONTACT.FIRST_NAME</field>
-            <operation>contains</operation>
-            <value>Unilever Consumerlink</value>
-        </filters>
-        <label>Dot com</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Manager_UK</role>
-            <role>CEC_User_UK</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>Escalations_Queue</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.STATUS</columns>
