@@ -1197,6 +1197,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
            for(String tempParSeq : parentSequenceList.keyset()){
                 projSubSectionList.add(parentSequenceList.get(tempParSeq));
            }
+           showAttchSection();// used to show Attachments in gd page. DONOT REMOVE
            // End Fix - DEF3031
         }
         catch(Exception ex){
@@ -1223,7 +1224,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                     FROM IPM_Project_Document_Section__c 
                                     WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID=:parentSectionId AND IPM_Default_Section__c=true  
                                     order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
+                                    showAttchSection();// used to show Attachments in gd page. DONOT REMOVE
             }
+            
             catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
                    'getDynamicSection',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
