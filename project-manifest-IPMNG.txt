@@ -185,6 +185,7 @@ src/components/IPM_FinancialTable_Currency.component
 src/components/IPM_FinancialTable_Currency.component-meta.xml
 src/components/IPM_Financial_ActionStandards.component
 src/components/IPM_Financial_ActionStandards.component-meta.xml
+src/components/IPM_Footer.component
 src/components/IPM_Footer.component-meta.xml
 src/components/IPM_Funnel.component
 src/components/IPM_Funnel.component-meta.xml
@@ -200,7 +201,9 @@ src/components/IPM_GateKeeperListView.component
 src/components/IPM_GateKeeperListView.component-meta.xml
 src/components/IPM_Gate_RollOuts.component
 src/components/IPM_Gate_RollOuts.component-meta.xml
+src/components/IPM_Global_Consolidated.component
 src/components/IPM_Global_Consolidated.component-meta.xml
+src/components/IPM_Header.component
 src/components/IPM_Header.component-meta.xml
 src/components/IPM_Image_Hover.component
 src/components/IPM_Image_Hover.component-meta.xml
@@ -212,16 +215,21 @@ src/components/IPM_List_Milestones.component
 src/components/IPM_List_Milestones.component-meta.xml
 src/components/IPM_List_Tasks.component
 src/components/IPM_List_Tasks.component-meta.xml
+src/components/IPM_LoadingStatus.component
 src/components/IPM_LoadingStatus.component-meta.xml
 src/components/IPM_LocalRolloutPlansTable.component
 src/components/IPM_LocalRolloutPlansTable.component-meta.xml
 src/components/IPM_MilestoneList_PDF.component
 src/components/IPM_MilestoneList_PDF.component-meta.xml
+src/components/IPM_MilestoneTimeLineView.component
 src/components/IPM_MilestoneTimeLineView.component-meta.xml
+src/components/IPM_Modal.component
 src/components/IPM_Modal.component-meta.xml
+src/components/IPM_ModalHeaderDiv.component
 src/components/IPM_ModalHeaderDiv.component-meta.xml
 src/components/IPM_MyActiveProjects.component
 src/components/IPM_MyActiveProjects.component-meta.xml
+src/components/IPM_MyCharterSectionsComp.component
 src/components/IPM_MyCharterSectionsComp.component-meta.xml
 src/components/IPM_MyToDoList.component
 src/components/IPM_MyToDoList.component-meta.xml
@@ -245,7 +253,9 @@ src/components/IPM_PageHeader.component
 src/components/IPM_PageHeader.component-meta.xml
 src/components/IPM_ProjectDetails.component
 src/components/IPM_ProjectDetails.component-meta.xml
+src/components/IPM_ProjectFunction.component
 src/components/IPM_ProjectFunction.component-meta.xml
+src/components/IPM_ProjectSearchComp.component
 src/components/IPM_ProjectSearchComp.component-meta.xml
 src/components/IPM_RND_Feasibility_Questions.component
 src/components/IPM_RND_Feasibility_Questions.component-meta.xml
@@ -253,7 +263,9 @@ src/components/IPM_RND_Feasibility_QuestionsView.component
 src/components/IPM_RND_Feasibility_QuestionsView.component-meta.xml
 src/components/IPM_RND_Questions.component
 src/components/IPM_RND_Questions.component-meta.xml
+src/components/IPM_RND_QuestionsView.component
 src/components/IPM_RND_QuestionsView.component-meta.xml
+src/components/IPM_RecentActivityComp.component
 src/components/IPM_RecentActivityComp.component-meta.xml
 src/components/IPM_Risk_Questionnaire.component
 src/components/IPM_Risk_Questionnaire.component-meta.xml
@@ -267,6 +279,7 @@ src/components/IPM_SC_Feasibility_QuestionsView.component
 src/components/IPM_SC_Feasibility_QuestionsView.component-meta.xml
 src/components/IPM_Section_GateChecklist.component
 src/components/IPM_Section_GateChecklist.component-meta.xml
+src/components/IPM_Statistic.component
 src/components/IPM_Statistic.component-meta.xml
 src/components/IPM_Team_Assignment.component
 src/components/IPM_Team_Assignment.component-meta.xml
@@ -278,6 +291,7 @@ src/components/IPM_TradeMark_Questions.component
 src/components/IPM_TradeMark_Questions.component-meta.xml
 src/components/IPM_TradeMark_QuestionsView.component
 src/components/IPM_TradeMark_QuestionsView.component-meta.xml
+src/components/IPM_UI_Resources.component
 src/components/IPM_UI_Resources.component-meta.xml
 src/components/IPM_ViewAssortmentStrategy.component
 src/components/IPM_ViewAssortmentStrategy.component-meta.xml
