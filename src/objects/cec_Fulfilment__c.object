@@ -59,6 +59,39 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
+        <fullName>Account_Card_Number__c</fullName>
+        <description>CEC Account Card Number is used to store the lost debit card number</description>
+        <externalId>false</externalId>
+        <label>Account Card Number</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Card_Status__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC Account Card Status is used to display the debit card status .</description>
+        <externalId>false</externalId>
+        <label>Account Card Status</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Account_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case__r.AccountId</formula>
+        <label>Account Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Advisor_Name__c</fullName>
         <externalId>false</externalId>
         <formula>$User.FirstName + &apos; &apos; +  $User.LastName</formula>
@@ -260,6 +293,10 @@
         <label>Country</label>
         <picklist>
             <picklistValues>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Austria</fullName>
                 <default>false</default>
             </picklistValues>
@@ -268,7 +305,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Bolivia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Bosnia and Herzegovina</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brazil</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -277,6 +322,18 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Canada</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Costa Rica</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -289,6 +346,14 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Denmark</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ecuador</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>El Salvador</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -309,6 +374,14 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Greece</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Guatemala</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Honduras</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -364,7 +437,23 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Norway</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Peru</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -411,6 +500,14 @@
                 <fullName>United States</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Uruguay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>true</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
@@ -439,6 +536,58 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_of_Birth__c</fullName>
+        <description>CEC Date of Birth use to default the date of birth from person account</description>
+        <externalId>false</externalId>
+        <label>Date of Birth</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Debit_Card_Detail_Card_Value__c</fullName>
+        <description>Existing debit card value for the Debit Card Number linked.</description>
+        <externalId>false</externalId>
+        <formula>Debit_Card_Number__r.Card_Value__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Debit Card Detail Card Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Debit_Card_Number__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>CEC Debit Card Number is Lookup to the debit card details</description>
+        <externalId>false</externalId>
+        <label>Debit Card Number</label>
+        <referenceTo>CEC_Debit_Card_Detail__c</referenceTo>
+        <relationshipLabel>Debit Card Detail</relationshipLabel>
+        <relationshipName>Fulfilment</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Debit_Card_Value__c</fullName>
+        <description>CEC Debit Card Value is used to capture the debit card refund value</description>
+        <externalId>false</externalId>
+        <label>Debit Card Value</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -832,6 +981,16 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Expiry_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Debit_Card_Number__r.Expiry_Date__c</formula>
+        <label>Expiry Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Fulfilled__c</fullName>
         <defaultValue>false</defaultValue>
         <description>cec - Boolean field to check whether the Fulfillment export process is success or not.</description>
@@ -894,6 +1053,48 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Issue_Card__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>CEC Issue Card is used to specify if the customer is eligible for debit card to be issued to him.</description>
+        <externalId>false</externalId>
+        <label>Issue Card</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Local_Identifier__c</fullName>
+        <description>CEC Local Identifier is used to display the CPF number from the account.</description>
+        <externalId>false</externalId>
+        <label>Local Identifier</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mailing_Address__c</fullName>
+        <description>CEC :Mailing Address from Account related to the Case</description>
+        <externalId>false</externalId>
+        <formula>IF((ISBLANK(Case__r.Account.PersonContact.MailingStreet)), null, (Case__r.Account.PersonContact.MailingStreet &amp; &quot;, &quot;)) 
+&amp;
+IF((ISBLANK(Case__r.Account.PersonContact.MailingCity)), null, (Case__r.Account.PersonContact.MailingCity &amp; &quot;, &quot;)) 
+&amp;
+IF((ISBLANK(Case__r.Account.PersonContact.MailingState)), null, (Case__r.Account.PersonContact.MailingState &amp; &quot;, &quot;)) 
+&amp;
+IF((ISBLANK(Case__r.Account.PersonContact.MailingPostalCode)), null, (Case__r.Account.PersonContact.MailingPostalCode &amp; &quot;, &quot;)) 
+&amp;
+Case__r.Account.PersonContact.MailingCountry</formula>
+        <label>Mailing Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Market__c</fullName>
@@ -1017,19 +1218,29 @@
             <controllingField>Country__c</controllingField>
             <picklistValues>
                 <fullName>Standard Letter</fullName>
+                <controllingFieldValues>Argentina</controllingFieldValues>
                 <controllingFieldValues>Austria</controllingFieldValues>
                 <controllingFieldValues>Belgium</controllingFieldValues>
+                <controllingFieldValues>Bolivia</controllingFieldValues>
                 <controllingFieldValues>Bosnia and Herzegovina</controllingFieldValues>
+                <controllingFieldValues>Brazil</controllingFieldValues>
                 <controllingFieldValues>Bulgaria</controllingFieldValues>
                 <controllingFieldValues>Canada</controllingFieldValues>
+                <controllingFieldValues>Chile</controllingFieldValues>
+                <controllingFieldValues>Colombia</controllingFieldValues>
+                <controllingFieldValues>Costa Rica</controllingFieldValues>
                 <controllingFieldValues>Croatia</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>Denmark</controllingFieldValues>
+                <controllingFieldValues>Ecuador</controllingFieldValues>
+                <controllingFieldValues>El Salvador</controllingFieldValues>
                 <controllingFieldValues>Estonia</controllingFieldValues>
                 <controllingFieldValues>Finland</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
                 <controllingFieldValues>Germany</controllingFieldValues>
                 <controllingFieldValues>Greece</controllingFieldValues>
+                <controllingFieldValues>Guatemala</controllingFieldValues>
+                <controllingFieldValues>Honduras</controllingFieldValues>
                 <controllingFieldValues>Hungary</controllingFieldValues>
                 <controllingFieldValues>Iceland</controllingFieldValues>
                 <controllingFieldValues>India</controllingFieldValues>
@@ -1043,7 +1254,11 @@
                 <controllingFieldValues>Mlodova, Republic of</controllingFieldValues>
                 <controllingFieldValues>Montenegro</controllingFieldValues>
                 <controllingFieldValues>Netherlands</controllingFieldValues>
+                <controllingFieldValues>Nicaragua</controllingFieldValues>
                 <controllingFieldValues>Norway</controllingFieldValues>
+                <controllingFieldValues>Panama</controllingFieldValues>
+                <controllingFieldValues>Paraguay</controllingFieldValues>
+                <controllingFieldValues>Peru</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Romania</controllingFieldValues>
@@ -1055,6 +1270,8 @@
                 <controllingFieldValues>Switzerland</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <controllingFieldValues>United States</controllingFieldValues>
+                <controllingFieldValues>Uruguay</controllingFieldValues>
+                <controllingFieldValues>Venezuela</controllingFieldValues>
                 <default>true</default>
             </picklistValues>
             <picklistValues>
@@ -1150,6 +1367,15 @@
             <role>CEC_Manager_Benelux</role>
             <role>CEC_Manager_Europe</role>
             <role>CEC_User_Benelux</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Brazil_Quality_Check_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Brazil Quality Check Queue</label>
+        <queue>CEC_Brazil_Quality_Check_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -1324,6 +1550,15 @@
             <role>CEC_Manager_Europe</role>
             <role>CEC_Manager_UK</role>
             <role>CEC_User_UK</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Generic_Quality_Check_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Generic Quality Check Queue</label>
+        <queue>CEC_Generic_Quality_Check_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -1790,6 +2025,13 @@ ISBLANK(Case__r.Account.PersonMailingStreet)
         <errorMessage>Fulfilment cannot be created until the consumer address has been added</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>DebitCard_Value_Validation</fullName>
+        <active>true</active>
+        <description>CEC Debit Card value validation rule is used to disable the updation of debit card details on approved fulfillment.</description>
+        <errorConditionFormula>(ISCHANGED( Debit_Card_Value__c ) ||  ISCHANGED( Debit_Card_Number__c ) ) &amp;&amp;  isApproved__c ==true</errorConditionFormula>
+        <errorMessage>The fulfillment is already approved, cannot update debit card information</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Enclosure_Quantity_Check</fullName>
         <active>true</active>
         <description>CEC : To mandate population of Enclosure Quantity field when corresponding Enclosure field is populated</description>
@@ -1866,6 +2108,52 @@ else if (fulfilment.Id ==&apos;&apos; || fulfilment.Brand__c== &apos;&apos; || f
 }</url>
     </webLinks>
     <webLinks>
+        <fullName>Add_Debit_Card_Details</fullName>
+        <availability>online</availability>
+        <description>CEC_Custom Add Debit Card Details button.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Add Debit Card Details</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
+
+if ({!$Permission.Debit_Card_Process}) {
+
+    sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
+
+    var fulfilment = new sforce.SObject(&quot;cec_fulfilment__c&quot;);
+    fulfilment.Id = &apos;{!cec_Fulfilment__c.Id}&apos;;
+    fulfilment.Debit_Card_Number__c = &apos;{!cec_Fulfilment__c.Debit_Card_Number__c}&apos;;
+    fulfilment.Date_of_Birth__c = &apos;{!cec_Fulfilment__c.Date_of_Birth__c}&apos;;
+    fulfilment.Account_Id__c = &apos;{!cec_Fulfilment__c.Account_Id__c}&apos;;
+    fulfilment.Country__c = &apos;{!cec_Fulfilment__c.Country__c}&apos;;
+    fulfilment.Local_Identifier__c = &apos;{!cec_Fulfilment__c.Local_Identifier__c}&apos;;
+    fulfilment.Mailing_Address__c = &apos;{!JSENCODE(cec_Fulfilment__c.Mailing_Address__c)}&apos;;
+    fulfilment.Account_Card_Number__c = &apos;{!cec_Fulfilment__c.Account_Card_Number__c}&apos;;
+
+    if (fulfilment.Debit_Card_Number__c != &quot;&quot;) {
+        alert(&apos;{!$Label.CEC_DebitCardDetails_Already_Added}&apos;);
+    } else if (fulfilment.Id == &apos;&apos; || fulfilment.Account_Id__c == &apos;&apos; || fulfilment.Country__c == &apos;&apos; || fulfilment.Mailing_Address__c == &apos;&apos; || fulfilment.Local_Identifier__c == &apos;&apos; || fulfilment.Date_of_Birth__c == &apos;&apos;) {
+        alert(&apos;{!$Label.CEC_DebitCardDetails_Input_Fields_Missing}&apos;);
+    } else {
+        var result = sforce.apex.execute(&quot;CEC_DebitCardProcess&quot;, &quot;getDebitCardNumber&quot;, {
+            fulfilmentId: fulfilment.Id
+        });
+        //alert (&apos;my result===&apos;+result);
+        if (result[0].status == &apos;S&apos;) {
+            window.location.reload();
+        } else if (result[0].status == &apos;E&apos;) {
+            alert(result[0].message);
+        }
+    }
+} else {
+    alert(&apos;{!$Label.CEC_DebitCardDetails_InsufficientPrivileges}&apos;);
+}</url>
+    </webLinks>
+    <webLinks>
         <fullName>New_Fulfilment</fullName>
         <availability>online</availability>
         <description>CEC_Custom New fulfilment button</description>
@@ -1875,106 +2163,125 @@ else if (fulfilment.Id ==&apos;&apos; || fulfilment.Brand__c== &apos;&apos; || f
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)}
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
 {!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)}
 {!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
 
 sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
-var caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonMailingCountry,Case_Brand__c, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Name,Country_Name__c , L0_Product_Category__c,L2_Product_Category__c,L5_Code__c From Case Where Id = &apos;{!Case.Id}&apos;&quot;); 
- 
 
+var caseQuery;
+if ({!$Permission.Debit_Card_Process}) {
+    caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonMailingCountry,Case_Brand__c,Account.PersonBirthdate, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Local_Identifier__c,Account.Debit_Card_Number__c,Account.Debit_Card_Number__r.Active__c,Account.Debit_Card_Number__r.Name,Account.Name,Country_Name__c , L0_Product_Category__c,L2_Product_Category__c,L5_Code__c From Case Where Id = &apos;{!Case.Id}&apos;&quot;);
+} else {
+    caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonMailingCountry,Case_Brand__c, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Name,Country_Name__c , L0_Product_Category__c,L2_Product_Category__c,L5_Code__c From Case Where Id = &apos;{!Case.Id}&apos;&quot;);
+}
 var fulfilmentId;
 var fulfilmentName;
-var records = caseQuery.getArray(&quot;records&quot;); 
+var records = caseQuery.getArray(&quot;records&quot;);
 var caseRecord = records[0];
 
 
-if(caseRecord != null &amp;&amp; caseRecord.AccountId == null) {
-                alert(&apos;{!$Label.CEC_CaseAccountMissing}&apos;);
-} else if (caseRecord != null &amp;&amp; 
-caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.PersonMailingCountry == null &amp;&amp; caseRecord.Account.PersonMailingPostalCode == null &amp;&amp; caseRecord.Account.PersonMailingState == null &amp;&amp; caseRecord.Account.PersonMailingStreet == null) {
-                alert(&apos;{!$Label.CEC_CaseAccountPersonDetailsError}&apos;);
-} else  {
-                
-        var newFulfilment = new sforce.SObject(&quot;cec_Fulfilment__c&quot;);
-        newFulfilment.Case__c = caseRecord.Id;
-        newFulfilment.Country__c = caseRecord.Account.PersonMailingCountry;
-        //var result =sforce.apex.execute(&quot;CEC_ChequeProcess&quot;,&quot;checkFieldAccess&quot;,{sObjectName:&apos;cec_fulfilment__c&apos;,sFieldName:&apos;Payable_TO__c&apos;}); 
+if (caseRecord != null &amp;&amp; caseRecord.AccountId == null) {
+    alert(&apos;{!$Label.CEC_CaseAccountMissing}&apos;);
+} else if (caseRecord != null &amp;&amp;
+    caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.PersonMailingCountry == null &amp;&amp; caseRecord.Account.PersonMailingPostalCode == null &amp;&amp; caseRecord.Account.PersonMailingState == null &amp;&amp; caseRecord.Account.PersonMailingStreet == null) {
+    alert(&apos;{!$Label.CEC_CaseAccountPersonDetailsError}&apos;);
+} else {
 
-        var objFulfilment= sforce.connection.describeSObject(&quot;cec_fulfilment__c&quot;); 
-        var result = &apos;false&apos;; 
-        var field = &apos;&apos;;
-        for (var i=0; i&lt;objFulfilment.fields.length; i++) { 
-            field = objFulfilment.fields[i]; 
-            if(field.name == &apos;Payable_To__c&apos;) { 
-                result= &apos;true&apos;; 
-                break;
-            } 
+    var newFulfilment = new sforce.SObject(&quot;cec_Fulfilment__c&quot;);
+    newFulfilment.Case__c = caseRecord.Id;
+    newFulfilment.Country__c = caseRecord.Account.PersonMailingCountry;
+
+
+    var objFulfilment = sforce.connection.describeSObject(&quot;cec_fulfilment__c&quot;);
+    var result = &apos;false&apos;;
+    var field = &apos;&apos;;
+    for (var i = 0; i &lt; objFulfilment.fields.length; i++) {
+        field = objFulfilment.fields[i];
+        if (field.name == &apos;Payable_To__c&apos;) {
+            result = &apos;true&apos;;
+            break;
+        }
+    }
+
+
+    if (result == &apos;true&apos; &amp;&amp; caseRecord.Account.Salutation != null) {
+        newFulfilment.Payable_To__c = caseRecord.Account.Salutation + &quot; &quot; + caseRecord.Account.Name;
+    } else if (result == &apos;true&apos;) {
+        newFulfilment.Payable_To__c = caseRecord.Account.Name;
+    }
+
+    //This Code will default the values only if advisor has debit card Process custom permission.
+    //This Code is used to default the values of DOB,Local identifier,Debit Card Number and Debit Card Status
+    if ({!$Permission.Debit_Card_Process}) {
+
+        if (caseRecord.Account.PersonBirthdate != null) {
+            newFulfilment.Date_of_Birth__c = caseRecord.Account.PersonBirthdate;
+        }
+        if (caseRecord.Account.Local_Identifier__c != null) {
+            newFulfilment.Local_Identifier__c = caseRecord.Account.Local_Identifier__c;
         }
 
+        if (caseRecord.Account.Debit_Card_Number__c != null) {
 
-        if (result == &apos;true&apos; &amp;&amp; caseRecord.Account.Salutation != null){
-              newFulfilment.Payable_To__c = caseRecord.Account.Salutation + &quot; &quot;+ caseRecord.Account.Name;
-        } else if(result == &apos;true&apos;){
-              newFulfilment.Payable_To__c = caseRecord.Account.Name;
+            newFulfilment.Account_Card_Status__c = caseRecord.Account.Debit_Card_Number__r.Active__c;
+            newFulfilment.Account_Card_Number__c = caseRecord.Account.Debit_Card_Number__r.Name;
         }
-        
-        var result =sforce.apex.execute(&quot;CEC_AlertFulfilmentEnclosureHelper&quot;,&quot;populateEnclosureDetails&quot;,{CaseId:caseRecord.Id,CountryName :newFulfilment.Country__c });
-         // alert(&apos;my alert===&apos;+result); 
-        if (result[0].status == &apos;S&apos;){
-            if(result[0].enclosuresList != null)
-            {
-				
-                  if(result[0].enclosuresList[0])
-                    {
-                         newFulfilment.Enclosure1__c=result[0].enclosuresList[0];
-                         //newFulfilment.Enclosure1_Quantity__c=1;
-                    }
 
-                  if(result[0].enclosuresList[1])
-                    {
-                         newFulfilment.Enclosure2__c=result[0].enclosuresList[1];
-                         //newFulfilment.Enclosure2_Quantity__c=1;
-                    }
+    }
 
-                  if(result[0].enclosuresList[2])
-                    {
-                         newFulfilment.Enclosure3__c=result[0].enclosuresList[2];
-                         //newFulfilment.Enclosure3_Quantity__c=1;
-                    }
+    var result = sforce.apex.execute(&quot;CEC_AlertFulfilmentEnclosureHelper&quot;, &quot;populateEnclosureDetails&quot;, {
+        CaseId: caseRecord.Id,
+        CountryName: newFulfilment.Country__c
+    });
 
-                  if(result[0].enclosuresList[3])
-                    {
-                         newFulfilment.Enclosure4__c=result[0].enclosuresList[3];
-                        // newFulfilment.Enclosure4_Quantity__c=1;
-                    }
-                  if(result[0].enclosuresList[4])
-                    {
-                         newFulfilment.Enclosure5__c=result[0].enclosuresList[4];
-                         //newFulfilment.Enclosure5_Quantity__c=1;
-                    }
-            
+    if (result[0].status == &apos;S&apos;) {
+        if (result[0].enclosuresList != null) {
+
+            if (result[0].enclosuresList[0]) {
+                newFulfilment.Enclosure1__c = result[0].enclosuresList[0];
+
             }
-        }
-        else if (result[0].status == &apos;E&apos;) { 
-               alert(result[0].message); 
-        }
 
-        sforce.connection.create([newFulfilment], success);
+            if (result[0].enclosuresList[1]) {
+                newFulfilment.Enclosure2__c = result[0].enclosuresList[1];
+
+            }
+
+            if (result[0].enclosuresList[2]) {
+                newFulfilment.Enclosure3__c = result[0].enclosuresList[2];
+
+            }
+
+            if (result[0].enclosuresList[3]) {
+                newFulfilment.Enclosure4__c = result[0].enclosuresList[3];
+
+            }
+            if (result[0].enclosuresList[4]) {
+                newFulfilment.Enclosure5__c = result[0].enclosuresList[4];
+
+            }
+
+        }
+    } else if (result[0].status == &apos;E&apos;) {
+        alert(result[0].message);
+    }
+
+    sforce.connection.create([newFulfilment], success);
 }
 
 function success(result) {
 
-                fulfilmentId = result[0].id;
-                fulfilmentName = result[0].Name;
-                sforce.console.getFocusedPrimaryTabId(openSubtab);
+    fulfilmentId = result[0].id;
+    fulfilmentName = result[0].Name;
+    sforce.console.getFocusedPrimaryTabId(openSubtab);
 }
 
 var openSubtab = function openSubtab(result) {
-                //Now that we have the primary tab ID, we can open a new subtab in it
-                var primaryTabId = result.id;
-        sforce.console.refreshPrimaryTabById(primaryTabId, false);
-                sforce.console.openSubtab(primaryTabId, &apos;/&apos;+fulfilmentId, true, fulfilmentName,null);
+    //Now that we have the primary tab ID, we can open a new subtab in it
+    var primaryTabId = result.id;
+    sforce.console.refreshPrimaryTabById(primaryTabId, false);
+    sforce.console.openSubtab(primaryTabId, &apos;/&apos; + fulfilmentId, true, fulfilmentName, null);
 };</url>
     </webLinks>
 </CustomObject>

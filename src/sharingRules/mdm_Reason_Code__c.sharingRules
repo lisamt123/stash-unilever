@@ -158,7 +158,7 @@
         <criteriaItems>
             <field>ISO_Country__c</field>
             <operation>equals</operation>
-            <value>CO,CR,EC,GT,HN,NI,PA,VE</value>
+            <value>CO,CR,EC,GT,HN,NI,PA,VE,SV</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>

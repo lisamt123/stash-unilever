@@ -579,7 +579,7 @@
             <criteriaItems>
                 <field>Case.Origin</field>
                 <operation>equals</operation>
-                <value>Email North America,Social Media North America</value>
+                <value>Email North America,Social Media North America,Web North America</value>
             </criteriaItems>
             <criteriaItems>
                 <field>Case.Out_of_Hours__c</field>

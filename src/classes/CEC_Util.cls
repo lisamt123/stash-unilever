@@ -47,7 +47,7 @@ public class CEC_Util {
     static String[] tens = new string[]{ 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'}; 
     static string[] denom = new string[]{ '','Thousand',   'Million',     'Billion',    'trillion',    'quadrillion',  'quintillion', 's!xtillion',   'septillion',  'octillion',   'nonillion',  'decillion',  'undecillion',   'duodecillion', 'tredecillion',  'quattuordecillion',  's!xdecillion', 'septendecillion', 'octodecillion', 'novemdecillion', 'vigintillion' }; 
 
-    
+	
     // convert a value < 100 to English.   
     public static string convertTwoDigitToWord(integer val) { 
         System.debug('In convertTwoDigitToWord val is  ' + val ); 
@@ -96,39 +96,39 @@ public class CEC_Util {
             word += convertTwoDigitToWord(mod); 
         } 
         return word; 
-    }   
-    // This method will get following 3 inputs and it will return Currency in words
-    // 1) Number to be converted in words
-    // 2) Textual version of currency, e.g. DOLLARS
-    // 3) Textual version of decimal currency, e.g. CENTS
+    } 	
+	// This method will get following 3 inputs and it will return Currency in words
+	// 1) Number to be converted in words
+	// 2) Textual version of currency, e.g. DOLLARS
+	// 3) Textual version of decimal currency, e.g. CENTS
     public static String convertAllDigitsToWord(decimal val, string currencyText, string currencyDecimalText ) { 
         if (val < 100) { 
             System.debug('In englishNumber val is < 100 ' + val ); 
             
-            if ((val -val.intValue()) > 0){
-                if (val.intValue() > 0){
-                    return convertTwoDigitToWord(val.intValue())+ ' ' + currencyText + ' and' + ' ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
-                    
-                }
-                else{
-                    return  convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
-                    
-                }               
-            }
-            else {
-                return convertTwoDigitToWord(val.intValue())+ ' ' + currencyText ; 
-            }
-                
+			if ((val -val.intValue()) > 0){
+				if (val.intValue() > 0){
+					return convertTwoDigitToWord(val.intValue())+ ' ' + currencyText + ' and' + ' ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
+					
+				}
+				else{
+					return  convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
+					
+				}				
+			}
+			else {
+				return convertTwoDigitToWord(val.intValue())+ ' ' + currencyText ; 
+			}
+				
         } 
         if (val < 1000) { 
             System.debug('In englishNumber val is < 1000 ' + val ); 
-            
-            if ((val -val.intValue()) > 0){
-                return convertThreeDigitToWord(val.intValue())+ ' ' + currencyText + ' and' + ' ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
-            }
-            else {
-                return convertThreeDigitToWord(val.intValue())+ ' ' + currencyText ; 
-            }
+			
+			if ((val -val.intValue()) > 0){
+				return convertThreeDigitToWord(val.intValue())+ ' ' + currencyText + ' and' + ' ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
+			}
+			else {
+				return convertThreeDigitToWord(val.intValue())+ ' ' + currencyText ; 
+			}
         } 
         for (integer v = 0; v < denom.size(); v++) { 
             integer didx = v - 1; 
@@ -155,13 +155,12 @@ public class CEC_Util {
                     
                 } 
                 System.debug('in loop value of ret ' + ret ); 
-                if ((val -val.intValue()) > 0){
-                    return ret + ' ' + 'and' + ' ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
-                    return ret + ' ' + 'and' + ' ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
-                }
-                else {
-                    return ret ; 
-                }       
+				if ((val -val.intValue()) > 0){
+					return ret + ' ' + currencyText+ ' ' + 'and' + ' ' + convertTwoDigitToWord(((val -val.intValue())*100).intValue()) + ' ' + currencyDecimalText; 
+				}
+				else {
+					return ret + ' ' + currencyText; 
+				}		
             } 
         } 
         return null; 
@@ -204,5 +203,5 @@ public class CEC_Util {
                                          (finalReasonCodeConcatValue + reason4):finalReasonCodeConcatValue;                                         
         return finalReasonCodeConcatValue;
     }
-        
+	    
 }

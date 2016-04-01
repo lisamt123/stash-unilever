@@ -61,6 +61,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Debit_Card_Expiry_Days__c</fullName>
+        <description>CEC Debit Card Expiry Days is used to calculate the expiry date of a debit card.</description>
+        <externalId>false</externalId>
+        <label>Debit Card Expiry Days</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Factory_Investigation_Survey_ID__c</fullName>
         <description>CEC: Id of the Factory Investigation Survey</description>
         <externalId>false</externalId>

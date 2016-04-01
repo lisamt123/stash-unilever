@@ -145,6 +145,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Web North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>White Mail</fullName>
                 <default>false</default>
             </picklistValues>
