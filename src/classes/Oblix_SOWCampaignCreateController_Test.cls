@@ -10,9 +10,14 @@ private class Oblix_SOWCampaignCreateController_Test {
     private static final String GLOBAL_REGION = 'Global';
     private static final String COUNTRY_TYPE = 'Country';
 
+    @testSetup static void initCommonData() {
+        insert Oblix_TestUtils.createOblixCustomSettings();
+    }
+
+
     @isTest static void SOWCampaignCreateControllerTest_addOneMoreProjectSplitInstance_isSplitInstanceAdded() {
         User u = Oblix_TestUtils.createTestUser();
-        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -31,7 +36,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
     @isTest static void SOWCampaignCreateControllerTest_createFiveInstancesOFMarketingSplits_isFiveInstancesOFMarketingSplitsCreated() {
         User u = Oblix_TestUtils.createTestUser();
-        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -50,7 +55,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
     @isTest static void SOWCampaignCreateControllerTest_setInfoCountries_isInfoCountriesSet() {
         User u = Oblix_TestUtils.createTestUser();
-        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -93,7 +98,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
     @isTest static void SOWCampaignCreateControllerTest_setCampaignScaleOneSetToGlobal_isCampaignScaleOneSetToGlobal() {
         User u = Oblix_TestUtils.createTestUser();
-        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -113,7 +118,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
     @isTest static void SOWCampaignCreateControllerTest_setCampaignScale_isCampaignScaleSet() {
         User u = Oblix_TestUtils.createTestUser();
-        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -170,7 +175,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
     @isTest static void SOWCampaignCreateControllerTest_setAgencyHubSplit_isAgencyHubSplitSet() {
         User u = Oblix_TestUtils.createTestUser();
-        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -222,7 +227,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
     @isTest static void SOWCampaignCreateControllerTest_GlobalCampaign_isGobalCampaignSet() {
         User u = Oblix_TestUtils.createTestUser();
-        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -243,7 +248,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
     @isTest static void SOWCampaignCreateControllerTest_FinancialYear_isFinancialYearSetinCreateMode() {
         User u = Oblix_TestUtils.createTestUser();
-        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -277,7 +282,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
     @isTest static void SOWCampaignCreateControllerTest_countriesByFinancialYear_isCountriesByFinancialYearSet() {
         User u = Oblix_TestUtils.createTestUser();
-        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -295,7 +300,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
     @isTest static void SOWCampaignCreateControllerTest_countriesRegions_isCountriesRegionsArtefactsSet() {
         User u = Oblix_TestUtils.createTestUser();
-        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -324,7 +329,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
     @isTest static void SOWCampaignCreateControllerTest_brandAndInnovationOptions_isbrandAndInnovationOptionsSet() {
         User u = Oblix_TestUtils.createTestUser();
-        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
@@ -345,7 +350,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
     @isTest static void SOWCampaignCreateControllerTest_cloneTest_isCampaignClonedAndUserRedirected() {
         User u = Oblix_TestUtils.createTestUser();
-        insert Oblix_TestUtils.createOblixCustomSettings();
+        
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);

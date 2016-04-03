@@ -81,6 +81,113 @@ private class Oblix_SOWMainDetailController_Test {
 
     }
 
+
+    @isTest static void testDeleteAction() {
+
+        initTestData();
+
+        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
+
+        Test.startTest();
+
+        PageReference deleteAction = controllerInstance.deleteAction();
+            
+        Test.stopTest();    
+
+        PageReference sow_details_page = Page.oblix_sowmain;
+        System.assertEquals(sow_details_page.getUrl(), deleteAction.getUrl());
+
+        List<Oblix_SOW_Projects__c> projects = [SELECT Id FROM Oblix_SOW_Projects__c WHERE Id = :mSow.Id];
+        System.assertEquals(0, projects.size());
+
+    }
+
+
+    @isTest static void testApproveSOW_IS_Approver() {
+
+        initTestData();
+
+        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
+
+        User currentUser = new User(Id = UserInfo.getUserId());
+        update superuser;
+        currentUser.ManagerId = superuser.Id;
+        update currentUser;
+
+        mSow.Unilever_SOW_Approver_Name__c = currentUser.Id;
+        mSow.Agency_SOW_Approver_Name__c = superuser.Id;
+        update mSow;
+
+        Test.startTest();
+        
+        PageReference submitForApproval = controllerInstance.submitForApproval();
+
+        PageReference approveSOW = controllerInstance.approveSOW();
+            
+        Test.stopTest();    
+
+        PageReference sow_details_page = Page.oblix_sowmain;
+        System.assertEquals(sow_details_page.getUrl(), submitForApproval.getUrl());
+        System.assertEquals(sow_details_page.getUrl(), approveSOW.getUrl());
+
+    }
+
+
+    @isTest static void testRejectSOW_IS_Approver() {
+
+        initTestData();
+
+        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
+
+        User currentUser = new User(Id = UserInfo.getUserId());
+        update superuser;
+        currentUser.ManagerId = superuser.Id;
+        update currentUser;
+
+        mSow.Unilever_SOW_Approver_Name__c = currentUser.Id;
+        mSow.Agency_SOW_Approver_Name__c = superuser.Id;
+        update mSow;
+
+        Test.startTest();
+        
+        PageReference submitForApproval = controllerInstance.submitForApproval();
+
+        PageReference rejectSOW = controllerInstance.rejectSOW();
+            
+        Test.stopTest();    
+
+        PageReference sow_details_page = Page.oblix_sowmain;
+        System.assertEquals(sow_details_page.getUrl(), submitForApproval.getUrl());
+        System.assertEquals(sow_details_page.getUrl(), rejectSOW.getUrl());
+
+    }
+
+/*
+    @isTest static void testSubmitForApprovalCreator_IS_NOT_Approver() {
+
+        initTestData();
+
+
+
+        ApexPAges.currentPage().getParameters().put('sowId', mSow.Id);
+        Oblix_SowMainDetailController controllerInstance = new Oblix_SowMainDetailController();
+
+        Test.startTest();
+
+        System.runAs(superuser){
+            PageReference submitForApproval = controllerInstance.submitForApproval();
+            PageReference sow_details_page = Page.oblix_sowmain;
+            System.assertEquals(sow_details_page.getUrl(), submitForApproval.getUrl());
+        }
+            
+        Test.stopTest();    
+
+    }
+*/
+
     private static Map<Permission, Boolean> getUserPermissions(Oblix_SowMainDetailController controllerInstance){
     	Map<Permission, Boolean> up = new Map<Permission, Boolean>();
 

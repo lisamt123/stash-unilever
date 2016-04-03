@@ -19,7 +19,7 @@ public with sharing class Oblix_CampaignStageLogic{
 
 
     //containers for valid project stages and their parameters
-    public static List<Oblix_Settings__c> stageList {
+    private static List<Oblix_Settings__c> stageList {
         get{
             if (stageList != null) {
                 return stageList;
@@ -29,7 +29,7 @@ public with sharing class Oblix_CampaignStageLogic{
         }
     }
 
-    public static Map<String, Oblix_Settings__c> stagesByLabel {
+    private static Map<String, Oblix_Settings__c> stagesByLabel {
         get{
             if (stagesByLabel != null) {
                 return stagesByLabel;
@@ -43,7 +43,7 @@ public with sharing class Oblix_CampaignStageLogic{
         set;
     }
 
-    public static Map<Integer, Oblix_Settings__c> stagesByOrder {
+    private static Map<Integer, Oblix_Settings__c> stagesByOrder {
         get {
             if (stagesByOrder != null) {
                 return stagesByOrder;
@@ -135,6 +135,7 @@ public with sharing class Oblix_CampaignStageLogic{
         b_is_projection_selectable = is_projection_selectable;
         b_is_completion_selectable = is_completeion_selectable;
 
+        initStages();
         i_percentage_of_fee_this_year = percentageValue;
         system.debug('###i_percentage_of_fee_this_year : '+i_percentage_of_fee_this_year);
         calculateFeesForThisYear();
@@ -177,7 +178,7 @@ public with sharing class Oblix_CampaignStageLogic{
     public Oblix_CampaignStageLogic(Id sow_project_id, boolean is_projection_selectable, boolean is_completeion_selectable){
 
         // retrieve campaign by Id passed in - to create override constructor
-        List<Oblix_SOW_Projects__c> liso_projects_for_sow = [SELECT Name, Project_Finish_Date__c, Campaign_Status__c, Platform__c, Project_Stage__c, Projected_Stage__c, Completed_Stage__c
+        List<Oblix_SOW_Projects__c> liso_projects_for_sow = [SELECT Name, Project_Finish_Date__c, Campaign_Status__c, Platform__c, Project_Stage__c, Stage_Projected_CFY__c, Stage_Completed_CFY__c
             , CreatedById, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Campaign_Total_Fees__c
             , Percentage_of_Fee_for_this_FY__c, Project_Completion_Date__c, Description__c, Campaign_Countries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c, Value_To_BePaid_Manual_Override__c 
             FROM Oblix_SOW_Projects__c WHERE Id = : sow_project_id ];

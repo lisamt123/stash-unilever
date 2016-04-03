@@ -35,6 +35,24 @@ private class Oblix_SOWMainController_Test {
     private static User ul2;
     private static User ul3;
     private static User superuser;
+    
+    
+    @isTest static void testGetAllSOWRecords() {
+        
+        initTestData();
+
+        Oblix_SowMainController controller = new Oblix_SowMainController();
+
+        Test.startTest();
+
+        List<List<Oblix_SowMainController.SOWWrapper>> records = controller.liliso_sow;
+        
+        Test.stopTest();
+
+        System.assertEquals(4, records[0].size());
+
+    }
+    
 
     /*******************************************************************************
     * @author       Slavko Skular
