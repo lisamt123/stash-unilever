@@ -11,16 +11,9 @@ var Validationflag = "false";
 var Validationflag1 = "false";
 var Validationflag2 = "false";
 var Validationflag3 = "false";
-var Validationflag4 = "false";
-var Validationflag5 = "false";
-var Validationflag6 = "false";
 var Validationflag7 = "false";
 var volSwitch = false;
 
-var myWindow;
-function openWin() {
-    myWindow = window.open(IPMAppFin.UploadBusinessCase + "?parentId=" + IPMAppFin.projectId, "myWindow", "width=400, height=200, top = 300, left= 500");
-}
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
     var sustPeriod = IPMAppFin.Sustainability;
@@ -52,8 +45,8 @@ jq(document).ready(function() {
         td.style.textAlign = 'left';
     };
     FinancialData = [
-        ["Click Here To Paste(Ctrl + V) Your Data", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
         ["INNOVATION YEAR", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+        ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
         ["", "", "", "", "", "GROSS P&L", "", "", "", "", "INCREMENTAL P&L", "", "", ""],
         ["", "", "", "", "Y0", "Y1", "Y2", "Y3", "Y4", "Y5", "Y1", "Y2", "Y3", "Y4", "Y5"],
         ["Value Market Share ", " % ", "", "", "", "", "", "", "", "", "", "", "", "", ""],
@@ -131,7 +124,7 @@ jq(document).ready(function() {
             if (row === 0) {
                 cellProperties.renderer = headerRenderer;
             } else if (row === 1) {
-                cellProperties.renderer = headerRenderer;
+                cellProperties.renderer = headerRenderer2;
             } else if (row === 2) {
                 cellProperties.renderer = headerRenderer2;
             } else if (row === 3) {
@@ -288,9 +281,6 @@ jq(document).ready(function() {
 			Validationflag1 = 'false';
 			Validationflag2 = 'false';
 			Validationflag3 = 'false';
-			Validationflag4 = 'false';
-			Validationflag5 = 'false';
-			Validationflag6 = 'false';
 			Validationflag7 = 'false';
             if (cleanCalled) {
                 cleanCalled = false;
@@ -320,18 +310,6 @@ jq(document).ready(function() {
 								alert(IPMAppFin.IPM_PBOCP);
 								Validationflag3 = 'true';
 							}
-							if ((globalchanges[j][0].toString() == '15' || (globalchanges[j][0].toString() == '39' && globalchanges[j][1].toString() > '4')) && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag4 == 'false') {
-								alert(IPMAppFin.IPM_GMCP);
-								Validationflag4 = 'true';
-							}
-							if ((globalchanges[j][0].toString() == '16' || (globalchanges[j][0].toString() == '40' && globalchanges[j][1].toString() > '4')) && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag5 == 'false') {
-								alert(IPMAppFin.IPM_AandP);
-								Validationflag5 = 'true';
-							}
-							if ((globalchanges[j][0].toString() == '17' || (globalchanges[j][0].toString() == '41' && globalchanges[j][1].toString() > '4')) && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag6 == 'false') {
-								alert(IPMAppFin.IPM_PBOPCP);
-								Validationflag6 = 'true';
-                            }
 							
 							
 					    }
@@ -433,8 +411,7 @@ jq(document).ready(function() {
 					
 					/* If we reduce the number of conditional operators it will contradict with the other sonar issue 'Merge this if statement with the nested one' */
                     if (Validationflag == 'false' && Validationflag1 == 'false' && Validationflag2 == 'false' 
-					&& Validationflag3 == 'false' && Validationflag4 == 'false' && Validationflag5 == 'false' 
-					&& Validationflag6 == 'false' && Validationflag7 == 'false') {
+					&& Validationflag3 == 'false' && Validationflag7 == 'false') {
                         document.getElementById('DivButton').style.display = 'inline';
                     } else {
                         document.getElementById('DivButton').style.display = 'none';
