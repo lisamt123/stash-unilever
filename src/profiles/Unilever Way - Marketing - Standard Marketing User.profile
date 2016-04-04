@@ -121,6 +121,11 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
+        <application>WIN_POS</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>cB4L</application>
         <default>true</default>
         <visible>true</visible>
@@ -1516,10 +1521,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CEC_AlertHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CEC_AnonymiseConsumerBatchScheduler_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1541,10 +1542,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CEC_CaseActionControllerTest</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CEC_CaseDescriptionParser</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1580,23 +1577,7 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CEC_ClearAlertData_BatchScheduler_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CEC_ClearAlertTrackerItem_BatchScheduler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CEC_ClearAlertTracker_Batch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CEC_Constants</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CEC_DebitCardProcess</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1685,10 +1666,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CEC_TestAlertActionTriggerHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CEC_TestDataFactory</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -1945,7 +1922,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_BaseApplicationServicesTest</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_BaseApplicationWrapper</apexClass>
@@ -1957,7 +1934,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_BaseServiceException_Test</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_HeaderApproveController</apexClass>
@@ -1988,10 +1965,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Core_CA_LineItem_Handler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>Core_CA_Line_ApproveController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -2009,7 +1982,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_RemoteServiceCallControllerTest</apexClass>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_CA_RequestDetail</apexClass>
@@ -9067,6 +9040,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Account.Bazaarvoice_Username__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Account.BillingAddress</field>
         <readable>true</readable>
@@ -9114,21 +9092,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Date_Anonymized__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Debit_Card_Expiry_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Debit_Card_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Debit_Card_Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -9224,16 +9187,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Length_of_client_relationship__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Local_Identifier_No_Special_Char__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Local_Identifier__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -10518,6 +10471,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CEC_ChequeBook_Detail__c.Currency_Decimal_Text__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CEC_ChequeBook_Detail__c.Currency_Text__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CEC_ChequeBook_Detail__c.Currency__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -10534,51 +10497,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CEC_ChequeBook_Detail__c.Starting_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CEC_Debit_Card_Detail__c.Account_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CEC_Debit_Card_Detail__c.Active__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CEC_Debit_Card_Detail__c.Cancelled_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CEC_Debit_Card_Detail__c.Card_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CEC_Debit_Card_Detail__c.Country_Name__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CEC_Debit_Card_Detail__c.Currency__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CEC_Debit_Card_Detail__c.Expiry_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CEC_Debit_Card_Detail__c.Issued_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CEC_Debit_Card_Detail__c.Status__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -11308,11 +11226,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.Case_ISO_Country_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.Case_Market_Mapping_Country_Id__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -11425,11 +11338,6 @@
         <editable>true</editable>
         <field>Case.Description</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.Email_Subject__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -11578,17 +11486,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Case.L1_Product_Reporting__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Case.L2_Product_Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Case.L2_Product_Reporting__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -12668,11 +12566,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Core_Approval_Header__c.All_years__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Core_Approval_Header__c.Amount_Paid_Card__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -12699,11 +12592,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Core_Approval_Header__c.Application_URL__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Core_Approval_Header__c.Approval_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -12963,11 +12851,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Core_Approval_Header__c.Total_Budget__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>Core_Approval_Header__c.Total_Expenses_Amount__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -13104,11 +12987,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Core_Approver_Details__c.Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Core_Approver_Details__c.TF_CreatedDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -13489,6 +13367,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>FAQ_Enhanced__kav.Related_PDF__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>FAQ_Enhanced__kav.Rich_Text__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -15443,11 +15326,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IPM_Analytics__c.IPM_Company_Priority__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Company__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -15483,11 +15361,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IPM_Analytics__c.IPM_Exemptfrom_Threshold__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Expected_Charter_Approval_Date__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -15509,11 +15382,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics__c.IPM_External_ID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_Analytics__c.IPM_Fast_Track_Project__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -15574,11 +15442,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics__c.IPM_IC_NBU__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_Analytics__c.IPM_Key_NonKey__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -15664,11 +15527,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Analytics__c.IPM_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_Analytics__c.IPM_Stopped__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -19698,17 +19556,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IPM_Project_Rollout__c.IPM_Global_OR_Regional__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>IPM_Project_Rollout__c.IPM_Local_Rollout_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_Project_Rollout__c.IPM_Parent_Project_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -19813,11 +19661,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IPM_Project_Rollout__c.Local_Rollout_Phase__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>IPM_Project_Rollout__c.MCO_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -19878,22 +19721,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>IPM_Project_Rollout__c.Regional_Rollout_Phase__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>IPM_Project_Rollout__c.Regional_Rollout__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_Project_Rollout__c.Target_LaunchMonth__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_Project_Rollout__c.Target_LaunchYear__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -20334,11 +20162,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.IPM_Gate_Keeping_Module__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_Project__c.IPM_Global_OR_Regional__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -26933,11 +26756,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>User.Debit_Card_Refund_Limit__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>User.Edit_Article_Template_Front_End__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -29908,16 +29726,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cec_Alert_Rule__c.Case_Product__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Alert_Rule__c.Consumer_Product_Descriptor_no_size__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>cec_Alert_Rule__c.Group_By_Day_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -29943,27 +29751,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cec_Alert_Rule__c.L2_Reason_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>cec_Alert_Rule__c.L3_Product_Category__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Alert_Rule__c.L3_Reason_Code__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Alert_Rule__c.L4_Product_Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Alert_Rule__c.L4_Reason_Code__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -29988,22 +29781,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cec_Alert_Rule__c.Product_Category_Concat_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>cec_Alert_Rule__c.Product_Category__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Alert_Rule__c.Product_Level__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Alert_Rule__c.ReasonCode_Concat_Value__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -30044,11 +29827,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Alert_Tracker__c.Alert_Threshold__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Alert_Tracker__c.Alert_Tracker_Item_count__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -30418,21 +30196,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cec_Fulfilment__c.Account_Card_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Account_Card_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Account_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>cec_Fulfilment__c.Advisor_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -30483,11 +30246,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cec_Fulfilment__c.ChequeBook__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>cec_Fulfilment__c.Cheque_Number__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -30509,36 +30267,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Fulfilment__c.Country__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Currency_Decimal_Text__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Currency_Text__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Date_of_Birth__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Debit_Card_Detail_Card_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Debit_Card_Number__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Debit_Card_Value__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -30623,11 +30351,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cec_Fulfilment__c.Expiry_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>cec_Fulfilment__c.Fulfilled__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -30654,21 +30377,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Fulfilment__c.IsPrintedLocally__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Issue_Card__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Local_Identifier__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Mailing_Address__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -30704,11 +30412,6 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Fulfilment__c.Refund_Value__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Fulfilment__c.Refund_Value_in_Words__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -33338,11 +33041,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>uw_BET__c.Final_release_otif__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>uw_BET__c.FirstReleaseDate__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -33355,11 +33053,6 @@
         <editable>false</editable>
         <field>uw_BET__c.First_release_date__c</field>
         <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.First_release_otif__c</field>
-        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -34109,9 +33802,6 @@
         <layout>CEC_ChequeBook_Detail__c-ChequeBook Detail Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>CEC_Debit_Card_Detail__c-Debit Card Detail Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>CEC_Enclosure_Inventory__c-Enclosure Inventory Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -34218,10 +33908,6 @@
         <recordType>Core_Approval_Details__c.Ariba</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Core_Approval_Details__c-Line Details Ariba_FeedBased</layout>
-        <recordType>Core_Approval_Details__c.Invoice</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Core_Approval_Details__c-Line Details GTES_FeedBased</layout>
         <recordType>Core_Approval_Details__c.GTES</recordType>
     </layoutAssignments>
@@ -34233,14 +33919,6 @@
         <recordType>Core_Approval_Header__c.Ariba</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Core_Approval_Header__c-Ariba_FeedBased</layout>
-        <recordType>Core_Approval_Header__c.Invoice</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Core_Approval_Header__c-Clarity_FeedBased</layout>
-        <recordType>Core_Approval_Header__c.Clarity</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Core_Approval_Header__c-GTES_FeedBased</layout>
         <recordType>Core_Approval_Header__c.GTES</recordType>
     </layoutAssignments>
@@ -34250,14 +33928,6 @@
     <layoutAssignments>
         <layout>Core_Approver_Details__c-Approver_Ariba_FeedBased</layout>
         <recordType>Core_Approver_Details__c.Ariba</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Core_Approver_Details__c-Approver_Ariba_FeedBased</layout>
-        <recordType>Core_Approver_Details__c.Invoice</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Core_Approver_Details__c-Approver_Clarity_FeedBased</layout>
-        <recordType>Core_Approver_Details__c.Clarity</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Core_Approver_Details__c-Approver_GTES_FeedBased</layout>
@@ -35041,9 +34711,7 @@
     <layoutAssignments>
         <layout>SocialPersona-Social Persona Layout</layout>
     </layoutAssignments>
-    <layoutAssignments>
-        <layout>SocialPost-Social Post Layout</layout>
-    </layoutAssignments>
+
     <layoutAssignments>
         <layout>Solution-Solution Layout</layout>
     </layoutAssignments>
@@ -36146,14 +35814,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Core_CA_AdditionalProjectFinance</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Core_CA_ApprovalCommentDetailPage</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>Core_CA_ApprovalDetailPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -36166,15 +35826,7 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Core_CA_ApprovalFinancialBenefits</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>Core_CA_ApprovalHomePage</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Core_CA_ApprovalKeyIndicators</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -36183,10 +35835,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_ApprovalRequestGETSLineDetail</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Core_CA_ApprovalRequestInvoiceLineDetail</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -36206,10 +35854,6 @@
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>Core_CA_DateCommentDetailPage</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>Core_CA_HeaderApprove</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
@@ -36219,10 +35863,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Core_CA_IPHelp</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Core_CA_InvoiceChatterFeedPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -37480,11 +37120,6 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Core_Approval_Details__c.Invoice</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
         <default>true</default>
         <personAccountDefault>true</personAccountDefault>
         <recordType>Core_Approval_Header__c.Ariba</recordType>
@@ -37492,18 +37127,8 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Core_Approval_Header__c.Clarity</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
         <recordType>Core_Approval_Header__c.GTES</recordType>
         <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Core_Approval_Header__c.Invoice</recordType>
-        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>
@@ -37513,18 +37138,8 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>Core_Approver_Details__c.Clarity</recordType>
-        <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
         <recordType>Core_Approver_Details__c.GTES</recordType>
         <visible>true</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
-        <recordType>Core_Approver_Details__c.Invoice</recordType>
-        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
