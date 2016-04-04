@@ -14,9 +14,9 @@ private class Oblix_UserPermissionHandlerTest {
         ul3 = testUsers.get('UL3');
         superuser = testUsers.get('superuser');
 
-        System.assertNotEquals(NULL, ul1, "expecting ul1 user to exist!");
-        System.assertNotEquals(NULL, ul2, "expecting ul2 user to exist!");
-        System.assertNotEquals(NULL, ul3, "expecting ul3 user to exist!");
+        System.assertNotEquals(NULL, ul1, 'expecting ul1 user to exist!');
+        System.assertNotEquals(NULL, ul2, 'expecting ul2 user to exist!');
+        System.assertNotEquals(NULL, ul3, 'expecting ul3 user to exist!');
     }
 
 	@isTest static void testabortRelatedApprovals() {
