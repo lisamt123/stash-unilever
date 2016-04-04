@@ -2,15 +2,15 @@
 private class Oblix_SOWCreateController_Test {
 
     private static User ul1;
-    private static User ul2;
-    private static User ul3;
-    private static User superuser;
+    //private static User ul2;
+    //private static User ul3;
+    //private static User superuser;
 
-    private static Marketing_SOW__c sowDove;
-    private static Marketing_SOW__c sowKnorr;
-    private static Marketing_SOW__c sowAmbrosia;
-    private static Marketing_SOW__c sowCiff;
-    private static Marketing_SOW__c sowInvalidBrandCatComb;
+    //private static Marketing_SOW__c sowDove;
+    //private static Marketing_SOW__c sowKnorr;
+    //private static Marketing_SOW__c sowAmbrosia;
+    //private static Marketing_SOW__c sowCiff;
+    //private static Marketing_SOW__c sowInvalidBrandCatComb;
 
     private static MDO_CategoryBrands__c cbDovePC;
     private static MDO_CategoryBrands__c cbKnorrOF;
@@ -40,9 +40,9 @@ private class Oblix_SOWCreateController_Test {
 
         Map<String, User> testUsers = Oblix_TestUtils.createTestUsers();
         ul1 = testUsers.get('UL1');
-        ul2 = testUsers.get('UL2');
-        ul3 = testUsers.get('UL3');
-        superuser = testUsers.get('superuser');
+        //ul2 = testUsers.get('UL2');
+        //ul3 = testUsers.get('UL3');
+        //superuser = testUsers.get('superuser');
     }
 	
 	@isTest static void testCheckUserHasPermissionToSOW() {

@@ -1,8 +1,8 @@
 @isTest
 private class Oblix_SWOPredirectController_Test {
 
-    private static User ul1;
-    private static User ul2;
+    //private static User ul1;
+    //private static User ul2;
     private static User ul3;
     private static User superuser;
 
@@ -10,8 +10,8 @@ private class Oblix_SWOPredirectController_Test {
     private static void initTestUsers(){
 
         Map<String, User> testUsers = Oblix_TestUtils.createTestUsers();
-        ul1 = testUsers.get('UL1');
-        ul2 = testUsers.get('UL2');
+        //ul1 = testUsers.get('UL1');
+        //ul2 = testUsers.get('UL2');
         ul3 = testUsers.get('UL3');
         superuser = testUsers.get('superuser');
     }
