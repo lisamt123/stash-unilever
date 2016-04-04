@@ -2548,39 +2548,11 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     </fields>
     <label>PWORF</label>
     <listViews>
-        <fullName>CAP_ULPM_CPA_PWORF</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
-        <language>en_US</language>
-        <queue>CAP_ULPM</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CAP_VDM_Queue_CPA_PWORF</fullName>
+        <fullName>All_PWORF</fullName>
         <columns>NAME</columns>
-        <columns>txta_Acceptance_Criteria__c</columns>
-        <columns>Analyse_sessions_expected__c</columns>
-        <columns>txta_Application_infrastructure__c</columns>
-        <columns>pkl_Status__c</columns>
-        <filterScope>Queue</filterScope>
-        <label>VDM</label>
+        <filterScope>Everything</filterScope>
+        <label>All PWORF</label>
         <language>en_US</language>
-        <queue>CAP_VDM_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CPA_SMT_CPA_PWORF</fullName>
-        <filterScope>Queue</filterScope>
-        <label>SMT</label>
-        <language>en_US</language>
-        <queue>CPA_SMT</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
     </listViews>
     <nameField>
         <label>PWORF Name</label>

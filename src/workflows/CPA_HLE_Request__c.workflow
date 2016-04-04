@@ -188,15 +188,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>CAP_HLE_Request_Recall</fullName>
-        <field>pkl_Status__c</field>
-        <literalValue>Withhold</literalValue>
-        <name>CAP HLE Request Recall</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>CAP_HLE_Request_returned</fullName>
         <field>pkl_Status__c</field>
         <literalValue>Returned</literalValue>

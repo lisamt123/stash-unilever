@@ -1165,7 +1165,7 @@ null)))</formula>
     </fields>
     <label>HLE Request</label>
     <listViews>
-        <fullName>All</fullName>
+        <fullName>All_HLE_Request</fullName>
         <columns>NAME</columns>
         <columns>pkl_Status__c</columns>
         <columns>dt_Planned_start_date__c</columns>
@@ -1173,38 +1173,8 @@ null)))</formula>
         <columns>txt_Project_type__c</columns>
         <columns>OWNER.ALIAS</columns>
         <filterScope>Everything</filterScope>
-        <label>All</label>
+        <label>All HLE Request</label>
         <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>CAP_ULPM_CPA_HLE_Request</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
-        <language>en_US</language>
-        <queue>CAP_ULPM</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CAP_VDM_Queue_CPA_HLE_Request</fullName>
-        <filterScope>Queue</filterScope>
-        <label>VDM</label>
-        <language>en_US</language>
-        <queue>CAP_VDM_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CPA_SMT_CPA_HLE_Request</fullName>
-        <filterScope>Queue</filterScope>
-        <label>SMT</label>
-        <language>en_US</language>
-        <queue>CPA_SMT</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
     </listViews>
     <nameField>
         <label>HLE Name</label>

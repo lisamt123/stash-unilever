@@ -1569,58 +1569,12 @@
     </fields>
     <label>CR</label>
     <listViews>
-        <fullName>All</fullName>
+        <fullName>All_CR</fullName>
         <columns>NAME</columns>
         <columns>pkl_Status__c</columns>
-        <columns>txta_PWORFDelta_Title__c</columns>
         <filterScope>Everything</filterScope>
-        <label>All</label>
+        <label>All CR</label>
         <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>CAP_ULPM_CR</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
-        <language>en_US</language>
-        <queue>CAP_ULPM</queue>
-        <sharedTo>
-            <group>CAP_ULPM_group</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CAP_VDM_Queue_CPA_CR</fullName>
-        <columns>NAME</columns>
-        <columns>pkl_Status__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>OWNER.FIRST_NAME</columns>
-        <filterScope>Queue</filterScope>
-        <label>VDM</label>
-        <language>en_US</language>
-        <queue>CAP_VDM_Queue</queue>
-        <sharedTo>
-            <group>CAP_VDM_Group</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CPA_SMT_CPA_CR</fullName>
-        <filterScope>Queue</filterScope>
-        <label>SMT</label>
-        <language>en_US</language>
-        <queue>CPA_SMT</queue>
-        <sharedTo>
-            <group>CAP_SMT_Group</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CR_Created_by_me</fullName>
-        <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
-        <label>CR&apos;s Created by me</label>
-        <language>en_US</language>
-        <sharedTo>
-            <group>CAP_SMT_Group</group>
-            <group>CAP_VDM_Group</group>
-        </sharedTo>
     </listViews>
     <nameField>
         <displayFormat>CR-{00000}</displayFormat>

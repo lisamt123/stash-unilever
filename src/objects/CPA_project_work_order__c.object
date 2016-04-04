@@ -2488,94 +2488,14 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
     </fields>
     <label>PWO</label>
     <listViews>
-        <fullName>All</fullName>
+        <fullName>All_PWO</fullName>
         <columns>NAME</columns>
         <columns>pkl_Status__c</columns>
         <columns>fml_Clarity_ID__c</columns>
         <columns>CREATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
-        <label>All</label>
+        <label>All PWO</label>
         <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>CAP_ULPM_CPA_project_work_order</fullName>
-        <columns>NAME</columns>
-        <columns>pkl_Status__c</columns>
-        <columns>CNF_Status__c</columns>
-        <columns>TNF_Status__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>OWNER.FIRST_NAME</columns>
-        <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
-        <language>en_US</language>
-        <queue>CAP_ULPM</queue>
-        <sharedTo>
-            <group>CAP_ULPM_group</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CAP_VDM_Queue_CPA_project_work_order</fullName>
-        <columns>NAME</columns>
-        <columns>pkl_Status__c</columns>
-        <columns>CNF_Status__c</columns>
-        <columns>TNF_Status__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>OWNER.FIRST_NAME</columns>
-        <filterScope>Queue</filterScope>
-        <label>VDM</label>
-        <language>en_US</language>
-        <queue>CAP_VDM_Queue</queue>
-        <sharedTo>
-            <group>CAP_ULPM_group</group>
-            <group>CAP_VDM_Group</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CPA_SMT_CPA_project_work_order</fullName>
-        <columns>NAME</columns>
-        <columns>pkl_Status__c</columns>
-        <columns>CNF_Status__c</columns>
-        <columns>TNF_Status__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>OWNER.FIRST_NAME</columns>
-        <filterScope>Queue</filterScope>
-        <label>SMT</label>
-        <language>en_US</language>
-        <queue>CPA_SMT</queue>
-        <sharedTo>
-            <group>CAP_SMT_Group</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CPA_SMT_PWO</fullName>
-        <columns>NAME</columns>
-        <columns>fml_Clarity_ID__c</columns>
-        <columns>pkl_Status__c</columns>
-        <columns>OWNER.FIRST_NAME</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Queue</filterScope>
-        <label>SMT</label>
-        <language>en_US</language>
-        <queue>CPA_SMT</queue>
-        <sharedTo>
-            <group>CAP_SMT_Group</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>PWO_Created_by_me</fullName>
-        <columns>NAME</columns>
-        <columns>pkl_Status__c</columns>
-        <columns>fml_Clarity_ID__c</columns>
-        <columns>CNF_Status__c</columns>
-        <columns>TNF_Status__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Mine</filterScope>
-        <label>PWO Created by me</label>
-        <language>en_US</language>
-        <sharedTo>
-            <group>CAP_SMT_Group</group>
-            <group>CAP_VDM_Group</group>
-        </sharedTo>
     </listViews>
     <nameField>
         <displayFormat>PWO-{00000}</displayFormat>
