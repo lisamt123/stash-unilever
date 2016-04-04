@@ -39,11 +39,8 @@ public class WU_CreateCapacityDetails
         
         if(!warehouseCapacityDetailListToInsert.isEmpty())
             {
-                system.debug(':::::::::warehouseCapacityDetailListToInsert'+warehouseCapacityDetailListToInsert);
                 WU_SetWarehousePOCHandler.isInserted = true;
                 insert warehouseCapacityDetailListToInsert;
-                system.debug(':::::::::warehouseCapacityDetailListToInsert'+warehouseCapacityDetailListToInsert);
-                system.debug(':::::::::warehouseCapacityDetailListToInsert'+warehouseCapacityDetailListToInsert[0].Id);
             }
     }
    
@@ -94,7 +91,6 @@ public class WU_CreateCapacityDetails
                                         {
                                             system.debug('In Try.....');
                                             masterMap.get(masterWH.Id).addError(Label.WU_DuplicateCapacityDetailWhileInsert);
-                                            break;
                                         }
                                         catch(exception ex)
                                         {
@@ -106,7 +102,7 @@ public class WU_CreateCapacityDetails
                                 else if(wcd.WU_Utilization_Start_Date__c.Month()==masterWH.WU_FromDate__c.Month() 
                                     && wcd.WU_Utilization_Start_Date__c.Year()==masterWH.WU_FromDate__c.Year()
                                     && masterWH.WU_Utilization_Type__c!=wcd.WU_Utilization_Type__c
-                                    //&& wcd.Is_In_Current_Month__c
+                                    && wcd.Is_In_Current_Month__c
                                     && masterMap!=null && masterMap.containsKey(masterWH.Id)
                                   )
                                   {

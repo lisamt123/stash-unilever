@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -3243,7 +3243,6 @@ WU_Average_Current_Month_Utilization__c/ IF(WU_Count_Avg_Current_Month_Utilizati
         <customTabListAdditionalFields>WU_SAPName_s__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>WU_Region__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>WU_MCO__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields xsi:nil="true"/>
         <customTabListAdditionalFields>WU_CityName__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>WU_Logistics_ServiceProvider__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>WU_Building_ContractType__c</customTabListAdditionalFields>
