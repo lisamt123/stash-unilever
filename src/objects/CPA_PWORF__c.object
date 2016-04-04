@@ -351,7 +351,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <fullName>How_many_man_days_do_you_think_you_requi__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Please note it may take few days from submission of this request to getting of PWO signed.</inlineHelpText>
-        <label>Man Days required for W@R*</label>
+        <label>Man Days required for W@R</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1044,7 +1044,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <fullName>dat_PWORF_Answered_Date__c</fullName>
         <externalId>false</externalId>
-        <label>PWORF Answered Date</label>
+        <label>Actual PWO submission Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1301,6 +1301,29 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>lkp_Project_requestor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of requestor</description>
+        <externalId>false</externalId>
+        <label>Project requestor</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.IsActive</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>PWORF</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>lkp_Unilever_Finance_BP_Contact__c</fullName>
@@ -2524,6 +2547,41 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <type>TextArea</type>
     </fields>
     <label>PWORF</label>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_PWORF</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA ULPM</label>
+        <language>en_US</language>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_PWORF</fullName>
+        <columns>NAME</columns>
+        <columns>txta_Acceptance_Criteria__c</columns>
+        <columns>Analyse_sessions_expected__c</columns>
+        <columns>txta_Application_infrastructure__c</columns>
+        <columns>pkl_Status__c</columns>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <language>en_US</language>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_PWORF</fullName>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <language>en_US</language>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>PWORF Name</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -3961,6 +4019,13 @@ Is required</description>
         <errorConditionFormula>AND((OR((ISPICKVAL(   pkl_Status__c , &apos;Submitted&apos;)),(ISPICKVAL(   pkl_Status__c , &apos;Resubmitted&apos;)))), RecordType.DeveloperName =&apos;All&apos;,(ISPICKVAL(  pkl_Project_Scale__c , &apos;Select&apos;)))</errorConditionFormula>
         <errorDisplayField>pkl_Project_Scale__c</errorDisplayField>
         <errorMessage>You must Select a Project Type</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Project_requestor</fullName>
+        <active>false</active>
+        <description>Mandatory</description>
+        <errorConditionFormula>AND(( ISBLANK(lkp_Project_requestor__c) ),OR(ISPICKVAL(pkl_Status__c , &apos;Submitted&apos;),ISPICKVAL(pkl_Status__c , &apos;Resubmitted&apos;)))</errorConditionFormula>
+        <errorMessage>Mandatory</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Region</fullName>

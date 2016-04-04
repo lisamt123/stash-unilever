@@ -242,7 +242,8 @@ public with sharing class CPA_testContractClass {
         objCR.num_Total_charge_of_CR__c = 1;
         objCR.txta_Unilever_Project_Name__c = CPA_ConstantsForContractingAppClasses.TEST;
         objCR.txt_Unilever_Reference__c = CPA_ConstantsForContractingAppClasses.TEST;
-         objCR.num_Effort_Cost__c=1;
+         objCR.num_Effort_Cost__c=100;
+        objCR.num_Total_Resource_Cost_CR__c=1;
         objCR.num_Expense_charges_of_CR__c =1;
        // objCR.pec_Variance__c=1;
         objCR.num_Varied_Target_Blend_Rate__c =1;

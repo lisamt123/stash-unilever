@@ -1176,6 +1176,36 @@ null)))</formula>
         <label>All</label>
         <language>en_US</language>
     </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_HLE_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA ULPM</label>
+        <language>en_US</language>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_HLE_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>VDM</label>
+        <language>en_US</language>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_HLE_Request</fullName>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <language>en_US</language>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>HLE Name</label>
         <trackHistory>false</trackHistory>

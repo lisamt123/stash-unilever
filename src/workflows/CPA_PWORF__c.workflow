@@ -342,7 +342,7 @@
         <lookupValue>CAP_ULPM</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>CAP Owner Update to ULPM</name>
-        <notifyAssignee>true</notifyAssignee>
+        <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
@@ -352,7 +352,7 @@
         <lookupValue>CAP_VDM_Queue</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>CAP Owner Update to VDM</name>
-        <notifyAssignee>true</notifyAssignee>
+        <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
@@ -506,7 +506,7 @@
         <lookupValue>CAP_VDM_Queue</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>CPA Owner Update to VDM</name>
-        <notifyAssignee>true</notifyAssignee>
+        <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
@@ -1109,32 +1109,6 @@ null)),null)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
-        <fullName>CPA PWORF Accepted</fullName>
-        <actions>
-            <name>CPA_PWORF_Accepted_Email_Alert</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Accepted_Action_field_Udate</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_Date_of_Acceptance_field_Update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Accepted_Date_Update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>CPA_PWORF__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Accepted</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>CPA PWORF Accepted Updated</fullName>
         <actions>
             <name>CPA_PWORF_Accepted_Email_Alert</name>
@@ -1210,53 +1184,6 @@ null)),null)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
-        <fullName>CPA PWORF Cloned%2FCreated</fullName>
-        <actions>
-            <name>CPA_Date_of_Request_field_update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Return_SLA2_date_null</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Submitted_date_null</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_return_SLA1_date_null</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_Reason_for_Cancellation</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_Resubmitted_Date_update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_Status_Saved</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_isCancelled_Pworf_update_false</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_uncheck_IScancel</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>CPA_PWORF__c.pkl_Status__c</field>
-            <operation>notEqual</operation>
-            <value>Saved</value>
-        </criteriaItems>
-        <description>When PWORF is Cloned/Created, STATUS is set to Saved.</description>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
         <fullName>CPA PWORF Cloned%2FCreated Updated New</fullName>
         <actions>
             <name>CPA_Date_of_Request_field_update</name>
@@ -1303,94 +1230,6 @@ null)),null)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
-        <fullName>CPA PWORF Cloned%2FCreated updated</fullName>
-        <actions>
-            <name>CPA_Date_of_Request_field_update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_Date_of_Submission_update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Submitted_date_null</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_Reason_for_Cancellation</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_Resubmitted_Date_update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_Status_Saved</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_isCancelled_Pworf_update_fales</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_isCancelled_Pworf_update_false</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_uncheck_IScancel</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Saved_Action_field_Udate</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>CPA_PWORF__c.pkl_Status__c</field>
-            <operation>notEqual</operation>
-            <value>Saved</value>
-        </criteriaItems>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>CPA PWORF Resubmitted</fullName>
-        <actions>
-            <name>CPA_PWORF_Re_Submitted_Email_Alert</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Resubmitted_Re_Submitted_date</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Resubmitted_isreturn_false</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Resubmitted_iswithhold_false</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Resubmitted_return_date_null</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Resubmitted_withhold_date_null</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_isresubmitted_true</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>CPA_PWORF__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Resubmitted</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>CPA PWORF Resubmitted Updated</fullName>
         <actions>
             <name>CPA_PWORF_Re_Submitted_Email_Alert</name>
@@ -1425,48 +1264,6 @@ null)),null)</formula>
             <field>CPA_PWORF__c.pkl_Status__c</field>
             <operation>equals</operation>
             <value>Resubmitted</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>CPA PWORF Returned</fullName>
-        <actions>
-            <name>CPA_PWORF_Returned_Email_Alert</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Retur_no_of_SLA1_day_remaining</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Return_Isreturn</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Return_SLA2_date_null</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Returned_Date_Update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_retur_no_of_SLA2_day_remaining</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_return_SLA1_date_null</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Returned_Action_field_Udate</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>CPA_PWORF__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Returned</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -1513,45 +1310,6 @@ null)),null)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>CPA PWORF Status update to Auto Accepted</fullName>
-        <active>false</active>
-        <criteriaItems>
-            <field>CPA_PWORF__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Submitted,Resubmitted</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>CPA_PWORF__c.dat_Expected_SLA1_Date__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-        <workflowTimeTriggers>
-            <actions>
-                <name>CPA_PWORF_Auto_Accepted_Email_Alert</name>
-                <type>Alert</type>
-            </actions>
-            <actions>
-                <name>Auto_Accepted_Action_field_Udate</name>
-                <type>FieldUpdate</type>
-            </actions>
-            <actions>
-                <name>CPA_PWORF_Auto_Accepted_Date_Update</name>
-                <type>FieldUpdate</type>
-            </actions>
-            <actions>
-                <name>CPA_PWORF_isAutoAccepted_true</name>
-                <type>FieldUpdate</type>
-            </actions>
-            <actions>
-                <name>Update_Status</name>
-                <type>FieldUpdate</type>
-            </actions>
-            <offsetFromField>CPA_PWORF__c.dat_Expected_SLA1_Date__c</offsetFromField>
-            <timeLength>0</timeLength>
-            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
-    </rules>
-    <rules>
         <fullName>CPA PWORF Status update to Auto Accepted updated</fullName>
         <active>true</active>
         <criteriaItems>
@@ -1589,49 +1347,6 @@ null)),null)</formula>
             <timeLength>0</timeLength>
             <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
-    </rules>
-    <rules>
-        <fullName>CPA PWORF Withhold</fullName>
-        <actions>
-            <name>CPA_PWORF_Withhold_Email_Alert</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>CAP_PWORF_Withhold_Withhold_Date</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_Return_SLA2_date_null</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_no_of_SLA1_day_remaining</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_no_of_SLA2_day_remaining</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_return_SLA1_date_null</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_PWORF_withhold_isWithhold</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Withhold_Action_field_Udate</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>CPA_PWORF__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Withhold</value>
-        </criteriaItems>
-        <description>This workflow will fire after the status for PWORF will be Withhold update the date fields.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>CPA PWORF Withhold Updated</fullName>
@@ -1699,33 +1414,6 @@ null)),null)</formula>
         <active>true</active>
         <formula>OR((IF( AND(NOT(ISNEW()) , ISCHANGED(  Name  )) , true,false)),(IF( AND(ISNEW() , NOT(ISBLANK(Name  ))) , true,false)))</formula>
         <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>CPA SLA2 BreachCheck</fullName>
-        <active>false</active>
-        <criteriaItems>
-            <field>CPA_PWORF__c.dat_Expected_SLA2_Date__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <criteriaItems>
-            <field>CPA_PWORF__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Accepted,Auto Accepted</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-        <workflowTimeTriggers>
-            <actions>
-                <name>CPA_Breach_Applicable</name>
-                <type>FieldUpdate</type>
-            </actions>
-            <actions>
-                <name>CPA_Penalty_Applicable</name>
-                <type>FieldUpdate</type>
-            </actions>
-            <offsetFromField>CPA_PWORF__c.dat_Expected_SLA2_Date__c</offsetFromField>
-            <timeLength>0</timeLength>
-            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
-        </workflowTimeTriggers>
     </rules>
     <rules>
         <fullName>CPA SLA2 BreachCheck Updated</fullName>

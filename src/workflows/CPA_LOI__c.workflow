@@ -150,6 +150,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_LOI_Accepted</fullName>
@@ -200,6 +201,16 @@
         <operation>Formula</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_LOI_Accepted_recordtype_change</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>LOI_Accepted</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>CPA LOI Accepted  recordtype change</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_LOI_Approval_Submitted_at_ULPM</fullName>
@@ -386,7 +397,7 @@
             <name>CPA_LOI_Accepted_date_update</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>CPA_LOI__c.pkl_Status__c</field>
             <operation>equals</operation>
