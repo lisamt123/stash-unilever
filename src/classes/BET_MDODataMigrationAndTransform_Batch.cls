@@ -65,7 +65,7 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
         List<uw_Bet__c> betsForUpdate = new List<uw_Bet__c>();
         List<uw_Bet__c> betsForErrors = new List<uw_Bet__c>();
         for(uw_Bet__c bet : scope) {
-            try{
+           
                 System.debug('Step 1 : Retriving category group by name : ' +  bet.Category__r.name.toUpperCase('en'));
                 MDO_Category__c categoryGroup = categoryGroups.get(bet.Category__r.name.toUpperCase('en'));
                 System.debug('Step 2 : Retrieved category group : ' + categoryGroup);
@@ -94,10 +94,7 @@ global class BET_MDODataMigrationAndTransform_Batch implements Database.Batchabl
                 } else {
                     betsForErrors.add(bet);
                 }
-            } catch (NullPointerException exc){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_MDODataMigrationAndTransform_Batch','proceedWithDataTransormation',
-                'NullPointerException for bet ' + bet.id + ' ' + exc.getStackTraceString(),exc,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
-            }
+            
         }
         System.debug('Exit proceedWithDataTransormation : ' + betsForUpdate + ', ' + betsForErrors);
         logErrors(betsForErrors);

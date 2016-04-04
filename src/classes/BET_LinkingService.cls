@@ -7,6 +7,7 @@ History
 
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  03-08-2015  Initial
+1.1        blessy.voola@accenture.com 24-Mar-2016    Do not send notification to inactive BET owner
 *************************************************************************************/
 /* Service class uses without sharing due to it is used by external system*/
 public without sharing class BET_LinkingService {
@@ -30,6 +31,9 @@ public without sharing class BET_LinkingService {
 		BET_LinkingServiceValidator.validateParams(betRecords);
 		try{
 			updateBetRecord(betRecords.get(0),project);
+			//Do not send notification if BET owner is inactive
+            User betowner=[select id,isactive from user where id=:betRecords.get(0).ownerid];
+                if(betowner.isactive)
 			BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(betRecords.get(0),project);
 		}catch(Exception e){
 			throw new BET_CustomBETException(Label.BET_SetAsLeadExceptionMessage,e);
@@ -87,6 +91,9 @@ public without sharing class BET_LinkingService {
 				update followRequest;
 			} else {
 				if(followRequest.Is_Lead_Request__c){
+					 //Do not send notification if BET owner is inactive
+                User betowner=[select id,isactive from user where id=:betRecords.get(0).ownerid];
+                if(betowner.isactive)
 					BET_EmailNotificationService.notifyBetOwnerOfLeadProjectFollowRequest(betRecords.get(0),project);
 				}
 			}
@@ -214,6 +221,9 @@ public without sharing class BET_LinkingService {
 				IPM_BETWrapper newProject = BET_LinkingServiceHelper.getOtherFollowingProject(ProjectId,BetId);			
 				if(newProject == null){
 					BET_LinkingServiceHelper.archiveAndUnLeadBet(betRecords.get(0)); //US26
+					//Do not send notification if BET owner is inactive
+                    User owner=[select id,isactive from user where id=:betOwner];
+                if(owner.isactive)
 					BET_EmailNotificationService.notifyBetOwnerOfUnfollow(betRecords.get(0),project); //US22
 				} else {
 					Id oldBetOwner = betRecords.get(0).id;
