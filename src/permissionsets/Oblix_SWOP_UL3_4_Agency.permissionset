@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <classAccesses>
-        <apexClass>AddAssetController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>AddAssetOldController</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>AddAssetPageHelper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>Oblix_AddAssetPageHelper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1388,18 +1376,6 @@
         <object>Oblix_SOW_Projects__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-    <pageAccesses>
-        <apexPage>AddAsset</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>AddAssetClone</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>AddAssetOld</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_CampaignAddAsset</apexPage>
         <enabled>true</enabled>

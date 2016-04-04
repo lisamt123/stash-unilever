@@ -86,10 +86,10 @@
         <template>Oblix_SOW_Email/SOW_returned_to_Marketeer_by_Agency</template>
     </alerts>
     <fieldUpdates>
-        <fullName>Update_SOW_Status_Awaiting_Agency_tbc</fullName>
+        <fullName>Update_SOW_Status_Awaiting_Agency</fullName>
         <field>SOW_Status__c</field>
-        <literalValue>Pending Agency Approval</literalValue>
-        <name>Update SOW Status Awaiting Agency tbc</name>
+        <literalValue>Awaiting Agency Approval</literalValue>
+        <name>Update SOW Status Awaiting Agency</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
