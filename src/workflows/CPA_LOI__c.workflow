@@ -269,7 +269,7 @@
         <lookupValue>CAP_VDM_Queue</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>CPA LOI Owner Update to VDM</name>
-        <notifyAssignee>true</notifyAssignee>
+        <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>

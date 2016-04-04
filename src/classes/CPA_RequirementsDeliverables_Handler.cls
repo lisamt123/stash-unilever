@@ -34,17 +34,17 @@ public with sharing class CPA_RequirementsDeliverables_Handler
      */
     public void bulkBefore()
     { 
-        System.debug('This method meeds to override as its there in interface');
+        System.debug('Need to override this method as present in interface');
     }
     
     public void bulkAfter()
     {
-       System.debug('This method meeds to override as its there in interface');
+       System.debug('Method is present in interface, need to override here');
     }
         
     public void beforeInsert(SObject so)
     {
-        System.debug('This method meeds to override as its there in interface');
+        System.debug('This method is present in interface, hence need to override');
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
@@ -62,12 +62,12 @@ public with sharing class CPA_RequirementsDeliverables_Handler
     
     public void afterInsert(SObject so) 
     {
-        System.debug('This method meeds to override as its there in interface');
+        System.debug('This method present in interface, need to override here');
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        System.debug('This method meeds to override as its there in interface');
+        System.debug('This method present in interface, hence need to override in this class');
     }
     
     /*******************************************************************
@@ -78,7 +78,7 @@ public with sharing class CPA_RequirementsDeliverables_Handler
     ********************************************************************/
     public void afterDelete(SObject so)
     {
-        System.debug('This method is present in interface, hence need to override here');
+        System.debug('Method is present in interface, hence need to override here');
     }
     
     /**

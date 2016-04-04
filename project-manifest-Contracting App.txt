@@ -427,3 +427,6 @@ src/workflows/CPA_project_work_order__c.workflow
 src/workflows/CPA_PWORF__c.workflow
 src/workflows/CPA_Queries__c.workflow
 src/workflows/CPA_Query_comment__c.workflow
+src
+src/homePageLayouts
+src/homePageLayouts/Unilever - Chatter Only HomePage.homePageLayout

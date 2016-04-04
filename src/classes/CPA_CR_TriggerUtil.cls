@@ -445,8 +445,10 @@ public with sharing class CPA_CR_TriggerUtil{
                         objCRTEmp.num_Total_Resource_Efforts_CR__c = objCRTEmp.num_Estimated_Man_days_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Man_days_of_PWO__c;
                         objCRTEmp.num_Effort_Cost__c = objCRTEmp.num_Effort_Cost__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Effort_Cost__c;
                     }else if(objCRTEmp.num_Estimated_Value_of_CR__c !=null){
+                        Decimal intCostResource = 0;
+                        intCostResource = objCRTEmp.num_Effort_Cost__c;
                         objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c ;  
-                        objCRTEmp.num_Effort_Cost__c = objCRTEmp.num_Effort_Cost__c ;
+                        objCRTEmp.num_Effort_Cost__c = intCostResource;
                         objCRTEmp.num_Total_Expenses_of_CR__c = objCRTEmp.num_Expense_charges_of_CR__c;                 
                     }else {
                         objCRTEmp.num_Delta_Efforts__c =0;
