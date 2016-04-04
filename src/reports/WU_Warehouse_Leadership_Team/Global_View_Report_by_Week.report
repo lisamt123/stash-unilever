@@ -15,6 +15,9 @@
     <columns>
         <field>CHILD_NAME</field>
     </columns>
+    <columns>
+        <field>WU_Master_Warehouse__c.WU_Region__c</field>
+    </columns>
     <format>Matrix</format>
     <groupingsAcross>
         <dateGranularity>Week</dateGranularity>
@@ -28,12 +31,12 @@
     </groupingsAcross>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>WU_Master_Warehouse__c.WU_Region__c</field>
+        <field>WU_Master_Warehouse__c.WU_MCO__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>WU_Master_Warehouse__c.WU_MCO__c</field>
+        <field>WU_Master_Warehouse__c.WU_LocationName__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Global View Report by Week</name>

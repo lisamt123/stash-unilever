@@ -20,13 +20,13 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>WU_Master_Warehouse__c.WU_Region__c</groupingColumn>
+            <groupingColumn>WU_Warehouse_Capacity_Detail__c.WU_Utilization_Start_Date__c</groupingColumn>
             <legendPosition>Bottom</legendPosition>
             <report>WU_Warehouse_Leadership_Team/Global_View_Report1</report>
             <showPercentage>false</showPercentage>
             <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>
-            <title>Global view by region</title>
+            <title>Global view by Utilization Start Date</title>
             <useReportChart>false</useReportChart>
         </components>
     </leftSection>
