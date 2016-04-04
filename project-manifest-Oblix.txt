@@ -80,6 +80,8 @@ src/classes/Oblix_OuterPageTemplateController.cls
 src/classes/Oblix_OuterPageTemplateController.cls-meta.xml
 src/classes/Oblix_PermissionHandler.cls
 src/classes/Oblix_PermissionHandler.cls-meta.xml
+src/classes/Oblix_PermissionHandler_Test.cls
+src/classes/Oblix_PermissionHandler_Test.cls-meta.xml
 src/classes/Oblix_ProjectHandler.cls
 src/classes/Oblix_ProjectHandler.cls-meta.xml
 src/classes/Oblix_ProjectHandlerLogic.cls
@@ -108,6 +110,10 @@ src/classes/Oblix_SOWMainController.cls
 src/classes/Oblix_SOWMainController.cls-meta.xml
 src/classes/Oblix_SOWMainController_Test.cls
 src/classes/Oblix_SOWMainController_Test.cls-meta.xml
+src/classes/Oblix_SOWCreateController_Test.cls
+src/classes/Oblix_SOWCreateController_Test.cls-meta.xml
+src/classes/Oblix_SWOPredirectController_Test.cls
+src/classes/Oblix_SWOPredirectController_Test.cls-meta.xml
 src/classes/Oblix_SplitHandler.cls
 src/classes/Oblix_SplitHandler.cls-meta.xml
 src/classes/Oblix_SplitHandlerLogic.cls
