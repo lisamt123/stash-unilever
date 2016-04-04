@@ -1,14 +1,80 @@
-<apex:page standardController="VPM_PurchasingRequests__c">  
+<apex:page standardController="VPM_PurchasingRequests__c" standardStyleSheets="true">  
 <apex:stylesheet value="{!URLFOR($Resource.vpmstyles, 'vpmstyles.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.vpmbootstrapresources, 'vpmbootstrapresources/bootstrap.css')}" />
+<apex:includeScript value="{!URLFOR($Resource.vpmbootstrapresources, 'vpmbootstrapresources/bootstrap.js')}"/>
+<!--apex:includeScript value="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js)}"/>
+<apex:includeScript value="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js)}"/-->
+<apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.2.min.js')}"/>
+<!--apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-ui.js')}"/-->
+     <style>
+    body .bPageBlock label {
+            line-height: 1em !important;
+            font-size: 13px !important;
+         	display: inline;
+    		padding-left: 5px;
+        }
+        body .bPageBlock input[type="text"]{
+        	border-radius: 5px;
+    		border-style: ridge;
+    		height: 2em;
+        	width:70%;
+        }
+        .bPageBlock button{
+        	font-family: sans-serif;
+    		font-size: 11px;
+        }
+        input, button, select, textarea {
+            line-height: 1em !important;
+        }
+        body{
+            font-size: 0.8rem !important;
+            line-height: 1 !important;
+        }
+        h2{
+        	font-size: 0.9rem;
+        }
+</style>
 <script>
-function openPopup(page,param){
-    window.open('https://www.google.co.in','Google','toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=400, height=400')
+var j$ = jQuery.noConflict();
+function openPopup(page){
+    window.open('/apex/VPM_AttachmentSectionPopUp','Table','toolbar=yes, scrollbars=yes, resizable=yes, top=100, left=150, width=1000, height=500')
 }
+    
+    /*   requireCssFile('/resource/vpmjqueryresources/jquery-ui.css');
+ 
+function requireCssFile(filename) {
+    var fileref = document.createElement('link');
+    fileref.setAttribute('rel', 'stylesheet');
+    fileref.setAttribute('type', 'text/css');
+    fileref.setAttribute('href', filename);
+    document.getElementsByTagName('head')[0].appendChild(fileref);
+}
+    var j$modalDialog = j$('<div></div>')
+       .html('Be Apex my friend!')
+       .dialog({
+            autoOpen: false,
+            title: 'My Modal Dialog',
+            resizable: false,
+            width: 400,
+            height: 400,
+            autoResize: true,
+            modal: true,
+            draggable: false
+});
+ 
+    function showPopup(){
+    	j$modalDialog.dialog('open');
+    }
+*/
 </script>
     <apex:relatedList subject="{!VPM_PurchasingRequests__c}" list="CombinedAttachments">
         <apex:facet name="footer">
         <br/>
-        <apex:outputLink value="Guidance for uploading documents" onclick="alert('Hello World');return false;">Guidance for uploading documents</apex:outputLink>
+        <!--apex:outputLink value="Guidance for uploading documents" onclick="openPopup('{!$Page.VPM_AttachmentSectionPopUp}');">Guidance for uploading documents</apex:outputLink-->
+        <apex:form >
+        	<apex:commandButton onclick="openPopup('{!$Page.VPM_AttachmentSectionPopUp}');" value="Guidance for uploading documents"  rerender="none"/>
+            <!--apex:commandButton onclick="showPopup();" value="Guidance for uploading documents"  rerender="none"/-->
+        </apex:form>
         </apex:facet>
     </apex:relatedList>
 </apex:page>

@@ -1751,6 +1751,10 @@
         <apexPage>VPM_AttachmentSection</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
+    <pageAccesses>
+        <apexPage>VPM_AttachmentSectionPopUp</apexPage>
+        <enabled>false</enabled>
+    </pageAccesses>
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>VPM_PurchasingRequests__c.VPM_PurReq</recordType>

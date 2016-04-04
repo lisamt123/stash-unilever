@@ -1,12 +1,25 @@
 <apex:page standardController="VPM_PurchasingRequests__c">  
     <apex:includeScript value="/soap/ajax/15.0/connection.js"/>
+    <apex:includeScript value="{!$Resource.vpmjqueryresources}"/>
     <!--apex:stylesheet value="{!URLFOR($Resource.VPMstyle)}"/-->
     <apex:stylesheet value="{!URLFOR($Resource.vpmstyles, 'vpmstyles.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.vpmbootstrapresources, 'vpmbootstrapresources/bootstrap.css')}" />
     <style>
-        label {
+        body .bPageBlock label {
             line-height: 1em !important;
-            font-size: 13px !important;;
+            font-size: 13px !important;
+         	display: inline;
+    		padding-left: 5px;
+        }
+        body .bPageBlock input[type="text"]{
+        	border-radius: 5px;
+    		border-style: ridge;
+    		height: 2em;
+        	width:70%;
+        }
+        .bPageBlock button{
+        	font-family: sans-serif;
+    		font-size: 11px;
         }
         input, button, select, textarea {
             line-height: 1em !important;
@@ -18,9 +31,20 @@
         h2{
         	font-size: 0.9rem;
         }
+        body .bPageBlock .btn-primary{
+       		color: #fff !important;
+   	 		background-color: #0275d8 !important;
+    		border-color: #0275d8 !important;
+        	background: !important;
+        	background-image : none !important;
+        	padding: 8px !important;
+        }
+        .FlowPageBlockBtns{
+        	text-align: center !important;
+        }
     </style>
     <script type = "text/javascript">
-    window.onload=function() {
+    window.onload=function() {            
         var criteria1 = "{!VPM_PurchasingRequests__c.VPM_Status__c}"; 
         // alert({!$ObjectType.VPM_PurchasingRequests__c.accessible})
         
@@ -43,27 +67,22 @@
         else
             alert("Input non-empty values in the fields");
     }
+    
+    $(document).ready(function(){
+        $('input[type="button"],input[type="submit"],button').addClass("btn-primary");
+        $('tr>td.pbTitle').remove();	
+    });
     </script>
    
- 
-    <flow:interview name="VPM_PurchasingRequestAdvancedForm" finishLocation="/{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}" >    
+ <flow:interview name="VPM_PurchasingRequestAdvancedForm" finishLocation="/{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}" >    
         <apex:param name="VPM_PurchasingRequestID" value="{!VPM_PurchasingRequests__c.Id}"/>    
     </flow:interview>
+
+    <apex:relatedList subject="{!VPM_PurchasingRequests__c}" list="CombinedAttachments" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}">
+    <apex:facet name="footer">
+        <apex:outputLink value="Guidance for uploading documents" onclick="alert('Hello World');return false;">Guidance for uploading documents</apex:outputLink>
+    </apex:facet>
+    </apex:relatedList>
     
     <apex:detail subject="{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c == 'FLS Review'}" showChatter="true"/>
-    <apex:pageBlock >
-        <apex:form > 
-            <apex:commandButton value="Show values" onclick="showValuesFunc()"/>   
-        </apex:form>  
-    </apex:pageBlock> 
-    <apex:pageBlock rendered="{!$ObjectType.VPM_PurchasingRequests__c.accessible}">
-        <p>
-            This text will display if you can see the Purchasing Request object.
-        </p>
-    </apex:pageBlock>
-    <apex:pageBlock rendered="NOT({!$ObjectType.VPM_PurchasingRequests__c.accessible})">
-        <p>
-            Sorry, but you cannot see the data because you do not have access to the Purchasing Request object.
-        </p>
-    </apex:pageBlock>
 </apex:page>

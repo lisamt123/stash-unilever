@@ -4916,6 +4916,48 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>VPM_ReworkFromFinance</fullName>
+        <columns>NAME</columns>
+        <columns>VPM_VendorName__c</columns>
+        <columns>VPM_Status__c</columns>
+        <columns>VPM_PurchasingCountry__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>VPM_Status__c</field>
+            <operation>equals</operation>
+            <value>Finance Requested Re-Work</value>
+        </filters>
+        <label>Rework from Finance</label>
+        <language>en_US</language>
+        <queue>VPM_FLS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>VPM_ReworkFromProcurement</fullName>
+        <columns>NAME</columns>
+        <columns>VPM_PurchasingCountry__c</columns>
+        <columns>VPM_VendorName__c</columns>
+        <columns>VPM_Status__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>VPM_Status__c</field>
+            <operation>equals</operation>
+            <value>Procurement Requested Re-Work</value>
+        </filters>
+        <label>Rework from Procurement</label>
+        <language>en_US</language>
+        <queue>VPM_FLS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>PuReq-{000000000}</displayFormat>
         <label>Purchasing Request ID</label>
@@ -13282,48 +13324,95 @@ navigateToUrl(&apos;flow/VPM_PurchasingRequestAdvancedForm?VPM_PurchasingRequest
 { 
 var pur = new sforce.SObject(&quot;VPM_PurchasingRequests__c&quot;); 
 pur.id=&quot;{!VPM_PurchasingRequests__c.Id}&quot;; 
-var currentstatus=&quot;{!VPM_PurchasingRequests__c.VPM_Status__c}&quot;;
+var currentstatus=&quot;{!VPM_PurchasingRequests__c.VPM_Status__c}&quot;; 
 var Rework=&quot;{!VPM_PurchasingRequests__c.VPM_Rework__c}&quot;; 
-alert(Rework);
+
 if(currentstatus.indexOf(&apos;Draft&apos;) &gt;= 0 ) 
 { 
 pur.VPM_BusinessRequestorSubmitted__c=&apos;Yes&apos;; 
+
 result = sforce.connection.update([pur]); 
 window.location.reload(); 
-}
-if (currentstatus.indexOf(&apos;FLS Requested Re-Work&apos;) &gt;=0 &amp;&amp;  Rework==&apos;Yes&apos;)
+} 
+if (currentstatus.indexOf(&apos;FLS Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
 { 
-pur.VPM_BusinessRequestorSubmitted__c=&apos;Yes&apos;; 
-alert(pur.VPM_BusinessRequestorSubmitted__c);
+
+pur.VPM_Status__c= &apos;FLS Review&apos;;
+
+var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;FLS&apos; Limit 1&quot;); 
+                                if (result[&apos;size&apos;] == 1){ 
+                                                var queue_records = result[&apos;records&apos;]; 
+                                                
+                                                pur.OwnerId=queue_records[&apos;QueueId&apos;];
+                                } 
 result = sforce.connection.update([pur]); 
-window.location.reload();
-}
-if (currentstatus.indexOf(&apos;Procurement Requested Re-Work&apos;) &gt;=0 &amp;&amp;  Rework==&apos;Yes&apos;)
+
+window.location.reload(); 
+} 
+if (currentstatus.indexOf(&apos;Procurement Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
 { 
-pur.VPM_ProcurementSubmitted__c=&apos;Yes&apos;; 
-result = sforce.connection.update([pur]); 
-window.location.reload();
-}
 
-if (currentstatus.indexOf(&apos;Finance Requested Re-Work&apos;) &gt;=0 &amp;&amp;  Rework==&apos;Yes&apos;)
+
+var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;Procurement&apos; Limit 1&quot;); 
+                                if (result[&apos;size&apos;] == 1){ 
+                                                var queue_records = result[&apos;records&apos;]; 
+                                                pur.VPM_Status__c = &apos;Approval Pending&apos;;
+                                                pur.OwnerId=queue_records[&apos;QueueId&apos;];
+                                }
+result = sforce.connection.update([pur]); 
+window.location.reload(); 
+} 
+
+if (currentstatus.indexOf(&apos;Finance Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
 { 
-pur.VPM_FinanceSubmitted__c=&apos;Yes&apos;; 
+
+
+var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;Finance&apos; Limit 1&quot;); 
+                                if (result[&apos;size&apos;] == 1){ 
+                                                var queue_records = result[&apos;records&apos;]; 
+                                                pur.VPM_Status__c = &apos;Approval Pending&apos;;
+                                                pur.OwnerId=queue_records[&apos;QueueId&apos;];
+                                } 
 result = sforce.connection.update([pur]); 
-window.location.reload();
-}
+window.location.reload(); 
+} 
 
-if (currentstatus.indexOf(&apos;FLS Review&apos;)&gt;=0)
-{
+if (currentstatus.indexOf(&apos;FLS Review&apos;)&gt;=0) 
+{ 
 
-var result = sforce.connection.query(&quot;Select  QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;FLS&apos; Limit 1&quot;); 
+var result = sforce.connection.query(&quot;Select QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;FLS&apos; Limit 1&quot;); 
 if (result[&apos;size&apos;] == 1){ 
-                var queue_records = result[&apos;records&apos;]; 
-                pur.OwnerId=queue_records[&apos;QueueId&apos;];
-        result = sforce.connection.update([pur]); 
-        window.location.reload(); 
-}
+var queue_records = result[&apos;records&apos;]; 
+pur.OwnerId=queue_records[&apos;QueueId&apos;]; 
+result = sforce.connection.update([pur]); 
+window.location.reload(); 
+} 
 } 
 }</url>
+    </webLinks>
+    <webLinks>
+        <fullName>VPM_Helpforuploadingdocuments</fullName>
+        <availability>online</availability>
+        <description>Help for uploading documents</description>
+        <displayType>link</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Help for uploading documents</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/connection.js&quot;)}
+
+function insertScript(){
+        var box = new SimpleDialog(&quot;hersh&quot;+Math.random(), false); 
+          parent.box = box; 
+          box.setTitle(&quot;Create new Order&quot;); 
+          box.createDialog(); 
+          box.setWidth(350); 
+          box.setContentInnerHTML(&quot;&lt;apex:page standardController=&quot;VPM_PurchasingRequests__c&quot;&gt;&lt;h1&gt;Congratulations&lt;/h1&gt;This is your new Page&lt;button class=&apos;btn&apos;       onclick=&apos;window.parent.box.hide(); return false;&apos;&gt;Cancel&lt;/button&gt;&lt;/apex:page&gt;&quot;); 
+          box.setupDefaultButtons(); 
+          box.show();
+}
+
+insertScript();</url>
     </webLinks>
     <webLinks>
         <fullName>VPM_ReworkToBusinessRequestor</fullName>
@@ -13339,7 +13428,10 @@ if (result[&apos;size&apos;] == 1){
                 var pur = new sforce.SObject(&quot;VPM_PurchasingRequests__c&quot;); 
                 pur.id=&quot;{!VPM_PurchasingRequests__c.Id}&quot;; 
                 var currentstatus=&quot;{!VPM_PurchasingRequests__c.VPM_Status__c}&quot;; 
-				var LastGroup = &quot;{!VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c}&quot;; 
+				var LastGroup = &quot;{!VPM_PurchasingRequests__c.VPM_RequestLastWithGroup__c}&quot;;
+				var FinanceApproveRequired =&quot;{!VPM_PurchasingRequests__c.VPM_FinanceApprovalRequired__c}&quot;;
+				var ProcurementApproveRequired = &quot;{!VPM_PurchasingRequests__c.VPM_ProcurementApprovalRequired__c}&quot;; 
+var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById}&quot;;
 				 
 				if (LastGroup == &apos;Business Requestor&apos;  &amp;&amp; currentstatus==&apos;FLS Review&apos;)
                 {
@@ -13353,24 +13445,85 @@ if (result[&apos;size&apos;] == 1){
                                 
                 }
 				
-                else if (LastGroup == &apos;FLS&apos; &amp;&amp; currentstatus ==&apos;Approval Pending&apos;)
+				else if (LastGroup == &apos;Business Requestor&apos; &amp;&amp; currentstatus ==&apos;Approval Pending&apos; &amp;&amp; ProcurementApproveRequired ==true &amp;&amp; FinanceApproveRequired==false)
+                {
+                             
+                                                pur.VPM_Status__c = &apos;Procurement Requested Re-Work&apos;;
+                                                pur.OwnerId=CreatedBy;
+												pur.VPM_Rework__c=&apos;Yes&apos;; 
+                                                result = sforce.connection.update([pur]); 
+                                                window.location.reload(); 
+                                
+                }
+				
+				else if (LastGroup == &apos;Business Requestor&apos; &amp;&amp; currentstatus ==&apos;Approval Pending&apos; &amp;&amp; FinanceApproveRequired ==true &amp;&amp; ProcurementApproveRequired==false )
+                {
+                                                
+                                                pur.VPM_Status__c = &apos;Finance Requested Re-Work&apos;;
+                                                pur.OwnerId=CreatedBy;
+												pur.VPM_Rework__c=&apos;Yes&apos;; 
+												result = sforce.connection.update([pur]); 
+                                                window.location.reload(); 
+                                
+                }
+				else if (LastGroup == &apos;Business Requestor&apos; &amp;&amp; currentstatus ==&apos;Approval Pending&apos; &amp;&amp; FinanceApproveRequired ==true &amp;&amp; ProcurementApproveRequired==true )
+                {
+                                                
+                                                pur.VPM_Status__c = &apos;Procurement Requested Re-Work&apos;;
+                                                pur.OwnerId=CreatedBy;
+												pur.VPM_Rework__c=&apos;Yes&apos;; 
+												result = sforce.connection.update([pur]); 
+                                                window.location.reload(); 
+                                
+                }
+				
+                else if (LastGroup == &apos;FLS&apos; &amp;&amp; currentstatus ==&apos;Approval Pending&apos; &amp;&amp; FinanceApproveRequired ==true &amp;&amp; ProcurementApproveRequired ==false)
                 {
                                 var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;FLS&apos; Limit 1&quot;); 
                                 if (result[&apos;size&apos;] == 1){ 
                                                 var queue_records = result[&apos;records&apos;]; 
-                                                pur.VPM_Status__c = &apos;FLS Requested Re-Work&apos;;
+                                                pur.VPM_Status__c = &apos;Finance Requested Re-Work&apos;;
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
 												pur.VPM_Rework__c=&apos;Yes&apos;; 
                                                                 result = sforce.connection.update([pur]); 
                                                                 window.location.reload(); 
                                 }
                 }
+				
+				
+                else if (LastGroup == &apos;FLS&apos; &amp;&amp; currentstatus ==&apos;Approval Pending&apos; &amp;&amp; ProcurementApproveRequired == true  &amp;&amp; FinanceApproveRequired ==false)
+                {
+                                var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;FLS&apos; Limit 1&quot;); 
+                                if (result[&apos;size&apos;] == 1){ 
+                                                var queue_records = result[&apos;records&apos;]; 
+                                                pur.VPM_Status__c = &apos;Procurement Requested Re-Work&apos;;
+                                                pur.OwnerId=queue_records[&apos;QueueId&apos;];
+												pur.VPM_Rework__c=&apos;Yes&apos;; 
+                                                                result = sforce.connection.update([pur]); 
+                                                                window.location.reload(); 
+                                }
+                }
+				
+				else if (LastGroup == &apos;FLS&apos; &amp;&amp; currentstatus ==&apos;Approval Pending&apos; &amp;&amp; ProcurementApproveRequired == true  &amp;&amp; FinanceApproveRequired ==true)
+                {
+                                var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;FLS&apos; Limit 1&quot;); 
+                                if (result[&apos;size&apos;] == 1){ 
+                                                var queue_records = result[&apos;records&apos;]; 
+                                                pur.VPM_Status__c = &apos;Procurement Requested Re-Work&apos;;
+                                                pur.OwnerId=queue_records[&apos;QueueId&apos;];
+												pur.VPM_Rework__c=&apos;Yes&apos;; 
+                                                                result = sforce.connection.update([pur]); 
+                                                                window.location.reload(); 
+																}
+                  
+				}
+				
                 else if (LastGroup == &apos;Procurement&apos; &amp;&amp; currentstatus == &apos;Approval Pending&apos;)
                 {
                                 var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;Procurement&apos; Limit 1&quot;); 
                                 if (result[&apos;size&apos;] == 1){ 
                                                 var queue_records = result[&apos;records&apos;]; 
-                                                pur.VPM_Status__c = &apos;Procurement Requested Re-Work&apos;;
+                                                pur.VPM_Status__c = &apos;Finance Requested Re-Work&apos;;
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
 												pur.VPM_Rework__c=&apos;Yes&apos;; 
                                                                 result = sforce.connection.update([pur]); 
@@ -13382,7 +13535,7 @@ if (result[&apos;size&apos;] == 1){
                                 var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name= &apos;Finance&apos; Limit 1&quot;); 
                                 if (result[&apos;size&apos;] == 1){ 
                                                 var queue_records = result[&apos;records&apos;]; 
-                                                pur.VPM_Status__c = &apos;Finance Requested Re-Work&apos;;
+                                                pur.VPM_Status__c = &apos; Requested Re-Work&apos;;
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
 												pur.VPM_Rework__c=&apos;Yes&apos;; 
                                                                 result = sforce.connection.update([pur]); 
