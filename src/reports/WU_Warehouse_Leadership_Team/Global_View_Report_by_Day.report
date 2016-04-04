@@ -15,6 +15,9 @@
     <columns>
         <field>CHILD_NAME</field>
     </columns>
+    <columns>
+        <field>WU_Master_Warehouse__c.WU_Region__c</field>
+    </columns>
     <format>Matrix</format>
     <groupingsAcross>
         <dateGranularity>Day</dateGranularity>
@@ -28,12 +31,12 @@
     </groupingsAcross>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>WU_Master_Warehouse__c.WU_Region__c</field>
+        <field>WU_Master_Warehouse__c.WU_MCO__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>WU_Master_Warehouse__c.WU_MCO__c</field>
+        <field>WU_Master_Warehouse__c.WU_LocationName__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Global View Report by Day</name>
@@ -45,7 +48,7 @@
     <scope>organization</scope>
     <showDetails>false</showDetails>
     <timeFrameFilter>
-        <dateColumn>WU_Master_Warehouse__c.WU_ToDate__c</dateColumn>
+        <dateColumn>WU_Master_Warehouse__c.WU_FromDate__c</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>

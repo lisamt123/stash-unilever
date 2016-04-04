@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Report xmlns="http://soap.sforce.com/2006/04/metadata">
     <aggregates>
-        <calculatedFormula>WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c:SUM</calculatedFormula>
+        <calculatedFormula>WU_Master_Warehouse__c.WU_Committed_Max_PalletStorage__c:MAX</calculatedFormula>
         <datatype>number</datatype>
         <developerName>FORMULA1</developerName>
         <isActive>true</isActive>
         <isCrossBlock>false</isCrossBlock>
-        <masterLabel>Sum of Committed Max Pallet</masterLabel>
+        <masterLabel>Committed Max Pallet</masterLabel>
         <scale>2</scale>
     </aggregates>
     <aggregates>
@@ -23,6 +23,9 @@
     </columns>
     <columns>
         <field>CHILD_NAME</field>
+    </columns>
+    <columns>
+        <field>WU_Master_Warehouse__c.WU_LocationName__c</field>
     </columns>
     <format>Summary</format>
     <groupingsDown>
