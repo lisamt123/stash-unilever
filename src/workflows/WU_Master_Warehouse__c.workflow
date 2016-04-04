@@ -13,7 +13,6 @@
     </alerts>
     <alerts>
         <fullName>Approve_Committed_PalletStorage</fullName>
-        <ccEmails>vaishali.thite@cognizant.com</ccEmails>
         <description>Approve Committed Warehouse Utilization</description>
         <protected>false</protected>
         <recipients>
@@ -55,7 +54,6 @@
     </alerts>
     <alerts>
         <fullName>Warehouse_capacity_below_committed_capacity</fullName>
-        <ccEmails>vaishali.thite@cognizant.com</ccEmails>
         <description>Warehouse capacity below committed capacity!</description>
         <protected>false</protected>
         <recipients>
@@ -163,8 +161,9 @@
         </actions>
         <active>true</active>
         <description>whenever Warehouse capacity will exceed 80%: system shall send notification to Warehouse Excellence Operations user.</description>
-        <formula>AND(WU_Committed_Max_PalletStorage__c &gt;0, 
+        <formula>AND(WU_Committed_Max_PalletStorage__c &gt;0,
+ ISPICKVAL(WU_Building_ContractType__c,&apos;Unilever&apos;),   
 (WU_Current_Utilization__c  /  WU_Committed_Max_PalletStorage__c)*100 &gt;= 80)</formula>
-        <triggerType>onAllChanges</triggerType>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

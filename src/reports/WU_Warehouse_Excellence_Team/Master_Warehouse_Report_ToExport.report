@@ -33,6 +33,15 @@
     <columns>
         <field>WU_Master_Warehouse__c.WU_Procurement_Manager__c</field>
     </columns>
+    <columns>
+        <field>WU_Master_Warehouse__c.WU_Average_Pallet_Utilization_Day__c</field>
+    </columns>
+    <columns>
+        <field>WU_Master_Warehouse__c.WU_Average_Pallet_Utilization_Week__c</field>
+    </columns>
+    <columns>
+        <field>WU_Master_Warehouse__c.WU_Average_Pallet_Utilization_Month__c</field>
+    </columns>
     <format>Tabular</format>
     <name>Master Warehouse Report</name>
     <params>
