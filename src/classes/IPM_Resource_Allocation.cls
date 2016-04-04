@@ -393,7 +393,6 @@ public with sharing class IPM_Resource_Allocation {
         {
                     uniqueUsers.put(u.IPM_User__c,u.id);
                 }
-            'filterTeamMember',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null); 
         }
             if(lstuser.isEmpty() && plDPLUserList.isEmpty())
         {
@@ -426,6 +425,7 @@ public with sharing class IPM_Resource_Allocation {
         {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
+            'filterTeamMember',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null); 
         }
     }
     /*************************************************************************************************************
