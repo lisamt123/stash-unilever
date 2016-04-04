@@ -13,12 +13,13 @@ trigger WU_SetWarehousePOC on WU_Master_Warehouse__c(Before Insert, before updat
         if (Trigger.isUpdate && Trigger.isBefore){
             WU_SetWarehousePOCHandler.onBeforeUpdate(trigger.oldMap, trigger.new, trigger.newMap);
         }
-        if(Trigger.isUpdate && Trigger.isAfter && !WU_UpdateMasterWarehouseHandler.isUpdateFromChild)
+        if(Trigger.isUpdate && Trigger.isAfter && !WU_warehousUtility.isTrggerExecuted)
         {
             //if(!WU_UpdateMasterWarehouseHandler.isUpdateFromChild)
             //{
             	WU_CreateCapacityDetails duplicateCheck = new WU_CreateCapacityDetails();
             	duplicateCheck.checkInsertRecordOrDisplayError(trigger.new, trigger.newMap,trigger.oldMap); 
+            	WU_warehousUtility.isTrggerExecuted = TRUE;
             //}
          }
    
