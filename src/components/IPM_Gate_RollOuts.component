@@ -8,14 +8,13 @@
 -->
 <apex:component controller="IPM_Gate_RollOuts_Controller" allowDML="false">
 <apex:attribute name="projId" description="projectId" type="String" assignTo="{!proId}"/>
-<style>
-
-
-</style>
-    <table class="ipmTable table gaterollouts table-bordered">
-        <thead>
+<apex:attribute name="span" description="projectSpan" type="String" />
+<!--This is check for rollout wrapper list should not be blank or 0 -->
+<apex:outputPanel rendered="{!AND(regionalRollOutWrapperList!=null,regionalRollOutWrapperList.size>0)}">
+<table class="ipmTable table gaterollouts table-bordered">
+       <thead>
             <tr>
-                <apex:repeat var="header" value="{!headers}"  rendered="{!AND(regionalRollOutWrapperList!=null,regionalRollOutWrapperList.size>0)}">
+                <apex:repeat var="header" value="{!headers}" >
                    <th width="20%">{!header}</th>
                 </apex:repeat>  
             </tr>
@@ -29,7 +28,10 @@
                             <apex:repeat value="{!regionalRollOutWrap.localRollOutWrapList}" var="localRollOutWrap" id="localRollRep">
                                 <tr>                      
                                     <td class="gateRolloutPadding" width="20%"><span class="gateRCountry">{!localRollOutWrap.associatedCountryString}</span></td>
-                                    <td class="gateRolloutPadding" width="20%"><apex:outputField value="{!localRollOutWrap.localRollOut.IPM_Status__c}"/></td>
+                                    <td class="gateRolloutPadding" width="20%">
+                                      <apex:outputField value="{!localRollOutWrap.localRollOut.IPM_Status__c}"  rendered="{!span = 'Global'}"/>
+                                      <apex:outputField value="{!localRollOutWrap.localRollOut.IPM_Regional_Rollout_Status__c}"  rendered="{!span = 'Regional'}"/>
+                                     </td>
                                     <td class="gateRolloutPadding" width="20%"><apex:outputField value="{!localRollOutWrap.localRollOut.Target_Launch_Date__c}"/></td>
                                     <td class="gateRolloutPadding gateRname" width="20%"><apex:outputField value="{!localRollOutWrap.localRollOut.Name}"/></td>                      
                                 </tr>
@@ -38,6 +40,7 @@
                     </td>
                 </tr>
             </apex:repeat>
-        </tbody>
+        </tbody> 
     </table>
+ </apex:outputPanel>   
 </apex:component>

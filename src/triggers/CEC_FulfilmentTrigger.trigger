@@ -19,7 +19,7 @@ Trigger for cec_Fulfilment__c object
 
 
 
-trigger CEC_FulfilmentTrigger on cec_Fulfilment__c (before Insert, before Update) {
+trigger CEC_FulfilmentTrigger on cec_Fulfilment__c (before Insert, before Update, after Insert) {
     
     /* checking is event is AFTER INSERT */
     if(trigger.isBefore && trigger.isInsert){
@@ -36,5 +36,13 @@ trigger CEC_FulfilmentTrigger on cec_Fulfilment__c (before Insert, before Update
         CEC_FulfilmentTriggerHandler fulfilmentHandler = new CEC_FulfilmentTriggerHandler();
         fulfilmentHandler.beforeUpdate(trigger.new,trigger.oldMap);
     }
+    if(trigger.isafter && trigger.isInsert){
+        
+        CEC_FulfilmentTriggerHandler fulfilmentHandler = new CEC_FulfilmentTriggerHandler();
+        fulfilmentHandler.afterInsert(trigger.new); 
+        
+        
+        
+    }    
     
 }

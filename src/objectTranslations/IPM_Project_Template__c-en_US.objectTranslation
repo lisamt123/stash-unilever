@@ -54,5 +54,12 @@
         <label><!-- IPM Template Name --></label>
         <name>IPM_Template_Name__c</name>
     </fields>
+    <layouts>
+        <layout>IPM Project Template Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

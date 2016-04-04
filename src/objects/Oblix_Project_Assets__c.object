@@ -20,9 +20,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <content>Oblix_VF02OverrideAsetNewLookup</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -61,12 +59,18 @@ Changed to Campaign on 26/10/2015</description>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fieldSets>
         <fullName>Oblix_Campaign_Summary</fullName>
         <description>Campaign summary page table</description>
+        <displayedFields>
+            <field>Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <displayedFields>
             <field>Asset_Picklist__c</field>
             <isFieldManaged>false</isFieldManaged>
@@ -118,7 +122,7 @@ Changed to Campaign on 26/10/2015</description>
         <fullName>Additional_Description__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Add further details of the required asset to be produced</inlineHelpText>
-        <label>Additional Description</label>
+        <label>Other Info</label>
         <length>32768</length>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -326,6 +330,11 @@ Changed to Campaign on 26/10/2015</description>
             <picklistValues>
                 <fullName>Narration</fullName>
                 <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OOH</fullName>
+                <controllingFieldValues>Origination</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -710,8 +719,8 @@ Changed to Campaign on 26/10/2015</description>
         <fullName>Calculator_Question__c</fullName>
         <description>For use in Campaign Asset scoring reports only, not shown on UI</description>
         <externalId>false</externalId>
-        <formula>TEXT(Asset_Type__c)&amp;&quot; &quot;&amp; TEXT(Sub_Category__c)</formula>
-        <label>Calculator Question</label>
+        <formula>RecordType.Name&amp;&quot; &quot;&amp; TEXT(Sub_Category__c)</formula>
+        <label>Asset Type/Subcategory</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1160,6 +1169,10 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>OOH</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>OOH Adaptation</fullName>
                 <default>false</default>
             </values>
@@ -1336,6 +1349,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Static Imagery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stimulus Materials - Research requirements</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2365,6 +2382,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Narration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOH</fullName>
                 <default>false</default>
             </values>
             <values>

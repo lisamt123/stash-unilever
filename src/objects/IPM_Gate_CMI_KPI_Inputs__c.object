@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
+    <visibility>Public</visibility>
     <description>Contains KPI&apos;s and Corresponding Inputs</description>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>IPM_Input_Size__c</fullName>
+        <description>Contains number of inputs size of the CMI</description>
         <externalId>false</externalId>
         <label>IPM Input Size</label>
         <precision>18</precision>
@@ -16,6 +18,7 @@
     </fields>
     <fields>
         <fullName>IPM_Inputs__c</fullName>
+        <description>Contains CMI Input Name</description>
         <externalId>false</externalId>
         <label>IPM Inputs</label>
         <length>255</length>
@@ -26,6 +29,7 @@
     </fields>
     <fields>
         <fullName>IPM_KPI__c</fullName>
+        <description>Contains KPI&apos;s for Test</description>
         <externalId>false</externalId>
         <label>IPM KPI</label>
         <length>255</length>
@@ -36,6 +40,7 @@
     </fields>
     <fields>
         <fullName>IPM_Overall_Colour_Score_Method__c</fullName>
+        <description>Contains Overall Color Score Method Type</description>
         <externalId>false</externalId>
         <label>IPM Overall Colour Score Method</label>
         <length>255</length>
@@ -46,6 +51,7 @@
     </fields>
     <fields>
         <fullName>IPM_Overall_Score_Label__c</fullName>
+        <description>Contains Overall Score Label Name</description>
         <externalId>false</externalId>
         <label>IPM Overall Score Label</label>
         <length>255</length>
@@ -56,6 +62,7 @@
     </fields>
     <fields>
         <fullName>IPM_Test__c</fullName>
+        <description>Contains CMI Test Name</description>
         <externalId>false</externalId>
         <label>IPM Test</label>
         <length>255</length>
@@ -65,5 +72,4 @@
         <unique>false</unique>
     </fields>
     <label>IPM Gate CMI KPI Inputs</label>
-    <visibility>Public</visibility>
 </CustomObject>

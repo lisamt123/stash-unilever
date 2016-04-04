@@ -332,10 +332,7 @@
         <apexClass>IPM_FinancialHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_FinancialTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+
     <classAccesses>
         <apexClass>IPM_FinancialValueWrapper</apexClass>
         <enabled>false</enabled>
@@ -764,14 +761,7 @@
         <apexClass>IPM_UserProfileHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
+
     <classAccesses>
         <apexClass>IPM_Utils</apexClass>
         <enabled>false</enabled>
@@ -3640,7 +3630,44 @@
         <field>IPM_Milestone__c.IPM_Type_of_gate__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_Idea__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_Feasibility__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_Capability__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_Market_Ready__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_Market_Deployment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_Post_Launch_Evaluation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	
+	<fieldPermissions>
         <editable>false</editable>
         <field>IPM_Milestone__c.IPM_Violate_Preferred_Date__c</field>
         <readable>true</readable>
@@ -5121,11 +5148,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.EcoDesign_Sync_Eligible_Timestamp__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.EcoDesign_Sync_Error__c</field>
         <readable>false</readable>
@@ -5761,26 +5783,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.Sync_Countries__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.Sync_Members__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.Sync_Project__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.Synced_From_EcoDesign_TimeStamp__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.Upcoming_Milestone_Due_Date__c</field>
         <readable>false</readable>
@@ -5788,11 +5790,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project__c.Update_BET__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.existsAtLeastOneAssmntPerEICountry__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

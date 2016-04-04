@@ -57,10 +57,12 @@ function selectCheckboxScript() {
                     jq(this).prop('checked', true);
                     jq(this).prop('disabled', true);
                     jq(this).next('label').addClass('selected');
+					jq(this).next('label').addClass('disabled');
                 } else {
                     jq(this).prop('checked', false);
                     jq(this).next('label').removeClass('selected');
                     jq(this).prop('disabled', false);
+					jq(this).next('label').removeClass('disabled');
                 }
             });
         }
@@ -74,10 +76,12 @@ function selectCheckboxScript() {
                     jq(this).prop('checked', true);
                     jq(this).prop('disabled', true);
                     jq(this).next('label').addClass('selected');
+					jq(this).next('label').addClass('disabled');
                 } else {
                     jq(this).prop('checked', false);
+					jq(this).prop('disabled', false);
                     jq(this).next('label').removeClass('selected');
-                    jq(this).prop('disabled', false);
+					jq(this).next('label').removeClass('disabled');
                 }
             });
         }
@@ -104,10 +108,14 @@ function selectCheckboxScript() {
         jq(".channelList input:checkbox").each(function() {
             if (selectedValues.indexOf(jq(this).val()) == -1) {
                 jq(this).prop('checked', false);
+				jq(this).prop('disabled', false);
                 jq(this).next('label').removeClass('selected');
+				jq(this).next('label').removeClass('disabled');
             } else {
                 jq(this).prop('checked', true);
+				jq(this).prop('disabled', true);
                 jq(this).next('label').addClass('selected');
+				jq(this).next('label').addClass('disabled');
             }
         });
     });
@@ -138,7 +146,7 @@ function checkboxScript() {
             var val = jq(this).attr('value');
             if (jq.inArray(val, selectedValuesArr1) != -1) {
                 jq(this).prop('checked', true);
-                jq(this).next('label').addClass('selected');
+                jq(this).next('label').addClass('selected');				
             } else {
                 jq(this).prop('checked', false);
                 jq(this).next('label').removeClass('selected');

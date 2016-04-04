@@ -15,7 +15,7 @@
     </fields>
     <fields>
         <help><!-- Add further details of the required asset to be produced --></help>
-        <label><!-- Additional Description --></label>
+        <label><!-- Other Info --></label>
         <name>Additional_Description__c</name>
     </fields>
     <fields>
@@ -29,7 +29,7 @@
     </fields>
     <fields>
         <help><!-- Please select the Asset that most meets the type of Asset required? --></help>
-        <label><!-- Asset Names --></label>
+        <label><!-- Asset Name --></label>
         <name>Asset_Picklist__c</name>
         <picklistValues>
             <masterLabel>Animatics</masterLabel>
@@ -240,6 +240,10 @@
             <translation><!-- Narration --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>OOH</masterLabel>
+            <translation><!-- OOH --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>OOH Adaptation</masterLabel>
             <translation><!-- OOH Adaptation --></translation>
         </picklistValues>
@@ -441,6 +445,14 @@
         <name>Asset_name__c</name>
     </fields>
     <fields>
+        <label><!-- Asset Type/Subcategory --></label>
+        <name>Calculator_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+    </fields>
+    <fields>
         <label><!-- Channels --></label>
         <name>Channels__c</name>
         <picklistValues>
@@ -495,12 +507,16 @@
         <relationshipLabel><!-- SWOP Campaign Assets --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Location --></label>
+        <label><!-- Other Description --></label>
         <name>Location__c</name>
     </fields>
     <fields>
         <label><!-- Oblix Cloned From Parent Asset --></label>
         <name>OblixClonedFromParentAsset__c</name>
+    </fields>
+    <fields>
+        <label><!-- Option Name --></label>
+        <name>Option_Name__c</name>
     </fields>
     <fields>
         <label><!-- Quantity --></label>

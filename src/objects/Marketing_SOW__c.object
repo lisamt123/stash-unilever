@@ -42,7 +42,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <content>Oblix_SWOPredirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -52,6 +54,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -198,6 +201,16 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+        <displayedFields>
+            <field>Unilever_SOW_Approver_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Agency_SOW_Approver_Name__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>Oblix_SOW_Main_Detail</label>
     </fieldSets>
     <fields>
@@ -238,6 +251,58 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Agency_SOW_Approver_Name_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Agency SOW Approver Name 2</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>SWOP2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Agency_SOW_Approver_Name_3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Agency SOW Approver Name 3</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>SWOP3</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Agency_SOW_Approver_Name_4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Agency SOW Approver Name 4</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>SWOP6</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Agency_SOW_Approver_Name_5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Agency SOW Approver Name 5</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>SWOP7</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Agency_SOW_Approver_Name__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The name of the Resource at the Agency concerned who approves the SOW on behave of the agency</description>
@@ -265,6 +330,20 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Submitter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Autofilled when the &apos;send for approval button&apos; is pressed, shows the name of the user that presed the button (will be record owner or a super user)</description>
+        <externalId>false</externalId>
+        <label>Approval Submitter</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>SWOP8</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>BB_or_BD__c</fullName>
@@ -462,10 +541,32 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>OblixTotalAdaptFees__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Adapt Fees</label>
+        <summarizedField>Oblix_SOW_Projects__c.Total_Adapt_Fees__c</summarizedField>
+        <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>OblixTotalCampaignCalculatedTotalFee__c</fullName>
         <externalId>false</externalId>
         <label>shTotal Campaign Fees</label>
         <summarizedField>Oblix_SOW_Projects__c.Total_Fees_for_Project__c</summarizedField>
+        <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>OblixTotalDigitalFees__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Digital Fees</label>
+        <summarizedField>Oblix_SOW_Projects__c.Total_Digital_Fee__c</summarizedField>
         <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
@@ -498,6 +599,17 @@
         <label>Total Non Campaign Fees</label>
         <summarizedField>Marketing_Basics__c.OblixOtherItemFee__c</summarizedField>
         <summaryForeignKey>Marketing_Basics__c.Oblix_SOWMarketing__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>OblixTotalProjectsFees__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Campaign Fees</label>
+        <summarizedField>Oblix_SOW_Projects__c.Total_Fees_for_Project__c</summarizedField>
+        <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
         <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -594,6 +706,16 @@
         <type>Percent</type>
     </fields>
     <fields>
+        <fullName>SOW_Creator_is_Approver__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>SOW Creator is Approver</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>SOW_Status__c</fullName>
         <description>SOW Status - Used in the Approval process</description>
         <externalId>false</externalId>
@@ -608,7 +730,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Awaiting Agency Acceptance</fullName>
+                <fullName>Pending Agency Approval</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -618,6 +740,18 @@
             <picklistValues>
                 <fullName>Draft - with Unilever</fullName>
                 <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Awaiting Agency Approval</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Returned by Approver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Returned by Agency</fullName>
+                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -736,6 +870,58 @@
         <label>Unilever Lead</label>
         <referenceTo>User</referenceTo>
         <relationshipName>Marketing_SOW2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Unilever_SOW_Approver_Name_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Unilever SOW Approver Name 2</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>SWOP</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Unilever_SOW_Approver_Name_3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Unilever SOW Approver Name 3</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>SWOP1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Unilever_SOW_Approver_Name_4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Unilever SOW Approver Name 4</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>SWOP4</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Unilever_SOW_Approver_Name_5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Unilever SOW Approver Name 5</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>SWOP5</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -863,7 +1049,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Awaiting Agency Acceptance</fullName>
+                <fullName>Awaiting Agency Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -877,6 +1063,18 @@
             <values>
                 <fullName>Draft - with Unilever</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Agency Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned by Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned by Approver</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -983,7 +1181,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Awaiting Agency Acceptance</fullName>
+                <fullName>Awaiting Agency Approval</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -997,6 +1195,18 @@
             <values>
                 <fullName>Draft - with Unilever</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Agency Approval</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned by Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned by Approver</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>

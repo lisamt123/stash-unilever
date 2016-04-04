@@ -77,6 +77,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Category_Search__c</fullName>
+        <description>CEC: Stores the L7 Product Category for recommended product search. Accessible to CEC_User permission only.</description>
+        <externalId>false</externalId>
+        <formula>Global_CPG_Code__r.L7_Product_Category__c</formula>
+        <label>Category Search</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Consumer_Product_Descriptor_Local_Lang__c</fullName>
         <externalId>false</externalId>
         <label>Consumer Product Descriptor (Local Lang)</label>
@@ -241,6 +252,17 @@
         <externalId>false</externalId>
         <label>Product Status</label>
         <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Tag__c</fullName>
+        <description>CEC : To store the tag related to the product</description>
+        <externalId>false</externalId>
+        <label>Product Tag</label>
+        <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

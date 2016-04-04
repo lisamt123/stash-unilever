@@ -52,7 +52,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSearch>false</enableSearch>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -372,14 +372,13 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
     </fields>
     <label>IPM User Profile</label>
     <listViews>
-        <fullName>All</fullName>
-        <columns>CREATED_DATE</columns>
+        <fullName>All1</fullName>
         <columns>NAME</columns>
         <columns>IPM_User__c</columns>
         <columns>IPM_User_Role__c</columns>
-        <columns>IPM_User_Function__c</columns>
-        <columns>IPM_User_Category__c</columns>
+        <columns>Unique_User_Company_Card__c</columns>
         <columns>IPM_Company_Card__c</columns>
+        <columns>OBJECT_ID</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>

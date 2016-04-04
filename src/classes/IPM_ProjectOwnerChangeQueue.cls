@@ -89,11 +89,11 @@ public without sharing class IPM_ProjectOwnerChangeQueue implements Queueable
                 }
                 if ([SELECT count() FROM AsyncApexJob WHERE JobType=:IPM_ConstantUtils.IPM_BATCHAPEX AND (Status =:IPM_ConstantUtils.IPM_PROCESSING OR Status =:IPM_ConstantUtils.IPM_PREPARE OR Status = :IPM_ConstantUtils.IPM_QUEUED)] < IPM_ConstantUtils.IPM_BATCHLIMIT)
                 {      
-                    Database.executeBatch(new IPM_ProjectOwnerUpdate_Batch(projidesets));
+                    Database.executeBatch(new IPM_ProjectOwnerUpdate_Batch(projectDetailMap.keyset(),projectsIdsToBeProcessed));
                 } 
                 else 
                 {                     
-                    IPM_ProjectOwnerUpdatescheduler s = new IPM_ProjectOwnerUpdatescheduler(projidesets);  
+                    IPM_ProjectOwnerUpdatescheduler s = new IPM_ProjectOwnerUpdatescheduler(projectDetailMap.keyset(),projectsIdsToBeProcessed);  
                     System.schedule(IPM_ConstantUtils.IPM_JOBSTATED_AT + String.valueOf(Datetime.now()), IPM_ConstantUtils.IPM_NEXT_FIRE_TIME, s); 
                 }
             IPM_ProjectTriggerHandler PThandler = new IPM_ProjectTriggerHandler();      

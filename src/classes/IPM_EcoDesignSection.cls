@@ -79,8 +79,8 @@ public with sharing class IPM_EcoDesignSection {
             countriesList = [Select IPM_Project__c, Country_Name__c, IS_EI_Country__c,CreatedDate,
                            IPM_Regional_Proj_Association_Timestamp__c,IPM_Local_Project_Association_Timestamp__c
                            From IPM_Country__c 
-                           Where IPM_Project__c=:projId OR IPM_Local_Project__c =:projId 
-                                           OR IPM_Regional_Project__c =:projId Order by IS_EI_Country__c desc,
+                           Where (IPM_Project__c=:projId OR IPM_Local_Project__c =:projId 
+                                           OR IPM_Regional_Project__c =:projId) AND isActive__c = true Order by IS_EI_Country__c desc,
                                            Country_Name__c asc LIMIT 10000];     
         }
 
@@ -98,6 +98,25 @@ public with sharing class IPM_EcoDesignSection {
         if(!countriesList.isEmpty()) { 
             countryAssessmentWrapListEICountries = new List<CountryAssessmentWrap>();   
             countryAssessmentWrapListNonEICountries = new List<CountryAssessmentWrap>();    
+            //GKM 1 - Consolidated view of Regional Rollout Environment Impact Assessments in Global Original Project   
+            if((project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE || project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY) && project.IPM_GateKeepingModel__c == GKM1){
+            	for(IPM_Assessment__c assessmentEle : [Select IPM_SKU_Type__c, IPM_New_SKU__c, IPM_Assessment_Water_PCU__c, IPM_Assessment_Waste_PCU__c, IPM_New_SKU_Sourcing__c, 
+	                                                    IPM_Assessment_GHG_PCU__c, IPM_Assessment_Water_PCU_Percentage__c, IPM_Assessment_Waste_PCU_Percentage__c,  
+	                                                    IPM_Assessment_GHG_PCU_Percentage__c, IPM_Global_Category_Average_View_Water__c, IPM_Global_Category_Average_View_Waste__c, 
+	                                                    IPM_Sustainable_Sourcing__c, IPM_Global_Category_Average_View_GHG__c, IPM_Country__r.Country_Name__c, 
+	                                                    IPM_Country__c, IPM_Comparison_SKU__c, IPM_Comparison_Rep_GTU_Water_PCU__c, IPM_Comparison_SKU_Waste__c, 
+	                                                    IPM_Comparison_SKU_Sourcing__c, IPM_Comparison_Rep_GTU_GHG_PCU__c,IPM_Comparison_Rep_GTU_Waste_PCU__c,IPM_Country__r.IS_EI_Country__c,
+	                                                    IPM_Is_Lead_Assessment__c ,IPM_Country_Category_Avg_Waste_PCU__c,IPM_Country_Category_Avg_Water_PCU__c,
+	                                                    IPM_Country_Category_Avg_GHG_PCU__c,Project_Phase__c,IPM_Is_Category_Avg_Based__c,IPM_SKU_Name__c,
+	                                                    IPM_Comparison_Rep_GTU_Name__c,IPM_Project__r.IPMProject_Span__c From IPM_Assessment__c 
+	                                                    Where IPM_Country__c IN:countriesList and Project_Phase__c =:projPhaseForCurrentDoc 
+	                                                    Order by IPM_SKU_Type__c asc LIMIT 50000]) {
+	                if(assessmentEle.IPM_Project__r.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+	                	countryAssessmentMap.get(assessmentEle.IPM_Country__r.Country_Name__c).add(assessmentEle);
+	                }       	
+	            }
+            }
+            else {
             for(IPM_Assessment__c assessmentEle : [Select IPM_SKU_Type__c, IPM_New_SKU__c, IPM_Assessment_Water_PCU__c, IPM_Assessment_Waste_PCU__c, IPM_New_SKU_Sourcing__c, 
                                                     IPM_Assessment_GHG_PCU__c, IPM_Assessment_Water_PCU_Percentage__c, IPM_Assessment_Waste_PCU_Percentage__c,  
                                                     IPM_Assessment_GHG_PCU_Percentage__c, IPM_Global_Category_Average_View_Water__c, IPM_Global_Category_Average_View_Waste__c, 
@@ -115,6 +134,7 @@ public with sharing class IPM_EcoDesignSection {
             	for(IPM_Assessment__c assessmentEle : [Select Id,IPM_SKU_Type__c,IPM_Country__r.Country_Name__c From IPM_Assessment__c 
                                                        Where IPM_Country__c IN:countriesList and Project_Phase__c =:IPM_ConstantUtils.PHASE_IDEAS Order by IPM_SKU_Type__c asc LIMIT 50000]) {
 				    nonEICountryWithIdeasPhase.add(assessmentEle.IPM_Country__r.Country_Name__c);
+		            }
 	            }
             }
         }
@@ -146,8 +166,7 @@ public with sharing class IPM_EcoDesignSection {
                         }
                         countryAssessmentWrapListNonEICountries.add(new CountryAssessmentWrap(countryName,countryAssessmentMap.get(countryName),false,++noOfNonEICountries,hasLeadSKU));
                     }
-					else if(countryAssessmentMap.get(countryName).isEmpty() && project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE && !nonEICountryWithIdeasPhase.isEmpty()) {
-						if( nonEICountryWithIdeasPhase.contains(countryName))
+					else if(countryAssessmentMap.get(countryName).isEmpty() && project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE && !nonEICountryWithIdeasPhase.isEmpty() && nonEICountryWithIdeasPhase.contains(countryName)) {
 						countryAssessmentWrapListNonEICountries.add(new CountryAssessmentWrap(countryName,countryAssessmentMap.get(countryName),true,++noOfNonEICountries,hasLeadSKU));
                     }
                 } 

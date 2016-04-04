@@ -83,8 +83,14 @@
     </fields>
     <fields>
         <fullName>Current_Threshold__c</fullName>
+        <description>CEC :  To hold the current Threshold Value of the Alert Tracker</description>
         <externalId>false</externalId>
         <label>Current Threshold</label>
+        <summaryFilterItems>
+            <field>cec_Alert_Tracker_Item__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </summaryFilterItems>
         <summaryForeignKey>cec_Alert_Tracker_Item__c.Alert_Tracker_Id__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
         <trackTrending>false</trackTrending>
@@ -134,11 +140,11 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Trigger_Email__c</fullName>
+        <fullName>Trigger_Batch__c</fullName>
         <defaultValue>false</defaultValue>
-        <description>CEC: This field will be used in scheduler job to trigger the email alert</description>
+        <description>CEC: This field will be used in scheduler job to trigger the alert actions</description>
         <externalId>false</externalId>
-        <label>Trigger Email</label>
+        <label>Trigger Batch</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -170,6 +176,7 @@
     </listViews>
     <listViews>
         <fullName>PH_alert_tracker_detail</fullName>
+        <columns>Alert_Rule_Id__c</columns>
         <columns>NAME</columns>
         <columns>CREATED_DATE</columns>
         <columns>LAST_UPDATE</columns>
@@ -178,15 +185,35 @@
         <columns>L5_Reason_Code__c</columns>
         <columns>Current_Threshold__c</columns>
         <columns>Alert_Threshold__c</columns>
-        <columns>Alert_Rule_Id__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>LAST_UPDATE</field>
             <operation>equals</operation>
-            <value>4/28/2015 12:00 AM</value>
+            <value>2/25/2016 12:00 AM</value>
         </filters>
         <label>PH - alert tracker detail</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Trigger_Email_Sent_Today</fullName>
+        <columns>NAME</columns>
+        <columns>Alert_Rule_Id__c</columns>
+        <columns>DayCode__c</columns>
+        <columns>Rule_Type__c</columns>
+        <columns>Unique_Id__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>YESTERDAY</value>
+        </filters>
+        <label>Trigger Email Sent Today</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+        </sharedTo>
     </listViews>
     <nameField>
         <displayFormat>TR-{000000}</displayFormat>

@@ -44,6 +44,7 @@ public with sharing class IPM_HomePageController
     private static final Integer DAY_VALUE_Fourteen = 14;
     private static final String PLANNED_STR='The planned ';
     private static final String DATEFORMAT ='dd MMMM yyyy';
+    private static final String GATE_STR= 'gate';
     
     /***************************************************************
 *@Description :Constructor to fetch the details of the Project
@@ -73,7 +74,8 @@ public with sharing class IPM_HomePageController
             
 
         // To check the history of the Project field
-        lstprojecthistory=[SELECT ParentId,Parent.IPM_Project_Name__c,Parent.Name,Parent.IPM_Fast_Track_Project__c FROM IPM_Project__History WHERE Field =: IPM_Utils.IPM_Fast_Track_Project AND CreatedDate >=: System.today()-DAY_VALUE_SEVEN LIMIT 50000];
+        lstprojecthistory=[SELECT ParentId,Parent.IPM_Project_Name__c,Parent.Name,Parent.IPM_Fast_Track_Project__c FROM IPM_Project__History WHERE Field =: IPM_Utils.IPM_Fast_Track_Project AND CreatedDate >=: System.today()-DAY_VALUE_SEVEN and Parent.IPM_Project_Leader__c = : UserInfo.getUserId()
+        LIMIT 50000];
         mapphistory=new Map<Id,IPM_Project__History>();
         for(IPM_Project__History ph:lstprojecthistory){
             if(!mapphistory.containsKey(ph.ParentId)){
@@ -137,7 +139,7 @@ public with sharing class IPM_HomePageController
                                ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
                                }
                           if(DateValue== 0){
-                               alertMessageDueDateToday.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,PLANNED_STR+ipmmiles.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+IPM_ConstantUtils.GATE);
+                               alertMessageDueDateToday.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,PLANNED_STR+ipmmiles.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+GATE_STR);
                                ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
                                }
                       }
@@ -284,19 +286,8 @@ public with sharing class IPM_HomePageController
         String taskcountValue =String.valueOf(taskcount);
         return taskcountValue;
     }
-    // On click on project name , Navigate to its Project Page
-    public PageReference project()
-    {
-        return new PageReference(IPM_Utils.apexipmproject_1);
-    }
     
-    // On click on Boasscard name , Navigate to its boasscard page
     
-    public PageReference bosscard()
-    {
-        isBosscard=true;
-        return new PageReference(IPM_Utils.apexipmbosscard);
-    } 
     
     // Getting  usertype 
     public void getusertype(){

@@ -15,7 +15,17 @@
     <classAccesses>
         <apexClass>UID_StockCoverTriggerHelper_Test</apexClass>
         <enabled>true</enabled>
-    </classAccesses>    
+    </classAccesses>
+
+	<classAccesses>
+        <apexClass>UID_StockProductUtility_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+	<classAccesses>
+        <apexClass>UID_StockProductUtility</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.AccountNumber</field>
@@ -527,6 +537,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>Order.UID_Order_RecordType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>Order.UID_Quarter__c</field>
         <readable>true</readable>
@@ -841,6 +856,14 @@
         <field>UID_Performance__c.UID_Year__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>UID_Performance__c.UID_Order_RecordType_c__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	
+	
     <fieldPermissions>
         <editable>true</editable>
         <field>UID_Stocked_Product_Summary__c.UID_Avail_Quantity__c</field>
@@ -876,6 +899,16 @@
         <field>UID_Stocked_Product_Summary__c.UID_Local_Cost__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>UID_Stocked_Product_Summary__c.UID_Material_Brand__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>UID_Stocked_Product_Summary__c.UID_Material_Category__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>UID_Stocked_Product_Summary__c.UID_Material_Id__c</field>
@@ -904,6 +937,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>UID_Stocked_Product_Summary__c.UID_Out_Quantity__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>UID_Stocked_Product_Summary__c.UID_Product_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -936,6 +974,18 @@
         <field>UID_Stocked_Product_Summary__c.UID_WS_Price__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>UID_Stocked_Product_Summary__c.UID_Stock_Product_Summary_Ranking__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>UID_Stocked_Product_Summary__c.UID_Summarized_Invoice_Value__c</field>
+        <readable>true</readable>
+    </fieldPermissions>    
+    
     <fieldPermissions>
         <editable>true</editable>
         <field>UID_Stocked_Product__c.UID_Distributor__c</field>
@@ -1080,4 +1130,12 @@
         <recordType>Order.UID_Secondary_Sales</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
+	<userPermissions>
+        <enabled>true</enabled>
+        <name>RunReports</name>
+    </userPermissions>
+	<userPermissions>
+        <enabled>true</enabled>
+        <name>ExportReport</name>
+    </userPermissions>
 </PermissionSet>

@@ -22,7 +22,6 @@ public with sharing class IPM_NotifyUsersRoleChanged {
     */
     @InvocableMethod
     public static void notifyIfUserRoleChanged(List<Id> userIdLst) {
-        
         Set<Id> changedUserIdSet = new Set<Id>();
         changedUserIdSet.addAll(userIdLst);
         

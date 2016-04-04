@@ -6,5 +6,9 @@
 @reference 
 */
 trigger IPM_Milestone_Trigger on IPM_Milestone__c (before insert,after insert,before update,after update,before delete,after delete, after undelete) {
-    TriggerFactory.createHandler(IPM_Milestone__c.sObjectType);    
+    /** Checking for the trigger router flag from custom setting   */
+    if(!IPM_MilestoneHelper.SKIP_TRIGGER_EXECUTION ) 
+    { 
+        TriggerFactory.createHandler(IPM_Milestone__c.sObjectType);
+    }    
 }

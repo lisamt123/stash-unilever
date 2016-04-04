@@ -91,7 +91,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         
         if(String.isNotBlank(projectId))
         {
-            string query = IPM_Utils.prepareSOQLQuery('IPM_Project__c' ,false,null)+' where id =:projectId ';
+            string query = IPM_Utils.prepareSOQLQuery('IPM_Project__c' ,false,null,true)+' where id =:projectId ';
             list<IPM_Project__c> projList = Database.query(query);
             projectObj  = projList[0];
         }
@@ -237,7 +237,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         } 
         else 
         {
-            soql += ' ORDER BY ' + currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ' ASC NULLS LAST';
+            soql += ' ORDER BY IPM_Completed__c,IPM_Phase__c,IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c ASC NULLS LAST';
         }
         soql += ' limit 1000'; 
         return soql;  
@@ -276,15 +276,14 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         {
             if(!phaseTaskComp.isEmpty())
             {
-              Boolean isEditable = false;
-              if(String.IsNotBlank(eachTask.IPM_Phase__c))
-              {
-                isEditable = phaseTaskComp.get(eachTask.IPM_Phase__c) ? true :false ;
-              }
-              else{
-                  isEditable = true;
-              }
-              
+            	Boolean isEditable = false;
+            	if(String.IsNotBlank(eachTask.IPM_Phase__c))
+            	{
+            		isEditable = phaseTaskComp.get(eachTask.IPM_Phase__c) ? true :false ;
+            	}
+            	else{
+                	isEditable = true;
+            	}
                 if(eachTask.IPM_Completed__c) {
                     wrapperRecordList.add(new sObjectPaginationWrapper(eachTask, true,isEditable,true));
                 }
@@ -293,7 +292,7 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
                 	wrapperRecordList.add(new sObjectPaginationWrapper(eachTask, false,isEditable,true)); 
                 }
             }
-        }
+         }
     }
     public pageReference refresh() {
         setCon = null;

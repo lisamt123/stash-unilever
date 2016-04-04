@@ -32,10 +32,11 @@
                                <apex:image styleClass="srchImage" value="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="searchProjects();" />
                               
                             </div>
+                            <!--If the attribute 'isEditable' is true, then the option to create a new project will be availbale -->
                             <apex:outputPanel rendered="{!isEditable}">
                             <div class="col-sm-10 newProjectbuttonDiv allProj-rightSide">
-                                <div id="createProject" class="pull-right" data-toggle="modal" data-target="#ipmModal" title="Create Project" value="/apex/IPM_createproject?IsBossCardEditable={!isBossCardEditable}&IsProjectEditable={!isProjectEditable}" data-backdrop="static" data-keyboard="false">
-                                    <a class="ipmButton">
+                                <div id="createProject" class="pull-right" data-toggle="modal" data-target="#ipmModal" title="Create Project" value="{!URLFOR($Page.IPM_CreateProject,null,[IsBossCardEditable = isBossCardEditable, IsProjectEditable = isProjectEditable])}" data-backdrop="static" data-keyboard="false">
+                                    <a class="ipmButton" >
                                         {!$Label.IPM_CREATE_NEW} {!$Label.IPM_ProjectLabel}
                                     </a>
                                 </div>
@@ -347,11 +348,11 @@
                                                         <li>
                                                             <div class='input-group date' id='datetimepickerFromDate' >
                                                                 <div class="tldLable">{!$Label.IPM_From}</div>
-                                                                <apex:inputField value="{!projectForTLD.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldFrom calendar" onfocus="DatePicker.pickDate(true, this , false);"/>                                                                                     
+                                                                <apex:inputField value="{!projectForTLDFrom.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldFrom calendar" onfocus="DatePicker.pickDate(true, this , false);"/>                                                                                     
                                                             </div>
                                                             <div class='input-group date' id='datetimepickerToDate'>
                                                                 <div class="tldLable">{!$Label.IPM_To}</div>
-                                                                <apex:inputField value="{!projectForTLD.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldFrom calendar" onfocus="DatePicker.pickDate(true, this , false);"/>                                                                                     
+                                                                <apex:inputField value="{!projectForTLDTo.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldFrom calendar" onfocus="DatePicker.pickDate(true, this , false);"/>                                                                                     
                                                             </div>
                                                         </li>
                                                     </ul>
@@ -393,6 +394,7 @@
                                     <div class="row">                                           
                                     </div>
                                     <div class="table-responsive">
+                                    <!-- If the condition projects.size > 0 mets, then the list of project will be displayed in the below panel -->
                                     <apex:outputPanel rendered="{!projects.size > 0}">
                                     <table class="ipmTable table table-bordered projectTable"> 
                                      <thead>
@@ -467,41 +469,48 @@
                                             <td>
                                                 <div class="col-sm-12 noPadleft noPadright">
                                                     <div class="col-sm-3 noPadleft noPadright projLogo padTen">
+                                                            <!-- If the field IPM_Bosscard_Logo__c and IPM_Project_Logo__c is null, then the default image will be displayed in the panel -->
                                                             <apex:outputPanel styleClass="ipmImage" rendered="{!If(and (p.IPM_Bosscard__r.IPM_Bosscard_Logo__c==null,p.IPM_Project_Logo__c == Null),true,false)}">
                                                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/upload_img2b.png')}" title="Default Image"/>
                                                             </apex:outputPanel>
+                                                            <!-- If the field IPM_Project_Logo__c is not null, then the image will be displayed in the output field-->
                                                             <apex:outputField rendered="{!(p.IPM_Project_Logo__c!= '')}" value="{!p.IPM_Project_Logo__c}" />    
                                                     </div>
                                                     <div class="col-sm-8 pl4 noPadright padTen">
+                                                        <!--If the condition p.IPM_Bosscard__c is not blank && IPM_Bosscard_Status__c is false, then the link will be displayed to take to Bosscard page-->
                                                         <apex:outputPanel layout="block" styleClass="titleContainer" rendered="{!(p.IPM_Bosscard__c != '' && NOT(p.IPM_Bosscard_Status__c))}">
                                                         <!-- bosscard pending -->
-                                                            <a href="/apex/IPM_Bosscard?id={!p.IPM_Bosscard__c}" class="proTitle">{!p.IPM_Bosscard__r.Name}</a>
+                                                            <a href="{!URLFOR($Page.IPM_Bosscard,null,[id=p.IPM_Bosscard__c])}" class="proTitle">{!p.IPM_Bosscard__r.Name}</a>
                                                         </apex:outputPanel>
+                                                        <!--If the condition p.IPM_Bosscard__c is blank && IPM_IsSaved__c is true, then the link will be displayed to take to Project Overview page-->
                                                         <apex:outputPanel layout="block" styleClass="titleContainer" rendered="{!AND(ISNULL(p.IPM_Bosscard__c),(p.IPM_IsSaved__c))}">
                                                         <!-- project without bosscard & Project Created by click on Submit for Creation-->
-                                                            <a href="/apex/IPM_ProjectOverview?id={!p.id}" class="proTitle">{!p.IPM_Project_Name__c}</a>
+                                                            <a href="{!URLFOR($Page.IPM_ProjectOverview,null,[id=p.id])}" class="proTitle">{!p.IPM_Project_Name__c}</a>
                                                         </apex:outputPanel>
+                                                        <!--If the condition p.IPM_Bosscard__c is blank && IPM_IsSaved__c is false, then the link will be displayed to take to Project Setup wizard page-->
                                                         <apex:outputPanel layout="block" styleClass="titleContainer" rendered="{!AND(ISNULL(p.IPM_Bosscard__c),(!p.IPM_IsSaved__c))}">
                                                         <!-- project without bosscard & Project have'nt Created by click on Submit for Creation-->
-                                                            <a href="/apex/IPM_ProjectSetupView?Pid={!p.id}" class="proTitle">{!p.IPM_Project_Name__c}</a>
+                                                            <a href="{!URLFOR($Page.IPM_ProjectSetupView,null,[Pid=p.id])}" class="proTitle">{!p.IPM_Project_Name__c}</a>
                                                         </apex:outputPanel>
+                                                        <!--If the condition p.IPM_Bosscard__c is not blank && IPM_IsSaved__c is true, then the link will be displayed to take to Project Overview page-->
                                                         <apex:outputPanel layout="block" styleClass="titleContainer" rendered="{!(p.IPM_Bosscard__c != '' && p.IPM_Bosscard_Status__c && p.IPM_IsSaved__c)}">
                                                         <!-- project with bosscard is approved && This Project has created by user from Project setup wizard -->
-                                                            <a href="/apex/IPM_ProjectOverview?id={!p.id}" class="proTitle">{!p.IPM_Project_Name__c}</a>
+                                                            <a href="{!URLFOR($Page.IPM_ProjectOverview,null,[id=p.id])}" class="proTitle">{!p.IPM_Project_Name__c}</a>
                                                         </apex:outputPanel>
+                                                        <!--If the condition p.IPM_Bosscard__c is not blank && IPM_IsSaved__c is true, then the link will be displayed to take to Project Overview page-->
                                                         <apex:outputPanel layout="block" styleClass="titleContainer" rendered="{!(p.IPM_Bosscard__c != '' && p.IPM_Bosscard_Status__c && !p.IPM_IsSaved__c)}">
                                                         <!-- project with bosscard is approved & This Project has created by system when bosscard got approved -->
-                                                            <a href="/apex/IPM_ProjectSetupView?Pid={!p.id}" class="proTitle">{!p.IPM_Project_Name__c}</a>
+                                                            <a href="{!URLFOR($Page.IPM_ProjectSetupView,null,[Pid=p.id])}" class="proTitle">{!p.IPM_Project_Name__c}</a>
                                                         </apex:outputPanel>
-                                                        
+                                                        <!--If the IPM_Project_Type__c is Original, then the respective icon will be displayed -->
                                                         <apex:outputPanel layout="block" rendered="{!p.IPM_Project_Type__c='Original'}">
                                                             <span class="orgIcon"></span>
                                                         </apex:outputPanel>
-                                                        
+                                                        <!--If the IPM_Project_Type__c is Rollout, then the respective icon will be displayed -->
                                                         <apex:outputPanel layout="block" rendered="{!p.IPM_Project_Type__c='Rollout'}">
                                                             <span class="rollIcon"></span>
                                                         </apex:outputPanel>
-                                                        
+                                                        <!--If the IPM_Project_Type__c is Operational, then the respective icon will be displayed -->
                                                         <apex:outputPanel layout="block" rendered="{!p.IPM_Project_Type__c='Operational'}">
                                                             <span class="oprtnIcon"></span>
                                                         </apex:outputPanel>
@@ -529,9 +538,10 @@
                                             </td>
                                             <td>
                                            <div class="col-sm-12 noteimg noPadleft noPadright">
+                                                <!--If the condition IPM_Bosscard__c is not blank, then the link will be displayed to Bosscard page -->
                                                <apex:outputPanel rendered="{!p.IPM_Bosscard__c != ''}">
-                                                   <a href="/apex/IPM_Bosscard?id={!p.IPM_Bosscard__c}" class="icoButton document"></a>
-                                                   <a href="/apex/IPM_Bosscard?id={!p.IPM_Bosscard__c}">{!$Label.IPM_View}</a>
+                                                   <a href="{!URLFOR($Page.IPM_Bosscard,null,[id=p.IPM_Bosscard__c])}" class="icoButton document"></a>
+                                                   <a href="{!URLFOR($Page.IPM_Bosscard,null,[id=p.IPM_Bosscard__c])}">{!$Label.IPM_View}</a>
                                                </apex:outputPanel>
                                              </div>
                                             </td>
@@ -539,18 +549,22 @@
                                           <tr class="noBackground">
                                             <td class="noBorder" colspan="7">
                                                 <span class="captions"> {!p.IPM_Brand_Positioning__c} | {!p.IPM_Category_Text__c}</span>
+                                                <!-- If the Condition IPMProject_Span__c is Global && Type not equal to Operational, then the below panel will be displayed-->
                                                 <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft countries" rendered="{! p.IPMProject_Span__c == 'Global' && p.IPM_Project_Type__c != 'Operational'}">
                                                     {!$Label.IPM_RollingOutTo} 
                                                     <apex:variable var="counter" value="{!0}" />
+                                                        <!-- If the condition p.IPM_Countries__r is not Null, Country_Name__c will be displayed by repeat & will get stopped in below rendering condition -->
                                                         <apex:repeat value="{!p.IPM_Countries__r}" var="c" rendered="{!p.IPM_Countries__r != NULL}">
                                                             {!c.Country_Name__c}
                                                             <apex:variable var="counter" value="{!counter+1}" />
                                                             <apex:outPutPanel rendered="{!counter < p.IPM_Countries__r.size && c.Country_Name__c != NULL }">,</apex:outputPanel>
                                                         </apex:repeat>
                                                 </apex:outputPanel>
+                                            <!-- If the Condition IPMProject_Span__c is Regional && Type not equal to Operational, then the below panel will be displayed-->    
                                             <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft countries" rendered="{! p.IPMProject_Span__c == 'Regional' && p.IPM_Project_Type__c != 'Operational'}">
                                                 {!$Label.IPM_RollingOutTo} 
                                                 <apex:variable var="counter1" value="{!0}" />
+                                                    <!-- If the condition p.IPM_Countries__r is not Null, Country_Name__c will be displayed by repeat & will get stopped in below rendering condition -->
                                                     <apex:repeat value="{!p.IPM_Countries1__r}" var="c1" rendered="{!p.IPM_Countries1__r != NULL}">
                                                         {!c1.Country_Name__c}
                                                         <apex:variable var="counter1" value="{!counter1+1}" />
@@ -567,6 +581,7 @@
                                           </tbody>
                                     </table>
                                     </apex:outputPanel>
+                                    <!-- If there is no projects, then the respective message will be displayed  -->
                                     <apex:outputPanel rendered="{!projects.size <= 0}">
                                       {!$Label.IPM_NoRecordsFound}
                                     </apex:outputPanel>
@@ -619,14 +634,14 @@
                        <apex:actionFunction name="toggleSortTLDs" action="{!toggleSortTLDs}" rerender="prjPanel,jsLoad,paginationSec" status="myStatus" />
                     </apex:form>
                     <apex:outputPanel id="jsLoad">
-                        <script>
+                    	<script>
                             var brandList = [];
                         </script>
                         <apex:repeat value="{!masterBrandArr}" var="arrayItem">
                         <script>
                             brandList.push('{!arrayItem}');
                         </script>
-                        </apex:repeat>
+                        </apex:repeat>   
                         <apex:includeScript value="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectSearchComp.js')}"/>
                         <script>    
                            jq("#srchBrand").keypress(function(o){return 13==o.which?(loadProjects(jq("#srchBrand").val()),!1):void 0}),jq(document).ready(function(){jq("#sortProjects").on("click",function(){toggleSortProjects()}),jq("#sortPhases").on("click",function(){toggleSortPhases()}),jq("#sortPLs").on("click",function(){toggleSortPLs()}),jq("#sortGKs").on("click",function(){toggleSortGKs()}),jq("#sortITOs").on("click",function(){toggleSortITOs()}),jq("#sortTLDs").on("click",function(){toggleSortTLDs()})});

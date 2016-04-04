@@ -16,6 +16,7 @@ public with sharing class IPM_FinancialActionStandards {
     public string comments{get; set;}
     public Boolean isComment{get; set;}
     public Decimal numValue{get; set;}
+    public String gateType{get;set;}
     public void setprojectId (ID p){
         projectId = p;
         showFinancialActionStandards(); 
@@ -57,6 +58,7 @@ public with sharing class IPM_FinancialActionStandards {
     public ipmFinancialActionStandardWrapper PaybackWrapper {get; set;} //Payback Wrapper
 
     public static final String CLASS_NAME = IPM_FinancialActionStandards.Class.getName(); //Class Name for Exception Logging
+    @TestVisible private static string UPDATE_ACTION_STANDARDS_STR = 'updateActionStandards';
     @TestVisible private static string COMMENT_INNOVATION = 'Innovation';
     @TestVisible private static string COMMENT_INCREMENTAL = 'Incremental';
     @TestVisible private static string COMMENT_GTO = 'gTO';
@@ -96,18 +98,16 @@ public with sharing class IPM_FinancialActionStandards {
     * @return       NONE
     */
     public void getFieldSuffix(){
-        if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL || (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)) {
+        if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL; 
         }
-
         else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
         }
-
         else {
             fieldSuffix = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
         }
-
+       
     }
 
     /*******************************************************************************************************
@@ -149,8 +149,7 @@ public with sharing class IPM_FinancialActionStandards {
         For(IPM_Financial_Year__c finYear : financial.IPM_Financial_Years__r) {
             mapFinancialYears.put(finYear.External_Id__c, finYear);
         }
-        
-        
+
         String firstFullYearGrossExtId = financialExternalId + '_' + IPM_ConstantUtils.Y1_LABEL + '_' + IPM_ConstantUtils.YEAR_TYPE_INNOVATION + '_' + IPM_ConstantUtils.PL_TYPE_GROSS;
         if (mapFinancialYears.containsKey(firstFullYearGrossExtId)) {
             firstFullYearGross = mapFinancialYears.get(firstFullYearGrossExtId);
@@ -165,7 +164,9 @@ public with sharing class IPM_FinancialActionStandards {
         if ((firstFullYearGross != null) && (firstFullYearIncremental != null)){
             //Generate Wrappers
             printDoc = ApexPages.currentPage().getParameters().get('printDoc');
-            
+            if(String.isBlank(printDoc)){
+                printDoc=gateType;
+            }
             String actionsStandardsFieldSuffix;
             if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) {
                 actionsStandardsFieldSuffix = fieldSuffix;
@@ -198,8 +199,8 @@ public with sharing class IPM_FinancialActionStandards {
                     && (printDoc != IPM_ConstantUtils.CHARTER_GATE)){
     
                 lstGateNames.add(IPM_ConstantUtils.CONTRACT_GATE);
-                if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY) {
-                    processWrapperListGateValues(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL);
+                if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY){
+                    processWrapperListGateValues(fieldSuffix);
                 }
                 else {
                     processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_CONTRACT);
@@ -213,31 +214,14 @@ public with sharing class IPM_FinancialActionStandards {
                     && (printDoc != IPM_ConstantUtils.CONTRACT_GATE)){
     
                 lstGateNames.add(IPM_ConstantUtils.MARKET_READY_GATE);
-                if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY) {
-                    processWrapperListGateValues(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL); 
+                if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY){
+                    processWrapperListGateValues(fieldSuffix);
                 }
                 else {
                     processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_MARKET_READY);
                 }
             }
-    
-            //Market Deployment - Only Process if Project phase is not Ideas,Feasibility,Capability && Gate Not Charter,Contract,Market Ready 
-            if((project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS) 
-                    && (project.IPM_Phase__c != IPM_ConstantUtils.PHASE_FEASIBILITY) 
-                    && (project.IPM_Phase__c != IPM_ConstantUtils.PHASE_CAPABILITY) 
-                    && (printDoc != IPM_ConstantUtils.CHARTER_GATE) 
-                    && (printDoc != IPM_ConstantUtils.CONTRACT_GATE) 
-                    && (printDoc != IPM_ConstantUtils.MARKET_READY_GATE)){
-    
-                lstGateNames.add(IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE);
-                if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY) {
-                    processWrapperListGateValues(IPM_ConstantUtils.PROJECT_SPAN_LOCAL);
-                }
-                else {
-                    processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_MARKET_DEPLOYMENT);
-                }
-            }
-            
+                
             //1 Column (attributes) + 1 column (Action Standards) + 1 column (Comments) + Number of Gates to be made visible
             Integer calcColSpan = IPM_ConstantUtils.CHANNEL_PRIORITY_THREE + lstGateNames.size();
             colSpan = '' + calcColSpan;
@@ -346,8 +330,7 @@ public with sharing class IPM_FinancialActionStandards {
         }
         catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-                    'updateActionStandards',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
-            
+                    UPDATE_ACTION_STANDARDS_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
             if(ApexPages.currentPage() != null){  
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage ) );
             }

@@ -17,8 +17,9 @@
             <apex:outputPanel layout="block" styleClass="cucountryProName">
                 <apex:outputField value="{!secCon.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Name__c}" styleClass="countryProName"/>
             </apex:outputPanel>
-            <apex:outputText value="{!$Label.IPM_NET_EFFECT_ON_THE_NUM_OF_CU}"></apex:outputText>
-            <apex:outputPanel layout="block" styleClass="cuComplexityContent" rendered="{!IF(secCon.IPM_Increased_By__c!=null,true,false)}" >
+            <apex:outputText styleClass="cuConsQuestion" value="{!$Label.IPM_NET_EFFECT_ON_THE_NUM_OF_CU}"></apex:outputText>
+          	<!-- Checking condition for CU complexity increased or not -->
+            <apex:outputPanel layout="block" styleClass="cuConsolidatedContent" rendered="{!IF(secCon.IPM_Increased_By__c!=null,true,false)}" >
                 <apex:outputPanel layout="block" styleClass="cuLeftBlock">
                     <apex:outputField value="{!secCon.IPM_Project_Effect__c}"/>
                 </apex:outputPanel>
@@ -26,7 +27,8 @@
                     <apex:outputField value=" {!secCon.IPM_Increased_By__c}" />
                 </apex:outputPanel>
             </apex:outputPanel>
-            <apex:outputPanel layout="block" rendered="{!IF(secCon.IPM_Decreased_By__c!=null,true,false)}" >
+           <!-- Checking condition for CU complexity decreased or not -->
+            <apex:outputPanel layout="block" styleClass="cuConsolidatedContent" rendered="{!IF(secCon.IPM_Decreased_By__c!=null,true,false)}" >
                 <apex:outputPanel layout="block" styleClass="cuLeftBlock">
                     <apex:outputField value="{!secCon.IPM_Project_Effect__c} "/>
                 </apex:outputPanel>
@@ -34,12 +36,19 @@
                     <apex:outputField value=" {!secCon.IPM_Decreased_By__c}"/>
                 </apex:outputPanel>
             </apex:outputPanel>
-            <apex:outputPanel layout="block" title="{!$Label.IPM_FUNCTIONAL_SUMMARY}" styleClass="cucountryProName" rendered="{!IF(!isGateDoc,true,false)}" >          
-                {!$Label.IPM_FUNCTIONAL_SUMMARY}  
-                <apex:outputPanel layout="block" styleClass="cuConsolidatedImage"> 
-                    <apex:outputField value="{!secCon.IPM_Project_Document_Section__r.IPM_PDP_Document_Summary__c}"/>
-                </apex:outputPanel>  
-            </apex:outputPanel>   
+            <!-- Checking condition for CU complexity no effect -->
+             
+            
+            
+            <apex:outputPanel layout="block" styleClass="cuConsolidatedContent" rendered="{!IF(AND(secCon.IPM_Increased_By__c==null,secCon.IPM_Decreased_By__c==null),true,false)}" >
+                <apex:outputPanel layout="block" styleClass="cuConsolidatedAnswer">
+                    <apex:outputText value="{!$Label.IPM_NO_EFFECT} "/>
+                </apex:outputPanel>
+                
+            </apex:outputPanel>
+            
+            
+              
        </apex:repeat>
 </apex:outputPanel>
 </apex:component>

@@ -17,6 +17,10 @@
         <name>Brand__c</name>
     </fields>
     <fields>
+        <label><!-- Category Search --></label>
+        <name>Category_Search__c</name>
+    </fields>
+    <fields>
         <label><!-- Consumer Product Descriptor (Local Lang) --></label>
         <name>Consumer_Product_Descriptor_Local_Lang__c</name>
     </fields>
@@ -84,6 +88,10 @@
     <fields>
         <label><!-- Product Status --></label>
         <name>Product_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Tag --></label>
+        <name>Product_Tag__c</name>
     </fields>
     <fields>
         <label><!-- Variant / Flavour --></label>

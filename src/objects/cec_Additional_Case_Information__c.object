@@ -1160,6 +1160,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>ChatKey__c</fullName>
+        <description>To store chatkey for live chat transcripts. Used to link live chat surveys to cases</description>
+        <externalId>false</externalId>
+        <label>ChatKey</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Close_Case_2__c</fullName>
         <externalId>false</externalId>
         <label>Our response to your issue was addressed</label>

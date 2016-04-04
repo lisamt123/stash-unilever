@@ -9,8 +9,7 @@
 
 public with sharing class IPM_ProjectDocSecContentTriggerHandler {
 	
-	public static String CLASS_NAME = IPM_ProjectDocumentSectionContentHandler.class.getName();		
-	    
+	public static String CLASS_NAME = IPM_ProjectDocumentSectionContentHandler.class.getName();		    
     /********************************************************************************
     **@Description: Trigger context of BulkBefore Update
     **@param1 - list of IPM_Project_Document_Section_Content__c object records

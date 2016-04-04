@@ -236,6 +236,15 @@
         </filters>
         <label>All Market</label>
     </listViews>
+    <listViews>
+        <fullName>CP_Event_Approvers_Queue_cp_Planner</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CP Event Approvers</label>
+        <queue>CP_Event_Approvers_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>Planner Name</label>
         <trackHistory>true</trackHistory>

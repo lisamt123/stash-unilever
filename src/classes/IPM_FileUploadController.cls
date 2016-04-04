@@ -70,7 +70,8 @@ public with sharing class IPM_FileUploadController {
                     SAVEDOC_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
             }
             finally {          
-                docAttachment.body = null;       
+                docAttachment.body = null;   
+                myfiles.body = null;    
                 docAttachment= new Attachment();        
             }        
         } 

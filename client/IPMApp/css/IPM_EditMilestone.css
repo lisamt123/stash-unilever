@@ -21,6 +21,16 @@
     border-radius: 3px;
     border: 1px #a8a8a8 solid;
 }
+.firstBox{
+	width:13%;
+    float: left;
+	height: 20px; 
+}
+.wid32P 
+{ 
+   width:32%; 
+}
+
 .pull-right{float:right;}
 .fa-calendar:before {
     margin-left: -41px;
@@ -110,7 +120,7 @@ select:disabled {
     width: 12.8%;
 }
 .datePicker {
-    margin-left: -12.5%;
+
 }
 .noPadding {
 	padding:0;

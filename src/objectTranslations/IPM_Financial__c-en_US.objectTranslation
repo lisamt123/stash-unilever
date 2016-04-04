@@ -258,9 +258,37 @@
         <name>IPM_Country_Feedback__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Financial Postfix --></label>
+        <name>IPM_Financial_Postfix__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional</masterLabel>
+            <translation><!-- Regional --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM_Inoplan_Fin_External_Id --></label>
+        <name>IPM_Inoplan_Fin_External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key Financial --></label>
+        <name>IPM_Key_Financial__c</name>
+    </fields>
+    <fields>
         <label><!-- Regional Rollout --></label>
         <name>IPM_Project_Rollout__c</name>
         <relationshipLabel><!-- IPM Financials --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Type --></label>
+        <name>IPM_Project_Type__c</name>
     </fields>
     <fields>
         <label><!-- IRR Charter --></label>
@@ -329,6 +357,10 @@
     <fields>
         <label><!-- Incremental Y1 Turnover Regional --></label>
         <name>Incremental_Y1_Turnover_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is BC Confirmed Capability --></label>
+        <name>Is_BC_Confirmed_Capability__c</name>
     </fields>
     <fields>
         <label><!-- Last Saved By (Global) --></label>
@@ -592,6 +624,10 @@
             <translation><!-- Total &apos;000 Units --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Total 000 Units</masterLabel>
+            <translation><!-- Total 000 Units --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Total Tons</masterLabel>
             <translation><!-- Total Tons --></translation>
         </picklistValues>
@@ -602,6 +638,10 @@
         <picklistValues>
             <masterLabel>Total &apos;000 Units</masterLabel>
             <translation><!-- Total &apos;000 Units --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Total 000 Units</masterLabel>
+            <translation><!-- Total 000 Units --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Total Tons</masterLabel>
@@ -622,6 +662,10 @@
         <picklistValues>
             <masterLabel>Total &apos;000 Units</masterLabel>
             <translation><!-- Total &apos;000 Units --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Total 000 Units</masterLabel>
+            <translation><!-- Total 000 Units --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Total Tons</masterLabel>
@@ -675,6 +719,10 @@
     <fields>
         <label><!-- Year 3 iTO Regional --></label>
         <name>Year_3_iTO_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- isActive --></label>
+        <name>isActive__c</name>
     </fields>
     <fields>
         <label><!-- isGateSubmissionDue --></label>

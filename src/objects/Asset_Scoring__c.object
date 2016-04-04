@@ -56,7 +56,42 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Asset_Option_Description__c</fullName>
+        <description>Description of each option for a given asset</description>
+        <externalId>false</externalId>
+        <label>Asset Option Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Asset_Option__c</fullName>
+        <description>Asset option number</description>
+        <externalId>false</externalId>
+        <label>Asset Option</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Asset_name__c</fullName>
+        <externalId>false</externalId>
+        <label>Asset name</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
@@ -95,7 +130,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Cut downs and Tags</fullName>
+                <fullName>Cut Downs and Tags</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -139,11 +174,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Experiential - Promotional Ideas Origination</fullName>
+                <fullName>Experiential - Promotional ideas ORIGINATION</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Experiential - Promotional Ideas Adaptation</fullName>
+                <fullName>Experiential - Promotional ideas ADAPTATION</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -296,7 +331,7 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Cut downs and Tags</fullName>
+                <fullName>Cut Downs and Tags</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -312,11 +347,11 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Experiential - Promotional Ideas Adaptation</fullName>
+                <fullName>Experiential - Promotional ideas ADAPTATION</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Experiential - Promotional Ideas Origination</fullName>
+                <fullName>Experiential - Promotional ideas ORIGINATION</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -367,5 +402,5 @@
     <searchLayouts>
         <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>

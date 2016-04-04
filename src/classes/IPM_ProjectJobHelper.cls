@@ -190,7 +190,8 @@ public without sharing class IPM_ProjectJobHelper
                         }
                     }
                     /* Local Project Calculation ends */
-
+					
+					
                     /* Regional Project Calculation Begins */         
                     if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL )
                     {
@@ -429,7 +430,20 @@ public without sharing class IPM_ProjectJobHelper
         
         if(!processingProjectMap.isEmpty())
         {
-            update processingProjectMap.values();
+        	List<IPM_Project__c> projectUpdateList = new List<IPM_Project__c>();
+        	for(IPM_Project__c incomingProjectDetail : processingProjectMap.values())
+        	{
+				IPM_Project__c tempIncomingProjectDetail = new IPM_Project__c(IPM_Phase__c = incomingProjectDetail.IPM_Phase__c,IPM_Complexity__c = incomingProjectDetail.IPM_Complexity__c,
+				IPM_Child_Complexity__c = incomingProjectDetail.IPM_Child_Complexity__c,IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Temporary_Phase__c,
+				IPM_Current_Document_Status__c = incomingProjectDetail.IPM_Current_Document_Status__c,
+				IPM_ProjectJobType__c = incomingProjectDetail.IPM_ProjectJobType__c,IPM_PhaseChangeQueueJobId__c = incomingProjectDetail.IPM_PhaseChangeQueueJobId__c,
+				IPM_Project_Job_Status__c = incomingProjectDetail.IPM_Project_Job_Status__c);
+        		projectUpdateList.add(incomingProjectDetail);
+        	}
+        	if(!projectUpdateList.isEmpty())
+        	{	
+            	update projectUpdateList;
+        	}
         }
     } 
     
@@ -450,7 +464,7 @@ public without sharing class IPM_ProjectJobHelper
         Map<Id,Map<Id,IPM_Project_Rollout__c>> projectSpecificLocalRolloutMap = new Map<Id,Map<Id,IPM_Project_Rollout__c>>();
         
         /*Get Rollouts Starts. Need to verify whether Project has 'Change  Project On Status Change','create REgional/Local Projects' enabled. */
-        String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
+        String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
         String eligibleRolloutValue = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
         String rolloutWhereClause = ' WHERE (IPM_Project__c IN: incomingProjectIds OR Regional_Project__c IN: incomingProjectIds ) AND IPM_Project_Job_Status__c =:eligibleRolloutValue'; 
         
@@ -584,7 +598,7 @@ public without sharing class IPM_ProjectJobHelper
     */
     public static Map<Id,IPM_Project__c> populateProjectDetails(Set<Id> incomingProjectIds)
     {
-        String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null);
+        String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
         String ProjectDetailWhereClause = 'Id in :incomingProjectIds';
         
         projectDetailSelectQuery = ProjectDetailSelectQuery  + ' WHERE ' + ProjectDetailWhereClause  + IPM_Utils.LIMIT_STRING;
@@ -599,6 +613,8 @@ public without sharing class IPM_ProjectJobHelper
     public static void markProjectsAsComplete(QueueableContext qContext)
     {
         Map<Id,IPM_Project__c> successProjectMap = new Map<Id,IPM_Project__c>();
+        Map<Id,IPM_Project_Rollout__c> successRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
+        
         Map<Id, Decimal> mapProjectIdWithFilledInPerc = new Map<Id, Decimal>();
         mapProjectIdWithFilledInPerc = prepareProjectWithFilledInPercentMap(processingProjectMap);
         for(IPM_Project__c project : processingProjectMap.values())
@@ -616,21 +632,23 @@ public without sharing class IPM_ProjectJobHelper
         
         for(IPM_Project_Rollout__c rollout : processingRolloutMap.values())
         {
-            rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
+        	IPM_Project_Rollout__c tempRollout = new IPM_Project_Rollout__c(Id=rollout.Id);
+            tempRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
             if(qContext!=null)
             {
-                rollout.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
+                tempRollout.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
             }
+            successRolloutMap.put(tempRollout.Id,tempRollout);
         }
         
         // Udpate Rollout Values with Status as completed.
-        if(!processingRolloutMap.isEmpty())
+        if(!successRolloutMap.isEmpty())
         {
-            update processingRolloutMap.values();
+            update successRolloutMap.values();
         }
         
         // Udpate Project Values with Status as completed.
-        if(!processingProjectMap.isEmpty())
+        if(!successProjectMap.isEmpty())
         {
             update successProjectMap.values();
         } 
@@ -657,7 +675,7 @@ public without sharing class IPM_ProjectJobHelper
                 }
             }
             
-            String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
+            String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
             String eligibleRolloutValue = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
             String rolloutWhereClause = ' WHERE (IPM_Project__c IN: projectsIdsToBeProcessed OR Regional_Project__c IN: projectsIdsToBeProcessed ) AND IPM_Project_Job_Status__c =:eligibleRolloutValue limit 10000';
             rolloutWhereClause = rolloutQuery + rolloutWhereClause;

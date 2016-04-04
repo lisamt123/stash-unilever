@@ -30,21 +30,23 @@ function resetqthree() {
 /* Below code is for the edit coreparameter modal */
 function checkCoreParam() {
     if (IPMProAppCP.coreParameter == 'true') {
-        window.parent.location.reload(true);
+        var pageURL = window.parent.location.href.replace('&BETOptions=1','');
+		window.parent.location.href = pageURL;
     }
 }
 function sliderCP(el) {
+	jq('.selText').hide();
     var elm = jq('#myCarousel').find('.active').find(el);
     var str = elm.attr("id");
+	if( jq('label').hasClass('fstchild active')){
+		jq('.helpDesc').prepend('<div class="selText">'+IPMProAppCP.select+'</div>');
+	}
     var s = str.match(/\d+$/)[0];
     var totalwidth = elm.width();
     var lblCount = elm.find('label').length;
     var lblWidth = totalwidth / lblCount;
     elm.find('label').css('width', lblWidth);
     setSlider(s);
-	if( jq('label').hasClass('fstchild active')){
-		jq('.helpDesc').prepend('<div>'+IPMProAppCP.select+'</div>');
-	}
 }
 function cpredirect() {
     window.parent.location.reload(true);

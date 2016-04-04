@@ -61,7 +61,8 @@ public with sharing class IPM_ProjectSearchCtrl{
     public Set<string> shareProjIdSet;
     public Map<Id,Decimal> projIdYear3iTO{get; set;}
     public string projIdString;
-    public IPM_Project__c projectForTLD{get;set;}
+    public IPM_Project__c projectForTLDFrom{get;set;}
+    public IPM_Project__c projectForTLDTo{get;set;}
     //public boolean checkFilter{get;set;}
     public Integer unAssignedCount{get;set;}
     Set<String> clusterSet = new Set<String>();
@@ -204,7 +205,8 @@ public with sharing class IPM_ProjectSearchCtrl{
         
         clusterCountMap.put('Unassigned',unAssignedCount);
         getusertype();//security
-        projectForTLD = new IPM_Project__c();
+        projectForTLDFrom = new IPM_Project__c();
+        projectForTLDTo = new IPM_Project__c();
     }
     
     /*******************************************************************************************************
@@ -261,17 +263,6 @@ public with sharing class IPM_ProjectSearchCtrl{
         if(shareProjIdSet != null && !shareProjIdSet.isEmpty()){
                 string strToReturn = IPM_Utils.convertSetToString(shareProjIdSet); 
                 shareProj = IPM_Utils.convertStrToSoqlList(strToReturn);
-        }
-        if(tldFrom != IPM_ConstantUtils.BLANK && tldTo != IPM_ConstantUtils.BLANK) {
-            try{
-                String[] tldFrm = tldFrom.split('-');   
-                String[] tldT = tldTo.split('-');
-                tFrm = Date.newInstance(Integer.valueOf(tldFrm[2]), IPM_Utils.monthMap.get(tldFrm[1]), Integer.valueOf(tldFrm[0]));    
-                tTo = Date.newInstance(Integer.valueOf(tldT[2]), IPM_Utils.monthMap.get(tldT[1]), Integer.valueOf(tldT[0]));   
-            }catch(exception e){
-                tFrm = Date.newInstance(2010, 12, 12);  
-                tTo = Date.newInstance(2030, 12, 12);   
-            }
         }
         
     String soql  =  'SELECT IPM_Project_Name__c,IPM_Phase__c,IPM_IsSaved__c, IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name,ownerId,IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Type__c,';
@@ -335,7 +326,7 @@ public with sharing class IPM_ProjectSearchCtrl{
       *******************************************************/ 
        //Active = True , Stopped=True means All=true so ingore filter in SOQL
        //Active = False , Stopped=False
-       if(selectedActiveProject == FALSE_STR && !selectedStoppedProject){  	
+       if(selectedActiveProject == FALSE_STR && !selectedStoppedProject){   
             noRecords = true;
        }
         //Active = True , Stopped=False
@@ -410,10 +401,10 @@ public with sharing class IPM_ProjectSearchCtrl{
        /*******************************************************
        =>Prepare the search query when Target Launch Dates are specified to filter out
        *******************************************************/ 
-       if(String.IsNotBlank(tldFrom) && String.IsNotBlank(tldTo)) {
+       if(projectForTLDFrom != null && projectForTLDTo != null && projectForTLDFrom.IPM_Target_Launch_Dates__c != null && projectForTLDTo.IPM_Target_Launch_Dates__c != null){
            noRecords = !noRecords ? false : noRecords;
-           String fDt = DateTime.newInstance(tFrm, Time.newInstance(0, 0, 0, 0)).format(IPM_ConstantUtils.DATE_FORMAT);//yyyy-MM-dd
-           String tDt = DateTime.newInstance(tTo, Time.newInstance(0, 0, 0, 0)).format(IPM_ConstantUtils.DATE_FORMAT);
+           String fDt = DateTime.newInstance(projectForTLDFrom.IPM_Target_Launch_Dates__c, Time.newInstance(0, 0, 0, 0)).format(IPM_ConstantUtils.DATE_FORMAT);//yyyy-MM-dd
+           String tDt = DateTime.newInstance(projectForTLDTo.IPM_Target_Launch_Dates__c, Time.newInstance(0, 0, 0, 0)).format(IPM_ConstantUtils.DATE_FORMAT);
            soql += 'AND IPM_Target_Launch_Dates__c >=' + fDt;
            soql +=  ' AND IPM_Target_Launch_Dates__c <=' +  tDt;
        }

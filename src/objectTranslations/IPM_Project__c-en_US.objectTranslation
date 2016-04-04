@@ -46,6 +46,10 @@
         <name>BET_First_Release_Previous_Value__c</name>
     </fields>
     <fields>
+        <label><!-- Last BET --></label>
+        <name>BET_Last_BET__c</name>
+    </fields>
+    <fields>
         <label><!-- BET Link Requested --></label>
         <name>BET_Link_Requested__c</name>
     </fields>
@@ -79,6 +83,10 @@
         <relationshipLabel><!-- IPM Projects --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- BI --></label>
+        <name>BI__c</name>
+    </fields>
+    <fields>
         <label><!-- Bulk BET Member Request --></label>
         <name>Bulk_BET_Member_Request__c</name>
     </fields>
@@ -90,10 +98,6 @@
         <label><!-- Deputy Project Leader --></label>
         <name>Deputy_Project_Leader__c</name>
         <relationshipLabel><!-- IPM Projects (Deputy Project Leader) --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- EcoDesign Sync Eligible Timestamp --></label>
-        <name>EcoDesign_Sync_Eligible_Timestamp__c</name>
     </fields>
     <fields>
         <label><!-- EcoDesign Sync Error --></label>
@@ -143,9 +147,17 @@
         <label><!-- Platform --></label>
         <name>IPMPlatform__c</name>
         <picklistValues>
+            <masterLabel>--None--</masterLabel>
+            <translation><!-- - - None- -  --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Sample 1</masterLabel>
             <translation><!-- Sample 1 --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Project Base URL --></label>
+        <name>IPMProjectBaseURL__c</name>
     </fields>
     <fields>
         <label><!-- Project Span --></label>
@@ -409,6 +421,18 @@
         <name>IPM_Current_Gate_Name__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Data Migrated Gate --></label>
+        <name>IPM_Data_Migrated_Gate__c</name>
+        <picklistValues>
+            <masterLabel>Contract</masterLabel>
+            <translation><!-- Contract --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Document Update Comments --></label>
         <name>IPM_Document_Update_Comments__c</name>
     </fields>
@@ -427,6 +451,11 @@
     <fields>
         <label><!-- IPM FilledIn Percentage --></label>
         <name>IPM_FilledIn_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Finance Lead --></label>
+        <name>IPM_Finance_Lead__c</name>
+        <relationshipLabel><!-- IPM Projects (IPM Finance Lead) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Finance Member --></label>
@@ -510,6 +539,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- IPM MCO Name --></label>
+        <name>IPM_MCO_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Market Type --></label>
         <name>IPM_Market_Type__c</name>
         <picklistValues>
@@ -534,8 +567,16 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- IPM_AutoAligned --></label>
+        <name>IPM_Misalligned__c</name>
+    </fields>
+    <fields>
         <label><!-- No of Country Rollouts --></label>
         <name>IPM_No_of_Country_Rollouts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Org Base URL --></label>
+        <name>IPM_Org_Base_URL__c</name>
     </fields>
     <fields>
         <label><!-- PM Approach --></label>
@@ -679,6 +720,10 @@
         <relationshipLabel><!-- IPM Projects --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Project Start Date --></label>
+        <name>IPM_Project_Start_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Project Stopped By --></label>
         <name>IPM_Project_Stopped_By__c</name>
     </fields>
@@ -714,6 +759,10 @@
     <fields>
         <label><!-- Region --></label>
         <name>IPM_Region__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM_RolloutStatus --></label>
+        <name>IPM_RolloutStatus__c</name>
     </fields>
     <fields>
         <label><!-- IPM_Rollout_Added_at_Stage --></label>
@@ -808,16 +857,8 @@
         <label><!-- Sub sector --></label>
         <name>IPM_Sub_sector__c</name>
         <picklistValues>
-            <masterLabel>MDW Machine Maintenance</masterLabel>
-            <translation><!-- MDW Machine Maintenance --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Machine Dishwash Adjustment</masterLabel>
-            <translation><!-- Machine Dishwash Adjustment --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Machine Wash</masterLabel>
-            <translation><!-- Machine Wash --></translation>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -902,7 +943,7 @@
         <name>IsFinanceMemberNull__c</name>
     </fields>
     <fields>
-        <label><!-- Is Archieved --></label>
+        <label><!-- Is Archived --></label>
         <name>Is_Archieved__c</name>
     </fields>
     <fields>
@@ -916,6 +957,10 @@
     <fields>
         <label><!-- Market Cluster --></label>
         <name>Market_Cluster__c</name>
+    </fields>
+    <fields>
+        <label><!-- MisAligned Confirmed By Finance Leader --></label>
+        <name>MisAligned_Confirmed_By_Finance_Leader__c</name>
     </fields>
     <fields>
         <label><!-- Parent Planned Global Contract Date --></label>
@@ -975,22 +1020,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Sync Countries --></label>
-        <name>Sync_Countries__c</name>
-    </fields>
-    <fields>
-        <label><!-- Sync Members --></label>
-        <name>Sync_Members__c</name>
-    </fields>
-    <fields>
-        <label><!-- Sync Project --></label>
-        <name>Sync_Project__c</name>
-    </fields>
-    <fields>
-        <label><!-- Synced From EcoDesign TimeStamp --></label>
-        <name>Synced_From_EcoDesign_TimeStamp__c</name>
-    </fields>
-    <fields>
         <label><!-- Upcoming Milestone Due Date --></label>
         <name>Upcoming_Milestone_Due_Date__c</name>
     </fields>
@@ -999,13 +1028,16 @@
         <name>Update_BET__c</name>
     </fields>
     <fields>
-        <label><!-- Exists At Least One Assmnt Per EICountry --></label>
-        <name>existsAtLeastOneAssmntPerEICountry__c</name>
-    </fields>
-    <fields>
         <label><!-- update on change of ms first release dat --></label>
         <name>update_on_change_of_ms_first_release_dat__c</name>
     </fields>
+    <layouts>
+        <layout>IPM Project Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Clustering --></label>
         <name>Clustering</name>

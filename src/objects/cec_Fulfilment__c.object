@@ -214,7 +214,7 @@
         <description>CEC: To indicate if the Cheque is Sent or not</description>
         <externalId>false</externalId>
         <label>Cheque Sent</label>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -224,7 +224,7 @@
         <description>CEC: To Indicate if Cheque is voided or not</description>
         <externalId>false</externalId>
         <label>Cheque Voided</label>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -428,12 +428,49 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Enclosure1_Quantity__c</fullName>
+        <description>CEC: To capture Enclosure1 Quantity</description>
+        <externalId>false</externalId>
+        <label>Enclosure1 Quantity</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Enclosure1__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Enclosure1</label>
         <lookupFilter>
             <active>true</active>
+            <booleanFilter>1 AND 2</booleanFilter>
             <filterItems>
                 <field>cec_Enclosure__c.Active__c</field>
                 <operation>equals</operation>
@@ -467,12 +504,49 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Enclosure2_Quantity__c</fullName>
+        <description>CEC: To capture Enclosure2 Quantity</description>
+        <externalId>false</externalId>
+        <label>Enclosure2 Quantity</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Enclosure2__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Enclosure2</label>
         <lookupFilter>
             <active>true</active>
+            <booleanFilter>1 AND 2</booleanFilter>
             <filterItems>
                 <field>cec_Enclosure__c.Active__c</field>
                 <operation>equals</operation>
@@ -504,6 +578,42 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Enclosure3_Quantity__c</fullName>
+        <description>CEC: To capture Enclosure3 Quantity</description>
+        <externalId>false</externalId>
+        <label>Enclosure3 Quantity</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Enclosure3__c</fullName>
@@ -545,6 +655,42 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Enclosure4_Quantity__c</fullName>
+        <description>CEC: To capture Enclosure4 Quantity</description>
+        <externalId>false</externalId>
+        <label>Enclosure4 Quantity</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Enclosure4__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -582,6 +728,42 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Enclosure5_Quantity__c</fullName>
+        <description>CEC: To capture Enclosure5 Quantity</description>
+        <externalId>false</externalId>
+        <label>Enclosure5 Quantity</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Enclosure5__c</fullName>
@@ -703,7 +885,7 @@
         <label>Payable To</label>
         <length>100</length>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -789,6 +971,7 @@
                 <controllingFieldValues>Belgium</controllingFieldValues>
                 <controllingFieldValues>Bosnia and Herzegovina</controllingFieldValues>
                 <controllingFieldValues>Bulgaria</controllingFieldValues>
+                <controllingFieldValues>Canada</controllingFieldValues>
                 <controllingFieldValues>Croatia</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>
                 <controllingFieldValues>Denmark</controllingFieldValues>
@@ -806,6 +989,7 @@
                 <controllingFieldValues>Lithuania</controllingFieldValues>
                 <controllingFieldValues>Luxembourg</controllingFieldValues>
                 <controllingFieldValues>Macedonia, the Former Yugoslav Republic of</controllingFieldValues>
+                <controllingFieldValues>Mexico</controllingFieldValues>
                 <controllingFieldValues>Mlodova, Republic of</controllingFieldValues>
                 <controllingFieldValues>Montenegro</controllingFieldValues>
                 <controllingFieldValues>Netherlands</controllingFieldValues>
@@ -820,6 +1004,7 @@
                 <controllingFieldValues>Sweden</controllingFieldValues>
                 <controllingFieldValues>Switzerland</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <controllingFieldValues>United States</controllingFieldValues>
                 <default>true</default>
             </picklistValues>
             <picklistValues>
@@ -1528,11 +1713,40 @@ ISBLANK(Case__r.Account.PersonMailingStreet)
         <errorMessage>Fulfilment cannot be created until the consumer address has been added</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Enclosure_Quantity_Check</fullName>
+        <active>true</active>
+        <description>CEC : To mandate population of Enclosure Quantity field when corresponding Enclosure field is populated</description>
+        <errorConditionFormula>OR(
+NOT(ISBLANK(Enclosure1__c)) &amp;&amp; ISPICKVAL( Enclosure1_Quantity__c , &quot;&quot;),
+NOT(ISBLANK(Enclosure2__c)) &amp;&amp; ISPICKVAL( Enclosure2_Quantity__c , &quot;&quot;),
+NOT(ISBLANK(Enclosure3__c)) &amp;&amp; ISPICKVAL( Enclosure3_Quantity__c , &quot;&quot;),
+NOT(ISBLANK(Enclosure4__c)) &amp;&amp; ISPICKVAL( Enclosure4_Quantity__c , &quot;&quot;),
+NOT(ISBLANK(Enclosure5__c)) &amp;&amp; ISPICKVAL( Enclosure5_Quantity__c , &quot;&quot;)
+)</errorConditionFormula>
+        <errorMessage>Enclosure quantity is mandatory for the selected enclosure.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>FulfilmentType_MandatoryCheck</fullName>
         <active>true</active>
         <description>cec - to check the Type field mandatory</description>
         <errorConditionFormula>ISPICKVAL( Type__c , &quot;&quot;)</errorConditionFormula>
         <errorMessage>Unable to create Fulfilment with empty &apos;Type&apos; information. Select appropriate &apos;Country&apos; value to proceed.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Max_Refund_value_validation</fullName>
+        <active>true</active>
+        <description>CEC: Restrict advisor from entering/updating the refund value with the value greater than max refund limit</description>
+        <errorConditionFormula>ISCHANGED(Refund_Value__c) &amp;&amp; (Refund_Value__c  &gt;   $User.Max_Refund_Amount__c ||  (ISBLANK($User.Max_Refund_Amount__c) &amp;&amp; NOT(ISBLANK(Refund_Value__c ))))</errorConditionFormula>
+        <errorDisplayField>Refund_Value__c</errorDisplayField>
+        <errorMessage>Refund value exceeded Max refund value  limit.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RefundValue_Not_Editable_ChequeSent</fullName>
+        <active>true</active>
+        <description>CEC: Restrict advisor from entering/updating the refund value if cheque sent flag is set to true</description>
+        <errorConditionFormula>Cheque_Sent__c  &amp;&amp; (  PRIORVALUE( Refund_Value__c)  &lt;&gt;  Refund_Value__c )</errorConditionFormula>
+        <errorDisplayField>Refund_Value__c</errorDisplayField>
+        <errorMessage>Refund value cannot be updated as cheque has already been sent.</errorMessage>
     </validationRules>
     <webLinks>
         <fullName>Add_Cheque_Details</fullName>
@@ -1553,12 +1767,16 @@ var fulfilment = new sforce.SObject(&quot;cec_fulfilment__c&quot;);
 fulfilment.Id = &apos;{!cec_Fulfilment__c.Id}&apos;; 
 fulfilment.Brand__c = &apos;{!JSENCODE(cec_Fulfilment__c.CaseBrand__c)}&apos;; 
 fulfilment.Case_Product_Category__c = &apos;{!JSENCODE(cec_Fulfilment__c.Case_Product_Category__c)}&apos;;
+fulfilment.Cheque_Number__c = &apos;{!cec_Fulfilment__c.Cheque_Number__c}&apos;;
 
 fulfilment.Country__c = &apos;{!cec_Fulfilment__c.Country__c}&apos;; 
  
 //alert(&apos;my alert===&apos;+fulfilment.Id + &apos; &apos; + fulfilment.Brand__c + &apos; &apos; +fulfilment.Country__c + &apos; &apos;+ fulfilment.Case_Product_Category__c); 
 
-if (fulfilment.Id ==&apos;&apos; || fulfilment.Brand__c== &apos;&apos; || fulfilment.Country__c == &apos;&apos; || fulfilment.Case_Product_Category__c == &apos;&apos;){
+if (fulfilment.Cheque_Number__c != &quot;&quot;){
+	alert(&apos;{!$Label.CEC_ChequeBook_ChequeNo_Already_Added}&apos;);
+}	
+else if (fulfilment.Id ==&apos;&apos; || fulfilment.Brand__c== &apos;&apos; || fulfilment.Country__c == &apos;&apos; || fulfilment.Case_Product_Category__c == &apos;&apos;){
 	alert(&apos;{!$Label.CEC_ChequeBook_input_fields_missing}&apos;);
 } else  {
 	var result =sforce.apex.execute(&quot;CEC_ChequeProcess&quot;,&quot;generateChequeNumber&quot;,{fulfilmentId:fulfilment.Id});
@@ -1585,23 +1803,25 @@ if (fulfilment.Id ==&apos;&apos; || fulfilment.Brand__c== &apos;&apos; || fulfil
 {!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
 
 sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
-var caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonMailingCountry,Case_Brand__c, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Name From Case Where Id = &apos;{!Case.Id}&apos;&quot;); 
+var caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonMailingCountry,Case_Brand__c, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Name,Country_Name__c , L0_Product_Category__c,L2_Product_Category__c,L5_Code__c From Case Where Id = &apos;{!Case.Id}&apos;&quot;); 
+ 
 
 var fulfilmentId;
 var fulfilmentName;
 var records = caseQuery.getArray(&quot;records&quot;); 
-var caseRecord = records[0]; 
+var caseRecord = records[0];
 
 
 if(caseRecord != null &amp;&amp; caseRecord.AccountId == null) {
-	alert(&apos;{!$Label.CEC_CaseAccountMissing}&apos;);
+                alert(&apos;{!$Label.CEC_CaseAccountMissing}&apos;);
 } else if (caseRecord != null &amp;&amp; 
 caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.PersonMailingCountry == null &amp;&amp; caseRecord.Account.PersonMailingPostalCode == null &amp;&amp; caseRecord.Account.PersonMailingState == null &amp;&amp; caseRecord.Account.PersonMailingStreet == null) {
-	alert(&apos;{!$Label.CEC_CaseAccountPersonDetailsError}&apos;);
-} else {
-	var newFulfilment = new sforce.SObject(&quot;cec_Fulfilment__c&quot;);
-	newFulfilment.Case__c = caseRecord.Id;
-	newFulfilment.Country__c = caseRecord.Account.PersonMailingCountry;
+                alert(&apos;{!$Label.CEC_CaseAccountPersonDetailsError}&apos;);
+} else  {
+                
+        var newFulfilment = new sforce.SObject(&quot;cec_Fulfilment__c&quot;);
+        newFulfilment.Case__c = caseRecord.Id;
+        newFulfilment.Country__c = caseRecord.Account.PersonMailingCountry;
         //var result =sforce.apex.execute(&quot;CEC_ChequeProcess&quot;,&quot;checkFieldAccess&quot;,{sObjectName:&apos;cec_fulfilment__c&apos;,sFieldName:&apos;Payable_TO__c&apos;}); 
 
         var objFulfilment= sforce.connection.describeSObject(&quot;cec_fulfilment__c&quot;); 
@@ -1617,25 +1837,67 @@ caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.Perso
 
 
         if (result == &apos;true&apos; &amp;&amp; caseRecord.Account.Salutation != null){
-	        newFulfilment.Payable_To__c = caseRecord.Account.Salutation + &quot; &quot;+ caseRecord.Account.Name;
-	} else if(result == &apos;true&apos;){
-		newFulfilment.Payable_To__c = caseRecord.Account.Name;
-	}
-	
-	sforce.connection.create([newFulfilment], success);
+              newFulfilment.Payable_To__c = caseRecord.Account.Salutation + &quot; &quot;+ caseRecord.Account.Name;
+        } else if(result == &apos;true&apos;){
+              newFulfilment.Payable_To__c = caseRecord.Account.Name;
+        }
+        
+        var result =sforce.apex.execute(&quot;CEC_AlertFulfilmentEnclosureHelper&quot;,&quot;populateEnclosureDetails&quot;,{CaseId:caseRecord.Id,CountryName :newFulfilment.Country__c });
+         // alert(&apos;my alert===&apos;+result); 
+        if (result[0].status == &apos;S&apos;){
+            if(result[0].enclosuresList != null)
+            {
+				
+                  if(result[0].enclosuresList[0])
+                    {
+                         newFulfilment.Enclosure1__c=result[0].enclosuresList[0];
+                         //newFulfilment.Enclosure1_Quantity__c=1;
+                    }
+
+                  if(result[0].enclosuresList[1])
+                    {
+                         newFulfilment.Enclosure2__c=result[0].enclosuresList[1];
+                         //newFulfilment.Enclosure2_Quantity__c=1;
+                    }
+
+                  if(result[0].enclosuresList[2])
+                    {
+                         newFulfilment.Enclosure3__c=result[0].enclosuresList[2];
+                         //newFulfilment.Enclosure3_Quantity__c=1;
+                    }
+
+                  if(result[0].enclosuresList[3])
+                    {
+                         newFulfilment.Enclosure4__c=result[0].enclosuresList[3];
+                        // newFulfilment.Enclosure4_Quantity__c=1;
+                    }
+                  if(result[0].enclosuresList[4])
+                    {
+                         newFulfilment.Enclosure5__c=result[0].enclosuresList[4];
+                         //newFulfilment.Enclosure5_Quantity__c=1;
+                    }
+            
+            }
+        }
+        else if (result[0].status == &apos;E&apos;) { 
+               alert(result[0].message); 
+        }
+
+        sforce.connection.create([newFulfilment], success);
 }
 
 function success(result) {
-	fulfilmentId = result[0].id;
-	fulfilmentName = result[0].Name;
-	sforce.console.getFocusedPrimaryTabId(openSubtab);
+
+                fulfilmentId = result[0].id;
+                fulfilmentName = result[0].Name;
+                sforce.console.getFocusedPrimaryTabId(openSubtab);
 }
 
 var openSubtab = function openSubtab(result) {
-	//Now that we have the primary tab ID, we can open a new subtab in it
-	var primaryTabId = result.id;
+                //Now that we have the primary tab ID, we can open a new subtab in it
+                var primaryTabId = result.id;
         sforce.console.refreshPrimaryTabById(primaryTabId, false);
-	sforce.console.openSubtab(primaryTabId, &apos;/&apos;+fulfilmentId, true, fulfilmentName,null);
+                sforce.console.openSubtab(primaryTabId, &apos;/&apos;+fulfilmentId, true, fulfilmentName,null);
 };</url>
     </webLinks>
 </CustomObject>

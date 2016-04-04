@@ -58,6 +58,7 @@ Renamed to Other SOW items in reviews</description>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -1585,6 +1586,10 @@ Renamed to Other SOW items in reviews</description>
         <label>Dedicated Resource</label>
         <picklistValues>
             <picklist>Activities__c</picklist>
+            <values>
+                <fullName>Brand Book</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>Other</fullName>
                 <default>false</default>

@@ -35,9 +35,9 @@ private class Oblix_CampaignStageLogic_Test {
             
             Test.startTest();
 
-				Oblix_CampaignStageLogic ctrl = new Oblix_CampaignStageLogic(project.id, true);
+				Oblix_CampaignStageLogic ctrl = new Oblix_CampaignStageLogic(project.id, true,true);
 				ctrl.saveStage();
-				ctrl.setStageAttributes();
+				ctrl.setStageAttributes(true,true);
 				ctrl.setCompletionStage(Oblix_CampaignStageLogic.STAGE_PROJECT_EXECUTION, Oblix_CampaignStageLogic.STAGE_PROJECT_IDEATIOIN);
 				ctrl.setProjectedStage(Oblix_CampaignStageLogic.STAGE_PROJECT_EXECUTION, Oblix_CampaignStageLogic.STAGE_PROJECT_IDEATIOIN);
 				

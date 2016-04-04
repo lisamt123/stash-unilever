@@ -38,9 +38,10 @@
           action.setParams({"teamid" :teamid,"activityId":aid,responseText:'Accepted'});
            action.setCallback(this,function(response){
                 if (response.getState() === "SUCCESS"){
-                     var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
-                    detailpageEvent.setParams({"actvityid":aid});
+                     var detailpageEvent=$A.get("e.c:EA_Decline");
+                    detailpageEvent.setParams({"showmyactions":true});
                    detailpageEvent.fire();
+         component.set("v.showInvitation", false);
                     }
                   });
         $A.enqueueAction(action);

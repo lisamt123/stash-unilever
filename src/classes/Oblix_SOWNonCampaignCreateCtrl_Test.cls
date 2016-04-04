@@ -22,7 +22,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
           
           MDO_Geography__c geographyCountry = new MDO_Geography__c();
             geographyCountry.Name = 'France';
-            geographyCountry.geography_type__c = 'Country Cluste';
+            geographyCountry.geography_type__c = 'Country';
             geographyCountry.parent_L5__c = geographyRegion.Id;
             insert geographyCountry;  
           Oblix_Calculator__c roleRate = new Oblix_Calculator__c();

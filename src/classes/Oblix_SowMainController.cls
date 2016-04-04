@@ -1,4 +1,49 @@
-/**
+/*****************************************************************************************
+* @author       Slavko Skular
+* @date         2016-02-02
+* @description  This class controls Oblix_SOWMain page
+*
+*    --------------------------------------------------------------------------
+*    Developer                  Date                Description
+*    --------------------------------------------------------------------------
+*   
+*    Slavko Skular              2016-02-02          Created
+
+******************************************************************************************/
+
+public with sharing class Oblix_SowMainController extends Oblix_SWOPparentController{
+
+    public String selectedSowId {get; set;}
+    public Boolean can_create_sow {
+        get{
+            return Oblix_PermissionHandler.canCreateSOW();
+        }
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-02
+    * @description  top link on the page exists SWOP app
+    ********************************************************************************/
+    public Pagereference redirectToSOWDetailPage() {
+        
+        Pagereference meNewPage = Page.Oblix_SOWMainDetail;
+        meNewPage.getParameters().put('sowId', selectedSowId);
+        return meNewPage;
+
+    }
+
+    
+
+
+
+
+
+
+
+
+
+/***
     About
     -----
     Description: Class Oblix_SowMainController
@@ -22,7 +67,23 @@
     Update History
     --------------
 */
-public with sharing class Oblix_SowMainController {
+//public with sharing class Oblix_SowMainController extends Oblix_SWOPparentController{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public Set<String> attachmentsToRemove {get; set;}
     public Marketing_SOW__c selSow {get; set;}
@@ -44,7 +105,7 @@ public with sharing class Oblix_SowMainController {
     public String WhereQuery {get; set;}
 
     //OverView Variables
-    public String selectedSowId {get; set;}
+    //public String selectedSowId {get; set;}
     //Attachements to the Sow
     public List<Attachment> lstAttachements {get; set;}
     public list<note> notes {get; set;}
@@ -114,7 +175,7 @@ public with sharing class Oblix_SowMainController {
     */
 
     public void init() {
-        WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name,Oblix_AgencyEstimate__c ,OblixSOWOverallTotal__c,Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordTypeId=\'' + parentSOWRTID + '\'';
+        WhereQuery = 'Select Id, Agency_Contact__c,OblixTotalOtherItemsFees__c,Oblix_AgencyEstimate__r.name,Oblix_AgencyEstimate__c ,OblixSOWOverallTotal__c,Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c ';
         runQuery();
     }
 
@@ -265,7 +326,7 @@ public with sharing class Oblix_SowMainController {
     */
     public void applyFilters() {
 
-        WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name , Oblix_AgencyEstimate__c,OblixSOWOverallTotal__c,Total_Campaigns_This_FY__c, Oblix_Current_FY_Total__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordType.name = \'Parent Sow Marketing\'';
+        WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name , OblixTotalOtherItemsFees__c, Oblix_AgencyEstimate__c,OblixSOWOverallTotal__c,Total_Campaigns_This_FY__c, Oblix_Current_FY_Total__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c ';
         List<String> lstQueryWhere = buildQueryWhere();
         system.debug('###Sfdc lstQueryWhere :' + lstQueryWhere );
         if (lstQueryWhere.isEmpty()) {
@@ -361,40 +422,6 @@ public with sharing class Oblix_SowMainController {
     }
 
     /*
-    @discription : Refresh form with values of selected Sow
-    */
-    public Pagereference RerenderSelectedSow() {
-        /*System.debug('###selectedSewId : ' + selectedSewId );
-        if (selectedSewId != null && selectedSewId != '') {
-            selSow = [Select Id, Agency_Contact__r.name, OblixSOWOverallTotal__c, Oblix_AgencyEstimate__c , Oblix_AgencyEstimate__r.name, Unilever_Lead__r.name, CreatedById, CreatedBy.Name, Currency__c,
-                      BigOblixProductCategory__r.Name, OblixBrand__r.Name, SmallProductCategory__r.Name,
-                      LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c,
-                      Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate, Total_Campaigns_This_FY__c,Oblix_Current_FY_Total__c,
-                      SOW_Status__c, BB_or_BD__c   from Marketing_SOW__c where Id = : selectedSewId
-                     ];
-            System.debug('###selSow : ' + selSow);
-
-            if (selSow != null && selSow.Id != null) {
-                list<Marketing_SOW__c> childSow = new list<Marketing_SOW__c>();
-                System.debug('###selSow.id : ' + selSow.id);
-                childSow = [select id, OblixSOWOverallTotal__c, Total_Campaigns_This_FY__c, Oblix_Current_FY_Total__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'  ];
-                System.debug('###childSow : ' + childSow );
-                if (!childSow.isEmpty()) {
-                    mapApproved.put(selSow.id, (integer)childSow[0].OblixSOWOverallTotal__c);
-                } else {
-                    mapApproved.put(selSow.id, 0);
-                }
-                lstAttachements = [Select Id, Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate from Attachment where ParentId = : selSow.Id];
-                lstProjects = [Select Id, Name, Project_Finish_Date__c, Project_Start_Date__c, Financial_Year__c, Production_Completion_Date__c, Project_Completion_Date__c, First_Air_Date__c from Oblix_SOW_Projects__c where Financial_Year__c = : selSow.Id];
-                notes = [ select body from note where parentId = :selSow.Id];
-            }
-            
-        }*/
-        Pagereference meNewPage = Page.Oblix_SOWMainDetail;
-        meNewPage.getParameters().put('sowId', selectedSewId);
-        return meNewPage;
-    }
-    /*
     * Related Actions
     */
     public void ViewAttachements() {
@@ -463,9 +490,6 @@ public with sharing class Oblix_SowMainController {
         return;
     }
 
-    public Pagereference exitSwop(){
-        return Oblix_Utils.exitSwop();
-    }
 
     //remove attachment
     @RemoteAction

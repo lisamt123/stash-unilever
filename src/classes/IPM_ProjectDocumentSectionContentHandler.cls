@@ -9,6 +9,8 @@
 public with sharing class IPM_ProjectDocumentSectionContentHandler implements ITrigger {
 
 	
+	public static Boolean SKIP_TRIGGER_EXECUTION = false;
+	
 	// Constructor
     public IPM_ProjectDocumentSectionContentHandler()
     { 

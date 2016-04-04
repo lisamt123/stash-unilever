@@ -291,6 +291,7 @@
         <externalId>false</externalId>
         <label>Parent L10</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L10)</relationshipLabel>
         <relationshipName>GeographyL10</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -303,6 +304,7 @@
         <externalId>false</externalId>
         <label>Parent L11</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L11)</relationshipLabel>
         <relationshipName>GeographyL11</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -315,6 +317,7 @@
         <externalId>false</externalId>
         <label>Parent L12</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L12)</relationshipLabel>
         <relationshipName>GeographyL12</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -327,6 +330,7 @@
         <externalId>false</externalId>
         <label>Parent L13</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L13)</relationshipLabel>
         <relationshipName>GeographyL13</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -339,6 +343,7 @@
         <externalId>false</externalId>
         <label>Parent L14</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L14)</relationshipLabel>
         <relationshipName>GeographyL14</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -351,6 +356,7 @@
         <externalId>false</externalId>
         <label>Parent L15</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L15)</relationshipLabel>
         <relationshipName>GeographyL15</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -363,6 +369,7 @@
         <externalId>false</externalId>
         <label>Parent L1</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L1)</relationshipLabel>
         <relationshipName>GeographyL1</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -375,6 +382,7 @@
         <externalId>false</externalId>
         <label>Parent L2</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L2)</relationshipLabel>
         <relationshipName>GeographyL2</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -387,6 +395,7 @@
         <externalId>false</externalId>
         <label>Parent L3</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L3)</relationshipLabel>
         <relationshipName>GeographyL3</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -399,6 +408,7 @@
         <externalId>false</externalId>
         <label>Parent L4</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L4)</relationshipLabel>
         <relationshipName>GeographyL4</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -411,6 +421,7 @@
         <externalId>false</externalId>
         <label>Parent L5</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L5)</relationshipLabel>
         <relationshipName>GeographyL5</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -423,6 +434,7 @@
         <externalId>false</externalId>
         <label>Parent L6</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L6)</relationshipLabel>
         <relationshipName>GeographyL6</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -435,6 +447,7 @@
         <externalId>false</externalId>
         <label>Parent L7</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L7)</relationshipLabel>
         <relationshipName>GeographyL7</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -447,6 +460,7 @@
         <externalId>false</externalId>
         <label>Parent L8</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L8)</relationshipLabel>
         <relationshipName>GeographyL8</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -459,6 +473,7 @@
         <externalId>false</externalId>
         <label>Parent L9</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography (Parent L9)</relationshipLabel>
         <relationshipName>GeographyL9</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -471,6 +486,7 @@
         <externalId>false</externalId>
         <label>Parent ID</label>
         <referenceTo>MDO_Geography__c</referenceTo>
+        <relationshipLabel>Geography</relationshipLabel>
         <relationshipName>Geography</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>

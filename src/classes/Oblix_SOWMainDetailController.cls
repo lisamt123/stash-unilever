@@ -14,12 +14,90 @@
 */
 public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparentController {
 
-    public Marketing_SOW__c selected_sow {get; set;}
+    public Boolean can_delete_sow{
+        get{
+            return Oblix_PermissionHandler.canDeleteSOW(selected_sow.SOW_Status__c, selected_sow.Id);
+        }
+    }
+
+    public Boolean can_delete_attachment{
+        get{
+            return Oblix_PermissionHandler.canDeleteAttachment(selected_sow.SOW_Status__c);
+        }
+    }
+
+    public Boolean can_add_attachment{
+        get{
+            return Oblix_PermissionHandler.canAddNewAttachment(selected_sow.SOW_Status__c);
+        }
+    }
+
+    public Boolean can_manage_campaign{
+        get{
+            return Oblix_PermissionHandler.canManageCampaign(selected_sow.SOW_Status__c, selected_sow.Id);
+        }
+    }
+
+    public Boolean can_manage_non_campaign{
+        get{
+            return Oblix_PermissionHandler.canManageNonCampaign(selected_sow.SOW_Status__c, selected_sow.Id);
+        }
+    }
+
+    public Boolean sow_approvers_defined{
+        get{
+            // until the agency users are live, agency approvers aren't mandatory
+            return selected_sow.Unilever_SOW_Approver_Name__c != null;// && selected_sow.Agency_SOW_Approver_Name__c != null;
+        }
+    }
+
+    public Boolean can_submit_for_approval{
+        get{
+            return Oblix_PermissionHandler.canSubmitForApproval(selected_sow.SOW_Status__c);
+        }
+    }
+
+    public Boolean can_reject_sow{
+        get{
+            return Oblix_PermissionHandler.canRejectSOW(selected_sow.SOW_Status__c, selected_sow.Id);
+        }
+    }
+
+    public Boolean can_approve_sow{
+        get{
+            return Oblix_PermissionHandler.canApproveSOW(selected_sow.SOW_Status__c, selected_sow.Id);
+        }
+    }
+
+    public Boolean is_sole_editor{
+        get{
+            return Oblix_PermissionHandler.isOnlyBrandCatEditor(selected_sow.OblixBrand__c, selected_sow.SmallProductCategory__c, UserInfo.getUserId());
+        }
+    }
+
+    public Boolean is_with_ul2{
+        get{
+            return (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER );
+        }
+    }
+
+    public Boolean show_submit{
+        get{
+            return can_submit_for_approval && ( !( Oblix_PermissionHandler.hasUL1permissionSet() && is_with_ul2) || is_sole_editor);
+        }
+    }
+
+    //public Marketing_SOW__c selected_sow {get; set;}
     public id sow_id {get; set;}
     public id project_id {get; set;}
     public List<Attachment> liso_attachments {get; set;}
     public List<Attachment> liso_attachments_to_add {get; set;}
     public List<Note> liso_notes {get; set;}
+
+    // controller attribute to ease passing of comment text from vf page to controller
+    public String sowSubmitComments {get; set;}
+    public String sowApproveComments {get; set;}
+    public String sowRejectComments {get; set;}
 
     //Projects to the Sow
     public List<Oblix_SOW_Projects__c> liso_projects_for_sow {get; set;}
@@ -53,6 +131,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     private static final Integer notesSize = 255;
     private static final String sow_param_name = 'sowId';
+    private static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
+    private static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
 
     //achraf
     public Attachment attachment {
@@ -132,7 +212,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             selected_sow = new Marketing_SOW__c ();
         }
         else {
-            selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
+            selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
         }
         
         //System.DEBUG('!!selected_sow:'+selected_sow);
@@ -143,7 +223,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         }
         else{
             selectedProject = [SELECT Id, Name, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate
-                , OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, Campaign_Countries__c, First_Air_Date__c
+                , OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, Campaign_Countries__c, Selected_Countries__c, First_Air_Date__c
                 , Production_Completion_Date__c, Financial_Year__c, Value_To_BePaid_Manual_Override__c,Percentage_of_Fee_for_this_FY__c FROM Oblix_SOW_Projects__c WHERE id = :project_id];
         }
 
@@ -173,7 +253,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             // retrieve campaign items
             liso_projects_for_sow = [SELECT Name, Project_Finish_Date__c, Campaign_Status__c, Platform__c, Project_Stage__c, Projected_Stage__c, Completed_Stage__c
                 , CreatedById, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c
-                , Project_Completion_Date__c, Description__c, Campaign_Countries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c, Campaign_Total_Fees__c, Value_To_BePaid_Manual_Override__c,Percentage_of_Fee_for_this_FY__c
+                , Project_Completion_Date__c, Description__c, Campaign_Countries__c, Selected_Countries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c, Campaign_Total_Fees__c, Value_To_BePaid_Manual_Override__c,Percentage_of_Fee_for_this_FY__c
                 FROM Oblix_SOW_Projects__c WHERE Financial_Year__c = : selected_sow.Id LIMIT 500];
             
             // retrieve non campaign items
@@ -190,12 +270,12 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             //
             if (!liso_projects_for_sow.isEmpty())
                 for (Oblix_SOW_Projects__c  project : liso_projects_for_sow)
-                    li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Campaign', project));
+                    li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Campaign', project, hasEditAccess));
                 
 
             if (!liso_other_non_campaign_items.isEmpty())
                 for (Marketing_Basics__c otherItem : liso_other_non_campaign_items ) 
-                    li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', otherItem));
+                    li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', otherItem, hasEditAccess));
             System.DEBUG('Init Called 6 !!!!');
 
             String seriesbis = '';
@@ -475,7 +555,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             if (String.isBlank(errorRequired)){
 
                 upsert selected_sow;
-                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
+                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
 
                 sow_id = selected_sow.Id;
                 
@@ -551,10 +631,13 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         try{
 
 
+            // set static variable on the trigger handler to avoid setting big/small category
+            Oblix_SOWHandler.b_initiated_from_vf_page = true;
+            
             if (String.isBlank(errorRequired) && selected_sow != null && selected_sow.Id == null){
 
                 insert selected_sow;
-                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
+                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
             }
 
             uploadeAttachment(); 
@@ -818,7 +901,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         public String s_object_type {get;set;}
         public Oblix_CampaignStageLogic stage_identifier {get;set;}
 
-        public CampaignNonCampaignItems(String object_type, SObject campaign_non_campaign) {
+        public CampaignNonCampaignItems(String object_type, SObject campaign_non_campaign, Boolean hasEditAccess) {
             
             s_object_type = object_type;
             dynamic_object = campaign_non_campaign;
@@ -826,7 +909,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             // initialise StageIdentifier if it is a campaign type
             if ('Campaign' == object_type){
                 //system.debug('##campaign_non_campaign: ' + campaign_non_campaign);
-                stage_identifier = new Oblix_CampaignStageLogic((Oblix_SOW_Projects__c) campaign_non_campaign, true);
+                stage_identifier = new Oblix_CampaignStageLogic((Oblix_SOW_Projects__c) campaign_non_campaign, hasEditAccess,hasEditAccess);
             }
         }
     }
@@ -907,6 +990,143 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             return reportFolderURL;
             
         } set;
+    }
+
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-08
+    * @description  submit SOW for approval
+    ********************************************************************************/
+    public PageReference submitForApproval(){
+
+        Id submitterId = UserInfo.getUserId();
+
+        // skip unilever approval if creator is approver
+        if(submitterId == selected_sow.Unilever_SOW_Approver_Name__c){
+            selected_sow.SOW_Creator_is_Approver__c = true;
+            selected_sow.SOW_Status__c = Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC;
+        } else {
+            selected_sow.SOW_Creator_is_Approver__c = false;
+            selected_sow.SOW_Status__c = Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL;
+        }
+        
+        selected_sow.OwnerId = submitterId;
+        selected_sow.Approval_Submitter__c = submitterId;
+
+        //update selected_sow;
+        update selected_sow;
+
+        if(selected_sow.SOW_Creator_is_Approver__c){
+
+            // just lock the record
+            try{
+                Approval.lock(new List<Marketing_SOW__c>{selected_sow});
+            } catch (Exception e){
+                system.debug(e);
+            }
+
+        } else {
+
+            // Create an approval request for the SOW
+            Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
+            req1.setComments(sowSubmitComments);
+            req1.setObjectId(selected_sow.Id);
+
+            // Submit on behalf of a specific submitter
+            req1.setSubmitterId(submitterId);
+
+            // Submit the record to specific process and skip the criteria evaluation
+            req1.setProcessDefinitionNameOrId(Oblix_Utils.APPROVAL_PROCESS_NAME);
+            //req1.setSkipEntryCriteria(true);
+
+            // Submit the approval request for the account
+            Approval.ProcessResult result = Approval.process(req1);
+
+            // Verify the result
+            //System.assert(result.isSuccess());
+
+        }
+
+        PageReference ref = new PageReference('/apex/oblix_sowmain');
+        return ref;
+
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-09
+    * @description  reject SOW with mandatory comments
+    ********************************************************************************/
+    public PageReference rejectSOW(){
+
+        // get sow approval record - there can be only one (?)
+        List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :selected_sow.Id];
+        // S.M 20160209 adding checks and removing else to fix sonar issue
+        if(NULL!=workItems && workItems.size() == 1){
+
+            ProcessInstanceWorkitem wi = workItems[0];
+
+            Approval.ProcessWorkitemRequest pwr = new Approval.ProcessWorkitemRequest();
+            pwr.setComments(sowRejectComments);
+            pwr.setAction('Reject');
+            pwr.setWorkitemId(wi.Id);
+            system.debug('## selected_sow.Id: ' + selected_sow.Id + 'pwr: ' + JSON.serializePretty(pwr) + ' WorkItem: ' + wi.Id);
+            Approval.ProcessResult result =  Approval.process(pwr);
+
+            if(result.isSuccess()){
+                // reload SOW to get new sow status
+                selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
+            }
+
+        }
+        //} else {
+
+        //    // there should be only one work item for a given object.
+        // refactoring: add error message?
+
+        //}
+
+        PageReference ref = new PageReference('/apex/oblix_sowmain');
+        return ref;
+
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-09
+    * @description  approve SOW with optional comments
+    ********************************************************************************/
+    public PageReference approveSOW(){
+
+        // get sow approval record - there can be only one (?)
+        List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :selected_sow.Id];
+        // S.M 20160209 adding checks and removing else to fix sonar issue
+        if(NULL != workItems && workItems.size() == 1){
+
+            ProcessInstanceWorkitem wi = workItems[0];
+
+            Approval.ProcessWorkitemRequest pwr = new Approval.ProcessWorkitemRequest();
+            pwr.setComments(sowApproveComments);
+            pwr.setAction('Approve');
+            pwr.setWorkitemId(wi.Id);
+            Approval.ProcessResult result =  Approval.process(pwr);
+
+            if(result.isSuccess()){
+                // reload SOW to get new sow status
+                selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
+            }
+
+        }
+        //} else {
+
+        //    // there should be only one work item for a given object.
+        // refactoring: add error message?
+
+        //}
+        PageReference ref = new PageReference('/apex/oblix_sowmain');
+        return ref;
+
     }
 
     
