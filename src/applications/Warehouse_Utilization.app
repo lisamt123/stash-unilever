@@ -8,5 +8,4 @@
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
     <tab>Data_Entry</tab>
-    <tab>WU_Test</tab>
 </CustomApplication>

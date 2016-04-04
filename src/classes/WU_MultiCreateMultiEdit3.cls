@@ -72,15 +72,14 @@ public class WU_MultiCreateMultiEdit3{
                 Boolean isMasterSuccess = false;
                 Boolean isMasterFailure = false;
                 
-                set<string> setstr = new set<string>();
+              
                 
                 for(Integer i=0;i<updateMasterResult.size();i++){
                     if (updateMasterResult.get(i).isSuccess()){
                         isMasterSuccess = true;
                         if(selectedMasterRecordsMap.containsKey(updateMasterResult.get(i).getId())){
                             finalSuccessMessage = finalSuccessMessage + ' ' +selectedMasterRecordsMap.get(updateMasterResult.get(i).getId()).objWUMasterWarehouse.Name;
-                            setstr.add(updateMasterResult.get(i).getId());
-                            system.debug('=======setstr'+setstr);
+                         
                         }
                     }                              
                     else if (!updateMasterResult.get(i).isSuccess()){

@@ -13,7 +13,6 @@
     </alerts>
     <alerts>
         <fullName>Approve_Committed_PalletStorage</fullName>
-        <ccEmails>vaishali.thite@cognizant.com</ccEmails>
         <description>Approve Committed Warehouse Utilization</description>
         <protected>false</protected>
         <recipients>
