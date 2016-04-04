@@ -1,3 +1,4 @@
+src/classes
 src/classes/BET_AccessService.cls
 src/classes/BET_AccessService.cls-meta.xml
 src/classes/BET_BETChangesLogger.cls
