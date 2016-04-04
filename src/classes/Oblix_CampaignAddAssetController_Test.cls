@@ -8,6 +8,7 @@ private class Oblix_CampaignAddAssetController_Test {
     private static final String CAMPAIGN_PROJECT_ID_FIELD_NAME = 'projectid';
     private static final String ASSET_NOTES_VALUE = 'test';
     
+    
     private static List<Asset_Scoring__c> assetScorings;
     @testSetup static void initCommonData() {
         User u = Oblix_TestUtils.createTestUser();
@@ -40,7 +41,7 @@ private class Oblix_CampaignAddAssetController_Test {
           
 
           //Init controller with existing assets
-          PageReference pageRef = Page.AddAsset;
+          PageReference pageRef = Page.Oblix_CampaignAddAsset;
           Test.setCurrentPage(pageRef);
           ApexPages.currentPage().getParameters().put(CAMPAIGN_PROJECT_ID_FIELD_NAME, campaign.Id);
           Oblix_CampaignAddAssetController controller = new Oblix_CampaignAddAssetController();
@@ -120,7 +121,7 @@ private class Oblix_CampaignAddAssetController_Test {
           
 
           //Init controller with existing assets
-          PageReference pageRef = Page.AddAsset;
+          PageReference pageRef = Page.Oblix_CampaignAddAsset;
           Test.setCurrentPage(pageRef);
           ApexPages.currentPage().getParameters().put(CAMPAIGN_PROJECT_ID_FIELD_NAME, campaign.Id);
           Oblix_CampaignAddAssetController controller = new Oblix_CampaignAddAssetController();
@@ -202,7 +203,7 @@ private class Oblix_CampaignAddAssetController_Test {
           
 
           //Init controller with existing assets
-          PageReference pageRef = Page.AddAsset;
+          PageReference pageRef = Page.Oblix_CampaignAddAsset;
           Test.setCurrentPage(pageRef);
           ApexPages.currentPage().getParameters().put(CAMPAIGN_PROJECT_ID_FIELD_NAME, campaign.Id);
           Oblix_CampaignAddAssetController controller = new Oblix_CampaignAddAssetController();
@@ -279,7 +280,7 @@ private class Oblix_CampaignAddAssetController_Test {
           
 
           //Init controller with existing assets
-          PageReference pageRef = Page.AddAsset;
+          PageReference pageRef = Page.Oblix_CampaignAddAsset;
           Test.setCurrentPage(pageRef);
           ApexPages.currentPage().getParameters().put(CAMPAIGN_PROJECT_ID_FIELD_NAME, campaign.Id);
           Oblix_CampaignAddAssetController controller = new Oblix_CampaignAddAssetController();
@@ -359,7 +360,7 @@ private class Oblix_CampaignAddAssetController_Test {
         
 
         //Init controller with existing assets
-        PageReference pageRef = Page.AddAsset;
+        PageReference pageRef = Page.Oblix_CampaignAddAsset;
         Test.setCurrentPage(pageRef);
         ApexPages.currentPage().getParameters().put(CAMPAIGN_PROJECT_ID_FIELD_NAME, campaign.Id);
         Oblix_CampaignAddAssetController controller = new Oblix_CampaignAddAssetController();
@@ -426,7 +427,7 @@ private class Oblix_CampaignAddAssetController_Test {
         
 
         //Init controller with existing assets
-        PageReference pageRef = Page.AddAsset;
+        PageReference pageRef = Page.Oblix_CampaignAddAsset;
         Test.setCurrentPage(pageRef);
         ApexPages.currentPage().getParameters().put(CAMPAIGN_PROJECT_ID_FIELD_NAME, campaign.Id);
         Oblix_CampaignAddAssetController controller = new Oblix_CampaignAddAssetController();
@@ -488,7 +489,7 @@ private class Oblix_CampaignAddAssetController_Test {
         
 
         //Init controller with existing assets
-        PageReference pageRef = Page.AddAsset;
+        PageReference pageRef = Page.Oblix_CampaignAddAsset;
         Test.setCurrentPage(pageRef);
         ApexPages.currentPage().getParameters().put(CAMPAIGN_PROJECT_ID_FIELD_NAME, campaign.Id);
         Oblix_CampaignAddAssetController controller = new Oblix_CampaignAddAssetController();

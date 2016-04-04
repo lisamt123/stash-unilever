@@ -1,4 +1,4 @@
-<apex:page standardcontroller="Oblix_SOW_Projects__c" extensions="Oblix_Ctrl04OverrideProjectNew" sidebar="false">
+<apex:page standardcontroller="Oblix_SOW_Projects__c" sidebar="false">
 <!-- 
             <apex:pageBlockSectionItem >
             <apex:outputLabel >Countries</apex:outputLabel>
