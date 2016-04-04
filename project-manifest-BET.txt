@@ -3,10 +3,3 @@ src/classes/uw_BETWrapper.cls-meta.xml
 src/staticresources/BETApp.resource
 src/staticresources/BETApp.resource-meta.xml
 src/objects/uw_BET__c.object
-src/objects/uw_Inoplan_Project__c.object
-src/reportTypes/Inoplan_with_or_without_BET.reportType
-src/reports/BET_reports/Inoplans_and_related_BETs.report
-src/permissionsets/CB4L_Standard_User.permissionset
-src/permissionsets/CB4L_HUB_Admin.permissionset
-src/permissionsets/BET_Operation_Admin.permissionset
-src/profiles/Admin.profile

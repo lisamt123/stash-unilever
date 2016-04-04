@@ -131,11 +131,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Unilever_Project_Manager_Name__c</field>
+                <field>txt_Unilever_project_manager_name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>lkp_Unilever_project_manager__c</field>
+                <field>eml_Unilever_project_manager_Email__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -223,6 +223,10 @@
                 <behavior>Readonly</behavior>
                 <field>PFS_Is_there_approved_funding_for_this__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txta_Reason_for_Cancellation__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -230,7 +234,7 @@
                 <field>mpkl_PFS_If_yes_what_is_the_source__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>txt_Other_Project_funding_Source__c</field>
             </layoutItems>
         </layoutColumns>

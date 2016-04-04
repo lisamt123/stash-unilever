@@ -132,11 +132,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Unilever_Project_Manager_Name__c</field>
+                <field>txt_Unilever_project_manager_name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>lkp_Unilever_project_manager__c</field>
+                <field>eml_Unilever_project_manager_Email__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>

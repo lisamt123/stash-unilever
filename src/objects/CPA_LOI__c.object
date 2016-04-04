@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Letter of Intent - If the project work starts early, before the POW is created, ADM can submit LOI, a commercial cover which caters to work at risk. It’s possible to have multiple LOIs for a PWORF. Can be created only before PWO is submitted.</description>
@@ -52,6 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -83,7 +85,7 @@
         <fullName>Total_Number_of_Man_days_being_requested__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Total Number of Man-days being requested for this WAR request at MC Rates</inlineHelpText>
-        <label>W@R mandays approved at MC Rates</label>
+        <label>W@R mandays approved at MC Rates*</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -559,6 +561,7 @@
     <fields>
         <fullName>txt_Other_Phases_Covered_by_W_R__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Mandatory if &apos;Other&apos; is selected in Phases Covered by W@R</inlineHelpText>
         <label>Other Phases Covered by W@R</label>
         <length>255</length>
         <required>false</required>
@@ -668,7 +671,7 @@
     </listViews>
     <nameField>
         <displayFormat>LOI-{00000}</displayFormat>
-        <label>LOI ID</label>
+        <label>Internal LOI ID</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
@@ -1113,6 +1116,10 @@
         </picklistValues>
     </recordTypes>
     <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <listViewButtons>New_LOI</listViewButtons>
         <searchFilterFields>OBJECT_ID</searchFilterFields>
         <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>pkl_Status__c</searchFilterFields>
@@ -1206,28 +1213,42 @@ alert(&quot;You are not authorized to perform this action.&quot;);
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
 
-if(permissionSetName == &quot;CPA_ADM&quot;){
 
-	if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Withhold&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Returned&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Saved&quot;) 
+if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; != &apos;&apos; ){
+
+	var soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_LOI__c&apos; AND Name=&apos;LOI Other&apos; limit 1&quot; ;
+	var result = sforce.connection.query(soql); 
+	var RecType = result.getArray(&apos;records&apos;);
+
+	if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Returned&quot; ||&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Withhold&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Saved&quot;) 
 	{ 
-	alert(&quot;LOI cannot be created since associated PWORF  is in Saved/Withhold/Returned/Cancelled Status&quot;); 
-	}else{
-		result = sforce.connection.query(&quot;select Id,pkl_Status__c,lkp_PWORF__c  from CPA_LOI__c where lkp_PWORF__c = &apos;{!CPA_PWORF__c.Id}&apos; AND pkl_Status__c = &apos;Cancelled&apos;&quot;);
-		var loiRecords = result.getArray(&quot;records&quot;);
+		alert(&quot;LOI cannot be created since associated PWORF is in Saved/Withhold/Returned/Cancelled Status&quot;); 
+	} 
+	else if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Resubmitted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Submitted&quot;) 
+	{ 
+		alert(&quot;Associated PWORF should be atleast in Accepted status to created LOI.&quot;); 
+	} 
+	else{ 
+		result = sforce.connection.query(&quot;select Id,pkl_Status__c,lkp_PWORF__c from CPA_LOI__c where lkp_PWORF__c = &apos;{!CPA_PWORF__c.Id}&apos; AND pkl_Status__c = &apos;Cancelled&apos;&quot;); 
+		var loiRecords = result.getArray(&quot;records&quot;); 
 
-		if(loiRecords.length &gt;0){
-			alert(&quot;LOI cannot be created since associated PWORF contains Cancelled LOI&quot;); 
-		}else{
-			window.open(&apos;/apex/CPA_CreatePWO?id={!CPA_PWORF__c.Id}&apos;+&quot;&amp;flag=Loi&quot;,&quot;_self&quot;); 
+		if(loiRecords.length &gt;0){ 
+			alert(&quot;LOI cannot be create since associated PWORF contains Cancelled LOI&quot;); 
+		}else{ 
+			window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&quot;+RecType[0].Id+&quot;&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
 		}	
-	}
-}else{
-	alert(&quot;LOI can be created by Accenture Demand Management Team only.&quot;);
+	} 
+}else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; == &apos;&apos;){
+alert(&quot;Please create LOI by using New LOI option from Relevant PWORF Record&quot;);	
+//*window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!$Label.CPA_LOI_Object_Id}&quot;,&quot;_self&quot;); */
+}else{ 
+alert(&quot;LOI can be created by Accenture Demand Management Team only.&quot;); 
 }</url>
     </webLinks>
     <webLinks>

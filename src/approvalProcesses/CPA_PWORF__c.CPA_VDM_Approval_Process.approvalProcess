@@ -17,15 +17,15 @@
         <allowDelegate>false</allowDelegate>
         <approvalActions>
             <action>
-                <name>CAP_Email_after_PWORF_is_Accepted</name>
-                <type>Alert</type>
-            </action>
-            <action>
                 <name>CAP_Manually_Accepted</name>
                 <type>FieldUpdate</type>
             </action>
             <action>
                 <name>CAP_Owner_Update_to_VDM</name>
+                <type>FieldUpdate</type>
+            </action>
+            <action>
+                <name>CPA_PWORF_IsAccepted_True</name>
                 <type>FieldUpdate</type>
             </action>
         </approvalActions>
@@ -50,10 +50,6 @@
             <action>
                 <name>CAP_PWORF_returned</name>
                 <type>FieldUpdate</type>
-            </action>
-            <action>
-                <name>CAP_PWORF_returned_by_VDM</name>
-                <type>Alert</type>
             </action>
         </rejectionActions>
     </approvalStep>
@@ -86,15 +82,15 @@
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
-            <name>CPA_Email_PWORF_is_Submitted</name>
-            <type>Alert</type>
-        </action>
-        <action>
             <name>CPA_Owner_Update_to_VDM</name>
             <type>FieldUpdate</type>
         </action>
         <action>
-            <name>CPA_PWORF_Submitted_SLA1_Date</name>
+            <name>CPA_PWORF_Submit_Resubmit_SLA1</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>CPA_PWORF_Submit_Resubmit_SLA2</name>
             <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>
@@ -103,10 +99,6 @@
         <action>
             <name>Approval_Comment_Required_for_PWORF</name>
             <type>FieldUpdate</type>
-        </action>
-        <action>
-            <name>CAP_Pworf_Withhold</name>
-            <type>Alert</type>
         </action>
         <action>
             <name>CPA_PWORF_Recall</name>

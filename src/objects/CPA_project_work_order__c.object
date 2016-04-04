@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
@@ -51,6 +52,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -176,6 +178,16 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PWORFDelta_OtherProcess_Office_Area_E2E__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Process Office Area E2E</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PWORF_ID__c</fullName>
@@ -709,6 +721,15 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>em_PWORFDeltaUnileverprojectmanagerEmail__c</fullName>
+        <externalId>false</externalId>
+        <label>Unilever project manager email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>eml_CNF_Unilever_Budget_Approver_Email__c</fullName>
         <description>CNF Unilever Budget Approver Email*</description>
         <externalId>false</externalId>
@@ -731,10 +752,9 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>eml_Project_requestor_Email__c</fullName>
-        <description>Project requestor Email</description>
+        <fullName>eml_PWORFDelta_Project_requestor_email__c</fullName>
         <externalId>false</externalId>
-        <label>Project requestor Email</label>
+        <label>Project requestor email</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Email</type>
@@ -784,16 +804,6 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>eml_Unilever_project_manager_Email__c</fullName>
-        <description>Unilever project manager Email</description>
-        <externalId>false</externalId>
-        <label>Unilever project manager Email</label>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>fml_Clarity_ID__c</fullName>
         <description>PWORF Clarity ID is store in it</description>
         <externalId>false</externalId>
@@ -815,6 +825,56 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fml_TNF_Planned_Charges__c</fullName>
+        <externalId>false</externalId>
+        <formula>num_Authorisation_charges__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TNF Planned Charges</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fml_TNF_Planned_Effort_in_Days__c</fullName>
+        <externalId>false</externalId>
+        <formula>num_Authorisation_man_days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TNF Planned Effort in Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fml_TNF_Variance_in_Charges__c</fullName>
+        <externalId>false</externalId>
+        <formula>( ABS( num_TNF_Actual_charges__c - fml_TNF_Planned_Charges__c )) /100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TNF Variance in Charges</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>fml_TNF_Variance_in_effort__c</fullName>
+        <externalId>false</externalId>
+        <formula>(  ABS(txt_TNF_Actual_effort_in_days__c - fml_TNF_Planned_Effort_in_Days__c ) )/100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>TNF Variance in effort</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>fml_Unilever_Project_Name_on_PWORF__c</fullName>
@@ -1321,6 +1381,17 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <precision>14</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Effort_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost Efforts</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -2081,10 +2152,30 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Other_PWORFDelta_Request_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Request Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_Other_Project_Phases__c</fullName>
         <externalId>false</externalId>
         <label>Other Project Phases</label>
         <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_PWORFDeltaUnileverprojectmanagerName__c</fullName>
+        <externalId>false</externalId>
+        <label>Unilever project manager name</label>
+        <length>100</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -2097,6 +2188,16 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>txt_PWORFDelta_Project_requestor_name__c</fullName>
+        <externalId>false</externalId>
+        <label>Project requestor name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>txt_PWO_number__c</fullName>
@@ -2132,19 +2233,9 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>txt_Project_requestor_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Project requestor Name</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>txt_TNF_Accenture_Contact__c</fullName>
         <externalId>false</externalId>
-        <label>TNF Vendor Contact*</label>
+        <label>TNF Accenture Contact*</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
@@ -2282,16 +2373,6 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <description>Clarity ID of the project</description>
         <externalId>false</externalId>
         <label>Unilever Reference*</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>txt_Unilever_project_manager_Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Unilever project manager Name</label>
         <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -8496,6 +8577,10 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         </picklistValues>
     </recordTypes>
     <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <listViewButtons>New_PW</listViewButtons>
         <searchResultsAdditionalFields>fml_Pworf_Clarity_ID__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>pkl_Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
@@ -8546,22 +8631,49 @@ ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Saved&quot;)
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <requireRowSelection>true</requireRowSelection>
-        <url>soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_PWORF__c&apos;); 
+p.id = &quot;{!CPA_PWORF__c.Id}&quot;; 
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
 
-if(permissionSetName == &quot;CPA_ADM&quot;){
 
+var soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_project_work_order__c&apos; AND Name=&apos;PWO&apos; limit 1&quot; ;
+var result = sforce.connection.query(soql); 
+var RecTypeRegular = result.getArray(&apos;records&apos;); 
+
+
+var soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_project_work_order__c&apos; AND Name=&apos;Standalone PWO&apos; limit 1&quot; ;
+var result = sforce.connection.query(soql); 
+var RecTypeStandAlone = result.getArray(&apos;records&apos;); 
+
+
+if(permissionSetName == &quot;CPA_SMT&quot; &amp;&amp; p.id ==&apos;&apos;){
+	//alert(&quot;Stand Alone&quot;);
+	window.open(&quot;/&quot;+&quot;{!$Label.CPA_PWO_Object_Id}/e?{!$Label.CPA_PWORF_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&quot;+RecTypeStandAlone[0].Id+&quot;&amp;retURL=%2F{!$Label.CPA_PWO_Object_Id}&quot;,&quot;_self&quot;);
+}else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; p.id !=&apos;&apos; ){
+	//alert(&apos;Regular&apos;);
 	if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Auto Accepted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Accepted&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Answered&quot;) 
 	{ 
-		window.open(&apos;/apex/CPA_CreatePWO?id={!CPA_PWORF__c.Id}&apos;,&quot;_self&quot;);
+		window.open(&quot;/&quot;+&quot;{!$Label.CPA_PWO_Object_Id}/e?{!$Label.CPA_PWORF_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&quot;+RecTypeRegular[0].Id+&quot;&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;);
 	}else{ 
 		alert(&quot;PWO can be created only if associated PWORF is in Accepted/Auto Accepted/Answered status&quot;); 
 	}
-
-}else{
-	alert(&quot;PWO can be created by Accenture Demand Management Team only.&quot;);
+}
+else if(permissionSetName == &quot;CPA_ULPM&quot; &amp;&amp; p.id ==&apos;&apos;){
+	alert(&quot;Only SMT can create Standalone PWO.&quot;);
+}
+else{
+	if(p.id ==&apos;&apos;){
+		alert(&quot;Please create PWO by using New PWO option from Relevant PWORF Record.&quot;);
+	}
+	else{
+		alert(&quot;PWO can be created by Accenture Demand Management Team only.&quot;);
+	}
 }</url>
     </webLinks>
     <webLinks>
@@ -8575,19 +8687,6 @@ if(permissionSetName == &quot;CPA_ADM&quot;){
         <openType>noSidebar</openType>
         <protected>false</protected>
         <url>/a9G/e?RecordType=012180000000AtZAAU&amp;retURL=a00</url>
-    </webLinks>
-    <webLinks>
-        <fullName>Test</fullName>
-        <availability>online</availability>
-        <displayType>massActionButton</displayType>
-        <encodingKey>UTF-8</encodingKey>
-        <height>600</height>
-        <linkType>url</linkType>
-        <masterLabel>Test</masterLabel>
-        <openType>sidebar</openType>
-        <protected>false</protected>
-        <requireRowSelection>true</requireRowSelection>
-        <url>/a9G/e? CF00N18000000ILBh={!CPA_project_work_order__c.PWORF_ID__c}&amp;CF00N18000000ILBh_lkid ={!CPA_project_work_order__c.PWORF_ID__c}</url>
     </webLinks>
     <webLinks>
         <fullName>btn_Cancel_CNF</fullName>
@@ -9200,13 +9299,22 @@ var permissionSetName = records1[0].PermissionSet.Name;
 //alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
 
 if( permissionSetName == &quot;CPA_SMT&quot;){  
-	if(p.TNF_Status__c == &quot;Accepted&quot;){ 
+	if(p.TNF_Status__c == &quot;Submitted&quot; ||p.TNF_Status__c == &quot;Resubmitted&quot;){ 
+		alert(&quot;TNF cannot be Sent for Signature as it is not yet Accepted&quot;); 
+	}else if(p.TNF_Status__c == &quot;Cancelled&quot; || p.TNF_Status__c == &quot;Returned&quot;){ 
+		alert(&quot;TNF cannot be Sent for Signature as it is in Cancelled/Returned status.&quot;); 
+	}else if(p.TNF_Status__c == &quot;Accepted&quot;){ 
 		p.TNF_Status__c = &quot;Sent for Signature&quot;;	
 		result = sforce.connection.update([p]); 
-		location.reload(true); 
-	}else{ 
-		alert(&quot;TNF cannot be Sent for Signature as it is not yet Accepted&quot;); 
-	} 
+		location.reload(true);	
+	}else if(p.TNF_Status__c == &quot;Sent for Signature&quot; || p.TNF_Status__c == &quot;Signed&quot;){ 
+		alert(&quot;TNF cannot be Sent for Signature as it is already Signed/Sent for Signature.&quot;); 
+	}else if(p.TNF_Status__c == &quot;Delivered&quot;){ 
+		alert(&quot;TNF cannot be Sent for Signature as it is already Delivered.&quot;); 
+	}else
+	{ 
+		alert(&quot;TNF can be Sent for Signature if it is in Accepted Status.&quot;); 
+	}  
 }else{ 
 	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
@@ -9309,6 +9417,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	if(p.TNF_Status__c == &quot;Sent for Signature&quot;){
 		p.TNF_Status__c = &quot;Signed&quot;;	
 		result = sforce.connection.update([p]); 
+//alert(result);
 		location.reload(true);
 	}else{
 		alert(&quot;TNF cannot be Signed as it is not yet Sent for Signature&quot;); 

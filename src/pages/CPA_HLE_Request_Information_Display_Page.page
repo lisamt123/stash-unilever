@@ -1,5 +1,5 @@
 <apex:page standardController="CPA_HLE_Request__c" extensions="CPA_HLERequInformationController" > 
- <apex:form style="overflow:auto;height:250px"  >
+ <apex:form >
   <apex:pageBlock >
       <apex:pageMessages />
    

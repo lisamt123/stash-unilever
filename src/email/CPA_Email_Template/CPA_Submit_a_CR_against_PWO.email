@@ -1,12 +1,12 @@
-<messaging:emailTemplate subject=" CR with ID {!RelatedTo.Name} is Submitted by {!RelatedTo.txt_Accenture_Project_Manager__c} " recipientType="User" relatedToType="CPA_CR__c">
-<messaging:plainTextEmailBody >
+<messaging:emailTemplate subject="{!RelatedTo.Name} : Submitted" recipientType="User" relatedToType="CPA_CR__c">
+<messaging:htmlEmailBody >
     Hi,<br/><br/>
-    A CR with ID {!RelatedTo.Name}  is Submitted by {!RelatedTo.txt_Accenture_Project_Manager__c} on {!RelatedTo.dat_Submitted_Date__c}.
+    A CR with ID {!RelatedTo.Name}  is Submitted by {!RelatedTo.txt_Accenture_Project_Manager__c} on {!Today()}. <br/><br/>
 
-    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Name} ">{!$Label.CPA_Default_URL}{!RelatedTo.Name} </a> <br/><br/>
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
    
 Regards, <br/><br/>
 
 Automation Contract System    
-</messaging:plainTextEmailBody>
+</messaging:htmlEmailBody>
 </messaging:emailTemplate>

@@ -78,8 +78,8 @@ public with sharing class CPA_PWORF_TriggerUtil{
             // display if the reqeust was successful
             reqlist.add(req);
             isSubmitted = true;
-        }else if(oldPWORFList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.AUTOACCEPT &&   newPWORFList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.AUTOACCEPT){
-                setId.add(newPWORFList[i].Id);      
+        }else if( !oldPWORFList[i].chk_isAutoAccepted__c &&   newPWORFList[i].chk_isAutoAccepted__c){
+            setId.add(newPWORFList[i].Id);      
         }else if((oldPWORFList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.WITHHOLD &&   newPWORFList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.WITHHOLD)|| (oldPWORFList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.SUBMITTED &&   newPWORFList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.SUBMITTED) || (oldPWORFList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.RESUBMITTED &&   newPWORFList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.RESUBMITTED) ){
             WithholdsetId.add(newPWORFList[i]);
         }
@@ -137,7 +137,7 @@ public with sharing class CPA_PWORF_TriggerUtil{
         String strStatus = newPWORFList[0].pkl_Status__c;
         String strOldStatus = OldPWORFList[0].pkl_Status__c;
         Date dt1 = Date.today();
-        if(strStatus.equalsIgnoreCase('Accepted') || strStatus.equalsIgnoreCase('Auto Accepted')){
+        if(strStatus.equalsIgnoreCase('Accepted')){
             newPWORFList[0].dat_SLA1_Accepted_Date__c = dt1;
         }else if(!strStatus.equalsIgnoreCase('Answered')){
             newPWORFList[0].dat_SLA1_Accepted_Date__c = null;
@@ -227,6 +227,9 @@ public with sharing class CPA_PWORF_TriggerUtil{
                     }
                 }
             }
+            if(newPWORFList[0].txt_SLA1__c !=null && newPWORFList[0].txt_SLA1__c.isNumeric()){newPWORFList[0].num_Number_of_SLA1_Days__c = Integer.valueof(newPWORFList[0].txt_SLA1__c.trim());}
+			if(newPWORFList[0].txt_SLA2__c !=null && newPWORFList[0].txt_SLA2__c.isNumeric()){newPWORFList[0].num_Number_of_SLA2_Days__c = Integer.valueof(newPWORFList[0].txt_SLA2__c.trim());}
+            
             //update pworfRec;
         }//Submitted if condition
     }
@@ -360,5 +363,30 @@ public with sharing class CPA_PWORF_TriggerUtil{
                 
             
     }
-    
+/*******************************************************************
+    Purpose: This method is used to restrict ULPM to Update  on PWORF record when Accepted/Answered/Auto Accepted
+    Parameters: oldPWORFList, newPWORFList
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/ 
+    public static void restrictULPMtoUpdate(List<CPA_PWORF__c> oldPWORFList,List<CPA_PWORF__c> newPWORFList){ 
+		Boolean user_has_permission = false;                
+		List<PermissionSetAssignment> lstcurrentUserPerSet =    [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId() ];
+		for(Integer i = 0; i < newPWORFList.size(); i++){
+			if((oldPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ACCEPTED && newPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ACCEPTED) || (oldPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.AUTOACCEPT && newPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.AUTOACCEPT) || (oldPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ANSWERED && newPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ANSWERED)){
+				for ( PermissionSetAssignment psa : lstcurrentUserPerSet ) {
+					string permission = psa.PermissionSet.Name;
+					if (permission.CONTAINS(CPA_ConstantsForContractingAppClasses.CPASMT)){
+						user_has_permission = true;
+						break;
+					}
+				}
+				if(!user_has_permission){
+                    if(!test.isrunningtest()){
+						newPWORFList[i].adderror('PWORF can not be updated after it has been Accepted');
+                    }
+				}                      
+			}
+		}
+	}    
 }

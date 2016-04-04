@@ -11,6 +11,7 @@ History
 -------
 VERSION     AUTHOR           DATE            DETAIL Description
 1.0         Dinesh Girase    29/01/2016     INITIAL DEVELOPMENT CSR:
+1.1        Dinesh            27/03/2016    Added Project Description
 ***********************************************************************/
 public class CPA_ConstantsForContractingAppClasses{
 
@@ -41,8 +42,10 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String SentForTermination = 'Sent For Termination';
     public static final String Terminated = 'Terminated';
     public static final String SAVED= 'Saved';
+    public static final String READYTOSUBMIT= 'Ready To Submit';
     public static final String PDF = 'pdf';
     public static final String PLAN_ANALYSE = 'plan; analyse';
+    public static final String PWOISTERMINATED= 'PWO is Terminated';
     
     public static final String EUROPE = 'Europe';
     public static final String ONETWOTHREE = '123';
@@ -55,6 +58,8 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String LOITRIGGERNAME = 'CPA_LOI_Trigger';
     public static final String ATTACHMENTTRIGERNAME = 'CPA_AfterAttachment';
     public static final String HLEREQUESTTRIGERNAME = 'CPA_HLERequest';
+    public static final String QUERIESTRIGERNAME = 'CPA_Queries';
+    public static final String QUERYCOMMENTTRIGERNAME = 'CPA_Query_comment';
     
     public static final String SUBMITFORAPPROVAL = 'Submitted for approval. Please approve.';
     public static final String WITHHOLD = 'Withhold';
@@ -242,6 +247,6 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String CPA_PWORF_ALL_RECORDTYPE = 'Other';
     public static final String CPA_PWORF_RA_RECORDTYPE = 'Resource Augmentation';
     
-       
+    public static final String PROJECTDESCRIPTION = 'Project Description';   
 
 }

@@ -33,6 +33,7 @@
   </tr>
   <tr>
       <td>           
+     	   <!-- Render condition for displaying slider -->
            <apex:outputPanel rendered="{!isEditable}">                      
             <apex:outputPanel id="rndSlide" styleClass="sliderRND">    
             <input type="hidden" name="RnD" value="{!rnd.IPM_GK_Answers__c}"/>           
@@ -49,6 +50,7 @@
              </div> 
              </apex:outputPanel>
              </apex:outputPanel>
+             <!-- Render condition for displaying slider answer -->
              <apex:outputText value="{!rnd.IPM_GK_Answers__c}" rendered="{!!isEditable}"/>             
     </td>
   </tr>  

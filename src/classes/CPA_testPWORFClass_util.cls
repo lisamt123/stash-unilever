@@ -276,5 +276,30 @@ public with sharing class CPA_testPWORFClass_util {
         pworfRec.lkp_Unilever_project_manager__c = testUSer.id; 
         
         return pworfRec;
-    }   
+    } 
+     /*******************************************************************
+    Purpose: This method is used to create Query test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/    
+    public static CPA_Queries__c createTest_query(CPA_PWORF__c pworf){
+    	CPA_Queries__c queryRec = new CPA_Queries__c();
+        queryRec.Name = CPA_ConstantsForContractingAppClasses.TEST;
+        queryRec.RTXTQuery_Description__c = CPA_ConstantsForContractingAppClasses.TEST;
+        queryRec.Type_Of_Query__c = 'Query';
+        queryRec.LookupPWORF_Name__c =pworf.id ;
+    	return queryRec;
+    }
+     /*******************************************************************
+    Purpose: This method is used to create Query comment test data
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/    
+    public static CPA_Query_comment__c createTest_queryComment(CPA_Queries__c query){
+    	CPA_Query_comment__c queryComentRec = new CPA_Query_comment__c();
+        queryComentRec.LookupCPA_Queries__c =query.id ;
+    	return queryComentRec; 
+    } 
 }

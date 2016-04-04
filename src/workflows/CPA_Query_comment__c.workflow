@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>CPA_PWO_Query_Response_Notification</fullName>
+        <description>CPA PWO Query Response Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Query_Creator__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CPA_Email_Template/CPA_PWO_query_Responded</template>
+    </alerts>
+    <alerts>
+        <fullName>CPA_Query_Response_Notification</fullName>
+        <description>CPA Query Response Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Query_Creator__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CPA_Email_Template/CPA_PWORF_query_Responded</template>
+    </alerts>
+    <alerts>
         <fullName>CR_Query_Response_Notification</fullName>
         <description>CR Query Response Notification</description>
         <protected>false</protected>
@@ -10,6 +46,10 @@
         <recipients>
             <recipient>CAP_SMT_Group</recipient>
             <type>group</type>
+        </recipients>
+        <recipients>
+            <field>Query_Creator__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_CR_query_Responded</template>
@@ -25,6 +65,10 @@
             <recipient>CAP_SMT_Group</recipient>
             <type>group</type>
         </recipients>
+        <recipients>
+            <field>Query_Creator__c</field>
+            <type>userLookup</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_HLE_REquestquery_Responded</template>
     </alerts>
@@ -38,6 +82,10 @@
         <recipients>
             <recipient>CAP_SMT_Group</recipient>
             <type>group</type>
+        </recipients>
+        <recipients>
+            <field>Query_Creator__c</field>
+            <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CPA_Email_Template/CPA_LOI_query_Responded</template>
@@ -74,12 +122,20 @@
     </rules>
     <rules>
         <fullName>CPA PWO Query Response Notification</fullName>
+        <actions>
+            <name>CPA_PWO_Query_Response_Notification</name>
+            <type>Alert</type>
+        </actions>
         <active>true</active>
         <formula>LookupCPA_Queries__r.PWO_ID__c &lt;&gt; null</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>CPA PWORF Query Response Notification</fullName>
+        <actions>
+            <name>CPA_Query_Response_Notification</name>
+            <type>Alert</type>
+        </actions>
         <active>true</active>
         <formula>LookupCPA_Queries__r.Pworf_ID__c  &lt;&gt; null</formula>
         <triggerType>onCreateOnly</triggerType>

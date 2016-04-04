@@ -318,7 +318,6 @@
         <relatedList>RelatedProcessHistoryList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>NAME</fields>
         <fields>pkl_Attribute_Type__c</fields>
         <fields>txt_Value__c</fields>
         <relatedList>CPA_User_Defined_Attribute__c.lkp_PWORF__c</relatedList>

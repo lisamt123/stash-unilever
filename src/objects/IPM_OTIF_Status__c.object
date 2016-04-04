@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <customSettingsType>List</customSettingsType>
+    <visibility>Public</visibility>
     <description>Contents of OTIF Status for Gate Documents</description>
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>IPM_Carry_GK_Section_Answer__c</fullName>
+        <description>To be deleted</description>
         <externalId>false</externalId>
         <label>IPM_Carry GK Section Answer</label>
         <length>255</length>
@@ -15,6 +17,7 @@
     </fields>
     <fields>
         <fullName>IPM_External_Id__c</fullName>
+        <description>To upload the data in system from external source</description>
         <externalId>false</externalId>
         <label>IPM External Id</label>
         <length>255</length>
@@ -25,6 +28,7 @@
     </fields>
     <fields>
         <fullName>IPM_Gate_Document_Type__c</fullName>
+        <description>To capture gate document name</description>
         <externalId>false</externalId>
         <label>IPM Gate Document Type</label>
         <length>255</length>
@@ -79,6 +83,7 @@
     </fields>
     <fields>
         <fullName>OTIF_Help_Text__c</fullName>
+        <description>Contains OTIF help text</description>
         <externalId>false</externalId>
         <label>OTIF Help Text</label>
         <required>false</required>
@@ -87,6 +92,7 @@
     </fields>
     <fields>
         <fullName>OTIF_Measure__c</fullName>
+        <description>Contains OTIF Measure</description>
         <externalId>false</externalId>
         <label>OTIF Measure</label>
         <length>255</length>
@@ -97,6 +103,7 @@
     </fields>
     <fields>
         <fullName>OTIF_No_of_Status__c</fullName>
+        <description>Describe the number of status OTIF question having</description>
         <externalId>false</externalId>
         <label>OTIF No of Status</label>
         <precision>18</precision>
@@ -108,6 +115,7 @@
     </fields>
     <fields>
         <fullName>OTIF_Responsibility__c</fullName>
+        <description>Contains OTIF responsibility</description>
         <externalId>false</externalId>
         <label>OTIF Responsibility</label>
         <length>255</length>
@@ -130,6 +138,7 @@
     </fields>
     <fields>
         <fullName>OTIF_Status__c</fullName>
+        <description>To store OTIF value</description>
         <externalId>false</externalId>
         <label>OTIF Status</label>
         <length>255</length>
@@ -139,5 +148,4 @@
         <unique>false</unique>
     </fields>
     <label>IPM OTIF Status</label>
-    <visibility>Public</visibility>
 </CustomObject>

@@ -217,6 +217,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_PWO_Previous_Status_value</fullName>
+        <field>txt_Previous_Status_Value__c</field>
+        <formula>TEXT(pkl_Status__c)</formula>
+        <name>CPA PWO Previous Status value</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_Project_Work_Order_Accepted</fullName>
         <field>pkl_Status__c</field>
         <literalValue>Accepted</literalValue>
@@ -224,6 +233,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_Project_Work_Order_Accepted_date</fullName>
@@ -270,6 +280,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_Project_Work_Order_Returned_date</fullName>
@@ -321,6 +332,15 @@
         <field>pkl_Status__c</field>
         <literalValue>Terminated</literalValue>
         <name>CPA Project Work Order Terminated</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_Project_Work_Order_send_for_Signatur</fullName>
+        <field>pkl_Status__c</field>
+        <literalValue>Sent for Signature</literalValue>
+        <name>CPA Project Work Order send for Signatur</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -619,6 +639,87 @@
             <operation>equals</operation>
             <value>PWO TNF</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.TNF_Status__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.chk_isCNFcancelled__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA PWO TNF cancel at Accepted</fullName>
+        <actions>
+            <name>CPA_Project_Work_Order_Accepted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_Record_type_CPA_PWO_Submitted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_is_TNF_cancelled</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.chk_isTNFcancelled__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.txt_Previous_Status_Value__c</field>
+            <operation>equals</operation>
+            <value>Accepted</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA PWO TNF cancel at Send for signature</fullName>
+        <actions>
+            <name>CPA_Project_Work_Order_send_for_Signatur</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_Record_type_CPA_PWO_Submitted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_is_TNF_cancelled</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.chk_isTNFcancelled__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.txt_Previous_Status_Value__c</field>
+            <operation>equals</operation>
+            <value>Sent for Signature</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA PWO send for Signature</fullName>
+        <actions>
+            <name>CPA_PWO_Previous_Status_value</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CPA_Record_type_CPA_PWO_Submitted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Sent for Signature</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -789,6 +890,10 @@
             <type>Alert</type>
         </actions>
         <actions>
+            <name>CPA_PWO_Previous_Status_value</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CPA_Project_work_order_Singed</name>
             <type>FieldUpdate</type>
         </actions>
@@ -824,7 +929,7 @@
         <criteriaItems>
             <field>CPA_project_work_order__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Submitted,Resubmitted,Accepted,Sent for Signature</value>
+            <value>Submitted,Resubmitted</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -848,7 +953,7 @@
             <name>CPA_Record_type_CPA_TNF</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>CPA_project_work_order__c.TNF_Status__c</field>
             <operation>equals</operation>
@@ -918,6 +1023,11 @@
             <operation>equals</operation>
             <value>True</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.txt_Previous_Status_Value__c</field>
+            <operation>equals</operation>
+            <value>Signed</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -926,7 +1036,7 @@
             <name>CPA_Record_type_CPA_PWO_CNF</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>CPA_project_work_order__c.CNF_Status__c</field>
             <operation>equals</operation>

@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This object will be used for persisting the pworf ageing only with help of Apex Scheduler/Triggers.</description>
@@ -52,19 +53,10 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
-    <fields>
-        <fullName>Latest_Update_Date__c</fullName>
-        <description>this will hold the last update date &amp; Time</description>
-        <externalId>false</externalId>
-        <label>Latest Update Date</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>DateTime</type>
-    </fields>
     <fields>
         <fullName>PWORF_ID__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -77,6 +69,16 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>dat_Latest_Update_Date__c</fullName>
+        <description>this will hold the last update date &amp; Time</description>
+        <externalId>false</externalId>
+        <label>Latest Update Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
     </fields>
     <fields>
         <fullName>dat_Resubmitted_Date__c</fullName>

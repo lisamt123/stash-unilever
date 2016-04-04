@@ -137,6 +137,12 @@ public with sharing class CPA_TriggerFactory
         if (soType == Attachment.sObjectType){
             return new CPA_attachment_Trigger_Handler();
         }
+        if (soType == CPA_Queries__c.sObjectType){
+            return new CPA_Queries_Trigger_Handler();
+        }
+        if (soType == CPA_Query_comment__c.sObjectType){
+            return new CPA_Query_comment_Trigger_Handler();
+        }
         return null;
     }
 

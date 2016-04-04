@@ -132,11 +132,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Unilever_Project_Manager_Name__c</field>
+                <field>txt_Unilever_project_manager_name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>lkp_Unilever_project_manager__c</field>
+                <field>eml_Unilever_project_manager_Email__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -241,20 +241,6 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Notes &amp; Attachments</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_NA_Notes__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns/>
-        <style>TwoColumnsLeftToRight</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
         <label>HLE</label>
         <layoutColumns>
             <layoutItems>
@@ -266,7 +252,7 @@
                 <field>txt_HLE_Accenture_reference__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>txt_HLE_PB_Name__c</field>
             </layoutItems>
             <layoutItems>
