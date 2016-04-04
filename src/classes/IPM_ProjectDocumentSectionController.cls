@@ -307,7 +307,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     public void getIpmuserType(){
         list<IPM_Project_Resource__c>lstProuser=[SELECT IPM_Role_Type__c,IPM_User__c,IPM_Project_Role_Owner__c,IPM_Project__r.IPM_Project_Leader__c 
                                                  FROM IPM_Project_Resource__c 
-                                                 WHERE IPM_Project__c=:projectId AND IPM_User__c=:userinfo.getuserid()  AND IPM_Project__r.Is_Archieved__c=false  
+                                                 WHERE IPM_Project__c=:projectId AND IPM_User__c=:userinfo.getuserid() AND IPM_Role_Type__c=:Frole AND IPM_Project__r.Is_Archieved__c=false  
                                                  limit 1];
         
         if(!lstProuser.isEmpty()){

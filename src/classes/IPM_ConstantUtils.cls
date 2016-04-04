@@ -919,7 +919,7 @@ public class IPM_ConstantUtils {
    public static final String NullString = null;
    public static final Integer fileSize = 25000000;
    public static final String FINANCIAL_CONTROLLER_STR = '/apex/IPM_FinancialCopyPasteGrid?id=';
-   
+   public static final String BI = 'Bi';
    // Phase Change Job Status 
     public static final String JOB_STATUS_NA = 'Not Applicable';
     public static final String JOB_STATUS_PROCESSING = 'Processing';

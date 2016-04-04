@@ -77,6 +77,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public boolean isITOgrtGTO{get; set;} //DEF2315
     public boolean isITOgrtGTOCal{get; set;} //DEF2315
     public String BI{get;set;}
+    public string globalbusinessImpactStr  {get; set;}
+    public IPM_Financial__c fin {get; set;}
+    public IPM_Financial__c finRegional{get;set;}// for Financial Regional Business Impact
+	public IPM_Financial__c finLocal{get;set;}// for Financial Local Business Impact
     //variable to capture financial type
     public Boolean isConsolidatedOrNonkey 
     {
@@ -223,11 +227,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         showKeyFinancial = false;
         isITOgrtGTO = false; 
         isITOgrtGTOCal = false;
-        BI = project.BI__c;
-        if(BI == null || BI == '')
-        {
-        	BI = IPM_ConstantUtils.smallBI;
-        }
         validationErrorMessage = IPM_ConstantUtils.BLANK;
         localrollout = new IPM_Project_Rollout__c(); 
         associatedCountryList = new List<IPM_Country__c>();
@@ -244,6 +243,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 getSectionList(); 
                 getMisalignmentVisibility(); 
                 getFinancials();                 
+                //calculating and setting the Business Impact
+                setBusinessImpact(projectId);
+                BI = globalbusinessImpactStr;
+                if(BI == null || BI == ''){
+                  BI = IPM_ConstantUtils.smallBI;
+                }
+                //upto here                 
                 isEditMode = FALSE; 
                 Boolean result = validateMilestoneAndFinacialData();
                 if(result) {
@@ -277,6 +283,81 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }  
         }
       }
+     //method to calculate the Business Impact
+     private void setBusinessImpact(Final Id pId){
+		//For Generating PDF Retrieving Project Rollouts,Finance and Project Document Sections
+		try{
+			String nam=project.IPM_Project_Name__c; 
+			globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
+		    // For BI and Year3Ito where Source is ORIGINAL project. Will work got GKM1,GKM2,GKM4, ORIGINALS AND ROLLOUT
+			if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+			{
+				if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+				{
+					fin=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,Business_Impact_Global__c,
+					Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c,
+					IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c 
+					FROM IPM_Financial__c 
+					WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+					globalbusinessImpactStr = fin.Business_Impact_Global__c;
+				}
+				else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+				{		
+					fin=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,
+					Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
+					Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
+					FROM IPM_Financial__c 
+					WHERE Regional_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+					globalbusinessImpactStr = fin.Business_Impact_Regional__c;						
+					if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
+					{						
+						finRegional=[SELECT id,ipm_cpp_local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,
+						Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,
+						Year_3_iTO_Local__c,Year_3_iTO_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c
+						FROM IPM_Financial__c 
+						WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+						globalbusinessImpactStr = finRegional.Business_Impact_Global__c;
+					}
+				}
+				else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+				{
+					fin = [SELECT ipm_cpp_local__c,Year_3_iTO_Local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,
+					Year_3_iTO_MD__c,Business_Impact_Local__c 
+					FROM IPM_Financial__c 
+					WHERE Financial_External_ID__c =: nam limit 1];
+					string parentProjectType=project.IPM_Parent_Project__r.IPM_Project_Type__c;					
+					if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+					{
+						finLocal=[SELECT Business_Impact_Regional__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
+						WHERE Regional_Project__c=:project.IPM_Parent_Project__c 
+						AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+						globalbusinessImpactStr = finLocal.Business_Impact_Regional__c;
+					}
+					else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
+					{
+						IPM_Project__c globalParentId= [Select IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c FROM IPM_Project__c where ID=:project.Id];
+						finLocal=[SELECT Business_Impact_Global__c,IPM_Business_Impact_Charter__c,IPM_Business_Impact_Contract__c,IPM_Business_Impact_MR__c,IPM_Business_Impact_MD__c FROM IPM_Financial__c 
+						WHERE Parent_Project__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__c
+						AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+						globalbusinessImpactStr = finLocal.Business_Impact_Global__c;
+					}
+				}
+			}
+			// For BI and Year3Ito where Source is ORIGINAL project. Will work got GKM5,GKM6,GKM7 OPERATIONAL
+			else if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+			{
+				globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
+				fin= [SELECT ipm_cpp_local__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c,
+				Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,
+				Year_3_iTO_MR__c,Year_3_iTO_MD__c 
+				FROM IPM_Financial__c WHERE Financial_External_ID__c =: nam limit 1];
+			}
+		}
+		catch(Exception ex){
+			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+		}
+	} 
+     //upto here 
      
      private List<IPM_Country__c> getCountryList()
      {  
@@ -1483,6 +1564,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         try {
             PageReference templatePage = Page.IPM_FinancialCopyPasteGrid;
             templatePage.getParameters().put(IPM_ConstantUtils.SF_ID, project.Id);
+            templatePage.getParameters().put(IPM_ConstantUtils.BI, BI);
             templatePage.setRedirect(true);
             return templatePage;
             
@@ -1637,11 +1719,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             milestoneFinanceDataValidationMessage = '';
             Boolean isCalendarValidationFailed = false;
             Boolean isInnovationValidationFailed = false;
-             BI = [Select BI__c from IPM_Project__c where Id=: project.Id].BI__c;
-             if(BI == null || BI == '')
-            {
-        		BI = IPM_ConstantUtils.smallBI;
-            }
             isValidationError = false;
             isEditMode = false;
             isy0TurnoverInvalid = false;
