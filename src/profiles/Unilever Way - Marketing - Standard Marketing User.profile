@@ -38100,7 +38100,7 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>uw_BET__c</tab>
-        <visibility>Tab Hidden</visibility>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <userLicense>Salesforce Platform</userLicense>
     <userPermissions>
