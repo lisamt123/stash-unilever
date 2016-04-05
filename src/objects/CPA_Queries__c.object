@@ -293,33 +293,6 @@
         <label>All</label>
         <language>en_US</language>
     </listViews>
-    <listViews>
-        <fullName>CAP_ULPM_CPA_Queries</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
-        <queue>CAP_ULPM</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CAP_VDM_Queue_CPA_Queries</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
-        <queue>CAP_VDM_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CPA_SMT_CPA_Queries</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CPA SMT</label>
-        <queue>CPA_SMT</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
     <nameField>
         <label>Query Name</label>
         <type>Text</type>
