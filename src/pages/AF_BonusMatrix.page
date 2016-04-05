@@ -360,34 +360,28 @@
     <!-- Matrix page code ends -->
     <!--Chart script -->
     <script>
-     window.onload = function() {console.log('onlod fn');
+     window.onload = function() {
             var urlChartCircles;
-            //var jsDeclareBonus = {isAgencyFlag1: '{!isAgencyFlag}',overbonus1:'{!overallbonusPer}'+'%',quantbonus1:'{!quantPer}'+'%',quanlbonus1:'{!qualPer}'+'%'};
-            
-            //alert(jsDeclareBonus.isAgencyFlag1);
-            
             if(jsDeclareBonus.isAgencyFlag1 === true){
-            urlChartCircles='/AgencyFees/resource/1435031136000/ChartNewJs';
+            	urlChartCircles='/AgencyFees/resource/1435031136000/ChartNewJs';
             }
             else{
-            urlChartCircles='/resource/1435031136000/ChartNewJs';
+               urlChartCircles='/resource/1435031136000/ChartNewJs';
             }
             $.getScript(urlChartCircles,function(){
             var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
             var myCrossBar = new Chart(document.getElementById("mycrosscanvasQuant").getContext("2d")).Doughnut(DoughnutCrossData,crossoptsQuant);
             var myCrossBar = new Chart(document.getElementById("mycrosscanvasQual").getContext("2d")).Doughnut(DoughnutCrossData,crossoptsQual);          
            });
-        }
-      
-    
+        }    
     function commentsToggleOpen(elementId) 
-  {
+  	{
       document.getElementById(elementId).style.display = 'block';
-  }
+  	}
   function commentsToggleClose(elementId) 
-  { 
+  	{ 
       document.getElementById(elementId).style.display = 'none';
-  }
+  	}
   commentsToggleClose('commentAddTable');
     </script>
     <!--<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/canvasChart.js')}"></script>-->
