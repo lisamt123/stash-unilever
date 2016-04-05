@@ -29,7 +29,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>auto_Internal_LOI_ID__c</field>
+                <field>Name</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -67,7 +67,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Name</field>
+                <field>txt_Internal_PWO_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

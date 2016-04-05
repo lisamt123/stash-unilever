@@ -154,7 +154,7 @@
             <type>group</type>
         </recipients>
         <recipients>
-            <recipient>CAP_ULPT_Group</recipient>
+            <recipient>CAP_ULPM_group</recipient>
             <type>group</type>
         </recipients>
         <recipients>
@@ -1430,7 +1430,7 @@ null)),null)</formula>
         <criteriaItems>
             <field>CPA_PWORF__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Submitted,Resubmitted</value>
+            <value>Submitted,Resubmitted,Auto Accepted,Accepted</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
