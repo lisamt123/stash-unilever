@@ -755,6 +755,8 @@
         <fullName>alle_DACH_Enclosures1</fullName>
         <columns>NAME</columns>
         <columns>OWNER.ALIAS</columns>
+        <columns>Active__c</columns>
+        <columns>Country__c</columns>
         <filterScope>Everything</filterScope>
         <label>alle DACH-Enclosures</label>
         <language>de</language>
