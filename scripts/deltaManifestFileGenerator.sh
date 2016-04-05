@@ -29,7 +29,8 @@ else
 	fi
 				
 	## command to prepare components file
-	git diff --diff-filter=MARCT  HEAD~$count --name-only >> components.txt
+	#git diff --diff-filter=MARCT  HEAD~$count --name-only >> components.txt
+	git diff --diff-filter=MARCT f27089c2ce4 41f41683247 --name-only >> components.txt
 	
 	## Generate the file containing all the list of components to be which were commited
 	truncate -s 0 componentsFile.txt
@@ -44,7 +45,7 @@ else
 	echo "***********************************************************"
 	echo "Total number Of newly added Components: " $(git diff --diff-filter=A  HEAD~$count --name-only | wc -l)
 	echo "Newly Added Components Are:"
-	git diff --diff-filter=A  HEAD~$count --name-only
+	#git diff --diff-filter=A  HEAD~$count --name-only
 	echo "***********************************************************"
 	
 	echo ""
