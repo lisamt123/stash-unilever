@@ -543,7 +543,7 @@ global with sharing class AF_BrandEstimateRemote {
 *************************************************************************/  
     @remoteAction
     global static void addAgencyEntityToEstimates(String sObjectId, String sobjectName, List<String> rowsArr, String agencyId) {
-        
+        string addAgencyEntityToEstimates='addAgencyEntityToEstimates';
         AF_Bonus_Summary__c brandsObj;
         Map<String, String> brMap;
         Id ulRecordTypeId = AF_Utils.getEntityRecordId(Label.Entity_RT_Unilever);
@@ -611,7 +611,7 @@ global with sharing class AF_BrandEstimateRemote {
         	}
         	catch(Exception e)
 	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 	        }
         }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME){
@@ -620,7 +620,7 @@ global with sharing class AF_BrandEstimateRemote {
         	}
         	catch(Exception e)
 	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 	        }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
@@ -629,7 +629,7 @@ global with sharing class AF_BrandEstimateRemote {
         	}
         	catch(Exception e)
 	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 	        }
         }
@@ -638,7 +638,7 @@ global with sharing class AF_BrandEstimateRemote {
     @remoteAction
     global static void archiveAgencyEntityToEstimates(String sObjectId, String sobjectName, String rowName) {
         
-     
+        string archiveAgencyEntityToEstimates='archiveAgencyEntityToEstimates';
         Id ulRecordTypeId = AF_Utils.getEntityRecordId(Label.Entity_RT_Unilever);
         List<AF_Agency_Estimate__c> agencyEstimatesToDelete = new List<AF_Agency_Estimate__c>();
         List<AF_OOPS_Estimate__c> oopsEstimatesToDelete = new List<AF_OOPS_Estimate__c>();
@@ -651,7 +651,7 @@ global with sharing class AF_BrandEstimateRemote {
             delete agencyEstimatesToDelete;
             }
             catch(Exception e){
-                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,archiveAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
             }
         }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
@@ -662,7 +662,7 @@ global with sharing class AF_BrandEstimateRemote {
             delete oopsEstimatesToDelete;
             }
             catch(Exception e){
-                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,archiveAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
             }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
@@ -673,7 +673,7 @@ global with sharing class AF_BrandEstimateRemote {
             delete bonusMatrixToDelete;
             }
             catch(Exception e){
-                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,archiveAgencyEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
             }
         }
@@ -681,6 +681,7 @@ global with sharing class AF_BrandEstimateRemote {
     
     @remoteAction
     global static void archiveUnileverEntityToEstimates(String sObjectId, String sObjectName, String colsArr, String agencyId) {
+    	string archiveUnileverEntityToEstimates='archiveUnileverEntityToEstimates';
         Id agRecordTypeId = AF_Utils.getEntityRecordId(Label.Entity_RT_Agency);
         List<AF_Agency_Estimate__c> agencyEstimatesToDelete = new List<AF_Agency_Estimate__c>();
         List<AF_OOPS_Estimate__c> oopsEstimatesToDelete = new List<AF_OOPS_Estimate__c>();
@@ -693,7 +694,7 @@ global with sharing class AF_BrandEstimateRemote {
             delete agencyEstimatesToDelete;
             }
             catch(Exception e){
-            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,archiveUnileverEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
             apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete)); 
             }
         }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
@@ -704,7 +705,7 @@ global with sharing class AF_BrandEstimateRemote {
             delete oopsEstimatesToDelete;
             }
             catch(Exception e){
-            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,archiveUnileverEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
             apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete));
             }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
@@ -715,7 +716,7 @@ global with sharing class AF_BrandEstimateRemote {
             delete bonusMatrixToDelete;
             }
             catch(Exception e){
-            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,archiveUnileverEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
             apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Delete));
             }
         }
@@ -729,7 +730,7 @@ global with sharing class AF_BrandEstimateRemote {
 *************************************************************************/  
     @remoteAction
     global static void addUnileverEntityToEstimates(String sObjectId, String sObjectName, List<String> colsArr, String agencyId) {
-        
+        string addUnileverEntityToEstimates='addUnileverEntityToEstimates';
         system.debug('** colsArr : ' + colsArr);
         AF_Bonus_Summary__c brandsObj;
         Map<String, String> brMap;
@@ -789,7 +790,7 @@ global with sharing class AF_BrandEstimateRemote {
         	}
         	catch(Exception e)
 	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addUnileverEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 	        }
         }else if(sobjectName ==AF_Constants.SOBJECT_OOPSACTUAL_APINAME){
@@ -798,7 +799,7 @@ global with sharing class AF_BrandEstimateRemote {
         	}
         	catch(Exception e)
 	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addUnileverEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 	        }
         }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
@@ -807,7 +808,7 @@ global with sharing class AF_BrandEstimateRemote {
         	}
         	catch(Exception e)
 	        {
-	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'addUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+	            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,addUnileverEntityToEstimates,e.getMessage(),e.getTypeName(),e.getStackTraceString());
 	            apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_Insert)); 
 	        }
         }

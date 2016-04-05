@@ -550,69 +550,11 @@
       </apex:actionStatus>
    </apex:form>
    </div>
-   <!-- Bootstrap bootstrap modal window methods  Start-->
-   <script>
-      top.document.body.setAttribute("data-shouldRefreshPage", "0");
-      $(document).ready(function(){
-       $('.modalButton').on('click', function(e) {
-          $("#iframe_cont").contents().find("body").html('');
-          var src = $(this).attr('data-src');
-          var height = $(this).attr('data-height') || 500;
-          var width = $(this).attr('data-width') || 896;
-          $("#myModal iframe").attr({'src':src,
-                              'height': height,
-                              'width': width});
-         $('#myModal').on('hidden.bs.modal', function () {
-         if(top.document.body.getAttribute("data-shouldRefreshPage") != "0"){
-          top.document.body.setAttribute("data-shouldRefreshPage", "0");
-          window.location.reload(true);
-         }
-      });                                   
-      });
-      $('.modalButton1').on('click', function(e) {
-          $("#iframe_cont").contents().find("body").html('');
-          var src = $(this).attr('data-src');
-          var height = $(this).attr('data-height') || 575;
-          var width = $(this).attr('data-width') || 1280;
-          $("#myModal iframe").attr({'src':src,
-                              'height': height,
-                              'width': width});
-         $('#myModal').on('hidden.bs.modal', function () {
-         if(top.document.body.getAttribute("data-shouldRefreshPage") != "0"){
-          top.document.body.setAttribute("data-shouldRefreshPage", "0");
-          window.location.reload(true);
-         }
-      });                                   
-      });
-      });
-      /* Change the click attributes of save buttons to set Flag on Top document to refresh page on close of modal */
-      function initializePageRefresh(){
-          var originalClick = $(this).attr("onclick");
-          $(this).attr("onclick", 'top.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
-      }
-      $("#iframe_cont").contents().find("body").html('');
-      $('#iframe_cont').load(function(){
-          var popupFrame = $("#iframe_cont").contents();
-          if(popupFrame.find("iframe").length ){
-              popupFrame.find("iframe").each(function(){
-                  $(this).contents().find(".save_btn, .submit_btn, .submit_btn_basefee2, .submit_btn1, .continue_btn, .submit_btn_basefee1, .submit_btn_addcomment, .submit_btn_oops_submit_new, .createMatrix, .savebutton, .confirmbutton, .submit_btn2Appoval").each(initializePageRefresh);
-              });
-          } 
-          popupFrame.find(".save_btn, .submit_btn, .submit_btn_basefee2, .submit_btn1, .continue_btn, .submit_btn_basefee1, .submit_btn_addcomment, .submit_btn_oops_submit_new, .createMatrix, .savebutton, .confirmbutton, .submit_btn2Appoval").each(initializePageRefresh);
-      });
-   </script>
-   <!-- Bootstrap bootstrap modal window methods End-->
-   <!-- Bootstrap bootstrap modal window data loading_gif Animation methods Start-->
-   <script> 
-      $(document).ready(function () {
-          $('#iframe_cont').on('load', function () {
-           $('#loader_cont, .loading_img').show();
-              console.log("madhu");
-              $('#loader_cont, .loading_img').delay(1000).hide(0);
-          });
-      });  
-   </script>
-   <!-- Bootstrap bootstrap modal window data loading_gif Animation methods End-->
+  <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_AgencyHomepage.js')}"></script>
+  <script>
+  var jsDeclareHomepage = {crosPerStr1:'{!crosPerStr}', tradPerStr1:'{!tradPerStr}', digitPerStr1:'{!digitPerStr}',adaptPerStr1:'{!adaptPerStr}'};
+  </script>
+  <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/CanvaschartHomepage.js')}"></script>
    <!--Chart script -->
    <script>
       window.onload = function() {
@@ -621,105 +563,7 @@
           var mydigitBar = new Chart(document.getElementById("mydigitcanvas").getContext("2d")).Doughnut(DoughnutDigtData,digtopts);
           var myadapBar = new Chart(document.getElementById("myadapcanvas").getContext("2d")).Doughnut(DoughnutAdapData,adapopts);
       }
-      var DoughnutCrossData = 
-             [{
-                  value : 100,
-                  color: "#FF0000",
-              },
-              {
-                  value : 0,
-                  color: "#E6E6E6",
-              }]
-      var crossper = {!crosPerStr}+'';
-      var crossopts= {legend : true,
-         crossText : [crossper],
-         crossTextIter: ["all"],
-         crossTextOverlay :   [true],
-         crossTextFontSize : [20],
-         crossTextFontColor : ["black"],
-         crossTextRelativePosX : [2],
-         crossTextRelativePosY : [2],
-         crossTextPosX : [0],
-         crossTextPosY : [0],
-         crossTextAlign : ["center"],
-         crossTextBaseline : ["middle"],
-         canvasBorders : false,
-      };
-      var trad ={!tradPerStr};
-      var DoughnutTradData = 
-                      [{
-                          value : trad,
-                          color: "#74AE00",
-                       },
-                       {
-                          value : 100-trad,
-                          color: "#ECF0F1",
-                       }]
-      var tradPer = trad+'%';
-      var tradopts= {legend : true,
-         crossText : [tradPer],
-         crossTextIter: ["all"],
-         crossTextOverlay :   [true],
-         crossTextFontSize : [20],
-         crossTextFontColor : ["black"],
-         crossTextRelativePosX : [2],
-         crossTextRelativePosY : [2],
-         crossTextPosX : [0],
-         crossTextPosY : [0],
-         crossTextAlign : ["center"],
-         crossTextBaseline : ["middle"],
-         canvasBorders : false,
-      };
-      var digt={!digitPerStr};
-      var DoughnutDigtData = 
-             [{
-                  value : digt,
-                  color: "#007DBB",
-              },
-              {
-                  value : 100-digt,
-                  color: "#ECF0F1",
-              }]
-      var digtper = digt+'%';
-      var digtopts= {legend : true,
-         crossText : [digtper],
-         crossTextIter: ["all"],
-         crossTextOverlay :   [true],
-         crossTextFontSize : [20],
-         crossTextFontColor : ["black"],
-         crossTextRelativePosX : [2],
-         crossTextRelativePosY : [2],
-         crossTextPosX : [0],
-         crossTextPosY : [0],
-         crossTextAlign : ["center"],
-         crossTextBaseline : ["middle"],
-         canvasBorders : false,
-      };
-      var adap ={!adaptPerStr};
-      var DoughnutAdapData = 
-                      [{
-                          value : adap,
-                          color: "#E400A7",
-                       },
-                       {
-                          value : 100-adap,
-                          color: "#ECF0F1",
-                       }]
-      var adapPer = adap+'%';
-      var adapopts= {legend : true,
-         crossText : [adapPer],
-         crossTextIter: ["all"],
-         crossTextOverlay :   [true],
-         crossTextFontSize : [20],
-         crossTextFontColor : ["black"],
-         crossTextRelativePosX : [2],
-         crossTextRelativePosY : [2],
-         crossTextPosX : [0],
-         crossTextPosY : [0],
-         crossTextAlign : ["center"],
-         crossTextBaseline : ["middle"],
-         canvasBorders : false,
-      };
+     
         
    </script>
 </apex:page>
