@@ -126,7 +126,7 @@ public static Date getRandomFutureDate(){
 
     public static String getRandomSentence(Integer wordNum){
         List<String> wordbank = new List<String>{'Hipster','Ipsum','Lorem','is', 'win', 'hot dog', 'Wes Anderson', 'to', 'do it', 'cupcakes', 'the'};
-        String sResult;
+        String sResult= '';
 
         for(Integer i = 0; i < wordNum; i++){
             Integer wbposition = getRandomInteger(0, wordbank.size());
