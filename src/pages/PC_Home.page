@@ -68,7 +68,7 @@
             </div>
             <div class="col-md-9 col-lg-9">
                 <div class="home-page-right-image">
-                <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.Almond__MyProfile}" target="innerFrame">
+                <a onclick="window.parent.postMessage({itemId: 'pbs'}, '*');" title="PBS" href="{!$Page.MyProfile}" target="innerFrame">
                    <apex:image title="My Profile" value="{!URLFOR($Resource.PCResources, 'img/hexicons_profile.svg')}" />
                  </a>
                 </div>              

@@ -3,10 +3,5 @@
     <apiVersion>33.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <label>PBS_Calendar</label>
-    <packageVersions>
-        <majorNumber>2</majorNumber>
-        <minorNumber>32</minorNumber>
-        <namespace>almond</namespace>
-    </packageVersions>
+    <label>PBS_LMS_HeroTemplate</label>
 </ApexPage>
