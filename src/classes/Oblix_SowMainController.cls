@@ -10,7 +10,7 @@
 *    Slavko Skular              2016-02-23          Created
 
 ******************************************************************************************/
-public with sharing class Oblix_SOWMainController extends Oblix_SWOPparentController {
+public with sharing class Oblix_SowMainController extends Oblix_SWOPparentController {
 
     public String selectedSowId {get; set;}
 
