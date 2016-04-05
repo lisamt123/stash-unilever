@@ -91,12 +91,13 @@ public with sharing class PBS_LMSHeaderController_CC {
                 Order__c, Name
         ];
 
+
         section = null;
         List<String> sections;
         for (PBS_AlmondNavigation__c item : navigationItems) {
-            if (pageURL.contains(item.URL__c) == true) {
+            if (pageURL.contains(item.URL__c)) {
                 section = item.Name;
-            } else if (String.isBlank(item.SectionOtherPages__c) == false) {
+            } else if (!String.isBlank(item.SectionOtherPages__c)) {
                 sections = item.SectionOtherPages__c.split(',');
                 for (String sectionPart : sections) {
                     if (pageURL.contains(sectionPart)) {

@@ -33,14 +33,14 @@ private class PBS_LMSTemplateController_Test{
         createTestCustomSetting(false);
         PBS_LMSTemplateController_CC cont = new PBS_LMSTemplateController_CC();
         // Default value should be false
-        System.assert(cont.customJSEnabled == false);
+        System.assertEquals(cont.customJSEnabled ,false);
     }
 
     static testMethod void testInitWithSFHeader(){
         createTestCustomSetting(true);
         PBS_LMSTemplateController_CC cont = new PBS_LMSTemplateController_CC();
         // Default value should be false
-        System.assert(cont.customJSEnabled == false);
+        System.assertEquals(cont.customJSEnabled ,false);
     }
 
     static void createTestCustomSetting(Boolean showSFHeader){
