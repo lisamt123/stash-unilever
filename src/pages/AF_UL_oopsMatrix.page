@@ -9,10 +9,10 @@
    <head>
       <meta charset="utf-8"/>
       <!--Bootstrap_css File  start-->
-      <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
+      <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.css')}" type="text/css"/>
       <!--Bootstrap_css File End -->
       <!-- Common_Style File Start -->
-      <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+      <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
       <!-- Common_Style File End -->
       <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
       <!-- Add fancyBox -->
@@ -74,38 +74,7 @@
          } 
          }
       </style>
-      <script type="text/javascript">
-         $('a.addfancy').fancybox({
-           autoSize: false,
-                 width: 900,
-                 height: 600,
-                 type: 'iframe',
-                 titlePosition: 'inside',
-                 hideOnOverlayClick:'false',
-                 hideOnContentClick:'false',
-                 helpers     : { 
-                 overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
-                 },
-                 afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
-                     location.reload();
-                 }
-         });
-         $('a.addfancy1').fancybox({
-           autoSize: false,
-                 width: 900,
-                 height: 600,
-                 type: 'iframe',
-                 titlePosition: 'inside',
-                 hideOnOverlayClick:'false',
-                 hideOnContentClick:'false',
-                 helpers     : { 
-                 overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
-                 },
-                 afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
-                     location.reload();
-                 }
-         });
-      </script>
+      
       <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
       <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
       <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.filter.css')}" />
@@ -134,7 +103,7 @@
          }
       </script>
       <!-- Common_Style File Start -->
-      <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+      <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
       <!-- Common_Style File End -->
       <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.js')}"></script>
       <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.dataTables.js')}"></script>
@@ -154,104 +123,15 @@
          var isCol = location.search.split('bCol=')[1];
          var dataSet, cols, oTable, singleRow, singleCol;
       </script>
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/functions.js')}"></script>
+      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functionOOPSMatrix.js')}"></script>
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
       <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.js')}"></script>
       <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.filter.js')}"></script>
       <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.js')}"></script>
       <script type="text/javascript" language="javascript">
-         loadOOpsMatrix();
          $(document).ready(function() {
-             $('#agCol').on( 'click', function (e) {
-                 e.preventDefault();
-                 $.when( addUnileverEntityToEstimates(colsSelected) ).then( function(status){
-                     if(typeof isCol === 'undefined') {
-                         location.replace(addParameterToURL('bCol=Y'));
-                     }else {
-                         location.reload();
-                     }
-                 },
-                 function(status){
-                     $("#gridPanel").html(status+', unable to load matrix page.');
-                 },
-                 function(status){
-                 });
-             });
-             $('#ulRow').on( 'click', function () {
-                 $.when( addAgencyEntityToEstimates(rowsSelected) ).then( function(status){
-                     console.log('isRow :' + isRow);
-                     if(typeof isRow === 'undefined') {
-                         location.replace(addParameterToURL('bRow=Y'));
-                     }else {
-                         location.reload();
-                     }
-                 },
-                 function(status){
-                     $("#gridPanel").html(status+', unable to load matrix page.');
-                 },
-                 function(status){
-                 });
-              });
-              $('#advFltr').on( 'click', function (e) {
-                 $.each( advFilter, function( k, v ) {
-                     $( ".display tbody tr td" ).each(function() {
-                         if(v == 't' || v == 'd' || v == 'a') {
-                             var selectedVal = $(this).attr(v);
-                             if(typeof selectedVal != 'undefined') {
-                                 $(this).children("a").text(selectedVal);
-                             }
-                         }else {
-                             if(v != 'all') {
-                                 var selectedVal = $(this).children("a").attr(v);
-                                 if(typeof selectedVal != 'undefined') {
-                                     $(this).children("a").text(selectedVal);
-                                 }
-                             } else {
-                                 location.reload();
-                             }
-                         }
-                     });
-                 });
-             });
-             $('.display tbody').on('click', 'td .archive', function () {
-                 var entName = $(this).parent().text();
-                 if(confirm('Are you sure? You want to remove the row ' + entName + ' from the matrix.')) {
-                     $.when( archiveAgencyEntityToEstimates(entName) ).then( function(status){
-                         alert('Warning: This entity combination will not be deleted if it already exists in previous quarters.');
-                         location.reload();
-                     },
-                     function(status){
-                         $("#gridPanel").html(status+', unable to load matrix page.');
-                     },
-                     function(status){
-                     });
-                  }
-              });
-              $('.display thead tr').on('click', 'th .archive', function () {
-                 var entName = $(this).parent().text();
-                 if(confirm('Are you sure? You want to remove the column ' + entName + ' from  the matrix.')) {
-                     $.when( archiveUnileverEntityToEstimates(entName) ).then( function(status){
-                         alert('Warning: This entity combination will not be deleted if it already exists in previous quarters.');
-                         location.reload();
-                     },
-                     function(status){
-                         $("#gridPanel").html(status+', unable to load matrix page.');
-                     },
-                     function(status){
-                     });
-                  }
-              });
-              $( "#ldMatrix" )
-             .click(function( event) {
-                event.preventDefault();
-                $.when( addSingleULAGEntity() ).then( function(status){
-                    location.reload();
-                },
-                function(status){},
-                function(status){
-                });
-             });
+             loadOOpsMatrix();
          });
       </script>
    </head>
@@ -505,12 +385,17 @@
             <!-- /.modal -->
          </div>
          <!-- Bootstrap modal window End --> 
-         <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/matrixControls.js')}"></script>
+         <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/matrixControls.js')}"></script>
          <!--Chart script -->
          <script>
-            window.onload = function() {console.log('onlod fn');
+        var jsDeclareOOPS = {isAgencyFlag1: '{!isAgencyFlag}', crosPerStr1:'{!oopsActObj.AF_No_Of_CrossBorder__c}'};
+        </script>
+        <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/canvasOOPSChart.js')}"></script>
+        
+         <script>
+            window.onload = function() {
                 var urlChartCircles;
-                if({!isAgencyFlag}){
+                if(jsDeclareOOPS.isAgencyFlag1==true){
                 urlChartCircles='/AgencyFees/resource/1435031136000/ChartNewJs';
                 }
                 else{
@@ -520,30 +405,6 @@
                     var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
                });
             }
-            var DoughnutCrossData = 
-            [{
-                value : 100,
-                color: "#FF0000",
-            },
-            {
-                value : 0,
-                color: "#E6E6E6",
-            }]
-            var crossper = {!oopsActObj.AF_No_Of_CrossBorder__c}+'';
-            var crossopts= {legend : true,
-            crossText : [crossper],
-            crossTextIter: ["all"],
-            crossTextOverlay :   [true],
-            crossTextFontSize : [20],
-            crossTextFontColor : ["black"],
-            crossTextRelativePosX : [2],
-            crossTextRelativePosY : [2],
-            crossTextPosX : [0],
-            crossTextPosY : [0],
-            crossTextAlign : ["center"],
-            crossTextBaseline : ["middle"],
-            canvasBorders : false,
-            };
             function commentsToggleOpen(elementId) 
             {
             document.getElementById(elementId).style.display = 'block';
@@ -555,13 +416,13 @@
             commentsToggleClose('commentAddTable');
          </script>
          <!-- jquery library Start-->
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
+      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"></script>
       <!-- jquery library End-->
       <!--   Bootstrap_Js File start 
          <!-- Bootstrap_Js File start-->
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
+      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.js')}"></script>
       <!--Bootstrap Js File End -->
-         <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'AF_UL_oopsMatrix.js')}"></script>
+         <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_UL_oopsMatrix.js')}"></script>
       </body>
    </div>
 </apex:page>
