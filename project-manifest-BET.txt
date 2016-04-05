@@ -9,9 +9,8 @@ src/classes/BET_LinkingServiceHelper.cls
 src/classes/BET_LinkingServiceHelper.cls-meta.xml
 src/classes/BET_MDODataMigrationAndTransform_Batch.cls
 src/classes/BET_MDODataMigrationAndTransform_Batch.cls-meta.xml
+src/components
 src/components/BET_NewBetComponent.component
 src/components/BET_NewBetComponent.component-meta.xml
 src/components/BET_UpsertBET.component
 src/components/BET_UpsertBET.component-meta.xml
-src/permissionsets/BET_Operation_Admin.permissionset
-src/profiles/Unilever Way - Marketing - Standard Marketing User.profile
