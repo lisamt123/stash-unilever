@@ -49,69 +49,7 @@
          }
       </style>
    </head>
-   <apex:outputPanel id="jspanel">
-      <script>  
-         function onControllerReturn() {
-           location.reload();
-         }
-         function openReject(qtr) {
-           $('.approve'+qtr).addClass('hidden');
-           $('.rjWCmnts'+qtr).removeClass('hidden');
-           $('.rjWCmnts'+qtr).addClass('displayed');
-           $('.rj'+qtr).addClass('hidden');
-           return false;
-         }
-           /* Changed on 12th Sept, 2014   
-           ** To provide save button on entering actuals 
-           ** if user already provided actuals */
-           $(document).ready(function(){
-              $('.Q1, .Q2, .Q3, .Q4').keyup(function(){      
-                   var idx = $(this).attr('class');
-                   if($(this).val().length >0){                
-                       $('.inputStatus'+idx).addClass('hidden');
-                       $('.save'+idx).addClass('displayed');
-                   }
-                   else{               
-                       $('.inputStatus'+idx).addClass('displayed');
-                       $('.save'+idx).addClass('displayed');
-                   } 
-               });
-               $('.inputActualsQ1, .inputActualsQ2, .inputActualsQ3, .inputActualsQ4').keydown(function (e) {
-                   if (e.shiftKey || e.ctrlKey || e.altKey) {
-                       e.preventDefault();
-                   } else {
-                       var key = e.keyCode;
-                       if (!((key == 8) || (key == 46) || (key >= 35 && key <= 40) || (key >= 48 && key <= 57) || (key >= 96 && key <= 105))) {
-                           e.preventDefault();
-                       }
-                   }          
-               });
-               $('.saveQ1,.saveQ2,.saveQ3,.saveQ4').click(function(){
-                   var obj = $(this).parent().parent().parent();               
-                   var rowIndx = $('table[id$="table"]').find("tr").index(obj);            
-                   $('input[name$="inputAction"]').eq(rowIndx-1).val('Upload Backup');
-               });
-               $('input[name="backup"]').click(function(){       
-                   var obj = $(this).parent().parent().parent();               
-                   var rowIndx = $('table[id$="table"]').find("tr").index(obj);                    
-                   $('input[name$="inputAction"]').eq(rowIndx-1).val('Submit');
-                   funcSave();
-               });
-                $('input[name="edit"]').click(function(){       
-                   var obj = $(this).parent().parent().parent();               
-                   var rowIndx = $('table[id$="table"]').find("tr").index(obj);                    
-                   $('input[name$="inputAction"]').eq(rowIndx-1).val('ENTERACTUALS');
-                   funcSave();
-               });
-               $('input[name="submitRec"]').click(function(){       
-                   var obj = $(this).parent().parent().parent();               
-                   var rowIndx = $('table[id$="table"]').find("tr").index(obj);            
-                   $('input[name$="inputAction"]').eq(rowIndx-1).val('ApproveReject');
-                   funcSave();
-               });
-           });
-      </script>
-   </apex:outputPanel>
+   
    <apex:pagemessages id="pm1"></apex:pagemessages>
    <div style="float: left;font-size: 16px;font-weight: bold;margin-top: 10px;width: 106%;text-align: center;">Quarterly Actuals  </div>
    <apex:dataTable value="{!lstActualApprovals}" var="oops" id="table" border="1" rowClasses="even,odd" style="font-size: 16px;width:106%;margin-top:10px;text-align: center;" >
@@ -159,13 +97,13 @@
             <apex:commandButton value="Submit" action="{!submit}" oncomplete="onControllerReturn()" rerender="table,pm1,jspanel" style=" background: none repeat scroll 0 0 #E400A7;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;">
                <apex:param name="submitActuals" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
             </apex:commandButton>
-            <apex:commandButton value="Redo"  action="{!redo}"  reRender="table,pm1,jspanel" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;" >
+            <apex:commandButton value="Redo"  action="{!redo}"  rerender="jspanel,pm1,table" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;" oncomplete="inputKeyup();inputKeydown();saveButtonSwap();backupButtonSwap();editButtonSwap();submitButtonSwap();">
                <apex:param name="OopsQuarter" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
             </apex:commandButton>
          </apex:outputPanel>
          <apex:inputHidden value="{!oops.userAction}" id="inputAction"/>
          <apex:outputPanel rendered="{!oops.userAction = 'ApproveReject'}">
-            <apex:commandButton value="Approve" styleClass="approve{!oops.quarter}"  action="{!grApprove}" oncomplete="onControllerReturn()" reRender="table,pm1,jspanel" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;" >
+            <apex:commandButton value="Approve" styleClass="approve{!oops.quarter}"  action="{!grApprove}" oncomplete="onControllerReturn()" rerender="table,pm1,jspanel" style=" background: none repeat scroll 0 0 #004976;border-radius: 5px;color: #FFFFFF;font-size: 13px;height: 30px;padding: 6px 10px 10px;width: 75px;" >
                <apex:param name="OopsQuarter" value="{!oops.quarter}" assignTo="{!selectedQuarter}"/>
             </apex:commandButton>
             <apex:outputPanel styleClass="rjWCmnts{!oops.quarter} hidden">
@@ -183,4 +121,8 @@
          </apex:outputPanel>
       </apex:column>
    </apex:dataTable>
+   <apex:outputPanel id="jspanel">
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_ApproveActuals.js')}"></script>
+   </apex:outputPanel>
+   
 </apex:component>

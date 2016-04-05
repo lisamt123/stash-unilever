@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8" />
     <!-- Bootstrap_css File Start -->
-      <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
+      <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.css')}" type="text/css"/>
     <!-- Bootstrap_css File End -->
     <apex:includeScript value="{!URLFOR($Resource.FancyJquery17, 'jquery.min.js')}"/>
     <apex:includeScript value="{!$Resource.ChartNewJs}" loadOnReady="true"/>
@@ -97,7 +97,7 @@
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/syntax/shCore.css')}"/>
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/demo.css')}"/>
     <!-- Common_Style File Start -->
-    <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+    <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
     <!-- Common_Style File End -->
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.js')}"></script>
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/media/js/jquery.dataTables.js')}"></script>
@@ -113,7 +113,7 @@
         var isCol = location.search.split('bCol=')[1];
         var dataSet, cols, oTable, singleRow, singleCol;
     </script>
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/functions.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functions.js')}"></script>
     <script type="text/javascript">
         function runScript(e) {
             if (e.keyCode == 13) {
@@ -127,97 +127,11 @@
     <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.js')}"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.filter.js')}"></script>
     <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.js')}"></script>
+    
     <script>
-    loadBonusMatrix();
-    $(document).ready(function() {
-        $('#agCol').on( 'click', function (e) {
-            e.preventDefault();
-            $.when( addUnileverEntityToEstimates(colsSelected) ).then( function(status){
-                if(typeof isCol === 'undefined') {
-                    location.replace(addParameterToURL('bCol=Y'));
-                }else {
-                    location.reload();
-                }
-            },
-            function(status){
-                $("#gridPanel").html(status+', unable to load matrix page.');
-            },
-            function(status){
-            });
+        $(document).ready(function() {
+            loadBonusMatrix();
         });
-        $('#ulRow').on( 'click', function () {
-            $.when( addAgencyEntityToEstimates(rowsSelected) ).then( function(status){
-                console.log('isRow :' + isRow);
-                if(typeof isRow === 'undefined') {
-                    location.replace(addParameterToURL('bRow=Y'));
-                }else {
-                    location.reload();
-                }
-            },
-            function(status){
-                $("#gridPanel").html(status+', unable to load matrix page.');
-            },
-            function(status){
-            });
-         });
-         $('#advFltr').on( 'click', function (e) {
-            $.each( advFilter, function( k, v ) {
-                $( ".display tbody tr td" ).each(function() {
-                    if(v == 't' || v == 'd' || v == 'a') {
-                        var selectedVal = $(this).attr(v);
-                        if(typeof selectedVal != 'undefined') {
-                            $(this).children("a").text(selectedVal);
-                        }
-                    }else {
-                        if(v != 'all') {
-                            var selectedVal = $(this).children("a").attr(v);
-                            if(typeof selectedVal != 'undefined') {
-                                $(this).children("a").text(selectedVal);
-                            }
-                        } else {
-                            location.reload();
-                        }
-                    }
-                });
-            });
-        });
-        $('.display tbody').on('click', 'td .archive', function () {
-            var entName = $(this).parent().text();
-            if(confirm('Are you sure? You want to remove the row ' + entName + ' from the matrix.')) {
-                $.when( archiveAgencyEntityToEstimates(entName) ).then( function(status){
-                    location.reload();
-                },
-                function(status){
-                    $("#gridPanel").html(status+', unable to load matrix page.');
-                },
-                function(status){
-                });
-             }
-         });
-         $('.display thead tr').on('click', 'th .archive', function () {
-            var entName = $(this).parent().text();
-            if(confirm('Are you sure? You want to remove the column ' + entName + ' from  the matrix.')) {
-                $.when( archiveUnileverEntityToEstimates(entName) ).then( function(status){
-                    location.reload();
-                },
-                function(status){
-                    $("#gridPanel").html(status+', unable to load matrix page.');
-                },
-                function(status){
-                });
-             }
-         });
-         $( "#ldMatrix" )
-        .click(function( event) {
-           event.preventDefault();
-           $.when( addSingleULAGEntity() ).then( function(status){
-               location.reload();
-           },
-           function(status){},
-           function(status){
-           });
-        });
-   });
     </script>
     
      
@@ -438,13 +352,21 @@
 
 
 <!-- Bootstrap bootstrap modal window data loading_gif Animation methods End-->
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/matrixControls.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/matrixControls.js')}"></script>
+    <script>
+    var jsDeclareBonus = {isAgencyFlag1: '{!isAgencyFlag}', overbonus1:'{!overallbonusPer}', quantbonus1:'{!quantPer}', quanlbonus1:'{!qualPer}'};
+    </script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/canvasChart.js')}"></script>
     <!-- Matrix page code ends -->
     <!--Chart script -->
     <script>
-    window.onload = function() {console.log('onlod fn');
+     window.onload = function() {console.log('onlod fn');
             var urlChartCircles;
-            if({!isAgencyFlag}){
+            //var jsDeclareBonus = {isAgencyFlag1: '{!isAgencyFlag}',overbonus1:'{!overallbonusPer}'+'%',quantbonus1:'{!quantPer}'+'%',quanlbonus1:'{!qualPer}'+'%'};
+            
+            //alert(jsDeclareBonus.isAgencyFlag1);
+            
+            if(jsDeclareBonus.isAgencyFlag1 === true){
             urlChartCircles='/AgencyFees/resource/1435031136000/ChartNewJs';
             }
             else{
@@ -456,60 +378,8 @@
             var myCrossBar = new Chart(document.getElementById("mycrosscanvasQual").getContext("2d")).Doughnut(DoughnutCrossData,crossoptsQual);          
            });
         }
-        var DoughnutCrossData = 
-       [{
-            value : 100,
-            color: "#FF0000",
-        },
-        {
-            value : 0,
-            color: "#E6E6E6",
-        }]
-  var overbonus = {!overallbonusPer}+'%';
-    var crossopts= {legend : true,
-       crossText : [overbonus],
-       crossTextIter: ["all"],
-       crossTextOverlay :   [true],
-       crossTextFontSize : [20],
-       crossTextFontColor : ["black"],
-       crossTextRelativePosX : [2],
-       crossTextRelativePosY : [2],
-       crossTextPosX : [0],
-       crossTextPosY : [0],
-       crossTextAlign : ["center"],
-       crossTextBaseline : ["middle"],
-       canvasBorders : false,
-    };
-   var quantbonus = {!quantPer}+'%';
-     var crossoptsQuant= {legend : true,
-       crossText : [quantbonus],
-       crossTextIter: ["all"],
-       crossTextOverlay :   [true],
-       crossTextFontSize : [20],
-       crossTextFontColor : ["black"],
-       crossTextRelativePosX : [2],
-       crossTextRelativePosY : [2],
-       crossTextPosX : [0],
-       crossTextPosY : [0],
-       crossTextAlign : ["center"],
-       crossTextBaseline : ["middle"],
-       canvasBorders : false,
-    };
-    var quanlbonus = {!qualPer}+'%';
-     var crossoptsQual= {legend : true,
-       crossText : [quanlbonus],
-       crossTextIter: ["all"],
-       crossTextOverlay :   [true],
-       crossTextFontSize : [20],
-       crossTextFontColor : ["black"],
-       crossTextRelativePosX : [2],
-       crossTextRelativePosY : [2],
-       crossTextPosX : [0],
-       crossTextPosY : [0],
-       crossTextAlign : ["center"],
-       crossTextBaseline : ["middle"],
-       canvasBorders : false,
-    };
+      
+    
     function commentsToggleOpen(elementId) 
   {
       document.getElementById(elementId).style.display = 'block';
@@ -520,14 +390,15 @@
   }
   commentsToggleClose('commentAddTable');
     </script>
+    <!--<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/canvasChart.js')}"></script>-->
     <!-- jquery library Start-->
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"></script>
     <!-- jquery library End-->
      <!--   Bootstrap_Js File start -->
      <!-- Bootstrap_Js File start-->
-     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
+     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.js')}"></script>
      <!--Bootstrap Js File End -->
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'AF_BonusMatrix.js')}"></script>
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_BonusMatrix.js')}"></script>
 </body>
 </div>
 </apex:page>

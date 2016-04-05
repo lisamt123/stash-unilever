@@ -33,9 +33,8 @@
       }
    </style>
    <!-- Common_Style File Start -->
-   <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
-   <!-- Common_Style File End -->
-   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'AF_ApprovalProcessForBrandEstimates.js')}"></script>
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
+   <!-- Common_Style File End -->   
    <apex:Pagemessages id="pmg"/>
    <apex:attribute name="ParentRecordValue" type="String" AssignTo="{!ParentId}" Description="The parent record that the component is to work with." />
    <apex:attribute name="brandvalue" type="String" AssignTo="{!brandvalue1}" Description="for return to home page with exact values" />
@@ -156,4 +155,7 @@
          </div>
       </apex:outputPanel>
    </apex:outputPanel>
+   <script>
+   var jsDeclare = {brandid: '{!brandvalue1}', catageoryname:'{!catageory1}',agencyUrl:'{!$Label.AF_AgencyUrlLink}',fyear:'{!year1}',agencyUser:'{!isAgency}'};
+   </script>
 </apex:component>

@@ -13,13 +13,13 @@
    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.css')}" />
    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" />
    <!-- Common_Style File Start -->
-   <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
    <!-- Common_Style File End -->
    <!--Bootstrap_css File  start-->
-   <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.css')}" type="text/css"/>
    <!--Bootstrap_css File End -->
-   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
-   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"></script>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.js')}"></script>
    <style>
       .helpAbsolute
       {
@@ -131,52 +131,9 @@
       height:102%;
       }
    </style>
-   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'AF_AgencyEstimate.js')}"></script>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_AgencyEstimate_NumCheck.js')}"></script>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_AgencyEstimate.js')}"></script>
    <!-- Adding comma in Text box -->
-<script>
-function RemoveRougeChar(convertString){
-    
-    
-    if(convertString.substring(0,1) == ","){ 
-        return convertString.substring(1, convertString.length);
-                  
-        
-    }
-    return convertString;
-    
-}
-
-jQuery( function() {
- jQuery('input.number').keyup(function(event){
-      alert('Hi..');
-      
-      var charCode = event.keyCode;
-      alert(event.keyCode);
-      var errorMsg = document.getElementById("regTitle1");
-         if(event.keyCode <=47 || event.keyCode>=57){
-           alert('loop');
-           errorMsg.innerHTML = "<b>Please enter numbers only.</b>"; 
-           return false;   
-          }
-          else{
-          errorMsg.innerHTML = "";
-          alert('else loop');
-          }
-          alert('outside loop');
-         var $this = jQuery(this);
-         var num = $this.val().replace(/,/gi, "").split("").reverse().join("");
-         alert('num..'+num);
-         var num2 = RemoveRougeChar(num.replace(/(.{3})/g,"$1,").split("").reverse().join(""));
-         alert('num2..'+num2);
-         $this.val(num2);
-         return result;
-      
-      
-      // the following line has been simplified. Revision history contains original.
-      
-  });
-});
-</script>
 <!-- Adding comma in Text box End -->
    
    <apex:form styleClass="AF_AgencyEstimate">
