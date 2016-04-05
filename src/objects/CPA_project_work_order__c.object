@@ -203,8 +203,9 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
     </fields>
     <fields>
         <fullName>PWORF_Number__c</fullName>
+        <description>[Pooja]:Old development updated on 1April16:  PWORF_ID__r.auto_PWORF_ID__c+ &apos; - PWO-&apos;+num_Number_Od_PWO__c</description>
         <externalId>false</externalId>
-        <formula>PWORF_ID__r.auto_PWORF_ID__c+ &apos; - PWO-&apos;+num_Number_Od_PWO__c</formula>
+        <formula>Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>PWO Auto Generated number</inlineHelpText>
         <label>Internal PWO ID</label>
@@ -761,6 +762,16 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>eml_Project_requestor_Email__c</fullName>
+        <description>Project requestor Email</description>
+        <externalId>false</externalId>
+        <label>Project requestor Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>eml_TNF_Unilever_Contact_Email__c</fullName>
         <description>TNF Unilever Contact Email*</description>
         <externalId>false</externalId>
@@ -798,6 +809,16 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <externalId>false</externalId>
         <inlineHelpText>Email of Finance Person Maybe Contacted To Confirm Budget And Cost Centre Details</inlineHelpText>
         <label>Unilever Finance BP/Contact Email*</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_Unilever_project_manager_Email__c</fullName>
+        <description>Unilever project manager Email</description>
+        <externalId>false</externalId>
+        <label>Unilever project manager Email</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Email</type>
@@ -1841,7 +1862,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <picklist>
             <picklistValues>
                 <fullName>T&amp;M</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Fixed Price</fullName>
@@ -1850,6 +1871,10 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
             <picklistValues>
                 <fullName>Target price</fullName>
                 <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>-</fullName>
+                <default>true</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -2233,6 +2258,16 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Project_requestor_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Project requestor Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_TNF_Accenture_Contact__c</fullName>
         <externalId>false</externalId>
         <label>TNF Accenture Contact*</label>
@@ -2380,6 +2415,16 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Unilever_project_manager_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Unilever project manager Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txta_CNF_Reason_for_Return__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Reason for Return for CNF, if CNF is under status for Sent for Signature</inlineHelpText>
@@ -2442,6 +2487,16 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <type>TextArea</type>
     </fields>
     <label>PWO</label>
+    <listViews>
+        <fullName>All_PWO</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>fml_Clarity_ID__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All PWO</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <displayFormat>PWO-{00000}</displayFormat>
         <label>PWO ID</label>
@@ -2834,7 +2889,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
             </values>
             <values>
                 <fullName>T%26M</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Target price</fullName>
@@ -8672,7 +8727,7 @@ else{
 		alert(&quot;Please create PWO by using New PWO option from Relevant PWORF Record.&quot;);
 	}
 	else{
-		alert(&quot;PWO can be created by Accenture Demand Management Team only.&quot;);
+		alert(&quot;PWO can be created by Vendor Team only.&quot;);
 	}
 }</url>
     </webLinks>
@@ -8687,6 +8742,19 @@ else{
         <openType>noSidebar</openType>
         <protected>false</protected>
         <url>/a9G/e?RecordType=012180000000AtZAAU&amp;retURL=a00</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Test</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Test</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/a9G/e? CF00N18000000ILBh={!CPA_project_work_order__c.PWORF_ID__c}&amp;CF00N18000000ILBh_lkid ={!CPA_project_work_order__c.PWORF_ID__c}</url>
     </webLinks>
     <webLinks>
         <fullName>btn_Cancel_CNF</fullName>
@@ -8892,7 +8960,7 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 		alert(&quot;TNF Can&apos;t be created if PWO is Delivered.&quot;); 
 	}else if(p.pkl_Status__c == &apos;Sent For Termination&apos;){
 		alert(&quot;Termination is already in process.&quot;); 
-	}else if(p.pkl_Status__c == &apos;Request For Termination&apos;){
+	}else {
 		result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c = &apos;Delivered&apos;&quot;); 
 		var crRecords = result.getArray(&quot;records&quot;); 
 		result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c = &apos;Delivered&apos;&quot;); 
@@ -8910,8 +8978,6 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 		else{
 		alert(&quot;TNF Can&apos;t be created if any CR is Delivered.&quot;); 
 		}
-	}else{
-		alert(&quot;TNF Can be created once &apos;Request For Termination&apos; is raised.&quot;); 
 	}
 }
 else{
@@ -9507,8 +9573,8 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 var p = new sforce.SObject(&apos;CPA_project_work_order__c&apos;); 
 p.id = &quot;{!CPA_project_work_order__c.Id}&quot;; 
 p.chk_isStandalone_PWO__c = &quot;{!CPA_project_work_order__c.chk_isStandalone_PWO__c }&quot;; 
-
 p.pkl_Status__c = &quot;{!CPA_project_work_order__c.pkl_Status__c }&quot;; 
+PWORF_ID = &quot;{!CPA_project_work_order__c.PWORF_ID__c}&quot;;
 
 
 soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
@@ -9521,55 +9587,69 @@ var permissionSetName = records1[0].PermissionSet.Name;
 if((permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; p.chk_isStandalone_PWO__c != 1)||(permissionSetName == &quot;CPA_SMT&quot; &amp;&amp; p.chk_isStandalone_PWO__c == 1)){ 
 
 
-	var isValidateFlag = sforce.apex.execute(&quot;CPA_ContractInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id});
-
-	if(isValidateFlag == &apos;true&apos;){ 
-
-		if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot; || p.pkl_Status__c == &quot;Request For Termination&quot;){ 
-			p.pkl_Status__c = &quot;Resubmitted&quot;; 
-			result = sforce.connection.update([p]); 
-			
-			location.reload(true); 
-
-		} 	else if(p.pkl_Status__c ==&quot;Saved&quot;){ 
-			p.pkl_Status__c = &quot;Submitted&quot;; 
-			result = sforce.connection.update([p]); 
-	
-			location.reload(true); 
-		} 
-		else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
-			alert(&quot;PWO is already submitted&quot;); 
-		} 
-		else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
-			alert(&quot;PWO cannot be Submitted as it is already Delivered&quot;); 
-		}
-		else if(p.pkl_Status__c == &quot;Termination Requested&quot; || p.pkl_Status__c == &quot;Sent For Termination&quot; || p.pkl_Status__c == &quot;Terminated&quot;){ 
-			alert(&quot;PWO cannot be submitted as it is Terminated/Sent For Termination/Termination Requested&quot;); 
-		}
-		else	if(p.pkl_Status__c == &quot;Signed&quot;){ 
-			alert(&quot;PWO cannot be submitted as it is already Signed&quot;); 
-		}
-		else	if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
-			alert(&quot;PWO cannot be submitted as it is already Sent for Signature&quot;); 
-		}
-		else if(p.pkl_Status__c == &quot;Sent For Closure&quot; || p.pkl_Status__c == &quot;Closed&quot;){ 
-			alert(&quot;PWO cannot be submitted as it is already Closed/Sent For Closure&quot;); 
-		}
-		else	if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
-			alert(&quot;PWO cannot be submitted as it is already Cancelled&quot;); 
-		}
-		else	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
-			alert(&quot;PWO cannot be submitted as it is already Accepted&quot;); 
-		}else{
-			alert(&quot;PWO cannot be submitted, Concern Administrator&quot;); 
-		}
-
-	} 
-	else { 
-	alert(&quot;PWO cannot be submitted, as Required fields are missing.&quot;); 
-
+	var parentFlag = &apos;true&apos;;
+	if(p.chk_isStandalone_PWO__c != 1){
+		soql = &quot;select Id,pkl_Status__c from CPA_PWORF__c where name =&apos;&quot;+PWORF_ID+&quot;&apos;&quot;;
+		//alert(soql);;
+		result = sforce.connection.query(soql); 
+		var recPworf = result.getArray(&quot;records&quot;); 
+		if(recPworf != null &amp;&amp; recPworf.length &gt; 0){ 
+			if(recPworf[0].pkl_Status__c == &apos;Returned&apos; || recPworf[0].pkl_Status__c == &apos;Withhold&apos; || recPworf[0].pkl_Status__c == &apos;Cancelled&apos;){
+				parentFlag = &apos;false&apos;;
+			}
+		}	
 	}
+	//alert(parentFlag);
 	
+	if(parentFlag == &apos;true&apos;){	
+		//alert(&quot;in parentFlag :&quot;+parentFlag);	
+		var isValidateFlag = sforce.apex.execute(&quot;CPA_ContractInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id});
+		if(isValidateFlag == &apos;true&apos;){ 
+
+			if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot; || p.pkl_Status__c == &quot;Request For Termination&quot;){ 
+				p.pkl_Status__c = &quot;Resubmitted&quot;; 
+				result = sforce.connection.update([p]); 
+				location.reload(true); 
+
+			} 	else if(p.pkl_Status__c ==&quot;Saved&quot;){ 
+				p.pkl_Status__c = &quot;Submitted&quot;; 
+				result = sforce.connection.update([p]); 
+				//alert(result);
+				location.reload(true); 
+			} 
+			else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
+				alert(&quot;PWO is already submitted&quot;); 
+			} 
+			else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
+				alert(&quot;PWO cannot be Submitted as it is already Delivered&quot;); 
+			}
+			else if(p.pkl_Status__c == &quot;Termination Requested&quot; || p.pkl_Status__c == &quot;Sent For Termination&quot; || p.pkl_Status__c == &quot;Terminated&quot;){ 
+				alert(&quot;PWO cannot be submitted as it is Terminated/Sent For Termination/Termination Requested&quot;); 
+			}
+			else	if(p.pkl_Status__c == &quot;Signed&quot;){ 
+				alert(&quot;PWO cannot be submitted as it is already Signed&quot;); 
+			}
+			else	if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
+				alert(&quot;PWO cannot be submitted as it is already Sent for Signature&quot;); 
+			}
+			else if(p.pkl_Status__c == &quot;Sent For Closure&quot; || p.pkl_Status__c == &quot;Closed&quot;){ 
+				alert(&quot;PWO cannot be submitted as it is already Closed/Sent For Closure&quot;); 
+			}
+			else	if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
+				alert(&quot;PWO cannot be submitted as it is already Cancelled&quot;); 
+			}
+			else	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
+				alert(&quot;PWO cannot be submitted as it is already Accepted&quot;); 
+			}else{
+				alert(&quot;PWO cannot be submitted, Concern Administrator&quot;); 
+			}
+		} 
+		else { 
+			alert(&quot;PWO cannot be submitted, as Required fields are missing.&quot;); 
+		}
+	}else{
+		alert(&quot;PWO cannot be submitted, as associated PWORF is in Returned/Withhold/Cancelled status.&quot;); 
+	}
 }else{
 alert(&quot;You are not authorized to perform this action&quot;);
 }</url>

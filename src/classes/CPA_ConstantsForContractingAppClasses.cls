@@ -11,7 +11,6 @@ History
 -------
 VERSION     AUTHOR           DATE            DETAIL Description
 1.0         Dinesh Girase    29/01/2016     INITIAL DEVELOPMENT CSR:
-1.1        Dinesh            27/03/2016    Added Project Description
 ***********************************************************************/
 public class CPA_ConstantsForContractingAppClasses{
 
@@ -60,6 +59,9 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String HLEREQUESTTRIGERNAME = 'CPA_HLERequest';
     public static final String QUERIESTRIGERNAME = 'CPA_Queries';
     public static final String QUERYCOMMENTTRIGERNAME = 'CPA_Query_comment';
+    public static final String KEYCONTACTTRIGERNAME = 'CPA_Key_Contact_Trigger';
+    public static final String REQUIRMENTANDDELIVERABLETRIGERNAME = 'CPA_Requirements_and_Deliverables';
+    
     
     public static final String SUBMITFORAPPROVAL = 'Submitted for approval. Please approve.';
     public static final String WITHHOLD = 'Withhold';
@@ -167,7 +169,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String ACCEPTANCECRITERIA='Acceptance Criteria';
     public static final String REVISEDSUBDATE='Revised Submission Date';
     public static final String PWOLINKEDTOCR1='PWO linked to CR';
-    public static final String OTHERREQUESTTYPE='Other Request Type';
+    public static final String OTHERREQUESTTYPE='Other-Request Type';
     public static final String REQUESTTYPE='Request Type';
     public static final String REGION='Region';
     public static final String PRICINGMODEL='Pricing Model';
@@ -197,6 +199,9 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String KEYCONTACTS='Key Contacts';
     public static final String EXPTGOLIVEDATENOTPASTDATE='Expected go-live date canot be past date';
     public static final String CPASMT='CPA_SMT';
+    public static final String CPAADM='CPA_ADM';
+    public static final String CPAULPM='CPA_ULPM'; 
+    public static final String WhyProjectInvasiveInNature='Why Project Invasive in nature?';
     public static final String MANDATORYIFPRJISINVASIVEINNATURTE='Mandatory, If Project is Invasive in nature';
     public static final String MANDATORYIFPRJROLESYSADMIN='Mandatory, if the project has Role or System Authorization';
     public static final String MANDATORYIFPRJREQPERFTEST='Mandatory, If Project Require Performance Testing';
@@ -206,6 +211,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String MANDATORYIFINTERFACE='Mandatory, If there is Interface to the system';
     public static final String MANDATORYIFRTISPSC='Mandatory, If Request Type is Project Scope Change (CR).';
     public static final String MANDATORYIFOTHISSELECTEDINRT='Mandatory, If Other is selected in Request Type.';
+    public static final String NOTREQUIREDWHENREQUESTTYPENOTOTHER='Required only when Request Type is Other.';
     public static final String PROJECTSCOPECHANGE='Project Scope Change (CR)';
     public static final String MANDATORYIFCOSTCENTNOTPROVIDED='Mandatory only when the Cost Center is not provided.';
     public static final String MANDATORYIFICCNOISPROVIDED='Mandatory. But if ICC number is provided, CC can be avoided.';
@@ -247,6 +253,16 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String CPA_PWORF_ALL_RECORDTYPE = 'Other';
     public static final String CPA_PWORF_RA_RECORDTYPE = 'Resource Augmentation';
     
-    public static final String PROJECTDESCRIPTION = 'Project Description';   
+    public static final String CPA_KEYCONTACTNOTUPDATED= ' Key Contact cannot be updated, as PWORF is already accepted/Cancelled By Vendor.';
+    public static final String CPA_KEYCONTACTNOTUPDATEDFORSMT= ' Key Contact cannot be updated, as PWORF is already Cancelled.';
+    public static final String CPA_KEYCONTACTNOTDELETED= ' Key Contact Cannot be deleted.';
+    
+    public static final String REQUIRMENTANDDELIVERABLENOTUPDATE = ' Requirements and Deliverables cannot be updated, as PWORF is already accepted/Cancelled By Vendor.';
+    public static final String REQUIRMENTANDDELIVERABLENOTUPDATEFORSMT = ' Requirements and Deliverables cannot be updated, as PWORF is already Cancelled';
+    public static final String REQUIRMENTANDDELIVERABLENOTDELETE = ' Requirements and Deliverables Cannot be deleted.';
+    
+    Public static final String PROJECTDECRIPTION = 'Project Description*';
+    
+
 
 }

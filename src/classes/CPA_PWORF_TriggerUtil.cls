@@ -228,7 +228,7 @@ public with sharing class CPA_PWORF_TriggerUtil{
                 }
             }
             if(newPWORFList[0].txt_SLA1__c !=null && newPWORFList[0].txt_SLA1__c.isNumeric()){newPWORFList[0].num_Number_of_SLA1_Days__c = Integer.valueof(newPWORFList[0].txt_SLA1__c.trim());}
-			if(newPWORFList[0].txt_SLA2__c !=null && newPWORFList[0].txt_SLA2__c.isNumeric()){newPWORFList[0].num_Number_of_SLA2_Days__c = Integer.valueof(newPWORFList[0].txt_SLA2__c.trim());}
+            if(newPWORFList[0].txt_SLA2__c !=null && newPWORFList[0].txt_SLA2__c.isNumeric()){newPWORFList[0].num_Number_of_SLA2_Days__c = Integer.valueof(newPWORFList[0].txt_SLA2__c.trim());}
             
             //update pworfRec;
         }//Submitted if condition
@@ -370,23 +370,92 @@ public with sharing class CPA_PWORF_TriggerUtil{
     Throws [Exceptions]: 
     ********************************************************************/ 
     public static void restrictULPMtoUpdate(List<CPA_PWORF__c> oldPWORFList,List<CPA_PWORF__c> newPWORFList){ 
-		Boolean user_has_permission = false;                
-		List<PermissionSetAssignment> lstcurrentUserPerSet =    [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId() ];
-		for(Integer i = 0; i < newPWORFList.size(); i++){
-			if((oldPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ACCEPTED && newPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ACCEPTED) || (oldPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.AUTOACCEPT && newPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.AUTOACCEPT) || (oldPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ANSWERED && newPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ANSWERED)){
-				for ( PermissionSetAssignment psa : lstcurrentUserPerSet ) {
-					string permission = psa.PermissionSet.Name;
-					if (permission.CONTAINS(CPA_ConstantsForContractingAppClasses.CPASMT)){
-						user_has_permission = true;
-						break;
-					}
-				}
-				if(!user_has_permission){
-                    if(!test.isrunningtest()){
-						newPWORFList[i].adderror('PWORF can not be updated after it has been Accepted');
+        Boolean user_has_permission = false;                
+        List<PermissionSetAssignment> lstcurrentUserPerSet =    [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId() ];
+        for(Integer i = 0; i < newPWORFList.size(); i++){
+            if((oldPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ACCEPTED && newPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ACCEPTED) || (oldPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.AUTOACCEPT && newPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.AUTOACCEPT) || (oldPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ANSWERED && newPWORFList[i].pkl_Status__c  == CPA_ConstantsForContractingAppClasses.ANSWERED)){
+                for ( PermissionSetAssignment psa : lstcurrentUserPerSet ) {
+                    string permission = psa.PermissionSet.Name;
+                    if (permission.CONTAINS(CPA_ConstantsForContractingAppClasses.CPASMT)){
+                        user_has_permission = true;
+                        break;
                     }
-				}                      
-			}
-		}
-	}    
+                }
+                if(!user_has_permission){
+                    if(!test.isrunningtest()){
+                        newPWORFList[i].adderror('PWORF can not be updated after it has been Accepted');
+                    }
+                }                      
+            }
+        }
+    }
+    /** Method Name : restricSMTULPMToAcceptReject
+    * Parameter   : newPWORFList,oldPWORFList
+    * Return type : None
+    * Author      : Pooja Kanani  
+    * Description : This method restric SMT/ULPM to accept/reject PWORF
+    */
+    public static void restricSMTULPMToAcceptReject(List<CPA_PWORF__c> newPWORFList,List<CPA_PWORF__c> oldPWORFList){
+ 
+  // Create a map that stores all the objects that require editing 
+  Map<Id, CPA_PWORF__c> approvalStatements = new Map<Id, CPA_PWORF__c>{};
+  map<id,CPA_PWORF__c> mapOldMap = new map<Id,CPA_PWORF__c>();
+  
+  for(CPA_PWORF__c objTemp : oldPWORFList)
+  {
+      mapOldMap.put(objTemp.Id,objTemp);
+  }
+  Boolean user_has_permission = false;              
+    
+        List<PermissionSetAssignment> lstcurrentUserPerSet =    [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId() ];
+        for ( PermissionSetAssignment psa : lstcurrentUserPerSet ) {
+                string permission = psa.PermissionSet.Name;
+                if (permission.CONTAINS(CPA_ConstantsForContractingAppClasses.CPAADM)){
+                    user_has_permission = true;
+                    break;
+                }
+            system.debug('permission>>'+permission);
+            }
+            system.debug('user_has_permission>>'+user_has_permission);
+                    
+            for(CPA_PWORF__c inv:newPWORFList){ 
+                if(!user_has_permission && !inv.chk_isAutoAccepted__c  && ((inv.pkl_Status__c==CPA_ConstantsForContractingAppClasses.ACCEPTED && mapOldMap.get(inv.Id).pkl_Status__c!=CPA_ConstantsForContractingAppClasses.ACCEPTED)|| (inv.pkl_Status__c==CPA_ConstantsForContractingAppClasses.RETURNED && mapOldMap.get(inv.Id).pkl_Status__c!= CPA_ConstantsForContractingAppClasses.RETURNED))){
+                    approvalStatements.put(inv.Id, inv);                     
+                }
+            }
+        system.debug('approvalStatements>>'+approvalStatements);
+  if (approvalStatements != null && !approvalStatements.isEmpty())  
+  {
+    // If there are some approvals to be reviewed for approval, then
+    // get the most recent process instance for each object.
+    List<Id> processInstanceIds = new List<Id>{};
+    
+    for (CPA_PWORF__c invs : [SELECT (SELECT ID
+                                              FROM ProcessInstances
+                                              ORDER BY CreatedDate DESC
+                                              LIMIT 1)
+                                      FROM CPA_PWORF__c
+                                      WHERE ID IN :approvalStatements.keySet()])
+    {
+        processInstanceIds.add(invs.ProcessInstances[0].Id);
+    }
+      if(processInstanceIds!=null){  
+    // Now that we have the most recent process instances, we can check
+    // the most recent process steps for comments.  
+    for (ProcessInstance pi : [SELECT TargetObjectId,
+                                   (SELECT Id, StepStatus, Comments 
+                                    FROM Steps
+                                    ORDER BY CreatedDate DESC
+                                    LIMIT 1 )
+                               FROM ProcessInstance
+                               WHERE Id IN :processInstanceIds
+                               ORDER BY CreatedDate DESC])
+    {       
+      // If no comment exists, then prevent the object from saving.                 
+
+           approvalStatements.get(pi.TargetObjectId).addError('<br/><br/><Strong style= "color:red">Error: </Strong><b>PWORF Can be Accepted/Returned by Vendor only.</b><br/><br/>');
+       }
+    }                                       
+  }
+}
 }

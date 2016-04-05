@@ -241,4 +241,42 @@ private class CPA_PWORF_PWO_UtilMethods_Test {
         CPA_Query_comment__c qucom = [select Id,Query_Creator__c from CPA_Query_comment__c where id=:queryComment.id];
         System.assert (qu.createdbyid == qucom.Query_Creator__c);
     }
+    /*******************************************************************
+    Purpose: This method is used to cover LOI utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_LOI_Util_Test(){ 
+        CPA_StatusMsgCustomSetting();
+        
+        CPA_Trigger_Pattern__c PWORFTriggerPattern = CPA_testCustomSettingClass_util.createTest_PWORFTriggerPattern();
+        insert PWORFTriggerPattern;
+        CPA_Trigger_Pattern__c LOITriggerPattern = CPA_testCustomSettingClass_util.createTest_LOITriggerPattern();
+        insert LOITriggerPattern;
+        
+       Test.startTest();
+            CPA_PWORF__c objPworf13 = CPA_testPWORFClass_util.createTest_other_PWORF();
+            insert objPworf13;
+            objPworf13.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
+            update objPworf13;
+       		CPA_LOI__c objLOI = CPA_testContractClass.createLOI(objPworf13);
+            insert objLOI;
+            
+            objLOI.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
+        	objLOI.txt_PWO_number__c = '456';
+            update objLOI;
+            CPA_LOI_TriggerUtil.isSubmitted  = false;
+            objLOI.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
+            update objLOI; 
+            CPA_project_work_order__c objPWO = CPA_testContractClass.createotherPWO(objPworf13);
+            insert objPWO;
+        	objPWO.txt_PWO_number__c = '456';
+            update objPWO;                
+        	objPWO.txt_PWO_number__c = null;
+            update objPWO;
+           System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objPworf13.pkl_Status__c);
+              System.assert (CPA_ConstantsForContractingAppClasses.CANCELLED == objLOI.pkl_Status__c);           
+        Test.stopTest();
+    }
 }
