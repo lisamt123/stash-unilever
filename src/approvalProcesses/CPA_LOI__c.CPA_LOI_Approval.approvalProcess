@@ -79,7 +79,7 @@
             <value>Submitted</value>
         </criteriaItems>
     </entryCriteria>
-    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
             <name>Approval_Comment_Required_for_LOI</name>
