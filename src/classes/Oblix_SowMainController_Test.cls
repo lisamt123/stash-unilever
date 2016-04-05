@@ -11,7 +11,7 @@
 
 ******************************************************************************************/
 @isTest
-private class Oblix_SOWMainController_Test {
+private class Oblix_SowMainController_Test {
 
     private static Marketing_SOW__c sowDove;
     private static Marketing_SOW__c sowKnorr;
