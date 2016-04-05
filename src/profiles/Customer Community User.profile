@@ -1768,6 +1768,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CORE_NewsApp_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CORE_NewsArticle_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -2089,10 +2093,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsWrapperClass</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>Core_NC_Test_NewsApp</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -37969,6 +37969,10 @@
         <recordType>uw_Links__c.Pinnovate_Wall_Link</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+    <tabVisibilities>
+        <tab>News_Centre</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>standard-WorkBadge</tab>
         <visibility>DefaultOn</visibility>

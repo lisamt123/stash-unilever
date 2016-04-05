@@ -1,5 +1,5 @@
-/*
-  Class Name: Core_NC_Test_NewsApp
+/***
+  Class Name: CORE_NewsApp_Test
   Author : Mindtree
   Date: 1 Nov 2015
   Requirement/Project Name: Unilever Salesforce Engagement
@@ -8,14 +8,30 @@
                            2.Core_NC_NewsCenterControllerHelper
                            3.Core_NC_NewsWrapperClass
                            4.Core_NC_NewsDetailWrapperClass 
+						   
 
-*/
+***/
 
 @isTest //(Seealldata=false)
-public class Core_NC_Test_NewsApp{
+public class CORE_NewsApp_Test{
     
+   @testSetup static void setupTest() {
+        List<CORE_NEWS_ARTICLE__c> lstCustSet = new List<CORE_NEWS_ARTICLE__c>();
+       
+        lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='GlobalNewsDaysNumber', Text_Value__c='90'));
+        lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='TrendingNewsDaysNumber', Text_Value__c='14'));
+        lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='CarouselLimit', Text_Value__c='3'));
+        lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='MyNewsSiteNameColorCode', Text_Value__c='red'));
+        lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='GoogleAnalyticsId', Text_Value__c='UA-69390369-6'));
+        lstCustSet.add( new CORE_NEWS_ARTICLE__c(Name='RecordCounNumber', Text_Value__c='10'));
+        if(!lstCustSet.isEmpty()){
+            insert lstCustSet;  
+        }
+              
+    }
     public static testMethod void TestNewsAppGlobalNews(){
-        test.starttest();
+        Test.startTest();
+
         String strSiteTypeOrName1='News Centre';
         DateTime dt=System.now().addDays(-1);
         News_Article__c news1=new News_Article__c(Name='Test1',News_Article_Topics__c='Innovation',News_Body__c='Test Body1',
@@ -42,32 +58,41 @@ public class Core_NC_Test_NewsApp{
         attachmnt1.body =blob.valueOf('my attachment text1');
         attachmnt1.ParentId =news1.Id;
         insert attachmnt1;
-        System.assert(attachmnt1!= null);
+       // System.assert(attachmnt1!= null);
+       List<Attachment> attachmentsTest2=[select id, name from Attachment where parent.id=:news1.id];
+        System.assertEquals(1, attachmentsTest2.size());
         
         Attachment attachmnt2 =new Attachment();
         attachmnt2.name='textfileone2.txt';
         attachmnt2.body =blob.valueOf('my attachment text2');
         attachmnt2.ParentId =news2.Id;
         insert attachmnt2;
-        System.assert(attachmnt2!= null);
+       // System.assert(attachmnt2!= null);
+         List<Attachment> attachmentsTest=[select id, name from Attachment where parent.id=:news2.id];
+        System.assertEquals(1, attachmentsTest.size());
         
         Attachment attachmnt3 =new Attachment();
         attachmnt3.name='textfileone3.txt';
         attachmnt3.body =blob.valueOf('my attachment text3');
         attachmnt3.ParentId =news3.Id;
         insert attachmnt3;
-        System.assert(attachmnt3!= null);
+      //  System.assert(attachmnt3!= null);
+        List<Attachment> attachments=[select id, name from Attachment where parent.id=:news3.id];
+        System.assertEquals(1, attachments.size());
         
-        Core_NC_NewsCenterController.getGlobalNewsForMostRecent('GlobalNews');
-        Core_NC_NewsCenterController.getGlobalNewsForMostRecent('PaulsBlog');
-        Core_NC_NewsCenterController.getGlobalNewsForMostRecent('MyNews');
-        Core_NC_NewsCenterController.getNewsDetail(news1.Id);
-        
-        test.stoptest();
+      //  Core_NC_NewsCenterController.getGlobalNewsForMostRecent('GlobalNews');
+       // Core_NC_NewsCenterController.getGlobalNewsForMostRecent('PaulsBlog');
+     //   Core_NC_NewsCenterController.getGlobalNewsForMostRecent('MyNews');
+       // Core_NC_NewsCenterController.getNewsDetail(news1.Id);
+       // System.assertNotEquals(null, Core_NC_NewsCenterController.getNewsDetail(news1.Id));
+        System.assertNotEquals(null, Core_NC_NewsCenterController.getGlobalNewsForMostRecent('MyNews'));
+        System.assertNotEquals(null,  Core_NC_NewsCenterController.getGlobalNewsForMostRecent('PaulsBlog'));
+        System.assertNotEquals(null,  Core_NC_NewsCenterController.getGlobalNewsForMostRecent('GlobalNews'));
+        Test.stopTest();
     }
     
     public static testMethod void TestNewsAppTrendingNews(){
-        test.starttest();
+        Test.startTest();
         String strSiteTypeOrName2='News Centre';
         DateTime dt=System.now().addDays(-1);
         News_Article__c news1=new News_Article__c(Name='Test1',News_Article_Topics__c='Innovation',News_Body__c='Test Body4',
@@ -99,21 +124,23 @@ public class Core_NC_Test_NewsApp{
         insert new FeedItem(Type='TextPost',Body='Hi',ParentId=news1.Id);
         insert new FeedItem(Type='TextPost',Body='Hi',ParentId=news3.Id);
         
-        Core_NC_NewsCenterController.putLikeForNews(news1.Id);
-        Core_NC_NewsCenterController.putLikeForNews(news3.Id);
-        Core_NC_NewsCenterController.getTrendingNews('GlobalNews','View');
-        Core_NC_NewsCenterController.getTrendingNews('GlobalNews','Like');
-        Core_NC_NewsCenterController.getTrendingNews('GlobalNews','Comment');
-        Core_NC_NewsCenterController.getTrendingNews('MyNews','View');
-        Core_NC_NewsCenterController.getTrendingNews('MyNews','Like');
-        Core_NC_NewsCenterController.getTrendingNews('MyNews','Comment');
+       System.assert(Core_NC_NewsCenterController.putLikeForNews(news1.Id)!=null);
+      System.assert(Core_NC_NewsCenterController.putLikeForNews(news3.Id)!=null);
+       // Core_NC_NewsCenterController.getTrendingNews('GlobalNews','View');
+       System.assert( Core_NC_NewsCenterController.getTrendingNews('GlobalNews','Like')!=null);
+       System.assert(Core_NC_NewsCenterController.getTrendingNews('GlobalNews','Comment')!=null);
+       System.assert( Core_NC_NewsCenterController.getTrendingNews('MyNews','View')!=null);
+       System.assert( Core_NC_NewsCenterController.getTrendingNews('MyNews','Like')!=null);
+       System.assert( Core_NC_NewsCenterController.getTrendingNews('MyNews','Comment')!=null);
+     
+       System.assert(Core_NC_NewsCenterController.getTrendingNews('GlobalNews','View')!=null);
+
         
-        
-        test.stoptest();
+        Test.stopTest();
     }
     
     public static testMethod void TestNewsAppChatterShare(){
-        test.starttest();
+        Test.startTest();
         String strSiteTypeOrName3='News Centre';
         DateTime dt=System.now().addDays(-1);
         News_Article__c news1=new News_Article__c(Name='Test1',News_Article_Topics__c='Leadership',News_Body__c='Test Body6',
@@ -145,15 +172,15 @@ public class Core_NC_Test_NewsApp{
         CollaborationGroup objgroup= new CollaborationGroup(Name = 'my_group1', CollaborationType = 'public');
         insert objgroup;
         
-        Core_NC_NewsCenterController.getGroupNames();
-        Core_NC_NewsCenterController.postNewsToChatter('Title1',news1.Sharepoint_URL__c,'Test','myFollowers','');
-        Core_NC_NewsCenterController.postNewsToChatter('Title2',news3.Sharepoint_URL__c,'Test','group','my_group1');
+       System.assert( Core_NC_NewsCenterController.getGroupNames()!=null);
+     //  System.assert( Core_NC_NewsCenterController.postNewsToChatter('Title1',news1.Sharepoint_URL__c,'Test','myFollowers','')!=null);
+        System.assert(Core_NC_NewsCenterController.postNewsToChatter('Title2',news3.Sharepoint_URL__c,'Test','group','my_group1')!=null);
         
-        test.stoptest();
+        Test.stopTest();
     }
     
     public static testMethod void TestNewsAppNewsFeedController(){
-        test.starttest();
+        Test.startTest();
         String strSiteTypeOrName4='News Centre';
         DateTime dt=System.now().addDays(-1);
         News_Article__c news1=new News_Article__c(Name='Test1',News_Article_Topics__c='Our People',News_Body__c='Test Body8',
@@ -173,9 +200,9 @@ public class Core_NC_Test_NewsApp{
         Test.setCurrentPage(Page.NewsArticleFeed_NewsApp);
         ApexPages.currentPage().getParameters().put('articleId', news1.Id);
         NewsArticleFeedController_NewsApp newsFeedController=new NewsArticleFeedController_NewsApp();
-        Core_NC_NewsCenterController.getGAInfo();
-        
-        test.stoptest();
+      //  Core_NC_NewsCenterController.getGAInfo();
+        System.assert(  Core_NC_NewsCenterController.getGAInfo()!=null);
+        Test.stopTest();
     }
     
 }
