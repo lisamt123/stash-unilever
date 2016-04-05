@@ -18,8 +18,9 @@
                 <apex:param name="countries" assignTo="{!campaignHelper.selectedProject.Campaign_Countries__c}" value="" />
             </apex:actionFunction>
 
-            <apex:actionFunction name="setAgencyHubAndSavePage" action="{!setAgencyHubSplit}" rerender="page_message_id">
-                <apex:param name="splitId" assignTo="{!agencyHubSplitWrapperListJSONString}" value="" />
+            <apex:actionFunction name="setAgencyHubAndSavePage" action="{!setAgencyHubSplit}" rerender="jqueryId">
+                <apex:param name="splitId" assignTo="{!agencyHubSplitWrapperListJSONString}" value=""/>
+                <apex:param name="cloneName" assignTo="{!cloneName}" value=""/>
             </apex:actionFunction>
 
             <apex:actionFunction name="setCampaignScale" action="{!setCampaignScale}" reRender="agencyScale" immediate="true">
@@ -30,20 +31,30 @@
             
             </apex:actionFunction>
 
-            <apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}" reRender="false">
+            <!-- <apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}" reRender="false">
                 <apex:param name="innovation" assignTo="{!campaignHelper.selectedProject.Innovation_Projects__c}" value="" />
                 <apex:param name="innov" assignTo="{!campaignHelper.selectedBrandInnovation}" value="{!campaignHelper.selectedBrandInnovation}" />
                 <apex:param name="brand" assignTo="{!campaignHelper.selectedBrandBrand}" value="{!campaignHelper.selectedBrandBrand}" />
                 <apex:param name="idea" assignTo="{!campaignHelper.selectedProject.Campaign_Idea__c}" value="" />
                 <apex:param name="scale1" assignTo="{!campaignHelper.selectedProject.Project_Scale_1__c}" value="" />
                 <apex:param name="scale2" assignTo="{!campaignHelper.selectedProject.Project_Scale_2__c}" value="" />
-            </apex:actionFunction>
+            </apex:actionFunction> -->
 
+            <apex:outputPanel rendered="{!campaignHelper.doClone}">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                        <div class="alert alert-info" role="alert">
+                            To clone this campaign please enter a new unique name and check all campaign set up fields below e.g Value Drivers, Hub Splits, Countries etc
+                        </div>
+                    </div>
+                </div>
+            </apex:outputPanel>
 
             <div class="row">
                 <div class="col-lg-6 col-md-6">
-
-                    <h1 class="SOW_header_title">{!IF(campaignHelper.isEdit, 'Edit '+ campaignHelper.selectedProject.Name,'Add campaign to '+ campaignHelper.selectedSow.Name)}</h1>
+                    <apex:outputText rendered="{!campaignHelper.isEdit && !campaignHelper.doClone}"><h1 class="SOW_header_title">Edit {!campaignHelper.selectedProject.Name}</h1></apex:outputText>
+                    <apex:outputText rendered="{!campaignHelper.isEdit && campaignHelper.doClone}"><h1 class="SOW_header_title">Clone {!campaignHelper.selectedProject.Name}</h1></apex:outputText>
+                    <apex:outputText rendered="{!!campaignHelper.isEdit}"><h1 class="SOW_header_title">Add campaign to {!campaignHelper.selectedSow.Name}</h1></apex:outputText>
                 </div>
 
             </div>
@@ -53,7 +64,8 @@
                     <div>
                         <div class="form-group" id="campaignNameLabel">
                             <label for="SOWName" class="create_SOW_form_titles">Campaign Name*</label>
-                            <apex:inputField styleClass="form-control" id="CampaignName" value="{!campaignHelper.selectedProject.Name}" />
+                            <apex:inputField styleClass="form-control" id="CampaignName" value="{!campaignHelper.selectedProject.Name}" rendered="{!!campaignHelper.doClone}"/>
+                            <apex:inputText styleClass="form-control" id="CloneName" value="{!cloneName}" rendered="{!campaignHelper.doClone}"/>
                         </div>
                         <div class="form-group">
                             <p>Description&nbsp;<span class="form_bracket_text">(Optional)</span>

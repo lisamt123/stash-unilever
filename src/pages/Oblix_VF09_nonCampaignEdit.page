@@ -1,0 +1,1163 @@
+<!-- 
+//******************************************************************************************************
+//      THE CONTENT OF THIS CLASS HAS BEEN COMMENT OUT AS THIS CLASS IS NO LONGER USED
+//      AS PART OF CODE REFACTORING, NEW CLASSES HAVE REPLACED THESE
+//      S.M. 2016-03-30
+//****************************************************************************************************** 
+-->
+
+<apex:page sidebar="false" controller="Oblix_Ctrl09_nonCampaignEdit" docType="html-5.0">
+<!-- 
+  <apex:form id="jqueryId">
+   
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}" ></script>
+    <script>
+    //format Numbers 
+    function formatNumber (elems) { 
+      elems.each(function( i,elemm ) {
+        elem = $(elemm);
+        var str = elem.html() + ''; 
+        x = str.split('.'); 
+        x1 = x[0]; x2 = x.length > 1 ? '.' + x[1] : ''; 
+        var rgx = /(\d+)(\d{3})/; 
+        while (rgx.test(x1)) { 
+            x1 = x1.replace(rgx, '$1' + ',' + '$2'); 
+        } 
+       // elem.html(x1 + x2);
+       elem.html(x1 ); 
+     });
+    }
+
+    var showTab = false; 
+    function showTab1(){
+    $('#ui-id-1').trigger('click');
+    blockme();
+    /*
+        blockme();
+     
+        $( "#tabs-2" ).css( "display", "none" );
+        $( "#tabs-1" ).css( "display", "block" );
+        
+        $( "#t1" ).addClass( "ui-tabs-active ui-state-active" );
+        $( "#t2" ).removeClass( "ui-tabs-active ui-state-active" );
+        */
+
+    }
+    function showTab2(){
+    $('#ui-id-2').trigger('click');
+    blockme();
+    /*
+        $( "#tabs-1" ).css( "display", "none" );
+        $( "#tabs-2" ).css( "display", "block" );
+         
+        $( "#t2" ).addClass( "ui-tabs-active ui-state-active" );
+        $( "#t1" ).removeClass( "ui-tabs-active ui-state-active" );
+      */ 
+    }
+    
+    
+     function lockDelete(){
+               //alert('lock');
+             //  $( ".btndel" ).attr("disabled",true);
+                $( ".btndel" ).hide();
+           };
+           
+           function unlockDelete(){
+               //alert('dislock');
+           //    $( ".btndel" ).attr("disabled",false);
+               $( ".btndel" ).show();
+           };
+    
+    
+    </script>
+    <script>
+    function blockme() {
+      $.blockUI({ css: { 
+           border: 'none', 
+           padding: '15px', 
+           backgroundColor: '#000',
+           '-webkit-border-radius': '10px', 
+           '-moz-border-radius': '10px', 
+           opacity: .5, 
+           color: '#fff' 
+       } }); 
+   }
+   $(document).ready(function(){
+          //
+          formatNumber ($('.isFee'));
+          if (!$('.hourss').val()) $('.hourss').val(0);
+          if (!$('.prcentt').val()) $('.prcentt').val(0);
+        
+            $('#tabs').tabs();
+           
+            if(showTab){
+                 
+                 showTab2();
+                $.unblockUI(); 
+                
+            } 
+    });        
+   </script>
+   
+   <style>
+        /**** Header and container CSS ****/
+        .darkGreen{color: #44883E  ;}
+        .mainGreen{color: #6BA539;}
+        h2{ font-size: 130%;}
+        h3{font-size: 14px;}
+
+        .Oblix_Container{
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'bg_pattern_2.png')}");
+            background-repeat: no-repeat;
+            position:relative;
+            top: -11px;
+        }
+        .Oblix_header_logo{
+        position:relative;
+        top:5px;
+        }
+        
+        .Oblix_header_title{
+            font-family: DIN, Arial;
+            font-size: 30px;
+            margin: 4px;   
+           /* padding-top: 7px; */  
+            position: relative;
+            top: 5px;              
+        }
+
+       .Oblix_header_arrowTitle{
+            font-family: DIN, Arial;
+            font-size: 18px;
+            margin: 4px;   
+            padding-top: 24px;
+            text-align: center;
+        }
+        
+        .Oblix_header_activeArrow{ 
+             background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'currentlevel_arrow_down.png')}");
+            background-repeat: no-repeat;
+             font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+            height: 90px;
+            text-align: center;
+            position: absolute;     
+        }
+       .Oblix_header_Arrow_none{ 
+            background-color: transparent;      
+            background: initial;
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+            height: 90px;
+            text-align: center;
+            position: absolute;
+        }
+       .Oblix_header_Arrow{ 
+           background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'currentlevel_arrow.png')}");
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+            height: 90px;
+            text-align: center;
+            position: absolute;
+        
+        }
+          .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
+            background-color: transparent;
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'arrow_hover.png')}");
+            background-repeat: no-repeat;
+          }
+         .Oblix_header_previousArrow{ 
+            background-color: transparent;      
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'previouslevel_arrow.png')}");
+            background-repeat: no-repeat;
+            font-family: DIN, Arial;
+            color:white;
+            padding-left: 10px;
+            width:160px;
+             height: 90px;
+            text-align: center;
+            position: absolute;
+         
+
+        }
+       .Oblix_header_previousArrow:active, .Oblix_header_previousArrow:hover {
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'arrow_hover.png')}");
+            background-repeat: no-repeat;
+
+          }
+        .header_pos_1 {
+            top: 2px;
+            left:113px;
+            }
+        .header_pos_2 {
+            top: 2px;
+            left:270px;
+            }
+        .header_pos_3 {
+            top: 2px;
+            left:427px;
+                       }
+       .Oblix_header a{
+            text-decoration:none;
+            cursor:pointer; 
+            color:white;            
+        }
+        .Oblix_header a:hover{
+            text-decoration:none;
+            cursor:pointer; 
+            color:white;          
+        }
+                       
+        .Oblix_header{
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'header_panel.png')}");
+            background-size: 100% 100%;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            height: 90px;
+            position: relative;
+            /* line-height: 65%; */
+            width:95%;
+            letter-spacing: 1px;
+            margin-left: auto;
+            margin-right: auto;         
+        }
+        .Oblix_header_desc{
+            text-align:center;
+            /* line-height: 140%; */
+            position:relative;
+            font-size: 10px;
+            top:-10px;
+
+        }
+        .Oblix_header td{
+             font-family: DIN, Arial;
+             }
+        .Oblix_sowDetail{
+            display: block;
+            padding: 9.5px;
+            margin: 0 58px 23px;
+            font-size: 13px;
+            line-height: 1.42857143;
+            color: #333;
+            word-break: break-all;
+            word-wrap: break-word;
+            background-color: rgb(202, 212, 190);
+            border: 1px solid #969696;
+            border-radius: 4px;
+            font-size:15px;
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        }
+      .Oblix_large_btn{
+            border-style:none;
+            width: 220px !important;
+            height: 30px;
+            background-position: 0 0;
+            border : 1px solid rgb(158, 145, 145);
+        }
+        
+        .Oblix_large_btn:hover{
+           border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+        .Oblix_large_btn:active{
+            border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+         .Oblix_btn{
+            border-style:none;
+            width: 125px;
+            height: 30px;
+            background-position: 0 0;
+            border : 1px solid rgb(158, 145, 145);
+        }
+        
+        .Oblix_btn:hover{
+            border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+        .Oblix_btn:active{
+            border-style:none;
+            border : 1px solid rgb(223, 213, 213);
+            background-position: 0 0;
+        }
+        .Oblix_notes{
+            PADDING-right: 41px;
+        }
+        .Oblix_tableDetails tr h1{
+            font-size:16px;
+        }
+        table tr td {       
+            font-size : 12px;
+        }
+        .picklist_init{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            width: 68%;
+            font-size: 13px;
+        }
+        .input_init {
+           transition: all .2s linear;
+           background: #fff;
+           padding: 5px 9px;
+           margin: 0;
+        }           
+        .textArea_init{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            width: 93%;
+            min-height:80px;
+            font-size: 13px;
+            height: 32px;
+        }
+        .Oblix_input{
+            transition: all .2s linear;
+            background: #fff;
+            padding: 5px 9px;
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .dataTables_length label select,.dataTables_filter input{
+            margin: 11px !important;
+        }
+        .dataTables_length label,.dataTables_filter label{
+            font-size:14px;
+        }
+        .Oblix_attachment{
+            width:90%;
+        }
+        
+          .btnDisabled {
+          background-color: #6BA539;
+            color: #fff;
+            opacity: .5;
+
+        }
+        
+         input.btn {
+            background-color: #6BA539;
+            background-image: none;
+            color: #fff;
+            padding: 4px 10px 3px 10px  !important;
+            height: 30px;
+
+        }
+        input.btn:active, input.btn:hover{
+        background-image: none;
+             background-color: #44883E;
+             color: #fff;
+        }
+         input.btn:disabled {
+             background-color: #6BA539;
+            color: #fff;
+            opacity: .5;
+}
+
+        
+        .medGreenB{
+             background-color: #6BA539;
+             color: #fff;
+        }
+ 
+           .medGreenB:active, .medGreenB:hover{
+             background-color: #00573F;
+             color: #fff;
+        }
+        
+         .GreenB{
+             background-color: #44883E;
+             color: #fff;
+        }
+ 
+           .GreenB:active, .GreenB:hover{
+             background-color: #00573F;
+             color: #fff;
+        }
+        
+        .tintGreenB{
+             background-color: #C2DBB6;
+             color: #000;
+        
+        }
+        
+        .tintGreenB:active, .tintGreenB:hover{
+             background-color: #00573F;
+             color: #fff;
+        }
+      
+       .Oblix_filter_btn{
+           color: #333;
+            background: #fff !important;
+            border: 1px solid #b5b5b5 !important;
+            display: inline-block;
+            padding: 4px 12px !important;
+            width:100px;
+            margin-bottom: 0;
+            font-size: 14px !important;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+        }
+         .Oblix_projects_btn{
+            display: inline-block;
+            padding: 4px 12px !important;
+            width: 144px;
+            height: 42px;
+            margin: 0px;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+         } 
+          .Oblix_popup_btn{
+            color: #333;
+            background: #B0CC8F !important;
+            display: inline-block;
+            padding: 4px 12px !important;
+            brder-radius:0px!important;
+            border:1px solid #FBEFEF !important;
+            width:100%;
+            margin-bottom: 0;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+         }
+       .Oblix_filter_btn:hover, .Oblix_filter_btn:active{
+           background: #eaeaea !important;
+           border: 1px solid #b5b5b5 !important;
+       }     
+       .ui-tooltip, .arrow:after {
+        background: black;
+        border: 2px solid white;
+      }
+      .ui-tooltip {
+        padding: 10px;
+        color: white;
+        width:150px;
+        border-radius: 2px;
+        border-color:black;
+        font-size:12px;
+        box-shadow: 0 0 2px black;
+        text-align:center;
+      }
+      .arrow {
+        width: 70px;
+        height: 16px;
+        overflow: hidden;
+        position: absolute;
+        left: 50%;
+        border-color:black;
+        margin-left: -35px;
+        bottom: -16px;
+      }
+      .arrow.top {
+        top: -16px;
+        bottom: auto;
+      }
+      .arrow.left {
+        left: 20%;
+      }
+      .arrow:after {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: -20px;
+        width: 25px;
+        height: 25px;
+        border-color:black;
+        box-shadow: 6px 5px 9px -9px black;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      .arrow.top:after {
+        bottom: -20px;
+        top: auto;
+      }
+
+    .column1,.column2 {
+        width: 49%; 
+        float: left;
+    }
+
+    .column3{
+        width: 100%; 
+        float: left;
+    }
+
+    .column5{
+        width: 50%; 
+        float: left;
+    }
+    .column4{
+        width: 40%; 
+        float: left;
+    }
+    .column4 h1 {
+        font-size: 16px;
+    }
+    .PrColumn1 {
+        width: 45%; 
+        float: left;
+    }
+    .PrColumn2{
+        width: 45%;
+        float: left;
+    }
+
+    .PrColumn3{
+        width: 100%; 
+        float: left;
+    }
+
+    .PrColumn5{
+        width: 45%; 
+        float: left;
+    }
+    .PrColumn4{
+        width: 50%; 
+        float: left;
+    }
+   
+     .Oblix_table{
+            display:block;
+            padding: 9.5px;
+            margin: 0 58px 23px;
+            font-size: 13px;
+            line-height: 1.42857143;
+            color: #333;
+            word-break: break-all;
+            word-wrap: break-word;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+    }
+   
+    /* for 900px or less */
+    @media screen and (max-width: 1200px) {
+     
+        .column1,.column2,.column3,.column4,.column5,.PrColumn1,.PrColumn2,.PrColumn3,.PrColumn4{
+            width: 100%;
+        }
+    }
+    
+    .Oblix_heading th{
+       background-color: rgba(29, 130, 40, 0.86);
+        padding: 10px;
+        color: white;
+        font-size: 14px;
+     }
+    .Oblix_table strong{
+        padding-right:20px;
+    }
+    .data table{
+        background-color: #fff;
+        padding:10px;
+    }
+    .Oblix_assets{
+        padding:10px;
+        background-color: #DFE4E0;
+    }
+    .Oblix_projects_container h1{
+        font-size: 16px;
+        /* text-transform: uppercase; */
+        letter-spacing: 1px;
+    }
+
+    .Oblix_projects_header{
+        padding: 15px;
+        background-color: rgb(0, 87, 63);
+        border-top-left-radius:15px;
+        border-top-right-radius:15px;    }
+    
+    .padding_remove{
+        padding:0px!important;
+    }
+    .Oblix_recordType i.fa.fa-2x.fa-sort-desc{
+        display:none;
+    }
+    
+    .Oblix_recordType i.fa.fa-2x.fa-sort-up{
+        display:block;
+    }
+     .show i.fa.fa-2x.fa-sort-desc{
+        display:block;
+    }
+    .show i.fa.fa-2x.fa-sort-up{
+        display:none;
+    }
+    .Oblix_icon {
+        cursor:pointer;
+    }
+    .Oblix_recordType{
+        float:left;
+        width:70%;
+    }
+    .Oblix_card{
+        float: right;
+        width: 25%;
+        background-color: #BDCEBF;
+        padding: 10px;
+        font-weight: bold;
+        height: 218px;
+        margin-right: 14px;
+    }
+    .Oblix_icon_right{
+        float:right;
+        width: 3%;
+    }
+    .Oblix_div_left{
+        float:left;
+     }
+    
+     .Oblix_subCat{
+         padding-left : 10px;
+     }
+     .Oblix_recordTypeth th{
+        background-color: #BDCEBF;
+        padding: 10px;
+     }
+     .data td{
+         background-color:white;
+     }
+     .Oblix_heading tr{
+         color:white;
+     }
+     
+    .topAlign tr{
+        vertical-align: top;
+    }
+
+     .ui-widget-header {
+        border: 0px;
+        background: #E8E8E8;
+    }
+    
+    .ui-widget-content {
+        border: 0px;
+    }
+   
+    .ui-tabs .ui-tabs-panel {
+        display: block;
+        border-width: 0;
+        padding: 1em 1.4em;
+        cursor: pointer;
+    }
+    .ui-tabs {
+       padding:0em;
+    } 
+    .ui-tabs .ui-tabs-nav li {
+        border-bottom-width: 1px;
+    }  
+   
+    .tabs-min { 
+        background: transparent; 
+        border: none; 
+    } 
+    .tabs-min .ui-widget-header { 
+        background: transparent; 
+        border: none; 
+        border-bottom: 1px solid #c0c0c0; 
+        -moz-border-radius: 0px; 
+        -webkit-border-radius: 0px; 
+        border-radius: 0px; 
+    } 
+    .tabs-min .ui-tabs-nav .ui-state-default { 
+        background: transparent; 
+        border: none; 
+    } 
+    .tabs-min .ui-tabs-nav .ui-state-active { 
+        background: transparent url("{!URLFOR($Resource.Oblix_uiTabsArrow)}") no-repeat bottom center; 
+        border: none; 
+    } 
+    .tabs-min .ui-tabs-nav .ui-state-default a { 
+        color: #c0c0c0; 
+    } 
+    .tabs-min .ui-tabs-nav .ui-state-active a { 
+        color: #459e00; 
+    }
+    .tabs-sub .ui-widget-header {
+        background: transparent;
+    }
+    .dateFormat {
+        position: relative;
+        top: 5px;
+    }
+    .Oblix_card_title{
+        font-size:13px;
+    }
+    .Oblix_card_elmt{
+        font-size:13px;
+        margin-top:20px;
+        border-bottom:1px solid black;
+    }
+    /* Override the Standard Salesforce CSS */
+    .dateOnlyInput input {
+        width: 7em;
+    }
+    
+    .ui-datepicker { width: 17em; padding: .2em .2em 0; display: none; z-index: 2000 !important;}
+    .datePicker{
+        position:absolute;  
+        z-index:1000;
+     }
+    .largBtn{
+         width:70px;
+    }
+    
+    .required{
+        cursor: auto;
+        border-width: 2px;
+        border-style: solid;
+        border-top-color: rgb(153, 153, 153);
+        border-right-color: rgb(153, 153, 153);
+        border-bottom-color: rgb(153, 153, 153);
+        border-left-color: red !important;
+    }
+    </style>
+   <apex:outputPanel rendered="{!selectResource}">  <script> showTab = {!selectResource};</script>  </apex:outputPanel>
+    <div class="Oblix_Container">
+   
+     <div class="Oblix_header">
+       <div style="postion: relative; top:-200px; background: transparent;width: 95%;margin-left: auto;margin-right: auto;">
+         <table width="95%" height="100%">
+            <tr>
+                <td width="50px" class="Oblix_header_logo">
+                <apex:image value="{!$Resource.Oblix_Unilever_logo}" width="60px" height="60px" />
+                </td>
+                <td class="Oblix_header_Arrow header_pos_1">
+                 <a href="/apex/Oblix_VF05_SOWDetailsV"> <div class="Oblix_header_title">{!$Label.Oblix_lbl_UIUX_SWOP}</div></a><br/><span class="Oblix_header_desc">{!$Label.Oblix_lbl_UIUX_Scope_of_Work}<br/>{!$Label.Oblix_lbl_UIUX_Online_Planner}</span>
+                </td>
+                <td>
+                <div class="Oblix_header_activeArrow header_pos_2">
+                <div class="Oblix_header_arrowTitle" style="padding-top: 7px;">
+                    <apex:outputPanel rendered="{!MSid == null}" > {!$Label.Oblix_lbl_UIUX_Add_Non_Campaign_Items} <br/></apex:outputPanel>
+                    <apex:outputPanel rendered="{!MSid != null}" > {!$Label.Oblix_lbl_UIUX_Edit_Non_Campaign_Items}<br/></apex:outputPanel>
+                </div>
+                </div>
+                
+                <div class="Oblix_header_Arrow_none header_pos_3">
+                <div class="Oblix_header_arrowTitle"></div>
+                </div>
+                </td>
+                <td>
+                <div style="float:right;"><p>{!$Label.Oblix_lbl_UIUX_Hi}  {!userConnected.Name} !</p></div>
+                </td>
+            </tr>
+        </table></div>
+    </div>
+    <br/><br/>
+   
+  
+     <div class="Oblix_table padding_remove" style="border-radius: 15px;">
+         <div class="Oblix_projects_container">  
+            
+            <table class="Oblix_projects_header" width="100%">
+                <tr>
+                    <td width="100%">
+                    
+                        <h1 style="color: #fff;"><apex:outputText rendered="{!!TitleEdit}" >{!$Label.Oblix_lbl_UIUX_Add_Non_Campaign_Items}</apex:outputText> <apex:outputText rendered="{!TitleEdit}">{!$Label.Oblix_lbl_UIUX_Edit_Non_Campaign_Items}</apex:outputText></h1>
+                    </td>
+                   
+                     <td style="font-size: 20px; color: #fff; word-break: normal; padding-right:20px;">
+                          <apex:outputLabel value="{!saveStatus}" id="saveStatus"></apex:outputLabel>
+                      </td><td width="160px" style="text-align: right;">
+                          <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save}" action="{!saveList}" rerender="saveStatus" onclick="blockme();" oncomplete="$.unblockUI()" styleClass="Oblix_projects_btn"/>
+                      </td><td width="160px" style="text-align: right;">
+                          <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back}" action="{!back}" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId"/><br/>       
+                      </td>
+                       <td width="160px" style="text-align: right;">
+                          <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back_to_SOW}" action="{!backtoSow }" styleClass="Oblix_projects_btn" reRender="Oblix_ItemsId"/><br/>       
+                      </td>    
+                      
+                </tr>
+            </table>
+            <table width="100%" class="topAlign">
+                <tbody>   
+                
+                <tr>
+                    <td width="100%">
+                             <apex:outputPanel id="projectDetailId">
+                            <table width="100%">
+                            <tr>
+                            <td width="70%">
+                               <section class="PrColumn1">
+                                   <table width="100%" >
+                                     <tr>
+                                          <td>
+                                            
+                                          </td>
+                                     </tr>
+                                     <tr><td colspan="2">&nbsp;</td></tr>                                 
+                                    
+                                    
+                                   </table>
+                               </section>
+                               
+                               
+                           </td>
+                           <td width="30%" >
+                               <section class="PrColumn3">   
+                                   <table width="100%" class="topAlign">  
+                                      <tr>
+                                          <td></td>
+                                      </tr>
+                                  </table>
+                              </section>
+                          </td>
+                          <td>
+                           
+                             
+                              
+                              </td>
+                           </tr>
+                           </table>
+                            
+                        </apex:outputPanel>
+                           
+                           
+                           <apex:outputPanel id="Oblix_ItemsId">
+                           <apex:actionFunction action="{!fillAgencyDepartment}" oncomplete="$.unblockUI()" name="adupdate" reRender="AD,RT,rate,rater,result,add,errMsg" />
+                            <apex:actionFunction action="{!fillRoleTitle}" oncomplete="$.unblockUI()" name="RTupdate" reRender="RT,rate,rater,result,add,errMsg"/>
+                             <apex:actionFunction action="{!fillRate}" oncomplete="$.unblockUI()" name="Rateupdate" reRender="rate,rater,hours,result,add,errMsg"/>
+                             <apex:actionFunction action="{!calculResult}" oncomplete="$.unblockUI()"  name="resultupdate" reRender="result,add,errMsg"/>
+                            <apex:actionFunction action="{!fillAgencyDepartment1}" oncomplete="$.unblockUI()" name="adupdate1" reRender="AD1,RT1,rate1,rater1,result1,add1,errMsg1"/>
+                            <apex:actionFunction action="{!fillRoleTitle1}" oncomplete="$.unblockUI()" name="RTupdate1" reRender="RT1,rate1,rater1,add1,errMsg1"/>
+                             <apex:actionFunction action="{!fillRate1}" oncomplete="$.unblockUI()" name="Rateupdate1" reRender="rate1,rater1,prcent,result1,add1,errMsg1"/>
+                             <apex:actionFunction action="{!calculResult1}" oncomplete="$.unblockUI()"  name="resultupdate1" reRender="result1,add1,errMsg1"/>
+                              
+                             <apex:actionFunction action="{!delElm}" oncomplete="$.unblockUI()"  name="delelem" reRender="Oblix_card,errMsg,saveStatus"/>
+                             <apex:actionFunction action="{!editItem}" oncomplete="$.unblockUI()"  name="delelemEdit" reRender="Oblix_card,country,AD, RT, rate,rater, hours,result,errMsg1"/>
+                
+                <apex:outputPanel id="allInputs">              
+                           <div class="Oblix_recordType">
+                           <apex:inputField value="{!assetJoe.Oblix_Quantity__c}" />
+                            
+                             
+                           <table width="100%">
+                               <tr class="Oblix_recordTypeth">
+                                    <th>
+                                        <div class="Oblix_div_left" style="font-size: 13px;">
+                                            items
+                                        </div>
+                                      </th>   
+                                </tr>
+                                <tr class="data Oblix_subCat">
+                                    <td width="100%">
+                                     
+                                    <div id="tabs">
+                                          <ul>
+                                            <li id="t1"><a href="#tabs-1">{!$Label.Oblix_lbl_UIUX_Activity}</a></li>
+                                            <li id="t2"><a href="#tabs-2">{!$Label.Oblix_lbl_UIUX_Dedicate_Resource}</a></li>
+                                          </ul>
+                                     <div id="tabs-1">
+                                
+                               
+                               <apex:actionRegion >
+                             <apex:outputPanel id="errMsg">
+                                   <apex:outputPanel rendered="{!errMsg}"  >                          
+                                        <apex:pagemessages ></apex:pagemessages>
+                                   </apex:outputPanel>   
+                              </apex:outputPanel>
+                               
+                               <apex:outputPanel id="myMessages">      
+                                   <apex:outputPanel rendered="{!myMessages}"  >                          
+                                       <apex:pagemessages ></apex:pagemessages>
+                                   </apex:outputPanel>         
+                              </apex:outputPanel>
+                             
+                               
+                             
+                                   <table width="100%" >
+                                  
+                                     <tr height="50">
+                                          <td width="20%">  <apex:inputtext styleClass="input_init required"  value="{!myAct.name}" style="width:90%;" html-placeholder="Activity name" id="nameid"  />
+                                          </td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%"></td> 
+                                          <td  width="5%"></td>
+                                          <td  width="20%"></td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                          </td>
+                                    </tr>
+                                    <tr height="50">
+                                           <td>
+                                            <apex:inputField value="{!myAct.lookupActivity.Activities__c}"  styleclass="picklist_init" style="width:100%;" id="activityid"  onchange="if ($(this).val()=='Other'){ $('.otherr').prop('disabled', false);}else{ $('.otherr').prop('disabled', true);}"  />
+                                          </td>
+                                            <td>
+                                          </td>
+                                          <td >
+                                            <apex:inputText style="width:90%;" value="{!myAct.lookupActivity.Other_Activities__c}" styleClass="input_init otherr"  id="otherId"   html-placeholder="{!$Label.Oblix_Lbl_Select_Other}" disabled="{!IF(myAct.lookupActivity.Activities__c=='Other',false,true)}"/>
+                                          </td>
+                                     </tr>
+                                     <tr height="50">
+                                          
+                                          <td>
+                                               <apex:selectList size="1" value="{!myAct.selectedCountryname}" onchange="adupdate();blockme();" styleclass="picklist_init"   style="width:100%;"  id="country">
+                                                   <apex:selectOptions value="{!countries }"/>
+                                               </apex:selectList>
+                                          </td>
+                                       
+                                          <td></td>                           
+            
+                                            <td >
+                                              <apex:selectList size="1" value="{!myAct.selectedAgencyDepartment}" styleclass="picklist_init" id="AD" onchange="RTupdate();blockme();" disabled="{!IF(myAct.agencyVisible==false,true,false)}"  style="min-width:100%;">
+                                               <apex:selectOptions value="{!AgencyDepartments}"/>
+                                              </apex:selectList>
+                                           </td>
+                                          
+                                          
+                                          <td></td>
+                                          
+                                          
+                                           <td >
+                                              <apex:selectList size="1" value="{!myAct.selectedRoleTitle}" id="RT"  styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(myAct.roleVisible==false,true,false)}" onchange="Rateupdate();blockme();">
+                                               <apex:selectOptions value="{!RoleTitles}"/>
+                                              </apex:selectList>
+                                           </td>
+                                           
+                                   </tr>
+                                   
+                                     <tr height="50">
+                                          <td width="20%">   
+                                             <span style="font-size:14px">   {!$Label.Oblix_lbl_UIUX_Hourly_rate}: € </span>
+                                             <apex:outputLabel value="{!myAct.Rate}" style="font-size:14px; display:none;" id="rate" styleclass="rateclass" >
+                                             </apex:outputLabel>
+                                              <apex:outputLabel value="{!myAct.RateRounded}" style="font-size:14px" id="rater" styleclass="rateclass" >
+                                             </apex:outputLabel> 
+                                          </td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%"> 
+                                              <apex:input type="number"  styleClass="hourss input_init"   html-min="0" value="{!myAct.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}"
+                                               disabled="{!IF(myAct.valVisible==false,false,false)}" id="hours" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);"/>
+                                              <span style="font-size:14px">{!$Label.Oblix_lbl_UIUX_hours}  </span>
+                                          </td> 
+                                          <td  width="5%"></td>
+                                          <td  width="20%" style="text-align: right;">
+                                              <span style="font-size:14px">
+                                              {!MScurrency}&nbsp;
+                                              <apex:outputLabel value="{!myAct.result}"  style="width:90%;font-size:14px"   id="result" styleclass="rslt isFee" >
+                                              </apex:outputLabel>
+                                              </span>
+                                          </td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                          <apex:commandButton value="{!IF(edit1,'Update','Add')}" action="{!addToNew}" styleclass="btn ui-button ui-state-default largBtn" onclick="blockme();" oncomplete="$.unblockUI()" 
+                                          rerender="nameid,otherId,activityid,name,country,AD, RT,rater, rate, hours,result,Oblix_card,myMessages,saveStatus,Oblix_card,add" disabled="{!IF(myAct.addVisible==false,true,false)}" id="add"/>
+                                           
+                                          </td>
+                                    </tr>
+                                    
+                                   </table>
+                              
+                          
+                           
+                           
+                           
+                           
+                           
+                                 </apex:actionRegion>
+                                </div>
+                               
+                                  <apex:actionRegion >
+                            <div id="tabs-2">
+                                 <apex:outputPanel rendered="errMsg1">
+                                      <apex:outputPanel rendered="{!errMsg1}"  >                          
+                                       <apex:pagemessages ></apex:pagemessages>
+                                   </apex:outputPanel> 
+                               </apex:outputPanel>
+                               <apex:outputPanel id="myMessages1">      
+                                   <apex:outputPanel rendered="{!myMessages1}"  >                          
+                                       <apex:pagemessages ></apex:pagemessages>
+                                   </apex:outputPanel>         
+                              </apex:outputPanel>
+                             
+                             <table width="100%">
+                                    <tr height="50">
+                                          <td width="20%"> <apex:inputtext styleClass="input_init required"  value="{!myRes.name}" style="width:90%;" html-placeholder="Resource Name" id="nameid1"   /></td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%"></td> 
+                                          <td  width="5%"></td>
+                                          <td  width="20%"></td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                          </td>
+                                    </tr>
+                                     <tr height="50">
+                                          <td width="20%">
+                                           <apex:selectList size="1" value="{!myRes.selectedCountryname}" onchange="adupdate1();blockme();" styleclass="picklist_init" style="width:100%;" id="country1">
+                                                   <apex:selectOptions value="{!countries }"/>
+                                               </apex:selectList>
+                                          </td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                           <apex:selectList size="1" value="{!myRes.selectedAgencyDepartment}" styleclass="picklist_init" id="AD1" onchange="RTupdate1();blockme();" disabled="{!IF(myRes.agencyVisible==false,true,false)}"   style="width:100%;">
+                                               <apex:selectOptions value="{!AgencyDepartments1}"/>
+                                              </apex:selectList>
+                                          </td> 
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                           <apex:selectList size="1" value="{!myRes.selectedRoleTitle}" id="RT1"  styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(myRes.roleVisible==false,true,false)}" onchange="Rateupdate1();blockme();">
+                                               <apex:selectOptions value="{!RoleTitles1}"/>
+                                              </apex:selectList>
+                                          
+                                          </td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                          </td>
+                                    </tr>
+                                     <tr height="50">
+                                          <td width="20%">
+                                            <span style="font-size:14px"> 
+                                            <span style="font-size:14px">Full Year Rate: € </span>
+                                             <apex:outputLabel value="{!myRes.Rate}" style="width:90%;display:none;" id="rate1" styleClass="rateclass1">
+                                            
+                                             </apex:outputLabel>
+                                             <apex:outputLabel value="{!myRes.RateRounded}" style="width:90%;" id="rater1" styleClass="rateclass1">
+                                            
+                                             </apex:outputLabel>
+                                              </span>
+                                          
+                                           </td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                           <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" value="{!myRes.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(Math.round($(this).val()/100*parseFloat($('.rateclass1').text()).toFixed(2))); formatNumber ($('.rslt1'));}" 
+                                           disabled="{!IF(myRes.valVisible==false,false,false)}"   id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " />
+                                           <span style="font-size:14px">%  </span>
+                                          </td> 
+                                          <td  width="5%"></td>
+                                          <td  width="20%" style="text-align: right;">
+                                          
+                                              <span style="font-size:14px">
+                                              {!MScurrency}&nbsp;
+                                             <apex:outputLabel value="{!myRes.result}"   style="width:90%;font-size:14px;"   id="result1"  styleClass="rslt1 isFee">
+                                             </apex:outputLabel>
+                                             </span>
+                                          
+                                          </td>
+                                          <td  width="5%"></td>
+                                          <td  width="20%">
+                                           <apex:commandButton value="{!IF(edit2,'Update','Add')}" action="{!addToNew1}" styleclass="btn ui-button ui-state-default" onclick="blockme();" oncomplete="$.unblockUI()" 
+                                           rerender="Oblix_card,nameid1,result1, myMessages1,saveStatus,country1,AD1, RT1,rater1, rate1, prcent,add1" disabled="{!IF(myRes.addVisible==false,true,false)}" id="add1"/>
+                                           
+                                           </td>
+                                    </tr>
+                                          
+                             </table> 
+                          
+                           
+                                   </div>
+                                   
+                                   </apex:actionRegion>     
+                                </div>
+  
+                                    
+                                </td>
+                                </tr>
+                                                            
+                              
+                            </table>
+                            </div>
+                            </apex:outputPanel>
+                            <div class="Oblix_card">
+                                
+                                <apex:outputPanel id="Oblix_card">
+                                <div class="Oblix_card_title">
+                                    <div style="float:left">{!$Label.Oblix_lbl_UIUX_Estimation_Cost} : </div>
+                                    <div style="float:right" class="isFee">  {!MScurrency} {!somme} </div>
+                                </div>
+                                <br/>
+                                    
+                                   <apex:variable value="{!0}" var="rowNum"/>
+                                    <apex:repeat value="{!newItems }" var="asset">
+                                    
+                                            <div class="Oblix_card_elmt">
+                                                   <div style="float: left;display:block;">                                                   
+                                                       <apex:outputText value="{!asset.non_campaign_title__c}" style="width:60px;"/> &nbsp;&nbsp;
+                                                       
+                                                       <span style="font-size:14px"> <apex:outputText value="{!asset.FTE__c}"/> {!if(asset.FTE__c!=null,'%','')} </span>
+                                                       <span style="font-size:14px"> <apex:outputText value="{!asset.No_of_Hours_Required__c }"/> {!if(asset.No_of_Hours_Required__c !=null,$Label.Oblix_lbl_UIUX_hours,'')}</span>
+                                                       
+                                                       
+                                                   </div>
+                                                  
+                                                   <div style="float: right;display:block;"> 
+                                                       <span style="font-size:14px" class="isFee" >{!MScurrency}  <apex:outputText value="{!asset.OblixOtherItemFee__c }"/>  </span>
+                                                      
+                                                    <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete}" action="{!delElm}" rerender="Oblix_card,saveStatus "  onclick="blockme();" oncomplete="$.unblockUI()" id="del" rendered="{!not(edit1 || edit2 )}">
+                                                        <apex:param name="param1" assignTo="{!ElemToDel  }" value="{!rowNum}" />
+                                                    </apex:commandButton>
+                                                    <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!editItem}" reRender="countryId2,nameid,nameid1,otherId,activityid,name1,dr,Oblix_card,country,AD, RT,rater, rate, hours,result,Oblix_card,add,country1,AD1, RT1, rate1,rater1, prcent,result1,add1"
+                                                     onclick="{!IF(rtActivity==asset.recordTypeId,'showTab1();','showTab2();')}"  oncomplete="$.unblockUI()" id="edit"  >
+                                                         <apex:param name="param2" assignTo="{!elemToEdit}" value="{!rowNum}" />
+                                                    </apex:commandButton>
+                                                   </div>
+                                                     
+                                          
+    
+                                                  
+                                                  
+                                                  
+                                            </div>
+                                             <br/>
+                                            <apex:variable var="rowNum" value="{!rowNum + 1}"/>  
+                                                                         
+                                    </apex:repeat>
+                                  <script>   formatNumber ($('.isFee'));    </script>
+                                </apex:outputPanel>
+                            </div>
+                            </apex:outputPanel>
+                            
+                       </td>                     
+                </tr>
+          </tbody>
+        </table>     
+    </div>   
+ </div>
+ </div>
+</apex:form>
+
+<script>
+   function setFocusOnLoad() {}
+</script>
+ -->
+</apex:page>
