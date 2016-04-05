@@ -254,7 +254,9 @@ public with sharing class AF_MultiSelectComponent{
 		pmMyListComp.sort();
 	}
 	/**************************************************************************************
-*  @Description: this method is used to check and saves the current groups list            
+*  @Description: this method is used to add and remove users from the public groups.
+				 as from UI admin can add and remove user it will update the public group
+				 using the below method            
 *  @name : saveGroups
 *  @param : none
 *  @return: none.
@@ -321,7 +323,9 @@ public with sharing class AF_MultiSelectComponent{
 		searchGroups();
 	}
 	/**************************************************************************************
-*  @Description: this method is used to check and saves the permission set             
+*  @Description: this method is used to add and remove users from the permission sets.
+				 as from UI admin can add and remove user it will update the permission sets
+				 using the below method             
 *  @name : savePermission
 *  @param : none
 *  @return: none.

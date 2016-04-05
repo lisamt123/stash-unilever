@@ -205,7 +205,10 @@ public with sharing Class AF_UpdateAgencyEstimatesValues2
 		}
 	}
 	/***********************************************************************************
-*  @Description: this method is used to retrieve exchangerates from the currency records        
+*  @Description: this method is used to retrieve exchangerates from the currency records
+				 and also holds the logic to update the spot rate and Traditional,digital and
+				 Adaptation local rates and Agencyexchange rate for the GBP or USD,based on
+				 Matrix table,when the status is ready for PO.       
 *  @name : retrieveStatusRate
 *  @param : AF_Agency_Estimate__c,String,String,AF_Matrix_Table__c
 *  @return: none.

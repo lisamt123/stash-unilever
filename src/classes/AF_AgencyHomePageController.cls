@@ -358,7 +358,9 @@ public void getBonusQuaterlyStatus(){
         }
 }
    /******************************************************************************************************
-*  @Description: this method is used to display the BonusQuarterly Status in the Homepage
+*  @Description: this method is used to show the Bonus Quarterly status for each quarter 
+				 depending on the logged in user,also the status will vary depending on the custom 
+				 settings date for each quarter
 *  @name : getBonusQuarterlyData
 *  @param : none
 *  @return: none.
@@ -448,7 +450,9 @@ public void getBonusSummaryData(){
         }
 }
  /******************************************************************************************************
-*  @Description: this method is used to display AgencyEstimate Data details in the HomePage
+*  @Description: this method is used to calculate the total of Traditional,Digital,and Adapatation of
+				 all the Agency Estimates records for a particular BrandEstimate record.It also calculates the overall
+				 total of all the Traditional,Digital and Adapatation.
 *  @name : getAgencyEstDataList
 *  @param : none
 *  @return: none.

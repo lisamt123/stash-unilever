@@ -302,6 +302,14 @@ public with sharing class AF_AgencyEstimateController
 			SubmitButtonDisplay=false;
 		} 
 	}
+		/**********************************************************************
+*  @Description: this method is used as an constructor extension,and holds the logic of
+				 identifying the logged in user and also give the access of readonly and 
+				 edit depending on the user 
+*  @name : constructorExt
+*  @param : none
+*  @return: none
+**********************************************************************/	
 	public void constructorExt(){
 		IsUpdate = true;
 			IsInsert = false;               
@@ -366,6 +374,13 @@ public with sharing class AF_AgencyEstimateController
 				overridePONumber = AgencyEstimate.AF_PO_Number__c;
 			}  
 	}
+		/**********************************************************************
+*  @Description: this method is used identify which user has logged in to the application,
+				 depending on the logged in user ,making the UI visiblity
+*  @name : identifyLoggedUser
+*  @param : none
+*  @return: none
+**********************************************************************/	
 	public void identifyLoggedUser(){
 		LoggedinUser=[SELECT id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c,profile.name  FROM  User  WHERE id=:Userinfo.getuserid()   AND IsActive=true  ORDER BY CreatedDate LIMIT 50000];             
 		if(LoggedinUser.AF_Agency_Fees_User_Type__c!=null){

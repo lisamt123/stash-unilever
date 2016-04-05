@@ -115,6 +115,12 @@ global with sharing class AF_BonusSummaryRemote {
 		ulbonusMatrixMap .put('2', rowDetail);
 		return ulbonusMatrixMap ;
 	}
+	/***********************************************************************************
+*  @Description: this method is used display add the row detail total
+*  @name : orderedRowMethodBonus
+*  @param : none
+*  @return: none.
+*************************************************************************************/	
 	public static void orderedRowMethodBonus(){
 		for(String eachCol : orderedColumn) { //Actual Agency Estimate Record's totals goes here..
 			colTotal = 0;colTotalA=0;
@@ -136,7 +142,12 @@ global with sharing class AF_BonusSummaryRemote {
 			rowDetail += '<a l e=\"' + dispColTotal + '\">' + strongStrt + dispColTotal + strongEnd + '</a>' + tdCloseTagEst;
 		}
 	}
-	
+		/***********************************************************************************
+*  @Description: this method is used display add the column detail total
+*  @name : orderedColMethodBonus
+*  @param : none
+*  @return: none.
+*************************************************************************************/	
 	public static void orderedColMethodBonus(){
 		Integer i=2;
 		//Display the distinct Columns from the agency estimates.
@@ -154,7 +165,12 @@ global with sharing class AF_BonusSummaryRemote {
 			i++;
 		}
 	}
-	
+		/***********************************************************************************
+*  @Description: this method is used get the bonus records to call detail methods
+*  @name : getBonusRecordsExt
+*  @param : String,String
+*  @return: none.
+*************************************************************************************/	
 	public static void getBonusRecordsExt(String bonusSummaryId,String eachRow){
 		for(String eachCol : orderedColumn) { //Display the agency estimate records
 				String keyMatch = eachCol+'-'+eachRow; //column Vs row

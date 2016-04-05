@@ -34,7 +34,8 @@ global with sharing class AF_OopEstimateRemote {
 	@remoteAction
 	/***********************************************************************************
 *  @Description: this method is used to query and display the records in oops matrix 
-*  @             rows and column total of the oopsEstimate records will be displayed  
+*  @             rows and column total of the oopsEstimate records will be displayed.
+				 The total of the oops amount will be displayed in matrix cell rowise and colwise. 
 *  @name : getOOPSEstimateRecords
 *  @param : agencyId,oopsActualId
 *  @return: Map of <String,String>.
@@ -166,6 +167,7 @@ global with sharing class AF_OopEstimateRemote {
 	/***********************************************************************************
 *  @Description: this method is used to frame the HTML of the matrix cell display
 *  @             the total displayed on row and column will be round to it's nearest integer
+				 by dividing it with thousand
 *  @name : processOopsRow
 *  @param : isValue,agSObj,oopsULRelationMap
 *  @return: String.

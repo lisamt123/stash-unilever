@@ -228,7 +228,7 @@ public  with sharing class AF_MatrixAgencySummary {
 	}
 	/*****************************************************************************************
 *  @Description: this method is used to query and check the status of each quarter status
-				and update the entered values in OOPSActual
+				and update the uer entered oops values for each quarter in OOPSActual record
 *  @name : submit
 *  @param : none
 *  @return: pagereference.

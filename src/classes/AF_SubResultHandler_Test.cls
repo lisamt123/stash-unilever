@@ -14,7 +14,9 @@ public class AF_SubResultHandler_Test
     static user userForsubResult;
     private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
     /**********************************************************************
-*  @Description: This method will have Test data.
+*  @Description: This method will have Test data for testing the subresult
+				 handler method,as it performs the testing logic of updation of quant
+				 and qual amounts
 *  @name : AF_SubResultHandler
 *  @param : none
 *  @return : none
@@ -201,7 +203,9 @@ public class AF_SubResultHandler_Test
             Test.stopTest();
         }
     } /**********************************************************************
-*  @Description: This method will have Test data.
+*  @Description: This method will have Test data for testing the subresult
+				 handler method,as it performs the testing logic of updation of quant
+				 and qual amounts 
 *  @name : AF_SubResultHandler1
 *  @param : none
 *  @return : none

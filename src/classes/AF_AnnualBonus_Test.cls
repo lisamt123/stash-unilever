@@ -343,7 +343,7 @@ public class AF_AnnualBonus_Test
         }
     }
     /***********************************************************************************
-*  @Description: this method will the test data
+*  @Description: this method will the test data for testing the annual bonus data
 *  @name : AF_annualBonus2
 *  @param : none.
 *  @return: none.

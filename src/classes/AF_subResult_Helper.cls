@@ -25,7 +25,8 @@ public with sharing class AF_subResult_Helper{
 	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
 	/*****************************************************************************************
 *  @Description: this method is used to create the sub result records based on the bonus thershold
-*  @             and bonus result  record type and it will calculate the quant
+*  @             and bonus result  record type and it will calculate the quant amount and update the
+				 sub result object as well as the Bonus Annual records.
 *  @name : subResultCalc
 *  @param : queryListofSubResult,status,Lock,BonusAnnualSubResult,BonusQuarterlySubResultMap
 *  @return: none.

@@ -2,8 +2,9 @@
 @Author :Cognizant
 @name : AF_ApprovalProcessForBrandEstController
 @CreateDate : 29/7/2014
-@Description : This is a controller class for AF_UL_AgencyMatrix Page, 
-@              this is used to for the BrandEstimate Approval Process.
+@Description : This is a component controller class for AF_UL_AgencyMatrix Page, 
+@              this is used to for the BrandEstimate Approval Process(Includes dynamic Approval),Approval and Rejection
+			   and only system administrator can Approve/Rejects the records
 @Version : 1.0
 @reference : none
 ****************************************************************************************************************************/

@@ -121,7 +121,8 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 	}
 	/***********************************************************************************
 *  @Description: this method is used to adjust the quarter for an exisitng record and to
-*  @             handle the updation of the selected records
+*  @             handle the updation of the selected records.This method holds the logic 
+				 to prepare the data to update the BrandEstimate Adjusted quarters
 *  @name : showPopup
 *  @param : none
 *  @return: none.
@@ -211,7 +212,14 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 			queryBrandEstimate();
 		}
 	}
-	
+	/***********************************************************************************
+*  @Description: this method is used to adjust the quarter for an exisitng record and to
+*  @             handle the updation of the selected records.this hold the logic to upadte
+				 the backupquarter fields
+*  @name : createBackupQuarter
+*  @param : none
+*  @return: none.
+*************************************************************************************/	
 	public void createBackupQuarter(){
 		List<String> tempSplit = new List<String>();
 				if(tempvalueMap.size()>0){
@@ -230,7 +238,13 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 					}
 				}
 	}
-	
+	/***********************************************************************************
+*  @Description: this method is used to adjust the quarter for an exisitng record and to
+*  @             handle the updation of the selected records.
+*  @name : quarterCalc
+*  @param : wrapChechbox
+*  @return: none.
+*************************************************************************************/	
 	public void quarterCalc(wrapChechbox B){
 		if(B.Q1){
 					newQuarter = newQuarter+'Q1;';
@@ -249,7 +263,13 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 					gapQuarter.add(AF_Constants.QUARTER4);
 				}
 	}
-	
+	/***********************************************************************************
+*  @Description: this method is used to create new brandestimate record and also to archive
+				 the old BrandEstimate record.
+*  @name : quarterCalc
+*  @param : wrapChechbox
+*  @return: none.
+*************************************************************************************/		
 	public void createNewBrandEst(wrapChechbox B){
 		createBrandEstimate = new list<AF_Brand_Estimate__c>();
 				AF_Brand_Estimate__c createBrand = new AF_Brand_Estimate__c();

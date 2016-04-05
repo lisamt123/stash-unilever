@@ -146,7 +146,8 @@ global with sharing class AF_BrandEstimateRemote {
         return ulAgenciesMatrixMap;
     }
      /*****************************************************************************
-*  @Description: this method is to calculate the row totals
+*  @Description: this method hold the logic calculate the row totals of the matrix page cells
+				 also it adds up the agenycestimate figures traditional,Digital and Adaptation
 *  @name : orderedColMethod
 *  @param : none
 *  @return : none
@@ -536,7 +537,8 @@ global with sharing class AF_BrandEstimateRemote {
     }
     /*****************************************************************************
 *  @Description: this method is to add the entity to the object based 
-*  @ on their object API name and creates the estimates 
+*  @ on their object API name and creates the estimates with the row an dcolumn in the 
+`` Matrix page
 *  @name : addAgencyEntityToEstimates
 *  @param : String
 *  @return : none.
@@ -723,7 +725,9 @@ global with sharing class AF_BrandEstimateRemote {
     }
       /*****************************************************************************
 *  @Description: this method is to add the unilerver entity to the object based 
-*  @ on their object API name and creates the estimates 
+*  @ on their object API name and creates the estimates ,its helpd the users to add
+ the unilever entities from the Ui of Matrix page and create the combination in the
+ 	backend.
 *  @name : addUnileverEntityToEstimates
 *  @param : String
 *  @return : none.

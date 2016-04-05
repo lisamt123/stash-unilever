@@ -375,6 +375,14 @@ public with sharing class AF_AnnualBonus {
            AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_AnnualBonus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString()); 
             }
 	}
+   /*********************************************************************************
+*  @Description: this method is used to calculate the Quant Bonus for the Annual Bonus
+				 on load of the screen,which retrieves the data from backend and display.
+				 On save from the UI,it calculates the Quant and Qual% and update the backend
+*  @name : Calculate_Bonus
+*  @param : List<AF_Sub_Result__c>
+*  @return: none.
+***************************************************************************************/
 	public void annualBonusQualQuantPerCalc(List<AF_Sub_Result__c> Bonus_SubResult_List){
 		  Decimal totalbonusval=0;
 		  for(AF_Sub_Result__c bonus_Threshold_Obj:Bonus_SubResult_List)
@@ -470,7 +478,13 @@ public with sharing class AF_AnnualBonus {
                 }
             }
 	}
-	
+   /*********************************************************************************
+*  @Description: this method is used to calculate the Digital and Traditional amounts of the 
+			     Agency estimates with Bonus Threshold
+*  @name : annualBonusTotalTradDigitalCalc
+*  @param : none
+*  @return: none.
+***************************************************************************************/	
 	public void annualBonusTotalTradDigitalCalc(){
 		 for(String countryName:Countryname_BT){
                 String countryDigital = countryName + '::' + 'D';
@@ -495,7 +509,13 @@ public with sharing class AF_AnnualBonus {
                 BonusMeasureCalcMap.put(countryTrad,calc);
             }
 	}
-	
+   /*********************************************************************************
+*  @Description: this method is used to calculate the Digital and Traditional amounts of the 
+			     Agency estimates with Bonus Threshold and store it in Map to process in other methods
+*  @name : annualBonusBMCalc
+*  @param : List<AF_Sub_Result__c>
+*  @return: none.
+***************************************************************************************/		
 	public void annualBonusBMCalc(List<AF_Sub_Result__c> Bonus_SubResult_List){
 		Integer totalBMCalc=0;
             Integer BMDiff =0;
