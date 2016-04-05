@@ -1165,7 +1165,7 @@ null)))</formula>
     </fields>
     <label>HLE Request</label>
     <listViews>
-        <fullName>All</fullName>
+        <fullName>All_HLE_Request</fullName>
         <columns>NAME</columns>
         <columns>pkl_Status__c</columns>
         <columns>dt_Planned_start_date__c</columns>
@@ -1173,7 +1173,7 @@ null)))</formula>
         <columns>txt_Project_type__c</columns>
         <columns>OWNER.ALIAS</columns>
         <filterScope>Everything</filterScope>
-        <label>All</label>
+        <label>All HLE Request</label>
         <language>en_US</language>
     </listViews>
     <nameField>

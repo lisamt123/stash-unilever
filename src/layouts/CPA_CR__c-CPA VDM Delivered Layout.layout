@@ -46,7 +46,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>PWO_number__c</field>
+                <field>fur_PWO_Number__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -299,7 +299,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h18000000EkVN</masterLabel>
+        <masterLabel>00h56000000IxYz</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -14,7 +14,7 @@ VERSION     AUTHOR                     DATE            DETAIL Description
 ***********************************************************************/
 public with sharing class CPA_LOI_TriggerUtil{
     public static boolean isSubmitted=false;
-    /*
+    /**
     * Method Name : recallApproval
     * Parameter   : 
     * Return type : None
@@ -43,7 +43,7 @@ public with sharing class CPA_LOI_TriggerUtil{
             }
         }
     }  
-    /*
+    /**
     * Method Name : submitforApproval
     * Parameter   : 
     * Return type : None
@@ -87,7 +87,12 @@ public with sharing class CPA_LOI_TriggerUtil{
             return null;
     
     }
-    
+  /** Method Name : checkforCancel
+    * Parameter   : newLOIList
+    * Return type : None
+    * Author      :  
+    * Description : This method restric to create new LOI if first LOI is Cancel
+    */  
     public static void checkforCancel (List<CPA_LOI__c> newList){
         
         set<ID> setPWORFId = new set<Id>();
@@ -109,7 +114,7 @@ public with sharing class CPA_LOI_TriggerUtil{
         }
     }
     
-    /* Justification: We are prepopulating some values from Parent record, to check whether those fields are not null
+    /** Justification: We are prepopulating some values from Parent record, to check whether those fields are not null
      * we have put in multiple if conditions.
      * NPath issue - This method has NPath issues identified in SonarQube. If this is high NPath issue,
      *  Dev team will fix this in next release.
@@ -255,14 +260,15 @@ public with sharing class CPA_LOI_TriggerUtil{
     * Created on  : 16/02/2016
     * Description : This method gets internal PWO ID from PWORF and maps it to LOI. Calling from before insert trigger
     */
-    public static void getInternalPWOIDFromPWORF(List<CPA_LOI__c> newLOI){
-        List<CPA_PWORF__c> pworfs = [SELECT txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newLOI[0].lkp_PWORF__c];
+   /*public static void getInternalPWOIDFromPWORF(List<CPA_LOI__c> newLOI){
+        /*List<CPA_PWORF__c> pworfs = [SELECT txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newLOI[0].lkp_PWORF__c];
         if(pworfs!=null && pworfs.size()>0 && pworfs[0] !=null && pworfs[0].txt_Internal_PWO_ID__c != null){
             newLOI[0].txt_Internal_PWO_ID__c = pworfs[0].txt_Internal_PWO_ID__c;
         }else{
             System.debug('PWO ID not present on PWORF @@@@@######## : ');
         }
-    }
+        
+    }*/
     
     /** Method Name : internalLIOID
     * Parameter   : newLOI
@@ -270,8 +276,8 @@ public with sharing class CPA_LOI_TriggerUtil{
     * Author      : Dinesh Girase  
     * Description : This method creates Internal LOI ID for LOI, Internal PWO ID for LOI & PWORF used for search purpose
     */
-    public static void internalLIOID(List<CPA_LOI__c> newLOI){
-        /*String newInternalPWOID='';
+    /*public static void internalLIOID(List<CPA_LOI__c> newLOI){
+        String newInternalPWOID='';
         List<AggregateResult> lstPWO = [SELECT count(ID) newCount FROM CPA_project_work_order__c];
         if(lstPWO[0].get('newCount') != null){
             Integer maxNo = Integer.valueOf(lstPWO[0].get('newCount') + '');
@@ -306,8 +312,8 @@ public with sharing class CPA_LOI_TriggerUtil{
                 System.debug('txt_Internal_PWO_ID__c is NOT NULL ######## : ');
             }
             
-        }*/
-    }
+        }
+    }*/
     
    
     
@@ -323,4 +329,5 @@ public with sharing class CPA_LOI_TriggerUtil{
             obj.addError('LOI cant be deleted');
         }
     }
+   
 }

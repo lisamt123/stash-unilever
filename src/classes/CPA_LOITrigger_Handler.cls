@@ -72,9 +72,10 @@ public with sharing class CPA_LOITrigger_Handler
             CPA_LOI_TriggerUtil.checkforCancel(trigger.new);
             CPA_LOI_TriggerUtil.checklistValueOfLOI(trigger.new);
             //added by dinesh to generate internal LOI ID and internal PWO ID
-            CPA_LOI_TriggerUtil.internalLIOID(trigger.new);
+            //CPA_LOI_TriggerUtil.internalLIOID(trigger.new);
             //Below line added by Dinesh [16/02]
-            CPA_LOI_TriggerUtil.getInternalPWOIDFromPWORF(trigger.new);
+            //CPA_LOI_TriggerUtil.getInternalPWOIDFromPWORF(trigger.new); // commented by pooja on 1st April 16 and added below line
+            CPA_PWO_LOI_Trigger_Util.getInternalPWOIDFromPWO(trigger.new);
         }
     }
     
@@ -83,6 +84,7 @@ public with sharing class CPA_LOITrigger_Handler
         if(triggerShouldExecute){ 
             CPA_LOI_TriggerUtil.checklistValueOfLOI(trigger.new);
             CPA_LOI_TriggerUtil.requireApprovalComments(trigger.new);
+            CPA_PWO_LOI_Trigger_Util.getUpdatedInternalPWOIDFromPWO(trigger.old,trigger.new);
         }
     }
     
@@ -103,7 +105,7 @@ public with sharing class CPA_LOITrigger_Handler
         if(triggerShouldExecute){
            listPWORFToUpdate =  CPA_LOI_TriggerUtil.submitforApproval(trigger.old,trigger.new);
             CPA_LOI_TriggerUtil.recallApproval(trigger.old,trigger.new);
-           listLOICancel =  CPA_LOI_TriggerUtil.cancelAllLOI(trigger.new);
+           //listLOICancel =  CPA_LOI_TriggerUtil.cancelAllLOI(trigger.new);
         }
     }
     /*******************************************************************
@@ -128,9 +130,9 @@ public with sharing class CPA_LOITrigger_Handler
         if(listPWORFToUpdate!=null && listPWORFToUpdate.size()>0){    
             CPA_Utilities.saveDatabase(CPA_ConstantsForContractingAppClasses.UPDATECONSTANT, listPWORFToUpdate, false);
         }
-        if(listLOICancel!=null && listLOICancel.size()>0){
+        /*if(listLOICancel!=null && listLOICancel.size()>0){
             CPA_Utilities.saveDatabase(CPA_ConstantsForContractingAppClasses.UPDATECONSTANT, listLOICancel, false); 
-        }
+        }*/
     }
 
 }
