@@ -1132,6 +1132,11 @@ null)),null)</formula>
             <operation>equals</operation>
             <value>Accepted</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>CPA_PWORF__c.chk_isAutoAccepted__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
