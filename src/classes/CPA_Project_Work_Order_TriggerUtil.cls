@@ -11,6 +11,7 @@ History
 -------
 VERSION     AUTHOR           DATE            DETAIL Description
 1.0         Pooja Kanani     11/01/2016     INITIAL DEVELOPMENT CSR:
+1.1         Shreyas M        01/04/2016     Code Update for Pricing Moeal on line number 252 to 255
 ***********************************************************************/
 public with sharing class CPA_Project_Work_Order_TriggerUtil{
     public static boolean isSubmitted=false;
@@ -109,15 +110,15 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
             map<Id,CPA_PWORF__c> mapPWORF = new map<ID,CPA_PWORF__c>();
            // Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll(); 
             Id AllrecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_ALL_RECORDTYPE).getRecordTypeId();
-			Id RArecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getRecordTypeId();      
-	        ID PWORecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWO_RecordTypeId ).getRecordTypeId();
-	      	ID CNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_CNF_RecordTypeId ).getRecordTypeId(); ID TNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_TNF_RecordTypeId  ).getRecordTypeId();
+            Id RArecordType = Schema.SObjectType.CPA_PWORF__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWORF_RA_RECORDTYPE).getRecordTypeId();      
+            ID PWORecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWO_RecordTypeId ).getRecordTypeId();
+            ID CNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_CNF_RecordTypeId ).getRecordTypeId(); ID TNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_TNF_RecordTypeId  ).getRecordTypeId();
             
             if(newmapPWO!= null ){
                  for(CPA_project_work_order__c objPWo : newmapPWO){
                     setPwoId.add(objPWo.PWORF_ID__c);
                 }
-                for(CPA_PWORF__c objPworf : [select id,txt_Internal_PWO_ID__c,mpkl_Project_Phases__c,auto_PWORF_ID__c,txta_Title__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, eml_Unilever_Finance_BP_Contact_Email__c, txt_Unilever_Finance_BP_Contact_Name__c, txt_Clarity_ID__c,pkl_Region__c,pkl_Project_Scale__c,RecordTypeid,pkl_Business_Area__c,dat_SLA1_Accepted_Date__c  from CPA_PWORF__c where ID  IN: setPwoId]){
+                for(CPA_PWORF__c objPworf : [select id,txt_Internal_PWO_ID__c,mpkl_Project_Phases__c,auto_PWORF_ID__c,txta_Title__c,eml_Unilever_Content_Approver_Email__c, txt_Unilever_Content_Approver_Name__c, eml_Unilever_Budget_Approver_Email__c, txt_Unilever_Budget_Approver_Name__c, eml_Unilever_Finance_BP_Contact_Email__c, txt_Unilever_Finance_BP_Contact_Name__c, txt_Clarity_ID__c,pkl_Region__c,pkl_Project_Scale__c,RecordTypeid,pkl_Business_Area__c,dat_SLA1_Accepted_Date__c,pkl_Pricing_Model__c  from CPA_PWORF__c where ID  IN: setPwoId]){
                     mapPWORF.put(objPworf.Id,objPworf);
                 }
                 for(CPA_project_work_order__c objPWo : newmapPWO){
@@ -177,7 +178,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                                 objPWo.num_CNF_Planned_total_charges__c  = objPWo.num_Total_work_order_charge__c;
                             if(objPWo.dt_CNF_Planned_PWO_End_Date__c   == null && objPWo.dt_Expected_End_date__c !=null)
                                 objPWo.dt_CNF_Planned_PWO_End_Date__c  = objPWo.dt_Expected_End_date__c;
-                       // }else if(objPWo.RecordTypeid == label.CPA_PWO_TNF_RecordTypeId){
+                       
                         }else if(objPWo.RecordTypeid == TNFRecordtype){
                             if(objPWo.txt_TNF_Unilever_Clarity_ID__c == null && objPWo.txt_Unilever_Reference__c !=null) 
                                 objPWo.txt_TNF_Unilever_Clarity_ID__c = objPWo.txt_Unilever_Reference__c;
@@ -198,13 +199,13 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     Throws [Exceptions]: 
     ********************************************************************/
     public static list<CPA_CR__c> associatedCRCancel(List<CPA_project_work_order__c> oldPWORecList, List<CPA_project_work_order__c> newPWORecList){
-		set<Id> setPwoId = new set<Id>();
-		for(Integer i = 0; i < newPWORecList.size(); i++){
-			if(oldPWORecList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.Terminated &&   newPWORecList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.Terminated){
-				setPwoId.add(newPWORecList[i].id);
-			}
-		}
-		List<CPA_CR__c> crRec = [select id,ltxta_Reason_for_Cancellation__c,pkl_Status__c,CPA_Project_Work_Order__c  from CPA_CR__c where pkl_Status__c !='Cancelled' and CPA_Project_Work_Order__c IN:setPwoId];
+        set<Id> setPwoId = new set<Id>();
+        for(Integer i = 0; i < newPWORecList.size(); i++){
+            if(oldPWORecList[i].pkl_Status__c  <> CPA_ConstantsForContractingAppClasses.Terminated &&   newPWORecList[i].pkl_Status__c == CPA_ConstantsForContractingAppClasses.Terminated){
+                setPwoId.add(newPWORecList[i].id);
+            }
+        }
+        List<CPA_CR__c> crRec = [select id,ltxta_Reason_for_Cancellation__c,pkl_Status__c,CPA_Project_Work_Order__c  from CPA_CR__c where pkl_Status__c !='Cancelled' and CPA_Project_Work_Order__c IN:setPwoId];
         if(crRec!= null && crRec.size()>0){
             for(CPA_CR__c cr:crRec){
                 cr.ltxta_Reason_for_Cancellation__c = CPA_ConstantsForContractingAppClasses.PWOISTERMINATED;
@@ -212,7 +213,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
             }
             return crRec;
         }
-		return null;
+        return null;
     }     
         
         
@@ -224,9 +225,9 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     */
     public static void autoPopulateValues(CPA_project_work_order__c objPwo, CPA_PWORF__c objPworf){
         
-      	        
-    	ID PWORecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWO_RecordTypeId ).getRecordTypeId();
-  		ID CNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_CNF_RecordTypeId ).getRecordTypeId();
+                
+        ID PWORecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_PWO_RecordTypeId ).getRecordTypeId();
+        ID CNFRecordtype = Schema.SObjectType.CPA_project_work_order__c.getRecordTypeInfosByName().get(CPA_ConstantsForContractingAppClasses.CPA_CNF_RecordTypeId ).getRecordTypeId();
          //if(objPWo.RecordTypeid == label.CPA_PWO_RecordTypeId){
          if(objPWo.RecordTypeid == PWORecordtype){
 
@@ -248,8 +249,11 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
             if(objPWo.txt_Unilever_Finance_BP_Contact_Name__c == null && objPworf.txt_Unilever_Finance_BP_Contact_Name__c !=null){ 
                 objPWo.txt_Unilever_Finance_BP_Contact_Name__c = objPworf.txt_Unilever_Finance_BP_Contact_Name__c;
             }
+            if((objPWo.pkl_Pricing_Model__c == null || objPWo.pkl_Pricing_Model__c == '-')&& objPworf.pkl_Pricing_Model__c !=null){ 
+                objPWo.pkl_Pricing_Model__c = objPworf.pkl_Pricing_Model__c;
+            }
         }
-       // else if(objPWo.RecordTypeid == label.CPA_PWO_CNF_RecordTypeId){
+      
        else if(objPWo.RecordTypeid == CNFRecordtype){
             if(objPWo.eml_CNF_Unilever_Content_Approver_Email__c == null && objPWo.eml_Unilever_Content_Approver_Email__c !=null){ 
                 objPWo.eml_CNF_Unilever_Content_Approver_Email__c = objPWo.eml_Unilever_Content_Approver_Email__c;
@@ -361,8 +365,8 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     * Created on  : 16/02/2016
     * Description : This method gets internal PWO ID from PWORF and maps it to actual PWO. Calling from before insert trigger
     */
-    public static void getInternalPWOIDFromPWORF(List<CPA_project_work_order__c> newPWO){
-        List<CPA_project_work_order__c> pwos = [SELECT id FROM CPA_project_work_order__c Where PWORF_ID__c =: newPWO[0].PWORF_ID__c];
+   /*public static void getInternalPWOIDFromPWORF(List<CPA_project_work_order__c> newPWO){
+       List<CPA_project_work_order__c> pwos = [SELECT id FROM CPA_project_work_order__c Where PWORF_ID__c =: newPWO[0].PWORF_ID__c];
         if(pwos.size()>0){
             newPWO[0].txt_Internal_PWO_ID__c = CPA_CalculationOfBusinessDaysForSLADates.pwoInternalCountLogic(true);
        }else{
@@ -373,7 +377,7 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                 System.debug('PWO ID not present on PWORF @@@@@######## : ');
             }
         }
-    }
+    }*/
     
     /** Method Name : internalPWOID
     * Parameter   : newPWO
@@ -381,8 +385,8 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
     * Author      : Dinesh Girase  
     * Description : This method creates Internal PWO ID, used for search purpose >>>>>>>>>>>>> commented his code as testing is stop, need to check this code
     */
-    public static void internalPWOID(List<CPA_project_work_order__c> newPWO){
-       /* String newInternalPWOID='';
+   /*  public static void internalPWOID(List<CPA_project_work_order__c> newPWO){
+       String newInternalPWOID='';
         List<AggregateResult> lstPWO = [SELECT count(ID) newCount FROM CPA_project_work_order__c];
         if(lstPWO[0].get('newCount') != null){
             Integer maxNo = Integer.valueOf(lstPWO[0].get('newCount') + '');
@@ -420,10 +424,10 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                 newPWO[0].txt_Internal_PWO_ID__c = pworfs[0].txt_Internal_PWO_ID__c;
                 System.debug('If PWO is created after LOI ######## : ');
             }
-        }*/
+        }
         
         
-    }
+    }*/
     
     /**   Method Name : getInternalPWOID
     * Parameter   : numSearch
@@ -492,79 +496,10 @@ public with sharing class CPA_Project_Work_Order_TriggerUtil{
                                       obj.chk_First_PWO__c = true;
                              }
                              
-            /* if(listPriPWO == null || listPriPWO.size()<=0){
-                 obj.chk_First_PWO__c = true;
-             }else{
-                 
-             }*/
+            
         }
     }
 
- /**   Method Name : newPWO
-    * Parameter   : newmap
-    * Return type : void
-    * Author      : Pooja Kanani
-    * Description : This method is used to update PWORF with the latest PWO status
-    */
-    /*public static void newPWO(list<CPA_project_work_order__c> newPWO){
-        //system.debug('Pooja testing');
-        List<CPA_PWORF__c> lstTemp= new List<CPA_PWORF__c>();
-        set<ID> pworfID = new set<ID>();
-        map<ID,ID>pworfmap = new map<ID,ID>();
-         for(CPA_project_work_order__c obj :newPWO){            
-                    pworfID.add(obj.PWORF_ID__c);
-                    pworfmap.put(obj.PWORF_ID__c,obj.id);       
-        }
-        //system.debug('pworfID>>>'+ pworfID);
-        //system.debug('pworfmap>>>'+ pworfmap);
-        if(pworfID!=null && pworfID.size()> 0){
-            List<CPA_PWORF__c> lstPWORF  = [Select Id,LatestPWOID__c from CPA_PWORF__c where Id IN:pworfID];
-            
-            for(CPA_PWORF__c obj : lstPWORF){
-                Approval.unLockResult lrList = Approval.unlock(obj, false);
-                //CPA_project_work_order__c pwo = pworfmap.get(obj.id);
-                obj.LatestPWOID__c = pworfmap.get(obj.id);
-                //system.debug('obj.LatestPWOID__c>>>pooja'+obj.LatestPWOID__c);
-                lstTemp.add(obj);                    
-            }
-            
-            //system.debug('lstTemp>>>pooja'+lstTemp);
-            if(lstTemp!=null && lstTemp.size()>0){
-                update lstTemp; 
-            }
-            //system.debug('lstTemp>>pooja'+lstTemp);
-        }
-    }*/
-/**   Method Name : latestPWOStatus
-    * Parameter   : newmap
-    * Return type : void
-    * Author      : Pooja Kanani
-    * Description : This method is used to update PWORF with the latest PWO status
-    */
-    /*public static void latestPWOStatus(list<CPA_project_work_order__c> newPWO){
-        map<ID,String>pworfUpdate = new map<ID,String>();
-        set<ID> pworfID = new set<ID>();
-        set<ID> pwoID = new set<ID>();
-        List<CPA_PWORF__c> pworfListToBeUpdated = new List<CPA_PWORF__c>();
-        for(CPA_project_work_order__c obj :newPWO){
-            pworfID.add(obj.PWORF_ID__c);
-        }
-        List<CPA_PWORF__c> pworfList = [select ID,LatestPWOID__c from CPA_PWORF__c where id in:pworfID];
-        for(CPA_PWORF__c pworf : pworfList ){
-            if(pworf.LatestPWOID__c !=null){
-                pwoID.add(pworf.LatestPWOID__c);
-            }
-        }
-        List<CPA_project_work_order__c> listPriPWO = [Select ID,PWORF_ID__c,pkl_Status__c from CPA_project_work_order__c where ID in:pwoID];  
-        for(CPA_project_work_order__c obj :listPriPWO){    
-            pworfUpdate.put(obj.PWORF_ID__c,obj.pkl_Status__c);
-        }
-        for(CPA_PWORF__c pworf : pworfList){
-            pworf.Latest_PWO_Status__c = pworfUpdate.get(pworf.ID);
-            pworfListToBeUpdated.add(pworf);
-        }
-        update pworflist;  
-        //system.debug('pworflist>>>pooja'+pworflist);
-    }*/
+ 
 
 }

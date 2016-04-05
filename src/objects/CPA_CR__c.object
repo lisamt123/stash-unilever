@@ -444,6 +444,50 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>lkp_Unilever_budget_approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of Unilever person responsible for approving the project budget</description>
+        <externalId>false</externalId>
+        <label>Unilever Budget Approver*</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.IsActive</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>CR</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_Unilever_content_approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of Unilever person responsible for approving the project content</description>
+        <externalId>false</externalId>
+        <label>Unilever Content Approver*</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.IsActive</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>CR1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>ltxta_Comments__c</fullName>
         <externalId>false</externalId>
         <label>Comments</label>
@@ -1525,12 +1569,11 @@
     </fields>
     <label>CR</label>
     <listViews>
-        <fullName>All</fullName>
+        <fullName>All_CR</fullName>
         <columns>NAME</columns>
-        <columns>OBJECT_ID</columns>
         <columns>pkl_Status__c</columns>
         <filterScope>Everything</filterScope>
-        <label>All</label>
+        <label>All CR</label>
         <language>en_US</language>
     </listViews>
     <nameField>
@@ -3720,6 +3763,25 @@ ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Saved&quot;)
 ))</errorConditionFormula>
         <errorMessage>CR cant be created, because associated  PWO is still in Saved Status.</errorMessage>
     </validationRules>
+    <validationRules>
+        <fullName>CPA_Status_cant_be_chaged</fullName>
+        <active>true</active>
+        <description>IF PWO is set for Termination then CR status cant be changed</description>
+        <errorConditionFormula>OR(
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &apos;Sent For Termination&apos;),
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &apos;Request For Termination&apos;),
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &apos;Terminated&apos;)
+)</errorConditionFormula>
+        <errorMessage>Associate PWO is in process of Termination, So Operation is cancelled</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Specify_Cancellation_Reason</fullName>
+        <active>false</active>
+        <description>This validation checks if reason for CR cancellation  provided or not.</description>
+        <errorConditionFormula>ISPICKVAL( pkl_Status__c , &apos;Cancelled&apos;)</errorConditionFormula>
+        <errorDisplayField>ltxta_Reason_for_Cancellation__c</errorDisplayField>
+        <errorMessage>You need mention reason for CR cancellation.</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>Delivered</fullName>
         <availability>online</availability>
@@ -3734,55 +3796,45 @@ var p = new sforce.SObject(&apos;CPA_CR__c&apos;);
 p.id = &quot;{!CPA_CR__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
 p.dat_Actual_End_Date__c = &quot;{!CPA_CR__c.dat_Actual_End_Date__c }&quot;; 
-CPA_PWO = &quot;{!CPA_CR__c.CPA_Project_Work_Order__c}&quot;; 
+PWO_ID__c = &quot;{!CPA_CR__c.CPA_Project_Work_Order__c}&quot;; 
 profileName = &quot;{!$Profile.Name}&quot;; 
-
 var today = new Date(); 
 var dd = today.getDate(); 
 var mm = today.getMonth(); 
 var yyyy = today.getFullYear(); 
 today = new Date(yyyy,mm,dd); 
 
+result = sforce.connection.query(&quot;select Id,pkl_Status__c, TNF_Status__c from CPA_Project_Work_Order__c where Name = &apos;&quot;+PWO_ID__c+&quot;&apos;&quot;); 
+var pwoRecords = result.getArray(&quot;records&quot;); 
 
 soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
 
-
+//alert(p.pkl_Status__c);
 if( permissionSetName == &quot;CPA_ADM&quot;){ 
 
-	var PwoStatus =&quot;&quot;;
-	if(CPA_PWO != null &amp;&amp; CPA_PWO != &apos;&apos;){
-		soql = &quot;SELECT Id, CPA_Project_Work_Order__r.pkl_Status__c FROM CPA_CR__c where Id = &apos;&quot;+p.id+&quot;&apos;&quot;;
-		var result = sforce.connection.query(soql); 
-		var records1 = result.getArray(&apos;records&apos;); 
-		PwoStatus = records1[0].CPA_Project_Work_Order__r.pkl_Status__c;
-		//alert(&quot;PwoStatus &gt;&gt; &quot;+ PwoStatus);
-	}
-
-	if(PwoStatus == &apos;Request For Termination&apos; ||PwoStatus == &apos;Sent For Termination&apos; ||PwoStatus == &apos;Terminated&apos; ){
-		alert(&quot;CR status cannot be changed as associated PWO is set for termination.&quot;); 
-	}	
-	else if(p.pkl_Status__c == &quot;Signed&quot; ){ 
-	p.pkl_Status__c = &quot;Delivered&quot;;	
-	p.dat_Actual_End_Date__c = today; 
-	result = sforce.connection.update([p]);
-	// alert(result);
-	location.reload(true); 
-	} 
-	else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
-	alert(&quot;CR is already Delivered&quot;); 
-	}
-	else if(p.pkl_Status__c != &quot;Signed&quot;){ 
-	alert(&quot;CR can not be Delivered as it is not yet signed&quot;); 
-	} 
-	else { 
-	alert(&quot;CR can not be Delivered, Contact Administrator&quot;); 
-	} 
+if(p.pkl_Status__c == &quot;Signed&quot; &amp;&amp; (pwoRecords[0].pkl_Status__c != &quot;Terminated&quot; &amp;&amp; pwoRecords[0].pkl_Status__c != &quot;Sent For Termination&quot; &amp;&amp; pwoRecords[0].pkl_Status__c != &quot;Request For Termination&quot;)){ 
+p.pkl_Status__c = &quot;Delivered&quot;;	
+p.dat_Actual_End_Date__c = today; 
+result = sforce.connection.update([p]);
+// alert(result);
+location.reload(true); 
+} 
+else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
+alert(&quot;CR is already Delivered&quot;); 
+}
+else if(p.pkl_Status__c != &quot;Signed&quot;){ 
+alert(&quot;CR can not be Delivered as it is not yet signed&quot;); 
+} 
+else { 
+alert(&quot;CR can not be Delivered, Contact Administrator&quot;); 
+} 
 }
 else{
-	alert(&quot;You are not authorized to perform this action.&quot;); 
+alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -3829,7 +3881,7 @@ if(permissionSetName == &quot;CPA_ADM&quot;  ){
 	}
 		
 } else{ 
-alert(&quot;CR can be created by Accenture Demand Management Team only.&quot;); 
+alert(&quot;CR can be created by Vendor Team only.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -3847,7 +3899,6 @@ var p = new sforce.SObject(&apos;CPA_CR__c&apos;);
 p.id = &quot;{!CPA_CR__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
 p.isValidated__c = &quot;{!CPA_CR__c.isValidated__c }&quot;; 
-CPA_PWO = &quot;{!CPA_CR__c.CPA_Project_Work_Order__c}&quot;; 
 
 soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
@@ -3857,22 +3908,8 @@ var permissionSetName = records1[0].PermissionSet.Name;
 if(permissionSetName == &quot;CPA_ADM&quot;){ 
 	var isValidateFlag = sforce.apex.execute(&quot;CPA_CRInformationController&quot;,&quot;checkIsValidated&quot;,{crId:p.id});
 	
-	if(isValidateFlag == &apos;true&apos;){
-		
-		var PwoStatus =&quot;&quot;;
-		if(CPA_PWO != null &amp;&amp; CPA_PWO != &apos;&apos;){
-			soql = &quot;SELECT Id, CPA_Project_Work_Order__r.pkl_Status__c FROM CPA_CR__c where Id = &apos;&quot;+p.id+&quot;&apos;&quot;;
-			var result = sforce.connection.query(soql); 
-			var records1 = result.getArray(&apos;records&apos;); 
-			PwoStatus = records1[0].CPA_Project_Work_Order__r.pkl_Status__c;
-			//alert(&quot;PwoStatus &gt;&gt; &quot;+ PwoStatus);
-		}
-		
-		
-		if(PwoStatus == &apos;Request For Termination&apos; ||PwoStatus == &apos;Sent For Termination&apos; ||PwoStatus == &apos;Terminated&apos; ){
-		alert(&quot;CR status cannot be changed as associated PWO is set for termination.&quot;); 
-		}
-		else if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
+	if(isValidateFlag == &apos;true&apos;){ 
+		if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
 			p.pkl_Status__c = &quot;Resubmitted&quot;; 
 			result = sforce.connection.update([p]); 
 
@@ -3914,9 +3951,7 @@ if(permissionSetName == &quot;CPA_ADM&quot;){
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
 
 var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
-p.Id = &quot;{!CPA_CR__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
-CPA_PWO = &quot;{!CPA_CR__c.CPA_Project_Work_Order__c}&quot;; 
 
 
 soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
@@ -3926,20 +3961,9 @@ var permissionSetName = records1[0].PermissionSet.Name;
 //alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
 
 
-if( permissionSetName == &quot;CPA_SMT&quot;){
-	
-	var PwoStatus =&quot;&quot;;
-	if(CPA_PWO != null &amp;&amp; CPA_PWO != &apos;&apos;){
-		soql = &quot;SELECT Id, CPA_Project_Work_Order__r.pkl_Status__c FROM CPA_CR__c where Id = &apos;&quot;+p.Id+&quot;&apos;&quot;;
-		var result = sforce.connection.query(soql); 
-		var records1 = result.getArray(&apos;records&apos;); 
-		PwoStatus = records1[0].CPA_Project_Work_Order__r.pkl_Status__c;
-		//alert(&quot;PwoStatus &gt;&gt; &quot;+ PwoStatus);
-	}
-	if(PwoStatus == &apos;Request For Termination&apos; ||PwoStatus == &apos;Sent For Termination&apos; ||PwoStatus == &apos;Terminated&apos; ){
-		alert(&quot;CR status cannot be changed as associated PWO is set for termination.&quot;); 
-	}	
-	else if(p.pkl_Status__c == &apos;Cancelled&apos;){ 
+if( permissionSetName == &quot;CPA_SMT&quot;){ 
+
+	if(p.pkl_Status__c == &apos;Cancelled&apos;){ 
 		alert(&quot;Can not Cancel CR as it is already Cancelled&quot;); 
 	}else if(p.pkl_Status__c == &apos;Delivered&apos;){ 
 		alert(&quot;Can not Cancel CR as it is Delivered&quot;); 
@@ -3948,20 +3972,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;); 
 	} 
 }else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; p.pkl_Status__c == &apos;Saved&apos;){
-	var PwoStatus =&quot;&quot;;
-	if(CPA_PWO != null &amp;&amp; CPA_PWO != &apos;&apos;){
-		soql = &quot;SELECT Id, CPA_Project_Work_Order__r.pkl_Status__c FROM CPA_CR__c where Id = &apos;&quot;+p.Id+&quot;&apos;&quot;;
-		var result = sforce.connection.query(soql); 
-		var records1 = result.getArray(&apos;records&apos;); 
-		PwoStatus = records1[0].CPA_Project_Work_Order__r.pkl_Status__c;
-		//alert(&quot;PwoStatus &gt;&gt; &quot;+ PwoStatus);
-	}
-	if(PwoStatus == &apos;Request For Termination&apos; ||PwoStatus == &apos;Sent For Termination&apos; ||PwoStatus == &apos;Terminated&apos; ){
-		alert(&quot;CR status cannot be changed as associated PWO is set for termination.&quot;); 
-	}	
-	else{
-	window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;);  	
-	}
+	window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;);  
 }
  else	{ 
 	alert(&quot;You are not authorized to perform CR, Please raise Query for cancellation &quot;);
@@ -3980,7 +3991,6 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
 p.id = &quot;{!CPA_CR__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
-CPA_PWO = &quot;{!CPA_CR__c.CPA_Project_Work_Order__c}&quot;; 
 
 
 try { 
@@ -3989,21 +3999,8 @@ try {
 	var records1 = result.getArray(&apos;records&apos;); 
 	var permissionSetName = records1[0].PermissionSet.Name; 
 
-	if( permissionSetName == &quot;CPA_SMT&quot;){
-		
-		var PwoStatus =&quot;&quot;;
-		if(CPA_PWO != null &amp;&amp; CPA_PWO != &apos;&apos;){
-			soql = &quot;SELECT Id, CPA_Project_Work_Order__r.pkl_Status__c FROM CPA_CR__c where Id = &apos;&quot;+p.id+&quot;&apos;&quot;;
-			var result = sforce.connection.query(soql); 
-			var records1 = result.getArray(&apos;records&apos;); 
-			PwoStatus = records1[0].CPA_Project_Work_Order__r.pkl_Status__c;
-			//alert(&quot;PwoStatus &gt;&gt; &quot;+ PwoStatus);
-		}
-		
-		if(PwoStatus == &apos;Request For Termination&apos; ||PwoStatus == &apos;Sent For Termination&apos; ||PwoStatus == &apos;Terminated&apos; ){
-			alert(&quot;CR status cannot be changed as associated PWO is set for termination.&quot;); 
-		}	
-		else if(p.pkl_Status__c == &quot;Signed&quot;){ 
+	if( permissionSetName == &quot;CPA_SMT&quot;){ 
+		if(p.pkl_Status__c == &quot;Signed&quot;){ 
 			alert(&quot;Can not Return, as CR is already Signed&quot;); 
 		} else if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
 			alert(&quot;Can not Return, as CR is already Cancelled&quot;); 
@@ -4041,7 +4038,6 @@ try {
 var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
 p.id = &quot;{!CPA_CR__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
-CPA_PWO = &quot;{!CPA_CR__c.CPA_Project_Work_Order__c}&quot;;
 
 soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
@@ -4051,20 +4047,7 @@ var permissionSetName = records1[0].PermissionSet.Name;
 
 
 if( permissionSetName == &quot;CPA_SMT&quot;){
-	
-	var PwoStatus =&quot;&quot;;
-	if(CPA_PWO != null &amp;&amp; CPA_PWO != &apos;&apos;){
-		soql = &quot;SELECT Id, CPA_Project_Work_Order__r.pkl_Status__c FROM CPA_CR__c where Id = &apos;&quot;+p.id+&quot;&apos;&quot;;
-		var result = sforce.connection.query(soql); 
-		var records1 = result.getArray(&apos;records&apos;); 
-		PwoStatus = records1[0].CPA_Project_Work_Order__r.pkl_Status__c;
-		//alert(&quot;PwoStatus &gt;&gt; &quot;+ PwoStatus);
-	}
-	
-	if(PwoStatus == &apos;Request For Termination&apos; ||PwoStatus == &apos;Sent For Termination&apos; ||PwoStatus == &apos;Terminated&apos; ){
-		alert(&quot;CR status cannot be changed as associated PWO is set for termination.&quot;); 
-	}	
-	else if(p.pkl_Status__c == &quot;Accepted&quot;){ 
+	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
 		p.pkl_Status__c = &quot;Sent for Signature&quot;;	
 		result = sforce.connection.update([p]); 
 //alert(result);
@@ -4093,7 +4076,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
 p.id = &quot;{!CPA_CR__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
-CPA_PWO = &quot;{!CPA_CR__c.CPA_Project_Work_Order__c}&quot;; 
+
 
 soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
@@ -4101,21 +4084,9 @@ var records1 = result.getArray(&apos;records&apos;);
 var permissionSetName = records1[0].PermissionSet.Name; 
 //alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
 
-if( permissionSetName == &quot;CPA_SMT&quot;){
-	
-	var PwoStatus =&quot;&quot;;
-	if(CPA_PWO != null &amp;&amp; CPA_PWO != &apos;&apos;){
-		soql = &quot;SELECT Id, CPA_Project_Work_Order__r.pkl_Status__c FROM CPA_CR__c where Id = &apos;&quot;+p.id+&quot;&apos;&quot;;
-		var result = sforce.connection.query(soql); 
-		var records1 = result.getArray(&apos;records&apos;); 
-		PwoStatus = records1[0].CPA_Project_Work_Order__r.pkl_Status__c;
-		//alert(&quot;PwoStatus &gt;&gt; &quot;+ PwoStatus);
-	}
-	
-	if(PwoStatus == &apos;Request For Termination&apos; ||PwoStatus == &apos;Sent For Termination&apos; ||PwoStatus == &apos;Terminated&apos; ){
-		alert(&quot;CR status cannot be changed as associated PWO is set for termination.&quot;); 
-	}	
-	else if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
+
+if( permissionSetName == &quot;CPA_SMT&quot;){  
+	if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
 		p.pkl_Status__c = &quot;Signed&quot;;	
 		result = sforce.connection.update([p]); 
 		location.reload(true); 

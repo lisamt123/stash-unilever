@@ -258,10 +258,6 @@
                 <behavior>Edit</behavior>
                 <field>mpkl_PFS_If_yes_what_is_the_source__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>isValidated__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -326,7 +322,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h18000000EmHj</masterLabel>
+        <masterLabel>00h56000000IzYJ</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

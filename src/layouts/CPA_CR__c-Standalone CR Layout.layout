@@ -86,8 +86,8 @@
                 <field>CPA_Project_Work_Order__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>PWO_number__c</field>
+                <behavior>Readonly</behavior>
+                <field>fur_PWO_Number__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -388,7 +388,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h18000000ElXe</masterLabel>
+        <masterLabel>00h56000000Iyw9</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
