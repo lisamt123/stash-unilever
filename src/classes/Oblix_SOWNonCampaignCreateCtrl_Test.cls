@@ -115,6 +115,28 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             List<SelectOption> result = controller.populateRoleTitleList(roleTitlesNameMap);
             System.assert(result != null);
             System.assert(controller.exitSwop() != null);
+
+
+            System.assertNotEquals(null, controller.activity.nonCampaignItem);
+            System.assertEquals(null, controller.activity.selectedCountry);
+            System.assertEquals(null, controller.activity.selectedCountryname);
+            System.assertEquals(null, controller.activity.selectedActivity);
+            System.assertEquals(null, controller.activity.selectedCountryActivity);
+            System.assertEquals(null, controller.activity.selectedAgencyDepartment);
+            System.assertEquals(null, controller.activity.selectedRole);
+            System.assertEquals(null, controller.activity.hourlyRate);
+            System.assertEquals(null, controller.activity.roundedRate);
+            System.assertEquals(null, controller.activity.hoursSelected);
+            System.assertEquals(null, controller.activity.result);
+            System.assertEquals(null, controller.activity.name);
+            System.assertEquals(null, controller.activity.totalAmount);
+            System.assertEquals(null, controller.activity.key);
+            System.assertEquals(null, controller.activity.activityId);
+            System.assertEquals(null, controller.activity.agencyVisible);
+            System.assertEquals(null, controller.activity.roleVisible);
+            System.assertEquals(null, controller.activity.valVisible);
+
+
             Test.stopTest();
                
          }
