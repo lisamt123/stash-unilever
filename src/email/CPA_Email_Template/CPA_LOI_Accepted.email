@@ -1,8 +1,8 @@
-<messaging:emailTemplate subject="{!RelatedTo.Name} : Accepted}" recipientType="User" relatedToType="CPA_LOI__c">
+<messaging:emailTemplate subject="{!RelatedTo.Name} : Accepted" recipientType="User" relatedToType="CPA_LOI__c">
 <messaging:htmlEmailBody >
 Hi,<br/><br/>
 
-A LOI with ID {!RelatedTo.Name} is Accepted by {!RelatedTo.txt_Accenture_Project_Manager__c} on {!TOday()}. <br/><br/>
+A LOI with ID {!RelatedTo.Name} is Accepted by {!RelatedTo.LastModifiedBy.Name} on {!TOday()}. <br/><br/>
 
 You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
 
