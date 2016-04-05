@@ -360,7 +360,7 @@ public with sharing class AF_AgencyEstimateController
 				}
 				catch(Exception ex){
 					AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'AF_AgencyEstimateController',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
-
+					apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_QueryFailed));
 				}
 				if(AgencyEstimate.AF_OverridePO_Adaptation_LC__c!=null)
 				OverrideTotal = OverrideTotal + AgencyEstimate.AF_OverridePO_Adaptation_LC__c;
@@ -542,6 +542,7 @@ public with sharing class AF_AgencyEstimateController
 			}
 			catch(Exception ex){
 				AF_ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),className_STR,'OverridePO',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,Label.AF_QueryFailed));
 			}
 			apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,Label.AF_Record_saved)); 
 		}

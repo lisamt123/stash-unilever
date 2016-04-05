@@ -541,7 +541,7 @@
                            <td align="center"><b>Please Wait</b></td>
                         </tr>
                         <tr>
-                           <td align="center"><img src="{!$Resource.Processing}"/></td>
+                           <td align="center"><img alt="Displays the processing image" src="{!$Resource.Processing}"/></td>
                         </tr>
                      </table>
                   </div>
