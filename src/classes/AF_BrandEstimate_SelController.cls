@@ -14,6 +14,7 @@ public with sharing class AF_BrandEstimate_SelController {
 	public List<AF_Brand_Estimate__c> brandEstimates {get;set;}
 	public String linkRed{get;set;}
 	public Boolean isAgencyFlag{get;set;}
+	public String categoryParam{get;set;}
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_BrandEstimate_SelController
@@ -25,6 +26,7 @@ public with sharing class AF_BrandEstimate_SelController {
 		brandId = ApexPages.currentPage().getParameters().get('bId');
 		agencyId = ApexPages.currentPage().getParameters().get('aId');
 		fiscalYear = ApexPages.currentPage().getParameters().get('fy');
+		categoryParam = ApexPages.currentPage().getParameters().get('category');
 		User userObj = new User();
 		userObj = [select Id,Contact.Account.Name, AF_Category__c, AF_Brand__c,Profile.Name, AF_Agency_Fees_User_Type__c from User where Id =:UserInfo.getUserId()];
 		if(userObj.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){

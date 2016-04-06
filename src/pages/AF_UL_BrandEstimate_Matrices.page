@@ -36,11 +36,12 @@
          var isRed = '{!linkRed}';
          var brandId ='{!brandId}';
          var fiscalYear = '{!fiscalYear}';
-         var category_param = "{!$CurrentPage.parameters.category}".split("'");
-         var category1 = '';
+		 var category_param = '{!categoryParam}';
+         category_param = category_param.split("'");
+		 var category1 = '';
          $.each(category_param, function(i, e){category1 += e;});
          if(isRed != '') {
-             location.replace("apex/AF_UL_AgencyMatrix?Id="+isRed+'&brandvalue='+brandId+'&category='+category1+'&Year='+fiscalYear);
+		     location.replace("apex/AF_UL_AgencyMatrix?Id="+isRed+'&brandvalue='+brandId+'&category='+category1+'&Year='+fiscalYear);
          } 
          $(function() {
          $( "input[type=submit], a, button" )
@@ -64,7 +65,7 @@
          <div align="center" id="mydiv_bold" class="fontSize16P">
             <apex:dataTable var="bEst" value="{!brandEstimates}" id="dt1" styleClass="brandEstimatetable">
                <apex:column >
-                  <a href="apex/AF_UL_AgencyMatrix?id={!bEst.Id}&brandvalue={!$CurrentPage.parameters.brandvalue}&category={!$CurrentPage.parameters.category}&Year={!$CurrentPage.parameters.Year}">{!bEst.Name}</a><br /><br />
+                  <a href="apex/AF_UL_AgencyMatrix?id={!bEst.Id}&brandvalue={!brandId}&category={!categoryParam}&Year={!fiscalYear}">{!bEst.Name}</a><br /><br />
                </apex:column>
                <apex:column styleClass="tablecolumn">
                   {!bEst.AF_Status_Base_Fees__c}<br /><br />
