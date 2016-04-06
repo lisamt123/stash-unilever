@@ -116,41 +116,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
             </div>
 
             <script type="text/javascript">
-                var $jk = jQuery.noConflict();
-
-                function showModal(){
-                    $jk(".modal-backdrop").appendTo("#lms-template-wrapper");
-                    $jk('#myModal').modal('show');
-                };
-
-                function hideModal(){
-                    $jk('#myModal').modal('hide');
-                };
-
-                var availableOptions = {};
-
-                $jk(document).ready(function(){
-                    $jk('[data-toggle="tooltip"]').tooltip();
-
-                    $jk('.save-btn').on('click', function(){
-                        showModal();
-
-                        var geography  = $jk('#geography').val();
-                        var workLevel  = $jk('#workLevel').val();
-                        var jobProfile = $jk('#jobProfile').val();
-                        var buddyName  = $jk('#buddyName').val();
-
-                        PBS_MyProfileController_CC.storeUserProfile(geography, workLevel, jobProfile, buddyName, function(data, result) {
-                            if (data !== true) {
-                                // @todo raise exception
-                            } else {
-                                window.parent.postMessage({itemId: 'home'}, '*');
-                                window.location = '{!$Page.PC_Home}';
-                            }
-                            hideModal();
-                        });
-                    });
-                });
+                function showModal(){$jk(".modal-backdrop").appendTo("#lms-template-wrapper"),$jk("#myModal").modal("show")}function hideModal(){$jk("#myModal").modal("hide")}var $jk=jQuery.noConflict(),availableOptions={};$jk(document).ready(function(){$jk('[data-toggle="tooltip"]').tooltip(),$jk(".save-btn").on("click",function(){showModal();var o=$jk("#geography").val(),a=$jk("#workLevel").val(),e=$jk("#jobProfile").val(),l=$jk("#buddyName").val();PBS_MyProfileController_CC.storeUserProfile(o,a,e,l,function(o,a){o!==!0||(window.parent.postMessage({itemId:"home"},"*"),window.location="{!$Page.PC_Home}"),hideModal()})})});
             </script>
 
         </apex:define>
