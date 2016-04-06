@@ -1,4 +1,4 @@
-trigger NewsArticleFeedComment_Trigger on FeedComment (after insert, after delete) {
+trigger NewsArticleFeedCommentAfterInsertDelete on FeedComment (after insert, after delete) {
     
     Schema.SObjectType newsArticleType = Schema.News_Article__c.sObjectType;
     
@@ -6,7 +6,7 @@ trigger NewsArticleFeedComment_Trigger on FeedComment (after insert, after delet
        for(FeedComment objFC : trigger.new){
             
           if(objFC.ParentId != null && objFC.ParentId.getSobjectType() == newsArticleType){
-              NewsArticleCommentCount.NewsArticleCount(objFC.ParentId); 
+              Core_NC_NewsArticleCommentCount.NewsArticleCount(objFC.ParentId); 
            }
         }
      }
@@ -15,7 +15,7 @@ trigger NewsArticleFeedComment_Trigger on FeedComment (after insert, after delet
        for(FeedComment objFC : trigger.old){
             
          if(objFC.ParentId != null && objFC.ParentId.getSobjectType() == newsArticleType){
-              NewsArticleCommentCount.NewsArticleCount(objFC.ParentId); 
+              Core_NC_NewsArticleCommentCount.NewsArticleCount(objFC.ParentId); 
            }
         }
      }
