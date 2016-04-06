@@ -23,6 +23,8 @@ public with sharing Class IPM_CMIGateSectionController{
     public set<String> countryNames{get; set;}
     public Map<String,Integer> inputCount{get; set;}
     @TestVisible private String gateDocument;
+    public transient List<IPM_Country__c> countryList; //List od Countries
+    public map<String,String> mapCountryNameWithCode {get;set;}
     private static string CLASS_NAME=IPM_CMIGateSectionController.class.getName();
     /**********************************************************************************************************************************
     @description For Showing Gate CMI Data Values in Table
@@ -96,7 +98,16 @@ public with sharing Class IPM_CMIGateSectionController{
                     }
                 }
                 contentCount.put(cmi.Id,count);
-            }                    
+            }
+            countryList=new List<IPM_Country__c>();
+            countryList=[SELECT Id,Country_Name__c,Country_Code__c,IPM_Project__c,IPM_Regional_Project__c FROM IPM_Country__c
+                         WHERE IPM_Project__c=:project.Id OR IPM_Regional_Project__c=:project.Id OR IPM_Local_Project__c=:project.Id];  
+            mapCountryNameWithCode=new map<String,String>();
+            if(countryList != null && !countryList.isEmpty()){
+                for(IPM_Country__c c:countryList){
+                    mapCountryNameWithCode.put(c.Country_Code__c,c.Country_Name__c);
+                }
+            }                                   
         }
         catch(Exception ex){
             

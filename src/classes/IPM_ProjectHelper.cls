@@ -1366,7 +1366,7 @@ public with sharing class IPM_ProjectHelper
                 {
                     globalCountries = projectToCountryMap.get(globalProjectID);
                 }
-                globalCountries.put(country.Country_Name__c,country);
+                globalCountries.put(country.Country_Code__c,country);
                 projectToCountryMap.put(globalProjectID,globalCountries);
                 
                 Id regionalProjectID = country.IPM_Regional_Project__c;
@@ -1376,7 +1376,7 @@ public with sharing class IPM_ProjectHelper
                 {
                     regionalCountries = projectToCountryMap.get(regionalProjectID);
                 }
-                regionalCountries.put(country.Country_Name__c,country);
+                regionalCountries.put(country.Country_Code__c,country);
                 projectToCountryMap.put(regionalProjectID,regionalCountries);
                 
                 Id localProjectID = country.IPM_Local_Project__c;
@@ -1386,7 +1386,7 @@ public with sharing class IPM_ProjectHelper
                 {
                     localCountries = projectToCountryMap.get(localProjectID);
                 }
-                localCountries.put(country.Country_Name__c,country);
+                localCountries.put(country.Country_Code__c,country);
                 projectToCountryMap.put(localProjectID,localCountries);
             }
             
