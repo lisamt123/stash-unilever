@@ -21,7 +21,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public List<String> lstFinAlertMessage {get;set;} //Alert message for financial misalignment
     public List<String> lstRolloutProjectAlertMessage {get;set;} //Alert message for Rollout local projec leader is blank
     public List<String> lstFinTLDAlertMessage {get;set;} //Alert message for financial TLD misalignment
-    public List<String> LstLocalFinTLDMisalignedMessage {get;set;} //Alert message for financial TLD misalignment
+    public List<String> lstFinDataMissingAlertMessage {get;set;} 
+        public List<String> LstLocalFinTLDMisalignedMessage {get;set;} //Alert message for financial TLD misalignment
     public IPM_Task__c[] tasksList{get;set;}//list of tasks to be made displayed
     public Integer noOfNotifications{get;set;}//number of notifications that a page can display
     public IPM_Project_Document__c projectDoc{get; set;}//current gate document that the project is associated with
@@ -587,6 +588,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         lstFinAlertMessage = new list<String>();       
         lstFinTLDAlertMessage = new list<String>();
         LstLocalFinTLDMisalignedMessage = new List<String>();
+                lstFinDataMissingAlertMessage = new list<String>();
 
         for(IPM_Financial__c fin: RegionalOrLocalFins ){  
             if(project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && fin.Local_Project__c != NULL && fin.Regional_Project__c != NULL && fin.Misaligned__c && (system.today() > fin.Misaligned_Date__c)){               
@@ -615,6 +617,12 @@ public with sharing class IPM_ProjectOverviewCtrl {
         			project.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + project.IPM_Parent_Project__r.IPM_Project_Name__c);
                     ++noOfNotifications;
         }
+                //DEF2344 fix
+            List<IPM_Project__c> projList = IPM_ValidationHelper.validateMilestoneAndFinacialData(new List<IPM_Project__c>{project});
+            if(!projList.isEmpty()) {
+                lstFinDataMissingAlertMessage.add(Label.IPM_Finacial_Data_Missing);
+                ++noOfNotifications;
+            }
         
          
         //Calculate nearest Gate Due date for Rollout 

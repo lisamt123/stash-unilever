@@ -1,4 +1,4 @@
-<!--  
+﻿<!--  
 *************************************************************************
 *@Description:This page is used to display the overall information about the project.
 *@Author: Cognizant
@@ -95,7 +95,12 @@
                                         <apex:commandLink value="{!message}" action="{!$Page.IPM_Tasklist}?id={!project.Id}"/>
                                     </li>
                                     </apex:repeat>
-				<!-- Display below outputPanel when current user has some document alert message-->
+                                 <apex:repeat var="message" value="{!lstFinDataMissingAlertMessage}">
+                                    <li>
+                                            <apex:commandLink value="{!message}" action="{!$Page.IPM_Financial}?id={!project.Id}"/>
+                                    </li>
+                                </apex:repeat>
+                            <!-- Display below outputPanel when current user has some document alert message-->
                             <apex:outputPanel rendered="{!documentAlertMessage != null}">
                                <li>
                                     {!documentAlertMessage}

@@ -1841,58 +1841,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     return isValidationFailed;
     }
 
-    private Boolean validateMilestoneAndFinacialData() {
-        Date milestoneDate = getProjectMilestoneDate();
-        Boolean result = milestoneDate!=null && 
-                         milestoneDate < System.now().addDays(14) && 
-                         (validateFinacialData(financialsCalendar) || validateFinacialData(financialsInnovation));
-        return  result;
-    }
-    private Boolean validateFinacialData( IPM_FinancialWrapper finWrapper ) {
-        Boolean result = 
-                        //Gross PBO
-                         validateFinacialDataValue(finWrapper.lstGrossPLProfit) ||    
-                        //Incremental PBO
-                            validateFinacialDataValue(finWrapper.lstIncrementalPLProfit)  ||     
-                        //Gross Turnover
-                            validateFinacialDataValue(finWrapper.lstIncrementalPLTurnover)   ||    
-                        //Incremental Turnover
-                            validateFinacialDataValue(finWrapper.lstGrossPLTurnover)  ||     
-                        //Gross Gross
-                            validateFinacialDataValue(finWrapper.lstGrossPLTurnover)   ||    
-                        //Incremental Gross
-                            validateFinacialDataValue(finWrapper.lstIncrementalPLGrossProfit) ;
-        return result;
-    }
-    private boolean validateFinacialDataValue(List<IPM_FinancialValueWrapper> lstGrossPLGrossProfit){
-        Boolean isInvalid = false;
-        for(IPM_FinancialValueWrapper valueWrapper: lstGrossPLGrossProfit){
-            if(valueWrapper.value == IPM_ConstantUtils.INVALID_VALUE){
-                isInvalid = true;
-                break;
-            }
-        } 
-        return isInvalid;
-    }
+      private Boolean validateMilestoneAndFinacialData() { 
+        List<IPM_Project__c> projList = IPM_ValidationHelper.validateMilestoneAndFinacialData(new List<IPM_Project__c>{project}); 
+        return !projList.isEmpty(); 
+      } 
     
-private Date getProjectMilestoneDate(){
-        List<String> milestoneNames = new List<String>{IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE};
-        List<IPM_Milestone__c> milestones = [Select Id,IPM_Name__c,IPM_Active__c, IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: project.Id and IPM_Active__c = true and IPM_Due_Date__c != null and IPM_Name__c in: milestoneNames];
-        Date projectMilestoneDate = null;
-        for(IPM_Milestone__c milestone :milestones){
-            if(milestone.IPM_Name__c==IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS) {
-                projectMilestoneDate = milestone.IPM_Due_Date__c;
-                break;
-            } else if(milestone.IPM_Name__c==IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY) {
-                projectMilestoneDate = milestone.IPM_Due_Date__c;
-                break;
-            } else if(milestone.IPM_Name__c==IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY) {
-                projectMilestoneDate = milestone.IPM_Due_Date__c;
-                break;
-            }
-        }
-        return projectMilestoneDate;
-    }       
+  
+       
     //DEF2339 & DEF2344 fix end
     /*******************************************************************************************************
     * @description              Used to validate the financial Y0Turnover
