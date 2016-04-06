@@ -222,19 +222,19 @@ private class Oblix_SowMainController_Test {
         // UL2 Dove Edit, Knorr read only, Ambrosia no access, Ciff no access
         // UL3 Dove Read only, Knorr no access, Ambrosia no access, Ciff edit (should have read regardless)
         // superuser Dove approver, Knorr edit, Ambrosia read only, Diff no access
-        Oblix_User_Permission__c up1Dove = Oblix_TestUtils.createUserPermission(ul1.Id, cbDovePC.Id, Oblix_Utils.USER_PERMISSION_APPROVER);
-        Oblix_User_Permission__c up1Knorr = Oblix_TestUtils.createUserPermission(ul1.Id, cbKnorrOF.Id, Oblix_Utils.USER_PERMISSION_ACCESS_EDIT);
-        Oblix_User_Permission__c up1Ambrosia = Oblix_TestUtils.createUserPermission(ul1.Id, cbAmbrosiaOF.Id, Oblix_Utils.USER_PERMISSION_READ_ONLY);
+        Oblix_User_Permission__c up1Dove = Oblix_TestUtils.createUserPermission(ul1.Id, cbDovePC.Id, Oblix_Utils.USER_PERMISSION_APPROVER, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
+        Oblix_User_Permission__c up1Knorr = Oblix_TestUtils.createUserPermission(ul1.Id, cbKnorrOF.Id, Oblix_Utils.USER_PERMISSION_ACCESS_EDIT, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
+        Oblix_User_Permission__c up1Ambrosia = Oblix_TestUtils.createUserPermission(ul1.Id, cbAmbrosiaOF.Id, Oblix_Utils.USER_PERMISSION_READ_ONLY, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
 
-        Oblix_User_Permission__c up2Dove = Oblix_TestUtils.createUserPermission(ul2.Id, cbDovePC.Id, Oblix_Utils.USER_PERMISSION_ACCESS_EDIT);
-        Oblix_User_Permission__c up2Knorr = Oblix_TestUtils.createUserPermission(ul2.Id, cbKnorrOF.Id, Oblix_Utils.USER_PERMISSION_READ_ONLY);
+        Oblix_User_Permission__c up2Dove = Oblix_TestUtils.createUserPermission(ul2.Id, cbDovePC.Id, Oblix_Utils.USER_PERMISSION_ACCESS_EDIT, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
+        Oblix_User_Permission__c up2Knorr = Oblix_TestUtils.createUserPermission(ul2.Id, cbKnorrOF.Id, Oblix_Utils.USER_PERMISSION_READ_ONLY, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
 
-        Oblix_User_Permission__c up3Dove = Oblix_TestUtils.createUserPermission(ul3.Id, cbDovePC.Id, Oblix_Utils.USER_PERMISSION_READ_ONLY);
-        Oblix_User_Permission__c up3Ciff = Oblix_TestUtils.createUserPermission(ul3.Id, cbCiffPC.Id, Oblix_Utils.USER_PERMISSION_ACCESS_EDIT);
+        Oblix_User_Permission__c up3Dove = Oblix_TestUtils.createUserPermission(ul3.Id, cbDovePC.Id, Oblix_Utils.USER_PERMISSION_READ_ONLY, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
+        Oblix_User_Permission__c up3Ciff = Oblix_TestUtils.createUserPermission(ul3.Id, cbCiffPC.Id, Oblix_Utils.USER_PERMISSION_ACCESS_EDIT, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
 
-        Oblix_User_Permission__c superuserDove = Oblix_TestUtils.createUserPermission(superuser.Id, cbDovePC.Id, Oblix_Utils.USER_PERMISSION_APPROVER);
-        Oblix_User_Permission__c superuserKnorr = Oblix_TestUtils.createUserPermission(superuser.Id, cbKnorrOF.Id, Oblix_Utils.USER_PERMISSION_ACCESS_EDIT);
-        Oblix_User_Permission__c superuserAmbrosia = Oblix_TestUtils.createUserPermission(superuser.Id, cbAmbrosiaOF.Id, Oblix_Utils.USER_PERMISSION_READ_ONLY);
+        Oblix_User_Permission__c superuserDove = Oblix_TestUtils.createUserPermission(superuser.Id, cbDovePC.Id, Oblix_Utils.USER_PERMISSION_APPROVER, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
+        Oblix_User_Permission__c superuserKnorr = Oblix_TestUtils.createUserPermission(superuser.Id, cbKnorrOF.Id, Oblix_Utils.USER_PERMISSION_ACCESS_EDIT, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
+        Oblix_User_Permission__c superuserAmbrosia = Oblix_TestUtils.createUserPermission(superuser.Id, cbAmbrosiaOF.Id, Oblix_Utils.USER_PERMISSION_READ_ONLY, Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER);
         insert new List<Oblix_User_Permission__c>{up1Dove, up1Knorr, up1Ambrosia, up2Dove, up2Knorr, up3Dove, up3Ciff, superuserDove, superuserKnorr, superuserAmbrosia};
 
         Account agency = Oblix_TestUtils.createAccount();
