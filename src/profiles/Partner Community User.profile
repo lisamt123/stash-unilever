@@ -3926,7 +3926,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>TriggerFactory</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>TriggerParameters</apexClass>
