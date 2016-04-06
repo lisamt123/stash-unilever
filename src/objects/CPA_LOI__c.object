@@ -278,6 +278,32 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>lkp_Unilever_budget_approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of Unilever person responsible for approving the project budget</description>
+        <externalId>false</externalId>
+        <label>Unilever Budget Approver*</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>LOI</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_Unilever_content_approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of Unilever person responsible for approving the project content</description>
+        <externalId>false</externalId>
+        <label>Unilever Content Approver*</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>LOI1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>mpkl_Phases_covered_by_WAR__c</fullName>
         <description>Phases of project covered under WAR</description>
         <externalId>false</externalId>
@@ -662,11 +688,11 @@
     </fields>
     <label>LOI</label>
     <listViews>
-        <fullName>All</fullName>
+        <fullName>All_LOI</fullName>
         <columns>NAME</columns>
         <columns>pkl_Status__c</columns>
         <filterScope>Everything</filterScope>
-        <label>All</label>
+        <label>All LOI</label>
         <language>en_US</language>
     </listViews>
     <nameField>
@@ -677,6 +703,115 @@
     </nameField>
     <pluralLabel>LOI</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>LOI_Accepted</fullName>
+        <active>true</active>
+        <label>LOI Accepted</label>
+        <picklistValues>
+            <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
+            <values>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Approval_Comment_Check__c</picklist>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency__c</picklist>
+            <values>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <recordTypes>
         <fullName>LOI_Cancael</fullName>
         <active>true</active>
@@ -1232,7 +1367,7 @@ if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&
 	} 
 	else if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Resubmitted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Submitted&quot;) 
 	{ 
-		alert(&quot;Associated PWORF should be atleast in Accepted status to created LOI.&quot;); 
+		alert(&quot;Associated PWORF should be atleast in Accepted status to create LOI.&quot;); 
 	} 
 	else{ 
 		result = sforce.connection.query(&quot;select Id,pkl_Status__c,lkp_PWORF__c from CPA_LOI__c where lkp_PWORF__c = &apos;{!CPA_PWORF__c.Id}&apos; AND pkl_Status__c = &apos;Cancelled&apos;&quot;); 
@@ -1248,7 +1383,7 @@ if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&
 alert(&quot;Please create LOI by using New LOI option from Relevant PWORF Record&quot;);	
 //*window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!$Label.CPA_LOI_Object_Id}&quot;,&quot;_self&quot;); */
 }else{ 
-alert(&quot;LOI can be created by Accenture Demand Management Team only.&quot;); 
+alert(&quot;LOI can be created by Vendor Team only.&quot;); 
 }</url>
     </webLinks>
     <webLinks>

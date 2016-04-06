@@ -56,15 +56,22 @@ private class CPA_Contract_UtilMethods_Test {
             insert objPworf13;
             objPworf13.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
             update objPworf13;
-            
+            CPA_project_work_order__c objPWO = CPA_testContractClass.createotherPWO(objPworf13);
+            insert objPWO;
+            CPA_Project_Work_Order_TriggerUtil.isSubmitted=false;
+        	objPWO.txt_PWO_number__c = '456';
+            update objPWO;
+        
             CPA_LOI__c objLOI = CPA_testContractClass.createLOI(objPworf13);
             insert objLOI;
             
             objLOI.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
+        	objLOI.txt_PWO_number__c = '456';
             update objLOI;
             CPA_LOI_TriggerUtil.isSubmitted  = false;
             objLOI.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
-            update objLOI;        
+            update objLOI; 
+        	
            System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objPworf13.pkl_Status__c);
               System.assert (CPA_ConstantsForContractingAppClasses.CANCELLED == objLOI.pkl_Status__c);           
         Test.stopTest();
@@ -82,8 +89,6 @@ private class CPA_Contract_UtilMethods_Test {
         insert PWORFTriggerPattern;
         CPA_Trigger_Pattern__c CRtriggerPattern = CPA_testCustomSettingClass_util.createTest_CRTriggerPattern();
         insert CRtriggerPattern;
-        CPA_Trigger_Pattern__c PWOTriggerPattern = CPA_testCustomSettingClass_util.createTest_PWOTriggerPattern();
-        insert PWOTriggerPattern;
       
         Test.startTest();
             CPA_PWORF__c objPworf14 = CPA_testPWORFClass_util.createTest_other_PWORF();
@@ -107,12 +112,10 @@ private class CPA_Contract_UtilMethods_Test {
             update objCR;
             CPA_CR_TriggerUtil.isSubmitted  = false;
             objCR.pkl_Status__c = CPA_ConstantsForContractingAppClasses.CANCELLED;
-            update objCR;           
-            
+            update objCR; 
+        	Test.stopTest(); 
             System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objPworf14.pkl_Status__c);
-            System.assert (CPA_ConstantsForContractingAppClasses.ACCEPTED == objPWO.pkl_Status__c);   
-              
-        Test.stopTest();    
+            System.assert (CPA_ConstantsForContractingAppClasses.ACCEPTED == objPWO.pkl_Status__c);        
     }
     /*******************************************************************
     Purpose: This method is used to cover CR utilities
@@ -135,13 +138,9 @@ private class CPA_Contract_UtilMethods_Test {
             objCR1.num_Effort_Cost__c =20;
             insert objCR1;
         	objCR1.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;              
-            update objCR1;
-        	CPA_CR__c objCR2 = CPA_testContractClass.standAloneCR();
-            objCR2.pkl_Status__c=CPA_ConstantsForContractingAppClasses.SAVED;
-            objCR2.num_Effort_Cost__c =20;
-            insert objCR2;
+            update objCR1;       	
         Test.stopTest();    
-        System.assert (CPA_ConstantsForContractingAppClasses.SUBMITTED == objCR1.pkl_Status__c); 
+        System.assert (CPA_ConstantsForContractingAppClasses.SUBMITTED == objCR1.pkl_Status__c);       
     }
         /*******************************************************************
     Purpose: This method is used to cover CR utilities
@@ -173,9 +172,10 @@ private class CPA_Contract_UtilMethods_Test {
             update objPWO; 
             CPA_CR__c objCR2 = CPA_testContractClass.blankCR(objPWO);
             objCR2.num_Effort_Cost__c =20;
-            insert objCR2;          
+            insert objCR2;         	
              System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objPworf15.pkl_Status__c);
-              System.assert (CPA_ConstantsForContractingAppClasses.ACCEPTED == objPWO.pkl_Status__c);  
+              System.assert (CPA_ConstantsForContractingAppClasses.ACCEPTED == objPWO.pkl_Status__c); 
+        	
         Test.stopTest();    
     }
     /*******************************************************************
@@ -266,4 +266,46 @@ private class CPA_Contract_UtilMethods_Test {
              System.assert(CPA_ConstantsForContractingAppClasses.CANCELLED!= objPWO.pkl_Status__c);
         Test.stopTest();   
     } 
+    /*******************************************************************
+    Purpose: This method is used to cover CR utilities
+    Parameters: 
+    Returns: 
+    Throws [Exceptions]: 
+    ********************************************************************/
+    public Static testMethod  void  CPA_CR_Util_Test2(){ 
+      CPA_StatusMsgCustomSetting();
+        
+        CPA_Trigger_Pattern__c PWORFTriggerPattern = CPA_testCustomSettingClass_util.createTest_PWORFTriggerPattern();
+        insert PWORFTriggerPattern;
+        CPA_Trigger_Pattern__c CRtriggerPattern = CPA_testCustomSettingClass_util.createTest_CRTriggerPattern();
+        insert CRtriggerPattern;
+      
+        Test.startTest();
+            CPA_PWORF__c objPworf14 = CPA_testPWORFClass_util.createTest_other_PWORF();
+            insert objPworf14;
+            objPworf14.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ANSWERED;
+            update objPworf14;
+            
+            CPA_project_work_order__c objPWO = CPA_testContractClass.createPWO(objPworf14);            
+            objPWO.num_Effort_Cost__c =20;
+            insert objPWO; 
+        	objPWO.pkl_Status__c = CPA_ConstantsForContractingAppClasses.ACCEPTED;
+        	objPWO.num_Estimated_Value_of_PWO__c= null;
+        	update objPWO;
+            
+            CPA_CR__c objCR = CPA_testContractClass.createCR(objPWO);
+            insert objCR;
+            CPA_project_work_order__c pwo = [Select Id,pkl_Status__c from CPA_project_work_order__c where Id=:objCR.CPA_Project_Work_Order__c];
+            objCR.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
+            objCR.num_Effort_Cost__c =20;
+            update objCR;
+            CPA_CR__c objCR1 = CPA_testContractClass.createCR(objPWO);
+            insert objCR1; 
+       		objCR1.pkl_Status__c = CPA_ConstantsForContractingAppClasses.SUBMITTED;
+            objCR1.num_Effort_Cost__c =20;
+            update objCR1;
+        	Test.stopTest(); 
+            System.assert (CPA_ConstantsForContractingAppClasses.ANSWERED != objPworf14.pkl_Status__c);
+            System.assert (CPA_ConstantsForContractingAppClasses.ACCEPTED == objPWO.pkl_Status__c);        
+    }
 }

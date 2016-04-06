@@ -122,6 +122,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Approval_Comment_Required_for_Contracts</fullName>
@@ -131,6 +132,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_Closure_Notification_Accepted_date</fullName>
@@ -944,20 +946,6 @@
             <field>CPA_project_work_order__c.pkl_Status__c</field>
             <operation>equals</operation>
             <value>Terminated</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>CPA Termination Notification Form Return</fullName>
-        <actions>
-            <name>CPA_Record_type_CPA_TNF</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>CPA_project_work_order__c.TNF_Status__c</field>
-            <operation>equals</operation>
-            <value>Returned</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

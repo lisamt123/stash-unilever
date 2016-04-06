@@ -24,7 +24,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>CUST_NAME</groupingColumn>
+            <groupingColumn>WU_Master_Warehouse__c.WU_LocationName__c</groupingColumn>
             <groupingColumn>WU_Master_Warehouse__c.WU_Country__c</groupingColumn>
             <legendPosition>Bottom</legendPosition>
             <report>WU_Warehouse_Excellence_Team/Committed_vs_Current_by_Country</report>
@@ -48,7 +48,7 @@
             <enableHover>false</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>WU_Warehouse_Capacity_Detail__c.WU_Utilization_Start_Date__c</groupingColumn>
-            <groupingColumn>CUST_NAME</groupingColumn>
+            <groupingColumn>WU_Master_Warehouse__c.WU_LocationName__c</groupingColumn>
             <legendPosition>Bottom</legendPosition>
             <report>WU_Warehouse_Excellence_Team/Average_Utilization_by_Month</report>
             <showPercentage>false</showPercentage>
@@ -110,7 +110,7 @@
             <showPercentage>false</showPercentage>
             <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
-            <title>Committed Vs Current by Network</title>
+            <title>Committed Vs Current by MCO</title>
             <useReportChart>false</useReportChart>
         </components>
         <components>
@@ -179,7 +179,7 @@
             <enableHover>false</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>WU_Warehouse_Capacity_Detail__c.WU_Utilization_Start_Date__c</groupingColumn>
-            <groupingColumn>CUST_NAME</groupingColumn>
+            <groupingColumn>WU_Master_Warehouse__c.WU_LocationName__c</groupingColumn>
             <legendPosition>Bottom</legendPosition>
             <report>WU_Warehouse_Excellence_Team/Average_Utilization_by_Week</report>
             <showPercentage>false</showPercentage>

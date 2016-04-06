@@ -21,6 +21,14 @@
                 <type>FieldUpdate</type>
             </action>
             <action>
+                <name>CPA_LOI_Accepted_Email_Alert</name>
+                <type>Alert</type>
+            </action>
+            <action>
+                <name>CPA_LOI_Accepted_recordtype_change</name>
+                <type>FieldUpdate</type>
+            </action>
+            <action>
                 <name>CPA_LOI_Accepted_Statsu</name>
                 <type>FieldUpdate</type>
             </action>
@@ -71,7 +79,7 @@
             <value>Submitted</value>
         </criteriaItems>
     </entryCriteria>
-    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
             <name>Approval_Comment_Required_for_LOI</name>

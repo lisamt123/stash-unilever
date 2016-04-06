@@ -434,9 +434,8 @@ public with sharing class CPA_CR_TriggerUtil{
                 mapPWOIDCR.put(lstCR1[0].CPA_Project_Work_Order__c,lstCR1[0]);
                  
             }
-            //Added below decimal variable by Dinesh on 25/03/2016 to fix SonarQube issue
-            //Avoid idempotent operations (like assigning a variable to itself)
-            Decimal decEffortCost = 0.0;
+            
+            
             for(CPA_CR__c objCRTEmp :lstCR ){
                 if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c)==null ){
                     if(mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c)!=null && mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c!=null){
@@ -446,9 +445,10 @@ public with sharing class CPA_CR_TriggerUtil{
                         objCRTEmp.num_Total_Resource_Efforts_CR__c = objCRTEmp.num_Estimated_Man_days_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Man_days_of_PWO__c;
                         objCRTEmp.num_Effort_Cost__c = objCRTEmp.num_Effort_Cost__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Effort_Cost__c;
                     }else if(objCRTEmp.num_Estimated_Value_of_CR__c !=null){
-                        decEffortCost = objCRTEmp.num_Effort_Cost__c;
+                        Decimal intCostResource = 0;
+                        intCostResource = objCRTEmp.num_Effort_Cost__c;
                         objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c ;  
-                        objCRTEmp.num_Effort_Cost__c = decEffortCost;
+                        objCRTEmp.num_Effort_Cost__c = intCostResource;
                         objCRTEmp.num_Total_Expenses_of_CR__c = objCRTEmp.num_Expense_charges_of_CR__c;                 
                     }else {
                         objCRTEmp.num_Delta_Efforts__c =0;

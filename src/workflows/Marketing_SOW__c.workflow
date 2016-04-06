@@ -64,6 +64,17 @@
         <template>Oblix_SOW_Email/SOW_for_Internal_Approval</template>
     </alerts>
     <alerts>
+        <fullName>SOW_Returned_by_Agency</fullName>
+        <description>SOW Returned by Agency</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Approval_Submitter__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Oblix_SOW_Email/SOW_returned_to_Marketeer_by_Agency_2</template>
+    </alerts>
+    <alerts>
         <fullName>SOW_Returned_to_Unilever</fullName>
         <description>SOW Returned to Unilever</description>
         <protected>false</protected>
@@ -75,37 +86,19 @@
         <template>Oblix_SOW_Email/SOW_returned_to_Marketeer_by_Agency</template>
     </alerts>
     <fieldUpdates>
-        <fullName>Approved_by_GVP</fullName>
+        <fullName>Update_SOW_Status_Awaiting_Agency</fullName>
         <field>SOW_Status__c</field>
-        <literalValue>Approved</literalValue>
-        <name>Approved by GVP</name>
+        <literalValue>Awaiting Agency Approval</literalValue>
+        <name>Update SOW Status Awaiting Agency</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>OblixFU_UniqueName</fullName>
-        <field>Oblix_tec_Unique_Name__c</field>
-        <formula>Name</formula>
-        <name>OblixFU_UniqueName</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>OblixReturned_By_GVP</fullName>
+        <fullName>Update_SOW_Status_Returned_by_Agency</fullName>
         <field>SOW_Status__c</field>
-        <literalValue>Draft - with Unilever</literalValue>
-        <name>Returned By GVP</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_SOW_Status_Awaiting_Agency_tbc</fullName>
-        <field>SOW_Status__c</field>
-        <literalValue>Pending Agency Approval</literalValue>
-        <name>Update SOW Status Awaiting Agency tbc</name>
+        <literalValue>Returned by Agency</literalValue>
+        <name>Update SOW Status Returned by Agency</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>

@@ -165,6 +165,7 @@
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CAP_HLE_Req_Owner_Update_to_VDM</fullName>
@@ -257,6 +258,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_HLE_Preparation_date</fullName>
+        <field>dt_HLE_Preparation_date__c</field>
+        <formula>TODAY()</formula>
+        <name>CPA HLE Preparation date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_HLE_Request_Answered</fullName>
         <field>pkl_Status__c</field>
         <literalValue>Answered</literalValue>
@@ -337,7 +347,7 @@
         <lookupValue>CAP_VDM_Queue</lookupValue>
         <lookupValueType>Queue</lookupValueType>
         <name>CPA Owner Update to VDM</name>
-        <notifyAssignee>true</notifyAssignee>
+        <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
@@ -452,6 +462,25 @@
             <value>HLE</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA HLE Preparation date</fullName>
+        <actions>
+            <name>CPA_HLE_Preparation_date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_HLE_Request__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>HLE</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_HLE_Request__c.dt_HLE_Preparation_date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>To populate Preparation date</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>CPA HLE REquest Cancelled</fullName>

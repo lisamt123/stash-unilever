@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>After submitting a PWORF, if ADM has not yet responded to a PWORF, it will be auto accepted.</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>CPA Auto Accept a PWORF</name>
+    <style>none</style>
+    <subject>PWORF: {!CPA_PWORF__c.Id} Auto Accepted  by {!CPA_PWORF__c.ftxt_Unilever_Project_Manager_Name__c}</subject>
+    <type>custom</type>
+</EmailTemplate>

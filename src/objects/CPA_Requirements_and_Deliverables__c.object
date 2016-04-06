@@ -131,6 +131,33 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services</inli
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_Requirements_and_Deliverables</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_Requirements_and_Deliverables</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA VDM Queue</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_Requirements_and_Deliverables</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>Requirements and Deliverables Name</label>
         <trackHistory>false</trackHistory>
@@ -139,4 +166,42 @@ Good Receipt postings must reflect Actual deliveries of Goods and Services</inli
     <pluralLabel>Requirements and Deliverables</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>New_Requirements_and_Deliverables</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New Requirements and Deliverables</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+
+if(permissionSetName == &quot;CPA_ADM&quot;){ 
+alert(&quot;Requirements and Deliverables cannot be created by Vendor Team.&quot;); 
+}else if(permissionSetName == &quot;CPA_ULPM&quot;){ 
+
+if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Auto Accepted&quot; ||&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Accepted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Answered&quot;) 
+{ 
+alert(&quot;New Requirements and Deliverables can be created before Associated PWORF is Accepted.&quot;); 
+}else if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;) 
+{ 
+alert(&quot;New Requirements and Deliverables cannot be created as Associated PWORF is Cancelled.&quot;); 
+}else{ 
+window.open(&quot;/&quot;+&quot;{!$Label.CPA_RaD_Object_Id}/e?{!$Label.CPA_PWORF_Rad_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Rad_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
+} 
+
+}else if(permissionSetName == &quot;CPA_SMT&quot;){ 
+if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;) 
+{ 
+alert(&quot;New Requirements and Deliverables cannot be created as Associated PWORF is Cancelled.&quot;); 
+}else{ 
+window.open(&quot;/&quot;+&quot;{!$Label.CPA_RaD_Object_Id}/e?{!$Label.CPA_PWORF_Rad_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Rad_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;);	
+} 
+}</url>
+    </webLinks>
 </CustomObject>
