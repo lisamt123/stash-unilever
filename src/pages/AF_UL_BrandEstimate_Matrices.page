@@ -34,7 +34,6 @@
       <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.js')}"></script>
       <script>
          var isRed = '{!linkRed}';
-         /*var brandId = '{!$CurrentPage.parameters.brandvalue}';*/
          var brandId ='{!brandId}';
          var fiscalYear = '{!fiscalYear}';
          var category_param = "{!$CurrentPage.parameters.category}".split("'");
