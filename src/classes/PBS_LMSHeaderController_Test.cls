@@ -29,10 +29,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 @isTest
 public class PBS_LMSHeaderController_Test {
 
-	private static final string STR_TRAINING = 'mytraining';
-	private static final string STR_CATALOG = 'catalog';
-	private static final string STR_PROFILE = 'myprofile';
-	
     static testmethod void testHeaderAsAdmin(){
 
       //Create admin users
@@ -43,9 +39,9 @@ public class PBS_LMSHeaderController_Test {
           PBS_TestUtilClass.addPermissionSet(adminUsers,'PBS_LMS_Admin');
       }
 
-      PBS_AlmondNavigation__c mytraining = PBS_TestHelper.createNavItem(STR_TRAINING, Page.MyTraining.getUrl(), STR_TRAINING);
-      PBS_AlmondNavigation__c catalog    = PBS_TestHelper.createNavItem(STR_CATALOG, Page.TrainingCatalogHome.getUrl(), STR_CATALOG);
-      PBS_AlmondNavigation__c myprofile  = PBS_TestHelper.createNavItem(STR_PROFILE, Page.MyProfile.getUrl(), STR_PROFILE);
+      PBS_AlmondNavigation__c mytraining = PBS_TestHelper.createNavItem('mytraining', Page.MyTraining.getUrl(), 'mytraining');
+      PBS_AlmondNavigation__c catalog    = PBS_TestHelper.createNavItem('catalog', Page.TrainingCatalogHome.getUrl(), 'catalog');
+      PBS_AlmondNavigation__c myprofile  = PBS_TestHelper.createNavItem('myprofile', Page.MyProfile.getUrl(), 'myprofile');
 
       Test.startTest();
 
@@ -53,13 +49,13 @@ public class PBS_LMSHeaderController_Test {
             PBS_LMSHeaderController_CC cont;
             Test.setCurrentPageReference(Page.almond__MyTraining);
             cont = new PBS_LMSHeaderController_CC ();
-            System.assertEquals(STR_TRAINING,cont.section);
+            System.assertEquals('mytraining',cont.section);
             Test.setCurrentPageReference(Page.almond__MyProfile);
             cont = new PBS_LMSHeaderController_CC ();
-            System.assertEquals(STR_PROFILE,cont.section);
+            System.assertEquals('myprofile',cont.section);
             Test.setCurrentPageReference(Page.almond__TrainingCatalogHome);
             cont = new PBS_LMSHeaderController_CC ();
-            System.assertEquals(STR_CATALOG,cont.section);
+            System.assertEquals('catalog',cont.section);
         }
 
       Test.stopTest();
@@ -78,9 +74,9 @@ public class PBS_LMSHeaderController_Test {
           PBS_TestUtilClass.addPermissionSet(lmsUsers,'PBS_LMS_User');
       }
 
-      PBS_AlmondNavigation__c mytraining = PBS_TestHelper.createNavItem(STR_TRAINING, Page.almond__MyTraining.getUrl(), STR_TRAINING);
-      PBS_AlmondNavigation__c catalog    = PBS_TestHelper.createNavItem(STR_CATALOG, Page.almond__TrainingCatalogHome.getUrl(), STR_CATALOG);
-      PBS_AlmondNavigation__c myprofile  = PBS_TestHelper.createNavItem(STR_PROFILE, Page.almond__MyProfile.getUrl(), STR_PROFILE);
+      PBS_AlmondNavigation__c mytraining = PBS_TestHelper.createNavItem('mytraining', Page.almond__MyTraining.getUrl(), 'mytraining');
+      PBS_AlmondNavigation__c catalog    = PBS_TestHelper.createNavItem('catalog', Page.almond__TrainingCatalogHome.getUrl(), 'catalog');
+      PBS_AlmondNavigation__c myprofile  = PBS_TestHelper.createNavItem('myprofile', Page.almond__MyProfile.getUrl(), 'myprofile');
 
       Test.startTest();
 
@@ -88,13 +84,13 @@ public class PBS_LMSHeaderController_Test {
               PBS_LMSHeaderController_CC cont;
               Test.setCurrentPageReference(Page.almond__MyTraining);
               cont = new PBS_LMSHeaderController_CC ();
-              System.assertEquals(STR_TRAINING,cont.section);
+              System.assertEquals('mytraining',cont.section);
               Test.setCurrentPageReference(Page.almond__MyProfile);
               cont = new PBS_LMSHeaderController_CC ();
-              System.assertEquals(STR_PROFILE,cont.section);
+              System.assertEquals('myprofile',cont.section);
               Test.setCurrentPageReference(Page.almond__TrainingCatalogHome);
               cont = new PBS_LMSHeaderController_CC ();
-              System.assertEquals(STR_CATALOG,cont.section);
+              System.assertEquals('catalog',cont.section);
           }
 
       Test.stopTest();

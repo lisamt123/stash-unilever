@@ -30,7 +30,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <apex:composition template="PBS_LMS_HeroTemplate">
 
         <apex:define name="head">
-            <title>{!$Label.ALMS_Achievements}</title>
+            <title>My Profile</title>
             <style type="text/css">
                 #lms-nav-header {
                     display: none;
@@ -167,9 +167,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
             </div>
         </apex:define>
 
-        <apex:define name="hero-banner-footer">
-            <span>{!$Label.ALMS_Total_Acquired_Achievements} : {!totalAchievements}</span>
-        </apex:define>
+        
 
         <apex:define name="body">
 
@@ -192,22 +190,13 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                             </apex:repeat>
                         -->
 
-                        <div class="btn btn-default col-xs-5 col-sm-3 col-md-3">
-                            Achievements
-                        </div>
+                       
                     </div>
                 </div>
 
             </apex:form>
 
-            <apex:outputPanel layout="none" rendered="{!lcategories != null && lcategories.size > 0}">
-                <c:PBS_AchievementsList achievements="{!lcategories}" badgeContainerClass="col-xs-6 col-sm-6 col-md-3"/>
-            </apex:outputPanel>
-            <apex:outputPanel layout="none" rendered="{!lcategories == null || lcategories.size == 0}">
-                <div style="width:100%;text-align:center;padding:20px;0;">
-                    <h2>{!$Label.ALMS_Nothing_to_see}</h2>
-                </div>
-            </apex:outputPanel>
+           
 
 
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

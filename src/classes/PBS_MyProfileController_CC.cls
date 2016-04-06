@@ -29,20 +29,13 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseController_CC{
 
     public User oUser{get;set;}
-    
     public User oManager{get;set;}
-    
     private String profileUserId{get;set;}
-    
-
-   
-
+ 
     public PBS_MyProfileController_CC(){
         
         profileUserId = ApexPages.currentPage().getParameters().get('id');
         String chatterPageUserId = ApexPages.currentPage().getParameters().get('sfdc.userId');
-
-      
 
         if(String.isBlank(profileUserId)){
             profileUserId = chatterPageUserId;
@@ -76,22 +69,7 @@ global with sharing class PBS_MyProfileController_CC extends PBS_LMSBaseControll
 
         }
 
-        
-       
-
-        
-
-        
-
-       
-        
-
-        
     }
-
-   
-
-  
 
     public List<String> getGeographyOptions()
     {
