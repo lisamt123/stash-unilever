@@ -1,4 +1,4 @@
-trigger NewsArticleLike_after_insert on NewsArticleLike__c (after insert) {
+trigger NewsArticleLike_Trigger on NewsArticleLike__c (after insert) {
  List<NewsArticleLike__c> newsArticleLikes = new List<NewsArticleLike__c>();
     Schema.SObjectType newsArticleType = Schema.News_Article__c.sObjectType;
     
@@ -10,7 +10,7 @@ trigger NewsArticleLike_after_insert on NewsArticleLike__c (after insert) {
     
     }
     
-    NewsArticleLikeHandler likeHandler = new NewsArticleLikeHandler();
+    Core_NC_NewArticleLikeHandler likeHandler = new Core_NC_NewArticleLikeHandler();
     
   
     if(!newsArticleLikes.isEmpty())
