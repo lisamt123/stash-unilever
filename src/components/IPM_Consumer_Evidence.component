@@ -1,4 +1,4 @@
-<!-- 
+﻿<!-- 
 *********************************************************************
 *@Description: This component is used for Consumer Evidence Concept
 *@Author: Cognizant
@@ -32,8 +32,8 @@
                     <apex:outputPanel layout="block" styleClass="dropdown-menu pull-right cecList channelList">
                         <apex:dataList value="{!countryList}" var="c" id="countList" styleClass="ccChannelList">
                                 <div class="ccListbox col-xs-2 ipmCheckbox">
-                                    <input class="ccCheck" type="checkbox" value="{!c.Country_Name__c}" id="C_{!c.Country_Name__c}" />
-                                    <label for="C_{!c.Country_Name__c}"></label>
+                                    <input class="ccCheck" type="checkbox" value="{!c.Country_Code__c}" id="{!c.Country_Code__c}" />
+                                    <label for="{!c.Country_Code__c}"></label>
                                 </div>
                                 <div class="col-xs-10 customerstaticLabel">{!c.Country_Name__c}</div>
                         </apex:dataList>
@@ -60,7 +60,7 @@
                                     <div class="col-sm-12 noPadleft noPadright cevidenceborder">
                                         <div class="noPadleft noPadright evidenceType">
                                             <div class="evidenceHead">
-                                                <span class='expico fa fa-minus'></span><span class="todoSubhead">{!evidenceCountry}</span>
+                                                <span class='expico fa fa-minus'></span><span class="todoSubhead">{!mapCountryNameWithCode[evidenceCountry]}</span>
                                             </div>
                                         </div>
                                         <!-- Condition for checking editable -->
