@@ -68,77 +68,10 @@
         });
    </script>
    <script>
-      function openHelpLink(){
-          if({!isAgencyFlag}) {
-           var urlStr = '{!$Label.AF_AgencyUrlLink}/servlet/servlet.FileDownload?file={!$Label.AF_DocumentId}';
-           window.open(urlStr);
-          }else{   
-          var urlStr = '{!$Label.AF_UrlLink}/servlet/servlet.FileDownload?file={!$Label.AF_DocumentId}';
-          window.open(urlStr);
-        }
-      }
-      function PrintCurrentPage(){
-          window.print();
-      }
-      function Chatterlink(){
-        if({!isAgencyFlag}) {
-         var urlStr = '{!$Label.AF_AgencyUrlLink}/servlet/servlet.FileDownload?file={!$Label.AF_DocumentId}';
-         window.open(urlStr);
-
-        }else{ 
-        var urlStr = '{!$Label.AF_UrlLink}{!$Label.AF_AgencyChatter}';
-        window.open(urlStr);
-        
-      }
-    }
+      var jsDeclareHmepage = {isAgencyFlag1: '{!isAgencyFlag}',agencyUrl:'{!$Label.AF_AgencyUrlLink}',internalURL:'{!$Label.AF_UrlLink}',chatterURL:'{!$Label.AF_AgencyChatter}',DocumentURL:'{!$Label.AF_DocumentId}'};
       
-      
-      
-      //TargetBaseFees
-      function TargetBaseFees(brandval,catname,cat,fy,BrandId){
-           var url ='/apex/AF_AgencyHomePage?brandvalue='+brandval+'&category='+catname+'::'+cat+'&Year='+fy;
-          $(document).ready(function() {
-              $.fancybox({
-                autoSize: false,
-                  width: 850,
-                  height: 450,
-                  type: 'iframe',
-                  titlePosition: 'inside',
-                  href: '/apex/AF_BrandEstimate?Id='+BrandId,
-                  helpers     : { 
-                  overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
-                  },
-                  afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
-                      parent.location.assign(url);
-                  }
-              });
-          });
-      }
-      
-       
-            
-      //Onclick Batch Job copy
-      function BatchJobCopy(brandval,catname,cat,BrandId,fy,AgencyId){
-          var url ='/apex/AF_AgencyHomePage?brandvalue='+brandval+'&category='+catname+'::'+cat+'&Year='+fy;
-          $(document).ready(function() {
-              $.fancybox({
-                autoSize: false,
-                  width: 600,
-                  height: 450,
-                  type: 'iframe',
-                  titlePosition: 'inside',
-                  href: '/apex/AF_BatchProcess_Copy?Brandid='+BrandId+'&Year='+fy+'&Agencyid='+AgencyId,
-                  helpers     : { 
-                  overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
-                  },
-                  afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
-                     parent.location.assign(url);
-                  }
-              });
-          });
-      }
- 
    </script>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'ChatterLink.js')}"></script>
    <div class="container">
    <apex:form >
       <html>
@@ -317,7 +250,7 @@
                            </td>
                            <td>  </td>
                            <td class="Print_img">
-                              <apex:image url="{!$Resource.print_icon}" title="Please click to Print " onclick="PrintCurrentPage();" />
+                              <apex:image url="{!$Resource.print_icon}" title="Please click to Print " onclick="window.print();" />
                            </td>
                         </tr>
                      </table>
@@ -550,7 +483,7 @@
       </apex:actionStatus>
    </apex:form>
    </div>
-  <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_AgencyHomepage.js')}"></script>
+  <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AgencyHomepage.js')}"></script>
   <script>
   var jsDeclareHomepage = {crosPerStr1:'{!crosPerStr}', tradPerStr1:'{!tradPerStr}', digitPerStr1:'{!digitPerStr}',adaptPerStr1:'{!adaptPerStr}'};
   </script>

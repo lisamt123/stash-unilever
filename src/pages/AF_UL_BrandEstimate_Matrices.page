@@ -34,7 +34,8 @@
       <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.js')}"></script>
       <script>
          var isRed = '{!linkRed}';
-         var brandId = '{!$CurrentPage.parameters.brandvalue}';
+         /*var brandId = '{!$CurrentPage.parameters.brandvalue}';*/
+         var brandId ='{!brandId}';
          var fiscalYear = '{!fiscalYear}';
          var category_param = "{!$CurrentPage.parameters.category}".split("'");
          var category1 = '';
@@ -48,7 +49,7 @@
          });
       </script>
       <!-- Common_Style File Start -->
-      <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+      <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
       <!-- Common_Style File End -->
    </head>
    <body>
