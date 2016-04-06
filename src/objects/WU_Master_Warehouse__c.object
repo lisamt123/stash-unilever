@@ -106,12 +106,19 @@
         <trackTrending>false</trackTrending>
         <type>Summary</type>
     </fields>
-    <fields>
+  <fields>
         <fullName>WU_Average_Current_Utilization__c</fullName>
         <externalId>false</externalId>
         <formula>/*IF( WU_Approval_Status__c =&apos;Submitted&apos;,( WU_Current_Utilization__c / WU_Prior_CommittedPalletStorage__c)*100 ,(WU_Current_Utilization__c/ WU_Committed_Max_PalletStorage__c)*100 )*/
+/*
+IF(AND(WU_Count_Avg_Current_Month_Utilization__c = 0,WU_Approval_Status__c =&apos;Submitted&apos;),( WU_Current_Utilization__c / WU_Prior_CommittedPalletStorage__c)*100,IF(WU_Count_Avg_Current_Month_Utilization__c &gt; 0,( WU_Current_Utilization__c /  IF(ISBLANK(WU_Latest_Committed_Pallet__c ),WU_Committed_Max_PalletStorage__c,WU_Latest_Committed_Pallet__c ))*100,0) )*/
 
-IF(AND(WU_Count_Avg_Current_Month_Utilization__c = 0,WU_Approval_Status__c =&apos;Submitted&apos;),( WU_Current_Utilization__c / WU_Prior_CommittedPalletStorage__c)*100,IF(WU_Count_Avg_Current_Month_Utilization__c &gt; 0,( WU_Current_Utilization__c /  IF(ISBLANK(WU_Latest_Committed_Pallet__c ),WU_Committed_Max_PalletStorage__c,WU_Latest_Committed_Pallet__c ))*100,0) )</formula>
+IF(
+OR(
+ISBLANK(WU_Latest_Committed_Pallet__c),WU_Latest_Committed_Pallet__c = 0),
+(WU_Current_Utilization__c/WU_Committed_Max_PalletStorage__c)*100,
+(WU_Current_Utilization__c/WU_Latest_Committed_Pallet__c)*100
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Average Utilization %</label>
         <precision>18</precision>
@@ -3278,7 +3285,7 @@ DAY(WU_ToDate__c) &lt;&gt; (IF( MONTH( WU_FromDate__c) = 12,31,DAY(DATE( YEAR( W
         <errorDisplayField>WU_Utilization_Type__c</errorDisplayField>
         <errorMessage>Utilization Start Date and Utilization End Date should be for same month for Utilization Type has been chosen as Monthly.</errorMessage>
     </validationRules>
-    <validationRules>
+     <validationRules>
         <fullName>DateValidationForWeeklyUtilizationType</fullName>
         <active>true</active>
         <errorConditionFormula>/*AND(
@@ -3287,7 +3294,7 @@ ISPICKVAL( WU_Utilization_Type__c , &apos;Weekly&apos;), OR(WU_FromDate__c  =  W
 AND(
 ISPICKVAL( WU_Utilization_Type__c , &apos;Weekly&apos;), OR(WU_FromDate__c  =  WU_ToDate__c, WU_ToDate__c-WU_FromDate__c &gt;= 7,AND(MOD( WU_FromDate__c - DATE(1900, 1, 6), 7)&lt;&gt;1,MOD( WU_ToDate__c - DATE(1900, 1, 6), 7)&lt;&gt;0)))</errorConditionFormula>
         <errorDisplayField>WU_Utilization_Type__c</errorDisplayField>
-        <errorMessage>Weekly Utilization should be entered  from Sunday to Saturday. Please renter the Utilization Start Date as Sunday and End Date as Saturday.</errorMessage>
+        <errorMessage>Weekly Utilization should be entered  from Sunday to Saturday. Please Re- Enter the Utilization Start Date as Sunday and End Date as Saturday.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>StartDate_NotGreaterThan_Enddate</fullName>
