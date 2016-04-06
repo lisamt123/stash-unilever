@@ -1724,6 +1724,22 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CFC_Attendee_Handler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CFC_Conference_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CFC_EventsController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CFC_EventsWrapper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CORE_Batch_Deactivate_Ext_User_Scheduler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -4501,7 +4517,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>TriggerFactory</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>TriggerParameters</apexClass>
@@ -10651,6 +10667,76 @@
         <editable>false</editable>
         <field>CEC_Product_Locator__c.Zip_Code__c</field>
         <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CFC_Attendee__c.Attendee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CFC_Attendee__c.Confirmation_del__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CFC_Attendee__c.TF_Event_From_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CFC_Attendee__c.TF_Event_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CFC_Attendee__c.TF_Event_To_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CFC_Attendee__c.TF_SF_Base_Url__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CFC_Events__c.Banner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CFC_Events__c.Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CFC_Events__c.From__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CFC_Events__c.TF_Attendee__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CFC_Events__c.To__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CFC_Events__c.Topics__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CFC_Events__c.Vendor__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CFC_Events__c.Website__c</field>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -34122,6 +34208,24 @@
         <layout>CEC_Product_Locator__c-Product Locator Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>CFC_Attendee__c-Attendee Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CFC_Events__c-Create Event</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CFC_Events__c-Create Event</layout>
+        <recordType>CFC_Events__c.CFC_Create</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CFC_Events__c-Create Event</layout>
+        <recordType>CFC_Events__c.Core_Edit</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CFC_Events__c-Event Layout</layout>
+        <recordType>CFC_Events__c.CFC_Edit_Other</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>CMS_Article_Link__c-CMS Article Link Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -37411,6 +37515,16 @@
     <recordTypeVisibilities>
         <default>false</default>
         <recordType>Brand_Centre_New__c.Brand_Centre_Read_only</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CFC_Events__c.CFC_Create</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CFC_Events__c.CFC_Edit_Other</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>

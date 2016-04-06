@@ -9633,6 +9633,10 @@
         <name>Brand_Experience2</name>
     </customTabs>
     <customTabs>
+        <label><!-- Conferences --></label>
+        <name>Conferences</name>
+    </customTabs>
+    <customTabs>
         <label><!-- Content Uploader --></label>
         <name>Content_Uploader</name>
     </customTabs>
