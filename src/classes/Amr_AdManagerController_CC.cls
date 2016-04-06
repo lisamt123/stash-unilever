@@ -210,6 +210,7 @@ public with sharing class Amr_AdManagerController_CC{
     public boolean RequireMusicFlag{get;set;}
     public boolean RequireTalentFlag{get;set;}
     public boolean StageProductionActivity{get;set;}
+    public boolean successmessage{get;set;}
     
     /*******************************************************************    
    Purpose:  This method is used to validate job Values                                            
@@ -245,6 +246,7 @@ public with sharing class Amr_AdManagerController_CC{
             RequireMusicFlag = false;
             RequireTalentFlag = false;
             StageProductionActivity = false;
+            successmessage = true;
             CheckWithCMI = Amr_ConstantForAdManager.FILL_INFO;
             
             
@@ -378,10 +380,17 @@ public with sharing class Amr_AdManagerController_CC{
                  || projectDescriptionFlag || campaignNameFlag || leadAgencyFlag || LeadAgencyClusterFlag || projectDetailsFlag || productionActivityTypeFlag 
                  || ExecutionNameFlag || BrodcastMarketFlag || RequireMusicFlag || RequireTalentFlag || StageProductionActivity) {
            
+                successmessage = false;
                 return null;
             }
     
             admanagerHelper.createJob(selectedCountry,categoryName,brandPosName,brandNameFromPage,jobDetails,projectNameFromPage,listOfBrand);
+            jobDetails = new Amr_Job_Details__c();
+            selectedCountry =Amr_ConstantForAdManager.NONE;
+            categoryName =Amr_ConstantForAdManager.NONE;
+            brandPosName =Amr_ConstantForAdManager.NONE;
+            brandNameFromPage =Amr_ConstantForAdManager.NONE;
+            projectNameFromPage = Amr_ConstantForAdManager.NONE;
         }catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
@@ -453,7 +462,8 @@ public with sharing class Amr_AdManagerController_CC{
             for(PermissionSetAssignment permissionObject:PermissionSetAssignmentList ){
                 system.debug('=======>'+permissionObject.PermissionSet.Name);
                 
-                if(permissionObject.PermissionSet.Name == Label.Amr_CAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
+          //      if(permissionObject.PermissionSet.Name == Label.Amr_CAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
+                          if(permissionObject.PermissionSet.Name == Label.Amr_CAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
                     system.debug('inside cap==>');
         
                     pageRef = Page.Amr_CAPJobPortfolio;
@@ -461,7 +471,8 @@ public with sharing class Amr_AdManagerController_CC{
                     userObj.SessionId__c = sessionIdVal;
                 
                                 } 
-                if(permissionObject.PermissionSet.Name == Label.Amr_RAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
+         //       if(permissionObject.PermissionSet.Name == Label.Amr_RAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
+                          if(permissionObject.PermissionSet.Name == Label.Amr_RAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
                     system.debug('inside RAP==>');
     
                     pageRef = Page.Amr_RAPJobPortfolio;

@@ -13,8 +13,13 @@ VERSION     AUTHOR             DATE           DETAIL           Description
 public with sharing class Amr_SavingSummaryController_CC{
 
     public Amr_Saving__c savingObject {get;set;}
+    public Amr_Quote__c quotesObj {get;set;}
     public List<SelectOption> shootLocation{get;set;}
     public List<String> selectedCountry{get;set;}
+    public String numberOfAdditionalFilm{get;set;}
+    public String savingPercentageAverageOfQuotes{get;set;}
+    public String costPerMaster{get;set;}    
+    public String costPerMasterPerShootDays{get;set;}
     public String startDate{get;set;}
     public String endDate{get;set;} 
     public List<Amr_Saving__c> savingSummaryList{get;set;}
@@ -29,22 +34,22 @@ public with sharing class Amr_SavingSummaryController_CC{
     //public static final String NONE ='--None--';
     public List<SelectOption> listOfBrandPosition{get;set;}
     public List<SelectOption> listOfBrand{get;set;}
-   // public  AggregateResult[] groupedSubmissionResultCurrentMonth {get;set;}
-    public  AggregateResult[] groupedSubmissionResultsYearToDate  {get;set;}
-    public  AggregateResult[] groupedSubmissionResultsPrevYear  {get;set;}
-    
+    public  AggregateResult[] groupedSubmissionResultsCurrentMonth {get;set;}
+     public  AggregateResult[] groupedSubmissionResultsYearToDate  {get;set;}
+    public  AggregateResult[] groupedSubmissionResultsPrevYearToDate  {get;set;}
+     public  AggregateResult[] groupedSubmissionResultsPrevYearCurrentMonth  {get;set;}
+    public  AggregateResult[] groupedSavingResultsYearToDate1  {get;set;}
+     public  AggregateResult[] groupedSavingResultsPrevYearToDate1  {get;set;}
+     public  AggregateResult[] groupedSavingResultsPrevYearCurrentMonth1  {get;set;}
     public  AggregateResult[] groupedSavingResultsCurrentMonth  {get;set;}
     
-     public  AggregateResult[] groupedSubmissionResultsYearToDate1  {get;set;}
-    public  AggregateResult[] groupedSubmissionResultsPrevYear1  {get;set;}
-    
-    public  AggregateResult[] groupedSavingResultsCurrentMonth1  {get;set;}
+   
     public AggregateResult[] yourYTDSpend{get;set;}
     public AggregateResult[] globalYTDSpend{get;set;}
     public AggregateResult[] savingActivitiesSubmitted{get;set;}
-    
-    
-   // public  AggregateResult[] groupedSavingResultsYearToDate  {get;set;}
+     public Id loggedInUserId {get;set;}
+     set<id> jobDetailsId = new set<id> ();
+    public  AggregateResult[] groupedSavingResultsCurrentMonth1  {get;set;}
   //  public  AggregateResult[] groupedSavingResultsPrevYear  {get;set;}
     
    // public  List<PieWedgeData>  pieSavingDataRap{get;set;}
@@ -65,17 +70,24 @@ public with sharing class Amr_SavingSummaryController_CC{
     public String permissionSetName {get;set;}
     public List<SelectOption> rapNameList{get;set;} 
     public String selectedRapName{get;set;}
+    public Decimal savingCurrentMonth {get;set;}
+    public Decimal savingYTD {get;set;}
     public Amr_SavingSummaryController_CC(){
         
       try{
        Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
+        loggedInUserId = UserInfo.getUserId();
         savingObject = new Amr_Saving__c();
         jobDetailObj = new Amr_Job_Details__c();
+        quotesObj   = new Amr_Quote__c();
         jobId = ApexPages.currentPage().getParameters().get('id');
         userId = userinfo.getuserid();
         
-        System.debug('IIDD  -> ' + userId); 
+        
         selectedCountry = new List<String> (); 
+         for(Amr_Job_Allocation__c objJobAlloction : [SELECT AM_Job_Detail__c FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes' and AM_Job_Detail__r.Job_Cancelled__c = false limit 50000] ){
+               jobDetailsId.add(objJobAlloction.AM_Job_Detail__c);
+        } 
         getJobSearchDetails();
         
         List<Amr_Country_Cluster__c> countrylst=  Amr_Country_Cluster__c.getall().values();
@@ -107,7 +119,7 @@ public with sharing class Amr_SavingSummaryController_CC{
         }
         
         List<PermissionSetAssignment> userData = [select PermissionSet.Name from PermissionSetAssignment  where Assignee.id = :userinfo.getUserId()];
-        System.debug('userData ->' + userData );   
+           
         Set<String> userNameSet = new Set<String>();
         for(PermissionSetAssignment permission : userData){
             userNameSet.add(permission.PermissionSet.Name);
@@ -119,9 +131,11 @@ public with sharing class Amr_SavingSummaryController_CC{
         }
            
         //dashboard
-       
+           
+        system.debug('jobDetailsId!!'+jobDetailsId);
         DateTime currentDay = DateTime.now();
-        yourYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost_of_Accepted_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+       
+        yourYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost_of_Accepted_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
         globalYTDSpend  = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost_of_Accepted_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];   
         savingActivitiesSubmitted = [SELECT count(Id) savCurrentYearToDate,SUM(Sum_Of_Total_Cost_of_Accepted_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
     }
@@ -162,12 +176,23 @@ Returns:
      System.debug('HELLO');
     
      try{
-     system.debug('total ->  '+ totalAcceptedFinalCost  + 'SAv ->  ' + savingAverageOfQuotes +'SAVE ->   ' + savingAcceptedQuotes );
+    
      String addNumber = jobDetailObj.AdManagerText__c;
      String region = jobDetailObj.Project_Leader_Cluster__c;
      String country = jobDetailObj.Project_Leader_Country__c;
      String budgetReponse = jobDetailObj.Budget_Responsibility__c;
-     System.debug('Start Date -> ' + startDate + 'END Date -> ' + endDate + 'SAVING OBJ ->  ' + savingObject + 'Add Number -> ' + addNumber);
+     
+     String pcFinalCostCurrency =  quotesObj.Accepted_Final_Cost_PC_only_Currency__c;
+     String pcFinalCostLocalAmount = String.valueOf(quotesObj.Accepted_Final_Cost_PC_only_Local_Amo__c);
+     String pcFinalCostEuroAmount = String.valueOf(quotesObj.Accepted_Final_Cost_PC_Euro_Amou__c);
+     String ppcFinalCostCurrency = String.valueOf(quotesObj.Accepted_Final_Cost_PPC_only_Currency__c);
+     String ppcFinalLocalAmount = String.valueOf(quotesObj.Accepted_Final_Cost_PPC_only_Local_Am__c);
+     String ppcFinalEuroAmount = String.valueOf(quotesObj.Accepted_Final_Cost_PPC_Euro_Amount__c);
+     String caFinalCostCurrency = String.valueOf(quotesObj.Accepted_Final_Cost_CA_only_Currency__c);
+     String caFinalCostLocalAmount = String.valueOf(quotesObj.Accepted_Final_Cost_CA_Local_Amount__c);
+     String caFinalCostEuroAmount = String.valueOf(quotesObj.Accepted_Final_Cost_CA_Euro_Amount__c);
+     
+     
      savingSummaryList = new List<Amr_Saving__c>();
      Boolean setFlag = false;
      String soql;
@@ -181,11 +206,20 @@ Returns:
      }
      }
      if(!setFlag){
-     
+    String ids;
+     for(String s:jobDetailsId){
+     ids +='\''+s+'\''+',';
+     }
+    String ids2=ids.remove('null');
+    String ids3=ids2.removeEnd(',');
+     system.debug('id!!'+ids3);
+    String[] accountNumbers = new String[]{ids3};
+    system.debug('accountNumbers!!'+accountNumbers);
+    
       soql = 'select Average_Total_Opening_Quotes__c,Number_Of_Quotes__c,Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Job_Details__r.Budget_Responsibility__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c,No_of_Masters__c,No_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Folder_Name__c,Duration_of_Additional_Films__c,Duration_of_Masters__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c'
                +',Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,PC_Costs_Local_Currency__c,PC_Costs_Local_Amount__c,PC_Costs_Euro_Amount__c,Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,PPC_Costs_Local_Currency__c,PPC_Costs_Local_Amount__c,PPC_Costs_Euro_Amount__c,CA_Additional_agency_Name__c,CA_Location__c,CA_Costs_Local_Currency__c,CA_Costs_Local_Amount__c,CA_Costs_Euro_Amount__c,Total_Cost__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_CA_only_Currency__c'
-                +',Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where (CreatedById = :userid OR LastModifiedById = :userid)';
-      
+                +',Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where (CreatedById = :userid OR LastModifiedById = :userid) '; //and Job_Details__c IN :accountNumbers
+     
      } else{
     
       soql = 'select Average_Total_Opening_Quotes__c,Number_Of_Quotes__c,Cost_per_master_per_shoot_day__c,Cost_Per_Master__c,Saving_Accepted_Quote_Euro__c ,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Job_Details__r.AdManagerText__c,Job_Details__r.Budget_Responsibility__c,Total_Accepted_FinalCost__c,Shoot_Location_Multiselect__c,CreatedDate,Production_Type__c ,No_of_Masters__c,No_of_Additional_Films__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Script_Title__c,Scope_re_brief__c,Duration_of_Additional_Films__c,Duration_of_Masters__c,Folder_Name__c,Shoot_Location__c,Job_Details__r.id,CreatedById,LastModifiedById ,(select Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c' 
@@ -254,14 +288,14 @@ Returns:
     soql += ' and No_of_Additional_Films__c = :noOfAdditionalFields ';
    
            system.debug('soql no of additional films'+soql);
-     } 
+     } /*
           if(String.isNotBlank(String.valueOf(savingObject.Duration_of_Additional_Films__c))){
       
      String durationOfAdditionalFilms = savingObject.Duration_of_Additional_Films__c;
     soql += ' and Duration_of_Additional_Films__c = :durationOfAdditionalFilms ';
    
            system.debug('soql duration of additional films'+soql);
-     }  
+     } */ 
       if(String.isNotBlank(String.valueOf(savingObject.No_of_shoot_days__c))){
     
     Double noOfShootDays= savingObject.No_of_shoot_days__c;  
@@ -324,16 +358,43 @@ Returns:
        if(String.isNotBlank(brandPosName)){
            soql += ' and Job_Details__r.Brand_Position__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandPosName)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
        } 
+
        if(String.isNotBlank(brandNameFromPage)){
            soql += ' and Job_Details__r.Brand_Final__r.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(brandNameFromPage)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
        }
+       System.debug('Add Film -> ' + numberOfAdditionalFilm);
+       if(String.isNotBlank(numberOfAdditionalFilm)){
+           String finalNumberOfFilms = numberOfAdditionalFilm.replace(Amr_ConstantForAdManager.COMMA,Amr_ConstantForAdManager.SINGLE_QUOTE);
+           soql += ' and No_of_Additional_Films__c  = '+ Double.valueOf(finalNumberOfFilms);       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
+       } 
+       if(String.isNotBlank(savingObject.Duration_of_Additional_Films__c)){
+           soql += ' and Duration_of_Additional_Films__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(savingObject.Duration_of_Additional_Films__c)+Amr_ConstantForAdManager.PERCENTAGESLASH ;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
+       } 
+       if(String.isNotBlank(String.valueOf(savingObject.Percentage_Saving_Accepted_Quote__c))){
+           soql += ' and Percentage_Saving_Accepted_Quote__c  = '+ savingObject.Percentage_Saving_Accepted_Quote__c;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
+       }
+           System.debug('===>  ' + savingObject.Percentage_Saving_Average_of_Quotes__c + '@@@@@@  ' + String.valueOf(savingObject.Percentage_Saving_Average_of_Quotes__c));
+        if(String.isNotBlank(String.valueOf(savingPercentageAverageOfQuotes))){
+           soql += ' and Percentage_Saving_Average_of_Quotes__c  = '+ Double.valueOf(savingPercentageAverageOfQuotes);       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
+       }
+
        System.debug('SQL HERE ->   ' + soql);
         if(String.isNotBlank(region) && region != Amr_ConstantForAdManager.NONE){
            soql += ' and Job_Details__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(region)+Amr_ConstantForAdManager.SLASH;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
        }
-       
+       if(String.isNotBlank(costPerMaster)){
+           String finalCostPerMaster = costPerMaster.replace(Amr_ConstantForAdManager.COMMA,Amr_ConstantForAdManager.SINGLE_QUOTE);
+           soql += ' and Cost_Per_Master__c = '+Double.valueOf(finalCostPerMaster);       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
+       }
+       if(String.isNotBlank(costPerMasterPerShootDays)){
+           String finalCostPerMasterPerShootDays = costPerMasterPerShootDays.replace(Amr_ConstantForAdManager.COMMA,Amr_ConstantForAdManager.SINGLE_QUOTE);
+           soql += ' and Cost_per_master_per_shoot_day__c = '+Double.valueOf(finalCostPerMasterPerShootDays);       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
+       }
        if(String.isNotBlank(country) && country != Amr_ConstantForAdManager.NONE){
-           soql += ' and Job_Details__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(country)+Amr_ConstantForAdManager.SLASH;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
+           soql += ' and Job_Details__r.Accepted_Final_Cost_PC_only_Local_Amo__c = \''+String.escapeSingleQuotes(country)+Amr_ConstantForAdManager.SLASH;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
+       } 
+       if(String.isNotBlank(pcFinalCostCurrency ) && pcFinalCostCurrency  != Amr_ConstantForAdManager.NONE){
+           soql += ' and Amr_Quote__r.Accepted_Final_Cost_PC_only_Currency__c= \''+String.escapeSingleQuotes(pcFinalCostCurrency)+Amr_ConstantForAdManager.SLASH;       //   \''+Amr_ConstantForAdManager.PERCENTAGE+ String.valueOf(savingAcceptedQuotes) +Amr_ConstantForAdManager.PERCENTAGESLASH ;               
        }    
        
        if(String.isNotBlank(budgetReponse) && budgetReponse != Amr_ConstantForAdManager.NONE){
@@ -615,6 +676,7 @@ Returns: It will return submitted saving data.
             Date startOfMonth = Date.today().toStartOfMonth();
             Date startOfNextMonth = startOfMonth.addMonths(1);
             DateTime currentDay = DateTime.now();
+            DateTime prevYearCurrentday= DateTime.newInstance(currentDay.Year()-1, currentDay.month(), currentDay.day());
       Boolean setFlag = false;
       List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='CAP' order by Assignee.name];
       if(PermissionSetAssignmentList.size()>0){
@@ -626,22 +688,27 @@ Returns: It will return submitted saving data.
      }
      } 
      if(!setFlag){    
-     groupedSavingResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Saving_Average_of_Quotes__c) savCostmonth FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+     groupedSubmissionResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Saving_Average_of_Quotes__c) savCostmonth FROM  Amr_Saving__c where Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
           
-     groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Average_of_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+     groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Average_of_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
         
-     groupedSubmissionResultsPrevYear  = [SELECT count(Id) savCurrentPrevYear,SUM(Saving_Average_of_Quotes__c)  savCostPrevYear FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+     groupedSubmissionResultsPrevYearToDate  = [SELECT count(Id) savCurrentPrevYearYTD,SUM(Saving_Average_of_Quotes__c)  savCostPrevYear FROM  Amr_Saving__c where Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1 AND CreatedDate <=:prevYearCurrentday];
+     
+     groupedSubmissionResultsPrevYearCurrentMonth  = [SELECT count(Id) savCurrentPrevYearMonth,SUM(Saving_Average_of_Quotes__c)  savCostPrevYearMonth FROM  Amr_Saving__c where Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) and CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1 AND CALENDAR_MONTH(CreatedDate) =:currentDay.month()];
      }else{
-     groupedSavingResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Saving_Average_of_Quotes__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+     groupedSubmissionResultsCurrentMonth = [SELECT count(Id) savCurrentMonth ,SUM(Saving_Average_of_Quotes__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
           
      groupedSubmissionResultsYearToDate  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Average_of_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
         
-     groupedSubmissionResultsPrevYear  = [SELECT count(Id) savCurrentPrevYear,SUM(Saving_Average_of_Quotes__c)  savCostPrevYear FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
-     }    
-     data.add(new PieWedgeData('Current Month',Integer.valueOf(groupedSavingResultsCurrentMonth[0].get('savCurrentMonth'))));
-     data.add(new PieWedgeData('YTD',Integer.valueOf(groupedSubmissionResultsYearToDate[0].get('savCurrentYearToDate'))));
-     data.add(new PieWedgeData('Prev Year',Integer.valueOf(groupedSubmissionResultsPrevYear[0].get('savCurrentPrevYear'))));
-          
+     groupedSubmissionResultsPrevYearToDate  = [SELECT count(Id) savCurrentPrevYearYTD,SUM(Saving_Average_of_Quotes__c)  savCostPrevYear FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1 AND CreatedDate <=:prevYearCurrentday];
+     
+     groupedSubmissionResultsPrevYearCurrentMonth  = [SELECT count(Id) savCurrentPrevYearMonth,SUM(Saving_Average_of_Quotes__c)  savCostPrevYearMonth FROM  Amr_Saving__c where CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1 AND CALENDAR_MONTH(CreatedDate) =:currentDay.month()];
+     }        
+     data.add(new PieWedgeData('Prev Year YTD',Integer.valueOf(groupedSubmissionResultsPrevYearToDate[0].get('savCurrentPrevYearYTD'))));
+    data.add(new PieWedgeData('Prev Year month',Integer.valueOf(groupedSubmissionResultsPrevYearCurrentMonth[0].get('savCurrentPrevYearMonth'))));
+      data.add(new PieWedgeData('YTD',Integer.valueOf(groupedSubmissionResultsYearToDate[0].get('savCurrentYearToDate'))));   
+      data.add(new PieWedgeData('Current Month',Integer.valueOf(groupedSubmissionResultsCurrentMonth[0].get('savCurrentMonth'))));  
+      
       return data;  
       }catch(Exception e){
        system.debug(e.getMessage());
@@ -661,7 +728,9 @@ Returns: It will return submitted saving data.
             List<PieWedgeData> data = new List<PieWedgeData>();
             Date startOfMonth = Date.today().toStartOfMonth();
             Date startOfNextMonth = startOfMonth.addMonths(1);
+            
             DateTime currentDay = DateTime.now();
+            DateTime prevYearCurrentday= DateTime.newInstance(currentDay.Year()-1, currentDay.month(), currentDay.day());
       Boolean setFlag = false;
       List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='CAP' order by Assignee.name];
       if(PermissionSetAssignmentList.size()>0){
@@ -674,28 +743,39 @@ Returns: It will return submitted saving data.
      }      
     if(!setFlag){
     
-     groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Saving_Average_of_Quotes__c) savCostmonth FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
+     groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Saving_Average_of_Quotes__c) savCostmonth FROM  Amr_Saving__c where Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) AND CreatedDate >=:startOfMonth  AND CreatedDate < :startOfNextMonth ];
        
-     groupedSubmissionResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Average_of_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+     groupedSavingResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Average_of_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
          
-     groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Saving_Average_of_Quotes__c)  savCostPrevYear FROM  Amr_Saving__c where (CreatedById = :userId OR LastModifiedById = :userId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+     groupedSavingResultsPrevYearToDate1  = [SELECT count(Id) savCurrentPrevYear,SUM(Saving_Average_of_Quotes__c)  savCostPrevYearYTD FROM  Amr_Saving__c where Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) AND CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1 AND CreatedDate <=:prevYearCurrentday];
      
-     
+     groupedSavingResultsPrevYearCurrentMonth1  = [SELECT count(Id) savCurrentPrevYear,SUM(Saving_Average_of_Quotes__c)  savCostPrevYearMonth FROM  Amr_Saving__c where Job_Details__c IN : jobDetailsId and (CreatedById = :loggedInUserId OR LastModifiedById = :loggedInUserId) and CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1 AND CALENDAR_MONTH(CreatedDate) =:currentDay.month()];
+     system.debug('month!!'+groupedSavingResultsCurrentMonth1 );
+      system.debug('YTD!!'+groupedSavingResultsYearToDate1 );
+      system.debug('groupedSavingResultsPrevYearToDate1!!'+groupedSavingResultsPrevYearToDate1);
      Integer aa = 0;
-     aa = Integer.valueOf(groupedSubmissionResultsPrevYear1[0].get('savCostPrevYear')) != null ? Integer.valueOf(groupedSubmissionResultsPrevYear1[0].get('savCostPrevYear')): aa;
+     Integer prevYrMonth =0;
+     savingCurrentMonth =0;
+     savingYTD =0;
+     aa = Integer.valueOf(groupedSavingResultsPrevYearToDate1[0].get('savCostPrevYearYTD')) !=null ? Integer.valueOf(groupedSavingResultsPrevYearToDate1[0].get('savCostPrevYearYTD')):aa;
+     prevYrMonth = Integer.valueOf(groupedSavingResultsPrevYearCurrentMonth1[0].get('savCostPrevYearMonth')) != null ? Integer.valueOf(groupedSavingResultsPrevYearCurrentMonth1[0].get('savCostPrevYearMonth')): prevYrMonth;
+      
+     savingCurrentMonth = Decimal.valueOf(String.valueOf(groupedSavingResultsCurrentMonth1[0].get('savCostmonth')));
+     savingYTD = Decimal.valueOf(String.valueOf(groupedSavingResultsYearToDate1[0].get('savCurrentCostYTD')));
+     data.add(new PieWedgeData('Prev Year YTD',aa));
+     data.add(new PieWedgeData('Prev Year month',prevYrMonth));
+     data.add(new PieWedgeData('YTD',Integer.valueOf(savingYTD)));
+     data.add(new PieWedgeData('Current Month',Integer.valueof(savingCurrentMonth)));
      
-     System.debug('*****groupedSavingResultsCurrentMonth1*****'+groupedSavingResultsCurrentMonth1[0].get('savCostmonth'));
-     data.add(new PieWedgeData('Current Month',Integer.valueOf(groupedSavingResultsCurrentMonth1[0].get('savCostmonth'))));
-     data.add(new PieWedgeData('YTD',Integer.valueOf(groupedSubmissionResultsYearToDate1[0].get('savCurrentCostYTD'))));
-     data.add(new PieWedgeData('Prev Year',aa));
+      
     }else{
      groupedSavingResultsCurrentMonth1 = [SELECT count(Id) savCurrentMonth ,SUM(Saving_Average_of_Quotes__c) savCostmonth FROM  Amr_Saving__c where  CreatedDate >= :startOfMonth AND CreatedDate < :startOfNextMonth ];
        
-     groupedSubmissionResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Average_of_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
+     groupedSavingResultsYearToDate1  = [SELECT count(Id) savCurrentYearToDate,SUM(Saving_Average_of_Quotes__c) savCurrentCostYTD FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year() AND CreatedDate <= :currentDay];
          
-     groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Saving_Average_of_Quotes__c)  savCostPrevYear FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
+    // groupedSubmissionResultsPrevYear1  = [SELECT count(Id) savCurrentPrevYear,SUM(Saving_Average_of_Quotes__c)  savCostPrevYear FROM  Amr_Saving__c where  CALENDAR_YEAR(CreatedDate) = :currentDay.year()-1];
    
-     data.add(new PieWedgeData('Global YTD Saving',Integer.valueOf(groupedSubmissionResultsYearToDate1[0].get('savCurrentCostYTD'))));
+     data.add(new PieWedgeData('Global YTD Saving',Integer.valueOf(groupedSavingResultsYearToDate1[0].get('savCurrentCostYTD'))));
      data.add(new PieWedgeData('Global this month saving',Integer.valueOf(groupedSavingResultsCurrentMonth1[0].get('savCostmonth'))));
     }    
      

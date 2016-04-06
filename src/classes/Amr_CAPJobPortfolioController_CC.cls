@@ -16,6 +16,7 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
     public Amr_Job_Allocation__c jobAllocation {get;set;}
     public Amr_Job_Details__c jobDetails {get;set;}
     public String location{get;set;}
+    public String projectLeaderEmail{get;set;}
     public String broadcastMarket{get;set;}
     public String productionActivityText{get;set;}
     public String startDate{get;set;}
@@ -23,6 +24,7 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
     public String categoryName{get;set;}
     public String brandPos{get;set;}
     public String brandName{get;set;}
+    public String allocatedBudget{get;set;}
     public String userName{get;set;}
     public String acceptedString;
     public String cancelledString;
@@ -59,7 +61,9 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
     public Integer TotalDormantJobs  {get; set;}
     public Integer TotalSavingsJobs  {get; set;}
     public Integer TotalActiveJobPages  {get; set;}
-    public Integer CurrentActivePageNumber {get;set;} 
+    public Integer CurrentActivePageNumber {get;set;}
+    public Integer totalCancelJobPages  {get; set;}
+    public Integer currentCancelPageNumber {get;set;} 
     public String  projectNameText {get;set;}   
     public List<SelectOption> rapNameList{get;set;} 
     public String selectedRapName{get;set;}
@@ -233,22 +237,22 @@ Returns: It will return list of options.
          
          listOfSortOptions = new List<SelectOption>();
           listOfSortOptions.add(new selectOption(NONE,NONE));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.AdManagerText__c','AdManager number'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.CreatedDate','Date logged'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Stage_of_Production_Activity__c','Stage of production activity'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Unilever_Project_Leader_Email__c','Project leader email'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Project_Leader_Country__c','Location of Unilever project leader(country)'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.AdManagerText__c','AdManager Number'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.CreatedDate','Date Logged'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Stage_of_Production_Activity__c','Stage Of Production Activity'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Unilever_Project_Leader_Email__c','Project Leader Email'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Project_Leader_Country__c','Location Of Unilever Project Leader(country)'));
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.ProductCategory__c','Category'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brand_Position__c','Brand positioning'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brand_Final__c','Brand name'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Project_Details__c','Project name'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Lead_Creative_Agency_name__c','Lead agency name'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Allocated_Budget_euro__c','Allocated budget(euro)'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brodcast_Market__c','Broadcast market'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brand_Position__c','Brand Positioning'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brand_Final__c','Brand Name'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Project_Details__c','Project Name'));
+       
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Allocated_Budget_euro__c','Allocated Budget(Euro)'));
+        // listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brodcast_Market__c','Broadcast Market'));
         // listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Production_Activity_Type__c','Production activity type'));
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Campaign_Name__c','Campaign Name'));
-         listOfSortOptions.add(new selectOption('User__c','RAP allocated'));
-         listOfSortOptions.add(new selectOption('Job_Allocated__c','Accepted and email sent'));
+         listOfSortOptions.add(new selectOption('User__c','RAP Allocated'));
+         listOfSortOptions.add(new selectOption('Job_Status__c','Accepted And Email Sent'));
         /* listOfSortOptions.add(new selectOption('Job_Status__c','Accepted'));
          listOfSortOptions.add(new selectOption('Started__c','Started'));
          listOfSortOptions.add(new selectOption('Reported__c','Reported'));
@@ -259,7 +263,8 @@ Returns: It will return list of options.
 Purpose: Method holds search functionality.
 Parameters: 
 Returns: 
-
+N-Path :
+Search functionality is implemented and SOQL is built dynamically so can not break 'if' decision points from this method
 ************************************************************************************************************************************/   
     public Pagereference getJobSearchDetails(){
     System.debug('EMAILLLL --->>>  ' + jobDetails.Unilever_Project_Leader_Email__c);
@@ -269,11 +274,11 @@ Returns:
     jobDetailList = new list<Amr_Job_Allocation__c>();
     acceptedString='Accepted';
     cancelledString='Cancelled';
-    string soql ='select AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c != '+'\'Cancelled\' AND AM_Job_Detail__r.Job_Cancelled__c = false ';
+    string soql ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c != '+'\'Cancelled\' AND AM_Job_Detail__r.Job_Cancelled__c = false ';
     system.debug('soql !!'+soql);
     //cancellation
     jobDetailCancellationList = new list<Amr_Job_Allocation__c>();
-    string soqlForCancel ='select AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c= '+'\'Cancelled\'AND AM_Job_Detail__r.Job_Cancelled__c = true ';
+    string soqlForCancel ='select AM_Job_Detail__r.Lead_Agency_Name_Other__c,AM_Job_Detail__r.ProductionActivityTextArea__c,AM_Job_Detail__r.Campaign_Name__c,Started__c,AM_Job_Detail__r.Project_Name_Other__c,Started_Image__c,User__r.email,User__r.Name,Reported__c,Job_Shared__c,Job_Status__c,Job_Allocated_Image__c,Reported_Image__c ,Job_Allocated__c,Job_Status_Image__c,User__c,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Job_Status__c ,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.ProductCategory__r.Name,AM_Job_Detail__r.Brand_Position__r.Name,AM_Job_Detail__r.Brand_Final__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,id from Amr_Job_Allocation__c where Job_Status__c= '+'\'Cancelled\'AND AM_Job_Detail__r.Job_Cancelled__c = true ';
     system.debug('soqlForCancel !!'+soqlForCancel );
     
     //search
@@ -338,9 +343,10 @@ Returns:
      
      }
 
-      if(String.isNotBlank(jobDetails.Brodcast_Market__c)){
-    soql += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(jobDetails.Brodcast_Market__c)+PERCENT ;
-    soqlForCancel += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(jobDetails.Brodcast_Market__c)+PERCENT;
+      if(String.isNotBlank(broadcastMarket)){
+      String broadcastData = broadcastMarket.replace(';',Amr_ConstantForAdManager.COMMA);
+    soql += ' and AM_Job_Detail__r.BroadcastMarketText__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(broadcastData)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+    soqlForCancel += ' and AM_Job_Detail__r.BroadcastMarketText__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(broadcastData)+Amr_ConstantForAdManager.PERCENTAGESLASH;
 }
     if(String.isNotBlank(jobDetails.Stage_of_Production_Activity__c)){
     soql += ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(jobDetails.Stage_of_Production_Activity__c)+'\'';
@@ -406,9 +412,9 @@ Returns:
      soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Amr_ConstantForAdManager.PERCENTAGESLASH;
     soqlForCancel += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Amr_ConstantForAdManager.PERCENTAGESLASH;
       }
-       if(String.isNotBlank(selectedRapName) && selectedRapName != Amr_ConstantForAdManager.NONE){
-           soql += ' and AM_Job_Detail__r.ownerId = \''+String.escapeSingleQuotes(selectedRapName)+Amr_ConstantForAdManager.SLASH;
-           soqlForCancel += ' and AM_Job_Detail__r.ownerId = \''+String.escapeSingleQuotes(selectedRapName)+Amr_ConstantForAdManager.SLASH; 
+       if(String.isNotBlank(selectedRapName) ){
+           soql += ' and AM_Job_Detail__r.owner.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(selectedRapName)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+           soqlForCancel += ' and AM_Job_Detail__r.owner.Name LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(selectedRapName)+Amr_ConstantForAdManager.PERCENTAGESLASH; 
        }
        
        if(String.isNotBlank(jobAllocation.Job_Allocated__c) && jobAllocation.Job_Allocated__c != Amr_ConstantForAdManager.NONE){
@@ -425,6 +431,10 @@ Returns:
      soql += ' and AM_Job_Detail__r.Project_Leader_Country__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(location)+Amr_ConstantForAdManager.PERCENTAGESLASH;
     soqlForCancel += ' and AM_Job_Detail__r.Project_Leader_Country__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(location)+Amr_ConstantForAdManager.PERCENTAGESLASH;
       }
+      if(String.isNotBlank(projectLeaderEmail)){
+        soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(projectLeaderEmail)+Amr_ConstantForAdManager.PERCENTAGESLASH;  //Amr_ConstantForAdManager.SLASH;
+        soqlForCancel += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(projectLeaderEmail)+Amr_ConstantForAdManager.PERCENTAGESLASH;            
+         }
      
      if(String.isNotBlank(addNumber)){
         soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+'%'+ String.escapeSingleQuotes(addNumber)+PERCENT;
@@ -453,21 +463,27 @@ Returns:
         soqlForCancel += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
               
          }
-          
+          /*
           if(String.isNotBlank(String.valueOf(jobDetails.Allocated_Budget_euro__c))){
           String allocatedBudget = String.valueOf(jobDetails.Allocated_Budget_euro__c).replace(',','');
 
         soql += ' and AM_Job_Detail__r.Allocated_Budget_euro__c = '+Double.valueOf(allocatedBudget);
         soqlForCancel += ' and AM_Job_Detail__r.Allocated_Budget_euro__c = '+Double.valueOf(allocatedBudget);
             
-         }
-         System.debug('Broad Cast name -> '+ broadcastMarket);
+         }    */
+         
+         if(String.isNotBlank(allocatedBudget) ){
+             soql += ' and AM_Job_Detail__r.Allocated_Budget_Euro_Text__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+ String.escapeSingleQuotes(allocatedBudget)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+             soqlForCancel += ' and AM_Job_Detail__r.Allocated_Budget_Euro_Text__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+ String.escapeSingleQuotes(allocatedBudget)+Amr_ConstantForAdManager.PERCENTAGESLASH;
+        }
+         
+         System.debug('Broad Cast name -> '+ broadcastMarket); /*
          if(String.isNotBlank(broadcastMarket)){
        
         soql += ' and AM_Job_Detail__r.Brodcast_Market__c = \''+String.escapeSingleQuotes(broadcastMarket)+Amr_ConstantForAdManager.SLASH ;  //'\'';
          soqlForCancel += ' and AM_Job_Detail__r.Brodcast_Market__c = \''+String.escapeSingleQuotes(broadcastMarket)+Amr_ConstantForAdManager.SLASH ; //'\'';      
         
-         }
+         }    */
           System.debug('SOQL HERE  -> '+ soql );
          if (String.isNotBlank(startDate)){
    //start date creation
@@ -487,13 +503,54 @@ Returns:
                
                system.debug('soql created date'+soql);
     }
+       System.debug('CATEOGRYYYY -> ' + selectedSortJobsOption);
      if(String.isNotBlank(selectedSortJobsOption) && selectedSortJobsOption!=NONE){
+         if(selectedSortJobsOption == Label.Amr_Query_Category){
+              soql += ' ORDER BY AM_Job_Detail__r.ProductCategory__r.Name ASC';   
+         }else
+         if(selectedSortJobsOption == Label.Amr_Query_BrandPosition){
+            soql += ' ORDER BY AM_Job_Detail__r.Brand_Position__r.Name ASC'; 
+         }
+         else
+         if(selectedSortJobsOption == Label.Amr_Query_BrandName){
+            soql += ' ORDER BY AM_Job_Detail__r.Brand_Final__r.Name ASC'; 
+         }
+         else
+         if(selectedSortJobsOption == Label.Amr_Query_Project_Detail){
+            soql += ' ORDER BY AM_Job_Detail__r.Project_Details__r.Name ASC'; 
+         }
+         else
+         if(selectedSortJobsOption == Label.Amr_Query_User){
+            soql += ' ORDER BY User__r.Name ASC'; 
+         }
+         
+         else{
           soql += ' ORDER BY '+String.escapeSingleQuotes(selectedSortJobsOption)+' ASC';
-           
+         }  
      }
+         System.debug('BRAND POS -> ' + selectedSortCancelOption);
      if(String.isNotBlank(selectedSortCancelOption) && selectedSortCancelOption!=NONE){
+         if(selectedSortCancelOption == Label.Amr_Query_Category){
+              soqlForCancel += ' ORDER BY AM_Job_Detail__r.ProductCategory__r.Name ASC';   
+         }else
+         if(selectedSortCancelOption == Label.Amr_Query_BrandPosition){
+            soqlForCancel += ' ORDER BY AM_Job_Detail__r.Brand_Position__r.Name ASC'; 
+         }
+         else
+         if(selectedSortCancelOption == Label.Amr_Query_BrandName){
+            soqlForCancel += ' ORDER BY AM_Job_Detail__r.Brand_Final__r.Name ASC'; 
+         }
+         else
+         if(selectedSortCancelOption == Label.Amr_Query_Project_Detail){
+            soqlForCancel += ' ORDER BY AM_Job_Detail__r.Project_Details__r.Name ASC'; 
+         }
+         else
+         if(selectedSortCancelOption == Label.Amr_Query_User){
+            soqlForCancel += ' ORDER BY User__r.Name ASC'; 
+         }
+         else{
           soqlForCancel += ' ORDER BY '+String.escapeSingleQuotes(selectedSortCancelOption)+' ASC';
-           
+         }  
      }
      system.debug('soql created date'+soql);
    
@@ -564,13 +621,19 @@ Returns:
               if(wc.SelectBox){
                  selectList.add(wc.sObjRec); }
           }
+          
+          if(selectList.size() == 0){
+             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Uncancel_Error));
+             return null; 
+          }
+          
           if(selectList.size()>0){
             for(Amr_Job_Allocation__c obj : selectList ){
                 selectJobDetailList.add(obj.AM_Job_Detail__r);
                 
             }
            
-           List<Amr_Job_Allocation__c> jobdetails1=[select id ,Name,AM_Job_Detail__r.Project_Name_Other__c ,AM_Job_Detail__r.id,Job_Status__c,AM_Job_Detail__c from Amr_Job_Allocation__c where Id IN:selectList];
+           List<Amr_Job_Allocation__c> jobdetails1=[select id ,AM_Job_Detail__r.Lead_Agency_Name_Other__c,Name,AM_Job_Detail__r.Project_Name_Other__c ,AM_Job_Detail__r.id,Job_Status__c,AM_Job_Detail__c from Amr_Job_Allocation__c where Id IN:selectList];
            List<Amr_Job_Allocation__c> jobdList=new List<Amr_Job_Allocation__c>();
            List<Amr_Job_Details__c> jobDetailsList=new List<Amr_Job_Details__c>();
            
@@ -761,6 +824,8 @@ Returns:
             }
            
         }
+        totalCancelJobPages = (totalSizeForCancelJobs/limitSizeForCancelJobs)+1;
+        currentCancelPageNumber =(counterForCancelJobs / limitSizeForCancelJobs)+1;
          system.debug('cancelJobsToShow!!'+cancelJobsToShow);
          }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
@@ -781,6 +846,8 @@ Returns:
                 cancelJobsToShow.add(WrapperList.get(i));
             }       
         }
+        totalCancelJobPages = (totalSizeForCancelJobs/limitSizeForCancelJobs)+1;
+        currentCancelPageNumber =(counterForCancelJobs / limitSizeForCancelJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
@@ -800,6 +867,8 @@ Returns:
                 cancelJobsToShow.add(WrapperList.get(i));
             }
         }
+        totalCancelJobPages = (totalSizeForCancelJobs/limitSizeForCancelJobs)+1;
+        currentCancelPageNumber =(counterForCancelJobs / limitSizeForCancelJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
@@ -813,6 +882,8 @@ Returns:
             for(Integer i=counterForCancelJobs;i<(counterForCancelJobs +limitSizeForCancelJobs); i++){
             cancelJobsToShow.add(WrapperList.get(i));
         }
+        totalCancelJobPages = (totalSizeForCancelJobs/limitSizeForCancelJobs)+1;
+        currentCancelPageNumber =(counterForCancelJobs / limitSizeForCancelJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());
@@ -830,6 +901,8 @@ Returns:
         for(Integer i=counterForCancelJobs -1;i<totalSizeForCancelJobs -1;i++){
                 cancelJobsToShow.add(WrapperList.get(i));
         }
+        totalCancelJobPages = (totalSizeForCancelJobs/limitSizeForCancelJobs)+1;
+        currentCancelPageNumber =(counterForCancelJobs / limitSizeForCancelJobs)+1;
         }catch(Exception ex){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
             system.debug(ex.getMessage());

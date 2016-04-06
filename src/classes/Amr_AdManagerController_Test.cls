@@ -77,18 +77,19 @@ public class Amr_AdManagerController_Test {
         controller.getMethodToPassProjectNames();
         
         controller.getSubmitForm();
-        controller.createJob();
+       // controller.createJob();
         Amr_AdManagerController_CC.insertJobAllocationData(Id,userId,emailId);
-        Amr_AdManagerController_CC.InnerJobDetail innerJob = new Amr_AdManagerController_CC.InnerJobDetail(Clust,Count,Id,AdManagertxt);
+        Amr_AdManagerHelper_CC.InnerJobDetail innerJob = new Amr_AdManagerHelper_CC.InnerJobDetail(Clust,Count,Id,AdManagertxt);
         PageReference pageRef = Page.Amr_CAPJobportfolio;
         Test.setCurrentPage(pageRef);
         PageReference pageRefVal = controller.Redirect();
         
         String obj = JSON.serialize(innerJob);
-        Amr_AdManagerController_CC.automaticJobAllocation(obj);
-        controller.compareThresold(jobDetail,category1.id,brandPos.Id,brand.Id);
+        //Amr_AdManagerController_CC.automaticJobAllocation(obj);
+      //  controller.compareThresold(jobDetail,category1.id,brandPos.Id,brand.Id);
         
-        system.assert(jobDetail!=null);
+        Amr_Job_Details__c jobDet = [select Project_Description__c from Amr_Job_Details__c where id = :jobDetail.Id];
+        system.assertEquals(jobDet.Project_Description__c, Amr_ConstantForAdManager.EXECUTION);
     }
     
     static testMethod void methodToSubmitForm(){
@@ -113,6 +114,9 @@ public class Amr_AdManagerController_Test {
         MDO_Brand__c brand = new MDO_Brand__c(Name='testBrand');
         insert brand;
     
+       /*****
+            Creating a list of job details and inserting in bulk.
+       *****/
         list<Amr_Job_Details__c> jobList = new list<Amr_Job_Details__c>();
         Amr_Job_Details__c jobDetail1=new Amr_Job_Details__c(NewOriginalMasterCinema__c=Amr_ConstantForAdManager.FALSE_VAL,NewOriginalMasterTv__c=Amr_ConstantForAdManager.FALSE_VAL,GBVM_Email__c='abc12@gmail.com',Threshold_Amount__c=12.34,Is_Submitt__c=Amr_ConstantForAdManager.TRUE_VAL,OwnerId=u.Id,Start_Date__c=date.newInstance(2015, 11, 21),End_Date__c=date.newInstance(2016, 11, 21),Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAIL,Broadcast_Market__c=Amr_ConstantForAdManager.EXECUTION,Name='testName',Project_Name__c=Amr_ConstantForAdManager.PROJECT,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Digital_Agency_Name__c=Amr_ConstantForAdManager.EXECUTION,AdManagerText__c ='ABC/00001',Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.brand_position_id__c,Brand_Final__c=brand.Id,NewOriginalMasterRadio__c=Amr_ConstantForAdManager.FALSE_VAL,NewOriginalMasterPrint__c=Amr_ConstantForAdManager.FALSE_VAL,NewOriginalMasterOutofHome__c=Amr_ConstantForAdManager.FALSE_VAL,NewOriginalMasterInStore__c=Amr_ConstantForAdManager.FALSE_VAL,NewOriginalMasterDigital__c=Amr_ConstantForAdManager.FALSE_VAL,NewOriginalMasterInternalVideo__c=Amr_ConstantForAdManager.FALSE_VAL);
         jobList.add(jobDetail1);
@@ -195,6 +199,7 @@ public class Amr_AdManagerController_Test {
         Amr_Job_Details__c jobDetail27=new Amr_Job_Details__c(Require_Celebrity_Talent__c=Amr_ConstantForAdManager.YES,Lead_Agency_Location_Cluster__c=Amr_ConstantForAdManager.CLUSTER,Lead_Agency_Location_Country__c=Amr_ConstantForAdManager.LOCATION,Project_Location_Country__c=Amr_ConstantForAdManager.TESTCOUNTRY,Budget_Responsibility__c=Amr_ConstantForAdManager.BB,Require_Music__c=Amr_ConstantForAdManager.YES,Execution_Name__c=Amr_ConstantForAdManager.EXECUTION,Production_Activity_Type__c=Amr_ConstantForAdManager.TYPEPROD,Project_Location_Cluster__c=Amr_ConstantForAdManager.CLUSTER,Function_You_Are_Part__c=Amr_ConstantForAdManager.BB,Project_Description__c=Amr_ConstantForAdManager.EXECUTION,Check_With_CMI__c=Amr_ConstantForAdManager.YES,GBVM_Email__c=Amr_ConstantForAdManager.EMAIL,Threshold_Amount__c=12.34,Is_Submitt__c=Amr_ConstantForAdManager.TRUE_VAL,OwnerId=u.Id,Start_Date__c=date.newInstance(2015, 11, 21),End_Date__c=date.newInstance(2016, 11, 21),Project_Details__c= projDetail.Id,Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAIL,Broadcast_Market__c=Amr_ConstantForAdManager.EXECUTION,Name=Amr_ConstantForAdManager.EXECUTION,Project_Leader_Cluster__c=Amr_ConstantForAdManager.CLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRY,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.EXECUTION,Project_Name__c=Amr_ConstantForAdManager.PROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.EXECUTION,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAIL,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAIL,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAIL,Digital_Agency_Name__c=Amr_ConstantForAdManager.EXECUTION,Campaign_Name__c=Amr_ConstantForAdManager.EXECUTION,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00028',Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAIL,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BRODCAST,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.brand_position_id__c,Brand_Final__c=brand.Id,NewOriginalMaster__c=Amr_ConstantForAdManager.FALSE_VAL,BuyoutsTalent__c=Amr_ConstantForAdManager.TRUE_VAL,BuyoutsTalentInStore__c=Amr_ConstantForAdManager.TRUE_VAL,BuyoutsTalentInStoreMovingImage__c=Amr_ConstantForAdManager.FALSE_VAL,BuyoutsTalentInStoreAudio__c=Amr_ConstantForAdManager.FALSE_VAL,BuyoutsTalentInStoreStillImage__c=Amr_ConstantForAdManager.FALSE_VAL);
         jobList.add(jobDetail27);
     
+       // Bulk insertion of job details
         insert jobList;
     
         Amr_Logging_Form_Setting__c setting = new Amr_Logging_Form_Setting__c(Allocation__c='manual',Footer__c='testFooter',Header__c='testHeader',Introduction__c='testIntro');
@@ -205,11 +210,11 @@ public class Amr_AdManagerController_Test {
         controller.brandPosName =Amr_ConstantForAdManager.NONE;
         controller.brandNameFromPage =Amr_ConstantForAdManager.NONE;
         controller.selectedCountry =Amr_ConstantForAdManager.NONE;
-        for(Amr_Job_Details__c job:jobList){
-        controller.jobDetails=job;
+    //    for(Amr_Job_Details__c job:jobList){
+        controller.jobDetails=jobList.get(0);
         PageReference pageRefVal = controller.getSubmitForm();
-        system.assert(jobList!=null);
-    }
+     //   system.assert(jobList!=null);
+   // }
      
   
     }

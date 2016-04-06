@@ -70,6 +70,8 @@ public with sharing class Amr_JobSheetController_CC{
     public list<string> listOfRAPSelected{get;set;}  
     public Integer sharedListSize {get;set;}
     public boolean validateSuccess ;
+    public boolean alertErrorCheck {get;set;}
+    public boolean jobsheetErrorCheck {get;set;}
    
     public List<selectoption> selectUsername{get;set;} 
     public List<selectoption> selectJobPriority{get;set;}
@@ -120,6 +122,7 @@ public with sharing class Amr_JobSheetController_CC{
         
         validateSuccess = false;
         selectUsername= new list<selectoption>();
+      
         jobIdFromPage = ApexPages.currentPage().getParameters().get(Amr_ConstantForAdManager.ID);
         
         alert = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];          
@@ -132,12 +135,13 @@ public with sharing class Amr_JobSheetController_CC{
             jobId = ApexPages.CurrentPage().getParameters().get(Amr_ConstantForAdManager.ID); 
        }
     catch(Exception e){
-           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Invalid_Job_Id));
+           jobsheetErrorCheck = true;
+           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Invalid_Job_Id));
            return;
     }
         
     if(String.isBlank(jobID)){
-           
+            jobsheetErrorCheck = true;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIdNotFound));
             return;
      }
@@ -145,13 +149,18 @@ public with sharing class Amr_JobSheetController_CC{
         String message = '' + ApexPages.CurrentPage().GetParameters().Get(label.Amr_message);
         if(message != 'null')
         {
-               ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, message)); 
+            jobsheetErrorCheck = true;
+            ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, message)); 
         }
         helperMethod();
     } 
      
 
+     /*
      
+     N-Path:
+     This method fetches reuired fields to display on JobSheet page so can not reduce the no. of fields in SOQL.
+     */
      public PageReference helperMethod(){
      
        for(PermissionSetAssignment  userObj :[select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name = :Label.Amr_RAP AND Assignee.id != :userInfo.getUserId() order by Assignee.name] ){
@@ -161,6 +170,7 @@ public with sharing class Amr_JobSheetController_CC{
             selectUsername.add(obj);
         }
         catch(Exception e){
+            jobsheetErrorCheck = true;
            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Invalid_User));
            return null;
        }
@@ -184,16 +194,20 @@ public with sharing class Amr_JobSheetController_CC{
       
       try{
             if(permissionSetName == Label.Amr_CAP){
+                System.debug('CAP HERE ');
                 jobAlloc = [Select id,User__r.Name, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId limit 1];
-                        listOfUserToDisplay = [Select User__r.Name  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
-                                                
+                        listOfUserToDisplay = [Select User__r.Name,Id from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
+                           
+                                        
             }
             else{
+                System.debug('RAP HERE ');
                 jobAlloc = [Select id,User__r.Name, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId  AND user__c =: userInfo.getUserId() Limit 1 ];
                         listOfUserToDisplay.add(jobAlloc);
+                      
             }
            
-            jobList=[select ReworkExistingMaterial__c,Buyouts_Music_Digital_ED__c,NewOriginalMaster__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
+            jobList=[select AdditionalSupplementaryNewMaterialDigiA__c,ReworkExistingMaterial__c,Buyouts_Music_Digital_ED__c,NewOriginalMaster__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
                     NewOriginalMasterInternalVideo__c,NewOriginalMasterTvMovingImage__c,NewOriginalMasterCinemaMovingImage__c,NewOriginalMasterRadioAudio__c,NewOriginalMasterPrintStillImage__c,NewOriginalMasterOutofHomeMovingImage__c,
                     NewOriginalMasterOutofHomeAudio__c,NewOriginalMasterOutofHomeStillImage__c,NewOriginalMasterInStoreMovingImage__c,NewOriginalMasterInStoreAudio__c,NewOriginalMasterInStoreStillImage__c,NewOriginalMasterDigitalMovingImage__c,
                     NewOriginalMasterDigitalAudio__c,NewOriginalMasterDigitalStillImage__c,NewOriginalMasterInternalVdoMovingImage__c,  New_Original_Master_Digital_ED__c,
@@ -222,6 +236,13 @@ public with sharing class Amr_JobSheetController_CC{
                     BuyoutsMusicDigitalAudio__c,BuyoutsMusicDigitalStillImage__c,Additional_Supplementary_NM_Digital_ED__c,BuyoutsMusicInternalVideoMovingImage__c,                 
                     createdDate,Project_Details__r.name,id,Job_Notes__c,Currency_Conversion_Country_List__c,Lead_Agency_Name_Other__c,OwnerId,Job_Cancelled__c,Job_Status__c,Tv_Moving_Image__c,AdManagerText__c,Brand_Final__c,Brand_Final__r.name, Cinema_Moving_Image__c, Radio_Audio__c, Print_Still_Image__c, Out_Of_Home_Moving_Image__c, Out_Of_Home_Still_Image__c, Out_Of_Home_Audio__c, In_Store_Moving_Image__c, In_Store_Still_Image__c, In_Store_Audio__c, Digital_Moving_Image__c, Digital_Still_Image__c, Digital_Audio__c, Internal_Video_Moving_Image__c, Tv__c,Cinema__c, Radio__c, Print__c, Out_Of_Home__c, In_Store__c, Digital__c, Internal_Video__c, ProductCategory__c,ProductCategory__r.name,Rework_Exisiting_Material__c,BuyoutsTalent__c,BuyoutsMusic__c,New_Original_Master__c,Create_Additional_Material__c,Language_Adaptation_Of_Master__c,Require_Music__c,Require_Celebrity_Talent__c,Stage_of_Production_Activity__c,Check_With_CMI__c,Production_Activity_Type__c,Project_Description__c,Target_Air_Date__c,Execution_Name__c,Campaign_Name__c,Your_Email_Address__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Unilever_Finance_Member_Email__c,Final_Approver_Of_Material_Email__c,Function_You_Are_Part__c,Budget_Responsibility__c,Budget_Allocated_Input_Value__c,Allocated_Budget_euro__c,Brand_Position__c,Brand_Position__r.name,Lead_Creative_Agency_name__c,Lead_Agency_Location_Cluster__c,Lead_Agency_Location_Country__c,Agency_Contact_Account_Director_Email__c,Digital_Agency_Name__c,Any_other_agencies_involved__c,Project_Name__c,Project_Name_Other__c,Project_Location_Cluster__c,Project_Location_Country__c,Project_Details__c,Brodcast_Market__c from Amr_Job_Details__c where id=: jobId];       
             
+           if(jobList.Job_Cancelled__c){
+                jobsheetErrorCheck = true;
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobAlreadyCancelled));
+                jobList.AdManagerText__c = null;
+                return null;    
+           }
+           
             if(jobList != null){
 
                 projectNameFromPage = jobList.Project_Details__r.name;
@@ -238,6 +259,7 @@ public with sharing class Amr_JobSheetController_CC{
             
         }
         catch(Exception e){
+            jobsheetErrorCheck = true;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_No_Job_Allocation_Record_For_LoggedIn_User));
             return null;
         }  
@@ -290,6 +312,7 @@ public with sharing class Amr_JobSheetController_CC{
        selectedSecRapName = jobAlloc.User__r.Name;
        selectedRapName = jobAlloc.User__r.Name;
        try{
+       alertErrorCheck = false;
         editedSavingMode = false;
         viewSavingMode = true;
         editedQuoteMode = false;
@@ -305,14 +328,87 @@ public with sharing class Amr_JobSheetController_CC{
              shootLocation.add(new SelectOption(countryObj.Country__c,countryObj.Country__c));
             }                       
              userId = userinfo.getuserid();
-            jobSheetHelper.updateData(jobId,jobDetailObj,quoteList,quoteRelatedToSavingList,adManagerNumber,userId);
+            updateData();
         }catch(Exception ex){
             System.debug( ex.getmessage());
         }
        return null;  
          
      }
+      /* 
+        This method contains the logic to update the created job
+    */       
+    public void updateData(){
+        try{
+            alertErrorCheck = false; 
+            List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='CAP' order by Assignee.name];
+            boolean flag = false;
+            for(PermissionSetAssignment permissionObj:PermissionSetAssignmentList){
+                 if(userId == permissionObj.Assignee.id){
+                   
+                    flag = true;
+                    
+                    break;
+                 }
+             }
+             if(jobId!=null){
+            jobDetailObj = [select id,AdManagerText__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,
+                                                     NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
+                                                     NewOriginalMasterInternalVideo__c,LanguageAdaptionMasterTv__c,LanguageAdaptionMasterCinema__c,LanguageAdaptionMasterRadio__c,
+                                                     LanguageAdaptionMasterPrint__c,LanguageAdaptionMasterOutofHome__c,LanguageAdaptionMasterInStore__c,LanguageAdaptionMasterDigital__c,
+                                                     LanguageAdaptionMasterInternalVideo__c,AdditionalSupplementaryNewMaterialTv__c,AdditionalSupplementaryNewMaterialCinema__c,
+                                                     AdditionalSupplementaryNewMaterialRadio__c,AdditionalSupplementaryNewMaterialPrint__c,AdditionalSupplementaryNewMaterialOOH__c,
+                                                     AdditionalSupplementaryNewMaterialStore__c,AdditionalSupplementaryNewMaterialDigi__c,AdditionalSupplementaryNewMaterialIVideo__c,
+                                                     ReworkExistingMaterialTv__c,ReworkExistingMaterialCinema__c,ReworkExistingMaterialRadio__c,ReworkExistingMaterialPrint__c,
+                                                     ReworkExistingMaterialOutofHome__c,ReworkExistingMaterialInStore__c,ReworkExistingMaterialDigital__c,ReworkExistingMaterialInternalVideo__c,
+                                                     BuyoutsTalentTv__c,BuyoutsTalentCinema__c,BuyoutsTalentInStore__c,BuyoutsTalentRadio__c,BuyoutsTalentPrint__c,BuyoutsTalentOutofHome__c,
+                                                     BuyoutsTalentDigital__c,BuyoutsTalentInternalVideo__c,BuyoutsMusicTv__c,BuyoutsMusicCinema__c,BuyoutsMusicRadio__c,BuyoutsMusicPrint__c,
+                                                     BuyoutsMusicOutofHome__c,BuyoutsMusicInStore__c,BuyoutsMusicDigital__c,BuyoutsMusicInternalVideo__c 
+                                                      
+                                                     from Amr_Job_Details__c where id = :jobId];
+                    }
+            
+            if(jobId != null){
+                 if(flag){
+                      quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,Duration_of_Additional_Films__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,LastModifiedById, 
+                               No_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c, Duration_of_Masters__c,
+                               Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Accepted_Final_Cost_Total_editing_cost__c,Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,Local_Amount_of_PPC__c,Local_Currency_of_PPC_Costs__c,PPC_Costs_Euro_Amount__c,CA_Location__c,CA_Additional_agency_Name__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c
+
+                               ,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c,PC_Costs_Euro_Amount__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where Job_Details__r.id = :jobId];
+                     
+                 }else{
+                   quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,Duration_of_Additional_Films__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,LastModifiedById, 
+                               No_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,Duration_of_Masters__c,
+                               Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Accepted_Final_Cost_Total_editing_cost__c,Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,Local_Amount_of_PPC__c,Local_Currency_of_PPC_Costs__c,PPC_Costs_Euro_Amount__c,CA_Location__c,CA_Additional_agency_Name__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c
+
+                               ,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c,PC_Costs_Euro_Amount__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where Job_Details__r.id = :jobId AND (CreatedById = :userId OR LastModifiedById = :userId )];
+                      
+                 }            
+                  Set<Id>savingIds=new Set<Id>();
+                      for(Amr_Saving__c saving:quoteList){
+                        savingIds.add(saving.Id);
+                      }
+                      quoteRelatedToSavingList = [select Saving_Type__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Accepted_Final_Cost_props_wardrobe__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,
+                                           Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,PPC_Costs_Euro_Amount__c,
+                                           Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,
+                                           Local_Currency_of_PPC_Costs__c,Local_Amount_of_PPC__c,CA_Costs_Euro_Amount__c,
+                                           CA_Additional_agency_Name__c,CA_Location__c,Is_Accepted__c,
+                                           Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,PC_Costs_Euro_Amount__c,
+                                           Total_Cost__c,id,Folder__c from Amr_Quote__c where Saving__c IN :savingIds ORDER BY Quote_Number__c];             //
+               
+              
+                if(quoteList.size()>0){
+                        adManagerNumber = quoteList[0].Job_Details__r.AdManagerText__c;
+                }else{
+                   Amr_Job_Details__c jobObj = [select AdManagerText__c from Amr_Job_Details__c where id = :jobId];
+                   adManagerNumber = jobObj.AdManagerText__c;
+                }
+            }
       
+        }catch(exception ex){
+          System.debug(ex.getmessage());
+        }
+    }  
     
       
     
@@ -457,24 +553,29 @@ Returns:
 
 ************************************************************************************************************************************/        
      public PageReference reAllocate() {
+         alertErrorCheck = false; 
         try{
              if(String.isBlank(jobID)){
+                 jobsheetErrorCheck = true;
                  ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIdNotFound));
                  return null;
              }
           
              else{
                  if(jobList.Job_Cancelled__c){
+                     jobsheetErrorCheck = true;
                      ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.ERROR,label.Amr_This_job_has_already_been_cancelled));
             
                      return null; 
                  }
                   jobReAllocate(selectedRAPUser,jobId, jobList);
                   if(rapAllocateCheck && !jobList.Job_Cancelled__c){
+                      jobsheetErrorCheck = true;
                       ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,Label.Amr_Error_JobAlreadyAllocated));
                       return null;    
                  }
                  else{
+                     jobsheetErrorCheck = true;
                      ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,Label.Amr_Success_JobAllocated));
                     return null;
                 }
@@ -525,7 +626,10 @@ Returns:
                  jobDet.JobAllocated_Email__c = userList.email;   
             } 
        
-            insert jobAllocObj;               
+            insert jobAllocObj;   
+            if(String.isBlank(jobDet.Job_Status__c)){
+                jobDet.Job_Status__c = 'Pending';
+            }            
             jobDet.OwnerId = selectedRap;
             update jobDet;
                     }  
@@ -544,11 +648,13 @@ Returns:
     public pagereference cancelJob(){
        try{
         if(String.isBlank(jobID)){
+            jobsheetErrorCheck = true;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIdNotFound));
             return null;
         }
         else{
             if(jobList.Job_Cancelled__c){
+                 jobsheetErrorCheck = true;
                  ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobAlreadyCancelled));  
                 return null;
            } 
@@ -575,12 +681,15 @@ Returns:
 
 ************************************************************************************************************************************/     
     public PageReference acceptJob(){
+        alertErrorCheck = false;
        try{
         if(jobStatus == Label.Amr_Job_Accepted) {
+            jobsheetErrorCheck = true;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobAlreadyAccepted)); 
             return null;
        }
         if(joblist.Job_Cancelled__c){
+            jobsheetErrorCheck = true;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIsCancelled));  
             return null;
         }
@@ -597,7 +706,7 @@ Returns:
                      
            List <String> userEmailList = new List<String>();
            userEmailList.add(userEmail);
-                
+           jobsheetErrorCheck = true;     
            ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,Label.Amr_JobAccepted));             
            return null;
        }  
@@ -616,6 +725,7 @@ Returns:
     public PageReference cancelRapJob(){
         
         if(joblist.Job_Cancelled__c){
+            jobsheetErrorCheck = true;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobAlreadyCancelled));  
             return null;
         }
@@ -638,6 +748,7 @@ Returns:
     public PageReference reAllocateRAP() {
             
         if(String.isBlank(jobID)){
+            jobsheetErrorCheck = true;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIdNotFound));
             return null;
        }
@@ -646,22 +757,27 @@ Returns:
            if(jobList.Job_Cancelled__c){
                      jobList.Job_Cancelled__c = false;
                      jobAlloc.Job_Status__c = ''; 
+                     jobsheetErrorCheck = true;
                      ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.Info,label.Amr_This_job_has_already_been_cancelled));
                       update jobList;
                        update jobAlloc;
                      return null; 
            }
-            jobReAllocate(selectedRapName, jobId, jobList); 
-           if(rapAllocateCheck &&  !jobList.Job_Cancelled__c){
+          
+                jobReAllocate(selectedRapName, jobId, jobList); 
+               if(rapAllocateCheck &&  !jobList.Job_Cancelled__c){
+               jobsheetErrorCheck = true;
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,Label.Amr_Error_JobAlreadyAllocated));
                 return null;    
-           }           
-           else{
-               
+               }           
+               else{
+               alertErrorCheck = false;
+               jobsheetErrorCheck = true;
                ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,Label.Amr_Success_JobAllocated));
                 PageReference landingPage = Page.Amr_RAPJobPortfolio;
                return landingPage;
-         }
+                 }
+           
       }    
         
     }
@@ -691,11 +807,14 @@ Returns:
     public PageReference changePriority(){
       
         if(String.isBlank(jobID)){
+            jobsheetErrorCheck = true;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIdNotFound));
             return null;
         }
         else{
+            alertErrorCheck = false;
             update jobList;
+            jobsheetErrorCheck = true;
             ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,Label.Amr_Success_StatusChanged)); 
             return null;
        }    
@@ -836,6 +955,7 @@ Returns:
          pageRef.getParameters().put(Amr_ConstantForAdManager.ID,jobList.Id);
          pageRef.getParameters().put(label.Amr_tab,label.Amr_job_details);
          pageRef.getParameters().put(label.Amr_message,label.Amr_Successfully_updated);
+         pageRef.getParameters().put('defaultPage','jobdetails');
        
          pageRef.setRedirect(true);
          return pageRef; 
@@ -876,8 +996,10 @@ Returns:
 ************************************************************************************************************************************/  
       
     public pagereference recordShare(){
-     
+        
+         alertErrorCheck = false;
         if(String.isBlank(jobID)){
+            jobsheetErrorCheck = true;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobIdNotFound));
             return null;
         }
@@ -886,6 +1008,7 @@ Returns:
              Set<String> rapSet = new Set<String>();
              List<String> finalRapList = new List<String>();
              if(!shareCheckList.isEmpty()){
+                 jobsheetErrorCheck = true;
                 for(Amr_Job_Allocation__c rapAlreadyShared : shareCheckList ){
                     String errorMsg = label.Amr_Job_already_Shared_with + rapAlreadyShared.User__r.Name;
                     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,errorMsg));
@@ -947,13 +1070,14 @@ Returns:
           List<Amr_Job_Allocation__c> rapNameList = [Select id, User__r.Name, User__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND User__c IN :finalRapList AND Is_Primary__c = false];
           for(Amr_Job_Allocation__c jAlloc : rapNameList ){
               String successMsg = label.Amr_Job_shared_successfully_with + jAlloc.User__r.Name ;
+              jobsheetErrorCheck = true;
               ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,successMsg ));
           }
           jobSharedList = [ select id, User__c, User__r.Name from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = False order by User__r.Name];
           sharedListSize = jobSharedList.size();
           sharedOption(jobSharedList );
     
-    Amr_EmailSendingClass.emailSending(jobId, emailAddress,label.Amr_RAPSharedJob);
+    Amr_EmailSendingClass_CC.emailSending(jobId, emailAddress,label.Amr_RAPSharedJob);
  
       PageReference pageRef = Page.amr_jobsheet;
      pageRef.getParameters().put(Amr_ConstantForAdManager.ID,jobId);
@@ -1021,7 +1145,8 @@ Returns:
 Purpose: Method to validate job
 Parameters: 
 Returns: 
-
+N-Path:
+ This validation is on JobSheet edit page where AP/RAP can edit ans submit the form again, so can not break down 'if' decision points
 ************************************************************************************************************************************/
    public PageReference validateJobList(){
    
@@ -1134,12 +1259,14 @@ Returns:
             StageProductionActivity = true;
          }
          okayToSave = jobSheetHelper.productionActivityTypeValidation(okayToSave,jobList);
+          system.debug('ouside function !!');
          
          if( okayToSave && !CheckWithCMIflag  && !yourEmailAddressFlag && !unileverFinanceMemberEmailFlag && !projectLeaderCountryClusterFlag  && !finalApproverMaterialEmailFlag  && !functionYouArePartFlag 
                  && !budgetResponsibilityFlag  && !budgetAllocatedCountryFlag  && !budgetAllocatedInputFlag  && !categoryNameFlag  && !brandPosNameFlag && !brandNameFromPageFlag && !agencyDirectorEmailFlag 
                  && !projectDescriptionFlag  && !campaignNameFlag && !leadAgencyFlag  && !LeadAgencyClusterFlag && !projectDetailsFlag  && !productionActivityTypeFlag  && !TargetAirDateFlag 
                  && !ExecutionNameFlag  && !BrodcastMarketFlag  && !RequireMusicFlag && !RequireTalentFlag  && !StageProductionActivity ) {
                 validateSuccess = true;
+                system.debug('inside function !!');
                  return null;
         }
     return null;
@@ -1152,9 +1279,10 @@ Returns:
 
 ************************************************************************************************************************************/
    
-   public void uploadDocument(){
+   public Pagereference uploadDocument(){
              
               if(document.body==null){
+                 jobsheetErrorCheck = true;
                  ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Select_atleast_one_document));
               
               }
@@ -1169,7 +1297,17 @@ Returns:
               insert FI;
               getDocuments();
               document = new document();
+              
+              PageReference pageRef = new PageReference(label.Amr_JobSheet); 
+              pageRef.getParameters().put(Amr_ConstantForAdManager.ID,jobList.Id);
+              //pageRef.getParameters().put(label.Amr_message,label.Amr_Successfully_updated);        
+              pageRef.getParameters().put('defaultPage','creative_docs');       
+              pageRef.setRedirect(true);
+              return pageRef;
+              
         }
+        
+        return null;
      
     }
     /***********************************************************************************************************************************
@@ -1203,13 +1341,22 @@ Returns:
         
         if(alertObj.New_Alert__c == null || alertObj.Alert_Message__c == null){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Please_enter_both_alert_date_and_alert_message));
+            alertErrorCheck = true;
+            jobsheetErrorCheck = false;
+            return;
             
-        }
+        } 
         if(alertObj.New_Alert__c < Date.today()){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Alert_date_must_be_greater_than_or_equal_to_today_s_date));
+            alertErrorCheck = true;
+            jobsheetErrorCheck = false;
+            return;
         }
         if(alertObj.Alert_Message__c.length()>150){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,label.Amr_Alert_message_should_be_less_than_150_characters));
+            alertErrorCheck = true;
+            jobsheetErrorCheck = false;
+            return;
         }
         if(!String.isBlank(String.valueOf(alertObj.New_Alert__c)) && !String.isBlank(alertObj.Alert_Message__c) && alertObj.New_Alert__c >= Date.today() && alertObj.Alert_Message__c.length()<=150){
          insert alertObj;

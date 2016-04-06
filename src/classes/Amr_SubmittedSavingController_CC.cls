@@ -55,6 +55,7 @@ public with sharing class Amr_SubmittedSavingController_CC {
     public String caCostMangCategoryClass {get;set;}
     public String caProcessMangCategoryClass{get;set;}
     public String caOutputQualityCategoryClass {get;set;}
+    public Boolean savingMessages {get;set;}
     
      public  Document document {
         get {
@@ -100,8 +101,9 @@ public with sharing class Amr_SubmittedSavingController_CC {
              quoteInformation();
              getFeedItemAcceptedData();
              getFeedItemAdditionalData();
+             savingMessages = false;
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         system.debug(ex.getMessage());
         }
     }
@@ -129,7 +131,7 @@ Returns:
                                            Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,PC_Costs_Euro_Amount__c,
                                            Total_Cost__c,id,Folder__c from Amr_Quote__c where Saving__c =:savingIdFromPage AND Is_Accepted__c =:false ORDER BY Quote_Number__c]; 
     }catch(Exception ex){
-    	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         system.debug(ex.getMessage());
         }
     }
@@ -147,7 +149,7 @@ Returns:
          
         }
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         system.debug(ex.getMessage());
         }
          return null;
@@ -186,7 +188,7 @@ Returns:
     }
     getFeedItemAcceptedData();
     }catch(Exception ex){
-    	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         system.debug(ex.getMessage());
         return null;
     }
@@ -204,7 +206,7 @@ Returns:
                                           FROM FeedItem where ParentId =:acceptedQuote.Id];
        
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         system.debug(ex.getMessage());
         }   
     }
@@ -221,7 +223,7 @@ Returns:
         delete feedItemObj;
         getFeedItemAcceptedData();  
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         system.debug(ex.getMessage());
         }
     return null;
@@ -255,7 +257,7 @@ Returns:
     }
     getFeedItemAdditionalData();
     }catch(Exception ex){
-    	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         system.debug(ex.getMessage());
     }
     return null;
@@ -272,7 +274,7 @@ Returns:
                                           FROM FeedItem where ParentId =:savingIdFromPage];
        
     }catch(Exception ex){
-    	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         system.debug(ex.getMessage());
     }   
     }
@@ -289,7 +291,7 @@ Returns:
         delete feedItemObj;
     getFeedItemAdditionalData();    
     }catch(Exception ex){
-    	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         system.debug(ex.getMessage());
     }
     return null;
@@ -307,7 +309,7 @@ Returns:
         page.setRedirect(true); 
         return page ;
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         system.debug(ex.getMessage());
         }
     return null;    
@@ -325,11 +327,48 @@ Returns:
 ************************************************************************************************************************************/    
     public PageReference SubmitWholeSaving(){
         try{
+             boolean okayToSave = true;  
+             if(savObj.Production_Type__c == '--None--' || string.isBlank(savObj.Production_Type__c)){
+                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter Prod Type'));
+                 savingMessages = true;
+                 okayToSave=false;
+            }
+            if(savObj.Stage_RAP_engaged__c == '--None--' || String.isBlank(savObj.Stage_RAP_engaged__c)){
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter Stage RAP Engaged'));
+                savingMessages = true;
+                okayToSave=false;
+            }
+            if(savObj.Scope_re_brief__c == '--None--' || String.isBlank(savObj.Scope_re_brief__c)){
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter Has there been a scope re-brief?'));
+                savingMessages = true;
+                 okayToSave=false;
+            }
+            if(acceptedQuote.PC_Costs_Euro_Amount__c == 0 || acceptedQuote.PPC_Costs_Euro_Amount__c == 0 || acceptedQuote.CA_Costs_Euro_Amount__c == 0){
+                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter PC,PPC,CA Euro amount in Accepted Quote (Opening and Closing Quote 1)'));
+                 savingMessages = true;
+                 okayToSave=false;
+            }
+            if(acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c == 0 || acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c == '' || acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c == ''){
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter PC,PPC,CA Euro amount in Accepted Final Costs (Closing costs)'));
+                savingMessages = true;
+                okayToSave=false;
+            }
+            if(acceptedQuote.Saving_Type__c == '--None--' || String.isBlank(acceptedQuote.Saving_Type__c)){
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter What type of Savings is this?'));
+                savingMessages = true;
+                 okayToSave=false;
+            }
+            if(!okayToSave){
+            system.debug('inside error');
+            return null;
+            
+            }else{
+             
             if(selectedCountry.size()>0){ 
-        if(savObj.Shoot_Location__c != null){
-            savObj.Shoot_Location__c = null;
-        }
-    for(String str : selectedCountry){
+                if(savObj.Shoot_Location__c != null){
+                savObj.Shoot_Location__c = null;
+            }
+            for(String str : selectedCountry){
                 if(savObj.Shoot_Location__c == null){
                     savObj.Shoot_Location__c = str ;
                 }else{
@@ -338,13 +377,13 @@ Returns:
                 }
             }
          
-    }
+            }
   
-    update savObj;
+        update savObj;
    
-    update acceptedQuote;
+        update acceptedQuote;
     
-    update quoteRelatedToSavingList;
+        update quoteRelatedToSavingList;
    
     
         AllValues();
@@ -359,8 +398,9 @@ Returns:
         return page ;
         }
         
+        }
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         System.debug(ex.getmessage());
         }  
     
@@ -370,7 +410,8 @@ Returns:
 Purpose: Method to update appraisal related to saving record.
 Parameters: 
 Returns: 
-
+N-Path:
+Fetching appraisal filelds and validations for the same need to be done at single place.
 ************************************************************************************************************************************/    
     
     public void AllValues(){
@@ -587,7 +628,7 @@ Returns:
               
         }
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         System.debug(ex.getmessage());
         }
        
@@ -613,7 +654,7 @@ Returns:
        
        return JSON.Serialize(lstsavingObj );
         }catch(Exception ex){
-        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getMessage()));
         System.debug(ex.getmessage());
         }
        return null;

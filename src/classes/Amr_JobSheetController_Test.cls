@@ -118,10 +118,10 @@ public class Amr_JobSheetController_Test{
         jobAllocation.brandPositionListData();
         jobAllocation.selectedBrandPosName = Amr_ConstantForAdManager.TESTBRANDPOSITION;
         jobAllocation.getBrandList();
-        jobAllocation.getProjectNameList();
+        
         jobAllocation.getMethodToPassProjectNames();
         jobAllocation.brandNameFromPage =Amr_ConstantForAdManager.TESTBRANDNAME;
-        jobAllocation.updateAdManagerText();
+       // jobAllocation.updateAdManagerText();
         List<SelectOption>catList=new List<SelectOption>();
         catList.add(new selectOption(category1.Id,category1.Name));
     

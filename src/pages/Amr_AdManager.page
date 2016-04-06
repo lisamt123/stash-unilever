@@ -8,21 +8,27 @@
         </script>        
         <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/menu-shift.js')}" />
         <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/production-activity.js')}" />
-        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/admanager-logging-form.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/admanager-logging-form.js')}" />        
         <style type="text/css">
             label.logging-form-label div {
                 background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/questionmark.png')}") no-repeat scroll center center rgba(0,0,0,0);
             }            
             label.logging-form-label strong {
                 background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/star.png')}") no-repeat scroll center center rgba(0,0,0,0);
-            }            
+            }                        
         </style>
         <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/logging-form.css')}" />
     </head>
     <body>
-    	<apex:include pageName="amr_common_header" />
+        <apex:include pageName="Amr_common_header" />
         <apex:form >            
             <div class="container">
+                <apex:outputpanel rendered="{!successmessage}">                
+                <div class="success-message">
+                    <apex:outputlabel value="{!$Label.Amr_Success_AdManager}" /> <!--  -->
+                </div>
+                </apex:outputpanel>
+                
                 <section class="before-start margin-top15">
                     <apex:outputText value="{!r.Introduction__c}" escape="false" />
                 </section>
@@ -186,13 +192,13 @@
                             </div>
                             <div class="form-field margin-left-minus30">
                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetAllocatedCountryFlag}" styleclass="loadError" />
-                                <apex:selectList value="{!selectedCountry }" size="1" id="selectedId" onchange="Calculate()" styleClass="selectedIdClass">
+                                <apex:selectList value="{!selectedCountry }" size="1" id="selectedId" onchange="CalculateOnChangenKP('1')" styleClass="selectedIdClass">
                                     <apex:selectOptions value="{!currencyRecords }" />
                                 </apex:selectList>
                             </div>
                             <div class="form-field">
                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!budgetAllocatedInputFlag}" styleclass="loadError" />
-                                <apex:inputField value="{!jobDetails.Budget_Allocated_Input_Value__c}" id="inputId" onkeypress="return isNumber(event)" onkeyup="Calculate()" styleClass="inputIdClass" html-placeholder="Local Currency (Example 123456.00)" html-autocomplete="off" />
+                                <apex:inputField value="{!jobDetails.Budget_Allocated_Input_Value__c}" id="inputId" onkeypress="return isCurrency(event)" onkeyup="CalculateOnChangenKP()" styleClass="inputIdClass" html-placeholder="Local Currency (Example 123,456.00)" html-autocomplete="off" />
                             </div>
                             <div class="form-field">
                                 <apex:inputField value="{!jobDetails.Allocated_Budget_euro__c}" id="outputId" styleClass="outputIdClass" html-placeholder="Auto Calc to Euros" />
@@ -351,7 +357,7 @@
                             <div class="form-field padding0-10-5">
                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!projectDetailsFlag}" styleclass="loadError" html-data-width="70" />
                                 <apex:outputLabel styleclass="logging-form-label">
-                                    {!$label.Project_name_e_g_Apollo}
+                                    {!$label.Amr_Project_name_e_g_Apollo}
                                     <strong></strong>
                                     <div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Details__c.inlineHelpText}"></div>
                                 </apex:outputLabel>
@@ -364,7 +370,7 @@
                                 <apex:selectOptions value="{!listOfProjectName }" />
                                 </apex:selectList>-->
                                     <apex:inputField value="{!jobDetails.Project_Details__c}" id="projDetailId" styleClass="projecttextProjDetail hide" />
-                                    <apex:inputField value="{!jobDetails.Project_Name_Other__c}" id="projDetailIdOther" styleClass="projecttext" html-data-id="projecttext" />
+                                    <apex:inputField value="{!jobDetails.Project_Name_Other__c}" id="projDetailIdOther" styleClass="projecttext" html-data-id="projecttext" html-placeholder="{!$Label.Amr_Project_Name_Example}" />
                                 </apex:actionRegion>
                             </div>
                             <div class="form-field margin-top2">
@@ -438,7 +444,7 @@
                                 </apex:outputLabel>
                             </div>
                             <div class="form-field margin-left-minus30">
-                                <apex:inputField value="{!jobDetails.Campaign_Name__c}" />
+                                <apex:inputField value="{!jobDetails.Campaign_Name__c}"  html-placeholder="{!$Label.Amr_Campaign_Name_Example}"/>
                                 <!-- html-placeholder="Campaign Name" -->
                             </div>
                             <div class="clear">
@@ -456,7 +462,7 @@
                                 </apex:outputLabel>
                             </div>
                             <div class="form-field margin-left-minus30">
-                                <apex:inputField value="{!jobDetails.Execution_Name__c}" />
+                                <apex:inputField value="{!jobDetails.Execution_Name__c}" html-placeholder="{!$Label.Amr_Execution_Name_Example}"/>
                                 <!-- html-placeholder="Execution Name" -->
                             </div>
                             <div class="clear">
@@ -474,7 +480,7 @@
                                 </apex:outputLabel>
                             </div>
                             <div class="form-field margin-left-minus30">
-                                <apex:inputField value="{!jobDetails.Target_Air_Date__c}" />
+                                <apex:inputField value="{!jobDetails.Target_Air_Date__c}" onkeypress="return false;"/>
                                 <!-- html-placeholder="Select Date"  -->
                             </div>
                             <div class="clear">
@@ -1100,6 +1106,7 @@
                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!RequireMusicFlag}" styleclass="loadError" html-data-width="70" />
                                 <apex:outputLabel styleclass="checkboxrmt-label">
                                     {!$Label.Amr_Do_you_anticipate_that_your_production_will_require_Music}
+                                    
                                     <strong class="right-8"></strong>                                    
                                 </apex:outputLabel>
                             </div>
@@ -1119,6 +1126,7 @@
                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!RequireTalentFlag}" styleclass="loadError" html-data-width="70" />
                                 <apex:outputLabel styleclass="checkboxrmt-label">
                                     {!$Label.Amr_Do_you_anticipate_that_your_production_will_require_Celebrity_Talent}
+                                    
                                     <strong class="right-8"></strong>                                    
                                 </apex:outputLabel>
                             </div>
@@ -1185,49 +1193,12 @@
     </body>
     <script type="text/javascript">
         $j(function() {
-            var stringArray = JSON.parse('{!MethodToPassProjectNames}');
-            var newOption;
+            var stringArray = JSON.parse('{!MethodToPassProjectNames}');            
             var projFormPage = '{!projectNameFromPage}';
-            for (var i = 0; i < stringArray.length; i++) {
-                if ('{!projectNameFromPage}' == stringArray[i] && '{!projectNameFromPage}' !== null) {
-                    newOption = $j('<option value="' + stringArray[i] + '">' + stringArray[i] + '</option>');
-                    $j('#projectList').append(newOption);
-                }
-            }
-
-            for (var i = 0; i < stringArray.length; i++) {
-                if ('{!projectNameFromPage}' == stringArray[i]) {
-                    i = i + 1;
-                }
-                newOption = $j('<option value="' + stringArray[i] + '">' + stringArray[i] + '</option>');
-                $j('#projectList').append(newOption);
-            }
-
-            var strArr = {!CategoryList};
-            var newOp;
-            for (var j = 0; j < strArr.length; j++) {
-                if ('{!categoryName}' == strArr[j] && '{!categoryName}' !== null) {
-                    newOp = $j('<option value="' + strArr[j] + '">' + strArr[j] + '</option>');
-                    $j('#categoryList').append(newOp);
-                }
-            }
-            var none = $j('<option value="none">--None--</option>');
-            $j('#categoryList').append(none);
-
-            for (var j = 0; j < strArr.length; j++) {
-                if ('{!categoryName}' == strArr[j]) {
-                    j = j + 1;
-                }
-                newOp = $j('<option value="' + strArr[j] + '">' + strArr[j] + '</option>');
-                $j('#categoryList').append(newOp);
-            }
+            var strArr = {!CategoryList};            
+            var catName = '{!categoryName}';
             
-            if($j(".loadErrorParent").length) {
-           		$j('html,body').animate({scrollTop: $j(".loadErrorParent").offset().top},'slow');
-           	} else if($j(".errorM3").length){
-           		$j('html,body').animate({scrollTop: $j(".errorM3").offset().top},'slow');
-           	}
-
+            catProjectADM(stringArray,strArr,projFormPage,catName);                                    
         });
     </script>
 </apex:page>
