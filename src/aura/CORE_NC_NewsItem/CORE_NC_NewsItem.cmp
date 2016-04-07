@@ -11,12 +11,12 @@
                     <div class ="SubText" style="padding-bottom:3px;">
                         <ui:outputText value="{!v.newsArticle.PublishedDate}"/>
                         <div class="rightFloat">
-                            <aura:if isTrue="{!v.newsType == 'PaulsBlog' ? false : true}">
+                            <!--<aura:if isTrue="{!v.newsType == 'PaulsBlog' ? false : true}">-->
                                     &nbsp;&nbsp;&nbsp;<img src="/resource/NewsCenterIcons/Like_inactive.svg" class="newsCenterSmallIcons"/>
                                     &nbsp;<ui:outputText value="{!v.newsArticle.LikeCount}"/>
                                     &nbsp;&nbsp;&nbsp;<img src="/resource/NewsCenterIcons/Comment_inactive.svg" class="newsCenterSmallIcons"/>
                                     &nbsp;<ui:outputText value="{!v.newsArticle.CommentCount}"/>
-                            </aura:if>
+                            <!--</aura:if>-->
                         </div>
                     </div>
                     <aura:if isTrue="{!v.newsType == 'MyNews' ? true : false}">
