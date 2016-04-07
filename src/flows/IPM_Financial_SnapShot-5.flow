@@ -4351,7 +4351,7 @@
             </processMetadataValues>
             <field>GM_Y1_bps_vs_DNDS_Charter__c</field>
             <value>
-                <elementReference>myVariable_current.GM_Y1_bps_vs_DNDS_Charter__c</elementReference>
+                <elementReference>myVariable_current.GM_Y1_bps_vs_DNDS_Global__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

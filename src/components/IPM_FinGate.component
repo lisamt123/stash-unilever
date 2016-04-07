@@ -349,6 +349,12 @@
                                 <apex:param value="{!currentFinancial.NPV_Global__c}" />
                             </apex:outputText>
                         </apex:outputPanel>
+                        <!-- Charter Gate Approved -->		
+						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">		
+                            <apex:outputText value="{0, number, ###,###,###.##}">		
+                                <apex:param value="{!currentFinancial.NPV_Charter__c}" />		
+                            </apex:outputText>		
+                        </apex:outputPanel>
 
                         <!-- Regional Values -->
                         <!-- Condition for checking field suffix is regional or not -->
@@ -376,6 +382,10 @@
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
                             <apex:outputText value="{!currentFinancial.IRR_Global__c}"/>
                         </apex:outputPanel>
+                        <!-- Charter Gate Approved -->		
+						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">		
+                            <apex:outputText value="{!currentFinancial.IRR_Charter__c}"/>		
+                        </apex:outputPanel>
 
                         <!-- Regional Values -->
                         <!-- Condition for checking field suffix is global or not -->
@@ -400,6 +410,10 @@
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.Payback_Global__c}" />
                             </apex:outputText>
+                        </apex:outputPanel>
+                        <!-- Charter Gate Approved -->		
+						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">		
+                            <apex:outputText value="{!currentFinancial.Payback_Charter__c}"/>		
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -435,7 +449,10 @@
                                 <apex:param value="{!currentFinancial.CAPEX_Global__c}" />
                             </apex:outputText>
                         </apex:outputPanel>
-
+						<!-- Charter Gate Approved -->		
+						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">		
+                            <apex:outputText value="{!currentFinancial.CAPEX_Charter__c}"/>		
+                        </apex:outputPanel>
                         <!-- Regional Values -->
                         <!-- Condition for checking field suffix is regional or not -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Regional',TRUE,FALSE)}">
@@ -463,6 +480,11 @@
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.BIC_Global__c}" />
                             </apex:outputText>
+                        </apex:outputPanel>
+                        
+                        <!-- Charter Gate Approved -->
+						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">
+                            <apex:outputText value="{!currentFinancial.BIC_Charter__c}"/>
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -497,6 +519,11 @@
                                 <apex:param value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Global__c}" />
                             </apex:outputText>
                         </apex:outputPanel>
+                        
+                        <!-- Charter Gate Approved -->		
+						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">		
+                            <apex:outputText value="{!currentFinancial.GM_Y1_bps_vs_DNDS_Charter__c}"/>		
+                        </apex:outputPanel>
 
                         <!-- Regional Values -->
                         <!-- Condition for checking field suffix is regional or not -->
@@ -524,6 +551,11 @@
                             <apex:outputText value="{0, number, ###,###,###.##}">
                                 <apex:param value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Global__c}" />
                             </apex:outputText>
+                        </apex:outputPanel>
+                        
+                        <!-- Charter Gate Approved -->		
+						 <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">		
+                            <apex:outputText value="{!currentFinancial.PBO_Y1_bps_vs_DNDS_Charter__c}"/>		
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
