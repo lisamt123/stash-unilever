@@ -52,6 +52,10 @@ src/classes/CPA_InformationController_Test.cls
 src/classes/CPA_InformationController_Test.cls-meta.xml
 src/classes/CPA_Interface_Trigger.cls
 src/classes/CPA_Interface_Trigger.cls-meta.xml
+src/classes/CPA_Key_Contact_Trigger_Handler.cls
+src/classes/CPA_Key_Contact_Trigger_Handler.cls-meta.xml
+src/classes/CPA_Key_Contacts_TriggerUtil.cls
+src/classes/CPA_Key_Contacts_TriggerUtil.cls-meta.xml
 src/classes/CPA_LOI_CancelReasonController.cls
 src/classes/CPA_LOI_CancelReasonController.cls-meta.xml
 src/classes/CPA_LOI_InformationController.cls
@@ -64,6 +68,8 @@ src/classes/CPA_LOITrigger_Handler.cls
 src/classes/CPA_LOITrigger_Handler.cls-meta.xml
 src/classes/CPA_Project_Work_Order_TriggerUtil.cls
 src/classes/CPA_Project_Work_Order_TriggerUtil.cls-meta.xml
+src/classes/CPA_PWO_LOI_Trigger_Util.cls
+src/classes/CPA_PWO_LOI_Trigger_Util.cls-meta.xml
 src/classes/CPA_PWO_RFTer_Controller.cls
 src/classes/CPA_PWO_RFTer_Controller.cls-meta.xml
 src/classes/CPA_PwoCnfTnf_CancelReasonController.cls
@@ -90,12 +96,20 @@ src/classes/CPA_Queries_TriggerUtil.cls
 src/classes/CPA_Queries_TriggerUtil.cls-meta.xml
 src/classes/CPA_Query_comment_Trigger_Handler.cls
 src/classes/CPA_Query_comment_Trigger_Handler.cls-meta.xml
+src/classes/CPA_Req_Deli_and_Key_Contacts_util_Test.cls
+src/classes/CPA_Req_Deli_and_Key_Contacts_util_Test.cls-meta.xml
+src/classes/CPA_RequirementsDeliverables_Handler.cls
+src/classes/CPA_RequirementsDeliverables_Handler.cls-meta.xml
+src/classes/CPA_RequirementsDeliverables_TriggerUtil.cls
+src/classes/CPA_RequirementsDeliverables_TriggerUtil.cls-meta.xml
 src/classes/CPA_ReturnController_Test.cls
 src/classes/CPA_ReturnController_Test.cls-meta.xml
 src/classes/CPA_SelectRecordType_Test.cls
 src/classes/CPA_SelectRecordType_Test.cls-meta.xml
 src/classes/CPA_SelectRecordTypeController.cls
 src/classes/CPA_SelectRecordTypeController.cls-meta.xml
+src/classes/CPA_Test_Req_Deli_and_Key_Contacts_util.cls
+src/classes/CPA_Test_Req_Deli_and_Key_Contacts_util.cls-meta.xml
 src/classes/CPA_testContractClass.cls
 src/classes/CPA_testContractClass.cls-meta.xml
 src/classes/CPA_testCustomSettingClass_util.cls
@@ -120,6 +134,8 @@ src/email/CPA_Email_Template/CPA_Answered_HLE_request.email
 src/email/CPA_Email_Template/CPA_Answered_HLE_request.email-meta.xml
 src/email/CPA_Email_Template/CPA_Answered_PWORF.email
 src/email/CPA_Email_Template/CPA_Answered_PWORF.email-meta.xml
+src/email/CPA_Email_Template/CPA_Auto_Accept_a_PWORF.email
+src/email/CPA_Email_Template/CPA_Auto_Accept_a_PWORF.email-meta.xml
 src/email/CPA_Email_Template/CPA_Auto_Accept_PWORF.email
 src/email/CPA_Email_Template/CPA_Auto_Accept_PWORF.email-meta.xml
 src/email/CPA_Email_Template/CPA_CR_is_accepted.email
@@ -277,6 +293,7 @@ src/groups/CAP_ULPT_Group.group
 src/groups/CAP_VDM_Group.group
 src
 src/layouts
+src/layouts/CPA_CNF_TNF__c-CNF%2FTNF Layout.layout
 src/layouts/CPA_Commercial_Details__c-Commercial Details Layout.layout
 src/layouts/CPA_CR__c-CPA CR For ULPM ULFT ULPT.layout
 src/layouts/CPA_CR__c-CPA SMT Sent for Signed and Signed.layout
@@ -284,10 +301,6 @@ src/layouts/CPA_CR__c-CPA VDM Delivered Layout.layout
 src/layouts/CPA_CR__c-CR Layout without mandatory fields.layout
 src/layouts/CPA_CR__c-CR Read Only Layout.layout
 src/layouts/CPA_CR__c-Standalone CR Layout.layout
-src/layouts/CPA_HLE__c-CAP_Ball Park Estimate Layout.layout
-src/layouts/CPA_HLE__c-CAP_Ball Park Estimate without mandatory fields.layout
-src/layouts/CPA_HLE__c-CAP_High Level Estimate Layout.layout
-src/layouts/CPA_HLE__c-CAP_High Level Estimate without mandatory fields.layout
 src/layouts/CPA_HLE_Request__c-BPE Answered.layout
 src/layouts/CPA_HLE_Request__c-BPE Cancelled.layout
 src/layouts/CPA_HLE_Request__c-BPE.layout
@@ -297,10 +310,10 @@ src/layouts/CPA_HLE_Request__c-HLE Request Accepted.layout
 src/layouts/CPA_HLE_Request__c-HLE Request Cancelled.layout
 src/layouts/CPA_HLE_Request__c-HLE Request Saved layout.layout
 src/layouts/CPA_HLE_Request__c-HLE.layout
+src/layouts/CPA_Key_Contacts__c-Key Contact Layout.layout
 src/layouts/CPA_LOI__c-ADM LOI without Mandatory fields.layout
 src/layouts/CPA_LOI__c-LOI Layout without mandatory fields.layout
 src/layouts/CPA_LOI__c-LOI submitted Layout.layout
-src/layouts/CPA_LOI__c-SMT LOI without Mandatory fields.layout
 src/layouts/CPA_LOI__c-ULPM LOI without Mandatory Fields.layout
 src/layouts/CPA_project_work_order__c-CPA Project Work Order Cancel  Layout.layout
 src/layouts/CPA_project_work_order__c-CPA Project Work Order CNF Layout.layout
@@ -327,13 +340,15 @@ src/layouts/CPA_PWORF__c-RA-ADM Page Layout.layout
 src/layouts/CPA_PWORF_Ageing__c-CPA PWORF Ageing Layout.layout
 src/layouts/CPA_Queries__c-CPA_Queries Layout.layout
 src/layouts/CPA_Query_comment__c-CPA_Query comments Layout.layout
+src/layouts/CPA_Requirements_and_Deliverables__c-Requirements and Deliverables Layout.layout
+src/layouts/CPA_Risk_Assessment_and_Mitigation__c-Risk Assessment and Mitigation Layout.layout
 src/layouts/CPA_TAT__c-CPA TAT Layout.layout
+src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute Layout.layout
 src
 src/objects
 src/objects/CPA_CNF_TNF__c.object
 src/objects/CPA_Commercial_Details__c.object
 src/objects/CPA_CR__c.object
-src/objects/CPA_HLE__c.object
 src/objects/CPA_HLE_Request__c.object
 src/objects/CPA_Key_Contacts__c.object
 src/objects/CPA_LOI__c.object
@@ -407,6 +422,8 @@ src/triggers/CPA_CRTrigger.trigger
 src/triggers/CPA_CRTrigger.trigger-meta.xml
 src/triggers/CPA_HLERequest_trigger.trigger
 src/triggers/CPA_HLERequest_trigger.trigger-meta.xml
+src/triggers/CPA_Key_Contact_Trigger.trigger
+src/triggers/CPA_Key_Contact_Trigger.trigger-meta.xml
 src/triggers/CPA_LOITrigger.trigger
 src/triggers/CPA_LOITrigger.trigger-meta.xml
 src/triggers/CPA_Project_Work_Order_Triggers.trigger
@@ -415,12 +432,13 @@ src/triggers/CPA_PWORF_Trigger.trigger
 src/triggers/CPA_PWORF_Trigger.trigger-meta.xml
 src/triggers/CPA_QueriesTrigger.trigger
 src/triggers/CPA_QueriesTrigger.trigger-meta.xml
+src/triggers/CPA_RequirementsDeliverables_Trigger.trigger
+src/triggers/CPA_RequirementsDeliverables_Trigger.trigger-meta.xml
 src/triggers/CPA_ResponseTrigger.trigger
 src/triggers/CPA_ResponseTrigger.trigger-meta.xml
 src
 src/workflows
 src/workflows/CPA_CR__c.workflow
-src/workflows/CPA_HLE__c.workflow
 src/workflows/CPA_HLE_Request__c.workflow
 src/workflows/CPA_LOI__c.workflow
 src/workflows/CPA_project_work_order__c.workflow
