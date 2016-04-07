@@ -601,7 +601,9 @@
                         <apex:outputPanel rendered="{!if(ShowFinanceMember=False, TRUE,False)}">
                             <apex:outputText value="{!project.IPM_Project_Leader__r.Name}"/>
                         </apex:outputPanel>-->
-                         <apex:outputText value="{!finProjectPriority.IPM_CPP_Local__c}"/>
+                        <!--CR0405 New CPP for regional/local rollout-->
+						<apex:outputText value="{!IF(localCPP != null, localCPP, regionalCPP)}" />
+                         
                     </td>
                 </tr>
                 <tr>     

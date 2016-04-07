@@ -330,7 +330,7 @@
                             <div class="greyborder"></div>
                             </apex:outputpanel>
                             <!-- Display below outputPanel when projectPriority is not null-->
-                            <apex:outputpanel rendered="{!projectPriority != null}">
+                            <apex:outputpanel rendered="{!project.IPMProject_Span__c==$Label.IPM_Local}">  
                                 <div class="row">
                                     <div class="col-sm-8 pr0">
                                         <div class="keycontent">{!$Label.IPM_ProjectPriority}</div>

@@ -124,6 +124,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     
     public Static final String ENVIRONMENTAL_IMPACT = 'Environmental_Impact';
     public Boolean bDocStatusNotStartedOrApproved{get;set;}//Flag to check if document is in Not Started or Approved Status
+    public string regionalCPP {get;set;}
+    public string localCPP {get;set;}
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -797,10 +799,12 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
 				else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
 				{
 					
-					fin = [SELECT ipm_cpp_local__c,Year_3_iTO_Local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,
+					fin = [SELECT ipm_cpp_local__c,ipm_cpp_regional__c, Year_3_iTO_Local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,
 								   Year_3_iTO_MD__c,Business_Impact_Local__c 
 							FROM IPM_Financial__c 
 							WHERE Financial_External_ID__c =: nam limit 1];
+					localCPP = fin.ipm_cpp_local__c;
+					regionalCPP = fin.ipm_cpp_regional__c;
 							
 					string parentProjectType=project.IPM_Parent_Project__r.IPM_Project_Type__c;					
 					if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
