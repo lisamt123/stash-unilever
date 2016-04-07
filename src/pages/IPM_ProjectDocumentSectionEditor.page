@@ -725,6 +725,10 @@
                         <c:IPM_ConfirmModal />
                     </div>
                 </div>
+				<div> 
+                <c:IPM_MarketPerformance projId="{!projectId}" isEditable="{!isEditMarketPerformance}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && projDocSec.IPM_Section_Sequence__c =='6.5' && project.IPMProject_Span__c='Regional' && project.IPM_Project_Type__c!='Operational')}" ></c:IPM_MarketPerformance>
+                <c:IPM_PerformanceBreakdown projId="{!projectId}" isAppendix="false" rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c=='Monitoring_Performance_in_Market' && projDocSec.IPM_Section_Sequence__c =='6.3' && project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c!='Operational',true,false)}" isEditable="{!isEditMarketPerformance}"></c:IPM_PerformanceBreakdown> 
+                </div>
             </apex:form> 
         </apex:define>
     </apex:composition>

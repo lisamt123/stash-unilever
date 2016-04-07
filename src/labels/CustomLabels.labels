@@ -6008,6 +6008,13 @@ If approved your project will be linked after your Charter gate has been approve
         <value>Calendar</value>
     </labels>
     <labels>
+        <fullName>IPM_Can_not_be_greater</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Can not be greater</shortDescription>
+        <value>Can NOT be greater than 100%</value>
+    </labels>
+    <labels>
         <fullName>IPM_CancelCountryRemoval</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -6476,6 +6483,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_DATE_PERIOD</shortDescription>
         <value>Date Period</value>
+    </labels>
+    <labels>
+        <fullName>IPM_DATE_PERIOD_COLON</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_DATE_PERIOD_COLON</shortDescription>
+        <value>Date Period:</value>
     </labels>
     <labels>
         <fullName>IPM_DAY</fullName>
@@ -7278,6 +7292,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Environmental_Impact</value>
     </labels>
     <labels>
+        <fullName>IPM_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
         <fullName>IPM_ErrorRetrievingCategories</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7635,6 +7656,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>years</value>
     </labels>
     <labels>
+        <fullName>IPM_Finacial_Data_Missing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Finacial key data missing message</shortDescription>
+        <value>Key Financial Data is missing. Please update your business case.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Final_Stategic_Intent</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7794,6 +7822,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_Financial_KeyCountry</shortDescription>
         <value>Key Country</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Financial_Target_Months</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Financial Target Months</shortDescription>
+        <value>For Financial Target 12 Months</value>
     </labels>
     <labels>
         <fullName>IPM_FirstFullYear</fullName>
@@ -8928,6 +8963,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>Market</shortDescription>
         <value>Market</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Market_Performance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Market Performance</shortDescription>
+        <value>Market Performance</value>
     </labels>
     <labels>
         <fullName>IPM_Market_Place_Activity</fullName>
@@ -10278,6 +10320,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM Please Fill Comments In</shortDescription>
         <value>Please Fill Comments in</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Please_select_country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select country</shortDescription>
+        <value>Please select currency:</value>
     </labels>
     <labels>
         <fullName>IPM_PojectSetupUrl</fullName>
@@ -12345,6 +12394,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Top 5 Customer Channels</value>
     </labels>
     <labels>
+        <fullName>IPM_Total_add_up_periods</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total add up periods</shortDescription>
+        <value>The total across the 13 periods do not add up to the total</value>
+    </labels>
+    <labels>
         <fullName>IPM_TurnOverCP</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -12625,6 +12681,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>(What, by whom, by when)</value>
     </labels>
     <labels>
+        <fullName>IPM_Warning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Warning</shortDescription>
+        <value>Warning</value>
+    </labels>
+    <labels>
         <fullName>IPM_WhiteSpace_HelpText</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -12707,6 +12770,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM Year3iTO</shortDescription>
         <value>Year-3-iTO</value>
+    </labels>
+    <labels>
+        <fullName>IPM_and_Confirm</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM and Confirm</shortDescription>
+        <value>and Confirm</value>
     </labels>
     <labels>
         <fullName>IPM_backto_intermediate</fullName>

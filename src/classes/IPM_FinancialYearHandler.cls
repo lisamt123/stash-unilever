@@ -49,6 +49,12 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         Set<Id> incomingFinancialYearSet = new Set<Id>();
         Map<String,IPM_Financial_Year__c> upsertconsolidatedFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
 
+        //Added for CR0010+CR0127
+        if(Trigger.isInsert)
+        {
+            IPM_FinancialYearHelper.createMarketPerformance((Map<Id, IPM_Financial_Year__c>)Trigger.newMap);
+        }
+        
         if(Trigger.isUpdate)
         {
         	Map<Id,IPM_Financial_Year__c> oldFinancialMap = (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap;

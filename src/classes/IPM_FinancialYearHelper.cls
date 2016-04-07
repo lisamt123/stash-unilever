@@ -20,9 +20,6 @@ public with sharing class IPM_FinancialYearHelper
             'Volume_Global__c','Volume_Regional__c','Volume_Local__c',
             'Volume_Tons_Global__c','Volume_Tons_Regional__c','Volume_Tons_Local__c'
         };
-
-    private static String DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
-    private static String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
     
     public static Boolean SKIP_TRIGGER_EXECUTION = false;
     
@@ -43,9 +40,7 @@ public with sharing class IPM_FinancialYearHelper
         
         Set<String> changedFinancialFieldSet = new Set<String>();
         
-        Boolean consolidationChanged = false;  
-        Map<String,Schema.SObjectField> financialYearFieldMap = Schema.SObjectType.IPM_Financial_Year__c.fields.getMap();
-        
+       
         for(IPM_Financial_Year__c newfinancialYear : newFinancialYearList) 
         {
             IPM_Financial_Year__c oldFinancialYear = null;
@@ -267,4 +262,62 @@ public with sharing class IPM_FinancialYearHelper
         
         return financialYearQuery;
     }
+
+    //This method is used to create market performance(6.5) and performance breakdown(6.3) data when financial years are created as part of local rollout creation.
+    public static void createMarketPerformance(Map<id,IPM_Financial_Year__c>finYearmap){
+        Map<String, IPM_Financial_Year__c> mapFinancialExternalIdwithFinancialYear = new Map<String, IPM_Financial_Year__c>();
+       
+        List<IPM_MarketPerformance__c>lstMarketPerformaceData = new List<IPM_MarketPerformance__c>();
+        IPM_MarketPerformance__c marketPerformanceData;
+        
+        List<IPM_MarketPerformanceBreakdown__c> lstPerformanceBreakdownData = new List<IPM_MarketPerformanceBreakdown__c>();
+        IPM_MarketPerformanceBreakdown__c performanceBreakdownData;
+        
+        Integer counter;
+        final String PERIOD = 'Period ';
+        final integer PERIOD_COUNT = 13;
+         
+        set<String> setFinancialExternalIds = new Set<String>();
+        for( IPM_Financial_Year__c financialYear : [SELECT Id, Year__c, Year_Type__c, PL_Type__c, Financial_External_Id__c, IPM_Financial__r.Financial_External_ID__c, 
+                                                    IPM_Financial__r.RecordType.Name, IPM_Financial__r.Regional_Project__c
+                                                    FROM IPM_Financial_Year__c
+                                                    WHERE Id IN : finYearmap.keySet()
+                                                    AND isActive__c = true 
+                                                    AND Year__c =: IPM_ConstantUtils.Y1_YEARINDEX
+                                                    AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_INCREMENTAL
+                                                    AND IPM_Financial__r.RecordType.Name =: IPM_ConstantUtils.DEFAULT_FINANCIAL_RT
+                                                    AND IPM_Financial__r.Regional_Project__c!=null ])
+        {
+                mapFinancialExternalIdwithFinancialYear.put(financialYear.Financial_External_Id__c, financialYear);
+                setFinancialExternalIds.add(financialYear.IPM_Financial__r.Financial_External_ID__c);
+        }
+        for(IPM_Project_Rollout__c projectRollout : [Select Id, MCO_Name__c, IPM_Rollout_Project__c from IPM_Project_Rollout__c where IPM_Rollout_Project__c IN : setFinancialExternalIds  limit 1000]){
+                marketPerformanceData = new IPM_MarketPerformance__c();
+                marketPerformanceData.IPMFinancialYear__c = mapFinancialExternalIdwithFinancialYear.get(projectRollout.IPM_Rollout_Project__c).Id;
+                marketPerformanceData.IPMProjectRollout__c = projectRollout.Id;
+                marketPerformanceData.External_Id__c = mapFinancialExternalIdwithFinancialYear.get(projectRollout.IPM_Rollout_Project__c).Financial_External_Id__c;
+                lstMarketPerformaceData.add(marketPerformanceData);
+        }
+        
+	    if(!lstMarketPerformaceData.isEmpty()){    
+	        insert lstMarketPerformaceData;
+                
+	        for(IPM_MarketPerformance__c marketPerformance : [Select Id, External_Id__c from IPM_MarketPerformance__c 
+	                                                                                              where Id IN : (new Map<Id, IPM_MarketPerformance__c>( lstMarketPerformaceData)).keySet()])
+	        {
+	            for(counter=1;counter<=PERIOD_COUNT;counter++){
+	                performanceBreakdownData = new IPM_MarketPerformanceBreakdown__c();
+	                performanceBreakdownData.MarketPerformance__c = marketperformance.Id;
+	                performanceBreakdownData.External_Id__c = marketperformance.External_Id__c + IPM_ConstantUtils.IPM_SPACE + PERIOD + counter;
+	                performanceBreakdownData.Period__c = PERIOD+counter;
+	                performanceBreakdownData.Sequence__c = counter;
+	                lstPerformanceBreakdownData.add(performanceBreakdownData);
+	            }
+	        }
+	        if(!lstPerformanceBreakdownData.isEmpty())
+	            insert lstPerformanceBreakdownData;
+	    }
+        
+        
+    }	
 }
