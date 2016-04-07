@@ -4078,6 +4078,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Brand__c</field>
