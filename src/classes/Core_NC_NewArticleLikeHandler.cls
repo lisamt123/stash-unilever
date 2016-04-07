@@ -1,5 +1,11 @@
-public with sharing class NewsArticleLikeHandler{
-    
+/*****************************************
+  Class Name: Core_NC_NewArticleLikeHandler
+  Author : Mindtree
+  Date: 8 march 2016
+  Requirement/Project Name: Unilever Salesforce Engagement
+  Requirement/Description:Handle the like on articles  and  class name modified as per unilever standard
+********************************************/
+public with sharing class Core_NC_NewArticleLikeHandler{
     public void handleNewsArticleLike (List<NewsArticleLike__c> newsArticleLikes){
         Map<Id, List<Id>> articleUserMap = new Map<Id, List<Id>>{};
         
@@ -27,7 +33,7 @@ public with sharing class NewsArticleLikeHandler{
             //Only socialise to User Feed if configured on Article
             if(newsArticle.Socialise_Activity__c) 
                 for(Id userId : articleUserMap.get(newsArticle.Id)){
-system.debug('test vvo' +userId);                
+ // system.debug('test vvo' +userId);                
                     if(newsArticle.Summary__c==null || newsArticle.Summary__c=='')
                     newsArticle.Summary__c='abc';
                     feedItems.add(new FeedItem(ParentId = userId, Body = operation + 'this article'+'\n'+'Article summary: '+newsArticle.Summary__c, 
@@ -35,9 +41,9 @@ system.debug('test vvo' +userId);
                            }  
         }
         
-        if(feedItems != null && !feedItems.isEmpty())
+        if(feedItems != null && !feedItems.isEmpty()){
             Database.insert(feedItems, false);
-                    
+        }            
     }
     
 }
