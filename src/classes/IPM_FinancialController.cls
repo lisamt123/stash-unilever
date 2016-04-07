@@ -1197,7 +1197,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         lstIpmFinancial =   [SELECT Id, Name,recordTypeID, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
                             FROM IPM_Financial__c
                             WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
-                            AND Parent_Project__c =: project.IPM_Parent_Project__c Limit: IPM_ConstantUtils.MaxLimit];
+                            AND Regional_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
         
         if(!lstIpmFinancial.isEmpty())
         {
