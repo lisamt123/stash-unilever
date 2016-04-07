@@ -249,11 +249,11 @@
 	.refreshFromLocal{margin-right:15px !important;}
 	.cancelAction{margin-right:10px;}
 	.finAlertBox{display: block;padding: 10px;border-radius: 4px;margin-top: 20px;margin-bottom: 20px;background: #FFFB42;float:left; width:100%}
-	.finAlertBox .col-sm-1{margin-top:10px;}
-    .finalerttext {position: relative;left: -10px;font-weight: bold;color: #333; font-size: 14px;}
+	.finAlertBox .col-sm-1{margin-top: 10px;width: 35px;padding-left: 0px;padding-right: 0px;}
+    .finalerttext {position: relative;left: -10px;font-weight: normal;color: #333; font-size: 14px;}
 	.finalerttext  p {margin-bottom:0px !important;font-size: 14px;}
     .alertimg { width: 30px; position: relative; bottom: 7px;height:auto;}
-	.misAlignedTLD {background-repeat: no-repeat;text-indent: -2px;background-position: 10px;background-image: url('../images/alert_1b.png');color: #555;font-weight: normal;background-color: #FFFB42 !important;width: 100%;display: block;padding: 10px;float: left;margin-bottom: 10px;border-radius: 4px;padding-left: 43px;}
+	.misAlignedTLD {background-repeat: no-repeat;text-indent: 10px;background-size: 30px;background-position: 10px;background-image: url('../images/alert_1a.png');color: #555;font-weight: normal;background-color: #FFFB42 !important;width: 100%;display: block;padding: 10px;float: left;margin-bottom: 10px;border-radius: 4px;padding-left: 43px;}
 	.marginB10{margin-bottom:10px}
 	.pull-right{float:right;}
 	.pull-left{float:left;}
@@ -294,3 +294,4 @@
 .smalllinfo + .tooltip.top .tooltip-arrow {
     border-top-color: #00b1a5;
 }
+.col-sm-6.finTabHeaderExt{float:right;}

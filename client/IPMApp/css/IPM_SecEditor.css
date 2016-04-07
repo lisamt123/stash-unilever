@@ -80,7 +80,7 @@
 	#ipmSecEditorTab .ipmTabs li.active{border:1px solid #50657d; color:#007DBB; position:relative; top:2px; border-bottom:2px solid #ebf8fc!important; background:#ebf8fc; cursor:pointer; border-top-left-radius:3px; border-top-right-radius:3px;-moz-border-top-left-radius:3px; -moz-border-top-right-radius:3px;-webkit-border-top-left-radius:3px; -webkit-border-top-right-radius:3px;}
 	.ipmTabContent#aTasks {min-height:490px;}
 	
-	.pageHeadToolbar .SecButtonSet {margin-top:0px;padding-top:5px;}
+	.panel-group.pageHeadToolbar .SecButtonSet {margin-top:0px;padding-top:5px;}
 	.pageHelpToolbar .SecButtonSet  {margin-top:4px;}
 	.ipmProjectDetails .SecButtonSet {position:relative; top:0;}	
 	.SecButtonSet .icoButton,.pageHeadToolbar .SecButtonSet .icoButton,.pageHelpToolbar .SecButtonSet .icoButton ,	.pageHeadToolbar .SecButtonSet .icoButton  {width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
@@ -746,3 +746,66 @@
    width:16px !important;
    top:3px;
 }
+.sliderDynamic .legendSld label {left:0px; cursor:pointer; position:absolute; font-size:0.8em;font-weight:normal;color:#555; transform:translate(-50%, 0);}
+.sliderDynamic .legendSld label:before {content:"";display:block;position:absolute;left:49.5%; top:-25px; border:1px solid #252525; background:#fff; width:5px; height:16px; margin-left:50%; border-radius:5px; -webkit-border-radius:5px; -webkit-border-radius:5px;}
+.sliderDynamic.sliderGk div table{table-layout: fixed;}
+.sliderDynamic.sliderGk div table tr td{padding:0px}
+.sliderDynamic .legendSld label:before{left:0px;}
+.sliderDynamic.sliderGk div table tr td input{display:none;}
+.sliderDynamic.sliderGk div table tr td input[type=radio]:checked ~ label {color:#E98824; font-weight:bold;}
+
+
+/* Performance Breakdown Styles */
+.performanceContainer1{width:1267px;float:left;background-color:#dceefa;border: 1px #7fa29e solid;}
+.performanceHead{font-weight: bold;width:7%;float:left;padding:5px;}
+.performanceContainer2,.performanceContainer3{width:1267px;float:left;}
+.performanceContainer2{background: #f8f8f8;border: 1px #7fa29e solid;}
+.performanceContainer3{border-left:1px #7fa29e solid;border-right:1px #7fa29e solid;border-bottom:1px #7fa29e solid;}
+.breakdown_Container{float:left;margin-bottom: 10px;}
+.performanceSecHead,.performanceCell{float:left;width:7%;padding: 5px;}
+.performancebuttonContainer{float:right;clear: both;margin-top:10px;}
+.misaligned{border:2px solid red;min-height:51px;}
+.performanceDrpdownContainer{margin-top:10px;}
+.SecButtonSet a.icoButton.download{margin-top:10px;}
+.panel .ipmButtonSet{margin-bottom:10px;}
+.perfBreakMsg .message.errorM3 .messageText{margin-left:30px;color:#C74537;}
+.perfBreakMsg .message.errorM3 .messageText span h4{color:#C74537;}
+.perfBreakMsg .message.errorM3{background-image:url('../images/red_i_icon.png');background-repeat: no-repeat;background-position: 7px 14px;margin-top: 8px;}
+.perfBreakdownMsgContainer{padding: 20px;width:100%;background-color: #FFEBEC;border: solid 1px #F3BEB6;margin-bottom: 10px;border-radius: 4px;background-image:url('../images/red_i_icon.png');background-repeat: no-repeat;background-position: 13px 21px;margin-top: 8px;}
+.perfBrkMsg{color:#C74537;display:block;text-indent: 25px;} 
+.brkdownErrMsg,.brkdownWarningMsg{color:#C74537;font-weight:bold;text-indent:25px;font-size: 18px;}
+input.misalignedField{border:2px solid red;}
+
+/* Global Financial Action Standards */
+.glbfinstdsContainer{background-color: #dceefa;border:1px solid #ddd;float: left;width: 100%;}
+.glbHeadLeft{min-width: 20%;float: left;display: block;height: 105px;border: 1px solid #ddd;}
+.glbHeadRight{width:80%;float: left;min-height: 100px;border: 1px solid #ddd;}
+.glbHeadtop1,.glbHeadtop2{width:50%;float:left;min-height: 98px;}
+.glbfrstyear,.glbinnovation{padding-bottom: 5px;text-align: center;color: #364354;font-weight: bold;margin-top: 5px;border-bottom: 1px solid #ddd;}
+.glbsubHeadM{float:left;width:20%;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 13px;}
+.glbsubHeadM2{float:left;width:33%;padding-top: 10px;text-align: center;border-right: 1px solid #ddd;min-height: 72px;font-size: 13px;}
+.glbHeadtop1{border-right: 1px solid #ddd;}
+.glbsubHead8,.glbValM2.glbVal8{border-right:0px;}
+.glbValLeft{min-height: 42px;min-width: 20%;float: left;display: block;border: 1px solid #ddd;text-align:center;padding-top: 5px;}
+.glbValRight{width:80%;float: left;min-height: 33px;border: 1px solid #ddd;}
+.glbValSubLeft,.glbValSubRight{width:50%;float:left;}
+.glbValM{width:20%;float:left;border-right: 1px solid #ddd;padding: 5px;min-height: 40px;}
+.glbValM2{width:33%;float:left;border-right: 1px solid #ddd;padding: 5px;min-height: 40px;}
+.glbsubHeadM,.glbsubHeadM2{font-size: 14px;color: #364354;font-weight: bold;}
+.glbValLeft{font-size: 0.800em;color:#222;font-weight: bold;}
+.glbfinvalContainer{float: left;max-height: 337px;overflow: auto;}
+.glbSeclist{width:50%;float:left;}
+
+/* Financial Action Standards Inverse styles */
+.ipmFinancetable.inverse{width:100%;max-width:100%;}
+.ipmFinancetable.inverse .finproject{font-size: 14px;color: #364354;font-weight: bold;float: none;}
+.ipmFinancetable.inverse td div{font-size: 0.800em;color:#222;}
+
+/* Market Performance Appendix Styles */
+.apexp {padding: 0px 20px;}
+.bPageBlock.brandSecondaryBrd.apexDefaultPageBlock.secondaryPalette {border-bottom: none;border-left: none;border-right: none;border-top:none;margin-bottom:10px;}
+.apexp .bPageBlock.apexDefaultPageBlock .pbBody {margin: 0;} 
+.bPageBlock .list.monitor {width: 100%;} 
+.bPageBlock .list.ipmTable.monitor thead th {background-color: #dceefa;} 
+tr.odd {background-color: #f8f8f8;} 
+.errorConsole .x-grid3-row-over, body .pbBody table.list.monitor tr.dataRow.highlight td, body .pbBody table.list.monitor tr.dataRow.highlight th {background-color: transparent;}

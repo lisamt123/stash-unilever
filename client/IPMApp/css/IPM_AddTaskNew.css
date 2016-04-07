@@ -97,3 +97,5 @@
   transform: rotate(-45deg);
 }
 #EditTask .message{margin:10px 0 !important;}
+.todoName{height: 110px;width: 100%;resize: none;border-radius: 4px;}
+.panelScroll{height: 438px;overflow: auto;}

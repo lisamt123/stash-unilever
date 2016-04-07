@@ -712,8 +712,8 @@ span.expico {
 .wordwrap {
     word-wrap: break-word;
 }
-.dateFormat {
-    visibility: hidden;
+.rollouttable .dateFormat {
+    display:none;
 }
 table #editblock {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.17);
@@ -744,9 +744,16 @@ height:41px !important;
 input[type=text]::-ms-clear {display: none; width:0; height:0;}
 #ipmRegionalRollout  .modal-dialog{margin-top: 10%;}
 
-.rolloutErrorBox{background-repeat: no-repeat;text-indent: 30px;background-position: 10px;color:#C73E36;font-weight:normal;background-image:url('../images/red_i_icon.png');background-color: #FFEBEC !important;border: 1px solid #F3BEB6 !important;width: 100%;display: block;padding: 10px;float: left;margin-bottom: 10px;border-radius: 4px;}
+.rolloutErrorBox{background-repeat: no-repeat;text-indent: 30px;background-position: 10px 10px;color:#C73E36;font-weight:normal;background-image:url('../images/red_i_icon.png');background-color: #FFEBEC !important;border: 1px solid #F3BEB6 !important;width: 100%;display: block;padding: 10px;float: left;margin-bottom: 10px;border-radius: 4px;}
 .rollouttable .expico{margin-left:5px;}
 .rollouttable .rollsubhead{float:left;}
 .deleteButtoncontainer{width:189px;}
 th div.proLeaderColumn span:last-child{width:87%;}
 .misaligned{border-color: #ff0000 !important;}
+
+.removeapprpopup{padding: 15px;}
+.remvButtonContainer{margin-top: 20px;margin-bottom: 10px;}
+.remvButtonContainer .buttonMarginRight:last-child {
+    margin-right: 0px;
+}
+

@@ -233,7 +233,7 @@
     tr.innertd td{padding-left:11px;font-weight:Bold;font-size:15px;color:#3b516d;}
     .ipmFinancetable thead th{height:40px;background-color:#dceefa;}
     .ipmFinancetable tr{height:35px;}
-    .finproject{font-weight:Bold;font-size:15px;color:#3b516d;}
+    .finproject{font-weight:Bold;font-size:11px;color:#3b516d;}
     .fintotal{font-weight:Bold;font-size:19px;color:#253b78;}
     .fintable td{font-size:14px;color:#364354 !important;}
     .fintlegreenbg{background-color:#f3ffe7;}
@@ -264,7 +264,7 @@
     .mr78{margin-right:78px;}
     .fleft{text-align:left !important;}
     .pl10{padding-left:0 !important;}
-    .fintable td div {font-size: 14px;color: #364354;font-weight:bold;}
+    .fintable td div {font-size: 11px;color: #364354;font-weight:bold; width:100%}
     .pl15{padding-left:15px !important;}
     .inputField input {width: 100%;height: 30px;border-radius: 3px;border: 1px #a8a8a8 solid;color: #565656;padding-left:5px;}
     .ipmFinancetable>thead>tr>th.finProname{white-space:initial !important;}
@@ -384,3 +384,37 @@
 	.ipmFinancetable.table tr.btmBleBorder td {
     font-size: 12.2px !important;
     }
+	.performanceTable{overflow-x:auto;}
+	.ipm_performanceTable{width:1100px;}
+	.performanceTableHead{font-weight: bold;background-color:#dceefa;width:150px;}
+	
+	/* Market Performance Appendix Styles */
+.apexp {width: 100%;overflow-x: scroll;margin-bottom: 30px;}
+.bPageBlock.brandSecondaryBrd.apexDefaultPageBlock.secondaryPalette {border-bottom: none;border-left: none;border-right: none;border-top:none;margin-bottom:10px;}
+.apexp .bPageBlock.apexDefaultPageBlock .pbBody {margin: 0;} 
+.bPageBlock .list.monitor {width: 1200px;} 
+.bPageBlock .list.ipmTable.monitor thead th {background-color: #dceefa;} 
+tr.odd {background-color: #f8f8f8;} 
+.errorConsole .x-grid3-row-over, body .pbBody table.list.monitor tr.dataRow.highlight td, body .pbBody table.list.monitor tr.dataRow.highlight th {background-color: transparent;}
+
+/* Performance Breakdown Styles */
+.performanceContainer1{width:1267px;float:left;background-color:#dceefa;border: 1px #7fa29e solid;}
+.performanceHead{font-weight: bold;width:7%;float:left;padding:5px;}
+.performanceContainer2,.performanceContainer3{width:1267px;float:left;}
+.performanceContainer2{background: #f8f8f8;border: 1px #7fa29e solid;}
+.performanceContainer3{border-left:1px #7fa29e solid;border-right:1px #7fa29e solid;border-bottom:1px #7fa29e solid;}
+.breakdown_Container{float:left;margin-bottom: 10px;}
+.performanceSecHead,.performanceCell{float:left;width:7%;padding: 5px;}
+.performancebuttonContainer{float:right;clear: both;margin-top:10px;}
+.misaligned{border:2px solid red;min-height:51px;}
+.performanceDrpdownContainer{margin-top:10px;}
+.panel .ipmButtonSet{margin-bottom:10px;}
+.perfBreakMsg .message.errorM3 .messageText{margin-left:30px;color:#C74537;}
+.perfBreakMsg .message.errorM3 .messageText span h4{color:#C74537;}
+.perfBreakMsg .message.errorM3{background-image:url('../images/red_i_icon.png');background-repeat: no-repeat;background-position: 7px 14px;margin-top: 8px;}
+.perfBreakdownMsgContainer{padding: 20px;width:100%;background-color: #FFEBEC;border: solid 1px #F3BEB6;margin-bottom: 10px;border-radius: 4px;background-image:url('../images/red_i_icon.png');background-repeat: no-repeat;background-position: 13px 21px;margin-top: 8px;}
+.perfBrkMsg{color:#C74537;display:block;text-indent: 25px;} 
+.brkdownErrMsg,.brkdownWarningMsg{color:#C74537;font-weight:bold;text-indent:25px;font-size: 18px;}
+input.misalignedField{border:2px solid red;}
+.breakdown_Container{width: 960px;}
+.scrollContainer{overflow-x:auto;}

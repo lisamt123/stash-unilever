@@ -50,3 +50,5 @@
 	.errorM6, .errorM4, .errorM3, .errorM2, .errorS1{background-color: #FFEBEC !important;border:1px solid #E9C3BA !important;}
 	.message{position: relative;  }
 	.dateFormat {display:none!important;}
+	.todoName{height: 110px;width: 100%;resize: none;border-radius: 4px;}
+	.panelScroll{height: 438px;overflow: auto;}
