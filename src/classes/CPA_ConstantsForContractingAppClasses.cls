@@ -61,7 +61,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String QUERYCOMMENTTRIGERNAME = 'CPA_Query_comment';
     public static final String KEYCONTACTTRIGERNAME = 'CPA_Key_Contact_Trigger';
     public static final String REQUIRMENTANDDELIVERABLETRIGERNAME = 'CPA_Requirements_and_Deliverables';
-    
+    public static final String RESOURCEREQUIREMENTTRIGERNAME = 'Resource_Requirement';
     
     public static final String SUBMITFORAPPROVAL = 'Submitted for approval. Please approve.';
     public static final String WITHHOLD = 'Withhold';
@@ -197,6 +197,7 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String INDICATIVETIMELINESTDATE='Indicative timeline start date';
     public static final String REQUIREMENTSANDDELIVERABLES='Requirements and Deliverables';
     public static final String KEYCONTACTS='Key Contacts';
+    public static final String RESOURCEREQUIREMENT='Resource Requirement';
     public static final String EXPTGOLIVEDATENOTPASTDATE='Expected go-live date canot be past date';
     public static final String CPASMT='CPA_SMT';
     public static final String CPAADM='CPA_ADM';
@@ -260,6 +261,10 @@ public class CPA_ConstantsForContractingAppClasses{
     public static final String REQUIRMENTANDDELIVERABLENOTUPDATE = ' Requirements and Deliverables cannot be updated, as PWORF is already accepted/Cancelled By Vendor.';
     public static final String REQUIRMENTANDDELIVERABLENOTUPDATEFORSMT = ' Requirements and Deliverables cannot be updated, as PWORF is already Cancelled';
     public static final String REQUIRMENTANDDELIVERABLENOTDELETE = ' Requirements and Deliverables Cannot be deleted.';
+    
+    public static final String RESOURCEREQUIREMENTNOTUPDATED= ' Resource requirement cannot be updated, as PWORF is already accepted/Cancelled By Vendor.';
+    public static final String RESOURCEREQUIREMENTNOTUPDATEDFORSMT= ' Resource requirement cannot be updated, as PWORF is already Cancelled.';
+    public static final String RESOURCEREQUIREMENTNOTDELETED= ' Resource requirement Cannot be deleted.';
     
     Public static final String PROJECTDECRIPTION = 'Project Description*';
     
