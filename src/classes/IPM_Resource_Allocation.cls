@@ -829,57 +829,17 @@ public with sharing class IPM_Resource_Allocation {
        
         String projectManagedCategory = ipmproject.IPM_Category_Text__c;
         // Get In context Rollout Information
-        List<IPM_Project_Rollout__c> lstRegRollout = [SELECT Id, Name,RecordTypeId,Market_Cluster_Name__c,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(SELECT Id,Country_Name__c FROM IPM_Countries_Local__r) FROM IPM_Project_Rollout__c WHERE ID =: rolloutId LIMIT 1];
+        List<IPM_Project_Rollout__c> lstRegRollout = [SELECT Id,IPM_Company_Card__c,Name,RecordTypeId,Market_Cluster_Name__c,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(SELECT Id,Country_Name__c FROM IPM_Countries_Local__r) FROM IPM_Project_Rollout__c WHERE ID =: rolloutId LIMIT 1];
       
         List<User> lstUser = [SELECT Id,Name FROM User WHERE Id =:selectedLeaderMember LIMIT 1];
-        
         if(!lstRegRollout.isEmpty())
         {
             inContextRollout = lstRegRollout[0];
-            if(inContextRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
-            {
-                
-                locationFilter.add(inContextRollout.Market_Cluster_Name__c);
-            }
-            else if(inContextRollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
-            {
-                
-                for(IPM_Country__c country : inContextRollout.IPM_Countries_Local__r)
-                { 
-                    if(!String.isBlank(country.Country_Name__c))
-                    {
-                        locationFilter.add(IPM_ConstantUtils.PERCENTAGE + country.Country_Name__c+IPM_ConstantUtils.PERCENTAGE); 
-                    }
-                } 
-            }
-        }
-        
-        String selectCompanyCard = ' SELECT Id, name, IPM_TxtGeographical_Scope__c, IPM_Managed_Category__c,IPM_Market_Cluster__c FROM IPM_Company_Card__c ';
-        String whereClause = ' WHERE IPM_Managed_Category__c INCLUDES(:projectManagedCategory) ';
+		}	
         
         
-            if(inContextRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
-            {
-                whereClause += ' AND IPM_TxtGeographical_Scope__c IN :locationFilter ';
-                
-            }
-            else
-            {
-                whereClause += ' AND IPM_TxtGeographical_Scope__c LIKE :locationFilter ';
-                
-            }
+       
         
-        String limitString = ' LIMIT 50000';
-        String finalQueryString = selectCompanyCard + whereClause + limitString;
-        
-        List<IPM_Company_Card__c> lstCompanyCards = database.query(finalQueryString);
-        Set<id>companyCardIdSet=new Set<id>();
-        if(!lstCompanyCards.isEmpty())
-        {
-            for(IPM_Company_Card__c ccid:lstCompanyCards){
-                companyCardIdSet.add(ccid.id);
-            }
-        }
         if(!lstUser.isEmpty())
         { 
             if(IPM_ConstantUtils.USER_FUNCTON_PL.equalsIgnoreCase(ButtonLabel) || IPM_ConstantUtils.USER_FUNCTON_CL.equalsIgnoreCase(ButtonLabel))
@@ -888,18 +848,16 @@ public with sharing class IPM_Resource_Allocation {
                 inContextRollout.IPM_Regional_PL_Text__c = lstUser[0].Name;
                 inContextRollout.IPM_Regional_PL__c = lstUser[0].Id;
                 
-                if(!lstCompanyCards.isEmpty())
+                if(!lstRegRollout.isEmpty() && lstRegRollout[0].IPM_Company_Card__c!=null)
                 {
                     List<IPM_User_Profile__c>checkValidUserCompanyCList=[SELECT IPM_Company_Card__c FROM IPM_User_Profile__c WHERE IPM_User__c=:selectedLeaderMember AND
-                                                                     IPM_Company_Card__c IN:companyCardIdSet LIMIT 1];
+                                                                     IPM_Company_Card__c =:lstRegRollout[0].IPM_Company_Card__c LIMIT 1];
                     
-                    if(!checkValidUserCompanyCList.isEmpty()){
-                        inContextRollout.IPM_Company_Card__c = checkValidUserCompanyCList[0].IPM_Company_Card__c; // assigning regional company card
+                    if(checkValidUserCompanyCList.isEmpty()){
+                        
+                        IPM_WithoutShareController.createUserProfile(lstRegRollout[0].IPM_Company_Card__c,selectedLeaderMember,projectManagedCategory);//create user profile for selected PL with company card
                     }
-                    else{// get all company card associated with category,market cluster/countries
-                        inContextRollout.IPM_Company_Card__c=lstCompanyCards[0].id;//assign company card to project leader
-                        IPM_WithoutShareController.createUserProfile(lstCompanyCards[0].id,selectedLeaderMember,projectManagedCategory);//create user profile for selected PL with company card
-                    }
+                    
                     
                 }
                 

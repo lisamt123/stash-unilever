@@ -868,4 +868,40 @@ public with sharing class IPM_RolloutTriggerHandler
             }
         }
     }
+      /*************************************************************************************************************
+    * @description:Assign Company Card to rollouts
+    */
+    public void assignCompanyCard(List<IPM_Project_Rollout__c>lstProjectRollouts)
+    {
+        List<IPM_Company_Card__c>companyCardLst=new List<IPM_Company_Card__c>(); 
+        companyCardLst=[select Id,IPM_MCO__c,IPM_CompanyCard_Type__c,IPM_Managed_Category__c,RecordType.Name,IPM_TxtGeographical_Scope__c from IPM_Company_Card__c 
+                        where RecordType.Name=:IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL Limit 5000];
+        
+        
+       
+            for(IPM_Project_Rollout__c rollouts : lstProjectRollouts)
+            {
+                for(IPM_Company_Card__c companyCard : companyCardLst)
+                {
+                    
+                        if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.Equals(rollouts.IPM_Rollout_Span__c) && 
+                            companyCard.IPM_Managed_Category__c!=null && rollouts.IPM_Small_C__c!=null && 
+                            companyCard.RecordType.Name!=null && rollouts.IPM_Rollout_Span__c!=null && 
+                            companyCard.IPM_TxtGeographical_Scope__c!=null && rollouts.Market_Cluster_Name__c!=null && 
+                            companyCard.IPM_Managed_Category__c.contains(rollouts.IPM_Small_C__c)&&
+                            companyCard.IPM_TxtGeographical_Scope__c.Equals(rollouts.Market_Cluster_Name__c))
+                        {
+                        
+                            rollouts.IPM_Company_Card__c=companyCard.Id;
+                        
+                        }
+                    
+                    
+                    
+                    }
+                
+            }
+        
+        
+    }
 }

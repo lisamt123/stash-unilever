@@ -41,6 +41,8 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         
         if(System.Trigger.isInsert){
             handler.OnBeforeInsert((List<IPM_Project_Rollout__c>) Trigger.new);
+           handler.assignCompanyCard((List<IPM_Project_Rollout__c>) Trigger.new);
+            
         }
     }
     /**
