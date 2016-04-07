@@ -2,7 +2,15 @@
 	<apex:attribute assignTo="{!stage_identifier}" type="Oblix_CampaignStageLogic" description="Stage Identifier parameter used by controller" name="StageIdentifier" />
 	<apex:attribute assignTo="{!b_auto_save}" type="Boolean" description="If this attribute is set to true, every user click on checkbox will be automatically commited to database. Otherwise, the container has to call stage_identifier.saveStage(); at the end to save latest status" name="AutoSave" />
 	<apex:attribute type="String" description="Comma separated list of ids of elements that need to be rerendered on change of projected or actual stages" name="rerenderIds" required="false"/>
-	<apex:attribute assignTo="{!display_mode}" type="Integer" description="Flag controlling whether component renders as 1)(Default)Projection checkboxes with completion chevrons, 2)Projection chevrons (without checkboxes) only, 3)Completion chevrons only" name="DisplayMode" required="false"/>
+	<apex:attribute name="DisplayMode" 
+		required="false"
+		assignTo="{!display_mode}" 
+		type="Integer" 
+		description="Flag controlling whether component renders as 
+						1)(Default)Projection checkboxes with completion chevrons, 
+						2)Projection chevrons without checkboxes only, 
+						3)Projection chevrons with checkboxes only, 
+						4)Completion chevrons only" />
     
 
  	<apex:outputPanel id="panel_project_stage">
@@ -14,9 +22,9 @@
 		    	<apex:variable var="projected_stage" value="{!stage_identifier.projected_stages[index]}" />
 		    	<tr>
 		    		<td>{!index}</td>
-		    		<td>{!projected_stage.s_stage_name}</td>
-		    		<td>{!projected_stage.b_is_stage_selectable}</td>
-		    		<td>{!projected_stage.b_is_stage_selected}</td>
+		    		<td>{!projected_stage.name}</td>
+		    		<td>{!projected_stage.selectable}</td>
+		    		<td>{!projected_stage.selected}</td>
 		    	</tr>
 		    	</apex:repeat>
         	</table>
@@ -26,9 +34,9 @@
 		    	<apex:variable var="completed_stage" value="{!stage_identifier.completed_stages[index]}" />
 		    	<tr>
 		    		<td>{!index}</td>
-		    		<td>{!completed_stage.s_stage_name}</td>
-		    		<td>{!completed_stage.b_is_stage_selectable}</td>
-		    		<td>{!completed_stage.b_is_stage_selected}</td>
+		    		<td>{!completed_stage.name}</td>
+		    		<td>{!completed_stage.selectable}</td>
+		    		<td>{!completed_stage.selected}</td>
 		    	</tr>
 		    	</apex:repeat>
         	</table>-->
@@ -38,32 +46,34 @@
 				Projection chevrons
 			************************************************************************
              -->
-	        <apex:outputText rendered="{!display_mode == 1 || display_mode == 2}">
+	        <apex:outputText rendered="{!display_mode == 1 || display_mode == 2 || display_mode == 3}">
 	        	<!--Chevrons-->
              	<div class="campaign_chevron_title campaign_summary_information_titles">Stages to deliver:</div>
              	<div class="campaign_chevron_container">
 				    <apex:repeat value="{!stage_identifier.projected_stages}" var="index">
 				    	<apex:variable var="projected_stage" value="{!stage_identifier.projected_stages[index]}" />
-				    	<span class="{!IF(projected_stage.i_stage_number == 1,'icon-chevronStart chevron_start',IF(projected_stage.i_stage_number == 5 , 'icon-chevronEnd chevron_end' , 'icon-chevronMiddle chevron_middle'))} {!projected_stage.s_css_class_name}"></span>
+				    	<span class="{!IF(projected_stage.stageNumber == 1,'icon-chevronStart chevron_start',IF(projected_stage.stageNumber == 5 , 'icon-chevronEnd chevron_end' , 'icon-chevronMiddle chevron_middle'))} {!projected_stage.cssClass}"></span>
 				    </apex:repeat>
 
 				    <!--Checkboxes-->
 				    <div  class="campaign_create_agency_hub_split_table_subtitle projected_stage_chevron">
 				    	<apex:repeat value="{!stage_identifier.projected_stages}" var="index">
 				    		<apex:variable var="projected_stage" value="{!stage_identifier.projected_stages[index]}" />
-				    		<apex:outputText rendered="{!display_mode == 1}">
-					    		<apex:inputCheckbox value="{!projected_stage.b_is_stage_selected}" styleClass="chevron_top_picklist{!projected_stage.i_stage_number}" title="{!projected_stage.s_stage_name}" disabled="{!NOT(projected_stage.b_is_stage_selectable)}">
-					        		<apex:actionSupport event="onclick" rerender="panel_project_stage,capmaign_fee_container,swop_top_panel,adjustFeeModalId,{!rerenderIds}" action="{!setProjectedStageIdentifier}" onsubmit="blockStages('{!$Component.panel_project_stage}');" oncomplete="unblockStages('{!$Component.panel_project_stage}');">
-					        			<apex:param name="projection_stage" assignTo="{!s_projection_stage}" value="{!projected_stage.s_stage_name}" />
-					        			<!--<apex:param name="projection_checked" assignTo="{!b_projected_checked}" value="{!projected_stage.b_is_stage_selected}" />-->
+				    		<apex:outputText rendered="{!display_mode == 1 || display_mode == 3}">
+					    		<apex:inputCheckbox value="{!projected_stage.selected}" styleClass="chevron_top_picklist{!projected_stage.stageNumber}" title="{!projected_stage.name}" disabled="{! (display_mode != 3 && NOT(projected_stage.selectable) ) || (display_mode = 3 && projected_stage.disabled )}">
+					        		<apex:actionSupport event="onclick" rerender="panel_project_stage,capmaign_fee_container,swop_top_panel,adjustmentFeePanel,{!rerenderIds}" action="{!setProjectedStageIdentifier}" onsubmit="blockStages('{!$Component.panel_project_stage}');" oncomplete="unblockStages('{!$Component.panel_project_stage}');">
+					        			<apex:param name="projection_stage" assignTo="{!s_projection_stage}" value="{!projected_stage.name}" />
+					        			<!--<apex:param name="projection_checked" assignTo="{!b_projected_checked}" value="{!projected_stage.selected}" />-->
 										<!-- <apex:param name="selected_completed_stage" assignTo="{!s_completion_stage}" value="{!stage_identifier.s_selected_completed_stage}" /> -->
 					        		</apex:actionSupport> 
-					        	</apex:inputCheckbox>&nbsp;{!projected_stage.s_stage_name}&nbsp;
+					        	</apex:inputCheckbox>&nbsp;{!projected_stage.name}&nbsp;
 					        </apex:outputText>
-					    	<apex:outputPanel styleClass="chevron_top_label{!projected_stage.i_stage_number}" rendered="{!display_mode == 2}">{!projected_stage.s_stage_name}</apex:outputPanel>
+					    	<apex:outputPanel styleClass="chevron_top_label{!projected_stage.stageNumber}" rendered="{!display_mode == 2}">{!projected_stage.name}</apex:outputPanel>
 					    </apex:repeat>
 			    	</div>
-			    	<div class="campaign_stage_chevron_override_label campaign_summary_information_titles {!IF(NOT(stage_identifier.b_manual_override_on),'hidden','')}">MANUAL OVERRIDE</div>
+			    	<apex:outputPanel rendered="{! (display_mode != 3 && stage_identifier.b_manual_override_on) || stage_identifier.sow_project_in_scope.Campaign_Status__c == 'Cancelled'}">
+				    	<div class="campaign_stage_chevron_override_label campaign_summary_information_titles"></div>
+				    </apex:outputPanel>
 			    </div>
 			</apex:outputText>
 
@@ -75,25 +85,28 @@
 				Completion chevrons
 			************************************************************************
              -->
-        	<apex:outputText rendered="{!display_mode == 1 || display_mode == 3}">
+        	<apex:outputText rendered="{!display_mode == 1 || display_mode == 4}">
         		<!--Chevrons-->
         		<div class="campaign_chevron_title campaign_summary_information_titles">Stages completed:</div>
         		<div class="campaign_chevron_container">
 				    <apex:repeat value="{!stage_identifier.completed_stages}" var="index">
 				    	<apex:variable var="completed_stage" value="{!stage_identifier.completed_stages[index]}" />
-				    	<span class="{!IF(completed_stage.i_stage_number == 1,'icon-chevronStart chevron_start',IF(completed_stage.i_stage_number == 5 , 'icon-chevronEnd chevron_end' , 'icon-chevronMiddle chevron_middle'))} {!completed_stage.s_css_class_name}"></span>
+				    	<span class="{!IF(completed_stage.stageNumber == 1,'icon-chevronStart chevron_start',IF(completed_stage.stageNumber == 5 , 'icon-chevronEnd chevron_end' , 'icon-chevronMiddle chevron_middle'))} {!completed_stage.cssClass}"></span>
 				    </apex:repeat>
 
 				    <!--Checkboxes-->
 			        <div class="campaign_create_agency_hub_split_table_subtitle confirm_assets_chevron">
 				    	<apex:repeat value="{!stage_identifier.completed_stages}" var="index">
 				    		<apex:variable var="completed_stage" value="{!stage_identifier.completed_stages[index]}" />
-					    	<apex:inputCheckbox value="{!completed_stage.b_is_stage_selected}" styleClass="chevron_top_picklist{!completed_stage.i_stage_number}"  title="Stage complete" disabled="{!NOT(completed_stage.b_is_stage_selectable)}" >
-				        		 <apex:actionSupport event="onclick" rerender="panel_project_stage,{!rerenderIds}" action="{!setCompletionStageIdentifier}"  onsubmit="blockStages('{!$Component.panel_project_stage}');" oncomplete="unblockStages('{!$Component.panel_project_stage}');" >
-					        			<apex:param name="completion_stage" assignTo="{!s_completion_stage}" value="{!completed_stage.s_stage_name}" />
-					        			<!-- <apex:param name="selected_projected_stage" assignTo="{!s_projection_stage}" value="{!stage_identifier.s_selected_projected_stage}" /> -->
-					        		</apex:actionSupport> 
-					    	</apex:inputCheckbox>&nbsp;{!completed_stage.s_stage_name}&nbsp;
+				    		<apex:outputText rendered="{!stage_identifier.b_is_completion_selectable}">
+						    	<apex:inputCheckbox value="{!completed_stage.selected}" styleClass="chevron_top_picklist{!completed_stage.stageNumber}"  title="Stage complete" disabled="{!NOT(completed_stage.selectable)}" >
+					        		 <apex:actionSupport event="onclick" rerender="panel_project_stage,{!rerenderIds}" action="{!setCompletionStageIdentifier}"  onsubmit="blockStages('{!$Component.panel_project_stage}');" oncomplete="unblockStages('{!$Component.panel_project_stage}');" >
+						        			<apex:param name="completion_stage" assignTo="{!s_completion_stage}" value="{!completed_stage.name}" />
+						        			<!-- <apex:param name="selected_projected_stage" assignTo="{!s_projection_stage}" value="{!stage_identifier.s_selected_projected_stage}" /> -->
+						        		</apex:actionSupport> 
+						    	</apex:inputCheckbox>&nbsp;{!completed_stage.name}&nbsp;
+						    </apex:outputText>
+						    <apex:outputPanel styleClass="chevron_top_label{!completed_stage.stageNumber}" rendered="{!NOT(stage_identifier.b_is_completion_selectable)}">{!completed_stage.name}</apex:outputPanel>
 					    </apex:repeat>
 			    	</div>
 			    </div>
@@ -109,8 +122,10 @@
 	        <div class="add_assets_chevron_percentage_values">
 	            <p class="campaign_create_agency_hub_split_table_subtitle">Total campaign fee to be paid this FY</p>
 	            <h1 class="campaign_fee_percentage">{!stage_identifier.i_percentage_of_fee_this_year}%</h1> <br/>
-	            <!--<h1 class="complete_percentage">{!stage_identifier.i_agency_Percentage_of_fees_this_year}%</h1>
-	            <p class="green_text">Complete</p>-->
+	            <!--<h1 class="complete_percentage">{!stage_identifier.i_agency_Percentage_of_fees_this_year}%</h1>-->
+	            <apex:outputText rendered="{!stage_identifier.b_manual_override_on}">
+	            	<p class="red_text"><strong>Fee adjusted</strong></p>
+	            </apex:outputText>
 	        </div>
 	    </apex:outputText>
 		            <!--
@@ -122,7 +137,6 @@
 	</apex:outputPanel>
 	<script>
 		var blockStages = function(containerId) {
-			console.log(containerId);
 		    $("span[id$=\'"+containerId+"\'] .campaign_stage_chevron_blockme").block({ 
 		        message: 'Please wait...',
 		        css: {
@@ -138,7 +152,6 @@
 		}
 
 		var unblockStages = function(containerId) {
-			console.log(containerId);
 		    $("span[id$=\'"+containerId+"\'] .campaign_stage_chevron_blockme").unblock();
 		}
 

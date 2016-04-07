@@ -35,9 +35,9 @@ private class Oblix_CampaignStageController_Test {
             componentController.s_projection_stage = 'Creative Execution';
             componentController.setProjectedStageIdentifier();
             
-            System.assertEquals(true, ctrl.projected_stages.get(4).b_is_stage_selected);
-            System.assertEquals(true, ctrl.completed_stages.get(4).b_is_stage_selectable);
-            System.assertEquals(false, ctrl.completed_stages.get(4).b_is_stage_selected);
+            System.assertEquals(true, ctrl.projected_stages.get(4).selected);
+            System.assertEquals(true, ctrl.completed_stages.get(4).selectable);
+            System.assertEquals(false, ctrl.completed_stages.get(4).selected);
 
 
             Test.stopTest();
@@ -70,7 +70,7 @@ private class Oblix_CampaignStageController_Test {
             componentController.s_completion_stage = 'Production';
             componentController.setCompletionStageIdentifier();
             
-            System.assertEquals(true, ctrl.completed_stages.get(5).b_is_stage_selected);
+            System.assertEquals(true, ctrl.completed_stages.get(5).selected);
 
             Test.stopTest();
             

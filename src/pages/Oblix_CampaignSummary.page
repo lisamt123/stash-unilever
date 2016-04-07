@@ -18,16 +18,17 @@
             </apex:outputPanel>
             <apex:outputPanel rendered="{!IF(can_edit_campaign,true,false)}">
                 <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#cancelCampaign">Cancel Campaign</button> -->
-                <a href="#" data-toggle="modal" data-target="#cancelCampaignModal">Cancel Campaign</a>
+                <a href="#" data-toggle="modal" data-target="#cancelCampaignModal" onClick="refreshPopUpStageIdentifier();">Cancel Campaign</a>
                 <!-- <a href="#" onclick="if (confirm('are you sure you want to delete this campaign?')){deleteCampaign();blockme();}">Cancel Campaign</a> -->
             </apex:outputPanel>
+            <apex:actionFunction action="{!refreshPopUpStageIdentifier}" name="refreshPopUpStageIdentifier" rerender="cancel_campaign_campaign_stage_component, campaign_stage_component_adjust_fee, calculatedFeePanel, adjustmentFeePanel"></apex:actionFunction>
         </apex:define>
         <apex:define name="top_right_panel">
                     <table class="SOW_header_value_summary">
                         <tr>
                             <td rowspan="2">
                                 <apex:outputPanel rendered="{!can_adjust_fee}">  
-                                    <button type="button" class="btn btn-danger btn-xs create_SOW_button btn_chevron btn_adjust" data-toggle="modal" data-target="#adjustFeeModal">ADJUST %</button>
+                                    <button type="button" class="btn btn-danger btn-xs create_SOW_button btn_chevron btn_adjust" data-toggle="modal" data-target="#adjustFeeModal"  onClick="refreshPopUpStageIdentifier();">ADJUST %</button>
                                 </apex:outputPanel>  
                             </td>
                             <td class="SOW_header_value_title">Campaign Fees Total</td>
@@ -86,12 +87,18 @@
                                             </apex:outputText>
                                         </p>
                                         <apex:outputPanel id="calculatedFeePanel">
-                                            <apex:inputText onkeyup="calculateFee();" id="manualPercentage" html-data-fullfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" value="{!stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year}"/>
+                                            <apex:inputText onkeyup="calculateFee();" id="manualPercentage" html-data-fullfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" value="{!stage_identifier_pop_up.cancelCampaignManualPercent}"/>
+                                            <p class="bold_font cancel_campaign_values" id="calculatedFee" html-data-calculatedfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.cancelCampaignManualPercent / 100.0 }">
+                                                <apex:outputText value="€ {0, number,###,###,##0}">
+                                                    <apex:param value="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.cancelCampaignManualPercent / 100.0 }" />
+                                                </apex:outputText>
+                                            </p>
+                                            <!--<apex:inputText onkeyup="calculateFee();" id="manualPercentage" html-data-fullfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c}" value="{!stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year}"/>
                                             <p class="bold_font cancel_campaign_values" id="calculatedFee" html-data-calculatedfee="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year / 100.0 }">
                                                 <apex:outputText value="€ {0, number,###,###,##0}">
                                                     <apex:param value="{!stage_identifier_pop_up.sow_project_in_scope.Campaign_Fees_Total__c * stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year / 100.0 }" />
                                                 </apex:outputText>
-                                            </p>
+                                            </p>-->
                                         </apex:outputPanel>
                                     </div>
                                 </div>
@@ -129,7 +136,7 @@
                         <div class="modal-footer">
                             <div class="modal_button_align">
                                 <button type="button" class="btn btn_cross btn_exit" data-dismiss="modal">EXIT</button>
-                                <apex:commandButton styleClass="btn btn-danger btn_check btn_confirm" action="{!cancelCampaign}" value="CONFIRM" rerender="jqueryId" html-data-dismiss="modal"/>
+                                <apex:commandButton styleClass="btn btn-danger btn_check btn_confirm" action="{!cancelCampaign}" value="CONFIRM" rerender="jqueryId" html-data-dismiss="modal" onComplete="$('.modal-backdrop').remove();"/>
                             </div>
                         </div>
                     </div>
@@ -138,7 +145,7 @@
 <!--            Adjust fee modal-->
            <apex:outputPanel Id="adjustFeeModalId">
             <div class="modal fade adjust_fee_modal" tabindex="-1" role="dialog" aria-labelledby="adjustFee" id="adjustFeeModal">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -146,15 +153,20 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
+                                <div class="col-lg-11 col-lg-offset-1">
+                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="campaign_stage_component_adjust_fee" displayMode="3" />
+                                </div>
                                 <div class="col-lg-8 col-lg-offset-2">
                                     <div class="row">
                                         <div class="col-lg-8">
                                             <p class="modal_current_text green_text">Current % allocation of total<br/>campaign fee to be paid this FY</p>
                                         </div>
-                                        <h1 class="green_text">
-                                                <apex:outputText value="{!stage_identifier.i_percentage_of_fee_this_year}" ></apex:outputText> 
-                                                <apex:outputLabel rendered="{!stage_identifier.i_percentage_of_fee_this_year <> null}"> %</apex:outputLabel>       
-                                         </h1>
+                                        <apex:outputPanel id="adjustmentFeePanel">
+                                            <h1 class="green_text">
+                                                    <apex:outputText value="{!stage_identifier_pop_up.i_percentage_of_fee_this_year}" ></apex:outputText> 
+                                                    <apex:outputLabel rendered="{!stage_identifier_pop_up.i_percentage_of_fee_this_year <> null}"> %</apex:outputLabel>       
+                                             </h1>
+                                        </apex:outputPanel>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-7">
@@ -180,6 +192,7 @@
             </div><!-- /.modal -->
           </apex:outputPanel>
 <!--            Adjust fee modal finish-->
+
 
              <hr class="divider" />    
             <div class="row">
@@ -261,68 +274,98 @@
                                 </tr>
                                 <tr>
                                     <td class="campaign_summary_information_titles cell_text_top_align camp_sum_table_title__width">Timeline dates</td>
-                                    <td>
-                                        <apex:outputText value="Campaign start" rendered="{!NULL<>selected_project.Project_Start_Date__c}"><br/></apex:outputText>
-                                        <apex:outputText value="Campaign completion" rendered="{!NULL<>selected_project.Project_Completion_Date__c}"><br/></apex:outputText>
-                                        <apex:outputText value="First air date" rendered="{!NULL<>selected_project.First_Air_Date__c}"><br/></apex:outputText>
-                                        <apex:outputText value="Production completion " rendered="{!NULL<>selected_project.Production_Completion_Date__c}"><br/></apex:outputText>
-                                        <apex:outputText value="BET first release" rendered="{!NULL<>selected_project.BET_first_release__c}"><br/></apex:outputText>
-                                        <apex:outputText value="Date for assets in BET" rendered="{!NULL<>selected_project.Date_for_Assets_to_be_in_BET__c}"><br/></apex:outputText>
-                                        <apex:outputText value="Preview Date" rendered="{!NULL<>selected_project.Preview_Date__c}"><br/></apex:outputText>
-                                        <apex:outputText value="Start of TV production" rendered="{!NULL<>selected_project.Start_of_TV_production__c}"><br/></apex:outputText>
-                                        <apex:outputText value="Final release" rendered="{!NULL<>selected_project.Final_release__c}"><br/></apex:outputText>
-                                        <apex:outputText value="Live date" rendered="{!NULL<>selected_project.Live_Date__c}"><br/></apex:outputText>
-                                        <apex:outputText value="Live date/asset delivery" rendered="{!NULL<>selected_project.Live_date_Asset_delivery__c}"><br/></apex:outputText>
-
-                                    </td>
-                                    <td>
-
-                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Project_Start_Date__c}">
-                                            <apex:param value="{!selected_project.Project_Start_Date__c}" /> <br/>
-                                        </apex:outputText>
-
-
-                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Project_Completion_Date__c}">
-                                            <apex:param value="{!selected_project.Project_Completion_Date__c}" /> <br/>
-                                        </apex:outputText>
-
-
-                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.First_Air_Date__c}">
-                                            <apex:param value="{!selected_project.First_Air_Date__c}" /> <br/>
-                                        </apex:outputText>
-
-                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Production_Completion_Date__c}">
-                                            <apex:param value="{!selected_project.Production_Completion_Date__c}" /> <br/>
-                                        </apex:outputText>
-
-                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.BET_first_release__c}">
-                                            <apex:param value="{!selected_project.BET_first_release__c}" /> <br/>
-                                        </apex:outputText>
-
-                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Date_for_Assets_to_be_in_BET__c}">
-                                            <apex:param value="{!selected_project.Date_for_Assets_to_be_in_BET__c}" /> <br/>
-                                        </apex:outputText>
-
-                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Preview_Date__c}">
-                                            <apex:param value="{!selected_project.Preview_Date__c}" /> <br/>
-                                        </apex:outputText>
-
-                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Start_of_TV_production__c}">
-                                            <apex:param value="{!selected_project.Start_of_TV_production__c}" /> <br/>
-                                        </apex:outputText>
-
-                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Final_release__c}">
-                                            <apex:param value="{!selected_project.Final_release__c}" /> <br/>
-                                        </apex:outputText>
-
-                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Live_Date__c}">
-                                            <apex:param value="{!selected_project.Live_Date__c}" /> <br/>
-                                        </apex:outputText>
-
-                                        <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Live_date_Asset_delivery__c}">
-                                            <apex:param value="{!selected_project.Live_date_Asset_delivery__c}" /> <br/>
-                                        </apex:outputText>
-
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <table class="campaign_summary_timeline_dates">
+                                            <tr>
+                                                <td><apex:outputText value="Campaign start" rendered="{!NULL<>selected_project.Project_Start_Date__c}"></apex:outputText></td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Project_Start_Date__c}">
+                                                        <apex:param value="{!selected_project.Project_Start_Date__c}" /> 
+                                                    </apex:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><apex:outputText value="Campaign completion" rendered="{!NULL<>selected_project.Project_Completion_Date__c}"></apex:outputText></td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Project_Completion_Date__c}">
+                                                        <apex:param value="{!selected_project.Project_Completion_Date__c}" /> 
+                                                    </apex:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><apex:outputText value="First air date" rendered="{!NULL<>selected_project.First_Air_Date__c}"></apex:outputText></td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.First_Air_Date__c}">
+                                                        <apex:param value="{!selected_project.First_Air_Date__c}" /> 
+                                                    </apex:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><apex:outputText value="Production completion " rendered="{!NULL<>selected_project.Production_Completion_Date__c}"></apex:outputText></td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Production_Completion_Date__c}">
+                                                        <apex:param value="{!selected_project.Production_Completion_Date__c}" /> 
+                                                    </apex:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><apex:outputText value="BET first release" rendered="{!NULL<>selected_project.BET_first_release__c}"></apex:outputText></td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.BET_first_release__c}">
+                                                        <apex:param value="{!selected_project.BET_first_release__c}" /> 
+                                                    </apex:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><apex:outputText value="Date for assets in BET" rendered="{!NULL<>selected_project.Date_for_Assets_to_be_in_BET__c}"></apex:outputText></td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Date_for_Assets_to_be_in_BET__c}">
+                                                        <apex:param value="{!selected_project.Date_for_Assets_to_be_in_BET__c}" /> 
+                                                    </apex:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><apex:outputText value="Preview Date" rendered="{!NULL<>selected_project.Preview_Date__c}"></apex:outputText></td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Preview_Date__c}">
+                                                        <apex:param value="{!selected_project.Preview_Date__c}" /> 
+                                                    </apex:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><apex:outputText value="Start of TV production" rendered="{!NULL<>selected_project.Start_of_TV_production__c}"></apex:outputText></td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Start_of_TV_production__c}">
+                                                        <apex:param value="{!selected_project.Start_of_TV_production__c}" /> 
+                                                    </apex:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><apex:outputText value="Final release" rendered="{!NULL<>selected_project.Final_release__c}"></apex:outputText></td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Final_release__c}">
+                                                        <apex:param value="{!selected_project.Final_release__c}" /> 
+                                                    </apex:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><apex:outputText value="Live date" rendered="{!NULL<>selected_project.Live_Date__c}"></apex:outputText></td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Live_Date__c}">
+                                                        <apex:param value="{!selected_project.Live_Date__c}" /> 
+                                                    </apex:outputText>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><apex:outputText value="Live date/asset delivery" rendered="{!NULL<>selected_project.Live_date_Asset_delivery__c}"></apex:outputText></td>
+                                                <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!NULL<>selected_project.Live_date_Asset_delivery__c}">
+                                                        <apex:param value="{!selected_project.Live_date_Asset_delivery__c}" /> 
+                                                    </apex:outputText></td>
+                                            </tr>
+                                        </table>
                                     </td>
                                 </tr>
                                 <tr>
@@ -335,7 +378,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component_bottom" displayMode="3"/> 
+                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component_bottom" displayMode="4"/> 
                     </div>   
                 </div>
                 <hr class="divider" />
@@ -384,7 +427,7 @@
                                                         <!--apex:outputPanel rendered="{!IF(can_edit == false,false,true)}">
                                                             
                                                         </apex:outputPanel-->
-                                                        <apex:outputText value="{!asset[field_name]}" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double')}" style="tableRow" styleclass="expandMore">  </apex:outputText>
+                                                        <apex:outputText value="{! IF(field_name == 'Asset_Type__c', LEFT(asset[field_name], FIND(' - ', asset[field_name])) ,asset[field_name]) }" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double')}" style="tableRow" styleclass="expandMore">  </apex:outputText>
                                                     </td>
                                                 </apex:repeat>
                                                 <apex:outputPanel id="deleteTableDefinition" rendered="{!IF(can_manage_asset,true,false)}">

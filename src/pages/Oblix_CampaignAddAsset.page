@@ -137,7 +137,7 @@
                                                                                                 <p class="create_SOW_form_titles asset_panel_titles quantity_label">Quantity*
                                                                                                     <br/><span class="form_bracket_text">(Numerics only)</span>
                                                                                                 </p>
-                                                                                                <p class="create_SOW_form_titles asset_panel_titles">Notes
+                                                                                                <p class="create_SOW_form_titles asset_panel_titles">Other Info
                                                                                                     <br/><span class="form_bracket_text">(Optional)</span>
                                                                                                 </p>
                                                                                             </div>
@@ -159,7 +159,7 @@
                                                                                                             </apex:repeat>
                                                                                                         </select>
                                                                                                         <div class="trDescribe hidden">
-                                                                                                            <p class="form_bracket_text">Please describe if not listed &nbsp;</p>
+                                                                                                            <p class="form_bracket_text">Please describe if not listed* &nbsp;</p>
                                                                                                             <input class="input_init descMend assetOtherName" maxlength="255" name="assetOtherName" size="20" type="text" />
                                                                                                         </div>
                                                                                                         <input type="number" name="assetQuantity" value="" class="assetQuantity" />
@@ -214,7 +214,7 @@
                                                     </apex:commandButton>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""> {!basketAssetWrapper.sub_category_name} / {!basketAssetWrapper.asset_name}{! IF(LEN(TRIM(basketAssetWrapper.other_name))=0, '', ' - ' + basketAssetWrapper.other_name) } / {!basketAssetWrapper.option_name}
+                                                    <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""> {!basketAssetWrapper.sub_category_name} / {!basketAssetWrapper.option_name} / {!basketAssetWrapper.asset_name}{! IF(LEN(TRIM(basketAssetWrapper.other_name))=0, '', ' - ' + basketAssetWrapper.other_name) }
                                                     </apex:commandLink>
                                                 </div>
                                                 <div class="col-sm-1">

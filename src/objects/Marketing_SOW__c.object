@@ -779,6 +779,36 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>SOW_Overall_Total_Agency__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+OR( 
+ISPICKVAL(SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
+ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;), 
+ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)), &quot;---&quot;, &quot;€&quot;&amp; 
+IF( 
+ OblixSOWOverallTotal__c  &gt;= 1000000, 
+TEXT(FLOOR(OblixSOWOverallTotal__c / 1000000)) &amp; &quot;,&quot;, 
+&quot;&quot;) &amp; 
+IF( 
+OblixSOWOverallTotal__c &gt;= 1000, 
+RIGHT(TEXT(FLOOR(OblixSOWOverallTotal__c / 1000)), 3) &amp; &quot;,&quot;, 
+&quot;&quot;) &amp; 
+RIGHT(TEXT(FLOOR(OblixSOWOverallTotal__c)), 3) &amp; &quot;.&quot; &amp; 
+IF( 
+MOD(OblixSOWOverallTotal__c , 1) * 100 &lt; 10, 
+&quot;0&quot; &amp; TEXT(ROUND(MOD(OblixSOWOverallTotal__c , 1), 2) * 100), 
+TEXT(MIN(ROUND(MOD(OblixSOWOverallTotal__c , 1), 2) * 100, 99)) 
+))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SOW Overall Total</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>SOW_Status__c</fullName>
         <description>SOW Status - Used in the Approval process</description>
         <externalId>false</externalId>
@@ -847,6 +877,36 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Total_Campaign_Fee_Agency__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+OR( 
+ISPICKVAL(SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
+ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;), 
+ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)), &quot;---&quot;, &quot;€&quot;&amp; 
+IF( 
+OblixTotalProjectsFees__c &gt;= 1000000, 
+TEXT(FLOOR(OblixTotalProjectsFees__c / 1000000)) &amp; &quot;,&quot;, 
+&quot;&quot;) &amp; 
+IF( 
+OblixTotalProjectsFees__c &gt;= 1000, 
+RIGHT(TEXT(FLOOR(OblixTotalProjectsFees__c / 1000)), 3) &amp; &quot;,&quot;, 
+&quot;&quot;) &amp; 
+RIGHT(TEXT(FLOOR(OblixTotalProjectsFees__c)), 3) &amp; &quot;.&quot; &amp; 
+IF( 
+MOD(OblixTotalProjectsFees__c , 1) * 100 &lt; 10, 
+&quot;0&quot; &amp; TEXT(ROUND(MOD(OblixTotalProjectsFees__c , 1), 2) * 100), 
+TEXT(MIN(ROUND(MOD(OblixTotalProjectsFees__c , 1), 2) * 100, 99)) 
+))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Campaign Fee</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Total_Campaign_Fee__c</fullName>
         <externalId>false</externalId>
         <formula>Oblix_TotalCampaignAdjustment__c  +  OblixTotalCampaignCalculatedTotalFee__c</formula>
@@ -869,6 +929,36 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Non_Campaign_Fees_Agency__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+OR( 
+ISPICKVAL(SOW_Status__c , &quot;Awaiting Unilever Approval&quot;), 
+ISPICKVAL(SOW_Status__c , &quot;Draft - with Unilever&quot;), 
+ISPICKVAL(SOW_Status__c , &quot;Returned by Agency&quot;)), &quot;---&quot;, &quot;€&quot;&amp; 
+IF( 
+ OblixTotalOtherItemsFees__c  &gt;= 1000000, 
+TEXT(FLOOR(OblixTotalOtherItemsFees__c / 1000000)) &amp; &quot;,&quot;, 
+&quot;&quot;) &amp; 
+IF( 
+OblixTotalOtherItemsFees__c &gt;= 1000, 
+RIGHT(TEXT(FLOOR(OblixTotalOtherItemsFees__c / 1000)), 3) &amp; &quot;,&quot;, 
+&quot;&quot;) &amp; 
+RIGHT(TEXT(FLOOR(OblixTotalOtherItemsFees__c)), 3) &amp; &quot;.&quot; &amp; 
+IF( 
+MOD(OblixTotalOtherItemsFees__c , 1) * 100 &lt; 10, 
+&quot;0&quot; &amp; TEXT(ROUND(MOD(OblixTotalOtherItemsFees__c , 1), 2) * 100), 
+TEXT(MIN(ROUND(MOD(OblixTotalOtherItemsFees__c , 1), 2) * 100, 99)) 
+))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Non Campaign Fees</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Type_of_SOW__c</fullName>

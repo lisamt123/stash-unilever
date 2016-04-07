@@ -265,7 +265,7 @@
                                     <tbody>
                                         <apex:repeat value="{!li_campaign_and_non_campaign_items}" var="campaign_and_non_campaign">
                                             <apex:outputPanel rendered="{!campaign_and_non_campaign.s_object_type == 'Campaign'}">
-                                                <tr class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled','')} camp" data-href="{!$Page.Oblix_CampaignSummary}?projectId={!campaign_and_non_campaign.dynamic_object['Id']}">
+                                                <tr class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled',IF(campaign_and_non_campaign.dynamic_object['Value_To_BePaid_Manual_Override__c'],'project_fee_adjusted',''))} camp" data-href="{!$Page.Oblix_CampaignSummary}?projectId={!campaign_and_non_campaign.dynamic_object['Id']}">
                                                     <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
                                                     <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
@@ -288,32 +288,39 @@
                                                     </td>
                                                     <td class="table_progress_bar_styling">
                                                         <div id="crumbs">
-                                                            <p class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled_text', '')}">
-                                                                {!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'Campaign Cancelled','')}
-                                                            </p>
+                                                            <apex:outputText rendered="{!campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled'}">
+                                                                <p class="project_cancelled_text">
+                                                                    Campaign Cancelled
+                                                                </p>
+                                                            </apex:outputText>
+                                                            <apex:outputText rendered="{!campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] != 'Cancelled' && campaign_and_non_campaign.dynamic_object['Value_To_BePaid_Manual_Override__c']}">
+                                                                <p class="project_cancelled_text">
+                                                                    Fee Adjusted
+                                                                </p>
+                                                            </apex:outputText>
                                                             <ul>
                                                                 <li>
-                                                                    <div title="Briefing" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[1].s_css_class_name}">
+                                                                    <div title="Briefing" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[1].cssClass}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Strategy & Planning" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[2].s_css_class_name}">
+                                                                    <div title="Strategy & Planning" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[2].cssClass}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Creative Ideation" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[3].s_css_class_name}">
+                                                                    <div title="Creative Ideation" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[3].cssClass}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Creative Execution" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[4].s_css_class_name}">
+                                                                    <div title="Creative Execution" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[4].cssClass}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Production" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[5].s_css_class_name}">
+                                                                    <div title="Production" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[5].cssClass}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
