@@ -72,6 +72,8 @@ src/classes/IPM_ImageUploadController.cls
 src/classes/IPM_ImageUploadController.cls-meta.xml
 src/classes/IPM_ImageUploadController_Test.cls
 src/classes/IPM_ImageUploadController_Test.cls-meta.xml
+src/classes/IPM_List_Milestones_Test.cls
+src/classes/IPM_List_Milestones_Test.cls-meta.xml
 src/classes/IPM_Milestone.cls
 src/classes/IPM_Milestone.cls-meta.xml
 src/classes/IPM_MilestoneHandler_Test.cls
@@ -90,6 +92,8 @@ src/classes/IPM_NewTask_Test.cls
 src/classes/IPM_NewTask_Test.cls-meta.xml
 src/classes/IPM_ProjDocumentSectionHstryController.cls
 src/classes/IPM_ProjDocumentSectionHstryController.cls-meta.xml
+src/classes/IPM_ProjDocSectionController_Test.cls
+src/classes/IPM_ProjDocSectionController_Test.cls-meta.xml
 src/classes/IPM_ProjectCountryDetails.cls
 src/classes/IPM_ProjectCountryDetails.cls-meta.xml
 src/classes/IPM_ProjectCountryDetails_Test.cls
