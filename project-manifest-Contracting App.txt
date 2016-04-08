@@ -1,14 +1,19 @@
 src
 src/classes
 src/classes/CPA_ConstantsForContractingAppClasses.cls
+src/classes/CPA_ConstantsForContractingAppClasses.cls-meta.xml
 src/classes/CPA_PWORFInformationController.cls
+src/classes/CPA_PWORFInformationController.cls-meta.xml
 src/classes/CPA_Req_Deli_and_Key_Contacts_util_Test.cls
+src/classes/CPA_Req_Deli_and_Key_Contacts_util_Test.cls-meta.xml
 src/classes/CPA_Resource_Requirement_Handler.cls
 src/classes/CPA_Resource_Requirement_Handler.cls-meta.xml
 src/classes/CPA_Resource_Requirement_TriggerUtil.cls
 src/classes/CPA_Resource_Requirement_TriggerUtil.cls-meta.xml
 src/classes/CPA_Test_Req_Deli_and_Key_Contacts_util.cls
+src/classes/CPA_Test_Req_Deli_and_Key_Contacts_util.cls-meta.xml
 src/classes/CPA_TriggerFactory.cls
+src/classes/CPA_TriggerFactory.cls-meta.xml
 src
 src/layouts
 src/layouts/CPA_LOI__c-LOI Accepted and further.layout
