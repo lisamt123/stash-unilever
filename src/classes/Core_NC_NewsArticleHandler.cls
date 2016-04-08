@@ -1,6 +1,11 @@
-//Create a Chatter post in the Mentioned groups for a new News Article record.
-public with sharing class NewsArticleHandler{
-    
+/***************************************
+  Class Name: Core_NC_NewsArticleHandler
+  Author : Mindtree
+  Date: 8 march 2016
+  Requirement/Project Name: Unilever Salesforce Engagement
+  Requirement/Description: Create a Chatter post in the Mentioned groups for a new News Article record and class name modified as per unilever standard
+*************************************************/
+public with sharing class Core_NC_NewsArticleHandler{
     public void handleAfterInsert(List<News_Article__c> triggerNew){
         try{
             List<FeedItem> feedItemsToInsert = new List<FeedItem>();
@@ -20,12 +25,12 @@ public with sharing class NewsArticleHandler{
                             //Format a FeedItem to post on group wall.
                             feedItemsToInsert.add(new FeedItem( Type = 'LinkPost', Body = newsArticle.Title__c, ParentId =strGrp,
                             LinkURL = newsArticle.Sharepoint_URL__c+newsArticle.Post_GA_URL__c, Title = newsArticle.Name, CreatedById = postedById));
-                        //}
+                        //} 
                     }
                 }               
             }
                    
-            //Insert FeedItem.
+            //Insert FeedItem
             if(!feedItemsToInsert.isEmpty())
             Database.insert(feedItemsToInsert, false);
         }
