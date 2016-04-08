@@ -55,7 +55,7 @@
                 <field>AF_Fiscal_Year__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>AF_Agency_Exchange_Rate__c</field>
             </layoutItems>
             <layoutItems>
