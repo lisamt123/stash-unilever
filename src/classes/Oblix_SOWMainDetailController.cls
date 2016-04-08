@@ -7,8 +7,6 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     private static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
     private static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
-    private static final String CLONE_SUFFIX = ' (Live)';
-    private static final String ORIGINAL_SUFFIX = ' (Approved)';
 
     public List<CampaignNonCampaignItems> li_campaign_and_non_campaign_items {get; set;}
 

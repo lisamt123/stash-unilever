@@ -1,4 +1,4 @@
-global without sharing class Oblix_VersionControl implements Schedulable {
+global with sharing class Oblix_VersionControl implements Schedulable {
 
 	//private Id sowid;
 
