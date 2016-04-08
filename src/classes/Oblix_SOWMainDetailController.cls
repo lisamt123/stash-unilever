@@ -7,8 +7,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     private static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
     private static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
-    private static final String CLONE_SUFFIX = ' - Open for Updates';
-    private static final String ORIGINAL_SUFFIX = ' - Approved version';
+    private static final String CLONE_SUFFIX = ' (Live)';
+    private static final String ORIGINAL_SUFFIX = ' (Approved)';
 
     public List<CampaignNonCampaignItems> li_campaign_and_non_campaign_items {get; set;}
 
@@ -85,6 +85,12 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         }
     }
 
+    public Boolean isAgencyApproval{
+        get{
+            return selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL;
+        }
+    }
+
 
     //public static PageReference reportFolderURL {
     //    get{
@@ -120,6 +126,13 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
             // get attachments
             liso_attachments = getSOWAttachments(selected_sow.Id);
+
+            if (selected_sow.Cloning_failed__c) {
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Error. Please contact System Administrator'));
+            }
+            if(selected_sow.Marked_for_cloning__c) {
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Info, 'Open for Updates version is being created.'));
+            }
 
         }
         
@@ -274,12 +287,27 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     ********************************************************************************/
     public PageReference approveSOW(){
 
-        PageReference ref;
+        PageReference ref = null;
+
+        Savepoint sp;
+
+        sp = Database.setSavepoint();
 
         // get sow approval record - there can be only one (?)
         List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :selected_sow.Id];
         // S.M 20160209 adding checks and removing else to fix sonar issue
         if(NULL != workItems && workItems.size() == 1){
+
+            if(selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL){
+
+                // reload SOW to get new sow status
+                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
+ 
+                selected_sow.Marked_for_cloning__c = true;
+                update selected_sow;
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Info, 'SOW will be cloned shortly. Please refresh SOW list in a few minutes.'));
+
+            }
 
             ProcessInstanceWorkitem wi = workItems[0];
 
@@ -289,30 +317,19 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             pwr.setWorkitemId(wi.Id);
             Approval.ProcessResult result =  Approval.process(pwr);
 
-            if(result.isSuccess()){
-                // reload SOW to get new sow status
-                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
-                ref = new PageReference('/apex/oblix_sowmain');
+            System.debug('Approval successfull');
+
+            if(!result.isSuccess()){
                 
-                if(selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY){
-
-                    Id sowCloneId = copySOW(selected_sow.Id);
-
-                    if(sowCloneId != null){
-                        // rename the original, locked version
-                        selected_sow.Name += ORIGINAL_SUFFIX;
-                        update selected_sow;
-                    } else {
-                        ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'SOW successfully approved, but \'Open for Update\' version was not created. Please contact your administrator for assistance.'));
-                        ref = null;
-                    }
-
-                }
-
-
+                Database.rollback(sp);
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'An undexpected error occured. Please contact your administrator.'));
 
             } else {
-                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'An undexpected error occured. Please contact your administrator.'));
+
+                if(!isAgencyApproval){
+                    ref = new PageReference('/apex/oblix_sowmain');
+                }
+
             }
 
         }
@@ -321,14 +338,14 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     }
 
-    /*******************************************************************************
-    * @author       Slavko Skular
-    * @date         2016-04-06
-    * @description  create a copy of the approvd SOW. This can be made a future
-                    method if required (depending on number of campaigns, assets
-                    and non-campaign items)
-    ********************************************************************************/
-    public Id copySOW(Id sowId){
+    ///*******************************************************************************
+    //* @author       Slavko Skular
+    //* @date         2016-04-06
+    //* @description  create a copy of the approvd SOW. This can be made a future
+    //                method if required (depending on number of campaigns, assets
+    //                and non-campaign items)
+    //********************************************************************************/
+    /*public Id copySOW(Id sowId){
 
         // clone SOW
 
@@ -349,6 +366,10 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                                     FROM Marketing_SOW__c WHERE Id =: sowId];
 
             sowClone = sow.clone(false, true, false, false);
+            //sowClone.OwnerId = sow.OwnerId;
+            sowClone.OwnerId = UserInfo.getUserId();
+            sowClone.SOW_Status__c = Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER;
+            sowClone.Approved_version__c = sowId;
             sowClone.Name += CLONE_SUFFIX;
 
             insert sowClone;
@@ -435,6 +456,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             for(Marketing_Basics__c master_non_campaign : master_non_campaigns){
                 Marketing_Basics__c cloned_non_campaign = master_non_campaign.clone(false,true,false,false);
                 cloned_non_campaign.Oblix_SOWMarketing__c = sowClone.Id;
+                cloned_non_campaign.Non_Campaign_Key__c = master_non_campaign.Non_Campaign_Key__c.replace(sow.Id, sowClone.Id);
                 li_clone_non_campaigns_to_insert.add(cloned_non_campaign);
             }
 
@@ -469,7 +491,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
         insert clone_attachment;
 
-    }
+    }*/
 
     
 }

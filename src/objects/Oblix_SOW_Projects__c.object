@@ -726,25 +726,25 @@
     <fields>
         <fullName>Fees_To_Be_Paid_In_Current_FY_Agency__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( 
-OR( 
-ISPICKVAL(  Financial_Year__r.SOW_Status__c  , &quot;Awaiting Unilever Approval&quot;), 
-ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Draft - with Unilever&quot;), 
-ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)), &quot;---&quot;, &quot;€&quot;&amp; 
-IF( 
- Value_to_be_paid_in_Current_FY__c  &gt;= 1000000, 
-TEXT(FLOOR(Value_to_be_paid_in_Current_FY__c/ 1000000)) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-IF( 
-Value_to_be_paid_in_Current_FY__c&gt;= 1000, 
-RIGHT(TEXT(FLOOR(Value_to_be_paid_in_Current_FY__c / 1000)), 3) &amp; &quot;,&quot;, 
-&quot;&quot;) &amp; 
-RIGHT(TEXT(FLOOR(Value_to_be_paid_in_Current_FY__c)), 3) &amp; &quot;.&quot; &amp; 
-IF( 
-MOD(Value_to_be_paid_in_Current_FY__c, 1) * 100 &lt; 10, 
-&quot;0&quot; &amp; TEXT(ROUND(MOD(Value_to_be_paid_in_Current_FY__c , 1), 2) * 100), 
-TEXT(MIN(ROUND(MOD(Value_to_be_paid_in_Current_FY__c , 1), 2) * 100, 99)) 
-))</formula>
+        <formula>IF(
+OR(
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;),
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Draft - with Unilever&quot;),
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
+), &quot;---&quot;, &quot;€&quot;&amp;
+
+IF(
+  Value_to_be_paid_in_Current_FY__c  &gt;= 1000000,
+TEXT(ROUND(Value_to_be_paid_in_Current_FY__c/ 1000000, 0)) &amp; &quot;,&quot;,
+&quot;&quot;
+) &amp;
+IF(
+Value_to_be_paid_in_Current_FY__c&gt;= 1000,
+RIGHT(TEXT(ROUND(Value_to_be_paid_in_Current_FY__c / 1000, 0)), 3) &amp; &quot;,&quot;,
+&quot;&quot;
+) &amp;
+RIGHT(TEXT(ROUND(Value_to_be_paid_in_Current_FY__c, 0)), 3)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Fees To Be Paid In Current FY</label>
         <required>false</required>

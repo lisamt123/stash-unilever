@@ -150,12 +150,7 @@ IF(
 OblixOtherItemFee__c &gt;= 1000, 
 RIGHT(TEXT(FLOOR(OblixOtherItemFee__c/ 1000)), 3) &amp; &quot;,&quot;, 
 &quot;&quot;) &amp; 
-RIGHT(TEXT(FLOOR(OblixOtherItemFee__c)), 3) &amp; &quot;.&quot; &amp; 
-IF( 
-MOD(OblixOtherItemFee__c, 1) * 100 &lt; 10, 
-&quot;0&quot; &amp; TEXT(ROUND(MOD(OblixOtherItemFee__c , 1), 2) * 100), 
-TEXT(MIN(ROUND(MOD(OblixOtherItemFee__c , 1), 2) * 100, 99)) 
-))</formula>
+RIGHT(TEXT(FLOOR(OblixOtherItemFee__c)), 3) )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Activity Fee</label>
         <required>false</required>
@@ -333,12 +328,7 @@ IF(
 Oblix_Hourly_Rate__c &gt;= 1000, 
 RIGHT(TEXT(FLOOR(Oblix_Hourly_Rate__c / 1000)), 3) &amp; &quot;,&quot;, 
 &quot;&quot;) &amp; 
-RIGHT(TEXT(FLOOR(Oblix_Hourly_Rate__c)), 3) &amp; &quot;.&quot; &amp; 
-IF( 
-MOD(Oblix_Hourly_Rate__c, 1) * 100 &lt; 10, 
-&quot;0&quot; &amp; TEXT(ROUND(MOD(Oblix_Hourly_Rate__c , 1), 2) * 100), 
-TEXT(MIN(ROUND(MOD(Oblix_Hourly_Rate__c , 1), 2) * 100, 99)) 
-))</formula>
+RIGHT(TEXT(FLOOR(Oblix_Hourly_Rate__c)), 3) )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Hourly Rate</label>
         <required>false</required>
@@ -476,12 +466,7 @@ IF(
 Oblix_FTE_Real_Price__c &gt;= 1000, 
 RIGHT(TEXT(FLOOR(Oblix_FTE_Real_Price__c / 1000)), 3) &amp; &quot;,&quot;, 
 &quot;&quot;) &amp; 
-RIGHT(TEXT(FLOOR(Oblix_FTE_Real_Price__c)), 3) &amp; &quot;.&quot; &amp; 
-IF( 
-MOD(Oblix_FTE_Real_Price__c, 1) * 100 &lt; 10, 
-&quot;0&quot; &amp; TEXT(ROUND(MOD(Oblix_FTE_Real_Price__c , 1), 2) * 100), 
-TEXT(MIN(ROUND(MOD(Oblix_FTE_Real_Price__c , 1), 2) * 100, 99)) 
-))</formula>
+RIGHT(TEXT(FLOOR(Oblix_FTE_Real_Price__c)), 3) )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Resource Fee</label>
         <required>false</required>

@@ -549,7 +549,7 @@ public with sharing class Oblix_CampaignStageLogic{
                 calculateCSS();
             }
         }
-        public boolean selected {
+        public Boolean selected {
             get;
             set{
                 System.debug('### stage ' + name + ' selected: ' + value);
