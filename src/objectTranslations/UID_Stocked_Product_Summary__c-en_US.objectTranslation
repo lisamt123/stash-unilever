@@ -146,6 +146,10 @@
         <name>UID_Stock_Cover__c</name>
     </fields>
     <fields>
+        <label><!-- Stock Product Summary Ranking --></label>
+        <name>UID_Stock_Product_Summary_Ranking__c</name>
+    </fields>
+    <fields>
         <label><!-- Stock Unit --></label>
         <name>UID_Stock_Unit__c</name>
         <picklistValues>
@@ -161,6 +165,10 @@
         <label><!-- Stocked Product --></label>
         <name>UID_Stocked_Product__c</name>
         <relationshipLabel><!-- Stocked Product Summary --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Summarized Invoice Value --></label>
+        <name>UID_Summarized_Invoice_Value__c</name>
     </fields>
     <fields>
         <label><!-- WS Price --></label>

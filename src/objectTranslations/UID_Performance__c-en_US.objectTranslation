@@ -62,6 +62,10 @@
         <name>UID_Oct_IOP__c</name>
     </fields>
     <fields>
+        <label><!-- Order_RecordType__c --></label>
+        <name>UID_Order_RecordType_c__c</name>
+    </fields>
+    <fields>
         <label><!-- Sep JBP --></label>
         <name>UID_Sep_IOP__c</name>
     </fields>

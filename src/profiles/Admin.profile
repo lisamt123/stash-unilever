@@ -4540,6 +4540,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>UID_StockProductUtility</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>UID_StockProductUtility_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>UW_FetchFeedItemsOfChatterGrp</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -26824,6 +26832,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>UID_Performance__c.UID_Order_RecordType_c__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>UID_Performance__c.UID_Sep_IOP__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -26929,12 +26942,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>UID_Stocked_Product_Summary__c.UID_Stock_Product_Summary_Ranking__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>UID_Stocked_Product_Summary__c.UID_Stock_Unit__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>UID_Stocked_Product_Summary__c.UID_Stocked_Product_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>UID_Stocked_Product_Summary__c.UID_Summarized_Invoice_Value__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

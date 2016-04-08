@@ -132,29 +132,29 @@ Public Class AF_UpdateBonusEstimatesValues5
              if(curren.Country_Currency__c!=null)
              {
                  CurrencyMap.put(curren.Country_Currency__c,curren.AF_Average_Exchange_Rate_To_EUR__c);
-                 CurrencyMapforUSD.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_SGD_To_USD__c );
-                 CurrencyMapforGBP.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_To_EUR__c );
+                 //CurrencyMapforUSD.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_SGD_To_USD__c );
+                 //CurrencyMapforGBP.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_To_EUR__c );
              }
              If(curren.AF_Currency_Code__c=='EUR')
              if(curren.Ready_For_PO_Exchange_Rate_To_EUR__c!=null)
              USDValue=curren.Ready_For_PO_Exchange_Rate_To_EUR__c;
-             
-             /*If(curren.AF_Currency_Code__c=='USD')
-             {
-                 system.debug('^^^^Test'+EURValue);
-                 if(curren.AF_Average_Exchange_Rate_To_EUR__c!=null)
-                 {
-                     EURValue=curren.AF_Average_Exchange_Rate_To_EUR__c;
-                     system.debug('^^^^EuR'+EURValue);
-                 }    
-             }*/
-             
-
-             
-             
+         
          }
-        
-        
+         List<AF_Currency__c> currencyrecordsUSD=new List<AF_Currency__c>();
+         try{
+          currencyrecordsUSD=[select id,Country_Currency__c,Ready_For_PO_Exchange_Rate_To_EUR__c,AF_Currency_Code__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,AF_Average_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and Country_Currency__c IN:currncycodes  and AF_Fiscal_Year_new__c=:string.valueof(System.now().year()) limit 50000];
+         }
+         catch(Exception e){
+         system.debug(e);
+         }
+         for(AF_Currency__c  curren:currencyrecordsUSD)
+         {
+             if(curren.Country_Currency__c!=null)
+             {
+                 CurrencyMapforUSD.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_SGD_To_USD__c );
+                 CurrencyMapforGBP.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_To_EUR__c );
+             }
+        }
          if(agencyRecords.size()>0)
          for(AF_Bonus_Matrix__c agencyEst:agencyRecords)
          {     
