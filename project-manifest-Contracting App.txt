@@ -19,6 +19,7 @@ src/layouts
 src/layouts/CPA_LOI__c-LOI Accepted and further.layout
 src/layouts/CPA_LOI__c-LOI Layout without mandatory fields.layout
 src/layouts/CPA_PWORF__c-RA Read Only Layout.layout
+src/layouts/CPA_Resource_Requirement__c-Resource Requirement Layout.layout
 src
 src/objects
 src/objects/CPA_PWORF__c.object
