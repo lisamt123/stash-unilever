@@ -347,6 +347,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>UID_Stock_Product_Summary_Ranking__c</fullName>
+        <externalId>false</externalId>
+        <label>Stock Product Summary Ranking</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>UID_Stock_Unit__c</fullName>
         <externalId>false</externalId>
         <label>Stock Unit</label>
@@ -388,6 +400,19 @@
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>UID_Summarized_Invoice_Value__c</fullName>
+        <description>This field will sum the value from the Order Product&apos;s invoice value field</description>
+        <externalId>false</externalId>
+        <label>Summarized Invoice Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>UID_WS_Price__c</fullName>
