@@ -74,7 +74,16 @@
                                             <!-- ************************************************************ -->
                                             <div class="campaign_chevron_title campaign_summary_information_titles">Stages planned to be delivered:</div>
                                             <!-- <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3" projectedStageLabel="Stages planned to be delivered:" showTotalPercentage="true"/> --> 
-                                            <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3" showTotalPercentage="true"/> 
+                                            <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3"/> 
+                                                    <apex:outputText >
+                                                        <div class="add_assets_chevron_percentage_values">
+                                                            <p class="campaign_create_agency_hub_split_table_subtitle">Total campaign fee to be paid this FY</p>
+                                                            <h1 class="campaign_fee_percentage">{!stage_identifier_pop_up.i_percentage_of_fee_this_year}%</h1> <br/>
+                                                            <apex:outputText rendered="{!stage_identifier_pop_up.b_manual_override_on}">
+                                                                <p class="red_text"><strong>Fee adjusted</strong></p>
+                                                            </apex:outputText>
+                                                        </div>
+                                                    </apex:outputText>
                                         </div> 
                                     </div>
                                 </div>   
@@ -127,7 +136,7 @@
                                     <!-- ************************************************************ -->
                                     <div class="campaign_chevron_title campaign_summary_information_titles">Before canceling this campaign please select the stages where work commenced</div>
                                     <!-- <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_completed" rerenderIds="calculatedFeePanel"  displayMode="4" completedStageLabel="Before canceling this campaign please select the stages where work commenced" showTotalPercentage="false"/>  -->
-                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_completed" rerenderIds="calculatedFeePanel"  displayMode="4" showTotalPercentage="false"/> 
+                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_completed" rerenderIds="calculatedFeePanel"  displayMode="4"/> 
                                 </div> 
                             </div>
                         </div>
@@ -209,7 +218,7 @@
                                     <!-- ************************************************************ -->
                                     <div class="campaign_chevron_title campaign_summary_information_titles">Please indicate which stages will now be delivered given the adjusted fee:</div>
                                     <!-- <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="campaign_stage_component_adjust_fee" displayMode="3" projectedStageLabel="Please indicate which stages will now be delivered given the adjusted fee:" showTotalPercentage="false"/> -->
-                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="campaign_stage_component_adjust_fee" displayMode="3" showTotalPercentage="false"/>
+                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="campaign_stage_component_adjust_fee" displayMode="3" />
                                 </div>
                             </div>
                         </div>
@@ -236,7 +245,17 @@
                                 Campaign Cancelled.
                             </p>
                         </apex:outputText>
-                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component" displayMode="2" showTotalPercentage="true"/> 
+                        <div class="campaign_chevron_title campaign_summary_information_titles">Stages to deliver:</div>
+                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component" displayMode="2"/> 
+                                                    <apex:outputText >
+                                                        <div class="add_assets_chevron_percentage_values">
+                                                            <p class="campaign_create_agency_hub_split_table_subtitle">Total campaign fee to be paid this FY</p>
+                                                            <h1 class="campaign_fee_percentage">{!stage_identifier.i_percentage_of_fee_this_year}%</h1> <br/>
+                                                            <apex:outputText rendered="{!stage_identifier.b_manual_override_on}">
+                                                                <p class="red_text"><strong>Fee adjusted</strong></p>
+                                                            </apex:outputText>
+                                                        </div>
+                                                    </apex:outputText>
                     </div>
                 </div>
             </div>             
@@ -415,7 +434,8 @@
                             </tr>
                         </table>
                     </div>
-                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component_bottom" displayMode="4" showTotalPercentage="false"/> 
+                    <div class="campaign_chevron_title campaign_summary_information_titles">Stages completed:</div>
+                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component_bottom" displayMode="4" /> 
                 </div>   
             </div>
             <hr class="divider" />

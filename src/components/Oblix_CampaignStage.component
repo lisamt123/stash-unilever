@@ -11,7 +11,10 @@
 						2)Projection chevrons without checkboxes only, 
 						3)Projection chevrons with checkboxes only, 
 						4)Completion chevrons only" />
-	<apex:attribute type="Boolean" name="showTotalPercentage" default="true" description="Controlls where the 'Total campaign fee to be paid this FY X%' block is displayed"  />
+	<!-- ************************************************************ -->
+	<!-- START - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
+	<!-- ************************************************************ -->						
+	<!-- <apex:attribute type="Boolean" name="showTotalPercentage" default="true" description="Controlls where the 'Total campaign fee to be paid this FY X%' block is displayed"  /> -->
 	<!-- ************************************************************ -->
 	<!-- START - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
 	<!-- ************************************************************ -->
@@ -226,16 +229,21 @@
 			************************************************************************
              -->
 	    </div>
-	    <apex:outputText rendered="{!showTotalPercentage}">
+	        	<!-- ************************************************************ -->
+	        	<!-- START - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
+	        	<!-- ************************************************************ -->
+<!-- 	    <apex:outputText rendered="{!showTotalPercentage}">
 	        <div class="add_assets_chevron_percentage_values">
 	            <p class="campaign_create_agency_hub_split_table_subtitle">Total campaign fee to be paid this FY</p>
 	            <h1 class="campaign_fee_percentage">{!stage_identifier.i_percentage_of_fee_this_year}%</h1> <br/>
-	            <!--<h1 class="complete_percentage">{!stage_identifier.i_agency_Percentage_of_fees_this_year}%</h1>-->
 	            <apex:outputText rendered="{!stage_identifier.b_manual_override_on}">
 	            	<p class="red_text"><strong>Fee adjusted</strong></p>
 	            </apex:outputText>
 	        </div>
-	    </apex:outputText>
+	    </apex:outputText> -->
+	        	<!-- ************************************************************ -->
+	        	<!-- END - S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
+	        	<!-- ************************************************************ -->
 		            <!--
 					************************************************************************
 						Total campaign fee end
