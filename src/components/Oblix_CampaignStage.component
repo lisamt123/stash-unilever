@@ -7,7 +7,7 @@
 		assignTo="{!display_mode}" 
 		type="Integer" 
 		description="Flag controlling whether component renders as 
-						1)(Default)Projection checkboxes with completion chevrons, 
+						1)(Default)Projection checkboxes with completion chevrons,  
 						2)Projection chevrons without checkboxes only, 
 						3)Projection chevrons with checkboxes only, 
 						4)Completion chevrons only" />
