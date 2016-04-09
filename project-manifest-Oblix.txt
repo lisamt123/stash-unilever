@@ -162,6 +162,8 @@ src/classes/Oblix_UserPermissionHandlerLogic.cls
 src/classes/Oblix_UserPermissionHandlerLogic.cls-meta.xml
 src/classes/Oblix_UserPermissionHandlerTest.cls
 src/classes/Oblix_UserPermissionHandlerTest.cls-meta.xml
+src/classes/Oblix_VersionControl.cls
+src/classes/Oblix_VersionControl.cls-meta.xml
 src/classes/TriggerFactory.cls
 src/classes/TriggerFactory.cls-meta.xml
 src/classes/Oblix_Utils.cls
