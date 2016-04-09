@@ -68,7 +68,13 @@
                                     <div class="status_completion_chevron_bar_main_styling add_asset_chevron_styling">
                                         <p class="cancel_campaign_modal_note"><strong>The % to be paid at cancelation is automatically set to the planned to be delivered stages.</strong></p>
                                          <div class="chevron_width_control">
-                                            <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3" projectedStageLabel="Stages planned to be delivered:" showTotalPercentage="true"/> 
+
+                                            <!-- ************************************************************ -->
+                                            <!-- S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
+                                            <!-- ************************************************************ -->
+                                            <div class="campaign_chevron_title campaign_summary_information_titles">Stages planned to be delivered:</div>
+                                            <!-- <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3" projectedStageLabel="Stages planned to be delivered:" showTotalPercentage="true"/> --> 
+                                            <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_projected" rerenderIds="calculatedFeePanel, cancel_campaign_campaign_stage_component_completed" displayMode="3" showTotalPercentage="true"/> 
                                         </div> 
                                     </div>
                                 </div>   
@@ -115,7 +121,13 @@
                             </div>
                             <div class="row"  style="padding-top:20px;">
                                  <div class="col-lg-12 chevron_width_control">
-                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_completed" rerenderIds="calculatedFeePanel"  displayMode="4" completedStageLabel="Before canceling this campaign please select the stages where work commenced" showTotalPercentage="false"/> 
+
+                                    <!-- ************************************************************ -->
+                                    <!-- S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
+                                    <!-- ************************************************************ -->
+                                    <div class="campaign_chevron_title campaign_summary_information_titles">Before canceling this campaign please select the stages where work commenced</div>
+                                    <!-- <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_completed" rerenderIds="calculatedFeePanel"  displayMode="4" completedStageLabel="Before canceling this campaign please select the stages where work commenced" showTotalPercentage="false"/>  -->
+                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="cancel_campaign_campaign_stage_component_completed" rerenderIds="calculatedFeePanel"  displayMode="4" showTotalPercentage="false"/> 
                                 </div> 
                             </div>
                         </div>
@@ -192,7 +204,12 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-11 col-lg-offset-1">
-                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="campaign_stage_component_adjust_fee" displayMode="3" projectedStageLabel="Please indicate which stages will now be delivered given the adjusted fee:" showTotalPercentage="false"/>
+                                    <!-- ************************************************************ -->
+                                    <!-- S.M. 2016-04-09 COMMENTING OUT TO RESOLVE DEPLOYMENT ISSUE -->
+                                    <!-- ************************************************************ -->
+                                    <div class="campaign_chevron_title campaign_summary_information_titles">Please indicate which stages will now be delivered given the adjusted fee:</div>
+                                    <!-- <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="campaign_stage_component_adjust_fee" displayMode="3" projectedStageLabel="Please indicate which stages will now be delivered given the adjusted fee:" showTotalPercentage="false"/> -->
+                                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier_pop_up}" AutoSave="false" Id="campaign_stage_component_adjust_fee" displayMode="3" showTotalPercentage="false"/>
                                 </div>
                             </div>
                         </div>
