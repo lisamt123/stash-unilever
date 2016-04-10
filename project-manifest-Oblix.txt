@@ -295,6 +295,7 @@ src/workflows
 src/workflows/Marketing_SOW__c.workflow
 src/approvalProcesses
 src/approvalProcesses/Marketing_SOW__c.Oblix_SOW_Approval_Process_v6.approvalProcess
+src/approvalProcesses/Marketing_SOW__c.Oblix_SOW_Approval_Process_v5.approvalProcess
 src/email
 src/email/Oblix_SOW_Email
 src/email/Oblix_SOW_Email-meta.xml
