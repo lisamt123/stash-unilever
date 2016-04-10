@@ -70,7 +70,6 @@ public with sharing class IPM_CreateRolloutProjects
                         IPM_Complexity__c = ipmProject.IPM_Child_Complexity__c,
                         IPM_Child_Complexity__c = ipmProject.IPM_Child_Complexity__c,
                         IPM_GateKeeping_Model__c = ipmProject.IPM_GateKeeping_Model__c,
-                        IPM_PM_Approach__c = ipmProject.IPM_PM_Approach__c,
                         IPM_IsCompleted__c = ipmProject.IPM_IsCompleted__c,
                         IPM_Strategic_Intent__c = ipmProject.IPM_Strategic_Intent__c,
                         IPM_Market_Type__c = ipmProject.IPM_Market_Type__c,
@@ -106,6 +105,14 @@ public with sharing class IPM_CreateRolloutProjects
                     if(String.isNotBlank(newIpmProject.IPM_Phase__c))
                     {
                         lstProjects.add(newIpmProject);
+                    }
+                    if(rollout.RecordtypeId == REGIONAL_ROLLOUT_RECORDTYPE)
+                    {
+                    	newIpmProject.IPM_PM_Approach__c = ipmProject.IPM_PM_Approach__c;
+                    }
+                    else if(rollout.RecordtypeId == LOCAL_ROLLOUT_RECORDTYPE)
+                    {
+                    	newIpmProject.IPM_PM_Approach__c = IPM_ConstantUtils.IPM_APPROACH_INTERNAL;
                     }
                 }
             }

@@ -86,6 +86,7 @@ private class IPM_TaskHelper_Test{
         set<Id> projectIdSet = new set<Id>();
         set<Id> projectDocumentIdSet = new set<Id>();
         list<IPM_Task__c> taskList= new list<IPM_Task__c> ();
+        list<IPM_Task__c> futureTaskList= new list<IPM_Task__c> ();
         map<id,IPM_Task__c> updateTaskMap = new map<id,IPM_Task__c> ();
         
         
@@ -119,6 +120,31 @@ private class IPM_TaskHelper_Test{
        list<IPM_Project_Document_Section__c> projDocSecList = [SELECT Id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Project_ID__c,IPM_Section__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project__c 
                                                                 FROM IPM_Project_Document_Section__c 
                                                                 WHERE IPM_Project_Document__c IN:projectDocumentIdSet and IPM_Project_Document__r.IPM_Project__c=:projectIdSet];
+      
+      
+      for(IPM_Section__c secVal:[Select id from IPM_Section__c where IPM_Document_Template__r.IPM_Document_Type__c = 'Contract' and 
+      IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c = :IPM_ConstantUtils.IPM_COMPLEXITY_FULL and 
+      IPM_Document_Template__r.IPM_Project_Template__r.IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL and 
+      ProjectSpan__c includes (:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) limit 10])
+      {
+      	//Insert a future adhoc task
+       		IPM_Task__c futureAdhocTask = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].id,false);
+       		futureAdhocTask.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
+       		futureAdhocTask.IPM_Task_Name__c = 'Future Feasibility Task';
+       		futureAdhocTask.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+       		futureAdhocTask.IPM_Type_of_Gate__c =IPM_ConstantUtils.CONTRACT_GATE;
+       		futureAdhocTask.IPM_Task_Complexity__c = IPM_ConstantUtils.IPM_COMPLEXITY_FULL;
+       		futureAdhocTask.IPM_TaskSpan__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+       		futureAdhocTask.IPM_Function__c =IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
+       		futureAdhocTask.IPM_Section__c=secVal.id;
+       		futureTaskList.add(futureAdhocTask); 
+      }
+      insert futureTaskList;
+      List<IPM_Task__c> testFutureList = [Select IPM_Type_of_Task__c from IPM_Task__c where id in:futureTaskList];
+      for(IPM_Task__c task : testFutureList)
+      {
+      	system.assertEquals(task.IPM_Type_of_Task__c,IPM_ConstantUtils.FUTURE_ADHOC_TASKS,'Task not inserted');
+      }
       
 		//associate task with project document section
       for(IPM_Task__c task : taskList)
@@ -331,20 +357,21 @@ private class IPM_TaskHelper_Test{
                 system.assertEquals(project.IPM_Complexity__c,IPM_ConstantUtils.COMPLEXITY_LITE,'Complexity of project is not chnaged');
             }
             //get task of the projects, where the project's complexity is changed
-            list<IPM_Task__c> taskList = [SELECT Id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Assignee__c,IPM_Active__c 
+            list<IPM_Task__c> taskList = [SELECT Id,Name,IsSystemGenerated__c,IPM_Task_Complexity__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Assignee__c,IPM_Active__c 
                                           FROM IPM_Task__c WHERE IPM_Project__c IN:projIdSet ];
             
             for(IPM_Task__c task :taskList)
             {
                 //check if the tasks with different complexity as that of project's complxity are inactive 
-                if(task.IPM_Task_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL)
+                if(task.IsSystemGenerated__c && task.IPM_Task_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL)
                 {
-                    system.assertEquals(task.IPM_Active__c,false, 'IPM_Active__c Is Checked');
+                	system.debug('task..'+task);
+                    system.assertEquals(task.IPM_Active__c,true, 'IPM_Active__c Is Checked');
                 }
                 //check if the tasks with same complexity as that of project's complxity are active 
                 if(task.IPM_Task_Complexity__c == IPM_ConstantUtils.COMPLEXITY_LITE)
                 {
-                    system.assertEquals(task.IPM_Active__c,true, 'IPM_Active__c Is Unchecked');
+                    system.assertEquals(task.IPM_Active__c,false, 'IPM_Active__c Is Unchecked');
                 }
                 
             }   
@@ -356,73 +383,75 @@ private class IPM_TaskHelper_Test{
       @name: phaseWiseTaskTest
       @Description: When project changed new phase task should be inserted.
     ***********************************/
-    public static TestMethod void phaseWiseTaskTest()
-    {
-		//user 
-        User globalUser = [Select Id,LastName from User where LastName=:GLOBAL_PL1 limit 1];
-        
+    private static TestMethod void testCopyOverFutureTask(){
+     	
+        User globalUser = [Select Id,Name,LastName from User where LastName=:GLOBAL_PL1 limit 1];
+        Set<ID> iDs = new Set<ID>();
         // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
         
-		 //login as PL
         system.runAs(globalUser)
         {
-          Test.startTest(); 
-          
-              initializedData();
+          	  initializedData();
               
               set<Id> projIdSet =  new set<Id>();
               list<Id> projIdList =  new  list<Id> ();
               
-              //SET GATE Keeping model and update project
               for(IPM_Project__c project :projectDetailList)
               {
-                  project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
+              	  project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
+                  project.IPM_Project_Name__c = project.Name;
+                  project.IPM_Complexity__c = IPM_ConstantUtils.COMPLEXITY_FULL;
                   projIdSet.add(project.id);
               }
               projIdList.addAll(projIdSet);
               update projectDetailList;
               
-              //Get the project with gate keeping model as GCLT/RCLT
-              list<IPM_Project__c> projDetailResult = [select Id,Name,IPM_GateKeeping_Model__c FROM IPM_Project__c where Id in:projIdSet];
-               //Check if the complexity of project is chnaged 
-               for(IPM_Project__c project : projDetailResult)
-               {   
-                    system.assertEquals(project.IPM_GateKeeping_Model__c,IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH,'Gate keeping ,odel of the project is not updated');
-              }
-              // Initiate Phase Change 
-              List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(projIdList,globalUser); 
-              
-              update projectListPhaseChange;
+              /******************************** Create Regional Rollouts for Created Global project ****************************************/
+             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,new List<IPM_Project__c>{projectDetailList[0],projectDetailList[1],projectDetailList[2]},new List<User>{globalUser,globalUser,globalUser});
+             insert regionalRolloutList;
+             iDs.clear();
+             for(IPM_Project_Rollout__c eachRollout : regionalRolloutList) {
+              iDs.add(eachRollout.Id);
+             }
+             System.assertEquals(6, [Select count() from IPM_Project_Rollout__c where id in:iDs],'Regional Rollouts created');
             
+            
+             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
+             for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
+             {
+                List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+                if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
+                {
+                    projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
+                }
+                projectRolloutList.add(projectRollout);
+                projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
+             }
+            
+          
+            Test.startTest(); 
+          
+            // Initiate Phase Change 
+            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(projIdList,globalUser); 
+              
+            update projectListPhaseChange;
             Test.stopTest();
             
             List<IPM_Project__c> projectListUpdated = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Leader__c,Deputy_Project_Leader__c,IPM_Current_Document_Status__c,IPM_Current_Gate_Name__c,IPM_PM_Approach__c
                                            from IPM_Project__c where IPM_Phase__c =:IPM_ConstantUtils.FEASIBILITY_PHASE AND Name IN :projectNameSet];
+            system.assert(projectListUpdated.size() == 10);
             
-            //Check if project's phase is changed to Feasibilty 
-               for(IPM_Project__c project : projectListUpdated)
-               {   
-                    system.assertEquals(project.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,'Project is not changed to Feasibility');
-               }
-            
-            //get tasks inserted for feasibility phase
-            list<IPM_Task__c> taskList = [SELECT Id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Assignee__c,IPM_Active__c,IPM_Phase__c,IPM_Project__r.Name,IPM_Completed__c
+            list<IPM_Task__c> taskList = [SELECT Id,Name,IPM_Type_of_Task__c,IPM_Task_Complexity__c,IPM_Project_Document_Section__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Assignee__c,IPM_Active__c,IPM_Phase__c,IPM_Project__r.Name,IPM_Completed__c
                                           FROM IPM_Task__c WHERE IPM_Project__r.Name IN :projectNameSet];
-            
-      for(IPM_Task__c task : taskList)
+            for(IPM_Task__c futureTask:taskList)
             {
-                //check if feasibility phase task are inserted and active
-                if(task.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE)
-                {
-                    system.assertEquals(true,task.IPM_Active__c,'Feasibility phase task is not active');
-                    
-                }
-                if(task.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
-                {
-                    system.assertEquals(true,task.IPM_Completed__c,'Idea phase task is not completed');
-                }
-            }
+            		system.assert(futureTask != null,'Task inserted correctly');  	 	
+            }	
+            
+      		
         }  
+     
      }
+      
 }

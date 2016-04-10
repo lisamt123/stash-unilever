@@ -819,6 +819,36 @@ public without sharing class IPM_Utils {
         return null;
     }
     
+	public static List<IPM_Project_Type__c> getProjectSpanBasedOnGate(IPM_Project__c project,String gateDocument)
+    {
+    	List<IPM_Project_Type__c> filteredProjectTypeList = new List<IPM_Project_Type__c>();
+    	
+    	System.debug('project-->>'+project);
+    	
+    	if(project!=null && project.IPM_SourceProjectType__c !=null && project.IPM_CompanyCardText__c !=null && project.IPM_GateKeeping_Model__c != null )
+        {  
+            // Get Previous Phase for intiation. 
+            List<IPM_Project_Type__c> projectTypeList = IPM_Project_Type__c.getAll().values();
+            
+            for(IPM_Project_Type__c projectType : projectTypeList)
+            {
+            	if( String.isNotBlank(projectType.IPM_Gate_Document__c) &&  
+            		projectType.IPM_Gate_Document__c == gateDocument && 
+             		projectType.Source_Project_Type__c == project.IPM_SourceProjectType__c &&  
+               		projectType.IPM_GateKeeping_Model__c == project.IPM_GateKeeping_Model__c && 
+                    projectType.IPM_Source_Company_Card__c == project.IPM_CompanyCardText__c &&
+                    projectType.IPM_Phase__c == project.IPM_Phase__c )
+                    {
+                    	filteredProjectTypeList.add(projectType);	
+                    }
+            } 
+        }
+        
+        System.debug('filteredProjectTypeList-->>'+filteredProjectTypeList);
+        return filteredProjectTypeList;
+        
+    }
+	
     /**************************************************************
     * @description: Get Section Copy Mapping from Custom Setting and create a map of GateType => (external ID To Section Mapping).
      Used for Project back Ground Process.

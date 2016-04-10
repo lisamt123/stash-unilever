@@ -32,24 +32,43 @@
 				<div class="col-xs-12 middlePanel">
 					<div class=""><apex:outputLabel value="{!$Label.IPM_Phase_Gate}" styleClass="fieldLabel fieldFont"/></div>
 					<div class="phaseModal">
-						<div class="inputField">
-							<apex:inputField value="{!tasks.IPM_Phase__c}" styleClass="fieldFont tPhaseEdit" required="true" id="taskPhaseInput"/>
-						</div>
+					  <div class="inputField">  
+		                              <apex:actionRegion >  
+		                               <apex:selectList size="1" value="{!tasks.IPM_Phase__c}" styleClass="fieldFont" rendered="{!!redirectToGateDocument}">
+		                                        <apex:selectOptions value="{!Phaselist}" /> 
+		                                        <apex:actionSupport event="onchange" action="{!getGateSections}" rerender="taskTypeOfGateInput,projectSpanBlock,sectionBlock" status="gateloading" />  
+		                               </apex:selectList>
+		                               </apex:actionRegion>
+                           		   </div>
 					</div>
 					<div class="gatedocModal">
 					<div class="inputField">
-						<apex:inputField value="{!tasks.IPM_Type_of_Gate__c}" styleClass="fieldFont tGateDocEdit" id="taskTypeOfGateInput"/>
+						<apex:inputText value="{!tasks.IPM_Type_of_Gate__c}" styleClass="fieldFont tGateDocEdit"  disabled="true" id="taskTypeOfGateInput"/>
 					</div>
 				</div>
 			</div>  
-			<apex:outputPanel layout="block" styleClass="col-xs-12">     
-				<div class=""><apex:outputLabel value="Section" styleClass="fieldLabel fieldFont"/></div>
-				<div class="inputField">
-					<apex:selectList size="1" value="{!docSecList}"  id="listVal">
-						<apex:selectOptions value="{!Sectionlist}" id="sectionVal"/> 
-					</apex:selectList>
-				</div>
-			</apex:outputPanel>
+			
+			<apex:outputPanel id="projectSpanBlock" layout="block" styleClass="col-xs-12" > 
+	                    <apex:outputPanel rendered="{!AND(!redirectToGateDocument,tasks.IPM_Phase__c!= projectObject.IPM_Phase__c)}">
+	                       <div class=""><apex:outputLabel value="Project Span" styleClass="fieldLabel fieldFont" /></div>
+	                       <div class="inputField">
+	                         <apex:selectList size="1" value="{!tasks.IPM_TaskSpan__c}" styleClass="fieldFont" rendered="{!!redirectToGateDocument}">
+	                                   <apex:selectOptions value="{!gateSpecificSpan}" />
+	                                   <apex:actionSupport event="onclick" rerender="sectionBlock" status="gateloading" />  
+	                          </apex:selectList>
+	                       </div>
+	                    </apex:outputPanel>
+                        </apex:outputPanel>
+			<apex:actionRegion >    
+                  	<apex:outputPanel layout="block" styleClass="col-xs-12" id="sectionBlock" rendered="{!!redirectToGateDocument}">    
+                        <div class=""><apex:outputLabel value="Section" styleClass="fieldLabel fieldFont"/></div>
+                        <div class="inputField">
+                            <apex:selectList size="1" value="{!selectedSectionId}"  id="listVal">
+                                <apex:selectOptions value="{!Sectionlist}" id="sectionVal"/> 
+                            </apex:selectList>
+                        </div>
+                        </apex:outputPanel>
+                        </apex:actionRegion>
 			<apex:outputPanel layout="block" styleClass="col-xs-12" >
 				<div class=""><apex:outputLabel value="Functional Role" styleClass="fieldLabel fieldFont" /></div>
 				<div class="inputField">                            

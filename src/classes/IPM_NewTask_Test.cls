@@ -469,16 +469,7 @@ private class IPM_NewTask_Test{
         Test.stopTest();
         }
     } 
-    
-            
-            
-            
-   
-                
-                
-                
-                
-                
+              
                 
     /***********************************
       @name: createTaskFromAssociatedToDosTabByFO
@@ -520,35 +511,98 @@ private class IPM_NewTask_Test{
             }
         Test.stopTest();
     } 
-    /***********************************
-      @name: testProjectWithExternalApproach
-       @Description: when project approach is external then task should not be visible on page.
-    ***********************************/
-    public static TestMethod void testProjectWithExternalApproach(){
-       User globalUser = [Select Id,LastName from User where LastName=:USER_NAME limit 1];
-        system.runAs(globalUser)
-        {
-        Test.startTest();
-            initializedData();
-            IPM_Project__c project = projectDetailList[1];
-            project.IPM_PM_Approach__c = IPM_Utils.External;
-            update project;
-            
-            list<IPM_Project__c> projDetailList11 = [SELECT id,Name,IPM_PM_Approach__c FROM IPM_Project__c WHERE IPM_PM_Approach__c =: IPM_Utils.External];
-            system.assertEquals(projDetailList11[0].IPM_PM_Approach__c, IPM_Utils.External, 'Project approach is not updated');
-            
-            list<IPM_Task__c> taskList = [SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Project__c =:projDetailList11[0].Id AND IsSystemGenerated__c=true];
-            
-            putCurrentPageParameter(PROJ_ID_STR,projDetailList11[0].Id);
-            
-            ApexPages.StandardController sc = new ApexPages.StandardController(taskList[0]);
-            
-            IPM_NewTask taskview = new IPM_NewTask(sc);
-            
-            system.assertEquals(taskview.displayDueDate,false, 'Due Date Not Matched');
-            
-            Test.stopTest();
-        }
-    }
     
+     /***********************************
+      @name: testTodoWithFuturePhase
+      @Description: when future phase is selected for the ToDos 
+    ***********************************/
+    private static TestMethod void testTodoWithFuturePhase(){
+        
+        Test.startTest();
+        
+            User userBD = [Select Id,LastName from User where LastName=:USER_NAME limit 1]; 
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{userBD});
+            initializedData(); 
+            createProjectResource(projectDetailList[0].Id,userBD.id);
+            
+            system.runAs(userBD)
+            {
+                 list<IPM_Project__c> projDetailList11 = [SELECT id,IPM_Complexity__c,IPM_GateKeeping_Model__c,IPM_Project_Type__c,IPM_SourceProjectType__c,IPM_CompanyCardText__c,IPMProject_Span__c,Name,IPM_Phase__c FROM IPM_Project__c WHERE Name='TestComments1'];
+                 IPM_Section__c ipmSection = IPM_TestFactory_Helper.createIPMSection(true);
+                 IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projDetailList11[0].Id, false);
+                 task.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+                 task.IPM_Task_Name__c = 'Feasibility Task';
+                 task.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
+                 task.IPM_TaskSpan__c = 'Regional';
+                 task.IPM_Section__c = ipmSection.id;
+                 task.IPM_Function__c = 'BD';
+                 task.RecordTypeId = PROJECT_TASK_ID;
+                 
+                 putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
+                 ApexPages.StandardController sc = new ApexPages.StandardController(task);
+                
+                 IPM_NewTask newTask = new IPM_NewTask(sc); 
+                 newTask.projectObject = projDetailList11[0];
+                 newTask.tasks = task;
+                 newTask.tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
+                 newTask.projectObject = projDetailList11[0];
+                 newTask.getPhaselist();
+                 newTask.getGateSections();
+                 newTask.tasks.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
+                 newTask.getGateSpecificSpan();
+                 newTask.getFuntionalRolelist();
+                 newTask.tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
+                 newTask.getSections();
+                 newTask.tasks.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
+                 newTask.tasks.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
+                 newTask.doSaveTasks(); 
+               
+                 list<IPM_Task__c> taskList = [SELECT Id,IPM_Task_Name__c,IPM_Project__c,IPM_Function__c,IPM_Type_of_Task__c FROM IPM_Task__c WHERE IPM_Project__c =:projDetailList11[0].Id AND IsSystemGenerated__c=false and IPM_Task_Name__c =: 'Feasibility Task' ];
+                 for(IPM_Task__c tsk: taskList)
+                 {
+                     system.assertEquals(tsk.IPM_Type_of_Task__c,IPM_ConstantUtils.FUTURE_ADHOC_TASKS, 'Future AdHoc Task not saved');
+                 }
+            }         
+    }    
+    
+    /***********************************
+      @name: testTodoWithStandardTasks
+      @Description: test tasks with standard tasks
+    ***********************************/
+    private static TestMethod void testTodoWithStandardTasks(){
+        
+        Test.startTest();
+        
+            User userBD = [Select Id,LastName from User where LastName=:USER_NAME limit 1]; 
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{userBD});
+            initializedData(); 
+            createProjectResource(projectDetailList[0].Id,userBD.id);
+            
+            system.runAs(userBD)
+            {
+                 list<IPM_Project__c> projDetailList11 = [SELECT id,IPM_Complexity__c,IPM_GateKeeping_Model__c,IPM_Project_Type__c,IPM_SourceProjectType__c,IPM_CompanyCardText__c,IPMProject_Span__c,Name,IPM_Phase__c FROM IPM_Project__c WHERE Name='TestComments1'];
+                 IPM_Section__c ipmSection = IPM_TestFactory_Helper.createIPMSection(true);
+                 IPM_Task__c task = IPM_TestFactory_Helper.createIPMTask(projDetailList11[0].Id, false);
+                 task.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+                 task.IPM_Task_Name__c = 'Current Task';
+                 task.IPM_Section__c = ipmSection.id;
+                 task.IPM_Function__c = 'BD';
+                 task.RecordTypeId = PROJECT_TASK_ID;
+                 task.IPM_Type_of_Gate__c = IPM_ConstantUtils.CONTRACT_GATE;
+                 
+                 putCurrentPageParameter(PROJ_ID_STR,projectDetailList[0].Id);
+                 ApexPages.StandardController sc = new ApexPages.StandardController(task);
+                
+                 IPM_NewTask newTask = new IPM_NewTask(sc); 
+                 newTask.projectObject = projDetailList11[0];
+                 newTask.tasks = task;
+                 newTask.projectObject = projDetailList11[0];
+                 task.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD; 
+                 List<SelectOption> optionPhaseList= newTask.getPhaselist();
+                 system.assertEquals(!optionPhaseList.isEmpty(),true,'Task Phase List for standard tasks not populated as expected');
+                 List<SelectOption> optionSpanList=newTask.getGateSpecificSpan();
+             	 system.assertEquals(!optionSpanList.isEmpty(),true,'Task Span List for standard tasks not populated as expected'); 
+            }  
+    }
+ 
 }
