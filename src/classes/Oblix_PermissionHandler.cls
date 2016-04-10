@@ -333,7 +333,7 @@ public with sharing class Oblix_PermissionHandler {
     		&& 
     		(Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status
                 && Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status
-                && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC != sow_status)){
+                && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC != sow_status && Oblix_Utils.SOW_STATUS_OPEN_FOR_UPDATES != sow_status)){
     		return true;
     	}
     	else{
@@ -355,7 +355,7 @@ public with sharing class Oblix_PermissionHandler {
                 && 
                 (Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL == sow_status)
             ||
-                (hasAG1permissionSet() && isNextApprover(sow_id))
+                (hasSuperUserpermissionSet() || isSystemAdmin() || (hasAG1permissionSet() && isNextApprover(sow_id)))
                 &&
                 (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL == sow_status)
         ){
@@ -379,7 +379,7 @@ public with sharing class Oblix_PermissionHandler {
                 && 
                 (Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL == sow_status)
             ||
-                (hasAG1permissionSet() && isNextApprover(sow_id))
+                (isSystemAdmin() || hasAG1permissionSet() && isNextApprover(sow_id))
                 &&
                 (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL == sow_status)
         ){

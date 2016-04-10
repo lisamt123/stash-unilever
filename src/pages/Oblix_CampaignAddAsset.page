@@ -67,7 +67,7 @@
             <div class="row">
                 <div class="col-lg-9 confirm_assets_accordion">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
-                        <apex:repeat value="{!helper.assetOfferingWrapper.map_asset_type_wrapper}" var="typeName">
+                        <apex:repeat value="{!helper.assetOfferingWrapper.list_asset_types_in_order}" var="typeName">
 
                             <!-- [LVL 1] TYPE ACCORDION -->
                             <apex:variable var="offeringWrapper" value="{!helper.assetOfferingWrapper.map_asset_type_wrapper[typeName]}" />
@@ -81,7 +81,8 @@
                                     <div id="collapse{!offeringWrapper.index}" class="oblix-type-container panel-collapse collapse {!if(offeringWrapper.index == 0,'in','')}" role="tabpanel">
                                         <div class="oblix-sub-category-navigation panel-body">
                                             <ul class="nav nav-tabs assets_tab_background" data-tabs="tabs">
-                                                <apex:repeat value="{!offeringWrapper.map_type_subCategoriesSet[offeringWrapper.type_name]}" var="subcategory">
+                                                <!--<apex:repeat value="{!offeringWrapper.map_type_subCategoriesSet[offeringWrapper.type_name]}" var="subcategory">-->
+                                                <apex:repeat value="{!offeringWrapper.list_sub_categories_in_order}" var="subcategory">
 
                                                     <!-- [LVL 2] SUB CATEGORY TAB LABELS -->
                                                     <apex:outputText rendered="{!offeringWrapper.map_sub_categories[subcategory].is_visible}">
@@ -93,7 +94,8 @@
                                             </ul>
                                             <!--tab body-->
                                             <div class="tab-content">
-                                                <apex:repeat value="{!offeringWrapper.map_type_subCategoriesSet[offeringWrapper.type_name]}" var="subcategory">
+                                                <!--<apex:repeat value="{!offeringWrapper.map_type_subCategoriesSet[offeringWrapper.type_name]}" var="subcategory">-->
+                                                <apex:repeat value="{!offeringWrapper.list_sub_categories_in_order}" var="subcategory">
 
                                                     <!-- [LVL 2] SUB CATEGORY TAB CONTENT -->
                                                     <apex:outputText rendered="{!offeringWrapper.map_sub_categories[subcategory].is_visible}">
@@ -103,7 +105,8 @@
                                                                 <div class="col-lg-6">
 
                                                                     <ul class="oblix-option-navigation nav nav-pills nav-stacked">
-                                                                        <apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].map_subcategories_options_set[subcategory]}" var="eachSubcategoryOption">
+                                                                        <!--<apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].map_subcategories_options_set[subcategory]}" var="eachSubcategoryOption">-->
+                                                                        <apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].list_asset_options_in_order}" var="eachSubcategoryOption">
 
                                                                             <!-- [LVL 3] OPTION PILL LABELS -->
 
@@ -121,7 +124,8 @@
                                                                     <div class="add_asset_panel">
                                                                         <div class="row">
                                                                             <div class="tab-content">
-                                                                                <apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].map_subcategories_options_set[subcategory]}" var="eachSubcategoryOption">
+                                                                                <!--<apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].map_subcategories_options_set[subcategory]}" var="eachSubcategoryOption">-->
+                                                                                <apex:repeat value="{!offeringWrapper.map_sub_categories[subcategory].list_asset_options_in_order}" var="eachSubcategoryOption">
 
                                                                                     <!-- [LVL 3] OPTION PILL CONTENT -->
 
@@ -137,7 +141,7 @@
                                                                                                 <p class="create_SOW_form_titles asset_panel_titles quantity_label">Quantity*
                                                                                                     <br/><span class="form_bracket_text">(Numerics only)</span>
                                                                                                 </p>
-                                                                                                <p class="create_SOW_form_titles asset_panel_titles">Notes
+                                                                                                <p class="create_SOW_form_titles asset_panel_titles">Other Info
                                                                                                     <br/><span class="form_bracket_text">(Optional)</span>
                                                                                                 </p>
                                                                                             </div>
@@ -159,7 +163,7 @@
                                                                                                             </apex:repeat>
                                                                                                         </select>
                                                                                                         <div class="trDescribe hidden">
-                                                                                                            <p class="form_bracket_text">Please describe if not listed &nbsp;</p>
+                                                                                                            <p class="form_bracket_text">Please describe if not listed* &nbsp;</p>
                                                                                                             <input class="input_init descMend assetOtherName" maxlength="255" name="assetOtherName" size="20" type="text" />
                                                                                                         </div>
                                                                                                         <input type="number" name="assetQuantity" value="" class="assetQuantity" />
@@ -214,7 +218,7 @@
                                                     </apex:commandButton>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""> {!basketAssetWrapper.sub_category_name} / {!basketAssetWrapper.asset_name}{! IF(LEN(TRIM(basketAssetWrapper.other_name))=0, '', ' - ' + basketAssetWrapper.other_name) } / {!basketAssetWrapper.option_name}
+                                                    <apex:commandLink onclick="focusOnAsset('{!basketItemMDMID}'); return false;" reRender=""> {!basketAssetWrapper.sub_category_name} / {!basketAssetWrapper.option_name} / {!basketAssetWrapper.asset_name}{! IF(LEN(TRIM(basketAssetWrapper.other_name))=0, '', ' - ' + basketAssetWrapper.other_name) }
                                                     </apex:commandLink>
                                                 </div>
                                                 <div class="col-sm-1">

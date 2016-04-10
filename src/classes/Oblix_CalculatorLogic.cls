@@ -97,13 +97,17 @@ public with sharing class Oblix_CalculatorLogic {
 		Map<Id, Decimal> midd_project_total_score = new Map<Id, Decimal>();
 
 		Decimal total_project_score = 0;
+		Decimal asset_score = 0;
 
 		for (Id id : map_project_driver_score.keySet()){
 			
-			if (NULL!= map_total_asset_score && map_total_asset_score.containsKey(id) 
-				&& NULL != map_total_asset_score.get(id) && NULL != map_project_driver_score.get(id)){
+			if (NULL != map_project_driver_score.get(id)){
 
-				total_project_score = (map_total_asset_score.get(id) /100) * map_project_driver_score.get(id);
+				asset_score = (NULL!= map_total_asset_score && map_total_asset_score.containsKey(id) && NULL != map_total_asset_score.get(id))
+					? map_total_asset_score.get(id)
+					: 0;
+
+				total_project_score = (asset_score /100) * map_project_driver_score.get(id);
 				midd_project_total_score.put(id, total_project_score);
 			}
 
@@ -134,10 +138,10 @@ public with sharing class Oblix_CalculatorLogic {
 
 					if (NULL != asset.Asset_Score__c && NULL != asset.Quantity__c){
 						basket_score += asset.Asset_Score__c * asset.Quantity__c;
-						midd_project_asset_total.put(campaign_id, basket_score);
 					}
 				}	
 			}
+			midd_project_asset_total.put(campaign_id, basket_score);
 			
 		}
 
@@ -179,7 +183,7 @@ public with sharing class Oblix_CalculatorLogic {
 
 
 			if (NULL != project && project.Marketing_SOW_Project_Splits__r.size()>0 && map_campaign_id_box_number.containsKey(project_id)
-				&& NULL != map_campaign_id_box_number.get(project_id) ){
+				&& String.isNotBlank(map_campaign_id_box_number.get(project_id))){
 
 				box_number = map_campaign_id_box_number.get(project_id);
 
@@ -202,6 +206,10 @@ public with sharing class Oblix_CalculatorLogic {
 				midd_project_total_fee.put(project.Id, (Long)total_fee.round(system.RoundingMode.HALF_EVEN));
 
 			}
+			else{
+				midd_project_total_fee.put(project.Id, 0);
+			}
+
 		}
 
 		return midd_project_total_fee;
@@ -216,6 +224,7 @@ public with sharing class Oblix_CalculatorLogic {
 
 		for (Id project_id : map_projects.keySet()){
 			project_score = 0;
+			box_number ='';
 			project = map_projects.get(project_id);
 
 			if (NULL != map_project_total_score && map_project_total_score.containsKey(project_id) && NULL != map_project_total_score.get(project_id)){
@@ -228,8 +237,8 @@ public with sharing class Oblix_CalculatorLogic {
 				// get the box number for the given project financial year and total project score
 				box_number = getFinancialYearCalculator().getBoxNumberAsFieldFormat(project_score, project.Financial_Year__r.Financial_Year__c);
 
-				map_campaign_id_box_number.put(project_id, box_number);
 			}
+			map_campaign_id_box_number.put(project_id, box_number);
 		}
 
 		return map_campaign_id_box_number;

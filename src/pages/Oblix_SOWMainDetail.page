@@ -50,11 +50,11 @@
                         <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!show_submit}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button></apex:outputPanel></td>
                         <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_reject_sow}"><button type="button" class="btn btn-danger btn-xs two_button_header btn_return btn_send_back" data-toggle="modal"  data-target="#sendBack">RETURN SOW</button></apex:outputPanel></td>
                         <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_approve_sow}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_approve_sow"  data-toggle="modal"  data-target="#sowApprove">APPROVE SOW</button></apex:outputPanel></td>
-                        <td class="SOW_header_value_title">SOW total</td>
+                        <td class="SOW_header_value_title">SOW total (including risk adjustment)</td>
                         <td class="SOW_header_value">
                             <h2>
                                 <apex:outputText value="€ {0, number,###,###,##0}" rendered="{!can_see_financial_fields}">
-                                    <apex:param value="{!selected_sow.Total_Campaigns_This_FY__c+selected_sow.OblixTotalOtherItemsFees__c}" />
+                                    <apex:param value="{!selected_sow.Oblix_Current_FY_Total__c}" />
                                 </apex:outputText>
                                 <apex:outputText value=" --- " rendered="{!can_see_financial_fields == false}"/>
                             </h2>
@@ -155,7 +155,8 @@
                         <div class="modal-footer">
                             <div class="modal_button_align">
                                 <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton action="{!approveSOW}" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn_check btn_yes_approve" value="YES, APPROVE" html-data-dismiss="modal"  onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                <apex:commandButton rendered="{!isAgencyApproval}" action="{!approveSOW}" onclick="blockme();" styleClass="btn btn-danger btn_check btn_yes_submit" value="YES, APPROVE" reRender="top_right_panel,sow_details" html-data-dismiss="modal" oncomplete="$.unblockUI();alert('{!selected_sow.Name} has been approved successfully by Unilever and Agency.\nAn \'open for updates\' version will be available shortly to allow Unilever reflect any changes during the year.');window.location.href='/agency/apex/oblix_sowmain';"/>
+                                <apex:commandButton rendered="{!!isAgencyApproval}" action="{!approveSOW}" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn_check btn_yes_approve" value="YES, APPROVE" html-data-dismiss="modal"  onclick="blockme()" oncomplete="$.unblockUI()"/>
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
@@ -265,7 +266,7 @@
                                     <tbody>
                                         <apex:repeat value="{!li_campaign_and_non_campaign_items}" var="campaign_and_non_campaign">
                                             <apex:outputPanel rendered="{!campaign_and_non_campaign.s_object_type == 'Campaign'}">
-                                                <tr class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled','')} camp" data-href="{!$Page.Oblix_CampaignSummary}?projectId={!campaign_and_non_campaign.dynamic_object['Id']}">
+                                                <tr class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled',IF(campaign_and_non_campaign.dynamic_object['Value_To_BePaid_Manual_Override__c'],'project_fee_adjusted',''))} camp" data-href="{!$Page.Oblix_CampaignSummary}?projectId={!campaign_and_non_campaign.dynamic_object['Id']}">
                                                     <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
                                                     <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
@@ -288,32 +289,39 @@
                                                     </td>
                                                     <td class="table_progress_bar_styling">
                                                         <div id="crumbs">
-                                                            <p class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled_text', '')}">
-                                                                {!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'Campaign Cancelled','')}
-                                                            </p>
+                                                            <apex:outputText rendered="{!campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled'}">
+                                                                <p class="project_cancelled_text">
+                                                                    Campaign Cancelled
+                                                                </p>
+                                                            </apex:outputText>
+                                                            <apex:outputText rendered="{!campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] != 'Cancelled' && campaign_and_non_campaign.dynamic_object['Value_To_BePaid_Manual_Override__c']}">
+                                                                <p class="project_cancelled_text">
+                                                                    Fee Adjusted
+                                                                </p>
+                                                            </apex:outputText>
                                                             <ul>
                                                                 <li>
-                                                                    <div title="Briefing" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[1].s_css_class_name}">
+                                                                    <div title="Briefing" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[1].cssClass}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Strategy & Planning" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[2].s_css_class_name}">
+                                                                    <div title="Strategy & Planning" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[2].cssClass}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Creative Ideation" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[3].s_css_class_name}">
+                                                                    <div title="Creative Ideation" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[3].cssClass}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Creative Execution" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[4].s_css_class_name}">
+                                                                    <div title="Creative Execution" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[4].cssClass}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Production" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[5].s_css_class_name}">
+                                                                    <div title="Production" class="{!campaign_and_non_campaign.stage_identifier.completed_stages[5].cssClass}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
