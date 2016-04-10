@@ -7,10 +7,10 @@
    -->
 <apex:page controller="AF_BonusMatrixOverrideController" showheader="false" >
   <!-- Common_Style File Start -->
-<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
 <!-- Common_Style File End -->
   <!--Bootstrap_css File  start-->
-      <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
+      <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.css')}" type="text/css"/>
      <!--Bootstrap_css File End -->
  <style>
   #iframe_cont
@@ -36,9 +36,9 @@
   height:102%;
 }
  </style>    
-       <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
+       <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"></script>
      <!--   Bootstrap_Js File start -->
-     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script> 
+     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.js')}"></script> 
      <!-- Bootstrap_Js File End -->
      <!-- Bootstrap Tooltip Method Start--> 
 <!-- Bootstrap Tooltip Method End--> 
@@ -188,5 +188,5 @@
 </div> 
 <!-- Bootstrap bootstrap modal window End --> 
  </apex:form>
- <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'AF_BonusEstimate.js')}"></script>
+ <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_BonusEstimate.js')}"></script>
 </apex:page>

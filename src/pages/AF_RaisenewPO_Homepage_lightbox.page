@@ -41,7 +41,7 @@
       }   
    </script>
    <!-- Common_Style File Start -->
-   <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
    <!-- Common_Style File End -->
    <apex:form styleClass="AF_RaisenewPO_Homepage_lightbox">
       <apex:pageBlock id="pb1">

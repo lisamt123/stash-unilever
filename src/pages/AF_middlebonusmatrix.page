@@ -43,7 +43,7 @@
          });
       </script>
       <!-- Common_Style File Start -->
-      <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+      <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
       <!-- Common_Style File End -->
    </head>
    <body class="AF_middlebonusmatrix">

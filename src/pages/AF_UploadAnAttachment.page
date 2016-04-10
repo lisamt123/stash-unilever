@@ -7,7 +7,7 @@
    -->
 <apex:page controller="AF_AttachmentUploadController" showHeader="false" sidebar="false" >
    <!-- Common_Style File Start -->
-   <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
    <!-- Common_Style File End -->
    <script>
       function closeAndRefresh()

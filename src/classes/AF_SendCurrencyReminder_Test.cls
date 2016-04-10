@@ -17,7 +17,7 @@ public class AF_SendCurrencyReminder_Test
 *  @param : none
 *  @return : none
 *************************************************************************/  
-    static testmethod void SchedulableContext()
+    static testmethod void AFCurrencySchedulable()
     {
         Test.startTest();
         userForSendCurrency=AF_TestFactory_Helper.createUserAdmin(true);
@@ -27,9 +27,9 @@ public class AF_SendCurrencyReminder_Test
             List<Send_Email__c> sendEmail = AF_TestFactory_Helper.insertSendEmail(1,true);
             List<Send_Email__c> sendEmailQuery = [SELECT Id FROM Send_Email__c LIMIT 1];
             System.assert(sendEmailQuery[0].Id!=null ,SEND_EMAIL);
-            af_SendCurrencyReminder_schedule  EmailtoCatFinance =new af_SendCurrencyReminder_schedule();
+            AF_SendCurrencyReminder_schedule  EmailtoCatFinance =new AF_SendCurrencyReminder_schedule();
             String CRON_VALUE = '0 0 3 ? * *';
-            system.schedule('af_SendCurrencyReminder_schedule-yearly (TEST)', CRON_VALUE, EmailtoCatFinance);
+            system.schedule('AF_SendCurrencyReminder_schedule-yearly (TEST)', CRON_VALUE, EmailtoCatFinance);
             Test.stopTest();
         }
     }

@@ -74,9 +74,24 @@
          } 
          }
       </style>
-      
-      <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico" />
-      <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
+      <script>
+      $('a.addfancy1').fancybox({
+           autoSize: false,
+                 width: 900,
+                 height: 600,
+                 type: 'iframe',
+                 titlePosition: 'inside',
+                 hideOnOverlayClick:'false',
+                 hideOnContentClick:'false',
+                 helpers     : { 
+                 overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
+                 },
+                 afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+                     location.reload();
+                 }
+         });
+      </script>
+      <Link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.css')}" />
       <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/jquery.multiselect.filter.css')}" />
       <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/style.css')}" />
       <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.css')}" />
@@ -123,7 +138,7 @@
          var isCol = location.search.split('bCol=')[1];
          var dataSet, cols, oTable, singleRow, singleCol;
       </script>
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functionOOPSMatrix.js')}"></script>
+      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functions.js')}"></script>
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
       <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.js')}"></script>
@@ -134,6 +149,7 @@
              loadOOpsMatrix();
          });
       </script>
+      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functionOOPSMatrix.js')}"></script>
    </head>
    <div class="AF_UL_oopsMatrix">
       <!---Header Summary section -->
@@ -394,16 +410,9 @@
         
          <script>
             window.onload = function() {
-                var urlChartCircles;
-                if(jsDeclareOOPS.isAgencyFlag1==true){
-                urlChartCircles='/AgencyFees/resource/1435031136000/ChartNewJs';
-                }
-                else{
-                urlChartCircles='/resource/1435031136000/ChartNewJs';
-                }
-                $.getScript(urlChartCircles,function(){
+                
                     var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
-               });
+               
             }
             function commentsToggleOpen(elementId) 
             {

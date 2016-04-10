@@ -12,16 +12,16 @@
    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.css')}"/>
    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.jquery_ui_1_10_4,'css/smoothness/jquery-ui-1.10.4.custom.min.css')}"/>
    <!-- Common_Style File Start -->
-   <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
    <!-- Common_Style File End -->
    <!-- Bootstrap_css File Start -->
-   <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
+   <link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.css')}" type="text/css"/>
    <!-- Bootstrap_css File End --> 
    <!-- jquery library Start-->
-   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"></script>
    <!-- jquery library End--> 
    <!-- Bootstrap_Js File start-->
-   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
+   <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'bootstrap.min.js')}"></script>
    <!--Bootstrap Js File End -->
    <style>
       #iframe_cont

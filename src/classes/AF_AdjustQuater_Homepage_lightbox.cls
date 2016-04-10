@@ -29,12 +29,12 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
     public Map<id,String>BackupQuarter=new map<id,String>();
     public list<AF_Brand_Estimate__c> queryBrandEstimateRecords{get;set;}// to store Brand estimate records
     public String raiseNewPOQuarters=''; 
-	private list<String> validateAddQuarter=new list<String>();
-	private list<String>addQuarter=new list<String>();
-	String quarterformat;
-	String QuarterName;
-	String changedBrandName;
-	private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
+    private list<String> validateAddQuarter=new list<String>();
+    private list<String>addQuarter=new list<String>();
+    String quarterformat;
+    String QuarterName;
+    String changedBrandName;
+    private static string className_STR=AF_AdjustQuater_Homepage_lightbox.class.getName();
     /**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_AdjustQuater_Homepage_lightbox
@@ -121,13 +121,13 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
 *  @return: none
 ***************************************************************************************************/
     public void showPopup() {
-        list<String>addQuarter=new list<String>();
         selectedBrandEstimateIds = new Set<String>();
         String raiseNewPOQuarters;
         for(wrapChechbox B:QuarterEstimate){
             if(B.selected){
                 changedBrandName = '';
                 raiseNewPOQuarters='';
+                QuarterName='';
                 if(B.BrandRecord.AF_RaiseNewPOQuarters__c!=null){
                     raiseNewPOQuarters = B.BrandRecord.AF_RaiseNewPOQuarters__c;
                 }
@@ -146,8 +146,8 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
                 if(B.Q4 && !raiseNewPOQuarters.contains(AF_Constants.QUARTER4)){
                     addquarter.add(AF_Constants.QUARTER4);
                 }
-				showPopupExtension(B);
-				showRaiseQuarter(B);
+                showPopupExtension(B);
+                showRaiseQuarter(B);
              }   
         }
         if(selectedBrandEstimateIds.isEmpty() )
@@ -159,10 +159,10 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
             displayPopup = true;
         }            
     }
-	
+    
 private void showPopupExtension(wrapChechbox B){
-				
-				if(addquarter.IsEmpty()){
+                
+                if(addquarter.IsEmpty()){
                     displaypopquarter=true; 
                     apexpages.addmessage(new apexpages.message(apexpages.severity.info,Label.AF_Base_Fee_Quarter)); // Quarter value can not be empty
                 }
@@ -174,7 +174,7 @@ private void showPopupExtension(wrapChechbox B){
                         missQuarter = missQuarter+qr;
                         validateAddQuarter.add(qr);
                     }
-					Integer i=1;
+                    Integer i=1;
                     Integer listSize=validateAddQuarter.size(); 
                     Integer lastQuarter=0;
                     if( !validateAddQuarter.isEmpty() ){
@@ -199,9 +199,9 @@ private void showPopupExtension(wrapChechbox B){
                         displayPopup = true;
                     }
                     addquarter.sort();
-					showBrandName(B);
-				}
-				QuarterName = QuarterName.removeEnd(';');
+                    showBrandName(B);
+                }
+                QuarterName = QuarterName.removeEnd(';');
                 changedBrandName = changedBrandName+ quarterformat +' ';
                 changedBrandName=changedBrandname + B.BrandRecord.AF_Fiscal_Year__c;
                 addquarter.clear(); 
@@ -210,8 +210,8 @@ private void showPopupExtension(wrapChechbox B){
                 ChangedQuarter.put(B.BrandRecord.Id,QuarterName);
 }
 public void showBrandName(wrapChechbox B){
-					quarterformat='';
-					quarterformat='';
+                    quarterformat='';
+                    quarterformat='';
                     //Quarter Formats like Q1-Q4
                     if(addquarter.size()>1){
                         quarterformat=addquarter.get(0)+'-'+addquarter.get(addquarter.size()-1);           
@@ -222,7 +222,8 @@ public void showBrandName(wrapChechbox B){
                     for(String addquart:addQuarter){
                         QuarterName=QuarterName+addquart+';';
                     }
-                
+                    system.debug('addQuarter...'+addQuarter);
+                   system.debug('QuarterName...'+QuarterName);
                 
 }
 
@@ -241,7 +242,7 @@ public void showRaiseQuarter(wrapChechbox B){
                     raiseQuarter = raiseQuarter+';'+AF_Constants.QUARTER4;
                 }
                 BackupQuarter.put(B.BrandRecord.Id,raiseQuarter);
-}				
+}               
     /**********************************************************************
 *  @Description: this method is to update and adjust the quarters 
 @             BrandEstimate.

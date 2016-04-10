@@ -54,7 +54,7 @@
   height:102%;
 }
       </style>
-      <script type="text/javascript">
+        <script type="text/javascript">
             $('a.addfancy').fancybox({
               autoSize: false,
                     width: 1100,
@@ -133,7 +133,7 @@
             loadBonusMatrix();
         });
     </script>
-    
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functionBonusMatrix.js')}"></script>
      
 </head>
 <div class="AF_BonusMatrix">
@@ -363,7 +363,7 @@
      window.onload = function() {
             var urlChartCircles;
             if(jsDeclareBonus.isAgencyFlag1 === true){
-            	urlChartCircles='/AgencyFees/resource/1435031136000/ChartNewJs';
+                urlChartCircles='/AgencyFees/resource/1435031136000/ChartNewJs';
             }
             else{
                urlChartCircles='/resource/1435031136000/ChartNewJs';
@@ -375,13 +375,13 @@
            });
         }    
     function commentsToggleOpen(elementId) 
-  	{
+    {
       document.getElementById(elementId).style.display = 'block';
-  	}
+    }
   function commentsToggleClose(elementId) 
-  	{ 
+    { 
       document.getElementById(elementId).style.display = 'none';
-  	}
+    }
   commentsToggleClose('commentAddTable');
     </script>
     <!--<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/canvasChart.js')}"></script>-->

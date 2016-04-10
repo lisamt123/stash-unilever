@@ -169,7 +169,8 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             wr.Selected=true;
             brandEstimateRecords.add(wr);
             adjHome.QuarterEstimate=brandEstimateRecords;      
-            adjHome.showPopup();
+            //adjHome.showPopup();
+            adjHome.queryBrandEstimate();
             adjHome.saveBrandEstimate();
             Test.stopTest();
         }
@@ -227,7 +228,7 @@ public class AF_AdjustQuater_Homepage_lightbox_Test
             adjHome.displaypopquarter=false;
             brandEstimateRecords.add(wr);
             adjHome.QuarterEstimate=brandEstimateRecords;      
-            adjHome.showPopup();
+            //adjHome.showPopup();
             adjHome.saveBrandEstimate();
             Test.stopTest();
         }

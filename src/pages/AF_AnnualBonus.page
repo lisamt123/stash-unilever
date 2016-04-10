@@ -8,10 +8,10 @@
 <apex:page controller="AF_AnnualBonus" showHeader="false" sidebar="false" docType="HTML-5.0">
 
 <!-- Common_Style File Start -->
-<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<link rel="stylesheet" href="{!URLFOR($Resource.AF_Bootstrap, 'common_style.css')}" type="text/css"/>
 <!-- Common_Style File End -->
 <!-- jquery library Start-->
-    <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.AF_Bootstrap, 'jquery.min.js')}"/>
     <!-- jquery library End-->
  <div class="AF_AnnualBonus">
   <apex:message />
@@ -295,5 +295,5 @@
         </apex:ActionStatus>
  </apex:form>
 </div>
-  <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'AF_AnnualBonus.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.AF_Bootstrap, 'AF_AnnualBonus.js')}"/>
 </apex:page>

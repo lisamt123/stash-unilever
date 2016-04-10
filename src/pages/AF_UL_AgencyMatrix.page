@@ -20,7 +20,7 @@
          <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/jquery.fancybox.pack.js?v=2.1.0')}"></script>-->
       <link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.css?v=1.0.6')}" type="text/css" media="screen" />
       <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-thumbs.js?v=1.0.6')}"></script>
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_ApprovalProcessForBrandEstimates.js')}"></script>
+      
       <style>
          /*body.AF_UL_AgencyMatrix .tableborder th, 
          body.AF_UL_AgencyMatrix .tableborder td
@@ -79,6 +79,7 @@
       </style>
       <script>
          $(document).ready(function(){
+        alert(brandvalue);
            $(".outText1").hover(function(){
                $('.outText1').prop('title', {!tradDecimalPerStr}+'%');
            }
@@ -92,7 +93,8 @@
            }
            );
            });
-      </script>    
+      </script> 
+  
             <!--<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/lib/jquery.mousewheel-3.0.6.pack.js')}"></script>-->
       <!-- Optionally add helpers - button, thumbnail and/or media -->
       <!--<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.css?v=1.0.3')}" type="text/css" media="screen" />
@@ -132,21 +134,28 @@
          var isCol = location.search.split('bCol=')[1];
          var dataSet, cols, oTable, singleRow, singleCol;
       </script>
-      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functionBaseFeeMatrix.js')}"></script>
+      
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functions.js')}"></script>
       <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.js')}"></script>
       <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/src/jquery.multiselect.filter.js')}"></script>
       <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.js')}"></script>
       <!-- <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/loadBaseFeeMatrix.js')}"></script> -->
+      
       <script>
          
          $(document).ready(function() {
              loadAgMatrix();
-                
+                           
     
          });
       </script>
+      
+      
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/functionBaseFeeMatrix.js')}"></script>
+      
+      
    </head>
    <script>
       function openComments(url){
@@ -510,16 +519,17 @@
       </div>
       <!-- Bootstrap bootstrap modal window End -->
       
-      <!--
-         <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/matrixControls.js')}"></script>
-         -->
+      
       <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_Bootstrap, 'AF_UL_AgencyMatrix.js')}"></script>
       <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/matrixControls.js')}"></script>
       <script>
     var jsDeclareBaseFees = {isAgencyFlag1: '{!isAgencyFlag}', crosPerStr1:'{!crosPerStr}', tradPerStr1:'{!tradPerStr}', digitPerStr1:'{!digitPerStr}',adaptPerStr1:'{!adaptPerStr}'};
     </script>
     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'javascript/canvasBaseFeesChart.js')}"></script>
+      
+   
       <script>
+      var $j = jQuery.noConflict();
          $j(document).ready(function() {
              $j(".statusBrand").multiselect({
                  multiple: false,
@@ -540,19 +550,12 @@
       <!--Chart Javascript -->
       <script>
          window.onload = function() {
-               var urlChartCircles;
-                if(jsDeclareBaseFees.isAgencyFlag1 === true){
-                urlChartCircles='/AgencyFees/resource/1435031136000/ChartNewJs';
-                }
-                else{
-                urlChartCircles='/resource/1435031136000/ChartNewJs';
-                }
-                $.getScript(urlChartCircles,function(){
+               
                 var myCrossBar = new Chart(document.getElementById("mycrosscanvas").getContext("2d")).Doughnut(DoughnutCrossData,crossopts);
                 var mytradBar = new Chart(document.getElementById("mytradcanvas").getContext("2d")).Doughnut(DoughnutTradData,tradopts);
                 var mydigitBar = new Chart(document.getElementById("mydigitcanvas").getContext("2d")).Doughnut(DoughnutDigtData,digtopts);
                 var myadapBar = new Chart(document.getElementById("myadapcanvas").getContext("2d")).Doughnut(DoughnutAdapData,adapopts);            
-               });
+               
             }
          function commentsToggleOpen(elementId) 
          {
@@ -566,5 +569,6 @@
          }
          commentsToggleClose('commentAddTable');
       </script>
+     
    </body>
 </apex:page>
