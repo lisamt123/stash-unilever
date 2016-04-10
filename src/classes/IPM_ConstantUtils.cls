@@ -1178,4 +1178,14 @@ public class IPM_ConstantUtils {
    public static finaL String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
    public static final Integer KB_TO_BYTES = 1024;
    public static final string CU_AND_COMPLEXITY= 'CU_And_Complexity';
+   
+   //Market performance field names
+   
+   public static final string PERFORMANCE_PERIOD='Period__c';   
+   public static final string BREAKELINE='<br/>';
+   public static final string EURO='EUR';
+   public static final string MONITONING_PER_EXTERNAL_ID='Monitoring_Performance_in_Market';
+   public static final string MISALIGNED_CSS='misalignedField'; 
+   
+   public static final string SIX_THREE='6.3'; 
 }

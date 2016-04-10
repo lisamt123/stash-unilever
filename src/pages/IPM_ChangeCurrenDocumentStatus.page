@@ -166,6 +166,59 @@
                                         <span class="errTitle">{!$Label.IPM_EcoDesign_Assessment}</span>
                                         <span class="errList">{!$Label.IPM_EcoDesign_Fill} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!ecoDesignSectionId}" target="_top">{!$Label.IPM_EcoDesign_Assessment_Section}</a></span> 
                                     </apex:outputPanel>
+									!-- CR0281 bb document validation -->
+                                    <!-- Below rendered condition is used for checking TLD alignment, business case confirmation,financial alignment -->
+                                    <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!isBDBBAlignment}">
+                                        <span class="errTitle">{!$Label.IPM_BB_Document}</span>
+                                        <!-- Below rendered condition is used for checking business case confirmation -->
+                                        <apex:outputPanel layout="block" rendered="{!businessCasePending}">
+                                            <apex:repeat value="{!projSectionList}" var="section">  
+                                             <!-- Below rendered condition is provide the link for section 6.3 --> 
+                                                 <apex:outputPanel layout="block" rendered="{!section.IPM_Section_Sequence__c=bd_BBAlignmentSequence}">    
+                                                    <span class="errList"><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!section.Id}" target="_blank">{!$Label.IPM_confirm_business_case_in_gate}</a> </span> 
+                                                 </apex:outputPanel>
+                                            </apex:repeat> 
+                                            <apex:variable value="{!totalLocalProjects}" var="rowNum"/>
+                                            <div class="errList">
+                                                <apex:repeat value="{!localBCProjectName}" var="localProject">
+                                                  <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span>
+                                                    <apex:variable var="rowNum" value="{!rowNum - 1}"/>
+                                                </apex:repeat>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <!-- Below rendered condition is used for checking financial alignment -->
+                                        <apex:outputPanel layout="block" rendered="{!financialAlignment}">
+                                            <apex:repeat value="{!projSectionList}" var="section"> 
+                                            <!-- Below rendered condition is provide the link for section 6.3 -->  
+                                                 <apex:outputPanel layout="block" rendered="{!section.IPM_Section_Sequence__c=bd_BBAlignmentSequence}">    
+                                                    <span class="errList"><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!section.Id}" target="_blank">{!$Label.IPM_Finance_Align}</a> </span> 
+                                                 </apex:outputPanel>
+                                            </apex:repeat>
+                                            <apex:variable value="{!totalFinProject}" var="rowNum"/>
+                                            <div class="errList">
+                                                <apex:repeat value="{!localFinProjectName}" var="localProject">
+                                                    <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span>
+                                                    <apex:variable var="rowNum" value="{!rowNum - 1}"/>
+                                                </apex:repeat>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <!-- Below rendered condition is used for checking TLD alignment -->
+                                        <apex:outputPanel layout="block" rendered="{!tldAlignment}">
+                                            <apex:repeat value="{!projSectionList}" var="section">   
+                                            <!-- Below rendered condition is provide the link for section 6.3 -->
+                                                 <apex:outputPanel layout="block" rendered="{!section.IPM_Section_Sequence__c=bd_BBAlignmentSequence}">    
+                                                    <span class="errList"><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!section.Id}" target="_blank">{!$Label.IPM_TDL_Align}</a> </span> 
+                                                 </apex:outputPanel>
+                                            </apex:repeat>
+                                            <apex:variable value="{!totalTLDProject}" var="rowNum"/>
+                                            <div class="errList">
+                                                <apex:repeat value="{!localTLDProjectName}" var="localProject">
+                                                    <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span> 
+                                                    <apex:variable var="rowNum" value="{!rowNum - 1}"/>
+                                                </apex:repeat>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
                             </apex:outputPanel>
                         </apex:outputPanel>
                             </apex:outputPanel>

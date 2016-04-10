@@ -54,6 +54,18 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public static final String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
     public Boolean isRiskComplete{get;set;}//boolean to check if Risk section is complete
     public static final string ENVIRONMENTAL_IMPACT=IPM_ConstantUtils.IPM_ENVIRONMENTAL_IMPACT;
+	public boolean businessCasePending{get;set;}//validation check for business case confirmation
+    public List<IPM_Financial__c> finList{get;set;}//list out local project names while checking the validation
+    public integer totalLocalProjects{get;set;}//total local projects
+    public set<String>localBCProjectName{get;set;}//set of Business unconfirmed local project name
+    public set<String>localFinProjectName{get;set;}//set of misAligned local project name
+    public set<String>localTLDProjectName{get;set;}//set of misAligned local project name
+    public boolean financialAlignment{get;set;}//check for financial alignment
+    public boolean tldAlignment{get;set;}//check for TLD alignment
+    public integer totalFinProject{get;set;}//total financial misAligned local project name
+    public integer totalTLDProject{get;set;}//total TLD misAligned local project name
+    public boolean isBDBBAlignment{get;set;}
+    public string bd_BBAlignmentSequence{get;set;}
     
     /*****************************************************************
     @Description :Constructor Fetch the Page parameters and retrieve lists
@@ -67,6 +79,14 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         showStop=true;
         showPostpone=true;
         showApprove=true;
+		totalLocalProjects=0;
+        totalFinProject=0;
+        totalTLDProject=0;
+        businessCasePending=false;
+        financialAlignment=false;
+        tldAlignment=false; 
+        isBDBBAlignment=false;   
+        bd_BBAlignmentSequence=IPM_ConstantUtils.BB_BD_ALIGNMENT; 
         isCapability = IPM_ConstantUtils.PHASE_CAPABILITY;
         projectId=ApexPages.currentPage().getParameters().get('Id');
         
@@ -404,7 +424,9 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 // Risk Question Validation Check
                    validateRisk();
                 //ecoDesign validation check
-                   ecoDesignAssessmentValidate();   
+                   ecoDesignAssessmentValidate(); 
+				//Regional project propose validation check
+				   getLocalProjectDetails(); 
             }
            
      //All the validation Messages to be displayed on the UI. The below code base will be updated based on the NEW UI (after refactoring is over)
@@ -799,6 +821,60 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
 
             }
+    }
+	/***********************************************************************
+    @Description :validation of regional project.if all local project of BB document got confirmed 
+    then only capability phase(Regional project) will proposed.
+    @param: Not Applicable
+    @Referenced: ipmChangeCurrenDocumentStatus(Page)
+    @Release:1.2
+    **********************************************************************/
+    @testvisible private void getLocalProjectDetails(){
+        localBCProjectName=new set<String>();
+        localFinProjectName=new set<String>();
+        localTLDProjectName=new set<String>();
+        if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(project.IPMProject_Span__c) && (IPM_ConstantUtils.PHASE_CAPABILITY.equals(project.IPM_Phase__c) || IPM_ConstantUtils.PHASE_FEASIBILITY.equals(project.IPM_Phase__c))){
+            finList=new List<IPM_Financial__c>();
+            finList=[SELECT IPM_Business_Case_Confirmed__c,Is_BC_Confirmed_Capability__c,Local_Project__r.IPM_Phase__c,Misaligned__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
+            Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,
+            Local_Project__r.IPM_Project_Name__c,Local_Project__c FROM IPM_Financial__c WHERE 
+            Local_Project__r.IPM_Parent_Project__c=:projectId AND RecordType.Name=:IPM_ConstantUtils.DEFAULT_FINANCIAL_RT LIMIT 1000];
+            if(!finList.isEmpty()){
+                for(IPM_Financial__c fin:finList){
+                    //Business case alignment
+                    if(IPM_ConstantUtils.PHASE_FEASIBILITY.equals(fin.Local_Project__r.IPM_Phase__c) && !fin.IPM_Business_Case_Confirmed__c){
+                        totalLocalProjects=totalLocalProjects+1;
+                        businessCasePending=true;
+                        showValidation=false;
+                        localBCProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+                    }else if(IPM_ConstantUtils.PHASE_CAPABILITY.equals(fin.Local_Project__r.IPM_Phase__c) && !fin.Is_BC_Confirmed_Capability__c){
+                        totalLocalProjects=totalLocalProjects+1;
+                        businessCasePending=true;
+                        showValidation=false;
+                        localBCProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+                    }  
+                    //Financial alignment
+                    if(fin.Misaligned__c){
+                        localFinProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+                        showValidation=false;  
+                        financialAlignment=true;
+                        totalFinProject=totalFinProject+1;
+                        
+                    }
+                    //Target launch date alignment
+                    if(fin.Local_Project__r.Rollout_Plan_Target_Launch_Date__c!=fin.Local_Project__r.IPM_Target_Launch_Dates__c && fin.Local_Project__r.IPM_Target_Launch_Dates__c!=fin.Local_Project__r.IPM_Parent_Project__r.IPM_Target_Launch_Dates__c){
+                        localTLDProjectName.add(fin.Local_Project__r.IPM_Project_Name__c);
+                        showValidation=false;  
+                        tldAlignment=true;  
+                        totalTLDProject=totalTLDProject+1;
+                    }
+                }
+                //to display bd/bb alignment section on page
+                if(tldAlignment || financialAlignment || businessCasePending){
+                    isBDBBAlignment=true; 
+                }
+            }
+        }
     }
     
     

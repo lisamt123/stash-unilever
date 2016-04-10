@@ -77,6 +77,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public boolean isITOgrtGTO{get; set;} //DEF2315
     public boolean isITOgrtGTOCal{get; set;} //DEF2315
     public String BI{get;set;}
+	public string financialAcceptFrom{get;set;}
+    public boolean toShowEditButton{get;set;}
+    public boolean toShowEditOpern{get;set;}
+    public boolean isCopyfromSTDBC{get;set;}
+    public boolean isTDLAcceptNBC_Confirm{get;set;}
+    public string tldAcceptedBCConfirmed{get;set;}
     public string globalbusinessImpactStr  {get; set;}
     public IPM_Financial__c fin {get; set;}
     public IPM_Financial__c finRegional{get;set;}// for Financial Regional Business Impact
@@ -255,6 +261,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 if(result) {
                     milestoneFinanceDataValidationMessage = Label.IPM_Finacial_Data_Missing;
                 }
+				localProjectConditions();
               
             }
         } 
@@ -1697,6 +1704,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public void editFinancials() {
         try{
             isEditMode = true;
+			if(toShowEditOpern||toShowEditButton){
+                isCopyfromSTDBC=true;   
+            }
            
         } catch (Exception eX){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
@@ -2620,4 +2630,40 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
         }
     }
+	/****************************************************************************************************************
+    *@Description:checks for local project financial
+    *
+    *****************************************************************************************************************/
+    @testvisible Private void localProjectConditions(){
+        financialAcceptFrom=label.IPM_ACCEPT_REGIONAL_BC;
+        boolean isLocalProjectAccept=false;
+        toShowEditButton=false;
+        toShowEditOpern=false;
+        isCopyfromSTDBC=false;
+        isTDLAcceptNBC_Confirm=false;
+        tldAcceptedBCConfirmed=Label.Accept_from_Regional+IPM_ConstantUtils.IPM_SPACE +label.IPM_and_Confirm;
+        if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(project.IPM_Project_Type__c) ){
+            if((IPM_ConstantUtils.PHASE_FEASIBILITY.equals(project.IPM_Phase__c) && currentFinancial.IPM_Business_Case_Confirmed__c) ||
+            (IPM_ConstantUtils.PHASE_CAPABILITY.equals(project.IPM_Phase__c) && currentFinancial.Is_BC_Confirmed_Capability__c)){
+                if(currentFinancial.Misaligned__c){
+                    financialAcceptFrom=label.IPM_ACCEPT_REGIONAL_BC+ IPM_ConstantUtils.IPM_SPACE + label.IPM_and_Confirm;
+                }
+                if(isTargetLaunchDateMisaligned){
+                    isTDLAcceptNBC_Confirm=true;
+               
+                }
+                isLocalProjectAccept=true;
+            }
+            
+        }
+        if(isEditable && !IPM_ConstantUtils.PHASE_PLE.equals(project.IPM_Phase__c) && !IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c)&& !isLocalProjectAccept){
+            toShowEditButton=true;      
+        }
+        if(isEditable && !IPM_ConstantUtils.PHASE_PLE.equals(project.IPM_Phase__c) && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c)){
+            toShowEditOpern=true;       
+        }
+        if((toShowEditOpern||toShowEditButton) && !isEditMode){
+            isCopyfromSTDBC=true;   
+        }
+      }
 }

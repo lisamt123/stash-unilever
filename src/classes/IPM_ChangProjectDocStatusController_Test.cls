@@ -214,40 +214,49 @@ private class  IPM_ChangProjectDocStatusController_Test {
     /****************************************************************************************
     *@Description:below test method is used to test local rollout functionality.
     * example:if local project BB document is not confirmed and regional PL try to propose gate document
-          then Pl will get page meesage and he/she is unabled to propose gate document.
+                     then Pl will get page meesage and he/she is not able to propose gate document.
     *****************************************************************************************/
     static testMethod void testgetLocalProjectDetails(){
-      test.startTest();
-      initializeTestMethodData();
-      test.stopTest();
-      list<IPM_Project__c>lstLocalProj=[SELECT IPM_Phase__c FROM IPM_Project__c WHERE ID=:childProjs.ID LIMIT 1];
-        System.assertEquals(lstLocalProj[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY,CURRENTPHASE_STR+lstLocalProj[0].IPM_Phase__c);
+       test.startTest();
+       initializeTestMethodData();
+       test.stopTest();
+        
         List<IPM_Project__c>lstNewPhaseProj=new List<IPM_Project__c>();
         system.runAs(globalUser){
-          chngPro.project=childProj;
-          chngPro.projectId=childProj.id;
-          chngPro.showValidation=true;
-          chngPro.getLocalProjectDetails();  
-          system.assertEquals(chngPro.showValidation,false,ERRORONPAGE_STR);//positive test
-          childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
-          childProj.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
-          lstNewPhaseProj.add(childProjs);
-          lstNewPhaseProj.add(childProj);
-          update lstNewPhaseProj;
-          chngPro.showValidation=true;
-          chngPro.getLocalProjectDetails();
-          system.assertEquals(chngPro.showValidation,false,ERRORONPAGE_STR);//positive test
-          localFin.IPM_Business_Case_Confirmed__c=true;
-      localFin.Is_BC_Confirmed_Capability__c=true;
-      update localFin;
-    
-        IPM_FinancialController finController=new IPM_FinancialController();
-        finController.project=childProjs;
-        finController.currentFinancial=localFin;
-        finController.isTargetLaunchDateMisaligned=true;
-        finController.localProjectConditions();
-        system.assertEquals(finController.tldAcceptFromValue==null,false,'Tld date text should not be empty');//positive test
+        	  childProj.IPM_Project_Type__c=ROLLOUT_STR;
+              childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
+              update childProjs;
+              list<ipm_project__c>localProjectList=[SELECT IPM_Phase__c FROM ipm_project__c WHERE id=:childProjs.id LIMIT 1];
+              system.assertEquals(localProjectList[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY,'regional project phase is not feasibility');
+              chngPro.project=childProj;
+              chngPro.projectId=childProj.id;
+              chngPro.showValidation=true;
+              chngPro.getLocalProjectDetails(); 
+              system.assertEquals(chngPro.showValidation,false,ERRORONPAGE_STR);//positive test
+              childProjs.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
+              childProj.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
+              lstNewPhaseProj.add(childProjs);
+              lstNewPhaseProj.add(childProj);
+              update lstNewPhaseProj;
+              list<ipm_project__c>localProjectsList=[SELECT IPM_Phase__c FROM ipm_project__c WHERE id=:childProj.id LIMIT 1];
+              system.assertEquals(localProjectsList[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_CAPABILITY,'LOCAL project phase is not capability');
+              chngPro.showValidation=true;
+              chngPro.getLocalProjectDetails();
+              system.assertEquals(chngPro.showValidation,false,ERRORONPAGE_STR);//positive test
+              localFin.IPM_Business_Case_Confirmed__c=true;
+              localFin.Is_BC_Confirmed_Capability__c=true;
+              update localFin;
+              list<ipm_financial__c>localFinList=[SELECT IPM_Business_Case_Confirmed__c FROM ipm_financial__c WHERE id=:localFin.id LIMIT 1];
+              system.assertEquals(localFinList[0].IPM_Business_Case_Confirmed__c,true,'business case is not confirmed');
+              IPM_FinancialController finController=new IPM_FinancialController();
+              finController.project=childProjs;
+              finController.currentFinancial=localFin;
+              finController.isTargetLaunchDateMisaligned=true;
+              finController.localProjectConditions();
+              system.assertEquals(finController.tldAcceptFromValue==null,false,'Tld date text should not be empty');//positive test
+              
         }
+              
     }
     static testMethod void dotestNotStarted(){
         initializeTestMethodData();
