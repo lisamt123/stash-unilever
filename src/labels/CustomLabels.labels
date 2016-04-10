@@ -10370,7 +10370,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Postponed Future Date Validation</shortDescription>
-        <value>You cannot postpone your project to a date which is after your next gate due date. If you would like to do this, please revise your project plan first and then postpone the project.</value>
+        <value>You cannot postpone a milestone&apos;s due date to a date later than its successor&apos;s due date. You can modify your milestone due dates below.</value>
     </labels>
     <labels>
         <fullName>IPM_Postponing_Project_Gate</fullName>
@@ -15573,4 +15573,19 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_FunctionalRoleErrorMsg</shortDescription>
         <value>Enter Functional Role.</value>
     </labels>
+    <labels>
+        <fullName>IPM_PostponeDate_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_PostponeDate_Required</shortDescription>
+        <value>Postpone On Date cannot be blank.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Milestone_Due_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Postponed Past Date Validation</shortDescription>
+        <value>You cannot postpone a milestone&apos;s due date to a date earlier than its predecessor&apos;s due date. You can modify your milestone due dates below.</value>
+    </labels>
+    
 </CustomLabels>

@@ -166,7 +166,7 @@
                                         <span class="errTitle">{!$Label.IPM_EcoDesign_Assessment}</span>
                                         <span class="errList">{!$Label.IPM_EcoDesign_Fill} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!ecoDesignSectionId}" target="_top">{!$Label.IPM_EcoDesign_Assessment_Section}</a></span> 
                                     </apex:outputPanel>
-									!-- CR0281 bb document validation -->
+			    	    <!-- CR0281 bb document validation -->
                                     <!-- Below rendered condition is used for checking TLD alignment, business case confirmation,financial alignment -->
                                     <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!isBDBBAlignment}">
                                         <span class="errTitle">{!$Label.IPM_BB_Document}</span>
@@ -240,8 +240,14 @@
                                 <apex:outputPanel >
                                     <div class='input-group date'>
                                         <apex:outputLabel value="{!$Label.IPM_POSTPONE_ON}"/>
-                                        <apex:inputField styleClass="dateInputBox tldBox calendar" value="{!projectDoc.IPM_Postponement_Date__c}" id="Duedate" >
-                                        </apex:inputField>
+					<apex:repeat value="{!pendingMilestoneList}" var="milestone">
+                                            <apex:inputField styleClass="dateInputBox tldBox calendar" value="{!milestone.IPM_Planned_Date__c}" id="Duedate" rendered="{!Not(milestone.IPM_Name__c = tldMilestoneName)}"/>
+                                            <apex:inputField styleClass="dateInputBox " value="{!milestone.IPM_Planned_Date__c}" id="DuedateTLD" rendered="{!(milestone.IPM_Name__c = tldMilestoneName)}" html-disabled="true"/>
+                                            
+                                            &nbsp;&nbsp; <b><apex:outputText value="{!milestone.IPM_Name__c}" /></b>
+                                            <br/><br/>
+                                        </apex:repeat>
+                                        
                                     </div>
                                     <apex:outputLabel value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/>
                                     <!--<span class="bluText">* Goes to Contract Gate document, Section Feedback from Last Gate</span>-->

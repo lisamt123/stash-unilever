@@ -62,7 +62,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
         List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
-        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card not inserted');
         
         IPM_TestFactory_Helper.getProjectMasterData();
         projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForChangStatus);
@@ -71,7 +71,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             project=projectList[0];
             
             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
-            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project inserted');//positive test
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project not inserted');//positive test
             
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForChangStatus,stdUserForChangStatus,stdUserForChangStatus});
             insert regionalRolloutList;
@@ -80,7 +80,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             regionalRolloutList[0].IPM_Project__c=project.Id;
             update regionalRolloutList;
             List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
-            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
+            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout not created');//positive test
             
             
            
@@ -114,7 +114,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             for(IPM_Project__c projectObj : projectListObj){
                 projDocList = projectObj.Project_Documents__r;
                 mileListObj = projectObj.IPM_Milestones__r;
-                system.assertEquals(projDocList[0].IPM_GateDocuments__c,'Charter','Project Document created'); 
+                system.assertEquals(projDocList[0].IPM_GateDocuments__c,'Charter','Project Document not created'); 
             }
             
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
@@ -129,7 +129,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             
             insert gateCMICountry;
             List<IPM_Gate_CMI__c>cmicounList=[select Results__c,IPM_Skip_Test__c from IPM_Gate_CMI__c where Id=:gateCMICountry.Id];
-            System.assertEquals(cmicounList[0].IPM_Skip_Test__c,false,'cmi created');
+            System.assertEquals(cmicounList[0].IPM_Skip_Test__c,false,'cmi not created');
             
             projectDocSecConListObj = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(false);
             projectDocSecConListObj.IPM_Project_Document_Section__c = projectDocSecListObj[0].ID;
@@ -138,7 +138,7 @@ private class  IPM_ChangProjectDocStatusController_Test {
             insert projectDocSecConListObj;
             
             List<IPM_Project_Document_Section_Content__c>conList=[select Id,IPM_CMI_Is_Free_Text__c,IPM_CMI_Result__c from IPM_Project_Document_Section_Content__c where Id=:projectDocSecConListObj.Id];
-            System.assertEquals(conList[0].IPM_CMI_Result__c,RESULT_STR,'content created');
+            System.assertEquals(conList[0].IPM_CMI_Result__c,RESULT_STR,'content not created');
             
             
             mileListObj[0].IPM_Type_of_Milestone__c= IPM_ConstantUtils.STANDARD;
@@ -363,9 +363,11 @@ private class  IPM_ChangProjectDocStatusController_Test {
     
     static testMethod void dotestPostponed(){
         initializeTestMethodData();
-        test.startTest();
+        
         system.runAs(globalUser){
-            projDocList[0].IPM_Postponed_Comments__c='abc';
+            test.startTest();
+			
+	    projDocList[0].IPM_Postponed_Comments__c='abc';
             projDocList[0].IPM_Postponement_Date__c=system.today();
             update projDocList;
             docList=[select IPM_Postponement_Date__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
@@ -382,7 +384,15 @@ private class  IPM_ChangProjectDocStatusController_Test {
             where Id=:projDocList[0].Id];
             System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_NOT_MATCHED_STR);
             chngPro.project.Name=INVALID_NAME;
+            
             chngPro.postponeProject();
+            
+            // To test validation when No comments is added 
+            projDocList[0].IPM_Postponed_Comments__c= '';
+            projDocList[0].IPM_Postponement_Date__c = system.today();
+            update projDocList;
+            chngPro.postponeProject();
+			
             test.stopTest();
             
         }
