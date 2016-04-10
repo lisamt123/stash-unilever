@@ -4,10 +4,6 @@
         <plural>false</plural>
         <value>IPM InnovationRenovation</value>
     </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>IPM InnovationRenovation</value>
-    </caseValues>
     <fields>
         <label><!-- CPV --></label>
         <name>IPM_CPV__c</name>

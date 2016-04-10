@@ -17,6 +17,10 @@
         <name>IPM_CompanyCard__c</name>
     </fields>
     <fields>
+        <label><!-- CopyLaunchDate2Parent --></label>
+        <name>IPM_CopyLaunchDate2Parent__c</name>
+    </fields>
+    <fields>
         <label><!-- Copy MSDetails To Global --></label>
         <name>IPM_CopyMilestoneToGlobal__c</name>
     </fields>

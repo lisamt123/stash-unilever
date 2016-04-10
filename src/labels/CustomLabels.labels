@@ -2627,6 +2627,167 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Is Variant Known?</value>
     </labels>
     <labels>
+        <fullName>CPA_BPE_Recordtype</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA BPE Recordtype</shortDescription>
+        <value>012180000000AjK</value>
+    </labels>
+    <labels>
+        <fullName>CPA_CNF_historical_CNF_id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA CNF historical CNF id</shortDescription>
+        <value>012180000000BZp</value>
+    </labels>
+    <labels>
+        <fullName>CPA_CNF_historical_TNF_id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA CNF historical TNF id</shortDescription>
+        <value>012180000000BZu</value>
+    </labels>
+    <labels>
+        <fullName>CPA_Default_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA default URl</shortDescription>
+        <value>https://unilever--chazwa.cs23.my.salesforce.com/</value>
+    </labels>
+    <labels>
+        <fullName>CPA_HLE_Recordtype</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA HLE Recordtype</shortDescription>
+        <value>012180000000AjF</value>
+    </labels>
+    <labels>
+        <fullName>CPA_HLE_Request_cant_be_deleted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA HLE Request cant be deleted</shortDescription>
+        <value>HLE Request cant be deleted.</value>
+    </labels>
+    <labels>
+        <fullName>CPA_Mandatory_Fields_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA Mandatory Fields Message</shortDescription>
+        <value>Below field(s) are mandatory to Submit the record.</value>
+    </labels>
+    <labels>
+        <fullName>CPA_Operation_Cancelled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA Operation Cancelled</shortDescription>
+        <value>Operation Cancelled: Please provide a reason for your approval / rejection / Recall!</value>
+    </labels>
+    <labels>
+        <fullName>CPA_PWORF_LOI_ID_Filed_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PWORF LOI Id Field</shortDescription>
+        <value>&amp;CF00N18000000Ty1Q</value>
+    </labels>
+    <labels>
+        <fullName>CPA_PWORF_LOI_Name_Filed_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PWORF LOI Name Field</shortDescription>
+        <value>&amp;CF00N18000000Ty1Q</value>
+    </labels>
+    <labels>
+        <fullName>CPA_PWORF_Name_Filed_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PWORF Name Filed Id</shortDescription>
+        <value>&amp;CF00N18000000ILBh</value>
+    </labels>
+    <labels>
+        <fullName>CPA_PWO_CNF_RecordTypeId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA_PWO_CNF_RecordTypeId</shortDescription>
+        <value>012180000000AdM</value>
+    </labels>
+    <labels>
+        <fullName>CPA_PWO_Name_Field_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PWO Name Field Id</shortDescription>
+        <value>&amp;CF00N18000000INTW</value>
+    </labels>
+    <labels>
+        <fullName>CPA_PWO_RecordTypeId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA_PWO_RecordTypeId</shortDescription>
+        <value>012180000000AdH</value>
+    </labels>
+    <labels>
+        <fullName>CPA_PWO_TNF_RecordTypeId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA PWO TNF RecordTypeId</shortDescription>
+        <value>012180000000AdR</value>
+    </labels>
+    <labels>
+        <fullName>CPA_ParentId_For_Attachment_CR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA_ParentId_For_Attachment_CR</shortDescription>
+        <value>a8Q</value>
+    </labels>
+    <labels>
+        <fullName>CPA_ParentId_For_Attachment_LOI</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA_ParentId_For_Attachment_LOI</shortDescription>
+        <value>a8R</value>
+    </labels>
+    <labels>
+        <fullName>CPA_ParentId_For_Attachment_trigger</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA_ParentId_For_Attachment_trigger</shortDescription>
+        <value>a9G</value>
+    </labels>
+    <labels>
+        <fullName>CPA_Recall_and_Unlock</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA Recall and Unlock</shortDescription>
+        <value>Recalling and unlocking request.</value>
+    </labels>
+    <labels>
+        <fullName>CPA_RecordType</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA_RecordType</shortDescription>
+        <value>Record Type of new record</value>
+    </labels>
+    <labels>
+        <fullName>CPA_RecordType_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA_RecordType_Details</shortDescription>
+        <value>Record Types Details</value>
+    </labels>
+    <labels>
+        <fullName>CPA_Standalone_CR_RecordTypeId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA Standalone CR RecordTypeId</shortDescription>
+        <value>012180000000Aty</value>
+    </labels>
+    <labels>
+        <fullName>CPA_Standalone_PWO_RecordTypeId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA_ Standalone PWO RecordTypeId</shortDescription>
+        <value>012180000000AtZ</value>
+    </labels>
+    <labels>
         <fullName>Cancel_and_Revert</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3291,7 +3452,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ABOUT_IN_PROGRESS_STATE</shortDescription>
-        <value>In progress means that you are working on the Gate document and it is not ready to be proposed.</value>
+        <value>“In Progress” means that a gate document is being written in anticipation of a gate proposal. Select “Proposed” to check the completeness of the document; when all requirements have been met, click “Change” to activate the status change. To archive a project, select “Stopped”, then “Change”.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_PROJECT</fullName>
@@ -3305,7 +3466,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ABOUT_PROPOSED_STATE</shortDescription>
-        <value>Proposed means that the Gate document is ready to be submitted for Gate meeting. You won&apos;t be able to update any section after proposing the document.</value>
+        <value>“Proposed” means that the gate document is ready to be presented for a gate decision. If your proposal has met all requirements, click the “Change” button to activate the status change. The document will be sealed from further edits, unless the status changes to “Approved with Edits” or “Postpone Gate&quot;.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_STOPPED_STATE</fullName>
@@ -3396,7 +3557,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ADD_EDIT_ROLLOUTS</shortDescription>
-        <value>Add Rollouts</value>
+        <value>Add/Manage Rollouts</value>
     </labels>
     <labels>
         <fullName>IPM_ADD_MANAGE_SEC</fullName>
@@ -3431,7 +3592,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ADD_ROLLOUT</shortDescription>
-        <value>Add Rollout</value>
+        <value>Add/Manage Rollouts</value>
     </labels>
     <labels>
         <fullName>IPM_ADD_SELECTED_MEMBERS</fullName>
@@ -3906,8 +4067,8 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <fullName>IPM_Assumption_A_P</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>IPM Assumption A&amp;P</shortDescription>
-        <value>A&amp;P</value>
+        <shortDescription>IPM Assumption BMI</shortDescription>
+        <value>BMI</value>
     </labels>
     <labels>
         <fullName>IPM_Assumption_CAPEX</fullName>
@@ -4012,7 +4173,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BACKGROUNDPROCESS_INPROGRESS</shortDescription>
-        <value>Your project is currently under processing.You would be notified once processing is complete via Email.</value>
+        <value>Your project is currently being created, so please come back in a few minutes... Please refresh the page to continue.</value>
     </labels>
     <labels>
         <fullName>IPM_BB</fullName>
@@ -4043,6 +4204,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>BB Comments:</value>
     </labels>
     <labels>
+        <fullName>IPM_BB_Document</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM BB Document</shortDescription>
+        <value>BB Document:</value>
+    </labels>
+    <labels>
         <fullName>IPM_BB_MILESTONE_DATES</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -4061,7 +4229,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Used in IPM BCC controller</shortDescription>
-        <value>Business Case Confirmation Saved Successfully</value>
+        <value>Business case confirmation document saved successfully</value>
     </labels>
     <labels>
         <fullName>IPM_BD</fullName>
@@ -4097,6 +4265,34 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>BD Marketing</shortDescription>
         <value>Brand Development Marketing (BD Marketing)</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BELOW_ARE_QUICK</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BELOW_ARE_QUICK</shortDescription>
+        <value>Below are the quick links to the sections which require your input. Please click on link to jump to the appropriate section.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BELOW_ARE_THE_TYPICAL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BELOW_ARE_THE_TYPICAL</shortDescription>
+        <value>Below are the typical things to be done in order to provide input to the sections. Tick the correspondent box, if you have completed them.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BELOW_SELECTED_COUNTRIES_EXCLUDED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BELOW_SELECTED_COUNTRIES_EXCLUDED</shortDescription>
+        <value>The below selected countries, will be excluded from this Innovation/Renovation/BLG</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BELOW_SELECTED_COUNTRIES_INNOVATION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BELOW_SELECTED_COUNTRIES_INNOVATION</shortDescription>
+        <value>The below selected countries, will receive innovation as a separate rollout project, with its own timmings</value>
     </labels>
     <labels>
         <fullName>IPM_BETAccessMsgRegionalLocal</fullName>
@@ -4229,7 +4425,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BETLinkFunctionalMsg</shortDescription>
-        <value>Your Project Leader has requested the BET {0} to link with your project.
+        <value>Your Project Leader has selected the BET {0} to link with your project.
 &lt;br/&gt;&lt;br/&gt;
 If approved your project will be linked after your Charter gate has been approved.</value>
     </labels>
@@ -4357,7 +4553,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BETUnlinkingMessage</shortDescription>
-        <value>This will unlike your IPM project from {0}. Be aware that unlinking could result in the BET having no associated IPM project. Any mini-milestones associated with the linked BET will be removed within the IPM project. Are you sure want to continue?</value>
+        <value>This will unlink your IPM project from {0} BET. Be aware that unlinking could result in the BET having no associated IPM project. Any mini-milestones associated with the linked BET will be removed within the IPM project. Are you sure you want to continue?</value>
     </labels>
     <labels>
         <fullName>IPM_BET_BETUpdate_failure_ErrMsg</fullName>
@@ -4646,7 +4842,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BUSINESS_CASE_CONFIRMATION</shortDescription>
-        <value>Business Case Confirmation Document (Contract)</value>
+        <value>Business Case Confirmation Document</value>
     </labels>
     <labels>
         <fullName>IPM_B_CORPORATE_RISK</fullName>
@@ -4836,6 +5032,13 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM BrandPositioning</shortDescription>
         <value>Brand Positioning</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BrandPositioningHelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BrandPositioningHelpText</shortDescription>
+        <value>A maximum of 20 values can be selected for Brand Positioning.</value>
     </labels>
     <labels>
         <fullName>IPM_Brand_Builders_BB</fullName>
@@ -5248,7 +5451,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_CONFIRM_BUSINESS_CASE</shortDescription>
-        <value>Confirm Business Case:Confirmation</value>
+        <value>Confirm Business Case</value>
     </labels>
     <labels>
         <fullName>IPM_CONFIRM_MODAL_NO</fullName>
@@ -5297,7 +5500,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_COPY_COUNTRY_INPUT_TO_SEC</shortDescription>
-        <value>Country input below will be automatically copied into the Brand development document section 7.2</value>
+        <value>Country input below will be automatically copied into the Brand Development document section 7.2</value>
     </labels>
     <labels>
         <fullName>IPM_CORE_PARAMETERS</fullName>
@@ -5384,6 +5587,13 @@ If approved your project will be linked after your Charter gate has been approve
         <value>CUs</value>
     </labels>
     <labels>
+        <fullName>IPM_CU_And_Complexity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CU_And_Complexity</shortDescription>
+        <value>CU_And_Complexity</value>
+    </labels>
+    <labels>
         <fullName>IPM_CU_INFO</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -5438,6 +5648,13 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>Cancel and Revert</shortDescription>
         <value>Cancel and Revert</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Cannot_Delete_CharterApproved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Cannot_Delete_CharterApproved</shortDescription>
+        <value>Cannot Delete Charter Approved Rollouts</value>
     </labels>
     <labels>
         <fullName>IPM_CategoryNameNotNull</fullName>
@@ -5557,6 +5774,13 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM Cluster Name length</shortDescription>
         <value>Cluster Name can not be more the 14 characters</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Comma</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Comma</shortDescription>
+        <value>,</value>
     </labels>
     <labels>
         <fullName>IPM_Comments_Label</fullName>
@@ -5710,7 +5934,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CoreParameter CPV</shortDescription>
-        <value>2.2 Consumers Perceived Value</value>
+        <value>2.2 Consumer Value Perception</value>
     </labels>
     <labels>
         <fullName>IPM_CoreParameter_ET</fullName>
@@ -5724,7 +5948,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CoreParameter Help Guide</shortDescription>
-        <value>&quot;Core Parameters&quot; define the key attributes for a project and are mandatory. Complete the following five steps
+        <value>&quot;Project Parameters&quot; define the key attributes for a project and are mandatory. Complete the following steps
 as best as you can, using the help text as a guide. (You may come back and make changes later.)</value>
     </labels>
     <labels>
@@ -6012,7 +6236,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_DUE_ON_TODAY</shortDescription>
-        <value>is due on today</value>
+        <value>is due today</value>
     </labels>
     <labels>
         <fullName>IPM_Data_Value_Too_Large</fullName>
@@ -6069,6 +6293,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM Delete Member</shortDescription>
         <value>You are attempting to remove the team member. You could add this member again via Add team members option. Are you sure want to remove?</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Delete_Milestone_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete Milestone Message</shortDescription>
+        <value>You are about to remove this milestone from the milestone list. It cannot be restored at a later time. Are you sure to continue?</value>
     </labels>
     <labels>
         <fullName>IPM_Delete_task_msg</fullName>
@@ -6587,7 +6818,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_EcoDesign_Take_Me_To_EcoDesign_Url</shortDescription>
-        <value>https://ecodesign.unilever.com/Project/GetIPMProject</value>
+        <value>https://ecodesign-q.unilever.com/Project/GetIPMProject</value>
     </labels>
     <labels>
         <fullName>IPM_EcoDesign_Waste</fullName>
@@ -6721,7 +6952,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ExternalToDosMessage</shortDescription>
-        <value>The To-do&apos;s and due dates for this project are being managed externally. Please get in touch With project Leader for more details.</value>
+        <value>The To-do&apos;s and due dates for this project are being managed externally. Please get in touch with the Project Leader for more details</value>
     </labels>
     <labels>
         <fullName>IPM_External_Char_Limit</fullName>
@@ -6771,6 +7002,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_FAST_TRACK_COLON</shortDescription>
         <value>Fast Track:</value>
+    </labels>
+    <labels>
+        <fullName>IPM_FAST_TRACK_WHITE_SPACE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_FAST_TRACK_WHITE_SPACE</shortDescription>
+        <value>Fast track = No limitations in time between Market Ready Gate and Launch. White space = Expansion of Category/Brand in a New market</value>
     </labels>
     <labels>
         <fullName>IPM_FEASIBILITY</fullName>
@@ -6941,6 +7179,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Please Fill Regional Project leader and Target Launch Date in Regional Rollouts</value>
     </labels>
     <labels>
+        <fullName>IPM_FinAlignment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_FinAlignment</shortDescription>
+        <value>Financial Alignment</value>
+    </labels>
+    <labels>
         <fullName>IPM_Fin_BC</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7037,6 +7282,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM FinanceRole Team</shortDescription>
         <value>Finance</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Finance_Align</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Finance Align</shortDescription>
+        <value>Please align Financials for below projects before proposal.</value>
     </labels>
     <labels>
         <fullName>IPM_Finance_Char_Limit</fullName>
@@ -7148,7 +7400,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_FinancialGrid_goBack</shortDescription>
-        <value>Go Back</value>
+        <value>Go back to Financial page</value>
     </labels>
     <labels>
         <fullName>IPM_FinancialValidationErrorMessage</fullName>
@@ -7162,7 +7414,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_Financial_CopyPaste</shortDescription>
-        <value>Copy from FBC xls</value>
+        <value>Copy from STD BC xls</value>
     </labels>
     <labels>
         <fullName>IPM_Financial_Data</fullName>
@@ -7323,7 +7575,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_GENERATE_MITIGATION_PLAN</shortDescription>
-        <value>generate Mitigation plan.</value>
+        <value>generate Management plan.</value>
     </labels>
     <labels>
         <fullName>IPM_GENERATE_ROLLOUTS</fullName>
@@ -7498,7 +7750,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_Generate_Mitigation_Button</shortDescription>
-        <value>Generate Mitigation Plan</value>
+        <value>Generate Management Plan</value>
     </labels>
     <labels>
         <fullName>IPM_Generic_ErrorMessage</fullName>
@@ -7638,7 +7890,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>IPM_IDEA</shortDescription>
-        <value>Idea</value>
+        <value>Ideas</value>
     </labels>
     <labels>
         <fullName>IPM_IE_9</fullName>
@@ -7646,6 +7898,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM IE-9</shortDescription>
         <value>IE=9</value>
+    </labels>
+    <labels>
+        <fullName>IPM_IMAGE_SIZE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_IMAGE_SIZE</shortDescription>
+        <value>The project logo is too large - it must be less than 50KB in size. Please go to the help page for more information on how to optimise your logo.</value>
     </labels>
     <labels>
         <fullName>IPM_IN</fullName>
@@ -7687,7 +7946,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM INOPLAN USER QUERY</shortDescription>
-        <value>You’ll be able to access the short film by clicking the “Go to IPM Portal” button to the right of this panel.</value>
+        <value>Inoplan users should continue to contact their IPM Business Partners should they have a query.</value>
     </labels>
     <labels>
         <fullName>IPM_INPUT</fullName>
@@ -7701,7 +7960,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM INTERIN SUPPORT SOLUTION</shortDescription>
-        <value>The IPM Navigator system is now live for all HHC and FabCon Users! Before you start using the system, please take a few minutes to have a look at a short introduction to IPM Navigator by HHC SVP Madhu Rao and IPM Director Rudi Hafkamp.</value>
+        <value>iLog, the current system for logging Inoplan technical issues, will be decommissioned on the 17th of November 2014. Below is the interim support solution:</value>
     </labels>
     <labels>
         <fullName>IPM_INTROSCAPE</fullName>
@@ -7722,7 +7981,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_IN_THOUSAND_POUNDS</shortDescription>
-        <value>(in thousand pounds)</value>
+        <value>(in thousand euros)</value>
     </labels>
     <labels>
         <fullName>IPM_IS_COMPLETED_BY</fullName>
@@ -7793,6 +8052,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM ITO GTO Validation Common message</shortDescription>
         <value>Innovation/Calendar Year iTO cannot be greater than GTO.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Ideas</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ideas</shortDescription>
+        <value>Ideas</value>
     </labels>
     <labels>
         <fullName>IPM_IdsApprovalNotNullMSg</fullName>
@@ -7890,7 +8156,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Inactive Users Text</shortDescription>
-        <value>&amp;nbsp; is no longer an active user in IPM Navigator. You may need to find another person to fill this role on your project.</value>
+        <value>is no longer an active user in IPM Navigator. You may need to find another person to fill this role on your project.</value>
     </labels>
     <labels>
         <fullName>IPM_Included_In</fullName>
@@ -7961,6 +8227,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_KEY</shortDescription>
         <value>Key</value>
+    </labels>
+    <labels>
+        <fullName>IPM_KEY_MCO_NEEDS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_KEY_MCO_NEEDS</shortDescription>
+        <value>KEY MCO needs detailed financial information before Charter. NON-KEY MCO&apos;s need to be grouped together into one business case per market cluster. For Post Charter, every MCO needs to have detailed finance information</value>
     </labels>
     <labels>
         <fullName>IPM_KPI</fullName>
@@ -8051,7 +8324,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_LinkBETPLMsg</shortDescription>
-        <value>You have requested to link your project to this BET: &lt;b&gt;{0}&lt;/b&gt;. &lt;br/&gt;&lt;br/&gt; If this request is approved the BET will be linked within 72 hours of the link request.</value>
+        <value>You have selected the BET &lt;b&gt;{0}&lt;/b&gt; to link with your project. &lt;br/&gt;&lt;br/&gt; If this request is approved the BET will be linked within 72 hours of the link request.</value>
     </labels>
     <labels>
         <fullName>IPM_LinkBETPLMsgIdeas</fullName>
@@ -8073,6 +8346,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_Loading_Msg</shortDescription>
         <value>Loading...</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Local</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Local</shortDescription>
+        <value>Local</value>
     </labels>
     <labels>
         <fullName>IPM_LocalProjectName</fullName>
@@ -8387,8 +8667,8 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <fullName>IPM_Milestone_Due_Date</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Milestone Due Date</shortDescription>
-        <value>{0} - Due Date cannot be less than {1} Approval</value>
+        <shortDescription>Postponed Past Date Validation</shortDescription>
+        <value>You cannot postpone your project to a date which is before your previous gate due date. If you would like to do this, please revise your project plan first and then postpone the project.</value>
     </labels>
     <labels>
         <fullName>IPM_Milestone_Due_Date_Error</fullName>
@@ -8424,6 +8704,13 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <protected>false</protected>
         <shortDescription>IPM_Milestones and Tasks</shortDescription>
         <value>Milestones and Tasks:</value>
+    </labels>
+    <labels>
+        <fullName>IPM_MiniMilestone_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM MiniMilestone Msg</shortDescription>
+        <value>Please select a mini milestone or cancel.</value>
     </labels>
     <labels>
         <fullName>IPM_Mix_Char_Limit</fullName>
@@ -8577,7 +8864,7 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_NO_RISK_PLAN_GENERATED</shortDescription>
-        <value>No Mitigation plan has been generated.Click to</value>
+        <value>No Management plan has been generated.Click to</value>
     </labels>
     <labels>
         <fullName>IPM_NO_ROLLOUT</fullName>
@@ -8885,6 +9172,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Once you have changed the status, you cannot undo it.</value>
     </labels>
     <labels>
+        <fullName>IPM_ON_CLICK_OF_SAVE_NOTIFY</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ON_CLICK_OF_SAVE_&amp;NOTIFY</shortDescription>
+        <value>On click, Save &amp; Notify button will send an email notification to the Project leader and respective functional team members</value>
+    </labels>
+    <labels>
         <fullName>IPM_OPP</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9134,7 +9428,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PDL_FOR_PC</shortDescription>
-        <value>This is the start of the next chapter for innovation in Unilever and the IPM team look forward to receiving your feedback. You can get this straight to us by simply pressing the “Ask IPM” button which you’ll also to the right of this panel.</value>
+        <value>Product Design Lock (PDL) template for PC</value>
     </labels>
     <labels>
         <fullName>IPM_PERCENTAGE</fullName>
@@ -9191,6 +9485,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_PLEASE_NAVIGATE_TO</shortDescription>
         <value>Please navigate to</value>
+    </labels>
+    <labels>
+        <fullName>IPM_PLEASE_TYPE_IN_THE_CU</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_PLEASE_TYPE_IN_THE_CU</shortDescription>
+        <value>Please type in the CU. At this moment in time there is no connection between the CU&apos;s in this field and CU&apos;s from table 3.3.3 in Market Ready Gate</value>
     </labels>
     <labels>
         <fullName>IPM_POINT_OF_PURCHASE</fullName>
@@ -9274,7 +9575,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PROCEDURE_CHANGE</shortDescription>
-        <value>IPM Navigator</value>
+        <value>Procedure Change</value>
     </labels>
     <labels>
         <fullName>IPM_PROCEED</fullName>
@@ -9337,7 +9638,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PROJECT_BACKGROUND_PROCESS</shortDescription>
-        <value>Your project request has successfully been sent for Processing. You would be notified once processing is complete via Email.</value>
+        <value>Your project is currently being created, so please come back in a few minutes... Please refresh the page to continue.</value>
     </labels>
     <labels>
         <fullName>IPM_PROJECT_DESCRIPTION</fullName>
@@ -9442,7 +9743,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PROJECT_UPDATE</shortDescription>
-        <value>IPM Navigator</value>
+        <value>Project Half Update</value>
     </labels>
     <labels>
         <fullName>IPM_PROMOTION</fullName>
@@ -9522,18 +9823,25 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Please enter the phase</value>
     </labels>
     <labels>
+        <fullName>IPM_PhaseChangeBKProcessSecondWarning_Local</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM PhaseChangeBKProcessSecondWarning Local</shortDescription>
+        <value>Please note, once a Local Rollout Project is created you will need IPM Central Team assistance to delete it.</value>
+    </labels>
+    <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning</shortDescription>
-        <value>Clicking on Save would submit your Request for Phase Change.Once Processing is complete,you would be notified via Email.</value>
+        <value>Clicking on Change would submit your request for phase change. Once processing is complete, you would be notified via email.</value>
     </labels>
     <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning_Local</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning_Local</shortDescription>
-        <value>Clicking on Save would submit your Request for creation of Local Project as soon as the local project leader is assigned.A local rollout project, once projected, cannot be deleted by the project leader and will have to be done via local project leader through stop project. Once Processing is complete,you would be notified via Email.</value>
+        <value>If you have assigned your Country Leader/s, clicking Save here will begin creation of your Local Rollout Project/s.You will receive a notification via Email once the process is complete.</value>
     </labels>
     <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning_Regional</fullName>
@@ -9603,7 +9911,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PojectSetupUrl</shortDescription>
-        <value>/apex/IPM_Projectsetup</value>
+        <value>/apex/IPM_ProjectSetUpView</value>
     </labels>
     <labels>
         <fullName>IPM_PostponeDate_Validation</fullName>
@@ -9729,7 +10037,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM ProjectPhaseChangeMesg</shortDescription>
-        <value>You are ready to move to {0} phase.&lt;br/&gt;Please go back if you need to edit any {1} data or proceed with Move to {0}.</value>
+        <value>You are ready to move to {0} phase.Please go back if you need to edit any {1} data or proceed with Move to {0}.</value>
     </labels>
     <labels>
         <fullName>IPM_ProjectPriority</fullName>
@@ -9785,7 +10093,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ProjectTypeAndCompany_ReadOnlyWarning</shortDescription>
-        <value>Your selections for Type of Project and Company will be permanent once you hit save and continue. Only proceed with project creation when you are certain which indicators to choose.</value>
+        <value>Your selections for Type of Project and Company will be permanent once you hit Submit for Project Creation. Only proceed with project creation when you are certain which indicators to choose.</value>
     </labels>
     <labels>
         <fullName>IPM_Project_Classified</fullName>
@@ -10044,7 +10352,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_RISK_MITIGATION_PLAN</shortDescription>
-        <value>Risk Mitigation Plan</value>
+        <value>Risk Management Plan</value>
     </labels>
     <labels>
         <fullName>IPM_RISK_MODAL_TITLE</fullName>
@@ -10093,7 +10401,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ROLLOUTS_PROPOSAL</shortDescription>
-        <value>rollouts</value>
+        <value>Rollouts</value>
     </labels>
     <labels>
         <fullName>IPM_ROLLOUT_IN</fullName>
@@ -10121,7 +10429,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM R&amp;D FEASIBILITY QUESTIONS</shortDescription>
-        <value>R &amp; D FEASIBILITY Questions:</value>
+        <value>R&amp;D FEASIBILITY Questions:</value>
     </labels>
     <labels>
         <fullName>IPM_R_D_QUESTIONS</fullName>
@@ -10226,7 +10534,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Remember To Update</shortDescription>
-        <value>.Please remember to update the status on the Gate Document.</value>
+        <value>.Please remember to update the status on the gate document.</value>
     </labels>
     <labels>
         <fullName>IPM_Remove</fullName>
@@ -10684,6 +10992,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Please select sustainability period for this project. Please note that you will be able to select this ONLY ONCE.</value>
     </labels>
     <labels>
+        <fullName>IPM_SELECT_THE_APPROVER</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_SELECT_THE_APPROVER</shortDescription>
+        <value>Select the approver of this Bosscard. It may be the Gatekeeper ( Global category leader ), or Global Brand VP, Regional category VP. The approver can be different from the Gatekeeper of the project itself.</value>
+    </labels>
+    <labels>
         <fullName>IPM_SELECT_TLD</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10884,7 +11199,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Section Not Filled</shortDescription>
-        <value>Error:This Section will be considered as not filled in</value>
+        <value>Note: This section will not be considered filled in until the Summary or functional sections have been completed by the respective users.</value>
     </labels>
     <labels>
         <fullName>IPM_SelectBrandPosition</fullName>
@@ -11108,7 +11423,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Stopmsg</shortDescription>
-        <value>Please enter Postpone On Date, Comments and required actions from Gate Meeting</value>
+        <value>Please input the reason for terminating this project and any final project or gatekeeper comments.</value>
     </labels>
     <labels>
         <fullName>IPM_Stopped_Projects</fullName>
@@ -11122,7 +11437,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Strategic Help</shortDescription>
-        <value>&quot;Below is how your project plots in the Consumer/Technology Matrix (CTM) and its assigned Strategic Intent i.e. Innovation, Renovation, BLG or Operational. The strategic intent is based on your prior selections for Type of Project, Consumer Value Perception and Enabling Technology. This information will roll up to portfolio-level CTM views to illustrate the actual spread of multiple projects and collective implications on risk, growth, resources, investment, and ability to deliver strategic targets. Because portfolio decisions are made based on the CTM, it is essential that your Type of Project, CVP and ET be accurate  please consult CMI and R&amp;D partners for input. Unlike Type of Project which is fixed now, CVP and ET may be edited as the project progresses, until Market Ready Gate is approved.&quot;</value>
+        <value>Below is how your project plots in the Consumer/Technology Matrix (CTM) and its assigned Strategic Intent i.e. Innovation, Renovation, BLG or Operational. The strategic intent is based on your prior selections for Type of Project, Consumer Value Perception and Enabling Technology. This information will roll up to portfolio-level CTM views to illustrate the actual spread of multiple projects and collective implications on risk, growth, resources, investment, and ability to deliver strategic targets. Because portfolio decisions are made based on the CTM, it is essential that your Type of Project, CVP and ET be accurate. Please consult CMI and R&amp;D partners for input. Unlike Type of Project which is fixed now, CVP and ET may be edited as the project progresses, until Market Ready Gate is approved.</value>
     </labels>
     <labels>
         <fullName>IPM_Strategic_Intent</fullName>
@@ -11178,7 +11493,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Sustainability Period</shortDescription>
-        <value>Sustainability Period :</value>
+        <value>Sustainability Period:</value>
     </labels>
     <labels>
         <fullName>IPM_System_Admin</fullName>
@@ -11209,6 +11524,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>&quot; target=&quot;_top&quot;&gt;</value>
     </labels>
     <labels>
+        <fullName>IPM_TDL_Align</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM TDL Align</shortDescription>
+        <value>Please align TLD for below projects before proposal.</value>
+    </labels>
+    <labels>
         <fullName>IPM_TEAM_MEMBERS</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11220,7 +11542,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM TECHNICAL ISSUE</shortDescription>
-        <value>Simpler-Faster-Easier</value>
+        <value>What To Do If You Have a Technical Issue</value>
     </labels>
     <labels>
         <fullName>IPM_TEMP_IS_BEING_GENERATED</fullName>
@@ -11237,11 +11559,81 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Test</value>
     </labels>
     <labels>
+        <fullName>IPM_TEXT_SHOWN_HERE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TEXT_SHOWN_HERE</shortDescription>
+        <value>The text shown here has been copied from Project description. Editing this text will not modify the project description of the IPM Navigator project. This change will only affect the description field of your BET project</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THE_BELOW_SELECTED_COUNTRIES</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THE_BELOW_SELECTED_COUNTRIES</shortDescription>
+        <value>The below selected countries, will be created as a grouped local rollout project</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THE_SELECTION_HERE_DOES_NOT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THE_SELECTION_HERE_DOES_NOT</shortDescription>
+        <value>The selections here does not change the rollout plan, it only indicates to which country the below financials are related to and only applies to Charter</value>
+    </labels>
+    <labels>
         <fullName>IPM_THIS_CANNOT_BE_PROPOSED_YET</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_THIS_CANNOT_BE_PROPOSED_YET</shortDescription>
         <value>Sorry! this cannot be proposed yet. The non-negotiable sections and few other details listed below are incomplete. Please go back and fill them in.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_PARAMETER_WILL_HELP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_PARAMETER_WILL_HELP</shortDescription>
+        <value>This parameter will help you to classify the project correctly for reporting purposes.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_SHOWS_BUSINESS_CASE_BY_LOCAL_FINANCE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_SHOWS_BUSINESS_CASE_BY_LOCAL_FINANCE</shortDescription>
+        <value>This shows the Business case(s) specified by the Local Finance teams for local rollouts of this project. In case of misalignment, this tab will show BB&apos;s view.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_SHOWS_THE_BUSINESS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_SHOWS_THE_BUSINESS</shortDescription>
+        <value>This shows the Business case as captured during charter approval and it is only for reference, therefore read-only.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_SHOWS_THE_FULL_BUSINESS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_SHOWS_THE_FULL_BUSINESS</shortDescription>
+        <value>This shows the full business case as submitted by the Financial BD</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_SHOWS_THE_FULL_BUSINESS_BB</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_SHOWS_THE_FULL_BUSINESS_BB</shortDescription>
+        <value>This shows the full business case as submitted by the Financial BB</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_VIEW_SHOWS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_VIEW_SHOWS</shortDescription>
+        <value>This view shows the full business case as submitted by Financial BD. In case of misalignment this tab shows BD&apos;s view</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_WILL_DESCRIBE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_WILL_DESCRIBE</shortDescription>
+        <value>This will describe which part of the organisation you work for and, what type of project and related options will be driven from this selection</value>
     </labels>
     <labels>
         <fullName>IPM_TIMINGS</fullName>
@@ -11283,7 +11675,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TLD_SHOULD_BE_GREATER_THAN_TODAYDate</shortDescription>
-        <value>Please select TLD more than current date</value>
+        <value>Please select a future target launch date.</value>
     </labels>
     <labels>
         <fullName>IPM_TLD_VR_Misaligned</fullName>
@@ -11342,6 +11734,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Total &apos;000 Units</value>
     </labels>
     <labels>
+        <fullName>IPM_TO_DO_ARE_THE_SET</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TO_DO_ARE_THE_SET</shortDescription>
+        <value>To-Do&apos;s are the set of recommended activities ipm navigator suggests to be performed, however they are not mandatory nor being tracked. To-Do&apos;s are phase, section and role specific. PL can add/remove To-Do&apos;s.</value>
+    </labels>
+    <labels>
         <fullName>IPM_TO_DOs</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11370,18 +11769,25 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>To-do</value>
     </labels>
     <labels>
+        <fullName>IPM_TO_EDIT_YOUR_NUMBERS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TO_EDIT_YOUR_NUMBERS</shortDescription>
+        <value>To edit your numbers, please navigate to Essentials &gt; Financials</value>
+    </labels>
+    <labels>
         <fullName>IPM_TRADEMARK_QUESTIONS</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TRADEMARK_QUESTIONS</shortDescription>
-        <value>TradeMark Questions:</value>
+        <value>Trademark Question:</value>
     </labels>
     <labels>
         <fullName>IPM_TRAINING_OR_TECHNICAL</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM TRAINING OR TECHNICAL</shortDescription>
-        <value>When you get to the portal, you’ll also find links to BD and BB virtual tours of the IPM process, highlighting the benefits that the new system will provide, as well as IPM Navigator smartcards, showing you how to work with the system and the IPM Navigator functional cards that highlight responsibilities by each function.</value>
+        <value>E IPM BP will determine whether the query is a technical or training issue.</value>
     </labels>
     <labels>
         <fullName>IPM_TRUE</fullName>
@@ -11416,7 +11822,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Target Launch Date Msg</shortDescription>
-        <value>Attention @users, the Target Launch Date on</value>
+        <value>the Target Launch Date on</value>
     </labels>
     <labels>
         <fullName>IPM_Target_Launch_Date_on</fullName>
@@ -11458,7 +11864,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Task Assign Text1</shortDescription>
-        <value>- You have been assigned some tasks for &amp;nbsp;</value>
+        <value>- You have been assigned some tasks for</value>
     </labels>
     <labels>
         <fullName>IPM_Task_Assign_Text2</fullName>
@@ -11472,7 +11878,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Task Completion Text</shortDescription>
-        <value>&amp;nbsp; Task is completed!</value>
+        <value>Task is completed!</value>
     </labels>
     <labels>
         <fullName>IPM_Task_Error</fullName>
@@ -11605,7 +12011,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_UPDATE_STATUS</shortDescription>
-        <value>Update Status</value>
+        <value>Click here for options to change the status of the project, e.g. to Proposed, Approved, or Stopped. From here you may check a gate document for completeness and preview next steps before confirming or cancelling a status change.</value>
     </labels>
     <labels>
         <fullName>IPM_UPDATE_YOUR_DUE_DATE</fullName>
@@ -11731,7 +12137,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM User Changed Roles</shortDescription>
-        <value>&amp;nbsp; is no longing performing the same role, according to the Unilever Active Directory. You may need to find another person to fill this role on your project &amp;nbsp;</value>
+        <value>is no longing performing the same role, according to the Unilever Active Directory. You may need to find another person to fill this role on your project</value>
     </labels>
     <labels>
         <fullName>IPM_User_License</fullName>
@@ -11808,7 +12214,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM WATCH FOR UPDATES TO</shortDescription>
-        <value>The IPM Navigator homepage also contains some useful quick links as well as the frequently asked questions document (FAQ).</value>
+        <value>In the spirit of continuous improvement and simplification, additional enhancements will go live in Inoplan starting 18 September. Watch for updates to:</value>
     </labels>
     <labels>
         <fullName>IPM_WEIGHTAGE</fullName>
@@ -11822,7 +12228,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_WELCOME_TO_IDEA_PHASE</shortDescription>
-        <value>Welcome to the Idea phase of your project, where you&apos;ll be working on the draft Charter.</value>
+        <value>Welcome to the Ideas phase of your project, where you&apos;ll be working on the draft Charter.</value>
     </labels>
     <labels>
         <fullName>IPM_WHAT_WE_CANT_CHANGE</fullName>
@@ -11916,6 +12322,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Yes</value>
     </labels>
     <labels>
+        <fullName>IPM_YOUR_ESTIMATE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_YOUR_ESTIMATE</shortDescription>
+        <value>Your estimate of when this project will go to Market. This will be copied over and editable when you set up your project.</value>
+    </labels>
+    <labels>
         <fullName>IPM_YOU_HAVE_ALERT</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11935,6 +12348,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM backto intermediate</shortDescription>
         <value>You have not completed core parameter wizard.&quot;Click here to go back&quot;.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_confirm_business_case_in_gate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM confirm business case in gate</shortDescription>
+        <value>Please confirm business case for below projects before proposal.</value>
     </labels>
     <labels>
         <fullName>IPM_currency_button_hover</fullName>
@@ -11990,7 +12410,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_welcomeToFeasibility</shortDescription>
-        <value>Welcome to Feasibility!</value>
+        <value>We just need you to confirm a few details and then we can create the new BET for your project. Any changes you make here will not affect your IPM project.</value>
     </labels>
     <labels>
         <fullName>LAUNCH_PINNOVATE_CMD</fullName>
@@ -13443,6 +13863,13 @@ the campaign covers more than 15 countries</value>
         <protected>false</protected>
         <shortDescription>Stimulus Materials</shortDescription>
         <value>Stimulus Materials - Research requirements</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_Lbl_UIUX_Sub_Category</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_UIUX_Sub_Category</shortDescription>
+        <value>Sub Category</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Updated</fullName>
@@ -15129,6 +15556,141 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <protected>false</protected>
         <shortDescription>WP User Admin Too Many Results Part 2</shortDescription>
         <value>results. Please refine your search criteria and try again.</value>
+    </labels>
+    <labels>
+        <fullName>WU_Category</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Category</shortDescription>
+        <value>Network</value>
+    </labels>
+    <labels>
+        <fullName>WU_City</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>WU_Country</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>WU_DuplicateCapacityDetailWhileInsert</fullName>
+        <categories>WU_Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_DuplicateCapacityDetailWhileInsert</shortDescription>
+        <value>Warehouse Capacity Detail record already exists with the provided Utilization Start Date and Utilization End Date. If you want to edit the existing Warehouse Capacity Detail record, edit it from the list.</value>
+    </labels>
+    <labels>
+        <fullName>WU_EndDate</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU EndDate</shortDescription>
+        <value>Utilization End Date</value>
+    </labels>
+    <labels>
+        <fullName>WU_MCO</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU MCO</shortDescription>
+        <value>MCO</value>
+    </labels>
+    <labels>
+        <fullName>WU_Region</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Region</shortDescription>
+        <value>Region</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_City</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_City</shortDescription>
+        <value>00N8A000000PZIN</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Country</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Country</shortDescription>
+        <value>00N8A000000PZIQ</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Id</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Id</shortDescription>
+        <value>00O8A000000Jiog</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_MCO</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_MCO</shortDescription>
+        <value>00N8A000000PZIe</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Network</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Network</shortDescription>
+        <value>00N8A000000PZIg</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Region</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Region</shortDescription>
+        <value>00N8A000000PZIl</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_SAP_Code</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_SAP_Code</shortDescription>
+        <value>00N8A000000PZIm</value>
+    </labels>
+    <labels>
+        <fullName>WU_SAPCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU SAPCode</shortDescription>
+        <value>SAP Code</value>
+    </labels>
+    <labels>
+        <fullName>WU_StartDate</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU StartDate</shortDescription>
+        <value>Utilization Start Date</value>
+    </labels>
+    <labels>
+        <fullName>WU_utilizationTypeCannotChange</fullName>
+        <categories>WU_Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_utilizationTypeCannotChange</shortDescription>
+        <value>Utilization Type for this month has been set.You cannot change it.</value>
     </labels>
     <labels>
         <fullName>WinAtPOS_AssetGroupName_help_text</fullName>

@@ -246,6 +246,22 @@
         <name>IPM_Business_Case_Confirmed__c</name>
     </fields>
     <fields>
+        <label><!-- Business_Impact_Charter --></label>
+        <name>IPM_Business_Impact_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business_Impact_Contract --></label>
+        <name>IPM_Business_Impact_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business_Impact_MD --></label>
+        <name>IPM_Business_Impact_MD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business_Impact_MR --></label>
+        <name>IPM_Business_Impact_MR__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM CPP Local --></label>
         <name>IPM_CPP_Local__c</name>
     </fields>

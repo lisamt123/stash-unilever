@@ -16710,6 +16710,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_EmailOut_Notification__c.MCO_Country_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>IPM_EmailOut_Notification__c.Previous_Target_Launch_Date__c</field>
         <readable>true</readable>
@@ -17547,6 +17552,26 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Financial__c.IPM_Business_Case_Confirmed__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.IPM_Business_Impact_Charter__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.IPM_Business_Impact_Contract__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.IPM_Business_Impact_MD__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>IPM_Financial__c.IPM_Business_Impact_MR__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -19752,7 +19777,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Rollout__c.IPM_Global_OR_Regional__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -19762,7 +19787,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Rollout__c.IPM_Parent_Project_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -19867,7 +19892,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Rollout__c.Local_Rollout_Phase__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -19932,7 +19957,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Rollout__c.Regional_Rollout_Phase__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -19942,12 +19967,12 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Rollout__c.Target_LaunchMonth__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project_Rollout__c.Target_LaunchYear__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -20392,7 +20417,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.IPM_Global_OR_Regional__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>

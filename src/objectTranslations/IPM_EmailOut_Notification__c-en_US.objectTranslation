@@ -9,6 +9,10 @@
         <value>IPM EmailOut Notifications</value>
     </caseValues>
     <fields>
+        <label><!-- MCO/Country Name --></label>
+        <name>MCO_Country_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Previous Target Launch Date --></label>
         <name>Previous_Target_Launch_Date__c</name>
     </fields>

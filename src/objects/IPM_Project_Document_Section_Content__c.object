@@ -154,6 +154,7 @@
     </fields>
     <fields>
         <fullName>IPM_AssortmentStrategy_From__c</fullName>
+        <description>Used for specify assortment from date</description>
         <externalId>false</externalId>
         <label>AssortmentStrategy From</label>
         <required>false</required>
@@ -163,6 +164,7 @@
     <fields>
         <fullName>IPM_AssortmentStrategy_To__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>Used for specify assortment TO date</inlineHelpText>
         <label>AssortmentStrategy To</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -170,6 +172,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assortment_CU_Priority__c</fullName>
+        <description>contains priority for assortment</description>
         <externalId>false</externalId>
         <label>IPM Assortment CU Priority</label>
         <precision>2</precision>
@@ -181,6 +184,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assortment_Cus__c</fullName>
+        <description>contains assortment Cus value</description>
         <externalId>false</externalId>
         <label>IPM Assortment Cus</label>
         <length>20</length>
@@ -191,6 +195,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assortment_Strategy_Priority__c</fullName>
+        <description>Used for specify assortment priority</description>
         <externalId>false</externalId>
         <label>Assortment Strategy Priority</label>
         <picklist>
@@ -221,6 +226,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assortment_strategy_Target__c</fullName>
+        <description>Used for specify assortment strategy target</description>
         <externalId>false</externalId>
         <label>Assortment Strategy Target</label>
         <required>false</required>
@@ -229,6 +235,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assumption_A_P__c</fullName>
+        <description>contains financial profit</description>
         <externalId>false</externalId>
         <label>IPM Assumption A&amp;P</label>
         <length>255</length>
@@ -239,6 +246,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assumption_CAPEX__c</fullName>
+        <description>contains Capex from financials</description>
         <externalId>false</externalId>
         <label>IPM Assumption CAPEX</label>
         <length>255</length>
@@ -249,6 +257,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assumption_Countries__c</fullName>
+        <description>contains countries for assumption</description>
         <externalId>false</externalId>
         <label>IPM Assumption Countries</label>
         <length>255</length>
@@ -259,6 +268,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assumption_GM__c</fullName>
+        <description>contains GM from financials</description>
         <externalId>false</externalId>
         <label>IPM Assumption GM%</label>
         <length>255</length>
@@ -269,6 +279,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assumption_Market_Size__c</fullName>
+        <description>contains market size from financial</description>
         <externalId>false</externalId>
         <label>IPM Assumption Market Size</label>
         <length>255</length>
@@ -279,6 +290,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assumption_Pricing__c</fullName>
+        <description>contains pricing from financial</description>
         <externalId>false</externalId>
         <label>IPM Assumption Pricing</label>
         <length>255</length>
@@ -289,6 +301,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assumption_Restages__c</fullName>
+        <description>contains restages from financial</description>
         <externalId>false</externalId>
         <label>IPM Assumption Restages</label>
         <length>255</length>
@@ -299,6 +312,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assumption_T_O_Cannibalization__c</fullName>
+        <description>contains TO Cannibalization from financial</description>
         <externalId>false</externalId>
         <label>IPM Assumption T/O Cannibalization</label>
         <length>255</length>
@@ -309,6 +323,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assumption_Volume_Yr_2__c</fullName>
+        <description>contains volume yr 2 from financial</description>
         <externalId>false</externalId>
         <label>IPM Assumption Volume Yr 2+</label>
         <length>255</length>
@@ -319,6 +334,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assumption_Volume__c</fullName>
+        <description>contains volume  from financial</description>
         <externalId>false</externalId>
         <label>IPM Assumption Volume</label>
         <length>255</length>
@@ -329,6 +345,7 @@
     </fields>
     <fields>
         <fullName>IPM_Assumption_Yr_1_Trade_Promotion__c</fullName>
+        <description>contains year 1 trade promotion from financial</description>
         <externalId>false</externalId>
         <label>IPM Assumption Yr 1 Trade Promotion</label>
         <length>255</length>
@@ -339,6 +356,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Color_Score_Value_Achieved__c</fullName>
+        <description>contains cmi color score value achieved</description>
         <externalId>false</externalId>
         <label>IPM CMI Color Score Value Achieved</label>
         <length>255</length>
@@ -349,6 +367,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Color_Score_Value__c</fullName>
+        <description>contains cmi color score</description>
         <externalId>false</externalId>
         <label>IPM CMI Color Score Value</label>
         <length>255</length>
@@ -359,6 +378,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Comments__c</fullName>
+        <description>contains cmi comments</description>
         <externalId>false</externalId>
         <label>IPM CMI Comments</label>
         <length>255</length>
@@ -369,6 +389,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Country__c</fullName>
+        <description>contains cmi country</description>
         <externalId>false</externalId>
         <label>IPM CMI Country</label>
         <length>255</length>
@@ -389,6 +410,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Gate_Test__c</fullName>
+        <description>contains cmi test</description>
         <externalId>false</externalId>
         <formula>TEXT(IPM_Gate_CMI__r.Test__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -400,6 +422,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Input__c</fullName>
+        <description>contains cmi input</description>
         <externalId>false</externalId>
         <label>IPM CMI Input</label>
         <picklist>
@@ -479,6 +502,7 @@
     <fields>
         <fullName>IPM_CMI_Is_Free_Text__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>enable user to create a new input</description>
         <externalId>false</externalId>
         <label>IPM CMI Is Free Text</label>
         <trackTrending>false</trackTrending>
@@ -486,6 +510,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Outcome_Color_Achieved__c</fullName>
+        <description>contains cmi outcome color achieved</description>
         <externalId>false</externalId>
         <label>IPM CMI Outcome Color Achieved</label>
         <length>18</length>
@@ -496,6 +521,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Outcome_Color__c</fullName>
+        <description>contains outcome color</description>
         <externalId>false</externalId>
         <label>IPM CMI Outcome Color</label>
         <length>18</length>
@@ -506,6 +532,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Overall_Color_Score_Achieved__c</fullName>
+        <description>stores cmi overall color score</description>
         <externalId>false</externalId>
         <label>IPM CMI Overall Color Score Achieved</label>
         <length>255</length>
@@ -516,6 +543,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Overall_Colour_Achieved__c</fullName>
+        <description>contains overall color achieved in cmi</description>
         <externalId>false</externalId>
         <label>IPM CMI Overall Colour Achieved</label>
         <length>255</length>
@@ -526,6 +554,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Overall_Colour_Coding_Method__c</fullName>
+        <description>contains cmi color coding method</description>
         <externalId>false</externalId>
         <label>IPM CMI Overall Colour Coding Method</label>
         <picklist>
@@ -559,6 +588,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Overall_Comments__c</fullName>
+        <description>contains overall comments in cmi</description>
         <externalId>false</externalId>
         <label>IPM CMI Overall Comments</label>
         <length>255</length>
@@ -569,6 +599,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Overall_Score_Achieved__c</fullName>
+        <description>contains overall score achieved in cmi</description>
         <externalId>false</externalId>
         <label>IPM CMI Overall Score Achieved</label>
         <picklist>
@@ -705,6 +736,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Overall_Score_Label__c</fullName>
+        <description>cmi overall score label</description>
         <externalId>false</externalId>
         <label>IPM CMI Overall Score Label</label>
         <length>255</length>
@@ -715,6 +747,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Overall_Score__c</fullName>
+        <description>contains cmi overall score</description>
         <externalId>false</externalId>
         <label>IPM CMI Overall Score</label>
         <picklist>
@@ -851,6 +884,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Result_Timing__c</fullName>
+        <description>cmi result timings</description>
         <externalId>false</externalId>
         <label>IPM CMI Result Timing</label>
         <required>false</required>
@@ -859,6 +893,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Result__c</fullName>
+        <description>contains cmi result</description>
         <externalId>false</externalId>
         <label>IPM CMI Result</label>
         <picklist>
@@ -995,6 +1030,7 @@
     </fields>
     <fields>
         <fullName>IPM_CMI_Results_Acheived__c</fullName>
+        <description>contains cmi results achieved</description>
         <externalId>false</externalId>
         <label>IPM CMI Results Acheived</label>
         <picklist>
@@ -1131,6 +1167,7 @@
     </fields>
     <fields>
         <fullName>IPM_CRRT_Country__c</fullName>
+        <description>used for crrt country</description>
         <externalId>false</externalId>
         <label>IPM CRRT Country</label>
         <length>50</length>
@@ -1190,6 +1227,7 @@
     <fields>
         <fullName>IPM_Comparison_Category__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>used for comparison category</description>
         <externalId>false</externalId>
         <label>Comparison Category</label>
         <trackTrending>false</trackTrending>
@@ -1197,6 +1235,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_SKU_Greenhouse__c</fullName>
+        <description>to store comparison SKU greenhouse</description>
         <externalId>false</externalId>
         <label>Comparison SKU</label>
         <precision>18</precision>
@@ -1208,6 +1247,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_SKU_Sourcing__c</fullName>
+        <description>to store comparison sku sourcing</description>
         <externalId>false</externalId>
         <label>Comparison SKU</label>
         <length>255</length>
@@ -1218,6 +1258,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_SKU_Waste__c</fullName>
+        <description>to store comparison sku waste</description>
         <externalId>false</externalId>
         <label>Comparison SKU</label>
         <precision>18</precision>
@@ -1229,6 +1270,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_SKU_Water__c</fullName>
+        <description>to store comparison SKU water</description>
         <externalId>false</externalId>
         <label>Comparison SKU</label>
         <precision>18</precision>
@@ -1240,6 +1282,7 @@
     </fields>
     <fields>
         <fullName>IPM_Comparison_SKU__c</fullName>
+        <description>to store comparison sku</description>
         <externalId>false</externalId>
         <label>Comparison SKU</label>
         <length>255</length>
@@ -1282,6 +1325,7 @@
     </fields>
     <fields>
         <fullName>IPM_Consumer_Evidence_Gate__c</fullName>
+        <description>contains consumer evidence gate</description>
         <externalId>false</externalId>
         <label>IPM Consumer Evidence Gate</label>
         <picklist>
@@ -1308,6 +1352,7 @@
     </fields>
     <fields>
         <fullName>IPM_Consumer_Evidence_Image__c</fullName>
+        <description>contains consumer evidence image</description>
         <externalId>false</externalId>
         <label>IPM Consumer Evidence Image</label>
         <length>32768</length>
@@ -1317,6 +1362,7 @@
     </fields>
     <fields>
         <fullName>IPM_Consumer_Evidence_Logo_Id__c</fullName>
+        <description>consumer evidence logo id</description>
         <externalId>false</externalId>
         <label>IPM Consumer Evidence Logo Id</label>
         <length>18</length>
@@ -1327,6 +1373,7 @@
     </fields>
     <fields>
         <fullName>IPM_Consumer_Evidence_Priority__c</fullName>
+        <description>contains consumer evidence priority</description>
         <externalId>false</externalId>
         <label>IPM Consumer Evidence Priority</label>
         <precision>4</precision>
@@ -1351,6 +1398,7 @@
     </fields>
     <fields>
         <fullName>IPM_Content_Type__c</fullName>
+        <description>Used for storing content  type</description>
         <externalId>false</externalId>
         <label>Content Type</label>
         <picklist>
@@ -1393,6 +1441,7 @@
     </fields>
     <fields>
         <fullName>IPM_Country__c</fullName>
+        <description>contains country name</description>
         <externalId>false</externalId>
         <label>Country</label>
         <length>200</length>
@@ -1403,6 +1452,7 @@
     </fields>
     <fields>
         <fullName>IPM_Customer_Channel_Priority_Order__c</fullName>
+        <description>customer channel priority order</description>
         <externalId>false</externalId>
         <label>IPM Customer Channel Priority Order</label>
         <precision>10</precision>
@@ -1414,6 +1464,7 @@
     </fields>
     <fields>
         <fullName>IPM_Customer_Channel_Priority__c</fullName>
+        <description>contains customer channel priority</description>
         <externalId>false</externalId>
         <label>IPM Customer Channel Priority</label>
         <precision>10</precision>
@@ -1480,6 +1531,7 @@
     </fields>
     <fields>
         <fullName>IPM_Decreased_By__c</fullName>
+        <description>decreased by data for CUs</description>
         <externalId>false</externalId>
         <label>IPM Decreased By</label>
         <precision>18</precision>
@@ -1491,6 +1543,7 @@
     </fields>
     <fields>
         <fullName>IPM_Directional_View_Greenhouse__c</fullName>
+        <description>to store directional view greenhouse</description>
         <externalId>false</externalId>
         <label>Directional View</label>
         <precision>18</precision>
@@ -1502,6 +1555,7 @@
     </fields>
     <fields>
         <fullName>IPM_Directional_View_Sourcing__c</fullName>
+        <description>to store directional view sourcing</description>
         <externalId>false</externalId>
         <label>Directional View</label>
         <length>255</length>
@@ -1512,6 +1566,7 @@
     </fields>
     <fields>
         <fullName>IPM_Directional_View_Waste__c</fullName>
+        <description>to store directional view waste</description>
         <externalId>false</externalId>
         <label>Directional View</label>
         <precision>18</precision>
@@ -1523,6 +1578,7 @@
     </fields>
     <fields>
         <fullName>IPM_Directional_View_Water__c</fullName>
+        <description>to store directional view water</description>
         <externalId>false</externalId>
         <label>Directional View</label>
         <precision>18</precision>
@@ -1534,6 +1590,7 @@
     </fields>
     <fields>
         <fullName>IPM_Distribution_Type__c</fullName>
+        <description>contains distribution type in assortment strategy</description>
         <externalId>false</externalId>
         <label>Distribution Type</label>
         <picklist>
@@ -1552,6 +1609,7 @@
     </fields>
     <fields>
         <fullName>IPM_Expected_Change_Greenhouse__c</fullName>
+        <description>to store expected change greenhouse</description>
         <externalId>false</externalId>
         <label>Expected % Change</label>
         <precision>18</precision>
@@ -1563,6 +1621,7 @@
     </fields>
     <fields>
         <fullName>IPM_Expected_Change_Sourcing__c</fullName>
+        <description>to store expected change sourcing</description>
         <externalId>false</externalId>
         <label>Expected % Change</label>
         <length>255</length>
@@ -1573,6 +1632,7 @@
     </fields>
     <fields>
         <fullName>IPM_Expected_Change_Waste__c</fullName>
+        <description>to store expected change waste</description>
         <externalId>false</externalId>
         <label>Expected % Change</label>
         <precision>18</precision>
@@ -1584,6 +1644,7 @@
     </fields>
     <fields>
         <fullName>IPM_Expected_Change_Water__c</fullName>
+        <description>to store expected change water</description>
         <externalId>false</externalId>
         <label>Expected % Change</label>
         <precision>18</precision>
@@ -1604,6 +1665,7 @@
     </fields>
     <fields>
         <fullName>IPM_GM_Action_Standards_Charter__c</fullName>
+        <description>to store GM from financial action standard</description>
         <externalId>false</externalId>
         <label>IPM GM % Action Standards Charter</label>
         <precision>18</precision>
@@ -1615,6 +1677,7 @@
     <fields>
         <fullName>IPM_Gate_CMI__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>contains gate cmi</description>
         <externalId>false</externalId>
         <label>IPM Gate CMI</label>
         <referenceTo>IPM_Gate_CMI__c</referenceTo>
@@ -1626,6 +1689,7 @@
     </fields>
     <fields>
         <fullName>IPM_Gate_Type__c</fullName>
+        <description>used for storing gate type</description>
         <externalId>false</externalId>
         <label>Gate Type</label>
         <picklist>
@@ -1652,6 +1716,7 @@
     </fields>
     <fields>
         <fullName>IPM_IRR_Action_Standard_Charter_Cmts__c</fullName>
+        <description>contains  IRR from financial action standard charter</description>
         <externalId>false</externalId>
         <label>IPM IRR Action Standard Charter Cmts</label>
         <length>32768</length>
@@ -1661,6 +1726,7 @@
     </fields>
     <fields>
         <fullName>IPM_IRR_Action_Standard_Charter__c</fullName>
+        <description>contains  IRR from financial action standard</description>
         <externalId>false</externalId>
         <label>IPM IRR Action Standard Charter</label>
         <precision>18</precision>
@@ -1671,6 +1737,7 @@
     </fields>
     <fields>
         <fullName>IPM_Inc_Val_Share_Action_Charter_Cmts__c</fullName>
+        <description>used to store increment value shhare</description>
         <externalId>false</externalId>
         <label>IPM Inc Val Share Action Charter Cmts</label>
         <length>32768</length>
@@ -1680,6 +1747,7 @@
     </fields>
     <fields>
         <fullName>IPM_Inc_Value_Share_Action_Charter__c</fullName>
+        <description>increment in value share for action</description>
         <externalId>false</externalId>
         <label>IPM Inc Value Share Action Charter</label>
         <precision>18</precision>
@@ -1690,6 +1758,7 @@
     </fields>
     <fields>
         <fullName>IPM_Increased_By__c</fullName>
+        <description>increased by data for CUs</description>
         <externalId>false</externalId>
         <label>IPM Increased By</label>
         <precision>18</precision>
@@ -1712,6 +1781,7 @@
     </fields>
     <fields>
         <fullName>IPM_Innov_Value_Share_Action_Charter__c</fullName>
+        <description>contains innovation value share</description>
         <externalId>false</externalId>
         <label>IPM Innov Value Share Action Charter</label>
         <precision>18</precision>
@@ -1722,6 +1792,7 @@
     </fields>
     <fields>
         <fullName>IPM_Inov_Value_Share_Action_Charter_Cmts__c</fullName>
+        <description>contains innovation value share charter</description>
         <externalId>false</externalId>
         <label>IPM Inov Value Share Action Charter Cmts</label>
         <length>32768</length>
@@ -1731,6 +1802,7 @@
     </fields>
     <fields>
         <fullName>IPM_NPV_Action_Standard_Charter_Cmts__c</fullName>
+        <description>contains npv from financial action standard charter</description>
         <externalId>false</externalId>
         <label>IPM NPV Action Standard Charter Cmts</label>
         <length>32768</length>
@@ -1740,6 +1812,7 @@
     </fields>
     <fields>
         <fullName>IPM_NPV_Action_Standard_Charter__c</fullName>
+        <description>contains npv from financial action standard charter</description>
         <externalId>false</externalId>
         <label>IPM NPV Action Standard Charter</label>
         <precision>18</precision>
@@ -1759,6 +1832,7 @@
     </fields>
     <fields>
         <fullName>IPM_New_SKU_Greenhouse__c</fullName>
+        <description>to store new SKU greenhouse</description>
         <externalId>false</externalId>
         <label>New SKU</label>
         <precision>18</precision>
@@ -1770,6 +1844,7 @@
     </fields>
     <fields>
         <fullName>IPM_New_SKU_Sourcing__c</fullName>
+        <description>to store new sku sourcing</description>
         <externalId>false</externalId>
         <label>New SKU</label>
         <length>255</length>
@@ -1780,6 +1855,7 @@
     </fields>
     <fields>
         <fullName>IPM_New_SKU_Waste__c</fullName>
+        <description>to store new SKU waste</description>
         <externalId>false</externalId>
         <label>New SKU</label>
         <precision>18</precision>
@@ -1791,6 +1867,7 @@
     </fields>
     <fields>
         <fullName>IPM_New_SKU_Water__c</fullName>
+        <description>to store new SKU water</description>
         <externalId>false</externalId>
         <label>New SKU</label>
         <precision>18</precision>
@@ -1802,6 +1879,7 @@
     </fields>
     <fields>
         <fullName>IPM_Nutrition__c</fullName>
+        <description>to store nutrition</description>
         <externalId>false</externalId>
         <label>Nutrition</label>
         <length>255</length>
@@ -1851,6 +1929,7 @@
     </fields>
     <fields>
         <fullName>IPM_OTIF_Measure__c</fullName>
+        <description>contains otif measure</description>
         <externalId>false</externalId>
         <label>IPM OTIF Measure</label>
         <length>255</length>
@@ -1861,6 +1940,7 @@
     </fields>
     <fields>
         <fullName>IPM_OTIF_No_of_Status__c</fullName>
+        <description>contains no of status</description>
         <externalId>false</externalId>
         <label>IPM_OTIF_No of Status</label>
         <precision>18</precision>
@@ -1872,6 +1952,7 @@
     </fields>
     <fields>
         <fullName>IPM_OTIF_Responsibility__c</fullName>
+        <description>contains otif responsbility</description>
         <externalId>false</externalId>
         <label>IPM OTIF Responsibility</label>
         <length>255</length>
@@ -1894,6 +1975,7 @@
     </fields>
     <fields>
         <fullName>IPM_OTIF_Status__c</fullName>
+        <description>contains otif status</description>
         <externalId>false</externalId>
         <label>IPM OTIF Status</label>
         <picklist>
@@ -1920,6 +2002,7 @@
     </fields>
     <fields>
         <fullName>IPM_Pack_Image_1_Id__c</fullName>
+        <description>to store pack image id for customer channel</description>
         <externalId>false</externalId>
         <label>IPM Pack Image 1 Id</label>
         <length>18</length>
@@ -1930,6 +2013,7 @@
     </fields>
     <fields>
         <fullName>IPM_Pack_Image_2_Id__c</fullName>
+        <description>to store pack image 2 for customer channel</description>
         <externalId>false</externalId>
         <label>IPM Pack Image 2 Id</label>
         <length>18</length>
@@ -1940,6 +2024,7 @@
     </fields>
     <fields>
         <fullName>IPM_Pack__c</fullName>
+        <description>contains value from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Pack</label>
         <length>32768</length>
@@ -1949,6 +2034,7 @@
     </fields>
     <fields>
         <fullName>IPM_Payback_Action_Standard_Charter_Cmts__c</fullName>
+        <description>contains payback financial action standard charter</description>
         <externalId>false</externalId>
         <label>IPM Payback Action Standard Charter Cmts</label>
         <length>32768</length>
@@ -1958,6 +2044,7 @@
     </fields>
     <fields>
         <fullName>IPM_Payback_Action_Standard_Charter__c</fullName>
+        <description>contains payback from financial action standard</description>
         <externalId>false</externalId>
         <label>IPM Payback Action Standard Charter</label>
         <precision>18</precision>
@@ -1969,6 +2056,7 @@
     </fields>
     <fields>
         <fullName>IPM_Place_Image_1_Id__c</fullName>
+        <description>to store place image 1 from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Place Image 1 Id</label>
         <length>18</length>
@@ -1979,6 +2067,7 @@
     </fields>
     <fields>
         <fullName>IPM_Place_Image_2_Id__c</fullName>
+        <description>to store place image 2 from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Place Image 2 Id</label>
         <length>18</length>
@@ -1989,6 +2078,7 @@
     </fields>
     <fields>
         <fullName>IPM_Place__c</fullName>
+        <description>to store place value from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Place</label>
         <length>32768</length>
@@ -1998,6 +2088,7 @@
     </fields>
     <fields>
         <fullName>IPM_Preposition_Image_1_Id__c</fullName>
+        <description>to store preposition image 1 from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Preposition Image 1 Id</label>
         <length>18</length>
@@ -2008,6 +2099,7 @@
     </fields>
     <fields>
         <fullName>IPM_Preposition_Image_2_Id__c</fullName>
+        <description>to store preposition image 2 from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Preposition Image 2 Id</label>
         <length>18</length>
@@ -2018,6 +2110,7 @@
     </fields>
     <fields>
         <fullName>IPM_Preposition__c</fullName>
+        <description>to store preposition from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Proposition</label>
         <length>32768</length>
@@ -2027,6 +2120,7 @@
     </fields>
     <fields>
         <fullName>IPM_Price_Image_1_Id__c</fullName>
+        <description>to store price image 1 from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Price Image 1 Id</label>
         <length>18</length>
@@ -2037,6 +2131,7 @@
     </fields>
     <fields>
         <fullName>IPM_Price_Image_2_Id__c</fullName>
+        <description>to store price image 2 from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Price Image 2 Id</label>
         <length>18</length>
@@ -2047,6 +2142,7 @@
     </fields>
     <fields>
         <fullName>IPM_Price__c</fullName>
+        <description>to store price value from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Price</label>
         <length>32768</length>
@@ -2056,6 +2152,7 @@
     </fields>
     <fields>
         <fullName>IPM_Product_Image_1_Id__c</fullName>
+        <description>to store product image 1 from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Product Image 1 Id</label>
         <length>18</length>
@@ -2066,6 +2163,7 @@
     </fields>
     <fields>
         <fullName>IPM_Product_Image_2_Id__c</fullName>
+        <description>to store product image 2 from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Product Image 2 Id</label>
         <length>18</length>
@@ -2076,6 +2174,7 @@
     </fields>
     <fields>
         <fullName>IPM_Product__c</fullName>
+        <description>to store product value from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Product</label>
         <length>32768</length>
@@ -2086,6 +2185,7 @@
     <fields>
         <fullName>IPM_Project_Document_Section__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
+        <description>lookup to project document section</description>
         <externalId>false</externalId>
         <label>IPM Project Document Section</label>
         <referenceTo>IPM_Project_Document_Section__c</referenceTo>
@@ -2097,6 +2197,7 @@
     </fields>
     <fields>
         <fullName>IPM_Project_Effect__c</fullName>
+        <description>project effect from CUs</description>
         <externalId>false</externalId>
         <label>IPM Project Effect</label>
         <picklist>
@@ -2119,6 +2220,7 @@
     </fields>
     <fields>
         <fullName>IPM_Promotion_Image_1_Id__c</fullName>
+        <description>to store promotion image 1 from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Promotion Image 1 Id</label>
         <length>18</length>
@@ -2129,6 +2231,7 @@
     </fields>
     <fields>
         <fullName>IPM_Promotion_Image_2_Id__c</fullName>
+        <description>to store promotion image 2 from customer channel</description>
         <externalId>false</externalId>
         <label>IPM Promotion Image 2 Id</label>
         <length>18</length>
@@ -2182,6 +2285,7 @@
     </fields>
     <fields>
         <fullName>IPM_Section_type__c</fullName>
+        <description>to store section type</description>
         <externalId>false</externalId>
         <label>Section Type</label>
         <picklist>
@@ -2216,6 +2320,7 @@
     </fields>
     <fields>
         <fullName>IPM_Sustainale_Sourcing__c</fullName>
+        <description>to store sustainale sourcing</description>
         <externalId>false</externalId>
         <label>Sustainale Sourcing</label>
         <length>255</length>
@@ -2226,6 +2331,7 @@
     </fields>
     <fields>
         <fullName>IPM_Total_Cu_Count_Impact__c</fullName>
+        <description>used for given the range for CU count impact</description>
         <externalId>false</externalId>
         <label>IPM_Total_Cu_Count_Impact</label>
         <picklist>
@@ -2260,6 +2366,7 @@
     </fields>
     <fields>
         <fullName>IPM_gTO_Action_Standard_Charter_Cmts__c</fullName>
+        <description>gto action standard charter</description>
         <externalId>false</externalId>
         <label>IPM gTO Action Standard Charter Cmts</label>
         <length>32768</length>
@@ -2269,6 +2376,7 @@
     </fields>
     <fields>
         <fullName>IPM_gTO_Action_Standard_Charter__c</fullName>
+        <description>contains gto from financial standard charter</description>
         <externalId>false</externalId>
         <label>IPM gTO Action Standard Charter</label>
         <precision>18</precision>
@@ -2279,6 +2387,7 @@
     </fields>
     <fields>
         <fullName>IPM_iTo_Action_Standard_Charter_Cmts__c</fullName>
+        <description>contains ito from financial action standard charter</description>
         <externalId>false</externalId>
         <label>IPM iTo Action Standard Charter Cmts</label>
         <length>32768</length>
@@ -2288,6 +2397,7 @@
     </fields>
     <fields>
         <fullName>IPM_iTo_Action_Standard_Charter__c</fullName>
+        <description>conatins ito from financial action standard</description>
         <externalId>false</externalId>
         <label>IPM iTo Action Standard Charter</label>
         <precision>18</precision>
@@ -2298,6 +2408,7 @@
     </fields>
     <fields>
         <fullName>New_SKU__c</fullName>
+        <description>to store new sku value</description>
         <externalId>false</externalId>
         <label>New SKU</label>
         <length>255</length>
@@ -2308,6 +2419,7 @@
     </fields>
     <fields>
         <fullName>Section_Content_Ext_Id__c</fullName>
+        <description>to store section content external id</description>
         <externalId>true</externalId>
         <label>Section Content Ext Id</label>
         <length>100</length>
