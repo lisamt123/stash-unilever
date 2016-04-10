@@ -5,6 +5,7 @@
     <enableFeeds>false</enableFeeds>
     <fields>
         <fullName>Priority_Order_Value__c</fullName>
+        <description>Contains the priority order value for the customer channels</description>
         <externalId>false</externalId>
         <label>Priority Order Value</label>
         <length>10</length>

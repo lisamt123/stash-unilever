@@ -4,10 +4,6 @@
         <plural>false</plural>
         <value>IPM Category</value>
     </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>IPM Category</value>
-    </caseValues>
     <fields>
         <label><!-- Market --></label>
         <name>IPM_Market__c</name>

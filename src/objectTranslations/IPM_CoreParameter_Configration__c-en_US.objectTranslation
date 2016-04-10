@@ -4,10 +4,6 @@
         <plural>false</plural>
         <value>IPM CoreParameter Configration</value>
     </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>IPM CoreParameter Configration</value>
-    </caseValues>
     <fields>
         <label><!-- Additional Parameters --></label>
         <name>IPM_Additional_Parameters__c</name>

@@ -33,7 +33,7 @@
         <name>Four_Acres_Collaboration</name>
     </customApplications>
     <customApplications>
-        <label><!-- IPM-NG --></label>
+        <label><!-- IPM Navigator --></label>
         <name>IPM_NG</name>
     </customApplications>
     <customApplications>
@@ -1443,6 +1443,98 @@
     <customLabels>
         <label>¿Se conoce la variedad?</label>
         <name>CEC_isVariantKnown</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA BPE Recordtype --></label>
+        <name>CPA_BPE_Recordtype</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA CNF historical CNF id --></label>
+        <name>CPA_CNF_historical_CNF_id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA CNF historical TNF id --></label>
+        <name>CPA_CNF_historical_TNF_id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA default URl --></label>
+        <name>CPA_Default_URL</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA HLE Recordtype --></label>
+        <name>CPA_HLE_Recordtype</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA HLE Request cant be deleted --></label>
+        <name>CPA_HLE_Request_cant_be_deleted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA Mandatory Fields Message --></label>
+        <name>CPA_Mandatory_Fields_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA Operation Cancelled --></label>
+        <name>CPA_Operation_Cancelled</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PWORF LOI Id Field --></label>
+        <name>CPA_PWORF_LOI_ID_Filed_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PWORF LOI Name Field --></label>
+        <name>CPA_PWORF_LOI_Name_Filed_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PWORF Name Filed Id --></label>
+        <name>CPA_PWORF_Name_Filed_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA_PWO_CNF_RecordTypeId --></label>
+        <name>CPA_PWO_CNF_RecordTypeId</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PWO Name Field Id --></label>
+        <name>CPA_PWO_Name_Field_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA_PWO_RecordTypeId --></label>
+        <name>CPA_PWO_RecordTypeId</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA PWO TNF RecordTypeId --></label>
+        <name>CPA_PWO_TNF_RecordTypeId</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA_ParentId_For_Attachment_CR --></label>
+        <name>CPA_ParentId_For_Attachment_CR</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA_ParentId_For_Attachment_LOI --></label>
+        <name>CPA_ParentId_For_Attachment_LOI</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA_ParentId_For_Attachment_trigger --></label>
+        <name>CPA_ParentId_For_Attachment_trigger</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA Recall and Unlock --></label>
+        <name>CPA_Recall_and_Unlock</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA_RecordType --></label>
+        <name>CPA_RecordType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA_RecordType_Details --></label>
+        <name>CPA_RecordType_Details</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA Standalone CR RecordTypeId --></label>
+        <name>CPA_Standalone_CR_RecordTypeId</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CPA_ Standalone PWO RecordTypeId --></label>
+        <name>CPA_Standalone_PWO_RecordTypeId</name>
     </customLabels>
     <customLabels>
         <label><!-- DB - Auto-Convert - Add New Field Mapping --></label>
@@ -2981,7 +3073,7 @@
         <name>IPM_Assort_Distribution_Type</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM Assumption A&amp;P --></label>
+        <label><!-- IPM Assumption BMI --></label>
         <name>IPM_Assumption_A_P</name>
     </customLabels>
     <customLabels>
@@ -3061,6 +3153,10 @@
         <name>IPM_BB_COMMENTS</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM BB Document --></label>
+        <name>IPM_BB_Document</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM BB MILESTONE DATES --></label>
         <name>IPM_BB_MILESTONE_DATES</name>
     </customLabels>
@@ -3091,6 +3187,22 @@
     <customLabels>
         <label><!-- BD Marketing --></label>
         <name>IPM_BD_Marketing</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_BELOW_ARE_QUICK --></label>
+        <name>IPM_BELOW_ARE_QUICK</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_BELOW_ARE_THE_TYPICAL --></label>
+        <name>IPM_BELOW_ARE_THE_TYPICAL</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_BELOW_SELECTED_COUNTRIES_EXCLUDED --></label>
+        <name>IPM_BELOW_SELECTED_COUNTRIES_EXCLUDED</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_BELOW_SELECTED_COUNTRIES_INNOVATION --></label>
+        <name>IPM_BELOW_SELECTED_COUNTRIES_INNOVATION</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_BETAccessMsgRegionalLocal --></label>
@@ -3509,6 +3621,10 @@
         <name>IPM_BrandPositioning</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_BrandPositioningHelpText --></label>
+        <name>IPM_BrandPositioningHelpText</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Brand Builders (BB) --></label>
         <name>IPM_Brand_Builders_BB</name>
     </customLabels>
@@ -3821,6 +3937,10 @@
         <name>IPM_CUS</name>
     </customLabels>
     <customLabels>
+        <label><!-- CU_And_Complexity --></label>
+        <name>IPM_CU_And_Complexity</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_CU_INFO --></label>
         <name>IPM_CU_INFO</name>
     </customLabels>
@@ -3851,6 +3971,10 @@
     <customLabels>
         <label><!-- Cancel and Revert --></label>
         <name>IPM_CancelCountryRemoval</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_Cannot_Delete_CharterApproved --></label>
+        <name>IPM_Cannot_Delete_CharterApproved</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_CategoryNameNotNull --></label>
@@ -3919,6 +4043,10 @@
     <customLabels>
         <label><!-- IPM Cluster Name length --></label>
         <name>IPM_Cluster_Name_length</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Comma --></label>
+        <name>IPM_Comma</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_Comments_Label --></label>
@@ -4211,6 +4339,10 @@
     <customLabels>
         <label><!-- IPM Delete Member --></label>
         <name>IPM_Delete_Member</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete Milestone Message --></label>
+        <name>IPM_Delete_Milestone_Msg</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_Delete_task_msg --></label>
@@ -4609,6 +4741,10 @@
         <name>IPM_FAST_TRACK_COLON</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_FAST_TRACK_WHITE_SPACE --></label>
+        <name>IPM_FAST_TRACK_WHITE_SPACE</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_FEASIBILITY --></label>
         <name>IPM_FEASIBILITY</name>
     </customLabels>
@@ -4705,6 +4841,10 @@
         <name>IPM_Fill_Regional_PL_and_TLD_IN_Regional_Rollouts</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_FinAlignment --></label>
+        <name>IPM_FinAlignment</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_Fin_BC --></label>
         <name>IPM_Fin_BC</name>
     </customLabels>
@@ -4759,6 +4899,10 @@
     <customLabels>
         <label><!-- IPM FinanceRole Team --></label>
         <name>IPM_FinanceRole_Team</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Finance Align --></label>
+        <name>IPM_Finance_Align</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM Finance Char Limit --></label>
@@ -5109,6 +5253,10 @@
         <name>IPM_IE_9</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_IMAGE_SIZE --></label>
+        <name>IPM_IMAGE_SIZE</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM IN --></label>
         <name>IPM_IN</name>
     </customLabels>
@@ -5191,6 +5339,10 @@
     <customLabels>
         <label><!-- IPM ITO GTO Validation Common message --></label>
         <name>IPM_ITO_GTO_Validation_Common_message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Ideas --></label>
+        <name>IPM_Ideas</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_IdsApprovalNotNullMSg --></label>
@@ -5289,6 +5441,10 @@
         <name>IPM_KEY</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_KEY_MCO_NEEDS --></label>
+        <name>IPM_KEY_MCO_NEEDS</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_KPI --></label>
         <name>IPM_KPI</name>
     </customLabels>
@@ -5351,6 +5507,10 @@
     <customLabels>
         <label><!-- IPM_Loading_Msg --></label>
         <name>IPM_Loading_Msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Local --></label>
+        <name>IPM_Local</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_LocalProjectName --></label>
@@ -5529,7 +5689,7 @@
         <name>IPM_Milestone_DueDate_Validation</name>
     </customLabels>
     <customLabels>
-        <label><!-- Milestone Due Date --></label>
+        <label><!-- Postponed Past Date Validation --></label>
         <name>IPM_Milestone_Due_Date</name>
     </customLabels>
     <customLabels>
@@ -5551,6 +5711,10 @@
     <customLabels>
         <label><!-- IPM_Milestones and Tasks --></label>
         <name>IPM_Milestones_and_Tasks</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM MiniMilestone Msg --></label>
+        <name>IPM_MiniMilestone_Msg</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM Mix Char Limit --></label>
@@ -5813,6 +5977,10 @@
         <name>IPM_ONCE_CHANGED_STATUS_CANT_UNDO_IT</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_ON_CLICK_OF_SAVE_&amp;NOTIFY --></label>
+        <name>IPM_ON_CLICK_OF_SAVE_NOTIFY</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_OPP --></label>
         <name>IPM_OPP</name>
     </customLabels>
@@ -5987,6 +6155,10 @@
     <customLabels>
         <label><!-- IPM_PLEASE_NAVIGATE_TO --></label>
         <name>IPM_PLEASE_NAVIGATE_TO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_PLEASE_TYPE_IN_THE_CU --></label>
+        <name>IPM_PLEASE_TYPE_IN_THE_CU</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_POINT_OF_PURCHASE --></label>
@@ -6175,6 +6347,10 @@
     <customLabels>
         <label><!-- IPM_Phase --></label>
         <name>IPM_Phase</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM PhaseChangeBKProcessSecondWarning Local --></label>
+        <name>IPM_PhaseChangeBKProcessSecondWarning_Local</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_PhaseChangeBKProcessWarning --></label>
@@ -6841,6 +7017,10 @@
         <name>IPM_SELECT_SUSTAINABILITY_PERIOD</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_SELECT_THE_APPROVER --></label>
+        <name>IPM_SELECT_THE_APPROVER</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_SELECT_TLD --></label>
         <name>IPM_SELECT_TLD</name>
     </customLabels>
@@ -7141,6 +7321,10 @@
         <name>IPM_TARGET_STR</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM TDL Align --></label>
+        <name>IPM_TDL_Align</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_TEAM_MEMBERS --></label>
         <name>IPM_TEAM_MEMBERS</name>
     </customLabels>
@@ -7157,8 +7341,48 @@
         <name>IPM_TEST</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_TEXT_SHOWN_HERE --></label>
+        <name>IPM_TEXT_SHOWN_HERE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_THE_BELOW_SELECTED_COUNTRIES --></label>
+        <name>IPM_THE_BELOW_SELECTED_COUNTRIES</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_THE_SELECTION_HERE_DOES_NOT --></label>
+        <name>IPM_THE_SELECTION_HERE_DOES_NOT</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_THIS_CANNOT_BE_PROPOSED_YET --></label>
         <name>IPM_THIS_CANNOT_BE_PROPOSED_YET</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_THIS_PARAMETER_WILL_HELP --></label>
+        <name>IPM_THIS_PARAMETER_WILL_HELP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_THIS_SHOWS_BUSINESS_CASE_BY_LOCAL_FINANCE --></label>
+        <name>IPM_THIS_SHOWS_BUSINESS_CASE_BY_LOCAL_FINANCE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_THIS_SHOWS_THE_BUSINESS --></label>
+        <name>IPM_THIS_SHOWS_THE_BUSINESS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_THIS_SHOWS_THE_FULL_BUSINESS --></label>
+        <name>IPM_THIS_SHOWS_THE_FULL_BUSINESS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_THIS_SHOWS_THE_FULL_BUSINESS_BB --></label>
+        <name>IPM_THIS_SHOWS_THE_FULL_BUSINESS_BB</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_THIS_VIEW_SHOWS --></label>
+        <name>IPM_THIS_VIEW_SHOWS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_THIS_WILL_DESCRIBE --></label>
+        <name>IPM_THIS_WILL_DESCRIBE</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_TIMINGS --></label>
@@ -7217,6 +7441,10 @@
         <name>IPM_TOTAL_UNITS</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_TO_DO_ARE_THE_SET --></label>
+        <name>IPM_TO_DO_ARE_THE_SET</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_TO_DOs --></label>
         <name>IPM_TO_DOs</name>
     </customLabels>
@@ -7231,6 +7459,10 @@
     <customLabels>
         <label><!-- IPM_TO_Do --></label>
         <name>IPM_TO_Do</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_TO_EDIT_YOUR_NUMBERS --></label>
+        <name>IPM_TO_EDIT_YOUR_NUMBERS</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_TRADEMARK_QUESTIONS --></label>
@@ -7545,6 +7777,10 @@
         <name>IPM_YES</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_YOUR_ESTIMATE --></label>
+        <name>IPM_YOUR_ESTIMATE</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_YOU_HAVE_ALERT --></label>
         <name>IPM_YOU_HAVE_ALERT</name>
     </customLabels>
@@ -7555,6 +7791,10 @@
     <customLabels>
         <label><!-- IPM backto intermediate --></label>
         <name>IPM_backto_intermediate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM confirm business case in gate --></label>
+        <name>IPM_confirm_business_case_in_gate</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM currency button hover --></label>
@@ -8323,6 +8563,10 @@
     <customLabels>
         <label><!-- Stimulus Materials --></label>
         <name>Oblix_Lbl_UIUX_Stimulus_Materials</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Oblix_Lbl_UIUX_Sub_Category --></label>
+        <name>Oblix_Lbl_UIUX_Sub_Category</name>
     </customLabels>
     <customLabels>
         <label><!-- Updated --></label>
@@ -9259,6 +9503,74 @@
     <customLabels>
         <label><!-- WP User Admin Too Many Results Part 2 --></label>
         <name>WP_User_Admin_Too_Many_Results_Part_2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU Category --></label>
+        <name>WU_Category</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU City --></label>
+        <name>WU_City</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU Country --></label>
+        <name>WU_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU_DuplicateCapacityDetailWhileInsert --></label>
+        <name>WU_DuplicateCapacityDetailWhileInsert</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU EndDate --></label>
+        <name>WU_EndDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU MCO --></label>
+        <name>WU_MCO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU Region --></label>
+        <name>WU_Region</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU_Report_City --></label>
+        <name>WU_Report_City</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU_Report_Country --></label>
+        <name>WU_Report_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU_Report_Id --></label>
+        <name>WU_Report_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU_Report_MCO --></label>
+        <name>WU_Report_MCO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU_Report_Network --></label>
+        <name>WU_Report_Network</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU_Report_Region --></label>
+        <name>WU_Report_Region</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU_Report_SAP_Code --></label>
+        <name>WU_Report_SAP_Code</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU SAPCode --></label>
+        <name>WU_SAPCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU StartDate --></label>
+        <name>WU_StartDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WU_utilizationTypeCannotChange --></label>
+        <name>WU_utilizationTypeCannotChange</name>
     </customLabels>
     <customLabels>
         <label><!-- WinAtPOS AssetGroupName help text --></label>

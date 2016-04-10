@@ -101,6 +101,7 @@
         <name>IPM_AssortmentStrategy_From__c</name>
     </fields>
     <fields>
+        <help><!-- Used for specify assortment TO date --></help>
         <label><!-- AssortmentStrategy To --></label>
         <name>IPM_AssortmentStrategy_To__c</name>
     </fields>

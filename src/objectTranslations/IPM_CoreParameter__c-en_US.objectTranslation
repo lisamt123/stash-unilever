@@ -4,10 +4,6 @@
         <plural>false</plural>
         <value>IPM CoreParameter</value>
     </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>IPM CoreParameter</value>
-    </caseValues>
     <fields>
         <label><!-- Q10 --></label>
         <name>Q10__c</name>

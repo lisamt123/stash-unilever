@@ -1038,8 +1038,44 @@
     <layouts>
         <layout>IPM Project Layout</layout>
         <sections>
+            <label><!-- BET Sections --></label>
+            <section>BET Sections</section>
+        </sections>
+        <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Eco Design --></label>
+            <section>Eco Design</section>
+        </sections>
+        <sections>
+            <label><!-- Project Attributes --></label>
+            <section>Project Attributes</section>
+        </sections>
+        <sections>
+            <label><!-- Project Document Section --></label>
+            <section>Project Document Section</section>
+        </sections>
+        <sections>
+            <label><!-- Project Parameters --></label>
+            <section>Project Parameters</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- Stopping Project --></label>
+            <section>Stopping Project</section>
+        </sections>
+        <sections>
+            <label><!-- Team Members --></label>
+            <section>Team Members</section>
+        </sections>
+        <sections>
+            <label><!-- Technical Section --></label>
+            <section>Technical Section</section>
         </sections>
     </layouts>
     <recordTypes>

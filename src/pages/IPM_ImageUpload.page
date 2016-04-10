@@ -16,6 +16,7 @@
             <div class="col-xs-12 infoMsgDiv"><apex:pageMessages id="pgsmg" />
             </div>
             <apex:outputpanel layout="block" styleClass="pull-left" id="info">
+                <!-- rendered is used to hide info message while error appears on page-->
                 <apex:outputpanel rendered="{!!hideInfoMsg}">
                      <div class="imgInfoBox">
                         <span class="imgInfoTxt">{!$Label.IPM_Image_format}</span>
@@ -27,11 +28,11 @@
                 <div class="uploadField">
                     <apex:outputLabel for="file"/>                        
                     <apex:actionRegion >
-                        <apex:inputFile value="{!document.body}"  filename="{!document.name}" id="file"  accept=".jpg,.jpeg,.png,.gif,.bmp,.pds,.psp,.thm,.tif,.yuv" />
+                        <apex:inputFile value="{!document.body}"  filename="{!document.name}" id="file"  fileSize="{!document.BodyLength}" accept=".jpg,.jpeg,.png,.gif,.bmp,.pds,.psp,.thm,.tif,.yuv" />
                         
                     </apex:actionRegion>
                 </div>   
-                <input id="errorval" value="{!isError}" hidden="hidden"></input> 
+                <input id="errorval" value="{!isValid}" hidden="hidden"></input> 
                 <div class="uploadButton">  
                     <apex:actionRegion >   
                         <apex:commandButton action="{!upload}" value="{!$Label.IPM_UPLOAD_IMAGE}" styleClass="uploadbuttonPadding ipmButton primary" />            
