@@ -7,7 +7,7 @@
 @Version : 1.0
 @reference : none
 ****************************************************************************************************************************/
-public class AF_BrandEstimateStCtrlExtSummary {
+public with sharing class AF_BrandEstimateStCtrlExtSummary {
     public String brandEstimateId {get;set;}
     public string financialYear{get;set;} //To get selected financial Year
     public string categoryStr{get;set;} // To get selected category value
