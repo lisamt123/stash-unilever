@@ -247,7 +247,7 @@ public with sharing class IPM_FinancialActionStandards {
     public void getActionStandards(){
         projDocSecCon=new IPM_Project_Document_Section_Content__c();
         if(String.isNotBlank(projDocSecId)){
-            projDocSecCon=[SELECT Id,IPM_GM_Action_Standards_Charter__c,IPM_GM_Action_Standards_Charter_Cmts__c,IPM_gTO_Action_Standard_Charter__c,IPM_gTO_Action_Standard_Charter_Cmts__c,
+            projDocSecCon=[SELECT Id,IPM_GM_Action_Standards_Charter__c,IPM_GM_Action_Standards_Charter_Cmts__c,IPM_gTO_Action_Standard_Charter__c,IPM_gTO_Action_Standard_Charter_Cmts__c,IPM_Section_Name__c,
                                   IPM_Inc_Val_Share_Action_Charter_Cmts__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_Inov_Value_Share_Action_Charter_Cmts__c,
                                   IPM_IRR_Action_Standard_Charter__c,IPM_IRR_Action_Standard_Charter_Cmts__c,IPM_iTo_Action_Standard_Charter__c,IPM_iTo_Action_Standard_Charter_Cmts__c,IPM_NPV_Action_Standard_Charter__c,
                                   IPM_NPV_Action_Standard_Charter_Cmts__c,IPM_Payback_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter_Cmts__c,IPM_Project_Document_Section__c,IPM_Content_Type__c 

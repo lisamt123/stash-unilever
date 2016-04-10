@@ -1023,6 +1023,8 @@ public class IPM_ConstantUtils {
   //For Financial Action Standards Component
    public static final String IPM_FINANCIAL_ACTION_STANDARD='Business_Case_Action_Standards';
    public static final Decimal IPM_FINANCIAL_ACTION_STANDARD_VALUE=0;
+   public static final String IPM_GLOBAL_FINANCIAL_ACTION_STANDARDS='Global Action Standards';
+   public static final String IPM_FINANCIAL_ACTION_STANDARDS='Action Standards';
    
    //core parameter market and sub sector
    public static final String IPM_MARKET='Market';

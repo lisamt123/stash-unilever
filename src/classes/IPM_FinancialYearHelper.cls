@@ -319,5 +319,48 @@ public with sharing class IPM_FinancialYearHelper
 	    }
         
         
-    }	
+    }
+	
+	 /**********************************************************************************************************************************
+    * @description                  This method queries for all the financial year record required for consolidation and updating the  
+    *                               the financial action standard records.
+    * @param mapNewFinancialYears   New Financial Year record
+    * @return                       NONE
+    ***********************************************************************************************************************************/
+    public static void updateGlobalFinancialActionStandards(Map<Id, IPM_Financial_Year__c> mapNewFinancialYears){
+		try{
+			List<IPM_Financial_Year__c> newFinYearList=new  List<IPM_Financial_Year__c>();
+			List<IPM_Financial_Action_Standards__c> updateFinActionStdsList=new List<IPM_Financial_Action_Standards__c>();
+			Set<Id> projectIds=new Set<Id>();
+			for(IPM_Financial_Year__c newFinYear:mapNewFinancialYears.values()){
+				if(newFinYear.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)  && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c){
+					newFinYearList.add(newFinYear);
+					projectIds.add(newFinYear.Global_Project_Id__c);
+				}
+			}
+			for(IPM_Financial_Action_Standards__c finActionStd:[SELECT Id,IPM_Project_Span__c,IPM_Financial_Year_Y1_Gross__c,IPM_Financial_Year_Y1_Incremental__c,IPM_GM_Action_Standards_Charter__c,IPM_gTO_Action_Standard_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,
+																	   IPM_Innov_Value_Share_Action_Charter__c,IPM_iTo_Action_Standard_Charter__c,IPM_Project__c FROM IPM_Financial_Action_Standards__c
+																WHERE IPM_Project__c In:projectIds]){
+				for(IPM_Financial_Year__c finYear:newFinYearList){
+					if(finActionStd.IPM_Financial_Year_Y1_Gross__c==finYear.Id){
+						finActionStd.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
+						finActionStd.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Global__c;
+						finActionStd.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Global__c;
+					}
+					else if(finActionStd.IPM_Financial_Year_Y1_Incremental__c==finYear.Id){
+						finActionStd.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
+						finActionStd.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Global__c;
+					}
+				}
+				updateFinActionStdsList.add(finActionStd);
+			}
+			if(updateFinActionStdsList!=null && !updateFinActionStdsList.isEmpty()){
+				update updateFinActionStdsList;
+			}
+		}
+		catch(Exception ex){
+			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+				UPDATE_FINANCIAL_ACTION_STANDARD_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
+		}
+	}	
 }

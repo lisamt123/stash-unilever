@@ -708,6 +708,7 @@ public with sharing class IPM_ProjectHelper
 
                 IPM_ProjectSectionContentHelper.createOTIFStatus(projectDocumentToSecMap,projectToDocumentMap,projectMap);          
                 IPM_ProjectQuestionnaireHelper.manageQuestionnaire(upsertSectionList,preparedprojectDocumentList,projectMap);
+				IPM_ProjectSectionContentHelper.createGlobalFinancialActionStandard(projectDocumentToSecMap,projectToDocumentMap,projectMap);
                 IPM_ProjectSectionContentHelper.createFinancialActionStandard(projectDocumentToSecMap,projectToDocumentMap,projectMap);
                 IPM_ProjectSectionContentHelper.manageCMISections(projectDocumentToSecMap,projectToDocumentMap,projectMap);
                 IPM_ProjectSectionContentHelper.manageCustomerEvidenceConcepts(projectMap,preparedprojectDocumentList,upsertSectionList);

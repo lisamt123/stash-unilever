@@ -3,7 +3,7 @@
 * @date         27/04/2015
 * @description  This class is used for managing the ipmFinancial Page 
 *               and displaying Financial Business cases 
-* version: Samrat Removed uploadDownloadTemplate function not required
+* version: Samrat Removed uploadDownloadTemplate function not required 
 */
 public with sharing class IPM_FinancialController extends IPM_ProjectIntermediateController  
 { 

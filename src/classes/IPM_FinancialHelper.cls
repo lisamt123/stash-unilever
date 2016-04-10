@@ -741,6 +741,43 @@ public with sharing class IPM_FinancialHelper
     private static String getFinancialYearExternalId(String financialExternalId,  String yearName, String yearType, String plType){
         return financialExternalId + '_' + yearName + '_' + yearType + '_' + plType;
     }
-    
+   
+   /***********************************************************************************************************************
+    * @description                  Method to update financial action standard whenever consoildate financial values change
+    * @param mapNewFinancials    	Map of Financial Records
+    * @return                       None
+    ***********************************************************************************************************************/
+   public static void updateGlobalFinancialActionStandards(Map<Id, IPM_Financial__c> mapNewFinancials){
+	   List<IPM_Financial__c> newFinList=new List<IPM_Financial__c>();
+	   Set<Id> projectIdSet=new Set<Id>();
+	   List<IPM_Financial_Action_Standards__c> updateFinActionStdsList=new List<IPM_Financial_Action_Standards__c>();
+	   for(IPM_Financial__c newFin:mapNewFinancials.values()){
+	   	if(newFin.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && newFin.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && (String.isNotBlank(newFin.Global_External_Id__c) || String.isNotBlank(newFin.Regional_External_Id__c))  && !newFin.Charter_Approved__c)
+        {   
+        	newFinList.add(newFin);
+        	projectIdSet.add(newFin.Parent_Project__c);
+        }         
+        	   
+        }
+        for(IPM_Financial_Action_Standards__c finActionStds:[SELECT Id,IPM_Financial_Year_Y1_Gross__c,IPM_Financial_Year_Y1_Gross__r.Regional_External_Id__c,IPM_Project__c,IPM_Project_Span__c,IPM_Financial_Action_Standard_Name__c,IPM_NPV_Action_Standard_Charter__c,IPM_IRR_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c FROM IPM_Financial_Action_Standards__c WHERE IPM_Project__c In:projectIdSet]){
+        	for(IPM_Financial__c fin:newFinList){
+        		if(finActionStds.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && finActionStds.IPM_Project__c==fin.Parent_Project__c && String.isBlank(fin.Regional_External_Id__c)){
+        			finActionStds.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Global__c;
+        			finActionStds.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Global__c;
+        			finActionStds.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Global__c;
+        			updateFinActionStdsList.add(finActionStds);
+        		}
+        		else if(finActionStds.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && finActionStds.IPM_Project__c==fin.Parent_Project__c && String.isNotBlank(fin.Regional_External_Id__c) && finActionStds.IPM_Financial_Year_Y1_Gross__r.Regional_External_Id__c==fin.Regional_External_Id__c){
+        			finActionStds.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Global__c;
+        			finActionStds.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Global__c;
+        			finActionStds.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Global__c;
+        			updateFinActionStdsList.add(finActionStds);
+        		}
+        	}
+        }
+        if(updateFinActionStdsList!=null && !updateFinActionStdsList.isEmpty()){
+        	update updateFinActionStdsList;
+        }            
+   	  }  
     
 }

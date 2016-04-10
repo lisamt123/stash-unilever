@@ -5,7 +5,7 @@
 	Lots of valdations needs to be fullfilled hence there are many fields in this test class
 */
 @isTest
-private class  IPM_ChangProjectDocStatusController_Test {
+private class  IPM_ChangProjectDocStatusController_Test { 
     private static PageReference  pRef;
     private static IPM_Project__c project;// Project object initialization
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();// Project Documetn List

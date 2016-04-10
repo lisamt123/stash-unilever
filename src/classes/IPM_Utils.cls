@@ -179,6 +179,8 @@ public without sharing class IPM_Utils {
     public static final String LIMIT_STRING = ' LIMIT 50000 ';
     public static String GATE_KEEPING_MODEL_1 = 'GKM1';
     public static String GATE_KEEPING_MODEL_2 = 'GKM2';
+	public static final String CLASS_NAME = IPM_Utils.Class.getName(); //Class Name for Exception Logging
+    public static final String UPDATE_FINANCIAL_YEAR_STR='updateFinancialYear';
     
     /*******************************************************************************************************
     * @description: Convert Javascript array sent to apex in the form of string to apex array
@@ -1390,5 +1392,42 @@ public without sharing class IPM_Utils {
             queryString += 'Id,External_Id__c FROM '+fieldSetSobjectName;
         }   
         return queryString;
-    }	
+    }
+
+	 /*******************************************************************************************************
+    * @description          Method to update Financial Year in Financial Action Standards records
+    * @param List<IPM_Financial_Action_Standards__c>    Financial Action Standards Records
+    */
+    @InvocableMethod
+    public static void updateFinancialYear(List<IPM_Financial_Action_Standards__c> finActionStandards){
+    	try{
+	        Set<Id> projectIdsSet=new Set<Id>();
+	        Set<Id> finActionIds=new Set<Id>();
+	        for(IPM_Financial_Action_Standards__c finActionStandard:finActionStandards){
+	            projectIdsSet.add(finActionStandard.IPM_Project__c);
+	            finActionIds.add(finActionStandard.Id);
+	        }
+	        List<IPM_Financial_Action_Standards__c> updateFinActionList=new List<IPM_Financial_Action_Standards__c>();
+	        List<IPM_Financial_Year__c> finYears=new List<IPM_Financial_Year__c>();
+	        finYears=[SELECT Id,IPM_Financial__c,IPM_Financial__r.Parent_Project__c,NameYearPLtype__c FROM IPM_Financial_Year__c WHERE IPM_Financial__r.Parent_Project__c In:projectIdsSet AND (NameYearPLtype__c=:IPM_ConstantUtils.Y1InnovationIncremental OR NameYearPLtype__c=:IPM_ConstantUtils.Y1InnovationGross)];
+	        for(IPM_Financial_Action_Standards__c updateFinActionStandard:[SELECT Id,IPM_Financial_Year_Y1_Incremental__c,IPM_Financial_Year_Y1_Gross__c,IPM_Project__c FROM IPM_Financial_Action_Standards__c WHERE Id In:finActionIds]){
+	            for(IPM_Financial_Year__c finYear:finYears){
+	               if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental && finYear.IPM_Financial__r.Parent_Project__c==updateFinActionStandard.IPM_Project__c){
+	                    updateFinActionStandard.IPM_Financial_Year_Y1_Incremental__c=finYear.Id;
+	                }
+	                if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross && finYear.IPM_Financial__r.Parent_Project__c==updateFinActionStandard.IPM_Project__c){
+	                    updateFinActionStandard.IPM_Financial_Year_Y1_Gross__c=finYear.Id;
+	                }
+	            }
+	            updateFinActionList.add(updateFinActionStandard);
+	        }
+	        if(updateFinActionList!=null && !updateFinActionList.isEmpty()){
+	            update updateFinActionList;
+	        }
+    	}
+    	catch(Exception ex){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                    UPDATE_FINANCIAL_YEAR_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
+    	}            
+    }    	
 }

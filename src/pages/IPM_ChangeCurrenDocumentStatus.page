@@ -3,7 +3,7 @@
 *@Description:This page used for changing the status of Gate Document
 *@Author: Cognizant
 *@Created Date: 26/12/2014 
-*@Copyright © 2015  Unilever  
+*@Copyright © 2015  Unilever   
 *************************************************************************************************************************************************************
 -->
 <apex:page controller="IPM_ChangProjectDocumentStatusController" title="{!$Label.IPM_CHANGE_CURR_DOC_STATUS}" standardStylesheets="true" sidebar="false" showHeader="false" extensions="IPM_GetHelpDoc">

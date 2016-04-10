@@ -3,7 +3,7 @@
 *@Description: To manage and display the financials  associated with the IPM project 
 *@Author: Cognizant
 *@Created Date: 13/05/2015             
-*@Copyright © 2015  Unilever  
+*@Copyright © 2015  Unilever   
 ************************************************************************************
 -->
 <apex:page controller="IPM_FinancialController" sidebar="false" standardStylesheets="false" extensions="IPM_GetHelpDoc">   

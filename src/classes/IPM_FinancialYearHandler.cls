@@ -57,16 +57,17 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger
         
         if(Trigger.isUpdate)
         {
-        	Map<Id,IPM_Financial_Year__c> oldFinancialMap = (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap;
+            Map<Id,IPM_Financial_Year__c> oldFinancialMap = (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap;
             IPM_FinancialYearHelper.updateFinancialActionStandard((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
+            IPM_FinancialYearHelper.updateGlobalFinancialActionStandards((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
             IPM_FinancialYearHelper.initialiseFYConsolidation((List<IPM_Financial_Year__c>)Trigger.new,oldFinancialMap,null,upsertconsolidatedFinancialYearMap);
         }
         else if(Trigger.isDelete) 
         {
-        	if(!deleteFinancialYearMap.isEmpty()) 
-	        {
-	            IPM_FinancialYearHelper.initialiseFYConsolidation(deleteFinancialYearMap.values(),null,deleteFinancialYearMap,upsertconsolidatedFinancialYearMap);
-	        }	
+            if(!deleteFinancialYearMap.isEmpty()) 
+            {
+                IPM_FinancialYearHelper.initialiseFYConsolidation(deleteFinancialYearMap.values(),null,deleteFinancialYearMap,upsertconsolidatedFinancialYearMap);
+            }   
         }
         
         if(!upsertconsolidatedFinancialYearMap.isEmpty())
