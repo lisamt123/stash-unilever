@@ -33,7 +33,7 @@
         <name>Four_Acres_Collaboration</name>
     </customApplications>
     <customApplications>
-        <label><!-- IPM-NG --></label>
+        <label><!-- IPM Navigator --></label>
         <name>IPM_NG</name>
     </customApplications>
     <customApplications>
@@ -1881,7 +1881,7 @@
         <name>IPM_Assort_Distribution_Type</name>
     </customLabels>
     <customLabels>
-        <label><!-- IPM Assumption A&amp;P --></label>
+        <label><!-- IPM Assumption BMI --></label>
         <name>IPM_Assumption_A_P</name>
     </customLabels>
     <customLabels>
@@ -4357,7 +4357,7 @@
         <name>IPM_Milestone_DueDate_Validation</name>
     </customLabels>
     <customLabels>
-        <label><!-- Milestone Due Date --></label>
+        <label><!-- Postponed Past Date Validation --></label>
         <name>IPM_Milestone_Due_Date</name>
     </customLabels>
     <customLabels>

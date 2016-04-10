@@ -9,6 +9,7 @@
         <value>IPM Countries</value>
     </caseValues>
     <fields>
+        <help><!-- country added at particular stage. --></help>
         <label><!-- AddedAtStage --></label>
         <name>AddedAtStage__c</name>
         <picklistValues>
@@ -37,6 +38,7 @@
         </picklistValues>
     </fields>
     <fields>
+        <help><!-- At which stage local rollout is added. --></help>
         <label><!-- Added At Stage --></label>
         <name>Added_At_Stage__c</name>
     </fields>
@@ -64,6 +66,7 @@
         <relationshipLabel><!-- IPM Countries --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- Used to check charter is approved or not at country level. --></help>
         <label><!-- CharterApproved --></label>
         <name>IPM_CharterApproved__c</name>
     </fields>

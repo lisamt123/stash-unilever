@@ -5,6 +5,7 @@
     <fields>
         <fullName>Disabled__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>To check whether the notification to be displayed or not</description>
         <externalId>false</externalId>
         <label>Disabled?</label>
         <trackTrending>false</trackTrending>

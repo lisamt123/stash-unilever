@@ -6,6 +6,7 @@
     <fields>
         <fullName>Is_Disabled__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>Used for disabling  Trigger Logic for various objects. When trigger is invoked, it checks against this field to validate whether trigger should run or not.</description>
         <externalId>false</externalId>
         <label>Is Disabled</label>
         <trackTrending>false</trackTrending>

@@ -4,9 +4,5 @@
         <plural>false</plural>
         <value>IPM_BET_Valid_Categories</value>
     </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>IPM_BET_Valid_Categories</value>
-    </caseValues>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

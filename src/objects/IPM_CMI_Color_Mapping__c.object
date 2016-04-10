@@ -16,6 +16,7 @@
     </fields>
     <fields>
         <fullName>IPM_Color_Score_Value__c</fullName>
+        <description>Describes the value for the color specified in CMI</description>
         <externalId>false</externalId>
         <label>IPM Color Score Value</label>
         <length>255</length>

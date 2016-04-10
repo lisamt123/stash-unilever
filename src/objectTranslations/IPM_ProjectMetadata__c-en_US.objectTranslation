@@ -33,6 +33,10 @@
         <name>IPM_Charter_Question_HelpText__c</name>
     </fields>
     <fields>
+        <label><!-- Default Charter Question Answer --></label>
+        <name>IPM_DefaultCharterQuestionAnswer__c</name>
+    </fields>
+    <fields>
         <label><!-- Default Complexity --></label>
         <name>IPM_DefaultComplexity__c</name>
     </fields>
