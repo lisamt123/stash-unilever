@@ -90,7 +90,7 @@ public with sharing class IPM_TaskHandler implements ITrigger{
             	{
             		for (IPM_Task__c newTask : taskList) 
                     { 
-                     if(String.isBlank(newTask.IPM_Type_of_Task__c))
+                     if(String.isBlank(newTask.IPM_Type_of_Task__c) || !IPM_ConstantUtils.TEMPLATE_TASKS.equalsIgnoreCase(newTask.IPM_Type_of_Task__c))
                      {
                     	if(newTask.IsSystemGenerated__c)
                     	{

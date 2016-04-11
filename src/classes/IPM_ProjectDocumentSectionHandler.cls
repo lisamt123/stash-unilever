@@ -237,7 +237,7 @@ public with sharing class IPM_ProjectDocumentSectionHandler implements ITrigger
                         for(IPM_Task__c task : associatedTasks)
                         {   
                         	// If task is standard update status to inactive
-                            if(task.IPM_Type_of_Task__c != IPM_ConstantUtils.ADHOC){
+                            if(task.IPM_Type_of_Task__c == IPM_ConstantUtils.STANDARD_TASKS){
                             	  task.IPM_Active__c = false; 
                             	  upsertTaskList.add(task);   
                             }
