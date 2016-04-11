@@ -13,6 +13,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     private static final List<String> DEFAULT_MANDATORY_FIELDS = new List<String>{'IPM_Project_Name__c','IPM_Category_Text__c','IPM_Brand_Positioning__c','IPM_Company_Card__c','IPM_ProjectSubType__c','IPM_Target_Launch_Dates__c'};
     private static final String DEFAULT_CHARTER_APPROVER = 'RCLT';  
     
+    //*@Description: TLD restriction in effect
+    public  Boolean tldRestriction {get;set;}
+    
     //*@Description: Project Resource list
     list<IPM_Project_Resource__c> lstProuser = new list<IPM_Project_Resource__c>();
     //*@Description: Project Metadata information
@@ -174,6 +177,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             isEditable=false;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_BACKGROUNDPROCESS_INPROGRESS));
         }
+        
+         IPM_TLD_Restriction__c restTLD = IPM_TLD_Restriction__c.getValues('InEffect?');
+         tldRestriction = restTLD.IPM_TLD_Restriction_In_Effect__c;
     }  
     /****************************************************************************
     @Description : Inner class to get date
@@ -750,7 +756,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             }
         }
         
-        if(!isBusinessError && !isContainSpecialChars && !isTLDLessThnSixMnth && !isTLDBeforeGates && !isTLDLessThnToday && !isDupProjectname && !isMaxBrandPosition)
+        if(!isBusinessError && !isContainSpecialChars && !(isTLDLessThnSixMnth && tldRestriction) && !isTLDBeforeGates && !isTLDLessThnToday && !isDupProjectname && !isMaxBrandPosition)
         
         {
             processProjectSave();
@@ -796,9 +802,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 	            } 
             }	
             
-            if(String.isBlank(project.IPM_Approver_of_Charter__c ) ){
-				project.IPM_Approver_of_Charter__c= projectMetadata.IPM_DefaultCharterQuestionAnswer__c;
-			}               
+                           
             update project;
             
             if(!skipValidation)

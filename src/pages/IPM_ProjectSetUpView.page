@@ -358,7 +358,7 @@
                                                                             <!-- To display below outputText when IPM_Target_Launch_Dates__c field value is empty while saving project    -->
                                                                             <apex:outputText value="{!$Label.IPM_SELECT_TLD}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Target_Launch_Dates__c'))}" styleClass="TldErrMsg"/>
                                                                             <!-- To display below outputText when TLD date is less than six month    -->
-                                                                            <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAY}" rendered="{!isTLDLessThnSixMnth}" styleClass="TldErrMsg"/>
+                                                                            <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAY }" rendered="{!AND(isTLDLessThnSixMnth,tldRestriction)}" styleClass="TldErrMsg"/> 
                                                                             <!-- To display below outputText when TLD date is greater than today date    -->
                                                                             <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAYDate}" rendered="{!isTLDLessThnToday}" styleClass="TldErrMsg"/>
                                                                         </apex:outputPanel>

@@ -403,10 +403,10 @@ private class IPM_ChatterFeedHelper_Test {
    private static testmethod void testNotifyAssigneeTaskAssigned() {
             List<IPM_Task__c> listTask = new List<IPM_Task__c>();
             platformUser =IPM_TestFactory_Helper.returnPlatformUser();
+            IPM_Project__c lstProject;
             System.runAs(platformUser) 
             {
-                IPM_Project__c lstProject = IPM_TestFactory_Helper.createIPMProject(true);
-                
+              lstProject = IPM_TestFactory_Helper.createIPMProject(true);
               ID  projectTaskRecordType = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
               //Need system admin to insert System Generated tasks for testing
               IPM_Task__c newTask = IPM_TestFactory_Helper.createIPMTask(lstProject.id,false);
@@ -419,11 +419,11 @@ private class IPM_ChatterFeedHelper_Test {
             IPM_ChatterFeedHelper.notifyAssigneeTaskAssigned(listTask);
             
             Test.startTest();
-            System.runAs(platformUser) {
-             Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
-             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-                if(projectFeed.Body.contains(Label.IPM_Task_Assign_Text1)){
-                    System.assert(projectFeed.Body.contains(Label.IPM_Task_Assign_Text1),FEED_UPDATED_ASSERT);
+             System.runAs(platformUser) {
+              for(IPM_Project__Feed projectFeed : [Select Id,Parent.IPM_Project_Name__c,Body from IPM_Project__Feed where ParentId =: lstProject.id limit 50000]){
+                String msgText =String.format(Label.IPM_Task_Assign_Text1,new List<String>{projectFeed.Parent.IPM_Project_Name__c});
+                if(projectFeed.Body.contains(msgText)){
+                  System.assert(projectFeed.Body.contains(msgText),FEED_UPDATED_ASSERT);
                 }
              }
             Test.stopTest();
