@@ -26,33 +26,12 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISE
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
-@isTest
-private class PBS_LMSTemplateController_Test{
+public with sharing virtual class PBS_LMSBaseController_CC {
 
-    static testMethod void testInit(){
-        createTestCustomSetting(false);
-        PBS_LMSTemplateController_CC cont = new PBS_LMSTemplateController_CC();
-        // Default value should be false
-        System.assertEquals(cont.customJSEnabled ,false);
-    }
+    public transient Boolean showSFHeader{get;private set;}
 
-    static testMethod void testInitWithSFHeader(){
-        createTestCustomSetting(true);
-        PBS_LMSTemplateController_CC cont = new PBS_LMSTemplateController_CC();
-        // Default value should be false
-        System.assertEquals(cont.customJSEnabled ,false);
-    }
-
-    static void createTestCustomSetting(Boolean showSFHeader){
-        almond__Almond_Settings__c cs = new almond__Almond_Settings__c();
-        cs.almond__Company_Logo__c = 'https://www.salesforce.com/logo.png';
-        cs.almond__Header_Background_Color__c = '#2C82B9';
-        cs.almond__Header_Text_Color__c = 'DBE5F2';
-        cs.SetupOwnerId = null; //Org-wide default
-        cs.almond__Disable_Track_Achievements__c = true;
-        cs.almond__Disable_Future_Progress_Calculation__c = true;
-        cs.almond__Show_Salesforce_Header__c = showSFHeader;
-        insert cs;
+    public PBS_LMSBaseController_CC(){
+        showSFHeader =  Almond.LMSSettings.getShowSalesforceHeader() && !PBS_LMSUtils_CC.isMobileDevice();
     }
 
 }

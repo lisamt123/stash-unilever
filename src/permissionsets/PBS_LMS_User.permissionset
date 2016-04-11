@@ -5,11 +5,23 @@
         <visible>true</visible>
     </applicationVisibilities>
     <classAccesses>
+        <apexClass>PBS_LMSBaseController_CC</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PBS_LMSHeaderController_CC</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PBS_LMSUtils_CC</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>PBS_LibraryController_CC</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>PBS_LibraryController_Test</apexClass>
+        <apexClass>PBS_MyProfileController_CC</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -84,7 +96,7 @@
         <apexClass>PC_GroupHandler_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <description>PlanCraft - Permission Set used for internal users</description>
+    <description>Almond - Permission Set used for internal users</description>
     <fieldPermissions>
         <editable>false</editable>
         <field>PBS_Course__kav.PBS_Course_Link__c</field>
@@ -172,6 +184,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>PBS_Profile__c.user_role__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>PBS_Wiki__kav.Group_Name__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -223,7 +240,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>PC_Group__c.Title__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <label>PBS LMS User</label>
     <objectPermissions>
@@ -260,7 +277,7 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>PBS_Standard_Job_Profile__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -278,14 +295,26 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>PC_Group__c</object>
-        <viewAllRecords>true</viewAllRecords>
+        <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
         <apexPage>PBS_Calendar</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
+        <apexPage>PBS_LMS_HeroTemplate</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PBS_LMS_Template</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
         <apexPage>PBS_Library</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>PBS_MyProfile</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>

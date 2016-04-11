@@ -26,16 +26,23 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISE
 OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
-global with sharing class PBS_LMSTemplateController_CC{
+public with sharing class PBS_LMSUtils_CC{
 
-    global transient Boolean customJSEnabled{get;private set;}
-    global transient Boolean showSFHeader{get;private set;}
-
-    global PBS_LMSTemplateController_CC(){
-        ApexPages.currentPage().getHeaders().put('x-ua-compatible', 'IE=10');
-
-        customJSEnabled = LMSSettings.getEnableIOSTapFix();
-        showSFHeader =  LMSSettings.getShowSalesforceHeader() && !LMSUtils.isMobileDevice();
+    
+    public static Boolean isMobileDevice(){
+        if(ApexPages.currentPage() != null && ApexPages.currentPage().getHeaders() != null){
+            Map<String, String> headers = ApexPages.currentPage().getHeaders();
+            String userAgent = headers.get('User-Agent')!=null?headers.get('User-Agent'):'';
+            String device = headers.get('device')!=null?headers.get('device'):'';
+            Boolean isIPhone = (userAgent.contains('iPhone') || device == 'mobile');
+            Boolean isIPad = (userAgent.contains('iPad'));
+            Boolean isAndroid = (userAgent.contains('Android'));
+            return isIPhone || isIPad || isAndroid;
+        }else{
+            return false;
+        }
     }
+
+  
 
 }

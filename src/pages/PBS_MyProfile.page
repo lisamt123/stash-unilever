@@ -141,7 +141,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
                 <apex:actionStatus id="status">
                     <apex:facet name="start">
-                        <c:LMSStatus statusComponentId="{!$Component.status}"/>
+                        <c:PBS_LMSStatus statusComponentId="{!$Component.status}"/>
                     </apex:facet>
                 </apex:actionStatus>
 

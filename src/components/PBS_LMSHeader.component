@@ -1,4 +1,4 @@
-<apex:component controller="LMSHeaderController">
+<apex:component controller="PBS_LMSHeaderController_CC">
 
 
     <apex:attribute name="hideSFLink" type="Boolean" description="Show a link to go back to the Salesforce UI"  default="false"/>
