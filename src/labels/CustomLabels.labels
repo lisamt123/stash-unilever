@@ -12680,7 +12680,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_WHO_WILL_APPROVE_CHARTER_GATE</shortDescription>
-        <value>Who will approve the Charter gate document?</value>
+        <value>Who will approve the Charter gate?</value>
     </labels>
     <labels>
         <fullName>IPM_WHO_WILL_APPROVE_CONTRACT_MR</fullName>
