@@ -7,7 +7,7 @@
 *******************************************************************************************/
 
 	td.noSidebarCell .createNewBrandExp > div {
-		padding: 15px!important;
+		padding: 15px;
 	}
 
 	td.noSidebarCell .createNewBrandExp div.form-item {
@@ -63,10 +63,10 @@
 		display: inline-block;
 		min-height: 1em;
 		outline: none;
-		background: #fff!important;
+		background: #fff;
 		border: 1px solid #8ab3da;
 		color: #0f81bb;
-		font-size: 16px!important;
+		font-size: 16px;
 		line-height: 1;
 		font-family: Arial;
 		font-weight: 700;
@@ -76,41 +76,41 @@
 		border-radius: 5px;
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
-		padding: .625em .625em .55em!important;
+		padding: .625em .625em .55em;
 	}
 
 	td.noSidebarCell .createNewBrandExp .btn-cancel:hover {
-		background: #dbefff!important;
+		background: #dbefff;
 	}
 
 	td.noSidebarCell .createNewBrandExp .btn-create-bet {
-		background: #81bf42!important;
-		color: #fff!important;
-		border: 1px solid #406b14!important;
-		font-size: 16px!important;
+		background: #81bf42;
+		color: #fff;
+		border: 1px solid #406b14;
+		font-size: 16px;
 		margin-left: 10px;
 	}
 
 	td.noSidebarCell .createNewBrandExp .btn-create-bet:hover {
-		background: #56843b!important;
-		color: #fff!important;
-		border: 1px solid #406b14!important;
+		background: #56843b;
+		color: #fff;
+		border: 1px solid #406b14;
 	}
 
 	td.noSidebarCell .createNewBrandExp .ipmStartedTabs {
 		border-bottom: #ccc solid 1px;
 	}
 
-	td.noSidebarCell .createNewBrandExp #ipmGetStartedTab .ipmStartedTabs li.active {
+	td.noSidebarCell .createNewBrandExp .ipmGetStartedTab .ipmStartedTabs li.active {
 		top: 3px;
 	}
 
-	td.noSidebarCell .createNewBrandExp #ipmGetStartedTab .ipmStartedTabs li {
+	td.noSidebarCell .createNewBrandExp .ipmGetStartedTab .ipmStartedTabs li {
 		top: 2px;
 	}
 	.hideOwner select{
-        visibility: hidden !important;
-        display: block !important;
-        height: 0px !important;
+        visibility: hidden ;
+        display: block ;
+        height: 0px ;
     }
 	

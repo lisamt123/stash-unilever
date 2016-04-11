@@ -12,31 +12,31 @@
 	.input-group .input-group-addon {position: absolute;top: 283px;right: 25px;} 
 	.pull-right{float:right;}  
 /*ipmButton Styles */
-	.ipmButton.green{background:#81bf42 !important;}
-	.ipmButton.green:hover{background:#56843b !important;}
-	#addTask .ipmButtonGroup{margin-bottom: 8%;} 
+	.ipmButton.green{background:#81bf42 ;}
+	.ipmButton.green:hover{background:#56843b ;}
+	.addTask .ipmButtonGroup{margin-bottom: 8%;} 
 
 /* lookup search icon*/
 	.lookupInput a{margin-left: -9%;}
 	 
 	.phaseModal,.gatedocModal{width:48%;float:left;}
 	.gatedocModal{margin-right:10px;}
-	.messageTable td ul li{margin-left:0 !important;}
-	.messageTable td ul{padding-left:0 !important;margin-top: -25px !important;}
-	.message .messageTable .messageCell{margin-top:-6px !important;float:left;}
+	.messageTable td ul li{margin-left:0 ;}
+	.messageTable td ul{padding-left:0 ;margin-top: -25px ;}
+	.message .messageTable .messageCell{margin-top:-6px ;float:left;}
 	.errorMsg{padding: 10px;background: #ffebec;border-radius: 3px;margin-top: 15px;}
-	.error{border:1px solid #e03729 !important;}
+	.error{border:1px solid #e03729 ;}
 	.errorMsg:before{top: 73px;}
 	.custErr:before{top: 78px;}
 	.errorMsg:before,.custErr:before{left: 10%;position: absolute;width: 15px;-ms-transform: rotate(-45deg);transform: rotate(-45deg);border-top: 1px #ffebec solid;border-right: 1px #ffebec solid;background: #ffebec;content: " ";height: 15px;}
 	.dateInput .dateInputBox{width:66%;}
 	.input-group-addon{padding: 0;margin-top: -3px;width: 1px;background:none; border:none;color: #007dbb;font-size: 1.3em; left:66%; top:283px; position:absolute;}
 	body{height:100%;}
-	#EditTask .ipmButtonGroup{height:10%;margin-bottom:10px;}
-	#EditTask{float:left;height:100%;overflow:auto;}
-	.datePicker{top:250px !important;}
+	.EditTask .ipmButtonGroup{height:10%;margin-bottom:10px;}
+	.EditTask{float:left;height:100%;overflow:auto;}
+	.datePicker{top:250px ;}
 	.buttonmarRight{margin-right:15px;}
-	.dateFormat {display:none!important;}
+	.dateFormat {display:none;}
 	
 	.errSecMassage{
  color: #d74c3b;
@@ -64,3 +64,4 @@
 }
 .todoName{height: 110px;width: 100%;resize: none;border-radius: 4px;}
 .addTaskwzContainer{height: 450px;overflow: auto;}
+a.icoButton.question{margin-top:10px;}

@@ -82,7 +82,7 @@
     display:none
 }
 blockquote.imgupdatelink{
-border-left:0px !important;
+border-left:0px ;
 }
 .imgupdatelink li a
 {

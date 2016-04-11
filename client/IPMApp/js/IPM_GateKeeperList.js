@@ -39,25 +39,25 @@ function initSliderGk() {
 				jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();
 			}
         });
-        if (answerGK == IPMAppGKC.yes) {
+        if (answerGK === IPMAppGKC.yes) {
             jq(this).find("label[for=s1]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
         }
-        else if (answerGK == IPMAppGKC.partly) {
+        else if (answerGK === IPMAppGKC.partly) {
             jq(this).find("label[for=s2]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
         }
-        else if (answerGK == IPMAppGKC.no) {
+        else if (answerGK === IPMAppGKC.no) {
             jq(this).find("label[for=s3]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
         }
-        else if (answerGK == IPMAppGKC.na) {
+        else if (answerGK === IPMAppGKC.na) {
             jq(this).find("label[for=s4]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'

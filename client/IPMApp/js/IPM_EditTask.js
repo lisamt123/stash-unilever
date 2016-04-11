@@ -9,24 +9,26 @@ function callEditTask() {
     jq('.dateInput .dateFormat').hide();
     var dateFormat = "dd/mm/yyyy";
     jq.browser = {};
-	
-/* Below script is related to date picker functionality. It opens the date picker when clicked on the element which has class 'date' */
-    jq(function() {
-        jq('.date').datepicker({
-            format: dateFormat,
-            autoclose: true,
-            startDate: new Date(),
-            startView: 0,
-        });
-    });
-	
 }
 callEditTask();
 /* Below function checks if the condition is true it redirects to Project setup page else it redirects to Task List page. */
 function pageclose() {
-    if (IPMApp.ProjectWizard == 'true') {
+    if (IPMApp.ProjectWizard === 'true') {
         window.top.location.href = IPMApp.PojectSetupUrl + '?Pid=' + IPMApp.projectId + '&TodoId=todos';
     } else {
         window.top.location.href = IPMApp.TasklistPageRef + '?id=' + IPMApp.projectId;
     }
 }
+jq(document).ready(function($) {
+	var max = 225;
+	jq('textarea.todoName').keypress(function(e) {
+		if (e.which < 0x20) {
+			return;
+		}
+		if (this.value.length === max) {
+			e.preventDefault();
+		} else if (this.value.length > max) {
+			this.value = this.value.substring(0, max);
+		}
+	});
+});

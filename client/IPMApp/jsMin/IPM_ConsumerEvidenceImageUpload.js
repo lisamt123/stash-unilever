@@ -1,0 +1,1 @@
+var jq=jQuery.noConflict();jq(document).ready(function(){var uploadImg=IPMAppCEIMG.imgLoad;if(uploadImg==="false"){var frame=parent.document.getElementById("ipmModal");jq(frame).find(".close").trigger("click");parent.location.assign(IPMAppCEIMG.SectionEditorPageRef+"?Id="+IPMAppCEIMG.projId+"&projDocSecId="+IPMAppCEIMG.proDocSecid)}});

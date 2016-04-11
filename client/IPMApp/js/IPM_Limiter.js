@@ -19,7 +19,7 @@ enters the total number of characters matching the limit, it stops the user to e
                 if (e.which < 0x20) {
                     return; // Do nothing
                 }
-                if (this.value.length == limit) {
+                if (this.value.length === limit) {
                     e.preventDefault();
                 } else if (this.value.length > limit) {
                     // Maximum exceeded

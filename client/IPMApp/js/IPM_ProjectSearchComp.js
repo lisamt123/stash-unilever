@@ -39,10 +39,10 @@ Also variables have to be kept global to make the functionality work. */
         clusters = [];mcos=[];countries=[];
 		/* Below script pushes the value if the condition is true. */
         jq('.clusterCheck').each(function() {
-            if (jq(this).is(":checked") == true &&  jq(this).val() != 'Unassigned' ) {
+            if (jq(this).is(":checked") === true &&  jq(this).val() !== 'Unassigned' ) {
                 clusters.push(jq(this).val());
             }
-            if(jq(this).is(":checked") == true && jq(this).val() == 'Unassigned'){
+            if(jq(this).is(":checked") === true && jq(this).val() === 'Unassigned'){
                     unAssigned = 'true';
             }
             
@@ -50,14 +50,14 @@ Also variables have to be kept global to make the functionality work. */
 		
 		/* Below script pushes the value if the condition is true. */
         jq('.mcoCheck').each(function() {
-            if (jq(this).is(":checked") == true) {
+            if (jq(this).is(":checked") === true) {
                 mcos.push(jq(this).val());
             }
         });
 		
 		/* Below script pushes the value if the condition is true. */
         jq('.countryCheck').each(function() {
-            if (jq(this).is(":checked") == true) {
+            if (jq(this).is(":checked") === true) {
                 countries.push(jq(this).val());
             }
         });
@@ -65,7 +65,7 @@ Also variables have to be kept global to make the functionality work. */
  /* Below function performs unchecking of children checkboxes when the condition is true. */
     function unCheckChildren(str) {
         jq('.' + str).each(function() {
-            if (jq(this).val() != 'all') {
+            if (jq(this).val() !== 'all') {
                 jq(this).attr("checked", false);
             }
         });
@@ -81,7 +81,7 @@ Also variables have to be kept global to make the functionality work. */
 	/* Below function performs unchecking of parent checkboxes when the condition is true. */
     function unCheckParent(str) {
         jq('.' + str).each(function() {
-            if (jq(this).val() == 'all') {
+            if (jq(this).val() === 'all') {
                 jq(this).attr("checked", false);
             }
         });
@@ -108,10 +108,10 @@ Also variables have to be kept global to make the functionality work. */
             });
 
             wrapGeography();                
-            if (jq('.iTORange1').val() != '') {
+            if (jq('.iTORange1').val() !== '') {
                 iTORange1 = jq('.iTORange1').val();
             }
-            if (jq('.iTORange2').val() != '') {
+            if (jq('.iTORange2').val() !== '') {
                 iTORange2 = jq('.iTORange2').val();
             }
             applyFltr(checkedPhases.toString(), jq('.tldFrom').val(), jq('.tldTo').val(), jq('.my').is(":checked"), jq('.aPro').is(":checked"), geoAll, clusters, mcos, countries.toString(), iTORange1, iTORange2, brandPositions.toString(),checkedProjectTypes.toString(),jq('#ActiveProjects').is(':checked'),jq('#StoppedProjects').is(':checked'),unAssigned);   
@@ -127,7 +127,7 @@ Also variables have to be kept global to make the functionality work. */
 
 	/* Below script works on keypress. When user presses enter key a search function is called */
     jq('#srchTxt').keypress(function(e) {
-        if (e.which == 13) {
+        if (e.which === 13) {
             loadProjects(jq('#srchTxt').val());
             return false;
         }
@@ -135,7 +135,7 @@ Also variables have to be kept global to make the functionality work. */
 	
 	/* Below script works on keypress. When user presses enter key a search function is called */
     jq('#srchBrand').keypress(function(e) {
-        if (e.which == 13) {
+        if (e.which === 13) {
             loadProjects(jq('#srchBrand').val());
             return false;
         }
@@ -163,7 +163,7 @@ Also if the checkbox is checked it will check its own related child checkboxes. 
                 jq(this).closest("ul").find("li input.checkAll").next("label").addClass("selected");
             } else {
                 checkSub = jq(this).closest("ul").find(".checkSub:checked:not('.mcoCheck')").closest("li").length;
-                if (checkSub == 0) {
+                if (checkSub === 0) {
                     jq(this).closest("ul").find("li input.checkAll").prop("checked", false);
                     jq(this).closest("ul").find("li input.checkAll").next("label").removeClass("selected");
                 }
@@ -178,7 +178,7 @@ Also if the checkbox is checked it will check its own related child checkboxes. 
             } else {
                 checkSub = jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find(".mcoCheck.checkSub:checked").length;
 
-                if (checkSub == 0) {
+                if (checkSub === 0) {
                     jq(this).closest("li.subCheck").closest('ul').find('li.clusterCheckLi').find('input.clusterCheck').prop("checked", false);
                     jq(this).closest("li.subCheck").closest('ul').find('li.clusterCheckLi').find('input.clusterCheck').next("label").removeClass("selected");
 
@@ -189,16 +189,16 @@ Also if the checkbox is checked it will check its own related child checkboxes. 
         } else if (jq(this).hasClass('clusterCheck')) {
             checkSub = jq(this).closest("ul").closest('ul.geographyAllUl').find('.clusterCheckLi').find(".clusterCheck.checkSub:checked").length;
             checkNot = jq(this).closest("ul").closest('ul.geographyAllUl').find('.clusterCheckLi').find(".clusterCheck.checkSub").length;
-            if (checkNot != checkSub) {
+            if (checkNot !== checkSub) {
                 jq('input.geographyAllLevel1').prop("checked", false);
                 jq('input.geographyAllLevel1').next("label").removeClass('selected');
             }
-            if (checkNot == checkSub) {
+            if (checkNot === checkSub) {
                 jq('input.geographyAllLevel1').prop("checked", true);
                 jq('input.geographyAllLevel1').next("label").addClass('selected');
             }
         } else {
-            if (checkNot != checkSub) {
+            if (checkNot !== checkSub) {
                 if (jq(this).hasClass('clusterCheck')) {
                     jq('input.geographyAllLevel1').prop("checked", false);
                     jq('input.geographyAllLevel1').next("label").removeClass('selected');
@@ -206,7 +206,7 @@ Also if the checkbox is checked it will check its own related child checkboxes. 
                 jq(this).closest("ul").find("li input.checkAll").prop("checked", false);
                 jq(this).closest("ul").find("li input.checkAll").next("label").removeClass("selected");
             }
-            if (checkNot == checkSub) {
+            if (checkNot === checkSub) {
                 if (jq(this).hasClass('clusterCheck')) {
                     jq('input.geographyAllLevel1').prop("checked", true);
                     jq('input.geographyAllLevel1').next("label").addClass('selected');
@@ -223,7 +223,7 @@ Also if the checkbox is checked it will check its own related child checkboxes. 
         source: brandList,
         select: function(event, ui) {
             jq('.filterBrand').html('');
-            if(jq.inArray( ui.item.value, brandPositions) == -1) {
+            if(jq.inArray( ui.item.value, brandPositions) === -1) {
                 brandPositions.push(ui.item.value);
                 return jq('<li class="brndFilter"></li>').append('<div class="selectedBrand">' + ui.item.value + '</div>').appendTo(jq('ul.filterBrandList'));
             }

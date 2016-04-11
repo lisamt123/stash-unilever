@@ -66,19 +66,19 @@ based on the condition. */
         var $this = jq(this);
         var score = $this.val();
 
-        if (score == "1") {
+        if (score === "1") {
             $this.next(".sliderStat").find(".ui-slider-handle").css("left", "33.3333333333333%");
             $this.next(".sliderStat").find("label[for=s1]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (score == "3") {
+        } else if (score === "3") {
             $this.next(".sliderStat").find(".ui-slider-handle").css("left", "66.6666666666667%");
             $this.next(".sliderStat").find("label[for=s2]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (score == "5") {
+        } else if (score === "5") {
             $this.next(".sliderStat").find(".ui-slider-handle").css("left", "100%");
             $this.next(".sliderStat").find("label[for=s3]").css({
                 'color': '#e98824',
@@ -144,31 +144,31 @@ based on the condition. */
         jq("input[name=quest]").each(function() {
             var $this = jq(this);
             var quest = $this.val();
-            if (quest == "1") {
+            if (quest === "1") {
                 $this.next(".sliderStat1").find(".ui-slider-handle").css("left", "20%");
                 $this.next(".sliderStat1").find("label[for=s5]").css({
                     'color': '#e98824',
                     'font-weight': 'bold'
                 });
-            } else if (quest == "2") {
+            } else if (quest === "2") {
                 $this.next(".sliderStat1").find(".ui-slider-handle").css("left", "40%");
                 $this.next(".sliderStat1").find("label[for=s6]").css({
                     'color': '#e98824',
                     'font-weight': 'bold'
                 });
-            } else if (quest == "3") {
+            } else if (quest === "3") {
                 $this.next(".sliderStat1").find(".ui-slider-handle").css("left", "60%");
                 $this.next(".sliderStat1").find("label[for=s7]").css({
                     'color': '#e98824',
                     'font-weight': 'bold'
                 });
-            } else if (quest == "4") {
+            } else if (quest === "4") {
                 $this.next(".sliderStat1").find(".ui-slider-handle").css("left", "80%");
                 $this.next(".sliderStat1").find("label[for=s8]").css({
                     'color': '#e98824',
                     'font-weight': 'bold'
                 });
-            } else if (quest == "5") {
+            } else if (quest === "5") {
                 $this.next(".sliderStat1").find(".ui-slider-handle").css("left", "100%");
                 $this.next(".sliderStat1").find("label[for=s9]").css({
                     'color': '#e98824',

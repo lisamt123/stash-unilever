@@ -55,7 +55,7 @@
                 if (undefined === origValue) {
                     return false;
                 }
-                return (getValue($field) != origValue);
+                return (getValue($field) !== origValue);
             };
             var $form = ($(this).is('form')) ? $(this) : $(this).parents('form');
             // Test on the target first as it's the most likely to be dirty
@@ -67,7 +67,7 @@
             if (settings.addRemoveFieldsMarksDirty) {
                 // Check if field count has changed
                 var origCount = $form.data("ays-orig-field-count");
-                if (origCount != $fields.length) {
+                if (origCount !== $fields.length) {
                     setDirtyStatus($form, true);
                     return;
                 }
@@ -94,7 +94,7 @@
             setDirtyStatus($form, false);
         };
         var setDirtyStatus = function($form, isDirty) {
-            var changed = isDirty != $form.hasClass(settings.dirtyClass);
+            var changed = isDirty !== $form.hasClass(settings.dirtyClass);
             $form.toggleClass(settings.dirtyClass, isDirty);
             // Fire change event if required
             if (changed) {
@@ -124,7 +124,7 @@
             window.aysUnloadSet = true;
             $(window).bind('beforeunload', function() {
                 $dirtyForms = $("form").filter('.' + settings.dirtyClass);
-                if ($dirtyForms.length == 0) {
+                if ($dirtyForms.length === 0) {
                     return;
                 }
                 //Prevent multiple prompts - seen on Chrome and IE

@@ -9,7 +9,7 @@ jq(document).on('click', '.cmiListreset', function(e) {
     e.stopPropagation();
     var selectedValues = IPMAPPCMI.concepts;
     jq(".CMIList input:checkbox").each(function() {
-        if (selectedValues.indexOf(jq(this).val()) == -1) {
+        if (selectedValues.indexOf(jq(this).val()) === -1) {
             jq(this).prop('checked', false);
             jq(this).next('label').removeClass('selected');
         } else {
@@ -24,7 +24,7 @@ jq(document).on('click', '.cmiCountryreset', function(e) {
     var testvar = jq(this).parents('.cmiCountrySelector').find('.clickDrop').attr("data-list");
     var listValues = testvar;
     jq(".CMICountryList input:checkbox").each(function() {
-        if (listValues.indexOf(jq(this).val()) == -1) {
+        if (listValues.indexOf(jq(this).val()) === -1) {
             jq(this).prop('checked', false);
             jq(this).next('label').removeClass('selected');
         } else {
@@ -35,7 +35,7 @@ jq(document).on('click', '.cmiCountryreset', function(e) {
 });
 /* Below script works on click event. If the condition is true it shows the dropdown for CMI list. */
 jq(document).click(function(e) {
-    if (e.target.id != 'CMIList') {
+    if (e.target.id !== 'CMIList') {
         jq(".CMIList").hide();
     }
 });
@@ -47,7 +47,7 @@ jq(document).on('click', '.CMIList input[type="checkbox"], .CMIList li', functio
 
 /* Below script works on click event. If the condition is true it shows the dropdown for Country list */
 jq(document).click(function(e) {
-    if (e.target.id != 'CMICountryList') {
+    if (e.target.id !== 'CMICountryList') {
         jq(".CMICountryList").hide();
     }
 });
@@ -146,10 +146,10 @@ function skipTestrender() {
     function conceptcheck() {
         var selectedValues = IPMAPPCMI.concepts;
         var selectedValuesArr = selectedValues.split(';');
-        if (selectedValuesArr.length != 0) {
+        if (selectedValuesArr.length !== 0) {
             jq('.cmiTestList .dropdown-menu input[type="checkbox"]').each(function() {
                 var val = jq(this).attr('value');
-                if (jq.inArray(val, selectedValuesArr) != -1) {
+                if (jq.inArray(val, selectedValuesArr) !== -1) {
                     jq(this).prop('checked', true);
                     jq(this).prop('disabled', true);
                     jq(this).next('label').addClass('selected');
@@ -191,10 +191,10 @@ function skipTestrender() {
         jq(".CMIList").hide();
         var listValues = jq(this).find('.clickDrop').attr("data-list");
         var listValuesArray = listValues.split(';');
-        if (listValuesArray.length != 0) {
+        if (listValuesArray.length !== 0) {
             jq('.cmiCountrySelector .dropdown-menu input[type="checkbox"]').each(function() {
                 var val = jq(this).attr('value');
-                if (jq.inArray(val, listValuesArray) != -1) {
+                if (jq.inArray(val, listValuesArray) !== -1) {
                     jq(this).prop('checked', true);
                     jq(this).prop('disabled', true);
                     jq(this).next('label').addClass('selected');
@@ -209,7 +209,7 @@ function skipTestrender() {
 	
 	/* Below function checks the checkboxes value. If the condition is true the checkboxes will be checked. */
     jq('.ccListbox').each(function() {
-        if (jq(this).val() == 'true') {
+        if (jq(this).val() === 'true') {
             jq(this).attr('checked', 'checked');
             jq(this).next().addClass('selected');
         }
@@ -234,7 +234,7 @@ function skipTestrender() {
         var $this = jq(this);
         var selectedValues = jq(this).attr("data-list");
         jq(".CMIList input:checkbox").each(function() {
-            if (selectedValues.indexOf(jq(this).val()) == -1) {
+            if (selectedValues.indexOf(jq(this).val()) === -1) {
                 jq(this).prop('checked', false);
                 jq(this).next('label').removeClass('selected');
             } else {
@@ -249,10 +249,10 @@ function skipTestrender() {
         var $this = jq(this);
         var listValues = jq(this).attr("data-list");
         var listValuesArray = listValues.split(';');
-        if (listValuesArray.length != 0) {
+        if (listValuesArray.length !== 0) {
             jq.each(listValuesArray, function(i) {
                 $this.next().find("input[type='checkbox']").filter(function() {
-                    return this.value == listValuesArray[i];
+                    return this.value === listValuesArray[i];
                 }).prop("checked", "true").next('label').addClass('selected');
             });
         }

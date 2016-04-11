@@ -45,7 +45,7 @@ function pagerefresh() {
 
 /* Below function performs page reload when the condition is true. It redirects to core parameters page. */
 IPMAppEP.Closepopup = new function() {
-if (IPMAppEP.isSave == true) {
+if (IPMAppEP.isSave === true) {
 	window.top.location.href = IPMAppEP.corePage + '?id=' + IPMAppEP.projectId;
 }
 };
@@ -63,7 +63,7 @@ jq(document).ready(function(){
 
 /* Below script works on click event. If the condition is true it hides the brand positioning list*/
 jq(document).click(function(e) {
-   if( e.target.id != 'brandposListUL') {
+   if( e.target.id !== 'brandposListUL') {
 	   jq(".brandposList").hide();    
    }   
 });
@@ -86,7 +86,7 @@ jq('.ipmDropbuttonscc').click(function(e) {
    var brandPositionValue = '';
    jq(".brandposList  input[type=checkbox]").each(function(e)
 	  {
-		  if(jq(this).prop('checked') == true)
+		  if(jq(this).prop('checked') === true)
 		  {   
 			  if(brandPositionValue.length > 0)
 			  {
@@ -99,7 +99,7 @@ jq('.ipmDropbuttonscc').click(function(e) {
 		  } 
 	  });
    jq('.hiddenBrand').val(brandPositionValue);
-   if(brandPositionValue == ''){
+   if(brandPositionValue === ''){
 	   jq('.brandSelValues').text(IPMAppEP.proSelectlabel);
    }
    else{
@@ -148,7 +148,7 @@ function invalidChar(key)
               jq(".gateKModel").hide();
               jq('.gateKeepingModel').parents('.oprtnRadioContainer').children('.gateKModel').each(function(e)
               {
-                  if(jq(this).attr('selectedValue') == selectedGKModel)
+                  if(jq(this).attr('selectedValue') === selectedGKModel)
                   {
                       jq(this).show(); 
                   }
@@ -156,10 +156,10 @@ function invalidChar(key)
           });  
     }); 
 	
-	if( jq('.hiddenBrand') !=null && jQuery.type(jq('.hiddenBrand')) != 'undefined') 
+	if( jq('.hiddenBrand') !==null && jQuery.type(jq('.hiddenBrand')) !== 'undefined') 
 {
    var brandPicklist = jq('.hiddenBrand').val();   
-   if(jQuery.type(brandPicklist) != "undefined" && brandPicklist.length > 0 )
+   if(jQuery.type(brandPicklist) !== "undefined" && brandPicklist.length > 0 )
    {
 	   jq('.brandSelValues').text(brandPicklist);
 	   var brandArray = brandPicklist.split(',');  
@@ -180,7 +180,7 @@ function invalidChar(key)
     jq('.gateKeepingModel input[type=radio]').each(function(){            
        var selectedGKModel = jq('.gateKeepingModel input[type=radio]:checked').attr("value");
        jq('.gateKeepingModel').parents('.oprtnRadioContainer').children('.gateKModel').each(function(e){
-           if(jq(this).attr('selectedValue') == selectedGKModel){
+           if(jq(this).attr('selectedValue') === selectedGKModel){
                jq(this).show(); 
            }
        });
@@ -192,7 +192,7 @@ jq('.gcltquestions  input[type=radio]').each(function(e){
               var selectedSubProjectType =  jq(this).attr("value");        
               jq(".charterTipMsg").hide();
               jq('.gcltquestions').parents('.oprtnRadioContainer').children('.charterTipMsg').each(function(e){
-                  if(jq(this).attr('selectedValue') == selectedSubProjectType){
+                  if(jq(this).attr('selectedValue') === selectedSubProjectType){
                       jq(this).show(); 
                   }
               });
@@ -202,7 +202,7 @@ jq('.gcltquestions  input[type=radio]').each(function(e){
     jq('.gcltquestions input[type=radio]').each(function(){            
        var selectedSubProjectType = jq('.gcltquestions input[type=radio]:checked').attr("value");
        jq('.gcltquestions').parents('.oprtnRadioContainer').children('.charterTipMsg').each(function(e){
-           if(jq(this).attr('selectedValue') == selectedSubProjectType){
+           if(jq(this).attr('selectedValue') === selectedSubProjectType){
                jq(this).show(); 
            }
        });
@@ -210,7 +210,7 @@ jq('.gcltquestions  input[type=radio]').each(function(e){
 	
 	 function checkTLDDate(){
         var newTLDValue = jq('.dateInputBox').val();
-        if(newTLDValue != tldOrignalValue){
+        if(newTLDValue !== tldOrignalValue){
             jq('#tldWarningDialog').modal('show'); 
             return false;
         }

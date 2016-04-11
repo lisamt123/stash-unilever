@@ -8,7 +8,7 @@ var jq = jQuery.noConflict();
 		    /* Below script works on click event for the phase filter. If the condition is true the options for the drop down list will be appended. */
 		    jq(document).on('show.bs.dropdown', '.phaseMFilter', function() {
 		        var icoButton = jq('.phaseMFilter .dropdown-toggle .icoButton');
-		        if (jq('.phaseMFilter ul.phaseM').length == 0) {
+		        if (jq('.phaseMFilter ul.phaseM').length === 0) {
 		            var dropDownList = jq('#phaseMFilterDiv').html();
 		            jq(this).append(dropDownList);
 		        }
@@ -17,11 +17,11 @@ var jq = jQuery.noConflict();
 		        icoButton.removeClass('filter');
 		        icoButton.addClass('filter-selected');
 				/* Below script checks a condition for the phase filter. If the condition is true the checkbox will be checked. */
-		        if (selectedValuesArr.length != 0) {
+		        if (selectedValuesArr.length !== 0) {
 		            jq('.phaseMFilter .dropdown-menu input[type="checkbox"]').each(function() {
 		                $this = jq(this);
 		                var val = $this.attr('value');
-		                if (jq.inArray(val, selectedValuesArr) != -1) {
+		                if (jq.inArray(val, selectedValuesArr) !== -1) {
 		                    $this.prop('checked', true);
 		                    $this.next('label').addClass('selected');
 		                } else {
@@ -44,7 +44,7 @@ var jq = jQuery.noConflict();
 	        	var icoButton = jq('.phaseMFilter .dropdown-toggle .icoButton');
          		var selectedValues = IPMAppLM.phaseM.trim();
         		var selectedValuesArr = selectedValues.split(',');
-	        	if (selectedValues.length == 0  || selectedValuesArr.length == 0) 
+	        	if (selectedValues.length === 0  || selectedValuesArr.length === 0) 
 	        	{
 	        		icoButton.removeClass('filter-selected');
 	        		icoButton.addClass('filter');
@@ -56,7 +56,7 @@ var jq = jQuery.noConflict();
 	        	var icoButton = jq('.completedFilterM .dropdown-toggle .icoButton');
          		var selectedValues = IPMAppLM.isCompleteMilestones.trim();
         		var selectedValuesArr = selectedValues.split(',');
-	        	if (selectedValues.length == 0 ||  selectedValuesArr.length == 0) {
+	        	if (selectedValues.length === 0 ||  selectedValuesArr.length === 0) {
 	        		icoButton.removeClass('filter-selected');
 	        		icoButton.addClass('filter');
 	        	}
@@ -69,11 +69,11 @@ var jq = jQuery.noConflict();
 		        var selectedValuesArr = selectedValues.split(',');
 		        icoButton.removeClass('filter');
 		        icoButton.addClass('filter-selected');
-		        if (selectedValuesArr.length != 0) {
+		        if (selectedValuesArr.length !== 0) {
 		            jq('.completedFilterM .dropdown-menu input[type="checkbox"]').each(function() {
 		                $this = jq(this);
 		                var val = $this.attr('value');
-		                if (jq.inArray(val, selectedValuesArr) != -1) {
+		                if (jq.inArray(val, selectedValuesArr) !== -1) {
 		                    $this.prop('checked', true);
 		                    $this.next('label').addClass('selected');
 		                } else {
@@ -123,7 +123,7 @@ var jq = jQuery.noConflict();
 		   /* Below function checks for a condition. If the condition is true it highlights the row by adding a different css class which adds a color. */
 		    function markCompl(mId, isChecked) {
 		        markCompleteM(mId, isChecked);
-		        if (isChecked != 'true') {
+		        if (isChecked !== 'true') {
 		            jq('.taskCheck input[type=checkbox]#' + mId).closest("tr").removeClass("selected");
 		        } else {
 		            jq('.taskCheck input[type=checkbox]#' + mId).closest("tr").addClass("selected");

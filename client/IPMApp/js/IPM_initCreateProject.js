@@ -55,7 +55,7 @@ and if it passes it will be redirected to Project setup page else an error messa
 				function(result, event){
 					
 					if (event.status) {
-					   if(event.result!=null){
+					   if(event.result!==null){
 							window.top.location.href=IPMApp.projectsrc+'?Pid='+event.result;        
 						}
 						else{
@@ -70,7 +70,7 @@ and if it passes it will be redirected to Project setup page else an error messa
 			IPMApp.RemoteActionCreateBoss,
 			function(result, event){
 				if (event.status) {
-				 if(event.result!=null){
+				 if(event.result!==null){
 					 window.top.location.href=IPMApp.bosscardsrc + '?id='+event.result;
 					 }
 				 else{

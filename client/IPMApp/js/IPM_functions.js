@@ -28,7 +28,7 @@ function ipmModal(el, title, width, height, margintop, zindex) {
 /* Below script works on key down event. When the user press enter it triggers a click event. */
     jq(document).on('keydown', el, function() {
         var keyCode = (event.keyCode ? event.keyCode : event.which);
-        if (keyCode == 13) {
+        if (keyCode === 13) {
             jq(el).trigger('click');
         }
     });

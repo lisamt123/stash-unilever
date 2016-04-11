@@ -20,7 +20,7 @@ jq(document).ready(function() {
         jq('#ipmUpdateStatusTab .ipmStatusTabs li').removeClass('active');
         jq('#ipmUpdateStatusTab .ipmStatusTabs li').removeClass('highlightRed');
         var getId = $this.attr('class');
-        if (getId == 'status_discard') {
+        if (getId === 'status_discard') {
             $this.addClass('highlightRed');
             $this.addClass('active').find('input:radio').prop("checked", "true");
             statusTab.parent().find('.ipmGetStartedContent').hide();
@@ -39,15 +39,15 @@ function cancel() {
 }
 /* Below function checks the BOSSCARD status and navigate to respective pages based on the status of the BOSSCARD. */
 function goToBosscardParentPage() {
-    if (IPMApp.status == 'In Progress' || IPMApp.status == 'Not Approved') {
+    if (IPMApp.status === 'In Progress' || IPMApp.status === 'Not Approved') {
         window.top.location.href = IPMApp.bossurl + '?id=' + IPMApp.bosscardId;
-    } else if (IPMApp.status == 'Approved') {
-        if (IPMApp.CurrentPage == 'true') {
+    } else if (IPMApp.status === 'Approved') {
+        if (IPMApp.CurrentPage === 'true') {
             window.top.location.href = IPMApp.projecturl + '?Pid=' + IPMApp.projectId;
         } else {
             window.top.location.href = IPMApp.homeurl;
         }
-    } else if (IPMApp.status == 'In Progress' || IPMApp.status == 'Discard') {
+    } else if (IPMApp.status === 'In Progress' || IPMApp.status === 'Discard') {
         window.top.location.href = IPMApp.homeurl;
     }
 }
@@ -57,7 +57,7 @@ function changeBosscardStatus(status) {
 }
 /* Below script works on key press event. It searches the user entered value. */
 jq('.searchLeader').keypress(function(e) {
-    if (e.which == 13) {
+    if (e.which === 13) {
         callsearch(jq('.searchLeader').val());
         return false;
     }

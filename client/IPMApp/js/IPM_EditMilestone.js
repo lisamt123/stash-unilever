@@ -13,8 +13,8 @@ function callMilestone() {
     jq(document).on('click', '.saveMilestone', function() {
         updateTasksMileStones();
     });
-	
 }
+
 callMilestone();
 /* Below function performs the page redirection to Task list page. */
 function pageclose() {

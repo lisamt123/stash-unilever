@@ -43,17 +43,17 @@ jq(s).each(function() {
 		}
      });
 	 
-	 if (RnD == IPMAppRNDfq.yes) {             
+	 if (RnD === IPMAppRNDfq.yes) {             
              jq(this).find(".sld4 label[for=s1]").css({
                  'color': '#e98824',
                  'font-weight': 'bold'
              });
-         } else if (RnD == IPMAppRNDfq.no) {            
+         } else if (RnD === IPMAppRNDfq.no) {            
              jq(this).find(".sld4 label[for=s2]").css({
                  'color': '#e98824',
                  'font-weight': 'bold'
              });
-         } else if (RnD == IPMAppRNDfq.na) {             
+         } else if (RnD === IPMAppRNDfq.na) {             
              jq(this).find(".sld4 label[for=s3]").css({
                  'color': '#e98824',
                  'font-weight': 'bold'

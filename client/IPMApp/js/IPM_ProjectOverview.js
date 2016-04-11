@@ -72,7 +72,7 @@
 	jq('#initiateProjectBKPanel .modal-dialog').css({'margin-top':'2%','z-index':'999'});     
 });	
 
-if(IPMApp.showSuggestedMembers == true && window.location.href.indexOf("showMembers") > -1){
+if(IPMApp.showSuggestedMembers === true && window.location.href.indexOf("showMembers") > -1){
 	   document.getElementById("suggestedMembersButton").click();
    }else if (window.location.href.indexOf("createBET") > -1){
 		document.getElementById("createBETButton").click();
@@ -83,7 +83,7 @@ var statusCheckApproved = IPMApp.DocumentStatus;
   /* Below script works on click event. If the condition is true the page will be reloaded. */
 	jq("#ipmModal .close").on("click", function() 
 		{
-		   if (jq("#ipmModal .modal-title").text().indexOf("Comment") != -1) {
+		   if (jq("#ipmModal .modal-title").text().indexOf("Comment") !== -1) {
 		   window.top.location.href = IPMApp.ProjectOverviewPage+'?id='+IPMApp.projectId;
 		}
 });

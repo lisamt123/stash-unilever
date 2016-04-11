@@ -13,7 +13,7 @@ jq(document).ready(function() {
 /* Below script is related to the date picker Functionality. If the condition is true the css class 'date' calls the datepicker. */
     var dateFormat = "dd/mm/yyyy";
     var slider4 = jq(".slider4");
-    if (status != IPMApp.Postponed) {
+    if (status !== IPMApp.Postponed) {
 		jq('.date').datepicker({
         format: dateFormat,
         autoclose: true,
@@ -27,7 +27,7 @@ jq(document).ready(function() {
 	
 /* Below script is related to tabs functionality which works on load. If the status if postponed it highlights the postponed tab. Also it shows the content only related to postpone */
 	jq('.ipmStatusTabs li').each(function(){
-		if(jq(this).children('span').hasClass('Postponed') && status == IPMApp.Postponed){
+		if(jq(this).children('span').hasClass('Postponed') && status === IPMApp.Postponed){
 			jq('.ipmStatusTabs li').removeClass('active').find('label').removeClass("selected");;
 			jq(this).addClass("active").find('label').addClass("selected");	
 		}
@@ -69,46 +69,46 @@ jq(document).ready(function() {
         var lpos = jq(".ipmRadioButton label").offset().left;
         $this.find(".ipmRadioButton label").addClass('selected');
         $this.addClass('active');
-        if ($this.find(".ipmRadioButton label").next("input").val() == IPMApp.Stopped) {
+        if ($this.find(".ipmRadioButton label").next("input").val() === IPMApp.Stopped) {
             $this.addClass('stop_active');
             $this.parents('.sliderDiv').next().find('.changeStatusPage').addClass('stopBG');
         }
-        if (status == IPMApp.Postponed) {
+        if (status === IPMApp.Postponed) {
             slider4.find("label:first").off("click").css("cursor", "default");
             slider4.find('input[value=' + IPMApp.Postponed + ']').prop("checked", true);
         }
     });
-    /*if (status == IPMApp.Postponed) {
+    /*if (status === IPMApp.Postponed) {
 		alert('inside1');
         slider4.find("label:first").off("click").css("cursor", "default");
         slider4.find('input[value=' + IPMApp.Postponed + ']').prop("checked", true);
     }*/
 	
 /* Below script works on page load. Based on the status of the gate document text color will be changed */
-    if (jq("label[for=statusRadioBtn_2]").text().indexOf(IPMApp.Stopped) != -1) {
+    if (jq("label[for=statusRadioBtn_2]").text().indexOf(IPMApp.Stopped) !== -1) {
         jq("label[for=statusRadioBtn_2]").css({
             'text-align': 'right',
             'right': '-30px'
         });
     }
-    if (status == IPMApp.inProgress) {
+    if (status === IPMApp.inProgress) {
         jq(".ui-slider-handle").css("left", "0%");
         jq("label[for=statusRadioBtn_0]").css({
             'color': '#e98824'
         });
     }
-    if (status == IPMApp.Proposed) {
+    if (status === IPMApp.Proposed) {
         jq("label[for=statusRadioBtn_0]").css({
             'color': '#e98824'
         });
     }
-    if (status == IPMApp.Postponed) {
+    if (status === IPMApp.Postponed) {
         jq(".ui-slider-handle").css("left", "66.66%");
         jq("label[for=statusRadioBtn_2]").css({
             'color': '#e98824'
         });
     }
-    if (status == IPMApp.Stopped) {
+    if (status === IPMApp.Stopped) {
         jq(".ui-slider-handle").css("left", "100%");
         jq("label[for=statusRadioBtn_2]").css({
             'color': '#e98824'
@@ -120,17 +120,17 @@ function goToParentPage() {
     if (window.location.search.indexOf('ipmProjectOverview') > -1) {
 		window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
     } else {
-		if (status == IPMApp.Stopped && makeStop == true) {
+		if (status === IPMApp.Stopped && makeStop === true) {
             window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
-        } else if (status == IPMApp.Proposed && makeValid == true) {
+        } else if (status === IPMApp.Proposed && makeValid === true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
-        } else if (status == IPMApp.Postponed && makePostpone == true) {
+        } else if (status === IPMApp.Postponed && makePostpone === true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
-        } else if (status == IPMApp.Approved && makeApprove == true && IPMApp.projectPhase == 'Ideas') {
+        } else if (status === IPMApp.Approved && makeApprove === true && IPMApp.projectPhase === 'Ideas') {
             window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId + '&showMembers=true&createBET=true';
-		} else if (status == IPMApp.Approved && makeApprove == true) {
+		} else if (status === IPMApp.Approved && makeApprove === true) {
 			window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
-        } else if (status == IPMApp.ApprovedEdit && makeValid == true) {
+        } else if (status === IPMApp.ApprovedEdit && makeValid === true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
         }
     }
@@ -186,7 +186,7 @@ function changeCurrentStatus(changestatus) {
     var status = changestatus;
     var PointerT = 100 / (items.length - 1);
     var PointerF = 100 / (itemsProposed.length - 1);
-    if (status == IPMApp.Proposed || status == IPMApp.Postponed) {
+    if (status === IPMApp.Proposed || status === IPMApp.Postponed) {
         s.slider({
             min: 1,
             max: itemsProposed.length,
@@ -201,7 +201,7 @@ function changeCurrentStatus(changestatus) {
                 jq("label[for=statusRadioBtn_" + pointer + "]").css({
                     'color': '#e98824'
                 });
-                if (status == 'Postponed' && pointer == 0) {
+                if (status === 'Postponed' && pointer === 0) {
                     jq('.ui-slider-handle').animate({
                         'left': '66.66%'
                     }, 100);
@@ -217,9 +217,9 @@ function changeCurrentStatus(changestatus) {
 
                     changeStatus(itemsProposed[ui.value + 1]);
                 }
-                if (status == IPMApp.Postponed && itemsProposed[ui.value - 1] != IPMApp.Proposed) {
+                if (status === IPMApp.Postponed && itemsProposed[ui.value - 1] !== IPMApp.Proposed) {
                     changeStatus(itemsProposed[ui.value - 1]);
-                } else if (status == IPMApp.Proposed) {
+                } else if (status === IPMApp.Proposed) {
                     changeStatus(itemsProposed[ui.value - 1]);
                 }
             }
@@ -247,7 +247,7 @@ function changeCurrentStatus(changestatus) {
                 jq("label[for=statusRadioBtn_" + pointer + "]").css({
                     'color': '#e98824'
                 });
-                if (status == IPMApp.Proposed || status == IPMApp.Postponed) {
+                if (status === IPMApp.Proposed || status === IPMApp.Postponed) {
                     changeStatus(items[ui.value - 1]);
                 } else {
                     changeStatus(items[ui.value - 1]);

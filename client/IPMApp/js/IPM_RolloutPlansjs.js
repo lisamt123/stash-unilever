@@ -128,7 +128,7 @@ function scriptPanelLoad(){
 		
 		/* Below script works on keypress. When user presses enter key a search function is called */
 		jq( ".placeholder" ).on( "keypress", function(event) {
-			  if(event.which == 13) {                                      
+			  if(event.which === 13) {                                      
 			  callsearch();
 			  return false;        
 			  }
@@ -158,7 +158,7 @@ function scriptPanelLoad(){
         var newTLDValue = param.value;
         tldOrignalValue = param.defaultValue;
         selectedDateField = param;
-        if(newTLDValue != tldOrignalValue){
+        if(newTLDValue !== tldOrignalValue){
             jq('#tldWarningDialog').modal('show'); 
             return false;
         }

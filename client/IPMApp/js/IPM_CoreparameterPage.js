@@ -38,7 +38,7 @@ jq(document).ready(function() {
 });
 /* Below script works on page load. If both the conditions are true, it moves to third coreparameters question and also it displays the correct help text pointer below. */
 jq(window).load(function() {
-    if (IPMProAppCP.tpluser == 'true' && IPMProAppCP.addtnlParameter == 'false') {
+    if (IPMProAppCP.tpluser === 'true' && IPMProAppCP.addtnlParameter === 'false') {
         jq('#myCarousel').carousel(2);
         var $this = jq("#slideBar3 label:not('.fstchild'):");
         var labelWidth = $this.innerWidth() / 2;

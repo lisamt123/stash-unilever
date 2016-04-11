@@ -10,7 +10,7 @@ jq(document).ready(function() {
     jq(document).on('dblclick', '.editMilestone', function(e) {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
         var isDisabled = jq('.editMilestoneBtn').find('input[type=checkbox]').attr('isDisabled');
-        if (isDisabled == 'false') {
+        if (isDisabled === 'false') {
             openEditModal(this);
         }
     });
@@ -34,13 +34,13 @@ jq(document).ready(function() {
     jq(".ipmCheckbox").find("input[type=checkbox]:checked").closest("tr").addClass("selected");
     jq(".ipmCheckbox").on("click", "input[type=checkbox]", function() {
         var $this = jq(this);
-        if ($this.prop("value") == "true") {
+        if ($this.prop("value") === "true") {
             $this.closest("tr").addClass("selected");
         } else {
             $this.closest("tr").removeClass("selected");
         }
     });
-    if (IPMApp.pmApproachMessage == "true") {
+    if (IPMApp.pmApproachMessage === "true") {
         jq('.ipmStatistics').hide();
         jq('#addTask').hide();
         jq('#tasksAssignedToMeFilter').hide();
@@ -60,10 +60,10 @@ jq(document).ready(function() {
     var full = "Full";
     var $full = jq('#Full');
     var $lite = jq('#Lite');
-    if (isDisabled == 'true') {
+    if (isDisabled === 'true') {
         jq('.transBox .ipmRadioButton input[type=radio]').prop('disabled', true);
     }
-    if (complexity == full) {
+    if (complexity === full) {
         jq('#full').prop('checked', true);
         $lite.hide();
         $full.show();
@@ -72,7 +72,7 @@ jq(document).ready(function() {
         $full.hide();
         $lite.show();
     }
-    if (manageToDo == "Internal") {
+    if (manageToDo === "Internal") {
         displayTasksChkBox.prop('checked', true);
         displayTasksChkBox.next().addClass('selected');
     } else {
@@ -125,6 +125,6 @@ function hilightTaskScript(){
 	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
 	ipmModal('#addMilestone', 'Add Milestone', '60%', '80%', '2%');
-    ipmModal('#addTask', 'Add To-do', '320px', '600px', '2%');
+    ipmModal('#addTask', 'Add To-do', '38%', '560px', '2%');
     ipmModal('#editMilestone', 'Edit Milestone', '30%', '72%', '2%');
-    ipmModal('#editTask', 'Edit To-do\'s', '30%', '80%', '2%');
+    ipmModal('#editTask', 'Edit To-do\'s', '38%', '580px', '2%');

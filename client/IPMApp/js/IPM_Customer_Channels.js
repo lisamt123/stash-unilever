@@ -19,7 +19,7 @@ jq(document).ready(function() {
     });
 	/* Below script works on click event. If the condition is true it hides the channel list */
     jq(document).click(function(e) {
-        if (e.target.id != 'channelList') {
+        if (e.target.id !== 'channelList') {
             jq(".channelList").hide();
         }
     });
@@ -51,10 +51,10 @@ function selectCheckboxScript() {
     /* Below function works on page load. If the condition is true it checks the checkboxes and disables it and vice versa */
     function checkBoxRec1() {
         jq('.channelList').show();
-        if (selectedValuesArr.length != 0) {
+        if (selectedValuesArr.length !== 0) {
             jq('.customerChannelList .dropdown-menu input[type="checkbox"]').each(function() {
                 var val = jq(this).attr('value');
-                if (jq.inArray(val, selectedValuesArr) != -1) {
+                if (jq.inArray(val, selectedValuesArr) !== -1) {
                     jq(this).prop('checked', true);
                     jq(this).prop('disabled', true);
                     jq(this).next('label').addClass('selected');
@@ -70,10 +70,10 @@ function selectCheckboxScript() {
     }
   /* Below function works on page load. If the condition is true it checks the checkboxes and disables it and vice versa */
     function checkBoxRec() {
-        if (selectedValuesArr.length != 0) {
+        if (selectedValuesArr.length !== 0) {
             jq('.customerChannelList .dropdown-menu input[type="checkbox"]').each(function() {
                 var val = jq(this).attr('value');
-                if (jq.inArray(val, selectedValuesArr) != -1) {
+                if (jq.inArray(val, selectedValuesArr) !== -1) {
                     jq(this).prop('checked', true);
                     jq(this).prop('disabled', true);
                     jq(this).next('label').addClass('selected');
@@ -111,7 +111,7 @@ function selectCheckboxScript() {
     jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e) {
         e.stopPropagation();
         jq(".channelList input:checkbox").each(function() {
-            if (selectedValues.indexOf(jq(this).val()) == -1) {
+            if (selectedValues.indexOf(jq(this).val()) === -1) {
                 jq(this).prop('checked', false);
 				jq(this).prop('disabled', false);
                 jq(this).next('label').removeClass('selected');
@@ -148,11 +148,11 @@ function checkboxScript() {
     var selectedValues1 = IPMAppCC.channelInfo;
     var selectedValuesArr1 = selectedValues1.split(',');
 
-    if (selectedValuesArr1.length != 0) {
+    if (selectedValuesArr1.length !== 0) {
         jq('.infoCheck input[type="checkbox"]').each(function() {
 
             var val = jq(this).attr('value');
-            if (jq.inArray(val, selectedValuesArr1) != -1) {
+            if (jq.inArray(val, selectedValuesArr1) !== -1) {
                 jq(this).prop('checked', true);
                 jq(this).next('label').addClass('selected');				
             } else {

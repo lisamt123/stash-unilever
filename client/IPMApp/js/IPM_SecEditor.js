@@ -16,18 +16,18 @@ jq(document).ready(function() {
 		/* Below script works on blur event. The risk comments box place holder will be hidden when the user starts typing in the box */
         jq('#riskCommentBox').blur(function() {
             var $this = jq(this);
-            $this.val() == '' ? $this.val(placeholderText) : false;
+            $this.val() === '' ? $this.val(placeholderText) : false;
         });
 		
 		/* Below script works on focus event. The risk comments box place holder will be hidden when the user focuses on the box */
         jq('#riskCommentBox').focus(function() {
-            $this.val() == placeholderText ? $this.val('') : false;
+            $this.val() === placeholderText ? $this.val('') : false;
         });
     }
 	
 /* Below script works on click event. It redirects to a Gate document section editor page after closing the modal */
 	jq("#ipmModal .close").on("click", function() {
-		if (jq("#ipmModal .modal-title").text().indexOf("Comment") != -1 && window.top.location.href.indexOf(IPMAppSE.SectionEditorPageRef) > -1) {
+		if (jq("#ipmModal .modal-title").text().indexOf("Comment") !== -1 && window.top.location.href.indexOf(IPMAppSE.SectionEditorPageRef) > -1) {
 			gotoPage();
 		}
 	});
@@ -36,7 +36,7 @@ jq(document).ready(function() {
     jq('#ipmSecEditorTab .ipmTabContent').hide();
     var tabToBeSelected = getParameterByName('ipmTab');
 
-    if (tabToBeSelected.length != 0) {
+    if (tabToBeSelected.length !== 0) {
         jq('#ipmSecEditorTab .ipmTabs li.' + tabToBeSelected).addClass('active');
         jq('div#' + tabToBeSelected).show();
     } else {
@@ -182,7 +182,7 @@ jq(document).ready(function() {
     jq(".projectRadioButton input[type=radio]").each(function() {
         var $this = jq(this);
         var statCRRT = $this.attr("data-checked");
-        if (statCRRT == "true") {
+        if (statCRRT === "true") {
             $this.prop("checked", true);
         } else {
             $this.prop("checked", false);
@@ -193,7 +193,7 @@ jq(document).ready(function() {
     jq(".projectRadioButton input[type=radio]").each(function() {
         var $this = jq(this);
         var statCRRT = jq(this).attr("data-disabled");
-        if (statCRRT == "true") {
+        if (statCRRT === "true") {
             $this.attr("disabled", "disabled");
         } else {
             $this.removeAttr("disabled");
@@ -243,7 +243,7 @@ function callAttachDelete(attid) {
 					the modal title, modal body's content as per the condition. */
 function ipmTaskDel(str, isLst, gateName, secName) {
     var errMsg = ''
-    if (isLst == 1) {
+    if (isLst === 1) {
         errMsg = 'All tasks correlating to the ' + gateName + ' Section ' + secName + '  have been removed. Would you like to remove this section from the ' + gateName + ' Document?';
     } else {
         errMsg = IPMAppSE.deleteTaskMsg;
@@ -259,3 +259,50 @@ function ipmTaskDel(str, isLst, gateName, secName) {
 function gotoPage() {
 	window.top.location.href = IPMAppSE.SectionEditorPageRef+'?id='+IPMAppSE.projectId+'&projDocSecId='+IPMAppSE.projDocSecId;
 }
+
+/* Below script is related to performance breakdown */
+function isNumber(e,ele) {
+        var element ="";
+        if ((window.clipboardData && window.clipboardData.getData) ||  (e.clipboardData && e.clipboardData.getData)){
+            var pastedText = undefined;
+       
+            if (window.clipboardData && window.clipboardData.getData) { // IE
+                pastedText = window.clipboardData.getData('Text');
+            } 
+            
+            else if (e.clipboardData && e.clipboardData.getData) {
+        
+            pastedText = e.clipboardData.getData('text/plain');
+            }
+               completeText = e.target.value + pastedText;
+        
+             element = completeText;
+         }else{
+             element = e.target.value;
+        }
+        
+        var charCode = (e.which) ? e.which : event.keyCode
+
+        if ((charCode !== 44) && (charCode !== 46 || element.indexOf('.') !== -1) &&
+            (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+    function paste(e,obj) {
+            var totalCharacterCount = e.clipboardData.getData('Text');
+            var strValidChars = "0123456789.,";
+            var strChar;
+            var FilteredChars = "";
+            for (i = 0; i < totalCharacterCount.length; i++) {
+                strChar = totalCharacterCount.charAt(i);
+                if (strValidChars.indexOf(strChar) !== -1) {
+                    FilteredChars = FilteredChars + strChar;
+                    
+                }
+            }
+           obj.value = FilteredChars;
+            
+            return false;
+        }
+  

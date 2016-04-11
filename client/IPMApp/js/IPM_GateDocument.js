@@ -187,58 +187,58 @@ function movePhase() {
 function filterBlock() {
     jq('.skipButtoncontainer .ipmButton').removeClass('btn');
     var filterSelector = jq(".docFilter");
-    if (IPMApp.NonNegotiableCount == 0) {
+    if (IPMApp.NonNegotiableCount === 0) {
         filterSelector.find(".NonNegotiable").prop('disabled', true);
         filterSelector.find(".NonNegotiable").addClass('disabled');
         filterSelector.find(".NonNegotiable").next().addClass('disabled');
     }
-    if (IPMApp.OptionalCount == 0) {
+    if (IPMApp.OptionalCount === 0) {
         filterSelector.find(".Optional").prop('disabled', true);
         filterSelector.find(".Optional").addClass('disabled');
         filterSelector.find(".Optional").next().addClass('disabled');
     }
-    if (IPMApp.NotstartedCount == 0) {
+    if (IPMApp.NotstartedCount === 0) {
         filterSelector.find(".NotStarted").prop('disabled', true);
         filterSelector.find(".NotStarted").addClass('disabled');
         filterSelector.find(".NotStarted").next().addClass('disabled');
     }
-    if (IPMApp.FilledinCount == 0) {
+    if (IPMApp.FilledinCount === 0) {
         filterSelector.find(".filled-in").prop('disabled', true);
         filterSelector.find(".filled-in").addClass('disabled');
         filterSelector.find(".filled-in").next().addClass('disabled');
     }
 
-    if (IPMApp.BDCount == 0) {
+    if (IPMApp.BDCount === 0) {
         filterSelector.find(".bd").prop('disabled', true);
         filterSelector.find(".NonNegotiable").addClass('disabled');
         filterSelector.find(".NonNegotiable").next().addClass('disabled');
     }
-    if (IPMApp.CMICount == 0) {
+    if (IPMApp.CMICount === 0) {
         filterSelector.find(".cmi").prop('disabled', true);
         filterSelector.find(".cmi").addClass('disabled');
         filterSelector.find(".cmi").next().addClass('disabled');
     }
-    if (IPMApp.CDCount == 0) {
+    if (IPMApp.CDCount === 0) {
         filterSelector.find(".cd").prop('disabled', true);
         filterSelector.find(".cd").addClass('disabled');
         filterSelector.find(".cd").next().addClass('disabled');
     }
-    if (IPMApp.RnDCount == 0) {
+    if (IPMApp.RnDCount === 0) {
         filterSelector.find(".rnd").prop('disabled', true);
         filterSelector.find(".rnd").addClass('disabled');
         filterSelector.find(".rnd").next().addClass('disabled');
     }
-    if (IPMApp.SCCount == 0) {
+    if (IPMApp.SCCount === 0) {
         filterSelector.find(".sc").prop('disabled', true);
         filterSelector.find(".sc").addClass('disabled');
         filterSelector.find(".sc").next().addClass('disabled');
     }
-    if (IPMApp.FinanceCount == 0) {
+    if (IPMApp.FinanceCount === 0) {
         filterSelector.find(".fc").prop('disabled', true);
         filterSelector.find(".fc").addClass('disabled');
         filterSelector.find(".fc").next().addClass('disabled');
     }
-    if (IPMApp.BBCount == 0) {
+    if (IPMApp.BBCount === 0) {
         filterSelector.find(".bb").prop('disabled', true);
         filterSelector.find(".bb").addClass('disabled');
         filterSelector.find(".bb").next().addClass('disabled');
@@ -273,11 +273,11 @@ function filterBlock() {
         var $this = jq(this);
         var checkSub = $this.closest("ul").find(".checkSub:checked").closest("li").length;
         var checkNot = $this.closest("ul").find(".checkSub").closest("li").length;
-        if (checkNot != checkSub) {
+        if (checkNot !== checkSub) {
             $this.closest("ul").find("li input.checkAll").prop("checked", false);
             $this.closest("ul").find("li input.checkAll").next().removeClass("selected");
         }
-        if (checkNot == checkSub) {
+        if (checkNot === checkSub) {
             $this.closest("ul").find("li input.checkAll").prop("checked", true);
             $this.closest("ul").find("li input.checkAll").next().addClass("selected");
         }
@@ -356,12 +356,12 @@ function setFiltersAsPrevious() {
     }
 }
 var statusCheckApproved = IPMApp.proDoc;
-if (statusCheckApproved == IPMApp.proposed) {
+if (statusCheckApproved === IPMApp.proposed) {
     jq(".ipmAccordian").find(".ipmAcrdnExpand a").removeAttr("href");
 }
 /* Below script works on click event. If the condition is true it performs page reload of gate document page*/
 jq("#ipmModal .close").on("click", function() {
-    if (jq("#ipmModal .modal-title").text().indexOf("Comment") != -1) {
+    if (jq("#ipmModal .modal-title").text().indexOf("Comment") !== -1) {
         window.top.location.href = IPMApp.GateDocPageRef + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.printDoc;
     }
 });

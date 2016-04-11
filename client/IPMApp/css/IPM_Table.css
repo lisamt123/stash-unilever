@@ -14,6 +14,6 @@
 .table>tbody>tr.selected{background:#e1f9dd;}
 .table>tbody>tr.selected td{border-top:1px #007DBB solid;}
 .table>thead>tr>th span {float:left;display:inline-block;}
-.table>thead>tr>th .btn-group, .ipmTable>thead>tr>th span.sortIcon, .ipmTable>thead>tr>th span.sortIcon1{float:right!important;}
-th{white-space:normal !important;}
-/*.ipmTable.data-table.table-bordered{border-top: 3px solid #E6E534 !important;}*/
+.table>thead>tr>th .btn-group, .ipmTable>thead>tr>th span.sortIcon, .ipmTable>thead>tr>th span.sortIcon1{float:right;}
+th{white-space:normal ;}
+/*.ipmTable.data-table.table-bordered{border-top: 3px solid #E6E534 ;}*/

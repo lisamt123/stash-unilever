@@ -6,7 +6,7 @@
 var jq = jQuery.noConflict();
 function finScriptCallBack() {
 	jq('[data-toggle="tooltip"]').tooltip();
-	
+	hilightTaskScript();
 /* Below script works on click event. If the condition is true it shows the Left side menu. Also it removes '+' and replaces it with '-' which indicates the menu expansion */
     jq(".initAccordian").on("click", function() {
         var $this = jq(this);
@@ -41,7 +41,7 @@ function finScriptCallBack() {
 
 /* Below function validates for a condition. If user enters any key within the set of keys provided in the condition the value will returned as false. */
 function defKeyPrev() {
-    if ((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) {
+    if ((event.keyCode < 48 && event.keyCode !== 46) || (event.keyCode > 57 && event.keyCode !== 190 && event.keyCode !== 110)) {
         return false;
     }
 }

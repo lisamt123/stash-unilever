@@ -98,10 +98,10 @@ function selectCheckboxScript() {
         jq('.channelList').show();
         var selectedValues = IPMAppCE.countryName;
         var selectedValuesArr = selectedValues.split(',');
-        if (selectedValuesArr.length != 0) {
+        if (selectedValuesArr.length !== 0) {
             jq('.consumerDropdown .dropdown-menu input[type="checkbox"]').each(function() {
                 var val = jq(this).attr('value');
-                if (jq.inArray(val, selectedValuesArr) != -1) {
+                if (jq.inArray(val, selectedValuesArr) !== -1) {
                     jq(this).prop('checked', true);
                     jq(this).prop('disabled', true);
                     jq(this).next('label').addClass('selected');
@@ -149,7 +149,7 @@ function selectCheckboxScript() {
         e.stopPropagation();
 		var selectedValues = IPMAppCE.countryName;
         jq(".channelList input:checkbox").each(function() {
-            if (selectedValues.indexOf(jq(this).val()) == -1) {
+            if (selectedValues.indexOf(jq(this).val()) === -1) {
                 jq(this).prop('checked', false);
                 jq(this).next('label').removeClass('selected');
             } else {
@@ -188,7 +188,7 @@ jq(document).ready(function() {
     jq(".ipmAccordion").find(".evidenceHead:first span.expico").removeClass("fa-plus");
     jq(".ipmAccordion").find(".evidenceHead:first span.expico").addClass("fa-minus");
     jq(document).click(function(e) {
-        if (e.target.className != 'cecList') {
+        if (e.target.className !== 'cecList') {
             jq(".channelList").hide();
         }
     });

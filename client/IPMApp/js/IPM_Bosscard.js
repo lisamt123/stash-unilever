@@ -106,7 +106,7 @@ function checkValidation() {
     var specChars = regex.test(bossCardName);
     var url = jq('.updateBox').attr('value');
 	var bossname = jq('.hiddenBossname').attr('data-target');
-    if (companyName != '' && categoryName != '' && bossCardName != undefined && bossCardName != '' && specChars == true && bossname == 'false') {
+    if (companyName !== '' && categoryName !== '' && bossCardName !== undefined && bossCardName !== '' && specChars === true && bossname === 'false') {
         jq('#ipmModal').modal({
             show: true,
             keyboard: false,
@@ -132,7 +132,7 @@ function createPro() {
         IPMApp.RemoteAction,IPMApp.bosscardId,
         function(result, event) {
             if (event.status) {
-                if (event.result != null) {
+                if (event.result !== null) {
                     window.top.location.href = IPMApp.projecturl + '?Pid=' + event.result;
                 } else {
                     alert(IPMApp.systemMsg);
@@ -151,7 +151,7 @@ function upldImage(){
     var specChars = regex.test(bossCardName);
     var url = jq('.uploadImage').attr('value');
 	var bossname = jq('.hiddenBossname').attr('data-target');
-    if (companyName != '' && categoryName != '' && bossCardName != undefined && bossCardName != '' && specChars == true && bossname == 'false') {
+    if (companyName !== '' && categoryName !== '' && bossCardName !== undefined && bossCardName !== '' && specChars === true && bossname === 'false') {
         jq('#ipmModal').modal({
             show: true,
             keyboard: false,
@@ -176,7 +176,7 @@ function slctApprover(){
     var specChars = regex.test(bossCardName);
     var url = jq('.selectContainer').attr('value');
 	var bossname = jq('.hiddenBossname').attr('data-target');
-    if (companyName != '' && categoryName != '' && bossCardName != undefined && bossCardName != '' && specChars == true && bossname == 'false') {
+    if (companyName !== '' && categoryName !== '' && bossCardName !== undefined && bossCardName !== '' && specChars === true && bossname === 'false') {
         jq('#editApprover').modal({
             show: true,
             keyboard: false,

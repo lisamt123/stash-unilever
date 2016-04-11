@@ -7,30 +7,30 @@
 *******************************************************************************************/
 /* ===GLOBAL STYLES=== */
     th{white-space:initial;}
-	.ceContainer .ipmAcrdnExpand{display:block !important;}
+	.ceContainer .ipmAcrdnExpand{display:block ;}
 	.consumerContainer .evidenceHead .expico{display:none;}
-	.consumerImgContainer{border-top:0 !important;}
+	.consumerImgContainer{border-top:0 ;}
 	.empty-column-content { display: none; }
     .ipmFunnelPanel {bottom: 4px;}
     .channelContainer{border:0;}
-	.panel-group{margin-bottom:0 !important;}	     
+	.panel-group{margin-bottom:0 ;}	     
 	.tradeDesc{margin: 10px 0;display: block;}
 	.tradeButtonContainer{margin:15px;}
-	.dstatusButton .ipmButton {background: #F79C3E;color: #fff !important;border: 1px solid #AD6B27;}
-	.ipmProjectDetails .panel-title {line-height:2em!important;}  
+	.dstatusButton .ipmButton {background: #F79C3E;color: #fff ;border: 1px solid #AD6B27;}
+	.ipmProjectDetails .panel-title {line-height:2em;}  
 	.ipmFunnelPanel{bottom:4px;}
-	.uploadImg img {border-radius: 50% !important;max-width: 44px;} 
+	.uploadImg img {border-radius: 50% ;max-width: 44px;} 
 	.ipmProjectDetails .panel {background:transparent;}
-	.ipmProjectDetails .uploadImg {overflow:hidden;padding:0!important;margin:0!important;}
-	.ipmNavMenuDiv .navbar-nav>li>.dropdown-menu {margin-left: 0 !important;}
+	.ipmProjectDetails .uploadImg {overflow:hidden;padding:0;margin:0;}
+	.ipmNavMenuDiv .navbar-nav>li>.dropdown-menu {margin-left: 0 ;}
 	
 /* ===HEADER STYLES=== */
-	.ipmProjectDetails .panel-body .col-sm-3 {padding-left:3px!important;margin-top: 18px;}
+	.ipmProjectDetails .panel-body .col-sm-3 {padding-left:3px;margin-top: 18px;}
 	.pageHeadToolbar { border-bottom:1px #7fa19e solid;}       
 	.pageHeadToolbar .SecFillProgress {display:inline-block;border-left: 1px #929292 solid;padding-left: 10px;padding-right: 5px; }
 	.pageHeadToolbar .SecFillProgress .fillProgress {display:inline-block;color:#e98824;font-size:22px; font-weight:normal;}
-	.pageHeadToolbar .SecFillProgress .fillProgress span {font-size:12px!important;}
-	.pageHeadToolbar .SecFillProgress .fillProgressTxt {color:#364354!important;display:inline-block; font-size:12px;}
+	.pageHeadToolbar .SecFillProgress .fillProgress span {font-size:12px;}
+	.pageHeadToolbar .SecFillProgress .fillProgressTxt {color:#364354;display:inline-block; font-size:12px;}
 	.pageHeadToolbar .SecStatusUpdate {display:inline-block;margin:0; padding-right:15px;border-right: 1px solid #929292;}        
 	.pageHeadToolbar .SecCurrentStatus {display:inline-block; color:#364354; margin: 0 15px;text-align:right;}
 	.icoButton {cursor:pointer;}
@@ -43,16 +43,16 @@
 	
 /* ===LEFT FILTER STYLES=== */
 	.leftSideBar {margin-top:10px;}
-	.leftSideBar .h4 {color:#253b78; font-size:1.1em; font-weight:bold;display:block; background:#F1F6DF; color:#253b78; margin-bottom:0!important; border-bottom:1px solid #C0D3BF; border-top:1px solid #d7e0e0; padding:10px 7px;}
-	.leftSideBar ul.docFilter {padding:0!important; margin:0 0 10px!important; list-style:none;}
-	.leftSideBar ul.docFilter li {margin-left:0!important; display:block; background:#F1F6DF; color:#253b78; border-bottom:1px solid #C0D3BF; padding:7px;}
+	.leftSideBar .h4 {color:#253b78; font-size:1.1em; font-weight:bold;display:block; background:#F1F6DF; color:#253b78; margin-bottom:0; border-bottom:1px solid #C0D3BF; border-top:1px solid #d7e0e0; padding:10px 7px;}
+	.leftSideBar ul.docFilter {padding:0; margin:0 0 10px; list-style:none;}
+	.leftSideBar ul.docFilter li {margin-left:0; display:block; background:#F1F6DF; color:#253b78; border-bottom:1px solid #C0D3BF; padding:7px;}
 	.leftSideBar ul.docFilter li > input[type=checkbox]{position:relative; margin-right:5px; top:2px;}
 	.leftFilterBlock .panel{box-shadow:none;}
-	.leftSideBar ul.docFilter .h4 {display:block; background:#edeef0; color:#253b78; margin-bottom:0!important; border-bottom:1px solid #C0D3BF; border-top:1px solid #CDD9D9; padding:10px 7px;}
+	.leftSideBar ul.docFilter .h4 {display:block; background:#edeef0; color:#253b78; margin-bottom:0; border-bottom:1px solid #C0D3BF; border-top:1px solid #CDD9D9; padding:10px 7px;}
 	.tempWrapper .expandTool {text-align:right;}
 	.tempWrapper .expandTool span {display:inline-block; font-weight:bold; color:#0f81bb; cursor:pointer; }
 	.contenWrapper { margin-top:11px;position:relative;}
-	.contenWrapper .gdInit {text-align: center; position:absolute; z-index:9999; top:0; left:0; width:100%; height:100%; background:#fff url(../images/ajax-loader.gif) no-repeat 50% 50%!important;filter:alpha(opacity=90);opacity:0.9;-webkit-opacity:0.9;-moz-opacity:0.9;}
+	.contenWrapper .gdInit {text-align: center; position:absolute; z-index:9999; top:0; left:0; width:100%; height:100%; background:#fff url(../images/ajax-loader.gif) no-repeat 50% 50%;filter:alpha(opacity=90);opacity:0.9;-webkit-opacity:0.9;-moz-opacity:0.9;}
 	.leftSideBar .ipmButtonGroup {margin-bottom: 10px;padding: 10px 0 0;}
 	.leftFilterBlock{width:19%;}
 	.rightContentBlock{width:81%;margin-top:10px;}
@@ -60,14 +60,14 @@
 /* ===GENERIC ACCORDIAN STYLES=== */
 	.ipmAccordian {display:block;}
 	.ipmAccordian .aHead {display:block; clear:both;}
-	.ipmAccordian > .ipmAcrdnExpand {border:1px solid #dce3e2; display:block; border-top:none!important; margin-top:-2px; margin-bottom:2px;color:#666;}        
+	.ipmAccordian > .ipmAcrdnExpand {border:1px solid #dce3e2; display:block; border-top:none; margin-top:-2px; margin-bottom:2px;color:#666;}        
 	.ipmAccordian > .aHead {color: #253b78;font-size: 1.5em;font-weight: bold;display: block;background: #f7f7f7;border: 1px solid #dce3e2;margin-bottom: 2px;padding: 13px 10px 14px;}
-	.ipmAccordian > .ipmAcrdnExpand > .aHead {color:#0f7fb8!important; font-size:1.1em; font-style:normal; font-weight:bold; display:block;border-bottom:1px solid #dce3e2; margin:0 20px; padding:12px 0;}
+	.ipmAccordian > .ipmAcrdnExpand > .aHead {color:#0f7fb8; font-size:1.1em; font-style:normal; font-weight:bold; display:block;border-bottom:1px solid #dce3e2; margin:0 20px; padding:12px 0;}
 	.ipmAccordian > .ipmAcrdnExpand > div > .ipmAcrdnExpand > .aHead {font-size:1em;font-style:normal;font-weight:bold;color:#0f7fb8; display:block; border-bottom:1px solid #eee; padding: 12px 0 15px; margin:0 0 0 20px;}
 	.ipmAccordian > .ipmAcrdnExpand > div > .ipmAcrdnExpand > .aHead:first-child {padding-top:2px;}
 	.ipmAccordian > .ipmAcrdnExpand > div > .ipmAcrdnExpand > div > .aHead {font-style: normal;font-weight: bold;display: block;border-bottom: 1px solid #dce3e2;  margin: 0;  padding: 12px 0;} 
 	.ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand {padding:10px 20px 0 45px;display:block;}
-	.ipmAccordian .ipmAcrdnExpand .col-sm-3 {padding-right:0!important; position:relative;}
+	.ipmAccordian .ipmAcrdnExpand .col-sm-3 {padding-right:0; position:relative;}
 	.ipmAccordian .ipmAcrdnExpand .ipmAcrdnExpand .ipmAcrdnExpand {padding:10px 10px 0 45px;display:block;}
 	.ipmAccordian .ipmAcrdnExpand {color:#797979;display:block;}
 	.ipmAccordian > .aHead span.expico {display: inline-block; cursor:pointer; font-family: FontAwesome;width: 21px;height: 21px;text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;margin-right: 5px;
@@ -75,22 +75,22 @@
 	.ipmAccordian .ipmAcrdnExpand .aHead span.expico {display: inline-block; cursor:pointer; font-family: FontAwesome;width: 16px;height: 16px;text-align: center;font-weight: normal;line-height: 17px;background: #d4d4d4;position: relative;margin-right: 5px;
 	font-size: 0.7em;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;color: #fff;}
 	.ipmAccordian span.wrpHead {display: inline-block;padding: 5px 10px 5px 0;border-right: 1px solid #797979;}
-	.ipmAccordian .Filled-in {display: inline-block;padding: 0 8px;margin-left: 5px; border-left: 1px solid #797979; color:#e68627!important;font-size:13px!important; font-weight:normal!important; }
-	.ipmAccordian .Not.Started {display: inline-block;padding: 0 8px;margin-left: 5px; border-left: 1px solid #797979; color:#797979!important;font-size:13px!important; font-weight:normal!important; }
-	.ipmAccordian .Excluded {display: inline-block;padding: 0 8px;margin-left: 5px; color:#222!important; background:#ebebeb; font-size:13px!important; font-weight:normal!important; }
-	.ipmAccordian span.lastupdate {display:block; margin: 6px 0 0 0; color:#d4d4d4!important; font-weight:normal!important; }        
+	.ipmAccordian .Filled-in {display: inline-block;padding: 0 8px;margin-left: 5px; border-left: 1px solid #797979; color:#e68627;font-size:13px; font-weight:normal; }
+	.ipmAccordian .Not.Started {display: inline-block;padding: 0 8px;margin-left: 5px; border-left: 1px solid #797979; color:#797979;font-size:13px; font-weight:normal; }
+	.ipmAccordian .Excluded {display: inline-block;padding: 0 8px;margin-left: 5px; color:#222; background:#ebebeb; font-size:13px; font-weight:normal; }
+	.ipmAccordian span.lastupdate {display:block; margin: 6px 0 0 0; color:#d4d4d4; font-weight:normal; }        
 	.ipmAccordian .acHead {padding-top:4px;}
 	.ipmAccordian .lastUpdate {color:#c2c2c2; display:block; margin-top:10px;font-size:0.9em;}
-	.ipmAccordian .sfdc_richtext{color:#797979!important;}
+	.ipmAccordian .sfdc_richtext{color:#797979;}
 	.lastUpdate{clear:both;}
-	.messageBox .SecButtonSet {margin-top:0!important;margin-right:10px!important; position:relative; top:2px; width:100%;}
-	.messageBox .SecButtonSet .icoButton {width:16px!important;height:16px!important;top: -2px; }
+	.messageBox .SecButtonSet {margin-top:0;margin-right:10px; position:relative; top:2px; width:100%;}
+	.messageBox .SecButtonSet .icoButton {width:16px;height:16px;top: -2px; }
 	.messageBox .SecButtonSet a {display:block; float:left; border:1px solid #015ba7; cursor:default; border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50%;}
 	.messageBox .SecButtonSet span.msgTxt {position: relative; top: -2px; display:block; margin-left:5px;text-align:left;float: left;  width: auto;}
 	.ipmAccordian .SecButtonSet {display:inline-block; text-align:right; margin-top:-5px;}
 	.ipmAccordian .SecButtonSet .icoButton {display:inline-block;width:30px; margin: 0 5px; height:30px;border:1px solid #1568b6;border-radius:50%;-webkit-border-radius:50%;-moz-border-radius:50%;}
 	.ipmProjectDetails .SecButtonSet {display:inline-block; text-align:right; position:relative;}
-	.ipmAccordian > .ipmAcrdnExpand > div > .aHead {color: #0f7fb8!important;font-size: 1.1em;font-style: normal;font-weight: bold;display: block;border-bottom: 1px solid #dce3e2;margin: 0 20px;padding: 12px 0;} 
+	.ipmAccordian > .ipmAcrdnExpand > div > .aHead {color: #0f7fb8;font-size: 1.1em;font-style: normal;font-weight: bold;display: block;border-bottom: 1px solid #dce3e2;margin: 0 20px;padding: 12px 0;} 
 
 /* ===STATUS COMMENTS STYLES=== */
 	.StatusComment {background:#d9ecc6;border:1px solid #bdbdbd;margin-top:20px;margin-bottom:20px;}
@@ -98,18 +98,18 @@
 	.StatusComment .panelRow {margin: 10px 20px 0;border-bottom:1px solid #aecaab;}
 	.StatusComment .innerHead {font-weight:bold; color:#333;margin-left:10px;}
 	.StatusComment .updateStatus {color:#666;}
-	.StatusComment .panelRow:last-child {border:none!important;}
+	.StatusComment .panelRow:last-child {border:none;}
 	.StatusComment .marginbottom {margin-bottom:6px;}
 	.StatusComment .txtRight{text-align:right;}  
-	.SecButtonSet.delete{margin-left:0 !important;}
+	.SecButtonSet.delete{margin-left:0 ;}
 	
 /* ===MODAL STYLES=== */
-	#ipmModal .modal-header{background: url(../images/pop_header.png) repeat-x !important;padding:17.5px 10px 17.5px 17.5px; border-bottom:1px #d7d7d7 solid;border-radius:3px;-webkit-border-radius:3px;}
-	#ipmModal .modal-title{color:#333 !important;font-weight:bold;font-size:1em;}
-	#ipmModal .modal-header button.close{border: 1px #007dbb solid;border-radius: 50%;padding: 3px 5px;color: #007dbb;width: 30px; background: #fff; margin-top:-8px;opacity: 1;}
-	#ipmModal .modal-content{border-radius:3px;height:100%;}
-	#ipmModal .modal-body{height:90%;padding:0;}
-	#ipmModal .modal-dialog{margin:15px auto;}
+	.ipmModal .modal-header{background: url(../images/pop_header.png) repeat-x ;padding:17.5px 10px 17.5px 17.5px; border-bottom:1px #d7d7d7 solid;border-radius:3px;-webkit-border-radius:3px;}
+	.ipmModal .modal-title{color:#333 ;font-weight:bold;font-size:1em;}
+	.ipmModal .modal-header button.close{border: 1px #007dbb solid;border-radius: 50%;padding: 3px 5px;color: #007dbb;width: 30px; background: #fff; margin-top:-8px;opacity: 1;}
+	.ipmModal .modal-content{border-radius:3px;height:100%;}
+	.ipmModal .modal-body{height:90%;padding:0;}
+	.ipmModal .modal-dialog{margin:15px auto;}
 	.dropdown-menu{min-width:246px;left:2px;}	   
 	.messageBox{color:#0f81bb;background:#dbefff;border:1px solid #007DBB;position:absolute;border-radius:3px;margin-left:215px;padding:7px;}
 	.closeMessage{color: #007dbb;cursor: pointer;  float: left;  display: block;  margin-left: 15px;}
@@ -122,14 +122,14 @@
     .status-date{font-size:0.8em;font-weight:normal;color:#797979;}
     .pageContent {position:relative;}
     .pageContent .initFilter {background:#fff url(../images/ajax-loader.gif) no-repeat center 40px; width:100%; height:100%; padding: 20px; color:#000;  text-align:center; position:absolute; z-index:100; display:block; opacity:0.9; -moz-opacity:0.9; -webkit-opacity:0.9; filter:alpha(opacity=90); }
-	.circular.ipmImage {border-radius: 500rem !important;}
+	.circular.ipmImage {border-radius: 500rem ;}
 	.ipmImage{max-width:100%;}
 	.nav{position:relative;}
 	.skipDesc{display: block;padding: 15px 0;}
     .skipButtoncontainer{margin:15px 10px;}
-    .noPadleft{padding-left:0 !important;}
-    .noPadright{padding-right:0 !important;}
-    #ipmMoveFeasibility .modal-dialog{margin-top:15%;}
+    .noPadleft{padding-left:0 ;}
+    .noPadright{padding-right:0 ;}
+    .ipmMoveFeasibility .modal-dialog{margin-top:15%;}
     .buttonMarginRight{margin-right:15px;}         
 	
 /* ===OVERLAY STYLES=== */
@@ -138,14 +138,14 @@
 /* ===GATEKEEPER TABLE STYLES=== */
 	.gateKeeperlist{table-layout:fixed;}
 	.incHeight{height: 17px;}
-	.gateKeeperlist>thead>tr>th:first-child {padding-left: 5px !important;}
-	.gateKeeperlist>tbody>tr>td:first-child{text-align:left !important;}
+	.gateKeeperlist>thead>tr>th:first-child {padding-left: 5px ;}
+	.gateKeeperlist>tbody>tr>td:first-child{text-align:left ;}
 	.Yes{background:#81bf42;}
 	.No{background:#d01620;}
 	.Not.Applicable{background:#999999;}
 	.Partly{background:#f1993e;}
-	.noPadleft{padding-left:0 !important;}
-	.noPadright{padding-right:0 !important;}  
+	.noPadleft{padding-left:0 ;}
+	.noPadright{padding-right:0 ;}  
 	
 	.firstCol{width:7%;}
 	.secondCol{width:35%;}
@@ -153,31 +153,31 @@
 	.fourthCol{width:10%;}
                 
 /* ===OTIF TABLE STYLES=== */
-	.Red{max-width:40px;height:auto!important;width:auto!important;background:#fe0000;color:#fff;text-align:center;font-size:10px;display:block !important;border-radius: 1px !important;}
-	.Green{max-width:40px;height:auto!important;width:auto!important;background:#6c9a40;color:#fff;text-align:center;font-size:10px;border-radius:1px!important;margin-right:0!important;display:block!important;}
-	.Amber{max-width:40px;height:auto!important;width:auto!important;background:#e98824;color:#fff;text-align:center;font-size:10px;}
+	.Red{max-width:40px;height:auto;width:auto;background:#fe0000;color:#fff;text-align:center;font-size:10px;display:block ;border-radius: 1px ;}
+	.Green{max-width:40px;height:auto;width:auto;background:#6c9a40;color:#fff;text-align:center;font-size:10px;border-radius:1px;margin-right:0;display:block;}
+	.Amber{max-width:40px;height:auto;width:auto;background:#e98824;color:#fff;text-align:center;font-size:10px;}
 	.notApplicable{max-width:76px;background:#555;color:#fff;text-align:center;font-size:10px;}
 	.pageHeadToolbar .SecButtonSet{margin-top:0;}
 	.crrtCountTblDiv th.firstCol{width:20%;}
 	.gkcStatus {text-align:center; color:#fff; font-size:12px;}
-    .noMargin{margin:0 !important;}
-    .SecButtonSetInfo .icoButton{width:16px !important; height:16px !important;position:relative;top:3px;}
+    .noMargin{margin:0 ;}
+    .SecButtonSetInfo .icoButton{width:16px ; height:16px ;position:relative;top:3px;}
 	.SecButtonSet.channelOptions{margin-top:5px;}
 	.ipmFinancetable.table{table-layout:fixed;}
-	.statusButton .ipmButton {  background: #F79C3E;  color: #fff !important;  border: 1px solid #AD6B27;}
-	.statusButton .ipmButton:hover{background: #e38a2d !important;border:1px solid #E46C0A !important;}
-	.ipmButton.moveToCap {background:#e98824!important; color:#fff!important;border:1px solid #c67420!important;}
+	.statusButton .ipmButton {  background: #F79C3E;  color: #fff ;  border: 1px solid #AD6B27;}
+	.statusButton .ipmButton:hover{background: #e38a2d ;border:1px solid #E46C0A ;}
+	.ipmButton.moveToCap {background:#e98824; color:#fff;border:1px solid #c67420;}
         
 /* ===CMI TABLE STYLES=== */
 	.gateCMITable{width:1000px;margin-left:15px;}
-	.table>tbody>tr>td.textleft{text-align: left !important;}
+	.table>tbody>tr>td.textleft{text-align: left ;}
 	.table-bordered>thead>tr>th, .table-bordered>thead>tr>td {border-bottom-width: 0;}
 	.textleft{background-color: #f3ffe7;color: #364354;font-weight:bold;}
 	table.innertable td {border: 1px solid #ddd;padding: 5px;table-layout: fixed;}
 	table.innertable {border-spacing: 15px; width:100%;table-layout: fixed;}
 	.gatedoctable tr td{table-layout:fixed;font-size:12px;}
 	.gatedoctable th{font-size:12px;font-weight:bold;text-align:center;}
-	.noborder{border:0 !important;}
+	.noborder{border:0 ;}
 	.borleft{border-left:1px solid #ddd;}
 	.gatedoctable thead th {background-color: #dceefa;color: #253b78;}
 	.noteimg .icoButton {display: inline-block;width: 15px;cursor: text;margin: 0 6px -9px 0; height: 30px;  border-radius: 50%;  -webkit-border-radius: 50%;  -moz-border-radius: 50%;}
@@ -196,7 +196,7 @@
 	.gdFilterSection .ipmAcrdnExpand{display:block;}
 	.status_body{padding:0;}  
 	.SecButtonSet {position:relative;}
-	.SecButtonSet.proInit {text-align: center; position:absolute; z-index:100; top:0; left:-18px; width:103%; height:103%; background:#fff url(../images/ajax-loader.gif) no-repeat 0 0!important;}
+	.SecButtonSet.proInit {text-align: center; position:absolute; z-index:100; top:0; left:-18px; width:103%; height:103%; background:#fff url(../images/ajax-loader.gif) no-repeat 0 0;}
 	.olderDocLink{color:#007DBB; padding-top:6px; padding-bottom:4px;font-weight:bold;  cursor: pointer;}
 	.headerLeft{width:55%;}
 	.headerRight{width:45%;}
@@ -211,7 +211,7 @@
 	.cmiDcmntTable{padding-left: 20px;padding-right: 0;}
 	.mainCmiTable{width: 100%;overflow: auto;}
 	.cmiCodingColumn{float:left;display:block;}
-	.cmiNopadding{padding:0 !important;}
+	.cmiNopadding{padding:0 ;}
 	.cmiColumnTitle{}
 	.cmiColumnDesc{text-align: center;width: 90%;display: inline-block;}
 	.cuLeftBlock{float:left;display:block;margin-right:5px;}
@@ -226,7 +226,7 @@
 	.noBold{font-weight:normal;}
 	.riskTablecolor .riskCustBackground{background:#dceefa;color:#3b516d;font-weight:bold;}
 	.riskTablecolor>tbody>tr:nth-child(even){background:#fff;}
-	.skipButtoncontainer .proInit{text-align: center; position:absolute; z-index:100; top:83px; right:0; width:50%; height:27%; background:#fff url(../images/ajax-loader.gif) no-repeat 0 0!important;}
+	.skipButtoncontainer .proInit{text-align: center; position:absolute; z-index:100; top:83px; right:0; width:50%; height:27%; background:#fff url(../images/ajax-loader.gif) no-repeat 0 0;}
      
 /* ===FINANCIAL TABLE STYLES=== */
 	.staticLabel2{padding-left:10px;}
@@ -235,14 +235,14 @@
     .ipmFinancetable tr{height:35px;}
     .finproject{font-weight:Bold;font-size:11px;color:#3b516d;}
     .fintotal{font-weight:Bold;font-size:19px;color:#253b78;}
-    .fintable td{font-size:14px;color:#364354 !important;}
+    .fintable td{font-size:14px;color:#364354 ;}
     .fintlegreenbg{background-color:#f3ffe7;}
-    .fintlegrybg{background-color:#f8f8f8 !important;}
-    .fintleblubg{background-color:#f2f8fc !important;}
-    .fintlewhitebg{background-color:#FFF !important;}
+    .fintlegrybg{background-color:#f8f8f8 ;}
+    .fintleblubg{background-color:#f2f8fc ;}
+    .fintlewhitebg{background-color:#FFF ;}
     .fininnertable td + td{font-weight:Bold;font-size:15px;color:#666;}
-    .greenplus{font-weight:bold;font-size:15px;color:#81bf42 !important;} 
-    .redminus{font-weight:bold;font-size:15px;color:#d01620 !important;} 
+    .greenplus{font-weight:bold;font-size:15px;color:#81bf42 ;} 
+    .redminus{font-weight:bold;font-size:15px;color:#d01620 ;} 
     .fa-angle-left:before{content: "\f104";font-size: 28px;background-color: #e5f8ff;padding: 10px;color: #007dbb;}
     .blockPos{position: relative;text-align: right;top: 38px;}
     .drpfield{padding:6px;border-radius:4px;}
@@ -262,47 +262,47 @@
     .ipmfinHeading2{color:#364354;}
     .pull-right{float:right;}
     .mr78{margin-right:78px;}
-    .fleft{text-align:left !important;}
-    .pl10{padding-left:0 !important;}
+    .fleft{text-align:left ;}
+    .pl10{padding-left:0 ;}
     .fintable td div {font-size: 11px;color: #364354;font-weight:bold; width:100%}
-    .pl15{padding-left:15px !important;}
+    .pl15{padding-left:15px ;}
     .inputField input {width: 100%;height: 30px;border-radius: 3px;border: 1px #a8a8a8 solid;color: #565656;padding-left:5px;}
-    .ipmFinancetable>thead>tr>th.finProname{white-space:initial !important;}
+    .ipmFinancetable>thead>tr>th.finProname{white-space:initial ;}
     .ccPurpleBox span {border-bottom: 1px solid #B2C6C5;display: block;padding-bottom: 10px;color:#565E6B;text-align:center;}
     .gaterollouts{table-layout:fixed;}
-    #resetFilterBtn{margin-right:11px;}
+    .resetFilterBtn{margin-right:11px;}
     .secDisMsg {min-height:32px;}
 
 /* ===ECO DESIGN STYLES=== */
-	.ipmAccordian.ecoDesignTable .aHead {background:transparent!important; color:#666!important; border:none; font-size:1.1em; margin:0!important;padding: 0;}
-	.ipmAccordian.ecoDesignTable .aHead.noBG {border-top: 1px solid #d1d1d1!important;border-left: 1px solid #d1d1d1!important;border-right: 1px solid #d1d1d1!important;}
-	.ipmAccordian.ecoDesignTable .aHead span.expico {line-height:22px!important;display:none!important;}
-	.ipmAccordian.ecoDesignTable > .aHead > strong {font-weight:normal!important;}
-	.ipmAccordian.ecoDesignTable .ipmAcrdnExpand {border: 1px solid transparent!important;display:block!important;padding-left: 0}
-	.ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .aHead { color:#666!important;padding:10px; font-size: 1em;border-bottom: 1px solid transparent!important;border: 1px solid #d1d1d1; }
+	.ipmAccordian.ecoDesignTable .aHead {background:transparent; color:#666; border:none; font-size:1.1em; margin:0;padding: 0;}
+	.ipmAccordian.ecoDesignTable .aHead.noBG {border-top: 1px solid #d1d1d1;border-left: 1px solid #d1d1d1;border-right: 1px solid #d1d1d1;}
+	.ipmAccordian.ecoDesignTable .aHead span.expico {line-height:22px;display:none;}
+	.ipmAccordian.ecoDesignTable > .aHead > strong {font-weight:normal;}
+	.ipmAccordian.ecoDesignTable .ipmAcrdnExpand {border: 1px solid transparent;display:block;padding-left: 0}
+	.ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .aHead { color:#666;padding:10px; font-size: 1em;border-bottom: 1px solid transparent;border: 1px solid #d1d1d1; }
 	.ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .aHead span.expico { width: 21px; height: 21px; line-height: 23px; background: #81bd42; font-size: 0.8em;}
 	.ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .aHead > .SecButtonSet {margin-top:-3px; margin-right:8px;}
 	.ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .aHead > .SecButtonSet .icoButton {border:1px solid #81bd42;}
-	.ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .aHead > .SecButtonSet .icoButton.tick { position: relative; background: url(../images/Tick_icon.svg) no-repeat 50% 50%;background-size:60%;display:none!important;}
-	.ipmAccordian.ecoDesignTable .ipmAcrdnExpand .ipmAcrdnExpand {background-color: #fff;margin-bottom:10px;padding-top:0;border-bottom: 1px solid #d1d1d1!important;border-left: 1px solid #d1d1d1!important;border-right: 1px solid #d1d1d1!important;}
-	.ipmAccordian.ecoDesignTable > .ipmAcrdnExpand {padding-left: 0!important;} 
-	.ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .ipmAcrdnExpand {padding: 0 10px 10px 10px!important;}
-	.ipmAccordian.ecoDesignTable .borderRight {border-right: 1px solid #d1d1d1!important;}
-	.ipmAccordian.ecoDesignTable .OuterBorderRight {border-right: 1px solid #d1d1d1!important;min-height: 94px;}
-	.ipmAccordian.ecoDesignTable .aHead.hasBG {border-top: 1px solid #d1d1d1!important;border-left: 1px solid #d1d1d1!important;border-right: 1px solid #d1d1d1!important;}
+	.ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .aHead > .SecButtonSet .icoButton.tick { position: relative; background: url(../images/Tick_icon.svg) no-repeat 50% 50%;background-size:60%;display:none;}
+	.ipmAccordian.ecoDesignTable .ipmAcrdnExpand .ipmAcrdnExpand {background-color: #fff;margin-bottom:10px;padding-top:0;border-bottom: 1px solid #d1d1d1;border-left: 1px solid #d1d1d1;border-right: 1px solid #d1d1d1;}
+	.ipmAccordian.ecoDesignTable > .ipmAcrdnExpand {padding-left: 0;} 
+	.ipmAccordian.ecoDesignTable > .ipmAcrdnExpand > .ipmAcrdnExpand {padding: 0 10px 10px 10px;}
+	.ipmAccordian.ecoDesignTable .borderRight {border-right: 1px solid #d1d1d1;}
+	.ipmAccordian.ecoDesignTable .OuterBorderRight {border-right: 1px solid #d1d1d1;min-height: 94px;}
+	.ipmAccordian.ecoDesignTable .aHead.hasBG {border-top: 1px solid #d1d1d1;border-left: 1px solid #d1d1d1;border-right: 1px solid #d1d1d1;}
 	.ipmAccordian.ecoDesignTable .pt2 {padding: 2px 5px;}
 	.ecoDesignCountry th label {display: block;margin-bottom: 0;}
 	.ipmAccordian.ecoDesignTable .inputField.inline {width:50%; float:left;} 
-	.ipmAccordian.ecoDesignTable .skuTbl label {color:#666!important;}
+	.ipmAccordian.ecoDesignTable .skuTbl label {color:#666;}
 	.pt2.borderRight { white-space: normal;word-break: break-all;}
 	.gateRolloutTable{width:100%;table-layout:fixed;}
 	td.gateRolloutPadding{padding-left:7px;}
 	.dblcolumn{padding: 4px;}
 	.thirdcolumn{border-bottom:1px solid #d1d1d1; text-align:center;}
-	.table.ecoDesignCountry>thead>tr>th span {float: none!important;}
+	.table.ecoDesignCountry>thead>tr>th span {float: none;}
 	.bluetxt { color: #3b516d;}
 	.normalfont {font-weight: normal;}
-	.table>thead>tr>th>div {border-right: 0 !important;}
+	.table>thead>tr>th>div {border-right: 0 ;}
 	.infotxt {border-right: 1px solid #ddd;height: 23px;width: 126px;}
 	.oprtnTopAlertContainer {background: url("../images/alert_1a.png") no-repeat 10px 10px #FFF582;background-size: 22px;margin-bottom: 10px;padding: 10px 10px 10px 44px;border-radius: 3px;color: #666;border: 1px solid #f00;display:block;}
 	.mb20{padding:15px 15px 0;}
@@ -310,9 +310,9 @@
 	.appBlock span {margin-right:5px;}
 	.appText {color: #428bca; cursor:pointer;margin-left:5px;}
 	.appText:hover {text-decoration: underline; color: #015ba7;}
-	.consumerImgContainer{margin-left:-25px !important;margin-bottom:0 !important;}
-	.delTitlecon{padding-left:0 !important;}
-	.ceImage{margin-left:0 !important;}
+	.consumerImgContainer{margin-left:-25px ;margin-bottom:0 ;}
+	.delTitlecon{padding-left:0 ;}
+	.ceImage{margin-left:0 ;}
 	.ecotabHide{display:none;}
 	.ecoTabshow{display:block;}
 
@@ -349,20 +349,21 @@
 	.cmiContractOverallHead{width:11%;}
 	.cmiContractCommentsHead{width:20%;}
 	
-	.cmiContractOverallval1 span.CMILGreen,.cmiContractOverallval1 span.CMIRed,.cmiContractOverallval1 span.CMIAmber,.cmiContractOverallval1 span.CMIPink,.cmiContractOverallval1 span.CMIGreen{width:auto !important;height:auto !important;padding:5px;text-align:center;margin-left:0px !important;}
-	.cmiContractOverallval2 span.CMILGreen,.cmiContractOverallval2 span.CMIRed,.cmiContractOverallval2 span.CMIAmber,.cmiContractOverallval2 span.CMIPink,.cmiContractOverallval2 span.CMIGreen{width:auto !important;height:auto !important;padding:5px;text-align:center;margin-left:0px !important;}
-	.cmiRessecond span.CMILGreen,.cmiRessecond span.CMIRed,.cmiRessecond span.CMIAmber,.cmiRessecond span.CMIPink,.cmiRessecond span.CMIGreen{width:auto !important;height:auto !important;padding:5px;text-align:center;margin-left:0px !important;}
-	.cmiContractRessecond1 span.CMILGreen,.cmiContractRessecond1 span.CMIRed,.cmiContractRessecond1 span.CMIAmber,.cmiContractRessecond1 span.CMIPink,.cmiContractRessecond1 span.CMIGreen{width:auto !important;height:auto !important;padding:5px;text-align:center;margin-left:0px !important;}
-	.cmiContractRessecond2 span.CMILGreen,.cmiContractRessecond2 span.CMIRed,.cmiContractRessecond2 span.CMIAmber,.cmiContractRessecond2 span.CMIPink,.cmiContractRessecond2 span.CMIGreen{width:auto !important;height:auto !important;padding:5px;text-align:center;margin-left:0px !important;}
-	.cmiOverallval span.CMILGreen,.cmiOverallval span.CMIRed,.cmiOverallval span.CMIAmber,.cmiOverallval span.CMIPink,.cmiOverallval span.CMIGreen{width:auto !important;height:auto !important;padding:5px;text-align:center;margin-left:0px !important;}
-	.rSpan{border-right:1px solid #ddd !important;}
-	.cmitdNopadding{padding-top:0 !important;padding-bottom:0 !important;padding-left:0 !important;}
-	.gateCmiInnerTable tbody td{border-right:1px solid #ddd !important;border-bottom: 1px solid #ddd !important;border-top: 0 solid #ddd !important;}
-	.gateCmiInnerTable tbody tr td .cmiContractCountryHead:last-child{border-bottom:0 !important;}
+	.cmiContractOverallval1 span.CMILGreen,.cmiContractOverallval1 span.CMIRed,.cmiContractOverallval1 span.CMIAmber,.cmiContractOverallval1 span.CMIPink,.cmiContractOverallval1 span.CMIGreen{width:auto ;height:auto ;padding:5px;text-align:center;margin-left:0px ;}
+	.cmiContractOverallval2 span.CMILGreen,.cmiContractOverallval2 span.CMIRed,.cmiContractOverallval2 span.CMIAmber,.cmiContractOverallval2 span.CMIPink,.cmiContractOverallval2 span.CMIGreen{width:auto ;height:auto ;padding:5px;text-align:center;margin-left:0px ;}
+	.cmiRessecond span.CMILGreen,.cmiRessecond span.CMIRed,.cmiRessecond span.CMIAmber,.cmiRessecond span.CMIPink,.cmiRessecond span.CMIGreen{width:auto ;height:auto ;padding:5px;text-align:center;margin-left:0px ;}
+	.cmiContractRessecond1 span.CMILGreen,.cmiContractRessecond1 span.CMIRed,.cmiContractRessecond1 span.CMIAmber,.cmiContractRessecond1 span.CMIPink,.cmiContractRessecond1 span.CMIGreen{width:auto ;height:auto ;padding:5px;text-align:center;margin-left:0px ;}
+	.cmiContractRessecond2 span.CMILGreen,.cmiContractRessecond2 span.CMIRed,.cmiContractRessecond2 span.CMIAmber,.cmiContractRessecond2 span.CMIPink,.cmiContractRessecond2 span.CMIGreen{width:auto ;height:auto ;padding:5px;text-align:center;margin-left:0px ;}
+	.cmiOverallval span.CMILGreen,.cmiOverallval span.CMIRed,.cmiOverallval span.CMIAmber,.cmiOverallval span.CMIPink,.cmiOverallval span.CMIGreen{width:auto ;height:auto ;padding:5px;text-align:center;margin-left:0px ;}
+	.rSpan{border-right:1px solid #ddd ;}
+	.cmitdNopadding{padding-top:0 ;padding-bottom:0 ;padding-left:0 ;}
+	.gateCmiInnerTable tbody td{border-right:1px solid #ddd ;border-bottom: 1px solid #ddd ;border-top: 0 solid #ddd ;}
+	.gateCmiInnerTable tbody tr td .cmiContractCountryHead:last-child{border-bottom:0 ;}
 	.gateCmiInnerTable{width:1000px;}
 	.CMIPink {background: #E6B8B7;}
-	.cmiColorBox{width:20px !important;height:20px !important;}
-	.cmiCharterResults{width:204px !important;}
+	.cmiColorBox{width:20px ;height:20px ;}
+	.cmiCharterResults{width:204px ;}
+	.Not.Applicable {background: #999;max-width: 84px;height: auto;width: auto;color: #fff;text-align: center;font-size: 10px;display: block;border-radius: 1px;}
 	
 /* ===CU COMPLEXITY CONSOLIDATED STYLES=== */
 	.cucountryProName{font-weight: bold;margin-top: 10px;}
@@ -382,7 +383,7 @@
 	
 	
 	.ipmFinancetable.table tr.btmBleBorder td {
-    font-size: 12.2px !important;
+    font-size: 12.2px ;
     }
 	.performanceTable{overflow-x:auto;}
 	.ipm_performanceTable{width:1100px;}

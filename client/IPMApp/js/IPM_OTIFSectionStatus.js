@@ -48,17 +48,17 @@ function initSliderOTIF() {
 				}
 				
             });
-			if (answer == IPMAppOTS.green) { 
+			if (answer === IPMAppOTS.green) { 
             jq(this).find("label[for=s1]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (answer == IPMAppOTS.red) { 
+        } else if (answer === IPMAppOTS.red) { 
             jq(this).find("label[for=s2]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (answer == IPMAppOTS.na) { 
+        } else if (answer === IPMAppOTS.na) { 
             jq(this).find("label[for=s3]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
@@ -92,22 +92,22 @@ function initSliderOTIF() {
 				}
             });
 			
-		if (answer == IPMAppOTS.green) {            
+		if (answer === IPMAppOTS.green) {            
             jq(this).find(".sld5 label[for=s1]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });           
-        } else if (answer == IPMAppOTS.amber) {            
+        } else if (answer === IPMAppOTS.amber) {            
             jq(this).find(".sld5 label[for=s2]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (answer == IPMAppOTS.red) {            
+        } else if (answer === IPMAppOTS.red) {            
             jq(this).find(".sld5 label[for=s3]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });            
-        } else if (answer == IPMAppOTS.na) {           
+        } else if (answer === IPMAppOTS.na) {           
             jq(this).find(".sld5 label[for=s4]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'

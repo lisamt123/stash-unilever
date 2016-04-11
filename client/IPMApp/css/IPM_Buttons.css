@@ -16,8 +16,8 @@
 	border:1px solid #8ab3da;
 	color:#0f81bb;
     padding: 0.625em;
-	padding-bottom:0.55em\9!important;
-    font-size: 16px !important;	    
+	padding-bottom:0.55em\9;
+    font-size: 16px ;	    
     line-height: 1;
 	font-family:'Arial';
     font-weight: bold;
@@ -29,7 +29,7 @@
 	-moz-border-radius:5px;
 }
 .btn.ipmButton { 
-    padding: 0.650em !important; 
+    padding: 0.650em ; 
 }
 
 .ipmButton:hover {
@@ -71,89 +71,100 @@
 }
 
 /* Colors */
+input.ipmButton.primary {
+	background:#81bf42;
+	color:#fff;
+	border:1px solid #406b14;
+	font-size:16px ;
+}
 .ipmButton.primary {
-	background:#81bf42!important;
-	color:#fff!important;
-	border:1px solid #406b14!important;
-	font-size:16px !important;
+	background:#81bf42;
+	color:#fff;
+	border:1px solid #406b14;
+	font-size:16px ;
+}
+input.ipmButton.primary:hover {
+	background:#56843b;
+	color:#fff;
+	border:1px solid #406b14;
 }
 .ipmButton.primary:hover {
-	background:#56843b!important;
-	color:#fff!important;
-	border:1px solid #406b14!important;
+	background:#56843b;
+	color:#fff;
+	border:1px solid #406b14;
 }
 .ipmButton.blue {
-    background: #209DDA !important;
+    background: #209DDA ;
 }
 .ipmButton.blue:hover {
-    background: #1D8DC4 !important;
+    background: #1D8DC4 ;
 }
 
 .ipmButton.green {
-    background: #81BF42 !important;
-	color:#fff !important;
-	border-color:#406b14 !important;
+    background: #81BF42 ;
+	color:#fff ;
+	border-color:#406b14 ;
 }
 .ipmButton.green:hover {
-    background: #71A222 !important;
+    background: #71A222 ;
 }
 
 .ipmButton.maroon {
-    background: #AC0D60 !important;
+    background: #AC0D60 ;
 }
 .ipmButton.maroon:hover {
-    background: #940B53 !important;
+    background: #940B53 ;
 }
 
 .ipmButton.orange {
-    background: #FF982F !important;
+    background: #FF982F ;
 }
 .ipmButton.orange:hover {
-    background: #FF8B16 !important;
+    background: #FF8B16 ;
 }
 
 .ipmButton.pink {
-    background: #DF1995 !important;
+    background: #DF1995 ;
 }
 .ipmButton.pink:hover {
-    background: #C81686 !important;
+    background: #C81686 ;
 }
 
 .ipmButton.purple {
-    background: #9641B4 !important;
+    background: #9641B4 ;
 }
 .ipmButton.purple:hover {
-    background: #863AA1 !important;
+    background: #863AA1 ;
 }
 
 .ipmButton.red {
-    background: #FF2514 !important;
+    background: #FF2514 ;
 }
 .ipmButton.red:hover {
-    background: #FA1200 !important;
+    background: #FA1200 ;
 }
 
 .ipmButton.teal {
-    background: #00B389 !important;
+    background: #00B389 ;
 }
 .ipmButton.teal:hover {
-    background: #009A75 !important;
+    background: #009A75 ;
 }
 
 .ipmButton.yellow {
-    background: #F7CD2F !important;
+    background: #F7CD2F ;
 }
 .ipmButton.yellow:hover {
-    background: #F6C716 !important;
+    background: #F6C716 ;
 }
 .ipmButton.white{color:white;}
 .ipmButtonGroup ul li, .ipmButton ol li{
-	margin-left:0!important;	
+	margin-left:0;	
 }
 
 .ipmButtonGroup.ipmActionButtons  .ipmButton {
-	font-size:1.28em!important;
-	padding: 0.5em 0.8em!important;
+	font-size:1.28em;
+	padding: 0.5em 0.8em;
 	margin:0 2px;
 }
 
@@ -171,22 +182,22 @@
 }
 
 .ipmButtonGroup ul li a, .ipmButton ol li a{	
-	padding: 10px 8px!important;
+	padding: 10px 8px;
 	font-size: 0.9em;
 	border-bottom: 1px solid #ddd;
 }
 
 .ipmButtonGroup .dropdown-menu{
-	padding: 0!important;
-	margin-top:0!important;
-	left: -18px!important;
+	padding: 0;
+	margin-top:0;
+	left: -18px;
 	width: 175px;	
 }
-#ipmDropdown .ipmButton {padding-bottom:0.8em\9!important;}
-#ipmDropdown .dropdown-menu {margin-left: 18px;max-width: 156px;min-width: 156px;}
+.ipmDropdown .ipmButton {padding-bottom:0.8em\9;}
+.ipmDropdown .dropdown-menu {margin-left: 18px;max-width: 156px;min-width: 156px;}
 
-.ipmPanelHeading  .ipmBackBtn {color:#00B389!important;}
-.ipmButton.gray{background: #818181 !important;}
+.ipmPanelHeading  .ipmBackBtn {color:#00B389;}
+.ipmButton.gray{background: #818181 ;}
 
 /*****************************************************
 ******************* IPM NG Revamp ********************

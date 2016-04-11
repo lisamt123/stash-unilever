@@ -15,9 +15,8 @@ jq(function() {
 	jq(document).on('click', '.saveMilestone', function() {
 		updateTasksMileStones();
 	});
-
-});	
-
+	
+});
 /* Below function performs the page redirection to Project setup page. */
 function pageclose(){
 	window.top.location.href=IPMAppWizard.ProjectSetupUrl+'?Pid='+IPMAppWizard.projectId+'&Milestoneid=milestones';

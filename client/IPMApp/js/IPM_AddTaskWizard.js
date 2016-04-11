@@ -13,10 +13,23 @@ function pageclose() {
 }
 /* Below function checks a condition. If the condition is true it will redirect to Gate Document section editor page. If condition is false it will redirect to Task List Page */
 function pagecloseNewTask(){ 
-	if (IPMAppComp.redirectToGateDocument == 'true') { 
+	if (IPMAppComp.redirectToGateDocument === 'true') { 
 			window.top.location.href = IPMAppComp.pageRefProjDocSec + '?Id=' + IPMAppComp.projectId + '&' + IPMAppComp.redirectToGateDocumentUrl + '=' + IPMAppComp.docSecList; 
 	} else { 
 			window.top.location.href = IPMAppComp.TasklistPageRef + '?id=' + IPMAppComp.projectId; 
 	} 
 }
+jq(document).ready(function($) {
+	var max = 225;
+	jq('textarea.todoName').keypress(function(e) {
+		if (e.which < 0x20) {
+			return;
+		}
+		if (this.value.length === max) {
+			e.preventDefault();
+		} else if (this.value.length > max) {
+			this.value = this.value.substring(0, max);
+		}
+	});
+});
 

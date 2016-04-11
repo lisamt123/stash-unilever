@@ -123,7 +123,7 @@ function setSliderValBgcolor(){
 	 
 	for(var i = 0; i < selectedSliderVal.length; i++){
        var found = $.inArray(jq(selectedSliderVal[i]).text(), sliderValArray);
-    if(found == -1 && jq(selectedSliderVal[i]).text() !== ""){
+    if(found === -1 && jq(selectedSliderVal[i]).text() !== ""){
     	jq('.gkcStatus.'+jq(selectedSliderVal[i]).text()).css({background: "#000000"});
     }
     
