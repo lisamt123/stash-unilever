@@ -29,8 +29,7 @@ else
 	fi
 				
 	## command to prepare components file
-	#git diff --diff-filter=MARCT  HEAD~$count --name-only >> components.txt
-	git diff --diff-filter=MARCT f27089c2ce4 41f41683247 --name-only >> components.txt
+	git diff --diff-filter=MARCT  HEAD~$count --name-only >> components.txt
 	
 	## Generate the file containing all the list of components to be which were commited
 	truncate -s 0 componentsFile.txt
