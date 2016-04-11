@@ -7,7 +7,7 @@
 *********************************************/
 @isTest
 private class IPM_Taskview_Test{
-    
+
     private static User platformUser;
     private static User BDUser;
     private static list<IPM_Project__c> insertProjectList;
@@ -17,10 +17,10 @@ private class IPM_Taskview_Test{
     private static final String  PROJECT_NAME ='TestComments1';
     private static final String  GLOBAL_PL ='GLOBAL_PL';
     private static final String  GLOBAL_BD_OWNER ='GLOBAL_BD_OWNER';
-    private static final Set<String> userNameSet = new Set<String>{GLOBAL_PL,GLOBAL_BD_OWNER};
     private static final Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8','TestComments9','TestComments10'};
     private static User adminUser = IPM_TestFactory_Helper.createUserAdmin(true);
     
+   
     /***********************************
       @name: projectSetUpData
       @Description: Project Test Data Creation
@@ -32,19 +32,23 @@ private class IPM_Taskview_Test{
      {
         //Create users
         System.runAs(adminUser){
-        
+            
             //create PL user
             platformUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
             platformUser.lastname = GLOBAL_PL;
             
             BDUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
             BDUser.lastname = GLOBAL_BD_OWNER;
+            
             List<User> userList = new List<User>{platformUser,BDUser};
             update userList;
+            
             list<User> userUpdatedList = [SELECT lastname FROM User WHERE lastname=:GLOBAL_PL];
             system.assertEquals(userUpdatedList.size(),1,'Global PL is not created');
+            
             list<User> userUpdatedList2 = [SELECT lastname FROM User WHERE lastname=:GLOBAL_BD_OWNER];
             system.assertEquals(userUpdatedList2.size(),1,'Global BD is not created');
+            
         }
         
         // Create Company Card information 
@@ -56,6 +60,7 @@ private class IPM_Taskview_Test{
         insert companyCardList;
         
         IPM_TestFactory_Helper.getProjectMasterData();
+         
          // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(new List<User>{platformUser,BDUser}); 
             
@@ -82,6 +87,7 @@ private class IPM_Taskview_Test{
             }
         } 
        }
+      
       /***********************************
       @name: initializedData
       @Description: Query project,project document
@@ -91,9 +97,12 @@ private class IPM_Taskview_Test{
     ***********************************/
     public static void initializedData(){
         set<Id> projIdSet =  new set<Id>();
+        
         insertProjectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Leader__c,Deputy_Project_Leader__c,IPM_GateKeeping_Model__c
                             from IPM_Project__c where Name in:projectNameSet];
+        
         User globalBDUser1 = [Select Id,LastName,IsActive from User where LastName=:GLOBAL_BD_OWNER  limit 1];
+        
         //create Proeject resource for project
             list<IPM_Project_Resource__c> projResList = IPM_TestFactory_Helper.createIPMProjectResourceList(false, 10); 
             list<IPM_Project_Resource__c> projectResourceResultList =  new list<IPM_Project_Resource__c>();
@@ -105,40 +114,39 @@ private class IPM_Taskview_Test{
                 projResList[i].IPM_Project_Role_Owner__c = true;
                 projectResourceResultList.add(projResList[i]);
                 projIdSet.add(insertProjectList[i].Id);
+                
             }
             insert projectResourceResultList;
             
             //check if the created project resources having the same BD role as assigned 
-            insertProjRescourceList= [SELECT Id,IPM_Role_Type__c FROM IPM_Project_Resource__c];
+            insertProjRescourceList= [SELECT Id,IPM_Role_Type__c FROM IPM_Project_Resource__c LIMIT 500];
             for(IPM_Project_Resource__c projectResource : insertProjRescourceList)
             {
                 system.assertEquals(projectResource.IPM_Role_Type__c,IPM_ConstantUtils.IPM_ROLE_BD_MARKETING,'Projects Resources are note created');
             }
+            
             //set current page with project id
-            putCurrentPageParameter('Id',projects.Id);
-           
+            putCurrentPageParameter('Id',insertProjectList[0].Id);
             
             System.runAs(adminUser){
               //project record was not shared with the project resource user, so adding the project resource expecitly in the goup for which the project record is shared.    
               list<IPM_Project__Share> projectShare = [SELECT Id,ParentID,UserOrGroupId FROM IPM_Project__Share WHERE  ParentID IN :projIdSet];
               User bdOwnerUser = [Select Id,LastName,IsActive from User where LastName=:GLOBAL_BD_OWNER  limit 1];
               //User centralUser = [Select Id,LastName,IsActive from User where LastName=:CENTRAL_TEAM_MEMBER  limit 1];
+              
               List<GroupMember>listGroupMember = new List<GroupMember>();  
               set<Id> projectShareIdSet =  new set<Id>();
               for(IPM_Project__Share projShare : projectShare)
               {
                   listGroupMember.add(new GroupMember(GroupId = projShare.UserOrGroupId , UserOrGroupId = bdOwnerUser.id));
                   projectShareIdSet.add(projShare.UserOrGroupId);
-        }
+              }
               insert listGroupMember;
               
               //check if the project is shared with project resource
               List<GroupMember> groupMemberList = [SELECT UserOrGroupId,GroupId FROM GroupMember where GroupId IN:projectShareIdSet];
               system.assertEquals(false,groupMemberList.isEmpty(),'Project resource for BD role is not inserted');
-        }
-
-        
-        
+            }
     }
     
     /***********************************
@@ -160,7 +168,7 @@ private class IPM_Taskview_Test{
       @throws: none
     ***********************************/
     public static TestMethod void testGetIpmuserTypeAsPLUser(){
-        
+       
        //get PL 
        User globalPL = [Select Id,LastName,IsActive from User where LastName=:GLOBAL_PL  limit 1];
        
@@ -168,9 +176,9 @@ private class IPM_Taskview_Test{
         System.runAs(globalPL){
             //create test data
             initializedData();
-       
+            
             sc = new ApexPages.StandardController(insertProjectList[0]);
-            taskview =new IPM_Taskview(sc);
+            taskview = new IPM_Taskview(sc);
             
             System.assertEquals(true,taskview.isTaskeditable,'isTaskeditable false for PL');
             System.assertEquals(true,taskview.isCreateTask,'isCreateTask false for PL');
@@ -178,7 +186,8 @@ private class IPM_Taskview_Test{
             System.assertEquals(true,taskview.updateApproach,'updateApproach false for PL');
             System.assertEquals(true,taskview.isMilestoneEditable,'isMilestoneEditable false for PL');
             System.assertEquals(true,taskview.isAllTask,'isAllTask false for PL');
-       }
+            
+        }
         Test.stopTest();
     }
     
@@ -196,7 +205,8 @@ private class IPM_Taskview_Test{
        
        //get BD user
        User globalBDUser = [Select Id,LastName,IsActive from User where LastName=:GLOBAL_BD_OWNER  limit 1];
-       Test.startTest(); 
+       
+       Test.startTest();
         // create test data as PL
         System.runAs(globalPL){
             initializedData();
@@ -206,9 +216,10 @@ private class IPM_Taskview_Test{
             
             List<IPM_Project__c>  projectList = [SELECT Id,IPM_Complexity__c,IPM_PM_Approach__c,IPM_Market_Type__c,Deputy_Project_Leader__c,IPM_Technical_Project_Leader__c 
                                                  FROM IPM_Project__c where Name=:PROJECT_NAME];
-                      
+            
             sc = new ApexPages.StandardController(projectList[0]);
-            taskview =new IPM_Taskview(sc);
+            taskview = new IPM_Taskview(sc);
+            
             System.assertEquals(true,taskview.isTaskeditable,'isTaskeditable is unchecked');
             System.assertEquals(true,taskview.isCreateTask,'isCreateTask is unchecked');
             System.assertEquals(true,taskview.isupdateDates,'isupdateDates is unchecked');
@@ -233,17 +244,19 @@ private class IPM_Taskview_Test{
        
        //get CD user
        User cdUser = [Select Id,LastName from User where LastName=:GLOBAL_BD_OWNER limit 1]; 
+       
        Test.startTest(); 
         //create test data as PL
         System.runAs(globalUser){
             initializedData();
             List<IPM_Project__c>  projectList = [SELECT Id,IPM_Complexity__c,IPM_PM_Approach__c,IPM_Market_Type__c,Deputy_Project_Leader__c,IPM_Technical_Project_Leader__c 
                                                  FROM IPM_Project__c where Name=:PROJECT_NAME];
+            
             //change user role from BD to CD 
             list<IPM_Project_Resource__c> projectResourceResultList = [SELECT Id,IPM_Role_Type__c,IPM_Project__c FROM IPM_Project_Resource__c WHERE IPM_Project__c =:projectList[0].Id];
             projectResourceResultList[0].IPM_Role_Type__c = IPM_Utils.CD;
             update projectResourceResultList[0];
-                      
+            
             //check that user has been assigend with CD role
             list<IPM_Project_Resource__c> projectResUpdatedList = [SELECT Id,IPM_Role_Type__c,IPM_Project__c FROM IPM_Project_Resource__c WHERE IPM_Project__c =:projectList[0].Id];
             for(IPM_Project_Resource__c projRes : projectResUpdatedList)
@@ -251,19 +264,23 @@ private class IPM_Taskview_Test{
                 System.assertEquals(IPM_Utils.CD,projRes.IPM_Role_Type__c, 'Role Assignment Failed');
             }
         }
+        
         //View page as CD user
         System.runAs(cdUser){
+            
             List<IPM_Project__c>  projectList1 = [SELECT Id,IPM_Complexity__c,IPM_PM_Approach__c,IPM_Market_Type__c,Deputy_Project_Leader__c,IPM_Technical_Project_Leader__c 
                                                  FROM IPM_Project__c where Name=:PROJECT_NAME];
+            
             sc = new ApexPages.StandardController(projectList1[0]);
-            taskview =new IPM_Taskview(sc);
+            taskview = new IPM_Taskview(sc);
+            
             System.assertEquals(false,taskview.isupdateDates, 'updateDates is checked');
             System.assertEquals(false,taskview.isMilestoneEditable, 'isMilestoneEditable is checked');
             System.assertEquals(TRUE,taskview.isTaskeditable, 'isTaskeditable is unchecked');
             System.assertEquals(TRUE,taskview.isCreateTask, 'isCreateTask is unchecked');
             
-        }
-        Test.stopTest();
+         }
+       Test.stopTest();
     }
     
     /***********************************
@@ -280,16 +297,20 @@ private class IPM_Taskview_Test{
        
        //get Guest user
        User globalGuestUser = [Select Id,LastName from User where LastName=:GLOBAL_BD_OWNER limit 1]; 
+       
        Test.startTest(); 
        //create test data as PL
         System.runAs(globalUser){
             initializedData();
+            
             List<IPM_Project__c>  projectList = [SELECT Id,IPM_Complexity__c,IPM_PM_Approach__c,IPM_Market_Type__c,Deputy_Project_Leader__c,IPM_Technical_Project_Leader__c 
                                                  FROM IPM_Project__c where Name=:PROJECT_NAME];
+            
             //change users role from BD to Guest
             list<IPM_Project_Resource__c> projectResourceResultList = [SELECT Id,IPM_Role_Type__c,IPM_Project__c FROM IPM_Project_Resource__c WHERE IPM_Project__c =:projectList[0].Id];
             projectResourceResultList[0].IPM_Role_Type__c = IPM_Utils.Guest;
             update projectResourceResultList[0];
+            
             //check if the role has been changed to Guest
             list<IPM_Project_Resource__c> projectResUpdatedList = [SELECT Id,IPM_Role_Type__c,IPM_Project__c FROM IPM_Project_Resource__c WHERE IPM_Project__c =:projectList[0].Id];
             for(IPM_Project_Resource__c projRes : projectResUpdatedList)
@@ -297,21 +318,22 @@ private class IPM_Taskview_Test{
                 System.assertEquals(IPM_Utils.Guest,projRes.IPM_Role_Type__c, 'Role Assignment Failed');
             }
         }
-       
+        
         //View page as Guest
         System.runAs(globalGuestUser){
             List<IPM_Project__c>  projectList1 = [SELECT Id,IPM_Complexity__c,IPM_PM_Approach__c,IPM_Market_Type__c,Deputy_Project_Leader__c,IPM_Technical_Project_Leader__c 
                                                  FROM IPM_Project__c where Name=:PROJECT_NAME];
-                      
+            
+            
             sc = new ApexPages.StandardController(projectList1[0]);
-            taskview =new IPM_Taskview(sc);
+            taskview = new IPM_Taskview(sc);
             
             System.assertEquals(false,taskview.isMilestoneEditable, 'MilestoneEditable is checked');
             System.assertEquals(false,taskview.isupdateDates, 'isupdateDates is checked');
         }
-        Test.stopTest();
+       Test.stopTest();
     }
-    
+   
     
     /***********************************
       @name: testSaveTaskComplexity
@@ -324,12 +346,16 @@ private class IPM_Taskview_Test{
         
         //get PL
         User globalUser = [Select Id,LastName from User where LastName=:GLOBAL_PL limit 1]; 
+       
         Test.startTest();
+        
         //Create test data
         System.runAs(globalUser){
+            
             initializedData();
             List<IPM_Project__c>  projectList1 = [SELECT Id,IPM_Complexity__c,IPM_PM_Approach__c,IPM_Market_Type__c,Deputy_Project_Leader__c,IPM_Technical_Project_Leader__c,IPM_Child_Complexity__c 
                                                  FROM IPM_Project__c where Name=:PROJECT_NAME];
+            
             //update project complexity
             sc = new ApexPages.StandardController(projectList1[0]);
             taskview =new IPM_Taskview(sc);
@@ -338,15 +364,15 @@ private class IPM_Taskview_Test{
             taskview.FunctionRole=IPM_ConstantUtils.BLANK;
             taskView.ComplexityType= IPM_ConstantUtils.COMPLEXITY_LITE;
             taskView.saveComplexityType();
+            
             //Check if project's complexity has been changed
             List<IPM_Project__c>  projectList2 = [SELECT Id,IPM_Complexity__c,IPM_PM_Approach__c,IPM_Market_Type__c,Deputy_Project_Leader__c,IPM_Technical_Project_Leader__c,IPM_Child_Complexity__c
                                                  FROM IPM_Project__c where Name=:PROJECT_NAME];
+            
             system.assertEquals(projectList2[0].IPM_Child_Complexity__c,IPM_ConstantUtils.COMPLEXITY_LITE, 'Child Complexity Not Matched');
         }
         Test.stopTest();   
         
     }
     
-    
-        
 }

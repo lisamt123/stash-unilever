@@ -45,6 +45,8 @@ private class IPM_TaskCompCtrl_Test{
            insert projectList;
          }  
          system.assertEquals(projectList.size(),8,'Projects are not created');
+         
+  
            //check if the created projects are having the same complexity type as assigned while creating
           list<IPM_Project__c> projectsResultList = [SELECT Id,IPM_Phase__c,IPM_Complexity__c FROM IPM_Project__c where Name IN:projectNameSet];
           for(IPM_Project__c project : projectsResultList)
@@ -62,7 +64,6 @@ private class IPM_TaskCompCtrl_Test{
       @throws: none
     ***********************************/
     public static void initializedData(){
-        
         
         projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,
                             (Select Id from Project_Documents__r),
@@ -83,7 +84,7 @@ private class IPM_TaskCompCtrl_Test{
     
     /****************************************************
      *  @name: initializedData
-    * @description: testMethod to test constructor
+     *  @description: testMethod to test constructor
 
     ****************************************************/
    public static testMethod  void taskCompCtrlConstructorTest(){
@@ -109,6 +110,7 @@ private class IPM_TaskCompCtrl_Test{
         
     }
    
+  
    /******************************************************
     * @name: taskTest
     * @description: test general task functionality
@@ -117,6 +119,7 @@ private class IPM_TaskCompCtrl_Test{
    public static testmethod void taskTest(){
        //get user
        User globalUser = [Select Id,LastName from User where LastName=:USER_NAME limit 1];
+       
        //run as PL
        System.runAs(globalUser) 
        {
@@ -135,14 +138,14 @@ private class IPM_TaskCompCtrl_Test{
         ipm.setPhase(tasklist[0].id);
         ipm.getPhase();
         system.assertEquals(tasklist[0].id, ipm.getPhase(),'task phase is not same');
-        ipm.setUser(userinfo.getuserid());
+		ipm.setUser(userinfo.getuserid());
         ipm.getUser();
-        system.assertEquals(userinfo.getuserid(), ipm.getUser());
         
         system.assertEquals(userinfo.getuserid(), ipm.getUser(),'User is not same');
         
 		ipm.getProjectTasks();//get project specific task
         system.assertEquals(tasklist[0].id, ipm.getTaskId(),'tasks are not same');
+                
 		ipm.toggleDueDate();//sort with due date
         ipm.toggleSortTasks();//sort with task name
         ipm.toggleSortSections();//sort with task section
@@ -158,15 +161,11 @@ private class IPM_TaskCompCtrl_Test{
         ipm.markComplete();//mark task as completed
         ipm.deleteTask();//delete task
         ipm.markComplete();//mark task as completed
-        
         ipm.SaveIPMApproach();//change project approch
-        
-        
-        
         ipm.postProcessing(taskList);//TASK LIST FOR POST PROCESSING
-    
+                
 	//used by security		
-        ipm.IsTaskEditable = true;//used by security
+	ipm.IsTaskEditable = true;//used by security
         ipm.IsAllEditable = true;//used by security
         ipm.UFunctionRole = 'Test';//this property needs to be removed.
         ipm.pmApproachMessage = true;
@@ -179,6 +178,7 @@ private class IPM_TaskCompCtrl_Test{
         try{
         
         ipm = new IPM_TaskCompCtrl();
+		System.assertEquals(ipm, null,'error has occured while instantiating');
         }catch(Exception e){
             ApexPages.Message[] pageMessages = ApexPages.getMessages();
             System.assertNotEquals(0, pageMessages.size());

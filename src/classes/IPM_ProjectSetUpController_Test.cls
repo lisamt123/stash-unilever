@@ -6,17 +6,13 @@
 @isTest
 private class IPM_ProjectSetUpController_Test {
     //*@Description: Object Variable decleration 
-    public static Map<Id,IPM_Company_Card__c> companyCardMap;
-    public static List<IPM_User_Profile__c> userProfileList;
-    //public static List<IPM_Project_Resource__c> ipmProjectResourcex;
-    public static List<IPM_ProjectMetadata__c> projectMetadata;
+    private static Map<Id,IPM_Company_Card__c> companyCardMap;
+    private static List<IPM_User_Profile__c> userProfileList;
     public static List<IPM_Project__c> projectDependents;
     public static IPM_Project__c projectWithOutBoss;
-    public static IPM_Bosscard__c bosscard;
     public static MDO_BrandPositions__c mdoBrandPositions;
     public static User userInitialize; 
     public static IPM_Market_Cluster_Short_Names__c marketClusterName;
-    //public static IPM_Project_Rollout__c childProject;
     public static IPM_ProjectSetUpController  sic;
     /**************************************************
     * @description : Master data 
@@ -31,11 +27,10 @@ private class IPM_ProjectSetUpController_Test {
         List<User>plUserList=new List<User>();
         plUserList.add(userInitialize);
         //initializing the lists
-        projectMetadata = new List<IPM_ProjectMetadata__c>();
         companyCardMap = new Map<Id,IPM_Company_Card__c>();
         userProfileList = new List<IPM_User_Profile__c>();
         //Insert Custom Setting of Project Metadata
-        projectMetadata = IPM_TestFactory_Helper.createIPMProjectMetadata();
+        IPM_TestFactory_Helper.createIPMProjectMetadata();
         //insert custom setting of IPM_Market_Cluster_Short_Names__c
         marketClusterName=IPM_TestFactory_Helper.createMarketshortName(false);
         insert marketClusterName;

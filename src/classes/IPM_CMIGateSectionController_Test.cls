@@ -7,18 +7,18 @@
 @isTest
 private class IPM_CMIGateSectionController_Test {
     
-    public static IPM_Project__c project;// Project object initialization
-    public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+    private static IPM_Project__c project;// Project object initialization
+    private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     private static PageReference pRef;
     private static User stdUserForCMIGATE;
-    public static IPM_Gate_CMI__c gateCmi;
-    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
-    public static IPM_Project_Document_Section_Content__c projDocSecCon;
-    public static IPM_CMIGateSectionController ipmCmiCon;
-    public static User globalUser;
+    private static IPM_Gate_CMI__c gateCmi;
+    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    private static IPM_Project_Document_Section_Content__c projDocSecCon;
+    private static IPM_CMIGateSectionController ipmCmiCon;
+    private static User globalUser;
     private static final string TEST_COMMENTS_STR='TestComments1';
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
-    public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
+    private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     /*************************************************************************************************************************
     * @description Test Data
     */

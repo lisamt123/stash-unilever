@@ -11,7 +11,7 @@
 private class IPM_DueDateNotificationBatch_Test { 
     private static User platformUser;
     private static List<IPM_Project__c> projectList  ;
-    private static final String  FEED_UPDATED_ASSERT = 'Feed Updated';
+    private static final String  FEED_UPDATED_ASSERT = 'Feed Not Updated';
     private static final String PROJECT_NOT_INSERTED = 'Projects Not Inserted';
     private static final String MILESTONE_NOT_INSERTED='Milestone is not inserted';
     private static final String MILESTONE_NOT_UPDATED='Milestone is not updated';
@@ -35,6 +35,7 @@ private class IPM_DueDateNotificationBatch_Test {
      @testSetup static void projectSetUpData() 
      {
      	iDs = new Set<Id>();
+     	
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
             platformUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
         }
@@ -50,6 +51,7 @@ private class IPM_DueDateNotificationBatch_Test {
             iDs.add(eachCompanyCard.Id);
         }
         System.assertEquals(3, [Select count() from IPM_Company_Card__c where id in:iDs],COMPANY_CARD_NOT_INSERTED );
+        
          IPM_TestFactory_Helper.getProjectMasterData();
          List<IPM_Project__c>masterList=[Select id,IPM_Project_Type__c from IPM_Project__c where Name='IPM_MasterProject'];
          List<IPM_Project__c> updatedList = new List<IPM_Project__c>();
@@ -65,11 +67,12 @@ private class IPM_DueDateNotificationBatch_Test {
          for(IPM_Project__c eachProj : updatedList) {
            iDs.add(eachProj.Id);
          }
-         List<IPM_Project__c> masterProj=[Select IPM_Project_Type__c from IPM_Project__c where id in:iDs];
-         for(IPM_Project__c eachProj:masterProj)
+         List<IPM_Project__c> masterProjList=[Select IPM_Project_Type__c from IPM_Project__c where id in:iDs];
+         for(IPM_Project__c eachProj:masterProjList)
          {
          	System.assertEquals(eachProj.IPM_Project_Type__c,IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_NOT_UPDATED);
          }	
+         
          projectList = IPM_TestFactory_Helper.projectSetUp(20,platformUser);
          
          System.runAs(platformUser)
@@ -119,6 +122,7 @@ private class IPM_DueDateNotificationBatch_Test {
             }
          }
          update lstProjects; 
+         
          iDs.clear();
          for(IPM_Project__c eachProj : lstProjects) {
            iDs.add(eachProj.Id);
@@ -128,12 +132,13 @@ private class IPM_DueDateNotificationBatch_Test {
          {
          	System.assertEquals(eachProj.IPM_Project_Type__c,IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_NOT_UPDATED);
          }	
+         
          update lstIpmMilestones;     
          for(IPM_Milestone__c milestone : lstIpmMilestones)
          {
          	System.assertEquals(milestone.IPM_Due_Date__c,mileStoneDuteDate,MILESTONE_NOT_UPDATED);
          }
-         
+                  
          list<IPM_Project__c> updatedProjectList = [Select IPM_Project_Type__c,Id,IPM_Phase__c,Name,IPM_PM_Approach__c,IPM_Complexity__c,IPM_Project_Gatekeeper__c,
                                                    (Select Id,Name,IPM_Planned_Date__c,IPM_Due_Date__c,IPM_Type_of_gate__c,IPM_Phase__c from IPM_Milestones__r)
                                                    from IPM_Project__c where Name in:projectNameSet];
@@ -247,7 +252,7 @@ private class IPM_DueDateNotificationBatch_Test {
                 System.assertEquals(milestone.IPM_Milestone_Due_Date_In_Past__c,true,MILESTONE_DUE_DATE_IN_PAST);
             }
         }
-    }
+    } 
     
     /***********************************
       @name: executeBatch

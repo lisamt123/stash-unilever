@@ -40,7 +40,7 @@ private class IPM_MyList_Test{
              
             List<User> userList = new List<User>{platformUser,BDUser};
             update userList;
-            System.assertEquals(2, [Select Id from User where lastname IN (:GLOBAL_PL, :GLOBAL_BD) limit 100].size(), 'User information is not updated properly.');
+            System.assertEquals(2, [Select count() from User where lastname IN (:GLOBAL_PL, :GLOBAL_BD) limit 100], 'User information is not updated properly.');
         }
         // Create Company Card information 
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -49,7 +49,7 @@ private class IPM_MyList_Test{
         
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
-        System.assertEquals(3, [Select Id from IPM_Company_Card__c limit 100].size(), '3 Company cards are not inserted.');
+        System.assertEquals(3, [Select count() from IPM_Company_Card__c limit 100], '3 Company cards are not inserted.');
          IPM_TestFactory_Helper.getProjectMasterData();
          
          // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
@@ -62,7 +62,7 @@ private class IPM_MyList_Test{
          }
          List<IPM_Project__c> projectDBList = [Select id from IPM_Project__c limit 1000];
            
-         system.assertEquals(9 , projectDBList.size(),'Projects are created');
+         system.assertEquals(9 , projectDBList.size(),'Projects are not created');
       }
       
       /*
@@ -72,7 +72,8 @@ private class IPM_MyList_Test{
     Test.startTest/Test.stopTest and System.runAs() is used in testmethods from where this method is called.
     */
       private static list<IPM_Task__c> getTaskList()
-     {
+      {
+      	
         list<IPM_Task__c> taskList;
         projIdSet =  new Set<Id>();
         projResourceList = new list<IPM_Project_Resource__c>();
@@ -91,7 +92,7 @@ private class IPM_MyList_Test{
             {
                 for(IPM_Task__c task : project.Tasks__r)
                 {
-                    system.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'task complexity matches with project complexity'); 
+                    system.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'task complexity does not match with project complexity'); 
                     taskList.add(task);       
                 }
                 
@@ -106,7 +107,8 @@ private class IPM_MyList_Test{
         
         return taskList;
      }
-    /*
+     
+     /*
      @description:  This testmethod is used to test overall positive functionality of IPM_MyList
     */ 
      private static testmethod void myListTest(){
@@ -219,7 +221,7 @@ private class IPM_MyList_Test{
             
             list<IPM_Task__c> taskList = [select id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Due_Date1__c,IPM_Completed__c from IPM_Task__c where IPM_Due_Date1__c!= null and IPM_Project__c IN:projIdSet limit 100];
             for(IPM_Task__c task :taskList){
-                system.assertEquals(task.IPM_Due_Date1__c!= null,true,'Due dates are not null');
+                system.assertEquals(task.IPM_Due_Date1__c!= null,true,'Due dates should not be null');
             }
             taskListTest = new IPM_MyList();
             overdueTask = taskListTest.getOverduetasksSample();
@@ -233,15 +235,15 @@ private class IPM_MyList_Test{
             taskListTest.showAllLaterTasks();
             
             overdueTaskQuery = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c < :system.Today() AND IPM_Completed__c = false AND IPM_Project__c in:projIdSet limit 1000];
-            system.assertEquals(overdueTask[0].IPM_Due_Date1__c,overdueTaskQuery[0].IPM_Due_Date1__c,'overdue tasks due dates matched');
-            system.assertEquals(overdueTask.size(),overdueTaskQuery.size(),'Overdue tasks count matched with actual created data');
+            system.assertEquals(overdueTask[0].IPM_Due_Date1__c,overdueTaskQuery[0].IPM_Due_Date1__c,'overdue tasks due dates are not matched');
+            system.assertEquals(overdueTask.size(),overdueTaskQuery.size(),'Overdue tasks count is not matched with actual created data');
             
             todayTaskQuery = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c = :system.Today() AND IPM_Completed__c = false AND  IPM_Project__c in:projIdSet limit 1000];
-            system.assertEquals(todayTask[0].IPM_Due_Date1__c,todayTaskQuery[0].IPM_Due_Date1__c,'todays tasks due dates matched');
-            system.assertEquals(todayTask.size(),todayTaskQuery.size(),'today tasks count matched with actual created data');
+            system.assertEquals(todayTask[0].IPM_Due_Date1__c,todayTaskQuery[0].IPM_Due_Date1__c,'todays tasks due dates are not matched');
+            system.assertEquals(todayTask.size(),todayTaskQuery.size(),'today tasks count is not matched with actual created data');
             String sAssertMsg = 'seven days tasks count is not matched with actual created data';
             sevenDaysQry = [SELECT Id,IPM_Due_Date1__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Due_Date1__c > :system.Today() AND IPM_Due_Date1__c < :system.Today().addDays(7) AND IPM_Completed__c = false AND  IPM_Project__c in:projIdSet limit 1000];
-            system.assertEquals(sevendaysTask[0].IPM_Due_Date1__c,sevenDaysQry[0].IPM_Due_Date1__c,'seven days tasks due dates matched');
+            system.assertEquals(sevendaysTask[0].IPM_Due_Date1__c,sevenDaysQry[0].IPM_Due_Date1__c,'seven days tasks due dates are not matched');
             system.assertEquals(2,sevenDaysQry.size(),sAssertMsg);
             
             system.assertEquals(2,laterTask.size(),sAssertMsg);
@@ -277,7 +279,7 @@ private class IPM_MyList_Test{
                     updatedTaskTest.add(ipmTask);
                 }
                 update updatedTaskTest;
-                system.assertEquals(4, [Select Id from IPM_Task__c where IPM_Completed__c = true and IPM_Project__c in:projIdSet limit 1000].size() , 'tasks are not updated');
+                system.assertEquals(4, [Select count() from IPM_Task__c where IPM_Completed__c = true and IPM_Project__c in:projIdSet limit 1000] , 'tasks are not updated');
                 
                 taskListTest = new IPM_MyList();
                 taskListTest.getOverduetasksSample();
@@ -286,7 +288,7 @@ private class IPM_MyList_Test{
                 taskListTest.getLaterTasks();
                 completedTask = taskListTest.getcompletedTasks();
                 taskListTest.showCompletedTasks();
-                system.assertEquals(completedTask.size(),4,'4 tasks are marked as completed');
+                system.assertEquals(completedTask.size(),4,'4 tasks are not marked as completed');
              }   
         Test.stopTest();
     }
@@ -391,6 +393,7 @@ private class IPM_MyList_Test{
                 for(Apexpages.Message msg : msgs){
                     message  = true;
                 }
+                
                 system.assertEquals(message  ,true, sAssertionMsgForPageMessage);
                 
                 
@@ -527,7 +530,7 @@ private class IPM_MyList_Test{
              	tskList.loadTasks();
              }
              
-        Test.startTest();  
+        	Test.startTest();  
         
             User globalBDUser = [Select Id,LastName from User where LastName=:GLOBAL_BD limit 1];   
             // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
@@ -543,7 +546,7 @@ private class IPM_MyList_Test{
                 
                 system.assertEquals(updatedTaskTest.size(),8,sAssertionMsgForTaskBeingUpdated); 
             }
-        Test.stopTest();
+        	Test.stopTest();
     
      	
      

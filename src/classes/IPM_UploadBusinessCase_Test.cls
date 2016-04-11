@@ -42,10 +42,11 @@ private class IPM_UploadBusinessCase_Test {
                 IPM_UploadBusinessCase att = new IPM_UploadBusinessCase();
                 att.filebody = b;
                 Test.setCurrentPageReference(new PageReference('Page.myPage')); 
-                System.currentPageReference().getParameters().put('parentId', projectList[0].id);
+                System.currentPageReference().getParameters().put('parentId', projectList[1].id);
                 att.saveBusinessCase();
                 List<Attachment>attsList=[SELECT ParentId FROM Attachment WHERE ParentId=:projectList[1].id LIMIT 1];
                 system.assertEquals(attsList.size(),0,'attachment is not created');         
+                 
             }
         test.stoptest();
         

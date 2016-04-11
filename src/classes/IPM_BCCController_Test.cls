@@ -40,7 +40,7 @@ private class  IPM_BCCController_Test {
         insert companyCardList;
         
         List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
-        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card not created successfully');
         
         IPM_TestFactory_Helper.getProjectMasterData();
         projectList = IPM_TestFactory_Helper.projectSetUp(1,testUser);
@@ -48,12 +48,12 @@ private class  IPM_BCCController_Test {
             insert projectList;
             project=projectList[0];
             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
-            System.assertEquals(projlList1[0].Name,'TestComments1','project inserted');//positive test
+            System.assertEquals(projlList1[0].Name,'TestComments1','project not created successfully');//positive test
             
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{testUser,testUser,testUser});
             insert regionalRolloutList;
             List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
-            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
+            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout not created successfully');//positive test
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
             List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
@@ -73,7 +73,7 @@ private class  IPM_BCCController_Test {
             
             insert localRolloutList; 
             List<IPM_Project_Rollout__c> proLocListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:localRolloutList[0].ID LIMIT 1];
-            System.assertEquals(proLocListObj[0].IPM_Rollout_Span__c,LOCAL_STR,'local rollout created');//positive test
+            System.assertEquals(proLocListObj[0].IPM_Rollout_Span__c,LOCAL_STR,'local rollout not created successfully ');//positive test
             
             // Create Country specific information.
             mdo = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId);
@@ -98,14 +98,14 @@ private class  IPM_BCCController_Test {
             insert countryList;
             
             List<IPM_Country__c>counList=[select Id,IPM_Rollout_Status__c from IPM_Country__c where Id=:countryList[0].Id limit 1];
-            system.assertEquals(counList[0].IPM_Rollout_Status__c,'With MCO','country inserted');
+            system.assertEquals(counList[0].IPM_Rollout_Status__c,'With MCO','country not created successfully');
             
 
             project.IPM_Target_Launch_Dates__c=system.today();
             update project;
             
             List<IPM_Project__c> proListObj=[SELECT IPM_Target_Launch_Dates__c from IPM_Project__c WHERE ID=:project.ID LIMIT 1];
-            System.assertEquals(proListObj[0].IPM_Target_Launch_Dates__c,system.today(),'project updated successfully');//positive test
+            System.assertEquals(proListObj[0].IPM_Target_Launch_Dates__c,system.today(),'project not updated successfully');//positive test
             
             String strRecordTypeId1=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
             fin = IPM_TestFactory_Helper.createIPMFinancial(FALSE);
@@ -118,7 +118,7 @@ private class  IPM_BCCController_Test {
             insert fin;
             
             List<IPM_Financial__c> finListObj=[SELECT Local_Project__c,ID,Project_Sustainability_Period__c,RecordTypeId,IPM_Project_Rollout__c,Parent_Project__c from IPM_Financial__c WHERE ID=:fin.ID LIMIT 1];
-            System.assertEquals(finListObj[0].Local_Project__c,project.Id,'finance data created');//positive test
+            System.assertEquals(finListObj[0].Local_Project__c,project.Id,'finance data not created successfully');//positive test
             
             pRef = Page.IPM_ProjectDocumentSectionEditor;
             pRef.getParameters().put('Id',project.Id);
@@ -142,7 +142,7 @@ private class  IPM_BCCController_Test {
             ipmBcc.tldAlignment=true;
             ipmBcc.save();
             List<IPM_Financial__c> finConList=[select Local_Project__c from IPM_Financial__c where id=:ipmBcc.finance.Id ];
-            system.assertEquals(finConList[0].Local_Project__c ,fin.Local_Project__c,'save successfully');
+            system.assertEquals(finConList[0].Local_Project__c ,fin.Local_Project__c,'save failed');
             ipmBcc.finance.IPM_Business_Case_Confirmed__c=null;
             ipmBcc.save();
             List<IPM_Financial__c> finConLists=[select IPM_Business_Case_Confirmed__c from IPM_Financial__c where id=:ipmBcc.finance.Id ];
@@ -166,11 +166,11 @@ private class  IPM_BCCController_Test {
             ipmBcc.changeStatus();
             ipmBcc.hideSaveMsg();
             List<IPM_Financial__c> finConList=[select IPM_Business_Case_Confirmed__c from IPM_Financial__c where id=:ipmBcc.finance.Id ];
-            system.assert(finConList[0].IPM_Business_Case_Confirmed__c,'status changed');
+            system.assert(finConList[0].IPM_Business_Case_Confirmed__c,'status not changed');
             ipmBcc.finance.id=null;
             ipmBcc.changeStatus();
             List<IPM_Financial__c> finConLists=[select IPM_Business_Case_Confirmed__c from IPM_Financial__c where id=:fin.Id ];
-            system.assertNotEquals(!finConLists.isEmpty(),true,'status should not be changed for financial');//negative test
+            system.assertNotEquals(!finConLists.isEmpty(),true,'Financial list should be empty');//negative test
            
             Test.stopTest();
         }

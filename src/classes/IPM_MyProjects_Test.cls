@@ -27,7 +27,7 @@ private class IPM_MyProjects_Test{
         
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
-        System.assertEquals(3, [Select Id from IPM_Company_Card__c limit 100].size(), 'Comapny cards are not inserted');
+        System.assertEquals(3, [Select count() from IPM_Company_Card__c limit 100], 'Comapny cards are not inserted');
         
          IPM_TestFactory_Helper.getProjectMasterData();
          
@@ -50,9 +50,8 @@ private class IPM_MyProjects_Test{
          List<IPM_Project__c> projectDBList = [Select id from IPM_Project__c limit 100];
            
          system.assertEquals(6, projectDBList.size(),'Projects are not created');
-         
-      }
-    
+     }
+     
      private static void createTestData(){   
         Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5'};
         projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,

@@ -1,8 +1,8 @@
 @isTest(SeeAllData=false)
 private class IPM_ProjectOverviewCtrol_Test {
     private static Set<Id> iDs ;
-    private static final String MILESTONE_CREATED='Milestone is created';
-    private static final String PROJ_CREATED='Projects are created';
+    private static final String MILESTONE_CREATED='Milestone is not created';
+    private static final String PROJ_CREATED='Projects are not created';
     private static final String sPageRefURL = 'apex/IPM_ProjectOverview?Id=';
     private static final String GLOBAL_PL_USER = 'GLOBAL_PL';
 	private static final String REGIONAL_PL_USER = 'REGIONAL_PL';
@@ -15,7 +15,7 @@ private class IPM_ProjectOverviewCtrol_Test {
         *  @name projectSetUp
     */
     
-        @testSetup static void projectSetUp() 
+     @testSetup static void projectSetUp() 
      {
          // Create an instance of admin user.
          User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
@@ -34,7 +34,7 @@ private class IPM_ProjectOverviewCtrol_Test {
             
             List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader};
             update userList;
-            System.assertEquals(2 , [Select Id from User where Id IN (:globalProjectLeader.Id, :regionalProjectLeader.Id) limit 100].size() , 'Users are not updated successfully.');
+            System.assertEquals(2 , [Select count() from User where Id IN (:globalProjectLeader.Id, :regionalProjectLeader.Id) limit 100] , 'Users are not updated successfully.');
          
             // Create Company Card information(Master Data)
             IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -45,7 +45,7 @@ private class IPM_ProjectOverviewCtrol_Test {
             for(IPM_Company_Card__c eachCompanyCard : companyCardList) {
               iDs.add(eachCompanyCard.Id);
             }
-            System.assertEquals(2, [Select count() from IPM_Company_Card__c where id in:iDs],'Company Cards are created');
+            System.assertEquals(2, [Select count() from IPM_Company_Card__c where id in:iDs],'Company Cards are not created');
           
             
             // Inserting Master Data whose OWD are set to readOnly/View All    
@@ -117,7 +117,7 @@ private class IPM_ProjectOverviewCtrol_Test {
             for(IPM_Project_Rollout__c eachRollout : regionalRolloutList) {
              iDs.add(eachRollout.Id);
             }
-            System.assertEquals(6, [Select count() from IPM_Project_Rollout__c where id in:iDs],'Regional Rollouts created');
+            System.assertEquals(6, [Select count() from IPM_Project_Rollout__c where id in:iDs],'Regional Rollouts are not created');
             
             
             Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
@@ -156,12 +156,13 @@ private class IPM_ProjectOverviewCtrol_Test {
             List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalProjectLeader); 
             
             update projectListPhaseChange;
-            
             Test.stopTest();
             iDs.clear();
+            
             for(IPM_Project__c project : projectListPhaseChange){
             	iDs.add(project.Id);
             }
+            
             for(IPM_Project__c project : [Select Id, IPM_Phase__c from IPM_Project__c where Id In : iDs limit 100])
             	System.assertEquals( IPM_ConstantUtils.PHASE_FEASIBILITY,  project.IPM_Phase__c , 'Project phase has not been updated.');
             
@@ -229,6 +230,7 @@ private class IPM_ProjectOverviewCtrol_Test {
         	IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
         	IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
         	system.assert(overCtrl1.childProjectsIncompleteAlert != null, 'There are no alerts for child projects progression through phases.');
+        	
        }
     }
 

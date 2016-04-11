@@ -42,13 +42,13 @@ private class IPM_SyncFinanceTableTLD_Test {
     /*
     1.  All the individual tests need unique data setup. 
         Use of single setup method to set all the data will raise too many SOQL exception. 
-        In order to avoid the exception the data setup has been into several methods so that the data setup methods get its own governor limits.
+        In order to avoid the exception the data setup has been split into several methods so that each data setup method get its own governor limits.
     
     2.  The data setup varies for test scenarios, looks like duplicate code block but not. 
         Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
     */
     static void setupOperationalProjects() {
- 		Test.startTest();
+        Test.startTest();
         Date targetLaunchDate = System.today().addYears(3);
         //Creation test user
         User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
@@ -95,7 +95,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             projOpeReg.IPM_Temporary_Phase__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             projOpeReg.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
             projOpeReg.IPM_Target_Launch_Dates__c = targetLaunchDate;
-			projList.add(projOpeReg);
+            projList.add(projOpeReg);
             
             IPM_Project__c projOpeLcl = IPM_TestFactory_Helper.createIPMProject(false);
             projOpeLcl.Name=TESTPROJ_OPRL_LCL;
@@ -108,12 +108,12 @@ private class IPM_SyncFinanceTableTLD_Test {
             projOpeLcl.IPM_Temporary_Phase__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             projOpeLcl.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
             projOpeLcl.IPM_Target_Launch_Dates__c = targetLaunchDate;
-			projList.add(projOpeLcl);
+            projList.add(projOpeLcl);
             
             insert projList; 
 
- 			List<IPM_Financial__c> fins = new List<IPM_Financial__c>();
- 			
+            List<IPM_Financial__c> fins = new List<IPM_Financial__c>();
+            
             IPM_Financial__c fin1=new IPM_Financial__c();
             String defaultRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Default'].Id;
             fin1.RecordTypeId=defaultRecordTypeId;
@@ -153,9 +153,11 @@ private class IPM_SyncFinanceTableTLD_Test {
             for(IPM_Project__c proj:  projlList) {
                 projNames.add(proj.name);
             }
+            
             System.assert(projNames.contains(TESTPROJ_OPRL_GBL),'The project list should contain TESTPROJ_OPRL_GBL');
             System.assert(projNames.contains(TESTPROJ_OPRL_REG),'The project list should contain TESTPROJ_OPRL_REG');
             System.assert(projNames.contains(TESTPROJ_OPRL_LCL),'The project list should contain TESTPROJ_OPRL_LCL');
+            
             List<IPM_Financial__c> finList=[SELECT Name,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c like 'TESTPROJ_OPRL_%' limit 5];
             System.assertEquals(finList.size(), 3,'The financials size must be 3');
             
@@ -168,16 +170,17 @@ private class IPM_SyncFinanceTableTLD_Test {
             System.assert(finExtIds.contains(TESTPROJ_OPRL_REG),'The Financials list should contain TESTPROJ_OPRL_REG');
             System.assert(finExtIds.contains(TESTPROJ_OPRL_LCL),'The Financials list should contain TESTPROJ_OPRL_LCL');
             
-        }   	
+        }       
     }
     /*
     1.  All the individual tests need unique data setup. 
         Use of single setup method to set all the data will raise too many SOQL exception. 
         In order to avoid the exception the data setup has been into several methods so that the data setup methods get its own governor limits.
+    
     2.  The data setup varies for test scenarios, looks like duplicate code block but not. 
         Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
     */
- 	static void setupRegionalOriginalIdeasPhaseData(){
+    static void setupRegionalOriginalIdeasPhaseData(){
         Test.startTest();
         Date targetLaunchDate = System.today().addYears(3);
         //Creation test user
@@ -286,12 +289,16 @@ private class IPM_SyncFinanceTableTLD_Test {
             Test.stopTest();
             
             List<IPM_Financial__c> finList=[SELECT Name,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c like 'TestProject001_REG%' limit 5];
+            
             Set<String> finExtIds = new Set<String>();
             for(IPM_Financial__c financial:  finList) {
                 finExtIds.add(financial.Financial_External_ID__c);
             }
+            
             System.assert(finExtIds.contains('TestProject001_REG_CONSOLIDATED'),'The Financials list should contain TestProject001_REG_CONSOLIDATED');
             System.assert(finExtIds.contains('TestProject001_REG_NONKEY'),'The Financials list should contain TestProject001_REG_NONKEY');
+            
+            
             List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE name=:TESTPROJECT001_REG limit 1];
             System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
             
@@ -314,6 +321,7 @@ private class IPM_SyncFinanceTableTLD_Test {
     1.  All the individual tests need unique data setup. 
         Use of single setup method to set all the data will raise too many SOQL exception. 
         In order to avoid the exception the data setup has been into several methods so that the data setup methods get its own governor limits.
+    
     2.  The data setup varies for test scenarios, looks like duplicate code block but not. 
         Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
     */
@@ -460,6 +468,7 @@ private class IPM_SyncFinanceTableTLD_Test {
     1.  All the individual tests need unique data setup. 
         Use of single setup method to set all the data will raise too many SOQL exception. 
         In order to avoid the exception the data setup has been into several methods so that the data setup methods get its own governor limits.
+    
     2.  The data setup varies for test scenarios, looks like duplicate code block but not. 
         Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
     */
@@ -533,7 +542,6 @@ private class IPM_SyncFinanceTableTLD_Test {
             rolloutProject.IPM_Project_Name__c=TESTPROJECT001_REG;
             rolloutProject.IPM_Parent_Project__c=project.ID;
             rolloutProject.IPM_ProjectJobType__c=PROJECT_CREATION;
-            rolloutProject.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
             insert rolloutProject; 
             
             List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
@@ -657,7 +665,6 @@ private class IPM_SyncFinanceTableTLD_Test {
             regionalProjList[0].IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
             update regionalProjList[0];
             System.assertEquals(IPM_ConstantUtils.PHASE_FEASIBILITY, regionalProjList[0].IPM_Phase__c,PROJ_PHASE_FEASIBILITY_MSG);
-            System.assertEquals(IPM_ConstantUtils.JOB_STATUS_COMPLETED, regionalProjList[0].IPM_Project_Job_Status__c,PROJ_STATUS_COMPLETED_MSG);
             System.assertEquals(targetLaunchDate, regionalProjList[0].IPM_Target_Launch_Dates__c,TLD_MATCH_MSG);
             System.assertEquals(PROJECT_CREATION, regionalProjList[0].IPM_ProjectJobType__c,'Project type should be Project Creation');
             System.assertEquals(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL, regionalProjList[0].IPMProject_Span__c,'Project span should be Regional');

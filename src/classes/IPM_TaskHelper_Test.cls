@@ -365,7 +365,6 @@ private class IPM_TaskHelper_Test{
                 //check if the tasks with different complexity as that of project's complxity are inactive 
                 if(task.IsSystemGenerated__c && task.IPM_Task_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL)
                 {
-                	system.debug('task..'+task);
                     system.assertEquals(task.IPM_Active__c,true, 'IPM_Active__c Is Checked');
                 }
                 //check if the tasks with same complexity as that of project's complxity are active 

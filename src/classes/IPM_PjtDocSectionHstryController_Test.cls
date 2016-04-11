@@ -6,11 +6,9 @@
 @isTest
 private class IPM_PjtDocSectionHstryController_Test {    
     private static IPM_Project__c project;// Project object initialization
-    private static IPM_Project_Document__c projDoc;
     private static User stdUserSecHistory;
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
-    private static List<SelectOption> secOpt=new List<SelectOption>();
     private static final string PROJECT_DOC_NOT_CREATED='Project Document not created';
     private static PageReference  pRef;
     private static IPM_ProjDocumentSectionHstryController projDocHistoryCont;
@@ -20,8 +18,6 @@ private class IPM_PjtDocSectionHstryController_Test {
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static User globalUser;
     private static IPM_Project_Document_Section__c docSec;
-    private static IPM_Project_Document__c document;
-    private static IPM_ProjectIntermediateController interCon;
     private static final string PHASE_CHANGE_FAILED='phase changed failed';
     /*************************************************************************************************************************
     * @description Test Data
@@ -42,7 +38,7 @@ private class IPM_PjtDocSectionHstryController_Test {
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
         List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
-        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card not inserted');
         
         IPM_TestFactory_Helper.getProjectMasterData();
         projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserSecHistory);
@@ -74,7 +70,6 @@ private class IPM_PjtDocSectionHstryController_Test {
                 projDocList = projectObj.Project_Documents__r;
                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_NOT_CREATED);
             }
-            document=projDocList[0];
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];
             system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id, 'Project Document does not match');

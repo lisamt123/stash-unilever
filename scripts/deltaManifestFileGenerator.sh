@@ -34,6 +34,7 @@ else
 	## Generate the file containing all the list of components to be which were commited
 	truncate -s 0 componentsFile.txt
 	sed 's/[a-zA-Z_]*\///g' components.txt >> componentsFile.txt
+	
 	echo ""
 	echo "***********************************************************"
 	echo "Total Number of components(Non Deleted): "$(cat components.txt | wc -l)
@@ -43,14 +44,14 @@ else
 	echo "***********************************************************"
 	echo "Total number Of newly added Components: " $(git diff --diff-filter=A  HEAD~$count --name-only | wc -l)
 	echo "Newly Added Components Are:"
-	git diff --diff-filter=A  HEAD~$count --name-only
+	#git diff --diff-filter=A  HEAD~$count --name-only
 	echo "***********************************************************"
 	
 	echo ""
 	echo "***********************************************************"
 	echo "Total number of deleted components: " $(git diff --diff-filter=D  HEAD~$count --name-only | wc -l)
 	echo "Deleted Components Are (Not included in component file):"
-	git diff --diff-filter=D  HEAD~$count --name-only
+	#git diff --diff-filter=D  HEAD~$count --name-only >> deletedComponents22Mar.txt
 	echo "***********************************************************"
 
 fi 

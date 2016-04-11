@@ -78,7 +78,7 @@ private class  IPM_BCC_Consolidate_Controller_Test{
             project.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
             update project;
             IPM_Project__c projectObjReg=[select IPMProject_Span__c from IPM_Project__c where id=:project.Id limit 1];
-            system.assertEquals(projectObjReg.IPMProject_Span__c,IPM_ConstantUtils.PROJECT_SPAN_REGIONAL,'Project Updated Successfully');
+            system.assertEquals(projectObjReg.IPMProject_Span__c,IPM_ConstantUtils.PROJECT_SPAN_REGIONAL,'Project Not Updated Successfully');
             
             IPM_BCC_Consolidate_Controller conReg=new IPM_BCC_Consolidate_Controller();
             conReg.projId=project.Id;

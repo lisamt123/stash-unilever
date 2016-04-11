@@ -32,26 +32,34 @@ private class IPM_ProjectOverviewCtrl_Test
 	static final String REGIONAL_PROJECTS_NOT_CREATED =  'regional projects are not created';
 	static final String MILESTONES_NOT_CREATED ='Milestones are not created.';
 	static final String TEST_PROJECT_NAME = 'Test Local Project';
+	
 	//BET Test data for BET test methods 
  @testSetup static void betDataInitializer(){
+
         Test.StartTest();
-    
+        
         test.loadData(IPM_Project_Type__c.sobjectType, 'IPM_ProjectType');//
         test.loadData(IPM_BET_Search_Fields__c.sobjectType, 'IPM_BET_Search_Test');//
         test.loadData(IPM_ProjectMetadata__c.sobjectType, 'IPM_Project_Metadata');//
+
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
             // User has to be created as a  system admin 
             stdUserForBET= IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
         } 
+        
         // creating BET's for  projects
         uw_BET__c bet1 = BET_TestUtils.getTestBet();
         bet1.name ='bet1';
+        
         uw_BET__c bet2 = BET_TestUtils.getTestBet();
         bet2.name ='bet2';
+        
         insert new List<uw_BET__c>{bet1,bet2  } ;
-        System.AssertEquals(2, [Select Id from uw_BET__c where Id IN  (:bet1.Id, :bet2.Id) limit 100].size(), 'The BET records are not inserted');
+        System.AssertEquals(2, [Select count() from uw_BET__c where Id IN  (:bet1.Id, :bet2.Id) limit 100], 'The BET records are not inserted');
+        
         List<IPM_Project__c>  orgProjList = IPM_TestFactory_Helper.createOriginalProjectList(false,2);
+        
         System.runAs(stdUserForBET)
         {
             orgProjList[1].IPM_Project_Name__c = 'TestPrjOrg';
@@ -60,16 +68,20 @@ private class IPM_ProjectOverviewCtrl_Test
             insert  orgProjList;
         }
         System.assertEquals(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL, [Select Id, IPM_Project_Type__c from IPM_Project__c where Id=: orgProjList[0].Id limit 100][0].IPM_Project_Type__c , 'Original project is not created.' );
+        
         list < BET_BETWrapper.MemberRequest > lstMemberRequests = new list < BET_BETWrapper.MemberRequest > ();
+        
         BET_BETWrapper.MemberRequest member = new BET_BETWrapper.MemberRequest();
         member.UserId = stdUserForBET.Id;
         member.AccessLevel = IPM_ConstantUtils.BET_MANAGER_ACCESS;
         lstMemberRequests.add(member);
         BET_AccessService.RequestAccess(lstMemberRequests, bet1.Id, orgProjList[0].id);
         BET_AccessService.RequestAccess(lstMemberRequests, bet2.Id, orgProjList[0].id);
+        
         System.runAs(stdUserForBET)
         {
             list<IPM_Project__c> projectList=IPM_TestFactory_Helper.createIPMProjectList(false,2);
+            
             projectList[0].IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
             projectList[0].IPM_Parent_Project__c = orgProjList[1].id;
             projectList[0].IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT; 
@@ -79,6 +91,7 @@ private class IPM_ProjectOverviewCtrl_Test
             projectList[0].IPMProject_Span__c = IPM_ConstantUtils.COMPANY_CARD_REGIONAL;
             projectList[0].IPM_CompanyCardText__c = IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
             projectList[0].IPM_Project_Leader__c = UserInfo.getuserId();
+            
             projectList[1].IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
             projectList[1].IPM_Parent_Project__c = orgProjList[1].id;
             projectList[1].IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
@@ -89,8 +102,10 @@ private class IPM_ProjectOverviewCtrl_Test
             projectList[1].IPM_CompanyCardText__c = IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
             projectList[1].IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
             projectList[1].IPM_Target_Launch_Dates__c = Date.Today();
+            
             insert projectList;
-            System.assertEquals(4, [Select Id from IPM_Project__c limit 100].size() , 'Projects are not created');
+            System.assertEquals(4, [Select count() from IPM_Project__c limit 100] , 'Projects are not created');
+            
             IPM_Project_Resource__c bdUser = IPM_TestFactory_Helper.createIPMProjectResource(orgProjList[1].id,false);
             bdUser.IPM_Role_Type__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
             bdUser.IPM_Project__c = orgProjList[1].id;
@@ -98,9 +113,10 @@ private class IPM_ProjectOverviewCtrl_Test
             insert bdUser;
             System.assertEquals( IPM_ConstantUtils.FUNCTIONAL_ROLE_BD, [Select Id, IPM_Role_Type__c from IPM_Project_Resource__c where Id =: bdUser.Id limit 100][0].IPM_Role_Type__c, 'Project resource with BD functional role is not created.');
             Test.stopTest(); 
+                   
           }
     }
-    
+   
     //This method is used to create required test data for test methods.
     static void initializedData()
     { 
@@ -113,7 +129,6 @@ private class IPM_ProjectOverviewCtrl_Test
         ipdt.IPM_Project_Template__c=projTempl.ID;
         ipdt.IPM_Document_Template_Name__c='Charter Full 1';
         ipdt.IPM_Document_Order__c=10;
-        
         insert ipdt;
         //Please note:- System.assert is not written here after DML, as this is intermediate test data and writing assertion for it is not that much significant. 
         //Create IPM Section
@@ -126,7 +141,7 @@ private class IPM_ProjectOverviewCtrl_Test
             secMstList.add(secMst);
         }
         insert secMstList;
-        System.assertEquals(20, [SELECT ID FROM IPM_Section__c LIMIT 100].size(), 'section records are not created');
+        System.assertEquals(20, [SELECT count() FROM IPM_Section__c LIMIT 100], 'section records are not created');
         
         //Create IPM Project
         project=IPM_TestFactory_Helper.createIPMProject(false);
@@ -149,6 +164,7 @@ private class IPM_ProjectOverviewCtrl_Test
         insert project;
         List<IPM_Project__c>projectLists=[SELECT IPM_Project_Leader__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
         System.assertEquals(userinfo.getuserid() , projectLists[0].IPM_Project_Leader__c, 'project leader is not :'+projectLists[0].IPM_Project_Leader__c);
+        
         //Create Project Document
         projDoc = IPM_TestFactory_Helper.createIPMProjectDocument(false);
         projDoc.IPM_Project__c=project.ID;
@@ -166,8 +182,8 @@ private class IPM_ProjectOverviewCtrl_Test
             projDocSec = IPM_TestFactory_Helper.createIPMProjectDocumentSection(false);
             projDocSec.IPM_Project_Document__c=projDoc.ID;
             projDocSec.IPM_Section__c=secMstList[i].Id;
-            projDocSec.IPM_Gate_Document_Summary__c='dgadsg&sdfgfdhsfgasdfasdfasdafasdfasdff';
-            projDocSec.IPM_Section_Name__c='Section Name'+i;
+            projDocSec.IPM_Gate_Document_Summary__c='Test Document Summary';
+            projDocSec.IPM_Section_Name__c='Test Section Name'+i;
             projDocSec.IPM_FunctionalRole__c='PL';
             projDocSec.IPM_Negotiable__c=false;
             projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.STATUS_NOT_FILLED;
@@ -203,8 +219,8 @@ private class IPM_ProjectOverviewCtrl_Test
             projDocSec1 = IPM_TestFactory_Helper.createIPMProjectDocumentSection(false);
             projDocSec1.IPM_Project_Document__c=projDoc.ID;
             projDocSec1.IPM_Section__c=secMstList[i].Id;
-            projDocSec1.IPM_Gate_Document_Summary__c='dgadsg&sdfgfdhsfgasdfasdfasdafasdfasdff';
-            projDocSec1.IPM_Section_Name__c='Section Name'+i;
+            projDocSec1.IPM_Gate_Document_Summary__c='Test Document Summary';
+            projDocSec1.IPM_Section_Name__c='Test Section Name'+i;
             projDocSec1.IPM_FunctionalRole__c='PL';
             projDocSec1.IPM_Negotiable__c=false;
             projDocSec1.IPM_Section_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
@@ -230,7 +246,7 @@ private class IPM_ProjectOverviewCtrl_Test
             tskList.add(tsk);
         }
         insert tskList;
-        System.assertEquals(20, [Select Id from IPM_Task__c where IPM_Project__c =: project.id and IPM_Assignee__c =: UserInfo.getUserId() limit 100].size() , 'Tasks are not getting inserted.');
+        System.assertEquals(20, [Select count() from IPM_Task__c where IPM_Project__c =: project.id and IPM_Assignee__c =: UserInfo.getUserId() limit 100] , 'Tasks are not getting inserted.');
         
         //Create Milestone
         mile = IPM_TestFactory_Helper.createIPMMilestone(project.Id, false);
@@ -242,34 +258,9 @@ private class IPM_ProjectOverviewCtrl_Test
         mile.IPM_Type_of_Milestone__c = IPM_ConstantUtils.STANDARD;
         mile.ExternalField__c = project.id + IPM_ConstantUtils.CHARTER_GATE + IPM_ConstantUtils.PHASE_IDEAS + IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
         insert mile;
+        System.assertEquals(1, [Select count() from IPM_Milestone__c where IPM_Project__c =: project.id and IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD limit 100] , 'Milestones are not getting inserted.');
+ }
  
-
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-            
-        
-        
-        
-        
-            
-            
-            
-            
-        System.assertEquals(1, [Select Id from IPM_Milestone__c where IPM_Project__c =: project.id and IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD limit 100].size() , 'Milestones are not getting inserted.');
-            
-                   
-          }
-
- 
-   
     //This testmethod will cover positive scenario for Project Overview screen
     static testMethod void overControl()
     {
@@ -288,20 +279,18 @@ private class IPM_ProjectOverviewCtrl_Test
         update projDoc;
         
         for(Integer i=0 ; i<20 ; i++ ){
-            projDocSecList[i].IPM_Gate_Document_Summary__c='dgasdfdaddsg&sdfgfdhsfgasdfasdfasdafasdfasdff';
+            projDocSecList[i].IPM_Gate_Document_Summary__c='Test Document Summary for test methods';
             projDocSecList[i].IPM_FunctionalRole__c= IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI;
-            projDocSecList[i].IPM_Section_Name__c='Nameeeeee'+i;
+            projDocSecList[i].IPM_Section_Name__c='Test Document Section'+i;
         }
         update projDocSecList;
-        System.assertEquals(40, [Select Id from IPM_Project_Document_Section__c limit 100].size() ,'Document sections with functional role CMI are not created');//cr0347
-       
-        
+        System.assertEquals(40, [Select count() from IPM_Project_Document_Section__c limit 100] ,'Document sections with functional role CMI are not created');//cr0347
         
         for(Integer i=0 ; i<20 ; i++ ){
             tskList[i].IPM_Task_Name__c='Task Name'+i;
         }
         update tskList;
-        System.assertEquals(20, [Select Id from IPM_Task__c where IPM_Task_Name__c Like 'Task Name%' limit 100].size() ,'Tasks are not created');//cr0347
+        System.assertEquals(20, [Select count() from IPM_Task__c where IPM_Task_Name__c Like 'Task Name%' limit 100] ,'Tasks are not created');//cr0347
         
         //Create milestone for Global project
         gProjectMilestone1 = IPM_TestFactory_Helper.createIPMMilestone(project.Id, false);
@@ -331,7 +320,7 @@ private class IPM_ProjectOverviewCtrl_Test
         ipmMileStoneList.add(betMilestoneFinalRelease);
         
         insert ipmMileStoneList;
-        System.assertEquals(2 , [Select Id from IPM_Milestone__c where IPM_Type_of_Milestone__c =: IPM_ConstantUtils.BET and IPM_Project__c =: project.Id limit 100].size() , 'BET Milestones are not created.');
+        System.assertEquals(2 , [Select count() from IPM_Milestone__c where IPM_Type_of_Milestone__c =: IPM_ConstantUtils.BET and IPM_Project__c =: project.Id limit 100] , 'BET Milestones are not created.');
         Test.startTest();
         PageReference pRef1 = new PageReference(sPageRefURL+project.ID);
         Test.setCurrentPage(pRef1);
@@ -340,6 +329,7 @@ private class IPM_ProjectOverviewCtrl_Test
         project.IPM_Fast_Track_Project__c = false;
         update project;
         System.assertEquals(false , [Select Id, IPM_Fast_Track_Project__c from  IPM_Project__c where Id =: project.Id limit 100][0].IPM_Fast_Track_Project__c , 'Project is failed to update as fast track.' );
+        
         IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
         IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
         overCtrl1.getTasks();
@@ -378,8 +368,6 @@ private class IPM_ProjectOverviewCtrl_Test
         List<IPM_Project__c>projectLists=[SELECT Id FROM IPM_Project__c  where IPM_Parent_Project__c =: project.id LIMIT 20];
         System.assertEquals(20 , projectLists.size(), REGIONAL_PROJECTS_NOT_CREATED);
        
-       
-        
         //Create local project
         for(Integer i=0 ; i<20 ; i++ ){
             IPM_Project__c lProject = IPM_TestFactory_Helper.createIPMProject(false);
@@ -407,7 +395,7 @@ private class IPM_ProjectOverviewCtrl_Test
             rProjectMilestoneList1.add(rProjectMilestone1);
         }
         insert rProjectMilestoneList1;
-        System.assertEquals(21 , [Select Id from IPM_Milestone__c where IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD limit 100].size() , MILESTONES_NOT_CREATED);
+        System.assertEquals(21 , [Select count() from IPM_Milestone__c where IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD limit 100] , MILESTONES_NOT_CREATED);
         
         PageReference pRef1 = new PageReference(sPageRefURL+rProjectList[0].ID);
         Test.setCurrentPage(pRef1);
@@ -469,7 +457,7 @@ private class IPM_ProjectOverviewCtrl_Test
             rProjectMilestoneList1.add(rProjectMilestone1);
         }
         insert rProjectMilestoneList1;
-        System.assertEquals(22 , [Select Id from IPM_Milestone__c where IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD limit 100].size() , MILESTONES_NOT_CREATED);
+        System.assertEquals(22 , [Select count() from IPM_Milestone__c where IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD limit 100] , MILESTONES_NOT_CREATED);
         
         Test.startTest();
         PageReference pRef1 = new PageReference(sPageRefURL+project.ID);
@@ -532,7 +520,7 @@ private class IPM_ProjectOverviewCtrl_Test
         
         IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
         IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
-        System.assertEquals(null, overCtrl1.rolloutProjectRecentMilestone, 'rolloutProjectRecentMilestone Is Not Matched');
+        System.assertEquals(null, overCtrl1.rolloutProjectRecentMilestone, 'Error: Project has latest upcoming milestone on one of its rollout projects.');
         Test.stopTest();
         }
     }
@@ -575,7 +563,7 @@ private class IPM_ProjectOverviewCtrl_Test
         testIPMFinancialConsolidated.Project_Sustainability_Period__c = IPM_ConstantUtils.YEAR_3;
         insert testIPMFinancialConsolidated;
         List<IPM_Financial__c>financialLists=[SELECT Parent_Project__c FROM IPM_Financial__c WHERE ID=:testIPMFinancialConsolidated.ID LIMIT 1];
-        System.assertEquals(financialLists[0].Parent_Project__c, project.Id, 'parent project is:'+financialLists[0].Parent_Project__c);
+        System.assertEquals(financialLists[0].Parent_Project__c, project.Id, 'parent project is not :'+financialLists[0].Parent_Project__c + 'which is expected.');
        
         //Create Financial Year
         IPM_Financial_Year__c testFinancialYear = IPM_TestFactory_Helper.createIPMFinancialYear(false);
@@ -586,6 +574,7 @@ private class IPM_ProjectOverviewCtrl_Test
         testFinancialYear.IPM_Financial__c = testIPMFinancialConsolidated.Id;
         insert testFinancialYear;
         System.assertEquals(IPM_ConstantUtils.YEAR_TYPE_INNOVATION , [Select Id, Year_Type__c from IPM_Financial_Year__c where Id =: testFinancialYear.Id limit 100][0].Year_Type__c , 'Financial Year is not created.');
+        
         Test.startTest();
         PageReference pRef1 = new PageReference(sPageRefURL+project.ID);
         Test.setCurrentPage(pRef1);
@@ -624,6 +613,7 @@ private class IPM_ProjectOverviewCtrl_Test
         insert rProjectList;
         List<IPM_Project__c>projectLists=[SELECT id FROM IPM_Project__c LIMIT 20];
         System.assertEquals(20, projectLists.size(), REGIONAL_PROJECTS_NOT_CREATED);
+        
         //Create local project
         for(Integer i=0 ; i<20 ; i++ ){
             IPM_Project__c lProject = IPM_TestFactory_Helper.createIPMProject(false);
@@ -781,9 +771,9 @@ private class IPM_ProjectOverviewCtrl_Test
         
         User testRunningUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];
         
-        IPM_Project__c ipmProj=[Select id,BET_Link_Requested__c ,IPM_BET_Toolkit__c  from  IPM_Project__c  where IPM_Project_Name__c = 'TestPrjOrg'];
+        IPM_Project__c ipmProj=[Select id,BET_Link_Requested__c ,IPM_BET_Toolkit__c  from  IPM_Project__c  where IPM_Project_Name__c = 'TestPrjOrg' limit 100];
         
-        uw_BET__c bet1=[select id , Launch_Date__c, name from uw_BET__c where name='bet1'];
+        uw_BET__c bet1=[select id , Launch_Date__c, name from uw_BET__c where name='bet1' limit 100];
         
         System.runAs(testRunningUser ){
             
@@ -801,7 +791,7 @@ private class IPM_ProjectOverviewCtrl_Test
             IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
             IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
             
-            system.assertEquals(bet1.id,overCtrl.requestedBETId,'Requested BET not updated as expected');
+            system.assertEquals(bet1.id,overCtrl.requestedBETId,'Requested BET is not updated as expected');
             
             ipmProj.BET_Link_Requested__c = null;
             ipmProj.IPM_BET_Toolkit__c = IPM_ConstantUtils.NO_BET ;
@@ -837,9 +827,9 @@ private class IPM_ProjectOverviewCtrl_Test
 
         User testRunningUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];
 
-        IPM_Project__c ipmProj=[Select id,BET_Link_Requested__c ,IPM_BET_Toolkit__c  from  IPM_Project__c  where IPM_Project_Name__c = 'TestPrjOrg'];
+        IPM_Project__c ipmProj=[Select id,BET_Link_Requested__c ,IPM_BET_Toolkit__c  from  IPM_Project__c  where IPM_Project_Name__c = 'TestPrjOrg' limit 100];
         
-        IPM_Project__c ipmRoutProj=[Select id,BET_Link_Requested__c ,IPM_BET_Toolkit__c  from  IPM_Project__c  where IPM_Project_Name__c = 'TestPrj2'];
+        IPM_Project__c ipmRoutProj=[Select id,BET_Link_Requested__c ,IPM_BET_Toolkit__c  from  IPM_Project__c  where IPM_Project_Name__c = 'TestPrj2' limit 100];
         
         System.runAs(testRunningUser ){
             
@@ -881,7 +871,7 @@ private class IPM_ProjectOverviewCtrl_Test
             ipmProj.IPM_BET_Toolkit__c = IPM_ConstantUtils.NO_BET ;
             update  ipmProj;
 			System.assertEquals(IPM_ConstantUtils.NO_BET , [Select Id, IPM_BET_Toolkit__c from IPM_Project__c where Id=: ipmProj.Id limit 100][0].IPM_BET_Toolkit__c, 'BET toolkit is not successfully de-linked from the project.');
-
+			
             PageReference pRef2 = new PageReference(sPageRefURL+ipmProj.ID);
             Test.setCurrentPage(pRef2);
             IPM_ProjDocumentSectionHstryController hstryControl2=new IPM_ProjDocumentSectionHstryController();
@@ -905,9 +895,9 @@ private class IPM_ProjectOverviewCtrl_Test
         
         User testRunningUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];
 
-        IPM_Project__c ipmProj=[Select id,BET_Link_Requested__c ,IPM_BET_Toolkit__c  from  IPM_Project__c  where IPM_Project_Name__c = 'TestPrjOrg'];
+        IPM_Project__c ipmProj=[Select id,BET_Link_Requested__c ,IPM_BET_Toolkit__c  from  IPM_Project__c  where IPM_Project_Name__c = 'TestPrjOrg' limit 100];
         
-        uw_BET__c bet1=[select id ,name from uw_BET__c where name='bet2'];  
+        uw_BET__c bet1=[select id ,name from uw_BET__c where name='bet2' limit 100];  
         
         ipmProj.bet__c=bet1.id;
         update ipmProj ;
@@ -948,19 +938,19 @@ private class IPM_ProjectOverviewCtrl_Test
         parentProj.Deputy_Project_Leader__c = testRunningUser.Id;
         insert  parentProj;
         //Please note:- Assertion is not written after this DML as it is additional test data creation and not actual business functionality.    
-        IPM_Project__c ipmProj=[Select id,BET_Link_Requested__c ,IPM_Parent_Project__c,IPM_BET_Toolkit__c  from  IPM_Project__c  where IPM_Project_Name__c = 'TestPrjOrg'];
+        IPM_Project__c ipmProj=[Select id,BET_Link_Requested__c ,IPM_Parent_Project__c,IPM_BET_Toolkit__c  from  IPM_Project__c  where IPM_Project_Name__c = 'TestPrjOrg' limit 100];
         
         ipmProj.IPM_Parent_Project__c=parentProj.id;
         update  ipmProj;
         //Please note:- Assertion is not written after this DML as it is additional test data updation not actual business functionality.
-            
+                
         system.runAs(testRunningUser ){
             
             Test.StartTest();
             
-            IPM_Project__c ipmRoutProj=[Select id,BET_Link_Requested__c ,IPM_BET_Toolkit__c  from  IPM_Project__c  where IPM_Project_Name__c = 'TestPrj2'];
+            IPM_Project__c ipmRoutProj=[Select id,BET_Link_Requested__c ,IPM_BET_Toolkit__c  from  IPM_Project__c  where IPM_Project_Name__c = 'TestPrj2' limit 100];
 
-            uw_BET__c bet1=[select id ,name from uw_BET__c where name='bet2'];
+            uw_BET__c bet1=[select id ,name from uw_BET__c where name='bet2' limit 100];
             
             PageReference pRef = new PageReference(sPageRefURL+ipmRoutProj.ID);
             Test.setCurrentPage(pRef);
@@ -1030,6 +1020,7 @@ private class IPM_ProjectOverviewCtrl_Test
         projDoc.IPM_Document_Status__c=IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED;
         update projDoc;
         System.assertEquals(IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED, [Select Id, IPM_Document_Status__c from IPM_Project_Document__c where Id =: projDoc.Id limit 100][0].IPM_Document_Status__c , 'Document status is not successfully updated.');
+        
         IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
         IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
         System.assertEquals(true, overCtrl.bShowChangeStatusButton, PAGINATION_CONTROLS_MSG  );
@@ -1040,7 +1031,6 @@ private class IPM_ProjectOverviewCtrl_Test
     //Testmethod to validate pagination controls
     static testMethod void testLocalTLDMisalignment(){
         platformUser =IPM_TestFactory_Helper.returnPlatformUser();
-         
         system.runAs(platformUser)
         {
                  //Create IPM Project
@@ -1068,7 +1058,7 @@ private class IPM_ProjectOverviewCtrl_Test
             
             IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
             IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
-            System.assert(overCtrl.LstLocalFinTLDMisalignedMessage[0].contains(IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1), 'Financials misaligned.');
+            System.assert(overCtrl.LstLocalFinTLDMisalignedMessage[0].contains(IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1), 'Financials are not misaligned.');
             Test.stopTest();
         }
     }
@@ -1095,20 +1085,20 @@ private class IPM_ProjectOverviewCtrl_Test
             insert rProject;
             System.assertEquals(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL, [Select Id,IPMProject_Span__c from IPM_Project__c where Id=: rProject.Id limit 100][0].IPMProject_Span__c , 'Regional project is not created successfully.');
             
-         IPM_Project_Rollout__c rollout = IPM_TestFactory_Helper.createIPMProjectRollout(false);
-         rollout.Regional_Project__c= rProject.id;
-         rollout.IPM_Regional_PL__c = null;
-         insert rollout;
+	         IPM_Project_Rollout__c rollout = IPM_TestFactory_Helper.createIPMProjectRollout(false);
+	         rollout.Regional_Project__c= rProject.id;
+	         rollout.IPM_Regional_PL__c = null;
+	         insert rollout;
 	         System.assertEquals(rProject.id, [Select Id,Regional_Project__c from IPM_Project_Rollout__c where Id=: rollout.Id limit 100][0].Regional_Project__c , 'Regional rollout is not created successfully.');
-        
-        Test.startTest();
-        PageReference pRef1 = new PageReference(sPageRefURL+rProject.ID);
-        Test.setCurrentPage(pRef1);
-        
-        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
-        IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
-        System.assert(overCtrl.lstRolloutProjectAlertMessage[0].contains(Label.IPM_Local_Project_Leader_BlankMsg), 'Local Project leader is blank.');
-        Test.stopTest();
+	         
+	        Test.startTest();
+	        PageReference pRef1 = new PageReference(sPageRefURL+rProject.ID);
+	        Test.setCurrentPage(pRef1);
+	        
+	        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+	        IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
+	        System.assert(overCtrl.lstRolloutProjectAlertMessage[0].contains(Label.IPM_Local_Project_Leader_BlankMsg), 'Local Project leader is not blank.');
+	        Test.stopTest();
         }
     }  
     
@@ -1129,7 +1119,7 @@ private class IPM_ProjectOverviewCtrl_Test
             globalProject.IPM_Target_Launch_Dates__c = System.today() + 360;
             insert globalProject;
             System.assertEquals(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, [Select Id,IPMProject_Span__c from IPM_Project__c where Id=: globalProject.Id limit 100][0].IPMProject_Span__c , 'Global project is not created successfully.');
-            
+        
             //Create regional project
             IPM_Project__c regionalProject = IPM_TestFactory_Helper.createIPMProject(false);
             regionalProject.Name='RegionalProject';

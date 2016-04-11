@@ -65,7 +65,9 @@ public class IPM_FinancialCopyPasteGrid_Test {
         system.runAs(u1){
         // this is to cover the Volume unit Total Tons and without any values function on the copy and paste page
         //Span = Global 
-        PageReference pRef = new PageReference(IPM_ConstantUtils.FINANCIAL_CONTROLLER_STR+projectList[0].Id);
+        
+        PageReference pRef = Page.IPM_FinancialCopyPasteGrid;
+        pRef.getParameters().put('id', projectList[0].Id);
         Test.setCurrentPage(pRef);
         system.assertNotEquals(pRef, null);
         IPM_FinancialCopyPasteGrid ipmFinCon2=new IPM_FinancialCopyPasteGrid();        
@@ -94,8 +96,9 @@ public class IPM_FinancialCopyPasteGrid_Test {
        
         // this is to cover the Volume unit Total '000 units and without any values function on the copy and paste page
        //Span = Global, with complete input
-        PageReference pRef2 = new PageReference(IPM_ConstantUtils.FINANCIAL_CONTROLLER_STR+projectList[0].Id);
-
+       
+        PageReference pRef2 = Page.IPM_FinancialCopyPasteGrid;
+        pRef2.getParameters().put('id', projectList[0].Id);
         Test.setCurrentPage(pRef2);
         system.assertNotEquals(pRef2, null);
         IPM_FinancialCopyPasteGrid ipmFinCon5=new IPM_FinancialCopyPasteGrid(); 
@@ -135,7 +138,9 @@ public class IPM_FinancialCopyPasteGrid_Test {
         
           // this is to cover the Volume unit Total '000 Units and with complete all the values on the copy and paste page
         //Span = Global, with complete input        
-        PageReference pRef5 = new PageReference(IPM_ConstantUtils.FINANCIAL_CONTROLLER_STR+projectList[0].Id);
+        
+        PageReference pRef5 = Page.IPM_FinancialCopyPasteGrid;
+        pRef5.getParameters().put('id', projectList[0].Id);
         Test.setCurrentPage(pRef5);
         system.assertNotEquals(pRef5, null);
         IPM_FinancialCopyPasteGrid ipmFinConGlobal3=new IPM_FinancialCopyPasteGrid(); 
@@ -154,7 +159,8 @@ public class IPM_FinancialCopyPasteGrid_Test {
         
         
         //negative testing, with no input at all when a submit is clicked without any input.
-        PageReference pRef4 = new PageReference(IPM_ConstantUtils.FINANCIAL_CONTROLLER_STR+projectList[0].Id);
+        PageReference pRef4 = Page.IPM_FinancialCopyPasteGrid;
+        pRef4.getParameters().put('id', projectList[0].Id);
         Test.setCurrentPage(pRef4);
         system.assertNotEquals(pRef4, null);
         IPM_FinancialCopyPasteGrid ipmFinConGlobal2=new IPM_FinancialCopyPasteGrid(); 
@@ -186,7 +192,9 @@ public class IPM_FinancialCopyPasteGrid_Test {
         // this is to cover the Volume unit Total Tons and without any values function on the copy and paste page
        projectList[1].IPMProject_Span__c = Regional_STR;
         update projectList[1];
-        PageReference pRef = new PageReference(IPM_ConstantUtils.FINANCIAL_CONTROLLER_STR+projectList[1].Id);
+       
+        PageReference pRef = Page.IPM_FinancialCopyPasteGrid;
+        pRef.getParameters().put('id', projectList[1].Id);
         Test.setCurrentPage(pRef);
         system.assertNotEquals(pRef, null);
         IPM_FinancialCopyPasteGrid ipmFinConReg1=new IPM_FinancialCopyPasteGrid();        
@@ -205,7 +213,8 @@ public class IPM_FinancialCopyPasteGrid_Test {
         
         // this is to cover the Volume unit Total '000 units and with all the values function on the copy and paste page
        
-        PageReference pRef1 = new PageReference(IPM_ConstantUtils.FINANCIAL_CONTROLLER_STR+projectList[1].Id);
+        PageReference pRef1 = Page.IPM_FinancialCopyPasteGrid;
+        pRef1.getParameters().put('id', projectList[1].Id);
         Test.setCurrentPage(pRef1);
         system.assertNotEquals(pRef1, null);
         IPM_FinancialCopyPasteGrid ipmFinConReg2=new IPM_FinancialCopyPasteGrid();
@@ -271,7 +280,8 @@ public class IPM_FinancialCopyPasteGrid_Test {
         */
         // this is to cover the Volume unit Total '000 units and without any values function on the copy and paste page
        
-        PageReference pRef3 = new PageReference(IPM_ConstantUtils.FINANCIAL_CONTROLLER_STR+projectList[2].Id);
+        PageReference pRef3 = Page.IPM_FinancialCopyPasteGrid;
+        pRef3.getParameters().put('id', projectList[2].Id);
         Test.setCurrentPage(pRef3);
         IPM_FinancialCopyPasteGrid ipmFinConLoc2=new IPM_FinancialCopyPasteGrid();
         ipmFinConLoc2.Sustainability='5';
@@ -288,7 +298,8 @@ public class IPM_FinancialCopyPasteGrid_Test {
         
          // this is to cover the Volume unit Total total and with complete all the values on the copy and paste page
         
-        PageReference pRef4 = new PageReference(IPM_ConstantUtils.FINANCIAL_CONTROLLER_STR+projectList[2].Id);
+        PageReference pRef4 = Page.IPM_FinancialCopyPasteGrid;
+        pRef4.getParameters().put('id', projectList[2].Id);
         Test.setCurrentPage(pRef4);
         IPM_FinancialCopyPasteGrid ipmFinConLoc3=new IPM_FinancialCopyPasteGrid();
         ipmFinConLoc3.Sustainability='5';

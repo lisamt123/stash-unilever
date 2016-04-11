@@ -93,6 +93,7 @@ private class IPM_UpdateGlobalProjectName_Test {
             insert childProj;
             list<IPM_Project__c>childPList=[SELECT IPM_Parent_Project__c FROM IPM_Project__c WHERE id=:childProj.id LIMIT 1];
             system.assertEquals(childPList[0].IPM_Parent_Project__c,project.id,'Parent project id is:'+childPList[0].IPM_Parent_Project__c);
+            
             IPM_Project__c childProjs=new IPM_Project__c();
             childProjs.IPM_Parent_Project__c=childProj.id;
             childProjs.IPM_Project_Name__c=project.Name+'_Names';
@@ -101,8 +102,9 @@ private class IPM_UpdateGlobalProjectName_Test {
             list<IPM_Project__c>childsPList=[SELECT IPM_Parent_Project__c FROM IPM_Project__c WHERE id=:childProjs.id LIMIT 1];
             system.assertEquals(childsPList[0].IPM_Parent_Project__c,childProj.id,'Parent project id is:'+childsPList[0].IPM_Parent_Project__c);
             
+            
             geographyDetailList = [SELECT id,Name FROM MDO_Geography__c WHERE Name IN: countryNameList];
-          system.assertEquals(geographyDetailList.size(),2);
+            system.assertEquals(geographyDetailList.size(),2);
           
             for(IPM_Project__c projectObj : projectListObj) {
                 projDocList = projectObj.Project_Documents__r;
@@ -150,7 +152,7 @@ private class IPM_UpdateGlobalProjectName_Test {
           finYear.Copy_Local_to_Regional__c=true;
           finYear.Copy_Regional_to_Local__c=true;       
           
-          insert finYear;        
+          insert finYear;       
           List<IPM_Financial_Year__c> finyrList=[SELECT Charter_Approved__c FROM IPM_Financial_Year__c WHERE ID=:finYear.id LIMIT 1];
           system.assertEquals(finyrList[0].Charter_Approved__c,true,'financial chater approver is:'+finyrList[0].Charter_Approved__c);  
         }
@@ -161,7 +163,7 @@ private class IPM_UpdateGlobalProjectName_Test {
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
         
         //running as global project leader with invalid project name
-        system.runAs(globalUser){
+        system.runAs(globalUser){ 
             //get project old name and new name along with project id
             test.startTest();
             map<id,string>projectOldname=new map<id,string>();
@@ -172,12 +174,14 @@ private class IPM_UpdateGlobalProjectName_Test {
             IPM_UpdateGlobalProjectName.updateProjectName(updatedname,projectOldname);//call to update rollout name
             project.IPM_Project_Name__c=projectName;
             project.IPM_Phase__c='Ideas';
-            update project;
+            update project; 
             List<IPM_Project__c>projectLists=[SELECT ID,IPM_Phase__c FROM IPM_Project__c WHERE id=:Project.id LIMIT 1];
             system.assertEquals(projectLists[0].IPM_Phase__c, project.IPM_Phase__c,'Project phase is:'+projectLists[0].IPM_Phase__c);
+            
             IPM_UpdateGlobalProjectName.updateChildProjects(updatedname,projectOldname);//call to update child and subchild project name
             List<IPM_Project__c>updatedChildProjectList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE (IPM_Parent_Project__c=:Project.id OR IPM_Parent_Project__r.IPM_Parent_Project__c =:Project.id) AND IPM_Project_Name__c like:projUpdateName+'%' LIMIT 2];
             system.assertEquals(updatedChildProjectList.size(),2,'both childs project name got updated');
+            
             test.stopTest();
          }
         

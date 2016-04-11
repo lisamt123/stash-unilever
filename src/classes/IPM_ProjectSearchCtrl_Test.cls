@@ -2,7 +2,7 @@
 * @DescriptionIPM_ProjectSearchCtrl_Test : This Test class for IPM_ProjectSearchCtrl apex class
 */
 @isTest
-public class IPM_ProjectSearchCtrl_Test {
+private class IPM_ProjectSearchCtrl_Test {
 
     /*string literals replaced*/
     private static final String FID_STR = 'thisFld';
@@ -25,7 +25,12 @@ public class IPM_ProjectSearchCtrl_Test {
     private static User platformUserFirst;
     private static User platformUserSecond;
     private static IPM_Company_Card__c companyCard;
-    
+    private static final String ASIA_PARENT_CLUSTER = 'AsiaParent';
+	private static final String ASIA_MCO = 'Asia';
+	private static final String INDIA_COUNTRY = 'India';
+	private static final String TEST_COMMENTS_SUFFIX = 'TestComments';
+
+    //Method to create test users
     static void createTestUsers(){
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
             platformUserFirst = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
@@ -34,13 +39,12 @@ public class IPM_ProjectSearchCtrl_Test {
         
         companyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
         insert companyCard;
-        
+        System.assertEquals(1, [Select count() from IPM_Company_Card__c where id =: companyCard.Id limit 100],'Company Card is not created');
     }
     
+    //Method to initialize test data
     static void initializeData(){
-
         lstGeographies =  IPM_TestFactory_Helper.createGeographyList(true,3);
-        system.assertEquals(3, lstGeographies.size() , 'Master data for 3 geographies are added.');
         
         //Update Geographies's parent L2 lookup
         for(integer i = 0 ; i < lstGeographies.size() - 1 ; i++){
@@ -48,15 +52,18 @@ public class IPM_ProjectSearchCtrl_Test {
         }
         update lstGeographies;
         
+        system.assertEquals(3, [Select count() from MDO_Geography__c where Id IN : new Map<Id, MDO_Geography__c>(lstGeographies).keySet() limit 100] , 'Master data for 3 geographies are not added properly.');
+        
         //Assign countries to project
         lstCountries = IPM_TestFactory_Helper.createIPMCountryList(false,3);
         insert lstCountries;
+        System.assertEquals(3 , [Select count() from IPM_Country__c where isActive__c = true limit 100] , 'Countries are not created successfully.');
     }
     
     /*
-     * @Description : Search the project
+     * @Description : Testmethod to test functionality when All projects filters are selected.
      */
-   static testMethod void projectSearch_SingleProjInsert() {
+   static testMethod void testProjectSearch_SingleProjInsert() {
         createTestUsers();
         Test.startTest();
         
@@ -64,8 +71,8 @@ public class IPM_ProjectSearchCtrl_Test {
             initializeData();
             //Insert single Project
             proj = IPM_TestFactory_Helper.createIPMProject(false);
-            proj.IPM_Project_Type__c ='Original';
-            proj.IPM_ProjectSubType__c='Operational';
+            proj.IPM_Project_Type__c =IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
+            proj.IPM_ProjectSubType__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
             proj.IPM_Project_Name__c ='Test Project 1';
             proj.IPM_Phase__c =IPM_ConstantUtils.PHASE_IDEAS;
             proj.IPM_Project_Leader__c = UserInfo.getUserId();
@@ -73,12 +80,15 @@ public class IPM_ProjectSearchCtrl_Test {
             proj.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL; 
             proj.IPM_Company_Card__c = companyCard.Id;
             insert proj;
-       
+       		System.assertEquals(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL , [Select Id, IPMProject_Span__c from IPM_Project__c where Id =: proj.Id limit 100][0].IPMProject_Span__c , 'Global project is not created.' );
+       		
             for(Integer i = 0 ; i < lstCountries.size() ; i++){
                     lstCountries[i].MDO_Geography__c = lstGeographies[i].Id;
                     lstCountries[i].IPM_Project__c = proj.Id;
             }
             update lstCountries;
+            
+            System.assertEquals(3 , [Select count() from IPM_Country__c where IPM_Project__c =: proj.Id limit 100] , 'Countries are not associated with project successfully.');
             
             psCtrl=new IPM_ProjectSearchCtrl();
             psCtrl.mProjects=TRUE_STR;
@@ -101,17 +111,17 @@ public class IPM_ProjectSearchCtrl_Test {
             psCtrl.loadProjects();
              
             psCtrl.toggleSortProjects();
-            system.assertEquals(psCtrl.currentSort.get(FID_STR), 'IPM_Project_Name__c', 'Sorting needs to be done via Project Name');
+            system.assertEquals(psCtrl.currentSort.get(FID_STR), 'IPM_Project_Name__c', 'Sorting does not need to be done via Project Name');
             psCtrl.toggleSortPhases();
-            system.assertEquals(psCtrl.currentSort.get(FID_STR), IPM_PHASE_FIELD, 'Sorting needs to be done via phase');
+            system.assertEquals(psCtrl.currentSort.get(FID_STR), IPM_PHASE_FIELD, 'Sorting does not need to be done via phase');
             psCtrl.toggleSortPLs();
-            system.assertEquals(psCtrl.currentSort.get(FID_STR), 'IPM_Project_Leader__r.Name', 'Sorting needs to be done via IPM_Project_Leader__r.Name');
+            system.assertEquals(psCtrl.currentSort.get(FID_STR), 'IPM_Project_Leader__r.Name', 'Sorting does not need to be done via IPM_Project_Leader__r.Name');
             psCtrl.toggleSortGKs();
-            system.assertEquals(psCtrl.currentSort.get(FID_STR), 'IPM_Project_Gatekeeper__r.Name', 'Sorting needs to be done via IPM_Project_Gatekeeper__r.Name');
+            system.assertEquals(psCtrl.currentSort.get(FID_STR), 'IPM_Project_Gatekeeper__r.Name', 'Sorting does not need to be done via IPM_Project_Gatekeeper__r.Name');
             psCtrl.toggleSortITOs();
-            system.assertEquals(psCtrl.currentSort.get(FID_STR), 'IPM_Project_Name__c', 'Sorting needs to be done via IPM_Project_Name__c');
+            system.assertEquals(psCtrl.currentSort.get(FID_STR), 'IPM_Project_Name__c', 'Sorting does not need to be done via IPM_Project_Name__c');
             psCtrl.toggleSortTLDs();
-            system.assertEquals(psCtrl.currentSort.get(FID_STR), 'IPM_Target_Launch_Dates__c', 'Sorting needs to be done via IPM_Target_Launch_Dates__c');
+            system.assertEquals(psCtrl.currentSort.get(FID_STR), 'IPM_Target_Launch_Dates__c', 'Sorting does not need to be done via IPM_Target_Launch_Dates__c');
             psCtrl.first();
             psCtrl.last();
             psCtrl.previous();
@@ -120,14 +130,13 @@ public class IPM_ProjectSearchCtrl_Test {
             //psCtrl.hasNext;
             psCtrl.getPageNumber();
             psCtrl.getTotalPages();
-            system.assert(proj.Id != null, 'The project record inserted');
         }
         Test.stopTest();
         
     }
     
     //Testmethod to validate my projects count when multiple projects are inserted
-    static testMethod void myProjectsSearch_BulkProjInsert() {
+    static testMethod void testMyProjectsSearch_BulkProjInsert() {
         createTestUsers();
         Test.startTest();
         
@@ -159,7 +168,7 @@ public class IPM_ProjectSearchCtrl_Test {
             psCtrl.geoAll = TRUE_STR;
             psCtrl.loadProjects();
                       
-            system.assertEquals(5, psCtrl.projects.size() , 'My projects filter will give me 5 records');
+            system.assertEquals(5, psCtrl.projects.size() , 'My projects filter is not giving 5 projects assigned to logged-in user.');
            
             Test.stopTest();
         }
@@ -168,7 +177,7 @@ public class IPM_ProjectSearchCtrl_Test {
     
     
     //Testmethod to validate Original projects count when multiple projects are inserted
-    static testmethod void validateOriginalProjectCount_BulkProjInsert() {
+    static testmethod void testValidateOriginalProjectCount_BulkProjInsert() {
         Map<String,Object> projMap;
         List<IPM_Project__c> lstProjects = new List<IPM_Project__c>();
         createTestUsers();
@@ -196,7 +205,7 @@ public class IPM_ProjectSearchCtrl_Test {
         //Create 5 Operational projects
         for(Integer i = 0; i < 5; i++){
             projMap =  new Map<String,Object>{NAME_FIELD => 'OperationalProj' + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
-                                        'IPM_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
+                                        COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
         }
         
@@ -205,21 +214,21 @@ public class IPM_ProjectSearchCtrl_Test {
         psCtrl=new IPM_ProjectSearchCtrl();
         psCtrl.mProjects=TRUE_STR;
         psCtrl.aProjects = TRUE_STR;
-        psCtrl.selectedProjType = 'Original';
+        psCtrl.selectedProjType = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
         psCtrl.selectedActiveProject = TRUE_STR;
         psCtrl.selectedStoppedProject = false;
         psCtrl.selectedPhase=ALL;
         psCtrl.geoAll = TRUE_STR;
         psCtrl.loadProjects();
             
-        system.assertEquals(5, psCtrl.projects.size() , 'Original projects filter will give me 5 records');
+        system.assertEquals(5, psCtrl.projects.size() , 'Original projects filter is not giving 5 original project records');
            
         Test.stopTest();
         }
     }
     
     //Testmethod to validate Rollout projects count when multiple projects are inserted
-    static testMethod void validateRolloutProjectCount_BulkProjInsert() {
+    static testMethod void testValidateRolloutProjectCount_BulkProjInsert() {
         Map<String,Object> projMap;
         List<IPM_Project__c> lstProjects = new List<IPM_Project__c>();
         createTestUsers();
@@ -254,21 +263,21 @@ public class IPM_ProjectSearchCtrl_Test {
         psCtrl=new IPM_ProjectSearchCtrl();
         psCtrl.mProjects=TRUE_STR;
         psCtrl.aProjects = TRUE_STR;
-        psCtrl.selectedProjType = 'Rollout';
+        psCtrl.selectedProjType = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
         psCtrl.selectedActiveProject = TRUE_STR;
         psCtrl.selectedStoppedProject = false;
         psCtrl.selectedPhase=ALL;
         psCtrl.geoAll = TRUE_STR;
         psCtrl.loadProjects();
                     
-        system.assertEquals(5, psCtrl.projects.size() , 'Rollout projects filter will give me 5 records');
+        system.assertEquals(5, psCtrl.projects.size() , 'Rollout projects filter is not giving 5 rollout projects.');
            
         Test.stopTest();
         }
     }
     
     //Testmethod to validate Operational projects count when multiple projects are inserted
-    static testMethod void validateOperationalProjectCount_BulkProjInsert() {
+    static testMethod void testValidateOperationalProjectCount_BulkProjInsert() {
         Map<String,Object> projMap;
         List<IPM_Project__c> lstProjects = new List<IPM_Project__c>();
         createTestUsers();
@@ -279,21 +288,21 @@ public class IPM_ProjectSearchCtrl_Test {
             
         //Create 5 Original projects
         for(Integer i = 0; i < 5; i++){
-            projMap =  new Map<String,Object>{NAME_FIELD => 'TestComments' + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
+            projMap =  new Map<String,Object>{NAME_FIELD => TEST_COMMENTS_SUFFIX + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
                                         COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
         }
         
         //Create 5 Rollout projects
         for(Integer i = 0; i < 5; i++){
-            projMap =  new Map<String,Object>{NAME_FIELD => 'TestComments' + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
+            projMap =  new Map<String,Object>{NAME_FIELD => TEST_COMMENTS_SUFFIX + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
                                         COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
         }
         
         //Create 5 Operational projects
         for(Integer i = 0; i < 5; i++){
-            projMap =  new Map<String,Object>{NAME_FIELD => 'TestComments' + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
+            projMap =  new Map<String,Object>{NAME_FIELD => TEST_COMMENTS_SUFFIX + i,IPM_PHASE_FIELD=> IPM_ConstantUtils.PHASE_IDEAS ,
                                         COMPLEXITY_FIELD =>IPM_ConstantUtils.COMPLEXITY_FULL, GATEKEEPING_MODEL_FIELD => IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH, PROJECT_TYPE => IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL,PROJECT_SPAN =>IPM_ConstantUtils.PROJECT_SPAN_GLOBAL,COMPANY_CARD=> companyCard.Id};
             lstProjects.add((IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT_FIELD,projMap,TRUE));
         }
@@ -303,21 +312,21 @@ public class IPM_ProjectSearchCtrl_Test {
         psCtrl=new IPM_ProjectSearchCtrl();
         psCtrl.mProjects=TRUE_STR;
         psCtrl.aProjects = TRUE_STR;
-        psCtrl.selectedProjType = 'Operational';
+        psCtrl.selectedProjType = IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
         psCtrl.selectedActiveProject = TRUE_STR;
         psCtrl.selectedStoppedProject = false;
         psCtrl.selectedPhase=ALL;
         psCtrl.geoAll = TRUE_STR;
         psCtrl.loadProjects();
             
-        system.assertEquals(5, psCtrl.projects.size() , 'Operational projects filter will give me 5 records');
+        system.assertEquals(5, psCtrl.projects.size() , 'When Operational projects filter is applied, system is not giving 5 operational projects.');
            
         Test.stopTest();
         }
     }
     
     //Testmethod to validate all projects count when multiple projects are inserted
-    static testMethod void allProjectsNegativeTest() {
+    static testMethod void testAllProjectsNegative() {
         Test.startTest();
         createTestUsers();
         //Insert 5 projects in bulk in context of user1
@@ -347,7 +356,7 @@ public class IPM_ProjectSearchCtrl_Test {
             psCtrl.getusertype();  
             psCtrl.loadProjects();
             
-            system.assertEquals(0, psCtrl.projects.size() , 'All projects filter will give me 0 records');
+            system.assertEquals(0, psCtrl.projects.size() , 'All projects filter is not giving no records');
             Test.stopTest();
         }
         
@@ -382,13 +391,13 @@ public class IPM_ProjectSearchCtrl_Test {
             psCtrl.geoAll = TRUE_STR;
             psCtrl.loadProjects();
             
-            system.assertEquals(0, psCtrl.projects.size() , 'Stopped projects filter will give me 0 records');
+            system.assertEquals(0, psCtrl.projects.size() , 'Stopped projects filter is not giving no records.');
             Test.stopTest();
         }
     }
     
     //Testmethod to validate all projects count when multiple projects are inserted
-    static testMethod void geographiesFilterTest_geoAllFalse_countriesNotBlank() {
+    static testMethod void testGeoAllFalseCountriesNotBlank() {
         Test.startTest();
         createTestUsers();
         System.runAs(platformUserFirst) { 
@@ -419,20 +428,20 @@ public class IPM_ProjectSearchCtrl_Test {
             psCtrl.selectedStoppedProject = false;
             psCtrl.selectedPhase=ALL;
             psCtrl.geoAll = FALSE_STR;
-            psCtrl.clusters ='AsiaParent';
-            psCtrl.mcos ='Asia';
-            psCtrl.countries= 'India';
+            psCtrl.clusters =ASIA_PARENT_CLUSTER;
+            psCtrl.mcos =ASIA_MCO;
+            psCtrl.countries= INDIA_COUNTRY;
             psCtrl.unassigned = FALSE_STR;
             psCtrl.loadProjects();
             
-            system.assertEquals(1, psCtrl.projects.size() , 'All projects filter will give me 1 records');
+            system.assertEquals(1, psCtrl.projects.size() , 'All projects filter is not giving single project.');
         }
         Test.stopTest();
         
     }
     
     //Testmethod to validate all projects count when multiple projects are inserted
-    static testMethod void geographiesFilterTest_geoAllFalse_unassignedTrue_countriesBlank() {
+    static testMethod void testGeoAllNo_UnassignedTrue_CountriesBlank() {
         Test.startTest();
         createTestUsers();
         System.runAs(platformUserFirst) { 
@@ -470,13 +479,13 @@ public class IPM_ProjectSearchCtrl_Test {
             psCtrl.unassigned = TRUE_STR;
             psCtrl.loadProjects();
             
-            system.assertEquals(2, psCtrl.projects.size() , 'All projects filter will give me 2 records');
+            system.assertEquals(2, psCtrl.projects.size() , 'All projects filter is not giving 2 projects.');
        }
             Test.stopTest();
     }
     
     //Testmethod to validate all projects count when multiple projects are inserted
-    static testMethod void geographiesFilterTest_geoAllFalse_unassignedTrue_countriesNotBlank() {
+    static testMethod void testGeoAllNo_Unassigned_Countries() {
         Test.startTest();
         createTestUsers();
         System.runAs(platformUserFirst) { 
@@ -508,19 +517,19 @@ public class IPM_ProjectSearchCtrl_Test {
             psCtrl.selectedStoppedProject = false;
             psCtrl.selectedPhase=ALL;
             psCtrl.geoAll = FALSE_STR;
-            psCtrl.clusters ='AsiaParent';
-            psCtrl.mcos ='Asia';
-            psCtrl.countries= 'India';
+            psCtrl.clusters =ASIA_PARENT_CLUSTER;
+            psCtrl.mcos =ASIA_MCO;
+            psCtrl.countries= INDIA_COUNTRY;
             psCtrl.unassigned = TRUE_STR;
             psCtrl.loadProjects();
             
-            system.assertEquals(2, psCtrl.projects.size() , 'All projects filter will give me 5 records');
+            system.assertEquals(2, psCtrl.projects.size() , 'All projects filter is not giving 2 projects for selected geographies filter.');
         }
         Test.stopTest();
     }
     
     
-   
+   //Testmethod to test if project and bosscard are accessible for logged-in user
     static testMethod void testGetusertype() {
         createTestUsers();
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
@@ -531,8 +540,8 @@ public class IPM_ProjectSearchCtrl_Test {
         System.runAs(platformUserFirst){
             psCtrl=new IPM_ProjectSearchCtrl();
             psCtrl.getusertype();
-            System.assertEquals(false,psCtrl.isProjectEditable, 'ProjectEditable is Checked' );
-            System.assertEquals(false,psCtrl.isBossCardEditable, 'BossCardEditable is Checked');
+            System.assertEquals(false,psCtrl.isProjectEditable, 'User should not be given access for project editability.' );
+            System.assertEquals(false,psCtrl.isBossCardEditable, 'User should not be given access for bosscard editability.' );
         }
         
         Test.stopTest();
