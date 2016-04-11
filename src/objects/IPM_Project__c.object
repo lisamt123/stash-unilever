@@ -4888,6 +4888,42 @@ OwnerId))</formula>
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE00000004efV_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004efV</label>
+        <queue>IPM_a7IE00000004efV</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004efa_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004efa</label>
+        <queue>IPM_a7IE00000004efa</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004eff_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004eff</label>
+        <queue>IPM_a7IE00000004eff</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004efk_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004efk</label>
+        <queue>IPM_a7IE00000004efk</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>My_IPM_Projects</fullName>
         <columns>CREATED_DATE</columns>
         <columns>NAME</columns>
