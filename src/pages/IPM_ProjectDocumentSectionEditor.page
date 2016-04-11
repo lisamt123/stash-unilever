@@ -281,7 +281,7 @@
                                         <div class="col-sm-6">
                                             <div class="panel">   
                                                 <div class="row">
-                                                    <div class="col-sm-12" id="ipmSecEditorTab">
+                                                    <div class="col-sm-12 ipmSecEditorTab" id="ipmSecEditorTab">
                                                         <div class="row">
                                                             <div class="panel-group">                               
                                                                 <ul class="ipmTabs">
@@ -340,9 +340,9 @@
                                                                         <apex:outputField styleClass="countTarget" value="{!projDocSec.IPM_Gate_Document_Summary__c}" id="gate1"  rendered="{! If(AND(IsEditableSumm=true),'false','true')}" />        
                                                                         <div class="row charCount">
                                                                             <apex:outputPanel styleClass="col-sm-12 pull-right charcount textRight" rendered="{! If(AND(IsEditableSumm=true),'true','false')}">
-                                                                                <span id="lblCharCountGate">{!$Label.IPM_CHAR_REMAINING} </span> <strong id="charCountRemaining">{!remainingChar}</strong>
+                                                                                <span id="lblCharCountGate">{!$Label.IPM_CHAR_REMAINING} </span> <strong class="charCountRemaining" id="charCountRemaining">{!remainingChar}</strong>
                                                                             </apex:outputPanel>
-                                                                            <div id="dummyCount">{!sectionCharLimit}</div>
+                                                                            <div id="dummyCount" class="dummyCount">{!sectionCharLimit}</div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -418,10 +418,10 @@
                                                                 </div>  
                                                             </apex:outputPanel> 
                                                         </div>
-                                                        <div class="ipmTabContent" id="aTasks">
+                                                        <div class="ipmTabContent aTasks" id="aTasks">
                                                             <div class="row">
                                                                 <apex:outputPanel rendered="{!if(AND(isCreateTask,project.IPM_PM_Approach__c='Internal'),true,false)}">  
-                                                                    <div class="col-xs-4 pull-right addLink" id="addTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddTaskNew}?projectId={!projectId}&projDocSecId={!projDocSecId}" title="Add To-Do" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> {!$Label.IPM_AddTaskLabel}</span></div>
+                                                                    <div class="col-xs-4 pull-right addLink addTask" id="addTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddTaskNew}?projectId={!projectId}&projDocSecId={!projDocSecId}" title="Add To-Do" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> {!$Label.IPM_AddTaskLabel}</span></div>
                                                                 </apex:outputPanel>
                                                             </div>  
                                                             <br/>
@@ -492,7 +492,7 @@
                                         <div class="col-sm-12">
                                             <div class="panel">   
                                                 <div class="row">
-                                                    <div class="col-sm-12" id="ipmSecEditorTab">
+                                                    <div class="col-sm-12 ipmSecEditorTab" id="ipmSecEditorTab">
                                                         <div class="row">
                                                             <div class="panel-group">                               
                                                                 <ul class="ipmTabs">
@@ -567,7 +567,7 @@
                                                                             <div class="col-sm-5 pull-right charcount textRight">
                                                                                 <span>{!$Label.IPM_CHAR_REMAINING} </span> <strong id="lblCharCountGate2">{!remainingChar}</strong>
                                                                             </div>
-                                                                            <div id="secEditCount">{!sectionCharLimit}</div>
+                                                                            <div id="secEditCount" class="secEditCount">{!sectionCharLimit}</div>
                                                                         </div>
                                                                         <!-- <apex:inputField value="{!projDocSec.IPM_Gate_Document_Summary__c}"/>-->
                                                                         <apex:inputField styleClass="countTarget" value="{!projDocSec.IPM_Gate_Document_Summary__c}" id="gate2"  rendered="{! If(AND(IsEditableSumm=true),'true','false')}" />
@@ -646,10 +646,10 @@
                                                                 </div>  
                                                             </apex:outputPanel>
                                                         </div>
-                                                        <div class="ipmTabContent" id="aTasks">
+                                                        <div class="ipmTabContent aTasks" id="aTasks">
                                                             <div class="row">
                                                                 <apex:outputPanel rendered="{!If(AND(isTaskeditable=true,isTaskViewable=true,project.IPM_PM_Approach__c='Internal'),'true','false')}">
-                                                                    <div class="col-xs-4 pull-right addLink" id="addTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddTaskNew}?projectId={!projectId}&projDocSecId={!projDocSecId}" title="Add To-Do" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> {!$Label.IPM_AddTaskLabel}</span></div>
+                                                                    <div class="col-xs-4 pull-right addLink addTask" id="addTask" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddTaskNew}?projectId={!projectId}&projDocSecId={!projDocSecId}" title="Add To-Do" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> {!$Label.IPM_AddTaskLabel}</span></div>
                                                                 </apex:outputPanel>
                                                             </div> 
                                                             <br/> 

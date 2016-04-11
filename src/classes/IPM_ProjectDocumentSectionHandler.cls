@@ -252,37 +252,7 @@ public with sharing class IPM_ProjectDocumentSectionHandler implements ITrigger
         }       
         
         // Logic for Removing Tasks based on Added Sections by user.    
-        if(!projectToRemovedSectionMap.isEmpty())
-        {
-        	for(id projectId : projectToRemovedSectionMap.keySet())
-            {
-            	
-                // Get List of Added project Document Sections.
-                List<IPM_Project_Document_Section__c> removedSectionList = projectToRemovedSectionMap.get(projectId);
-              
-                for(IPM_Project_Document_Section__c removedSection : removedSectionList)
-                {
-                	if(projectDocSectionToTaskMap.containsKey(removedSection.Id))
-                    {
-                        List<IPM_Task__c> associatedTasks = projectDocSectionToTaskMap.get(removedSection.Id);
-                  		
-                        for(IPM_Task__c task : associatedTasks)
-                        {   
-                        	// If task is standard update status to inactive
-                            if(task.IPM_Type_of_Task__c != IPM_ConstantUtils.ADHOC){
-                            	  task.IPM_Active__c = false; 
-                            	  upsertTaskList.add(task);   
-                            }
-                            // If task is adhoc delete the task
-                            else if(task.IPM_Type_of_Task__c == IPM_ConstantUtils.ADHOC){
-
-                            	  deleteAdhocTaskList.add(task);  
-                            }
-                        }
-                    }       
-                }       
-            }   
-        }
+     	removeProjectDocumneSection(projectToRemovedSectionMap,projectDocSectionToTaskMap);
      
     }
     
@@ -342,4 +312,39 @@ public with sharing class IPM_ProjectDocumentSectionHandler implements ITrigger
         	insert insertAdhocTaskList;
         }
    }
+   
+   public void removeProjectDocumneSection(Map<Id,List<IPM_Project_Document_Section__c>> projectToRemovedSectionMap, Map<Id,List<IPM_Task__c>> projectDocSectionToTaskMap){
+   	   if(!projectToRemovedSectionMap.isEmpty())
+        {
+        	for(id projectId : projectToRemovedSectionMap.keySet())
+            {
+            	
+                // Get List of Added project Document Sections.
+                List<IPM_Project_Document_Section__c> removedSectionList = projectToRemovedSectionMap.get(projectId);
+              
+                for(IPM_Project_Document_Section__c removedSection : removedSectionList)
+                {
+                	if(projectDocSectionToTaskMap.containsKey(removedSection.Id))
+                    {
+                        List<IPM_Task__c> associatedTasks = projectDocSectionToTaskMap.get(removedSection.Id);
+                  		
+                        for(IPM_Task__c task : associatedTasks)
+                        {   
+                        	// If task is standard update status to inactive
+                            if(task.IPM_Type_of_Task__c != IPM_ConstantUtils.ADHOC){
+                            	  task.IPM_Active__c = false; 
+                            	  upsertTaskList.add(task);   
+                            }
+                            // If task is adhoc delete the task
+                            else if(task.IPM_Type_of_Task__c == IPM_ConstantUtils.ADHOC){
+
+                            	  deleteAdhocTaskList.add(task);  
+                            }
+                        }
+                    }       
+                }       
+            }   
+        }
+   	
+   } 
 }

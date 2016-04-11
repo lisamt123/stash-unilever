@@ -15,7 +15,7 @@
 	<apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_HomePage.css')}"/>  
 
 	<div class="">
-		<div class="" id="EditTask">
+		<div class="EditTask" id="EditTask">
 
 		<apex:form id="form">
 			<div class="panelScroll">

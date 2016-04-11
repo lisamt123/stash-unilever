@@ -159,7 +159,7 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <div class="table-responsive" id="strategicIntentTableDiv">  
-                                            <table class="table-bordered" id="strategicIntentTable">                                             
+                                            <table class="table-bordered strategicIntentTable" id="strategicIntentTable">                                             
                                                 <thead>
                                                     <tr>
                                                         <th></th>

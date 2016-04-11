@@ -39,8 +39,8 @@
             </apex:outputPanel>
         </div>      
         <!-- Below code used to display warning message based  ends here --> 
-        <div class="row ipmMileRow" id="milestoneList">         
-            <div class="table-responsive" id="ipmTableDiv">
+        <div class="row ipmMileRow milestoneList" id="milestoneList">         
+            <div class="table-responsive ipmTableDiv" id="ipmTableDiv">
                 <apex:actionStatus startText="updating..." id="myStatusM">
                      <apex:facet name="start">
                         <img height="15" width="15" src="/img/loading32.gif" alt="Loading.." />

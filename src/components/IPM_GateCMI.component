@@ -194,7 +194,7 @@
                                                                             </apex:outputPanel> 
                                                                         </apex:repeat> 
                                                                     </div>
-                                                                    <div class="table-responsive cmiTableDiv" id="ipmTableDiv">
+                                                                    <div class="table-responsive cmiTableDiv ipmTableDiv" id="ipmTableDiv">
                                                                         <div class="cmiTabHeaderContainer">
                                                                             <span class="cmiTabHeadBlock">
                                                                                 {!$Label.IPM_CMI_Inputs}

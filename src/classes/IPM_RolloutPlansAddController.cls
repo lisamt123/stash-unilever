@@ -325,20 +325,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         setCountryCodesGlobal.add(country.ISO_3166_1_Code__c);
                         
                         
-                        //Existing Regional/Local Rollouts
-                        if(mapIPMCountries.get(country.ISO_3166_1_Code__c).IPM_Local_Project__c != null)
-                        {
-                            //countryWrapper.noRolloutDisabled = true;
-                            if(mapIPMCountries.get(country.ISO_3166_1_Code__c).IPM_Rollout_Status__c.equalsIgnoreCase(IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE))
-                            {
-                                //countryWrapper.mcoDisabled = true;
-                            }
-                            else if(mapIPMCountries.get(country.ISO_3166_1_Code__c).IPM_Rollout_Status__c.equalsIgnoreCase(IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO))
-                            {
-                                //countryWrapper.countryDisabled = true; 
-                            }
-                        }
-                        
                         //Existing Regional Rollouts for Global Projects
                         if(mapIPMCountries.get(country.ISO_3166_1_Code__c).IPM_Regional_Project__c != null && project.IPMProject_Span__c.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL))
                         {

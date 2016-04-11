@@ -33,7 +33,7 @@
         <apex:outputPanel id="goto"></apex:outputPanel> 
         <div class="container-fluid">
             <div class="row changeStatusPage">
-                <div class="col-xs-12" id="changeStatus_links">
+                <div class="col-xs-12 changeStatus_links" id="changeStatus_links">
                     <div class="col-xs-12 yellowAlert">
                         <div class="SecButtonSet">
                             <div class="col-sm-1 noPadright"><img alt="Alert" class="alertimg" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>                        
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="col-xs-12 noPadleft noPadright sliderDiv">
-            <div id="slider">
+            <div id="slider" class="slider">
                 <div id="legend" class="ipmUpdateStatusTab">
                     <ul class="ipmStatusTabs">    
                     </ul>
@@ -54,7 +54,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="changeStatusPage greenBG">
-                    <div class="col-xs-12" id="changeStatus">
+                    <div class="col-xs-12 changeStatus" id="changeStatus">
                         <!-- For In-Progress State -->                     
                         <apex:outputPanel id="progress" styleClass="progress">
                         <!-- Below rendered condition will show the output text for in progress status -->   
@@ -432,7 +432,7 @@
                 </div>
             </div>
         </div>    
-        <div id="ipmModalApproveEdits" class="modal fade">
+        <div id="ipmModalApproveEdits" class="modal fade ipmModalApproveEdits">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

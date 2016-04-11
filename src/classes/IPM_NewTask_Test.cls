@@ -10,7 +10,6 @@
 private class IPM_NewTask_Test{
     
     private static User platformUser;
-    private static User userBDRole;
     private static list<IPM_Project__c> projectList;
     private static list<IPM_Project__c> projectDetailList;
     private static set<Id> projDocId;
@@ -35,7 +34,7 @@ private class IPM_NewTask_Test{
      {
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
             platformUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
-            userBDRole = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.FUNCTIONAL_ROLE_BD);
+            IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.FUNCTIONAL_ROLE_BD);
         }
         // Create Company Card information 
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -72,7 +71,6 @@ private class IPM_NewTask_Test{
     ***********************************/
     public static void initializedData(){
         
-        set<string> projIdSet = new set<string>();
 
         projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,
                             (Select Id from Project_Documents__r),
@@ -86,7 +84,7 @@ private class IPM_NewTask_Test{
         for(IPM_Project__c project : projectDetailList)
         {
             system.assertEquals(project.IPM_Complexity__c,IPM_ConstantUtils.COMPLEXITY_FULL,'Projects are not created');
-            projIdSet.add(project.id);
+            
             
             for(IPM_Project_Document__c projDoc : project.Project_Documents__r)
             {
@@ -261,7 +259,7 @@ private class IPM_NewTask_Test{
            
 			//check if the task is modified
             list<IPM_Task__c> taskResult = [SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c WHERE id=:task11.id];
-            system.assertEquals(taskResult[0].IPM_Task_Name__c,TASK_NAME);
+            system.assertEquals(taskResult[0].IPM_Task_Name__c,TASK_NAME,'Task name is different');
            
         Test.stopTest();
         }

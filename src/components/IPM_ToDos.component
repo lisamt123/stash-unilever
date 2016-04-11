@@ -14,10 +14,10 @@
             <apex:attribute name="createTask" type="Boolean" AssignTo="{!isCreateTask}" description="this is used for security"/>             
              
                 <apex:outputpanel rendered="{!isCreateTask}">             
-                    <div class="pull-right addLink tabTaskButton noPadright txtRight" id="addTask" data-toggle="modal" data-target="#ipmMstoneTaskWizard" value="{!$Page.IPM_AddTaskWizard}?projectId={!projectId}&Wizard=true" title="Add Task" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> {!$Label.IPM_AddTaskLabel}</span></div>
+                    <div class="pull-right addLink tabTaskButton noPadright txtRight addTask" id="addTask" data-toggle="modal" data-target="#ipmMstoneTaskWizard" value="{!$Page.IPM_AddTaskWizard}?projectId={!projectId}&Wizard=true" title="Add Task" data-backdrop="static" data-keyboard="false"><span class="fa fa-plus" /><span class="addLinkText"> {!$Label.IPM_AddTaskLabel}</span></div>
                 </apex:outputpanel> 
                 <div class="row ipmTaskRowTodo" id="firstDiv">
-                    <div class="table-responsive" id="ipmTableDiv">
+                    <div class="table-responsive ipmTableDiv" id="ipmTableDiv">
                         <apex:actionStatus startText="updating..." id="myStatus">
                              <apex:facet name="start">
                                 <img height="15" width="15" src="/img/loading32.gif" alt="Loading.." />
@@ -123,7 +123,7 @@
                             <apex:column headerValue="Due Date" rendered="{!!isExternalApproach}" styleClass="col-xs-1 duedateHeader {!IF(p.isChecked,'selected', 'notselected')}">
                                 <apex:facet name="header">
                                     <div>{!$Label.IPM_DUE_DATE} 
-                                      <span id="sortDueDate" class="fa {!IF(currentSort['thisFld'] = 'IPM_Due_Date1__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span></div>
+                                      <span id="sortDueDate" class="sortDueDate fa {!IF(currentSort['thisFld'] = 'IPM_Due_Date1__c' && isAsc, 'fa-angle-down', 'fa-angle-up')} sortIcon"></span></div>
                                 </apex:facet>
                                 <!-- Comment : if the functional role is not null + current user is functional leader + current user's functional role is equal to
                                     tasks' functional role + current user is having access for edit task then user can edit the task by double clicking on task due date -->

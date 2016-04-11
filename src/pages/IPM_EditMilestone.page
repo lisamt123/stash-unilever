@@ -16,7 +16,7 @@
     
     <div class="">
         <div class="" id="newMstone"> 
-            <div class="" id="EditTask">
+            <div class="EditTask" id="EditTask">
             <apex:form id="form"> 
                 <apex:pageMessages id="messages"/> 
                     <apex:outputPanel styleClass="tableContainer" layout="block">

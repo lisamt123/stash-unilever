@@ -46,7 +46,7 @@ private class IPM_GatekeeperChecklist_Test{
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
         List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
-        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card insertion fails'); // Positive Test
         
         IPM_TestFactory_Helper.getProjectMasterData();
         projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForAGateKeeper);
@@ -55,7 +55,7 @@ private class IPM_GatekeeperChecklist_Test{
         
         project=projectList[0];
         List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
-        System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
+        System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name is not validate');//positive test
     }
     }
     
@@ -191,7 +191,7 @@ private class IPM_GatekeeperChecklist_Test{
             ipmgk.getChecklistQuestions(IPM_ConstantUtils.RND,IPM_ConstantUtils.CHARTER_GATE);
             ipmgk.getChecklistQuestions(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE,IPM_ConstantUtils.CHARTER_GATE);
             List<IPM_Questionnaire__c>quesListObj=[SELECT ID,RecordTypeId FROM IPM_Questionnaire__c WHERE IPM_Project__c=:ipmGk.projectId limit 1];
-            System.assertEquals(quesListObj[0].RecordTypeId,Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE).RecordTypeId,'ques list is not retrieved with the specific record type');// Positive Test
+            System.assertEquals(quesListObj[0].RecordTypeId,Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE).RecordTypeId,'ques list is retrieved with the specific record type');// Positive Test
             test.stopTest();
         }
     }

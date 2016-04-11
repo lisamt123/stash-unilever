@@ -14,7 +14,7 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Modal1.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_posquestions.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'assets/font-awesome/css/font-awesome.min.css')}"/>
-    <div id="showQues">  
+    <div id="showQues" class="showQues">  
         <apex:form id="frm" >
         
             <!-- To place the help symbol in the top right hand corner of page -->

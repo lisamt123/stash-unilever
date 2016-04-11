@@ -13,7 +13,7 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_AddTaskNew.css')}"/>  
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_HomePage.css')}"/>
     <div class="">
-        <div class="" id="EditTask">
+        <div class="EditTask" id="EditTask">
             <apex:form id="form">
                 <div class="panelScroll">
                     <div class="col-xs-12 marginTop">
@@ -30,7 +30,7 @@
                         </apex:outputPanel> 
                         </div>        
                         <div class=""><apex:outputLabel value="To-do" styleClass="fieldLabel fieldFont" /></div>
-                        <div class="inputField"><apex:inputField value="{!tasks.IPM_Task_Name__c}" styleClass="fieldFont" /></div> 
+                        <div class="inputField"><apex:inputField value="{!tasks.IPM_Task_Name__c}" styleClass="fieldFont todoName" /></div> 
                     </div>
                     <div class="col-xs-12 middlePanel">
                         <div class=""><apex:outputLabel value="{!$Label.IPM_Phase_Gate}" styleClass="fieldLabel fieldFont"/></div>

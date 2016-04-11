@@ -28,7 +28,7 @@
                         <div class="col-xs-6 listViewIcon selectedView1"><a class="icoButton list-selected"></a> </div>
                         <div class="col-xs-6 timelineIcon"><a class="icoButton timeline"></a></div>
                     </div> 
-                    <div class="col-xs-6 addLink" id="addMilestone" data-toggle="modal" data-target="#ipmModal" 
+                    <div class="col-xs-6 addLink addMilestone" id="addMilestone" data-toggle="modal" data-target="#ipmModal" 
                         value="{!$Page.IPM_AddMilestone}?projectId={!projectId}" title="{!$Label.IPM_ADD_MILESTONE}" data-backdrop="static" 
                         data-keyboard="false">
                         <span class="fa fa-plus" />&nbsp;<span class="addLinkText">{!$label.IPM_ADD_MILESTONE}</span>
@@ -57,9 +57,9 @@
         <apex:outputPanel id="milestonesTimeLineView">
             <div class="timeLineView">
         
-                <div id="ipmTimeLine">
-                    <a id="pre"><i class="fa fa-angle-left"></i></a>
-                    <a id="next"><i class="fa fa-angle-right"></i></a> 
+                <div id="ipmTimeLine" class="ipmTimeLine">
+                    <a id="pre" class="pre"><i class="fa fa-angle-left"></i></a>
+                    <a id="next" class="next"><i class="fa fa-angle-right"></i></a> 
                     <div class="cInner">           
                     <ul class="taskProgress">
                     <apex:repeat value="{!timelineMilestones}" var="t" >
@@ -116,9 +116,9 @@
         </apex:outputPanel>
         
         
-        <div class="row ipmMileRow" id="milestoneList">
+        <div class="row ipmMileRow milestoneList" id="milestoneList">
                   
-            <div class="table-responsive proLoader" id="ipmTableDiv">
+            <div class="table-responsive proLoader ipmTableDiv" id="ipmTableDiv">
               <apex:actionStatus startText="" id="myStatusM" startStyleClass="proInit"/> 
               <!----------  Data Table to show milestone details  -------------->
                 <apex:dataTable value="{!projectMilestones}" var="p" id="tskPanelM" styleClass="ipmTable ipmMilestoneTable table table-bordered">
@@ -228,7 +228,7 @@
                     <apex:column headerValue="{!$Label.IPM_DUE_DATE}" width="12%" styleClass="duedateHeader {!IF(p.isChecked,'selected', 'notselected')}">
                         <apex:facet name="header">
                             <div>{!$Label.IPM_DUE_DATE} 
-                                <span id="sortDueDate1" class="fa {!IF(AND(currentSort['thisFld'] = 'IPM_Due_Date__c' , isAsc), 'fa-angle-down', 'fa-angle-up')}"></span></div>
+                                <span id="sortDueDate1" class="sortDueDate1 fa {!IF(AND(currentSort['thisFld'] = 'IPM_Due_Date__c' , isAsc), 'fa-angle-down', 'fa-angle-up')}"></span></div>
                         </apex:facet>
                         
                        <apex:outputPanel rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">

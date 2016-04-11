@@ -550,7 +550,7 @@
                 </div>
             </div>
             <apex:form >
-                <div id="ipmModalSkipBossConfirm" class="modal fade">
+                <div id="ipmModalSkipBossConfirm" class="modal fade ipmModalSkipBossConfirm">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             

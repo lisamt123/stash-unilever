@@ -190,7 +190,7 @@
                                                                             </apex:outputPanel> 
                                                                         </apex:repeat> 
                                                                     </div>
-                                                                    <div class="table-responsive cmiContractTable" id="ipmTableDiv">
+                                                                    <div class="table-responsive cmiContractTable ipmTableDiv" id="ipmTableDiv">
                                                                         <div class="cmiTabHeaderContainer">
                                                                             <span class="cmiContractHeadBlock">
                                                                                 {!$Label.IPM_CMI_Inputs}

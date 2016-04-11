@@ -171,7 +171,7 @@
                                                 </div>  
                                                 <div class="ipmButtonGroup">
                                                     
-                                                    <input type="button" class="ipmButton" value="Reset" id="resetFilterBtn" onClick="resetDocFilters();"/>
+                                                    <input type="button" class="ipmButton resetFilterBtn" value="Reset" id="resetFilterBtn" onClick="resetDocFilters();"/>
                                                     <input type="button" class="ipmButton primary" value="Apply" onClick="applyFilter();" />
                                                 </div>
                                                 <apex:actionFunction name="setFilterValues" action="{!setFilter}" reRender="MainTable,count,filterBlock" status="customStatus" oncomplete="setFiltersAsPrevious();filterBlock();">
@@ -644,7 +644,7 @@
                     <!--/ Page Content -->
                         
                         <!--   MOve to Next Phase Modal Pop-up Section starts here --------->
-                        <div id="ipmMoveFeasibility" class="modal fade">
+                        <div id="ipmMoveFeasibility" class="modal fade ipmMoveFeasibility">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">

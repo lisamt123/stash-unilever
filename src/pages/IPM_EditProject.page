@@ -122,8 +122,8 @@
                                         </apex:outputPanel>
                                         <!-- To display below outputPanel when current logged in user has edit access on page   -->
                                         <apex:outputPanel layout="block" styleClass="txtRight" rendered="{!isEditable}"> 
-                                            <span id="charCountRemainingText"> {!$Label.IPM_CHAR_REMAINING} </span> 
-                                            <span id="charCountRemaining">{!$Label.IPM_CHAR_70}</span>
+                                            <span id="charCountRemainingText" class="charCountRemainingText"> {!$Label.IPM_CHAR_REMAINING} </span> 
+                                            <span id="charCountRemaining" class="charCountRemaining">{!$Label.IPM_CHAR_70}</span>
                                         </apex:outputPanel>
                                     </apex:outputPanel>     
                                 </apex:outputPanel>
