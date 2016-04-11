@@ -165,7 +165,7 @@
             </div>
              <!--Below rendered condition will execute the below output panel if isEditable is true  -->
             <apex:outputPanel rendered="{!isEditable}">
-                <div id="ipmModalConfirmBcc" class="modal fade">
+                <div id="ipmModalConfirmBcc" class="ipmModalConfirmBcc modal fade">
                     <apex:form >
                         <div class="modal-dialog">
                             <div class="modal-content">

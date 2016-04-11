@@ -4,12 +4,11 @@
 *@Description : To test IPM_CompanyCard class functionalities
 *********************************************/
 @isTest
-public class  IPM_BCC_Consolidate_Controller_Test{
+private class  IPM_BCC_Consolidate_Controller_Test{
     private static IPM_Project__c project;
     private static User bbConsUser;
     private static IPM_Project__c childProject;
     private static IPM_Project__c locProject;
-    
     private static String RECORD_INSERTION_FAILED = 'Record insertion failed.';
     /****************************************************************************************************************************
     *  @Description Initializing test data  
@@ -17,7 +16,6 @@ public class  IPM_BCC_Consolidate_Controller_Test{
     *  @param None
     *  @return void
     */
-    
     static void initializeData(){
         bbConsUser=IPM_TestFactory_Helper.createUser(true);
         System.runAs(bbConsUser){
@@ -75,6 +73,8 @@ public class  IPM_BCC_Consolidate_Controller_Test{
         initializeData();
         System.runAs(bbConsUser){
             test.startTest();
+            
+      
             project.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
             update project;
             IPM_Project__c projectObjReg=[select IPMProject_Span__c from IPM_Project__c where id=:project.Id limit 1];

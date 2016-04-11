@@ -66,7 +66,7 @@ private class IPM_GatekeeperChecklist_Test{
     static void initializeTestMethodData(){
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
+       globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
         system.runAs(globalUser){
             projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
             (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID,IPM_Project__c from IPM_Questionnaires__r)
@@ -85,6 +85,27 @@ private class IPM_GatekeeperChecklist_Test{
             ipmGK=new IPM_GatekeeperChecklist();
             
         }
+        
+         for(IPM_Questionnaire__c questionnaire:quesList) 
+          {
+           
+            questionnaire.IPM_GK_Answers_Multiselect__c='Yes~Yes; Partly~Partly; No~No; NA~Not Applicable; Dontknow~Dontknow';
+            questionnaire.IPM_HelpText_Yes__c='Help Text for Yes';
+            questionnaire.IPM_HelpText_Partly__c='Help Text for Partly';
+            questionnaire.IPM_HelpText_No__c='Help Text for No';
+            questionnaire.IPM_Question_Help_Text__c='IPM Question Help Text';
+            questionnaire.IPM_RQS_Gate_Type__c='Charter';
+            questionnaire.RecordTypeId=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.GATEKEEPER_CHECKLIST_RECORD_TYPE).RecordTypeId;
+            questionnaire.IPM_Section_Sequence_Number__c=projectDocSecListObj[0].IPM_Section_Sequence__c;
+            
+          }
+         
+          update quesList; 
+          
+          system.assertEquals([Select IPM_RQS_Gate_Type__c from IPM_Questionnaire__c where Id=: quesList[0].Id].IPM_RQS_Gate_Type__c, quesList[0].IPM_RQS_Gate_Type__c, 'Failed to update questionnaire record.'); 
+          
+         
+         
     }
 
 
@@ -110,14 +131,14 @@ private class IPM_GatekeeperChecklist_Test{
             ipmGK.ans=PARTLY_STR;
             ipmGK.updateGKchecklist();
             List<IPM_Questionnaire__c>gkQuesCommentList=[select IPM_Comments__c from IPM_Questionnaire__c where Id=:ipmGK.gkCheck.Id limit 1];
-            System.assertEquals(ipmGK.gkCheck.IPM_Comments__c ,gkQuesCommentList[0].IPM_Comments__c,'updated successfully'); // Positive Test;
+            System.assertEquals(ipmGK.gkCheck.IPM_Comments__c ,gkQuesCommentList[0].IPM_Comments__c,'updation fails'); // Positive Test;
             System.assertEquals(ANSWERED_STR, gkQuesCommentList[0].IPM_Comments__c, 'updated successfully');// Positive Test;
             ipmGK.quesId=quesList[0].Id;
             ipmGK.cmts = false;
             ipmGK.updateGKchecklist();
             List<IPM_Questionnaire__c>gkQuesAnsList=[select IPM_GK_Answers__c from IPM_Questionnaire__c where Id=:ipmGK.gkCheck.Id limit 1];
             System.assertEquals(ipmGK.gkCheck.IPM_GK_Answers__c, gkQuesAnsList[0].IPM_GK_Answers__c,'data updated');// Positive Test ;
-            System.assertEquals(PARTLY_STR, gkQuesAnsList[0].IPM_GK_Answers__c,'data updated');// Positive Test ;
+            System.assertEquals(PARTLY_STR, gkQuesAnsList[0].IPM_GK_Answers__c,'data updation fails');// Positive Test ;
             test.stopTest();
         }
     }
@@ -129,13 +150,24 @@ private class IPM_GatekeeperChecklist_Test{
         initializeTestMethodData();
         
         system.RunAs(globalUser){
-            test.startTest();
+        	
+            Test.startTest(); 
+            
             ipmgk.getSectioWiseGKChecklist();
             ipmGK.SecId=projectDocSecListObj[0].Id;
+            ipmGK.gateType='Charter';
+            ipmGK.projectID=quesList[0].IPM_Project__c; 
             ipmgk.getSectioWiseGKChecklist();
+            
+            System.assert(ipmgk.gkChecklistAnsMap.keyset().size()>0,'Failed to populate controller map : gkChecklistAnsMap');
+            
             List<IPM_Project_Document_Section__c> docSecList=[SELECT Id,IPM_Section_Sequence__c FROM IPM_Project_Document_Section__c WHERE Id=:ipmGk.SecId limit 1];
-            System.assertEquals(docSecList[0].Id,ipmGK.projDocSec.Id,'data is there so we can get section wise checklist');// Positive Test;
-            test.stopTest();
+            
+            System.assertEquals(docSecList[0].Id,ipmGK.projDocSec.Id,'data is not avalilable there so we can not get section wise checklist');// Positive Test;
+            
+            Test.stopTest();
+            
+            
         }
     }
     

@@ -1073,6 +1073,66 @@ public with sharing class IPM_ProjectCountryDetails{
         }
     
     }
+    
+      /*************************************************************************************************************
+  * @description:Assign Company Card to rollouts
+  */
+ public static void assignCompanyCardLocal(Map<id,IPM_Country__c> countyrMap)
+{
+  List<IPM_Country__c>countryList=new list<IPM_Country__c>();
+  countryList=[select Local_Rollout__c,Local_Rollout__r.IPM_Small_C__c,Country_Name__c from IPM_Country__c where 
+                id IN:countyrMap.keyset() LIMIT 5000]; 
+  List<IPM_Company_Card__c>companyCardLst=new List<IPM_Company_Card__c>(); 
+  companyCardLst=[select Id,IPM_MCO__c,IPM_CompanyCard_Type__c,IPM_Managed_Category__c,RecordType.Name,IPM_TxtGeographical_Scope__c from IPM_Company_Card__c 
+  where RecordType.Name=:IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_LOCAL Limit 5000];
+                                       
+  
+  List<IPM_Project_Rollout__c>rolloutList=new List<IPM_Project_Rollout__c>();
+  IPM_Project_Rollout__c newRollout;
+
+
+    
+  for(IPM_Country__c country : countryList)
+  {
+    for(IPM_Company_Card__c companyCard : companyCardLst)
+    {
+      
+      
+      
+      if(companyCard.IPM_Managed_Category__c!=null && country.Local_Rollout__r.IPM_Small_C__c!=null && 
+        companyCard.IPM_TxtGeographical_Scope__c!=null && country.Country_Name__c!=null && 
+        companyCard.IPM_TxtGeographical_Scope__c.contains(country.Country_Name__c) && 
+               companyCard.IPM_Managed_Category__c.contains(country.Local_Rollout__r.IPM_Small_C__c) && 
+               country.Local_Rollout__c !=null)
+          
+      
+      {
+        rolloutList=new List<IPM_Project_Rollout__c>();
+        newRollout=new IPM_Project_Rollout__c();
+        
+        
+        newRollout.IPM_Company_Card__c=companyCard.Id; //assigning company card to rollout
+        newRollout.id=country.Local_Rollout__c; 
+        rolloutList.add(newRollout);
+        
+      }
+      
+    }
+    
+  
+  
+ 
+  
+}
+ if(!rolloutList.isEmpty()){
+     IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true; // for skipping trigger execution
+                        
+                    
+  update rolloutList;
+ 
+  IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+ }
+ }
         
     
-}
+  }

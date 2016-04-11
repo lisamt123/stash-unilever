@@ -379,7 +379,7 @@
         <description>contains cmi comments</description>
         <externalId>false</externalId>
         <label>IPM CMI Comments</label>
-        <length>255</length>
+        <length>100</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -589,7 +589,7 @@
         <description>contains overall comments in cmi</description>
         <externalId>false</externalId>
         <label>IPM CMI Overall Comments</label>
-        <length>255</length>
+        <length>100</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

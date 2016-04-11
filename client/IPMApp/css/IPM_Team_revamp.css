@@ -3,20 +3,20 @@
 .ipmFunnelPanel {
     bottom: 4px;
 }
-#ipmAddMemberModal .modal-body {
-    height: 90% !important;
+.ipmAddMemberModal .modal-body {
+    height: 90% ;
 }
 .noPadright {
-    padding-right: 0 !important;
+    padding-right: 0 ;
 }
 .noPadleft {
-    padding-left: 0 !important;
+    padding-left: 0 ;
 }
 .navbar-nav li:last-child > a > span {
-    margin-top: 0 !important;
+    margin-top: 0 ;
 }
 .ipmHeading {
-    padding: 0 0 5px !important;
+    padding: 0 0 5px ;
 }
 .editButton {
     position: relative;
@@ -59,7 +59,7 @@
     line-height: 32px;
 }
 .circular.ipmImage {
-    border-radius: 500rem !important;
+    border-radius: 500rem ;
 }
 .memContainer {
     width: 100%;
@@ -88,7 +88,7 @@
 .teamSpacing {
     margin: 20px 0;
 }
-#teammembers {
+.teammembers {
     margin-top: 20px;
 }
 .expandTool {
@@ -139,29 +139,29 @@
 }
 /* Team Radio button styles */
 
-.leaderRadioButton {
-    margin-top: 10px !important;
-    margin-left: 40px !important;
-    width: 100% !important;
-    float: left !important;
+.memContainer .leaderRadioButton {
+    margin-top: 10px ;
+    margin-left: 40px ;
+    width: 100% ;
+    float: left ;
 }
 .leaderLabel {
     margin-left: 10px;
     float: left;
 }
-.teamMemberButton .icoButton {
-    position: absolute !important;
-    top: -45px !important;
+.memContainer .teamMemberButton .icoButton {
+    position: absolute ;
+    top: -45px ;
     left: 39px;
-    width: 30px !important;
-    height: 30px !important;
+    width: 30px ;
+    height: 30px ;
 }
 .leaderRadioButton label:after {
     top: 9px;
     left: 9px;
 }
-.leaderRadioButton label {
-    margin-right: 5px !important;
+.memContainer .leaderRadioButton label{
+    margin-right: 5px ;
 }
 /* Accordion styles */
 
@@ -220,16 +220,16 @@
     -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
     box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
     font-weight: normal;
-    background-color: #01B1A6 !important;
+    background-color: #01B1A6 ;
     border-radius: 2px;
     text-align: left;
     width: 500px;
 }
 .tooltip.left .tooltip-arrow {
-    border-left-color: #00b1a5!important;
+    border-left-color: #00b1a5;
 }
 .tooltip.top .tooltip-arrow {
-    border-top-color: #00b1a5!important;
+    border-top-color: #00b1a5;
 }
 .memContainer select {
     width: 100%;
@@ -244,10 +244,10 @@
     margin-top: 6px;
 }
 .tooltip.bottom .tooltip-arrow {
-    border-bottom-color: #00b1a5!important;
+    border-bottom-color: #00b1a5;
 }
 .custPosition {
-    position: static !important;
+    position: static ;
     width: 190px;
     float: left;
 }
@@ -256,10 +256,10 @@ img[data-lead='true'] {
 }
 /* Modal Styles */
 
-#ipmAddMemberModal .modal-header button.close {
-    bottom: 0 !important;
+.ipmAddMemberModal .modal-header button.close {
+    bottom: 0 ;
 }
-#ipmAddMemberModal .modal-header {
+.ipmAddMemberModal .modal-header {
     height: 60px;
 }
 .nav {
@@ -269,7 +269,7 @@ img[data-lead='true'] {
 
 .deleteButtoncontainer{    margin: 12px 0 0 0 ;  width: 190px;}
 .buttonMarginRight {  margin-right: 15px;}
-#ipmModalDelete .modal-header{height:32%;}
+.ipmModalDelete .modal-header{height:32%;}
 .DelDesc{margin-top:10px;display:block;}
 .proInit {
     text-align: center;
@@ -280,7 +280,7 @@ img[data-lead='true'] {
     width: 99%;
 	opacity: 0.9;
     height: 100%;
-    background:#fff url('../images/ajax-loader.gif') no-repeat center 14%!important;
+    background:#fff url('../images/ajax-loader.gif') no-repeat center 14%;
 }
 
-#ipmModalDelete .modal-body{height:auto !important;}
+.ipmModalDelete .modal-body{height:auto ;}

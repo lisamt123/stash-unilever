@@ -12,7 +12,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                                                                                 'IPM_Project_Gatekeeper__c','Deputy_Project_Leader__c','IPM_Finance_Member__c'};
                                                                                 
     public static Map<String, Schema.SObjectField> projectFieldDesc = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();                                                                            
-
+  	public static Boolean stopProjExecute = true;
    
     // Constructor
     public IPM_ProjectHandler() 
@@ -601,7 +601,9 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             map<string, ipm_project__c> mapProjBETupdate = new map<string, ipm_project__c>();
             
             Map<Id, IPM_Project__c> ipmFastTrackProjectMap = new Map<Id, IPM_Project__c>(); // Fast Track Marked project Map 
-            
+            Map<Id, String> stoppedProjectMap = new Map<Id, String>(); // Fast Track Marked project Map 
+            Set<Id> strtdPrjIdSet = new Set<Id>(); //  started project Id set 
+			
             for(IPM_Project__c p:(List<IPM_Project__c>)Trigger.New)
             {
                     IPM_Project__c proj=(IPM_Project__c)Trigger.oldMap.get(p.Id);
@@ -657,7 +659,23 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     if(!lstBETaccessIds.isEmpty())
                     {
                         IPM_BETHelper.sendBETAccessRequest(lstBETaccessIds, p.BET__c, p.id);
-                    }         
+                    }  
+                    
+                    if(String.isNotBlank(p.IPM_Phase__c) && (p.Is_Archieved__c != proj.Is_Archieved__c ) && stopProjExecute)
+                    {   
+                    	if(p.Is_Archieved__c  )
+                    	{
+                    	  	stoppedProjectMap.put(p.id,p.IPM_Stopped_Comments__c);
+                    	}
+                    	else
+                    	{
+                    	    strtdPrjIdSet.add(p.id);
+                    	}
+                    	
+                    
+					}  
+					
+					     
                 }
                
                  // Fast Track Global Original Project 
@@ -665,7 +683,16 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 {
                     IPM_ProjectHelper.processFastTrackProjects(ipmFastTrackProjectMap);
                 }
-            
+            	
+            	if(!stoppedProjectMap.isEmpty()) 
+                {
+                   IPM_ProjectHelper.updateStoppedProject(stoppedProjectMap);
+                }
+                
+                if(!strtdPrjIdSet.isEmpty())
+                {
+                    IPM_ProjectHelper.restartProject(strtdPrjIdSet);
+                } 
            
            //call update project name in all objects records
             if(!updateNewProNameMap.IsEmpty()){

@@ -69,7 +69,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     private static final String EXTERNAL_ID_ENVIRONMENTAL_IMPACT='Environmental_Impact';
     public static final Set<String> sectionEditableOnStatus = new Set<String>{IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,IPM_ConstantUtils.STATUS_NOT_STARTED,IPM_ConstantUtils.STATUS_IN_PROGRESS};
     public Static final String ENVIRONMENTAL_IMPACT = IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_EXTERNAL_ID;
-
+    public boolean isCUandComplexity{get;set;}//to display cu and complexity component
+    public boolean isEditMarketPerformance{get;set;}
     /****************************************************************************************************************************************************************
     * @description Fetching the Page parameters and Retrieving Project,Projerct Document and Projerct Document Section
     */
@@ -86,7 +87,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         isTaskeditable=false;
         markTaskAccess =  false;
         isTaskViewable =  true;
-        
+        isCUandComplexity=false;
         remainingChar=0;
         isChecked='';
         attachId='';
@@ -95,6 +96,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         showPre=true;
         showNext=true;
         showEcoDesign = false;
+        isEditMarketPerformance=false;
         Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.UA_COMPATIBLE, IPM_ConstantUtils.IE_EDGE);
         projectResource=new list<IPM_Project_Resource__c>();
         projectId=ApexPages.currentPage().getParameters().get('Id');
@@ -203,7 +205,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         
         //Fetching Project Document Section
         projDocSec=[SELECT Id,IPM_Summary_Character_Remaining__c,IPM_Project_Document__c,IPM_User_Id__c,Is_IPM_Global_Consolidated__c,IPM_Section_Sequence_Number__c,IPM_Project_L_eader_Email__c,IPM_DocSec_Project_Leader__c,IPM_Section_Sequence__c,IPM_GateHistory_Date__c,IPM_PDPHistoty_Date__c,IPM_GateHistory__c,IPM_PDPHistoty__c,
-                    IPM_Section_Name__c,IPM_Section_Help_Text_Long__c,IPM_FunctionalRole__c,IPM_Negotiable__c,IPM_Notify_Team__c,LastModifiedBy.Name,LastModifiedDate,IPM_Section__r.External_ID__c,
+                    IPM_Section_Name__c,IPM_Section_Help_Text_Long__c,IPM_FunctionalRole__c,IPM_Negotiable__c,IPM_Notify_Team__c,LastModifiedBy.Name,LastModifiedDate,IPM_Section__r.External_ID__c,IPM_Section__r.IPM_Section_Help_Text__c,
                     IPM_PDP_Document_Summary__c,IPM_Gate_Document_Summary__c,IPM_Count_of_Comments__c ,IPM_Master_Section_External_Id__c,IPM_Section__r.IPM_Character_Limit__c
                     FROM IPM_Project_Document_Section__c WHERE Id=:String.escapeSingleQuotes(String.valueOf(projDocSecId)) LIMIT 1];
         
@@ -297,29 +299,33 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         else if(projDocSec.IPM_Section_Sequence__c==lastSec){
             showNext=false;
         }
+        renderedConditions();
+        
     }
     
     /****************************************************************************************************************************************************************
     * @description Get user type with access permission     
     */
-    public void getIpmuserType(){
+    public void getIpmuserType(){ 
         list<IPM_Project_Resource__c>lstProuser=[SELECT IPM_Role_Type__c,IPM_User__c,IPM_Project_Role_Owner__c,IPM_Project__r.IPM_Project_Leader__c 
                                                  FROM IPM_Project_Resource__c 
-                                                 WHERE IPM_Project__c=:projectId AND IPM_User__c=:userinfo.getuserid()  AND IPM_Project__r.Is_Archieved__c=false  
-                                                 limit 1];
-        
+                                                 WHERE IPM_Project__c=:projectId AND IPM_User__c=:userinfo.getuserid() AND IPM_Project__r.Is_Archieved__c=false  
+                                                 limit 100];
+        Set<string>userRolesSet=new Set<string>();
         if(!lstProuser.isEmpty()){
-            string userRole_STR='';
-            userRole_STR=lstProuser[0].IPM_Role_Type__c;
+                        for(IPM_Project_Resource__c projResource:lstProuser){
+                                if(!userRolesSet.contains(projResource.IPM_Role_Type__c)){
+                                        userRolesSet.add(projResource.IPM_Role_Type__c);
+                                }
+                                if(projResource.IPM_Project_Role_Owner__c && Frole.equals(projResource.IPM_Role_Type__c))
+                                {
+                                        isCreateTask=true;
+                                        isTaskeditable =true;
+                                        markTaskAccess = true;
+                                }
+                        }
             
-            if(lstProuser[0].IPM_Project_Role_Owner__c && userRole_STR.equals(Frole))
-            {
-                isCreateTask=true;
-                isTaskeditable =true;
-                markTaskAccess = true;
-            }
-                                                                                                                                
-            if(userRole_STR.Equals(IPM_ConstantUtils.FUNCTIONAL_ROLE_BD) && !project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY)){
+            if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_BD) && !project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY)){
                 if(bdSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c) || ((projDocSec.IPM_Section__r.External_ID__c.Equals(IPM_ConstantUtils.IPM_ROLLOUT_PLANS) || projDocSec.IPM_Section__r.External_ID__c.Equals(IPM_ConstantUtils.IPM_MILESTONES_DOC)) &&  !project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_IDEAS)))
                 {
                     IsEditableSumm=true;
@@ -335,7 +341,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 IsEditableSumm=false;
                 }
             }
-            else if(userRole_STR.Equals(IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI) && !project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY)){
+            
+             if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI) && !project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY)){
                 if(cmiSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c))
                 {
                     IsEditableSumm=true;
@@ -346,8 +353,12 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 if(IPM_ConstantUtils.CONSUMER_EVIDENCE_COMMUNICATION.equals(projDocSec.IPM_Section__r.External_ID__c)){
                     IsEditableOutC=true;
                 }
+                if(IPM_ConstantUtils.MONITONING_PER_EXTERNAL_ID.equals(projDocSec.IPM_Section__r.External_ID__c)){
+                                
+                        isEditMarketPerformance=true;
+                }
             }
-            else if(userRole_STR.Equals(IPM_ConstantUtils.FUNCTIONAL_ROLE_CD)){
+             if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_CD)){
                 if(cdSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c) ||  (projDocSec.IPM_Section_Name__c.Equals(IPM_ConstantUtils.IPM_CUTOMER_OPPORTUNITY) && 
                     !project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY)))
                 {
@@ -356,7 +367,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                     isAssortEdit=true;
                 }
             }
-            else if(userRole_STR.Equals(IPM_ConstantUtils.FUNCTIONAL_ROLE_RD) && !project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY)){
+            if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_RD) && !project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY)){
                 if(rndSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c))
                 {
                     IsEditableSumm=true;
@@ -364,26 +375,33 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                     isEcodesignEdit=true;
                 }
             }
-            else if(userRole_STR.Equals(IPM_ConstantUtils.FUNCTIONAL_ROLE_TYPE_SUPPLY_CHAIN)){
+            if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_TYPE_SUPPLY_CHAIN)){
                 if(scSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c))
                 {
                     IsEditableSumm=true;
                     IsCRRTEditable=true;
                     IsEditableOutC=true;
                 }
-                if(userRole_STR.equals(Frole)){
+                if(userRolesSet.contains(Frole)){
                     IsEditableOutC=true;
                     IsCRRTEditable=true;
                 }
             }
-            else if(userRole_STR.Equals(IPM_ConstantUtils.FUNCTIONAL_ROLE_Finance)){
+            if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_Finance)){
                 if(financeSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c))
                 {
                     IsEditableSumm=true;
                     IsEditableOutC=true;
                 }
+                if(IPM_ConstantUtils.MONITONING_PER_EXTERNAL_ID.equals(projDocSec.IPM_Section__r.External_ID__c)){
+                        isEditMarketPerformance=true;
+                }
             }
-            else if(userRole_STR.Equals(IPM_ConstantUtils.FUNCTIONAL_ROLE_BB) && project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY) && !projDocSec.IPM_Section__r.External_ID__c.Equals(IPM_ConstantUtils.IPM_GATEKEEPE_CHECKLIST)){
+            //special case
+            if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI) && project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY) && IPM_ConstantUtils.MONITONING_PER_EXTERNAL_ID.equals(projDocSec.IPM_Section__r.External_ID__c)){
+                 isEditMarketPerformance=true;
+            }
+            if(userRolesSet.contains(IPM_ConstantUtils.FUNCTIONAL_ROLE_BB) && project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY) && !projDocSec.IPM_Section__r.External_ID__c.Equals(IPM_ConstantUtils.IPM_GATEKEEPE_CHECKLIST)){
                 IsEditableOutC=true;
                 IsEditableSumm=true;
                 IsCRRTEditable=true;
@@ -410,7 +428,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         list<IPM_Project__c>lstofuser=[SELECT IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Technical_Project_Leader__c 
                                         FROM IPM_Project__c 
                                         WHERE id=:projectId AND Is_Archieved__c=false limit 1];
-        if(!lstofuser.isEmpty()){
+        if(!lstofuser.isEmpty()&& !project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY)){
             if((lstofuser[0].IPM_Project_Leader__c!=null && lstofuser[0].IPM_Project_Leader__c==userinfo.getuserid()) || 
                 (lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid())){
                 if(plSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c) || ((projDocSec.IPM_Section__r.External_ID__c.Equals(IPM_ConstantUtils.IPM_ROLLOUT_PLANS) 
@@ -430,6 +448,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 markTaskAccess = true;
                 isCreateTask=true;
                 isEcodesignEdit=true;
+                isEditMarketPerformance=true;
             }
              
             else if(lstofuser[0].IPM_Technical_Project_Leader__c!=null && lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid()){
@@ -452,8 +471,6 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
              if((lstofuser[0].IPM_Project_Leader__c!=null && lstofuser[0].IPM_Project_Leader__c==userinfo.getuserid()) || 
                 (lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid())){
                 IsEditableSumm=true;
-                IsEditableOutC=false;
-                
                 if(CountProuser==0){
                     IsEditableOutC=true;
                     isEditGateCMI=true;
@@ -462,12 +479,6 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                     isEcodesignEdit=true;
                 }
             }
-            if(lstofuser[0].IPM_Technical_Project_Leader__c!=null && lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid() && 
-            lstofuser[0].IPM_Project_Leader__c!=null && lstofuser[0].IPM_Project_Leader__c!=lstofuser[0].IPM_Technical_Project_Leader__c &&
-            lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c!=lstofuser[0].IPM_Technical_Project_Leader__c){
-                IsEditableSumm=false;
-                IsEditableOutC=false;
-            }   
         }
         
         //security for central team and BP users
@@ -478,7 +489,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
         if(isCentralTeam || isBPUser){
             IsEditableOutC=true;isEditGateCMI=true;IsCRRTEditable=true;isAssortEdit=true;isEcodesignEdit=true;isTaskeditable=true;   
-            IsEditableSumm=true;markTaskAccess=true;isCreateTask=true;
+            IsEditableSumm=true;markTaskAccess=true;isCreateTask=true;isEditMarketPerformance=true;
             
         }   
     }
@@ -951,4 +962,11 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
 	        remainingChar=countLimit;
     	}
     }    
+	 @testVisible private void renderedConditions(){
+        if((project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) && projDocSec.IPM_Master_Section_External_Id__c.equals(IPM_ConstantUtils.CU_AND_COMPLEXITY))
+        ||(!project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) && projDocSec.IPM_Master_Section_External_Id__c.equals(IPM_ConstantUtils.CU_AND_COMPLEXITY) && (project.IPMProject_Span__c.equals(IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL) 
+        || project.IPMProject_Span__c.equals(IPM_ConstantUtils.PROJECT_SPAN_LOCAL)|| project.IPM_Phase__c.equals(IPM_ConstantUtils.PHASE_IDEAS)))){
+            isCUandComplexity=true;
+        }
+    }     
 }

@@ -3,7 +3,8 @@
 *@Author: Cognizant
 *@Created Date: 28/05/2015 
 ******************************************************************************/
-/* Below code is to limit the charaters for RTF in gate document page */
+/* Below script works on different key events. Based on the number of keys entered it shows the remaining characters and also once the user
+enters the total number of characters matching the limit, it stops the user to enter furthermore characters. */
 (function ( $ ) {
 	$.fn.extend({
         limiter: function(limit, remaining, total) {
@@ -18,7 +19,7 @@
                 if (e.which < 0x20) {
                     return; // Do nothing
                 }
-                if (this.value.length == limit) {
+                if (this.value.length === limit) {
                     e.preventDefault();
                 } else if (this.value.length > limit) {
                     // Maximum exceeded

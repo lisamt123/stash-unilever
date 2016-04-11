@@ -35,13 +35,22 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         if(System.Trigger.isDelete)
         {           
             handler.processDelete((List<IPM_Project_Rollout__c>) Trigger.old);
+            handler.deleteRegionalFinancialActionStandards((List<IPM_Project_Rollout__c>) Trigger.old);
         } 
         
         //@@Design Review - Data Sharing Change - Update ownerid of rollouts to project ownerid
         
         if(System.Trigger.isInsert){
+            
             handler.OnBeforeInsert((List<IPM_Project_Rollout__c>) Trigger.new);
+           handler.assignCompanyCard((List<IPM_Project_Rollout__c>) Trigger.new);
+            
         }
+        
+        
+            
+               
+       
     }
     /**
     * @description:bulkAfter
@@ -54,7 +63,8 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         
         if(Trigger.isInsert)
         {
-            handler.processInsert((List<IPM_Project_Rollout__c>) Trigger.new);    
+            handler.processInsert((List<IPM_Project_Rollout__c>) Trigger.new); 
+            handler.createRegionalFinancialActionStandards((List<IPM_Project_Rollout__c>) Trigger.new);
         }
         
         if(Trigger.isUpdate)
@@ -109,8 +119,8 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         
         if(!newRollout.isActive__c && oldRollout.isActive__c != newRollout.isActive__c)
         {
-           	newRollout.IPM_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
-			newRollout.IPM_Regional_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;                       
+            newRollout.IPM_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
+            newRollout.IPM_Regional_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;                       
         }               
     }
     
@@ -216,7 +226,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     public void andFinally()
     {
         //call method to insert all exception logs got while excecution of trigger
-       	
+        
         if( (Trigger.isInsert || Trigger.isUpdate) && Trigger.isAfter)
         {
             if(!phaseChangeProjects.isEmpty())

@@ -44,14 +44,14 @@
     padding: 32px;
 }
 div.countriesList li:first-child {
-    background: none !important;
+    background: none ;
 }
 a.noDecoration,
 a.noDecoration:hover {
     text-decoration: none;
 }
 .ipmPageHeaderDiv {
-    margin-bottom: 15px !important;
+    margin-bottom: 15px ;
 }
 .context {
     color: #666;
@@ -61,37 +61,37 @@ a.noDecoration:hover {
     margin-top: 20px;
 }
 hr {
-    margin-top: 10px !important;
-    margin-bottom: 10px !important;
+    margin-top: 10px ;
+    margin-bottom: 10px ;
     border: 0;
-    border-top: 1px solid #b9bdae !important;
+    border-top: 1px solid #b9bdae ;
 }
 mb15 {
     margin-bottom: 15px;
 }
 .ipmButton {
-    cursor: pointer !important;
-    display: inline-block !important;
-    min-height: 1em !important;
-    outline: none !important;
-    border: none !important;
-    background: #fff !important;
-    border: 1px solid #8ab3da !important;
-    color: #0f81bb!important;
-    padding: 0.625em !important;
-    padding-bottom: 0.55em\9!important;
-    font-size: 1em !important;
-    line-height: 1 !important;
-    font-family: 'Arial'!important;
-    font-weight: bold !important;
-    font-style: normal !important;
-    text-align: center !important;
-    vertical-align: middle !important;
-    border-radius: 5px !important;
-    -webkit-border-radius: 5px !important;
-    -moz-border-radius: 5px !important;
-    min-width: 62px !important;
+    cursor: pointer ;
+    display: inline-block ;
+    min-height: 1em ;
+    outline: none ;
+    border: none ;
+    background: #fff ;
+    border: 1px solid #8ab3da ;
+    color: #0f81bb;
+    padding: 0.625em ;
+    padding-bottom: 0.55em\9;
+    font-size: 1em ;
+    line-height: 1 ;
+    font-family: 'Arial';
+    font-weight: bold ;
+    font-style: normal ;
+    text-align: center ;
+    vertical-align: middle ;
+    border-radius: 5px ;
+    -webkit-border-radius: 5px ;
+    -moz-border-radius: 5px ;
+    min-width: 62px ;
 }
 .pageTitle {
-    font-size: 1em!important;
+    font-size: 1em;
 }

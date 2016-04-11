@@ -48,20 +48,20 @@
     margin-left:0px;
 }
 
-ul.imgupdatelink
+.imgupdatelink
 {
    list-style-type: none;
    margin-top:3px;
    padding:0px;
 }
-ul.imgupdatelink li
+.imgupdatelink li
 {
     margin: 0px;
     float: left;
     padding: 0px 11px;
     
 }
-ul.imgupdatelink li:first-child
+.imgupdatelink li:first-child
 {
    border-right:#ccc solid 1px
 }
@@ -81,7 +81,10 @@ ul.imgupdatelink li:first-child
     cursor: default;
     display:none
 }
-ul.imgupdatelink li a
+blockquote.imgupdatelink{
+border-left:0px ;
+}
+.imgupdatelink li a
 {
    font-size:11px; 
    font-weight:bold;

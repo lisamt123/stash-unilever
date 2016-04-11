@@ -57,6 +57,7 @@
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>IPM_Category__c</fullName>
+        <description>To store the category of the project.</description>
         <externalId>false</externalId>
         <inlineHelpText>To hold the Categories</inlineHelpText>
         <label>Category</label>
@@ -112,6 +113,7 @@
     </fields>
     <fields>
         <fullName>IPM_Template_Complexity__c</fullName>
+        <description>To store the complexity of the project.</description>
         <externalId>false</externalId>
         <label>IPM_Template_Complexity</label>
         <picklist>
@@ -131,6 +133,7 @@
     </fields>
     <fields>
         <fullName>IPM_Template_Name__c</fullName>
+        <description>To store the name of the template.</description>
         <externalId>false</externalId>
         <label>IPM Template Name</label>
         <length>60</length>
@@ -149,6 +152,11 @@
         <columns>IPM_Template_Complexity__c</columns>
         <columns>IPM_Project__c</columns>
         <columns>IPM_Template_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

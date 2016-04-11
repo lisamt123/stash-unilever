@@ -125,7 +125,7 @@ This componet used for regional rollout project
                                             <div class="incHeight">
                                                 
                                                 <apex:outputField value="{!localProject.Rollout_Plan_Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
-                                                <apex:inputField value="{!lstcompleteProjects[localProjectID].Rollout_Plan_Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/>
+                                                <apex:inputField value="{!lstcompleteProjects[localProjectID].Rollout_Plan_Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="checkTLDDate(this)"/>
                                             </div>
                                         </th>
                                         <th scope="col" width="100px" colspan="1">
@@ -191,6 +191,7 @@ This componet used for regional rollout project
                     <apex:repeat value="{!rolloutTolocalRolloutToCountryMap}" var="localRolloutId">
                     <apex:repeat value="{!rolloutTolocalRolloutToCountryMap[localRolloutId]}" var="localRolloutDuplicateId">
                     <apex:variable var="localrollout" value="{!lstcompleteRollout[localRolloutDuplicateId]}"/>
+                    <apex:variable var="nonKeyMcoTLDMisaligned" value="{!nonKeyMcoTLDMisalignedMap[localRollout.Regional_Rollout_External_Id__c]}" />
                     <div class="projectContainer">
                         <!-- Local Rollout Header -->
                         <div class="pHead">
@@ -223,7 +224,7 @@ This componet used for regional rollout project
                                         <th scope="col" width="190px" colspan="1">
                                             <div class="incHeight">
                                                 <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
-                                                <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/>
+                                                <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].Target_Launch_Date__c}" styleClass="dateInputBox calendar{!IF(AND(nonKeyMcoTLDMisaligned, NOT(localRollout.KeyMCO__c)), ' misaligned', '')}"  rendered="{!isEditMode}" onchange="checkTLDDate(this)"/>
                                             </div>
                                         </th>
                                        
@@ -244,7 +245,7 @@ This componet used for regional rollout project
                                         <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
                                                                                    
                                             <apex:outputPanel id="countryLeaderPanel" rendered="{!isEditMode}">
-                                                <div class="" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Country_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Country_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
+                                                <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Country_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Country_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
                                                     <span class="" >{!$Label.IPM_Select_Country_Leader}</span>
                                                 </div>
                                             </apex:outputPanel>
@@ -261,7 +262,7 @@ This componet used for regional rollout project
                                         <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
                                             
                                             <apex:outputPanel id="financeLeaderPanel" rendered="{!isEditMode}">
-                                                <div class="" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
+                                                <div class="selectproLeader" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
                                                     <span class="" >{!$Label.IPM_Select_Finance_Leader}</span>
                                                 </div>
                                             </apex:outputPanel>
@@ -406,7 +407,7 @@ This componet used for regional rollout project
         </div>
     </div>
 <script>
-    function TLDDateCheck(param){
+    function checkTLDDate(param){
 
         selectedDateInputBox = param;
         var newTLDValue = param.defaultValue;

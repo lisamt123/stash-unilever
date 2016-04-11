@@ -475,12 +475,15 @@ private class IPM_ChatterFeedHelper_Test {
             
             Test.startTest();
             System.runAs(platformUser) {
-             Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
-             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-                    System.assert(projectFeed.Body.contains(Label.IPM_Task_Assign_Text1),FEED_UPDATED_NOT_ASSERTED);
+              Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
+              for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
+                String msgText =String.format(Label.IPM_Task_Assign_Text1,new List<String>{projectFeed.Parent.IPM_Project_Name__c});
+                if(projectFeed.Body.contains(msgText)){
+                  System.assert(projectFeed.Body.contains(msgText),FEED_UPDATED_NOT_ASSERTED);
+                }
              }
+            } 
             Test.stopTest();
-            }
          }
     
     

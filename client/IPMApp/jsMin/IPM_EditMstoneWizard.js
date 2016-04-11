@@ -1,0 +1,1 @@
+var jq=jQuery.noConflict();jq.browser={};jq(function(){jq("[id$=mlktp]").hide();jq(".dateInput .dateFormat").hide();jq(document).on("click",".saveMilestone",function(){updateTasksMileStones()})});function pageclose(){window.top.location.href=IPMAppWizard.ProjectSetupUrl+"?Pid="+IPMAppWizard.projectId+"&Milestoneid=milestones"}

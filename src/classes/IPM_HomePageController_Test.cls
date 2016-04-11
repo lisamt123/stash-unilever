@@ -5,7 +5,7 @@
  * *****************************************************/
 
 @istest
-public class IPM_HomePageController_Test{
+private class IPM_HomePageController_Test{
      
     private static User platformUser;
     private static IPM_Project__c eachProject;

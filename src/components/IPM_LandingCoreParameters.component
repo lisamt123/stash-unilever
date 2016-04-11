@@ -159,7 +159,7 @@
                                     </div>
                                     <div class="col-sm-7">
                                         <div class="table-responsive" id="strategicIntentTableDiv">  
-                                            <table class="table-bordered" id="strategicIntentTable">                                             
+                                            <table class="table-bordered strategicIntentTable" id="strategicIntentTable">                                             
                                                 <thead>
                                                     <tr>
                                                         <th></th>
@@ -210,7 +210,7 @@
                                                         <!-- if IPM_Incremental_New_Benefit__c field value is true based on coreparameter questions then display tick mark -->
                                                         <td class="red4"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Incremental_New_Benefit__c}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
                                                         <!-- if IPM_Incremental_New_Benefit__c field value is true based on coreparameter questions then display tick mark -->
-                                                        <td class="green1"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Incremental_New_Benefit__c}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
+                                                        <td class="green1"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Incremental_Improvement__c}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
                                                         <!-- if IPM_Incremental_Variant__c field value is true based on coreparameter questions then display tick mark -->
                                                         <td class="green2"><apex:outputPanel rendered="{!strategicGraphTick.IPM_Incremental_Variant__c}"><span class="fa fa-check-circle checkCircle"></span></apex:outputPanel></td>
                                                         <!-- if IPM_Incremental_No_Change__c field value is true based on coreparameter questions then display tick mark -->

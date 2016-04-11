@@ -5,11 +5,13 @@
 *@Created Date: 28/05/2015 
 ***************************************************************************************
 */  
-  var jq = jQuery.noConflict(); 
-
-/* Below code is for the accordion and tooltip functionality */  
+  var jq = jQuery.noConflict();  
   jq(document).ready(function() {
+  
+/* Below script is for the tooltip functionality */ 
   jq("[data-toggle=tooltip]").tooltip();
+  
+/* Below script works on page load. It adds the + mark for the collapsed one's and adds - for the expanded one. */
   var ipmAccordion = jq(".ipmAccordion");
       ipmAccordion.find(".ipmAcrdnExpand").not(':empty').slideDown("fast");
       ipmAccordion.find(".pHead .expico").removeClass("fa-plus");
@@ -18,7 +20,7 @@
       ipmAccordion.find(".pHead .expico-square").addClass("fa-minus");
   });
    
-/* Below code is to open the delete modal */
+/* Below function opens the delete modal */
 function delTeamMem(str) {  
 	jq('#ipmModalDelete .modal-dialog').width('40%');
 	jq('#ipmModalDelete .modal-dialog').height('200px');                        
@@ -26,7 +28,8 @@ function delTeamMem(str) {
 	jq('#ipmModalDelete .confirmAction').attr('data-value', str);
 	jq(".confirmAction").addClass("removeTeamMember");
 }
-/* Below code is to hide the delete modal */
+
+/* Below script works on click event. When clicked on remove button, it removes the team member and hides the modal. */
 jq(document).on('click', '#ipmModalDelete .removeTeamMember', function(){
 	var teamMemId = jq(this).attr('data-value');            
 	DeleteMember(teamMemId);

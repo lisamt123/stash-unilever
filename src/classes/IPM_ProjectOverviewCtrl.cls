@@ -21,7 +21,8 @@ public with sharing class IPM_ProjectOverviewCtrl {
     public List<String> lstFinAlertMessage {get;set;} //Alert message for financial misalignment
     public List<String> lstRolloutProjectAlertMessage {get;set;} //Alert message for Rollout local projec leader is blank
     public List<String> lstFinTLDAlertMessage {get;set;} //Alert message for financial TLD misalignment
-    public List<String> LstLocalFinTLDMisalignedMessage {get;set;} //Alert message for financial TLD misalignment
+    public List<String> lstFinDataMissingAlertMessage {get;set;} 
+        public List<String> LstLocalFinTLDMisalignedMessage {get;set;} //Alert message for financial TLD misalignment
     public IPM_Task__c[] tasksList{get;set;}//list of tasks to be made displayed
     public Integer noOfNotifications{get;set;}//number of notifications that a page can display
     public IPM_Project_Document__c projectDoc{get; set;}//current gate document that the project is associated with
@@ -368,6 +369,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         (SELECT IPM_Phase__c,IPM_Project__c, IPM_Type_of_gate__c,IPM_Due_Date__c,IPM_Type_of_Milestone__c FROM IPM_Milestones__r limit 10000)
         ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
         ,(SELECT ipm_cpp_local__c from IPM_Financials_Local__r where Financial_External_ID__c =: lstofuser[0].name limit 1)
+        ,(SELECT ipm_cpp_regional__c from IPM_Financials_Regional__r where Financial_External_ID__c =: lstofuser[0].name + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE limit 1)//Note: For Local project, Financial record without consilidate suffix will be used but for Regional as it will always have consolidation, record with _Consolidate will be used.
         ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,Rollout_Plan_Target_Launch_Date__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
         (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
 
@@ -379,13 +381,23 @@ public with sharing class IPM_ProjectOverviewCtrl {
          {
             projectPriority = project.IPM_Financials_Local__r[0].ipm_cpp_local__c;
          }
-
+         //CR0405-New CPP for Local rollouts. When local project priority is null ie financials are not created, 
+         // regional numbers will be used to calculate priority
+         if(projectPriority==null && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && project.IPMProject_Span__c == IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL && !project.IPM_Financials_Regional__r.isEmpty())
+         {
+            projectPriority = project.IPM_Financials_regional__r[0].ipm_cpp_regional__c;
+         }
          projResCompleteList = project.IPM_Project_Resources__r;
         Set<String> functionalRoleSet = new Set<String>();
+         // set of roles when PL is added as team member
+        Set<String> plFunctionalRoleSet=new Set<String>();
          for(IPM_Project_Resource__c res : projResCompleteList){
             if(res.IPM_User__c == UserInfo.getUserId()){
                 projResList.add(res);
                 isAcessDuetoTeam=true;
+                if(res.IPM_Project_Role_Owner__c==true){
+                   plFunctionalRoleSet.add(res.IPM_Role_Type__c);//get PL functional roles as team member
+                }
             }   
         
         	functionalRoleSet.add(res.IPM_Role_Type__c); // IPM_Role_Type__c will give functional role 
@@ -582,6 +594,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         lstFinAlertMessage = new list<String>();       
         lstFinTLDAlertMessage = new list<String>();
         LstLocalFinTLDMisalignedMessage = new List<String>();
+                lstFinDataMissingAlertMessage = new list<String>();
 
         for(IPM_Financial__c fin: RegionalOrLocalFins ){  
             if(project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && fin.Local_Project__c != NULL && fin.Regional_Project__c != NULL && fin.Misaligned__c && (system.today() > fin.Misaligned_Date__c)){               
@@ -610,6 +623,12 @@ public with sharing class IPM_ProjectOverviewCtrl {
         			project.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + project.IPM_Parent_Project__r.IPM_Project_Name__c);
                     ++noOfNotifications;
         }
+                //DEF2344 fix
+            List<IPM_Project__c> projList = IPM_ValidationHelper.validateMilestoneAndFinacialData(new List<IPM_Project__c>{project});
+            if(!projList.isEmpty()) {
+                lstFinDataMissingAlertMessage.add(Label.IPM_Finacial_Data_Missing);
+                ++noOfNotifications;
+            }
         
          
         //Calculate nearest Gate Due date for Rollout 
@@ -671,7 +690,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
-            IPM_FunctionalRole__c not in :functionalRoleSet AND  
+            (IPM_FunctionalRole__c not in :functionalRoleSet OR IPM_FunctionalRole__c in :plFunctionalRoleSet) AND  
                                                                                 IPM_Default_Section__c = true
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000] ;
         } else if(project.IPM_Project_Leader__c != UserInfo.getUserId() && userRole != null ) {

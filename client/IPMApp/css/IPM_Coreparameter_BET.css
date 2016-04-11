@@ -49,7 +49,7 @@
 }
 .fontB
 { 
-   font-weight: bold !important;
+   font-weight: bold ;
 }
 .searchmag
 {
@@ -75,7 +75,7 @@
 }
 
 .ipmTable tr.active1 {
-    background-color: #E5F2F8 !important;   
+    background-color: #E5F2F8 ;   
 }
 .ipmTable .active1 td
 {
@@ -92,4 +92,60 @@
    max-height: 254px; 
    overflow: auto; 
    margin-bottom:20px;
+}
+.icoButton.smallllinfo
+{
+    height:16px ;
+	width:16px ;
+	top:3px;
+	left:5px;
+}
+
+.ui-tooltip {
+	-webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    font-weight: normal;
+    background-color: #01B1A6 ;
+    border-radius: 2px;
+    border: none;
+    text-align: left;
+	color:#fff;
+	padding:3px 7px;
+	opacity:0.9;
+	width:200px;
+}
+.ui-tooltip-content {
+    position: relative;
+    padding: 0;    
+	font-size:12px;
+}
+.ui-tooltip-content::after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    display: block;
+    width: 0;
+    top: -10px;
+    left: 44%;
+    border-color: #01B1A6 transparent;
+    border-width: 0 10px 10px;
+}
+.tooltip > .tooltip-inner {
+    width: 500px;
+    -webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    font-weight: normal;
+    background-color: #01B1A6 ;
+    border-radius: 2px;
+    text-align: left;
+	position: relative;
+    left: 48px;
+}
+.tooltip.left .tooltip-arrow {
+    border-left-color: #00b1a5;
+}
+.tooltip.top .tooltip-arrow {
+    border-top-color: #00b1a5;
 }

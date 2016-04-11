@@ -14,9 +14,9 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_AddTaskProSetup.css')}" />
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_HomePage.css')}"/> 
     <div class="">
-         <div class="" id="EditTask">
+         <div class="EditTask" id="EditTask">
                <apex:form id="form">
-                    <div class="">
+                    <div class="addTaskwzContainer">
                     <div class="col-xs-12">
                         <div class="">
                         
@@ -39,31 +39,38 @@
                     </div>
                     <div class="col-xs-12 middlePanel">
                         <div class="">
-                            <apex:outputLabel value="Gate document & Phase"
+                            <apex:outputLabel value="Phase & Gate document"
                                 styleClass="fieldLabel fieldFont" id="documentPhase"/>
                         </div>
                         <div class="gatedocModal">
-                            <div class="inputField">
-                                <apex:inputText value="{!tasks.IPM_Type_of_Gate__c}"
-                                    styleClass="fieldFont" disabled="true" id="typeOfGate">
-                                    <apex:actionSupport event="onchange"
-                                        rerender="blockToRerender, scriptToRerender"
-                                        action="{!getSections}" id="onchangeGetSectionsGate" />
-                                </apex:inputText>
-                            </div>
+                           <div class="inputField">
+                               <apex:actionRegion > 
+                                   <apex:selectList size="1" value="{!tasks.IPM_Phase__c}" styleClass="fieldFont" rendered="{!!redirectToGateDocument}">
+                                       <apex:selectOptions value="{!Phaselist}" /> 
+                                       <apex:actionSupport event="onchange" action="{!getGateSections}" rerender="GatedocumentText,projectSpanBlock,functionalBlock,blockToRerender" status="gateloading" />  
+                                   </apex:selectList>
+                               </apex:actionRegion>
+                            </div>  
                         </div>
                         <div class="phaseModal">
                             <div class="inputField">
-                                <apex:inputText value="{!tasks.IPM_Phase__c}"
-                                    styleClass="fieldFont" disabled="true" id="taskPhase">
-                                    <apex:actionSupport event="onchange" rerender="blockToRerender"
-                                        action="{!getSections}" id="onchangeGetSectionsPhase"/>
-                                </apex:inputText>
+                                <apex:inputText id="GatedocumentText" value="{!tasks.IPM_Type_of_Gate__c}" rendered="{!!redirectToGateDocument}" disabled="true"/> 
                             </div>
                         </div>
 
                     </div>
 
+                    <apex:outputPanel id="projectSpanBlock" layout="block" styleClass="col-xs-12" > 
+                            <apex:outputPanel rendered="{!AND(!redirectToGateDocument,tasks.IPM_Phase__c!= projectObject.IPM_Phase__c)}">
+                                <div class=""><apex:outputLabel value="Project Span" styleClass="fieldLabel fieldFont" /></div>
+                                <div class="inputField">
+                                     <apex:selectList size="1" value="{!tasks.IPM_TaskSpan__c}" styleClass="fieldFont" rendered="{!!redirectToGateDocument}">
+                                            <apex:selectOptions value="{!gateSpecificSpan}" />   
+                                   </apex:selectList>
+                                </div>
+                            </apex:outputPanel>
+                    </apex:outputPanel>
+                    
                     <apex:outputPanel id="blockToRerender">
                         <div class="col-xs-12" style="display:{!if(displayDueDate,'block','none')};">
                         <div class=""><apex:outputLabel value="Functional role" styleClass="fieldLabel fieldFont" id="functionalRole"/></div>
@@ -71,16 +78,18 @@
                         <div class="inputField">
                                 <apex:selectList size="1" value="{!tasks.IPM_Function__c}">
                                     <apex:selectOptions value="{!FuntionalRolelist}" /> 
-                                    <apex:actionSupport event="onchange" rerender="blockToRerender" action="{!getSections}"/>
+                                    <apex:actionSupport event="onchange" rerender="blockToRerender,sectionBlock" action="{!getSections}"/>
                                 </apex:selectList>
                             </div>
                         </apex:outputPanel>
+                        <apex:outputPanel id="sectionBlock">
                          <div class=""><apex:outputLabel value="Section" styleClass="fieldLabel fieldFont" id="sectionLabel"/></div>
                         <div class="inputField">
-                            <apex:selectList size="1" value="{!docSecList}" >
+                            <apex:selectList size="1" value="{!selectedSectionId}" >
                                 <apex:selectOptions value="{!Sectionlist}"  /> 
                             </apex:selectList>
                          </div>
+                         </apex:outputPanel>
                         
                         
                         <div class=""><apex:outputLabel value="Assignee" styleClass="fieldLabel fieldFont" id="taskAssignee"/></div>

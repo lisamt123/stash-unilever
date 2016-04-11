@@ -86,10 +86,10 @@
                 </apex:outputPanel>
                 
             </div>           
-            <div id="ipmModalGetStarted" class="modal fade in" aria-hidden="true" data-keyboard="false" data-backdrop="static" data-focus-on="input:first">
+            <div id="ipmModalGetStarted" class="modal fade in ipmModalGetStarted" aria-hidden="true" data-keyboard="false" data-backdrop="static" data-focus-on="input:first">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header popup_head" id="ipmGetStartedTab">
+                        <div class="modal-header popup_head ipmGetStartedTab" id="ipmGetStartedTab">
                             <ul class="ipmStartedTabs">
                                 <li class="projectdetails tabOdd"><span>{!$Label.IPM_ABOUT_PROJECT}</span></li>
                                 <li class="coreparameters tabEven"><span>{!$Label.IPM_PROJECT_PARAMETERS}</span></li>
@@ -210,8 +210,8 @@
                                                                     </apex:outputPanel>
                                                                     <!-- To display below outputPanel when current logged in user has edit access on page   -->
                                                                     <apex:outputPanel layout="block" styleClass="txtRight" rendered="{!isEditable}"> 
-                                                                        <span id="charCountRemainingText"> {!$Label.IPM_CHAR_REMAINING} </span> 
-                                                                        <span id="charCountRemaining">{!$Label.IPM_CHAR_70}</span>
+                                                                        <span id="charCountRemainingText" class="charCountRemainingText"> {!$Label.IPM_CHAR_REMAINING} </span> 
+                                                                        <span id="charCountRemaining" class="charCountRemaining">{!$Label.IPM_CHAR_70}</span>
                                                                     </apex:outputPanel>
                                                                 </apex:outputPanel>     
                                                             </apex:outputPanel>
@@ -358,7 +358,7 @@
                                                                             <!-- To display below outputText when IPM_Target_Launch_Dates__c field value is empty while saving project    -->
                                                                             <apex:outputText value="{!$Label.IPM_SELECT_TLD}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Target_Launch_Dates__c'))}" styleClass="TldErrMsg"/>
                                                                             <!-- To display below outputText when TLD date is less than six month    -->
-                                                                            <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAY}" rendered="{!isTLDLessThnSixMnth}" styleClass="TldErrMsg"/>
+                                                                            <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAY }" rendered="{!AND(isTLDLessThnSixMnth,tldRestriction)}" styleClass="TldErrMsg"/> 
                                                                             <!-- To display below outputText when TLD date is greater than today date    -->
                                                                             <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAYDate}" rendered="{!isTLDLessThnToday}" styleClass="TldErrMsg"/>
                                                                         </apex:outputPanel>
@@ -505,7 +505,7 @@
                                 <c:IPM_Coreparameters /> 
                             </apex:outputPanel>        
                         </div>
-                        <div class="ipmGetStartedContent" id="teammembers">
+                        <div class="ipmGetStartedContent teammembers" id="teammembers">
                             <c:IPM_Team_Assignment />
                         </div>
                         <div class="ipmGetStartedContent" id="milestones">
@@ -610,7 +610,7 @@
             <div id="ipmDeleteModalDiv">
                 <c:IPM_ConfirmModal />
             </div>
-            <div id="ipmAddMemberModal" data-backdrop-limit="1" class="modal fade">
+            <div id="ipmAddMemberModal" data-backdrop-limit="1" class="modal fade ipmAddMemberModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -689,7 +689,7 @@
                     </div>
                 </div>
             </div> 
-            <div id="quitWizard" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+            <div id="quitWizard" tabindex="-1" data-backdrop-limit="1" class="modal fade quitWizard">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -718,7 +718,7 @@
                     </div>
                 </div>
             </div>
-            <div id="ipmModalDelete" class="modal fade">
+            <div id="ipmModalDelete" class="modal fade ipmModalDelete">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -747,7 +747,7 @@
                     </div>
                 </div>
             </div>
-            <div id="ipmModalDiv">
+            <div id="ipmModalDiv" class="ipmModalDiv">
                 <c:IPM_ModalHeaderDiv />
             </div>
             <div id="basicModal" tabindex="-1" data-backdrop-limit="1" class="modal fade">
@@ -972,10 +972,8 @@
                            jq('#ipmGetStartedTab .ipmStartedTabs li:first').addClass('active');
                            jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent:first').show();
                        });
-    jq(document).on('click', '.editMilestoneBtn, .editTaskBtn', function(e){
-        e.preventDefault ? e.preventDefault() : e.returnValue = false; 
-        openEditModal(this);
-    });
+    ipmModal('#editMilestone', 'Edit Milestone', '30%', '65%', '2%');
+    ipmModal('#editTask', 'Edit To-Dos', '30%', '80%', '2%');
     
     jq('.proRoute input[type=radio]').each(function(e){ 
         jq(this).click(function(){

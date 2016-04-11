@@ -10,10 +10,10 @@
     id="IPM_Coreparameters">
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Coreparameter_BET.css')}" />
     <div class='cust-overlay coreParm'></div>
-    <div class="row" id="coreParamContent">
+    <div class="row coreParamContent" id="coreParamContent">
 
         <apex:pagemessages id="pgmsg"></apex:pagemessages>
-        <div id="myCarousel" class="col-xs-12 negateMarginTop carousel"
+        <div id="myCarousel" class="col-xs-12 negateMarginTop carousel myCarousel"
             data-interval="false" data-ride="carousel" data-wrap="false">
             <apex:actionStatus id="coreLoader" startStyleClass="proInit"></apex:actionStatus>
             <!--Carousel indicators -->
@@ -43,7 +43,7 @@
                             <!--The below panel will be editable if isMPAEditable attribute is true -->
                                 <apex:outputPanel layout="block" rendered="{!isMPAEditable}">
                                     <div
-                                        class="slide-bar {! if(isOperational,operationalSlider_STR,'')}"
+                                        class="slideBar1 slide-bar {! if(isOperational,operationalSlider_STR,'')}"
                                         id="slideBar1">
                                         <span class="slideIcon fa fa-circle" id="slideIcon1" />
                                         <div class="sliderTrack qnumone">
@@ -92,7 +92,7 @@
                                 </div>
                                 <!--The below panel will be editable if isCPVEditable attribute is true -->
                                 <apex:outputPanel rendered="{!isCPVEditable}">
-                                    <div class="slide-bar" id="slideBar2">
+                                    <div class="slide-bar slideBar2" id="slideBar2">
                                         <span class="slideIcon fa fa-circle" id="slideIcon2" />
                                         <div class="sliderTrack qnumtwo">
                                             <label for="Select" class="fstchild"><span>{!$Label.IPM_Select_CoreParameter}</span></label>
@@ -138,7 +138,7 @@
                                 </div>
                                 <!--The below panel will be editable if isETEditable attribute is true -->
                                 <apex:outputPanel rendered="{!isETEditable}">
-                                    <div class="slide-bar" id="slideBar3">
+                                    <div class="slide-bar slideBar3" id="slideBar3">
                                         <span class="slideIcon fa fa-circle" id="slideIcon3" />
                                         <div class="sliderTrack qnumthree">
                                             <label for="Select" class="fstchild"><span>{!$Label.IPM_Select_CoreParameter}</span></label>
@@ -229,7 +229,7 @@
                                     </div>
                                     <div class="col-sm-7 noPadleft noPadright table-responsive"
                                         id="strategicIntentTableDiv">
-                                        <table class="table-bordered" id="strategicIntentTable">
+                                        <table class="table-bordered strategicIntentTable" id="strategicIntentTable">
                                             <thead>
                                                 <tr>
                                                     <th></th>
@@ -446,7 +446,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12" id="projectSpan">
+                            <div class="col-xs-12 projectSpan" id="projectSpan">
                                 <apex:outputPanel id="marketmain">
                                     <div class="row additionalParamContainer">
                                         <div class="col-sm-7 additionalParamTop noPadleft noBoxshadow">

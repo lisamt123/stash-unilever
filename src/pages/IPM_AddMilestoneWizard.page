@@ -16,7 +16,7 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_PageHeader.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_AddTaskWizard.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/datepicker.css')}"/> 
-    <div class="container-fluid" id="ipmAddMilestoneTab">
+    <div class="container-fluid ipmAddMilestoneTab" id="ipmAddMilestoneTab">
         <!-- To place the help symbol in the top right hand corner of page -->
         <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
             <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
@@ -62,7 +62,7 @@
         </div>
         <!-- Create new adhoc milestone code starts here  -->
         <div class="ipmMilestoneContent" id="newMstone"> 
-            <div class="row" id="EditTask">
+            <div class="row EditTask" id="EditTask">
                 <apex:form id="form">
                     <apex:actionStatus id="stat">
                         <apex:facet name="start"> 

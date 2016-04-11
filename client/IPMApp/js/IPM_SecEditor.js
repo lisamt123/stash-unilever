@@ -12,18 +12,22 @@ jq(document).ready(function() {
     if (navigator.appVersion.match(/MSIE [\d.]+/)) {
         var placeholderText = 'Enter your action plan';
         jq('#riskCommentBox').val(placeholderText);
+		
+		/* Below script works on blur event. The risk comments box place holder will be hidden when the user starts typing in the box */
         jq('#riskCommentBox').blur(function() {
             var $this = jq(this);
-            $this.val() == '' ? $this.val(placeholderText) : false;
+            $this.val() === '' ? $this.val(placeholderText) : false;
         });
+		
+		/* Below script works on focus event. The risk comments box place holder will be hidden when the user focuses on the box */
         jq('#riskCommentBox').focus(function() {
-            $this.val() == placeholderText ? $this.val('') : false;
+            $this.val() === placeholderText ? $this.val('') : false;
         });
     }
 	
-/* Below code is to redirect to a page after closing the modal */
+/* Below script works on click event. It redirects to a Gate document section editor page after closing the modal */
 	jq("#ipmModal .close").on("click", function() {
-		if (jq("#ipmModal .modal-title").text().indexOf("Comment") != -1 && window.top.location.href.indexOf(IPMAppSE.SectionEditorPageRef) > -1) {
+		if (jq("#ipmModal .modal-title").text().indexOf("Comment") !== -1 && window.top.location.href.indexOf(IPMAppSE.SectionEditorPageRef) > -1) {
 			gotoPage();
 		}
 	});
@@ -32,7 +36,7 @@ jq(document).ready(function() {
     jq('#ipmSecEditorTab .ipmTabContent').hide();
     var tabToBeSelected = getParameterByName('ipmTab');
 
-    if (tabToBeSelected.length != 0) {
+    if (tabToBeSelected.length !== 0) {
         jq('#ipmSecEditorTab .ipmTabs li.' + tabToBeSelected).addClass('active');
         jq('div#' + tabToBeSelected).show();
     } else {
@@ -40,14 +44,17 @@ jq(document).ready(function() {
         jq('#ipmSecEditorTab .ipmTabContent:first').show();
     }
 	
-/* Below code is related to accordion functionality */
+/* Below script is related to accordion functionality */
 
 	jq(".contenWrapper .ipmAcrdnExpand").hide();
 	if(window.location.href.indexOf("IPM_GateDocument") > -1){
 		jq(".contenWrapper").find(".contenWrapper").find(".ecoDesignTable").find(".ipmAcrdnExpand").show();
 	}
+	/* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */
 	jq(".contenWrapper").find(".ipmAcrdnExpand").find(".aHead:last").css("border","none");
 	jq(".contenWrapper .ipmAcrdnExpand:first").not(':empty').show();    
+	
+	/* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
 	jq(".contenWrapper").on("click", ".ipmAccordian .expico", function(){ 
 			if (jq(this).closest(".aHead").next(".ipmAcrdnExpand").is(":visible")) {        
 				jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideUp("fast");
@@ -67,6 +74,7 @@ jq(document).ready(function() {
 				jq(this).addClass("fa-minus");	
 			}
 	});
+	/* Below script works on page load. It adds the + mark for the collapsed one's and adds - for the expanded one */
 	jq(".removebutton input").removeClass('btn');
 		jq(".contenWrapper").find(".ipmAccordian .aHead .expico").removeClass("fa-minus");
 		jq(".contenWrapper").find(".ipmAccordian .aHead .expico").addClass("fa-plus");
@@ -75,6 +83,7 @@ jq(document).ready(function() {
 		jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").removeClass("fa-minus");
 		jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").addClass("fa-plus");
 
+		/* Below script is for the Tab functionality on click event. Based on the clicked li the tab is highlighted and the content related the clicked tab is displayed. Also it hides the previous opened content */
     jq('#ipmSecEditorTab .ipmTabs li').on('click', function(e) {
         e.preventDefault();
         jq('#ipmSecEditorTab .ipmTabs li').removeClass('active');
@@ -84,6 +93,8 @@ jq(document).ready(function() {
         $this.addClass('active');
         jq('#' + getId).fadeIn("fast");
     });
+	
+	/* Below script works on click event. If the check all checkbox is checked it checks the other child checkboxes */
     jq(".ipmSectionEditor .checkAll").each(function() {
         var $this = jq(this);
         $this.on("click", function() {
@@ -96,6 +107,7 @@ jq(document).ready(function() {
             }
         });
     });
+	/* Below script works on click event. If the check all checkbox is checked it checks the other child checkboxes */
     jq(".ipmSectionEditor .checkAll1").each(function() {
         var $this = jq(this);
         $this.on("click", function() {
@@ -113,11 +125,12 @@ jq(document).ready(function() {
     ipmModal('#uploadImage', 'Click to Upload Image', '400px', '200px', '15%');
 	ipmModal('#consumerImage', 'Click to Upload Image', '400px', '200px', '15%');
 
+	/* Below script works on click event. It calls the accordion function. */
     jq(document).on("click", ".ipmAccordion .evidenceHead span.expico", function() {
         accordion(this);
     });
 	
-/* Below code is to open comments and history modal */
+/* Below script is to open comments and history modal */
     jq(".comments,.history").each(function() {
         var $this = jq(this);
         var url = $this.attr('value');
@@ -127,7 +140,7 @@ jq(document).ready(function() {
 
     });
 	
-/* Below code is to open attach files modal */
+/* Below script is to open attach files modal */
     jq(".attachFiles").each(function() {
         var $this = jq(this);
         var url = $this.attr('value');
@@ -137,6 +150,8 @@ jq(document).ready(function() {
 
     });
     /**** Customer Channel ****/
+	
+	/* Below script works on click event. It checks if the condition is true. If it is true it adds a class else removes the class. */
     jq('.infoCheck .checkSub').click(function() {
         var $this = jq(this);
         if (jq(this).is(":checked")) {
@@ -146,6 +161,7 @@ jq(document).ready(function() {
         }
     });
 
+	/* Below script check if the condition is true. If it is true it adds a class else removes the class. */
     jq('.checkSub').each(function() {
         var $this = jq(this);
         if ($this.is(":checked")) {
@@ -155,25 +171,29 @@ jq(document).ready(function() {
         }
     });
 
+	/* Below script works on click. When clicked on remove button it calls a function which deletes the task */
     jq(document).on('click', '#ipmDeleteModal .removeTask', function() {
         deleteTaskJs(this);
     });
 
     /* ***CRRT Section*** */
+	
+	/* Below script check if the condition is true. If it is true it checks the radio button. */
     jq(".projectRadioButton input[type=radio]").each(function() {
         var $this = jq(this);
         var statCRRT = $this.attr("data-checked");
-        if (statCRRT == "true") {
+        if (statCRRT === "true") {
             $this.prop("checked", true);
         } else {
             $this.prop("checked", false);
         }
     });
 
+	/* Below script check if the condition is true. If it is true it disables the radio button. */
     jq(".projectRadioButton input[type=radio]").each(function() {
         var $this = jq(this);
         var statCRRT = jq(this).attr("data-disabled");
-        if (statCRRT == "true") {
+        if (statCRRT === "true") {
             $this.attr("disabled", "disabled");
         } else {
             $this.removeAttr("disabled");
@@ -184,7 +204,7 @@ jq(document).ready(function() {
 
 });
 
-/* Below code is related to accordion functionality */
+/* Below function performs a validation. If the condition is true it shows the accordion content. Also it removes '-' and replaces it with '+'. Also vice versa. */
 function accordion(elem) {
     if (jq(elem).closest(".evidenceHead").parents(".cevidenceborder").next(".ipmAcrdnExpand").is(":visible") && jq(elem).closest(".evidenceHead").parents(".cevidenceborder").next(".ipmAcrdnExpand").not(':empty')) {
         jq(elem).closest(".evidenceHead").parents(".cevidenceborder").next(".ipmAcrdnExpand").slideUp("fast");
@@ -197,13 +217,14 @@ function accordion(elem) {
     }
 }
 
+/* Below function performs the replacing the regular expressions */
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
-
+/* Below function contains the script which has the tooltip functionality. This function is called when the rerendering happens and the script will run again */
 function hilightTaskScript(){
 	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
 	jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});	
@@ -211,17 +232,18 @@ function hilightTaskScript(){
 	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
 
+/* Below function calls another function */
 function callAttachDelete(attid) {
     CallAttachId(attid);
 }
 
 /* \\** CRRT Section*** */
 
-/* Below code is to open delete modal */
+/* Below function performs a validation to display the error message inside the modal based on the condition. It also changes 
+					the modal title, modal body's content as per the condition. */
 function ipmTaskDel(str, isLst, gateName, secName) {
-
     var errMsg = ''
-    if (isLst == 1) {
+    if (isLst === 1) {
         errMsg = 'All tasks correlating to the ' + gateName + ' Section ' + secName + '  have been removed. Would you like to remove this section from the ' + gateName + ' Document?';
     } else {
         errMsg = IPMAppSE.deleteTaskMsg;
@@ -233,7 +255,54 @@ function ipmTaskDel(str, isLst, gateName, secName) {
     jq(".confirmAction").addClass("removeTask");
 }
 
-/* Below code is to redirect to a page */
+/* Below function performs a page reload of Gate document section editor page. */
 function gotoPage() {
 	window.top.location.href = IPMAppSE.SectionEditorPageRef+'?id='+IPMAppSE.projectId+'&projDocSecId='+IPMAppSE.projDocSecId;
 }
+
+/* Below script is related to performance breakdown */
+function isNumber(e,ele) {
+        var element ="";
+        if ((window.clipboardData && window.clipboardData.getData) ||  (e.clipboardData && e.clipboardData.getData)){
+            var pastedText = undefined;
+       
+            if (window.clipboardData && window.clipboardData.getData) { // IE
+                pastedText = window.clipboardData.getData('Text');
+            } 
+            
+            else if (e.clipboardData && e.clipboardData.getData) {
+        
+            pastedText = e.clipboardData.getData('text/plain');
+            }
+               completeText = e.target.value + pastedText;
+        
+             element = completeText;
+         }else{
+             element = e.target.value;
+        }
+        
+        var charCode = (e.which) ? e.which : event.keyCode
+
+        if ((charCode !== 44) && (charCode !== 46 || element.indexOf('.') !== -1) &&
+            (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
+    function paste(e,obj) {
+            var totalCharacterCount = e.clipboardData.getData('Text');
+            var strValidChars = "0123456789.,";
+            var strChar;
+            var FilteredChars = "";
+            for (i = 0; i < totalCharacterCount.length; i++) {
+                strChar = totalCharacterCount.charAt(i);
+                if (strValidChars.indexOf(strChar) !== -1) {
+                    FilteredChars = FilteredChars + strChar;
+                    
+                }
+            }
+           obj.value = FilteredChars;
+            
+            return false;
+        }
+  

@@ -411,8 +411,7 @@ public without sharing class IPM_ChatterFeedHelper {
                    }
                    projectIds.add(eachTask.IPM_Project__c);
                    subjectIdMentionIdMap.put(eachTask.IPM_Project__c,mentionId);
-                   subjectIdMessageMap.put(eachTask.IPM_Project__c,Label.IPM_Task_Assign_Text1+IPM_ConstantUtils.IPM_SPACE+eachTask.IPM_Project__r.IPM_Project_Name__c
-                   +Label.IPM_Task_Assign_Text2);
+                   subjectIdMessageMap.put(eachTask.IPM_Project__c,String.format(Label.IPM_Task_Assign_Text1,new List<String>{eachTask.IPM_Project__r.IPM_Project_Name__c}));
                
             }
             

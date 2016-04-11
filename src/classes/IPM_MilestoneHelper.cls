@@ -272,7 +272,15 @@ public with sharing class IPM_MilestoneHelper
                                 Date myDate = date.newinstance(project.CreatedDate.year(), project.CreatedDate.month(), project.CreatedDate.day());
                                 
                                 if(newProjectMilestone.IPM_Type_of_gate__c == IPM_ConstantUtils.MARKET_READY_GATE){
-                                    if(project.IPM_Market_Type__c ==IPM_Utils.DevelopingIPM_Market_Type && !(project.IPM_Fast_Track_Project__c) && 
+                                  
+                                  IPM_Blank_MrktRdyDueDate__c mrktReadyAutoPop = IPM_Blank_MrktRdyDueDate__c.getValues('NumberOfDays');
+                                  
+                                  if(project.IPM_Target_Launch_Dates__c < System.today().addDays(Integer.valueOf(mrktReadyAutoPop.No_Of_Days__c)))
+                                   {
+                                     newProjectMilestone.IPM_Planned_Date__c=null; 
+                                     newProjectMilestone.IPM_Due_Date__c=null;
+                                   }
+                                   else if(project.IPM_Market_Type__c ==IPM_Utils.DevelopingIPM_Market_Type && !(project.IPM_Fast_Track_Project__c) && 
                                         String.isNotEmpty(masterMilestone.IPM_No_Of_Days_for_Developing__c))
                                     {
                                         if(project.IPM_Target_Launch_Dates__c!=null &&  project.IPM_Target_Launch_Dates__c + Integer.valueOf(masterMilestone.IPM_No_Of_Days_for_Developing__c) > myDate)

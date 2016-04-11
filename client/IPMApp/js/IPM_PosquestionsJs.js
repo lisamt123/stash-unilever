@@ -8,17 +8,18 @@
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
     waitForElement();
-
 });
 
-/* Below code is for setting the slider */
+/* Below function calls slider functions to set the sliders on page load. */
 function waitForElement() {
     jq("#showQues").show();
     initSlider();
     initSlider1();
 }
 
-/* Below code is for the slider functionality */
+/* Below function contains the script for the slider functionality in first Otif list. 
+It contains the complete functionality code when user clicks on the options the pointer ball moves to the clicked option. 
+Also it saves the selected option when clicked on it. */
 function initSlider() {
     jq("[data-toggle=tooltip]").tooltip();
     var itemsProposed = ['Select', '1', '3', '5'];
@@ -42,6 +43,7 @@ function initSlider() {
 		}
     });
 
+	/* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */	
     jq(".legendSld label").on("click", function() {
         var lpos = jq(".legendSld label").offset().left;
         var $this = jq(this);
@@ -58,23 +60,25 @@ function initSlider() {
     });
     jq("input[type=radio][id^='s']").hide();
 
+	/* Below script highlights the selected option with a different color when the condition is true. Also it moves the slider handle position
+based on the condition. */ 
     jq(".scoreDB").each(function() {
         var $this = jq(this);
         var score = $this.val();
 
-        if (score == "1") {
+        if (score === "1") {
             $this.next(".sliderStat").find(".ui-slider-handle").css("left", "33.3333333333333%");
             $this.next(".sliderStat").find("label[for=s1]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (score == "3") {
+        } else if (score === "3") {
             $this.next(".sliderStat").find(".ui-slider-handle").css("left", "66.6666666666667%");
             $this.next(".sliderStat").find("label[for=s2]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (score == "5") {
+        } else if (score === "5") {
             $this.next(".sliderStat").find(".ui-slider-handle").css("left", "100%");
             $this.next(".sliderStat").find("label[for=s3]").css({
                 'color': '#e98824',
@@ -91,6 +95,9 @@ function initSlider() {
     });
 }
 
+/* Below function contains the script for the slider functionality in first Otif list. 
+It contains the complete functionality code when user clicks on the options the pointer ball moves to the clicked option. 
+Also it saves the selected option when clicked on it. */
 function initSlider1() {
     setTimeout(function() {
         var itemsProposed = ['Select', '1', '2', '3', '4', '5'];
@@ -113,6 +120,7 @@ function initSlider1() {
 			}
         });
 
+		/* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */	
         jq(".legendSld label").on("click", function() {
             var lpos = jq(".legendSld label").offset().left;
             var $this = jq(this);
@@ -130,34 +138,37 @@ function initSlider1() {
         jq("input[type=radio][id^='s']").hide();
         jq("[data-toggle=tooltip]").tooltip();
 
+		/* Below script highlights the selected option with a different color when the condition is true. Also it moves the slider handle position
+based on the condition. */ 
+
         jq("input[name=quest]").each(function() {
             var $this = jq(this);
             var quest = $this.val();
-            if (quest == "1") {
+            if (quest === "1") {
                 $this.next(".sliderStat1").find(".ui-slider-handle").css("left", "20%");
                 $this.next(".sliderStat1").find("label[for=s5]").css({
                     'color': '#e98824',
                     'font-weight': 'bold'
                 });
-            } else if (quest == "2") {
+            } else if (quest === "2") {
                 $this.next(".sliderStat1").find(".ui-slider-handle").css("left", "40%");
                 $this.next(".sliderStat1").find("label[for=s6]").css({
                     'color': '#e98824',
                     'font-weight': 'bold'
                 });
-            } else if (quest == "3") {
+            } else if (quest === "3") {
                 $this.next(".sliderStat1").find(".ui-slider-handle").css("left", "60%");
                 $this.next(".sliderStat1").find("label[for=s7]").css({
                     'color': '#e98824',
                     'font-weight': 'bold'
                 });
-            } else if (quest == "4") {
+            } else if (quest === "4") {
                 $this.next(".sliderStat1").find(".ui-slider-handle").css("left", "80%");
                 $this.next(".sliderStat1").find("label[for=s8]").css({
                     'color': '#e98824',
                     'font-weight': 'bold'
                 });
-            } else if (quest == "5") {
+            } else if (quest === "5") {
                 $this.next(".sliderStat1").find(".ui-slider-handle").css("left", "100%");
                 $this.next(".sliderStat1").find("label[for=s9]").css({
                     'color': '#e98824',
@@ -176,23 +187,24 @@ function initSlider1() {
     }, 1000);
 }
 
+/* Below function calls another function */
 function changeScore(id,score)
 	{    
 		callChangeScore(id,score);
 	}
-	
+	/* Below function calls another function */
 	function changeScore1(id,score)
 	{
 		callChangeScore1(id,score);
 	}
 	
-/* Below code is redirect to a page */
+/* Below function performs page redirection. */
 	function goToParentPage()
 	{            
 		window.top.location.href = IPMApp.pageName+'?id='+IPMApp.projectId+'&projDocSecId='+IPMApp.projDocSecId;
 	}    
  
- /* Below code is to open the delete modal */
+ /* Below function opens a delete modal. */
         function delQuestion(str) {  
             jq('#ipmDeleteModal').modal({show:true, keyboard: false, backdrop:'static'});
             jq('#ipmDeleteModal .modal-title').html(IPMApp.RiskRemoveQuestion);
@@ -200,7 +212,7 @@ function changeScore(id,score)
             jq('#ipmDeleteModal .confirmAction').attr('value', str);
             jq(".confirmAction").addClass("removeRiskQuestion");
         }
- /* Below code is to hide the delete modal */
+ /* Below script works on click event. When clicked on remove button it calls a delete function and also hides the delete modal */
         jq(document).on('click', '#ipmDeleteModal .removeRiskQuestion', function(){
             var questionId = jq(this).attr('value');
             deleteQuestion(questionId);

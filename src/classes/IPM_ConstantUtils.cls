@@ -2,7 +2,7 @@
 * @author Cognizant
 * @date 23/09/2015
 * @description This class is used for holding the string constants being referenced across
-*              all the classes 
+*              all the classes  
 */
 public class IPM_ConstantUtils {
      
@@ -919,7 +919,7 @@ public class IPM_ConstantUtils {
    public static final String NullString = null;
    public static final Integer fileSize = 25000000;
    public static final String FINANCIAL_CONTROLLER_STR = '/apex/IPM_FinancialCopyPasteGrid?id=';
-   
+   public static final String BI = 'Bi';
    // Phase Change Job Status 
     public static final String JOB_STATUS_NA = 'Not Applicable';
     public static final String JOB_STATUS_PROCESSING = 'Processing';
@@ -1023,6 +1023,8 @@ public class IPM_ConstantUtils {
   //For Financial Action Standards Component
    public static final String IPM_FINANCIAL_ACTION_STANDARD='Business_Case_Action_Standards';
    public static final Decimal IPM_FINANCIAL_ACTION_STANDARD_VALUE=0;
+   public static final String IPM_GLOBAL_FINANCIAL_ACTION_STANDARDS='Global Action Standards';
+   public static final String IPM_FINANCIAL_ACTION_STANDARDS='Action Standards';
    
    //core parameter market and sub sector
    public static final String IPM_MARKET='Market';
@@ -1177,4 +1179,15 @@ public class IPM_ConstantUtils {
    public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
    public static finaL String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
    public static final Integer KB_TO_BYTES = 1024;
+   public static final string CU_AND_COMPLEXITY= 'CU_And_Complexity';
+   
+   //Market performance field names
+   
+   public static final string PERFORMANCE_PERIOD='Period__c';   
+   public static final string BREAKELINE='<br/>';
+   public static final string EURO='EUR';
+   public static final string MONITONING_PER_EXTERNAL_ID='Monitoring_Performance_in_Market';
+   public static final string MISALIGNED_CSS='misalignedField'; 
+   
+   public static final string SIX_THREE='6.3'; 
 }

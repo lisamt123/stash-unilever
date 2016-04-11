@@ -46,7 +46,7 @@
                     <c:IPM_LocalRolloutPlansTable rendered="{!isSpanRegional}"/>
                     
                 </div>
-                <div id="ipmAddMemberModal" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+                <div id="ipmAddMemberModal" tabindex="-1" data-backdrop-limit="1" class="modal fade ipmAddMemberModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">

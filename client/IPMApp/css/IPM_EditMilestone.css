@@ -88,14 +88,14 @@ select:disabled {
     position: absolute;
 }
 .messageTable td ul li {
-    margin-left: 0 !important;
+    margin-left: 0 ;
 }
 .messageTable td ul {
-    padding-left: 0 !important;
-    margin-top: -25px !important;
+    padding-left: 0 ;
+    margin-top: -25px ;
 }
 .message .messageTable .messageCell {
-    margin-top: -6px !important;
+    margin-top: -6px ;
     float: left;
 }
 .errorMsg {
@@ -105,11 +105,9 @@ select:disabled {
     margin-top: 8px;
 }
 .error {
-    border: 1px solid #e03729 !important;
+    border: 1px solid #e03729 ;
 }
-.popupContent .ipmButton {
-    width: 6%;
-}
+
 .popupContent {
     margin-bottom: 10px;
 }
@@ -125,14 +123,14 @@ select:disabled {
 .noPadding {
 	padding:0;
 }
-.dateFormat {display:none!important;}
-.errorM3 .messageTable .messageText h4,.errorM3 .messageTable .messageText{color:#E13726 !important;font-weight:normal !important;}
+.dateFormat {display:none;}
+.errorM3 .messageTable .messageText h4,.errorM3 .messageTable .messageText{color:#E13726 ;font-weight:normal ;}
 .errorM3 .messageText::before{content:url('../images/red_i_icon.png');position:absolute; left: 30px;}
-.errorM3 .messageTable .messageText{margin-left:35px !important;}
-.errorM3{background:#FFEBEC !important;border:1px solid #F3BEB6 !important;  margin-bottom: 20px;}
+.errorM3 .messageTable .messageText{margin-left:35px ;}
+.errorM3{background:#FFEBEC ;border:1px solid #F3BEB6 ;  margin-bottom: 20px;}
 .errorM3 .msgIcon, .errorMedium{display:none;}
-.errorM3 ul li{color:#E13726 !important;font-weight:normal !important;}
-.errorM3 ul{margin-left: 25px !important;}
+.errorM3 ul li{color:#E13726 ;font-weight:normal ;}
+.errorM3 ul{margin-left: 25px ;}
 .buttonMarginRight{margin-right:15px;}
-.dateFormat {display:none!important;}
+.dateFormat {display:none;}
 .icoButton.question{margin-bottom:5px;}

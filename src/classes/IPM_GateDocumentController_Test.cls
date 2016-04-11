@@ -4,7 +4,7 @@
 * @description Test Class for Gate Document Controller
 */
 @isTest
-public class IPM_GateDocumentController_Test{    
+private class IPM_GateDocumentController_Test{    
     private static IPM_Project__c project;// Project object initialization
   
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();

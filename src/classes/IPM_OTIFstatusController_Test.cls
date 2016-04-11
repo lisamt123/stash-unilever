@@ -15,7 +15,6 @@ private class IPM_OTIFstatusController_Test {
     private static IPM_Project_Document_Section__c projDocSec;
     private static IPM_Project_Document_Section_Content__c projDocSecCon;
     private static User otifUser;
-   
     private static string RECORD_NOT_SAVED_SUCCESSFULLY='record not saved successfully';
     private static string SECTION_CONTENT_LIST_IS_EMPTY='section content list empty';
     
@@ -98,7 +97,7 @@ private class IPM_OTIFstatusController_Test {
             otif.secConId=projDocSecCon.Id;
             otif.status='Red';
             otif.updateOTIFStatus();
-            System.assertEquals(otif.secCon.IPM_OTIF_Status__c,'Red','Otif not updated successfully');
+            System.assertEquals(otif.secCon.IPM_OTIF_Status__c,'Red',System.Label.IPM_FUNC_CALLED_SUCCESSFULLY);
             Test.stopTest();
         }
     }

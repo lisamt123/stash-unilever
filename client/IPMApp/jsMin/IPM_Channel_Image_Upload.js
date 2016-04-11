@@ -1,0 +1,1 @@
+var jq=jQuery.noConflict();jq(document).ready(function(){var uploadImg=IPMAppCHIMG.imgLoad;if(uploadImg==="true"){var frame=parent.document.getElementById("ipmModal");jq(frame).find(".close").trigger("click");parent.location.assign(IPMAppCHIMG.SectionEditorPageRef+"?Id="+IPMAppCHIMG.projId+"&projDocSecId="+IPMAppCHIMG.proDocSecid)}});

@@ -1,13 +1,13 @@
-	.noborder{border-left:0 !important;}
-	.table>thead>tr>th>div {padding-left:10px !important;border-left:1px solid #ddd;float:left;margin-bottom: 6px;}
-	.innertext{font-size:0.8em !important;}
-	.projectContainer .pHead {padding-bottom: 15px;border-bottom: 4px solid #E6E534 !important;padding-top: 15px;}
+	.noborder{border-left:0 ;}
+	.table>thead>tr>th>div {padding-left:10px ;border-left:1px solid #ddd;float:left;margin-bottom: 6px;}
+	.innertext{font-size:0.8em ;}
+	.projectContainer .pHead {padding-bottom: 15px;border-bottom: 4px solid #E6E534 ;padding-top: 15px;}
 	.ipmAccordion .projectContainer .pHead > span.expico {display: inline-block;cursor: pointer;font-family: FontAwesome;width: 21px;
 	height: 21px;text-align: center;font-weight: normal;line-height: 23px;background: #81bd42;position: relative;margin-right: 5px;
 	font-size: 0.8em;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;color: #fff;}
 	.todoSubhead {color: #1797C0;font-weight: bold;border-right: 0 solid #A7A7A7;padding: 0 10px;margin-right: 10px;}
-	.table>tbody>tr>td:first-child {text-align: left !important;}
-	.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding:16px 5px !important;}
+	.table>tbody>tr>td:first-child {text-align: left ;}
+	.table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{padding:16px 5px ;}
 	.whitebg{background:#fff;}
 	.inputField-text {width: 11%;height: 30px;border-radius: 3px;border: 1px #a8a8a8 solid;color: #565656;}
 	.h48{height:48px;}

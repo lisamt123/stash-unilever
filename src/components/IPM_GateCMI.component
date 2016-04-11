@@ -1,4 +1,4 @@
-<!--  
+﻿<!--  
 *************************************************************************
 *@Description:Used for the CMI section functionality for Gate Document
 *@Author: Cognizant
@@ -137,8 +137,8 @@
                                                         <apex:outputPanel layout="block" styleClass="dropdown-menu pull-right ipmDropDownList CMICountryList">
                                                             <apex:dataList value="{!countries}" var="cou" id="CMICountryList" styleClass="cccmiList">                                                               
                                                                         <div class="col-xs-1 ipmCheckbox">
-                                                                            <input class="countrycListbox" type="checkbox" value="{!cou.value}" id="{!cmi.id}{!cou.value}" />
-                                                                            <label for="{!cmi.id}{!cou.value}"></label>
+                                                                            <input class="countrycListbox" type="checkbox" value="{!cou.Label}" id="{!cou.Label}" />
+                                                                            <label for="{!cou.Label}"></label>
                                                                         </div>
                                                                         <div class="col-xs-10 noPadleft cmiLabel">{!cou.value}</div>
                                                                    
@@ -164,7 +164,7 @@
                                                                 <apex:outputPanel layout="block" styleClass="col-xs-12 ipmAcrdnHeader aHead SecButtonSet">
                                                                     <div class="col-xs-10">
                                                                         <span class='expico fa fa-minus'></span>
-                                                                        <span class="conceptTitle">{!selCon}</span>
+                                                                        <span class="conceptTitle">{!mapCountryNameWithCode[selCon]}</span>
                                                                     </div>
                                                                     <!-- Condition for checking editable -->
                                                                     <apex:outputPanel rendered="{!isEditable}" >
@@ -194,7 +194,7 @@
                                                                             </apex:outputPanel> 
                                                                         </apex:repeat> 
                                                                     </div>
-                                                                    <div class="table-responsive cmiTableDiv" id="ipmTableDiv">
+                                                                    <div class="table-responsive cmiTableDiv ipmTableDiv" id="ipmTableDiv">
                                                                         <div class="cmiTabHeaderContainer">
                                                                             <span class="cmiTabHeadBlock">
                                                                                 {!$Label.IPM_CMI_Inputs}

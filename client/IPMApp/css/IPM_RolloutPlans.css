@@ -20,7 +20,7 @@
     min-height: 143px;
 }
 .editRollout{margin-left:15px;}
-
+.localModalDesc{margin-top:20px;}
 .width4 {
     width: 19%;
 }
@@ -37,11 +37,11 @@
     padding: 8px;
 }
 .smallinfo {
-    width: 20px !important;
-    height: 20px !important;
+    width: 20px ;
+    height: 20px ;
     float: left;
-    margin: 5px 5px !important;
-    border: 2px solid #1568b6 !important;
+    margin: 5px 5px ;
+    border: 2px solid #1568b6 ;
 }
 .listmsgTxt {
     line-height: 30px;
@@ -49,7 +49,7 @@
     font-weight: normal;
 }
 .pagemessageBoxDiv .SecButtonSet {
-    text-align: left !important;
+    text-align: left ;
 }
 .mSpacing {
     margin: 10px 0px;
@@ -64,13 +64,13 @@
     margin-top: 0px;
 }
 .noitalic {
-    font-style: normal !important;
+    font-style: normal ;
 }
 .pagemessageBoxDiv>label {
     width: 100%;
 }
 .key img {
-    width: 22%!important;
+    width: 22%;
 	height:27px;
 }
 /* Table */
@@ -81,12 +81,12 @@
 .ipmTable.table-bordered {
     table-layout: fixed;
     border-bottom: 1px solid #7fa19e;
-    border-top: 1px solid #ddd !important;
+    border-top: 1px solid #ddd ;
     margin-bottom: 10px;
 }
 .ipmTable .dropdown-menu {
-    margin-top: -8px !important;
-    z-index: 9 !important;
+    margin-top: -8px ;
+    z-index: 9 ;
 }
 .ipmTable .open .dropdown-toggle a {
     margin: -7px -2px;
@@ -136,7 +136,7 @@
     left: 3px;
 }
 .phaseFilter .dropdown-menu>li {
-    padding: 10px 0px 36px 10px !important;
+    padding: 10px 0px 36px 10px ;
     border-bottom: 1px solid #ddd;
 }
 .ipmTable .dropdown-menu .ipmCheckbox label {
@@ -156,7 +156,7 @@ li .ipmButtonGroup {
 .deleteTask div {
     padding: 20px;
 }
-#ipmTableDiv .SecButtonSet .icoButton {
+.ipmTableDiv .SecButtonSet .icoButton {
     display: inline-block;
     width: 30px;
     margin: 0px 5px;
@@ -174,7 +174,7 @@ li .ipmButtonGroup {
 .toggleContainer {
     border: 1px solid #1568b6;
     border-radius: 20px;
-    margin-top: 0px !important;
+    margin-top: 0px ;
 }
 .toggleContainer .icoButton {
     border: 0px;
@@ -185,10 +185,10 @@ li .ipmButtonGroup {
     border: 0px;
 }
 .noPadright {
-    padding-right: 0px !important;
+    padding-right: 0px ;
 }
 .table>thead>tr>th:first-child {
-    padding-left: 4px !important;
+    padding-left: 4px ;
 }
 .keep-open {
     height: 18px;
@@ -196,13 +196,13 @@ li .ipmButtonGroup {
 }
 .accrdionTd {
     border: 0px;
-    text-align: left !important;
+    text-align: left ;
 }
 .tableAccrdion {
     padding: 15px 0px;
 }
 .noPadleft {
-    padding-left: 0px !important;
+    padding-left: 0px ;
 }
 .ipmAccordion .projectContainer .pHead > span.expico {
     display: inline-block;
@@ -263,12 +263,12 @@ li .ipmButtonGroup {
 }
 .table>tbody > tr.paginationRow > td.paginationCol input.btnDisabled,
 .table>tbody > tr.paginationRow > td.paginationCol input.btn {
-    background: none !important;
-    border: none !important;
+    background: none ;
+    border: none ;
 }
 .paginationLink {
-    margin-left: 3px !important;
-    margin-right: 3px !important;
+    margin-left: 3px ;
+    margin-right: 3px ;
 }
 td.colCompleted {
     width: 8%;
@@ -289,11 +289,11 @@ td.colCompleted {
     float: right;
 }
 ul.project > li:first-child {
-    padding: 10px 10px 11px 10px !important
+    padding: 10px 10px 11px 10px 
 }
 h3.pageTitle {
-    margin-top: 0px !important;
-    color: #253b78 !important;
+    margin-top: 0px ;
+    color: #253b78 ;
     text-transform: none;
     font-size: 1.7em;
     font-weight: normal;
@@ -303,7 +303,7 @@ h3.pageTitle {
     padding: 0px 0px 5px;
 }
 .panel-group {
-    margin-bottom: 4px !important;
+    margin-bottom: 4px ;
 }
 .rollouttable {
     table-layout: fixed;
@@ -319,8 +319,8 @@ h3.pageTitle {
     padding-bottom: 5px;
 }
 .rollouttable th {
-    font-weight: normal !important;
-    color: #666 !important;
+    font-weight: normal ;
+    color: #666 ;
 }
 span.expico {
     display: inline-block;
@@ -348,7 +348,7 @@ span.expico {
 }
 .statetext {
     margin-bottom: 10px;
-    padding: 3px 10px 3px 0 !important;
+    padding: 3px 10px 3px 0 ;
     display: inline-block;
     border-right: 1px #7fa19e solid;
 }
@@ -356,25 +356,25 @@ span.expico {
     color: #81bd42;
 }
 .noBackground {
-    background: #fff !important;
+    background: #fff ;
 }
 .secrow td {
-    border-top: 1px solid #ddd !important;
-    !important;
-    border-bottom: 1px solid #ddd !important;
+    border-top: 1px solid #ddd ;
+    ;
+    border-bottom: 1px solid #ddd ;
     background: #f7f8fa;
 }
 .greyborleft {
-    border-left: 1px solid #ddd !important;
+    border-left: 1px solid #ddd ;
 }
 .greyborright {
-    border-right: 1px solid #ddd !important;
+    border-right: 1px solid #ddd ;
 }
 .greyColr {
     background: #f8f8f8;
 }
 .panel {
-    background-color: none !important;
+    background-color: none ;
 }
 .regpos {
     position: relative;
@@ -440,7 +440,7 @@ span.expico {
 .addrolloutsec {
     background-color: #f8f8f8;
 }
-#editsection {
+.editsection {
     display: none;
 }
 .dblock {
@@ -451,7 +451,7 @@ span.expico {
     margin-right: 5px;
 }
 .table>tbody>tr>td {
-    padding: 10px 10px !important;
+    padding: 10px 10px ;
 }
 .fa-star:before {
     margin-left: 5px;
@@ -475,16 +475,16 @@ span.expico {
     padding-left: 30px;
 }
 .countrytable {
-    text-align: left !important;
+    text-align: left ;
 }
 .srchImage {
-    right: -58px !important;
+    right: -58px ;
 }
 .searchBox input {
-    width: 200px !important;
+    width: 200px ;
 }
 .table-bordered>thead>tr>th {
-    border-bottom-width: 1px !important;
+    border-bottom-width: 1px ;
 }
 a.icoButton.edit1 {
     background-color: #fff;
@@ -493,8 +493,8 @@ a.icoButton.delete {
     background-color: #fff;
 }
 .icoButton-delete {
-    width: 25px !important;
-    height: 23px !important;
+    width: 25px ;
+    height: 23px ;
 }
 .searchBox label {
     float: left;
@@ -510,10 +510,10 @@ input[type=text] {
     text-align: right;
     margin-right: 13px;
 }
-#editblock tr td {
+.editblock tr td {
     border-top: 0px;
 }
-table #editblock {
+table .editblock {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.17);
     border: 1px solid #2262A0;
 }
@@ -527,17 +527,17 @@ table #editblock {
 	display:inline-block;
 }
 .ipmTable.table-bordered {
-    border-top: 1px solid #7fa19e !important;
+    border-top: 1px solid #7fa19e ;
 }
 .table-bordered > thead > tr > th {
-    border: 0px !important;
+    border: 0px ;
 }
 .table > thead > tr > th {
-    border-bottom: 1px solid #7fa19e !important;
+    border-bottom: 1px solid #7fa19e ;
 }
 .editable tr:first-child td {
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
+    padding-top: 15px ;
+    padding-bottom: 15px ;
 }
 .incHeight {
     height: 17px;
@@ -549,9 +549,9 @@ table #editblock {
     visibility: hidden;
 }
 .rollouttable th {
-    font-weight: normal !important;
-    color: #666 !important;
-    padding-bottom: 13px !important;
+    font-weight: normal ;
+    color: #666 ;
+    padding-bottom: 13px ;
 }
 .projectContainer {
     margin-bottom: 30px;
@@ -559,7 +559,7 @@ table #editblock {
 .rollouttable th,
 .myListTable th,
 .rollouttable td {
-    white-space: normal !important;
+    white-space: normal ;
     word-wrap: break-word;
 }
 .rollouttable span {
@@ -592,7 +592,7 @@ a.noDecoration:hover {
     margin-bottom: 20px;
 }
 .placeholder {
-    color: #aaa !important;
+    color: #aaa ;
 }
 /* Component styles */
 
@@ -610,9 +610,9 @@ a.noDecoration:hover {
     padding-bottom: 5px;
 }
 .rollouttable th {
-    font-weight: normal !important;
-    color: #666 !important;
-    padding-bottom: 13px !important;
+    font-weight: normal ;
+    color: #666 ;
+    padding-bottom: 13px ;
 }
 span.expico {
     display: inline-block;
@@ -643,7 +643,7 @@ span.expico {
 }
 .statetext {
     margin-bottom: 10px;
-    padding: 3px 10px 3px 0 !important;
+    padding: 3px 10px 3px 0 ;
     display: inline-block;
     border-right: 1px #7fa19e solid;
 }
@@ -651,25 +651,24 @@ span.expico {
     color: #81bd42;
 }
 .noBackground {
-    background: #ffffff !important;
+    background: #fff ;
 }
 .secrow td {
-    border-top: 1px solid #ddd !important;
-    !important;
-    border-bottom: 1px solid #ddd !important;
+    border-top: 1px solid #ddd ;
+    border-bottom: 1px solid #ddd ;
     background: #f7f8fa;
 }
 .greyborleft {
-    border-left: 1px solid #ddd !important;
+    border-left: 1px solid #ddd ;
 }
 .greyborright {
-    border-right: 1px solid #ddd !important;
+    border-right: 1px solid #ddd ;
 }
 .greyColr {
     background: #f8f8f8;
 }
 .panel {
-    background-color: none !important;
+    background-color: none ;
 }
 .regpos {
     position: relative;
@@ -681,7 +680,7 @@ span.expico {
     min-width: 80%;
 }
 .table>tbody>tr>td {
-    padding: 10px 10px !important;
+    padding: 10px 10px ;
 }
 .fa-star:before {
     margin-left: 5px;
@@ -706,16 +705,16 @@ span.expico {
     text-align: right;
     margin-right: 13px;
 }
-#editblock tr td {
+.editblock tr td {
     border-top: 0px;
 }
 .wordwrap {
     word-wrap: break-word;
 }
-.dateFormat {
-    visibility: hidden;
+.rollouttable .dateFormat {
+    display:none;
 }
-table #editblock {
+table .editblock {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.17);
     border: 1px solid #2262A0;
 }
@@ -730,21 +729,30 @@ table #editblock {
   top: 178px;
 }
 .pageMessage h4 {
-	display:none!important;
+	display:none;
 }
 
 .tabEven.active {
-height:41px !important;
+height:41px ;
 }
 
 .proLeaderColumn{margin-top: 5px;}
 .proLeaderImg img{max-width:100%;}
 .proLeaderImg{width:43px;margin-right: 10px;}
-#selectproLeader{color:#0f81bb;cursor:pointer;}
+.selectproLeader{color:#0f81bb;cursor:pointer;}
 input[type=text]::-ms-clear {display: none; width:0; height:0;}
-#ipmRegionalRollout  .modal-dialog{margin-top: 10%;}
+.ipmRegionalRollout  .modal-dialog{margin-top: 10%;}
 
-.rolloutErrorBox{background-repeat: no-repeat;text-indent: 30px;background-position: 10px;color:#C73E36;font-weight:normal;background-image:url('../images/red_i_icon.png');background-color: #FFEBEC !important;border: 1px solid #F3BEB6 !important;width: 100%;display: block;padding: 10px;float: left;margin-bottom: 10px;border-radius: 4px;}
+.rolloutErrorBox{background-repeat: no-repeat;text-indent: 30px;background-position: 10px 10px;color:#C73E36;font-weight:normal;background-image:url('../images/red_i_icon.png');background-color: #FFEBEC ;border: 1px solid #F3BEB6 ;width: 100%;display: block;padding: 10px;float: left;margin-bottom: 10px;border-radius: 4px;}
 .rollouttable .expico{margin-left:5px;}
 .rollouttable .rollsubhead{float:left;}
 .deleteButtoncontainer{width:189px;}
+th div.proLeaderColumn span:last-child{width:87%;}
+.misaligned{border-color: #ff0000 ;}
+
+.removeapprpopup{padding: 15px;}
+.remvButtonContainer{margin-top: 20px;margin-bottom: 10px;}
+.remvButtonContainer .buttonMarginRight:last-child {
+    margin-right: 0px;
+}
+

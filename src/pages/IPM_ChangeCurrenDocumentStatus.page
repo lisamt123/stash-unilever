@@ -3,7 +3,7 @@
 *@Description:This page used for changing the status of Gate Document
 *@Author: Cognizant
 *@Created Date: 26/12/2014 
-*@Copyright © 2015  Unilever  
+*@Copyright © 2015  Unilever   
 *************************************************************************************************************************************************************
 -->
 <apex:page controller="IPM_ChangProjectDocumentStatusController" title="{!$Label.IPM_CHANGE_CURR_DOC_STATUS}" standardStylesheets="true" sidebar="false" showHeader="false" extensions="IPM_GetHelpDoc">
@@ -33,7 +33,7 @@
         <apex:outputPanel id="goto"></apex:outputPanel> 
         <div class="container-fluid">
             <div class="row changeStatusPage">
-                <div class="col-xs-12" id="changeStatus_links">
+                <div class="col-xs-12 changeStatus_links" id="changeStatus_links">
                     <div class="col-xs-12 yellowAlert">
                         <div class="SecButtonSet">
                             <div class="col-sm-1 noPadright"><img alt="Alert" class="alertimg" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>                        
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="col-xs-12 noPadleft noPadright sliderDiv">
-            <div id="slider">
+            <div id="slider" class="slider">
                 <div id="legend" class="ipmUpdateStatusTab">
                     <ul class="ipmStatusTabs">    
                     </ul>
@@ -54,7 +54,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="changeStatusPage greenBG">
-                    <div class="col-xs-12" id="changeStatus">
+                    <div class="col-xs-12 changeStatus" id="changeStatus">
                         <!-- For In-Progress State -->                     
                         <apex:outputPanel id="progress" styleClass="progress">
                         <!-- Below rendered condition will show the output text for in progress status -->   
@@ -166,6 +166,59 @@
                                         <span class="errTitle">{!$Label.IPM_EcoDesign_Assessment}</span>
                                         <span class="errList">{!$Label.IPM_EcoDesign_Fill} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!ecoDesignSectionId}" target="_top">{!$Label.IPM_EcoDesign_Assessment_Section}</a></span> 
                                     </apex:outputPanel>
+			    	    <!-- CR0281 bb document validation -->
+                                    <!-- Below rendered condition is used for checking TLD alignment, business case confirmation,financial alignment -->
+                                    <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!isBDBBAlignment}">
+                                        <span class="errTitle">{!$Label.IPM_BB_Document}</span>
+                                        <!-- Below rendered condition is used for checking business case confirmation -->
+                                        <apex:outputPanel layout="block" rendered="{!businessCasePending}">
+                                            <apex:repeat value="{!projSectionList}" var="section">  
+                                             <!-- Below rendered condition is provide the link for section 6.3 --> 
+                                                 <apex:outputPanel layout="block" rendered="{!section.IPM_Section_Sequence__c=bd_BBAlignmentSequence}">    
+                                                    <span class="errList"><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!section.Id}" target="_blank">{!$Label.IPM_confirm_business_case_in_gate}</a> </span> 
+                                                 </apex:outputPanel>
+                                            </apex:repeat> 
+                                            <apex:variable value="{!totalLocalProjects}" var="rowNum"/>
+                                            <div class="errList">
+                                                <apex:repeat value="{!localBCProjectName}" var="localProject">
+                                                  <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span>
+                                                    <apex:variable var="rowNum" value="{!rowNum - 1}"/>
+                                                </apex:repeat>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <!-- Below rendered condition is used for checking financial alignment -->
+                                        <apex:outputPanel layout="block" rendered="{!financialAlignment}">
+                                            <apex:repeat value="{!projSectionList}" var="section"> 
+                                            <!-- Below rendered condition is provide the link for section 6.3 -->  
+                                                 <apex:outputPanel layout="block" rendered="{!section.IPM_Section_Sequence__c=bd_BBAlignmentSequence}">    
+                                                    <span class="errList"><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!section.Id}" target="_blank">{!$Label.IPM_Finance_Align}</a> </span> 
+                                                 </apex:outputPanel>
+                                            </apex:repeat>
+                                            <apex:variable value="{!totalFinProject}" var="rowNum"/>
+                                            <div class="errList">
+                                                <apex:repeat value="{!localFinProjectName}" var="localProject">
+                                                    <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span>
+                                                    <apex:variable var="rowNum" value="{!rowNum - 1}"/>
+                                                </apex:repeat>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <!-- Below rendered condition is used for checking TLD alignment -->
+                                        <apex:outputPanel layout="block" rendered="{!tldAlignment}">
+                                            <apex:repeat value="{!projSectionList}" var="section">   
+                                            <!-- Below rendered condition is provide the link for section 6.3 -->
+                                                 <apex:outputPanel layout="block" rendered="{!section.IPM_Section_Sequence__c=bd_BBAlignmentSequence}">    
+                                                    <span class="errList"><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!section.Id}" target="_blank">{!$Label.IPM_TDL_Align}</a> </span> 
+                                                 </apex:outputPanel>
+                                            </apex:repeat>
+                                            <apex:variable value="{!totalTLDProject}" var="rowNum"/>
+                                            <div class="errList">
+                                                <apex:repeat value="{!localTLDProjectName}" var="localProject">
+                                                    <span class="bb_project">{!localProject}{!if(rowNum>1,$Label.IPM_Comma,'')}</span> 
+                                                    <apex:variable var="rowNum" value="{!rowNum - 1}"/>
+                                                </apex:repeat>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
                             </apex:outputPanel>
                         </apex:outputPanel>
                             </apex:outputPanel>
@@ -187,8 +240,14 @@
                                 <apex:outputPanel >
                                     <div class='input-group date'>
                                         <apex:outputLabel value="{!$Label.IPM_POSTPONE_ON}"/>
-                                        <apex:inputField styleClass="dateInputBox tldBox calendar" value="{!projectDoc.IPM_Postponement_Date__c}" id="Duedate" >
-                                        </apex:inputField>
+					<apex:repeat value="{!pendingMilestoneList}" var="milestone">
+                                            <apex:inputField styleClass="dateInputBox tldBox calendar" value="{!milestone.IPM_Planned_Date__c}" id="Duedate" rendered="{!Not(milestone.IPM_Name__c = tldMilestoneName)}"/>
+                                            <apex:inputField styleClass="dateInputBox " value="{!milestone.IPM_Planned_Date__c}" id="DuedateTLD" rendered="{!(milestone.IPM_Name__c = tldMilestoneName)}" html-disabled="true"/>
+                                            
+                                            &nbsp;&nbsp; <b><apex:outputText value="{!milestone.IPM_Name__c}" /></b>
+                                            <br/><br/>
+                                        </apex:repeat>
+                                        
                                     </div>
                                     <apex:outputLabel value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/>
                                     <!--<span class="bluText">* Goes to Contract Gate document, Section Feedback from Last Gate</span>-->
@@ -373,7 +432,7 @@
                 </div>
             </div>
         </div>    
-        <div id="ipmModalApproveEdits" class="modal fade">
+        <div id="ipmModalApproveEdits" class="modal fade ipmModalApproveEdits">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -439,6 +498,5 @@
     <script>
         var IPMApp = {gateStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}', projectId:'{!URLENCODE(projectId)}', projectPhase: '{!project.IPM_Phase__c}', projectDoc:'{!URLENCODE(projectDoc.IPM_GateDocuments__c)}', Stopped:'{!$Label.IPM_GD_STOPPED}', Proposed:'{!$Label.IPM_GD_PROPOSED}', Postponed:'{!$Label.IPM_GD_POSTPONED}', Approved:'{!$Label.IPM_GD_APPROVED}', inProgress:'{!$Label.IPM_IN_PROGRESS}', ApprovedEdit:'{!$Label.IPM_APPROVED_WITH_EDITS}', GateDocumentPage:'{!URLFOR($Page.IPM_GateDocument)}',MilestonePage:'{!URLFOR($Page.IPM_GateDocument)}'};
     </script>
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ChangeCurrenDocumentStatus.js')}" type="text/javascript"></script>
-     
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ChangeCurrenDocumentStatus.js')}" type="text/javascript"></script> 
 </apex:page>

@@ -645,7 +645,7 @@ Global with sharing class IPM_BosscardController {
     *@Description : cancel bosscard
     *********************************************************************************/
     public pagereference cancelBosscard(){
-        pagereference pg=new pagereference(IPM_ConstantUtils.IPM_HOMEPAGE_URL);
+        PageReference pg = Page.IPM_HomePage;
         if(bosscard.IPM_IsSaved__c){
             return pg;
         }

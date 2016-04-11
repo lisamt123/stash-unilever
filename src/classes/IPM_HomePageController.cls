@@ -18,6 +18,7 @@ public with sharing class IPM_HomePageController
     public List<String> LstFinMisalignedMessage { get; set; }  // To get the Financial misaligned Alert Message
     public Map<Id,String> RolloutProjectAlertMessageMap {get;set;}
     public Map<String,String> LstFinTLDMisalignedMessageMap { get; set; }  // To get the Financial TLD misaligned Alert Message
+    public Map<String, String> finDataMissingAlertMessageMap{get; set;} 
     public Map<String,String> LstLocalFinTLDMisalignedMessageMap { get; set; }  // To get the Financial TLD misaligned Alert Message
     public List<String> LstFinTLDMisalignedMessage {get;set;}
     public List<String> BusinessCaseMessage {get;set;}
@@ -64,6 +65,7 @@ public with sharing class IPM_HomePageController
         alertMessageDueDateToday = new Map<String, String>();
         ProjectIdMap = new Map<String, String>();
         documentAlertMessageMap = new Map<String, String>();
+        finDataMissingAlertMessageMap = new Map<String, String>();
         betMsgFirstReleaseDueDate = new List<String>();
         betMsgFinalReleaseDueDate = new List<String>();
         getusertype();
@@ -275,9 +277,14 @@ public with sharing class IPM_HomePageController
 
         }
       }
+      //DEF2344 fix
+    List<IPM_Project__c> projList = IPM_ValidationHelper.validateMilestoneAndFinacialData(lstProjects);
+    for(IPM_Project__c ipmProj : projList ) {
+        finDataMissingAlertMessageMap.put(ipmProj.id, ipmProj.name + IPM_ConstantUtils.Colon + IPM_ConstantUtils.IPM_SPACE + Label.IPM_Finacial_Data_Missing); 
+    }
       alertscount = fastTrackCount+alertMessageDueDatePast.size()+alertMessageDueDateApproaching.size()+alertMessageDueDateToday.size()+LstFinMisalignedMessage.size()+
       BusinessCaseMessageMap.size()+LstFinTLDMisalignedMessageMap.size()+LstLocalFinTLDMisalignedMessageMap.size()+RolloutProjectAlertMessageMap.size()+documentAlertMessageMap.size()
-      + betMsgFirstReleaseDueDate.size()+betMsgFinalReleaseDueDate.size();
+      + betMsgFirstReleaseDueDate.size()+betMsgFinalReleaseDueDate.size()+ finDataMissingAlertMessageMap.size();
 
    }    
     
@@ -334,3 +341,4 @@ public with sharing class IPM_HomePageController
     } 
     
 }
+	

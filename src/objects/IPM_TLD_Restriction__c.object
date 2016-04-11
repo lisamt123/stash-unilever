@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Is TLD not less than certain no of months restriction in effect</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>IPM_TLD_Restriction_In_Effect__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Is TLD not less than certain number of month restriction in effect</description>
+        <externalId>false</externalId>
+        <label>IPM TLD Restriction In Effect</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>IPM TLD Restriction</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -20,8 +20,10 @@ public with sharing class IPM_GatekeeperChecklist{
     public static  ID recTypeRnDFeasibility; //Contains R&D Feasibility  Record type Id
     public static  ID recTypeSCFeasibility; //Contains SC Feasibility  Record type Id
     public static  ID recTypeTrademark;//Contains Trademark Feasibility  Record type Id
-     
-    public static list<IPM_Questionnaire__c> gkChecklist{get;set;} //Contains Gatekeeper Check list Questions
+    
+    public static list<IPM_Questionnaire__c> gkChecklist{get;set;} //Contains Gatekeeper Check list Questions 
+    public Map<Id,List<SelectOption>> gkChecklistAnsMap{get;set;} //Contains responses to the Gatekeeper Check list Questions
+    public Map<String,String> gkHelpTextMap{get; set;} //Contains help text corresponding to the Gatekeeper Check list responses
     public static list<IPM_Questionnaire__c> quesList{get; set;} //Contains feasibility and rnd questions
     public IPM_Questionnaire__c gkCheck{get; set;} //Contains Gatekeeper Check list Record
     public Id quesId{get; set;} //Questionnaire Record Id
@@ -31,6 +33,9 @@ public with sharing class IPM_GatekeeperChecklist{
     public ID projectID{get;set;} //Project Id
     public Boolean cmts{get; set;} //Used for updating comments and Check list Value
     public IPM_Project_Document_Section__c  projDocSec {get;set;} //Contains Project Document Section Record
+    
+    public static final Map<String,String> GK_DEF_APPLICABLE_ANSMAP = new  Map<String,String>{Label.IPM_YES => Label.IPM_YES ,Label.IPM_PARTLY => Label.IPM_PARTLY , Label.IPM_NO => Label.IPM_NO, Label.IPM_NA => Label.IPM_NO_APPLICABLE };
+    
     //Contains Gate Document Type and Retrieving Gatekeeper Check list Questionnaires
     public string gateType{ 
         get {
@@ -151,8 +156,67 @@ public with sharing class IPM_GatekeeperChecklist{
                 gkChecklist=Database.query(query+' AND IPM_Section_Sequence_Number__c=:projDocSecSequence order by IPM_Sequence_Number__c ASC LIMIT 50000');
             }
             else{
-                gkChecklist=Database.Query(query+' order by IPM_Sequence_Number__c ASC LIMIT 50000');
-            }  
+               
+               gkChecklist=Database.Query(query+' order by IPM_Sequence_Number__c ASC LIMIT 50000');     
+                
+            } 
+            
+            if(gkChecklist!=null && !gkChecklist.isEmpty())  
+            {
+                gkChecklistAnsMap  = new Map<Id , List<SelectOption>>();
+                
+                for(IPM_Questionnaire__c ipmQue : gkChecklist) 
+                {   
+                    // Prepare a map of Options VS help Text.           
+                    gkHelpTextMap = new  Map<String , String>{ Label.IPM_YES => ipmQue.IPM_HelpText_Yes__c  , Label.IPM_PARTLY => ipmQue.IPM_HelpText_Partly__c , Label.IPM_NO => ipmQue.IPM_HelpText_No__c ,Label.IPM_NA=> ipmQue.IPM_Question_Help_Text__c };
+                    
+                    List<SelectOption> applicableGKOptions = new  List<SelectOption>{new SelectOption('0',Label.IPM_SELECT)};
+                    
+                    // Get the Applicable Answer List based on the Questionare record.
+                    String gkAnswers=ipmQue.IPM_GK_Answers_Multiselect__c;
+                    
+                    if( gkAnswers!=null && !String.isBlank(gkAnswers))
+                    {
+                         List<String> applicableAnswerList = gkAnswers.split(IPM_ConstantUtils.SEMICOLON);
+                         
+                         for(String answerString : applicableAnswerList)
+                         {  
+                            String[] optionsArray = answerString.split(IPM_ConstantUtils.TILDA_DELIMITER);
+                            
+                            if(!optionsArray.isEmpty())
+                            {
+                                String optionLabel = optionsArray[0];
+                                String optionValue = optionsArray[1];
+                                
+                                SelectOption answerOption = null; 
+                                if(!gkHelpTextMap.containsKey(optionLabel))
+                                {
+                                    answerOption = new SelectOption(optionValue,optionLabel);
+                                }
+                                else
+                                {
+                                    answerOption = new SelectOption(optionValue,'<span title='+  gkHelpTextMap.get(optionLabel)  + '>' +optionLabel+'</span>');
+                                }
+                                answerOption.setEscapeItem(false);
+                                applicableGKOptions.add(answerOption);              
+                            }
+                         } 
+                     }
+                     else  
+                     {
+                         for(String key :GK_DEF_APPLICABLE_ANSMAP.keyset())
+                         {
+                            SelectOption answerOption =new SelectOption( GK_DEF_APPLICABLE_ANSMAP.get(key),'<span title='+  gkHelpTextMap.get(key)  + '>' +key+'</span>');
+                         
+                            answerOption.setEscapeItem(false);
+                         
+                            applicableGKOptions.add(answerOption); 
+                         } 
+                     }                 
+                     
+                     gkChecklistAnsMap.put(ipmQue.id, applicableGKOptions);   
+                 }
+             } 
         }
        
         catch(Exception ex){

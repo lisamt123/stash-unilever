@@ -3,15 +3,18 @@
  *@Author: Cognizant
  *@Created Date: 28/05/2015 
 *********************************************************************************/
-/* Below code is for the accordion functionality */
 jq(document).ready(function() {
 	jq(".cust-overlay").delay(1500).fadeOut();
+	
+/* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */
     jq(".contenWrapper .ipmAcrdnExpand").hide();
     if (window.location.href.indexOf("IPM_GateDocument") > -1) {
         jq(".contenWrapper").find(".contenWrapper").find(".ecoDesignTable").find(".ipmAcrdnExpand").show();
     }
     jq(".contenWrapper").find(".ipmAcrdnExpand").find(".aHead:last").css("border", "none");
     jq(".contenWrapper .ipmAcrdnExpand:first").not(':empty').show();
+	
+/* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
     jq(".contenWrapper").on("click", ".ipmAccordian .expico", function() {
         if (jq(this).closest(".aHead").next(".ipmAcrdnExpand").is(":visible")) {
             jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideUp("fast");
@@ -31,18 +34,26 @@ jq(document).ready(function() {
             jq(this).addClass("fa-minus");
         }
     });
+	
+/* Below script expands all the tabs in accordion when clicked on the Expand all button and replaces '+' with '-' sign */
     jq(".content.expandTool").on("click", ".expandAll", function() {
         jq(".ipmAccordian").find(".ipmAcrdnExpand").not(':empty').slideDown("fast");
         jq(".ipmAccordian").find(".aHead .expico").removeClass("fa-plus");
         jq(".ipmAccordian").find(".aHead .expico").addClass("fa-minus");
     });
+	
+/* Below script collapses all the tabs in accordion when clicked on the Collapse all button and replaces '-' with '+' sign */
     jq(".content.expandTool").on("click", ".collapseAll", function() {
         jq(".ipmAccordian").find(".ipmAcrdnExpand ").slideUp("fast");
         jq(".ipmAccordian").find(".aHead .expico").addClass("fa-plus");
         jq(".ipmAccordian").find(".aHead .expico").removeClass("fa-minus");
     });
+	
+/* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */
     jq(".gdFilterSection .ipmAcrdnExpand").hide();
     jq(".gdFilterSection .ipmAcrdnExpand").not(':empty').show();
+	
+/* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
     jq(".gdFilterSection").on("click", ".ipmAccordion .expico", function() {
         var $this = jq(this);
         if ($this.closest(".pHead").next(".filter.ipmAcrdnExpand").is(":visible") && $this.closest(".pHead").next(".filter.ipmAcrdnExpand").not(':empty')) {
@@ -55,11 +66,15 @@ jq(document).ready(function() {
             $this.addClass("fa-minus");
         }
     });
+	
+/* Below script expands all the tabs in accordion when clicked on the Expand all button and replaces '+' with '-' sign */
     jq(".expandTool").on("click", ".filter.expandAll", function() {
         jq(".ipmAccordion").find(".ipmAcrdnExpand").not(':empty').slideDown("fast");
         jq(".ipmAccordion").find(".pHead .expico").removeClass("fa-plus");
         jq(".ipmAccordion").find(".pHead .expico").addClass("fa-minus");
     });
+	
+/* Below script collapses all the tabs in accordion when clicked on the Collapse all button and replaces '-' with '+' sign */
     jq(".expandTool").on("click", ".filter.collapseAll", function() {
         jq(".ipmAccordion").find(".ipmAcrdnExpand ").slideUp("fast");
         jq(".ipmAccordion").find(".pHead .expico").addClass("fa-plus");
@@ -67,6 +82,8 @@ jq(document).ready(function() {
     });
     jq(document).ready(function() {
         jq(".removebutton input").removeClass('btn');
+		
+/* Below script works on page load. It adds the + mark for the collapsed one's and adds - for the expanded one */
         jq(".contenWrapper").find(".ipmAccordian .aHead .expico").removeClass("fa-minus");
         jq(".contenWrapper").find(".ipmAccordian .aHead .expico").addClass("fa-plus");
         jq(".contenWrapper").find(".ipmAccordian .aHead:first .expico").removeClass("fa-plus");
@@ -74,13 +91,14 @@ jq(document).ready(function() {
         jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").removeClass("fa-minus");
         jq(".contenWrapper").find(".ipmAccordian .ipmAcrdnExpand:first .aHead .expico").addClass("fa-plus");
     });
-    /* Below code is for the history modal*/
     jq(".ipmFinancetable").closest("div").css("overflow", "auto");
     jq(".history").each(function() {
         var $this = jq(this);
         var url = $this.attr('value');
         var id = $this.attr('id');
         var title = $this.attr('title');
+		
+    /* Below script works on click event. It opens up the history modal*/
         jq(document).on('click', "#" + id, function(e) {
             e.preventDefault ? e.preventDefault() : e.returnValue = false;
             openModal(url);
@@ -89,7 +107,7 @@ jq(document).ready(function() {
             jq('#ipmModal .modal-dialog').height('90%');
         });
     });		    
-    /* Below code is for the change gate document status modal*/
+    /* Below script works on click event. It opens up the change gate document status modal*/
     jq(document).on('click', '.SecStatusUpdate1', function() {
         var url = jq(this).attr('value');
         var modalTitle = 'Change current document status';
@@ -99,10 +117,11 @@ jq(document).ready(function() {
         jq('#ipmModal .modal-dialog').height('90%');
     });
     
+	/* Below script works on click event. It removes the messageBox div */
     jq('.closeMessage').on('click', function() {
         jq(this).closest('.messageBox').remove();
     });
-    /* Below code is for the previous gate documents modal*/
+    /* Below script works on click event. It opens up the previous gate documents modal*/
     jq(document).on('click', '.olderDocLink', function(e) {
         var $this = jq(this);
         var url = $this.attr('value');
@@ -115,13 +134,14 @@ jq(document).ready(function() {
 	openCommentModal();
     filterBlock();
 });
-/* Below code is for the comments modal*/
 function openCommentModal(){
 	jq(".comments").each(function() {
 		var $this = jq(this);
 		var url = $this.attr('value');
 		var id = $this.attr('id');
 		var title = $this.attr('title');
+		
+	/* Below script works on click event. It opens up the comments modal*/
 		jq(document).on('click', "#" + id, function(e) {
 			e.preventDefault ? e.preventDefault() : e.returnValue = false;			
 			openModal(url);
@@ -131,21 +151,26 @@ function openCommentModal(){
 		});
 	});
 }
-/* Below code is for the apply filter functionality*/
 function applyFilter() {
     var selValType = [],
         selValStatus = [],
         selValFunRole = [];
+		
+/* Below script works on the filter functionality. If the checkboxes of gate document type filter are checked, it gets the value of those and pushes it to a variable. */
     jq("ul.gdFilterType").find("input[type=checkbox]").each(function() {
         if (jq(this).is(':checked')) {
             selValType.push(jq(this).val());
         }
     });
+	
+/* Below script works on the filter functionality. If the checkboxes of gate document status filter are checked, it gets the value of those and pushes it to a variable. */
     jq("ul.gdFilterStatus").find("input[type=checkbox]").each(function() {
         if (jq(this).is(':checked')) {
             selValStatus.push(jq(this).val());
         }
     });
+	
+/* Below script works on the filter functionality. If the checkboxes of gate document functional role filter are checked, it gets the value of those and pushes it to a variable. */
     jq("ul.gdFilterFunRole").find("input[type=checkbox]").each(function() {
         if (jq(this).is(':checked')) {
             selValFunRole.push(jq(this).val());
@@ -153,65 +178,67 @@ function applyFilter() {
     });
     setFilterValues(selValType.toString(), selValStatus.toString(), selValFunRole.toString());
 }
+
+/* Below function calls another function */
 function movePhase() {
     moveToNextPhase();
 }
-/* Below code is to disable the checkboxes */
+/* Below function contains the code which disables the checkboxes. If the related conditions are true it disables the checkboxes. */
 function filterBlock() {
     jq('.skipButtoncontainer .ipmButton').removeClass('btn');
     var filterSelector = jq(".docFilter");
-    if (IPMApp.NonNegotiableCount == 0) {
+    if (IPMApp.NonNegotiableCount === 0) {
         filterSelector.find(".NonNegotiable").prop('disabled', true);
         filterSelector.find(".NonNegotiable").addClass('disabled');
         filterSelector.find(".NonNegotiable").next().addClass('disabled');
     }
-    if (IPMApp.OptionalCount == 0) {
+    if (IPMApp.OptionalCount === 0) {
         filterSelector.find(".Optional").prop('disabled', true);
         filterSelector.find(".Optional").addClass('disabled');
         filterSelector.find(".Optional").next().addClass('disabled');
     }
-    if (IPMApp.NotstartedCount == 0) {
+    if (IPMApp.NotstartedCount === 0) {
         filterSelector.find(".NotStarted").prop('disabled', true);
         filterSelector.find(".NotStarted").addClass('disabled');
         filterSelector.find(".NotStarted").next().addClass('disabled');
     }
-    if (IPMApp.FilledinCount == 0) {
+    if (IPMApp.FilledinCount === 0) {
         filterSelector.find(".filled-in").prop('disabled', true);
         filterSelector.find(".filled-in").addClass('disabled');
         filterSelector.find(".filled-in").next().addClass('disabled');
     }
 
-    if (IPMApp.BDCount == 0) {
+    if (IPMApp.BDCount === 0) {
         filterSelector.find(".bd").prop('disabled', true);
         filterSelector.find(".NonNegotiable").addClass('disabled');
         filterSelector.find(".NonNegotiable").next().addClass('disabled');
     }
-    if (IPMApp.CMICount == 0) {
+    if (IPMApp.CMICount === 0) {
         filterSelector.find(".cmi").prop('disabled', true);
         filterSelector.find(".cmi").addClass('disabled');
         filterSelector.find(".cmi").next().addClass('disabled');
     }
-    if (IPMApp.CDCount == 0) {
+    if (IPMApp.CDCount === 0) {
         filterSelector.find(".cd").prop('disabled', true);
         filterSelector.find(".cd").addClass('disabled');
         filterSelector.find(".cd").next().addClass('disabled');
     }
-    if (IPMApp.RnDCount == 0) {
+    if (IPMApp.RnDCount === 0) {
         filterSelector.find(".rnd").prop('disabled', true);
         filterSelector.find(".rnd").addClass('disabled');
         filterSelector.find(".rnd").next().addClass('disabled');
     }
-    if (IPMApp.SCCount == 0) {
+    if (IPMApp.SCCount === 0) {
         filterSelector.find(".sc").prop('disabled', true);
         filterSelector.find(".sc").addClass('disabled');
         filterSelector.find(".sc").next().addClass('disabled');
     }
-    if (IPMApp.FinanceCount == 0) {
+    if (IPMApp.FinanceCount === 0) {
         filterSelector.find(".fc").prop('disabled', true);
         filterSelector.find(".fc").addClass('disabled');
         filterSelector.find(".fc").next().addClass('disabled');
     }
-    if (IPMApp.BBCount == 0) {
+    if (IPMApp.BBCount === 0) {
         filterSelector.find(".bb").prop('disabled', true);
         filterSelector.find(".bb").addClass('disabled');
         filterSelector.find(".bb").next().addClass('disabled');
@@ -224,7 +251,8 @@ function filterBlock() {
     });
     filterSelector.find("input[type=checkbox]").prop("checked", true);
     filterSelector.find("label").addClass("selected");
-    /* Below code is for the previous gate documents modal*/
+
+    /* Below script works on click event. When clicked on checkAll link it checks all the checkboxes. */
     jq(document).on("click", ".docFilter .checkAll", function() {
         if (jq(this).is(":checked")) {
             jq(this).closest("ul.docFilter").find("input[type=checkbox]").prop("checked", true);
@@ -234,37 +262,46 @@ function filterBlock() {
             jq(this).closest("ul").find("input[type=checkbox]").next().removeClass("selected");
         }
     });
-    /* Below code is for the reset functionality*/
+	
+    /* Below script works on click event. It performs the reset functionality by reverting back all the changes which are recently done to the checkboxes. */
     jq(document).on('click', '#resetFilterBtn', function() {
         filterSelector.find("input[type=checkbox]").prop("checked", true);
     });
+	
+	/* Below script works on click event. If the checked boxes are not equal to the total number of checkboxes it unchecks all the checkboxes else it checks all the checkboxes. */
     filterSelector.on("click", ".checkSub", function() {
         var $this = jq(this);
         var checkSub = $this.closest("ul").find(".checkSub:checked").closest("li").length;
         var checkNot = $this.closest("ul").find(".checkSub").closest("li").length;
-        if (checkNot != checkSub) {
+        if (checkNot !== checkSub) {
             $this.closest("ul").find("li input.checkAll").prop("checked", false);
             $this.closest("ul").find("li input.checkAll").next().removeClass("selected");
         }
-        if (checkNot == checkSub) {
+        if (checkNot === checkSub) {
             $this.closest("ul").find("li input.checkAll").prop("checked", true);
             $this.closest("ul").find("li input.checkAll").next().addClass("selected");
         }
     });
 }
+
+/* Below function checks for the checked checkboxes and calls another function 'filteredValues' */
 function resetDocFilters() {
     var filterSelector = jq(".docFilter");
     filterSelector.find("input[type=checkbox]").prop("checked", true);
     filterSelector.find("label").addClass("selected");
     filteredValues();
 }
+
+/* Below function adds a span element to the accordion. */
 function addbuttonStyle() {
     jq(".ipmAccordian").find("span.aHead").prepend("<span class='expico fa fa-plus'></span>");
 }
+
+/* Below function calls another function */
 function movePhase() {
     moveToNextPhase();
 }
-/* Below code is to check the check boxes*/
+/* Below function checks all the checkboxes based on its Id. If the condition is true it checks the checkboxes based on the mentioned ID's. */
 function setFiltersAsPrevious() {
     //set types as previous
     var filterTypes = IPMApp.typeFilters;
@@ -319,16 +356,16 @@ function setFiltersAsPrevious() {
     }
 }
 var statusCheckApproved = IPMApp.proDoc;
-if (statusCheckApproved == IPMApp.proposed) {
+if (statusCheckApproved === IPMApp.proposed) {
     jq(".ipmAccordian").find(".ipmAcrdnExpand a").removeAttr("href");
 }
-/* Below code is to close the modal and redirect to gate document page*/
+/* Below script works on click event. If the condition is true it performs page reload of gate document page*/
 jq("#ipmModal .close").on("click", function() {
-    if (jq("#ipmModal .modal-title").text().indexOf("Comment") != -1) {
+    if (jq("#ipmModal .modal-title").text().indexOf("Comment") !== -1) {
         window.top.location.href = IPMApp.GateDocPageRef + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.printDoc;
     }
 });
-/* Below code is to open the ship to trade modal*/
+/* Below script works on click event. When clicked on the button it adds css styles to the button. */
 jq(document).on('click', '.shipTrade', function(e) {
     e.preventDefault ? e.preventDefault() : e.returnValue = false;
     jq('#shipToPLE .modal-dialog').css({
@@ -336,7 +373,7 @@ jq(document).on('click', '.shipTrade', function(e) {
         'z-index': '999'
     });
 });
-/* Below code is for the accordion functionality*/
+/* Below function first it hides all the tabs. It also adds the + mark for the collapsed one's and adds - for the expanded one */
 function resetPanel() {
     jq(".contenWrapper").find(".ipmAcrdnExpand").find(".aHead:last").css("border", "none");
     jq(".contenWrapper .ipmAcrdnExpand").find(".ipmAcrdnExpand").hide();
@@ -346,6 +383,8 @@ function resetPanel() {
     dirApp();
 	openCommentModal();
 }
+
+/* Below function first it hides all the tabs. It also adds the + mark for the collapsed one's and adds - for the expanded one */
 function resetPanelSub() {
     jq(".contenWrapper").find(".ipmAcrdnExpand").find(".aHead:last").css("border", "none");
     jq(".contenWrapper .ipmAcrdnExpand").find(".ipmAcrdnExpand").find(".ipmAcrdnExpand").hide();
@@ -354,13 +393,19 @@ function resetPanelSub() {
     dirApp();
 	openCommentModal();
 }
+
+/* Below function calls another function */
 function fetchAppendixSections() {
     getAppSections();
 }
+
+/* Below function performs a page redirection to Overview Page. */
 function shiptrade() {
     parent.location.assign(IPMApp.OverviewPageRef + '?Id=' + IPMApp.projectId);
 }
 function dirApp() {
+
+/* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
     jq(".ipmAccordian.mainTable").on("click", ".appText", function() {
         var appDir = jq(this).attr("data-dir");
         jq(".ipmAccordian.mainTable").find(".aHead").find(".expico").removeClass("fa-minus").addClass("fa-plus");
@@ -372,6 +417,8 @@ function dirApp() {
     });
 }
 jq(window).load(function(){
+
+/* Below script works on click event. It opens the modal. */
 	jq(document).on('click', '.openModal', function() {
         var url = jq(this).attr('value');
         var modalTitle = jq(this).attr('modalTitle');

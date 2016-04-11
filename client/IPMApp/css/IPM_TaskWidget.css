@@ -31,7 +31,7 @@
   position:relative;
   padding:10px 5px;
   border-bottom:1px dashed #eaeaea;
-  margin-left: 0 !important;
+  margin-left: 0 ;
   list-style: none;
 }
 
@@ -86,7 +86,7 @@
 
 .ipmTaskWidget .taskList  li:hover > .taskConfig {
   display:block;
-  margin-bottom:0 !important;
+  margin-bottom:0 ;
 }
 
 .ipmTaskWidget .taskGroup{
@@ -97,37 +97,37 @@
 
 /* Colors */
 .ipmTaskWidget .taskGroup.blue {
-    color: #209DDA !important;
+    color: #209DDA ;
 }
 
 .ipmTaskWidget .taskGroup.green {
-    color: #80B726 !important;
+    color: #80B726 ;
 }
 
 .ipmTaskWidget .taskGroup.maroon {
-    color: #AC0D60 !important;
+    color: #AC0D60 ;
 }
 
 .ipmTaskWidget .taskGroup.orange {
-    color: #FF982F !important;
+    color: #FF982F ;
 }
 
 .ipmTaskWidget .taskGroup.pink {
-    color: #DF1995 !important;
+    color: #DF1995 ;
 }
 
 .ipmTaskWidget .taskGroup.purple {
-    color: #9641B4 !important;
+    color: #9641B4 ;
 }
 
 .ipmTaskWidget .taskGroup.red {
-    color: #FF2514 !important;
+    color: #FF2514 ;
 }
 
 .ipmTaskWidget .taskGroup.teal {
-    color: #00B389 !important;
+    color: #00B389 ;
 }
 
 .ipmTaskWidget .taskGroup.yellow {
-    color: #F7CD2F !important;
+    color: #F7CD2F ;
 }

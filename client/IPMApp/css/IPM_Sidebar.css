@@ -1,6 +1,6 @@
 .ipmSidebar{
     width: 100px;
-    height: 100% !important;
+    height: 100% ;
     background: #3C3C3C;
     color: #FFF;
     float: left;
@@ -9,7 +9,7 @@
 }
 
 .ipmSidebar li{
-    margin: 0 !important;
+    margin: 0 ;
     text-align: center;
     color: #F1F2F7;
 }
@@ -30,7 +30,7 @@
 
 .ipmSidebar li span{
     display: inline-block;
-    font-size: 1.2em !important;
+    font-size: 1.2em ;
 }
 
 .ipmSidebar a{
@@ -41,117 +41,117 @@
 .ipmSidebar a, 
 .ipmSidebar a.active,
 .ipmSidebar a:hover{
-    color: #FFFFFF !important;
+    color: #FFFFFF ;
 }
 
 .ipmSidebar a.blue {
-    background-color: #209DDA !important;
+    background-color: #209DDA ;
 }
 
 .ipmSidebar a.blue.active, .ipmSidebar a.blue:hover{
-    background-color: #1D8DC4 !important;
+    background-color: #1D8DC4 ;
 }
 
 .ipmSidebar a.green {
-    background-color: #80B726 !important;
+    background-color: #80B726 ;
 }
 
 .ipmSidebar a.green.active, .ipmSidebar a.green:hover{
-    background-color: #71A222 !important;
+    background-color: #71A222 ;
 }
 
 .ipmSidebar a.maroon {
-    background-color: #AC0D60 !important;
+    background-color: #AC0D60 ;
 }
 
 .ipmSidebar a.maroon.active, .ipmSidebar a.maroon:hover{
-    background-color: #940B53 !important;
+    background-color: #940B53 ;
 }
 
 .ipmSidebar a.orange {
-    background-color: #FF982F !important;
+    background-color: #FF982F ;
 }
 
 .ipmSidebar a.orange.active, .ipmSidebar a.orange:hover{
-    background-color: #FF8B16 !important;
+    background-color: #FF8B16 ;
 }
 
 .ipmSidebar a.pink {
-    background-color: #DF1995 !important;
+    background-color: #DF1995 ;
 }
 
 .ipmSidebar a.pink.active, .ipmSidebar a.pink:hover{
-    background-color: #C81686 !important;
+    background-color: #C81686 ;
 }
 
 .ipmSidebar a.purple {
-    background-color: #9641B4 !important;
+    background-color: #9641B4 ;
 }
 
 .ipmSidebar a.purple.active, .ipmSidebar a.purple:hover{
-    background-color: #863AA1 !important;
+    background-color: #863AA1 ;
 }
 
 .ipmSidebar a.red {
-    background-color: #FF2514 !important;
+    background-color: #FF2514 ;
 }
 
 .ipmSidebar a.red.active, .ipmSidebar a.red:hover{
-    background-color: #FA1200 !important;
+    background-color: #FA1200 ;
 }
 
 .ipmSidebar a.teal {
-    background-color: #00B389 !important;
+    background-color: #00B389 ;
 }
 
 .ipmSidebar a.teal.active, .ipmSidebar a.teal:hover{
-    background-color: #009A75 !important;
+    background-color: #009A75 ;
 }
 
 .ipmSidebar a.yellow {
-    background-color: #F7CD2F !important;
+    background-color: #F7CD2F ;
 }
 
 .ipmSidebar a.yellow.active, .ipmSidebar a.yellow:hover{
-    background-color: #F6C716 !important;
+    background-color: #F6C716 ;
 }
 
 .ipmSidebar a.home {
-    background-color: #00a9e0 !important;
-	color:#a1e8ff!important;
+    background-color: #00a9e0 ;
+	color:#a1e8ff;
 }
 
 .ipmSidebar a.home.active , .ipmSidebar a.home:hover{
-    background-color: #009ED1 !important;
-	color:#fff !important;
+    background-color: #009ED1 ;
+	color:#fff ;
 }
 
 .ipmSidebar a.projects {
-    background-color: #00b389 !important;
-	color:#b5ffee!important;
+    background-color: #00b389 ;
+	color:#b5ffee;
 }
 
 .ipmSidebar a.projects.active , .ipmSidebar a.projects:hover{
-    background-color: #02A37D !important;
-	color:#fff !important;
+    background-color: #02A37D ;
+	color:#fff ;
 }
 
 .ipmSidebar a.tasks {
-    background-color: #dc6b2f !important;
-	color:#ffdcc9!important;
+    background-color: #dc6b2f ;
+	color:#ffdcc9;
 }
 
 .ipmSidebar a.tasks.active , .ipmSidebar a.tasks:hover{
-    background-color: #CC642D !important;
-	color:#fff !important;
+    background-color: #CC642D ;
+	color:#fff ;
 }
 
 .ipmSidebar a.reports {
-    background-color: #ac4fc6!important;
-	color:#df97f2!important;
+    background-color: #ac4fc6;
+	color:#df97f2;
 }
 
 .ipmSidebar a.reports.active , .ipmSidebar a.reports:hover{
-    background-color: #9D48B5 !important;
-	color:#fff !important;
+    background-color: #9D48B5 ;
+	color:#fff ;
 }

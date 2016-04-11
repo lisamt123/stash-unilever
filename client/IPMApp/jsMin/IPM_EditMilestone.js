@@ -1,0 +1,1 @@
+var jq=jQuery.noConflict();function callMilestone(){jq.browser={};jq("[id$=mlktp]").hide();jq(".dateInput .dateFormat").hide();jq(document).on("click",".saveMilestone",function(){updateTasksMileStones()})}callMilestone();function pageclose(){window.top.location.href=IPMApp.TasklistPageRef+"?id="+IPMApp.projectId}

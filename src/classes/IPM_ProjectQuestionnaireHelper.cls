@@ -353,7 +353,8 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                         tempGKQ.IPM_Sequence_Number__c =questionSequence; 
                         tempGKQ.IPM_Section_Sequence_Number__c = projectDocumentSection.IPM_Section_Sequence_Number__c; 
                         tempGKQ.IPM_Project_Document_Section__c = projectDocumentSection.Id;
-                        tempGKQ.IPM_Section_External_Id__c= gkQ.IPM_Section_External_Id__c;                 
+                        tempGKQ.IPM_Section_External_Id__c= gkQ.IPM_Section_External_Id__c; 
+                        tempGKQ.IPM_GK_Answers_Multiselect__c=	gkQ.IPM_GK_Answers_Multiselect__c;                
                         insertProjectGKCheckList.add(tempGKQ);
                     }
                     break;
@@ -379,6 +380,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                         tempGKQ.RecordTypeId = recTypeGK;
                         tempGKQ.IPM_Sequence_Number__c = questionSequence;
                         tempGKQ.IPM_Section_External_Id__c= gkQ.IPM_Section_External_Id__c;
+                        tempGKQ.IPM_GK_Answers_Multiselect__c=	gkQ.IPM_GK_Answers_Multiselect__c;
                         insertProjectGKCheckList.add(tempGKQ);
                     }
                     break;
@@ -410,7 +412,8 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
             tempQuestionare.IPM_HelpText_Partly__c = questionMasterObj.IPM_HelpText_Partly__c;               
             tempQuestionare.IPM_HelpText_Five__c = questionMasterObj.IPM_HelpText_Five__c;    
             tempQuestionare.IPM_Question_Help_Text__c = questionMasterObj.IPM_Question_Help_Text__c;
-            tempQuestionare.IPM_RQS_Gate_Type__c = questionMasterObj.IPM_RQS_Gate_Type__c;        
+            tempQuestionare.IPM_RQS_Gate_Type__c = questionMasterObj.IPM_RQS_Gate_Type__c; 
+            tempQuestionare.IPM_GK_Answers_Multiselect__c=	questionMasterObj.IPM_GK_Answers_Multiselect__c;       
             
             if(recordTypeId == recTypeRnDFeasibility || recordTypeId == recTypeSCFeasibility  || recordTypeId == recTypeRnD ||recordTypeId==recTypeGK || recordTypeId==recTypeTradeMark)
             {

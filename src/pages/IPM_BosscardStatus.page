@@ -18,7 +18,7 @@
     <apex:form id="frm">
         <div class="container-fluid">
             <div class="statusButtonContainer">
-                <div class="statusButtons" id="ipmUpdateStatusTab">
+                <div class="statusButtons ipmUpdateStatusTab" id="ipmUpdateStatusTab">
                     <ul class="ipmStatusTabs">
                         <div class="tabContainer">
                             <li class="status_progress" onclick="changeBosscardStatus('{!inProgress_STR}');">

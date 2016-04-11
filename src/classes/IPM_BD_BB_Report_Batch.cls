@@ -98,8 +98,10 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                                                                                   Parent_Project__r.id, 
                                                                                   Regional_Project__r.Name, 
                                                                                   Local_Project__r.Name,
+                                                                                  Misaligned__c,
                                                                                   IPM_Auto_Aligned_Fin_TLD__c,
-                                                                                  IPM_Project_Rollout__r.id                                                                                  
+                                                                                  IPM_Project_Rollout__r.id,
+                                                                                  IPM_CPP_Regional__c                                                                                  
                                                                                   FROM IPM_Financial__c WHERE Parent_Project__r.Id IN: projectIdMap.keyset() or Regional_Project__r.id IN:projectIdMap.keyset() or Local_Project__r.id IN: projectIdMap.keyset()  Limit 50000]);
         
             for(IPM_Financial__c fi:projectFinancialList){
@@ -426,7 +428,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             a.IPM_Project_Start_Date__c = p.IPM_Project_Start_Date__c !=null?p.IPM_Project_Start_Date__c:p.CreatedDate.date();
             a.IPM_Cluster_Project__c = p.IPM_Clusters__c;
             a.IPM_Phase__c = p.IPM_Phase__c;
-            a.IPM_Company_Priority__c = p.IPM_CPP__c; 
             a.IPM_Fast_Track_Project__c = p.IPM_Fast_Track_Project__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;             
             a.IPM_Exempt_from_Threshold__c = p.Exempt_from_Threshold__c; 
             a.IPM_Auto_Aligned_Fin_TLD__c = p.IPM_Misalligned__c; // Auto_Aligned will only be checked for local projects
@@ -471,7 +472,11 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             }
 
             //Global Project Business Impact Global will be copy to Global,Regional & Local project
-            if(projFinmap.containskey(p.Id)){ a.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; }  
+            if(projFinmap.containskey(p.Id)){ 
+	    	a.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; 
+		a.IPM_Auto_Aligned_Fin_TLD_for_financial__c = projFinMap.get(p.id).Misaligned__c;
+		a.IPM_Company_Priority__c = projFinMap.get(p.id).IPM_CPP_Regional__c;
+	    }  
 
             //Copying IPM Milestone fields 
             if(projMilestoneMap.containskey(p.id)){ 

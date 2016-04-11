@@ -1,4 +1,4 @@
-<!--
+﻿<!--
 ******************************************************************************************************************
 *@Description: This is landing page of IPM NG users.It is used display the alertmessages and Taskcount or Project
 *@Author: Cognizant
@@ -48,6 +48,11 @@
                     <apex:repeat var="hprojects" value="{!mapphistory}">
                         <li>
                             <apex:commandLink value="{!mapphistory[hprojects].Parent.Name} {!if(mapphistory[hprojects].Parent.IPM_Fast_Track_Project__c,$Label.IPM_PROJECT_IS_FASTTRACK,$Label.IPM_PROJECT_NO_FASTTRACK)}" action="{!$Page.IPM_ProjectOverview}?id={!mapphistory[hprojects].Parent.Id}"/>
+                        </li>
+                    </apex:repeat>
+                    <apex:repeat var="key" value="{!finDataMissingAlertMessageMap}">
+                        <li>
+                            <apex:commandLink value="{!finDataMissingAlertMessageMap[key]}" action="{!$Page.IPM_Financial}?id={!key}"/>
                         </li>
                     </apex:repeat>
                     <apex:repeat var="message" value="{!LstFinMisalignedMessage}">

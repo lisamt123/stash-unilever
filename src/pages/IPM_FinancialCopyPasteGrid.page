@@ -54,11 +54,11 @@
                            </div>    
                             <apex:commandButton value="{!$Label.IPM_FinancialGrid_goBack}" action="{!goBack}"  id="bckbtn"  styleclass="ipmButton green"  /> 
                             <button onclick="clearAll();"  id="Clrbtn" class="ipmButton green" >{!$Label.IPM_FinancialGrid_Clear}</button> 
-                            <div class="gridInfo">
+                            
                                 <!-- render only if the flag is true this is for the appropriate message to be displayed on the page. -->
-                                <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG2}" rendered="{!flag}" />
-                                <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG1}" />
-                            </div> 
+                                <apex:outputPanel layout="block" styleClass="gridInfo" rendered="{!flag}">
+                                <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG2}"  />
+                            </apex:outputPanel>
                         </apex:outputpanel> 
                       </div> 
     <apex:outputpanel id="grid">

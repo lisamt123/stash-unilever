@@ -5,28 +5,35 @@
 *********************************************************************************************/
 var jq = jQuery.noConflict();
 jq.browser = {};
-/* Below script is for the date picker Functionality */
 jq(document).ready(function() {
 	//jq(".proInitLoader").show().delay(1500).fadeOut();
     changeCurrentStatus(IPMApp.gateStatus);
     gkmComplete();
+	
+/* Below script is related to the date picker Functionality. If the condition is true the css class 'date' calls the datepicker. */
     var dateFormat = "dd/mm/yyyy";
     var slider4 = jq(".slider4");
-    jq('.date').datepicker({
+    if (status !== IPMApp.Postponed) {
+		jq('.date').datepicker({
         format: dateFormat,
         autoclose: true,
         startDate: new Date(),
         startView: 0,
-    });
+		});
+	}
+	
+/* Below script highlights the first tab by highlighting it with a different background color and text color */
 	jq('.ipmStatusTabs').find('li:first').addClass("active").find('label').addClass("selected");
+	
+/* Below script is related to tabs functionality which works on load. If the status if postponed it highlights the postponed tab. Also it shows the content only related to postpone */
 	jq('.ipmStatusTabs li').each(function(){
-		if(jq(this).children('span').hasClass('Postponed') && status == IPMApp.Postponed){
+		if(jq(this).children('span').hasClass('Postponed') && status === IPMApp.Postponed){
 			jq('.ipmStatusTabs li').removeClass('active').find('label').removeClass("selected");;
 			jq(this).addClass("active").find('label').addClass("selected");	
 		}
 	});
 		
-    /* Below script is for the Approver with Edits Modal */
+/* Below script works on click event. This opens the Approver with Edits Modal */
     jq(document).on('click', '.apprWithEdits', function(e) {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
         var url = jq(this).attr('value');
@@ -37,7 +44,20 @@ jq(document).ready(function() {
             'z-index': '999'
         });
     });
-    /* Below script is for the Tab Functionality */
+
+/* Below script works on click event. This opens the Postponed Modal */	
+	jq(document).on('click', '.postponedModal', function(e) {
+        e.preventDefault ? e.preventDefault() : e.returnValue = false;
+        var url = jq(this).attr('value');
+        jq('#ipmModalPostponed .modal-dialog').width('60%');
+        jq('#ipmModalPostponed .modal-dialog').height('220px');
+        jq('#ipmModalPostponed .modal-dialog').css({
+            'margin-top': '10%',
+            'z-index': '999'
+        });
+    });
+
+/* Below script is for the Tab functionality on click event. Based on the clicked li the tab is highlighted and the content related the clicked tab is displayed. Also it hides the previous opened content */
     jq(".ipmStatusTabs").on("click", 'li', function() {
 		jq(".proInitLoader").show().delay(1000).fadeOut();
         var $this = jq(this);
@@ -49,72 +69,74 @@ jq(document).ready(function() {
         var lpos = jq(".ipmRadioButton label").offset().left;
         $this.find(".ipmRadioButton label").addClass('selected');
         $this.addClass('active');
-        if ($this.find(".ipmRadioButton label").next("input").val() == IPMApp.Stopped) {
+        if ($this.find(".ipmRadioButton label").next("input").val() === IPMApp.Stopped) {
             $this.addClass('stop_active');
             $this.parents('.sliderDiv').next().find('.changeStatusPage').addClass('stopBG');
         }
-        if (status == IPMApp.Postponed) {
+        if (status === IPMApp.Postponed) {
             slider4.find("label:first").off("click").css("cursor", "default");
             slider4.find('input[value=' + IPMApp.Postponed + ']').prop("checked", true);
         }
     });
-    /*if (status == IPMApp.Postponed) {
+    /*if (status === IPMApp.Postponed) {
 		alert('inside1');
         slider4.find("label:first").off("click").css("cursor", "default");
         slider4.find('input[value=' + IPMApp.Postponed + ']').prop("checked", true);
     }*/
-    if (jq("label[for=statusRadioBtn_2]").text().indexOf(IPMApp.Stopped) != -1) {
+	
+/* Below script works on page load. Based on the status of the gate document text color will be changed */
+    if (jq("label[for=statusRadioBtn_2]").text().indexOf(IPMApp.Stopped) !== -1) {
         jq("label[for=statusRadioBtn_2]").css({
             'text-align': 'right',
             'right': '-30px'
         });
     }
-    if (status == IPMApp.inProgress) {
+    if (status === IPMApp.inProgress) {
         jq(".ui-slider-handle").css("left", "0%");
         jq("label[for=statusRadioBtn_0]").css({
             'color': '#e98824'
         });
     }
-    if (status == IPMApp.Proposed) {
+    if (status === IPMApp.Proposed) {
         jq("label[for=statusRadioBtn_0]").css({
             'color': '#e98824'
         });
     }
-    if (status == IPMApp.Postponed) {
+    if (status === IPMApp.Postponed) {
         jq(".ui-slider-handle").css("left", "66.66%");
         jq("label[for=statusRadioBtn_2]").css({
             'color': '#e98824'
         });
     }
-    if (status == IPMApp.Stopped) {
+    if (status === IPMApp.Stopped) {
         jq(".ui-slider-handle").css("left", "100%");
         jq("label[for=statusRadioBtn_2]").css({
             'color': '#e98824'
         });
     }
 });
-/* Below script is validate the status and navigate to respective pages */
+/* Below function validates the status of the current gate document and performs the redirection to respective pages based on the status */
 function goToParentPage() {
     if (window.location.search.indexOf('ipmProjectOverview') > -1) {
 		window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
     } else {
-		if (status == IPMApp.Stopped && makeStop == true) {
+		if (status === IPMApp.Stopped && makeStop === true) {
             window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
-        } else if (status == IPMApp.Proposed && makeValid == true) {
+        } else if (status === IPMApp.Proposed && makeValid === true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
-        } else if (status == IPMApp.Postponed && makePostpone == true) {
+        } else if (status === IPMApp.Postponed && makePostpone === true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
-        } else if (status == IPMApp.Approved && makeApprove == true && IPMApp.projectPhase == 'Ideas') {
+        } else if (status === IPMApp.Approved && makeApprove === true && IPMApp.projectPhase === 'Ideas') {
             window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId + '&showMembers=true&createBET=true';
-		} else if (status == IPMApp.Approved && makeApprove == true) {
+		} else if (status === IPMApp.Approved && makeApprove === true) {
 			window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
-        } else if (status == IPMApp.ApprovedEdit && makeValid == true) {
+        } else if (status === IPMApp.ApprovedEdit && makeValid === true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
         }
     }
 }
 function gkmComplete() {
-    /* Below script is for the project panel modal */
+    /* Below script works on click event. This opens the project panel modal. */
     jq(document).on('click', '.projectBKProcess', function(e) {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
         jq('#initiateProjectBKPanel .modal-dialog').width('500px');
@@ -124,7 +146,7 @@ function gkmComplete() {
             'z-index': '999'
         });
     });
-    /* Below script is for the Tool tip for all status */
+/* Below script is related to help text Tool tip for all the status of the gate document. It points to the highlighted status of the gate document. */
     jq('.gkm input[type=radio]').each(function(e) {
         jq(this).click(function() {
             var redData = jq(this).attr("value").split(" ");
@@ -152,17 +174,19 @@ function gkmComplete() {
         jq("#" + rdData).show();
     });
 }
-/* Below script is to change the status */
+/* Below function performs the slider functionality when changing the status of the gate document. 
+When the user selects a status the slider pointer moves to the selected status. From the front end it appears as a tab functionality. It changes the background color
+of the selected status along with the text color. This happens even on load of the page where the previous selected status will be highlighted. */
 function changeCurrentStatus(changestatus) {
     jq("[id$=mlktp]").hide();
-    jq('.date .dateInput .dateFormat').hide();
+    //jq('.date .dateInput .dateFormat').hide();
     var items = [IPMApp.inProgress, IPMApp.Proposed, IPMApp.Stopped];
-    var itemsProposed = [IPMApp.Proposed, IPMApp.Stopped, IPMApp.Postponed, IPMApp.ApprovedEdit, IPMApp.Approved];
+    var itemsProposed = [IPMApp.Proposed, IPMApp.Approved ,IPMApp.ApprovedEdit,IPMApp.Postponed, IPMApp.Stopped];
     var s = jq("#slider");
     var status = changestatus;
     var PointerT = 100 / (items.length - 1);
     var PointerF = 100 / (itemsProposed.length - 1);
-    if (status == IPMApp.Proposed || status == IPMApp.Postponed) {
+    if (status === IPMApp.Proposed || status === IPMApp.Postponed) {
         s.slider({
             min: 1,
             max: itemsProposed.length,
@@ -177,7 +201,7 @@ function changeCurrentStatus(changestatus) {
                 jq("label[for=statusRadioBtn_" + pointer + "]").css({
                     'color': '#e98824'
                 });
-                if (status == 'Postponed' && pointer == 0) {
+                if (status === 'Postponed' && pointer === 0) {
                     jq('.ui-slider-handle').animate({
                         'left': '66.66%'
                     }, 100);
@@ -193,9 +217,9 @@ function changeCurrentStatus(changestatus) {
 
                     changeStatus(itemsProposed[ui.value + 1]);
                 }
-                if (status == IPMApp.Postponed && itemsProposed[ui.value - 1] != IPMApp.Proposed) {
+                if (status === IPMApp.Postponed && itemsProposed[ui.value - 1] !== IPMApp.Proposed) {
                     changeStatus(itemsProposed[ui.value - 1]);
-                } else if (status == IPMApp.Proposed) {
+                } else if (status === IPMApp.Proposed) {
                     changeStatus(itemsProposed[ui.value - 1]);
                 }
             }
@@ -223,7 +247,7 @@ function changeCurrentStatus(changestatus) {
                 jq("label[for=statusRadioBtn_" + pointer + "]").css({
                     'color': '#e98824'
                 });
-                if (status == IPMApp.Proposed || status == IPMApp.Postponed) {
+                if (status === IPMApp.Proposed || status === IPMApp.Postponed) {
                     changeStatus(items[ui.value - 1]);
                 } else {
                     changeStatus(items[ui.value - 1]);

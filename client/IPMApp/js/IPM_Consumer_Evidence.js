@@ -4,7 +4,7 @@
  *@Created Date: 23/06/2015  
 **************************************************************************/
 var jq = jQuery.noConflict();
-/* Below script is for the Image Hover functionality */
+/* Below function performs the Hover functionality. */
 function imageloadstatus() {
     jq('.uploadImage').hover(function() {
         jq(this).find('.updateDeletimg').toggle("slide", {
@@ -12,23 +12,23 @@ function imageloadstatus() {
         }, 100);
     });
 }
-/* Below script is for deleting the country */
+/* Below function calls another function 'deleteSelCountry' which is for deleting the country */
 function delCountry(country, secId) {
     deleteSelCountry(country, secId);
 }
-/* Below script is for adding the country */
+/* Below function calls another function 'addNew' which is for adding new country */
 function addCon(country, secId) {
     addNew(country, secId);
 }
-/* Below script is for deleting the image */
+/* Below function calls another function 'deleteImg' which is for deleting the image */
 function delImage(secConId) {
     deleteImg(secConId);
 }
-/* Below script is for deleting the concept */
-function delConcept(country, secId, secConId) {
-    deleteSelConcept(country, secId, secConId);
+/* Below function calls another function 'deleteSelConcept' which is for deleting the concept */
+function delConcept(country, secId, secConId,priority) {
+    deleteSelConcept(country, secId, secConId,priority);
 }
-/* Below script is for adding the selected channels */
+/* Below function is for adding the selected concepts and pushing to function 'createConcepts' */
 function fchannelM() {
     var conName;
     var channelM;
@@ -40,7 +40,8 @@ function fchannelM() {
     conName = channelM.toString();
     createConcepts(conName);
 }
-/* Below script is for resetting the selected channels */
+
+/* Below function is for resetting the selected concepts */
 function fchannelReset(e) {
     jq('.channelList').hide();
     jq(".channelList input:checkbox").each(function() {
@@ -49,8 +50,9 @@ function fchannelReset(e) {
     });
     createConcepts('');
 }
-/* Below script is for delete concept modal */
-function deleteconcept(str1, str2, str3) {
+
+/* Below function opens the delete concept modal */
+function deleteconcept(str1, str2, str3,str4) {
     jq('#ipmConceptModalDelete').modal({
         show: true,
         keyboard: false,
@@ -61,6 +63,7 @@ function deleteconcept(str1, str2, str3) {
     jq('#ipmConceptModalDelete .confirmConcept').attr('data-result1', str1);
     jq('#ipmConceptModalDelete .confirmConcept').attr('data-result2', str2);
     jq('#ipmConceptModalDelete .confirmConcept').attr('data-result3', str3);
+	jq('#ipmConceptModalDelete .confirmConcept').attr('data-result4', str4);
     jq('#ipmConceptModalDelete .modal-dialog').width('600px');
     jq('#ipmConceptModalDelete .modal-dialog').height('170px');
     jq('#ipmConceptModalDelete .modal-dialog').css({
@@ -69,7 +72,7 @@ function deleteconcept(str1, str2, str3) {
     });
     jq(".confirmConcept").addClass("removeConcept");
 }
-/* Below script is for delete country modal */
+/* Below function opens the delete country modal */
 function deleteCountry(str1, str2) {
     jq('#ipmCountryModalDelete').modal({
         show: true,
@@ -90,15 +93,15 @@ function deleteCountry(str1, str2) {
 }
 function selectCheckboxScript() {
     imageloadstatus();
-    /* Below script is to show the consumer evidence dropdown */
+    /* Below script works on click event. It shows the consumer evidence drop down list with the selected values. Also the checkboxes of selected values will be checked and disabled */
     jq(document).on('show.bs.dropdown', '.consumerDropdown', function() {
         jq('.channelList').show();
         var selectedValues = IPMAppCE.countryName;
         var selectedValuesArr = selectedValues.split(',');
-        if (selectedValuesArr.length != 0) {
+        if (selectedValuesArr.length !== 0) {
             jq('.consumerDropdown .dropdown-menu input[type="checkbox"]').each(function() {
                 var val = jq(this).attr('value');
-                if (jq.inArray(val, selectedValuesArr) != -1) {
+                if (jq.inArray(val, selectedValuesArr) !== -1) {
                     jq(this).prop('checked', true);
                     jq(this).prop('disabled', true);
                     jq(this).next('label').addClass('selected');
@@ -110,35 +113,15 @@ function selectCheckboxScript() {
             });
         }
     });
-    /* Below script is for resetting the selected channels */
-    jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e) {
-        e.stopPropagation();
-		var selectedValues = IPMAppCE.countryName;
-        jq(".channelList input:checkbox").each(function() {
-            if (selectedValues.indexOf(jq(this).val()) == -1) {
-                jq(this).prop('checked', false);
-                jq(this).next('label').removeClass('selected');
-            } else {
-                jq(this).prop('checked', true);
-                jq(this).next('label').addClass('selected');
-            }
-        });
-    });
-    /* Below script is to remove the concept */
-    jq(document).on('click', '#ipmConceptModalDelete .removeConcept', function() {
-        var questionId1 = jq(this).attr('data-result1');
-        var questionId2 = jq(this).attr('data-result2');
-        var questionId3 = jq(this).attr('data-result3');
-        delConcept(questionId1, questionId2, questionId3);
-        jq("#ipmConceptModalDelete").modal('hide');
-    });
-    /* Below script is to remove the country */
+    /* Below script works on click event. When clicked on remove button it calls up a function which removes the country */
     jq(document).on('click', '#ipmCountryModalDelete .removeCountry', function() {
         var questionId1 = jq(this).attr('data-result1');
         var questionId2 = jq(this).attr('data-result2');
         delCountry(questionId1, questionId2);
         jq("#ipmCountryModalDelete").modal('hide');
     });
+	
+/* Below script works on page load. Where if the condition is true it checks the checkbox else it will not check */
     jq('#customerChannels input[type=checkbox]').each(function() {
         var val = jq(this).attr('value');
         if (val === 'true') {
@@ -147,7 +130,7 @@ function selectCheckboxScript() {
             jq(this).prop('checked', false);
         }
     });
-    /* Below script is for the accordion functionality */
+    /* Below script works on click event. If the condition is true it collapses the tab else it expands the tab */
     jq(".ipmAcrdnExpand").show();
     jq(document).on("click", ".evidenceHead span.expico, .evidenceHead span.expico-square", function() {
         if (jq(this).closest(".cevidenceborder").find(".ipmAcrdnExpand").is(":visible") && jq(elem).closest(".cevidenceborder").find(".ipmAcrdnExpand").not(':empty')) {
@@ -160,12 +143,37 @@ function selectCheckboxScript() {
     jq(".ipmAccordion").find(".evidenceHead span.expico").addClass("fa-minus");
    
 }
+
+/* Below script woks on click event. If the condition is true it un checks the check box else it checks the check box. */
+    jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e) {
+        e.stopPropagation();
+		var selectedValues = IPMAppCE.countryName;
+        jq(".channelList input:checkbox").each(function() {
+            if (selectedValues.indexOf(jq(this).val()) === -1) {
+                jq(this).prop('checked', false);
+                jq(this).next('label').removeClass('selected');
+            } else {
+                jq(this).prop('checked', true);
+                jq(this).next('label').addClass('selected');
+            }
+        });
+    });
+	
+	/* Below script woks on click event. When clicked on remove button it calls the function 'delConcept' which removes the concept */
+    jq(document).on('click', '#ipmConceptModalDelete .removeConcept', function() {
+        var questionId1 = jq(this).attr('data-result1');
+        var questionId2 = jq(this).attr('data-result2');
+        var questionId3 = jq(this).attr('data-result3');
+		var questionId4 = jq(this).attr('data-result4');
+        delConcept(questionId1, questionId2, questionId3, questionId4);
+        jq("#ipmConceptModalDelete").modal('hide');
+    });
 jq(document).ready(function() {
     selectCheckboxScript();
     jq(document).on('click', '.ccChannelList input[type="checkbox"], .ccChannelList li,.filterActionscc', function(e) {
         e.stopPropagation();
     });
-	/* Below script is for the accordion functionality */
+    /* Below script works on click event. If the condition is true it collapses the tab else it expands the tab */
     jq(".ipmAcrdnExpand").hide();
     jq(".ipmAcrdnExpand:first, .ipmAcrdnExpand:first .ipmAcrdnExpand").not(':empty').show();
     jq(document).on("click", ".evidenceHead span.expico, .evidenceHead span.expico-square", function() {
@@ -180,7 +188,7 @@ jq(document).ready(function() {
     jq(".ipmAccordion").find(".evidenceHead:first span.expico").removeClass("fa-plus");
     jq(".ipmAccordion").find(".evidenceHead:first span.expico").addClass("fa-minus");
     jq(document).click(function(e) {
-        if (e.target.className != 'cecList') {
+        if (e.target.className !== 'cecList') {
             jq(".channelList").hide();
         }
     });

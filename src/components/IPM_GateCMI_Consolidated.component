@@ -1,4 +1,4 @@
-<!--  
+﻿<!--  
 *************************************************************************
 *@Description:This component is used for the CMI section at Contract gate
 *@Author: Cognizant
@@ -37,7 +37,7 @@
                                                                     <div class="col-xs-12 ipmAcrdnHeader aHead SecButtonSet">
                                                                         <div class="col-xs-10">
                                                                             <span class='expico fa fa-minus'></span>
-                                                                            <span class="conceptTitle">{!selCon}</span>
+                                                                            <span class="conceptTitle">{!mapCountryNameWithCode[selCon]}</span>
                                                                         </div>
                                                                     </div>
                                                                     <div class="cmiContractContainer col-xs-12 ipmAcrdnExpand">
@@ -52,7 +52,7 @@
                                                                                 </apex:outputPanel> 
                                                                             </apex:repeat> 
                                                                         </div>
-                                                                        <div class="table-responsive cmiContractTable" id="ipmTableDiv">
+                                                                        <div class="table-responsive cmiContractTable ipmTableDiv" id="ipmTableDiv">
                                                                             <div class="cmiTabHeaderContainer">
                                                                                 <span class="cmiContractHeadBlock">
                                                                                     {!$Label.IPM_CMI_Inputs}

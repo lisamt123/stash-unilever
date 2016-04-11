@@ -13,7 +13,7 @@
     .headingBorder {
         padding-left: 12px;
     }
-	.SecButtonSet.delete{margin-top:0 !important;margin-right:10px !important;margin-bottom:0 !important;}
+	.SecButtonSet.delete{margin-top:0 ;margin-right:10px ;margin-bottom:0 ;}
     .pagemessageBox {
         color: #0f81bb;
         background: #dbefff;
@@ -24,11 +24,11 @@
         padding: 8px;
     }
     .smallinfo {
-        width: 20px !important;
-        height: 20px !important;
+        width: 20px ;
+        height: 20px ;
         float: left;
-        margin: 5px 5px !important;
-        border: 2px solid #1568b6 !important;
+        margin: 5px 5px ;
+        border: 2px solid #1568b6 ;
     }
     .listmsgTxt {
         line-height: 30px;
@@ -36,7 +36,7 @@
         font-weight: normal;
     }
     .pagemessageBoxDiv .SecButtonSet {
-        text-align: left !important;
+        text-align: left ;
     }
     .mSpacing {
         margin: 10px 0;
@@ -51,7 +51,7 @@
         margin-top: 0;
     }
     .noitalic {
-        font-style: normal !important;
+        font-style: normal ;
     }
     .pagemessageBoxDiv>label {
         width: 100%;
@@ -61,12 +61,12 @@
     .ipmTable.table-bordered {
         table-layout: fixed;
         border-bottom: 1px solid #7fa19e;
-        border-top: 1px solid #ddd !important;
+        border-top: 1px solid #ddd ;
         margin-bottom: 10px;
     }
     .ipmTable .dropdown-menu {
-        margin-top: -8px !important;
-        z-index: 9 !important;
+        margin-top: -8px ;
+        z-index: 9 ;
     }
     .ipmTable .open .dropdown-toggle a {
         margin: -7px -2px;
@@ -116,7 +116,7 @@
         left: 3px;
     }
     .phaseFilter .dropdown-menu>li {
-        padding: 10px 0 36px 10px !important;
+        padding: 10px 0 36px 10px ;
         border-bottom: 1px solid #ddd;
     }
     .ipmTable .open .dropdown-toggle {
@@ -149,7 +149,7 @@
     .deleteTask div {
         padding: 20px;
     }
-    #ipmTableDiv .SecButtonSet .icoButton {
+    .ipmTableDiv .SecButtonSet .icoButton {
         display: inline-block;
         width: 30px;
         margin: 0 5px;
@@ -168,7 +168,7 @@
     .toggleContainer {
         border: 1px solid #1568b6;
         border-radius: 20px;
-        margin-top: 0 !important;
+        margin-top: 0 ;
     }
     .toggleContainer .icoButton {
         border: 0;
@@ -182,10 +182,10 @@
         border: 0;
     }
     .noPadright {
-        padding-right: 0 !important;
+        padding-right: 0 ;
     }
     .table>thead>tr>th:first-child {
-        padding-left: 4px !important;
+        padding-left: 4px ;
     }
     .keep-open {
         height: 18px;
@@ -193,13 +193,13 @@
     }
     .accrdionTd {
         border: 0;
-        text-align: left !important;
+        text-align: left ;
     }
     .tableAccrdion {
         padding: 15px 0;
     }
     .noPadleft {
-        padding-left: 0 !important;
+        padding-left: 0 ;
     }
     .ipmAccordion .projectContainer .pHead > span.expico {
         display: inline-block;
@@ -231,7 +231,7 @@
     }
     .projectContainer .pHead {
         padding-bottom: 15px;
-        border-bottom: 4px solid #E6E534 !important;
+        border-bottom: 4px solid #E6E534 ;
         padding-top: 15px;
     }
     .ipmAcrdnExpand .ipmTable td.serialNum {
@@ -256,18 +256,18 @@
     }
     .table>tbody > tr.paginationRow > td.paginationCol input.btnDisabled,
     .table>tbody > tr.paginationRow > td.paginationCol input.btn {
-        background: none !important;
-        border: none !important;
+        background: none ;
+        border: none ;
     }
     .paginationLink {
-        margin-left: 3px !important;
-        margin-right: 3px !important;
+        margin-left: 3px ;
+        margin-right: 3px ;
     }
     td.colCompleted {
         width: 8%;
     }
 	.searchBox input {
-        width: 224px !important;
+        width: 224px ;
         border: 1px solid #858585;
         border-radius: 4px;
         height: 30px;
@@ -283,11 +283,11 @@
         float: right;
     }
     ul.project > li:first-child {
-        padding: 10px 10px 11px 10px !important
+        padding: 10px 10px 11px 10px 
     }
     h3.pageTitle {
-        margin-top: 0 !important;
-        color: #253b78 !important;
+        margin-top: 0 ;
+        color: #253b78 ;
         text-transform: none;
         font-size: 1.7em;
         font-weight: normal;
@@ -297,7 +297,7 @@
         padding: 0 0 10px;
     }
     .panel-group {
-        margin-bottom: 4px !important;
+        margin-bottom: 4px ;
     }
     .rollouttable {
         table-layout: fixed;
@@ -305,8 +305,8 @@
         max-width: 100%;
     }
     .rollouttable th {
-        font-weight: normal !important;
-        color: #666 !important;
+        font-weight: normal ;
+        color: #666 ;
     }
     span.expico {
         display: inline-block;
@@ -337,7 +337,7 @@
     }
     .statetext {
         margin-bottom: 10px;
-        padding: 3px 10px 3px 0 !important;
+        padding: 3px 10px 3px 0 ;
         display: inline-block;
         border-right: 1px #7fa19e solid;
     }
@@ -348,23 +348,23 @@
         margin-top: 10px;
     }
     .noBackground {
-        background: #ffffff !important;
+        background: #fff ;
     }
     .secrow td {
-        border-top: 0 !important;
-        border-bottom: 1px solid #ddd !important;
+        border-top: 0 ;
+        border-bottom: 1px solid #ddd ;
     }
     .greyborleft {
-        border-left: 1px solid #ddd !important;
+        border-left: 1px solid #ddd ;
     }
     .greyborright {
-        border-right: 1px solid #ddd !important;
+        border-right: 1px solid #ddd ;
     }
     .greyColr {
         background: #f8f8f8;
     }
     .panel {
-        background-color: none !important;
+        background-color: none ;
     }
     .regpos {
         position: relative;
@@ -390,8 +390,8 @@
         padding-top: 20px;
     }
     .dateInputBox {
-        width: 105% !important;
-        height: 30px !important;
+        width: 105% ;
+        height: 30px ;
     }
     .date-icon {
         position: relative;
@@ -435,7 +435,7 @@
     .addrolloutsec {
         background-color: #f8f8f8;
     }
-    #editsection {
+    .editsection {
         display: none;
     }
     .dblock {
@@ -446,10 +446,10 @@
         margin-right: 5px;
     }
     .table>thead>tr>th>div {
-        border-right: 0 !important;
+        border-right: 0 ;
     }
     .table>tbody>tr>td {
-        padding: 10px 10px !important;
+        padding: 10px 10px ;
     }
     .fa-star:before {
         margin-left: 5px;
@@ -473,18 +473,18 @@
         padding-left: 30px;
     }
     .countrytable {
-        text-align: left !important;
+        text-align: left ;
     }
     
     .table-bordered>thead>tr>th {
-        border-bottom-width: 1px !important;
+        border-bottom-width: 1px ;
     }
     a.icoButton.delete {
         background-size: 48%;
     }
     .icoButton-delete {
-        width: 25px !important;
-        height: 23px !important;
+        width: 25px ;
+        height: 23px ;
     }
     .searchBox label {
         float: left;
@@ -493,10 +493,10 @@
         text-align: right;
         margin-right: 13px;
     }
-    #editblock tr td {
+    .editblock tr td {
         border-top: 0;
     }
-    table #editblock {
+    table .editblock {
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.17);
         border: 1px solid #2262A0;
     }
@@ -504,14 +504,14 @@
         color: #A2A697;
     }
     ul.messageFilter {
-        padding: 0!important;
-        margin: 0 0 0!important;
+        padding: 0;
+        margin: 0 0 0;
         list-style: none;
         height: 365px;
         overflow: auto;
     }
     ul.messageFilter li {
-        margin-left: 0!important;
+        margin-left: 0;
         display: block;
         color: #555555;
         border-top: 1px dotted #bec3af;
@@ -520,7 +520,7 @@
     ul.messageFilter li:hover,
     ul.messageFilter li.isSelected {
         background: #B4D096;
-        color: #ffffff !important;
+        color: #ffffff ;
     }
     ul.messageFilter li:hover .fa-chevron-right,
     ul.messageFilter li.isSelected .fa-chevron-right {
@@ -535,10 +535,10 @@
         display: block;
     }
     ul.messageFilter li.isSelected a {
-        color: #fff !important;
+        color: #fff ;
     }
     ul.messageFilter li a:hover {
-        color: #fff !important;
+        color: #fff ;
         display: block;
     }
     .subheader {
@@ -556,22 +556,22 @@
         cursor: pointer;
         width: 18px;
         position: relative;
-        left: 200px !important;
+        left: 200px ;
         top: -25px;
-        float: none !important;
+        float: none ;
     }
     .width30 {
-        width: 30% !important;
+        width: 30% ;
     }
     ul.mcoFilter {
-        padding: 0!important;
-        margin: 0 0 0!important;
+        padding: 0;
+        margin: 0 0 0;
         list-style: none;
         height: 365px;
         overflow: auto;
     }
     ul.mcoFilter li {
-        margin-left: 0!important;
+        margin-left: 0;
         display: block;
         color: #555555;
         border-top: 1px dotted #9da7aa;
@@ -580,7 +580,7 @@
     ul.mcoFilter li:hover,
     ul.mcoFilter li.isSelected {
         background: #90CCDF;
-        color: #ffffff !important;
+        color: #ffffff ;
     }
     ul.mcoFilter li:hover .fa-chevron-right,
     ul.mcoFilter li.isSelected .fa-chevron-right {
@@ -595,10 +595,10 @@
         display: block;
     }
     ul.mcoFilter li.isSelected a {
-        color: #fff !important;
+        color: #fff ;
     }
     ul.mcoFilter li a:hover {
-        color: #fff !important;
+        color: #fff ;
         display: block;
     }
     .mb20 {
@@ -609,7 +609,7 @@
         bottom: 0;
     }
     ul.countryFilter {
-        padding: 0!important;
+        padding: 0;
         margin-left: 10px;
         list-style: none;
     }
@@ -621,18 +621,18 @@
         margin-right: 2px;
     }
     ul.countryFilter > li {
-        padding: 0!important;
-        margin: 0!important;
+        padding: 0;
+        margin: 0;
     }
     ul.countryFilter > li .countriesList ul {
         padding: 0;
         margin: 0;
     }
     ul.countryFilter > li:first-child {
-        padding: 12px 11px !important;
+        padding: 12px 11px ;
     }
     ul.countryFilter li {
-        margin-left: 0!important;
+        margin-left: 0;
         display: block;
         color: #555555;
         border-top: 1px dotted #acacac;
@@ -719,38 +719,38 @@
     .table>thead>tr>th {
         padding: 9px 5px;
         vertical-align: middle;
-        border-top: 1px solid #7fa19e !important;
+        border-top: 1px solid #7fa19e ;
         border-bottom: 1px dotted #2e2e2e;
     }
     .mr20 {
         margin-right: 20px;
     }
-    .clusterbg {
-        background-size: 100% 100% !important;
+    .mb20 .clusterbg{
+        background-size: 100% 100% ;
         padding-top: 32px;
         padding-bottom: 32px;
     }
-    .mcobg {
-        background-size: 100% 100% !important;
+    .mb20 .mcobg {
+        background-size: 100% 100% ;
         padding-top: 32px;
         padding-bottom: 32px;
     }
-    .countrybg {
-        background-size: 100% 100% !important;
+    .mb20 .countrybg {
+        background-size: 100% 100% ;
         padding-top: 32px;
         padding-bottom: 32px;
     }
-	.ipmCheckbox label{top:0 !important;}
+	.ipmCheckbox label{top:0 ;}
 	
     div.countriesList li:first-child {
-        background: none !important;
+        background: none ;
     }
     a.noDecoration,
     a.noDecoration:hover {
         text-decoration: none;
     }
     input[type=checkbox]:disabled + label {
-        background: #EEE !important;
+        background: #EEE ;
     }
     /* error styles */
     
@@ -768,10 +768,68 @@
         margin-bottom: 20px;
     }
     .placeholder {
-        color: #aaa !important;
+        color: #aaa ;
 		padding-right: 30px;
     }
 	
 	.buttonMarginRight{margin-right:15px;}
-	.btn{padding:0.625em !important;height:100% !important;line-height:1em !important;font-size:1em !important;}
+	.btn{padding:0.625em ;height:100% ;line-height:1em ;font-size:1em ;}
 	input[type=text]::-ms-clear {display: none; width:0; height:0;}
+	
+	
+	.infoFloatR
+      {
+         float:right;
+      }
+      .infoFloatR a.icoButton
+      {
+          height: 16px ;
+    width: 16px ;
+    top: 10px;
+    right: 14px;
+      }
+      
+      .tooltip > .tooltip-inner {-webkit-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);-moz-box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);box-shadow: 1px 4px 5px 2px rgba(0,0,0,0.15);margin-left:100px;font-weight:normal;background-color: #00b1a5;border-radius:2px;text-align:left;width:500px;}
+    .tooltip > .tooltip-arrow {border-top-color:#00b1a5;}
+    .tooltip.bottom .tooltip-arrow {border-bottom-color:#00b1a5;}
+      .ui-tooltip {
+    -webkit-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.15);
+    font-weight: normal;
+    background-color: #01B1A6 ;
+    border-radius: 2px;
+    border: none;
+    text-align: left;
+    color:#fff;
+    padding:3px 7px;
+    opacity:0.9;
+    width:200px;
+}
+.ui-tooltip-content {
+    position: relative;
+    padding: 0px;    
+    font-size:12px;
+}
+.ui-tooltip-content::after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    display: block;
+    width: 0;
+    top: -10px;
+    left: 44%;
+    border-color: #01B1A6 transparent;
+    border-width: 0 10px 10px;
+}
+.ui-lefttip .ui-tooltip-content::after{left: 20px ;}
+.ui-lefttip{left: 10px ;}
+
+
+.ieAlign
+{
+   width: 158px;
+   padding: 10px 5px;
+   margin-right: 15px;
+}
+

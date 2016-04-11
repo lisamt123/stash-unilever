@@ -14,10 +14,10 @@
 	    padding: 20px 0 10px;
 	    font-weight: bold;
 	    text-transform: uppercase;
-	    font-family: 'UnileverDINOffcPro', Arial!important;
+	    font-family: 'UnileverDINOffcPro', Arial;
 	    font-size: 1.2em;
 	    border-bottom: 1px #ddd solid;
-	    color: #00B389!important;
+	    color: #00B389;
 	}
 	.homeboxShow{display:block;}
 	.homeboxhide{display:none;}
@@ -108,15 +108,15 @@
 	}
 	.box2 {
 	    height: 110px;
-	    width: 114px !important;
-	    padding-top: 14px !important;
+	    width: 114px ;
+	    padding-top: 14px ;
 	}
 	.box3 {
 	    height: 110px;
 	    width: 112px;
 	    margin-right: 15px;
 	    margin-left: 10px;
-	    padding-top: 15px !important;
+	    padding-top: 15px ;
 	}
 	.box4 {
 	    height: 118px;
@@ -129,10 +129,10 @@
 	    margin-top: 10px;
 	}
 	.noPadleft {
-	    padding-left: 0 !important;
+	    padding-left: 0 ;
 	}
 	.noPadright {
-	    padding-right: 0 !important;
+	    padding-right: 0 ;
 	}
 	.noPadding {
 	    padding: 0;
@@ -153,10 +153,10 @@
 	    font-weight: bold;
 	}
 	.blue {
-	    color: #004976 !important;
+	    color: #004976 ;
 	}
 	.width4 {
-	    width: 183px !important;
+	    width: 183px ;
 	    padding-right: 5px;
 	}
 	.projectsListHeading {
@@ -184,7 +184,7 @@
 		font-size:20px;
 	}
 	.percentage a{
-	    color: #0085C9 !important;
+	    color: #0085C9 ;
 		}
 	.projectsDetails {
 	    display: block;
@@ -221,7 +221,7 @@
 	}
 	.ipmAccordion .projectContainer .pHead {
 	    display: block;
-		border-bottom: 0 !important;
+		border-bottom: 0 ;
 	}
 	.ipmAccordion .projectContainer > .ipmAcrdnExpand {
 	    display: block;
@@ -282,10 +282,10 @@
 	    display: block;
 	}
 	.greyBox .ipmCheckbox label {
-	    top: 0 !important;
+	    top: 0 ;
 	}
 	.whiteBox .ipmCheckbox label {
-	    top: 0 !important;
+	    top: 0 ;
 	}
 	.black {
 	    color: #000;
@@ -306,21 +306,21 @@
 	}
 	.box1 .icoButton,
 	.box2 .icoButton {
-	    border: 0 !important;
+	    border: 0 ;
 	    border-radius: 0;
 	    height: 57px;
 	    width: 70px;
 	    margin-top: -11px;
 	}
 	.box3 .icoButton {
-	    border: 0 !important;
+	    border: 0 ;
 	    border-radius: 0;
 	    height: 60px;
 	    width: 70px;
 	    margin-top: 0;
 	}
 	.box4 .icoButton {
-	    border: 0 !important;
+	    border: 0 ;
 	    border-radius: 0;
 	    height: 57px;
 	    width: 70px;
@@ -371,16 +371,16 @@
 	    }
 	}
 	.carousel-indicators {
-	    left: 62%!important;
-	    bottom: -35px !important;
+	    left: 62%;
+	    bottom: -35px ;
 	}
 	.carousel-indicators li {
-	    border: 1px solid #a2d5e6!important;
-	    background-color: #a2d5e6!important;
+	    border: 1px solid #a2d5e6;
+	    background-color: #a2d5e6;
 	}
 	.carousel-indicators .active {
-	    background-color: #1797c0!important;
-	    border: 1px solid #1797c0!important;
+	    background-color: #1797c0;
+	    border: 1px solid #1797c0;
 	}
 	.listItem {
 	    display: list-item;
@@ -419,7 +419,7 @@
 	    bottom: 4px;
 	}
 	.noSidebarCell {
-	    padding-top: 0 !important;
+	    padding-top: 0 ;
 	}
 	.minus {
 	    position: relative;
@@ -443,7 +443,7 @@
 	}	 
 	 
 	 .alertContent ul {
-	 margin-bottom:0 !important;
+	 margin-bottom:0 ;
 	 }
 	 
 	.alertimg {
@@ -487,8 +487,8 @@
 	.proMytodoPagination{color:#333;display:block;margin:0 10px;}
     .proMytodoArrows{margin:0 10px;font-weight: bold;text-decoration:none;}
     .proMytodoArrows:hover{text-decoration:none;}
-	.proMytodoActive,.proMytodoActive:hover{color:#333 !important;background:none !important;border:0 !important;}
-	.proMytodoNotActive,.proMytodoNotActive:hover{color:#AEAEAE !important;background:none !important;border:0 !important;}
+	.btn.proMytodoActive,.btn.proMytodoActive:hover{color:#333 ;background:none ;border:0 ;}
+	.btnDisabled.proMytodoNotActive,.btnDisabled.proMytodoNotActive:hover{color:#AEAEAE ;background:none ;border:0 ;}
 	.buttonmarRight{margin-right:15px;}
 	.brandPosHome{width: 200px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 	.bcName{font-size:16px;font-weight:bold;color:#0085c9;}

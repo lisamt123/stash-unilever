@@ -19,79 +19,88 @@ Also variables have to be kept global to make the functionality work. */
     var brandPositions = [];
     var iTORange2 = -1;
 
-/* Below function is to load the projects */
+/* Below function loads the projects based on the value passed to the function. */
     function searchProjects() {
         loadProjects(jq('#srchTxt').val());
     }
     
+	/* Below script works on click event. It reloads the current page. */
     jq(document).on('click', '#resetFilterBtnNew', function() {
         location.reload();
     });
 
-/* Below code is to filter the TLD's */
+/* Below function calls the filter function. Filter works based on the value passed to the function. */
     function filterTLDs() {
         filterTLD(jq('#tldFrom').val(), jq('#tldTo').val());
     }
 
-/* Below code is to check or uncheck the checkboxes based on the selected values */
     function wrapGeography() {
         geoAll = jq('#geographyAll').is(":checked");
         clusters = [];mcos=[];countries=[];
+		/* Below script pushes the value if the condition is true. */
         jq('.clusterCheck').each(function() {
-            if (jq(this).is(":checked") == true &&  jq(this).val() != 'Unassigned' ) {
+            if (jq(this).is(":checked") === true &&  jq(this).val() !== 'Unassigned' ) {
                 clusters.push(jq(this).val());
             }
-            if(jq(this).is(":checked") == true && jq(this).val() == 'Unassigned'){
+            if(jq(this).is(":checked") === true && jq(this).val() === 'Unassigned'){
                     unAssigned = 'true';
             }
             
         });
+		
+		/* Below script pushes the value if the condition is true. */
         jq('.mcoCheck').each(function() {
-            if (jq(this).is(":checked") == true) {
+            if (jq(this).is(":checked") === true) {
                 mcos.push(jq(this).val());
             }
         });
+		
+		/* Below script pushes the value if the condition is true. */
         jq('.countryCheck').each(function() {
-            if (jq(this).is(":checked") == true) {
+            if (jq(this).is(":checked") === true) {
                 countries.push(jq(this).val());
             }
         });
     }
-
+ /* Below function performs unchecking of children checkboxes when the condition is true. */
     function unCheckChildren(str) {
         jq('.' + str).each(function() {
-            if (jq(this).val() != 'all') {
+            if (jq(this).val() !== 'all') {
                 jq(this).attr("checked", false);
             }
         });
     }
 
+	/* Below function performs checking of children checkboxes. */
     function checkChildren(str) {
         jq('.' + str).each(function() {
             jq(this).attr("checked", true);
         });
     }
 
+	/* Below function performs unchecking of parent checkboxes when the condition is true. */
     function unCheckParent(str) {
         jq('.' + str).each(function() {
-            if (jq(this).val() == 'all') {
+            if (jq(this).val() === 'all') {
                 jq(this).attr("checked", false);
             }
         });
     }
+	
+	/* Below works on click event. It calls another function. */
     jq("#applyFilter").on("click", function() { 
         applyFilter();
     });
-	
-/* Below code is to push the selected values from the filter */
     function applyFilter() {
             var checkedPhases = [];
             var checkedProjectTypes = [];
             jq('.phase').each(function() {
+			/* Below script pushes the value if the condition is true. */
                 if (jq(this).is(":checked") ){
                     checkedPhases.push(jq(this).val());
                 }
             });
+			/* Below script pushes the value if the condition is true. */
             jq('.projectType').each(function() {
                  if (jq(this).is(":checked")){
                  checkedProjectTypes.push(jq(this).val());
@@ -99,15 +108,16 @@ Also variables have to be kept global to make the functionality work. */
             });
 
             wrapGeography();                
-            if (jq('.iTORange1').val() != '') {
+            if (jq('.iTORange1').val() !== '') {
                 iTORange1 = jq('.iTORange1').val();
             }
-            if (jq('.iTORange2').val() != '') {
+            if (jq('.iTORange2').val() !== '') {
                 iTORange2 = jq('.iTORange2').val();
             }
             applyFltr(checkedPhases.toString(), jq('.tldFrom').val(), jq('.tldTo').val(), jq('.my').is(":checked"), jq('.aPro').is(":checked"), geoAll, clusters, mcos, countries.toString(), iTORange1, iTORange2, brandPositions.toString(),checkedProjectTypes.toString(),jq('#ActiveProjects').is(':checked'),jq('#StoppedProjects').is(':checked'),unAssigned);   
         }
     
+	/* Below script replace a text with a specific time format. */
      jq(".dueDate,.comDate").each(function() {
         jq(this).text(jq(this).text().replace('00:00:00 GMT', ''));
     });
@@ -115,19 +125,22 @@ Also variables have to be kept global to make the functionality work. */
     jq('tr:nth-child(4n),tr:nth-child(4n-1)').addClass('greyColr').removeClass('noBackground');
     jq('tr:nth-child(4n)').addClass('genRowOdd');
 
+	/* Below script works on keypress. When user presses enter key a search function is called */
     jq('#srchTxt').keypress(function(e) {
-        if (e.which == 13) {
+        if (e.which === 13) {
             loadProjects(jq('#srchTxt').val());
             return false;
         }
     });
+	
+	/* Below script works on keypress. When user presses enter key a search function is called */
     jq('#srchBrand').keypress(function(e) {
-        if (e.which == 13) {
+        if (e.which === 13) {
             loadProjects(jq('#srchBrand').val());
             return false;
         }
     });
-  
+  /* Below script works on click event. When the check all is checked all the child checkboxes will be checked. */
     jq(".docFilter").on("click", ".checkAll", function() {
         if (jq(this).is(":checked")) {
             jq(this).closest("ul.docFilter").find("input[type=checkbox]:not('[disabled]')").prop("checked", true);
@@ -138,7 +151,8 @@ Also variables have to be kept global to make the functionality work. */
         }
     });
 	
-/* Below code is to check the selected checkboxes */
+/* Below script works on click event. Based on condition it checks for a specific class in below conditions.
+Also if the checkbox is checked it will check its own related child checkboxes. */
     jq(".docFilter").on("click", ".checkSub", function() {
         var checkSub = jq(this).closest("ul").find(".checkSub:checked").closest("li").length;
         var checkNot = jq(this).closest("ul").find(".checkSub").closest("li").length;
@@ -149,7 +163,7 @@ Also variables have to be kept global to make the functionality work. */
                 jq(this).closest("ul").find("li input.checkAll").next("label").addClass("selected");
             } else {
                 checkSub = jq(this).closest("ul").find(".checkSub:checked:not('.mcoCheck')").closest("li").length;
-                if (checkSub == 0) {
+                if (checkSub === 0) {
                     jq(this).closest("ul").find("li input.checkAll").prop("checked", false);
                     jq(this).closest("ul").find("li input.checkAll").next("label").removeClass("selected");
                 }
@@ -164,7 +178,7 @@ Also variables have to be kept global to make the functionality work. */
             } else {
                 checkSub = jq(this).closest("li.subCheckLi").closest('ul.clusterListUl').find(".mcoCheck.checkSub:checked").length;
 
-                if (checkSub == 0) {
+                if (checkSub === 0) {
                     jq(this).closest("li.subCheck").closest('ul').find('li.clusterCheckLi').find('input.clusterCheck').prop("checked", false);
                     jq(this).closest("li.subCheck").closest('ul').find('li.clusterCheckLi').find('input.clusterCheck').next("label").removeClass("selected");
 
@@ -175,16 +189,16 @@ Also variables have to be kept global to make the functionality work. */
         } else if (jq(this).hasClass('clusterCheck')) {
             checkSub = jq(this).closest("ul").closest('ul.geographyAllUl').find('.clusterCheckLi').find(".clusterCheck.checkSub:checked").length;
             checkNot = jq(this).closest("ul").closest('ul.geographyAllUl').find('.clusterCheckLi').find(".clusterCheck.checkSub").length;
-            if (checkNot != checkSub) {
+            if (checkNot !== checkSub) {
                 jq('input.geographyAllLevel1').prop("checked", false);
                 jq('input.geographyAllLevel1').next("label").removeClass('selected');
             }
-            if (checkNot == checkSub) {
+            if (checkNot === checkSub) {
                 jq('input.geographyAllLevel1').prop("checked", true);
                 jq('input.geographyAllLevel1').next("label").addClass('selected');
             }
         } else {
-            if (checkNot != checkSub) {
+            if (checkNot !== checkSub) {
                 if (jq(this).hasClass('clusterCheck')) {
                     jq('input.geographyAllLevel1').prop("checked", false);
                     jq('input.geographyAllLevel1').next("label").removeClass('selected');
@@ -192,7 +206,7 @@ Also variables have to be kept global to make the functionality work. */
                 jq(this).closest("ul").find("li input.checkAll").prop("checked", false);
                 jq(this).closest("ul").find("li input.checkAll").next("label").removeClass("selected");
             }
-            if (checkNot == checkSub) {
+            if (checkNot === checkSub) {
                 if (jq(this).hasClass('clusterCheck')) {
                     jq('input.geographyAllLevel1').prop("checked", true);
                     jq('input.geographyAllLevel1').next("label").addClass('selected');
@@ -204,17 +218,19 @@ Also variables have to be kept global to make the functionality work. */
     });
 
     
-/* Below code is for the auto complete functionality */   
+/* Below script is for the auto complete functionality. It returns a set of results based on the key words entered by the user. */   
     jq(".filterBrand").autocomplete({
         source: brandList,
         select: function(event, ui) {
             jq('.filterBrand').html('');
-            if(jq.inArray( ui.item.value, brandPositions) == -1) {
+            if(jq.inArray( ui.item.value, brandPositions) === -1) {
                 brandPositions.push(ui.item.value);
                 return jq('<li class="brndFilter"></li>').append('<div class="selectedBrand">' + ui.item.value + '</div>').appendTo(jq('ul.filterBrandList'));
             }
         }
     });
+	
+	/* Below works on click event. It removes the list when clicked on it */
      jq(".filterBrandList").on("click", ".brndFilter", function() {
         brandPositions.splice( jq.inArray(jq(this).text(), brandPositions), 1 );
         jq(this).remove();

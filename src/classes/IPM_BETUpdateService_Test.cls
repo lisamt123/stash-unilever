@@ -284,7 +284,7 @@ private class IPM_BETUpdateService_Test{
         system.runAs(runningUser) {
             betDataInitializer();
             
-            bet.Status__c = IPM_ConstantUtils.BET_FIRST_RELEASE;
+            bet.Status__c =  'First release';
             update bet;
             
             System.AssertEquals( bet.Status__c, [Select Status__c from uw_BET__c where Id =: bet.Id ].Status__c , 'Expected exception not thrown.');

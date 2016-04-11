@@ -4,7 +4,7 @@
 * @description  This class is used to test the functionality of IPM_GateDocumentRiskManagement class 
 */
 @isTest
-public class IPM_GateDocumentRiskManagement_Test{
+private class IPM_GateDocumentRiskManagement_Test{
 
     private static IPM_Project__c project;// Project object initialization
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();

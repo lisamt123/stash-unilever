@@ -3,9 +3,8 @@
  *@Author: Cognizant
  *@Created Date: 28/05/2015 
 *****************************************************************************************/
-/* Below script for the delete functionality */
-
 var jq = jQuery.noConflict();
+/* Below function is used to open a modal where a user can perform the delete operation */
 function deleteAssortment(str) {
     jq('#ipmAssortment').modal({
         show: true,
@@ -26,38 +25,50 @@ function deleteAssortment(str) {
 
 
 function setFocusOnLoad() {}
-/* Below script is show the dropdown list of Assortment Strategy */
 jq(document).ready(function() {
     assortmentscript();
+/* Below script is based on click event. If user clicks on dropdown or on a checkbox the dropdown will still be displayed instead of hiding */
     jq(document).on('click', '.dropdown-menu input[type="checkbox"], .dropdown-menu li', function(e) {
         e.stopPropagation();
     });
+		
+/* Below script is to hide the dropdown list on click event if condition is true */
     jq(document).click(function(e) {
-        if (e.target.id != 'assortList2') {
+        if (e.target.id !== 'assortList2') {
             jq("#assortList2").hide();
         }
-        if (e.target.id != 'assortList1') {
+        if (e.target.id !== 'assortList1') {
             jq("#assortList1").hide();
         }
     });
+	
+/* Below script is to show the dropdown list of Assortment Strategy on click event */
     jq('.assortSelect1').click(function() {
         jq('.assortList1').show();
     });
-
+	
+/* Below script is to show the dropdown list of Assortment Strategy on click event */
     jq('.assortSelect2').click(function() {
         jq('.assortList2').show();
     });   
+	
+/* Below script is performed on click event. When user clicks on Remove the assortment strategy will be removed and the modal will be closed */
     jq(document).on('click', '#ipmAssortment .removeAssortment', function() {
         var questionId = jq(this).attr('data-result');
         DeleteAssortRecord(questionId);
         jq("#ipmAssortment").modal('hide');
     });
     
+	hilightTaskScript();
 });
 /* Below script is related to function calling after rerendering */
 function refreshAssort(){
+
+/* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */
     jq(".ipmAcrdnExpand").hide();
     jq(".ipmAcrdnExpand:first").not(':empty').show();
+	
+/* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
     jq(".assortmentAccordion").on("click", ".expico", function() {
         if (jq(this).closest(".pHead").next(".ipmAcrdnExpand").is(":visible")) {
             jq(this).removeClass("fa-minus");
@@ -69,6 +80,8 @@ function refreshAssort(){
             jq(this).addClass("fa-minus");
         }
     });
+	
+/* Below script works on page load. It adds the + mark for the collapsed one's and adds - for the expanded one */
     jq(".projectContainer").find(".pHead .assortmentAccordion span.expico").removeClass("fa-minus");
     jq(".projectContainer").find(".pHead .assortmentAccordion span.expico").addClass("fa-plus");
     jq(".projectContainer:first").find(".pHead .assortmentAccordion span.expico").removeClass("fa-plus");
@@ -76,15 +89,17 @@ function refreshAssort(){
    
 }
 
-/* Below script is used for the reset functionality of Assortment Strategy */
+/* Below function performs the reset functionality */
 function resetCheckboxes(elem, selectedValues) {
     var selectedValuesArr = [];
-    if (selectedValues != '' && selectedValues != undefined) {
+    if (selectedValues !== '' && selectedValues !== undefined) {
         selectedValuesArr = selectedValues.split(',');
     }
+	
+/* Below script is used to check the checkboxes based on the checkbox value. If value matches and condition is true the checkbox will be checked and also it will be disabled */
     jq(elem).find('input:checkbox').each(function() {
         var val = jq(this).attr('value');
-        if (jq.inArray(val, selectedValuesArr) != -1) {
+        if (jq.inArray(val, selectedValuesArr) !== -1) {
             jq(this).prop('checked', true);
 			jq(this).prop('disabled', true);
             jq(this).next('label').addClass('selected');
@@ -97,25 +112,34 @@ function resetCheckboxes(elem, selectedValues) {
         }
     });
 }
+
+/* Below function calls 'changePrior' function */
 function changeArrow(cuName,arrow,priorityNumber){
     changePrior(cuName,arrow,priorityNumber);
 }
 /* Below is the main function which runs onComplete of all the action functions in Assortment Strategy  */
 function assortmentscript() {
+
+/* Below script works on click event. On click a value is saved and it is passed to function 'createAssort' */
     jq(document).on('click', '.createAssortmetRec', function(e) {       
         e.preventDefault();
         cusVals = jq(".chCusValue").val();
         createAssort(custChanlStr, cusVals);
     });  
+	
+/* Below script works on page load. If the total number of checkboxes checked are more than 5 user will not be able to check the other checkboxes */
      jq('.ccCheck').change(function(e) {
         if (jq('.ccListbox input[type=checkbox]:checked').length > 5) {
             jq(this).prop('checked', false);
             jq(this).next('label').removeClass('selected');
         }
     });
-     
+
+/* Below script works on page load. First it hides all the tabs. Then it opens only the first tab. */    
     jq(".ipmAcrdnExpand").hide();
     jq(".ipmAcrdnExpand:first").not(':empty').show();
+	
+/* Below script is called upon click event where it expands the tab and replaces '+' with '-' or collapses a opened tab and replaces '-' with '+' */
     jq(".assortmentAccordion").on("click", ".expico", function() {
         if (jq(this).closest(".pHead").next(".ipmAcrdnExpand").is(":visible")) {
             jq(this).removeClass("fa-minus");
@@ -127,6 +151,7 @@ function assortmentscript() {
             jq(this).addClass("fa-minus");
         }
     });
+/* Below script works on page load. It adds the + mark for the collapsed one's and adds - for the expanded one */
     jq(".projectContainer").find(".pHead .assortmentAccordion span.expico").removeClass("fa-minus");
     jq(".projectContainer").find(".pHead .assortmentAccordion span.expico").addClass("fa-plus");
     jq(".projectContainer:first").find(".pHead .assortmentAccordion span.expico").removeClass("fa-plus");
@@ -135,6 +160,7 @@ function assortmentscript() {
     resetCheckboxes("#assortList1", IPMAPPAssortment.channelName);
     resetCheckboxes("#assortList2", IPMAPPAssortment.selectedValues);
     
+/* Below script works on click. It displays the dropdown list based on the Assortment list */
     jq(document).on('show.bs.dropdown', '.assortChannelList1, .assortChannelList2', function() {
         var selectedValues, selectedValuesArr = [];
         if (jq(this).hasClass('assortChannelList1')) {
@@ -146,12 +172,14 @@ function assortmentscript() {
             jq('.assortList1').hide();
             selectedValues = IPMAPPAssortment.selectedValues;
         }
-        if (selectedValues != '' && selectedValues != undefined) {
+        if (selectedValues !== '' && selectedValues !== undefined) {
             selectedValuesArr = selectedValues.split(',');
         }
+		
+/* Below script is used to check the checkboxes based on the checkbox value. If value matches and condition is true the checkbox will be checked and also it will be disabled */
         jq(this).find('.dropdown-menu input[type="checkbox"]').each(function() {
             var val = jq(this).attr('value');
-            if (jq.inArray(val, selectedValuesArr) != -1) {
+            if (jq.inArray(val, selectedValuesArr) !== -1) {
                 jq(this).prop('checked', true);
 				jq(this).prop('disabled', true);
                 jq(this).next('label').addClass('selected');
@@ -167,6 +195,8 @@ function assortmentscript() {
     
     var custChanlStr = '';
     var cusStr = '';
+	
+/* Below script works on click. When the user clicks on 'Done' the dropdown list will be hidden. Also all the checked checkboxes value will be converted to string and will be passed to a function */
     jq(document).on('click', '#assortChanlListDone', function() {
         var custChanlList = [];
         var ulElem = jq(this).closest('ul.dropdown-menu');
@@ -179,6 +209,7 @@ function assortmentscript() {
         CustomChannels(custChanlStr);
     });
     
+/* Below script works on click. When clicked on 'Reset' button the list of values will be assigned to the respective variables.  */
     jq(document).on('click', '#ipmAssortCusReset, #ipmAssortCustChanlReset', function() {
         var selectedValues, selectedValuesArr = [];
         if (jq(this).hasClass('ipmAssortCustChanlReset')) {
@@ -186,12 +217,14 @@ function assortmentscript() {
         } else if (jq(this).hasClass('ipmAssortCusReset')) {
             selectedValues = IPMAPPAssortment.selectedValues;
         }
-        if (selectedValues != '' && selectedValues != undefined) {
+        if (selectedValues !== '' && selectedValues !== undefined) {
             selectedValuesArr = selectedValues.split(',');
         }
+		
+/* Below script is used to check the checkboxes based on the checkbox value. If value matches and condition is true the checkbox will be checked and also it will be disabled */
         jq(this).closest('ul.dropdown-menu').find('input:checkbox').each(function() {
             var val = jq(this).attr('value');
-            if (jq.inArray(val, selectedValuesArr) != -1) {
+            if (jq.inArray(val, selectedValuesArr) !== -1) {
                 jq(this).prop('checked', true);
 				jq(this).prop('disabled', true);
                 jq(this).next('label').addClass('selected');
@@ -204,9 +237,19 @@ function assortmentscript() {
             }
         });
     });
+	
+/* Below script works on page load. If the total number of checkboxes checked are more than 5 user will not be able to check the other checkboxes */
 	jq('.ccCheck').change(function(e) {
         if (jq('.ccListbox input[type=checkbox]:checked').length > 5) {
             jq(this).prop('checked', false);
         }
     });
+}
+
+/* Below function contains the script which has the tooltip functionality. This function is called when the rerendering happens and the script will run again */
+function hilightTaskScript(){
+	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+	jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});	
+	jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
+	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }

@@ -1970,6 +1970,12 @@ public class IPM_TestFactory_Helper
         
         insert documentTemplateList; 
         
+        // Create milestone custom setting data for Market Ready .This is used to set milestone  due date to blank for specified number of days .         
+        IPM_Blank_MrktRdyDueDate__c mrktReadyAutoPop = new IPM_Blank_MrktRdyDueDate__c();
+        mrktReadyAutoPop.name='NumberOfDays';
+        mrktReadyAutoPop.No_Of_Days__c=0;
+        insert mrktReadyAutoPop; 
+        
         
         // Create Master Project For sharing to work for master tasks and milestones.
         Map<String,Object> masterProjectMap =  new Map<String,Object>{IPM_PROJECT_NAME => 'IPM_MasterProject','IPM_Phase__c' => IDEAS,'IPM_Category_Group__c' => HOUSEHOLDCARE,'IPM_PM_Approach__c' => EXTERNAL,'IPM_IsCompleted__c' => true,'IPM_Fast_Track_Project__c' => false,'IPM_Market_Type__c' =>IPM_ConstantUtils.MARKETTYPE_DEVELOPING,IPM_TARGET_LAUNCH_DATES => System.today()+100,IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_PROJECT_SPAN => IPM_ConstantUtils.SpanGlobal};

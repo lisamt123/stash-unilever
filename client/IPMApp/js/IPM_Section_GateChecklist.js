@@ -7,31 +7,47 @@
 */ 
 
 var jq = jQuery.noConflict();
-/* Below code is to set the slider */
+var ansIndex = 0;
+ /* Below script calls a function 'initSliderSecGk' on page load. */
 jq(document).ready(function() {
-    initSliderSecGk();
+	var sliderObjs = jq(".sliderGk");
+	
+	var sliderIndex = 0;
+	jq(sliderObjs).each(function() {
+		divId = "legendSldGK" + sliderIndex;
+		sliderValArray = getAllOptions(divId);
+		sliderValArray.shift();
+		initSliderSecGk(this, sliderValArray);
+		/* Slider Label Init */
+		initSliderSecLabelGk(this, divId, sliderValArray);
+		sliderIndex++;
+	});
+	
+	setSliderValBgcolor();
 });
 
-/* Below code is to update the gate keeper list */
+/* Below function calls another function 'callupdateSecGateKeeperList' which updates the Section Gate keeper list */
 function updateSecGateKeeperList(id, ans, comment, cmnts) {
     callupdateSecGateKeeperList(id, ans, comment, cmnts);
 }
+
+/* Below function calls another function 'callupdateGKList' which updates the Gate keeper list */
 function updateGKList(id, ans, comment, cmnts) {
     callupdateGKList(id, ans, comment, cmnts);
 }
 
-/* Below code is for the slider functionality */
-function initSliderSecGk() {
-
-    var itemsSecGK = [IPMAppSecGK.select, IPMAppSecGK.yes, IPMAppSecGK.partly, IPMAppSecGK.no, IPMAppSecGK.na];
-    var s = jq(".sliderGk");
+/* Below function contains the script for the slider functionality in Section Gate keeper list. It contains the complete functionality code when user clicks on the options the pointer ball moves to the clicked option. Also it highlights the selected option with a different color on page load. Also it saves the selected option when clicked on it. */
+function initSliderSecGk(sliderObj, valArray) {
+	valArray.unshift("Select");
+	var itemsSecGK =  valArray;
     var score;
-    var PointerT = 100 / (itemsSecGK.length - 1);
+    var PointerT = 100 / (itemsSecGK.length - 1 );
 
-jq(s).each(function() {
-    var answerSecGK = jq(this).find("input[name=secGkans]").val(); 
+    var answerSecGK = jq(sliderObj).find("input[name=secGkans]").val(); 
+	ansIndex = valArray.indexOf(answerSecGK);
 	
-    jq(this).slider({
+	
+    jq(sliderObj).slider({
         min: 1,
         max: itemsSecGK.length,
         animate: 'slow',
@@ -47,33 +63,8 @@ jq(s).each(function() {
 		}
     });
     
-    if (answerSecGK == IPMAppSecGK.yes) {           
-            jq(this).find("label[for=s1]").css({
-                'color': '#e98824',
-                'font-weight': 'bold'
-            });
-        } else if (answerSecGK == IPMAppSecGK.partly) {            
-            jq(this).find("label[for=s2]").css({
-                'color': '#e98824',
-                'font-weight': 'bold'
-            });
-        } else if (answerSecGK == IPMAppSecGK.no) {           
-            jq(this).find("label[for=s3]").css({
-                'color': '#e98824',
-                'font-weight': 'bold'
-            });
-        } else if (answerSecGK == IPMAppSecGK.na) {           
-            jq(this).find("label[for=s4]").css({
-                'color': '#e98824',
-                'font-weight': 'bold'
-            });
-        } else {            
-            jq(this).find("label[for=s0]").css({
-                'color': '#e98824',
-                'font-weight': 'bold'
-            });
-        }
-});
+   
+/* Below works on click event. It highlights the selected option with a different color and different font style.*/
 jq(".legendSld label").on("click", function() {
     var lpos = jq(".legendSld label").offset().left;
     jq(this).parent().find('label').css({
@@ -85,7 +76,57 @@ jq(".legendSld label").on("click", function() {
         'font-weight': 'bold'
     });
 });
-    
 jq("input[type=radio][id^='s']").hide();
+}
+
+/* Below function returns values of an array. The values will total number of options present for each GK slider question. */
+function getAllOptions(divElement){
+	divElement1 = '#' + divElement;
+	var OptionsDiv = jq(divElement1);
+	var optionsArray = [];
+		
+	OptionsDiv.find('.info tbody tr td').each(function (i, el) {
+		optionsArray.push(jq(this).find('input').val());
+	});		
+	return optionsArray;
+}
+
+function initSliderSecLabelGk(sliderObj, divId, valArray) {
+	var labelItem = valArray;
+	LeftMovePercentage = 100 / (labelItem.length - 1);
+	LeftMovePercentage = LeftMovePercentage;
+	divId = "#" + divId;
+	
+	sliderTableObj = jq(divId).find("table");
+	
+	/* TO DO - Replace with add class */
+	sliderTableObj.css("width", "100%");
+	
+	/* Applying css to label's except the first one.. */
+	index = 0;
+	sliderTableObj.find("label").each(function(ind){
+		jq(this).css("margin-left", LeftMovePercentage * ind + "%");
+		if(ansIndex < 0)
+		{
+			ansIndex = ansIndex + 1;
+		}
+		if(index === ansIndex){
+			jq(this).css({color: "#E98824", fontWeight: "bold"});
+		}
+		index ++;
+	});
+}
+
+function setSliderValBgcolor(){
+	 var selectedSliderVal = jq(".gkcStatus");
+	 var sliderValArray = ['Partly', 'No', 'Yes', 'Not Applicable'];
+	 
+	for(var i = 0; i < selectedSliderVal.length; i++){
+       var found = $.inArray(jq(selectedSliderVal[i]).text(), sliderValArray);
+    if(found === -1 && jq(selectedSliderVal[i]).text() !== ""){
+    	jq('.gkcStatus.'+jq(selectedSliderVal[i]).text()).css({background: "#000000"});
+    }
+    
+    }
 
 }

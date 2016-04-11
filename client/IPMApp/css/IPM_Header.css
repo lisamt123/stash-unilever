@@ -5,7 +5,7 @@
 	background-image: url(../images/pebbles_filled.png);
     background-repeat: no-repeat;
     background-position: right top; 
-    min-height: 175px !important;
+    min-height: 175px ;
 }
 
 .ipmPageHeader{
@@ -15,7 +15,7 @@
 
 .ipmHeading{
     font-size: 1.4em;
-	font-family:'UnileverDINOffcPro', Arial!important;
+	font-family:'UnileverDINOffcPro', Arial;
     color: #00B389;
     text-transform: uppercase;
     font-weight: bold; 

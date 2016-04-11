@@ -5,19 +5,18 @@
 *@Created Date: 23/01/2015 
 ***********************************************************************************
 */  
-
-
 var jq = jQuery.noConflict();
+/* Below script calls a function 'initSliderOTIF' on page load. */
 jq(document).ready(function() {
     initSliderOTIF();
 });
 
-/* Below code is to change the otif status */
+/* Below function calls another function 'callupdateOtifList' which updates the otif list */
 function changeStatus(id, status) {
     callupdateOtifList(id, status);
 }
 
-/* Below code is for the OTIF slider functionality */
+/* Below function contains the script for the slider functionality in first Otif list. It contains the complete functionality code when user clicks on the options the pointer ball moves to the clicked option. Also it highlights the selected option with a different color on page load. Also it saves the selected option when clicked on it. */
 function initSliderOTIF() {
 
     var itemsGK = [IPMAppOTS.select, IPMAppOTS.green, IPMAppOTS.amber, IPMAppOTS.red, IPMAppOTS.na];
@@ -49,17 +48,17 @@ function initSliderOTIF() {
 				}
 				
             });
-			if (answer == IPMAppOTS.green) { 
+			if (answer === IPMAppOTS.green) { 
             jq(this).find("label[for=s1]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (answer == IPMAppOTS.red) { 
+        } else if (answer === IPMAppOTS.red) { 
             jq(this).find("label[for=s2]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (answer == IPMAppOTS.na) { 
+        } else if (answer === IPMAppOTS.na) { 
             jq(this).find("label[for=s3]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
@@ -74,7 +73,7 @@ function initSliderOTIF() {
 		
 		
     });
-	
+/* Below function contains the script for the slider functionality in second Otif list. It contains the complete functionality code when user clicks on the options the pointer ball moves to the clicked option. Also it highlights the selected option with a different color on page load. Also it saves the selected option when clicked on it. */
 	jq(s2).each(function() {	
 		var answer = jq(this).find("input[name=answer]").val();
             jq(this).slider({
@@ -93,22 +92,22 @@ function initSliderOTIF() {
 				}
             });
 			
-		if (answer == IPMAppOTS.green) {            
+		if (answer === IPMAppOTS.green) {            
             jq(this).find(".sld5 label[for=s1]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });           
-        } else if (answer == IPMAppOTS.amber) {            
+        } else if (answer === IPMAppOTS.amber) {            
             jq(this).find(".sld5 label[for=s2]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
-        } else if (answer == IPMAppOTS.red) {            
+        } else if (answer === IPMAppOTS.red) {            
             jq(this).find(".sld5 label[for=s3]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });            
-        } else if (answer == IPMAppOTS.na) {           
+        } else if (answer === IPMAppOTS.na) {           
             jq(this).find(".sld5 label[for=s4]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
@@ -121,7 +120,7 @@ function initSliderOTIF() {
         }
 
 	});
-	
+/* Below works on click event. It highlights the selected option with a different color and different font style. Also it moves the help text pointer to selected option. */	
 jq(".legendSld label").on("click", function() {
 	var lpos = jq(".legendSld label").offset().left;
 	jq(this).parent().find('label').css({
@@ -133,7 +132,6 @@ jq(".legendSld label").on("click", function() {
         'font-weight': 'bold'
     });
 	jq("toolTipMsg:before").css("left", lpos + "px");
-
 });
 jq("input[type=radio][id^='s']").hide();
  
