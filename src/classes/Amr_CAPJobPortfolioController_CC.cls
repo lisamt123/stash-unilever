@@ -10,7 +10,7 @@ History
 VERSION     AUTHOR             DATE           DETAIL           Description
 1.0         Varuna Nikam       23/12/2015     INITIAL DEV      CSR:
 *************************************************************************************************************************************/
-global with sharing class Amr_CAPJobPortfolioController_CC{
+global with sharing class Amr_CAPJobPortfolioController_CC {
     public list<Amr_Job_Allocation__c>jobDetailList {get;set;}
     public list<Amr_Job_Allocation__c>jobDetailCancellationList {get;set;}
     public Amr_Job_Allocation__c jobAllocation {get;set;}
@@ -65,6 +65,7 @@ global with sharing class Amr_CAPJobPortfolioController_CC{
     public Integer totalCancelJobPages  {get; set;}
     public Integer currentCancelPageNumber {get;set;} 
     public String  projectNameText {get;set;}   
+    public String acceptedAndEmailSend{get;set;}
     public List<SelectOption> rapNameList{get;set;} 
     public String selectedRapName{get;set;}
     transient  String[]  listString{get;set;}
@@ -241,11 +242,11 @@ Returns: It will return list of options.
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.CreatedDate','Date Logged'));
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Stage_of_Production_Activity__c','Stage Of Production Activity'));
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Unilever_Project_Leader_Email__c','Project Leader Email'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Project_Leader_Country__c','Location Of Unilever Project Leader(country)'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Project_Leader_Country__c','Location Of Unilever Project Leader(Country)'));
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.ProductCategory__c','Category'));
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brand_Position__c','Brand Positioning'));
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brand_Final__c','Brand Name'));
-         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Project_Details__c','Project Name'));
+       //  listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Project_Details__c','Project Name'));
        
          listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Allocated_Budget_euro__c','Allocated Budget(Euro)'));
         // listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brodcast_Market__c','Broadcast Market'));
@@ -287,6 +288,11 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
        String projectName = jobDetails.Project_Details__c;
    // soqlForCancel = soql;
      
+     /*
+     N-Path:
+     SOQL is built dynamically, to search the records that user provided values on search fields in 'Search and Filter' section on Job Portfolio Page
+     There are around 15 fields on which user can search the records within AdManager tool
+     */
     if (String.isNotBlank(String.valueOf(jobDetails.Start_Date__c))){
         Datetime startdate = jobDetails.Start_Date__c;
         String dateTimeFormat = startdate.format(Amr_ConstantForAdManager.DATEFORMAT);
@@ -463,6 +469,19 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
         soqlForCancel += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
               
          }
+         
+         if(String.isNotBlank(acceptedAndEmailSend) &&  acceptedAndEmailSend != Amr_ConstantForAdManager.NONE){
+        
+            System.debug('ACCEPPPTEEDD _> ' + acceptedAndEmailSend);
+            if(acceptedAndEmailSend == 'Yes'){
+                soql += ' and Job_Status__c = \''+String.escapeSingleQuotes(Label.Amr_Accepted)+Amr_ConstantForAdManager.SLASH;
+                soqlForCancel += ' and Job_Status__c = \''+String.escapeSingleQuotes(Label.Amr_Accepted)+Amr_ConstantForAdManager.SLASH;
+            }
+            else{
+                soql += ' and Job_Status__c != \''+String.escapeSingleQuotes(Label.Amr_Accepted)+Amr_ConstantForAdManager.SLASH;
+                soqlForCancel += ' and Job_Status__c != \''+String.escapeSingleQuotes(Label.Amr_Accepted)+Amr_ConstantForAdManager.SLASH;
+            }
+        }
           /*
           if(String.isNotBlank(String.valueOf(jobDetails.Allocated_Budget_euro__c))){
           String allocatedBudget = String.valueOf(jobDetails.Allocated_Budget_euro__c).replace(',','');

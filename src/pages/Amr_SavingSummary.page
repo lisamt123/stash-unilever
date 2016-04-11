@@ -10,7 +10,10 @@
         function callActionFunctionStartDate(startDate) {
             callContrlStartDate(startDate);
         }
+        function setFocusOnLoad() {}
         $j(function() {
+        
+            
             var strArr = {!CategoryList};
             var newOp;
             for (var j = 0; j < strArr.length; j++) {
@@ -35,6 +38,8 @@
                 e.preventDefault();
             });
             */
+            $j('#datepick').datepicker({ dateFormat: 'dd/mm/yy' });    
+            $j('#datepick1').datepicker({ dateFormat: 'dd/mm/yy' });        
         });
     </script>
     <apex:include pageName="Amr_common_header" />
@@ -127,12 +132,12 @@
                                     </div>
                                     <div class="displayinlineblock margin-top8imp margin-right10 compact-search-date-parent">
                                         <div class="compact-search-date">
-                                            <input type="text" placeholder="{!$Label.Amr_Start_Date}" class="inputTextCommon" id="datepicker2" onchange="callActionFunctionStartDate(this.value);" />
+                                            <input type="text" placeholder="{!$Label.Amr_Start_Date}" class="inputTextCommon" id="datepick" onchange="callActionFunctionStartDate(this.value);" />
                                         </div>
                                     </div>
                                     <div class="displayinlineblock margin-top8imp margin-right10 compact-search-date-parent">
                                         <div class="compact-search-date">
-                                            <input type="text" placeholder="{!$Label.Amr_End_Date}" class="inputTextCommon" id="datepicker1" onchange="callActionFunctionEndDate(this.value);" />
+                                            <input type="text" placeholder="{!$Label.Amr_End_Date}" class="inputTextCommon" id="datepick1" onchange="callActionFunctionEndDate(this.value);" />
                                         </div>
                                     </div>                                  
                                 </div>                                
@@ -285,12 +290,12 @@
                             <apex:inputField value="{!savingObject.Scope_re_brief__c}" />
                         </div>
                     </div>
-                    <div class="job-field-parent displayinlineblock">
+                   <!-- <div class="job-field-parent displayinlineblock">
                         <div class="job-field-label">{!$Label.Amr_Folder_Name}</div>
                         <div class="job-field-input">
                             <apex:inputField value="{!savingObject.Folder_Name__c}" />
                         </div>
-                    </div>
+                    </div>-->
                     <div class="job-field-parent displayinlineblock">
                         <div class="job-field-label">{!$Label.Amr_Shoot_Location}</div>
                         <div class="job-field-input job-field-input-multiselect">
@@ -460,9 +465,9 @@
                     </div>
 
                     <div style="display:{!if(permissionSetName = 'CAP','','none')}" class="leftbar-container-content margin12 bg-w8 cap-dashboard">
-                        <div class="left">
+                        <div class="left margin-top30" style="margin-left:20px;;width:45%;">
                             <apex:pageblock >
-                                <apex:chart height="200" width="600" data="{!pieSavingDataRaps}">
+                                <apex:chart height="200" width="375" data="{!pieSavingDataRaps}">
                                     <apex:pieSeries dataField="data" donut="50" colorSet="#70AB46,#70309F">
                                         <apex:chartLabel display="none" />
                                     </apex:pieSeries>
@@ -470,17 +475,18 @@
                                 </apex:chart>
                             </apex:pageblock>
                         </div>
-                        <div class="right" style="color:#4CB99A;font-size:24px;margin-top:60px;margin-right:12px;">
-                            <div style="color:#4CB99A;font-size:24px;">
+                        <div class="left" style="color:#4CB99A;font-size:24px;margin-top:110px;;width:50%;">
+                            <div style="color:#4CB99A;font-size:24px;margin-right:20px;padding:5px;background:#F8F8F8;width:45%" class="left">
                                 <apex:repeat value="{!globalYTDSpend}" var="var">
-                                    {!var['savCurrentCostYTD']} <span style="font-size:18px;">Global YTD Spend</span>
+                                    {!var['savCurrentCostYTD']} <span style="font-size:12px;">Global YTD Spend</span>
                                 </apex:repeat>
                             </div>
-                            <div style="color:#EBB23B;font-size:24px;">
+                            <div style="color:#EBB23B;font-size:24px;margin-right:5px;padding:5px;background:#F8F8F8;width:45%" class="left">
                                 <apex:repeat value="{!savingActivitiesSubmitted}" var="var">
-                                    {!var['savCurrentYearToDate']} <span style="font-size:18px;">No.Saving activities submitted</span>
+                                    {!var['savCurrentYearToDate']} <span style="font-size:12px;">No.Saving activities submitted</span>
                                 </apex:repeat>
                             </div>
+                            <div class="clear"></div>
                         </div>
                         <div class="clear"></div>
                     </div>
@@ -560,10 +566,14 @@
                                                     {!job.Production_Type__c}
                                                 </div>
                                             </apex:outputText>
+                                        </apex:column>                                      
+                                        <apex:column headerValue="Duration of masters x no. of masters" title="{!job.Duration_of_Masters__c}">
+                                            <apex:outputText >
+                                                <div class="nombydom td-overflow width80 tdelement">    
+                                                    {!SUBSTITUTE(job.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(job.No_of_Masters2__c,',','_')}
+                                                </div>
+                                            </apex:outputText>              
                                         </apex:column>
-                                      <!--  <apex:column value="{!job.Total_Accepted_FinalCost__c}" headerValue="Total Accepted Final Cost" /> -->
-                                        <apex:column value="{!job.No_of_Masters__c}" headerValue="{!$Label.Amr_No_Of_Masters}" />
-                                        <apex:column value="{!job.Duration_of_Masters__c}" headerValue="{!$Label.Amr_Duration_of_Masters}" />
                                         <apex:column value="{!job.No_of_Additional_Films__c}" headerValue="{!$Label.Amr_No_of_Additional_Films}" />
                                         <apex:column value="{!job.Duration_of_Additional_Films__c}" headerValue="{!$Label.Amr_Duration_Of_Additional_Films}" />
                                         <apex:column value="{!job.Total_no_of_films__c}" headerValue="{!$Label.Amr_Total_No_of_Films}" />
@@ -577,13 +587,13 @@
                                             </apex:outputText>
                                         </apex:column>
                                         <apex:column value="{!job.Scope_re_brief__c}" headerValue="{!$Label.Amr_ReBreif_Scope}" />
-                                        <apex:column headerValue="{!$Label.Amr_Folder_Name}" title="{!job.Folder_Name__c}">
+                                       <!-- <apex:column headerValue="{!$Label.Amr_Folder_Name}" title="{!job.Folder_Name__c}">
                                             <apex:outputText >
                                                 <div class="td-overflow width80">
                                                     {!job.Folder_Name__c}
                                                 </div>
                                             </apex:outputText>
-                                        </apex:column>
+                                        </apex:column>-->
                                         <apex:column headerValue="{!$Label.Amr_Shoot_Location}" title="{!job.Shoot_Location__c }">
                                             <apex:outputText >
                                                 <div class="td-overflow width80">

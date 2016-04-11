@@ -81,7 +81,7 @@ public with sharing class Amr_SubmittedSavingController_CC {
         viewSavingMode = true;
         savObj = new Amr_Saving__c();
         savObj = [select PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
-                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
+                               No_of_Masters__c,No_of_Masters2__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
                                Average_Total_Opening_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c from Quotes__r where Is_Accepted__c =:true) from Amr_Saving__c where Id=:savingIdFromPage limit 1];
                     
         savObjNum = [select Job_Details__r.AdManagerText__c from Amr_Saving__c where Id =:savingIdFromPage limit 1];
@@ -115,7 +115,7 @@ Returns:
 ************************************************************************************************************************************/    
     public void quoteInformation(){
         try{
-        acceptedQuote=[select Saving_Type__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Accepted_Final_Cost_props_wardrobe__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,
+        acceptedQuote=[select Saving__r.Saving_Average_of_Quotes__c,Saving_Type__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Accepted_Final_Cost_props_wardrobe__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_editing_cost__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Saving__c,Quote_Number__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,
                                            Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,PPC_Costs_Euro_Amount__c,
                                            Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,
                                            Local_Currency_of_PPC_Costs__c,Local_Amount_of_PPC__c,CA_Costs_Euro_Amount__c,
@@ -334,7 +334,7 @@ Returns:
                  okayToSave=false;
             }
             if(savObj.Stage_RAP_engaged__c == '--None--' || String.isBlank(savObj.Stage_RAP_engaged__c)){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter Stage RAP Engaged'));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter Stage RAP was Engaged'));
                 savingMessages = true;
                 okayToSave=false;
             }
@@ -349,7 +349,7 @@ Returns:
                  okayToSave=false;
             }
             if(acceptedQuote.Accepted_Final_Cost_PPC_Euro_Amount__c == 0 || acceptedQuote.Accepted_Final_Cost_CA_Euro_Amount__c == '' || acceptedQuote.Accepted_Final_Cost_PC_Euro_Amou__c == ''){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter PC,PPC,CA Euro amount in Accepted Final Costs (Closing costs)'));
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter PC,PPC,CA Euro amount in Accepted Final Costs'));
                 savingMessages = true;
                 okayToSave=false;
             }
@@ -382,7 +382,13 @@ Returns:
         update savObj;
    
         update acceptedQuote;
-    
+        if(acceptedQuote.Total_Cost__c !=0){
+        savObj.Percentage_Saving_Accepted_Quote__c = (acceptedQuote.Saving__r.Saving_Average_of_Quotes__c * 100 / acceptedQuote.Total_Cost__c).setscale(2);
+        savObj.Saving_Accepted_Quote_Euro__c =  acceptedQuote.Total_Cost__c - acceptedQuote.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c;      
+        }        
+        
+             update savObj;
+     
         update quoteRelatedToSavingList;
    
     

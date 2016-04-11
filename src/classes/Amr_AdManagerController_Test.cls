@@ -23,7 +23,9 @@ public class Amr_AdManagerController_Test {
         MDO_Brand__c brand = new MDO_Brand__c(Name='testBrand');
         insert brand;
         
-        
+        Amr_Trigger_Pattern__c customSetting1 = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
+         insert customSetting1;
+          
         Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Require_Celebrity_Talent__c=Amr_ConstantForAdManager.YES,Lead_Agency_Location_Cluster__c=Amr_ConstantForAdManager.CLUSTER,Lead_Agency_Location_Country__c=Amr_ConstantForAdManager.LOCATION,Project_Location_Country__c=Amr_ConstantForAdManager.TESTCOUNTRY,Budget_Responsibility__c=Amr_ConstantForAdManager.BB,Require_Music__c = Amr_ConstantForAdManager.YES,Execution_Name__c=Amr_ConstantForAdManager.EXECUTION,Production_Activity_Type__c=Amr_ConstantForAdManager.TYPEPROD,Project_Location_Cluster__c=Amr_ConstantForAdManager.CLUSTER,Function_You_Are_Part__c=Amr_ConstantForAdManager.BB,Project_Description__c=Amr_ConstantForAdManager.EXECUTION,Check_With_CMI__c=Amr_ConstantForAdManager.YES,GBVM_Email__c=Amr_ConstantForAdManager.EMAIL,Threshold_Amount__c=12.34,Is_Submitt__c=Amr_ConstantForAdManager.TRUE_VAL,OwnerId=u.Id,Start_Date__c=date.newInstance(2015, 11, 21),End_Date__c=date.newInstance(2016, 11, 21),Project_Details__c= projDetail.Id,Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAIL,Broadcast_Market__c=Amr_ConstantForAdManager.EXECUTION,Name=Amr_ConstantForAdManager.EXECUTION,Project_Leader_Cluster__c=Amr_ConstantForAdManager.CLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRY,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.EXECUTION,Project_Name__c=Amr_ConstantForAdManager.PROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.EXECUTION,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAIL,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAIL,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAIL,Digital_Agency_Name__c=Amr_ConstantForAdManager.EXECUTION,Campaign_Name__c=Amr_ConstantForAdManager.EXECUTION,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00002',Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAIL,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BRODCAST,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.brand_position_id__c,Brand_Final__c=brand.Id,NewOriginalMaster__c=Amr_ConstantForAdManager.FALSE_VAL,LanguageAdaptionMaster__c=Amr_ConstantForAdManager.FALSE_VAL,Create_Additional_Material__c=Amr_ConstantForAdManager.FALSE_VAL,ReworkExistingMaterial__c=Amr_ConstantForAdManager.FALSE_VAL,BuyoutsTalent__c=Amr_ConstantForAdManager.FALSE_VAL,BuyoutsMusic__c=Amr_ConstantForAdManager.FALSE_VAL);
         insert jobDetail;
     
@@ -32,7 +34,10 @@ public class Amr_AdManagerController_Test {
         
         Amr_CurrencyConversionRate__c currencyRate =new Amr_CurrencyConversionRate__c(Name='testName',Currency_Unit__c='testUnit',Currency_Unit_To_Euro__c=12.34);
         insert currencyRate;
-    
+    	
+    	Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
+        insert customSetting;
+          
         List<selectOption> options = new List<selectOption>();
         options.add(new SelectOption(Amr_ConstantForAdManager.NONE,Amr_ConstantForAdManager.NONE));
         List<Amr_CurrencyConversionRate__c> lstcov = Amr_CurrencyConversionRate__c.getAll().values();
@@ -113,7 +118,10 @@ public class Amr_AdManagerController_Test {
     
         MDO_Brand__c brand = new MDO_Brand__c(Name='testBrand');
         insert brand;
-    
+        
+        Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
+        insert customSetting;
+          
        /*****
             Creating a list of job details and inserting in bulk.
        *****/
@@ -201,9 +209,15 @@ public class Amr_AdManagerController_Test {
     
        // Bulk insertion of job details
         insert jobList;
+        
+        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Require_Celebrity_Talent__c=Amr_ConstantForAdManager.YES,Lead_Agency_Location_Cluster__c=Amr_ConstantForAdManager.CLUSTER,Lead_Agency_Location_Country__c=Amr_ConstantForAdManager.LOCATION,Project_Location_Country__c=Amr_ConstantForAdManager.TESTCOUNTRY,Budget_Responsibility__c=Amr_ConstantForAdManager.BB,Require_Music__c = Amr_ConstantForAdManager.YES,Execution_Name__c=Amr_ConstantForAdManager.EXECUTION,Production_Activity_Type__c=Amr_ConstantForAdManager.TYPEPROD,Project_Location_Cluster__c=Amr_ConstantForAdManager.CLUSTER,Function_You_Are_Part__c=Amr_ConstantForAdManager.BB,Project_Description__c=Amr_ConstantForAdManager.EXECUTION,Check_With_CMI__c=Amr_ConstantForAdManager.YES,GBVM_Email__c=Amr_ConstantForAdManager.EMAIL,Threshold_Amount__c=12.34,Is_Submitt__c=Amr_ConstantForAdManager.TRUE_VAL,OwnerId=u.Id,Start_Date__c=date.newInstance(2015, 11, 21),End_Date__c=date.newInstance(2016, 11, 21),Project_Details__c= projDetail.Id,Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAIL,Broadcast_Market__c=Amr_ConstantForAdManager.EXECUTION,Name=Amr_ConstantForAdManager.EXECUTION,Project_Leader_Cluster__c=Amr_ConstantForAdManager.CLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRY,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.EXECUTION,Project_Name__c=Amr_ConstantForAdManager.PROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.EXECUTION,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAIL,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAIL,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAIL,Digital_Agency_Name__c=Amr_ConstantForAdManager.EXECUTION,Campaign_Name__c=Amr_ConstantForAdManager.EXECUTION,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00002',Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAIL,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BRODCAST,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.brand_position_id__c,Brand_Final__c=brand.Id,NewOriginalMaster__c=Amr_ConstantForAdManager.FALSE_VAL,LanguageAdaptionMaster__c=Amr_ConstantForAdManager.FALSE_VAL,Create_Additional_Material__c=Amr_ConstantForAdManager.FALSE_VAL,ReworkExistingMaterial__c=Amr_ConstantForAdManager.FALSE_VAL,BuyoutsTalent__c=Amr_ConstantForAdManager.FALSE_VAL,BuyoutsMusic__c=Amr_ConstantForAdManager.FALSE_VAL);
+        insert jobDetail;
+    
     
         Amr_Logging_Form_Setting__c setting = new Amr_Logging_Form_Setting__c(Allocation__c='manual',Footer__c='testFooter',Header__c='testHeader',Introduction__c='testIntro');
         insert setting;
+       
+          
         system.debug('jobDetail!!'+jobDetail1);
         Amr_AdManagerController_CC controller = new Amr_AdManagerController_CC();
         controller.categoryName = Amr_ConstantForAdManager.NONE;
@@ -213,8 +227,10 @@ public class Amr_AdManagerController_Test {
     //    for(Amr_Job_Details__c job:jobList){
         controller.jobDetails=jobList.get(0);
         PageReference pageRefVal = controller.getSubmitForm();
-     //   system.assert(jobList!=null);
+      //  system.assert(jobList!=null);
    // }
+        Amr_Job_Details__c jobDet = [select Project_Description__c from Amr_Job_Details__c where id = :jobDetail.Id];
+        system.assertEquals(jobDet.Project_Description__c, Amr_ConstantForAdManager.EXECUTION);
      
   
     }

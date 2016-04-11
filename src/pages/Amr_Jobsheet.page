@@ -4,14 +4,69 @@
     <apex:include pageName="Amr_common_header" />
     <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/production-activity.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/jobsheet.js')}"/>
-    <script type="text/javascript">            
+    <script type="text/javascript">       
+                     
         $j(document).ready(function() {             
            var strArrJobSheet = {!CategoryList};           
            var selectedCategoryJobSheet = '{!selectedCategory}';
            var stringArrayJobSheet = JSON.parse('{!MethodToPassProjectNames}');           
            var projFormPageJobSheet = '{!projectNameFromPage}';           
            catProjectJobsheet(stringArrayJobSheet,strArrJobSheet,projFormPageJobSheet,selectedCategoryJobSheet);           
-        });        
+        });             
+        
+        function transferValue(projName) {            
+            if (projName !== "--None--") {
+                $j('.projecttextProjDetail').attr('value', projName);                
+            } else {
+                $j('.projecttextProjDetail').val('');
+            }
+        }
+        
+        $j(function(){
+            
+            var projectOtherVal = $j('.projecttext').val()
+            var projectPickVal = $j('.projectpick').val();
+            $j('.projectotherClass, .projectcancelClass').click(function(e) {
+                e.preventDefault();
+                var currPage = $j(this).attr('rel');
+                if (currPage == 'select') {
+                    $j('.projectpick').hide();
+                    $j('.projectpick option').prop('selected', false);
+                    $j('.projecttext').show();
+                    $j('.projecttext').val(projectOtherVal);
+                    $j('.projectotherClass').hide();
+                    $j('.projectcancelClass').show();
+                } else {
+                    $j('.projecttext').val('');
+                    $j('.projectpick').val(projectPickVal);
+                    $j('.projecttext').hide();
+                    $j('.projectpick').show();
+                    $j('.projectcancelClass').hide();
+                    $j('.projectotherClass').show();
+        
+                }
+            });         
+        });    
+        
+        function enableText123() {
+
+                $j('body').attr('style', 'pointer-events:none;');
+            
+                $j('.outputIdClass').removeAttr('disabled');
+                $j('.defaultTv').removeAttr('disabled');
+                $j('.defaultCinema').removeAttr('disabled');
+                $j('.defaultRadio').removeAttr('disabled');
+                $j('.defaultPrint').removeAttr('disabled');
+                $j('.defaultInternalVideo').removeAttr('disabled');
+                
+                if($j('.projecttext').is(":visible")) {             
+                    $j('.projecttextProjDetail').val('');
+                } else {                
+                    $j('.projecttext').val('');
+                }
+                
+                return true;
+            }                  
     </script>   
     <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/jobsheet.css')}" />
     <style type="text/css">        
@@ -23,10 +78,19 @@
         }            
         label div {
         background: url("{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/images/questionmark.png')}") no-repeat scroll center center rgba(0, 0, 0, 0);
-        }            
-    </style>
-    
-     <div class="mask" style="display:{!if(jobList.AdManagerText__c != null,'none','')}"></div>          
+        } 
+        .message .messageText h4 {
+            background:none !important;
+            color: #333333 !important;          
+            font-weight: normal;
+            padding: 0;
+        }    
+        .width70percent {
+            width:100% !important;
+        }       
+    </style>                        
+     <div class="mask" style="display:{!if(jobList.AdManagerText__c != null,'none','')}"></div>    
+     <div class="mask" style="display:{!if(jobCancellCheck != true,'none','')}"></div>       
     <!---Ad Main section---->
     
     <div class="container">
@@ -98,7 +162,7 @@
                         <apex:inputField value="{!alertObj.New_Alert__c}" html-placeholder="Date" />
                     </div>
                     <div class="left popup-message-width">                    
-                        <apex:inputField value="{!alertObj.Alert_Message__c}" html-placeholder="Message" />
+                        <apex:inputField value="{!alertObj.Alert_Message__c}" html-placeholder="Message (150 characters is the limit)" />
                     </div>
                     <div class="right">
                         <apex:commandButton styleclass="commonbtn-blue" action="{!addNewAlert}" value="Add"   reRender="alertList,showalert, alertCountNumber,alertmessage">
@@ -173,7 +237,7 @@
                         </apex:selectList>
                     </div>
                     <div class="subbox-second left margin-right12">
-                        <apex:commandButton styleClass="commonbtn" value="Allocate" action="{!Reallocate}"  reRender="msgs"/>
+                        <apex:commandButton styleClass="commonbtn" value="Allocate" action="{!Reallocate}"  />
                     </div>
                     <div class="subbox-third left">                                    
                         <apex:commandButton value="Cancel Job" action="{!cancelJob}"  styleClass="commonbtn" onclick="return confirm('Are you sure you want to cancel this job?')" immediate="true"/>
@@ -626,7 +690,7 @@
                                         </apex:actionStatus>
                                     </div>
                                     
-                                    <div class="loading loading-category-image">
+                                    <div class="loading loading-category-image hide">
                                         <img src="/img/loading.gif" alt="loading" />
                                     </div>
                                     
@@ -765,7 +829,7 @@
                                 <div class="form-field2 widthautocomp">
                                     <select id="projectList" size="1" style="display:{!if(joblist.Project_Name_Other__c != '','none','')}"  onchange="transferValue(this.value)" class="projectpick" ></select> 
                                     <apex:actionRegion >
-                                        <apex:inputField value="{!joblist.Project_Details__c}" id="projDetailId" styleClass="projecttextProjDetail hide"/>
+                                        <apex:inputField value="{!joblist.Project_Details__c}" id="projDetailId" styleClass="projecttextProjDetail hide"/>                                        
                                         <apex:inputField value="{!joblist.Project_Name_Other__c}" id="projDetailIdOther" styleClass="projecttext" html-data-id="projecttext" style="display:{!if(joblist.Project_Name_Other__c == '','none','')}" />
                                     </apex:actionRegion>
                                 </div>
@@ -1571,9 +1635,10 @@
                                 </div>
                                 </div>
                                 </div>
-                                <div class="right">                                    
-                                   <apex:commandButton value="Update" action="{!UpdateJob}" onclick="enableText()" styleClass="commonbtn-blue" />
-                                  <!-- <apex:commandLink value="Update" action="{!UpdateJob}" onclick="enableText()" styleClass="anchorsubmitbtn commonbtn-blue" reRender="msgs"/>-->
+                                <div class="right">   
+                                        <apex:commandButton value="Update" action="{!UpdateJob}" onclick="return enableText123()" styleClass="commonbtn-blue" />
+                                                                  
+                                  <!-- <apex:commandLink value="Update" action="{!UpdateJob}" onclick="enableText()" styleClass="anchorsubmitbtn commonbtn-blue" reRender="msgs"/>-->                               
                                 </div>
                                 <div class="clear">
                                 </div>
@@ -1679,7 +1744,7 @@
                                 </div>
                             </div>
                             <apex:actionRegion >
-                                <apex:actionFunction name="sendCategory" action="{!brandPositionListData}" reRender="brandPosPick,brandPick" oncomplete="closeloading()">
+                                <apex:actionFunction name="sendCategory" action="{!brandPositionListData}" reRender="brandPosPick,brandPick" oncomplete="closeLoadingCategoryJobSheet()">
                                     <apex:param id="catname" assignTo="{!selectedCategory}" name="categoryName" value="{!selectedCategory}" />
                                  </apex:actionFunction>
                                  <!-- <apex:actionFunction name="sendProject" action="{!ProjectData}" reRender="projectList" >
@@ -1706,7 +1771,7 @@
                 </h4>
                 
                 <div class="submain_inner_section job_saving_details hide">
-                    <div class="inner_section">
+                    <div class="inner_section">                     
                         <div class="tabsection">
                             <apex:tabPanel switchType="client" >
                                 <apex:tab label="Savings" name="savings" id="saving_input"> <!-- rerender="refreshCTP" -->                                       
@@ -1728,12 +1793,11 @@
                                      <apex:column headerValue="Prod. Type">
                                     <apex:outputText value="{!obj.Production_Type__c}"/>
                                     </apex:column>
-                                    <apex:column headerValue="No. Of Masters ">
-                                    <apex:outputField value="{!obj.No_of_Masters__c}"/>
-                                    </apex:column>
-                                    <apex:column headerValue="Duration of Masters">
-                                    <apex:outputText value="{!obj.Duration_of_Masters__c}" />
-                                    </apex:column>
+                                    <apex:column headerValue="Duration of masters x no. of masters">
+                                        <div class="nombydom">  
+                                            {!SUBSTITUTE(obj.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(obj.No_of_Masters2__c,',','_')}
+                                        </div>              
+                                    </apex:column>                                    
                                     <apex:column headerValue="No. of Additional Films">
                                     <apex:outputText value="{!obj.No_of_Additional_Films__c}"/>
                                     </apex:column>

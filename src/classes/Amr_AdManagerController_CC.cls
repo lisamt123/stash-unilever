@@ -216,6 +216,9 @@ public with sharing class Amr_AdManagerController_CC{
    Purpose:  This method is used to validate job Values                                            
    Parameters: 
    Returns: It’s return Pagereference
+   N-Path:
+   Thismethod creates new AdManager record in Amr_JobDetails object. 
+   All user validations has to be checked after Submit only so there are around 50+ user values validations reuired, which can not be break down into mulitiple classes.
    ********************************************************************/ 
     public Pagereference getSubmitForm(){
         try{
@@ -259,7 +262,11 @@ public with sharing class Amr_AdManagerController_CC{
          
             jobDetails.ProductionActivityTextArea__c = productionActivityData;
             
-            
+            /*
+            N-Path:
+            Mandatory user input is validated and require to set respective variable in order to display error message
+            respective field level on page.
+            */
             if(jobDetails.Check_With_CMI__c == null){      
                 CheckWithCMIflag = true;     
             }

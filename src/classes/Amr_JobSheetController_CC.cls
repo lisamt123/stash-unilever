@@ -99,6 +99,7 @@ public with sharing class Amr_JobSheetController_CC{
     public Amr_Alert__c alertObj{get;set;}
     public String NotesValue{get;set;}
     public Amr_JobSheetHelper_CC jobSheetHelper;
+    public Boolean jobCancellCheck {get;set;}
    
     public List<FeedItem> documentList{get;set;}
      public List<Amr_Saving__c> quoteList{get;set;}
@@ -108,6 +109,7 @@ public with sharing class Amr_JobSheetController_CC{
    
     public Amr_JobSheetController_CC(){
     try{
+        jobCancellCheck = false;
          Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
           jobSheetHelper = new Amr_JobSheetHelper_CC();
          alertObj = new Amr_Alert__c();
@@ -156,11 +158,17 @@ public with sharing class Amr_JobSheetController_CC{
     } 
      
 
-     /*
-     
+/***********************************************************************************************************************************
+Purpose:  This method contains the logic to search job functionality and is called from 
+        both CAP and RAP reallocate job method
+Parameters: 
+Returns: 
+
      N-Path:
-     This method fetches reuired fields to display on JobSheet page so can not reduce the no. of fields in SOQL.
-     */
+     This method fetches required fields to display on JobSheet page so can not reduce the no. of fields in SOQL.
+***********************************************************************************************************************************/     
+    
+     
      public PageReference helperMethod(){
      
        for(PermissionSetAssignment  userObj :[select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name = :Label.Amr_RAP AND Assignee.id != :userInfo.getUserId() order by Assignee.name] ){
@@ -194,19 +202,22 @@ public with sharing class Amr_JobSheetController_CC{
       
       try{
             if(permissionSetName == Label.Amr_CAP){
-                System.debug('CAP HERE ');
+
                 jobAlloc = [Select id,User__r.Name, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId limit 1];
                         listOfUserToDisplay = [Select User__r.Name,Id from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
                            
                                         
             }
             else{
-                System.debug('RAP HERE ');
                 jobAlloc = [Select id,User__r.Name, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId  AND user__c =: userInfo.getUserId() Limit 1 ];
                         listOfUserToDisplay.add(jobAlloc);
                       
             }
-           
+           /*
+           N-Path:
+           Jobsheet page is edit page, where CAP/RAP can edit the Job details and submit it. Job detail has 200+ fields 
+           that are dispalyed/required to store in back end and fetch and display on edit page
+           */
             jobList=[select AdditionalSupplementaryNewMaterialDigiA__c,ReworkExistingMaterial__c,Buyouts_Music_Digital_ED__c,NewOriginalMaster__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
                     NewOriginalMasterInternalVideo__c,NewOriginalMasterTvMovingImage__c,NewOriginalMasterCinemaMovingImage__c,NewOriginalMasterRadioAudio__c,NewOriginalMasterPrintStillImage__c,NewOriginalMasterOutofHomeMovingImage__c,
                     NewOriginalMasterOutofHomeAudio__c,NewOriginalMasterOutofHomeStillImage__c,NewOriginalMasterInStoreMovingImage__c,NewOriginalMasterInStoreAudio__c,NewOriginalMasterInStoreStillImage__c,NewOriginalMasterDigitalMovingImage__c,
@@ -239,7 +250,7 @@ public with sharing class Amr_JobSheetController_CC{
            if(jobList.Job_Cancelled__c){
                 jobsheetErrorCheck = true;
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.Amr_Error_JobAlreadyCancelled));
-                jobList.AdManagerText__c = null;
+                jobCancellCheck = true;
                 return null;    
            }
            
@@ -371,14 +382,14 @@ public with sharing class Amr_JobSheetController_CC{
             if(jobId != null){
                  if(flag){
                       quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,Duration_of_Additional_Films__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,LastModifiedById, 
-                               No_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c, Duration_of_Masters__c,
+                               No_of_Masters__c,No_of_Masters2__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c, Duration_of_Masters__c,
                                Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Accepted_Final_Cost_Total_editing_cost__c,Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,Local_Amount_of_PPC__c,Local_Currency_of_PPC_Costs__c,PPC_Costs_Euro_Amount__c,CA_Location__c,CA_Additional_agency_Name__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c
 
                                ,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c,PC_Costs_Euro_Amount__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where Job_Details__r.id = :jobId];
                      
                  }else{
                    quoteList = [select id,PC_Appraisal_Time_Management__c,PC_Appraisal_Output_Quality__c,PC_Appraisal_Process_Management__c,PC_Appraisal_Cost_Management__c,PPC_Appraisal_Time_Management__c,PPC_Appraisal_Output_Quality__c,Duration_of_Additional_Films__c,PPC_Appraisal_Process_Management__c ,PPC_Appraisal_Cost_Management__c,CA_Appraisal_Time_Management__c,CA_Appraisal_Output_Quality__c ,CA_Appraisal_Process_Management__c ,CA_Appraisal_Cost_Management__c,Folder_Name__c,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,LastModifiedById, 
-                               No_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,Duration_of_Masters__c,
+                               No_of_Masters__c,No_of_Masters2__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,Duration_of_Masters__c,
                                Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c,(select Accepted_Final_Cost_Total_editing_cost__c,Total_Cost__c,Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c,Is_PC_part_of_the_Roster__c,PC_name__c,PC_Country__c,Service_Company_Name__c,Local_Currency_of_PC_Costs__c,Local_Amount_of_PC__c,Is_the_PPC_part_of_the_Roster__c,PPC_Name__c,PPC_Country__c,Local_Amount_of_PPC__c,Local_Currency_of_PPC_Costs__c,PPC_Costs_Euro_Amount__c,CA_Location__c,CA_Additional_agency_Name__c,Local_Currency_of_CA_Costs__c,Local_Amount_of_CA__c,CA_Costs_Euro_Amount__c
 
                                ,Accepted_Final_Cost_PC_only_Currency__c,Accepted_Final_Cost_PPC_only_Local_Am__c,Accepted_Final_Cost_PC_Euro_Amou__c,Accepted_Final_Cost_PC_only_Local_Amo__c,Accepted_Final_Cost_PPC_Euro_Amount__c,Accepted_Final_Cost_PPC_only_Currency__c,Accepted_Final_Cost_CA_only_Currency__c,Accepted_Final_Cost_CA_Euro_Amount__c,Accepted_Final_Cost_CA_Local_Amount__c,Accepted_Final_Cost_Editors_name__c,Accepted_Final_Cost_Sound_Studio_Name__c,Accepted_Final_Cost_Total_Sound_Studio__c,Accepted_Final_Cost_Travel_Costs__c,Accepted_Final_Cost_props_wardrobe__c,Saving_Type__c,PC_Costs_Euro_Amount__c from Quotes__r ORDER BY Quote_Number__c) from Amr_Saving__c where Job_Details__r.id = :jobId AND (CreatedById = :userId OR LastModifiedById = :userId )];
@@ -848,7 +859,7 @@ Returns:
     }   
     
     public PageReference  brandPositionListData(){    
-        
+        system.debug('selected category======>'+selectedCategory);
         selectedBrandPosName = null;
         brandNameFromPage = null;
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
@@ -907,6 +918,12 @@ Returns:
 ************************************************************************************************************************************/
 
     public Pagereference updateJob(){
+        if(selectedBrandPosName != null){
+                brandPosName = selectedBrandPosName;
+        }
+        if(selectedCategory != null){
+                categoryName = selectedCategory;
+        }
         List<MDO_BrandPositions__c> MDOBrandPositionslst =[select  brand_position_id__c,product_category_id__c,brand_id__c from MDO_BrandPositions__c where product_category_id__r.name = :categoryName AND brand_position_id__r.name = :brandPosName AND brand_id__r.name = :brandNameFromPage];
               
         if(categoryString == null){
@@ -920,16 +937,15 @@ Returns:
         }
        
         if(MDOBrandPositionslst.size()>0){
-                        if(categoryName !=Amr_ConstantForAdManager.NONE){
-                               
-                        jobList.ProductCategory__c = MDOBrandPositionslst[0].product_category_id__c ;}
+                        if(categoryName !=Amr_ConstantForAdManager.NONE){       
+                                jobList.ProductCategory__c = MDOBrandPositionslst[0].product_category_id__c ;
+                        }
                         if(brandPosName!=Amr_ConstantForAdManager.NONE){
-                               
-                        jobList.Brand_Position__c = MDOBrandPositionslst[0].brand_position_id__c ;}
+                            jobList.Brand_Position__c = MDOBrandPositionslst[0].brand_position_id__c ;
+                        }
                         if(brandNameFromPage!=Amr_ConstantForAdManager.NONE){
-                                
-                        jobList.Brand_Final__c = MDOBrandPositionslst[0].brand_id__c ;
-                        jobSheetHelper.updateAdManagerText(jobList,brandNameFromPage);
+                            jobList.Brand_Final__c = MDOBrandPositionslst[0].brand_id__c ;
+                                jobSheetHelper.updateAdManagerText(jobList,brandNameFromPage);
                         }
         }
         
@@ -940,8 +956,9 @@ Returns:
          jobList.Currency_Conversion_Country_List__c = currencyFinalString;
          selectedCountry = currencyFinalString;
         }
-       
+       System.debug('INNN  ->  ' + jobList.Project_Details__c);
          if(jobList.Project_Details__c!=null){
+             System.debug('INNN');
               Amr_Project_Details__c projectObj = [select id,name from Amr_Project_Details__c where id = :jobList.Project_Details__c ];
               projectNameFromPage = projectObj.name;
               
@@ -969,7 +986,7 @@ Returns:
 
 ************************************************************************************************************************************/  
     public PageReference updateJobForNotes(){
-        system.debug('NOTES ==========>'+joblist.Job_Notes__c+'===text'+NotesValue);
+
         joblist.Job_Notes__c = NotesValue;
      if(joblist.Job_Notes__c != null && joblist.Job_Notes__c != ''){
          List<Amr_Job_Allocation__c> jobAllocationList = [Select id, User__r.Name, User__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId ];
@@ -1146,7 +1163,7 @@ Purpose: Method to validate job
 Parameters: 
 Returns: 
 N-Path:
- This validation is on JobSheet edit page where AP/RAP can edit ans submit the form again, so can not break down 'if' decision points
+ This validation is on JobSheet edit page where CAP/RAP can edit and submit the form again, so can not break down 'if' decision points
 ************************************************************************************************************************************/
    public PageReference validateJobList(){
    
@@ -1179,6 +1196,11 @@ N-Path:
             Boolean okayToSave = true;
             validateSuccess = false;
             
+          /*
+           N-Path:
+            Mandatory user input is validated and require to set respective variable in order to display error message
+            respective field level on page
+          */  
          if(jobList.Check_With_CMI__c == null){
              CheckWithCMIflag = true;
           }
@@ -1233,6 +1255,7 @@ N-Path:
         if(jobList.Lead_Agency_Location_Cluster__c == null || jobList.Lead_Agency_Location_Country__c == null){
              LeadAgencyClusterFlag = true; 
          }
+         System.debug('DET _>  ' + jobList.Project_Details__c +  'OTHER -> ' + jobList.Project_Name_Other__c );
         if(String.isBlank(jobList.Project_Details__c) && String.isBlank(jobList.Project_Name_Other__c)){
         projectDetailsFlag = true;
         projectNameFromPage = null;
@@ -1259,14 +1282,12 @@ N-Path:
             StageProductionActivity = true;
          }
          okayToSave = jobSheetHelper.productionActivityTypeValidation(okayToSave,jobList);
-          system.debug('ouside function !!');
          
          if( okayToSave && !CheckWithCMIflag  && !yourEmailAddressFlag && !unileverFinanceMemberEmailFlag && !projectLeaderCountryClusterFlag  && !finalApproverMaterialEmailFlag  && !functionYouArePartFlag 
                  && !budgetResponsibilityFlag  && !budgetAllocatedCountryFlag  && !budgetAllocatedInputFlag  && !categoryNameFlag  && !brandPosNameFlag && !brandNameFromPageFlag && !agencyDirectorEmailFlag 
                  && !projectDescriptionFlag  && !campaignNameFlag && !leadAgencyFlag  && !LeadAgencyClusterFlag && !projectDetailsFlag  && !productionActivityTypeFlag  && !TargetAirDateFlag 
                  && !ExecutionNameFlag  && !BrodcastMarketFlag  && !RequireMusicFlag && !RequireTalentFlag  && !StageProductionActivity ) {
                 validateSuccess = true;
-                system.debug('inside function !!');
                  return null;
         }
     return null;

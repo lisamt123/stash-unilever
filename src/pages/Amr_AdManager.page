@@ -498,7 +498,7 @@
                             <div class="form-field padding-5-0">                                
                                 <apex:outputLabel styleclass="logging-form-label text-align-l">
                                    {!$label.Amr_Production_activity_type}
-                                    <strong class="left121"></strong>
+                                    <strong style = "margin-right : 150px;"></strong>
                                     <div class="right208" title="Please select one or more options based on the scope of the project/activity.  Please note your selection should be based on this registration only and should be based on one shoot/creation date as outlined above."></div>
                                 </apex:outputLabel>
                             </div>

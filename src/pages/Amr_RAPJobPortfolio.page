@@ -11,10 +11,18 @@
             }
     </style>
     <![endif]-->
+    <style type='text/css'>
+    	.scrollbar-table-parent table.list tbody td, .scrollbar-table-parent table.list thead th {
+    		 width: 10em !important;
+    	}
+    </style>
     <script type="text/javascript">
     
+        function setFocusOnLoad() {}
+    
         $j(function(){ 
-            $j('#datepick').datepicker({ dateFormat: 'dd/mm/yy' });            
+            $j('#datepick').datepicker({ dateFormat: 'dd/mm/yy' });     
+                 
         });        
         
     </script>
@@ -299,7 +307,12 @@
                             <div class="job-field-parent displayinlineblock">
                                 <div class="job-field-label">{!$Label.Amr_Accepted_And_Email_Sent}</div>
                                 <div class="job-field-input">
-                                    <apex:inputField value="{!jobAlloc.Job_Status__c}" />
+                                  <!--  <apex:inputField value="{!jobAlloc.Job_Status__c}" /> -->
+                                    <apex:selectList value="{!acceptedAndEmailSend}" size="1">
+                                        <apex:selectOption itemValue="--None--" />
+                                        <apex:selectOption itemValue="Yes" />
+                                        <apex:selectOption itemValue="No" />
+                                    </apex:selectList>
                                 </div>
                             </div>
 
@@ -538,7 +551,7 @@
                                             <apex:commandButton value="<<" action="{!beginningForPendingJobs}" status="actStatusPending" disabled="{!DisablePreviousForPendingJobs}" reRender="listRefresh" />
                                             <apex:commandButton value="<" action="{!previousForPendingJobs}" status="actStatusPending" disabled="{!DisablePreviousForPendingJobs}" reRender="listRefresh" />
                                             <apex:commandButton value=">" action="{!nextForPendingJobs}" status="actStatusPending" disabled="{!DisableNextForPendingJobs}" reRender="listRefresh" />
-                                            <apex:commandButton value=">>" action="{!lastForPendingJobs}" status="actStatusPending" disabled="{!DisableNextForPendingJobs}" reRender="listRefresh" />
+                                            <apex:commandButton value=">>" action="{!lastForPendingJobs}" status="actStatusPending" disabled="{!DisableNextForPendingJobs}" reRender="listRefresh" />&nbsp;{!currentPendingPageNumber}&nbsp;out of&nbsp;{!totalPendingJobPages}
                                         </apex:outputPanel>
                                         <div>&nbsp;</div>
                                     </apex:tab>
@@ -685,7 +698,7 @@
                                             <apex:commandButton value="<<" action="{!beginningForLiveJobs}" status="actStatusLive" disabled="{!DisablePreviousForLiveJobs}" reRender="listRefresh" />
                                             <apex:commandButton value="<" action="{!previousForLiveJobs}" status="actStatusLive" disabled="{!DisablePreviousForLiveJobs}" reRender="listRefresh" />
                                             <apex:commandButton value=">" action="{!nextForLiveJobs}" status="actStatusLive" disabled="{!DisableNextForLiveJobs}" reRender="listRefresh" />
-                                            <apex:commandButton value=">>" action="{!lastForLiveJobs}" status="actStatusLive" disabled="{!DisableNextForLiveJobs}" reRender="listRefresh" />
+                                            <apex:commandButton value=">>" action="{!lastForLiveJobs}" status="actStatusLive" disabled="{!DisableNextForLiveJobs}" reRender="listRefresh" />&nbsp;{!currentLivePageNumber}&nbsp;out of&nbsp;{!totalLiveJobPages}
                                         </apex:outputPanel>
 
                                         <div>&nbsp;</div>
@@ -812,7 +825,7 @@
                                             <apex:commandButton value="<<" action="{!beginningForPriorityJobs}" status="actStatusPriority" disabled="{!DisablePreviousForPriorityJobs}" reRender="listRefresh" />
                                             <apex:commandButton value="<" action="{!previousForPriorityJobs}" status="actStatusPriority" disabled="{!DisablePreviousForPriorityJobs}" reRender="listRefresh" />
                                             <apex:commandButton value=">" action="{!nextForPriorityJobs}" status="actStatusPriority" disabled="{!DisableNextForPriorityJobs}" reRender="listRefresh" />
-                                            <apex:commandButton value=">>" action="{!lastForPriorityJobs}" status="actStatusPriority" disabled="{!DisableNextForPriorityJobs}" reRender="listRefresh" />
+                                            <apex:commandButton value=">>" action="{!lastForPriorityJobs}" status="actStatusPriority" disabled="{!DisableNextForPriorityJobs}" reRender="listRefresh" />&nbsp;{!currentPriorityPageNumber}&nbsp;out of&nbsp;{!totalPriorityJobPages}
                                         </apex:outputPanel>
                                         <div>&nbsp;</div>
                                     </apex:tab>
@@ -935,7 +948,7 @@
                                             <apex:commandButton value="<<" action="{!beginningForDormantJobs}" status="actStatusDormant" disabled="{!DisablePreviousForDormantJobs}" reRender="listRefresh" />
                                             <apex:commandButton value="<" action="{!previousForDormantJobs}" status="actStatusDormant" disabled="{!DisablePreviousForDormantJobs}" reRender="listRefresh" />
                                             <apex:commandButton value=">" action="{!nextForDormantJobs}" status="actStatusDormant" disabled="{!DisableNextForDormantJobs}" reRender="listRefresh" />
-                                            <apex:commandButton value=">>" action="{!lastForDormantJobs}" status="actStatusDormant" disabled="{!DisableNextForDormantJobs}" reRender="listRefresh" />
+                                            <apex:commandButton value=">>" action="{!lastForDormantJobs}" status="actStatusDormant" disabled="{!DisableNextForDormantJobs}" reRender="listRefresh" />&nbsp;{!currentDormantPageNumber}&nbsp;out of&nbsp;{!totalDormantJobPages}
                                         </apex:outputPanel>
                                         <div>&nbsp;</div>
                                     </apex:tab>

@@ -3,8 +3,36 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <apex:include pageName="Amr_common" />
     <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/cap-jobportfolio.js')}"/>    
-	<apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/cap-jobportfolio.css')}" />
-
+    <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/cap-jobportfolio.css')}" />
+    <script type="text/javascript">
+    
+        function setFocusOnLoad() {}
+        $j(function(){ 
+            $j('#datepick').datepicker({ dateFormat: 'dd/mm/yy' });            
+        });        
+        
+    </script>
+    
+    <style type='text/css'>
+        .scrollbar-table-parent table.list tbody td, .scrollbar-table-parent table.list thead th {
+             width: 10em;
+        }
+        @media all and (-ms-high-contrast: none),(-ms-high-contrast: active) {
+            .scrollbar-table-parent table.list {
+                table-layout: fixed !important;
+            }
+        }
+    </style>
+    <!--[if IE]>
+    <style type='text/css'>
+        .scrollbar-table-parent table.list tbody td, .scrollbar-table-parent table.list thead th {
+             width: 6em !important;
+        }
+        .scrollbar-table-parent table.list {                
+                table-layout:fixed !important;              
+            }
+    </style>
+    <![endif]-->
     <!---Ad Main section---->
     <apex:include pageName="Amr_common_header" />
     <apex:pagemessages id="msgs"></apex:pagemessages>
@@ -160,7 +188,7 @@
             <!-- Advance Search Popup Start -->
             <apex:actionRegion >
 
-                <div class="advance-search-popup popup-window hide">
+                <div class="advance-search-popup popup-window hide" style="height:350px;">
                     <div class="margin-btwn-container12">
                         <div class="left popup-header">
                             {!$Label.Amr_Advanced_Search}
@@ -172,25 +200,25 @@
                         </div>
                     </div>
                     <div class="clear"></div>
-                    <div class="margin-btwn-inner-container" style="height:300px;">
+                    <div class="margin-btwn-inner-container" style="height:250px;">    <!--
 
                         <div class="job-field-parent displayinlineblock margin-top0imp">
                             <div class="job-field-input">
                                 <apex:inputField value="{!jobDetails.AdManagerText__c}" html-placeholder="{!$Label.Amr_AdManager_Number}" />
                             </div>
-                        </div>
+                        </div>    -->
                         <div class="job-field-parent displayinlineblock margin-top0imp">
                             <div class="job-field-input">
-                                <input type="text" id="datepicker" onchange="callActionFunctionStartDate(this.value);" placeholder="{!$Label.Amr_Date_logged}" />
+                                <input type="text" id="datepick" onchange="callActionFunctionStartDate(this.value);" placeholder="{!$Label.Amr_Date_logged}" />
                             </div>
                         </div>
                         <div class="job-field-parent displayinlineblock margin-top0imp">
                             <div class="job-field-input">
                                 <!--  <apex:inputField value="{!jobDetails.Unilever_Project_Leader_Email__c}"  html-placeholder="{!$Label.Amr_Project_leader_email}" />-->
-                                <apex:inputText value="{!projectLeaderEmail}" html-placeholder="Project leader email " />
+                                <apex:inputText value="{!projectLeaderEmail}" html-placeholder="{!$Label.Amr_Project_leader_email}" />
                             </div>
                         </div>
-                        <div class="job-field-parent displayinlineblock">
+                        <div class="job-field-parent displayinlineblock margin-top0imp">
                             <!--  <div class="job-field-label">{!$Label.Amr_Broadcast_market}</div> -->
                             <div class="job-field-input-multiselect">
                                 <apex:inputText value="{!broadcastMarket}" html-placeholder="{!$Label.Amr_Broadcast_market}" />
@@ -236,6 +264,17 @@
                                 <apex:inputField value="{!jobAllocation.Job_Status__c}" />
                             </div>
                         </div>
+                        <div class="job-field-parent displayinlineblock">
+                                <div class="job-field-label">{!$Label.Amr_Accepted_And_Email_Sent}</div>
+                                <div class="job-field-input">
+                                  <!--  <apex:inputField value="{!jobAlloc.Job_Status__c}" /> -->
+                                    <apex:selectList value="{!acceptedAndEmailSend}" size="1">
+                                        <apex:selectOption itemValue="--None--" />
+                                        <apex:selectOption itemValue="Yes" />
+                                        <apex:selectOption itemValue="No" />
+                                    </apex:selectList>
+                                </div>
+                            </div>
 
                     </div>
 
@@ -283,7 +322,7 @@
                             <apex:outputPanel id="listRefresh">
                                 <div class="capjobportfolio-joblist-id bg-g1">
                                     <div style="padding:10px;background:#FFFFFF;">
-                                        <apex:outputPanel >
+                                        <apex:outputPanel rendered="{!If(AND(NOT(ISBLANK(activeJobsToShow)),activeJobsToShow.size>0),true,false)}">
                                             <apex:outputLabel value="Sort By"></apex:outputLabel>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <apex:selectList value="{!selectedSortJobsOption}" size="1" multiselect="false" onchange="callFuctionForJobsSort(this.value);">

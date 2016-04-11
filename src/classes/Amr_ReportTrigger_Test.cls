@@ -2,6 +2,9 @@
 public with sharing class Amr_ReportTrigger_Test{
     
     static testMethod void testMethod1() {
+    	 Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
+         insert customSetting;
+          
          MDO_Category__c productCategory = new MDO_Category__c(name = 'Soups');
          insert productCategory;
          
@@ -12,15 +15,19 @@ public with sharing class Amr_ReportTrigger_Test{
                                             Digital_Agency_Name__c = 'test',Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
                                             Any_other_agencies_involved__c = 'abc',Budget_Allocated_Input_Value__c = 5,Campaign_Name__c = 'xyz',
                                             Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com',
-                                            Function_You_Are_Part__c = 'BB',Project_Location_Cluster__c = 'Latin America',ProductCategory__c = productCategory.id);
+                                            Function_You_Are_Part__c = 'BB',Project_Location_Cluster__c = 'Latin America',ProductCategory__c = productCategory.id,
+                                            Project_Leader_Cluster__c = 'Africa',Stage_of_Production_Activity__c = 'Before briefing the agency');
          insert jobDetailsObj;
         
          Amr_Job_Details__c jobDetailsObj1 = new Amr_Job_Details__c(name = 'test2',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
                                             Digital_Agency_Name__c = 'test',Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
                                             Any_other_agencies_involved__c = 'abc',Budget_Allocated_Input_Value__c = 5,Campaign_Name__c = 'xyz',
                                             Final_Approver_Of_Material_Email__c = 'xas@gmail.com',Unilever_Finance_Member_Email__c = 'pqe@gmail.com',
-                                            Function_You_Are_Part__c = 'BD',Project_Location_Cluster__c = 'Latin America',ProductCategory__c = productCategory1.id);
-        insert jobDetailsObj1;
+                                            Function_You_Are_Part__c = 'BD',Project_Location_Cluster__c = 'Latin America',ProductCategory__c = productCategory1.id,
+                                            Project_Leader_Cluster__c = 'Latin America',Stage_of_Production_Activity__c = 'Before getting quotations');
+        insert jobDetailsObj1;  
+        
+      
         
         system.assert(jobDetailsObj1!=null);
     }
