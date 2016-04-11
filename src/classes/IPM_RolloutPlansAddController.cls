@@ -941,7 +941,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             upsert mapUpsertRollouts.values() IPM_Rollout_Project__c;
 			for(IPM_Project_Rollout__c  rollout : mapUpsertRollouts.values())
 			{
-				if(rollout.isActive__c==true)
+				if(rollout.isActive__c)
 				{
 					if(rollout.Local_Project__c != null && existingPrjList.contains(rollout.Local_Project__c))
 					{
