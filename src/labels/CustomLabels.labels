@@ -7831,14 +7831,6 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>For Financial Target 12 Months</value>
     </labels>
     <labels>
-        <fullName>IPM_IRR</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM IRR %</shortDescription>
-        <value>IRR %</value>
-    </labels>
-    
-    <labels>
         <fullName>IPM_FirstFullYear</fullName>
         <language>en_US</language>
         <protected>false</protected>
