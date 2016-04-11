@@ -249,7 +249,6 @@ src/components/IPM_Section_GateChecklist.component
 src/components/IPM_Section_GateChecklist.component-meta.xml
 src/components/IPM_ToDos.component
 src/components/IPM_ToDos.component-meta.xml
-src/components/PM_Financial_ActionStandards.component
 src/flows
 src/flows/IPM_Copy_Financial_Action_Standards_To_Section_Content-1.flow
 src/flows/IPM_Copy_Financial_Action_Standards_To_Section_Content-2.flow
