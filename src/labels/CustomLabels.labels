@@ -8385,6 +8385,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>(in thousand euros)</value>
     </labels>
     <labels>
+        <fullName>IPM_IRR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM IRR %</shortDescription>
+        <value>IRR %</value>
+    </labels>
+    <labels>
         <fullName>IPM_IS_COMPLETED_BY</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10350,6 +10357,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_PojectSetupUrl</shortDescription>
         <value>/apex/IPM_ProjectSetUpView</value>
+    </labels>
+    <labels>
+        <fullName>IPM_PostponeDate_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_PostponeDate_Required</shortDescription>
+        <value>Postpone On Date cannot be blank.</value>
     </labels>
     <labels>
         <fullName>IPM_PostponeDate_Validation</fullName>

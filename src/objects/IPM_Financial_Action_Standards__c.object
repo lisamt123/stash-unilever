@@ -230,20 +230,6 @@
         <type>Currency</type>
     </fields>
     <label>IPM Financial Action Standard</label>
-    <listViews>
-        <fullName>All</fullName>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-    </listViews>
-    <listViews>
-        <fullName>IPM_a7I180000009Oel_IPM_Financial_Action_Standards</fullName>
-        <filterScope>Queue</filterScope>
-        <label>IPM_a7I180000009Oel</label>
-        <queue>IPM_a7I180000009Oel</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
     <nameField>
         <displayFormat>A-{0000}</displayFormat>
         <label>IPM Financial Action Standards Name</label>

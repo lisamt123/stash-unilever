@@ -1895,12 +1895,26 @@ IF(AND(
         <type>Currency</type>
     </fields>
     <fields>
-        <fullName>OpCo__c</fullName>
+        <fullName>OpCo_Local__c</fullName>
         <description>This field holds the Local Project&apos;s Company Card Total_OpCo_Turnover__c</description>
         <externalId>false</externalId>
         <formula>Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>OpCo</label>
+        <label>OpCo Local</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OpCo_Regional__c</fullName>
+        <externalId>false</externalId>
+        <formula>Regional_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>OpCo Regional</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
