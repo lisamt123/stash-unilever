@@ -196,7 +196,7 @@ private class IPM_ProjectDocumentSectionHandler_Test{
             projectDocumentSectionList = getProjDocumentSectionList(projectDocumentSectionList);
             
             System.assertEquals(false, projectDocumentSectionList[0].IPM_Default_Section__c, PROJDOCSECTION_ACTIVATION_ERROR);
-            System.assertEquals(false, projectDocumentSectionList[1].IPM_Default_Section__c, PROJDOCSECTION_DEACTIVATION_ERROR);
+            System.assertEquals(false, projectDocumentSectionList[1].IPM_Default_Section__c, PROJDOCSECTION_ACTIVATION_ERROR);
             
             // Task A is generated with corresponding active project Document Default Section A
             taskList =  getTaskListByProjDocSecId(projectDocumentSectionList[0].id);
@@ -217,7 +217,7 @@ private class IPM_ProjectDocumentSectionHandler_Test{
             
             projectDocumentSectionList = getProjDocumentSectionList(projectDocumentSectionList);
             
-            System.assertEquals(false, projectDocumentSectionList[0].IPM_Default_Section__c, PROJDOCSECTION_DEACTIVATION_ERROR);
+            System.assertEquals(false, projectDocumentSectionList[0].IPM_Default_Section__c, PROJDOCSECTION_ACTIVATION_ERROR);
             System.assertEquals(true, projectDocumentSectionList[1].IPM_Default_Section__c, PROJDOCSECTION_ACTIVATION_ERROR);
             
             // Task A is deactive with corresponding active project Document Default Section A

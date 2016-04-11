@@ -80,6 +80,8 @@ src/classes/IPM_HomePageController.cls
 src/classes/IPM_HomePageController.cls-meta.xml
 src/classes/IPM_HomePageController_Test.cls
 src/classes/IPM_HomePageController_Test.cls-meta.xml
+src/classes/IPM_MarketPerformaceController.cls 
+src/classes/IPM_MarketPerformaceController.cls-meta.xml 
 src/classes/IPM_MilestoneHandler_Test.cls
 src/classes/IPM_MilestoneHandler_Test.cls-meta.xml
 src/classes/IPM_MilestoneHelper.cls
@@ -92,6 +94,8 @@ src/classes/IPM_NewTask_Test.cls
 src/classes/IPM_NewTask_Test.cls-meta.xml
 src/classes/IPM_OTIFstatusController_Test.cls
 src/classes/IPM_OTIFstatusController_Test.cls-meta.xml
+src/classes/IPM_PerformanceBreakdownController.cls 
+src/classes/IPM_PerformanceBreakdownController.cls-meta.xml 
 src/classes/IPM_ProjectCountryDetails.cls
 src/classes/IPM_ProjectCountryDetails.cls-meta.xml
 src/classes/IPM_ProjectDocumentHelper.cls
@@ -252,6 +256,7 @@ src/flows
 src/flows/IPM_Copy_Financial_Action_Standards_To_Section_Content-1.flow
 src/flows/IPM_Copy_Financial_Action_Standards_To_Section_Content-2.flow
 src/flows/IPM_Global_Financial_Action_Standard-1.flow
+src/labels/CustomLabels.labels
 src/layouts
 src/layouts/IPM_Country__c-IPM Country Layout.layout
 src/layouts/IPM_Financial__c-IPM Financial Layout.layout
