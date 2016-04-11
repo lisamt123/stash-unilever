@@ -11,6 +11,7 @@
 
 ******************************************************************************************/
 public with sharing class Oblix_SOWHandlerLogic {
+    
 	
     /*******************************************************************************
     * @author       Shahin Movahedi
@@ -269,6 +270,5 @@ public with sharing class Oblix_SOWHandlerLogic {
         return isChanged;
 
     }
-
 
 }

@@ -452,27 +452,27 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over &lt;10M</fullName>
+                <fullName>Incremental turnover &lt;10M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over 10M - 20M</fullName>
+                <fullName>Incremental turnover 10M - 20M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over 20M - 30M</fullName>
+                <fullName>Incremental turnover 20M - 30M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over 30M - 40M</fullName>
+                <fullName>Incremental turnover 30M - 40M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over &gt;40M</fullName>
+                <fullName>Incremental turnover &gt;40M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -722,6 +722,36 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Fees_To_Be_Paid_In_Current_FY_Agency__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+OR(
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;),
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Draft - with Unilever&quot;),
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
+), &quot;---&quot;, &quot;€&quot;&amp;
+
+IF(
+  Value_to_be_paid_in_Current_FY__c  &gt;= 1000000,
+TEXT(ROUND(Value_to_be_paid_in_Current_FY__c/ 1000000, 0)) &amp; &quot;,&quot;,
+&quot;&quot;
+) &amp;
+IF(
+Value_to_be_paid_in_Current_FY__c&gt;= 1000,
+RIGHT(TEXT(ROUND(Value_to_be_paid_in_Current_FY__c / 1000, 0)), 3) &amp; &quot;,&quot;,
+&quot;&quot;
+) &amp;
+RIGHT(TEXT(ROUND(Value_to_be_paid_in_Current_FY__c, 0)), 3)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fees To Be Paid In Current FY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Fees_To_Be_Paid_Next_Financial_Year__c</fullName>

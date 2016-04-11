@@ -63,23 +63,43 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             campaignHelper.selectedProject.Selected_Countries__c = addSpacesInCSV(campaignHelper.selectedProject.Selected_Countries__c);
         }
 
-        //Prepare a list of up to 3 first clusters and/or countries
-        List<String> first3Countries = new List<String>();
-        Integer countryCounter = 0;
-        System.debug('Selected Countries: ' + campaignHelper.selectedProject.Selected_Countries__c);
-        for(String country : campaignHelper.selectedProject.Selected_Countries__c.split('[/,]')){
-            first3Countries.add(country.trim());
-            countryCounter++;
-            if (countryCounter >= 3) {
-                break;
-            }
-        }
-        campaignHelper.selectedProject.First_3_selected_countries__c = String.join(first3Countries, ', ');
+        campaignHelper.selectedProject.First_3_selected_countries__c = getFirst3Countries(campaignHelper.selectedProject.Selected_Countries__c);
+        
         System.debug('First 3 Selected Countries: ' + campaignHelper.selectedProject.First_3_selected_countries__c);
 
         System.DEBUG('Set Changes Countries : ' + campaignHelper.selectedProject.Campaign_Countries__c);
         System.DEBUG('Set Changes Region : ' + campaignHelper.selectedProject.OblixRegion__c);
         setCampaignScaleOne(selectedMainRegions, tempCountries);
+    }
+
+
+    private String getFirst3Countries(String selectedCountries) {
+        String result = '';
+
+        Integer clusterCount = -1;
+        if (selectedCountries.contains('/')) {
+            String clusterString = selectedCountries.split('/')[0];
+            clusterCount = clusterString.split(',').size();
+        }
+
+        //Prepare a list of up to 3 first clusters and/or countries
+        List<String> first3Countries = new List<String>();
+        Integer countryCounter = 0;
+        System.debug('Selected Countries: ' + selectedCountries);
+        for(String country : selectedCountries.split('[/,]')){
+            if (countryCounter == clusterCount) {
+                result += '/';
+            } else if (countryCounter > 0) {
+                result += ', ';
+            }
+            result += country.trim();
+            countryCounter++;
+            if (countryCounter >= 3) {
+                break;
+            }
+        }
+
+        return result;
     }
 
 
@@ -141,17 +161,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         campaignHelper.selectedProject.Campaign_Countries__c = 'Global';
         campaignHelper.selectedProject.Selected_Countries__c = campaignHelper.selectedProject.Campaign_Countries__c;
 
-        //Prepare a list of up to 3 first clusters and/or countries
-        List<String> first3Countries = new List<String>();
-        Integer countryCounter = 0;
-        for(String country : campaignHelper.selectedProject.Selected_Countries__c.split('[/,]')){
-            first3Countries.add(country.trim());
-            countryCounter++;
-            if (countryCounter >= 3) {
-                break;
-            }
-        }
-        campaignHelper.selectedProject.First_3_selected_countries__c = String.join(first3Countries, ', ');
+        campaignHelper.selectedProject.First_3_selected_countries__c = getFirst3Countries(campaignHelper.selectedProject.Selected_Countries__c);
     }
 
     public void setCampaignScale() {

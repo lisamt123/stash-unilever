@@ -196,14 +196,21 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     public PageReference AdjustFee(){
         selected_project.Percentage_of_Fee_for_this_FY__c = PercentToAdjust;
         selected_project.Value_To_BePaid_Manual_Override__c = true;
+
+        selected_project.Stage_Completed_CFY__c = stage_identifier_pop_up.s_selected_completed_stage;
+        selected_project.Stage_Projected_CFY__c = stage_identifier_pop_up.s_selected_projected_stage;
+
         system.debug('###PercentToAdjust : '+PercentToAdjust);
         system.debug('###selected_project.Percentage_of_Fee_for_this_FY__c : '+selected_project.Percentage_of_Fee_for_this_FY__c);
         update selected_project;
+        
+        /* Doesn't make sense
         // query the selected_project in scope from the super class
         selected_project = getCampaign(project_id, Oblix_Utils.getAllFieldsInFieldsSet('Oblix_SOW_Projects__c','Oblix_Campaign_Summary'), ', (SELECT OblixCountry__r.Name, Percentage__c FROM Marketing_SOW_Project_Splits__r)');
         system.debug('###selected_project.Value_to_be_paid_in_Current_FY__c : '+selected_project.Value_to_be_paid_in_Current_FY__c);
         stage_identifier = new Oblix_CampaignStageLogic(selected_project,Integer.valueof(PercentToAdjust), can_edit, can_edit);
-        
+        */
+
         PageReference meNewPage = Page.oblix_campaignsummary;
                  meNewPage.getParameters().put('projectId', selected_project.Id);
                  meNewPage.setRedirect(True);
@@ -222,8 +229,14 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
 
             selected_project.Stage_Completed_CFY__c = stage_identifier_pop_up.s_selected_completed_stage;
             selected_project.Stage_Projected_CFY__c = stage_identifier_pop_up.s_selected_projected_stage;
-            
-            selected_project.Percentage_of_Fee_for_this_FY__c = stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year;
+
+            if ((stage_identifier_pop_up.b_manual_override_on && stage_identifier_pop_up.cancelCampaignManualPercent != selected_project.Percentage_of_Fee_for_this_FY__c) || 
+                (!stage_identifier_pop_up.b_manual_override_on && stage_identifier_pop_up.cancelCampaignManualPercent != stage_identifier_pop_up.i_agency_Percentage_of_fees_this_year)) {
+                
+                selected_project.Value_To_BePaid_Manual_Override__c = true;
+            }
+
+            selected_project.Percentage_of_Fee_for_this_FY__c = stage_identifier_pop_up.cancelCampaignManualPercent;
             selected_project.Campaign_Status__c = Oblix_Utils.CAMPAIGN_STATUS_CANCELLED;
 
             update selected_project;
@@ -238,9 +251,13 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
             return null;
 
         }
+    }
 
-        
-
+    public PageReference refreshPopUpStageIdentifier() {
+        stage_identifier_pop_up.sow_project_in_scope.Stage_Projected_CFY__c = stage_identifier.sow_project_in_scope.Stage_Projected_CFY__c;
+        stage_identifier_pop_up.sow_project_in_scope.Stage_Completed_CFY__c = stage_identifier.sow_project_in_scope.Stage_Completed_CFY__c;
+        stage_identifier_pop_up.initStages();
+        return null;
     }
 
 }
