@@ -328,14 +328,14 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         //Existing Regional/Local Rollouts
                         if(mapIPMCountries.get(country.ISO_3166_1_Code__c).IPM_Local_Project__c != null)
                         {
-                            countryWrapper.noRolloutDisabled = true;
+                            //countryWrapper.noRolloutDisabled = true;
                             if(mapIPMCountries.get(country.ISO_3166_1_Code__c).IPM_Rollout_Status__c.equalsIgnoreCase(IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE))
                             {
-                                countryWrapper.mcoDisabled = true;
+                                //countryWrapper.mcoDisabled = true;
                             }
                             else if(mapIPMCountries.get(country.ISO_3166_1_Code__c).IPM_Rollout_Status__c.equalsIgnoreCase(IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO))
                             {
-                                countryWrapper.countryDisabled = true;
+                                //countryWrapper.countryDisabled = true; 
                             }
                         }
                         
@@ -401,7 +401,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                                                           FROM IPM_Project_Rollout__c 
                                                           WHERE Regional_Project__c=:project.Id AND isActive__c = true 
                                                           LIMIT 10000];
-                if(lstRegionalRollout != null)
+                if(lstRegionalRollout != null && !lstRegionalRollout.isempty())
                 {
                     selectedCluster = lstRegionalRollout [0].Market_Cluster__c;
                 }               
@@ -884,20 +884,41 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         }
         if(!deleteRolloutsMap.isEmpty())
         {
+            Set<Id> localRolloutProjectIds = new Set<Id>();
+            
             Map<Id,IPM_Project_Rollout__c> filteredDeleteRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
             // Rollouts that might have deleted as part of Trigger Logic of updating Key Rollouts To Non Keys.
-            List<IPM_Project_Rollout__c> rolloutListToDelete = [Select Id,IPM_Rollout_Project__c,IPM_CharterApproved__c,isActive__c from IPM_Project_Rollout__c where IPM_Rollout_Project__c in :deleteRolloutsMap.KeySet() AND isActive__c = true ];
+            List<IPM_Project_Rollout__c> rolloutListToDelete = [Select Id,Name,Local_Project__c,IPM_Rollout_Project__c,IPM_CharterApproved__c,isActive__c from IPM_Project_Rollout__c where IPM_Rollout_Project__c  in :deleteRolloutsMap.KeySet() AND isActive__c = true  ];
+            
             for(IPM_Project_Rollout__c rollout : rolloutListToDelete)
             {
-                if(rollout.IPM_CharterApproved__c)
-                {
+                if(rollout.IPM_CharterApproved__c || rollout.Local_Project__c!=null)
+                 {
+                    localRolloutProjectIds.add( rollout.Local_Project__c);
                     rollout.isActive__c = false;
                     mapUpsertRollouts.put(rollout.IPM_Rollout_Project__c,rollout);
-                }
-                else
-                {
+                 }
+                 else
+                 {
                     filteredDeleteRolloutMap.put(rollout.Id,rollout);
-                }
+                 }
+                 
+            }
+            
+            
+            List<IPM_Project__c> toBeArchievedRolloutProjects =[Select Id,Is_Archieved__c,Name from IPM_Project__c where  Id IN :localRolloutProjectIds];
+            
+            
+            if(toBeArchievedRolloutProjects!=null && !toBeArchievedRolloutProjects.isEmpty())
+            {
+              	
+              for(IPM_Project__c rollOutProj : toBeArchievedRolloutProjects) 
+              {
+                rollOutProj.Is_Archieved__c=true; 
+              }
+             
+            update   toBeArchievedRolloutProjects ;
+              
             }
             delete filteredDeleteRolloutMap.values(); 
         }

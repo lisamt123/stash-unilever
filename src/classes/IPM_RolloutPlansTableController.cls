@@ -937,13 +937,24 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     {
         try
         {
-            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id,IPM_CharterApproved__c from IPM_Project_Rollout__c where Id = :selectedMCORollout ];
+            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id,Local_Project__c,IPM_CharterApproved__c from IPM_Project_Rollout__c where Id = :selectedMCORollout ];
+            
             if(!deleteRolloutList.isEmpty())
             {
-                if(deleteRolloutList[0].IPM_CharterApproved__c)
+                if(deleteRolloutList[0].IPM_CharterApproved__c||deleteRolloutList[0].Local_Project__c!=null)
                 {
                     deleteRolloutList[0].isActive__c = false; 
                     update deleteRolloutList[0];
+                    
+                    if(deleteRolloutList[0].Local_Project__c!=null)
+                    {
+                    	
+                      IPM_Project__c toBeArchievedProject = new IPM_Project__c();
+                      toBeArchievedproject.Id=deleteRolloutList[0].Local_Project__c;
+                      toBeArchievedproject.Is_Archieved__c=true;
+                      update toBeArchievedProject;
+                    
+                    }
                 }
                 else
                 {

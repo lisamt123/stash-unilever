@@ -24,6 +24,7 @@ public with sharing class IPM_ProjectHelper
     public static final String DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId(); 
     public static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId(); 
     
+    private static final String START_Msg='Started as project is unarchieved.';
     // Query Additional Parameters
     public static final String LIMIT_CLAUSE_STR = ' limit 50000 '; 
     public static final String WHERE_CLAUSE_STR = ' where ipm_project__c in :resultantprojectids ';
@@ -1629,5 +1630,360 @@ public with sharing class IPM_ProjectHelper
             SKIP_TRIGGER_EXECUTION = false;
         }
     }
-    
+    /***********************************************************************
+    @Description : when project is stopped its child projects should be stopped and country, rollout, financials should  be made inactive
+    @param: Set<Id> stoppedProjectMap
+    @Release:1.2
+    **********************************************************************/
+    public static void updateStoppedProject(map<Id,String> stoppedProjectMap)
+	{
+		map<Id,String> stoppedProjectWithCommentMap =  stoppedProjectMap;
+		set<Id> projectIdSet = stoppedProjectMap.keySet();
+		map<Id,IPM_Project__c> updateProjectMap =  new map<Id,IPM_Project__c>();
+		map<Id,IPM_Project_Document__c> updateProjectDocumentMap =  new map<Id,IPM_Project_Document__c>();
+		map<Id,IPM_Task__c> updateProjectTasksMap =  new map<Id,IPM_Task__c>();
+		map<Id,IPM_Country__c> updateContryMap =  new map<Id,IPM_Country__c>();
+		map<Id,IPM_Project_Rollout__c> updateRolloutMap =  new map<Id,IPM_Project_Rollout__c>();
+		map<Id,IPM_Financial__c> updateFinancialMap =  new map<Id,IPM_Financial__c>();
+		Date dt=date.parse(System.today().format());
+		
+		list<IPM_Project__c> projectList =  [SELECT Id,IPM_Parent_Project__c,Is_Archieved__c,IPM_Stopped_Date_Time__c,IPM_Stopped_By__c,IPM_Stopped_Comments__c,IPM_Current_Document_Status__c,IPM_Document_Update_Comments__c,IPM_Parent_Project__r.IPM_Parent_Project__c,
+											(SELECT id,IPM_Stopped_Date__c,IPM_Updated_User_By__c,IPM_Stopped_Comments__c,IPM_Document_Status__c From Project_Documents__r limit 10000),
+											(SELECT id,isActive__c from IPM_Countries__r where isActive__c=TRUE limit 10000),
+											(SELECT id,isActive__c from IPM_Countries1__r where isActive__c=TRUE limit 10000),
+											(SELECT id,isActive__c from IPM_Countries2__r where isActive__c=TRUE limit 10000),
+											(SELECT id,isActive__c from IPM_Project_Rollout__r where isActive__c=TRUE limit 10000),
+											(SELECT id,isActive__c from Regional_Project_Rollout__r where isActive__c=TRUE limit 10000),
+											(SELECT id,isActive__c from Local_Project_Rollout__r where isActive__c=TRUE limit 10000),
+											(SELECT id,isActive__c from IPM_Financials_Consolidated__r where isActive__c=TRUE limit 10000),
+											(SELECT id,isActive__c from IPM_Financials_Regional__r where isActive__c=TRUE limit 10000),
+											(SELECT id,isActive__c from IPM_Financials_Local__r where isActive__c=TRUE limit 10000),
+											(SELECT id,IPM_Completed__c,IPM_AutoCompletedBySystem__c FROM Tasks__r where IPM_Active__c=TRUE AND IPM_Completed__c=FALSE limit 10000)
+											FROM IPM_Project__c 
+											WHERE (Id IN : projectIdSet OR IPM_Parent_Project__c IN : projectIdSet OR IPM_Parent_Project__r.IPM_Parent_Project__c IN : projectIdSet )limit 10000];
+		system.debug('projectList==>'+projectList);
+		for(IPM_Project__c project : projectList)
+		{	
+			string stopMsg = IPM_ConstantUtils.BLANK;
+			if(stoppedProjectWithCommentMap.containsKey(project.id) && String.IsNotBlank(stoppedProjectWithCommentMap.get(project.id)) )
+			{
+					stopMsg = stoppedProjectWithCommentMap.get(project.id);
+			}else if(stoppedProjectWithCommentMap.containsKey(project.IPM_Parent_Project__c) && String.IsNotBlank(stoppedProjectWithCommentMap.get(project.IPM_Parent_Project__c)))
+			{
+					stopMsg = stoppedProjectWithCommentMap.get(project.IPM_Parent_Project__c);
+			}else if(stoppedProjectWithCommentMap.containsKey(project.IPM_Parent_Project__r.IPM_Parent_Project__c) && String.IsNotBlank(stoppedProjectWithCommentMap.get(project.IPM_Parent_Project__r.IPM_Parent_Project__c)))
+			{
+					stopMsg = stoppedProjectWithCommentMap.get(project.IPM_Parent_Project__r.IPM_Parent_Project__c);
+			}
+			 
+			//update all child projects as stopped
+			if(!project.Is_Archieved__c && !updateProjectMap.containsKey(project.id))
+			{
+				project.Is_Archieved__c =  true;
+				project.IPM_Stopped_Date_Time__c=System.now();
+	            project.IPM_Stopped_By__c=UserInfo.getUserId();
+	            project.IPM_Stopped_Comments__c = stopMsg;
+	            project.IPM_Current_Document_Status__c = IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED;
+	            project.IPM_Document_Update_Comments__c = stopMsg;
+				updateProjectMap.put(project.id,project);
+			}
+			//update project document as stopped
+			for(IPM_Project_Document__c projDoc : project.Project_Documents__r)
+			{
+				if(!updateProjectDocumentMap.containsKey(projDoc.id))
+				{	
+					projDoc.IPM_Stopped_Date__c = dt;
+            		projDoc.IPM_Updated_User_By__c = UserInfo.getUserId();
+            		projDoc.IPM_Stopped_Comments__c = stopMsg;
+            		projDoc.IPM_Document_Status__c = IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED;
+            		updateProjectDocumentMap.put(projDoc.id,projDoc);
+				}
+			}
+			//update task as completed
+			for(IPM_Task__c projTask : project.Tasks__r)
+			{
+				if(!updateProjectTasksMap.containsKey(projTask.id))
+				{	
+					projTask.IPM_Completed__c = true;
+			        projTask.IPM_AutoCompletedBySystem__c = true;
+			        updateProjectTasksMap.put(projTask.id,projTask);
+				}
+			}
+			//update all contries for the stopped projects as inactive
+			for(IPM_Country__c globalCountry : project.IPM_Countries__r)
+			{
+				if(globalCountry.isActive__c && !updateContryMap.containsKey(globalCountry.id))
+				{	
+					globalCountry.isActive__c =  false;
+					updateContryMap.put(globalCountry.id,globalCountry);
+				}
+			}
+			for(IPM_Country__c regCountry : project.IPM_Countries1__r)
+			{
+				if(regCountry.isActive__c && !updateContryMap.containsKey(regCountry.id))
+				{	
+					regCountry.isActive__c =  false;
+					updateContryMap.put(regCountry.id,regCountry);
+				}
+			}
+			for(IPM_Country__c localCountry : project.IPM_Countries2__r)
+			{
+				if(localCountry.isActive__c && !updateContryMap.containsKey(localCountry.id))
+				{	
+					localCountry.isActive__c =  false;
+					updateContryMap.put(localCountry.id,localCountry);
+				}
+			}
+			//update all rollout for the stopped projects as inactive
+			for(IPM_Project_Rollout__c globalRollout : project.IPM_Project_Rollout__r)
+			{
+				if(globalRollout.isActive__c && !updateRolloutMap.containsKey(globalRollout.id))
+				{	
+					globalRollout.isActive__c =  false;
+					updateRolloutMap.put(globalRollout.id,globalRollout);
+				}
+			}
+			for(IPM_Project_Rollout__c regRollout : project.Regional_Project_Rollout__r)
+			{
+				if(regRollout.isActive__c && !updateRolloutMap.containsKey(regRollout.id))
+				{	
+					regRollout.isActive__c =  false;
+					updateRolloutMap.put(regRollout.id,regRollout);
+				}
+			}
+			for(IPM_Project_Rollout__c localRollout : project.Local_Project_Rollout__r)
+			{
+				if(localRollout.isActive__c && !updateRolloutMap.containsKey(localRollout.id))
+				{	
+					localRollout.isActive__c =  false;
+					updateRolloutMap.put(localRollout.id,localRollout);
+				}
+			}
+			//update all financials for the stopped projects as inactive
+			for(IPM_Financial__c globalFin : project.IPM_Financials_Consolidated__r)
+			{
+				if(globalFin.isActive__c && !updateFinancialMap.containsKey(globalFin.id))
+				{	
+					globalFin.isActive__c =  false;
+					updateFinancialMap.put(globalFin.id,globalFin);
+				}
+			}
+			for(IPM_Financial__c regFin : project.IPM_Financials_Regional__r)
+			{
+				if(regFin.isActive__c && !updateFinancialMap.containsKey(regFin.id))
+				{	
+					regFin.isActive__c =  false;
+					updateFinancialMap.put(regFin.id,regFin);
+				}
+			}
+			for(IPM_Financial__c localFin : project.IPM_Financials_Local__r)
+			{
+				if(localFin.isActive__c && !updateFinancialMap.containsKey(localFin.id))
+				{	
+					localFin.isActive__c =  false;
+					updateFinancialMap.put(localFin.id,localFin);
+				}
+			}
+		}
+		
+		if(!updateProjectDocumentMap.isEmpty())
+		{
+			update updateProjectDocumentMap.values();
+		}
+		if(!updateProjectTasksMap.isEmpty())
+		{
+			update updateProjectTasksMap.values();
+		}
+		if(!updateContryMap.isEmpty())
+		{
+			update updateContryMap.values();
+		}
+		if(!updateFinancialMap.isEmpty())
+		{
+			update updateFinancialMap.values();
+		}
+		if(!updateRolloutMap.isEmpty())
+		{
+			update updateRolloutMap.values();
+		}
+		if(!updateProjectMap.isEmpty())
+		{
+			update updateProjectMap.values();
+		}
+		
+		IPM_ProjectHandler.stopProjExecute = false;
+	}
+	
+	    /***********************************************************************
+    @Description : when project is started ,its child projects should be started and country, rollout, financials should  be  made active
+    @param: Set<Id> projectIdSet
+    @Release:1.2
+    **********************************************************************/
+    public static void restartProject(Set<Id> projectIdSet) 
+	{
+		map<Id,IPM_Project__c> updateProjectMap =  new map<Id,IPM_Project__c>();
+		map<Id,IPM_Project_Document__c> updateProjectDocumentMap =  new map<Id,IPM_Project_Document__c>();
+		map<Id,IPM_Task__c> updateProjectTasksMap =  new map<Id,IPM_Task__c>();
+		map<Id,IPM_Country__c> updateContryMap =  new map<Id,IPM_Country__c>();
+		map<Id,IPM_Project_Rollout__c> updateRolloutMap =  new map<Id,IPM_Project_Rollout__c>();
+		map<Id,IPM_Financial__c> updateFinancialMap =  new map<Id,IPM_Financial__c>();
+		Date dt=date.parse(System.today().format());
+		
+		list<IPM_Project__c> projectList =  [SELECT Id,IPM_Parent_Project__c,Is_Archieved__c,IPM_Project_Start_Date__c,IPM_Stopped_Date_Time__c,IPM_Stopped_By__c,IPM_Stopped_Comments__c,IPM_Current_Document_Status__c,IPM_Document_Update_Comments__c,IPM_Parent_Project__r.IPM_Parent_Project__c,
+											(SELECT id,IPM_Stopped_Date__c,IPM_Updated_User_By__c,IPM_Stopped_Comments__c,IPM_Document_Status__c From Project_Documents__r limit 10000),
+											(SELECT id,isActive__c from IPM_Countries__r where isActive__c=false limit 10000),
+											(SELECT id,isActive__c from IPM_Countries1__r where isActive__c=false limit 10000),
+											(SELECT id,isActive__c from IPM_Countries2__r where isActive__c=false limit 10000),
+											(SELECT id,isActive__c from IPM_Project_Rollout__r where isActive__c=false limit 10000),
+											(SELECT id,isActive__c from Regional_Project_Rollout__r where isActive__c=false limit 10000),
+											(SELECT id,isActive__c from Local_Project_Rollout__r where isActive__c=false limit 10000),
+											(SELECT id,isActive__c from IPM_Financials_Consolidated__r where isActive__c=false limit 10000),
+											(SELECT id,isActive__c from IPM_Financials_Regional__r where isActive__c=false limit 10000),
+											(SELECT id,isActive__c from IPM_Financials_Local__r where isActive__c=false limit 10000),
+											(SELECT id,IPM_Completed__c,IPM_AutoCompletedBySystem__c FROM Tasks__r where IPM_Active__c=false AND IPM_Completed__c=false limit 10000)
+											FROM IPM_Project__c 
+											WHERE (Id IN : projectIdSet OR IPM_Parent_Project__c IN : projectIdSet OR IPM_Parent_Project__r.IPM_Parent_Project__c IN : projectIdSet )limit 10000];
+		system.debug('projectList==>'+projectList);
+		for(IPM_Project__c project : projectList)
+		{	
+			 
+			//update all child projects as not archieved
+			if(project.Is_Archieved__c && !updateProjectMap.containsKey(project.id))
+			{
+				project.Is_Archieved__c =  false;
+				project.IPM_Stopped_Date_Time__c=null;
+				project.IPM_Stopped_By__c=null;
+				project.IPM_Stopped_Comments__c = null;
+				project.IPM_Project_Start_Date__c=System.Today();
+	            project.IPM_Current_Document_Status__c = IPM_ConstantUtils.STATUS_STARTED;
+	            project.IPM_Document_Update_Comments__c = START_Msg;
+				updateProjectMap.put(project.id,project);
+				
+			}
+			//update project document as started
+			for(IPM_Project_Document__c projDoc : project.Project_Documents__r)
+			{
+				if(!updateProjectDocumentMap.containsKey(projDoc.id))
+				{	
+					projDoc.IPM_Stopped_Date__c = null;
+            		projDoc.IPM_Updated_User_By__c = UserInfo.getUserId();
+            		projDoc.IPM_Stopped_Comments__c = null;
+            		projDoc.IPM_Document_Status__c = IPM_ConstantUtils.STATUS_STARTED;
+            		updateProjectDocumentMap.put(projDoc.id,projDoc);
+				}
+			}
+			//update task as incomplete
+			for(IPM_Task__c projTask : project.Tasks__r)
+			{
+				if(!updateProjectTasksMap.containsKey(projTask.id))
+				{	
+					projTask.IPM_Completed__c = false;
+			        projTask.IPM_AutoCompletedBySystem__c = false;
+			        updateProjectTasksMap.put(projTask.id,projTask);
+				}
+			}
+			//update all contries for the stopped projects as active
+			for(IPM_Country__c globalCountry : project.IPM_Countries__r)
+			{
+				if(!globalCountry.isActive__c && !updateContryMap.containsKey(globalCountry.id))
+				{	
+					globalCountry.isActive__c =  true;
+					updateContryMap.put(globalCountry.id,globalCountry);
+				}
+			}
+			for(IPM_Country__c regCountry : project.IPM_Countries1__r)
+			{
+				if(!regCountry.isActive__c && !updateContryMap.containsKey(regCountry.id))
+				{	
+					regCountry.isActive__c =  true;
+					updateContryMap.put(regCountry.id,regCountry);
+				}
+			}
+			for(IPM_Country__c localCountry : project.IPM_Countries2__r)
+			{
+				if(!localCountry.isActive__c && !updateContryMap.containsKey(localCountry.id))
+				{	
+					localCountry.isActive__c =  true;
+					updateContryMap.put(localCountry.id,localCountry);
+				}
+			}
+			//update all rollout for the started projects as active
+			for(IPM_Project_Rollout__c globalRollout : project.IPM_Project_Rollout__r)
+			{
+				if(!globalRollout.isActive__c && !updateRolloutMap.containsKey(globalRollout.id))
+				{	
+					globalRollout.isActive__c =  true;
+					updateRolloutMap.put(globalRollout.id,globalRollout);
+				}
+			}
+			for(IPM_Project_Rollout__c regRollout : project.Regional_Project_Rollout__r)
+			{
+				if(!regRollout.isActive__c && !updateRolloutMap.containsKey(regRollout.id))
+				{	
+					regRollout.isActive__c =  true;
+					updateRolloutMap.put(regRollout.id,regRollout);
+				}
+			}
+			for(IPM_Project_Rollout__c localRollout : project.Local_Project_Rollout__r)
+			{
+				if(!localRollout.isActive__c && !updateRolloutMap.containsKey(localRollout.id))
+				{	
+					localRollout.isActive__c =  true;
+					updateRolloutMap.put(localRollout.id,localRollout);
+				}
+			}
+			//update all financials for the stopped projects as inactive
+			for(IPM_Financial__c globalFin : project.IPM_Financials_Consolidated__r)
+			{
+				if(!globalFin.isActive__c && !updateFinancialMap.containsKey(globalFin.id))
+				{	
+					globalFin.isActive__c =  true;
+					updateFinancialMap.put(globalFin.id,globalFin);
+				}
+			}
+			for(IPM_Financial__c regFin : project.IPM_Financials_Regional__r)
+			{
+				if(!regFin.isActive__c && !updateFinancialMap.containsKey(regFin.id))
+				{	
+					regFin.isActive__c =  true;
+					updateFinancialMap.put(regFin.id,regFin);
+				}
+			}
+			for(IPM_Financial__c localFin : project.IPM_Financials_Local__r)
+			{
+				if(!localFin.isActive__c && !updateFinancialMap.containsKey(localFin.id))
+				{	
+					localFin.isActive__c =  true;
+					updateFinancialMap.put(localFin.id,localFin);
+				}
+			}
+		}
+		
+		if(!updateProjectDocumentMap.isEmpty())
+		{
+			update updateProjectDocumentMap.values();
+		}
+		if(!updateProjectTasksMap.isEmpty())
+		{
+			update updateProjectTasksMap.values();
+		}
+		if(!updateContryMap.isEmpty())
+		{
+			update updateContryMap.values();
+		}
+		if(!updateFinancialMap.isEmpty())
+		{
+			update updateFinancialMap.values();
+		}
+		if(!updateRolloutMap.isEmpty())
+		{
+			update updateRolloutMap.values();
+		}
+		if(!updateProjectMap.isEmpty())
+		{
+			update updateProjectMap.values();
+		}
+		
+		IPM_ProjectHandler.stopProjExecute = false;
+	}
 }
