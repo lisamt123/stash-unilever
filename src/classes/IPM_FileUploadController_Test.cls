@@ -8,38 +8,38 @@ private class IPM_FileUploadController_Test
 {    
   private static string RECORD_NOT_SAVED_SUCCESSFULLY='records are not saved successfully';
     /*******************************************************************************************************
-    * @description	Test Method to IPM_FileUploadController methods
+    * @description  Test Method to IPM_FileUploadController methods
     */
     Static testMethod void testImageUpload()
     {
         
         
-       	user loginUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER); 
+         user loginUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER); 
         
         List<User>userLists=[SELECT lastname FROM user WHERE id=:loginUser.id LIMIT 1];
         System.AssertEquals(userLists[0].lastname, loginUser.lastname,RECORD_NOT_SAVED_SUCCESSFULLY);//positive test
        
         system.runAs(loginUser){
-	        //Insert Bosscard
-	        IPM_Bosscard__c boss= IPM_TestFactory_Helper.createIPMBosscard(FALSE);
-	        boss.IPM_BosscardName__c='Test Boss';
-	        boss.IPM_Bosscard_Status__c='In Progress';
-	        insert boss;
-	        List<IPM_Bosscard__c>bossList=[SELECT IPM_Bosscard_Status__c FROM IPM_Bosscard__c WHERE ID=:boss.id LIMIT 1];
+          //Insert Bosscard
+          IPM_Bosscard__c boss= IPM_TestFactory_Helper.createIPMBosscard(FALSE);
+          boss.IPM_BosscardName__c='Test Boss';
+          boss.IPM_Bosscard_Status__c='In Progress';
+          insert boss;
+          List<IPM_Bosscard__c>bossList=[SELECT IPM_Bosscard_Status__c FROM IPM_Bosscard__c WHERE ID=:boss.id LIMIT 1];
         System.AssertEquals(bossList[0].IPM_Bosscard_Status__c,boss.IPM_Bosscard_Status__c, RECORD_NOT_SAVED_SUCCESSFULLY); //Positive test
-	       
-	        
-	        //Insert Project
-	        //IPM_Project__c proj=new IPM_Project__c(); 
-	        IPM_Project__c proj = IPM_TestFactory_Helper.createIPMProject(FALSE);
-	        proj.IPM_Project_Name__c='TestProjectName';
-	        proj.IPM_Bosscard__c=boss.Id;
-	        insert proj;
-	        ID projetId=proj.id;
-	        List<IPM_Project__c>projectList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE ID=:proj.id LIMIT 1];
+         
+          
+          //Insert Project
+          //IPM_Project__c proj=new IPM_Project__c(); 
+          IPM_Project__c proj = IPM_TestFactory_Helper.createIPMProject(FALSE);
+          proj.IPM_Project_Name__c='TestProjectName';
+          proj.IPM_Bosscard__c=boss.Id;
+          insert proj;
+          ID projetId=proj.id;
+          List<IPM_Project__c>projectList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE ID=:proj.id LIMIT 1];
         System.AssertEquals(projectList[0].IPM_Project_Name__c,proj.IPM_Project_Name__c, RECORD_NOT_SAVED_SUCCESSFULLY); //Positive test
-	    
-		    PageReference pg = Page.IPM_FileUpload;
+      
+        PageReference pg = Page.IPM_FileUpload;
         pg.getParameters().put(IPM_ConstantUtils.SF_ID, proj.id);
         pg.getParameters().put(IPM_ConstantUtils.SF_PROJ_DOC_SEC_ID, proj.id);
         pg.getParameters().put(IPM_ConstantUtils.SF_SECTION_TYPE, 'test type');

@@ -6,11 +6,9 @@
 @isTest
 private class IPM_ObjHistoryComponentController_Test{    
     private static IPM_Project__c project;// Project object initialization
-    private static IPM_Project_Document__c projDoc;
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static List<user>userList=new List<user>();
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
-    private static List<SelectOption> secOpt=new List<SelectOption>();
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
     private static PageReference  pRef;
     private static IPM_ObjectAllHistoryComponentController objHistoryALL;
@@ -22,8 +20,7 @@ private class IPM_ObjHistoryComponentController_Test{
     private static IPM_Project_Document_Section_Content__c projectDocSecConListObj=new IPM_Project_Document_Section_Content__c();
     private static User globalUser;
     
-    private static IPM_Project_Document_Section__c docSec;
-    private static IPM_Project_Document__c document;
+    public static IPM_Project_Document_Section__c docSec;
     private static final String TEST_SUMMARY = 'Setup the History data';
    
     private static final String TEST_DATA = 'TEST DATA';
@@ -69,7 +66,6 @@ private class IPM_ObjHistoryComponentController_Test{
                 System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
             }
             
-            document=projDocList[0];
             projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
             where IPM_Project_Document__c=:projDocList[0].Id];
             

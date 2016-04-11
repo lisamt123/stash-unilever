@@ -143,7 +143,7 @@ private class IPM_ProjectCountryDetails_Test {
             test.stopTest();
                
             IPM_Project__c updatedproj = [Select Id,First_Sync_To_EcoDesign__c,EcoDesign_Sync_Status__c from IPM_Project__c Limit 1][0];
-            System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c);
+            System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c,'Ecodesign sync status not set to Ready');
                 
         }
     }
@@ -262,7 +262,7 @@ private class IPM_ProjectCountryDetails_Test {
             System.assert(tempCountryList.size()==3,'Country Not deleted');
             
             IPM_Project__c updatedproj = [Select Id,First_Sync_To_EcoDesign__c,EcoDesign_Sync_Status__c from IPM_Project__c Where Id =:toUpdateProjList[0].Id limit 1][0];
-            System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c);
+            System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c,'ecodesign sync status not set to Ready');
             test.stopTest();
             
         }
@@ -335,7 +335,7 @@ private class IPM_ProjectCountryDetails_Test {
                 
             insert countryList;
             IPM_Project__c updatedproj = [Select Id,First_Sync_To_EcoDesign__c,EcoDesign_Sync_Status__c from IPM_Project__c Where Id =:toUpdateProjList[0].Id limit 1][0];
-            System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c);
+            System.assertEquals('Ready',updatedproj.EcoDesign_Sync_Status__c,'ecodesign sync status not set to Ready');
             test.stopTest();
         }
     }

@@ -5,10 +5,6 @@
 */
 @isTest
 private class IPM_Approverlist_Test { 
-
-    private static id sf_Id; 
-    private static String BossCardInserted = 'The Bosscard inserted';
-    private static String BossCardupdated = 'The Bosscard Updated';
     private static final string IPMUSER_LASTNAME='IPMUSER_LASTNAME';
     private static final string PLATFORM_LASTNAME='PLATFORM_USER';
     private static IPM_Bosscard__c boss = new IPM_Bosscard__c();
@@ -21,8 +17,6 @@ private class IPM_Approverlist_Test {
      * @Description: Test data initilaization
      * ***********************************************/
     @TestSetup static void initializeData(){
-    
-        
         readUser = IPM_TestFactory_Helper.createUser(false);
         insert readUser;
         List<User>userLists=[SELECT LastName FROM user WHERE id=:readUser.id LIMIT 1];

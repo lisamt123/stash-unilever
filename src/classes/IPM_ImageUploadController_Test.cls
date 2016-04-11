@@ -22,9 +22,7 @@ private class IPM_ImageUploadController_Test
         plUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);
         
         List<User>userList=[SELECT lastName FROM user WHERE id=:plUser.id LIMIT 1];
-        System.AssertEquals(userList[0].lastName, plUser.lastName,'user lastName is:'+userList[0].lastName);//positive test
-        
-        
+        System.AssertEquals(userList[0].lastName, plUser.lastName,'user lastName is mismatch :'+userList[0].lastName);//positive test
          
         //run as project leader
         system.runAs(plUser){
@@ -34,7 +32,7 @@ private class IPM_ImageUploadController_Test
             bossCard.IPM_Bosscard_Status__c=IPM_ConstantUtils.STATUS_IN_PROGRESS;
             insert bossCard;
             List<IPM_Bosscard__c>bossList=[SELECT IPM_Bosscard_Status__c FROM IPM_Bosscard__c WHERE ID=:bossCard.id LIMIT 1];
-            System.AssertEquals(bossList[0].IPM_Bosscard_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS, 'Bosscard status is:'+bossList[0].IPM_Bosscard_Status__c); //Positive test
+            System.AssertEquals(bossList[0].IPM_Bosscard_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS, 'Bosscard status is mismatch :'+bossList[0].IPM_Bosscard_Status__c); //Positive test
             
             
             //Insert Project
@@ -45,9 +43,7 @@ private class IPM_ImageUploadController_Test
             insert project;
             List<IPM_Project__c>projList=[SELECT IPM_Bosscard__c FROM IPM_Project__c WHERE id=:project.id LIMIT 1];
             System.AssertEquals(projList[0].IPM_Bosscard__c,bossCard.Id, 'Bosscard id is mismatch :'+projList[0].IPM_Bosscard__c); //Positive test
-            
-            
-           
+
         }
             
     }
@@ -63,13 +59,16 @@ private class IPM_ImageUploadController_Test
         test.startTest();
         system.runAs(plUser)
         {  
+           
             bossCard = [SELECT Id FROM IPM_Bosscard__c LIMIT 1];
             project = [SELECT Id FROM IPM_Project__c WHERE IPM_Bosscard__c=:bossCard.id  LIMIT 1];
-            //upload project logo
+            
+             //upload project logo
             PageReference pg = Page.IPM_ImageUpload;
             Test.setCurrentPageReference(pg);
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, project.id);
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.IPM_IMGUPLOAD_ISPROJECT, IPM_ConstantUtils.IPM_IMGUPLOAD_TRUE);
+            
             imgCtrl=new IPM_ImageUploadController();
             imgCtrl.document.name='Image.jpg'; 
             
@@ -79,16 +78,14 @@ private class IPM_ImageUploadController_Test
             imgCtrl.isValid=true;
             imgCtrl.upload();
             List<IPM_Project__c>projList=[SELECT IPM_Project_Logo_Id__c FROM IPM_Project__c WHERE id=:project.id LIMIT 1];
-            System.AssertEquals(projList[0].IPM_Project_Logo_Id__c,imgCtrl.projects.IPM_Project_Logo_Id__c, 'Project logo should be inserted'+projList[0].IPM_Project_Logo_Id__c); //Positive test
+            System.AssertEquals(projList[0].IPM_Project_Logo_Id__c,imgCtrl.projects.IPM_Project_Logo_Id__c, 'Project logo insertion fails'+projList[0].IPM_Project_Logo_Id__c); //Positive test
             
             //upload invalid image        
             imgCtrl.document.name='InvalidImage';
             imgCtrl.isValid=true;
             imgCtrl.upload();
             List<IPM_Project__c>projLists=[SELECT IPM_Project_Logo_Id__c FROM IPM_Project__c WHERE id=:project.id LIMIT 1];
-            System.AssertEquals(projLists[0].IPM_Project_Logo_Id__c,projList[0].IPM_Project_Logo_Id__c, 'Project logo should be inserted'+projLists[0].IPM_Project_Logo_Id__c); //Negative test
-             
-            
+            System.AssertEquals(projLists[0].IPM_Project_Logo_Id__c,projList[0].IPM_Project_Logo_Id__c, 'Project logo insertion fails'+projLists[0].IPM_Project_Logo_Id__c); //Negative test
             
         } 
         test.stopTest();  
@@ -101,10 +98,12 @@ private class IPM_ImageUploadController_Test
         
         plUser=[SELECT lastName FROM user WHERE lastName=:PLATFORM_USER LIMIT 1];
         System.AssertEquals(plUser.lastName, PLATFORM_USER,'user lastName is not a Platform User:'+plUser.lastName);//positive test
+        
         readUser= IPM_TestFactory_Helper.createUser(false);
         insert readUser;
         List<User>userLists=[SELECT lastName FROM user WHERE id=:readUser.id LIMIT 1];
         System.AssertEquals(userLists[0].lastName, readUser.lastName,'user lastName is mismatch :'+userLists[0].lastName);//positive test
+        
         test.startTest();
         system.runAs(plUser)
         {  
@@ -114,6 +113,7 @@ private class IPM_ImageUploadController_Test
             Test.setCurrentPageReference(pg);
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, project.id);
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.IPM_IMGUPLOAD_ISPROJECT, IPM_ConstantUtils.IPM_IMGUPLOAD_TRUE);
+            
             imgCtrl=new IPM_ImageUploadController();
             imgCtrl.document.name='Images.jpg'; 
             
@@ -123,7 +123,7 @@ private class IPM_ImageUploadController_Test
             imgCtrl.isValid=true;
             imgCtrl.upload();
             List<IPM_Bosscard__c>bossList=[SELECT IPM_Bosscard_Logo_Id__c FROM IPM_Bosscard__c WHERE id=:imgCtrl.projectId LIMIT 1];
-            System.AssertEquals(bossList[0].IPM_Bosscard_Logo_Id__c,imgCtrl.bosscard.IPM_Bosscard_Logo_Id__c, 'bosscard logo should be inserted'+bossList[0].IPM_Bosscard_Logo_Id__c); //Positive test
+            System.AssertEquals(bossList[0].IPM_Bosscard_Logo_Id__c,imgCtrl.bosscard.IPM_Bosscard_Logo_Id__c, 'bosscard logo insertion fails'+bossList[0].IPM_Bosscard_Logo_Id__c); //Positive test
             
             
         } 
@@ -134,7 +134,9 @@ private class IPM_ImageUploadController_Test
             Test.setCurrentPageReference(pg);
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, project.id);
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.IPM_IMGUPLOAD_ISPROJECT, IPM_ConstantUtils.IPM_IMGUPLOAD_TRUE);
+            
             imgCtrl=new IPM_ImageUploadController();
+            
             imgCtrl.document.name='ProImages.jpg'; 
             
             imgCtrl.document.body=Blob.valueof('Invalid testing');

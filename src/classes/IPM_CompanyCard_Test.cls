@@ -58,108 +58,109 @@ private class  IPM_CompanyCard_Test {
         System.assertEquals(userAllList[0].LastName,userLastName,sameName);//positive test
         systemAdimUser=IPM_TestFactory_Helper.createUserAdmin(false);
         system.runAS(systemAdimUser){
-        //Geography for Unilever Cluster
-        mdoGeographyCluster = IPM_TestFactory_Helper.createMDOGeography(false);
-        mdoGeographyCluster.Name = clusterName;
-        mdoGeographyCluster.geography_type__c=IPM_ConstantUtils.IPM_GEOGRAPHY_UNILEVERCLUSTER;
-        mdoGeographyCluster.mdm_id__c=clusterCode;
-        mdoGeographyCluster.Status__c=status;
-        insert mdoGeographyCluster;//insert unilever cluster geography
-          
-        List<MDO_Geography__c> mdoCluster =[SELECT Id,mdm_id__c,Name FROM MDO_Geography__c WHERE id =:mdoGeographyCluster.Id LIMIT 1];
-        system.assertEquals(mdoGeographyCluster.id,mdoCluster[0].Id,equalString+mdoGeographyCluster.id);//positive test
-        system.assertEquals(mdoCluster[0].Name,clusterName,equalString+mdoCluster[0].Name);//positive test
+      //Geography for Unilever Cluster
+      mdoGeographyCluster = IPM_TestFactory_Helper.createMDOGeography(false);
+      mdoGeographyCluster.Name = clusterName;
+      mdoGeographyCluster.geography_type__c=IPM_ConstantUtils.IPM_GEOGRAPHY_UNILEVERCLUSTER;
+      mdoGeographyCluster.mdm_id__c=clusterCode;
+      mdoGeographyCluster.Status__c=status;
+      insert mdoGeographyCluster;//insert unilever cluster geography
         
-        //Geography for MCO
-        mdoGeographyMCO = IPM_TestFactory_Helper.createMDOGeography(false);
-        mdoGeographyMCO.Name = AFRICAEMERGINGMARKETS_STR;
-        mdoGeographyMCO.geography_type__c=IPM_ConstantUtils.COUNTRY_CLUSTER;
-        mdoGeographyMCO.mdm_id__c=mcoMDM;
-        mdoGeographyMCO.parent_L2__c= mdoGeographyCluster.Id;
-        mdoGeographyMCO.parent_id__c= mdoGeographyCluster.Id;
-        mdoGeographyMCO.parent_id__r=mdoGeographyCluster;
-        mdoGeographyMCO.Status__c=status;
-        insert mdoGeographyMCO;//insert mco geography
-        
-        List<MDO_Geography__c> mco =[SELECT Id,mdm_id__c,Name,parent_L2__r.Name,parent_L2__r.mdm_id__c FROM MDO_Geography__c WHERE id =:mdoGeographyMCO.Id LIMIT 1];
-        system.assertEquals(mco[0].Name,AFRICAEMERGINGMARKETS_STR,equalString+mco[0].Name);//positive test
-        system.assertEquals(mco[0].parent_L2__r.Name,clusterName,equalString+mco[0].parent_L2__r.Name); //positive test     
-         
-        //Geography for Country
-        mdoGeographyCountry = IPM_TestFactory_Helper.createMDOGeography(false);
-        mdoGeographyCountry.Name = ANGELO_STR;
-        mdoGeographyCountry.geography_type__c=IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRY;
-        mdoGeographyCountry.mdm_id__c=county_code;
-        mdoGeographyCountry.parent_L2__c=mdoGeographyMCO.Id;
-        mdoGeographyCountry.parent_L2__r=mdoGeographyMCO;
-        mdoGeographyCountry.name_ISO_medium__c=ANGELO_STR;
-        mdoGeographyCountry.name_ISO_short__c=ANGELO_STR;
-        mdoGeographyCountry.name_ISO_office_english__c =ANGELO_STR;
-        mdoGeographyCountry.name_united_nations__c='UIM00009';
-        mdoGeographyCountry.ISO_3166_1_alpha__c='AFG';
-        mdoGeographyCountry.ISO_3166_1_numeric__c='4';
-        mdoGeographyCountry.parent_id__c=mdoGeographyMCO.Id;
-        mdoGeographyCountry.ISO_3166_1_code__c = county_code;
-        mdoGeographyCountry.Status__c=status;
-        insert mdoGeographyCountry;//insert country geography
-        
-        
-        List<MDO_Geography__c> geoCountry =[SELECT Id,Name,parent_L2__r.Name,parent_L2__r.mdm_id__c, parent_L2__r.parent_L2__r.Name,parent_L2__r.parent_L2__r.mdm_id__c FROM MDO_Geography__c WHERE id =:mdoGeographyCountry.Id LIMIT 1];
-        system.assertEquals(geoCountry[0].Name, ANGELO_STR,equalString+geoCountry[0].Name);//positive test
-        system.assertEquals(geoCountry[0].parent_L2__r.Name,AFRICAEMERGINGMARKETS_STR,equalString+geoCountry[0].parent_L2__r.Name);//positive test
-        //Global company card
-        List<IPM_Company_Card__c>ccardallList=new List<IPM_Company_Card__c>();
-        gcomCard=IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+      List<MDO_Geography__c> mdoCluster =[SELECT Id,mdm_id__c,Name FROM MDO_Geography__c WHERE id =:mdoGeographyCluster.Id LIMIT 1];
+      system.assertEquals(mdoGeographyCluster.id,mdoCluster[0].Id,equalString+mdoGeographyCluster.id);//positive test
+      system.assertEquals(mdoCluster[0].Name,clusterName,equalString+mdoCluster[0].Name);//positive test
+      
+      //Geography for MCO
+      mdoGeographyMCO = IPM_TestFactory_Helper.createMDOGeography(false);
+      mdoGeographyMCO.Name = AFRICAEMERGINGMARKETS_STR;
+      mdoGeographyMCO.geography_type__c=IPM_ConstantUtils.COUNTRY_CLUSTER;
+      mdoGeographyMCO.mdm_id__c=mcoMDM;
+      mdoGeographyMCO.parent_L2__c= mdoGeographyCluster.Id;
+      mdoGeographyMCO.parent_id__c= mdoGeographyCluster.Id;
+      mdoGeographyMCO.parent_id__r=mdoGeographyCluster;
+      mdoGeographyMCO.Status__c=status;
+      insert mdoGeographyMCO;//insert mco geography
+      
+      List<MDO_Geography__c> mco =[SELECT Id,mdm_id__c,Name,parent_L2__r.Name,parent_L2__r.mdm_id__c FROM MDO_Geography__c WHERE id =:mdoGeographyMCO.Id LIMIT 1];
+      system.assertEquals(mco[0].Name,AFRICAEMERGINGMARKETS_STR,equalString+mco[0].Name);//positive test
+      system.assertEquals(mco[0].parent_L2__r.Name,clusterName,equalString+mco[0].parent_L2__r.Name); //positive test     
+       
+      //Geography for Country
+      mdoGeographyCountry = IPM_TestFactory_Helper.createMDOGeography(false);
+      mdoGeographyCountry.Name = ANGELO_STR;
+      mdoGeographyCountry.geography_type__c=IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRY;
+      mdoGeographyCountry.mdm_id__c=county_code;
+      mdoGeographyCountry.parent_L2__c=mdoGeographyMCO.Id;
+      mdoGeographyCountry.parent_L2__r=mdoGeographyMCO;
+      mdoGeographyCountry.name_ISO_medium__c=ANGELO_STR;
+      mdoGeographyCountry.name_ISO_short__c=ANGELO_STR;
+      mdoGeographyCountry.name_ISO_office_english__c =ANGELO_STR;
+      mdoGeographyCountry.name_united_nations__c='UIM00009';
+      mdoGeographyCountry.ISO_3166_1_alpha__c='AFG';
+      mdoGeographyCountry.ISO_3166_1_numeric__c='4';
+      mdoGeographyCountry.parent_id__c=mdoGeographyMCO.Id;
+      mdoGeographyCountry.ISO_3166_1_code__c = county_code;
+      mdoGeographyCountry.Status__c=status;
+      insert mdoGeographyCountry;//insert country geography
+      
+      
+      List<MDO_Geography__c> geoCountry =[SELECT Id,Name,parent_L2__r.Name,parent_L2__r.mdm_id__c, parent_L2__r.parent_L2__r.Name,parent_L2__r.parent_L2__r.mdm_id__c FROM MDO_Geography__c WHERE id =:mdoGeographyCountry.Id LIMIT 1];
+      system.assertEquals(geoCountry[0].Name, ANGELO_STR,equalString+geoCountry[0].Name);//positive test
+      system.assertEquals(geoCountry[0].parent_L2__r.Name,AFRICAEMERGINGMARKETS_STR,equalString+geoCountry[0].parent_L2__r.Name);//positive test
+      //Global company card
+      List<IPM_Company_Card__c>ccardallList=new List<IPM_Company_Card__c>();
+      gcomCard=IPM_TestFactory_Helper.createGlobalCompanyCard(false);
       gcomCard.Name=globalCompanyName;
-        gcomCard.IPM_Managed_Category__c=SAVORY;
-        gcomCard.IPM_Currency__c=CURRENCY_STR;
-        gcomCard.IPM_TxtGeographical_Scope__c=GLOBAL_STR;
-        gcomCard.IPM_Business_Partner__c=userBP.id;
-        ccardallList.add(gcomCard);
-        
-        //Regional company card
-        rcomCard=IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+      gcomCard.IPM_Managed_Category__c=SAVORY;
+      gcomCard.IPM_Currency__c=CURRENCY_STR;
+      gcomCard.IPM_TxtGeographical_Scope__c=GLOBAL_STR;
+      gcomCard.IPM_Business_Partner__c=userBP.id;
+      ccardallList.add(gcomCard);
+      
+      //Regional company card
+      rcomCard=IPM_TestFactory_Helper.createRegionalCompanyCard(false);
       rcomCard.Name=regionalCompanyName;
-        rcomCard.IPM_Managed_Category__c=SAVORY;
-        rcomCard.IPM_Currency__c=CURRENCY_STR;
-        rcomCard.IPM_TxtGeographical_Scope__c=clusterName;
-        rcomCard.IPM_Business_Partner__c=userBP.id;
-        ccardallList.add(rcomCard);
-        
-        //Local company card
-        lcomCard=IPM_TestFactory_Helper.createLocalCompanyCard(false);
+      rcomCard.IPM_Managed_Category__c=SAVORY;
+      rcomCard.IPM_Currency__c=CURRENCY_STR;
+      rcomCard.IPM_TxtGeographical_Scope__c=clusterName;
+      rcomCard.IPM_Business_Partner__c=userBP.id;
+      ccardallList.add(rcomCard);
+      
+      //Local company card
+      lcomCard=IPM_TestFactory_Helper.createLocalCompanyCard(false);
       lcomCard.Name=localCompanyName;
-        lcomCard.IPM_Managed_Category__c=SAVORY;
-        lcomCard.IPM_Currency__c=CURRENCY_STR;
-        lcomCard.IPM_TxtGeographical_Scope__c=ANGELO_STR;
-        lcomCard.IPM_Market_Cluster__c=clusterName;
-        lcomCard.IPM_MCO__c=AFRICAEMERGINGMARKETS_STR;
-        lcomCard.IPM_Business_Partner__c=userBP.id;
-        ccardallList.add(lcomCard);
-        insert ccardallList;//insert company cards
-        
+      lcomCard.IPM_Managed_Category__c=SAVORY;
+      lcomCard.IPM_Currency__c=CURRENCY_STR;
+      lcomCard.IPM_TxtGeographical_Scope__c=ANGELO_STR;
+      lcomCard.IPM_Market_Cluster__c=clusterName;
+      lcomCard.IPM_MCO__c=AFRICAEMERGINGMARKETS_STR;
+      lcomCard.IPM_Business_Partner__c=userBP.id;
+      ccardallList.add(lcomCard);
+      insert ccardallList;//insert company cards
+      
       list<IPM_Company_Card__c>ccardList=[SELECT Name FROM IPM_Company_Card__c WHERE Name=:globalCompanyName LIMIT 1];
       system.assertEquals(ccardList[0].Name,gcomCard.Name,'Company card name is '+ccardList[0].Name);//positive test
-        //call bulkification for creating company card
-        for(Integer i=0;i<200;i++){
-            IPM_Company_Card__c newGlobalCard=IPM_TestFactory_Helper.createGlobalCompanyCard(false);
-            newGlobalCard.Name=bulkCompanyCardName+string.valueof(i);
-            newGlobalCard.IPM_Managed_Category__c=SAVORY;
-            newGlobalCard.IPM_Currency__c=CURRENCY_STR;
-            newGlobalCard.IPM_TxtGeographical_Scope__c=GLOBAL_STR;
-            newGlobalCard.IPM_Business_Partner__c=userBP.id;
-            companyBulkList.add(newGlobalCard);     
-        }
-        insert companyBulkList;
-        string cQuery=bulkCompanyCardName+'%';
-        list<IPM_Company_Card__c>bulkCCardList=[SELECT Name FROM IPM_Company_Card__c WHERE Name like:cQuery LIMIT 200];
-        system.assertEquals(bulkCCardList.size(),companyBulkList.size(),'Total comapany card inserted count is:'+bulkCCardList.size());//positive test
-        
-        list<IPM_Company_Card__c>ccsList=[SELECT id FROM IPM_Company_Card__c LIMIT 50000];
-        list<IPM_Company_Card__Share>ccShareList=IPM_TestFactory_Helper.shareCompanyCard(ccsList,userList);//share company card records
-        insert ccShareList;
-        list<IPM_Company_Card__Share>ccShareAllList=[SELECT ParentId,UserOrGroupId FROM IPM_Company_Card__Share WHERE ParentId=:gcomCard.id AND UserOrGroupId=:userInitialize.id LIMIT 1];
-        system.assertEquals(ccShareAllList[0].UserOrGroupId,userInitialize.id,userInitialize.id+'User should have edit access to company card');//positive test
+      //call bulkification for creating company card
+      for(Integer i=0;i<200;i++){
+        IPM_Company_Card__c newGlobalCard=IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+        newGlobalCard.Name=bulkCompanyCardName+string.valueof(i);
+        newGlobalCard.IPM_Managed_Category__c=SAVORY;
+        newGlobalCard.IPM_Currency__c=CURRENCY_STR;
+        newGlobalCard.IPM_TxtGeographical_Scope__c=GLOBAL_STR;
+        newGlobalCard.IPM_Business_Partner__c=userBP.id;
+        companyBulkList.add(newGlobalCard);     
+      }
+      insert companyBulkList;
+      string cQuery=bulkCompanyCardName+'%';
+      list<IPM_Company_Card__c>bulkCCardList=[SELECT Name FROM IPM_Company_Card__c WHERE Name like:cQuery LIMIT 200];
+      system.assertEquals(bulkCCardList.size(),companyBulkList.size(),'Total comapany card inserted count is:'+bulkCCardList.size());//positive test
+      
+      list<IPM_Company_Card__c>ccsList=[SELECT id FROM IPM_Company_Card__c LIMIT 50000];
+      list<IPM_Company_Card__Share>ccShareList=IPM_TestFactory_Helper.shareCompanyCard(ccsList,userList);//share company card records
+      insert ccShareList;
+      list<IPM_Company_Card__Share>ccShareAllList=[SELECT ParentId,UserOrGroupId FROM IPM_Company_Card__Share WHERE ParentId=:gcomCard.id AND UserOrGroupId=:userInitialize.id LIMIT 1];
+      system.assertEquals(ccShareAllList[0].UserOrGroupId,userInitialize.id,userInitialize.id+'User should have edit access to company card');//positive test
+      
     }
         
         
@@ -325,6 +326,7 @@ private class  IPM_CompanyCard_Test {
             delete oldCCList;//delete company card
       list<IPM_Company_Card__c>bulkCCardsList=[SELECT Name FROM IPM_Company_Card__c WHERE Name like:cQuery LIMIT 200];
             system.assertEquals(bulkCCardsList.isEmpty(),true,'all company card got deleted');//positive test
+            
       }  
       Test.StopTest();  
     }

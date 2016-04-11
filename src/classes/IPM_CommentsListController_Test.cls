@@ -20,7 +20,6 @@ private class IPM_CommentsListController_Test {
     private static IPM_Project_Document_Section__c projDocSec;
     private static FeedItem insertFeed;
     private static final String PAGE_REFERENCE_STR='apex/IPMCommentsPage?id=';
-    private static final String OFFSET_GREATER_THAN_FIVE_MSG='Offset Value Should be Greater than Five';
     private static final String COUNT_COMMENTS='Count of Comments Should be Greater than Zero';
     private static final String TEXT_STR='TextPost';
     private static final String TEST_DATA='This is comment Test';
@@ -66,7 +65,7 @@ private class IPM_CommentsListController_Test {
     */
     static testMethod void testComments(){
         
-        test.startTest();    
+        test.startTest(); 
         List<IPM_Project_Document_Section__c>secList=[select Id,IPM_Section_Name__c from IPM_Project_Document_Section__c 
                                                        where IPM_Section_Name__c=:IDEA_GRAPHIC Limit 1]; 
         PageReference pRef = new PageReference(PAGE_REFERENCE_STR+secList[0].ID);
@@ -141,7 +140,8 @@ private class IPM_CommentsListController_Test {
         PageReference pRef = new PageReference(PAGE_REFERENCE_STR+secList[0].ID);
         Test.setCurrentPage(pRef);
         IPM_CommentsListController  ipmComments = new IPM_CommentsListController();
-        String sample = IPM_ConstantUtils.TEST_STR;
+       String sample = IPM_ConstantUtils.TEST_STR;
+ 
         String newSample = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
         for (Integer i = 0; i < 6000; i ++) {
                 newSample += sample;
