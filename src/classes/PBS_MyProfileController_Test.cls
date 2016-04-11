@@ -106,7 +106,7 @@ static testMethod void testWithNoAchievements(){
             }
 
         Test.stopTest();
-
+        System.assert(ref != null);
     }
 
 
@@ -126,7 +126,19 @@ static testMethod void testWithNoAchievements(){
         User u1 = [select id,managerId from User where id = :lmsUsers.get(0).id];
         u1.managerId = lmsUsers.get(1).Id;
         update u1;
-
+        
+        PBS_Standard_Job_Profile__c  objPBS_Standard_Job_Profile = new PBS_Standard_Job_Profile__c();
+        objPBS_Standard_Job_Profile.name = 'Demand Planner';
+       
+        insert objPBS_Standard_Job_Profile;
+        
+        PBS_Profile__c objProfile = new PBS_Profile__c (User_Role__c = objPBS_Standard_Job_Profile.Id,
+                                                         User__c = lmsUsers.get(0).id,
+                                                         Work_Level__c = 'Guest',
+                                                         Geography__c = 'Guest',
+                                                         Buddy__c = 'Guest');
+        insert objProfile ;
+                
         PageReference ref = Page.PBS_MyProfile;
         Test.setCurrentPageReference(ref);
 
@@ -134,13 +146,13 @@ static testMethod void testWithNoAchievements(){
 
             System.runAs(lmsUsers.get(0)){
 
-                PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
-               
+               PBS_MyProfileController_CC cont = new PBS_MyProfileController_CC();
+                                                     
                cont.getGeographyOptions();
                cont.getWorkLevelOptions();
                cont.getJobProfileOptions();
                cont.getProfile();
-             //PBS_MyProfileController_CC.storeUserProfile('Guest', 'Guest', lmsUsers.get(0).id, 'Guest');
+               PBS_MyProfileController_CC.storeUserProfile('Guest', 'Guest', objPBS_Standard_Job_Profile.Id, 'Guest');
                 ref.getParameters().put('aType','Certifications');
                 Test.setCurrentPageReference(ref);
 
@@ -149,7 +161,7 @@ static testMethod void testWithNoAchievements(){
             }
 
         Test.stopTest();
-
+        System.assert(ref != null);
     }
 
 }
