@@ -101,8 +101,6 @@ public with sharing class IPM_Resource_Allocation {
     @TestVisible private set<id>dupPLDPLSet=new set<id>();//set project leader id's and deputy project leader id's
     @TestVisible private set<id>projectPLDPLSet=new set<id>();//set of PL and DPL id's
     @TestVisible private IPM_Project__c ipmproject=new IPM_Project__c();     
-    @TestVisible private static final String REGIONAL_ROLLOUT_RECORDTYPE =Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId(); //Recordtype Id for Regional Rollouts on IPM_Project_Rollout__c object cant delete it using in the query below
-    @TestVisible private static final String LOCAL_ROLLOUT_RECORDTYPE =Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(); //Recordtype Id for Local Rollouts on IPM_Project_Rollout__c object cant delete it using in the query below
     
     /*************************************************************************************************************
     * @description:Constructor of the class.get all url parameter values in variables.get project details.
@@ -230,7 +228,7 @@ public with sharing class IPM_Resource_Allocation {
         map<id,id>uniqueUsers=new map<id,id>();
         for(IPM_Project_Resource__c res:lstoldres)
         {
-            if(res.IPM_Role_Type__c!=null && string.isNotBlank(roleType) && roleType.equals(res.IPM_Role_Type__c) && plDPLSet.contains(res.IPM_User__c)){
+            if(string.isNotBlank(roleType) && roleType.equals(res.IPM_Role_Type__c) && plDPLSet.contains(res.IPM_User__c)){
                 dupPLDPLSet.add(res.IPM_User__c);
             }
             oldresourceid.add(res.IPM_User__c);

@@ -946,7 +946,9 @@ public with sharing class IPM_RolloutTriggerHandler
                 }
                 finActionStandard.IPM_Financial_Year_Y1_Incremental__c=finYearMap.get(projRollout.Id+IPM_ConstantUtils.Y1InnovationIncremental).Id;
                 finActionStandard.IPM_Financial_Year_Y1_Gross__c=finYearMap.get(projRollout.Id+IPM_ConstantUtils.Y1InnovationGross).Id;
-                finActionStandard.IPM_Financial_Action_Standard_Name__c = mcsName.Short_Name__c+' '+IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARDS;
+                if(mcsName!=null){
+                    finActionStandard.IPM_Financial_Action_Standard_Name__c = mcsName.Short_Name__c+' '+IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARDS;
+                }
                 finActionStandard.IPM_GM_Action_Standards_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
                 finActionStandard.IPM_gTO_Action_Standard_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
                 finActionStandard.IPM_Innov_Value_Share_Action_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
@@ -966,7 +968,7 @@ public with sharing class IPM_RolloutTriggerHandler
     }
     
     /*******************************************************************************************************
-    * @description  For Deleting Financial Action Standards When Rollout get Deleted.  
+    * @description  For Collecting the List of Financial Action Standards When Rollout get Deleted.  
     */ 
     public void deleteRegionalFinancialActionStandards(List<IPM_Project_Rollout__c> lstProjectRollouts){
         Set<Id> projIdSet=new Set<Id>();
@@ -987,10 +989,16 @@ public with sharing class IPM_RolloutTriggerHandler
             if(finActionStandard.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
                 updateFinActionList.add(finActionStandard);    
             }                                                         
-            if(finActionStandard.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
+            else if(finActionStandard.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
                 deleteFinActionList.add(finActionStandard); 
             }                                                      
         }
+        updateFinActionStandards(deleteFinActionList,updateFinActionList);
+    }
+    /*******************************************************************************************************
+    * @description  For Updating the List of Financial Action Standards When Rollout get Deleted.  
+    */ 
+    public void updateFinActionStandards(List<IPM_Financial_Action_Standards__c> deleteFinActionList,List<IPM_Financial_Action_Standards__c> updateFinActionList){
         for(IPM_Financial_Action_Standards__c updateFin:updateFinActionList){
             for(IPM_Financial_Action_Standards__c delFin:deleteFinActionList){
                 if(updateFin.IPM_Project__c==delFin.IPM_Project__c){
@@ -1005,5 +1013,5 @@ public with sharing class IPM_RolloutTriggerHandler
         if(deleteFinActionList!=null && !deleteFinActionList.isEmpty()){
             delete deleteFinActionList;
         }
-    }        
+    }   
 }

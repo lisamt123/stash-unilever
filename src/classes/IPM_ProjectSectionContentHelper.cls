@@ -1194,6 +1194,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                             // If Refer from Parent is true, it means we need to only get records which are applicable for that child. In case it is false, it is a phase change.
                             IPM_Project_Document_Section_Content__c newSectionContent = new IPM_Project_Document_Section_Content__c();
                             newSectionContent.IPM_Project_Document_Section__c = targetProjectDocumentSection.Id;
+                            newSectionContent.IPM_Section_Name__c=sectionContent.IPM_Section_Name__c;
                             newSectionContent.IPM_GM_Action_Standards_Charter__c = sectionContent.IPM_GM_Action_Standards_Charter__c;
                             newSectionContent.IPM_GM_Action_Standards_Charter_Cmts__c = sectionContent.IPM_GM_Action_Standards_Charter_Cmts__c;
                             newSectionContent.IPM_gTO_Action_Standard_Charter__c = sectionContent.IPM_gTO_Action_Standard_Charter__c;
