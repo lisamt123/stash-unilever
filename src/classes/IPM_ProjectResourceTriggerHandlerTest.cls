@@ -9,7 +9,6 @@
 
 	private static List<User> userList = new  List<User>();
 	private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
-	private static List<IPM_Project__c> ipmProjectList= new List<IPM_Project__c>();
 	private static List<IPM_Project_Document__c> projectDocList = new List<IPM_Project_Document__c>();
 	private static List<IPM_Project_Document_Section__c> projectDocSectionList  = new List<IPM_Project_Document_Section__c>();
 	private static List<IPM_Project_Resource__c> projectResourceList  = new List<IPM_Project_Resource__c>();

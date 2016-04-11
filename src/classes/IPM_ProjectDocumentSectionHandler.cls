@@ -1,7 +1,7 @@
 /****************************************************************************************************************************************
 * @Autor Cognizant
 * @Created Date date 29/07/2015
-* @Description Trigger Handler for the IPM Project Document Section SObject. This class implements the ITrigger
+* @Description Trigger Handler for the Project Document Section SObject. This class implements the ITrigger
                interface to help ensure the trigger code is bulkified and all in one place.
                */
 
@@ -53,11 +53,6 @@ public with sharing class IPM_ProjectDocumentSectionHandler implements ITrigger
         
         Set<Id> addedSectionRelatedTempaltes = new Set<Id>(); 
         
-        // Project id to project map
-        Map<Id,IPM_Project__c> projectMap ;
-        
-        // Project id to Project  Document map 
-        Map<Id,IPM_Project_Document__c> projectToDocumentMap = new Map<Id,IPM_Project_Document__c>();
         
         //  Project Id and set of Selected sections set map
         Map<Id,List<IPM_Project_Document_Section__c>> projectToAddedSectionMap = new Map<Id,List<IPM_Project_Document_Section__c>>();
@@ -70,11 +65,7 @@ public with sharing class IPM_ProjectDocumentSectionHandler implements ITrigger
         // Project Id and List of IPM Project Document Section Object Map    
         Map<Id,List<IPM_Task__c>> projectDocSectionToTaskMap = new Map<Id,List<IPM_Task__c>>(); 
         
-        // Project Id and List of IPM Project Resource Map    
-        Map<Id,List<IPM_Project_Resource__c>> projectToResourceMap = new Map<Id,List<IPM_Project_Resource__c>>(); 
         
-        // Project Id and List of IPM Task Map    
-        Map<Id,List<IPM_Task__c>> projectToTaskMap = new Map<Id,List<IPM_Task__c>>();
         
         if(Trigger.isUpdate)
         {
@@ -164,11 +155,123 @@ public with sharing class IPM_ProjectDocumentSectionHandler implements ITrigger
         }
        
         // Logic for Adding Tasks based on Added Sections by user.
-        if(!projectToAddedSectionMap.isEmpty())
+     	addProjectDocumentSection(projectToAddedSectionMap, sectionBasedMasterTasks);
+        
+        // Logic for Removing Tasks based on Added Sections by user.    
+     	removeProjectDocumentSection(projectToRemovedSectionMap, projectDocSectionToTaskMap);
+     
+    }
+    
+    public void beforeInsert(SObject so){
+        //This method has been included as the class implements the ITrigger interface 
+    }
+    
+    
+    public void beforeUpdate(SObject oldSo, SObject so){     
+
+        //This method has been included as the class implements the ITrigger interface
+    }
+    
+    /***********************************************************************************************************************************
+    * beforeDelete
+    * This method is called iteratively for each record to be deleted during a BEFORE
+    * trigger.
+    */
+    public void beforeDelete(SObject so){   
+        //This method has been included as the class implements the ITrigger interface
+    }
+    
+    public void afterInsert(SObject so){
+        //This method has been included as the class implements the ITrigger interface
+    }
+    
+  
+    public void afterUpdate(SObject oldSo, SObject so){   
+        //This method has been included as the class implements the ITrigger interface
+    }
+    
+    public void afterDelete(SObject so){
+        //This method has been included as the class implements the ITrigger interface
+    }
+    
+    /***********************************************************************************************************************************
+    * andFinally
+    * This method is called once all records have been processed by the trigger. Use this 
+    * method to accomplish any final operations such as creation or updates of other records.
+    */
+    public void andFinally(){
+        //Added by Devendra - call method to insert all exception logs got while excecution of trigger
+        ExceptionLoggingHelper.insertLogRecordList();
+        // Upsert task 
+        if(!upsertTaskList.isEmpty())
+        {
+            upsert  upsertTaskList ExternalField__c;
+        }
+        // delete tasks
+        if(!deleteAdhocTaskList.isEmpty())
+        {
+        	delete deleteAdhocTaskList;
+        }
+        // insert tasks
+        if(!insertAdhocTaskList.isEmpty())
+        {
+        	insert insertAdhocTaskList;
+        }
+   }
+   
+   public void removeProjectDocumentSection(Map<Id,List<IPM_Project_Document_Section__c>> projectToRemovedSectionMap, Map<Id,List<IPM_Task__c>> projectDocSectionToTaskMap){
+   	   if(!projectToRemovedSectionMap.isEmpty())
+        {
+        	for(id projectId : projectToRemovedSectionMap.keySet())
+            {
+            	
+                // Get List of Added project Document Sections.
+                List<IPM_Project_Document_Section__c> removedSectionList = projectToRemovedSectionMap.get(projectId);
+              
+                for(IPM_Project_Document_Section__c removedSection : removedSectionList)
+                {
+                	if(projectDocSectionToTaskMap.containsKey(removedSection.Id))
+                    {
+                        List<IPM_Task__c> associatedTasks = projectDocSectionToTaskMap.get(removedSection.Id);
+                  		
+                        for(IPM_Task__c task : associatedTasks)
+                        {   
+                        	// If task is standard update status to inactive
+                            if(task.IPM_Type_of_Task__c == IPM_ConstantUtils.STANDARD_TASKS){
+                            	  task.IPM_Active__c = false; 
+                            	  upsertTaskList.add(task);   
+                            }
+                            // If task is adhoc delete the task
+                            else if(task.IPM_Type_of_Task__c == IPM_ConstantUtils.ADHOC){
+
+                            	  deleteAdhocTaskList.add(task);  
+                            }
+                        }
+                    }       
+                }       
+            }   
+        }
+   	
+   } 
+   
+  public void addProjectDocumentSection(Map<Id,List<IPM_Project_Document_Section__c>> projectToAddedSectionMap, Map<Id,List<IPM_Task__c>> sectionBasedMasterTasks)
+  {
+  	   if(!projectToAddedSectionMap.isEmpty())
         {    
+			// Project id to project map
+       		Map<Id,IPM_Project__c> projectMap ;
+       		
+   		    // Project Id and List of IPM Task Map    
+      	    Map<Id,List<IPM_Task__c>> projectToTaskMap = new Map<Id,List<IPM_Task__c>>();	
+        	
         	// Project Id to Master future tasks
         	Map<Id,List<IPM_Task__c>> projectToMasterFutureTasks = new Map<Id,List<IPM_Task__c>>();
         	
+        	 // Project id to Project  Document map 
+        	Map<Id,IPM_Project_Document__c> projectToDocumentMap = new Map<Id,IPM_Project_Document__c>();
+        	
+        	// Project Id and List of IPM Project Resource Map    
+        	Map<Id,List<IPM_Project_Resource__c>> projectToResourceMap = new Map<Id,List<IPM_Project_Resource__c>>(); 
 
         	Map<Id,List<IPM_Task__c>> projectNewTaskMap = new Map<Id,List<IPM_Task__c>>();
         	Map<Id,List<IPM_Task__c>> projectToNewFutureTaskList = new Map<Id,List<IPM_Task__c>>();
@@ -250,101 +353,6 @@ public with sharing class IPM_ProjectDocumentSectionHandler implements ITrigger
             	upsertTaskList.addAll(projectToNewFutureTaskList.get(projectId));
             }
         }       
-        
-        // Logic for Removing Tasks based on Added Sections by user.    
-     	removeProjectDocumneSection(projectToRemovedSectionMap,projectDocSectionToTaskMap);
-     
-    }
-    
-    public void beforeInsert(SObject so){
-        //This method has been included as the class implements the ITrigger interface 
-    }
-    
-    
-    public void beforeUpdate(SObject oldSo, SObject so){     
-
-        //This method has been included as the class implements the ITrigger interface
-    }
-    
-    /***********************************************************************************************************************************
-    * beforeDelete
-    * This method is called iteratively for each record to be deleted during a BEFORE
-    * trigger.
-    */
-    public void beforeDelete(SObject so){   
-        //This method has been included as the class implements the ITrigger interface
-    }
-    
-    public void afterInsert(SObject so){
-        //This method has been included as the class implements the ITrigger interface
-    }
-    
-  
-    public void afterUpdate(SObject oldSo, SObject so){   
-        //This method has been included as the class implements the ITrigger interface
-    }
-    
-    public void afterDelete(SObject so){
-        //This method has been included as the class implements the ITrigger interface
-    }
-    
-    /***********************************************************************************************************************************
-    * andFinally
-    * This method is called once all records have been processed by the trigger. Use this 
-    * method to accomplish any final operations such as creation or updates of other records.
-    */
-    public void andFinally(){
-        //Added by Devendra - call method to insert all exception logs got while excecution of trigger
-        ExceptionLoggingHelper.insertLogRecordList();
-        // Upsert task 
-        if(!upsertTaskList.isEmpty())
-        {
-            upsert  upsertTaskList ExternalField__c;
-        }
-        // delete tasks
-        if(!deleteAdhocTaskList.isEmpty())
-        {
-        	delete deleteAdhocTaskList;
-        }
-        // insert tasks
-        if(!insertAdhocTaskList.isEmpty())
-        {
-        	insert insertAdhocTaskList;
-        }
-   }
-   
-   public void removeProjectDocumneSection(Map<Id,List<IPM_Project_Document_Section__c>> projectToRemovedSectionMap, Map<Id,List<IPM_Task__c>> projectDocSectionToTaskMap){
-   	   if(!projectToRemovedSectionMap.isEmpty())
-        {
-        	for(id projectId : projectToRemovedSectionMap.keySet())
-            {
-            	
-                // Get List of Added project Document Sections.
-                List<IPM_Project_Document_Section__c> removedSectionList = projectToRemovedSectionMap.get(projectId);
-              
-                for(IPM_Project_Document_Section__c removedSection : removedSectionList)
-                {
-                	if(projectDocSectionToTaskMap.containsKey(removedSection.Id))
-                    {
-                        List<IPM_Task__c> associatedTasks = projectDocSectionToTaskMap.get(removedSection.Id);
-                  		
-                        for(IPM_Task__c task : associatedTasks)
-                        {   
-                        	// If task is standard update status to inactive
-                            if(task.IPM_Type_of_Task__c != IPM_ConstantUtils.ADHOC){
-                            	  task.IPM_Active__c = false; 
-                            	  upsertTaskList.add(task);   
-                            }
-                            // If task is adhoc delete the task
-                            else if(task.IPM_Type_of_Task__c == IPM_ConstantUtils.ADHOC){
-
-                            	  deleteAdhocTaskList.add(task);  
-                            }
-                        }
-                    }       
-                }       
-            }   
-        }
-   	
-   } 
+  	
+  } 
 }

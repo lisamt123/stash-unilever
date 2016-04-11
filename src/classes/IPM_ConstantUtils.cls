@@ -689,6 +689,11 @@ public class IPM_ConstantUtils {
     
     //Task share
     public static final String IPM_TASK_RECORDTYPE='IPM Project Tasks';
+    public static final String FUTURE_ADHOC_TASKS = 'Future Adhoc';
+    public static final String FUTURE_STANDARD_TASKS = 'Future Standard';
+    public static final String STANDARD_TASKS = 'Standard';
+    public static final String TEMPLATE_TASKS = 'Template Task';
+    
     // Task Object
     
      public static String INVALIDPROJECT ='Invalid project';
@@ -1177,7 +1182,9 @@ public class IPM_ConstantUtils {
    public static final String CHARTER_GATE_APPROVAL_MILESTONE = 'Charter Gate Approval';
    public static final String CONTRACT_GATE_APPROVAL_MILESTONE = 'Contract Gate Approval';
    public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
-   public static finaL String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
+   public static final String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
+   public static final String Original_SHIPTO_TRADE_TLD = 'Target Launch Date(Ship to Trade)';
+   
    public static final Integer KB_TO_BYTES = 1024;
    public static final string CU_AND_COMPLEXITY= 'CU_And_Complexity';
    
