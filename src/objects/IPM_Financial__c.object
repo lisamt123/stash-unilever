@@ -2627,6 +2627,33 @@ IF(AND(
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>Year_1_iTO_Regional__c</fullName>
+        <description>This is to calculate CPP for regional rollouts</description>
+        <externalId>false</externalId>
+        <label>Year_1_iTO_Regional</label>
+        <summarizedField>IPM_Financial_Year__c.Turnover_Regional__c</summarizedField>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.Year_Type__c</field>
+            <operation>equals</operation>
+            <value>Innovation</value>
+        </summaryFilterItems>
+        <summaryFilterItems>
+            <field>IPM_Financial_Year__c.PL_Type__c</field>
+            <operation>equals</operation>
+            <value>Incremental</value>
+        </summaryFilterItems>
+        <summaryForeignKey>IPM_Financial_Year__c.IPM_Financial__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Year_3_iTO_Charter__c</fullName>
         <defaultValue>0</defaultValue>
         <description>Year 3 ITO at Charter</description>

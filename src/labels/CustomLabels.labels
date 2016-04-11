@@ -12290,19 +12290,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM TaskLabel</shortDescription>
         <value>To-do</value>
     </labels>
+    
     <labels>
         <fullName>IPM_Task_Assign_Text1</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>IPM Task Assign Text1</shortDescription>
-        <value>- You have been assigned some tasks for</value>
-    </labels>
-    <labels>
-        <fullName>IPM_Task_Assign_Text2</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM Task Assign Text2</shortDescription>
-        <value>. Please go have a look.</value>
+        <shortDescription>IPM Task Assign Text</shortDescription>
+        <value>- You have been assigned some tasks for {0} . Please go have a look.</value>
     </labels>
     <labels>
         <fullName>IPM_Task_Completion_Text</fullName>
