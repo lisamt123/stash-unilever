@@ -134,6 +134,14 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Auto_Aligned_Fin_TLD_for_financial__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>IPM Auto Aligned Fin &amp; TLD for financial</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_BET_Final_Release_Due_date__c</fullName>
         <description>To Capture BET Final Release Due date</description>
         <externalId>false</externalId>
@@ -1016,38 +1024,16 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-     <fields>
-        <fullName>IPM_Company_Priority__c</fullName>
-        <description>To hold Company Priority</description>
-        <externalId>false</externalId>
-        <label>Company Priority</label>
-        <length>25</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-<fields>
-        <fullName>IPM_Fast_Track_Project__c</fullName>
-        <description>To indicate Project is Fast Track or Not</description>
-        <externalId>false</externalId>
-        <label>Fast Track</label>
-        <length>10</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-<fields>
-        <fullName>IPM_Stopped__c</fullName>
-        <description>To Indicate whether project is stopped or not</description>
-        <externalId>false</externalId>
-        <label>Stopped</label>
-        <length>3</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+    <fields>
+	<fullName>IPM_Stopped__c</fullName>
+	<description>To Indicate whether project is stopped or not</description>
+	<externalId>false</externalId>
+	<label>Stopped</label>
+	<length>3</length>
+	<required>false</required>
+	<trackTrending>false</trackTrending>
+	<type>Text</type>
+	<unique>false</unique>
     </fields>
 <fields>
         <fullName>IPM_Key_NonKey__c</fullName>
@@ -1055,18 +1041,6 @@
         <externalId>false</externalId>
         <label>Key/NonKey</label>
         <length>3</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_Exemptfrom_Threshold__c</fullName>
-        <description>Exempt From Threshold - Formula field (Yes/ NO)</description>
-        <externalId>false</externalId>
-        <formula>IF(IPM_Exempt_from_Threshold__c = true, &apos;Yes&apos;, &apos;No&apos;)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>IPM Exempt from Threshold</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

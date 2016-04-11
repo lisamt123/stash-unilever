@@ -6008,6 +6008,13 @@ If approved your project will be linked after your Charter gate has been approve
         <value>Calendar</value>
     </labels>
     <labels>
+        <fullName>IPM_Can_not_be_greater</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Can not be greater</shortDescription>
+        <value>Can NOT be greater than 100%</value>
+    </labels>
+    <labels>
         <fullName>IPM_CancelCountryRemoval</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -6476,6 +6483,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_DATE_PERIOD</shortDescription>
         <value>Date Period</value>
+    </labels>
+    <labels>
+        <fullName>IPM_DATE_PERIOD_COLON</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_DATE_PERIOD_COLON</shortDescription>
+        <value>Date Period:</value>
     </labels>
     <labels>
         <fullName>IPM_DAY</fullName>
@@ -7278,6 +7292,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Environmental_Impact</value>
     </labels>
     <labels>
+        <fullName>IPM_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
         <fullName>IPM_ErrorRetrievingCategories</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7794,6 +7815,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_Financial_KeyCountry</shortDescription>
         <value>Key Country</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Financial_Target_Months</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Financial Target Months</shortDescription>
+        <value>For Financial Target 12 Months</value>
     </labels>
     <labels>
         <fullName>IPM_FirstFullYear</fullName>
@@ -8340,6 +8368,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_IN_THOUSAND_POUNDS</shortDescription>
         <value>(in thousand euros)</value>
+    </labels>
+    <labels>
+        <fullName>IPM_IRR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM IRR %</shortDescription>
+        <value>IRR %</value>
     </labels>
     <labels>
         <fullName>IPM_IS_COMPLETED_BY</fullName>
@@ -8930,6 +8965,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Market</value>
     </labels>
     <labels>
+        <fullName>IPM_Market_Performance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Market Performance</shortDescription>
+        <value>Market Performance</value>
+    </labels>
+    <labels>
         <fullName>IPM_Market_Place_Activity</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9467,6 +9509,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Project is no more Fast Track</value>
     </labels>
     <labels>
+        <fullName>IPM_NonMCO_TLD_Misaligned</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_NonMCO_TLD_Misaligned</shortDescription>
+        <value>MCOs within a Non-Key Group must have the same Target Launch Date. If you wish to have a different TLD for one or more MCOs in this Non-Key group please convert the required MCOs to Key MCOs in your Rollout Plan.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Non_Negotiable_Section</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9634,6 +9683,14 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_OUTSIDE_NAVIGATOR</shortDescription>
         <value>You have decided to manage the To-do&apos;s and activities of the project outside the navigator. Please check the checkbox again if you wish to manage To-do&apos;s and activities via IPM.</value>
     </labels>
+    <labels>
+        <fullName>IPM_Payback_Years</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Payback Years</shortDescription>
+        <value>Payback Years</value>
+    </labels>
+    
     <labels>
         <fullName>IPM_OUTSTANDING</fullName>
         <language>en_US</language>
@@ -10231,6 +10288,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Confirmation: Project Phase Change Request</value>
     </labels>
     <labels>
+        <fullName>IPM_Phase_Gate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Phase_Gate</shortDescription>
+        <value>Phase &amp; Gate document</value>
+    </labels>
+    <labels>
         <fullName>IPM_Phase_Label</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10266,11 +10330,25 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Please Fill Comments in</value>
     </labels>
     <labels>
+        <fullName>IPM_Please_select_country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select country</shortDescription>
+        <value>Please select currency:</value>
+    </labels>
+    <labels>
         <fullName>IPM_PojectSetupUrl</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PojectSetupUrl</shortDescription>
         <value>/apex/IPM_ProjectSetUpView</value>
+    </labels>
+    <labels>
+        <fullName>IPM_PostponeDate_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_PostponeDate_Required</shortDescription>
+        <value>Postpone On Date cannot be blank.</value>
     </labels>
     <labels>
         <fullName>IPM_PostponeDate_Validation</fullName>
@@ -10291,7 +10369,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Postponed Future Date Validation</shortDescription>
-        <value>You cannot postpone your project to a date which is after your next gate due date. If you would like to do this, please revise your project plan first and then postpone the project.</value>
+        <value>You cannot postpone a milestone&apos;s due date to a date later than its successor&apos;s due date. You can modify your milestone due dates below.</value>
     </labels>
     <labels>
         <fullName>IPM_Postponing_Project_Gate</fullName>
@@ -12211,19 +12289,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM TaskLabel</shortDescription>
         <value>To-do</value>
     </labels>
+    
     <labels>
         <fullName>IPM_Task_Assign_Text1</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>IPM Task Assign Text1</shortDescription>
-        <value>- You have been assigned some tasks for</value>
-    </labels>
-    <labels>
-        <fullName>IPM_Task_Assign_Text2</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM Task Assign Text2</shortDescription>
-        <value>. Please go have a look.</value>
+        <shortDescription>IPM Task Assign Text</shortDescription>
+        <value>- You have been assigned some tasks for {0} . Please go have a look.</value>
     </labels>
     <labels>
         <fullName>IPM_Task_Completion_Text</fullName>
@@ -12329,6 +12401,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM Top 5 Customer Channels</shortDescription>
         <value>Top 5 Customer Channels</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Total_add_up_periods</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total add up periods</shortDescription>
+        <value>The total across the 13 periods do not add up to the total</value>
     </labels>
     <labels>
         <fullName>IPM_TurnOverCP</fullName>
@@ -12594,7 +12673,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_WHO_WILL_APPROVE_CHARTER_GATE</shortDescription>
-        <value>Who will approve the Charter gate document?</value>
+        <value>Who will approve the Charter gate?</value>
     </labels>
     <labels>
         <fullName>IPM_WHO_WILL_APPROVE_CONTRACT_MR</fullName>
@@ -12609,6 +12688,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_WH_QUESTIONS</shortDescription>
         <value>(What, by whom, by when)</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Warning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Warning</shortDescription>
+        <value>Warning</value>
     </labels>
     <labels>
         <fullName>IPM_WhiteSpace_HelpText</fullName>
@@ -12693,6 +12779,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM Year3iTO</shortDescription>
         <value>Year-3-iTO</value>
+    </labels>
+    <labels>
+        <fullName>IPM_and_Confirm</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM and Confirm</shortDescription>
+        <value>and Confirm</value>
     </labels>
     <labels>
         <fullName>IPM_backto_intermediate</fullName>

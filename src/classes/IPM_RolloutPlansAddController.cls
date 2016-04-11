@@ -86,6 +86,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     @TestVisible private static final String SelectQueryString ='Id,parent_L2__r.name,parent_L2__r.mdm_id__c,parent_L2__r.geography_type__c,parent_L2__r.parent_L2__c,parent_L2__r.parent_L2__r.Name,parent_L2__r.parent_L2__r.mdm_id__c,parent_L2__r.parent_L2__r.geography_type__c FROM MDO_Geography__c';
     public String searchCountry{get;set;}// Hold country name to search
     public Boolean isNoResult{get;set;}//checking for rollout search
+	private Set<String> existingPrjList =new Set <String>(); //list of ids of existing   projects associated with rollouts 
     
     /**
     *  @Description Constructor of the class 
@@ -804,7 +805,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         deleteCountriesMap = new Map<String,IPM_Country__c>();
         
         //Existing Rollouts
-        String queryString = 'SELECT Id, IPM_Rollout_Project__c,Regional_Project__c,Type__c,Added_At_Stage__c,isActive__c,KeyMCO__c,IPM_CharterApproved__c,';
+        String queryString = 'SELECT Id,Local_Project__c, IPM_Rollout_Project__c,Regional_Project__c,Type__c,Added_At_Stage__c,isActive__c,KeyMCO__c,IPM_CharterApproved__c,';
         queryString+= '(SELECT Id, Country_Code__c, Country_Name__c,AddedAtStage__c,IPM_CharterApproved__c,isActive__c,Project_Country__c, IPM_Rollout_Status__c, IPM_Regional_Project__c,Local_Rollout_Charter__c FROM IPM_Countries_Local__r) ';
         queryString+= 'FROM IPM_Project_Rollout__c ';
         if (IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
@@ -819,6 +820,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         for(IPM_Project_Rollout__c ipmRollout : Database.query(queryString))
         {
             mapExistingRollouts.put(ipmRollout.IPM_Rollout_Project__c, ipmRollout);
+			existingPrjList.add(ipmRollout.Local_Project__c);
         }
         
         //Countries
@@ -930,12 +932,32 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         
         if(!mapUpsertRollouts.isEmpty())
         {
+        	Set<String> unarchPrjIds =new  Set<String>(); // list of ids of projects to be unarchieved
             // Remove Id from Upsert call in case it is an insert that might happen for record which got deleted as part of above operation
             for(IPM_Project_Rollout__c localRollout : mapUpsertRollouts.values())
             {
                 localRollout.Id = null;
             }
             upsert mapUpsertRollouts.values() IPM_Rollout_Project__c;
+			for(IPM_Project_Rollout__c  rollout : mapUpsertRollouts.values())
+			{
+				if(rollout.isActive__c)
+				{
+					if(rollout.Local_Project__c != null && existingPrjList.contains(rollout.Local_Project__c))
+					{
+						unarchPrjIds.add(rollout.Local_Project__c);
+					}
+				}
+			} 
+			List<IPM_Project__c> tobeStrtdPrjcts =[Select Id,Is_Archieved__c,Name from IPM_Project__c where  Id IN :unarchPrjIds and Is_Archieved__c=true];
+			if(tobeStrtdPrjcts!=null && !tobeStrtdPrjcts.isEmpty())
+            {
+              for(IPM_Project__c strtPrj : tobeStrtdPrjcts) 
+              {
+                strtPrj.Is_Archieved__c=false; 
+              }
+            update   tobeStrtdPrjcts ;
+            }
         }
         
         if(!mapUpsertCountries.isEmpty())
