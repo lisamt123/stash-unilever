@@ -152,7 +152,7 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>WU_Total_Current_Month_Utilisation__c</field>
+                <field>WU_Average_Pallet_Utilization_Count__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -213,6 +213,7 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
         <fields>WU_Utilization_Start_Date__c</fields>
         <fields>WU_Utilization_End_Date__c</fields>
