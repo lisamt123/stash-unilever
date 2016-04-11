@@ -54,8 +54,6 @@ src/classes/IPM_FinancialYearHelper.cls
 src/classes/IPM_FinancialYearHelper.cls-meta.xml
 src/classes/IPM_FinancialYearTriggerHandler_Test.cls
 src/classes/IPM_FinancialYearTriggerHandler_Test.cls-meta.xml
-src/classes/IPM_FunnelController_Test.cls
-src/classes/IPM_FunnelController_Test.cls-meta.xml
 src/classes/IPM_GateCMIController.cls
 src/classes/IPM_GateCMIController.cls-meta.xml
 src/classes/IPM_GateCMIController_Test.cls
