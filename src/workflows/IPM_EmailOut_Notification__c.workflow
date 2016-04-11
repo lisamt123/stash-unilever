@@ -9,7 +9,7 @@
             <field>To_Address__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>Workflow_Emails/IPM_Notify_Finance_Leader_about_TLD_is_changed_on_IPM_EmailOut_Notification</template>
     </alerts>
     <alerts>

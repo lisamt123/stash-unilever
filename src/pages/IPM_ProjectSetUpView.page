@@ -596,7 +596,7 @@
                                             <div class="buttonmarRight pull-left">
                                                 <input type="button" onClick="backTab(this)" class="milestones ipmButton" value="Back"/>
                                             </div>
-                                            <div class="buttonmarRight pull-left actionBox" value="/apex/IPM_ProjectOverview?id={!projectId}">
+                                            <div class="buttonmarRight pull-left actionBox" value="{!URLFOR($Page.IPM_ProjectOverview,null,[id=projectId])}">
                                                 <input type="button" class="ipmButton primary" value="Save and Continue"/>
                                             </div> 
                                         </div>

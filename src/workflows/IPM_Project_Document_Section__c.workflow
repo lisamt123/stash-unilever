@@ -8,7 +8,7 @@
             <field>IPM_Project_L_eader_Email__c</field>
             <type>email</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_PL_Email2</template>
     </alerts>
     <fieldUpdates>

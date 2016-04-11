@@ -17,7 +17,7 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_BOSSCARD_Archival_Mail_Alert</template>
     </alerts>
     <alerts>
@@ -27,7 +27,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_template_to_Notify_Auto_Deletion_of_Bosscard_after_6_months_of_inactivity2</template>
     </alerts>
     <fieldUpdates>

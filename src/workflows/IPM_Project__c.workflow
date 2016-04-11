@@ -30,7 +30,7 @@
             <field>IPM_Finance_Member__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>Workflow_Emails/IPM_Notify_Finance_Leader_about_TLD_is_changed</template>
     </alerts>
     <alerts>
@@ -49,7 +49,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_PL_DPL_and_Gatekeeper_TLD_changed_after_Contract</template>
     </alerts>
     <alerts>
@@ -64,7 +64,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_PL_and_DPL_the_TLD_changed_during_Charter_or_Contract</template>
     </alerts>
     <alerts>
@@ -75,7 +75,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_Project_Leader_about_FL_confirm_TLD_change_on_Local_Rollout</template>
     </alerts>
     <alerts>
@@ -98,7 +98,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_PL_DPL_FL_and_Gatekeeper_TLD_changed_after_Contract</template>
     </alerts>
     <alerts>
@@ -117,7 +117,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_PL_DPL_and_FL_TLD_is_changed</template>
     </alerts>
     <alerts>
@@ -128,7 +128,7 @@
             <field>IPM_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Notify_Local_Leader_when_local_project_created</template>
     </alerts>
     <alerts>
@@ -138,7 +138,7 @@
         <recipients>
             <type>creator</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>IPM_Emails/IPM_Project_Archival_Mail_Alert</template>
     </alerts>
     <alerts>

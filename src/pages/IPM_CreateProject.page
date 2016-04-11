@@ -24,7 +24,7 @@
                         <div class="col-xs-6 noPadleft radioButton">
                             <div class="bosscardbutton-grey bosscardbutton-blue radioIcon"></div>
                             <div class="selectradioButton">
-                                <input id="bosscardbutton" class="rbutton" type="radio" name="bosscard" value="/apex/IPM_Bosscard" checked="checked" ></input>
+                                <input id="bosscardbutton" class="rbutton" type="radio" name="bosscard" value="{!URLFOR($Page.IPM_Bosscard,null)}" checked="checked" ></input>
                                 <label class="selected" for="bosscardbutton"></label>
                             </div> 
                             <div class="rlabel fontBold">
@@ -45,7 +45,7 @@
                             <div class="projectbutton-grey radioIcon">
                             </div>
                             <div class="selectradioButton">
-                                <input id="projectbutton" class="rbutton" type="radio"  name="bosscard" value="/apex/IPM_ProjectSetupView"></input>  
+                                <input id="projectbutton" class="rbutton" type="radio"  name="bosscard" value="{!URLFOR($Page.IPM_ProjectSetupView,null)}"></input>  
                                 <label for="projectbutton"></label>
                             </div> 
                             <div class="rlabel">

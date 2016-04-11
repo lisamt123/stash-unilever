@@ -8,7 +8,7 @@
             <field>Finance_Member__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>Workflow_Emails/IPM_Notify_Finance_Leader_about_TLD_is_changed_in_Rollout_Project</template>
     </alerts>
     <alerts>
@@ -19,7 +19,7 @@
             <field>IPM_Regional_PL__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderType>DefaultWorkflowUser</senderType>
         <template>Workflow_Emails/IPM_Notify_Project_Leader_about_FL_confirm_TLD_change</template>
     </alerts>
     <alerts>

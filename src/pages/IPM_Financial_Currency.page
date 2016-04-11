@@ -171,7 +171,7 @@
                                                             <apex:outputText id="otl" styleClass="otlCurr" value="Currency: {!selectedCurrency}: {!exrate}"/>
                                                         </apex:outputPanel>
                                                         <apex:outputPanel styleClass="SecButtonSet marginT10P">
-                                                            <apex:commandLink action="{!URLFOR('/apex/IPM_Financial?id=' +project.id)}" title="{!$Label.IPM_Currency_back_button}" >
+                                                            <apex:commandLink action="{!URLFOR($Page.IPM_Financial,null,[id=project.id])}" title="{!$Label.IPM_Currency_back_button}" >
                                                                 <i class="fa ipmButton primary">{!$Label.IPM_Currency_back_button}</i>
                                                             </apex:commandLink>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;

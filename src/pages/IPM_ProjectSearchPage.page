@@ -35,8 +35,8 @@
                             <!--If the attribute 'isEditable' is true, then the option to create a new project will be availbale -->
                             <apex:outputPanel rendered="{!isEditable}">
                             <div class="col-sm-10 newProjectbuttonDiv allProj-rightSide">
-                                <div id="createProject" class="pull-right" data-toggle="modal" data-target="#ipmModal" title="Create Project" value="/apex/IPM_createproject?IsBossCardEditable={!isBossCardEditable}&IsProjectEditable={!isProjectEditable}" data-backdrop="static" data-keyboard="false">
-                                    <a class="ipmButton not-active" id="not-active">
+                                <div id="createProject" class="pull-right" data-toggle="modal" data-target="#ipmModal" title="Create Project" value="{!URLFOR($Page.IPM_CreateProject,null,[IsBossCardEditable = isBossCardEditable, IsProjectEditable = isProjectEditable])}" data-backdrop="static" data-keyboard="false">
+                                    <a class="ipmButton" >
                                         {!$Label.IPM_CREATE_NEW} {!$Label.IPM_ProjectLabel}
                                     </a>
                                 </div>
@@ -480,27 +480,27 @@
                                                         <!--If the condition p.IPM_Bosscard__c is not blank && IPM_Bosscard_Status__c is false, then the link will be displayed to take to Bosscard page-->
                                                         <apex:outputPanel layout="block" styleClass="titleContainer" rendered="{!(p.IPM_Bosscard__c != '' && NOT(p.IPM_Bosscard_Status__c))}">
                                                         <!-- bosscard pending -->
-                                                            <a href="/apex/IPM_Bosscard?id={!p.IPM_Bosscard__c}" class="proTitle">{!p.IPM_Bosscard__r.Name}</a>
+                                                            <a href="{!URLFOR($Page.IPM_Bosscard,null,[id=p.IPM_Bosscard__c])}" class="proTitle">{!p.IPM_Bosscard__r.Name}</a>
                                                         </apex:outputPanel>
                                                         <!--If the condition p.IPM_Bosscard__c is blank && IPM_IsSaved__c is true, then the link will be displayed to take to Project Overview page-->
                                                         <apex:outputPanel layout="block" styleClass="titleContainer" rendered="{!AND(ISNULL(p.IPM_Bosscard__c),(p.IPM_IsSaved__c))}">
                                                         <!-- project without bosscard & Project Created by click on Submit for Creation-->
-                                                            <a href="/apex/IPM_ProjectOverview?id={!p.id}" class="proTitle">{!p.IPM_Project_Name__c}</a>
+                                                            <a href="{!URLFOR($Page.IPM_ProjectOverview,null,[id=p.id])}" class="proTitle">{!p.IPM_Project_Name__c}</a>
                                                         </apex:outputPanel>
                                                         <!--If the condition p.IPM_Bosscard__c is blank && IPM_IsSaved__c is false, then the link will be displayed to take to Project Setup wizard page-->
                                                         <apex:outputPanel layout="block" styleClass="titleContainer" rendered="{!AND(ISNULL(p.IPM_Bosscard__c),(!p.IPM_IsSaved__c))}">
                                                         <!-- project without bosscard & Project have'nt Created by click on Submit for Creation-->
-                                                            <a href="/apex/IPM_ProjectSetupView?Pid={!p.id}" class="proTitle">{!p.IPM_Project_Name__c}</a>
+                                                            <a href="{!URLFOR($Page.IPM_ProjectSetupView,null,[Pid=p.id])}" class="proTitle">{!p.IPM_Project_Name__c}</a>
                                                         </apex:outputPanel>
                                                         <!--If the condition p.IPM_Bosscard__c is not blank && IPM_IsSaved__c is true, then the link will be displayed to take to Project Overview page-->
                                                         <apex:outputPanel layout="block" styleClass="titleContainer" rendered="{!(p.IPM_Bosscard__c != '' && p.IPM_Bosscard_Status__c && p.IPM_IsSaved__c)}">
                                                         <!-- project with bosscard is approved && This Project has created by user from Project setup wizard -->
-                                                            <a href="/apex/IPM_ProjectOverview?id={!p.id}" class="proTitle">{!p.IPM_Project_Name__c}</a>
+                                                            <a href="{!URLFOR($Page.IPM_ProjectOverview,null,[id=p.id])}" class="proTitle">{!p.IPM_Project_Name__c}</a>
                                                         </apex:outputPanel>
                                                         <!--If the condition p.IPM_Bosscard__c is not blank && IPM_IsSaved__c is true, then the link will be displayed to take to Project Overview page-->
                                                         <apex:outputPanel layout="block" styleClass="titleContainer" rendered="{!(p.IPM_Bosscard__c != '' && p.IPM_Bosscard_Status__c && !p.IPM_IsSaved__c)}">
                                                         <!-- project with bosscard is approved & This Project has created by system when bosscard got approved -->
-                                                            <a href="/apex/IPM_ProjectSetupView?Pid={!p.id}" class="proTitle">{!p.IPM_Project_Name__c}</a>
+                                                            <a href="{!URLFOR($Page.IPM_ProjectSetupView,null,[Pid=p.id])}" class="proTitle">{!p.IPM_Project_Name__c}</a>
                                                         </apex:outputPanel>
                                                         <!--If the IPM_Project_Type__c is Original, then the respective icon will be displayed -->
                                                         <apex:outputPanel layout="block" rendered="{!p.IPM_Project_Type__c='Original'}">
@@ -540,8 +540,8 @@
                                            <div class="col-sm-12 noteimg noPadleft noPadright">
                                                 <!--If the condition IPM_Bosscard__c is not blank, then the link will be displayed to Bosscard page -->
                                                <apex:outputPanel rendered="{!p.IPM_Bosscard__c != ''}">
-                                                   <a href="/apex/IPM_Bosscard?id={!p.IPM_Bosscard__c}" class="icoButton document"></a>
-                                                   <a href="/apex/IPM_Bosscard?id={!p.IPM_Bosscard__c}">{!$Label.IPM_View}</a>
+                                                   <a href="{!URLFOR($Page.IPM_Bosscard,null,[id=p.IPM_Bosscard__c])}" class="icoButton document"></a>
+                                                   <a href="{!URLFOR($Page.IPM_Bosscard,null,[id=p.IPM_Bosscard__c])}">{!$Label.IPM_View}</a>
                                                </apex:outputPanel>
                                              </div>
                                             </td>
