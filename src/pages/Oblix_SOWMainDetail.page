@@ -247,7 +247,7 @@
                         <div id="my-tab-content" class="tab-content">
                             <div class="tab-pane active" id="red">
                                 <div class="pull-right SOW_homepage_find">
-                                    <label>Find a specific SOW</label>
+                                    <label>Find a specific Campaign</label>
                                     <input type="text" name="findSOW" id="searchBox" />
                                 </div>
                                 <table class="table table-striped" id="sowListTable">

@@ -3,7 +3,7 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
     public Oblix_ProjectHandler() {  
     }
     @testVisible
-    static boolean triggerShouldExecute = true;
+    public static boolean triggerShouldExecute = true;
 
     //private Map<Id, String> mids_campaign_id_hub_summary_text = new Map<Id, String>();
     //private Map<Id, String> mids_campaign_id_asset_deliverables_text = new Map<Id, String>();
