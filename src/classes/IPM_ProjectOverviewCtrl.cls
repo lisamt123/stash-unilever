@@ -395,7 +395,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
             if(res.IPM_User__c == UserInfo.getUserId()){
                 projResList.add(res);
                 isAcessDuetoTeam=true;
-                if(res.IPM_Project_Role_Owner__c==true){
+                if(res.IPM_Project_Role_Owner__c){
                    plFunctionalRoleSet.add(res.IPM_Role_Type__c);//get PL functional roles as team member
                 }
             }   
