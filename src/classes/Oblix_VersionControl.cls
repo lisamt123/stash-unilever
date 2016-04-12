@@ -79,7 +79,7 @@ global with sharing class Oblix_VersionControl implements Schedulable {
 
 
             // clone campaigns
-
+            // S.M. fixed the version control
             List<Oblix_SOW_Projects__c> master_campaigns = [SELECT Id,Stage_Projected_CFY__c, Stage_Completed_CFY__c, Agency_Percentage_of_Fees_to_this_FY__c,Asset_Deliverables__c,BET_first_release__c,Brand_Led_Growth__c,Budget_Burnt_to_date__c,Campaign_Countries__c,Campaign_Fees_Total__c
                     ,Campaign_Hub_Summary__c,Campaign_Idea__c,Campaign_Points__c,Campaign_Score__c,Campaign_Splits_Total__c,Campaign_Status__c,Campaign_Total_Adjustment__c,Campaign_Total_Fees__c, First_3_selected_countries__c
                     ,Completed_Stage__c,Date_for_Assets_to_be_in_BET__c,Description__c,Enforce_Trigger_Update__c,Fees_To_Be_Paid_Next_Financial_Year__c,Final_release__c,Financial_Year__c,First_Air_Date__c
