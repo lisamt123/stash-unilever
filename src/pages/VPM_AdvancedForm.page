@@ -1,5 +1,6 @@
-<apex:page standardController="VPM_PurchasingRequests__c">  
+<apex:page standardController="VPM_PurchasingRequests__c"  standardStylesheets="true">  
 <apex:stylesheet value="{!URLFOR($Resource.vpmstyles, 'vpmstyles.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.vpmjqueryresources, 'vpmjqueryresources/jquery-1.12.2.min.js')}"/>
     <script type = "text/javascript">
     window.onload=function() {
         var criteria1 = "{!VPM_PurchasingRequests__c.VPM_Status__c}"; 
@@ -9,17 +10,73 @@
         //return false;
         }
     };
+     $(document).ready(function(){
+         var el = $('tr>td.pbTitle');
+         var numberOfTextFields = $('input[type="text"]').length;
+         var savedRow = '';
+         //alert(numberOfTextFields);
+         for(var i=0;i<el.length;i++){
+             if($(el[i]).children().length == 0)
+                 el[i].remove(); 
+         }
+         
+         if($(".interviewDisplayTextRow b").text().indexOf("Type") > -1){
+             	savedRow = $(".interviewDisplayTextRow")[1];
+             	$(".interviewDisplayTextRow")[1].remove();
+             $(savedRow).insertBefore($(".interviewDisplayTextRow")[0]);
+             $($(".interviewDisplayTextRow")[0]).css("display","table-cell");
+             $($(".interviewDisplayTextRow")[1]).css({"float": "right",
+                                                      "position": "relative",
+                                                      "right": "22.5em"});
+                 
+         }
+         
+         /*$('span[id="j_id0:j_id4:i:f:pb:d:VPM_MaintainTypeInfo"]').css("float","left");
+        $('span[id="j_id0:j_id4:i:f:pb:d:VPM_MaintainTypeInfo"]').children().css("float","left");*/
+         /* if(numberOfTextFields > 8){
+             $('input[type="text"]').css("display","block");
+             $(".dataCol").css("width","auto !important");
+              $(".dataCol.col2").css("display","grid !important");
+             //alert("more than one");  
+             for(var i=1;i<numberOfTextFields/2;i++){
+             		$($('input[type="text"]')[i],$('label')[i]).css("float","left");
+                 //	$($('input[type="text"]')[i]).closest($(".labelCol")).css("width","auto !important");
+                 //$($('input[type="text"]')[i],$('label')[i]).css("display","block !important");
+                 
+                }
+             for(var j=numberOfTextFields/2;j<numberOfTextFields;j++){
+             		$($('input[type="text"]')[j],$('label')[j]).css("float","right");
+                 //	$($('input[type="text"]')[j]).closest($(".labelCol")).css("width","auto !important");
+                 //$($('input[type="text"]')[j],$('label')[j]).css("display","block !important");
+                }
+         }
+         /*  Change text of 'Previous Button'   */
+         var buttonLength = $('input[type="submit"],input[type="button"],button').length;
+         //alert(buttonLength);
+         for(var i=0;i<buttonLength;i++){
+            if($('input[type="submit"],input[type="button"],button')[i].value == 'Previous')
+                $('input[type="submit"],input[type="button"],button')[i].value = 'Menu/Previous';                
+         }
+    });
+    function openPopup(page){
+        window.open('/apex/VPM_AttachmentSectionPopUp','Table','toolbar=yes, scrollbars=yes, resizable=yes, top=100, left=150, width=1000, height=500')
+        return false;
+    }
     </script>
 
     <flow:interview name="VPM_PurchasingRequestAdvancedForm" finishLocation="/{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}" >    
         <apex:param name="VPM_PurchasingRequestID" value="{!VPM_PurchasingRequests__c.Id}"/>    
     </flow:interview>
 
+    <div>
+    <apex:outputLink onclick="openPopup('{!$Page.VPM_AttachmentSectionPopUp}');return false;">Help for uploading documents</apex:outputLink>
+    </div>
     <apex:relatedList subject="{!VPM_PurchasingRequests__c}" list="CombinedAttachments" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c != 'FLS Review'}">
-    <apex:facet name="footer">
-        <apex:outputLink value="Guidance for uploading documents" onclick="alert('Hello World');return false;">Guidance for uploading documents</apex:outputLink>
-    </apex:facet>
+    <!--apex:facet name="footer">
+        <apex:outputLink onclick="openPopup('{!$Page.VPM_AttachmentSectionPopUp}');return false;">Help for uploading documents</apex:outputLink>
+    </apex:facet-->
     </apex:relatedList>
+    
     
     <apex:detail subject="{!VPM_PurchasingRequests__c.Id}" rendered="{!VPM_PurchasingRequests__c.VPM_Status__c == 'FLS Review'}" showChatter="true"/>
 </apex:page>

@@ -153,8 +153,28 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_RequestGroupTime</fullName>
+        <description>VPM - Time when it got assigned to group.</description>
+        <field>VPM_RequestGroupTime__c</field>
+        <formula>NOW()</formula>
+        <name>VPM_RequestGroupTime</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_StatusFLSApproved</fullName>
         <description>VPM - Sets the status of the record to FLS Approved based on an Approved decision.</description>
+        <field>VPM_Status__c</field>
+        <literalValue>FLS Approved</literalValue>
+        <name>Status FLS Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_StatusFLSApproveds</fullName>
         <field>VPM_Status__c</field>
         <literalValue>FLS Approved</literalValue>
         <name>Status FLS Approved</name>
@@ -175,6 +195,15 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>VPM_StatusFinanceApproved</fullName>
+        <field>VPM_Status__c</field>
+        <literalValue>Finance Approved</literalValue>
+        <name>Status Finance Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>VPM_StatusFinanceRejected</fullName>
         <description>VPM - Sets the Purchasing Request status to &apos;Finance  Rejected&apos; based on Finance  Rejection decision</description>
         <field>VPM_Status__c</field>
@@ -184,6 +213,16 @@
         <operation>Literal</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>VPM_StatusMDMOpsReview</fullName>
+        <description>Updates the record status to &apos;MDM Ops Review&apos;</description>
+        <field>VPM_Status__c</field>
+        <literalValue>MDM Ops Review</literalValue>
+        <name>Status MDM Ops Review</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>VPM_StatusProcurementApproved</fullName>

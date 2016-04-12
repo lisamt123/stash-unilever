@@ -53,6 +53,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -556,6 +557,18 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>VPM_BankDetailsScreen__c</fullName>
+        <externalId>false</externalId>
+        <label>Bank DetailsScreen</label>
+        <length>32</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>VPM_BankKey__c</fullName>
         <externalId>false</externalId>
         <label>Bank Key</label>
@@ -598,6 +611,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VPM_Blocked_Status__c</fullName>
+        <description>Field to hold the status of vendor block.</description>
+        <externalId>false</externalId>
+        <label>Blocked Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_BusinessRequestorSubmitted__c</fullName>
@@ -1326,7 +1352,7 @@
         <fullName>VPM_DeletionBlock__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>Deletion block</label>
+        <label>Deletion Block</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1336,7 +1362,7 @@
         <fullName>VPM_DeletionFlagForCompanyCode__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>Deletion flag for company code</label>
+        <label>Deletion Flag for Company Code</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1346,11 +1372,24 @@
         <fullName>VPM_DeletionFlagForPurchaseOrg__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
-        <label>Deletion flag for Purchase org</label>
+        <label>Deletion Flag for Purchase org</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_Deletion_Status__c</fullName>
+        <description>Field to hold Vendor Deletion Status.</description>
+        <externalId>false</externalId>
+        <label>Deletion Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_DepartmentDescription__c</fullName>
@@ -1556,6 +1595,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_ECC__c</fullName>
+        <description>Field to hold details of ECC relating to Vendor</description>
+        <externalId>false</externalId>
+        <label>ECC</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>VPM_Email2__c</fullName>
@@ -2326,6 +2378,16 @@
         <description>To track is there already an invoice received</description>
         <externalId>false</externalId>
         <label>Is Invoice Already Received?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>VPM_IsLock__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>IsLock</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -3576,6 +3638,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>No</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -4827,6 +4893,7 @@
     <listViews>
         <fullName>All_Requests</fullName>
         <columns>VPM_BusinessRequestorSubmitted__c</columns>
+        <columns>VPM_Status__c</columns>
         <columns>VPM_Rework__c</columns>
         <columns>VPM_AccountHolderName__c</columns>
         <columns>NAME</columns>
@@ -4834,7 +4901,6 @@
         <columns>VPM_ApprovalsCompleted__c</columns>
         <columns>VPM_Comments__c</columns>
         <columns>VPM_CommodityName__c</columns>
-        <columns>VPM_Status__c</columns>
         <columns>VPM_Finance_Team_Section__c</columns>
         <columns>VPM_ProcurementSection__c</columns>
         <columns>VPM_FinanceSubmitted__c</columns>
@@ -4844,55 +4910,6 @@
         <filterScope>Everything</filterScope>
         <label>All Requests</label>
         <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>FLSQueue_VPM_PurchasingRequests</fullName>
-        <columns>NAME</columns>
-        <columns>VPM_VendorName__c</columns>
-        <columns>VPM_Status__c</columns>
-        <columns>VPM_PurchasingCountry__c</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Queue</filterScope>
-        <label>FLS</label>
-        <language>en_US</language>
-        <queue>VPM_FLS</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>FinanceQueue_VPM_PurchasingRequests</fullName>
-        <columns>NAME</columns>
-        <columns>VPM_VendorName__c</columns>
-        <columns>VPM_WhatAreYouBuying__c</columns>
-        <columns>VPM_PurchasingCountry__c</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>VPM_Status__c</columns>
-        <columns>CREATED_DATE</columns>
-        <filterScope>Queue</filterScope>
-        <label>Finance</label>
-        <language>en_US</language>
-        <queue>VPM_Finance</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>MDMOpsQueue_VPM_PurchasingRequests</fullName>
-        <columns>NAME</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>VPM_Status__c</columns>
-        <columns>VPM_VendorName__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <filterScope>Queue</filterScope>
-        <label>MDM Ops</label>
-        <language>en_US</language>
-        <queue>VPM_MDMOps</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>My_Requests</fullName>
@@ -4906,57 +4923,6 @@
         <filterScope>Mine</filterScope>
         <label>My Requests</label>
         <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>ProcurementQueue_VPM_PurchasingRequests</fullName>
-        <filterScope>Queue</filterScope>
-        <label>Procurement</label>
-        <queue>VPM_Procurement</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_ReworkFromFinance</fullName>
-        <columns>NAME</columns>
-        <columns>VPM_VendorName__c</columns>
-        <columns>VPM_Status__c</columns>
-        <columns>VPM_PurchasingCountry__c</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>VPM_Status__c</field>
-            <operation>equals</operation>
-            <value>Finance Requested Re-Work</value>
-        </filters>
-        <label>Rework from Finance</label>
-        <language>en_US</language>
-        <queue>VPM_FLS</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VPM_ReworkFromProcurement</fullName>
-        <columns>NAME</columns>
-        <columns>VPM_PurchasingCountry__c</columns>
-        <columns>VPM_VendorName__c</columns>
-        <columns>VPM_Status__c</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>VPM_Status__c</field>
-            <operation>equals</operation>
-            <value>Procurement Requested Re-Work</value>
-        </filters>
-        <label>Rework from Procurement</label>
-        <language>en_US</language>
-        <queue>VPM_FLS</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
     </listViews>
     <nameField>
         <displayFormat>PuReq-{000000000}</displayFormat>
@@ -5737,8 +5703,12 @@
         <picklistValues>
             <picklist>VPM_Rework__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Completed</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Yes</fullName>
@@ -6771,8 +6741,12 @@
         <picklistValues>
             <picklist>VPM_Rework__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Completed</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Yes</fullName>
@@ -7805,8 +7779,12 @@
         <picklistValues>
             <picklist>VPM_Rework__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Completed</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Yes</fullName>
@@ -8839,8 +8817,12 @@
         <picklistValues>
             <picklist>VPM_Rework__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Completed</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Yes</fullName>
@@ -9873,8 +9855,12 @@
         <picklistValues>
             <picklist>VPM_Rework__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Completed</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Yes</fullName>
@@ -10907,8 +10893,12 @@
         <picklistValues>
             <picklist>VPM_Rework__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Completed</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Yes</fullName>
@@ -11941,8 +11931,12 @@
         <picklistValues>
             <picklist>VPM_Rework__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Completed</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Yes</fullName>
@@ -12975,8 +12969,12 @@
         <picklistValues>
             <picklist>VPM_Rework__c</picklist>
             <values>
-                <fullName>No</fullName>
+                <fullName>Completed</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Yes</fullName>
@@ -13330,19 +13328,21 @@ var Rework=&quot;{!VPM_PurchasingRequests__c.VPM_Rework__c}&quot;;
 if(currentstatus.indexOf(&apos;Draft&apos;) &gt;= 0 ) 
 { 
 pur.VPM_BusinessRequestorSubmitted__c=&apos;Yes&apos;; 
-
+pur.VPM_Rework__c=&apos;No&apos;;
 result = sforce.connection.update([pur]); 
 window.location.reload(); 
-} 
+}
+
 if (currentstatus.indexOf(&apos;FLS Requested Re-Work&apos;) &gt;=0 &amp;&amp; Rework==&apos;Yes&apos;) 
+
 { 
 
 pur.VPM_Status__c= &apos;FLS Review&apos;;
-
+pur.VPM_Rework__c=&apos;Completed&apos;;
 var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queue.Name From QueueSobject where Queue.Name = &apos;FLS&apos; Limit 1&quot;); 
                                 if (result[&apos;size&apos;] == 1){ 
                                                 var queue_records = result[&apos;records&apos;]; 
-                                                
+												 
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
                                 } 
 result = sforce.connection.update([pur]); 
@@ -13357,6 +13357,8 @@ var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queu
                                 if (result[&apos;size&apos;] == 1){ 
                                                 var queue_records = result[&apos;records&apos;]; 
                                                 pur.VPM_Status__c = &apos;Approval Pending&apos;;
+												pur.VPM_AdvancedFormSubmitted__c=&apos;No&apos;;
+												pur.VPM_Rework__c=&apos;Completed&apos;;
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
                                 }
 result = sforce.connection.update([pur]); 
@@ -13371,6 +13373,8 @@ var result = sforce.connection.query(&quot;Select Id, SobjectType, QueueId, Queu
                                 if (result[&apos;size&apos;] == 1){ 
                                                 var queue_records = result[&apos;records&apos;]; 
                                                 pur.VPM_Status__c = &apos;Approval Pending&apos;;
+												pur.VPM_Rework__c=&apos;Completed&apos;;
+												pur.VPM_AdvancedFormSubmitted__c=&apos;No&apos;;
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
                                 } 
 result = sforce.connection.update([pur]); 
@@ -13391,40 +13395,32 @@ window.location.reload();
 }</url>
     </webLinks>
     <webLinks>
-        <fullName>VPM_Helpforuploadingdocuments</fullName>
+        <fullName>VPM_HelpUpload</fullName>
         <availability>online</availability>
         <description>Help for uploading documents</description>
         <displayType>link</displayType>
         <linkType>javascript</linkType>
-        <masterLabel>Help for uploading documents</masterLabel>
+        <masterLabel>Help for Uploading Documents</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/connection.js&quot;)}
-
-function insertScript(){
-        var box = new SimpleDialog(&quot;hersh&quot;+Math.random(), false); 
-          parent.box = box; 
-          box.setTitle(&quot;Create new Order&quot;); 
-          box.createDialog(); 
-          box.setWidth(350); 
-          box.setContentInnerHTML(&quot;&lt;apex:page standardController=&quot;VPM_PurchasingRequests__c&quot;&gt;&lt;h1&gt;Congratulations&lt;/h1&gt;This is your new Page&lt;button class=&apos;btn&apos;       onclick=&apos;window.parent.box.hide(); return false;&apos;&gt;Cancel&lt;/button&gt;&lt;/apex:page&gt;&quot;); 
-          box.setupDefaultButtons(); 
-          box.show();
-}
-
-insertScript();</url>
+        <url>window.open(&apos;/apex/VPM_AttachmentSectionPopUp&apos;, &apos;Help for uploading documents&apos;, 
+&apos;height=500,width=1230, top=70, left=70, scrollbars=no, toolbar=no, menubar=no&apos;);</url>
     </webLinks>
     <webLinks>
-        <fullName>VPM_ReworkToBusinessRequestor</fullName>
+        <fullName>VPM_Rework</fullName>
         <availability>online</availability>
         <description>Updates a field that triggers a process that reassigns the record to the creator</description>
         <displayType>button</displayType>
         <linkType>javascript</linkType>
-        <masterLabel>Rework to Business Requestor</masterLabel>
+        <masterLabel>Rework</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&apos;/soap/ajax/34.0/connection.js&apos;)} 
-{ 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)}
+{
+var r = confirm(&quot;Are you sure you want to rework the request? \nPlease provide guidance via the Chatter feed&quot;);
+if(r == true) 
+{
                 var pur = new sforce.SObject(&quot;VPM_PurchasingRequests__c&quot;); 
                 pur.id=&quot;{!VPM_PurchasingRequests__c.Id}&quot;; 
                 var currentstatus=&quot;{!VPM_PurchasingRequests__c.VPM_Status__c}&quot;; 
@@ -13437,11 +13433,13 @@ var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById}&quot;;
                 {
                                                 
                                                 pur.VPM_Status__c = &apos;FLS Requested Re-Work&apos;;
- var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById }&quot;; 
+												var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById }&quot;; 
                                                 pur.OwnerId=CreatedBy;
 												pur.VPM_Rework__c=&apos;Yes&apos;; 
-                                                                result = sforce.connection.update([pur]); 
-                                                                window.location.reload(); 
+												pur.VPM_IsLock__c=true;
+                                                result = sforce.connection.update([pur]); 
+alert(result);
+                                                                 
                                 
                 }
 				
@@ -13452,8 +13450,7 @@ var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById}&quot;;
                                                 pur.OwnerId=CreatedBy;
 												pur.VPM_Rework__c=&apos;Yes&apos;; 
                                                 result = sforce.connection.update([pur]); 
-                                                window.location.reload(); 
-                                
+                                            
                 }
 				
 				else if (LastGroup == &apos;Business Requestor&apos; &amp;&amp; currentstatus ==&apos;Approval Pending&apos; &amp;&amp; FinanceApproveRequired ==true &amp;&amp; ProcurementApproveRequired==false )
@@ -13463,17 +13460,15 @@ var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById}&quot;;
                                                 pur.OwnerId=CreatedBy;
 												pur.VPM_Rework__c=&apos;Yes&apos;; 
 												result = sforce.connection.update([pur]); 
-                                                window.location.reload(); 
-                                
+                                                
                 }
 				else if (LastGroup == &apos;Business Requestor&apos; &amp;&amp; currentstatus ==&apos;Approval Pending&apos; &amp;&amp; FinanceApproveRequired ==true &amp;&amp; ProcurementApproveRequired==true )
-                {
-                                                
+                {                                                
                                                 pur.VPM_Status__c = &apos;Procurement Requested Re-Work&apos;;
                                                 pur.OwnerId=CreatedBy;
 												pur.VPM_Rework__c=&apos;Yes&apos;; 
 												result = sforce.connection.update([pur]); 
-                                                window.location.reload(); 
+                                                
                                 
                 }
 				
@@ -13485,8 +13480,8 @@ var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById}&quot;;
                                                 pur.VPM_Status__c = &apos;Finance Requested Re-Work&apos;;
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
 												pur.VPM_Rework__c=&apos;Yes&apos;; 
-                                                                result = sforce.connection.update([pur]); 
-                                                                window.location.reload(); 
+												result = sforce.connection.update([pur]); 
+                                                                
                                 }
                 }
 				
@@ -13499,8 +13494,8 @@ var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById}&quot;;
                                                 pur.VPM_Status__c = &apos;Procurement Requested Re-Work&apos;;
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
 												pur.VPM_Rework__c=&apos;Yes&apos;; 
-                                                                result = sforce.connection.update([pur]); 
-                                                                window.location.reload(); 
+                                                result = sforce.connection.update([pur]); 
+                                                                
                                 }
                 }
 				
@@ -13513,7 +13508,7 @@ var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById}&quot;;
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
 												pur.VPM_Rework__c=&apos;Yes&apos;; 
                                                                 result = sforce.connection.update([pur]); 
-                                                                window.location.reload(); 
+                                                                
 																}
                   
 				}
@@ -13527,7 +13522,7 @@ var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById}&quot;;
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
 												pur.VPM_Rework__c=&apos;Yes&apos;; 
                                                                 result = sforce.connection.update([pur]); 
-                                                                window.location.reload(); 
+                                                                
                                 }
                 }
                 else if (LastGroup == &apos;Finance&apos; &amp;&amp; currentstatus == &apos;Approval Pending&apos;)
@@ -13538,10 +13533,22 @@ var CreatedBy=&quot;{!VPM_PurchasingRequests__c.CreatedById}&quot;;
                                                 pur.VPM_Status__c = &apos; Requested Re-Work&apos;;
                                                 pur.OwnerId=queue_records[&apos;QueueId&apos;];
 												pur.VPM_Rework__c=&apos;Yes&apos;; 
-                                                                result = sforce.connection.update([pur]); 
-                                                                window.location.reload(); 
+                                                result = sforce.connection.update([pur]); 
+                                                               
                                 }
                 }
+				if (pur.VPM_Rework__c=&apos;Yes&apos;)
+				{
+					    
+						alert(&quot;Request has been reworked... &quot;); 
+						
+						window.location.reload(); 
+				}
+}
+else 
+{ 
+alert(&quot;Rework Cancelled&quot;); 
+}
 }</url>
     </webLinks>
 </CustomObject>
