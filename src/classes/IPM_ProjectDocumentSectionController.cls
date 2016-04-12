@@ -471,6 +471,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
              if((lstofuser[0].IPM_Project_Leader__c!=null && lstofuser[0].IPM_Project_Leader__c==userinfo.getuserid()) || 
                 (lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid())){
                 IsEditableSumm=true;
+				isEditMarketPerformance=true;
                 if(CountProuser==0){
                     IsEditableOutC=true;
                     isEditGateCMI=true;
