@@ -10985,7 +10985,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Remember To Update</shortDescription>
-        <value>.Please remember to update the status on the gate document.</value>
+        <value>. Please remember to take the necessary action.</value>
     </labels>
     <labels>
         <fullName>IPM_Remove</fullName>
