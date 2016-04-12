@@ -1,3 +1,4 @@
+// S.M. no need to test this class as no longer used
 @isTest
 private class Oblix_Constants_Test {
 
