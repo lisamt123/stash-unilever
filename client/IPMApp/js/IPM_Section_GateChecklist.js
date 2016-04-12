@@ -118,15 +118,16 @@ function initSliderSecLabelGk(sliderObj, divId, valArray) {
 }
 
 function setSliderValBgcolor(){
-	 var selectedSliderVal = jq(".gkcStatus");
-	 var sliderValArray = ['Partly', 'No', 'Yes', 'Not Applicable'];
-	 
-	for(var i = 0; i < selectedSliderVal.length; i++){
-       var found = $.inArray(jq(selectedSliderVal[i]).text(), sliderValArray);
+ var selectedSliderVal = jq(".gkcStatus");
+ var sliderValArray = ['Partly', 'No', 'Yes', 'Not Applicable'];
+ 
+for(var i = 0; i < selectedSliderVal.length; i++){
+  if(sliderValArray !== undefined){
+       var found = jq.inArray(jq(selectedSliderVal[i]).text(), sliderValArray);
     if(found === -1 && jq(selectedSliderVal[i]).text() !== ""){
-    	jq('.gkcStatus.'+jq(selectedSliderVal[i]).text()).css({background: "#000000"});
+    jq('.gkcStatus.'+jq(selectedSliderVal[i]).text()).css({background: "#000000"});
     }
-    
+  }  
     }
 
 }
