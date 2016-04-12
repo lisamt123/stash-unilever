@@ -57,6 +57,8 @@ public class Core_CA_InterestedParty_Handler{
                 approverRec.RecordTypeId = invoiceRecordType[0].Id;
                 if(approverRec.Action__c== strActvTemp && approverRec.Status__c=='Return to AP')
                         approverRec.Status__c='';
+                if(approverRec.Action__c== strActvTemp)
+                        approverRec.Comments__c='';  
             }   
             
             //Updating Name field with Role.            

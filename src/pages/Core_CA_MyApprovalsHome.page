@@ -88,12 +88,12 @@
                                     <div class="Subtext2" >{{pendingapprovalData.RequestedBy}}</div>
                                 </td>
                                 <td class="defaultRightSpacePendingAmountDetail" align="right" ng-if="pendingapprovalData.Action != 'QUER' && pendingapprovalData.Status != 'Query With Vendor' ">
-                                    <span class="Subtext3" ng-if="pendingapprovalData.ExpenseType != 'Clarity'">{{pendingapprovalData.Currencies}} {{pendingapprovalData.Amount}}</span>
-                                    <span class="Subtext3" ng-if="pendingapprovalData.ExpenseType == 'Clarity'">{{pendingapprovalData.Currencies}} {{pendingapprovalData.ProjectBug}}</span>
+                                    <span class="Subtext3" ng-if="pendingapprovalData.ExpenseType == 'Purchase Request' || pendingapprovalData.ExpenseType == 'Expense'">{{pendingapprovalData.Currencies}} {{pendingapprovalData.Amount}}</span>
+                                    <span class="Subtext3" ng-if="pendingapprovalData.ExpenseType == 'Clarity' || pendingapprovalData.ExpenseType == 'Invoice'">{{pendingapprovalData.Currencies}} {{pendingapprovalData.ProjectBug}}</span>
                                 </td> 
                                 <td class="defaultRightSpaceClosedAmountDetail" align="right" valign="bottom" ng-if="pendingapprovalData.Action == 'QUER' || pendingapprovalData.Status == 'Query With Vendor'">
-                                    <span class="Subtext3" ng-if="pendingapprovalData.ExpenseType != 'Clarity'">{{pendingapprovalData.Currencies}} {{pendingapprovalData.Amount}}</span>
-                                    <span class="Subtext3" ng-if="pendingapprovalData.ExpenseType == 'Clarity'">{{pendingapprovalData.Currencies}} {{pendingapprovalData.ProjectBug}}</span>
+                                    <span class="Subtext3" ng-if="pendingapprovalData.ExpenseType == 'Purchase Request' || pendingapprovalData.ExpenseType == 'Expense'">{{pendingapprovalData.Currencies}} {{pendingapprovalData.Amount}}</span>
+                                    <span class="Subtext3" ng-if="pendingapprovalData.ExpenseType == 'Clarity' || pendingapprovalData.ExpenseType == 'Invoice'">{{pendingapprovalData.Currencies}} {{pendingapprovalData.ProjectBug}}</span>
                                     <br/>
                                     <div type="button" class="queryWithVendorIndicatorText queryWithVendorTextWidth">{{'LBL_QUERY_WITH_VENDOR'| translate}}</div>                           
                                 </td>
@@ -135,13 +135,13 @@
                                     <span class="Subtext2" >{{closedapprovalData.RequestedBy}}</span>
                                 </td>
                                 <td class="defaultRightSpaceClosedAmountDetail" align="right" valign="bottom">
-                                    <span class="Subtext3" ng-if="closedapprovalData.ExpenseType != 'Clarity'">{{closedapprovalData.Currencies}} {{closedapprovalData.Amount}}</span>
-                                    <span class="Subtext3" ng-if="closedapprovalData.ExpenseType == 'Clarity'">{{closedapprovalData.Currencies}} {{closedapprovalData.ProjectBug}}</span>
+                                    <span class="Subtext3" ng-if="closedapprovalData.ExpenseType == 'Purchase Request' || closedapprovalData.ExpenseType == 'Expense'">{{closedapprovalData.Currencies}} {{closedapprovalData.Amount}}</span>
+                                    <span class="Subtext3" ng-if="closedapprovalData.ExpenseType == 'Clarity' || closedapprovalData.ExpenseType == 'Invoice'">{{closedapprovalData.Currencies}} {{closedapprovalData.ProjectBug}}</span>
                                     <br/>
                                     <button ng-if="closedapprovalData.Action == 'APPR' || (closedapprovalData.Action != 'REWO' && closedapprovalData.Action != 'APPR' && closedapprovalData.Action != 'REJC' && closedapprovalData.Status == 'Approved') " type="button" class="approveIndicatorText">{{'LBL_APPROVED' | translate}}</button>
                                     <button ng-if="(closedapprovalData.ExpenseType != 'Invoice' && closedapprovalData.Action == 'REJC') || (closedapprovalData.ExpenseType != 'Invoice' && closedapprovalData.Action != 'REWO' && closedapprovalData.Action != 'APPR' && closedapprovalData.Action__c != 'REJC' && closedapprovalData.Status == 'Rejected') " type="button" class="rejectIndicatorText">{{'LBL_REJECTED'| translate}}</button>
                                     <button ng-if="closedapprovalData.Action == 'REWO' || (closedapprovalData.Action != 'REWO' && closedapprovalData.Action != 'APPR' && closedapprovalData.Action != 'REJC' && closedapprovalData.Status == 'Rework')" type="button" class="reworkIndicatorText">{{'LBL_REWORK_CAPS'| translate}}</button>
-                                    <button ng-if="(closedapprovalData.ExpenseType == 'Invoice' && closedapprovalData.Action == 'REJC') || (closedapprovalData.ExpenseType == 'Invoice' && closedapprovalData.Action != 'REWO' && closedapprovalData.Action != 'APPR' && closedapprovalData.Action != 'REJC' && closedapprovalData.Action != 'QUER' && closedapprovalData.Status == 'Return to AP')" type="button" class="reworkIndicatorText returnToApIndicatorTextWidth">{{'LBL_RETURN_TO_AP_CAPS'| translate}}</button>
+                                    <button ng-if="(closedapprovalData.ExpenseType == 'Invoice' && closedapprovalData.Action == 'REJC') || (closedapprovalData.ExpenseType == 'Invoice' && closedapprovalData.Action != 'REWO' && closedapprovalData.Action != 'APPR' && closedapprovalData.Action != 'REJC' && closedapprovalData.Status == 'Return to AP')" type="button" class="reworkIndicatorText returnToApIndicatorTextWidth">{{'LBL_RETURN_TO_AP_CAPS'| translate}}</button>
                                 </td>
                             </tr>
                         </table>

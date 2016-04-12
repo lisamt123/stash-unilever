@@ -1,0 +1,54 @@
+<apex:page docType="html-5.0" showHeader="false" standardStylesheets="false" sidebar="false">
+<head>
+     <meta name="viewport" content="width=device-width, initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no"/> 
+</head>
+<style>
+.minus-div img{
+    width:100%;
+    overflow: auto;
+}
+</style>
+    <meta http-equiv="content-type" content="text/html; charset=UTF8" />
+    <div class="iPhoneHomeScreenHeight" style="overflow:auto">
+        <div class="headerBarBackground" name="top" id="pageTop">
+            <table class="headerBarWidth">
+                <tr>
+                    <td class="headerBarRowAlign" >
+                        <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/back.svg')}" ng-click='gotoDetailPage()'  alt="back" class="homePageFilter" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+    <div class="fixed-nav-bar-padding" ng-show="'{{approvalRequestData.Cop}}'=='false'">
+        <div>{{'LBL_INV_IMAGE_SIZE_MESSAGE' | translate}}</div>
+    </div>
+    <div id="minus-div"  style="width:100%;" ng-hide="'{{approvalRequestData.Cop}}'=='false'">
+    <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/plus.svg')}" onclick="plus();"  alt="Plus" class="apprvoeReturnImageStyle" />
+    <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/minus.svg')}" onclick="minus();"  alt="Minus" class="apprvoeReturnImageStyle" />
+        <img id="minus-img" ng-repeat="invoiceImage in approvalRequestData.InvoiceImage" width="100%" class="image-class" style="width:100%;" data-ng-src="data:image/png;base64,{{invoiceImage.body}}" data-err-src="images/png/avatar.png" alt="Return" /> 
+    
+    <!--  <a onclick="minus();">minus</a>&nbsp;&nbsp;&nbsp;<a id="plus" onClick="plus();">Plus</a>    -->
+    </div>
+    </div>
+    <script>
+    function minus()
+    {
+        var minus1= document.getElementById("minus-div").style.width;
+        if(parseInt(minus1)>90){    
+            minus1 = parseInt(minus1) -10 ; 
+            document.getElementById("minus-div").style.width = minus1.toString() + "%";      
+           
+         }  
+    }
+    function plus()
+    {
+        var minus1= document.getElementById("minus-div").style.width;
+        if(parseInt(minus1)<=140){    
+            minus1 = parseInt(minus1) +10 ; 
+            document.getElementById("minus-div").style.width = minus1.toString() + "%";      
+           
+         }  
+    }
+    </script>
+</apex:page>

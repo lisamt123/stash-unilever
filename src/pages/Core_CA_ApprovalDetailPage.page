@@ -669,7 +669,7 @@
                         <div class="defaultBottomBorder" ng-click="InvoiceDetailsPanelDisplay = (InvoiceDetailsPanelDisplay=='true' ? 'false' : 'true')">
                             <span>
                                 <label class="detailSectionHeader" ng-show="approvalRequestData.InvoiceType == 'INV'">{{'LBL_INV_INVOICE_DETAILS' | translate}}</label>
-                                <label class="detailSectionHeader" ng-show="approvalRequestData.InvoiceType == 'CN'">Credit Note Details</label>
+                                <label class="detailSectionHeader" ng-show="approvalRequestData.InvoiceType == 'CN'">{{'LBL_INV_CREDIT_NOTE_DETAILS' | translate}}</label>
                             </span>
                             <span class="alignRight">
                                 <img class="arrowButtonStyle" ng-hide="InvoiceDetailsPanelDisplay" src="{!URLFOR($Resource.MyApprovalsSR, 'img/showArrow.svg')}" alt="showArrow" />
@@ -712,8 +712,17 @@
                             <div class="row fixed-nav-bar-padding defaultBottomSpace defaultBottomBorder" ng-init="commentEllipseStyle='fourLineEllipsis'">
                                 <div class="responsiveDetailSectionTableRowLabel">{{'LBL_INV_LAST_COMMENT' | translate}}</div>
                                 <div class="fieldValue" ng-class="commentEllipseStyle" ng-click="commentEllipseStyle=''" ng-repeat="comment in approvalRequestData.ApprovalHistory | filter:{Comment : ''} |limitTo:1">{{comment.Comment}}</div>
+                                <br/>
+                                <div class="fixed-nav-bar-padding" ng-show="'{{approvalRequestData.PreTripDetails.Id}}'=='true'">
+                                         <div>{{'LBL_INV_ATTACHMENT_MESSAGE' | translate}}</div>
+                                </div>
                             </div>
-                                
+                            <div class="row fixed-nav-bar-padding defaultBottomSpace defaultBottomBorder">
+                             <div class="responsiveDetailSectionTable fixed-nav-bar-padding"  ng-click='gotoInvoiceImagePage()'>
+                                 <div class="textLinkExpenceNameTruncate">{{'LBL_INV_SEE_INV_IMAGE' | translate}}</div>
+                            
+                            </div>
+                            </div>    
                             <div class="row responsiveDetailSectionTable" ng-hide="'{{approvalRequestData.ApprovalHistory.length}}'==0" ng-click='gotoApprovalCommentDetailPage()'>
                                  <div class="textLinkExpenceNameTruncate">{{'LBL_INV_SEE_DOCUMENT_HISTORY' | translate}}</div>
                             </div>
@@ -748,7 +757,7 @@
                 <br/>
                 <!-- deatil page for invoice ends-->
             </tab>
-            <tab heading="{{'LBL_FEED'| translate}}" class="homePageMenuBody" active="active.feed" ng-show="showFeed">
+            <tab heading="{{'LBL_FEED'| translate}}" class="homePageMenuBody" active="active.feed" ng-show="approvalRequestData.RequestType != 'Invoice'">
                 <div class="feedIFrameSectionDiv">
                     <iframe ng-src="{{approvalRequestData.url}}" class="feedIFrameSectionDetail"></iframe>
                 </div>

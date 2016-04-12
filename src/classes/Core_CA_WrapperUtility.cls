@@ -115,7 +115,8 @@ global with sharing class Core_CA_WrapperUtility {
         public String AppType;
         //Invoice wrapper data      
         public String InvoiceType; 
-        public String CompanyCode; 
+        public String CompanyCode;
+        public List<InvoiceImage> InvoiceImage; 
     } 
     
     global class ExpenseDetailsDataRequest{
@@ -129,6 +130,7 @@ global with sharing class Core_CA_WrapperUtility {
         public Decimal Amount;
         public string LineItemId;
         public string Currencies;
+        public string NetAmount;
     }
     
     public class ApprovalHistory{
@@ -145,6 +147,12 @@ global with sharing class Core_CA_WrapperUtility {
         public String PassengerInfo;
         public String LocationDetails;
     } 
+    
+    public class InvoiceImage{
+        public String Contentdata;
+        public String body;
+        public String attId;
+    }
     /**** wrapper classes for Request detail page ends **** /
     
     
@@ -186,7 +194,7 @@ global with sharing class Core_CA_WrapperUtility {
         public string RequestName;
         public string IntOrder;
         public string GLAccount;
-        public Decimal NetAmnt;
+        public string NetAmnt;
         public string CstCntr;
         public string ProfitCntr;
         public string Description;

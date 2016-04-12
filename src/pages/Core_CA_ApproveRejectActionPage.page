@@ -75,11 +75,11 @@
                 </span>
                 <span ng-if="actionTakenonpage == 'RTAP'">
                     <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/rework.png')}" alt="rework" class="apprvoeReturnImageStyle" />
-                    <span class="action-label-Rework"> Returned To AP </span>
+                    <span class="action-label-Rework"> {{'LBL_RETURN_TO_AP' | translate}} </span>
                 </span>
                 <span ng-if="actionTakenonpage == 'QWV'">
                     <img src="{!URLFOR($Resource.MyApprovalsSR, 'img/querywithvendor.png')}" alt="Qwery with vendor" class="apprvoeReturnImageStyle" />
-                    <span class="action-label-Approve"> Post This Question To Vendor </span>
+                    <span class="action-label-Approve"> {{'LBL_QUERY_WITH_VENDOR_SMALL' | translate}} </span>
                 </span>
             </label>
             <br />
