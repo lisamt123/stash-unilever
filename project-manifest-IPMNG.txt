@@ -23,8 +23,6 @@ src/objects
 src/objects/IPM_Project__c.object
 src/objects/IPM_Project_Resource__c.object
 src/objects/IPM_Analytics_OTIF__c.object
-src/permissionsets
-src/permissionsets/IPM_Central_Team.permissionset
 src/reports
 src/reports/IPM_Reports
 src/reports/IPM_Reports/OTIF_Report.report
