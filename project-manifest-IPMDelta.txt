@@ -1,3 +1,4 @@
 src
 src/classes
 src/classes/TriggerFactory.cls
+src/classes/TriggerFactory.cls-meta.xml
