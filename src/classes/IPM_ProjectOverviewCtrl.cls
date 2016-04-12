@@ -382,10 +382,15 @@ public with sharing class IPM_ProjectOverviewCtrl {
 
          projResCompleteList = project.IPM_Project_Resources__r;
         Set<String> functionalRoleSet = new Set<String>();
+         // set of roles when PL is added as team member
+        Set<String> plFunctionalRoleSet=new Set<String>();
          for(IPM_Project_Resource__c res : projResCompleteList){
             if(res.IPM_User__c == UserInfo.getUserId()){
                 projResList.add(res);
                 isAcessDuetoTeam=true;
+                if(res.IPM_Project_Role_Owner__c==true){
+                   plFunctionalRoleSet.add(res.IPM_Role_Type__c);//get PL functional roles as team member
+                }
             }   
         
         	functionalRoleSet.add(res.IPM_Role_Type__c); // IPM_Role_Type__c will give functional role 
@@ -671,7 +676,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
-            IPM_FunctionalRole__c not in :functionalRoleSet AND  
+            (IPM_FunctionalRole__c not in :functionalRoleSet OR IPM_FunctionalRole__c in :plFunctionalRoleSet) AND  
                                                                                 IPM_Default_Section__c = true
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000] ;
         } else if(project.IPM_Project_Leader__c != UserInfo.getUserId() && userRole != null ) {
