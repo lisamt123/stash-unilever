@@ -73,10 +73,10 @@
         <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Idea__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Projected_Stage__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Stage_Projected_CFY__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Completed_Stage__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Stage_Completed_CFY__c</field>
     </columns>
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Asset_Deliverables__c</field>
