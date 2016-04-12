@@ -134,8 +134,8 @@ static testMethod void testWithNoAchievements(){
         
         PBS_Profile__c objProfile = new PBS_Profile__c (User_Role__c = objPBS_Standard_Job_Profile.Id,
                                                          User__c = lmsUsers.get(0).id,
-                                                         Work_Level__c = 'Test',
-                                                         Geography__c = 'Test',
+                                                         Work_Level__c = 'Guest',
+                                                         Geography__c = 'Guest',
                                                          Buddy__c = 'Guest');
         insert objProfile ;
                 
@@ -152,7 +152,7 @@ static testMethod void testWithNoAchievements(){
                cont.getWorkLevelOptions();
                cont.getJobProfileOptions();
                cont.getProfile();
-               PBS_MyProfileController_CC.storeUserProfile('Test', 'Test', objPBS_Standard_Job_Profile.Id, 'Guest');
+               PBS_MyProfileController_CC.storeUserProfile('Guest', 'Guest', objPBS_Standard_Job_Profile.Id, 'Guest');
                 ref.getParameters().put('aType','Certifications');
                 Test.setCurrentPageReference(ref);
 
