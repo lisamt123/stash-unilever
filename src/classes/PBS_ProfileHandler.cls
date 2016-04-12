@@ -85,6 +85,7 @@ public with sharing class PBS_ProfileHandler implements PBS_Trigger
         // check if new sharings should be created
         PBS_ProfileService.PBS_ProfileWithoutSharing serviceClass = new PBS_ProfileService.PBS_ProfileWithoutSharing();
         toAdd.addAll(serviceClass.getNewSharingForProfile((PBS_Profile__c) so));
+       
     }
 
     /**
@@ -102,6 +103,7 @@ public with sharing class PBS_ProfileHandler implements PBS_Trigger
             PBS_ProfileService.PBS_ProfileWithoutSharing serviceClass = new PBS_ProfileService.PBS_ProfileWithoutSharing();
             toAdd.addAll(serviceClass.getNewSharingForProfile(obj));
             toRemove.addAll(serviceClass.getExistingSharingForProfile(oldObj));
+            
         }
     }
 
