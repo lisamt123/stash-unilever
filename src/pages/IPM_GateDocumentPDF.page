@@ -400,18 +400,18 @@
         .cmiHeaderHolder{border-top: 1px solid #7fa19e;width:100%;background: #f2f8fc;min-height:50px;margin-top: 10px;border-bottom: 0.5pt #9ab4b1 solid;}
         .cmiGateName{width:100%;background: #f3ffe7;padding:5px;display:table;border-bottom: 0.5pt solid #ddd;}
         .cmiTabContainer{width:100%;}
-        .cmiValue{padding:5px;font-size: 9px;min-height: 45px;}
+        .cmiValue{padding:5px;font-size: 9px;min-height: 20px;width: 100%;display: block;}
         .cmiTimingValue{width:43px;padding:3px;maring-top:40px;font-size: 9px;}
-        .elemWidth{width:60px;}
-        .testValWidth{width:50px;display:table-cell;}
-        .kpiWidth{width:90px;display:table-cell;}
+        .elemWidth{width:90px;}
+        .testValWidth{width:50px;display:block;}
+        .kpiWidth{width:90px;display:block;}
         .cmiRenBlock{width:100%;border-bottom: 0.5pt solid #ddd;}
         .cmiActionStnds{width:117px;}
         .cmiChrtrResWidth{width:120px;}
         .cmiActionOvrall{width: 42px;}
         .cmiConResOvrall{width: 70px;}
         .cmiResultsOvrall{width: 40px;}
-        .cmiComments{width: 140px;}
+        .cmiComments{width: 270px;}
         .cmiConComments{width: 40px;}
         .cmiCountryWidth{width: 45px;}
         .cmiValContainer{width:100%;}
@@ -420,33 +420,35 @@
         .cmiColumnTitle{display:block;float:left;padding: 5px;}
         .cmiColumnDesc {text-align: center;width: 85%;display: inline-block;float: left;padding: 5px;}
         .cmiCountryValue{width: 45px;padding:5px;font-size: 9px;display:block;}
-        .cmiInputVal{display:block;height:100%;padding:3px;font-size: 9px;min-height: 54px;border-bottom:0.5pt solid #ccc;}
+        .cmiInputVal{display:block;height:100%;padding:3px;font-size: 9px;min-height: 56px;border-bottom:0.5pt solid #ccc;}
         .cmiCntryContainer{float:left;clear:both;}
         .cmiTimingHead{width:43px;}
         .cmiInputHead{width:53px;}
         .cmiInputContainer{width:66px;}
-        .cmiActOvrValContainer{font-size: 9px;width: 55px;padding-bottom: 5px;}
-        .cmiChrtrLeftValue{display:block;width:50px;padding:5px;border-right: 0.5pt solid #ddd;font-size: 9px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
-        .cmiChrtrRightValue{display:block;width:50px;padding:5px;border-right: 0.5pt solid #ddd;font-size: 9px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
+        .cmiActOvrValContainer{font-size: 9px;width: 57px;padding-bottom: 5px;}
+        .cmiChrtrLeftValue{display:block;width:50px;padding:5px;border-right: 0.5pt solid #ddd;font-size: 9px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+        .cmiChrtrRightValue{display:block;width:50px;padding:5px;border-right: 0.5pt solid #ddd;font-size: 9px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
         .cmiRightClrBox{display:block;}
-        .cmiConRes1{display:block;width:30px;border-right: 1px solid #ddd;font-size: 11px;min-height: 50px;}
-        .cmiConRes2{display:block;width:45px;border-right: 1px solid #ddd;font-size: 11px;min-height: 50px;}
-        .cmiConResValue1{display:block;font-size: 8px;padding:5px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
-        .cmiConResValue2{display:block;font-size: 8px;padding:5px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
-        .cmiConResHeader{width:75px;}
+        .cmiConRes1{display:block;width:50px;border-right: 1px solid #ddd;font-size: 11px;min-height: 52px;}
+        .cmiConRes2{display:block;width:50px;border-right: 1px solid #ddd;font-size: 11px;min-height: 52px;}
+        .cmiConResValue1{display:block;font-size: 8px;padding:5px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+        .cmiConResValue2{display:block;width:42px;padding:5px;font-size: 8px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+        .cmiConResHeader{width:90px;}
         .cmichrtrOvrallClr{display:block;width:80px;font-size: 8px;min-height: 45px;}
-        .cmiconOvrallClr{display:block;width:48px;font-size: 8px;min-height: 45px;}
-        .cmiChrtrRightValue .CMIRed,.cmiChrtrRightValue .CMIGreen,.cmiChrtrRightValue .CMIAmber,.cmiChrtrRightValue .CMILGreen{min-width:5px !important;min-height:10px;display:block;margin-top:5px;padding:2px !important;color:#fff;margin-left:-3px !important;margin-right:0px !important;}
-        .CMIRed,.CMIGreen,.CMIAmber,.CMILGreen{margin-top:5px;margin-left:3px !important;margin-right:2px !important;padding:2px !important;color:#fff;}
-        .cmiCommentsValue{width:45px;display:block;font-size: 9px;padding:5px;min-height: 50px;border-bottom:0.5pt solid #ccc;}
-        .cmiChrtrComment{width:146px !important;}
+        .cmiconOvrallClr{display:block;width:52px;font-size: 8px;min-height: 45px;}
+        .cmiChrtrRightValue .CMIRed,.cmiChrtrRightValue .CMIGreen,.cmiChrtrRightValue .CMIAmber,.cmiChrtrRightValue .CMILGreen,.cmiChrtrRightValue .CMIPink{min-width:5px !important;min-height:10px;display:block;margin-top:5px;padding:2px !important;color:#fff;margin-left:-3px !important;margin-right:0px !important;}
+        .cmiConResValue2 .CMIRed,.cmiConResValue2 .CMIGreen,.cmiConResValue2 .CMIAmber,.cmiConResValue2 .CMILGreen,.cmiConResValue2 .CMIPink{min-width:5px !important;min-height:10px;display:block;margin-top:5px;padding:1px !important;color:#fff;margin-left:-3px !important;margin-right:0px !important;}
+        .CMIRed,.CMIPink,.CMIGreen,.CMIAmber,.CMILGreen{margin-top:5px;margin-left:3px !important;margin-right:2px !important;padding:2px !important;color:#fff;}
+        .cmiCommentsValue{width:144px;display:block;font-size: 9px;padding:5px;min-height: 52px;border-bottom:0.5pt solid #ccc;}
+        .cmiChrtrComment{width:275px !important;}
         .CMIRed{background-color:#FF0000;}
         .CMIGreen{background-color:#4F6228;}
         .CMIAmber{background-color:#FFC000;}
         .CMILGreen{background-color:#C4D79B;}
-        .cmiRightContainer{border-bottom: 0.5pt solid #ddd;height:100%;width: 532px;clear:both;}
-        .cmiLeftContainer{height:100%;width:230px;}
-        .cmiTabRight{border-left:1px solid #ccc;width:500px;}
+        .CMIPink{background: #E6B8B7;}
+        .cmiRightContainer{height:100%;clear:both;border-bottom: 0.5pt solid #ddd;}
+        .cmiLeftContainer{height:100%;width:100px;}
+        .cmiTabRight{border-left:1px solid #ccc;width:660px;}
         .cmiTimeContainer2,.cmiChrtrResMcontainer,.cmiConResContainer,.cmiCommentsContainer{border-left:0.5pt solid #ccc;}
         .cpart2{display:table-cell;border-right:0.5pt solid #ccc;}
         .cmiTimeContainer1{display:table-cell;}
@@ -516,6 +518,48 @@
            min-height:160px;
            display:block;
         }
+		.ipmFinancetable thead th .finproject{font-size:11px;}
+		.ipmFinancetable thead th .fintotal{font-size:12px;}		
+        .performanceTable table{font-size:10px;}		
+        .performanceTableHead{font-weight: bold;background-color:#dceefa;}		
+        		
+        .bPageBlock .list.monitor {		
+            width: 100%;		
+        }		
+        .bPageBlock .list.ipmTable.monitor thead th {		
+            background-color: #dceefa;		
+        }		
+        .bPageBlock .list.monitor tr.odd {		
+            background-color: #f8f8f8;		
+        }		
+        .errorConsole .x-grid3-row-over, body .pbBody table.list.monitor tr.dataRow.highlight td, body .pbBody table.list.monitor tr.dataRow.highlight th {		
+            background-color: transparent;		
+        }		
+        body .pbBody table.list.monitor tr.headerRow td, 		
+        body .pbBody table.list.monitor tr.headerRow th {		
+           font-size: 8.5px;		
+        }		
+        body .pbBody table.list.monitor tr.dataRow th, 		
+        body .pbBody table.list.monitor tr.dataRow td {		
+            font-size:8.5px;		
+        }		
+        		
+        /* Performance Breakdown Styles */		
+        .performanceContainer1{background-color:#dceefa;float: left;}		
+        .performanceHead{float: left;font-weight: bold;width:44px;padding:5px;font-size:10px;}		
+        .performanceContainer2,.performanceContainer3{width: 760px;}		
+        .performanceContainer2{background: #f8f8f8;float:left;clear:both;}		
+        .performanceContainer3{clear:both;display:table;table-layout:fixed;}		
+        .breakdown_Container{margin-bottom: 10px;}		
+        .performanceSecHead{float:left;width:43px;padding: 5px;font-size:10px;}		
+        .performanceCell{float:left;width:44px;padding: 5px;font-size:10px;border-bottom:1pt #7fa29e solid;min-height:15px;}		
+        .emptyCell{min-height:14px;}		
+        .misaligned{border:2px solid red;min-height:51px;}		
+        .performanceDrpdownContainer{margin-top:10px;}		
+        .SecButtonSet a.icoButton.download{margin-top:10px;}		
+        .panel .ipmButtonSet{margin-bottom:10px;}		
+        input.misalignedField{border:1px solid red;}		
+        .breakdown_Container{width: 762px;font-size:10px;clear:both;}
     </style>
 </head>
 <body class="docBody">

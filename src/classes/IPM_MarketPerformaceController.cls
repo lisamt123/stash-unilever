@@ -17,6 +17,7 @@ public with sharing class IPM_MarketPerformaceController {
     final String STYLECLASS_NAME_CONSTANT = 'misalignedField';
     final String CLASS_NAME_CONSTANT = IPM_MarketPerformaceController.class.getName();
     public String sErrorMessage=IPM_ConstantUtils.BLANK;
+    public Boolean loadMessagePanel{get;set;}
     String queryString = IPM_ConstantUtils.BLANK;
     
     //Constructor
@@ -35,6 +36,7 @@ public with sharing class IPM_MarketPerformaceController {
             
             prepareValidationHighlihtedStyleClassMap(lstMarketPerformaceData);
         }
+        loadMessagePanel = false;
     }
         
     public void save(){
@@ -68,10 +70,12 @@ public with sharing class IPM_MarketPerformaceController {
                     update lstMarketPerformaceData;
                 }catch(Exception ex){
                     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME_CONSTANT,'Update Market Performance Data',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);  
+                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME_CONSTANT,'Update Market Performance Data',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+                    loadMessagePanel = true;  
                 }
             }else{
                 ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.Error, sErrorMessage));
+                loadMessagePanel = true;
             }
         }
     }
