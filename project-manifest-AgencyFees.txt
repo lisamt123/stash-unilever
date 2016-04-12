@@ -373,6 +373,8 @@ src/pages/AF_Usersearch.page
 src/pages/AF_Usersearch.page-meta.xml
 src/pages/af_usersearchpage.page
 src/pages/af_usersearchpage.page-meta.xml
+src/pages/AF_ViewAll.page
+src/pages/AF_ViewAll.page-meta.xml
 src/staticresources
 src/staticresources/AF_Bootstrap.resource
 src/staticresources/AF_Bootstrap.resource-meta.xml
