@@ -106,8 +106,6 @@ src/classes/IPM_FinancialYearTriggerHandler_Test.cls
 src/classes/IPM_FinancialYearTriggerHandler_Test.cls-meta.xml
 src/classes/IPM_FinGateController_Test.cls
 src/classes/IPM_FinGateController_Test.cls-meta.xml
-src/classes/IPM_FunnelController_Test.cls
-src/classes/IPM_FunnelController_Test.cls-meta.xml
 src/classes/IPM_Gate_Milestones_Test.cls
 src/classes/IPM_Gate_Milestones_Test.cls-meta.xml
 src/classes/IPM_Gate_RollOuts_Controller_Test.cls
