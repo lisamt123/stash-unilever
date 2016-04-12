@@ -3,7 +3,7 @@
     <apiVersion>36.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <label>PBS_Library</label>
+    <label>PBS_MyProfile</label>
     <packageVersions>
         <majorNumber>2</majorNumber>
         <minorNumber>32</minorNumber>
