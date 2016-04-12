@@ -179,6 +179,9 @@ public with sharing class TriggerFactory
         if (soType == IPM_Assessment__c.sObjectType){
             return new IPM_AssesmentHandler();
         }
+		if (soType == IPM_Project_Document_Section__c.sObjectType){
+            return new IPM_ProjectDocumentSectionHandler();
+        }
         return null;
     }
 }
