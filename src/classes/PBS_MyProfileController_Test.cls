@@ -45,7 +45,7 @@ static testMethod void testWithNoAchievements(){
         u1.managerId = lmsUsers.get(1).Id;
         update u1;
 
-        PageReference ref = Page.MyProfile;
+        PageReference ref = Page.PBS_MyProfile;
         Test.setCurrentPageReference(ref);
 
         Test.startTest();

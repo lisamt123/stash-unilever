@@ -43,9 +43,9 @@ public class PBS_LMSHeaderController_Test {
           PBS_TestUtilClass.addPermissionSet(adminUsers,'PBS_LMS_Admin');
       }
 
-      PBS_AlmondNavigation__c mytraining = PBS_TestHelper.createNavItem(STR_TRAINGING, Page.MyTraining.getUrl(), STR_TRAINGING);
-      PBS_AlmondNavigation__c catalog    = PBS_TestHelper.createNavItem(STR_CATALOG, Page.TrainingCatalogHome.getUrl(), STR_CATALOG);
-      PBS_AlmondNavigation__c myprofile  = PBS_TestHelper.createNavItem(STR_PROFILE, Page.MyProfile.getUrl(), STR_PROFILE);
+      PBS_AlmondNavigation__c mytraining = PBS_TestHelper.createNavItem(STR_TRAINGING, Page.almond__MyTraining.getUrl(), STR_TRAINGING);
+      PBS_AlmondNavigation__c catalog    = PBS_TestHelper.createNavItem(STR_CATALOG, Page.almond__TrainingCatalogHome.getUrl(), STR_CATALOG);
+      PBS_AlmondNavigation__c myprofile  = PBS_TestHelper.createNavItem(STR_PROFILE, Page.almond__MyProfile.getUrl(), STR_PROFILE);
 
       Test.startTest();
 
