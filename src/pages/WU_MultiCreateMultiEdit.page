@@ -127,7 +127,7 @@
             </div>
         </div>
 
-        <apex:pageMessages ></apex:pageMessages>
+        <apex:pageMessages escape="false" ></apex:pageMessages>
         <apex:pageBlock title="Multiple Create / Update Warehouse Capacity Details" id="pgBlck">
             <apex:pageBlockTable value="{!masterWarehouseWrapperList}" var="masterWH">
                 <apex:column >
