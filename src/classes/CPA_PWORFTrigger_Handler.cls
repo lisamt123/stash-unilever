@@ -87,6 +87,7 @@ public with sharing class CPA_PWORFTrigger_Handler
             //later on move this method to CPA_PWORF_TriggerUtil class
             CPA_CalculationOfBusinessDaysForSLADates.generateInternalPWOID(trigger.old,trigger.new);
             CPA_PWORF_TriggerUtil.restrictULPMtoUpdate(trigger.old,trigger.new);
+             CPA_PWORF_TriggerUtil.restricSMTULPMToAcceptReject(trigger.new,trigger.old);
         }
     }
     

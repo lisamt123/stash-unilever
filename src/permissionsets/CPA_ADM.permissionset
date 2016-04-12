@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>Contracting</application>
+        <visible>true</visible>
+    </applicationVisibilities>
     <classAccesses>
         <apexClass>CPA_AttachmentUtil</apexClass>
         <enabled>true</enabled>
@@ -81,6 +85,14 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CPA_Key_Contact_Trigger_Handler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_Key_Contacts_TriggerUtil</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CPA_LOITrigger_Handler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -129,6 +141,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CPA_PWO_LOI_Trigger_Util</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CPA_PWO_RFTer_Controller</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -157,6 +173,26 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CPA_Req_Deli_and_Key_Contacts_util_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_RequirementsDeliverables_Handler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_RequirementsDeliverables_TriggerUtil</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_Resource_Requirement_Handler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_Resource_Requirement_TriggerUtil</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CPA_ReturnController_Test</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -166,6 +202,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_SelectRecordType_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CPA_Test_Req_Deli_and_Key_Contacts_util</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -199,34 +239,6 @@
     <classAccesses>
         <apexClass>CPA_testStatusMsgCustomSettingClass</apexClass>
         <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ITrigger</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ITriggerDispatcher</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>ITriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TriggerDispatcherBase</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TriggerException</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TriggerFactory</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TriggerParameters</apexClass>
-        <enabled>false</enabled>
     </classAccesses>
     <description>This Permission set for Accenture demand management for Contracting Process automation</description>
     <fieldPermissions>
@@ -763,6 +775,16 @@
         <editable>true</editable>
         <field>CPA_CR__c.isValidated__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_CR__c.lkp_Unilever_budget_approver__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_CR__c.lkp_Unilever_content_approver__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1705,6 +1727,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.lkp_Unilever_budget_approver__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.lkp_Unilever_content_approver__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CPA_LOI__c.mpkl_Phases_covered_by_WAR__c</field>
         <readable>true</readable>
@@ -2331,6 +2363,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CPA_PWORF__c.lkp_Project_requestor__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CPA_PWORF__c.lkp_Unilever_Finance_BP_Contact__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2820,6 +2857,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_Resource_Requirement__c.PWORF__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CPA_Risk_Assessment_and_Mitigation__c.lkp_PWORF__c</field>
         <readable>true</readable>
@@ -3215,6 +3257,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_project_work_order__c.eml_Project_requestor_Email__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CPA_project_work_order__c.eml_TNF_Unilever_Contact_Email__c</field>
         <readable>true</readable>
@@ -3233,6 +3280,11 @@
         <editable>true</editable>
         <field>CPA_project_work_order__c.eml_Unilever_Finance_BP_Contact_Email__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_project_work_order__c.eml_Unilever_project_manager_Email__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -3585,7 +3637,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_project_work_order__c.pkl_Pricing_Model__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -3720,6 +3772,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_project_work_order__c.txt_Project_requestor_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CPA_project_work_order__c.txt_TNF_Accenture_Contact__c</field>
         <readable>true</readable>
@@ -3793,6 +3850,11 @@
         <editable>true</editable>
         <field>CPA_project_work_order__c.txt_Unilever_Reference__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_project_work_order__c.txt_Unilever_project_manager_Name__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -3927,6 +3989,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>false</modifyAllRecords>
         <object>CPA_Requirements_and_Deliverables__c</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>CPA_Resource_Requirement__c</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -4098,6 +4169,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
+        <recordType>CPA_LOI__c.LOI_Accepted</recordType>
+        <visible>false</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <recordType>CPA_LOI__c.LOI_Cancael</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -4169,6 +4244,26 @@
         <recordType>CPA_project_work_order__c.CPA_Standalone_PWO</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
+    <tabSettings>
+        <tab>CPA_CR__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>CPA_HLE_Request__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>CPA_LOI__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>CPA_PWORF__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>CPA_project_work_order__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
     <userLicense>Salesforce Platform</userLicense>
     <userPermissions>
         <enabled>true</enabled>

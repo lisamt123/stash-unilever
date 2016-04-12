@@ -28,18 +28,22 @@ public with sharing class CFC_EventsController{
         } else {
             if(sortTopic=='ASC'){
                 for(CFC_Events__c eventObj : [SELECT Banner__c,Description__c,From__c,Id,Name,Topics__c,To__c,Vendor__c,Website__c FROM CFC_Events__c WHERE Name!=Null ORDER BY From__c ASC]) {
-                    for(String strTopic : eventObj.Topics__c.split(';')){
-                        if(strTopic == filterTopicName)
-                        {
-                            eventListData.put(eventObj.Id,eventObj); }
+                    if(eventObj.Topics__c!=null && eventObj.Topics__c!='') {
+                        for(String strTopic : eventObj.Topics__c.split(';')){
+                            if(strTopic == filterTopicName)
+                            {
+                                eventListData.put(eventObj.Id,eventObj); }
+                        }
                     }
                 }
             }
             else {
                 for(CFC_Events__c eventObj : [SELECT Banner__c,Description__c,From__c,Id,Name,Topics__c,To__c,Vendor__c,Website__c FROM CFC_Events__c WHERE Name!=Null ORDER BY From__c DESC]) {
-                    for(String strTopic : eventObj.Topics__c.split(';')){
-                        if(strTopic == filterTopicName)
-                            eventListData.put(eventObj.Id,eventObj);
+                    if(eventObj.Topics__c!=null && eventObj.Topics__c!='') {
+                        for(String strTopic : eventObj.Topics__c.split(';')){
+                            if(strTopic == filterTopicName)
+                                eventListData.put(eventObj.Id,eventObj);
+                        }
                     }
                 }
             }

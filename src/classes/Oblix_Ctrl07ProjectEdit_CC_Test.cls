@@ -1,49 +1,54 @@
+//******************************************************************************************************
+//      THE CONTENT OF THIS CLASS HAS BEEN COMMENT OUT AS THIS CLASS IS NO LONGER USED
+//      AS PART OF CODE REFACTORING, NEW CLASSES HAVE REPLACED THESE
+//      S.M. 2016-03-30
+//******************************************************************************************************
 @isTest
 private class Oblix_Ctrl07ProjectEdit_CC_Test {
 
     //private static final String NOT_NULL_MESSAGE = 'Page Reference should not be null';
-    private static final String PROJECT_TXT = 'Project';
-    private static final String PROJECTID_TXT = 'projectId';
+    //private static final String PROJECT_TXT = 'Project';
+    //private static final String PROJECTID_TXT = 'projectId';
 
-    @isTest static void initTest() {
-        User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-            Test.startTest();
-            MDO_Geography__c geographyRegion = new MDO_Geography__c();
-            geographyRegion.Name = 'Europe';
-            geographyRegion.geography_type__c = 'Region';
-            insert geographyRegion;
+    ////@isTest static void initTest() {
+    ////    User u = Oblix_TestUtils.createTestUser();
+    ////    System.runAs(u) {
+    ////        Test.startTest();
+    ////        MDO_Geography__c geographyRegion = new MDO_Geography__c();
+    ////        geographyRegion.Name = 'Europe';
+    ////        geographyRegion.geography_type__c = 'Region';
+    ////        insert geographyRegion;
 
-            MDO_Geography__c geographyCountry = new MDO_Geography__c();
-            geographyCountry.Name = 'France';
-            geographyCountry.geography_type__c = 'Country Cluste';
-            geographyCountry.parent_L5__c = geographyRegion.Id;
-            insert geographyCountry;
+    ////        MDO_Geography__c geographyCountry = new MDO_Geography__c();
+    ////        geographyCountry.Name = 'France';
+    ////        geographyCountry.geography_type__c = 'Country Cluste';
+    ////        geographyCountry.parent_L5__c = geographyRegion.Id;
+    ////        insert geographyCountry;
 
-            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+    ////        MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
 
-            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+    ////        Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
-            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
-            System.assert(project.Id != null, 'project not null');
-            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
+    ////        Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+    ////        System.assert(project.Id != null, 'project not null');
+    ////        ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
 
-            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
+    ////        Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
 
-            Oblix_Ctrl07ProjectEdit_CC controller = new Oblix_Ctrl07ProjectEdit_CC();
-            string complexity = controller.complexity;
-            string idSplit = controller.idSplit;
-            Set<Oblix_Project_Assets__c> ClearList = controller.ClearList;
-            String selectedCountry = controller.selectedCountry;
-            controller.subCat = 'Adaptation';
-            controller.recordType = 'Experiential';
-            controller.AddToProjectAction();
+    ////        Oblix_Ctrl07ProjectEdit_CC controller = new Oblix_Ctrl07ProjectEdit_CC();
+    ////        string complexity = controller.complexity;
+    ////        string idSplit = controller.idSplit;
+    ////        Set<Oblix_Project_Assets__c> ClearList = controller.ClearList;
+    ////        String selectedCountry = controller.selectedCountry;
+    ////        controller.subCat = 'Adaptation';
+    ////        controller.recordType = 'Experiential';
+    ////        controller.AddToProjectAction();
 
-            Test.stopTest();
+    ////        Test.stopTest();
 
-            System.assert(controller.userConnected != null, 'User should be set');
-        }
-    }
+    ////        System.assert(controller.userConnected != null, 'User should be set');
+    ////    }
+    ////}
 
     //@istest static void backActionWithProjectTest() {
     //    User u = Oblix_TestUtils.createTestUser();

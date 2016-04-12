@@ -306,6 +306,26 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
+        <displayedFields>
+            <field>Campaign_Status__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>First_3_selected_countries__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Stage_Completed_CFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Stage_Projected_CFY__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
         <label>Oblix_Campaign_Summary</label>
     </fieldSets>
     <fieldSets>
@@ -432,27 +452,27 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over &lt;10M</fullName>
+                <fullName>Incremental turnover &lt;10M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over 10M - 20M</fullName>
+                <fullName>Incremental turnover 10M - 20M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over 20M - 30M</fullName>
+                <fullName>Incremental turnover 20M - 30M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over 30M - 40M</fullName>
+                <fullName>Incremental turnover 30M - 40M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Incremental Turn Over &gt;40M</fullName>
+                <fullName>Incremental turnover &gt;40M</fullName>
                 <controllingFieldValues>Innovation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -704,6 +724,36 @@
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>Fees_To_Be_Paid_In_Current_FY_Agency__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+OR(
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Awaiting Unilever Approval&quot;),
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Draft - with Unilever&quot;),
+ISPICKVAL(Financial_Year__r.SOW_Status__c , &quot;Returned by Agency&quot;)
+), &quot;---&quot;, &quot;€&quot;&amp;
+
+IF(
+  Value_to_be_paid_in_Current_FY__c  &gt;= 1000000,
+TEXT(ROUND(Value_to_be_paid_in_Current_FY__c/ 1000000, 0)) &amp; &quot;,&quot;,
+&quot;&quot;
+) &amp;
+IF(
+Value_to_be_paid_in_Current_FY__c&gt;= 1000,
+RIGHT(TEXT(ROUND(Value_to_be_paid_in_Current_FY__c / 1000, 0)), 3) &amp; &quot;,&quot;,
+&quot;&quot;
+) &amp;
+RIGHT(TEXT(ROUND(Value_to_be_paid_in_Current_FY__c, 0)), 3)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fees To Be Paid In Current FY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Fees_To_Be_Paid_Next_Financial_Year__c</fullName>
         <description>For use only in reports, not displayed on UI</description>
         <externalId>false</externalId>
@@ -740,6 +790,17 @@
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>First_3_selected_countries__c</fullName>
+        <description>Utility field to store up to first 3 selected countries to be displayed on the campaign detail and summary pages.</description>
+        <externalId>false</externalId>
+        <label>First 3 selected countries</label>
+        <length>1300</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>First_Air_Date__c</fullName>
@@ -915,15 +976,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>OblixCountries__c</fullName>
-        <externalId>false</externalId>
-        <label>Countries</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
         <fullName>OblixProjectSplitPercentage_Comment__c</fullName>
         <externalId>false</externalId>
         <label>Oblix Project Split Percentage Comment</label>
@@ -951,18 +1003,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Oblix_tec_Unique_Name_c__c</fullName>
-        <caseSensitive>false</caseSensitive>
-        <externalId>false</externalId>
-        <label>Unique Name</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>true</unique>
     </fields>
     <fields>
         <fullName>Other_Kinds_of_Research__c</fullName>
@@ -1304,6 +1344,18 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>SOW_FY__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Financial_Year__r.Financial_Year__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SOW FY</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Selected_Countries__c</fullName>
         <description>Updated by Apex, to remove starting &apos;/&apos;, NOT to be used otherwise - ONLY APEX</description>
         <externalId>false</externalId>
@@ -1324,6 +1376,70 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Stage_Completed_CFY__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage Completed CFY</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Briefing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Stage_Projected_CFY__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage Projected CFY</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Briefing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <fields>
         <fullName>Start_of_TV_production__c</fullName>
@@ -1388,6 +1504,17 @@
         <label>Total Asset Deliverables</label>
         <summaryForeignKey>Oblix_Project_Assets__c.Agency_Projects__c</summaryForeignKey>
         <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Asset_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Asset Score</label>
+        <summarizedField>Oblix_Project_Assets__c.Asset_Line_Item_Score__c</summarizedField>
+        <summaryForeignKey>Oblix_Project_Assets__c.Agency_Projects__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Summary</type>

@@ -112,9 +112,10 @@ global with sharing class CPA_LOI_InformationController {
                 if(LoiRec.Total_Number_of_Man_days_being_requested__c == null){
                     RequiredFieldMap.put('W@R mandays approved at MC Rates',CPA_ConstantsForContractingAppClasses.MANDATORY);
                 }
+                /* // Commented by JP. 1st April 2016
                 if(LoiRec.dt_LOI_Start_Date__c != null && LoiRec.dt_LOI_Start_Date__c < system.today()){
                     RequiredFieldMap.put('LOI Start Date','LOI Start Date can not be a date from the past.');
-                }
+                }*/
                 if(LoiRec.dt_LOI_End_date__c != null &&  LoiRec.dt_LOI_End_date__c < LoiRec.dt_LOI_Start_Date__c){
                     RequiredFieldMap.put('LOI End date','LOI End Date can not be before Start date');
                 }

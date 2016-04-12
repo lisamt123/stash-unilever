@@ -189,6 +189,31 @@
             <field>Type_of_SOW__c</field>
             <table>Marketing_SOW__c</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Total_Non_Campaign_Fees_Agency__c</field>
+            <table>Marketing_SOW__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Total_Campaign_Fee_Agency__c</field>
+            <table>Marketing_SOW__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>SOW_Overall_Total_Agency__c</field>
+            <table>Marketing_SOW__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Stage_Completed_CFY__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Stage_Projected_CFY__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
         <masterLabel>SWOP</masterLabel>
     </sections>
     <sections>
@@ -425,6 +450,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Is_type_of_item_usually_poduced_by_this__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Fees_To_Be_Paid_In_Current_FY_Agency__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>
         <columns>

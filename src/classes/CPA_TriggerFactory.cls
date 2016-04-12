@@ -9,8 +9,9 @@ Purpose:  Used to instantiate and execute Trigger Handlers associated with sObje
 ======================================================
 History                                                            
 -------                                                            
-VERSION  AUTHOR                      DATE              DETAIL                 Description
-   1.0   Shreyas Mangalvedhekar      03/04/2015        INITIAL DEVELOPMENT           
+VERSION  AUTHOR                      DATE               DETAIL                 Description
+1.0     Shreyas Mangalvedhekar      03/04/2015          INITIAL DEVELOPMENT         
+1.1     Jayprakash Bharti           01/04/2016          UPDATED KEYCONTACT  
 ***********************************************************************/
 public with sharing class CPA_TriggerFactory
 {
@@ -143,6 +144,16 @@ public with sharing class CPA_TriggerFactory
         if (soType == CPA_Query_comment__c.sObjectType){
             return new CPA_Query_comment_Trigger_Handler();
         }
+        if (soType == CPA_Key_Contacts__c.sObjectType){
+            return new CPA_Key_Contact_Trigger_Handler();
+        }
+        if (soType == CPA_Requirements_and_Deliverables__c.sObjectType){
+            return new CPA_RequirementsDeliverables_Handler();
+        }
+        if (soType == CPA_Resource_Requirement__c.sObjectType){
+            return new CPA_Resource_Requirement_Handler();
+        }
+        
         return null;
     }
 

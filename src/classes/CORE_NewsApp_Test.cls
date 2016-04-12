@@ -1,4 +1,4 @@
-/***
+/*
   Class Name: CORE_NewsApp_Test
   Author : Mindtree
   Date: 1 Nov 2015
@@ -8,9 +8,8 @@
                            2.Core_NC_NewsCenterControllerHelper
                            3.Core_NC_NewsWrapperClass
                            4.Core_NC_NewsDetailWrapperClass 
-						   
 
-***/
+*/
 
 @isTest //(Seealldata=false)
 public class CORE_NewsApp_Test{
@@ -84,7 +83,7 @@ public class CORE_NewsApp_Test{
        // Core_NC_NewsCenterController.getGlobalNewsForMostRecent('PaulsBlog');
      //   Core_NC_NewsCenterController.getGlobalNewsForMostRecent('MyNews');
        // Core_NC_NewsCenterController.getNewsDetail(news1.Id);
-       // System.assertNotEquals(null, Core_NC_NewsCenterController.getNewsDetail(news1.Id));
+        System.assertNotEquals(null, Core_NC_NewsCenterController.getNewsDetail(news1.Id));
         System.assertNotEquals(null, Core_NC_NewsCenterController.getGlobalNewsForMostRecent('MyNews'));
         System.assertNotEquals(null,  Core_NC_NewsCenterController.getGlobalNewsForMostRecent('PaulsBlog'));
         System.assertNotEquals(null,  Core_NC_NewsCenterController.getGlobalNewsForMostRecent('GlobalNews'));
@@ -135,6 +134,19 @@ public class CORE_NewsApp_Test{
      
        System.assert(Core_NC_NewsCenterController.getTrendingNews('GlobalNews','View')!=null);
 
+        FeedItem feedItemObject =new FeedItem();
+        feedItemObject.Type='TextPost';
+        feedItemObject.Body='Hi';
+        feedItemObject.ParentId=news3.Id;
+        insert feedItemObject;
+        
+        FeedComment feedCommentObject =new FeedComment();
+        feedCommentObject.CommentBody='Hi';
+        feedCommentObject.FeedItemId=feedItemObject.Id;
+        insert feedCommentObject;
+        
+        delete feedCommentObject;
+        delete feedItemObject;
         
         Test.stopTest();
     }

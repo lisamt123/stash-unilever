@@ -83,11 +83,11 @@ public with sharing class CPA_PWOTrigger_Handler
            //Below call added by Dinesh on 9/2 to generate internal POW ID
            //CPA_Project_Work_Order_TriggerUtil.internalPWOID(trigger.new);
            //Dinesh added this line [16/02] to get internal PWO ID from PWORF
-           CPA_Project_Work_Order_TriggerUtil.getInternalPWOIDFromPWORF(trigger.new);
+           //CPA_Project_Work_Order_TriggerUtil.getInternalPWOIDFromPWORF(trigger.new);
            //Below line added by Dinesh for Standalone PWO, later on move this method to trigger util class
            //CPA_StandalonePWOAndCR.createPWORF(trigger.new);
            CPA_Project_Work_Order_TriggerUtil.setFirstPWO(trigger.new);
-    
+    	  
 
         }
     }
@@ -115,6 +115,7 @@ public with sharing class CPA_PWOTrigger_Handler
             //CPA_StandalonePWOAndCR.updatePWORFName(trigger.new);
            lstTATforUpdate = CPA_Project_Work_Order_TriggerUtil.UpdateTATObj(trigger.new); 
             //CPA_Project_Work_Order_TriggerUtil.newPWO(trigger.new);// commented by Pooja bcoz of exception
+           CPA_PWO_LOI_Trigger_Util.UpdateInternalPWOIDForLOI(trigger.new);
             
         }
     }
@@ -126,6 +127,7 @@ public with sharing class CPA_PWOTrigger_Handler
             CPA_Project_Work_Order_TriggerUtil.recallApproval(trigger.old,trigger.new);
             CPA_CNFTNF_TriggerUtil.CNFTNF_HistoricalData(trigger.old,trigger.new);
             lstCRforUpdate = CPA_Project_Work_Order_TriggerUtil.associatedCRCancel(trigger.old,trigger.new);
+            CPA_PWO_LOI_Trigger_Util.getUpdatedInternalPWOIDtoUpdateLOI(trigger.old,trigger.new);
         }
     }
     
