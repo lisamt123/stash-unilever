@@ -131,7 +131,8 @@ public with sharing class Amr_JobSheetController_CC{
         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND Job_Id__c  = :jobIdFromPage];
         getDocuments();
     }catch(Exception ex){
-        System.debug( ex.getmessage());
+       
+         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getmessage()));
     } 
     try{
             jobId = ApexPages.CurrentPage().getParameters().get(Amr_ConstantForAdManager.ID); 
@@ -197,7 +198,7 @@ Returns:
          
             permissionSetName = Label.Amr_RAP;
         }
-        //System.debug('pRofile ->' + permissionSetName);      
+   
     
       
       try{
@@ -341,7 +342,8 @@ Returns:
              userId = userinfo.getuserid();
             updateData();
         }catch(Exception ex){
-            System.debug( ex.getmessage());
+          
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getmessage()));
         }
        return null;  
          
@@ -417,7 +419,7 @@ Returns:
             }
       
         }catch(exception ex){
-          System.debug(ex.getmessage());
+          ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,ex.getmessage()));
         }
     }  
     
@@ -503,7 +505,7 @@ Returns:
        
         return JSON.serialize(listString);
             }catch(Exception e){
-            system.debug(e.getmessage());
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,e.getmessage()));
             return null;
             }
     }
@@ -525,7 +527,7 @@ Returns:
                 }
            }
            }catch(Exception e){
-            system.debug(e.getmessage());
+           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,e.getmessage()));
            }
         }
         
@@ -550,7 +552,7 @@ Returns:
              return pageRef;
         }
         }catch(Exception e){
-            system.debug(e.getmessage());
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,e.getmessage()));
             return null;
         }
       
@@ -592,7 +594,7 @@ Returns:
                 }
             } 
         }catch(Exception e){
-            system.debug(e.getmessage());
+           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,e.getmessage()));
             return null;
         }
     }
@@ -645,7 +647,7 @@ Returns:
             update jobDet;
                     }  
         }catch(Exception e){
-        system.debug(e.getmessage());
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,e.getmessage()));
       
         }
     }
@@ -677,7 +679,7 @@ Returns:
           }
        }
        }catch(Exception e){
-        system.debug(e.getmessage());
+         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,e.getmessage()));
          return null;
        }
     }
@@ -722,7 +724,7 @@ Returns:
            return null;
        }  
        }catch(Exception e){
-        system.debug(e.getmessage());
+       ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,e.getmessage()));
          return null;
        }
     }  
@@ -859,7 +861,7 @@ Returns:
     }   
     
     public PageReference  brandPositionListData(){    
-        system.debug('selected category======>'+selectedCategory);
+       
         selectedBrandPosName = null;
         brandNameFromPage = null;
         Amr_UtilityClass utiltyObj = new Amr_UtilityClass();
@@ -881,7 +883,7 @@ Returns:
     }
    
     public void ProjectData(){
-        system.debug('project-------->'+projNameFromPage);
+       
     
     }
  
@@ -914,7 +916,8 @@ Returns:
 Purpose:Method to update the job.
 Parameters: 
 Returns: 
-
+N-Path:
+MDO* obejcts are the Matser live data in UL and this method itertes the whole category data to dispaly on AdManager page and Job sheet page
 ************************************************************************************************************************************/
 
     public Pagereference updateJob(){
@@ -956,9 +959,9 @@ Returns:
          jobList.Currency_Conversion_Country_List__c = currencyFinalString;
          selectedCountry = currencyFinalString;
         }
-       System.debug('INNN  ->  ' + jobList.Project_Details__c);
+      
          if(jobList.Project_Details__c!=null){
-             System.debug('INNN');
+            
               Amr_Project_Details__c projectObj = [select id,name from Amr_Project_Details__c where id = :jobList.Project_Details__c ];
               projectNameFromPage = projectObj.name;
               
@@ -1255,7 +1258,7 @@ N-Path:
         if(jobList.Lead_Agency_Location_Cluster__c == null || jobList.Lead_Agency_Location_Country__c == null){
              LeadAgencyClusterFlag = true; 
          }
-         System.debug('DET _>  ' + jobList.Project_Details__c +  'OTHER -> ' + jobList.Project_Name_Other__c );
+       
         if(String.isBlank(jobList.Project_Details__c) && String.isBlank(jobList.Project_Name_Other__c)){
         projectDetailsFlag = true;
         projectNameFromPage = null;

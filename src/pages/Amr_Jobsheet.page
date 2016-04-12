@@ -4,69 +4,14 @@
     <apex:include pageName="Amr_common_header" />
     <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/production-activity.js')}"/>
     <apex:includeScript value="{!URLFOR($Resource.Amr_static_resources,'Amr-static-resource/js/jobsheet.js')}"/>
-    <script type="text/javascript">       
-                     
+    <script type="text/javascript">                     
         $j(document).ready(function() {             
            var strArrJobSheet = {!CategoryList};           
            var selectedCategoryJobSheet = '{!selectedCategory}';
            var stringArrayJobSheet = JSON.parse('{!MethodToPassProjectNames}');           
            var projFormPageJobSheet = '{!projectNameFromPage}';           
            catProjectJobsheet(stringArrayJobSheet,strArrJobSheet,projFormPageJobSheet,selectedCategoryJobSheet);           
-        });             
-        
-        function transferValue(projName) {            
-            if (projName !== "--None--") {
-                $j('.projecttextProjDetail').attr('value', projName);                
-            } else {
-                $j('.projecttextProjDetail').val('');
-            }
-        }
-        
-        $j(function(){
-            
-            var projectOtherVal = $j('.projecttext').val()
-            var projectPickVal = $j('.projectpick').val();
-            $j('.projectotherClass, .projectcancelClass').click(function(e) {
-                e.preventDefault();
-                var currPage = $j(this).attr('rel');
-                if (currPage == 'select') {
-                    $j('.projectpick').hide();
-                    $j('.projectpick option').prop('selected', false);
-                    $j('.projecttext').show();
-                    $j('.projecttext').val(projectOtherVal);
-                    $j('.projectotherClass').hide();
-                    $j('.projectcancelClass').show();
-                } else {
-                    $j('.projecttext').val('');
-                    $j('.projectpick').val(projectPickVal);
-                    $j('.projecttext').hide();
-                    $j('.projectpick').show();
-                    $j('.projectcancelClass').hide();
-                    $j('.projectotherClass').show();
-        
-                }
-            });         
-        });    
-        
-        function enableText123() {
-
-                $j('body').attr('style', 'pointer-events:none;');
-            
-                $j('.outputIdClass').removeAttr('disabled');
-                $j('.defaultTv').removeAttr('disabled');
-                $j('.defaultCinema').removeAttr('disabled');
-                $j('.defaultRadio').removeAttr('disabled');
-                $j('.defaultPrint').removeAttr('disabled');
-                $j('.defaultInternalVideo').removeAttr('disabled');
-                
-                if($j('.projecttext').is(":visible")) {             
-                    $j('.projecttextProjDetail').val('');
-                } else {                
-                    $j('.projecttext').val('');
-                }
-                
-                return true;
-            }                  
+        });                                                          
     </script>   
     <apex:stylesheet value="{!URLFOR($Resource.Amr_static_resources, 'Amr-static-resource/css/jobsheet.css')}" />
     <style type="text/css">        
@@ -1636,7 +1581,8 @@
                                 </div>
                                 </div>
                                 <div class="right">   
-                                        <apex:commandButton value="Update" action="{!UpdateJob}" onclick="return enableText123()" styleClass="commonbtn-blue" />
+                                        <apex:commandButton value="Update" action="{!UpdateJob}" onclick="return enableTextJobSheet()" styleClass="commonbtn-blue" />
+                                        
                                                                   
                                   <!-- <apex:commandLink value="Update" action="{!UpdateJob}" onclick="enableText()" styleClass="anchorsubmitbtn commonbtn-blue" reRender="msgs"/>-->                               
                                 </div>
@@ -1793,7 +1739,7 @@
                                      <apex:column headerValue="Prod. Type">
                                     <apex:outputText value="{!obj.Production_Type__c}"/>
                                     </apex:column>
-                                    <apex:column headerValue="Duration of masters x no. of masters">
+                                    <apex:column headerValue="Duration of Masters x No. of Masters">
                                         <div class="nombydom">  
                                             {!SUBSTITUTE(obj.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(obj.No_of_Masters2__c,',','_')}
                                         </div>              

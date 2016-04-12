@@ -407,12 +407,13 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
      soqlForCancel +=' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
            
      }
-     
+     /*
         if(String.isNotBlank(jobAllocation.Job_Status__c)){
      soql += ' and Job_Status__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Status__c)+'\'';
      soqlForCancel +=' and Job_Status__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Status__c)+'\'';
            
      }
+     */
       if(String.isNotBlank(jobDetails.Campaign_Name__c)){
             
      soql += ' and AM_Job_Detail__r.Campaign_Name__c LIKE \''+Amr_ConstantForAdManager.PERCENTAGE+String.escapeSingleQuotes(jobDetails.Campaign_Name__c)+Amr_ConstantForAdManager.PERCENTAGESLASH;
@@ -427,10 +428,12 @@ Search functionality is implemented and SOQL is built dynamically so can not bre
            soql += ' and Job_Allocated__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Allocated__c)+Amr_ConstantForAdManager.SLASH;
            soqlForCancel += ' and Job_Allocated__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Allocated__c)+Amr_ConstantForAdManager.SLASH; 
        }
+       /*
        if(String.isNotBlank(jobAllocation.Job_Status__c) && jobAllocation.Job_Status__c != Amr_ConstantForAdManager.NONE){
            soql += ' and Job_Status__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Status__c)+Amr_ConstantForAdManager.SLASH;
            soqlForCancel += ' and Job_Status__c = \''+String.escapeSingleQuotes(jobAllocation.Job_Status__c)+Amr_ConstantForAdManager.SLASH; 
        }
+       */
        
        if(String.isNotBlank(location)){
             

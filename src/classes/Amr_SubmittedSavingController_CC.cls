@@ -322,12 +322,18 @@ Returns:
     /***********************************************************************************************************************************
 Purpose: Method to submit saving record.
 Parameters: 
-Returns: 
+Returns:
+N-PATH:
+Checking mandatory object field validation, which can not be break down into multiple classes.
 
 ************************************************************************************************************************************/    
     public PageReference SubmitWholeSaving(){
         try{
              boolean okayToSave = true;  
+             /*
+             N-Path:
+             Check for each Object field validation in if clause.
+             */
              if(savObj.Production_Type__c == '--None--' || string.isBlank(savObj.Production_Type__c)){
                  ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please Enter Prod Type'));
                  savingMessages = true;

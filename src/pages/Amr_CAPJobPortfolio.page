@@ -188,7 +188,7 @@
             <!-- Advance Search Popup Start -->
             <apex:actionRegion >
 
-                <div class="advance-search-popup popup-window hide" style="height:350px;">
+                <div class="advance-search-popup popup-window hide" style="height:280px;">
                     <div class="margin-btwn-container12">
                         <div class="left popup-header">
                             {!$Label.Amr_Advanced_Search}
@@ -200,7 +200,7 @@
                         </div>
                     </div>
                     <div class="clear"></div>
-                    <div class="margin-btwn-inner-container" style="height:250px;">    <!--
+                    <div class="margin-btwn-inner-container" style="height:180px;">    <!--
 
                         <div class="job-field-parent displayinlineblock margin-top0imp">
                             <div class="job-field-input">
@@ -257,13 +257,13 @@
                             <div class="job-field-input">
                                 <apex:inputField value="{!jobAllocation.Job_Allocated__c}" />
                             </div>
-                        </div>
+                        </div>    <!--
                         <div class="job-field-parent displayinlineblock">
                             <div class="job-field-label">{!$Label.Amr_Job_Status}</div>
                             <div class="job-field-input">
                                 <apex:inputField value="{!jobAllocation.Job_Status__c}" />
                             </div>
-                        </div>
+                        </div>    -->
                         <div class="job-field-parent displayinlineblock">
                                 <div class="job-field-label">{!$Label.Amr_Accepted_And_Email_Sent}</div>
                                 <div class="job-field-input">

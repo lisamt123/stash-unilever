@@ -11,9 +11,7 @@
             callContrlStartDate(startDate);
         }
         function setFocusOnLoad() {}
-        $j(function() {
-        
-            
+        $j(function() {        
             var strArr = {!CategoryList};
             var newOp;
             for (var j = 0; j < strArr.length; j++) {
@@ -31,13 +29,7 @@
                 }
                 newOp = $j('<option value="' + strArr[j] + '">' + strArr[j] + '</option>');
                 $j('#categoryList').append(newOp);
-            }
-            /*
-            $j('.preventdefault a').click(function(e){
-                alert('hello');
-                e.preventDefault();
-            });
-            */
+            }            
             $j('#datepick').datepicker({ dateFormat: 'dd/mm/yy' });    
             $j('#datepick1').datepicker({ dateFormat: 'dd/mm/yy' });        
         });
@@ -132,14 +124,28 @@
                                     </div>
                                     <div class="displayinlineblock margin-top8imp margin-right10 compact-search-date-parent">
                                         <div class="compact-search-date">
-                                            <input type="text" placeholder="{!$Label.Amr_Start_Date}" class="inputTextCommon" id="datepick" onchange="callActionFunctionStartDate(this.value);" />
+                                           <input type="text" placeholder="{!$Label.Amr_Start_Date}" class="inputTextCommon" id="datepick" onchange="callActionFunctionStartDate(this.value);" />                                              
                                         </div>
+                                    </div>
+                                    <div class="displayinlineblock" style="margin-top:15px;">
+                                        <apex:actionStatus id="startdateloading">
+                                            <apex:facet name="start">
+                                                <img src="/img/loading.gif" alt="loading image" />
+                                            </apex:facet>
+                                        </apex:actionStatus>
                                     </div>
                                     <div class="displayinlineblock margin-top8imp margin-right10 compact-search-date-parent">
                                         <div class="compact-search-date">
                                             <input type="text" placeholder="{!$Label.Amr_End_Date}" class="inputTextCommon" id="datepick1" onchange="callActionFunctionEndDate(this.value);" />
                                         </div>
-                                    </div>                                  
+                                    </div>  
+                                    <div class="displayinlineblock" style="margin-top:15px;">
+                                        <apex:actionStatus id="enddateloading">
+                                            <apex:facet name="start">
+                                                <img src="/img/loading.gif" alt="loading image" />
+                                            </apex:facet>
+                                        </apex:actionStatus>
+                                    </div>                                
                                 </div>                                
                                 <div class="clear"></div> 
                             </div>
@@ -217,7 +223,14 @@
                         </div>                        
                         <div class="right">
                             <div class="right">
-                                <apex:commandButton styleClass="commonbtn-blue" value="Apply" action="{!getJobSearchDetails}" reRender="listRefresh,lstcancelid" status="actionStatusJobsSorting"></apex:commandButton>
+                                <apex:commandButton styleClass="commonbtn-blue" value="Apply" action="{!getJobSearchDetails}" reRender="listRefresh,lstcancelid" status="searchloading"></apex:commandButton>
+                           
+                               <apex:actionStatus id="searchloading">
+                                        <apex:facet name="start">
+                                            <img src="/img/loading.gif" alt="loadting image" class="loading-image-format" />
+                                        </apex:facet>
+                                    </apex:actionStatus>
+                               
                             </div>
                             <div class="right bold inputclass padding-top10 margin-right20 clear-filter">
                                 <a class="advance-popup" href="#">{!$Label.Amr_Advanced_Search}</a>
@@ -261,7 +274,8 @@
 
                     <div class="job-field-parent displayinlineblock  margin-top0imp">
                         <div class="job-field-input">
-                            <input type="text" class="inputTextCommon1" onchange="callActionFunctionTotalFilms(this.value);" placeholder="{!$Label.Amr_Total_No_of_Films}" />
+                          <!--  <input type="text" class="inputTextCommon1" onchange="callActionFunctionTotalFilms(this.value);" placeholder="{!$Label.Amr_Total_No_of_Films}" />     -->
+                            <apex:inputText value="{!films}" html-placeholder="{!$Label.Amr_Total_No_of_Films}" />
                         </div>
                     </div>
                     <div class="job-field-parent displayinlineblock  margin-top0imp">
@@ -304,7 +318,7 @@
                             </apex:selectList>
                         </div>
                     </div>
-                    <div class="job-field-parent displayinlineblock" style="margin-top:-20px;">
+                    <div class="job-field-parent displayinlineblock" style="margin-top:40px;">
                         <div class="job-field-input">
                             <apex:inputText value="{!totalAcceptedFinalCost}" html-placeholder="{!$Label.Amr_Total_Accepted_Final_Cost}" />
                         </div>
@@ -332,7 +346,7 @@
                     </div>
                     <div class="job-field-parent displayinlineblock" style="">
                         <div class="job-field-input">
-                            <apex:inputField value="{!savingObject.Percentage_Saving_Accepted_Quote__c}" html-placeholder="{!$Label.Amr_Percentage_Saving_Accepted_Quote}" />
+                            <apex:inputText value="{!percentageAcceptedSavingQuote}" html-placeholder="{!$Label.Amr_Percentage_Saving_Accepted_Quote}" />
                         </div>
                     </div>
                     <div class="job-field-parent displayinlineblock" style="">
@@ -410,7 +424,7 @@
 
                 <div>
                     <div class="right">
-                        <apex:commandButton value="Apply" action="{!getJobSearchDetails}" styleClass="apply-advance-popup commonbtn-blue" reRender="listRefresh,lstcancelid" status="actionStatusJobsSorting" />
+                        <apex:commandButton value="Apply" action="{!getJobSearchDetails}" styleClass="apply-advance-popup commonbtn-blue" reRender="listRefresh,lstcancelid"  />
 
                         <apex:actionStatus id="actionStatusAdvancedSearchFilter">
                             <apex:facet name="start">
@@ -511,10 +525,10 @@
                     <div class="tabsection">
                         <!-- test -->
 
-                        <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlStartDate" reRender="listRefresh1">
+                        <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlStartDate" reRender="listRefresh1" status="startdateloading">
                             <apex:param name="param" value="" id="y" assignTo="{!startDate}" />
                         </apex:actionFunction>
-                        <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlEndDate" reRender="listRefresh1">
+                        <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlEndDate" reRender="listRefresh1" status="enddateloading">
                             <apex:param name="param16" value="" id="y16" assignTo="{!endDate}" />
                         </apex:actionFunction>
                         <apex:actionFunction action="{!getJobSearchDetails}" name="callContrlFilms" reRender="listRefresh1">
@@ -531,7 +545,7 @@
                                 addHeaderTitle();
                             </script>
                             <div class="sort-by-container">
-                                <apex:outputPanel >
+                                <apex:outputPanel rendered="{!If(AND(NOT(ISBLANK(summaryJobsToShow)),summaryJobsToShow.size>0),true,false)}">
                                     <apex:outputLabel value="Sort By"></apex:outputLabel>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <apex:selectList value="{!selectedSortJobsOption}" size="1" multiselect="false" onchange="callFuctionForJobsSort(this.value);">
@@ -567,7 +581,7 @@
                                                 </div>
                                             </apex:outputText>
                                         </apex:column>                                      
-                                        <apex:column headerValue="Duration of masters x no. of masters" title="{!job.Duration_of_Masters__c}">
+                                        <apex:column headerValue="Duration of Masters x No. of Masters" title="{!job.Duration_of_Masters__c}">
                                             <apex:outputText >
                                                 <div class="nombydom td-overflow width80 tdelement">    
                                                     {!SUBSTITUTE(job.Duration_of_Masters__c,',','_')}:::{!SUBSTITUTE(job.No_of_Masters2__c,',','_')}

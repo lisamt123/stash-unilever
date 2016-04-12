@@ -55,6 +55,9 @@ public class Amr_JobSheetController_Test{
         
         MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
         
+         Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
+        insert customSetting;
+        
         Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAILADDR,Broadcast_Market__c=Amr_ConstantForAdManager.TESTMARKET,Name=Amr_ConstantForAdManager.TESTNAME,Project_Leader_Cluster__c=Amr_ConstantForAdManager.TESTCLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRYNAME,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.TESTAGENCY,Project_Name__c=Amr_ConstantForAdManager.TESTPROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.TESTSTAGE,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAILADDR,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAILADDR,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAILADDR,Digital_Agency_Name__c=Amr_ConstantForAdManager.TESTAGENCY,Campaign_Name__c=Amr_ConstantForAdManager.TESTCAMPAING,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c =Amr_ConstantForAdManager.ADNumber,Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAILADDR,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BROADMARKET,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id,Job_Notes__c= 'abbbbbcc');
         insert jobDetail;
                         
@@ -185,6 +188,9 @@ public class Amr_JobSheetController_Test{
         insert brand;
         
         MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+      
+           Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
+        insert customSetting;
         Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAILADDR,Broadcast_Market__c=Amr_ConstantForAdManager.TESTMARKET,Name=Amr_ConstantForAdManager.TESTNAME,Project_Leader_Cluster__c=Amr_ConstantForAdManager.TESTCLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRYNAME,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.TESTAGENCY,Project_Name__c=Amr_ConstantForAdManager.TESTPROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.TESTSTAGE,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAILADDR,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAILADDR,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAILADDR,Digital_Agency_Name__c=Amr_ConstantForAdManager.TESTAGENCY,Campaign_Name__c=Amr_ConstantForAdManager.TESTCAMPAING,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c =Amr_ConstantForAdManager.ADNumber,Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAILADDR,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BROADMARKET,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id);
         insert jobDetail;
                         
@@ -234,6 +240,10 @@ public class Amr_JobSheetController_Test{
         insert brand;
         
         MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        
+         Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
+        insert customSetting;
+        
         Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAILADDR,Broadcast_Market__c=Amr_ConstantForAdManager.TESTMARKET,Name=Amr_ConstantForAdManager.TESTNAME,Project_Leader_Cluster__c=Amr_ConstantForAdManager.TESTCLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRYNAME,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.TESTAGENCY,Project_Name__c=Amr_ConstantForAdManager.TESTPROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.TESTSTAGE,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAILADDR,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAILADDR,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAILADDR,Digital_Agency_Name__c=Amr_ConstantForAdManager.TESTAGENCY,Campaign_Name__c=Amr_ConstantForAdManager.TESTCAMPAING,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c =Amr_ConstantForAdManager.ADNumber,Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAILADDR,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BROADMARKET,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id);
         insert jobDetail;
                         
@@ -297,6 +307,10 @@ public class Amr_JobSheetController_Test{
         insert brand;
         
         MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        
+         Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
+        insert customSetting;
+        
         Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = true, Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAILADDR,Broadcast_Market__c=Amr_ConstantForAdManager.TESTMARKET,Name=Amr_ConstantForAdManager.TESTNAME,Project_Leader_Cluster__c=Amr_ConstantForAdManager.TESTCLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRYNAME,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.TESTAGENCY,Project_Name__c=Amr_ConstantForAdManager.TESTPROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.TESTSTAGE,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAILADDR,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAILADDR,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAILADDR,Digital_Agency_Name__c=Amr_ConstantForAdManager.TESTAGENCY,Campaign_Name__c=Amr_ConstantForAdManager.TESTCAMPAING,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c =Amr_ConstantForAdManager.ADNumber,Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAILADDR,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BROADMARKET,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id);
          Amr_Job_Details__c jobDetailSec =new Amr_Job_Details__c(Project_Details__c= projDetail2.Id,Job_Cancelled__c = true, Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAILADDR,Broadcast_Market__c=Amr_ConstantForAdManager.TESTMARKET,Name=Amr_ConstantForAdManager.TESTNAME,Project_Leader_Cluster__c=Amr_ConstantForAdManager.TESTCLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRYNAME,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.TESTAGENCY,Project_Name__c=Amr_ConstantForAdManager.TESTPROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.TESTSTAGE,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAILADDR,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAILADDR,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAILADDR,Digital_Agency_Name__c=Amr_ConstantForAdManager.TESTAGENCY,Campaign_Name__c=Amr_ConstantForAdManager.TESTCAMPAING,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c =Amr_ConstantForAdManager.ADNumber,Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAILADDR,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BROADMARKET,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id);
         insert jobDetail;
@@ -365,6 +379,9 @@ public class Amr_JobSheetController_Test{
         insert brand;
         
         MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+       Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
+        insert customSetting;
+      
         Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = true, Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAILADDR,Broadcast_Market__c=Amr_ConstantForAdManager.TESTMARKET,Name=Amr_ConstantForAdManager.TESTNAME,Project_Leader_Cluster__c=Amr_ConstantForAdManager.TESTCLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRYNAME,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.TESTAGENCY,Project_Name__c=Amr_ConstantForAdManager.TESTPROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.TESTSTAGE,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAILADDR,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAILADDR,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAILADDR,Digital_Agency_Name__c=Amr_ConstantForAdManager.TESTAGENCY,Campaign_Name__c=Amr_ConstantForAdManager.TESTCAMPAING,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c =Amr_ConstantForAdManager.ADNumber,Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAILADDR,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BROADMARKET,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id);
          
         insert jobDetail;
@@ -415,6 +432,10 @@ public class Amr_JobSheetController_Test{
     MDO_Brand__c brand = new MDO_Brand__c(Name=Amr_ConstantForAdManager.TESTBRANDNAME);
     insert brand;
     list<Amr_Job_Details__c> jobList = new list<Amr_Job_Details__c>();
+    
+     Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
+        insert customSetting;
+    
     Amr_Job_Details__c jobDetail1=new Amr_Job_Details__c(NewOriginalMasterCinema__c=false,NewOriginalMasterTv__c=false,GBVM_Email__c='abc12@gmail.com',Threshold_Amount__c=12.34,Is_Submitt__c=true,OwnerId=u.Id,Start_Date__c=date.newInstance(2015, 11, 21),End_Date__c=date.newInstance(2016, 11, 21),Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAILADDR,Broadcast_Market__c=Amr_ConstantForAdManager.TESTMARKET,Name=Amr_ConstantForAdManager.TESTNAME,Project_Name__c=Amr_ConstantForAdManager.TESTPROJECT,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Digital_Agency_Name__c=Amr_ConstantForAdManager.TESTAGENCY,AdManagerText__c =Amr_ConstantForAdManager.ADNumber,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.brand_position_id__c,Brand_Final__c=brand.Id,NewOriginalMasterRadio__c=false,NewOriginalMasterPrint__c=false,NewOriginalMasterOutofHome__c=false,NewOriginalMasterInStore__c=false,NewOriginalMasterDigital__c=false,NewOriginalMasterInternalVideo__c=false);
     insert jobDetail1;
      jobList.add(jobDetail1);
@@ -542,6 +563,9 @@ public class Amr_JobSheetController_Test{
         insert brand;
         
         MDO_BrandPositions__c MDOBrandPositions = new MDO_BrandPositions__c(brand_id__c = brand.id,brand_position_id__c = brandPos.id,product_category_id__c = category1.id);
+        Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
+        insert customSetting;
+       
         Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = true, Job_Status__c=Amr_ConstantForAdManager.PRIORITY,Unilever_Project_Leader_Email__c=Amr_ConstantForAdManager.EMAILADDR,Broadcast_Market__c=Amr_ConstantForAdManager.TESTMARKET,Name=Amr_ConstantForAdManager.TESTNAME,Project_Leader_Cluster__c=Amr_ConstantForAdManager.TESTCLUSTER,Project_Leader_Country__c=Amr_ConstantForAdManager.TESTCOUNTRYNAME,Lead_Creative_Agency_name__c=Amr_ConstantForAdManager.TESTAGENCY,Project_Name__c=Amr_ConstantForAdManager.TESTPROJECT,Stage_of_Production_Activity__c=Amr_ConstantForAdManager.TESTSTAGE,Job_Started__c=Amr_ConstantForAdManager.YES,Job_Reported__c=Amr_ConstantForAdManager.YES,Job_Shared__c=Amr_ConstantForAdManager.YES,Job_Accepted__c=Amr_ConstantForAdManager.YES,Your_Email_Address__c=Amr_ConstantForAdManager.EMAILADDR,Unilever_Finance_Member_Email__c=Amr_ConstantForAdManager.EMAILADDR,Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c=Amr_ConstantForAdManager.EMAILADDR,Digital_Agency_Name__c=Amr_ConstantForAdManager.TESTAGENCY,Campaign_Name__c=Amr_ConstantForAdManager.TESTCAMPAING,Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c =Amr_ConstantForAdManager.ADNumber,Agency_Contact_Account_Director_Email__c = Amr_ConstantForAdManager.EMAILADDR,Any_other_agencies_involved__c=Amr_ConstantForAdManager.YES,Brodcast_Market__c=Amr_ConstantForAdManager.BROADMARKET,ProductCategory__c = category1.Id,Brand_Position__c =brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.id);
          
         insert jobDetail;
@@ -560,6 +584,10 @@ public class Amr_JobSheetController_Test{
     }
     
      static testMethod  void testMehod11(){
+     
+          Amr_Trigger_Pattern__c customSetting = new Amr_Trigger_Pattern__c(Check_Run__c = true,name = 'Amr_Report');
+        insert customSetting;
+     
         Amr_Job_Details__c jobDetail1=new Amr_Job_Details__c(NewOriginalMaster__c = false,LanguageAdaptionMaster__c = false,Create_Additional_Material__c = false,ReworkExistingMaterial__c = false,BuyoutsTalent__c = false,BuyoutsMusic__c = false );
         
         
