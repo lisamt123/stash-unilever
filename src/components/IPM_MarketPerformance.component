@@ -10,7 +10,10 @@
      
 <apex:attribute name="projId" description="Getting Project Id" type="Id" assignTo="{!regionalProjectId}"/>
 <apex:attribute name="isEditable" description="For Edit or Read-Only mode" type="Boolean" assignTo="{!isEditableMarketPerfomance}"/>
-<apex:pageMessages id="messagePanel" escape="false"/>
+
+<apex:outputPanel id="messagePanel">
+    <apex:pageMessages escape="false" rendered="{!loadMessagePanel}"/>
+</apex:outputPanel>
 
 <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay"/>
     

@@ -173,6 +173,11 @@
                                     <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!p.record['IPM_Project__r']}&projDocSecId={!p.record['IPM_Project_Document_Section__c']}" target="_blank">
                                         {!p.record['IPM_Project_Document_Section__r']['IPM_Section_Sequence__c']} {!p.record['IPM_Project_Document_Section__r']['IPM_Section_Name__c']} </a>
                                 </apex:outputPanel>
+                                 <apex:outputPanel rendered="{! AND(p.record['IPM_Section__c'] != NULL,p.record['IPM_Project_Document_Section__c'] == NULL)}">
+                                        {!p.record['IPM_Section__r']['IPM_Section_Sequence__c']} {!p.record['IPM_Section__r']['IPM_Section_Name__c']}  
+                                </apex:outputPanel>
+                                <!-- Comment : if the functional role is not null + current user is functional leader + current user's functional role is equal to
+                                    tasks' functional role + current user is having access for edit task then user can edit the task by double clicking on task function -->
                                 <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable ),'true','false')}">
                                     <div class="editTask" id="editTask" value="{!$Page.IPM_EditTask}?projectId={!projectId}&taskId={!p.record['Id']}" title="Edit Task"><apex:outputPanel rendered="{!p.record['IPM_Function__c'] != NULL}">
                                     [{!p.record['IPM_Function__c']}]</apex:outputPanel></div>

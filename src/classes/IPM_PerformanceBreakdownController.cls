@@ -175,7 +175,8 @@ public with sharing class IPM_PerformanceBreakdownController {
 		        applyRate();
 		        checkMisalignments();
 	        }catch(Exception ex){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+	        	isgreaterThan=true; 
+                greaterThanSet.add(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR);
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'saveRecords',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
             } 
         }
