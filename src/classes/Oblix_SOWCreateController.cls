@@ -83,7 +83,8 @@ public with sharing class Oblix_SOWCreateController extends Oblix_SWOPparentCont
 
     		pageAttachment.OwnerId = UserInfo.getUserId();
             pageAttachment.ParentId = selected_sow.id;
-            pageAttachment.IsPrivate = true;
+            //IR - Comented out as far of DE330 defect fix
+            //pageAttachment.IsPrivate = true;
 
             try{
 

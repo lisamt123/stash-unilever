@@ -1,69 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
-    <applicationVisibilities>
-        <application>Warehouse_Utilization</application>
-        <visible>true</visible>
-    </applicationVisibilities>
-    <classAccesses>
-        <apexClass>WU_CreateCapacityDetails</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_CreateCapacityDetails_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_MultiCreateMultiEdit3</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_MultiCreateMultiEdit3_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_SetCurrentMonthBatch</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_SetCurrentMonthBatch_Scheduler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_SetCurrentMonthBatch_Scheduler_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_SetCurrentMonthBatch_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_SetWarehousePOCHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_SetWarehousePOCHandler_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_TestFactory_Helper</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_UpdateMasterWarehouseHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_WarehouseSearchController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_WarehouseSearchController_test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>WU_warehousUtility</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
     <description>Created for Chatter Only Users to access Warehouse App</description>
     <fieldPermissions>
         <editable>false</editable>
@@ -88,6 +24,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>WU_Master_Warehouse__c.WU_Average_Current_Utilization__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>WU_Master_Warehouse__c.WU_Average_Pallet_Utilization_Count__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -454,14 +395,6 @@
         <object>WU_Warehouse_Capacity_Detail__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <pageAccesses>
-        <apexPage>WU_MultiCreateMultiEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>WU_WarehouseSearchPage</apexPage>
-        <enabled>true</enabled>
-    </pageAccesses>
     <recordTypeVisibilities>
         <recordType>WU_Master_Warehouse__c.Edit_Warehouse_Capacity</recordType>
         <visible>false</visible>
@@ -470,18 +403,6 @@
         <recordType>WU_Master_Warehouse__c.New_Warehouse_Capacity</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
-    <tabSettings>
-        <tab>Data_Entry</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>WU_Master_Warehouse__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>WU_Warehouse_Search</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
     <userLicense>Chatter Only</userLicense>
     <userPermissions>
         <enabled>true</enabled>

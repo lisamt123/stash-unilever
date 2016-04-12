@@ -3414,7 +3414,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <shortDescription>IPM Bosscard Shared Chatter</shortDescription>
         <value>BOSSCARD Shared Via Chatter</value>
     </labels>
-	<labels>
+    <labels>
         <fullName>IPM_000</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -8000,7 +8000,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <shortDescription>IPM_ITO_GTO_INNOVATION</shortDescription>
         <value>Innovation Year ITO Cannot be greater than GTO.</value>
     </labels>
-	<labels>
+    <labels>
         <fullName>IPM_ITO_GTO_Validation_Common_message</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -12509,7 +12509,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Volume</value>
     </labels>
 
-	<labels>
+    <labels>
         <fullName>Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40</fullName>
         <categories>Oblix Calculator</categories>
         <language>en_US</language>
@@ -13924,7 +13924,7 @@ the campaign covers more than 15 countries</value>
         <shortDescription>Stimulus Materials</shortDescription>
         <value>Stimulus Materials - Research requirements</value>
     </labels>
-	<labels>
+    <labels>
         <fullName>Oblix_Lbl_UIUX_Sub_Category</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -16161,7 +16161,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos;</shortDescription>
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
     </labels>
-	<labels>
+    <labels>
         <fullName>WU_Category</fullName>
         <categories>Warehouse Utilization</categories>
         <language>en_US</language>
@@ -16240,7 +16240,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>WU_utilizationTypeCannotChange</shortDescription>
         <value>Utilization Type for this month has been set.You cannot change it.</value>
     </labels>
-	<labels>
+    <labels>
         <fullName>WU_Report_City</fullName>
         <categories>Warehouse Utilization</categories>
         <language>en_US</language>

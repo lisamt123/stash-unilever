@@ -102,6 +102,10 @@ src/classes/CPA_RequirementsDeliverables_Handler.cls
 src/classes/CPA_RequirementsDeliverables_Handler.cls-meta.xml
 src/classes/CPA_RequirementsDeliverables_TriggerUtil.cls
 src/classes/CPA_RequirementsDeliverables_TriggerUtil.cls-meta.xml
+src/classes/CPA_Resource_Requirement_Handler.cls
+src/classes/CPA_Resource_Requirement_Handler.cls-meta.xml
+src/classes/CPA_Resource_Requirement_TriggerUtil.cls
+src/classes/CPA_Resource_Requirement_TriggerUtil.cls-meta.xml
 src/classes/CPA_ReturnController_Test.cls
 src/classes/CPA_ReturnController_Test.cls-meta.xml
 src/classes/CPA_SelectRecordType_Test.cls
@@ -292,6 +296,9 @@ src/groups/CAP_ULPM_group.group
 src/groups/CAP_ULPT_Group.group
 src/groups/CAP_VDM_Group.group
 src
+src/homePageLayouts
+src/homePageLayouts/Unilever - Chatter Only HomePage.homePageLayout
+src
 src/layouts
 src/layouts/CPA_CNF_TNF__c-CNF%2FTNF Layout.layout
 src/layouts/CPA_Commercial_Details__c-Commercial Details Layout.layout
@@ -299,6 +306,7 @@ src/layouts/CPA_CR__c-CPA CR For ULPM ULFT ULPT.layout
 src/layouts/CPA_CR__c-CPA SMT Sent for Signed and Signed.layout
 src/layouts/CPA_CR__c-CPA VDM Delivered Layout.layout
 src/layouts/CPA_CR__c-CR Layout without mandatory fields.layout
+src/layouts/CPA_CR__c-CR Layout.layout
 src/layouts/CPA_CR__c-CR Read Only Layout.layout
 src/layouts/CPA_CR__c-Standalone CR Layout.layout
 src/layouts/CPA_HLE_Request__c-BPE Answered.layout
@@ -306,14 +314,20 @@ src/layouts/CPA_HLE_Request__c-BPE Cancelled.layout
 src/layouts/CPA_HLE_Request__c-BPE.layout
 src/layouts/CPA_HLE_Request__c-HLE Answered.layout
 src/layouts/CPA_HLE_Request__c-HLE Cancelled.layout
+src/layouts/CPA_HLE_Request__c-HLE layout without mandatory fields.layout
 src/layouts/CPA_HLE_Request__c-HLE Request Accepted.layout
 src/layouts/CPA_HLE_Request__c-HLE Request Cancelled.layout
+src/layouts/CPA_HLE_Request__c-HLE Request Layout.layout
 src/layouts/CPA_HLE_Request__c-HLE Request Saved layout.layout
 src/layouts/CPA_HLE_Request__c-HLE.layout
 src/layouts/CPA_Key_Contacts__c-Key Contact Layout.layout
+src/layouts/CPA_Key_Contacts__c-PWORF Key Contact Layout.layout
 src/layouts/CPA_LOI__c-ADM LOI without Mandatory fields.layout
+src/layouts/CPA_LOI__c-LOI Accepted and further.layout
 src/layouts/CPA_LOI__c-LOI Layout without mandatory fields.layout
+src/layouts/CPA_LOI__c-LOI Layout.layout
 src/layouts/CPA_LOI__c-LOI submitted Layout.layout
+src/layouts/CPA_LOI__c-SMT LOI without Mandatory fields.layout
 src/layouts/CPA_LOI__c-ULPM LOI without Mandatory Fields.layout
 src/layouts/CPA_project_work_order__c-CPA Project Work Order Cancel  Layout.layout
 src/layouts/CPA_project_work_order__c-CPA Project Work Order CNF Layout.layout
@@ -340,7 +354,9 @@ src/layouts/CPA_PWORF__c-RA-ADM Page Layout.layout
 src/layouts/CPA_PWORF_Ageing__c-CPA PWORF Ageing Layout.layout
 src/layouts/CPA_Queries__c-CPA_Queries Layout.layout
 src/layouts/CPA_Query_comment__c-CPA_Query comments Layout.layout
+src/layouts/CPA_Query_comment__c-Submit Response Layout.layout
 src/layouts/CPA_Requirements_and_Deliverables__c-Requirements and Deliverables Layout.layout
+src/layouts/CPA_Resource_Requirement__c-Resource Requirement Layout.layout
 src/layouts/CPA_Risk_Assessment_and_Mitigation__c-Risk Assessment and Mitigation Layout.layout
 src/layouts/CPA_TAT__c-CPA TAT Layout.layout
 src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute Layout.layout
@@ -358,6 +374,7 @@ src/objects/CPA_PWORF_Ageing__c.object
 src/objects/CPA_Queries__c.object
 src/objects/CPA_Query_comment__c.object
 src/objects/CPA_Requirements_and_Deliverables__c.object
+src/objects/CPA_Resource_Requirement__c.object
 src/objects/CPA_Risk_Assessment_and_Mitigation__c.object
 src/objects/CPA_TAT__c.object
 src/objects/CPA_User_Defined_Attribute__c.object
@@ -434,6 +451,8 @@ src/triggers/CPA_QueriesTrigger.trigger
 src/triggers/CPA_QueriesTrigger.trigger-meta.xml
 src/triggers/CPA_RequirementsDeliverables_Trigger.trigger
 src/triggers/CPA_RequirementsDeliverables_Trigger.trigger-meta.xml
+src/triggers/CPA_Resource_Requirement_Trigger.trigger
+src/triggers/CPA_Resource_Requirement_Trigger.trigger-meta.xml
 src/triggers/CPA_ResponseTrigger.trigger
 src/triggers/CPA_ResponseTrigger.trigger-meta.xml
 src
@@ -445,6 +464,3 @@ src/workflows/CPA_project_work_order__c.workflow
 src/workflows/CPA_PWORF__c.workflow
 src/workflows/CPA_Queries__c.workflow
 src/workflows/CPA_Query_comment__c.workflow
-src
-src/homePageLayouts
-src/homePageLayouts/Unilever - Chatter Only HomePage.homePageLayout

@@ -22,9 +22,6 @@
         <field>CHILD_RECORDTYPE</field>
     </columns>
     <columns>
-        <field>Marketing_Basics__c.Activities__c</field>
-    </columns>
-    <columns>
         <field>Marketing_Basics__c.Agency_Department__c</field>
     </columns>
     <columns>

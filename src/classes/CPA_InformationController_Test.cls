@@ -62,8 +62,8 @@ public  class CPA_InformationController_Test {
         boolean flage = CPA_PWORFInformationController.checkIsValidated(objPworf2.Id );
         
         System.assert (CPA_ConstantsForContractingAppClasses.SAVED == objPworf2.pkl_Status__c);    
-        System.assert (controller2.objectMap.get(CPA_ConstantsForContractingAppClasses.RESOURCELOCATION ) != null);
-        System.assert (controller2.objectMap.get(CPA_ConstantsForContractingAppClasses.RESOURCELOCATION ) == CPA_ConstantsForContractingAppClasses.MANDATORY);
+        System.assert (controller2.objectMap.get(CPA_ConstantsForContractingAppClasses.RESOURCELOCATION ) == null);
+        System.assert (controller2.objectMap.get(CPA_ConstantsForContractingAppClasses.RESOURCELOCATION ) != CPA_ConstantsForContractingAppClasses.MANDATORY);
       
         
         Test.stopTest();

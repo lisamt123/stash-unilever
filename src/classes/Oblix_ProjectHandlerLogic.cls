@@ -279,8 +279,8 @@ public with sharing class Oblix_ProjectHandlerLogic {
         for (Oblix_Project_Assets__c project_asset : campaign_in_scope.Agency_Project_Assets__r){
 
             s_asset_deliverables +=  String.isNotBlank(project_asset.Location__c) 
-                ? ', ' + project_asset.Quantity__c + asset_separator + project_asset.Asset_Picklist__c + asset_separator + project_asset.Location__c + asset_separator + project_asset.Sub_Category__c
-                : ', ' + project_asset.Quantity__c + asset_separator + project_asset.Asset_Picklist__c + asset_separator + project_asset.Sub_Category__c;
+                ? ', ' + project_asset.Quantity__c + asset_separator + project_asset.Asset_name__c + asset_separator + project_asset.Location__c + asset_separator + project_asset.Sub_Category__c
+                : ', ' + project_asset.Quantity__c + asset_separator + project_asset.Asset_name__c + asset_separator + project_asset.Sub_Category__c;
         }
 
         // remove the first comma

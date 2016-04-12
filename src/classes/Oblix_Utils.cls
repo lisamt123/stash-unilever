@@ -884,6 +884,7 @@ public with sharing class Oblix_Utils {
     public static final String SOW_STATUS_REJECTED_BY_UNILEVER = 'Returned by Approver';
     public static final String SOW_STATUS_REJECTED_BY_AGENCY = 'Returned by Agency';
     public static final String SOW_STATUS_DRAFT_WITH_UNILEVER = 'Draft - with Unilever';
+    public static final String SOW_STATUS_OPEN_FOR_UPDATES = 'Open for Updates';
 
     public static final String CAMPAIGN_STATUS_CANCELLED = 'Cancelled';
     public static final String SWOP_REPORT_FOLDER = 'SWOP Reporting';
