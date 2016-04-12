@@ -1,11 +1,5 @@
 src
 src/classes
-src/classes/IPM_ConstantUtils.cls
-src/classes/IPM_ConstantUtils.cls-meta.xml
-src/classes/IPM_OTIF_Report_Batch.cls
-src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
-src/classes/IPM_OTIF_Report_BatchSchedule.cls
-src/classes/IPM_OTIF_Report_BatchSchedule.cls-meta.xml
 src/classes/IPM_GatekeeperChecklist.cls
 src/classes/IPM_GatekeeperChecklist.cls-meta.xml
 src/classes/IPM_ProjectDocumentHelper.cls
@@ -23,13 +17,6 @@ src/components/IPM_MarketPerformance.component
 src/components/IPM_MarketPerformance.component-meta.xml
 src/components/IPM_PerformanceBreakdown.component
 src/components/IPM_PerformanceBreakdown.component-meta.xml
-src/objects
-src/objects/IPM_Analytics_OTIF__c.object
 src/pages
 src/pages/IPM_GateDocumentPDF.page
 src/pages/IPM_GateDocumentPDF.page-meta.xml
-src/reports
-src/reports/IPM_Reports
-src/reports/IPM_Reports/OTIF_Report.report
-src/reportTypes
-src/reportTypes/OTIF_Report.reportType
