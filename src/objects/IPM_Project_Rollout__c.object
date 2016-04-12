@@ -3095,6 +3095,33 @@ Case(Global_Project_Phase__c,
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004f1J_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004f1J</label>
+        <queue>IPM_a7IE00000004f1J</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004f1O_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004f1O</label>
+        <queue>IPM_a7IE00000004f1O</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004f1T_IPM_Project_Rollout</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_JUICE UNICA_N&amp;R</label>
+        <queue>IPM_a7IE00000004f1T</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <label>IPM Project Rollout Name</label>
         <trackHistory>false</trackHistory>
