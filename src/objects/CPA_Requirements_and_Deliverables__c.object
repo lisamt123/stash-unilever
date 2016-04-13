@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>It describes Unilever’s requirements in respect of this Project . Identify the main deliverable expected and the specific milestone goals that Supplier is required to meet. These requirements should be already approved by the Unilever business</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Business_Process_Area_del__c</fullName>
+        <description>Examples:SC, IM, Marketing, R&amp;D, CD, Finance, HR, IT&amp;Comms</description>
+        <externalId>false</externalId>
+        <label>Business Process Area</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>High_Level_Description_del__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Provide a description of the high level requirement
+Good Receipt postings must reflect Actual deliveries of Goods and Services</inlineHelpText>
+        <label>High Level Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>New_or_changed_requirement_del__c</fullName>
+        <externalId>false</externalId>
+        <label>New or changed requirement</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Changed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PWORF_Requirement_Deliverables__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>It describes Unilever’s requirements in respect of this Project .</description>
+        <externalId>false</externalId>
+        <label>PWORF Requirement &amp; Deliverables</label>
+        <referenceTo>CPA_PWORF__c</referenceTo>
+        <relationshipLabel>Requirements and Deliverables</relationshipLabel>
+        <relationshipName>Requirements_and_Deliverables</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Requirement_Type_del__c</fullName>
+        <description>Examples: Interface, Data, Process, SI, Security and Control, Reporting, Functional</description>
+        <externalId>false</externalId>
+        <label>Requirement Type</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Requirements and Deliverables</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_Requirements_and_Deliverables</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_Requirements_and_Deliverables</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_Requirements_and_Deliverables</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA VDM Queue</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_Requirements_and_Deliverables</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA VDM Queue</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_Requirements_and_Deliverables</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_Requirements_and_Deliverables</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Requirements and Deliverables Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Requirements and Deliverables</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>New_Requirements_and_Deliverables</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New Requirements and Deliverables</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+
+if(permissionSetName == &quot;CPA_ADM&quot;){ 
+alert(&quot;Requirements and Deliverables cannot be created by Vendor Team.&quot;); 
+}else if(permissionSetName == &quot;CPA_ULPM&quot;){ 
+
+if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Auto Accepted&quot; ||&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Accepted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Answered&quot;) 
+{ 
+alert(&quot;New Requirements and Deliverables can be created before Associated PWORF is Accepted.&quot;); 
+}else if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;) 
+{ 
+alert(&quot;New Requirements and Deliverables cannot be created as Associated PWORF is Cancelled.&quot;); 
+}else{ 
+window.open(&quot;/&quot;+&quot;{!$Label.CPA_RaD_Object_Id}/e?{!$Label.CPA_PWORF_Rad_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Rad_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
+} 
+
+}else if(permissionSetName == &quot;CPA_SMT&quot;){ 
+if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;) 
+{ 
+alert(&quot;New Requirements and Deliverables cannot be created as Associated PWORF is Cancelled.&quot;); 
+}else{ 
+window.open(&quot;/&quot;+&quot;{!$Label.CPA_RaD_Object_Id}/e?{!$Label.CPA_PWORF_Rad_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_Rad_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;);	
+} 
+}</url>
+    </webLinks>
+</CustomObject>

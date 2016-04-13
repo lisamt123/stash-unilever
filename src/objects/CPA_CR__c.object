@@ -1,0 +1,4130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>CPA_Project_Work_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PWO</label>
+        <referenceTo>CPA_project_work_order__c</referenceTo>
+        <relationshipLabel>CRs</relationshipLabel>
+        <relationshipName>CRs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CR_Count__c</fullName>
+        <description>This field created for reporting purpose.</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CR Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Efforts_MD__c</fullName>
+        <description>This field created for reporting purpose.</description>
+        <externalId>false</externalId>
+        <formula>IF( ISNULL( num_Estimated_Man_days_of_CR__c ) ,   CPA_Project_Work_Order__r.num_Estimated_Man_days_of_PWO__c  , num_Estimated_Man_days_of_CR__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Efforts (MD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Final_Project_End_Date__c</fullName>
+        <description>This report created for reporting purpose.</description>
+        <externalId>false</externalId>
+        <formula>IF( ISNULL( dt_CR_End_date__c ) ,  CPA_Project_Work_Order__r.dt_Expected_End_date__c  , dt_CR_End_date__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Final Project End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Is_Latest_CR__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field created for reporting purpose.</description>
+        <externalId>false</externalId>
+        <label>Is Latest CR?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PWORFDelta_OtherProcess_Office_Area_E2E__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Process Office Area E2E</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PWORFDelta_UnileverFinanceBPContactemail__c</fullName>
+        <externalId>false</externalId>
+        <label>Unilever Finance BP/Contact email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PWO_number__c</fullName>
+        <description>PWO ID</description>
+        <externalId>false</externalId>
+        <label>PWO Number*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Region_impacted__c</fullName>
+        <description>Regions covered/being impacted under the CR.</description>
+        <externalId>false</externalId>
+        <label>Region Impacted*</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AAR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LATAM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>auto_Internal_CR_ID__c</fullName>
+        <displayFormat>CR-{00000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Internal CR ID</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>chk_Contract_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Contract_Attached</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>chk_Contract_Excel_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Contract_Excel_Attached</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>chk_isStandalone_CR__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isStandalone CR</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>dat_Accepted_Date__c</fullName>
+        <description>Accepted date of CR, This filed will be non editable for ULPM,Vendor ,ULPT and ULFT</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Accepted date of CR,</inlineHelpText>
+        <label>Accepted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dat_Actual_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Actual End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dat_Cancelled_Date__c</fullName>
+        <description>Cancelled date of CR, This filed will be non editable for ULPM,Vendor ,ULPT and ULFT</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Cancelled date of CR,</inlineHelpText>
+        <label>Cancelled Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dat_Delivered_Date__c</fullName>
+        <description>Delivered date of CR, This filed will be non editable for ULPM,Vendor ,ULPT and ULFT</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Delivered date of CR,</inlineHelpText>
+        <label>Delivered Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dat_Resubmitted_Date__c</fullName>
+        <description>Resubmitted date of CR, This filed will be non editable for ULPM,Vendor ,ULPT and ULFT</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Resubmitted date of CR,</inlineHelpText>
+        <label>Resubmitted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dat_Returned_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Returned Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dat_Submitted_Date__c</fullName>
+        <description>Submission date of CR, This filed will be non editable for ULPM,Vendor ,ULPT and ULFT</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Submission date of CR</inlineHelpText>
+        <label>Submitted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dt_CR_End_date__c</fullName>
+        <description>Date when the project Ends</description>
+        <externalId>false</externalId>
+        <label>CR End Date*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dt_CR_Start_Date__c</fullName>
+        <description>Date when the project commences</description>
+        <externalId>false</externalId>
+        <label>CR Start Date*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dt_Date_raised__c</fullName>
+        <description>Date when CR was raised</description>
+        <externalId>false</externalId>
+        <label>Date Raised</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dt_PWODelta_Project_Initiation_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Initiation Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dt_PWORFDelta_Expected_go_live_date__c</fullName>
+        <externalId>false</externalId>
+        <label>Expected go-live date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dt_PWORFDelta_Expected_start_date__c</fullName>
+        <externalId>false</externalId>
+        <label>Expected Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>em_PWORFDeltaUnileverprojectmanagerEmail__c</fullName>
+        <externalId>false</externalId>
+        <label>Unilever project manager email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_PWORFDelta_Project_requestor_email__c</fullName>
+        <externalId>false</externalId>
+        <label>Project requestor email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_Unilever_Budget_Approver_Email__c</fullName>
+        <description>Unilever Budget Approver Email</description>
+        <externalId>false</externalId>
+        <label>Unilever Budget Approver Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_Unilever_Content_Approver_Email__c</fullName>
+        <description>Unilever Content Approver Email</description>
+        <externalId>false</externalId>
+        <label>Unilever Content Approver Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fml_Pworf_Clarity_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  ISBLANK(txt_Unilever_Reference__c),CPA_Project_Work_Order__r.PWORF_ID__r.txt_Clarity_ID__c ,  txt_Unilever_Reference__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unilever Reference</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fur_PWO_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>CPA_Project_Work_Order__r.txt_PWO_number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PWO Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fur_per_Variance__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(	AND(num_Varied_Target_Blend_Rate__c &gt; 0,
+		(((num_Varied_Target_Blend_Rate__c  - num_Target_Blend_Rate__c )/num_Varied_Target_Blend_Rate__c))&gt;=0),
+	((num_Varied_Target_Blend_Rate__c  - num_Target_Blend_Rate__c )/num_Varied_Target_Blend_Rate__c),0
+	)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Variance %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>isValidated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isValidated</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>lkp_Unilever_budget_approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of Unilever person responsible for approving the project budget</description>
+        <externalId>false</externalId>
+        <label>Unilever Budget Approver*</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.IsActive</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>CR</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_Unilever_content_approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of Unilever person responsible for approving the project content</description>
+        <externalId>false</externalId>
+        <label>Unilever Content Approver*</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.IsActive</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>CR1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ltxta_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ltxta_Reason_for_Cancellation__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason for Cancellation</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>mpkl_Change_Record_history__c</fullName>
+        <externalId>false</externalId>
+        <label>Change Record History*</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1st Change</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2nd Change</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3rd Change</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4th Change</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>mpkl_PWODelta_Billing_Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Billing Details</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Unilever UK Central Resources (UKCR)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unilever Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unilever Brazil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unilever Central</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>mpkl_PWODelta_Unilever_Innovation_Area__c</fullName>
+        <externalId>false</externalId>
+        <label>Unilever Innovation Area</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Supply chain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Information &amp; Analytics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing &amp; R&amp;D</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT &amp; Comms</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>mpkl_PWORFDelta_Business_area__c</fullName>
+        <externalId>false</externalId>
+        <label>Business area</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Information &amp; Analytics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing &amp; R&amp;D</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT &amp; Comms</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>num_Authorisation_charges__c</fullName>
+        <description>Charges incurred for introducing or modifying any roles or authorisation to the application system within the scope of the PWO</description>
+        <externalId>false</externalId>
+        <label>Authorisation Charges</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Authorisation_man_days__c</fullName>
+        <externalId>false</externalId>
+        <label>Authorisation Man-Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Delta_Efforts__c</fullName>
+        <externalId>false</externalId>
+        <label>Delta Efforts</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Effort_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>num_Effort_Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Estimated_Man_days_of_CR__c</fullName>
+        <description>Estimated effort required for the project</description>
+        <externalId>false</externalId>
+        <label>Estimated Man-Days of CR*</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Estimated_Value_of_CR__c</fullName>
+        <description>Estimated cost for the project</description>
+        <externalId>false</externalId>
+        <label>Estimated Value of CR*</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Expense_charges_of_CR__c</fullName>
+        <description>Expenses incurred under the CR</description>
+        <externalId>false</externalId>
+        <label>Expense Charges of CR*</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_ITC_resources_man_days__c</fullName>
+        <description>Number of man-days for resources between L3 to L5</description>
+        <externalId>false</externalId>
+        <label>ITC resources (man-days)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_On_shore_senior_resources_man_days__c</fullName>
+        <description>Number of man-days of on-shore senior resources</description>
+        <externalId>false</externalId>
+        <label>On-shore senior resources (man-days)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_RMS_value__c</fullName>
+        <description>Cost incurred if relocation of resources is applicable</description>
+        <externalId>false</externalId>
+        <label>RMS Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Resources_Efforts__c</fullName>
+        <externalId>false</externalId>
+        <label>Resources Efforts</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Senior_resources_man_days__c</fullName>
+        <description>Number of man-days for resources between L1 to L2 &amp; L6 to L8</description>
+        <externalId>false</externalId>
+        <label>Senior resources (man-days)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Target_Blend_Rate__c</fullName>
+        <description>Project services target blend</description>
+        <externalId>false</externalId>
+        <label>Target Blend Rate*</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Total_Expenses_of_CR__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Expenses of CR</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Total_Resource_Cost_CR__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Resource Cost CR</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Total_Resource_Efforts_CR__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Resource Efforts CR</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Total_charge_of_CR__c</fullName>
+        <description>Total charges of the CR</description>
+        <externalId>false</externalId>
+        <label>Total Charge of CR*</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Varied_Target_Blend_Rate__c</fullName>
+        <description>Project services target blend</description>
+        <externalId>false</externalId>
+        <label>Varied Target Blend Rate*</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>pec_Estimated_Off_shore__c</fullName>
+        <description>Estimated percentage of off-shore resources</description>
+        <externalId>false</externalId>
+        <label>Estimated Off-shore %*</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>pec_Estimated_On_shore__c</fullName>
+        <description>Estimated percentage of on-shore resources</description>
+        <externalId>false</externalId>
+        <label>Estimated On-shore %*</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>pec_Expense__c</fullName>
+        <description>Percentage of expenses incurred under the PWO</description>
+        <externalId>false</externalId>
+        <label>Expense %*</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Approval_Comment_Check__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Comment Check</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Currency__c</fullName>
+        <description>Currency of the charges/costs</description>
+        <externalId>false</externalId>
+        <label>Currency*</label>
+        <picklist>
+            <picklistValues>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_PWODelta_Project_Classification__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Classification</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Complex</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low Complexity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Resource Augmentation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_PWORFDelta_Landscape__c</fullName>
+        <externalId>false</externalId>
+        <label>Landscape</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_PWORFDelta_Pricing_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Pricing Model</label>
+        <picklist>
+            <picklistValues>
+                <fullName>T&amp;M</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fixed Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Target Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_PWORFDelta_Process_Office_Area_E2E__c</fullName>
+        <externalId>false</externalId>
+        <label>Process Office area E2E</label>
+        <picklist>
+            <picklistValues>
+                <fullName>S&amp;OP (Demand Management / Operations Planning)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Order To Cash</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Make To Deliver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Purchase To Pay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Control To Cost</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Transact</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Close To Report (Management ac / Finance ac)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Master Data Lifecycle Management</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_PWORFDelta_Project_Scale__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Scale</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Large Project (&gt;2000 days)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Standard Project (500 - 2000 days)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low Complexity Project (50 - 100 days)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Small Project (&lt;50 days)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_PWORFDelta_Request_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Request Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New Project</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Project Work Package</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Consultancy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Project Scope Change (CR)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Resource Secondment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Phase_change_record_raised__c</fullName>
+        <description>Phase in which a change record has been made</description>
+        <externalId>false</externalId>
+        <label>Phase Change Record Raised*</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Plan</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Analyze</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>pkl_Project_Phases__c</fullName>
+        <description>Phases of project covered by PWO</description>
+        <externalId>false</externalId>
+        <label>Project Phases*</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>pkl_Status__c</fullName>
+        <description>Auto generated based on user actions</description>
+        <externalId>false</externalId>
+        <label>Status*</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>txtPWORFDelt_UnileverFinanceBPContactnam__c</fullName>
+        <externalId>false</externalId>
+        <label>Unilever Finance BP/Contact name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Accenture_Project_Manager__c</fullName>
+        <description>Name of Accenture Project Manager</description>
+        <externalId>false</externalId>
+        <label>Vendor Project Manager*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Action__c</fullName>
+        <externalId>false</externalId>
+        <label>Action</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Change_Record_number__c</fullName>
+        <description>CR ID</description>
+        <externalId>false</externalId>
+        <label>Change Record Number*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_For_Search__c</fullName>
+        <description>This field is used internally, for search purpose.</description>
+        <externalId>false</externalId>
+        <label>For Search</label>
+        <length>250</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Internal_CR_ID__c</fullName>
+        <description>This field is to store auto generated internal CR ID. Will be used for searching purpose.</description>
+        <externalId>false</externalId>
+        <label>Internal CR ID</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Other_Currency__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Currency</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Other_PWORFDelta_Request_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Request Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Other_Phase_change_record_raised__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Phase change record raised</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Other_Project_Phases__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Project Phases</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_PWODelta_Accenture_Project_Manager__c</fullName>
+        <externalId>false</externalId>
+        <label>Accenture Project Manager</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_PWODelta_Other_Billing_Details__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Billing Details</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_PWODelta_Other_Innovation_Area__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Innovation Area</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_PWORFDeltaUnileverprojectmanagerName__c</fullName>
+        <externalId>false</externalId>
+        <label>Unilever project manager name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_PWORFDelta_Cost_Centre__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost Center Details</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>txt_PWORFDelta_Project_requestor_name__c</fullName>
+        <externalId>false</externalId>
+        <label>Project requestor name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Previous_Status_Value__c</fullName>
+        <externalId>false</externalId>
+        <label>Previous Status Value</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Title_of_change__c</fullName>
+        <description>Title mentioned in the CR</description>
+        <externalId>false</externalId>
+        <label>Title of Change*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Unilever_Budget_Approver_Name__c</fullName>
+        <description>Unilever Budget Approver Name</description>
+        <externalId>false</externalId>
+        <label>Unilever Budget Approver Name*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Unilever_Content_Approver_Name__c</fullName>
+        <description>Unilever Content Approver Name</description>
+        <externalId>false</externalId>
+        <label>Unilever Content Approver Name*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Unilever_Reference__c</fullName>
+        <description>Clarity ID of the project</description>
+        <externalId>false</externalId>
+        <label>Unilever Reference*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txta_PWORFDelta_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Title</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>txta_Reason_for_Return__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>CR Can be returned if status is sent for signature</inlineHelpText>
+        <label>Reason for Return</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>txta_Unilever_Project_Name__c</fullName>
+        <description>Project name/title</description>
+        <externalId>false</externalId>
+        <label>Unilever Project Name*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>CR</label>
+    <listViews>
+        <fullName>All_CR</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All CR</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_CR</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_CR</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA VDM Queue</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_CR</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>CR-{00000}</displayFormat>
+        <label>Internal CR ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>CR</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>CPA_CR_Cancelled</fullName>
+        <active>true</active>
+        <label>CR Cancelled</label>
+        <picklistValues>
+            <picklist>Region_impacted__c</picklist>
+            <values>
+                <fullName>AAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LATAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Change_Record_history__c</picklist>
+            <values>
+                <fullName>1st Change</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>2nd Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3rd Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4th Change</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWODelta_Billing_Details__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Central</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever UK Central Resources %28UKCR%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWODelta_Unilever_Innovation_Area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWORFDelta_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Approval_Comment_Check__c</picklist>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency__c</picklist>
+            <values>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWODelta_Project_Classification__c</picklist>
+            <values>
+                <fullName>Complex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Complexity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resource Augmentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Landscape__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Pricing_Model__c</picklist>
+            <values>
+                <fullName>Fixed Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T%26M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Target Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Process_Office_Area_E2E__c</picklist>
+            <values>
+                <fullName>Close To Report %28Management ac %2F Finance ac%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Control To Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Make To Deliver</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Master Data Lifecycle Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Order To Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Purchase To Pay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S%26OP %28Demand Management %2F Operations Planning%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Project_Scale__c</picklist>
+            <values>
+                <fullName>Large Project %28%3E2000 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Complexity Project %2850 - 100 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small Project %28%3C50 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Project %28500 - 2000 days%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Request_Type__c</picklist>
+            <values>
+                <fullName>Consultancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Scope Change %28CR%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Work Package</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resource Secondment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Phase_change_record_raised__c</picklist>
+            <values>
+                <fullName>Analyze</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Project_Phases__c</picklist>
+            <values>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CPA_CR_Other</fullName>
+        <active>true</active>
+        <label>CR Other</label>
+        <picklistValues>
+            <picklist>Region_impacted__c</picklist>
+            <values>
+                <fullName>AAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LATAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Change_Record_history__c</picklist>
+            <values>
+                <fullName>1st Change</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>2nd Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3rd Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4th Change</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWODelta_Billing_Details__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Central</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever UK Central Resources %28UKCR%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWODelta_Unilever_Innovation_Area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWORFDelta_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Approval_Comment_Check__c</picklist>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency__c</picklist>
+            <values>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWODelta_Project_Classification__c</picklist>
+            <values>
+                <fullName>Complex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Complexity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resource Augmentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Landscape__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Pricing_Model__c</picklist>
+            <values>
+                <fullName>Fixed Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T%26M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Target Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Process_Office_Area_E2E__c</picklist>
+            <values>
+                <fullName>Close To Report %28Management ac %2F Finance ac%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Control To Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Make To Deliver</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Master Data Lifecycle Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Order To Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Purchase To Pay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S%26OP %28Demand Management %2F Operations Planning%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Project_Scale__c</picklist>
+            <values>
+                <fullName>Large Project %28%3E2000 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Complexity Project %2850 - 100 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small Project %28%3C50 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Project %28500 - 2000 days%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Request_Type__c</picklist>
+            <values>
+                <fullName>Consultancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Scope Change %28CR%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Work Package</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resource Secondment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Phase_change_record_raised__c</picklist>
+            <values>
+                <fullName>Analyze</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Project_Phases__c</picklist>
+            <values>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CPA_CR_SIgned</fullName>
+        <active>true</active>
+        <label>CR SIgned</label>
+        <picklistValues>
+            <picklist>Region_impacted__c</picklist>
+            <values>
+                <fullName>AAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LATAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Change_Record_history__c</picklist>
+            <values>
+                <fullName>1st Change</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>2nd Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3rd Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4th Change</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWODelta_Billing_Details__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Central</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever UK Central Resources %28UKCR%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWODelta_Unilever_Innovation_Area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWORFDelta_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Approval_Comment_Check__c</picklist>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency__c</picklist>
+            <values>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWODelta_Project_Classification__c</picklist>
+            <values>
+                <fullName>Complex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Complexity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resource Augmentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Landscape__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Pricing_Model__c</picklist>
+            <values>
+                <fullName>Fixed Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T%26M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Target Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Process_Office_Area_E2E__c</picklist>
+            <values>
+                <fullName>Close To Report %28Management ac %2F Finance ac%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Control To Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Make To Deliver</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Master Data Lifecycle Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Order To Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Purchase To Pay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S%26OP %28Demand Management %2F Operations Planning%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Project_Scale__c</picklist>
+            <values>
+                <fullName>Large Project %28%3E2000 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Complexity Project %2850 - 100 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small Project %28%3C50 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Project %28500 - 2000 days%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Request_Type__c</picklist>
+            <values>
+                <fullName>Consultancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Scope Change %28CR%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Work Package</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resource Secondment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Phase_change_record_raised__c</picklist>
+            <values>
+                <fullName>Analyze</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Project_Phases__c</picklist>
+            <values>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CPA_CR_Submitted</fullName>
+        <active>true</active>
+        <label>CR Submitted</label>
+        <picklistValues>
+            <picklist>Region_impacted__c</picklist>
+            <values>
+                <fullName>AAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LATAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Change_Record_history__c</picklist>
+            <values>
+                <fullName>1st Change</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>2nd Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3rd Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4th Change</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWODelta_Billing_Details__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Central</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever UK Central Resources %28UKCR%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWODelta_Unilever_Innovation_Area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWORFDelta_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Approval_Comment_Check__c</picklist>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency__c</picklist>
+            <values>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWODelta_Project_Classification__c</picklist>
+            <values>
+                <fullName>Complex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Complexity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resource Augmentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Landscape__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Pricing_Model__c</picklist>
+            <values>
+                <fullName>Fixed Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T%26M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Target Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Process_Office_Area_E2E__c</picklist>
+            <values>
+                <fullName>Close To Report %28Management ac %2F Finance ac%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Control To Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Make To Deliver</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Master Data Lifecycle Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Order To Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Purchase To Pay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S%26OP %28Demand Management %2F Operations Planning%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Project_Scale__c</picklist>
+            <values>
+                <fullName>Large Project %28%3E2000 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Complexity Project %2850 - 100 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small Project %28%3C50 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Project %28500 - 2000 days%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Request_Type__c</picklist>
+            <values>
+                <fullName>Consultancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Scope Change %28CR%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Work Package</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resource Secondment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Phase_change_record_raised__c</picklist>
+            <values>
+                <fullName>Analyze</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Project_Phases__c</picklist>
+            <values>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CPA_Standalone_CR</fullName>
+        <active>true</active>
+        <label>Standalone CR</label>
+        <picklistValues>
+            <picklist>Region_impacted__c</picklist>
+            <values>
+                <fullName>AAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LATAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Change_Record_history__c</picklist>
+            <values>
+                <fullName>1st Change</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>2nd Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3rd Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4th Change</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWODelta_Billing_Details__c</picklist>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Brazil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Central</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unilever UK Central Resources %28UKCR%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWODelta_Unilever_Innovation_Area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PWORFDelta_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Approval_Comment_Check__c</picklist>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency__c</picklist>
+            <values>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWODelta_Project_Classification__c</picklist>
+            <values>
+                <fullName>Complex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Complexity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resource Augmentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Landscape__c</picklist>
+            <values>
+                <fullName>Cordillera</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fusion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sirius</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>U2K2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Pricing_Model__c</picklist>
+            <values>
+                <fullName>Fixed Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T%26M</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Target Price</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Process_Office_Area_E2E__c</picklist>
+            <values>
+                <fullName>Close To Report %28Management ac %2F Finance ac%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Control To Cost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Make To Deliver</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Master Data Lifecycle Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Order To Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Purchase To Pay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S%26OP %28Demand Management %2F Operations Planning%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transact</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Project_Scale__c</picklist>
+            <values>
+                <fullName>Large Project %28%3E2000 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low Complexity Project %2850 - 100 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small Project %28%3C50 days%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Standard Project %28500 - 2000 days%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_PWORFDelta_Request_Type__c</picklist>
+            <values>
+                <fullName>Consultancy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Project</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Scope Change %28CR%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Work Package</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resource Secondment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Phase_change_record_raised__c</picklist>
+            <values>
+                <fullName>Analyze</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Project_Phases__c</picklist>
+            <values>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <listViewButtons>New_CR</listViewButtons>
+        <searchResultsAdditionalFields>fml_Pworf_Clarity_ID__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>pkl_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsCustomButtons>New_CR</searchResultsCustomButtons>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>CPA_CR_Cant_be_created</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( ISNEW() ,RecordType.DeveloperName !=&apos;CPA_Standalone_CR&apos; ,OR( 
+
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Cancelled&quot;), 
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Terminated&quot;), 
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent For Termination&quot;), 
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Closed&quot;),
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Request For Termination&quot;),
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent For Closure&quot;)
+))</errorConditionFormula>
+        <errorMessage>CR cant be created, because PWO is in process of Closer/Termination/Cancellation/ Not Accepted by Supply Management Team</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>CPA_CR_NOT_on_PWO_Saved</fullName>
+        <active>true</active>
+        <description>CPA_CR Can&apos;t be created if the associated  PWO is in SAVED only</description>
+        <errorConditionFormula>AND( ISNEW() ,RecordType.DeveloperName !=&apos;CPA_Standalone_CR&apos; ,OR( 
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Saved&quot;)
+))</errorConditionFormula>
+        <errorMessage>CR cant be created, because associated  PWO is still in Saved Status.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>CPA_Status_cant_be_chaged</fullName>
+        <active>true</active>
+        <description>IF PWO is set for Termination then CR status cant be changed</description>
+        <errorConditionFormula>OR(
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &apos;Sent For Termination&apos;),
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &apos;Request For Termination&apos;),
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &apos;Terminated&apos;)
+)</errorConditionFormula>
+        <errorMessage>Associate PWO is in process of Termination, So Operation is cancelled</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Specify_Cancellation_Reason</fullName>
+        <active>false</active>
+        <description>This validation checks if reason for CR cancellation  provided or not.</description>
+        <errorConditionFormula>ISPICKVAL( pkl_Status__c , &apos;Cancelled&apos;)</errorConditionFormula>
+        <errorDisplayField>ltxta_Reason_for_Cancellation__c</errorDisplayField>
+        <errorMessage>You need mention reason for CR cancellation.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Delivered</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Deliver</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
+p.id = &quot;{!CPA_CR__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
+p.dat_Actual_End_Date__c = &quot;{!CPA_CR__c.dat_Actual_End_Date__c }&quot;; 
+PWO_ID__c = &quot;{!CPA_CR__c.CPA_Project_Work_Order__c}&quot;; 
+profileName = &quot;{!$Profile.Name}&quot;; 
+var today = new Date(); 
+var dd = today.getDate(); 
+var mm = today.getMonth(); 
+var yyyy = today.getFullYear(); 
+today = new Date(yyyy,mm,dd); 
+
+result = sforce.connection.query(&quot;select Id,pkl_Status__c, TNF_Status__c from CPA_Project_Work_Order__c where Name = &apos;&quot;+PWO_ID__c+&quot;&apos;&quot;); 
+var pwoRecords = result.getArray(&quot;records&quot;); 
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+
+//alert(p.pkl_Status__c);
+if( permissionSetName == &quot;CPA_ADM&quot;){ 
+
+if(p.pkl_Status__c == &quot;Signed&quot; &amp;&amp; (pwoRecords[0].pkl_Status__c != &quot;Terminated&quot; &amp;&amp; pwoRecords[0].pkl_Status__c != &quot;Sent For Termination&quot; &amp;&amp; pwoRecords[0].pkl_Status__c != &quot;Request For Termination&quot;)){ 
+p.pkl_Status__c = &quot;Delivered&quot;;	
+p.dat_Actual_End_Date__c = today; 
+result = sforce.connection.update([p]);
+// alert(result);
+location.reload(true); 
+} 
+else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
+alert(&quot;CR is already Delivered&quot;); 
+}
+else if(p.pkl_Status__c != &quot;Signed&quot;){ 
+alert(&quot;CR can not be Delivered as it is not yet signed&quot;); 
+} 
+else { 
+alert(&quot;CR can not be Delivered, Contact Administrator&quot;); 
+} 
+}
+else{
+alert(&quot;You are not authorized to perform this action.&quot;); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_CR</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New CR</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+
+
+var soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_CR__c&apos; AND Name=&apos;CR Other&apos; limit 1&quot; ;
+var result = sforce.connection.query(soql); 
+var RecTypeRegular = result.getArray(&apos;records&apos;); 
+
+
+var soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_CR__c&apos; AND Name=&apos;Standalone CR&apos; limit 1&quot; ;
+var result = sforce.connection.query(soql); 
+var RecTypeStandAlone = result.getArray(&apos;records&apos;);
+
+
+if(permissionSetName == &quot;CPA_ADM&quot;  ){ 
+
+	if(&apos;{!CPA_project_work_order__c.Id}&apos; == &apos;&apos;){
+		//alert(&quot;StandAlone CR&quot;);
+		window.open(&quot;/&quot;+&quot;{!$Label.CPA_CR_Object_Id}/e?RecordType=&quot;+RecTypeStandAlone[0].Id+&quot;&amp;retURL={!$Label.CPA_CR_Object_Id}&quot;,&quot;_self&quot;); 
+	}else{
+		//alert(&quot;Regular CR&quot;);
+		if((&quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Accepted&quot; || &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Sent for Signature&quot;|| &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Signed&quot; || &quot;{!CPA_project_work_order__c.pkl_Status__c}&quot; == &quot;Delivered&quot;) ||&quot;{!CPA_project_work_order__c.Id}&quot; == &apos;&apos; ) 
+		{ 
+			//window.open(&apos;/apex/CPA_CreatePWO?id={!CPA_project_work_order__c.Id}&apos;,&quot;_self&quot;); 
+			window.open(&quot;/&quot;+&quot;{!$Label.CPA_CR_Object_Id}/e?RecordType=&quot;+RecTypeRegular[0].Id+&quot;{!$Label.CPA_PWO_Name_Field_Id}={!CPA_project_work_order__c.Name}&amp;{!$Label.CPA_PWO_Name_Field_Id}_lkid={!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
+		}else{ 
+			alert(&quot;CR can be created only if associated PWO is in Accepted/Sent for Signature/Signed/Delivered status&quot;); 
+		} 
+
+	}
+		
+} else{ 
+alert(&quot;CR can be created by Vendor Team only.&quot;); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Submit_for_Vendor</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Submit</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)}
+
+var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
+p.id = &quot;{!CPA_CR__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
+p.isValidated__c = &quot;{!CPA_CR__c.isValidated__c }&quot;; 
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+
+if(permissionSetName == &quot;CPA_ADM&quot;){ 
+	var isValidateFlag = sforce.apex.execute(&quot;CPA_CRInformationController&quot;,&quot;checkIsValidated&quot;,{crId:p.id});
+	
+	if(isValidateFlag == &apos;true&apos;){ 
+		if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
+			p.pkl_Status__c = &quot;Resubmitted&quot;; 
+			result = sforce.connection.update([p]); 
+
+			location.reload(true); 
+
+		} 
+		else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
+			alert(&quot;CR is already submitted&quot;); 
+		} 
+		else if(p.pkl_Status__c ==&quot;Accepted&quot; ){ 
+			alert(&quot;CR is already Accepted, you cant submit for Approval&quot;); 
+		}
+		else if(p.pkl_Status__c ==&quot;Sent for Signature&quot; || p.pkl_Status__c == &quot;Signed&quot; || p.pkl_Status__c == &quot;Delivered&quot;){
+			alert(&quot;CR cant be submitted for Approval as it is Accepted and moved for further processing&quot;); 
+		}
+		else{ 
+			p.pkl_Status__c = &quot;Submitted&quot;; 
+			result = sforce.connection.update([p]); 
+	
+			location.reload(true); 
+		} 
+	} 
+	else { 
+		alert(&quot;CR can not be submitted, as required fields are missing&quot;); 
+	}
+}else{
+	alert(&quot;You are not authorized to perform this action.&quot;);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_Cancel_CR</fullName>
+        <availability>online</availability>
+        <description>Popup new vf page to get cancellation reason.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Cancel</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
+p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
+
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+
+
+if( permissionSetName == &quot;CPA_SMT&quot;){ 
+
+	if(p.pkl_Status__c == &apos;Cancelled&apos;){ 
+		alert(&quot;Can not Cancel CR as it is already Cancelled&quot;); 
+	}else if(p.pkl_Status__c == &apos;Delivered&apos;){ 
+		alert(&quot;Can not Cancel CR as it is Delivered&quot;); 
+	} 
+	else{ 
+		window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;); 
+	} 
+}else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; p.pkl_Status__c == &apos;Saved&apos;){
+	window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;);  
+}
+ else	{ 
+	alert(&quot;You are not authorized to perform CR, Please raise Query for cancellation &quot;);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_Reason_for_Return</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Return from DocuSign</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
+p.id = &quot;{!CPA_CR__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
+
+
+try { 
+	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+	var result = sforce.connection.query(soql); 
+	var records1 = result.getArray(&apos;records&apos;); 
+	var permissionSetName = records1[0].PermissionSet.Name; 
+
+	if( permissionSetName == &quot;CPA_SMT&quot;){ 
+		if(p.pkl_Status__c == &quot;Signed&quot;){ 
+			alert(&quot;Can not Return, as CR is already Signed&quot;); 
+		} else if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
+			alert(&quot;Can not Return, as CR is already Cancelled&quot;); 
+		}else if(p.pkl_Status__c ==&quot;Sent for Signature&quot;){ 
+			window.open(&apos;/apex/CPA_CR_Reason_for_return?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;); 
+		}else if(p.pkl_Status__c == &quot;Returned&quot;){ 
+			alert(&quot;Can not Return, as CR is already Returned&quot;); 
+		}else if(p.pkl_Status__c == &quot;Accepted&quot; ){ 
+			alert(&quot;The CR should be sent for Signature before returning from DocuSign.&quot;); 
+		}else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot;){
+			alert(&quot;The CR should be sent for Signature before returning from DocuSign.&quot;); 
+		}else{
+			alert(&quot;The CR should be in &apos;sent for Signature&apos; before returning from DocuSign.&quot;); 
+		}
+	}
+	else {
+		alert(&quot;CR Return from DocuSign can be done by Supplier Management Team only.&quot;); 
+	}
+	
+
+}catch (e) { 
+	alert( &quot;An unexpected Error has Occurred. Error: \r\n&quot; + e ); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_Sent_for_signature</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send for Signature</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
+p.id = &quot;{!CPA_CR__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+
+
+if( permissionSetName == &quot;CPA_SMT&quot;){
+	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
+		p.pkl_Status__c = &quot;Sent for Signature&quot;;	
+		result = sforce.connection.update([p]); 
+//alert(result);
+		location.reload(true); 
+	}
+	else if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
+		alert(&quot;CR is already Sent for Signature&quot;);
+	}
+	else{ 
+		alert(&quot;CR Can not be Sent for Signature, Concern Administrator&quot;); 
+	} 
+}else{ 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_Signed</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Sign</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
+p.id = &quot;{!CPA_CR__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
+
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+
+
+if( permissionSetName == &quot;CPA_SMT&quot;){  
+	if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
+		p.pkl_Status__c = &quot;Signed&quot;;	
+		result = sforce.connection.update([p]); 
+		location.reload(true); 
+	}
+	else if(p.pkl_Status__c == &quot;Signed&quot;){ 
+		alert(&quot;CR is already Signed&quot;);
+	}
+	else{ 
+		alert(&quot;CR Can not be Signed, Concern Administrator&quot;); 
+	} 
+}else{ 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
+}</url>
+    </webLinks>
+</CustomObject>

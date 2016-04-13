@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object stores queries regarding Vendor contract management.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Assigned_to__c</fullName>
+        <externalId>false</externalId>
+        <label>Assigned to</label>
+        <picklist>
+            <picklistValues>
+                <fullName>SMT</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ULPM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ADM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ULPT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ULFT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CPA_Project_Work_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PWO Query</label>
+        <referenceTo>CPA_project_work_order__c</referenceTo>
+        <relationshipLabel>Queries</relationshipLabel>
+        <relationshipName>Queries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CR_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>LookupCR_Query__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CR ID</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Capture_creator__c</fullName>
+        <description>This field created to capture query creator.</description>
+        <externalId>false</externalId>
+        <formula>CreatedBy.FirstName +&apos; &apos;+ CreatedBy.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Capture creator</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HLE_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>HLE_Request_Query__r.HLE_Request_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>HLE ID</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HLE_Request_Query__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This capture queries related to HLE Request.</description>
+        <externalId>false</externalId>
+        <label>HLE Request Query</label>
+        <referenceTo>CPA_HLE_Request__c</referenceTo>
+        <relationshipLabel>Queries</relationshipLabel>
+        <relationshipName>Queries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>LOI_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>LookupLOI_Query__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>LOI ID</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LookupCR_Query__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This capture queries related to CR contract.</description>
+        <externalId>false</externalId>
+        <label>CR Query</label>
+        <referenceTo>CPA_CR__c</referenceTo>
+        <relationshipLabel>Queries</relationshipLabel>
+        <relationshipName>Queries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>LookupLOI_Query__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This captures queries related to LOI contract.</description>
+        <externalId>false</externalId>
+        <label>LOI Query</label>
+        <referenceTo>CPA_LOI__c</referenceTo>
+        <relationshipLabel>Queries</relationshipLabel>
+        <relationshipName>Queries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>LookupPWORF_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>It associates queries with PWORF.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose PWORF to raise queries against it.</inlineHelpText>
+        <label>PWORF Name</label>
+        <referenceTo>CPA_PWORF__c</referenceTo>
+        <relationshipName>CPA_Queries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Lookup_Project_Work_Order_Query__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Project Work Order</label>
+        <referenceTo>CPA_project_work_order__c</referenceTo>
+        <relationshipLabel>Project Work Order Queries</relationshipLabel>
+        <relationshipName>ProjectWorkOrderQueries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PWO_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>CPA_Project_Work_Order__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PWO ID</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Work_Order_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Lookup_Project_Work_Order_Query__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Work Order ID</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pworf_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>LookupPWORF_Name__r.auto_PWORF_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Pworf ID</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Query_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY()</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Query Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>RTXTQuery_Description__c</fullName>
+        <description>It shows query description regarding vendor contract management.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>It shows query description regarding vendor contract management.</inlineHelpText>
+        <label>Query Description</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Type_Of_Query__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please Select Type of Query</inlineHelpText>
+        <label>Type Of Query</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Query</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Request for Cancellation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Request to Withhold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <label>Queries</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_Queries</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_Queries</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA VDM Queue</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_Queries</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Query Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Queries</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

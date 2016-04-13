@@ -1,0 +1,1608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Letter of Intent - If the project work starts early, before the POW is created, ADM can submit LOI, a commercial cover which caters to work at risk. It’s possible to have multiple LOIs for a PWORF. Can be created only before PWO is submitted.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>LOI_Count__c</fullName>
+        <description>This field created for reporting purpose.</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>LOI Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Number_of_Man_days_being_requested__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Total Number of Man-days being requested for this WAR request at MC Rates</inlineHelpText>
+        <label>W@R mandays approved at MC Rates*</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>auto_Internal_LOI_ID__c</fullName>
+        <displayFormat>LOI-{00000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Internal LOI ID</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>chk_Contract_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Contract_Attached</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>cur_Previously_agreed_amounts_in_Er_val__c</fullName>
+        <description>Previously agreed WAR amounts (in euro value)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Previously agreed WAR amounts (in euro value)</inlineHelpText>
+        <label>Previously agreed amounts in Euro value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>cur_Total_value_in_Euro_being_requested__c</fullName>
+        <description>Total value in Euros being requested for this WAR</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total value in Euros being requested for this WAR</inlineHelpText>
+        <label>Total value in Euro being requested *</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>dat_Accepted_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Accepted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dat_Cancelled_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancelled Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dat_Resubmitted_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Resubmitted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dat_Returned_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Returned Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dat_Sent_for_Signature_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Sent for Signature Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dat_Signed_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Signed Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dat_Submitted_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Submitted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dt_LOI_End_date__c</fullName>
+        <description>Date when the WAR Ends</description>
+        <externalId>false</externalId>
+        <label>LOI End Date*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dt_LOI_Start_Date__c</fullName>
+        <description>Date when the WAR commences</description>
+        <externalId>false</externalId>
+        <label>LOI Start Date*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>eml_Unilever_Budget_Approver_Email__c</fullName>
+        <description>Unilever Budget Approver Email</description>
+        <externalId>false</externalId>
+        <label>Unilever Budget Approver Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_Unilever_Content_Approver_Email__c</fullName>
+        <description>Unilever Content Approver Email</description>
+        <externalId>false</externalId>
+        <label>Unilever Content Approver Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>fml_PWORF_Clarity_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>lkp_PWORF__r.txt_Clarity_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PWORF Clarity ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>isValidated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isValidated</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>lkp_PWORF__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PWORF</label>
+        <referenceTo>CPA_PWORF__c</referenceTo>
+        <relationshipLabel>LOI</relationshipLabel>
+        <relationshipName>LOI</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_Unilever_budget_approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of Unilever person responsible for approving the project budget</description>
+        <externalId>false</externalId>
+        <label>Unilever Budget Approver*</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>LOI</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>lkp_Unilever_content_approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of Unilever person responsible for approving the project content</description>
+        <externalId>false</externalId>
+        <label>Unilever Content Approver*</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>LOI1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>mpkl_Phases_covered_by_WAR__c</fullName>
+        <description>Phases of project covered under WAR</description>
+        <externalId>false</externalId>
+        <label>Phases Covered by W@R*</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>num_Expense_charges_of_LOI__c</fullName>
+        <description>Expenses incurred under WAR</description>
+        <externalId>false</externalId>
+        <label>Expense Charges of LOI*</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_If_applicable_please_specify_the__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If applicable, please specify the amount in € of the Overall Total WAR which is based upon the MC Rate Card</inlineHelpText>
+        <label>If applicable, please specify the amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_If_applicable_specify_amt_euro__c</fullName>
+        <description>If applicable, please specify the amount in € of the Overall Total WAR which is based upon the MC Rate Card</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If applicable, please specify the amount in € of the Overall Total WAR which is based upon the MC Rate Card</inlineHelpText>
+        <label>If applicable, specify amount in €…</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Previously_agreed_amounts_in_man_day__c</fullName>
+        <description>Previously agreed WAR amounts (in man-days)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Previously agreed WAR amounts (in man-days)</inlineHelpText>
+        <label>Previously agreed amounts in man-days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Total_number_of_man_days_requested__c</fullName>
+        <description>Total number of man-days being requested for this WAR</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total number of man-days being requested for this WAR</inlineHelpText>
+        <label>Total number of man days requested*</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Total_value_in_being_requested_for__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Total value in € being requested for this WAR?</inlineHelpText>
+        <label>W@R € spend approved at MC Rates*</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>pkl_Approval_Comment_Check__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Comment Check</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Currency__c</fullName>
+        <description>Currency of the charges/costs</description>
+        <externalId>false</externalId>
+        <label>Currency*</label>
+        <picklist>
+            <picklistValues>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>pkl_Status__c</fullName>
+        <description>Auto generated based on user actions</description>
+        <externalId>false</externalId>
+        <label>Status*</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>txt_Accenture_Project_Manager__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor Project Manager</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Action__c</fullName>
+        <description>Action Pending</description>
+        <externalId>false</externalId>
+        <label>Action</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Internal_LOI_ID__c</fullName>
+        <description>this field will store incremental internal LOI ID, used for search purpose</description>
+        <externalId>false</externalId>
+        <label>Internal LOI ID</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Internal_PWO_ID__c</fullName>
+        <description>Populated from PWORF</description>
+        <externalId>false</externalId>
+        <label>Internal PWO ID*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Other_Currency__c</fullName>
+        <description>If Currency selected is OTHER, then this field is mandatory.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If Currency selected is OTHER, then this field is mandatory.</inlineHelpText>
+        <label>Other Currency</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Other_Phases_Covered_by_W_R__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Mandatory if &apos;Other&apos; is selected in Phases Covered by W@R</inlineHelpText>
+        <label>Other Phases Covered by W@R</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_PWO_number__c</fullName>
+        <description>PWO ID</description>
+        <externalId>false</externalId>
+        <label>PWO Number*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_PWO_title__c</fullName>
+        <description>Title mentioned in the LOI</description>
+        <externalId>false</externalId>
+        <label>PWO Title*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Unilever_Budget_Approver_Name__c</fullName>
+        <description>Unilever Budget Approver Name</description>
+        <externalId>false</externalId>
+        <label>Unilever Budget Approver Name*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Unilever_Clarity_ID__c</fullName>
+        <description>Clarity ID of the project</description>
+        <externalId>false</externalId>
+        <label>Unilever Clarity ID*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Unilever_Content_Approver_Name__c</fullName>
+        <description>Unilever Content Approver Name</description>
+        <externalId>false</externalId>
+        <label>Unilever Content Approver Name*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Vendor_LOI_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Vendor LOI ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txta_Reason_for_Cancellation__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason for Cancellation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>txta_Reason_for_Return__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>LOI can be return if Status is Sent for Signature</inlineHelpText>
+        <label>Reason for Return</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>LOI</label>
+    <listViews>
+        <fullName>All_LOI</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All LOI</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CAP_ULPM_CPA_LOI</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA ULPM</label>
+        <queue>CAP_ULPM</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CAP_VDM_Queue_CPA_LOI</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA VDM Queue</label>
+        <queue>CAP_VDM_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CPA_SMT_CPA_LOI</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CPA SMT</label>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>LOI-{00000}</displayFormat>
+        <label>Internal LOI ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>LOI</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>LOI_Accepted</fullName>
+        <active>true</active>
+        <label>LOI Accepted</label>
+        <picklistValues>
+            <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
+            <values>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Approval_Comment_Check__c</picklist>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency__c</picklist>
+            <values>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>LOI_Cancael</fullName>
+        <active>true</active>
+        <description>After Cancel</description>
+        <label>LOI Cancael</label>
+        <picklistValues>
+            <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
+            <values>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Approval_Comment_Check__c</picklist>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency__c</picklist>
+            <values>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>LOI_Cancel</fullName>
+        <active>true</active>
+        <description>After Cancel</description>
+        <label>LOI Cancel</label>
+        <picklistValues>
+            <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
+            <values>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Approval_Comment_Check__c</picklist>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency__c</picklist>
+            <values>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>LOI_Other</fullName>
+        <active>true</active>
+        <label>LOI Other</label>
+        <picklistValues>
+            <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
+            <values>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Approval_Comment_Check__c</picklist>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency__c</picklist>
+            <values>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>LOI_Submitted</fullName>
+        <active>true</active>
+        <label>LOI Submitted</label>
+        <picklistValues>
+            <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
+            <values>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Approval_Comment_Check__c</picklist>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency__c</picklist>
+            <values>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <listViewButtons>New_LOI</listViewButtons>
+        <searchFilterFields>OBJECT_ID</searchFilterFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>pkl_Status__c</searchFilterFields>
+        <searchFilterFields>txt_PWO_number__c</searchFilterFields>
+        <searchFilterFields>txt_PWO_title__c</searchFilterFields>
+        <searchFilterFields>CREATEDBY_USER</searchFilterFields>
+        <searchResultsAdditionalFields>txt_PWO_number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>pkl_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>txt_Internal_LOI_ID__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>CPA_New_LOI_cant_be_created</fullName>
+        <active>true</active>
+        <description>LOI cant be created before PWORF get approved by Vendor</description>
+        <errorConditionFormula>OR( 
+ISPICKVAL(lkp_PWORF__r.pkl_Status__c , &quot;Submitted&quot;), 
+ISPICKVAL(lkp_PWORF__r.pkl_Status__c , &quot;Cancelled&quot;), 
+ISPICKVAL(lkp_PWORF__r.pkl_Status__c , &quot;Resubmitted&quot;), 
+ISPICKVAL(lkp_PWORF__r.pkl_Status__c , &quot;Withhold&quot;), 
+ISPICKVAL(lkp_PWORF__r.pkl_Status__c , &quot;Returned&quot;), 
+ISPICKVAL(lkp_PWORF__r.pkl_Status__c , &quot;Rejected&quot;), 
+ISPICKVAL(lkp_PWORF__r.pkl_Status__c , &quot;Saved&quot;)
+
+
+
+)</errorConditionFormula>
+        <errorMessage>LOI cant be created because, PWORF is not  Accepted / Auto Accepted</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Cancel_LOI</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Cancel</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_LOI__c&apos;); 
+p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c }&quot;; 
+
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name;
+
+if( permissionSetName == &quot;CPA_SMT&quot;){
+	
+	/*
+	if(p.pkl_Status__c == &apos;Saved&apos;){ 
+		alert(&quot;LOI should be at least Submitted for Cancellation&quot;); 
+	}
+	else 
+	*/	
+	if(p.pkl_Status__c != &apos;Cancelled&apos;){ 
+		window.open(&apos;/apex/CPA_LOI_Cancel_Reason?id=&apos;+&quot;{!CPA_LOI__c.Id}&quot;,&quot;_self&quot;); 
+	} 
+	else if(p.pkl_Status__c == &apos;Cancelled&apos;){ 
+		alert(&quot;Can not Cancel LOI as it is already Cancelled&quot;); 
+	}else{
+		alert(&quot;Can not Cancel LOI&quot;); 
+	}
+	
+	
+	
+} 
+else if( permissionSetName == &quot;CPA_ULPM&quot;){
+	alert(&quot;You are not authorized to cancel LOI. Please raise a query for cancellation.&quot;); 
+}
+else if(permissionSetName == &quot;CPA_ADM&quot;){
+	if(p.pkl_Status__c == &apos;Saved&apos;){ 
+		window.open(&apos;/apex/CPA_LOI_Cancel_Reason?id=&apos;+&quot;{!CPA_LOI__c.Id}&quot;,&quot;_self&quot;); 
+	}else {
+		
+		alert(&quot;You are not authorized to cancel LOI. Please raise a query for cancellation.&quot;);
+	}
+}
+else{ 
+alert(&quot;You are not authorized to perform this action.&quot;); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_LOI</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>New LOI</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+
+
+if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; != &apos;&apos; ){
+
+	var soql = &quot;select id,Name from RecordType where sObjectType=&apos;CPA_LOI__c&apos; AND Name=&apos;LOI Other&apos; limit 1&quot; ;
+	var result = sforce.connection.query(soql); 
+	var RecType = result.getArray(&apos;records&apos;);
+
+	if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Returned&quot; ||&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Withhold&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Cancelled&quot;|| &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Saved&quot;) 
+	{ 
+		alert(&quot;LOI cannot be created since associated PWORF is in Saved/Withhold/Returned/Cancelled Status&quot;); 
+	} 
+	else if(&quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Resubmitted&quot; || &quot;{!CPA_PWORF__c.pkl_Status__c}&quot; == &quot;Submitted&quot;) 
+	{ 
+		alert(&quot;Associated PWORF should be atleast in Accepted status to create LOI.&quot;); 
+	} 
+	else{ 
+		result = sforce.connection.query(&quot;select Id,pkl_Status__c,lkp_PWORF__c from CPA_LOI__c where lkp_PWORF__c = &apos;{!CPA_PWORF__c.Id}&apos; AND pkl_Status__c = &apos;Cancelled&apos;&quot;); 
+		var loiRecords = result.getArray(&quot;records&quot;); 
+
+		if(loiRecords.length &gt;0){ 
+			alert(&quot;LOI cannot be create since associated PWORF contains Cancelled LOI&quot;); 
+		}else{ 
+			window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;RecordType=&quot;+RecType[0].Id+&quot;&amp;retURL=%2F{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
+		}	
+	} 
+}else if(permissionSetName == &quot;CPA_ADM&quot; &amp;&amp; &quot;{!CPA_PWORF__c.Id}&quot; == &apos;&apos;){
+alert(&quot;Please create LOI by using New LOI option from Relevant PWORF Record&quot;);	
+//*window.open(&quot;/&quot;+&quot;{!$Label.CPA_LOI_Object_Id}/e?{!$Label.CPA_PWORF_LOI_Name_Filed_Id}={!CPA_PWORF__c.Name}&amp;{!$Label.CPA_PWORF_LOI_Name_Filed_Id}_lkid={!CPA_PWORF__c.Id}&amp;retURL=%2F{!$Label.CPA_LOI_Object_Id}&quot;,&quot;_self&quot;); */
+}else{ 
+alert(&quot;LOI can be created by Vendor Team only.&quot;); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Submit_For_Unilever</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Submit</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)}
+
+var p = new sforce.SObject(&apos;CPA_LOI__c&apos;);
+p.id = &quot;{!CPA_LOI__c.Id}&quot;;
+p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c }&quot;;
+p.isValidated__c = &quot;{!CPA_LOI__c.isValidated__c }&quot;;
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;);
+var permissionSetName = records1[0].PermissionSet.Name;
+
+if( permissionSetName == &quot;CPA_ADM&quot;){
+	
+	var isValidateFlag = sforce.apex.execute(&quot;CPA_LOI_InformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id});
+	//alert(&quot;isValidateFlag --&gt; &quot;+isValidateFlag);
+	
+	if(isValidateFlag == &apos;true&apos;){
+
+		if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){
+			p.pkl_Status__c = &quot;Resubmitted&quot;;
+			result = sforce.connection.update([p]);
+			location.reload(true);
+		}
+		else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){
+			alert(&quot;LOI is currently pending with UL supplier management team for approval.&quot;);
+		}
+		else if(p.pkl_Status__c ==&quot;Answered&quot; ){
+
+			alert(&quot;LOI is already Answered, you cant submit for Approval&quot;);
+		}
+		else if(p.pkl_Status__c ==&quot;Cancelled&quot; ){
+
+			alert(&quot;LOI is Cancelled, you cant submit for Approval&quot;);
+		}
+		else if(p.pkl_Status__c ==&quot;Accepted&quot; ){
+
+			alert(&quot;LOI is Accepted, you cant submit for Approval&quot;);
+		}
+		else if(p.pkl_Status__c ==&quot;Sent for Signature&quot; || p.pkl_Status__c == &quot;Signed&quot; || p.pkl_Status__c == &quot;Delivered&quot;){
+			alert(&quot;LOI cant be submitted for Approval as it is Accepted and moved for further processing&quot;);
+		}
+		else{
+			p.pkl_Status__c = &quot;Submitted&quot;;
+			result = sforce.connection.update([p]);
+			location.reload(true);
+		}
+
+	}
+	else {
+		alert(&quot;LOI can not be submitted, as required fields are missing&quot;);
+	}
+}
+else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_SMT&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){
+	alert(&quot;LOI is currently pending with UL supplier  management team for approval.&quot;); 
+}
+else{ alert(&quot;You are not authorized to perform this action.&quot;); }</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_Return_LOI</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Return LOI from DocuSign</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_LOI__c&apos;); 
+p.id = &quot;{!CPA_LOI__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c }&quot;; 
+
+
+try { 
+	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+	var result = sforce.connection.query(soql); 
+	var records1 = result.getArray(&apos;records&apos;); 
+	var permissionSetName = records1[0].PermissionSet.Name; 
+
+	if( permissionSetName == &quot;CPA_SMT&quot;){ 
+		if(p.pkl_Status__c == &quot;Signed&quot;){ 
+			alert(&quot;Can not Return, as LOI is already Signed&quot;); 
+		} else if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
+			alert(&quot;Can not Return, as LOI is already Cancelled&quot;); 
+		}else if(p.pkl_Status__c ==&quot;Sent for Signature&quot;){ 
+			window.open(&apos;/apex/CPA_LOI_Reason_for_return?id=&apos;+&quot;{!CPA_LOI__c.Id}&quot;,&quot;_self&quot;); 
+		}else if(p.pkl_Status__c == &quot;Returned&quot;){ 
+			alert(&quot;Can not Return, as LOI is already Returned&quot;); 
+		}else if(p.pkl_Status__c == &quot;Accepted&quot;){ 
+			alert(&quot;The LOI should be sent for Signature before returning from DocuSign.&quot;); 
+		}else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot;){
+			alert(&quot;The LOI should be sent for Signature before returning from DocuSign.&quot;); 
+		}
+	}
+	else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c !=&quot;Saved&quot; &amp;&amp; p.pkl_Status__c != &quot;Returned&quot; )){
+		alert(&quot;LOI is currently pending with UL supplier  management team for approval.&quot;); 
+	}
+	else if((permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Saved&quot; || p.pkl_Status__c == &quot;Returned&quot; )) {
+		alert(&quot;The LOI should be sent for Signature before returning from Docusign.&quot;); 
+	} 
+
+}catch (e) { 
+	alert( &quot;An unexpected Error has Occurred. Error: \r\n&quot; + e ); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_Sent_for_signature</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send for Signature</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_LOI__c&apos;); 
+p.id = &quot;{!CPA_LOI__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c}&quot;; 
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+
+if( permissionSetName == &quot;CPA_SMT&quot;){ 
+	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
+		p.pkl_Status__c = &quot;Sent for Signature&quot;;	
+		result = sforce.connection.update([p]); 
+
+		location.reload(true); 
+	} 
+	else if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
+		alert(&quot;LOI cannot be Sent for Signature as it is already sent.&quot;); 
+	}	
+	else{ 
+		alert(&quot;LOI cannot be Sent for Signature, as it is not in Accepted status.&quot;); 
+	} 
+}
+
+else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){
+	alert(&quot;LOI is currently pending with UL supplier  management team for approval.&quot;); 
+}
+else{ 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_Signed</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Sign</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+
+var p = new sforce.SObject(&apos;CPA_LOI__c&apos;);
+p.id = &quot;{!CPA_LOI__c.Id}&quot;;
+p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c}&quot;;
+
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;);
+var permissionSetName = records1[0].PermissionSet.Name;
+
+if(permissionSetName == &quot;CPA_SMT&quot;){
+	if(p.pkl_Status__c == &quot;Sent for Signature&quot;){
+		p.pkl_Status__c = &quot;Signed&quot;;
+		result = sforce.connection.update([p]);
+		location.reload(true);
+	}else if(p.pkl_Status__c == &quot;Signed&quot;){
+		alert(&quot;LOI is already Signed&quot;);
+	}else{
+		alert(&quot;LOI can not be Signed, as it is not Sent for Signature&quot;);
+	}
+}
+else if( (permissionSetName == &quot;CPA_ULPM&quot;|| permissionSetName == &quot;CPA_ADM&quot; ) &amp;&amp; (p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; )){
+	alert(&quot;LOI is currently pending with UL supplier  management team for approval.&quot;); 
+}
+else{
+	alert(&quot;You are not authorized to perform this action.&quot;);
+}</url>
+    </webLinks>
+</CustomObject>
