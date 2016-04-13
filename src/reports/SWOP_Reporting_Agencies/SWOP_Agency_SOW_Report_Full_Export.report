@@ -46,13 +46,7 @@
         <field>Marketing_SOW__c.Marketing_Projects__r$First_Air_Date__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Production_Completion_Date__c</field>
-    </columns>
-    <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$BET_first_release__c</field>
-    </columns>
-    <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Date_for_Assets_to_be_in_BET__c</field>
     </columns>
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Preview_Date__c</field>
