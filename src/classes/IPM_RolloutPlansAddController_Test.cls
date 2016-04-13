@@ -197,6 +197,8 @@ private class IPM_RolloutPlansAddController_Test{
   ***************************************************************************************/
     public static testmethod void testGlobalProjRolloutAdd()
     {
+	    
+	   Test.startTest();	 
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
        IPM_RolloutPlansAddController irp2= new IPM_RolloutPlansAddController();
        IPM_RolloutPlansAddController irp3= new IPM_RolloutPlansAddController();
@@ -226,7 +228,7 @@ private class IPM_RolloutPlansAddController_Test{
         
         System.RunAs(globalProjectLeader)
         {
-          Test.startTest();
+          
             projectList = [Select Id,IPM_Phase__c,IPMProject_Span__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
                                                     (Select Id from IPM_Financials_Consolidated__r ),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),
                                                     (Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Name in:projectNameSet];
@@ -701,7 +703,9 @@ private class IPM_RolloutPlansAddController_Test{
   ***************************************************************************************/
    public static testmethod void testRegionalProjRolloutAddNullValues()
    {  
-        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
+		test.StartTest();
+        
+		IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
         IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
       
         User regionalProjectLeader = null;  
@@ -716,7 +720,7 @@ private class IPM_RolloutPlansAddController_Test{
                 regionalProjectLeader = lUser;
             }
         }
-        test.StartTest();
+        
         List<IPM_Country__c> countryList= new List<IPM_Country__c>(); 
         regionalProjects= IPM_TestFactory_Helper.projectSetUpRegional(2,regionalProjectLeader); 
         insert regionalProjects;
@@ -857,6 +861,7 @@ private class IPM_RolloutPlansAddController_Test{
   ***************************************************************************************/
      public static testmethod void testGlobalProjRolloutAdd2()
      {
+	   Test.startTest();
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
        IPM_RolloutPlansAddController irp2= new IPM_RolloutPlansAddController();
        IPM_RolloutPlansAddController irp3= new IPM_RolloutPlansAddController();
@@ -886,7 +891,7 @@ private class IPM_RolloutPlansAddController_Test{
         
         System.RunAs(globalProjectLeader)
         {
-          Test.startTest();
+          
             projectList = [Select Id,IPM_Phase__c,IPMProject_Span__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
                                                     (Select Id from IPM_Financials_Consolidated__r ),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),
                                                     (Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Name in:projectNameSet];
@@ -1339,7 +1344,7 @@ private class IPM_RolloutPlansAddController_Test{
   ***************************************************************************************/
     public static testmethod void testGlobalProjRolloutAdd3()
     {
-      
+       Test.startTest();
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
 
        
@@ -1367,7 +1372,7 @@ private class IPM_RolloutPlansAddController_Test{
         
         System.RunAs(globalProjectLeader)
         {
-          Test.startTest();
+          
             projectList = [Select Id,IPM_Phase__c,IPMProject_Span__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
                                                     (Select Id from IPM_Financials_Consolidated__r ),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),
                                                     (Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Name in:projectNameSet];
@@ -1653,7 +1658,7 @@ private class IPM_RolloutPlansAddController_Test{
   ***************************************************************************************/
     public static testmethod void testRegionalProjRolloutAdd2()
     {
-      
+       Test.startTest();
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
        
        IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
@@ -1679,7 +1684,7 @@ private class IPM_RolloutPlansAddController_Test{
         
         System.RunAs(globalProjectLeader)
         {
-          Test.startTest();
+          
           projectList = IPM_TestFactory_Helper.projectSetUpRegional(2,regionalProjectLeader); 
           insert projectList;
           for(IPM_Project__c proj : projectList)
@@ -1941,7 +1946,7 @@ private class IPM_RolloutPlansAddController_Test{
   ***************************************************************************************/
     public static testmethod void testRegionalProjRolloutAdd3()
     {
-      
+       Test.startTest();
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
 
        IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
@@ -1967,7 +1972,7 @@ private class IPM_RolloutPlansAddController_Test{
         
         System.RunAs(globalProjectLeader)
         {
-          Test.startTest();
+          
           projectList = IPM_TestFactory_Helper.projectSetUpRegional(2,regionalProjectLeader);
           for(IPM_Project__c proj : projectList ){
             proj.IPM_phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;

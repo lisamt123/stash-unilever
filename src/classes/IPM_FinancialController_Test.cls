@@ -381,7 +381,7 @@ public class IPM_FinancialController_Test {
      
      //Use case: Regional original IDEAS phase and WITHOUTconsilidate financnials
      static testMethod void testRegionalOriginalNONConsolidate(){
-         Test.startTest();
+         
              //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
              IPM_Project__c regionalOriginal = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Regional' and IPM_Project_Type__c='Original' and Name='TestRegionalComments1' limit 1];
              system.assert(regionalOriginal!=null,'Regional original record (Regional company card) record not found.');
@@ -399,6 +399,7 @@ public class IPM_FinancialController_Test {
              //parent project is not populated when financials are created from TestFactory so update manually.
              update regionalOrigFin;
              //asserts starts below    
+	     Test.startTest();
              setPage(regionalOriginal.id);
              IPM_FinancialController ipmFinCon = new IPM_FinancialController();
              ipmFinCon.project = regionalOriginal;
@@ -422,8 +423,9 @@ public class IPM_FinancialController_Test {
              //Load Tab MyView
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              //Load Tab TopDown
-             ///loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME); //Keep this line commented
+             loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);//*//
              //Load Tab Rollup
+             loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_ROLLUP_NAME);
          Test.stopTest();
      }
      
