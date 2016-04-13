@@ -1693,9 +1693,7 @@
                                 <apex:actionFunction name="sendCategory" action="{!brandPositionListData}" reRender="brandPosPick,brandPick" oncomplete="closeLoadingCategoryJobSheet()">
                                     <apex:param id="catname" assignTo="{!selectedCategory}" name="categoryName" value="{!selectedCategory}" />
                                  </apex:actionFunction>
-                                 <!-- <apex:actionFunction name="sendProject" action="{!ProjectData}" reRender="projectList" >
-                                    <apex:param id="projectValue" assignTo="{!projNameFromPage}" name="projectValue" value="{!projNameFromPage}" />
-                                 </apex:actionFunction> -->
+                                 
                                  <apex:actionFunction name="hideAlert" action="{!alertHide}" reRender="alertCountNumber">
                                         <apex:param id="aname" assignTo="{!selectedAlert}" name="selectedAlert" value="{!selectedAlert}" />
                                  </apex:actionFunction>

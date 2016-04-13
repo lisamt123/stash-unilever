@@ -882,10 +882,6 @@ Returns:
          return null;
     }
    
-    public void ProjectData(){
-       
-    
-    }
  
 /***********************************************************************************************************************************
 Purpose:Method to get all the brand names on the basis of selected brand position.

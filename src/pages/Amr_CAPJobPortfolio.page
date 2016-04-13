@@ -14,6 +14,73 @@
     </script>
     
     <style type='text/css'>
+    	
+    	.scrollbar-table-parent-cap-joblist table.list tbody td, .scrollbar-table-parent-cap-joblist table.list thead th {
+    		border:1px solid red !important;
+    	}
+    	
+    	/*
+		.scrollbar-table-parent-cap-joblist table.list tbody {
+		    display: -moz-grid;
+		    max-height: 300px;
+		    overflow-y: auto;
+		    width: 100%;
+		}		
+		.scrollbar-table-parent-cap-joblist table.list tbody td, .scrollbar-table-parent-cap-joblist table.list thead th {
+             width: 10em;
+        }
+        
+        .scrollbar-table-parent-cap-joblist tr.dataRow td {
+			padding: 11px 2px 11px 5px !important;
+		}
+		
+        .scrollbar-table-parent-cap-joblist table.list tbody td:nth-child(1), .scrollbar-table-parent-cap-joblist table.list thead th:nth-child(1) {
+             width: 7em;
+        }
+        
+        .scrollbar-table-parent-cap-joblist table.list tbody td:nth-child(3), .scrollbar-table-parent-cap-joblist table.list thead th:nth-child(3) {
+             width: 6em;
+             border:1px solid red !important;
+             
+        }
+        
+        .scrollbar-table-parent-cap-joblist table.list tbody td:nth-child(3) {
+            text-indent: 100%;
+			white-space: nowrap;
+			overflow: hidden;
+        }
+        
+        .scrollbar-table-parent-cap-joblist table.list tbody td:nth-child(4), .scrollbar-table-parent-cap-joblist table.list thead th:nth-child(4) {
+             width: 6em;
+             border:1px solid red !important;
+             
+        }        
+        
+        .scrollbar-table-parent-cap-joblist table.list tbody {
+			overflow-y: auto;
+			max-height: 300px;
+			display: -moz-grid;
+			display: run-in;
+			display: -webkit-box;
+			width: 100%;
+		}
+		
+		.scrollbar-table-parent-cap-joblist table.list thead {         
+			display: inline-flex;
+			width: 100%;
+			table-layout: fixed !important;
+		}
+		
+		.scrollbar-table-parent-cap-joblist {
+			overflow-x: auto;
+		}
+		*/
+		.stage-common-class {
+		    background-position: 15px center !important;
+		    background-repeat: no-repeat;
+		    background-size: 26px 26px !important;
+		}
+        
         .scrollbar-table-parent table.list tbody td, .scrollbar-table-parent table.list thead th {
              width: 10em;
         }
@@ -351,10 +418,14 @@
                                                             <apex:param value="{!job.AM_Job_Detail__r.CreatedDate}" />
                                                         </apex:outputText>
                                                     </apex:column>
-                                                    <apex:column styleclass="stage-common-class {!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(job.AM_Job_Detail__r.Stage_of_Production_Activity__c, ' ', '_'),'(',''),')',''),',',''),'/','')}" headerValue="Stage Of Production Activity" />
+                                                    <apex:column styleclass="stage-common-class {!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(job.AM_Job_Detail__r.Stage_of_Production_Activity__c, ' ', '_'),'(',''),')',''),',',''),'/','')}" headerValue="Stage Of Production Activity" >
+                                                    	<div class="td-overflow width60">
+                                                    		
+                                                   		</div>
+                                                    </apex:column>
                                                     <apex:column headerValue="Project Leader Email" title="{!job.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}">
                                                         <apex:outputText >
-                                                            <div class="td-overflow width80">
+                                                            <div class="td-overflow width60">
                                                                 <apex:outputLink value="mailto:{!job.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}">{!job.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}</apex:outputLink>
                                                             </div>
                                                         </apex:outputText>
@@ -415,7 +486,13 @@
                                                     </div>
                                                 </apex:outputText>                                          
                                             </apex:column>-->
-                                                    <apex:column value="{!job.AM_Job_Detail__r.Allocated_Budget_euro__c}" headerValue="Allocated Budget(euro)" title="{!job.AM_Job_Detail__r.Allocated_Budget_euro__c}" />
+                                                    <apex:column headerValue="Allocated Budget(euro)" title="{!job.AM_Job_Detail__r.Allocated_Budget_euro__c}" >
+                                                    	<apex:outputText >
+                                                            <div class="td-overflow width60">
+                                                                &euro;{!job.AM_Job_Detail__r.Allocated_Budget_euro__c}
+                                                            </div>
+                                                        </apex:outputText>
+                                                    </apex:column>
                                                     <apex:column headerValue="RAP Allocated" title="{!job.User__r.name}">
                                                         <apex:outputText >
                                                             <div class="td-overflow width40">

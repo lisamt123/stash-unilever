@@ -8,7 +8,7 @@ Purpose:This class has search and sort functionality of CAP User.Also this class
 History
 -------
 VERSION     AUTHOR             DATE           DETAIL           Description
-1.0         Varuna Nikam       23/12/2015     INITIAL DEV      CSR:
+1.0         Mindtree	       23/12/2015     INITIAL DEV      CSR:
 *************************************************************************************************************************************/
 global with sharing class Amr_CAPJobPortfolioController_CC {
     public list<Amr_Job_Allocation__c>jobDetailList {get;set;}
