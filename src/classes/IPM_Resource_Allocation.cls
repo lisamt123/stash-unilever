@@ -219,39 +219,76 @@ public with sharing class IPM_Resource_Allocation {
     /*************************************************************************************************************
     * @description:Get all members FROM same category for functional role.
     */
-    public void getSameCategory()
+    public void getSameCategoryPartOne()
     {
-        
-        
-        list<IPM_Project_Resource__c>lstoldres=[SELECT IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE IPM_Project__c=:projectID LIMIT 50000];
-        
-        map<id,id>uniqueUsers=new map<id,id>();
+    	list<IPM_Project_Resource__c>lstoldres=[SELECT IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE IPM_Project__c=:projectID LIMIT 50000];
         for(IPM_Project_Resource__c res:lstoldres)
-        {
+        { 
             if(string.isNotBlank(roleType) && roleType.equals(res.IPM_Role_Type__c) && plDPLSet.contains(res.IPM_User__c)){
                 dupPLDPLSet.add(res.IPM_User__c);
             }
             oldresourceid.add(res.IPM_User__c);
         }
-        if(!dupPLDPLSet.isEmpty()){
-            if(String.IsNotBlank(String.valueOf(ipmproject.Deputy_Project_Leader__c)) && !dupPLDPLSet.isEmpty() && !dupPLDPLSet.contains(ipmproject.Deputy_Project_Leader__c)){
-                projectPLDPLSet.add(ipmproject.Deputy_Project_Leader__c);   
-            }
-            if(String.IsNotBlank(String.valueOf(ipmproject.IPM_Project_Leader__c)) && !dupPLDPLSet.contains(ipmproject.IPM_Project_Leader__c)){
-                projectPLDPLSet.add(ipmproject.IPM_Project_Leader__c);  
-            }
+        getSameCategoryPartThree();
+        
+       
+    }
+    /*************************************************************************************************************
+    * @description:Get all members FROM same category for functional role.
+    */
+    public void getSameCategoryPartThree()
+    {
+    	if(!dupPLDPLSet.isEmpty()&& String.IsNotBlank(String.valueOf(ipmproject.Deputy_Project_Leader__c)) && !dupPLDPLSet.isEmpty() && !dupPLDPLSet.contains(ipmproject.Deputy_Project_Leader__c)){
+           projectPLDPLSet.add(ipmproject.Deputy_Project_Leader__c);   
+         }
+        if(!dupPLDPLSet.isEmpty()&& String.IsNotBlank(String.valueOf(ipmproject.IPM_Project_Leader__c)) && !dupPLDPLSet.contains(ipmproject.IPM_Project_Leader__c)){
+            projectPLDPLSet.add(ipmproject.IPM_Project_Leader__c);  
         }
-        if(dupPLDPLSet.isEmpty()){
-            if(String.IsNotBlank(String.valueOf(ipmproject.Deputy_Project_Leader__c))){
-                projectPLDPLSet.add(ipmproject.Deputy_Project_Leader__c);
-            }
-            if(String.IsNotBlank(String.valueOf(ipmproject.IPM_Project_Leader__c))){
-                projectPLDPLSet.add(ipmproject.IPM_Project_Leader__c);
-            }
+        if(dupPLDPLSet.isEmpty() && String.IsNotBlank(String.valueOf(ipmproject.Deputy_Project_Leader__c))){
+            projectPLDPLSet.add(ipmproject.Deputy_Project_Leader__c);
         }
-
-        teamMembers=new list<wrapperclass>();
-        list<IPM_User_Profile__c>lstuser=new list<IPM_User_Profile__c>();
+        if(dupPLDPLSet.isEmpty() && String.IsNotBlank(String.valueOf(ipmproject.IPM_Project_Leader__c))){
+            projectPLDPLSet.add(ipmproject.IPM_Project_Leader__c);
+        }
+    }
+	/*************************************************************************************************************
+    * @description:Get all members FROM same category for functional role.
+    */
+    public void getSameCategoryPartTwo(string UQuery)
+    {
+		list<IPM_User_Profile__c>lstuser=new list<IPM_User_Profile__c>();
+		map<id,id>uniqueUsers=new map<id,id>();
+		lstuser=database.query(UQuery);
+            for(IPM_User_Profile__c u:lstuser)
+            {
+                if((avoidDupUser.contains(u.IPM_User__r.id) && u.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_RD) || !avoidDupUser.contains(u.IPM_User__r.id) )
+                {
+                    uniqueUsers.put(u.IPM_User__c,u.id);
+                }
+            }
+            if(!projectPLDPLSet.isEmpty()){
+                List<IPM_user_profile__c>lstPLUser=new List<IPM_user_profile__c>();
+                lstPLUser=[SELECT IPM_User__c FROM IPM_user_profile__c WHERE IPM_User__c IN:projectPLDPLSet LIMIT 1000];
+                for(IPM_User_Profile__c u:lstPLUser){
+                    uniqueUsers.put(u.IPM_User__c,u.id);
+                }
+            }
+            lstuser=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,
+            IPM_User__r.email,IPM_User__r.SmallPhotoUrl,
+            IPM_User__r.UserRole.Name 
+            FROM IPM_user_profile__c WHERE id IN:uniqueUsers.values() LIMIT 10000];
+            for(IPM_User_Profile__c u:lstuser)
+            {
+                teamMembers.add(new wrapperclass(u));
+            }
+	}
+    /*************************************************************************************************************
+    * @description:Get all members FROM same category for functional role.
+    */
+    public void getSameCategory()
+    {
+        getSameCategoryPartOne();
+		teamMembers=new list<wrapperclass>();
         string UQuery=IPM_ConstantUtils.BLANK;      
         
         if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY)
@@ -298,36 +335,14 @@ public with sharing class IPM_Resource_Allocation {
         }
         try
         {
-            lstuser=database.query(UQuery);
-
-        for(IPM_User_Profile__c u:lstuser)
-        {
-            if((avoidDupUser.contains(u.IPM_User__r.id) && u.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_RD) || !avoidDupUser.contains(u.IPM_User__r.id) )
-            {
-                uniqueUsers.put(u.IPM_User__c,u.id);
-                }
-            }
-            if(!projectPLDPLSet.isEmpty()){
-                List<IPM_user_profile__c>lstPLUser=new List<IPM_user_profile__c>();
-                lstPLUser=[SELECT IPM_User__c FROM IPM_user_profile__c WHERE IPM_User__c IN:projectPLDPLSet LIMIT 1000];
-                for(IPM_User_Profile__c u:lstPLUser){
-                    uniqueUsers.put(u.IPM_User__c,u.id);
-        }
-            }
-        lstuser=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,
-        IPM_User__r.email,IPM_User__r.SmallPhotoUrl,
-        IPM_User__r.UserRole.Name 
-            FROM IPM_user_profile__c WHERE id IN:uniqueUsers.values() LIMIT 10000];
-        for(IPM_User_Profile__c u:lstuser)
-        {
-            teamMembers.add(new wrapperclass(u));
-            }
+			getSameCategoryPartTwo(UQuery);
+            
         }
         catch(QueryException ex)
         {
            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
-        }        
-    }
+        }
+	}
     /*************************************************************************************************************
     * @description:Search for same category members
     */
