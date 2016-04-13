@@ -162,8 +162,6 @@ src/classes/Oblix_UserPermissionHandlerLogic.cls
 src/classes/Oblix_UserPermissionHandlerLogic.cls-meta.xml
 src/classes/Oblix_UserPermissionHandlerTest.cls
 src/classes/Oblix_UserPermissionHandlerTest.cls-meta.xml
-src/classes/Oblix_VersionControl.cls
-src/classes/Oblix_VersionControl.cls-meta.xml
 src/classes/TriggerFactory.cls
 src/classes/TriggerFactory.cls-meta.xml
 src/classes/Oblix_Utils.cls
@@ -248,10 +246,6 @@ src/reports/SWOP_Reporting_Super_Users/SWOP_Campaign_Report_Full_Detail_v2.repor
 src/reports/SWOP_Reporting_Super_Users/SWOP_Pick_Lists_v2.report
 src/reports/SWOP_Reporting_Super_Users/SWOP_Role_Rates_Non_Campaign_v2.report
 src/reports/SWOP_Reporting_Super_Users/SWOP_SOW_Report_Full_Export_v2.report
-src/reports/SWOP_Reporting_Agencies/SWOP_Agency_SOW_Report_Full_Export
-src/reports/SWOP_Reporting_Agencies/SWOP_Agency_Asset_Summary_Per_Campaign
-src/reports/SWOP_Reporting_Agencies/SWOP_Agency_Non_Campaign_Report
-src/reports/SWOP_Reporting_Agencies/SWOP_Agency_Asset_Summary_Per_SOW
 src/components
 src/components/Oblix_CampaignStage.component
 src/components/Oblix_CampaignStage.component-meta.xml
@@ -298,7 +292,6 @@ src/triggers/Oblix_UserPermissionTrigger.trigger-meta.xml
 src/workflows
 src/workflows/Marketing_SOW__c.workflow
 src/approvalProcesses
-src/approvalProcesses/Marketing_SOW__c.Oblix_SOW_Approval_Process_v6.approvalProcess
 src/approvalProcesses/Marketing_SOW__c.Oblix_SOW_Approval_Process_v5.approvalProcess
 src/email
 src/email/Oblix_SOW_Email
