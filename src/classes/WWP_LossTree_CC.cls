@@ -1,0 +1,432 @@
+public class WWP_LossTree_CC{
+    public WWP_Loss_Tree__c lossTree{get; set;}
+     public string message{get; set;}
+     public string successmessage{get; set;}
+    public List<WWP_Loss_Tree__c> listLossTree{get; set;}
+    public List<LossTreeWrapper> listLossTreeW{get; set;}
+    Map<string, set<string>> mapbox12 = new Map<string, set<string>>();
+    Map<string, set<string>> mapbox13 = new Map<string, set<string>>();
+    Map<string, set<string>> mapbox21 = new Map<string, set<string>>();
+    Map<string, set<string>> mapbox23 = new Map<string, set<string>>();
+    Map<string, set<string>> mapbox31 = new Map<string, set<string>>();
+    Map<string, set<string>> mapbox32 = new Map<string, set<string>>();
+    Map<string, set<string>> mapcombine12 = new Map<string, set<string>>();
+    List<SelectOption> listbox1all = new List<SelectOption>();
+    List<SelectOption> listbox2all = new List<SelectOption>();
+    List<SelectOption> listbox3all = new List<SelectOption>();
+    public List<SelectOption> listPlantCodes{get; set;}
+     public WWP_LossTree_CC(){
+         lossTree = new WWP_Loss_Tree__c(); 
+         listPlantCodes = new List<SelectOption>(); 
+         List<PermissionSetAssignment> plantCodePS = new List<PermissionSetAssignment>();  
+         plantCodePS = [SELECT Assignee.Name, PermissionSet.Id, PermissionSet.isOwnedByProfile, PermissionSet.Profile.Name, PermissionSet.Label,PermissionSet.name FROM PermissionSetAssignment WHERE AssigneeId=:userinfo.getuserid() and PermissionSet.name Like 'WWP_PlantCode_%'];
+         listPlantCodes.add(new SelectOption('','--None--'));
+         if(!plantCodePS.isEmpty()){
+             for(PermissionSetAssignment ps: plantCodePS){
+                 listPlantCodes.add(new SelectOption(ps.PermissionSet.name.substring(14),ps.PermissionSet.name.substring(14)));
+             }
+         
+         } 
+         else{
+             message = 'You have not been assigned to any Plant Code. Please contact Administrator';
+         }
+     }
+     public void fetchLossTree(){
+        listLossTree = new List<WWP_Loss_Tree__c>();
+        listLossTreeW = new List<LossTreeWrapper>();
+        listbox1all .clear();
+        listbox2all .clear();
+        listbox3all .clear();
+        mapbox12.clear();
+        mapbox13.clear();
+        mapbox21.clear();
+        mapbox23.clear();
+        mapbox31.clear();
+        mapbox32.clear();
+        mapcombine12.clear();
+        successmessage='';
+        
+        if(lossTree.Loss_Type__c!=null && lossTree.Plant_Code__c!=null){
+        
+            listLossTree = [select id,name,Loss_Type__c,Planned_Production__c,Actual_Production__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,
+                             Loss_Description__c,Week__c,Planned_Receipt__c,actual_Receipt__c,Planned_dispatch__c,Actual_dispatch__c,PR__c,STO_So__c  from WWP_Loss_Tree__c where Loss_Type__c=: lossTree.Loss_Type__c and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and Loss_Updated_in_SCDG__c=false];
+            
+          if(listLossTree.isEmpty()){
+              message = label.WWP_Norecords_Err;
+          }  
+        else{
+            message = '';
+        List<WWP_LossTree__c> listCodes = WWP_LossTree__c.getAll().values();
+       set<string> setbox1all = new set<string>();
+                set<string> setbox2all = new set<string>();
+                set<string> setbox3all = new set<string>();
+        for(WWP_LossTree__c w: listCodes){
+            if(w.loss_type__c == lossTree.Loss_Type__c){
+                
+                setbox1all.add(w.loss_name__c);
+                setbox2all.add(w.loss_sub_family__c);
+                setbox3all.add(w.Loss_Description__c);
+                
+                set<string> listbox12 = new set<string>();
+                if(!Mapbox12.containsKey(w.loss_name__c)){                
+                    listbox12.add(w.loss_sub_family__c);
+                    Mapbox12.put(w.loss_name__c,listbox12);
+                }
+                else{
+                    listbox12 = Mapbox12.get(w.loss_name__c);
+                    listbox12.add(w.loss_sub_family__c);
+                    Mapbox12.put(w.loss_name__c,listbox12);
+                }
+                
+                set<string> listbox13 = new set<string>();
+                if(!Mapbox13.containsKey(w.loss_name__c)){                
+                    listbox13.add(w.Loss_Description__c);
+                    Mapbox13.put(w.loss_name__c,listbox13);
+                }
+                else{
+                    
+                    listbox13 = Mapbox13.get(w.loss_name__c);
+                    listbox13.add(w.Loss_Description__c);
+                    Mapbox13.put(w.loss_name__c,listbox13);
+                }
+                
+                set<string> listbox21 = new set<string>();
+                if(!Mapbox21.containsKey(w.loss_sub_family__c)){                
+                    listbox21.add(w.loss_name__c);
+                    Mapbox21.put(w.loss_sub_family__c,listbox21);
+                }
+                else{
+                    listbox21 = Mapbox21.get(w.loss_sub_family__c);
+                    listbox21.add(w.loss_name__c);
+                    Mapbox21.put(w.loss_sub_family__c,listbox21);
+                }
+                
+                set<string> listbox23 = new set<string>();
+                if(!Mapbox23.containsKey(w.loss_sub_family__c)){                
+                    listbox23.add(w.Loss_Description__c);
+                    Mapbox23.put(w.loss_sub_family__c,listbox23);
+                }
+                else{
+                    listbox23 = Mapbox23.get(w.loss_sub_family__c);
+                    listbox23.add(w.Loss_Description__c);
+                    Mapbox23.put(w.loss_sub_family__c,listbox23);
+                }
+                
+                set<string> listcombine12 = new set<string>();
+                if(!mapcombine12.containsKey(w.loss_name__c+w.loss_sub_family__c)){ 
+                listcombine12.add(w.Loss_Description__c);
+                mapcombine12.put(w.loss_name__c+w.loss_sub_family__c,listcombine12);
+                }
+                else{
+                listcombine12 = mapcombine12.get(w.loss_name__c+w.loss_sub_family__c);
+                listcombine12.add(w.Loss_Description__c);
+                mapcombine12.put(w.loss_name__c+w.loss_sub_family__c,listcombine12);
+                }
+                
+                set<string> listbox31 = new set<string>();
+                listbox31.add(w.loss_name__c);
+                Mapbox31.put(w.Loss_Description__c,listbox31);
+                set<string> listbox32 = new set<string>();
+                listbox32.add(w.loss_sub_family__c);
+                Mapbox32.put(w.Loss_Description__c,listbox32);
+                
+            }
+        }
+        listbox1all.add(new SelectOption('None','None'));
+        listbox2all.add(new SelectOption('None','None'));
+        listbox3all.add(new SelectOption('None','None'));
+        for(string s1:setbox1all){
+                listbox1all.add(new SelectOption(s1,s1));
+                }
+                for(string s2:setbox2all){
+                listbox2all.add(new SelectOption(s2,s2));
+                }
+                if(lossTree.Loss_Type__c!='MRP Compliance'){
+                for(string s3:setbox3all){
+                listbox3all.add(new SelectOption(s3,s3));
+                }
+                } 
+                integer y=-1;
+         if(listLossTree!=null && listLossTree.size()>0){
+             for(WWP_Loss_Tree__c lt: listLossTree){
+             
+                LossTreeWrapper ltW = new LossTreeWrapper(lt,listbox1all,listbox2all,listbox3all,y);  
+                listLossTreeW.add(ltW); 
+                y=ltw.i;
+            } 
+         }
+         
+         }
+         }
+         else{
+             message = label.WWP_RequiredFeilds_Err;
+         }
+         
+    }
+    
+    public class LossTreeWrapper {
+        public boolean checkbox1{get; set;}
+        public WWP_Loss_Tree__c wlt{get; set;}
+        public List<SelectOption> listbox1{get; set;}
+        public string selectbox1{get; set;}
+        public string selectbox2{get; set;}
+        public string selectbox3{get; set;}
+        public List<SelectOption> listbox2{get; set;}
+        public List<SelectOption> listbox3{get; set;}
+        public integer i{get; set;}
+        public LossTreeWrapper(WWP_Loss_Tree__c lt,List<SelectOption> listbox1all,List<SelectOption> listbox2all,List<SelectOption> listbox3all,integer y){
+            checkbox1 = false;
+            wlt = lt;
+            
+            
+           listbox1 = listbox1all; 
+           listbox2 = listbox2all;
+           listbox3 = listbox3all;
+           if(lt.Loss_name__c!=null){
+               selectbox1 = lt.Loss_name__c;
+           }           
+           if(lt.Loss_sub_Family__c!=null){
+               selectbox2 = lt.Loss_sub_Family__c;
+           }
+           if(lt.Loss_description__c!=null){
+               selectbox3 = lt.Loss_description__c;
+           }
+           
+            
+            i=y+1;
+            
+        }
+    }
+    
+    public void control1213(){
+        integer ite = integer.valueof(Apexpages.currentPage().getParameters().get('firstParam'));
+        string lossname = Apexpages.currentPage().getParameters().get('secondParam');
+        List<SelectOption> listbox12select = new List<SelectOption>();
+        List<SelectOption> listbox13select = new List<SelectOption>();
+        List<SelectOption> listbox11select = new List<SelectOption>();
+       system.debug('sssssssssssssss'+lossname);
+       
+        if(lossname!=null && lossname!='None'){
+        listbox11select.add(new SelectOption(lossname,lossname));
+       listLossTreeW[ite].listbox1=listbox11select;
+       
+        listbox12select.add(new SelectOption('None','None'));
+            
+            
+            listbox13select.add(new SelectOption('None','None'));
+            if(listLossTreeW[ite].selectbox2=='None'){
+                for(string s2:Mapbox12.get(lossname)){
+                listbox12select.add(new SelectOption(s2,s2));
+                }           
+                listLossTreeW[ite].listbox2=listbox12select;
+            
+                for(string s3:Mapbox13.get(lossname)){
+                    listbox13select.add(new SelectOption(s3,s3));
+                }
+                listLossTreeW[ite].listbox3=listbox13select;
+                
+            }
+            else{
+                if(listLossTreeW[ite].selectbox2!='None' && listLossTreeW[ite].listbox2.size()==1){
+                    for(string s3:mapcombine12.get(lossname+listLossTreeW[ite].selectbox2)){
+                    listbox13select.add(new SelectOption(s3,s3));
+                    }
+                    listLossTreeW[ite].listbox3=listbox13select;
+                }
+                if(listLossTreeW[ite].selectbox2!='None' && listLossTreeW[ite].listbox2.size()>1){
+                    for(string s2:Mapbox12.get(lossname)){
+                    listbox12select.add(new SelectOption(s2,s2));
+                    }           
+                    listLossTreeW[ite].listbox2=listbox12select;
+                
+                    for(string s3:Mapbox13.get(lossname)){
+                        listbox13select.add(new SelectOption(s3,s3));
+                    }
+                    listLossTreeW[ite].listbox3=listbox13select;
+                }
+            }
+        }
+      /*  if(lossname=='None'){
+        system.debug('dddddddddddddd'+listbox2all);
+            listLossTreeW[ite].listbox2=listbox2all;
+            if(listLossTreeW[ite].selectbox2=='None'){
+                listLossTreeW[ite].listbox3=listbox3all;
+            }
+        }*/
+    
+    }
+    public void control2123(){
+        integer ite = integer.valueof(Apexpages.currentPage().getParameters().get('firstParam2'));
+        string losssubfamily = Apexpages.currentPage().getParameters().get('secondParam2');
+        List<SelectOption> listbox21select = new List<SelectOption>();
+        List<SelectOption> listbox23select = new List<SelectOption>();
+        List<SelectOption> listbox22select = new List<SelectOption>();
+        
+        if(losssubfamily!=null && losssubfamily!='None'){
+            if(listLossTreeW[ite].listbox1.size()>1){
+                listbox21select.add(new SelectOption('None','None'));
+                for(string s1:Mapbox21.get(losssubfamily)){
+                    listbox21select.add(new SelectOption(s1,s1));
+                }            
+                listLossTreeW[ite].listbox1=listbox21select;
+                listbox23select.add(new SelectOption('None','None'));
+                for(string s3:Mapbox23.get(losssubfamily)){
+                    listbox23select.add(new SelectOption(s3,s3));
+                }
+                listLossTreeW[ite].listbox3=listbox23select;
+                
+            }
+            if(listLossTreeW[ite].listbox1.size()==1 && listLossTreeW[ite].selectbox1!='None'){
+                listbox23select.add(new SelectOption('None','None'));
+                for(string s3:mapcombine12.get(listLossTreeW[ite].selectbox1+losssubfamily)){
+                listbox23select.add(new SelectOption(s3,s3));
+                }
+                listLossTreeW[ite].listbox3=listbox23select;    
+            }
+            listbox22select.add(new SelectOption(losssubfamily,losssubfamily));
+                listLossTreeW[ite].listbox2=listbox22select;
+            
+        }
+        /*if(losssubfamily=='None'){
+            listLossTreeW[ite].listbox1=listbox1all;
+            listLossTreeW[ite].listbox3=listbox3all;
+        }*/
+    
+    }
+    
+    public void control3132(){
+        integer ite = integer.valueof(Apexpages.currentPage().getParameters().get('firstParam3'));
+        string lossdesc = Apexpages.currentPage().getParameters().get('secondParam3');
+        List<SelectOption> listbox31select = new List<SelectOption>();
+        List<SelectOption> listbox32select = new List<SelectOption>();
+        List<SelectOption> listbox33select = new List<SelectOption>();
+        system.debug('ddddddddddddddddddddd'+lossdesc);
+        if(lossdesc!=null && lossdesc!='None'){
+        //listbox31select.add(new SelectOption('None','None'));
+            for(string s1:Mapbox31.get(lossdesc)){
+            system.debug('mmmmmmmmmmmm'+s1);
+                listbox31select.add(new SelectOption(s1,s1));
+                listLossTreeW[ite].selectbox1=s1;
+            }
+            
+            listLossTreeW[ite].listbox1=listbox31select;
+         //   listbox32select.add(new SelectOption('None','None'));
+            for(string s2:Mapbox32.get(lossdesc)){
+                listbox32select.add(new SelectOption(s2,s2));
+                listLossTreeW[ite].selectbox2=s2;
+            }
+            listLossTreeW[ite].listbox2=listbox32select;
+                            
+              //  listbox33select.add(new SelectOption('None','None'));
+                listbox33select.add(new SelectOption(lossdesc,lossdesc));
+                listLossTreeW[ite].listbox3=listbox33select;
+            
+                
+        }
+       /* if(lossdesc=='None'){
+            listLossTreeW[ite].listbox1=listbox1all;
+            listLossTreeW[ite].listbox2=listbox2all;
+        }*/
+    
+    }
+    
+    public void controlMRP12(){
+        integer ite = integer.valueof(Apexpages.currentPage().getParameters().get('mrpfirstParam'));
+        string lossname = Apexpages.currentPage().getParameters().get('mrpsecondParam');
+        List<SelectOption> listboxmrp12select = new List<SelectOption>();
+        List<SelectOption> listboxmrp11select = new List<SelectOption>();
+        if(lossname!=null && lossname!='None'){
+        listboxmrp12select.add(new SelectOption('None','None'));
+            for(string s2:Mapbox12.get(lossname)){
+                listboxmrp12select.add(new SelectOption(s2,s2));
+            }           
+            listLossTreeW[ite].listbox2=listboxmrp12select;                                    
+        
+            listboxmrp11select.add(new SelectOption(lossname,lossname));
+            listLossTreeW[ite].listbox1=listboxmrp11select;
+        } 
+       /* if(lossname=='None'){
+            listLossTreeW[ite].listbox2=listbox2all;           
+        }*/
+    }
+    public void controlMRP21(){
+        integer ite = integer.valueof(Apexpages.currentPage().getParameters().get('mrpfirstParam2'));
+        string lossfamily = Apexpages.currentPage().getParameters().get('mrpsecondParam2');
+        List<SelectOption> listboxmrp21select = new List<SelectOption>();
+        List<SelectOption> listboxmrp22select = new List<SelectOption>();
+        if(lossfamily!=null && lossfamily!='None'){
+        //listboxmrp21select.add(new SelectOption('None','None'));
+            for(string s1:Mapbox21.get(lossfamily)){
+                listboxmrp21select.add(new SelectOption(s1,s1));
+            }           
+            listLossTreeW[ite].listbox1=listboxmrp21select; 
+            listboxmrp22select.add(new SelectOption(lossfamily,lossfamily));
+            listLossTreeW[ite].listbox2=listboxmrp22select;                                   
+        }
+        /*if(lossfamily=='None'){
+            listLossTreeW[ite].listbox1=listbox1all;           
+        }*/
+    }
+    
+    public void resetline(){
+        integer ite = integer.valueof(Apexpages.currentPage().getParameters().get('resetite'));
+        system.debug('iiiiiiiiiiiiiiiiiiii'+ite);
+        
+        
+        
+        
+        listLossTreeW[ite].listbox1=listbox1all;
+        listLossTreeW[ite].listbox2=listbox2all;
+        listLossTreeW[ite].listbox3=listbox3all;
+        listLossTreeW[ite].selectbox3='None';
+        listLossTreeW[ite].selectbox1='None';
+        listLossTreeW[ite].selectbox2='None';
+        
+        
+    }
+    public void updateLossTree(){
+        integer count=0;
+        List<WWP_Loss_Tree__c> updateLTW = new List<WWP_Loss_Tree__c>();
+        try{
+        if(listLossTreeW!=null && listLossTreeW.size()>0){
+            for(LossTreeWrapper lw: listLossTreeW){
+                if(lw.checkbox1){
+                    WWP_Loss_Tree__c wt = new WWP_Loss_Tree__c();
+                    wt.id = lw.wlt.id;
+                    if(lw.selectbox1!='None'){
+                    wt.Loss_Name__c = lw.selectbox1;
+                    }
+                    if(lw.selectbox2!='None'){
+                    wt.Loss_Sub_Family__c= lw.selectbox2;
+                    }
+                    if(lw.selectbox3!='None'){
+                    wt.Loss_Description__c = lw.selectbox3;
+                    }
+                    updateLTW.add(wt);
+                    count++;
+                }  
+                lw.checkbox1 = false; 
+                if(count == 0){
+                    message=label.WWP_selectRecord_Err; 
+                    successmessage ='';                   
+                }
+                else{
+                    message ='';                    
+                } 
+            }
+            if(updateLTW!=null && updateLTW.size()>0){
+                update updateLTW;
+                successmessage=label.WWP_RecordsUpdated_Msg;
+                message ='';
+                
+                
+            }
+        }
+        }
+        catch(Exception e){
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Info,e.getmessage()));
+        }
+    }
+    
+    
+}
