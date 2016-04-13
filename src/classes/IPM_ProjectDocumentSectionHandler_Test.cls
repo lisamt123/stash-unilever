@@ -75,7 +75,7 @@ private with sharing class IPM_ProjectDocumentSectionHandler_Test{
         task.IPM_Type_of_Gate__c = IPM_ConstantUtils.MARKET_READY_GATE; 
         task.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD;
         task.IPM_Phase__c = IPM_ConstantUtils.PHASE_CAPABILITY;
-        task.IPM_Task_Complexity__c = '';
+        task.IPM_Task_Complexity__c = IPM_ConstantUtils.COMPLEXITY_LITE;
         task.IPM_Task_Type__c = IPM_ConstantUtils.TYPE_NEGOTIABLE;
         update task;
         
@@ -93,10 +93,12 @@ private with sharing class IPM_ProjectDocumentSectionHandler_Test{
                 projectList[i].IPMProject_Span__c = IPM_ConstantUtils.IPMGLOBAL;
                 projectList[i].IPM_Phase__c = IPM_ConstantUtils.PHASE_CAPABILITY;
                 projectList[i].IPM_CompanyCardText__c = 'Global Company Card';
+                projectList[i].IPM_Child_Complexity__c = IPM_ConstantUtils.COMPLEXITY_LITE;
                 projectList[i].IPM_Complexity__c = IPM_ConstantUtils.COMPLEXITY_LITE;
                 
             }   
         insert projectList;
+        
         projectList = [SELECT Id,IPM_Complexity__c From IPM_Project__c WHERE Id IN: projectList LIMIT 5000];
         System.assertEquals(2, projectList.size(),'Project Insertion Fails');     
         System.debug('IPM_Complexity__c::'+projectList[0].IPM_Complexity__c);     
@@ -180,15 +182,42 @@ private with sharing class IPM_ProjectDocumentSectionHandler_Test{
             
             
              
-            projectDocumentSectionList =[SELECT ID,IPM_Default_Section__c,IPM_Project_Document__c,IPM_Section__c,IPM_ProjectTemplate__c FROM IPM_Project_Document_Section__c LIMIT 100];
+            projectDocumentSectionList =[SELECT ID,IPM_Default_Section__c,IPM_Project_ID__c,IPM_Project_Document__c,IPM_Section__c,IPM_ProjectTemplate__c FROM IPM_Project_Document_Section__c LIMIT 100];
             System.assertEquals(2, projectDocumentSectionList.size(), 'Project Document Section is not getting');
-          
+          	
+          	Set<Id> projectIdSet = new Set<Id>();
+          	for(IPM_Project_Document_Section__c docSection : projectDocumentSectionList)
+        	{
+        		projectIdSet.add(docSection.IPM_Project_ID__c);
+        	}
+        	
             // Disabled Project Document Section  A
             projectDocumentSectionList[0].IPM_Default_Section__c = false;
             // Disabled Project Document Section  B
             projectDocumentSectionList[1].IPM_Default_Section__c = false;
             
+            List<IPM_Project__c> projectDBList = [SELECT Id,IPM_Complexity__c From IPM_Project__c WHERE Id IN: projectIdSet LIMIT 5000];
+            
+        	System.assertEquals(IPM_ConstantUtils.COMPLEXITY_LITE, projectDBList[0].IPM_Complexity__c,'Complexity is not lite');
+        	System.assertEquals(IPM_ConstantUtils.COMPLEXITY_LITE, projectDBList[1].IPM_Complexity__c,'Complexity is not lite');
+        	     
             update projectDocumentSectionList;
+            
+            projectDocumentSectionList = getProjDocumentSectionList(projectDocumentSectionList);
+            
+            System.assertEquals(false, projectDocumentSectionList[0].IPM_Default_Section__c, PROJDOCSECTION_ACTIVATION_ERROR);
+            System.assertEquals(false, projectDocumentSectionList[1].IPM_Default_Section__c, PROJDOCSECTION_ACTIVATION_ERROR);
+            
+            // Task A is deactive with corresponding active project Document Default Section A
+            taskList =  getTaskListByProjDocSecId(projectDocumentSectionList[0].id);
+            System.assert(taskList.size() >0, TASK_ACTIVAION_ERROR);
+            System.assertEquals(false, taskList[0].IPM_Active__c, TASK_ACTIVAION_ERROR);
+            
+           // Task B is deactive with corresponding active project Document Default Section B
+            taskList =  getTaskListByProjDocSecId(projectDocumentSectionList[1].id); 
+            System.assert(taskList.size() >0, TASK_ACTIVAION_ERROR);
+            System.assertEquals(false, taskList[0].IPM_Active__c, TASK_ACTIVAION_ERROR);
+            
         }
         
     }

@@ -54,6 +54,7 @@ private class IPM_ImageUploadController_Test
      * ***********************************************/
     static testMethod void testImageUploadProject(){ 
         
+
         plUser=[SELECT lastName FROM user WHERE lastName=:PLATFORM_USER LIMIT 1];
         System.AssertEquals(plUser.lastName, PLATFORM_USER,'user lastName is not a Platform User:'+plUser.lastName);//positive test
         test.startTest();
@@ -86,6 +87,8 @@ private class IPM_ImageUploadController_Test
             imgCtrl.upload();
             List<IPM_Project__c>projLists=[SELECT IPM_Project_Logo_Id__c FROM IPM_Project__c WHERE id=:project.id LIMIT 1];
             System.AssertEquals(projLists[0].IPM_Project_Logo_Id__c,projList[0].IPM_Project_Logo_Id__c, 'Project logo insertion fails'+projLists[0].IPM_Project_Logo_Id__c); //Negative test
+
+
             
         } 
         test.stopTest();  
@@ -96,6 +99,7 @@ private class IPM_ImageUploadController_Test
      * ***********************************************/
     static testMethod void testImageUploadBosscard(){ 
         
+
         plUser=[SELECT lastName FROM user WHERE lastName=:PLATFORM_USER LIMIT 1];
         System.AssertEquals(plUser.lastName, PLATFORM_USER,'user lastName is not a Platform User:'+plUser.lastName);//positive test
         
