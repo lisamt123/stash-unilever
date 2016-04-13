@@ -1107,7 +1107,7 @@ public with sharing class IPM_TaskHelper {
  	    task.IPM_Project_Document_Section__c = null;
  		// Set the complexity as project complexity.
  		task.IPM_Task_Complexity__c  = projectDetail.IPM_Complexity__c;
- 		complexityMatch = true;	
+ 		complexityMatch = false;	
  	}
  	return complexityMatch;
   }

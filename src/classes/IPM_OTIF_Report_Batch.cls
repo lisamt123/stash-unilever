@@ -173,39 +173,39 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
          
          for(IPM_Project_Rollout__c pr:projRolloutMap.get(parent.IPM_Project_Id__c)){
                 
-                IPM_Analytics_OTIF__c otifAnalytic = new IPM_Analytics_OTIF__c();
+                IPM_Analytics_OTIF__c otifAnalyticRollOut = new IPM_Analytics_OTIF__c();
                 //copy Values from rollout record
-                otifAnalytic.IPM_Project_Name__c = pr.name;
-                otifAnalytic.IPM_Company__c = pr.IPM_Company_Card__r.Name; // as per the update it will be populated by Unilever report tool
-                otifAnalytic.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
-                otifAnalytic.IPM_Target_Launch_Year_BD__c = pr.Target_LaunchYear__c ;
-                otifAnalytic.IPM_Parent_Project_Name__c = pr.IPM_Parent_Project_Name__c; 
-                otifAnalytic.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
+                otifAnalyticRollOut.IPM_Project_Name__c = pr.name;
+                otifAnalyticRollOut.IPM_Company__c = pr.IPM_Company_Card__r.Name; // as per the update it will be populated by Unilever report tool
+                otifAnalyticRollOut.IPM_Target_Launch_Month_BD__c = pr.Target_LaunchMonth__c;
+                otifAnalyticRollOut.IPM_Target_Launch_Year_BD__c = pr.Target_LaunchYear__c ;
+                otifAnalyticRollOut.IPM_Parent_Project_Name__c = pr.IPM_Parent_Project_Name__c; 
+                otifAnalyticRollOut.IPM_Project_Leader__c = pr.IPM_Regional_PL__r.Name;
                 //Copy values From Parent project
-                otifAnalytic.IPM_Project_Id__c = parent.IPM_Project_Id__c;                    
-                otifAnalytic.IPM_Project_Description__c = parent.IPM_Project_Description__c;
-                otifAnalytic.IPM_Project_Type__c = IPM_Utils.Rollout;
-                otifAnalytic.IPM_Category_Group__c = parent.IPM_Category_Group__c;
-                otifAnalytic.IPM_Category__c = parent.IPM_Category__c;
-                otifAnalytic.IPM_Brand_Positioning__c = parent.IPM_Brand_Positioning__c;
-                otifAnalytic.IPM_Market_Place_Activity__c = parent.IPM_Market_Place_Activity__c;
-                otifAnalytic.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
-                otifAnalytic.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
-                otifAnalytic.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;
+                otifAnalyticRollOut.IPM_Project_Id__c = parent.IPM_Project_Id__c;                    
+                otifAnalyticRollOut.IPM_Project_Description__c = parent.IPM_Project_Description__c;
+                otifAnalyticRollOut.IPM_Project_Type__c = IPM_Utils.Rollout;
+                otifAnalyticRollOut.IPM_Category_Group__c = parent.IPM_Category_Group__c;
+                otifAnalyticRollOut.IPM_Category__c = parent.IPM_Category__c;
+                otifAnalyticRollOut.IPM_Brand_Positioning__c = parent.IPM_Brand_Positioning__c;
+                otifAnalyticRollOut.IPM_Market_Place_Activity__c = parent.IPM_Market_Place_Activity__c;
+                otifAnalyticRollOut.IPM_Consumer_Value_Perception__c = parent.IPM_Consumer_Value_Perception__c;
+                otifAnalyticRollOut.IPM_Enabling_Technology__c = parent.IPM_Enabling_Technology__c;
+                otifAnalyticRollOut.IPM_Strategic_Intent__c = parent.IPM_Strategic_Intent__c;
                 
                 if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
-                    otifAnalytic.IPM_Project_Span__c =IPM_Utils.Regional;
-                    otifAnalytic.IPM_Geography__c = pr.Market_Cluster_Name__c;
-                    otifAnalytic.IPM_Phase__c = pr.Regional_Rollout_Phase__c;
-                    otifAnalytic.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
+                    otifAnalyticRollOut.IPM_Project_Span__c =IPM_Utils.Regional;
+                    otifAnalyticRollOut.IPM_Geography__c = pr.Market_Cluster_Name__c;
+                    otifAnalyticRollOut.IPM_Phase__c = pr.Regional_Rollout_Phase__c;
+                    otifAnalyticRollOut.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
                     regionalrolloutid = pr.Id;                                     
                 }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE ){
-                    otifAnalytic.IPM_Project_Span__c = IPM_Utils.Local;
-                    otifAnalytic.IPM_Geography__c=ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
-                    otifAnalytic.IPM_Market_Cluster__c = pr.Market_Cluster_Name__c;
-                    otifAnalytic.IPM_Phase__c = pr.Local_Rollout_Phase__c;
-                   // otifAnalytic.IPM_Key_NonKey__c = pr.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;
-                    otifAnalytic.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
+                    otifAnalyticRollOut.IPM_Project_Span__c = IPM_Utils.Local;
+                    otifAnalyticRollOut.IPM_Geography__c=ipmCountryMap.containskey(pr.id)?ipmCountryMap.get(pr.id):'';
+                    otifAnalyticRollOut.IPM_Market_Cluster__c = pr.Market_Cluster_Name__c;
+                    otifAnalyticRollOut.IPM_Phase__c = pr.Local_Rollout_Phase__c;
+                   // otifAnalyticRollOut.IPM_Key_NonKey__c = pr.KeyMCO__c?IPM_ConstantUtils.OTIF_YES:IPM_ConstantUtils.OTIF_NO;
+                    otifAnalyticRollOut.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
                     regionalrolloutid=pr.Regional_Project__c != null?pr.Regional_Rollout__r.id:null;
                 }   
                 
@@ -220,9 +220,9 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                     }
                 }                                           
                 
-                otifAnalytic = setRolloutFinancialdetails(otifAnalytic,finExtId,pr); 
+                otifAnalyticRollOut = setRolloutFinancialdetails(otifAnalyticRollOut,finExtId,pr); 
 
-                returnList.add(otifAnalytic);              
+                returnList.add(otifAnalyticRollOut);              
 
             }
             
@@ -776,8 +776,8 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                         rolloutList.add(pr);
                         projRolloutMap.put(pr.Regional_Project__r.Id, rolloutList);              
                     }
-                    Id RegionalRolloutId = pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE?pr.Id:pr.Regional_Rollout__r.id;
-                    regionalRolloutset.add(RegionalRolloutId); 
+                    Id regRolloutId = pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE?pr.Id:pr.Regional_Rollout__r.id;
+                    regionalRolloutset.add(regRolloutId); 
 
                     if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE){                      
                       localRolloutIDSet.add(pr.Id);                        
@@ -970,62 +970,62 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      * @return: IPM_Analytics_OTIF__c OTIF analytic Record
      *********************************************************************************************************************/                 
     public IPM_Analytics_OTIF__c copyProjectFieldValues(IPM_Project__c proj){
-        IPM_Analytics_OTIF__c otifAnalytic = new IPM_Analytics_OTIF__c();
-       otifAnalytic.IPM_Project_Id__c = proj.id;
-       otifAnalytic.IPM_Project_Name__c = proj.name;
-       otifAnalytic.IPM_Project_Description__c = proj.IPM_Project_Description__c;
-       otifAnalytic.IPM_Parent_Project_Name__c = proj.IPM_Parent_Project__r.Name;  
-       otifAnalytic.IPM_Project_Leader__c = proj.IPM_Project_Leader__r.Name;
-       otifAnalytic.IPM_Deputy_Project_Leader__c = proj.Deputy_Project_Leader__r.Name;
-       otifAnalytic.IPM_Finance_Member__c = proj.IPM_Finance_Member__r.Name;
-       otifAnalytic.IPM_Project_Span__c = proj.IPMProject_Span__c;
-       otifAnalytic.IPM_Project_Type__c = proj.IPM_Project_Type__c;
-       otifAnalytic.IPM_Company__c = proj.IPM_Company_Card__r.Name;
-       otifAnalytic.IPM_Category_Group__c = proj.IPM_Category_Group__c;
-       otifAnalytic.IPM_Category__c = proj.IPM_Category_Text__c;
-       otifAnalytic.IPM_Brand_Positioning__c = proj.IPM_Brand_Positioning__c;
-       otifAnalytic.IPM_Market_Place_Activity__c = proj.IPM_Answer_of_Q1__c;
-       otifAnalytic.IPM_Consumer_Value_Perception__c = proj.IPM_Answer_of_Q2__c;
-       otifAnalytic.IPM_Enabling_Technology__c = proj.IPM_Answer_of_Q3__c;
-       otifAnalytic.IPM_Strategic_Intent__c = proj.IPM_Strategic_Intent__c;
-       otifAnalytic.IPM_Phase__c = proj.IPM_Phase__c;
+       IPM_Analytics_OTIF__c otifAnalyticProj = new IPM_Analytics_OTIF__c();
+       otifAnalyticProj.IPM_Project_Id__c = proj.id;
+       otifAnalyticProj.IPM_Project_Name__c = proj.name;
+       otifAnalyticProj.IPM_Project_Description__c = proj.IPM_Project_Description__c;
+       otifAnalyticProj.IPM_Parent_Project_Name__c = proj.IPM_Parent_Project__r.Name;  
+       otifAnalyticProj.IPM_Project_Leader__c = proj.IPM_Project_Leader__r.Name;
+       otifAnalyticProj.IPM_Deputy_Project_Leader__c = proj.Deputy_Project_Leader__r.Name;
+       otifAnalyticProj.IPM_Finance_Member__c = proj.IPM_Finance_Member__r.Name;
+       otifAnalyticProj.IPM_Project_Span__c = proj.IPMProject_Span__c;
+       otifAnalyticProj.IPM_Project_Type__c = proj.IPM_Project_Type__c;
+       otifAnalyticProj.IPM_Company__c = proj.IPM_Company_Card__r.Name;
+       otifAnalyticProj.IPM_Category_Group__c = proj.IPM_Category_Group__c;
+       otifAnalyticProj.IPM_Category__c = proj.IPM_Category_Text__c;
+       otifAnalyticProj.IPM_Brand_Positioning__c = proj.IPM_Brand_Positioning__c;
+       otifAnalyticProj.IPM_Market_Place_Activity__c = proj.IPM_Answer_of_Q1__c;
+       otifAnalyticProj.IPM_Consumer_Value_Perception__c = proj.IPM_Answer_of_Q2__c;
+       otifAnalyticProj.IPM_Enabling_Technology__c = proj.IPM_Answer_of_Q3__c;
+       otifAnalyticProj.IPM_Strategic_Intent__c = proj.IPM_Strategic_Intent__c;
+       otifAnalyticProj.IPM_Phase__c = proj.IPM_Phase__c;
 
         if(String.isNotBlank(proj.IPMProject_Span__c) && (proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) || proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional))){
-           otifAnalytic.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
+           otifAnalyticProj.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
         }else if(String.isNotBlank(proj.IPMProject_Span__c) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
-           otifAnalytic.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
-           otifAnalytic.IPM_Market_Cluster__c = proj.Market_Cluster_Name__c;                 
+           otifAnalyticProj.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
+           otifAnalyticProj.IPM_Market_Cluster__c = proj.Market_Cluster_Name__c;                 
         }
 
         if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)){
-           otifAnalytic.IPM_Geography__c = IPM_Utils.valueGlobal;             
+           otifAnalyticProj.IPM_Geography__c = IPM_Utils.valueGlobal;             
         } else if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
-            otifAnalytic.IPM_Geography__c = proj.Market_Cluster_Name__c;
+            otifAnalyticProj.IPM_Geography__c = proj.Market_Cluster_Name__c;
         }else if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
-           otifAnalytic.IPM_Geography__c = proj.Market_Cluster_Name__c;
+           otifAnalyticProj.IPM_Geography__c = proj.Market_Cluster_Name__c;
         }else if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
-            if(ipmCountryMap.containskey(proj.id)){otifAnalytic.IPM_Geography__c = ipmCountryMap.get(proj.id);}
+            if(ipmCountryMap.containskey(proj.id)){otifAnalyticProj.IPM_Geography__c = ipmCountryMap.get(proj.id);}
         }
 
         // populate target launch year & month
         if(String.isNotBlank(proj.IPM_Project_Type__c) && (proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) || proj.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) ||(String.isNotBlank(proj.IPMProject_Span__c) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)))){
-           otifAnalytic.IPM_Target_Launch_Month_BD__c = proj.IPM_Target_Launch_Month__c;
-           otifAnalytic.IPM_Target_Launch_Year_BD__c = proj.IPM_Target_Launch_Year__c;   
+           otifAnalyticProj.IPM_Target_Launch_Month_BD__c = proj.IPM_Target_Launch_Month__c;
+           otifAnalyticProj.IPM_Target_Launch_Year_BD__c = proj.IPM_Target_Launch_Year__c;   
         }
         if (String.isNotBlank(proj.IPMProject_Span__c) && String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)){
-           otifAnalytic.IPM_Target_Launch_Month_BB__c = proj.IPM_Target_Launch_Month__c;
-           otifAnalytic.IPM_Target_Launch_Year_BB__c = proj.IPM_Target_Launch_Year__c;
+           otifAnalyticProj.IPM_Target_Launch_Month_BB__c = proj.IPM_Target_Launch_Month__c;
+           otifAnalyticProj.IPM_Target_Launch_Year_BB__c = proj.IPM_Target_Launch_Year__c;
             //if(String.isNotBlank(string.valueof(proj.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c))){
             if(String.isNotBlank(string.valueof(proj.IPM_Project_Rollout__r.Target_Launch_Date__c))){
-               otifAnalytic.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(proj.IPM_Project_Rollout__r.Target_Launch_Date__c.month());
-               otifAnalytic.IPM_Target_Launch_Year_BD__c = string.valueof(proj.IPM_Project_Rollout__r.Target_Launch_Date__c.Year());   
+               otifAnalyticProj.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(proj.IPM_Project_Rollout__r.Target_Launch_Date__c.month());
+               otifAnalyticProj.IPM_Target_Launch_Year_BD__c = string.valueof(proj.IPM_Project_Rollout__r.Target_Launch_Date__c.Year());   
             }                  
         }
 
         //Global Project Business Impact Global will be copy to Global,Regional & Local project
         if(projFinmap.containskey(proj.Id)){ 
-           otifAnalytic.IPM_Business_Impact__c = projFinMap.get(proj.id).Business_Impact_Global__c; 
+           otifAnalyticProj.IPM_Business_Impact__c = projFinMap.get(proj.id).Business_Impact_Global__c; 
         }  
-        return otifAnalytic;
+        return otifAnalyticProj;
     }           
 }

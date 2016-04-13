@@ -61,13 +61,12 @@ private class IPM_TaskHelper_Test{
         for(IPM_Section__c secVal:[Select id,IPM_IS_Default_Section__c from IPM_Section__c where IPM_Document_Template__r.IPM_Document_Type__c = 'Contract' and 
         IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c = :IPM_ConstantUtils.IPM_COMPLEXITY_FULL and 
         IPM_Document_Template__r.IPM_Project_Template__r.IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL and 
-        ProjectSpan__c includes (:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) limit 10])
+        ProjectSpan__c includes (:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) limit 20])
         {
       	  secVal.IPM_IS_Default_Section__c = true;
       	  sectionList.add(secVal);
         }
         update sectionList;
-
         }
          // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(new List<User>{platformUserPL1,platformUserPL2,userBDRole}); 
@@ -137,13 +136,14 @@ private class IPM_TaskHelper_Test{
                                                                 FROM IPM_Project_Document_Section__c 
                                                                 WHERE IPM_Project_Document__c IN:projectDocumentIdSet and IPM_Project_Document__r.IPM_Project__c=:projectIdSet];
       
-      for(IPM_Section__c secVal:[Select id,IPM_IS_Default_Section__c from IPM_Section__c where IPM_Document_Template__r.IPM_Document_Type__c = 'Contract' and 
+      List<IPM_Section__c> sectionList=[Select id,IPM_IS_Default_Section__c from IPM_Section__c where IPM_Document_Template__r.IPM_Document_Type__c = 'Contract' and 
 	        IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c = :IPM_ConstantUtils.IPM_COMPLEXITY_FULL and 
 	        IPM_Document_Template__r.IPM_Project_Template__r.IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL and 
-	        ProjectSpan__c includes (:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) and IPM_IS_Default_Section__c = true limit 10])
+	        ProjectSpan__c includes (:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) and IPM_IS_Default_Section__c = true limit 10];
+      for(IPM_Section__c secVal:sectionList)
       {
-      	//Insert a future adhoc task
-       		IPM_Task__c futureAdhocTask = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].id,false);
+      	//Insert future adhoc task list
+      		IPM_Task__c futureAdhocTask = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].id,false);
        		futureAdhocTask.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
        		futureAdhocTask.IPM_Task_Name__c = 'Future Feasibility Task';
        		futureAdhocTask.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
@@ -153,13 +153,29 @@ private class IPM_TaskHelper_Test{
        		futureAdhocTask.IPM_Function__c =IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
        		futureAdhocTask.IPM_Section__c=secVal.id;
        		futureTaskList.add(futureAdhocTask); 
-      }
-      insert futureTaskList;
-      List<IPM_Task__c> testFutureList = [Select IPM_Type_of_Task__c from IPM_Task__c where id in:futureTaskList];
-      for(IPM_Task__c task : testFutureList)
-      {
-      	system.assertEquals(task.IPM_Type_of_Task__c,IPM_ConstantUtils.FUTURE_ADHOC_TASKS,'Task not inserted');
-      }
+        }
+        insert futureTaskList;
+    	List<IPM_Task__c> testFutureList = [Select IPM_Type_of_Task__c from IPM_Task__c where id in:futureTaskList];
+      
+        system.assertEquals(testFutureList[0].IPM_Type_of_Task__c,IPM_ConstantUtils.FUTURE_ADHOC_TASKS,'Task not inserted');
+      
+      	
+      	//Insert a future full adhoc task
+      		IPM_Task__c futureAdhocFullTask = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].id,false);
+       		futureAdhocFullTask.IPM_Type_of_Task__c = IPM_ConstantUtils.FUTURE_ADHOC_TASKS;
+       		futureAdhocFullTask.IPM_Task_Name__c = 'Future Feasibility Full Task';
+       		futureAdhocFullTask.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+       		futureAdhocFullTask.IPM_Type_of_Gate__c =IPM_ConstantUtils.CONTRACT_GATE;
+       		futureAdhocFullTask.IPM_Task_Complexity__c = IPM_ConstantUtils.COMPLEXITY_FULL;
+       		futureAdhocFullTask.IPM_TaskSpan__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+       		futureAdhocFullTask.IPM_Function__c =IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
+       		futureAdhocFullTask.IPM_Section__c=sectionList[0].id;
+      
+      insert futureAdhocFullTask;
+      
+      IPM_Task__c futurFullTask = [Select IPM_Type_of_Task__c from IPM_Task__c where id =:futureAdhocFullTask.id];
+      
+      system.assertEquals(futurFullTask.IPM_Type_of_Task__c,IPM_ConstantUtils.FUTURE_ADHOC_TASKS,'Task not inserted');
       
 		//associate task with project document section
       for(IPM_Task__c task : taskList)
@@ -181,14 +197,10 @@ private class IPM_TaskHelper_Test{
        
        //check if the tasks are associated with project document section
        taskDetailList = [SELECT Id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Project_Document_Section__c,IPM_Master_Section_Name__c,IPM_Master_Section_Sequence__c 
-                         FROM IPM_Task__c WHERE IPM_Project__c IN:projectIdSet ];
-       for(IPM_Task__c task : taskDetailList)
+                         FROM IPM_Task__c WHERE IPM_Project__c IN:projectIdSet and IPM_Section__c != NULL];
+      for(IPM_Task__c task : taskDetailList)
        {
-            if(task.IPM_Section__c != NULL)
-            {
-                system.assertEquals(task.IPM_Master_Section_Name__c != NULL ,true,'Task is not associated with section');
- 
-            }
+               system.assertEquals(task.IPM_Master_Section_Name__c != NULL ,true,'Task is not associated with section');
        }
     }
 
@@ -380,15 +392,16 @@ private class IPM_TaskHelper_Test{
                 //check if the tasks with different complexity as that of project's complxity are inactive 
                 if(task.IsSystemGenerated__c && task.IPM_Task_Complexity__c == IPM_ConstantUtils.COMPLEXITY_FULL)
                 {
-                    system.assertEquals(task.IPM_Active__c,true, 'IPM_Active__c Is Checked');
+                	system.assertEquals(task.IPM_Active__c,true, 'IPM_Active__c Is UnChecked');
                 }
                 //check if the tasks with same complexity as that of project's complxity are active 
                 if(task.IPM_Task_Complexity__c == IPM_ConstantUtils.COMPLEXITY_LITE)
                 {
-                    system.assertEquals(task.IPM_Active__c,false, 'IPM_Active__c Is Unchecked');
+                    system.assertEquals(task.IPM_Active__c,false, 'IPM_Active__c Is Checked');
                 }
                 
             }   
+            
         }
         Test.stopTest();
     }
@@ -419,8 +432,9 @@ private class IPM_TaskHelper_Test{
                   projIdSet.add(project.id);
               }
               projIdList.addAll(projIdSet);
-              update projectDetailList;
+              update projectDetailList; 
               
+            
               /******************************** Create Regional Rollouts for Created Global project ****************************************/
              List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,new List<IPM_Project__c>{projectDetailList[0],projectDetailList[1],projectDetailList[2]},new List<User>{globalUser,globalUser,globalUser});
              insert regionalRolloutList;
@@ -458,15 +472,16 @@ private class IPM_TaskHelper_Test{
             
             list<IPM_Task__c> taskList = [SELECT Id,IPM_Task_Name__c,IPM_TaskSpan__c,IPM_Type_of_Task__c,IPM_Task_Complexity__c,IPM_Project_Document_Section__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,
             							  IPM_Assignee__c,IPM_Active__c,IPM_Phase__c,IPM_Project__r.Name,IPM_Completed__c
-                                          FROM IPM_Task__c WHERE IPM_Project__r.Name IN :projectNameSet];
+                                          FROM IPM_Task__c WHERE IPM_Project__r.Name IN :projectNameSet and IPM_Task_Name__c = 'Future Feasibility Task'];
+            
             for(IPM_Task__c futureTask:taskList)
             {
-            		system.assert(futureTask != null,'Task inserted correctly');  	 	
+            		system.assert(futureTask != null,'Future task not delegated to regional project');
             }	
             
       		
         }  
      
      }
-      
+     
 }
