@@ -210,9 +210,10 @@ public class IPM_FinancialController_Test {
             system.assertEquals(pf, null,'page reference not set');
         ipmFinCon.changeSustainabilityPeriod();
          //is there an assert we can add here for sustainability period ?
+        system.assertEquals(ipmFinCon.sustainabilityPeriodChanging,true);
+        
         ipmFinCon.refreshFinancials();
         system.assert(ipmFinCon.errorMessage.contains(Label.IPM_PLEASE_CONTACT_ADMINISTRATOR),'error message not captured');
-        
         //assert fieldsuffix is set to Regional after financials are refreshed
         system.assertEquals(ipmFinCon.fieldsuffix, 'Regional', 'field suffix not set properly, financials will not be loaded as per tab');
         ipmFinCon.editFinancials();
