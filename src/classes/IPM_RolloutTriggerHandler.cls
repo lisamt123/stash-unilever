@@ -896,57 +896,53 @@ public with sharing class IPM_RolloutTriggerHandler
                             rollouts.IPM_Company_Card__c=companyCard.Id;
                         
                         }
-                    
-                    
-                    
                     }
-                
             }
-        
-        
     }
     
     /*******************************************************************************************************
     * @description  For Creating Financial Action Standards When Rollout get Created.  
     */ 
-    public void createRegionalFinancialActionStandards(List<IPM_Project_Rollout__c> lstProjectRollouts){   
+    public void createRegionalFinancialActionStandards(List<IPM_Project_Rollout__c> lstProjectRollouts)
+    {   
         Set<Id> rolloutProjectIdSet=new Set<Id>();
         Set<Id> rolloutIdSet=new Set<Id>();
-        for(IPM_Project_Rollout__c projRoll:lstProjectRollouts){
-            if(projRoll.RecordTypeId==REGIONAL_ROLLOUT_RECORDTYPE){
+        for(IPM_Project_Rollout__c projRoll:lstProjectRollouts)
+        {
+            if(projRoll.RecordTypeId==REGIONAL_ROLLOUT_RECORDTYPE)
+            {
                 rolloutProjectIdSet.add(projRoll.IPM_Project__c);
                 rolloutIdSet.add(projRoll.Id);
             }
         }
-        Map<String,IPM_Financial_Year__c> finYearMap=new Map<String,IPM_Financial_Year__c>();
-        for(IPM_Financial_Year__c finYear:[SELECT Id,IPM_Financial__c,IPM_Financial__r.RecordTypeId,IPM_Financial__r.Parent_Project__c,NameYearPLtype__c,IPM_Financial__r.IPM_Project_Rollout__c FROM IPM_Financial_Year__c 
-                                           WHERE IPM_Financial__r.IPM_Project_Rollout__c In:rolloutIdSet AND (NameYearPLtype__c=:IPM_ConstantUtils.Y1InnovationIncremental OR NameYearPLtype__c=:IPM_ConstantUtils.Y1InnovationGross)
-                                                 AND IPM_Financial__r.RecordTypeId=:CONSOLIDATED_FINANCIAL_RECORDTYPE]){
-            if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental){
-                finYearMap.put(finYear.IPM_Financial__r.IPM_Project_Rollout__c+IPM_ConstantUtils.Y1InnovationIncremental,finYear);
-            }
-            if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross){
-                finYearMap.put(finYear.IPM_Financial__r.IPM_Project_Rollout__c+IPM_ConstantUtils.Y1InnovationGross,finYear);
-            }
-        }
+
+        Map<String,IPM_Financial_Year__c>  finYearMap = getFinancialYears(rolloutIdSet);
+        
         Map<Id,IPM_Project_Document_Section__c> projDocSecMap=new Map<Id,IPM_Project_Document_Section__c>();
         for(IPM_Project_Document_Section__c projDocSec:[SELECT Id,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project__c,IPM_Project_Document__r.IPM_Document_Status__c 
                                                         FROM IPM_Project_Document_Section__c 
                                                         WHERE IPM_Project_Document__r.IPM_Project__c In :rolloutProjectIdSet AND IPM_Project_Document__r.IPM_Document_Status__c!=:IPM_ConstantUtils.STATUS_APPROVED
-                                                              AND IPM_Master_Section_External_Id__c=:IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD]){
+                                                              AND IPM_Master_Section_External_Id__c=:IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD])
+        {
             projDocSecMap.put(projDocSec.IPM_Project_Document__r.IPM_Project__c,projDocSec);                                                            
         }
+        
         List<IPM_Financial_Action_Standards__c> regionalActionStandardsList=new List<IPM_Financial_Action_Standards__c>();
-        for(IPM_Project_Rollout__c projRollout:lstProjectRollouts){
-            if(projRollout.Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && projRollout.RecordTypeId==REGIONAL_ROLLOUT_RECORDTYPE){
+        
+        for(IPM_Project_Rollout__c projRollout:lstProjectRollouts)
+        {
+            if(projRollout.Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && projRollout.RecordTypeId==REGIONAL_ROLLOUT_RECORDTYPE)
+            {
                 IPM_Financial_Action_Standards__c finActionStandard = new IPM_Financial_Action_Standards__c();
                 IPM_Market_Cluster_Short_Names__c mcsName=IPM_Market_Cluster_Short_Names__c.getValues(projRollout.Market_Cluster__c);
-                if(projDocSecMap.get(projRollout.IPM_Project__c)!=null){    
+                if(projDocSecMap.get(projRollout.IPM_Project__c)!=null)
+                {    
                     finActionStandard.IPM_Project_Document_Section__c=projDocSecMap.get(projRollout.IPM_Project__c).Id;
                 }
                 finActionStandard.IPM_Financial_Year_Y1_Incremental__c=finYearMap.get(projRollout.Id+IPM_ConstantUtils.Y1InnovationIncremental).Id;
                 finActionStandard.IPM_Financial_Year_Y1_Gross__c=finYearMap.get(projRollout.Id+IPM_ConstantUtils.Y1InnovationGross).Id;
-                if(mcsName!=null){
+                if(mcsName!=null)
+                {
                     finActionStandard.IPM_Financial_Action_Standard_Name__c = mcsName.Short_Name__c+' '+IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARDS;
                 }
                 finActionStandard.IPM_GM_Action_Standards_Charter__c = IPM_ConstantUtils.IPM_FINANCIAL_ACTION_STANDARD_VALUE;
@@ -962,9 +958,33 @@ public with sharing class IPM_RolloutTriggerHandler
                 regionalActionStandardsList.add(finActionStandard);
             }
         }
-        if(regionalActionStandardsList!=null && !regionalActionStandardsList.isEmpty()){
+        
+        if(regionalActionStandardsList!=null && !regionalActionStandardsList.isEmpty())
+        {
             insert regionalActionStandardsList;
         }
+    }
+    
+    public Map<String,IPM_Financial_Year__c> getFinancialYears(Set<Id> rolloutIdSet)
+    {
+        Map<String,IPM_Financial_Year__c> finYearMap = new Map<String,IPM_Financial_Year__c>();
+        
+        for(IPM_Financial_Year__c finYear:[SELECT Id,IPM_Financial__c,IPM_Financial__r.RecordTypeId,IPM_Financial__r.Parent_Project__c,NameYearPLtype__c,IPM_Financial__r.IPM_Project_Rollout__c FROM IPM_Financial_Year__c 
+                                           WHERE IPM_Financial__r.IPM_Project_Rollout__c In:rolloutIdSet AND (NameYearPLtype__c=:IPM_ConstantUtils.Y1InnovationIncremental OR NameYearPLtype__c=:IPM_ConstantUtils.Y1InnovationGross)
+                                                 AND IPM_Financial__r.RecordTypeId=:CONSOLIDATED_FINANCIAL_RECORDTYPE])
+        {
+            if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental)
+            {
+                finYearMap.put(finYear.IPM_Financial__r.IPM_Project_Rollout__c+IPM_ConstantUtils.Y1InnovationIncremental,finYear);
+            }
+            
+            if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross)
+            {
+                finYearMap.put(finYear.IPM_Financial__r.IPM_Project_Rollout__c+IPM_ConstantUtils.Y1InnovationGross,finYear);
+            }
+        }
+        
+        return finYearMap;
     }
     
     /*******************************************************************************************************

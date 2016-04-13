@@ -20,7 +20,7 @@
 	/***********************************
 	* @Description: Test Data Creation
 	* *********************************/
-	@testsetup private static void createTestData()
+	@testsetup static void createTestData()
 	{
 
 		Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator' limit 3]; 

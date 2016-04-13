@@ -8,7 +8,6 @@ private class IPM_ProjectSetUpController_Test {
     //*@Description: Object Variable decleration 
     private static Map<Id,IPM_Company_Card__c> companyCardMap= new Map<Id,IPM_Company_Card__c>();
     private static List<IPM_User_Profile__c> userProfileList= new List<IPM_User_Profile__c>();
-    private static List<IPM_ProjectMetadata__c> projectMetadata= new List<IPM_ProjectMetadata__c>();
     private static string ProjectName='ProjectWithOutBoss';
     private static IPM_Project__c projectWithOutBoss;
     private static User userInitialize; 
@@ -25,11 +24,8 @@ private class IPM_ProjectSetUpController_Test {
             
         }
         List<User>plUserList=new List<User>();
-        plUserList.add(userInitialize);
+        plUserList.add(userInitialize);        
         
-        
-        //Insert Custom Setting of Project Metadata
-        projectMetadata = IPM_TestFactory_Helper.createIPMProjectMetadata();
         //insert custom setting of IPM_Market_Cluster_Short_Names__c
         IPM_TestFactory_Helper.createMarketshortName(true);
         
