@@ -2627,165 +2627,158 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Is Variant Known?</value>
     </labels>
     <labels>
-        <fullName>CPA_BPE_Recordtype</fullName>
+        <fullName>CPA_CR_Object_Id</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA BPE Recordtype</shortDescription>
-        <value>012180000000AjK</value>
-    </labels>
-    <labels>
-        <fullName>CPA_CNF_historical_CNF_id</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CPA CNF historical CNF id</shortDescription>
-        <value>012180000000BZp</value>
-    </labels>
-    <labels>
-        <fullName>CPA_CNF_historical_TNF_id</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CPA CNF historical TNF id</shortDescription>
-        <value>012180000000BZu</value>
+        <shortDescription>This custom label is used to store CR object id.</shortDescription>
+        <value>a8l</value>
     </labels>
     <labels>
         <fullName>CPA_Default_URL</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA default URl</shortDescription>
-        <value>https://unilever--chazwa.cs23.my.salesforce.com/</value>
-    </labels>
-    <labels>
-        <fullName>CPA_HLE_Recordtype</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CPA HLE Recordtype</shortDescription>
-        <value>012180000000AjF</value>
+        <shortDescription>This custom label is used to store the respective org’s URL.</shortDescription>
+        <value>https://unilever.my.salesforce.com/</value>
     </labels>
     <labels>
         <fullName>CPA_HLE_Request_cant_be_deleted</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA HLE Request cant be deleted</shortDescription>
-        <value>HLE Request cant be deleted.</value>
+        <shortDescription>This custom label is used to store below message.</shortDescription>
+        <value>HLE Request can’t be deleted.</value>
+    </labels>
+    <labels>
+        <fullName>CPA_KeyContact_Object_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This custom label is used to store key contact name field id.</shortDescription>
+        <value>a8o</value>
+    </labels>
+    <labels>
+        <fullName>CPA_LOI_Object_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This custom label is used to store the LOI object ID.</shortDescription>
+        <value>a8p</value>
     </labels>
     <labels>
         <fullName>CPA_Mandatory_Fields_Message</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA Mandatory Fields Message</shortDescription>
-        <value>Below field(s) are mandatory to Submit the record.</value>
+        <shortDescription>This custom label is used to store below message.</shortDescription>
+        <value>Below field(s) are mandatory to submit the record.</value>
     </labels>
     <labels>
         <fullName>CPA_Operation_Cancelled</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA Operation Cancelled</shortDescription>
+        <shortDescription>This custom label is used to store below message.</shortDescription>
         <value>Operation Cancelled: Please provide a reason for your approval / rejection / Recall!</value>
+    </labels>
+    <labels>
+        <fullName>CPA_PWORF_KeyContact_Name_Filed_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This custom label is store the custom filed ID of PWORF lookup on Key Contact ob</shortDescription>
+        <value>&amp;CF00NE0000005unyE</value>
     </labels>
     <labels>
         <fullName>CPA_PWORF_LOI_ID_Filed_Id</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>PWORF LOI Id Field</shortDescription>
-        <value>&amp;CF00N18000000Ty1Q</value>
+        <shortDescription>This custom label is to store the custom filed ID of PWORF lookup on LOI object.</shortDescription>
+        <value>&amp;CF00NE0000005unya</value>
     </labels>
     <labels>
         <fullName>CPA_PWORF_LOI_Name_Filed_Id</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>PWORF LOI Name Field</shortDescription>
-        <value>&amp;CF00N18000000Ty1Q</value>
+        <shortDescription>This custom label is to store the custom filed ID of PWORF lookup on LOI object.</shortDescription>
+        <value>&amp;CF00NE0000005unya</value>
     </labels>
     <labels>
         <fullName>CPA_PWORF_Name_Filed_Id</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>PWORF Name Filed Id</shortDescription>
-        <value>&amp;CF00N18000000ILBh</value>
+        <shortDescription>This custom label is store the custom filed ID of PWORF lookup on PWO object</shortDescription>
+        <value>&amp;CF00NE0000005uo2g</value>
     </labels>
     <labels>
-        <fullName>CPA_PWO_CNF_RecordTypeId</fullName>
+        <fullName>CPA_PWORF_Rad_Name_Filed_Id</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA_PWO_CNF_RecordTypeId</shortDescription>
-        <value>012180000000AdM</value>
+        <shortDescription>This custom label is to store the custom filed ID of PWORF lookup on Requirement</shortDescription>
+        <value>&amp;CF00NE0000005uo2D</value>
+    </labels>
+    <labels>
+        <fullName>CPA_PWORF_ResourceSummary_Name_Filed_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPA_PWORF_ResourceSummary_Name_Filed_Id</shortDescription>
+        <value>&amp;CF00NE0000005uo2G</value>
     </labels>
     <labels>
         <fullName>CPA_PWO_Name_Field_Id</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>PWO Name Field Id</shortDescription>
-        <value>&amp;CF00N18000000INTW</value>
+        <shortDescription>This custom label is to store the custom filed ID of PWO lookup on CR object</shortDescription>
+        <value>&amp;CF00NE0000005unux</value>
     </labels>
     <labels>
-        <fullName>CPA_PWO_RecordTypeId</fullName>
+        <fullName>CPA_PWO_Object_Id</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA_PWO_RecordTypeId</shortDescription>
-        <value>012180000000AdH</value>
+        <shortDescription>This custom label is used to store the PWO object id.</shortDescription>
+        <value>a8z</value>
     </labels>
     <labels>
-        <fullName>CPA_PWO_TNF_RecordTypeId</fullName>
+        <fullName>CPA_RaD_Object_Id</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA PWO TNF RecordTypeId</shortDescription>
-        <value>012180000000AdR</value>
-    </labels>
-    <labels>
-        <fullName>CPA_ParentId_For_Attachment_CR</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CPA_ParentId_For_Attachment_CR</shortDescription>
-        <value>a8Q</value>
-    </labels>
-    <labels>
-        <fullName>CPA_ParentId_For_Attachment_LOI</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CPA_ParentId_For_Attachment_LOI</shortDescription>
-        <value>a8R</value>
-    </labels>
-    <labels>
-        <fullName>CPA_ParentId_For_Attachment_trigger</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CPA_ParentId_For_Attachment_trigger</shortDescription>
-        <value>a9G</value>
+        <shortDescription>CPA_RaD_Object_Id</shortDescription>
+        <value>a8u</value>
     </labels>
     <labels>
         <fullName>CPA_Recall_and_Unlock</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA Recall and Unlock</shortDescription>
+        <shortDescription>This custom label is used to store below message.</shortDescription>
         <value>Recalling and unlocking request.</value>
     </labels>
     <labels>
         <fullName>CPA_RecordType</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA_RecordType</shortDescription>
+        <shortDescription>This custom label is used to store below message.</shortDescription>
         <value>Record Type of new record</value>
     </labels>
     <labels>
         <fullName>CPA_RecordType_Details</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA_RecordType_Details</shortDescription>
+        <shortDescription>This custom label is used to store below message.</shortDescription>
         <value>Record Types Details</value>
     </labels>
     <labels>
-        <fullName>CPA_Standalone_CR_RecordTypeId</fullName>
+        <fullName>CPA_ResourceSummary_Object_Id</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA Standalone CR RecordTypeId</shortDescription>
-        <value>012180000000Aty</value>
+        <shortDescription>CPA_ResourceSummary_Object_Id</shortDescription>
+        <value>a8v</value>
     </labels>
     <labels>
-        <fullName>CPA_Standalone_PWO_RecordTypeId</fullName>
+        <fullName>CPA_query_response_URL_Object_ID</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CPA_ Standalone PWO RecordTypeId</shortDescription>
-        <value>012180000000AtZ</value>
+        <shortDescription>This custom label is to store the custom filed ID of Submit Response object.</shortDescription>
+        <value>a8t</value>
+    </labels>
+    <labels>
+        <fullName>CPA_query_response_URL_id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>This custom label is used to store the id of LookupCPA_Queries__c field.</shortDescription>
+        <value>&amp;CF00NE0000005untl</value>
     </labels>
     <labels>
         <fullName>Cancel_and_Revert</fullName>

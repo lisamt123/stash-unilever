@@ -25,6 +25,10 @@
         <name>Comms_Planer</name>
     </customApplications>
     <customApplications>
+        <label><!-- Contracting --></label>
+        <name>Contracting</name>
+    </customApplications>
+    <customApplications>
         <label><!-- Four Acres --></label>
         <name>FAU_FourAcres</name>
     </customApplications>
@@ -1445,96 +1449,92 @@
         <name>CEC_isVariantKnown</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA BPE Recordtype --></label>
-        <name>CPA_BPE_Recordtype</name>
+        <label><!-- This custom label is used to store CR object id. --></label>
+        <name>CPA_CR_Object_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA CNF historical CNF id --></label>
-        <name>CPA_CNF_historical_CNF_id</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- CPA CNF historical TNF id --></label>
-        <name>CPA_CNF_historical_TNF_id</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- CPA default URl --></label>
+        <label><!-- This custom label is used to store the respective org’s URL. --></label>
         <name>CPA_Default_URL</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA HLE Recordtype --></label>
-        <name>CPA_HLE_Recordtype</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- CPA HLE Request cant be deleted --></label>
+        <label><!-- This custom label is used to store below message. --></label>
         <name>CPA_HLE_Request_cant_be_deleted</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA Mandatory Fields Message --></label>
+        <label><!-- This custom label is used to store key contact name field id. --></label>
+        <name>CPA_KeyContact_Object_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- This custom label is used to store the LOI object ID. --></label>
+        <name>CPA_LOI_Object_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- This custom label is used to store below message. --></label>
         <name>CPA_Mandatory_Fields_Message</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA Operation Cancelled --></label>
+        <label><!-- This custom label is used to store below message. --></label>
         <name>CPA_Operation_Cancelled</name>
     </customLabels>
     <customLabels>
-        <label><!-- PWORF LOI Id Field --></label>
+        <label><!-- This custom label is store the custom filed ID of PWORF lookup on Key Contact ob --></label>
+        <name>CPA_PWORF_KeyContact_Name_Filed_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- This custom label is to store the custom filed ID of PWORF lookup on LOI object. --></label>
         <name>CPA_PWORF_LOI_ID_Filed_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- PWORF LOI Name Field --></label>
+        <label><!-- This custom label is to store the custom filed ID of PWORF lookup on LOI object. --></label>
         <name>CPA_PWORF_LOI_Name_Filed_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- PWORF Name Filed Id --></label>
+        <label><!-- This custom label is store the custom filed ID of PWORF lookup on PWO object --></label>
         <name>CPA_PWORF_Name_Filed_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA_PWO_CNF_RecordTypeId --></label>
-        <name>CPA_PWO_CNF_RecordTypeId</name>
+        <label><!-- This custom label is to store the custom filed ID of PWORF lookup on Requirement --></label>
+        <name>CPA_PWORF_Rad_Name_Filed_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- PWO Name Field Id --></label>
+        <label><!-- CPA_PWORF_ResourceSummary_Name_Filed_Id --></label>
+        <name>CPA_PWORF_ResourceSummary_Name_Filed_Id</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- This custom label is to store the custom filed ID of PWO lookup on CR object --></label>
         <name>CPA_PWO_Name_Field_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA_PWO_RecordTypeId --></label>
-        <name>CPA_PWO_RecordTypeId</name>
+        <label><!-- This custom label is used to store the PWO object id. --></label>
+        <name>CPA_PWO_Object_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA PWO TNF RecordTypeId --></label>
-        <name>CPA_PWO_TNF_RecordTypeId</name>
+        <label><!-- CPA_RaD_Object_Id --></label>
+        <name>CPA_RaD_Object_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA_ParentId_For_Attachment_CR --></label>
-        <name>CPA_ParentId_For_Attachment_CR</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- CPA_ParentId_For_Attachment_LOI --></label>
-        <name>CPA_ParentId_For_Attachment_LOI</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- CPA_ParentId_For_Attachment_trigger --></label>
-        <name>CPA_ParentId_For_Attachment_trigger</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- CPA Recall and Unlock --></label>
+        <label><!-- This custom label is used to store below message. --></label>
         <name>CPA_Recall_and_Unlock</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA_RecordType --></label>
+        <label><!-- This custom label is used to store below message. --></label>
         <name>CPA_RecordType</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA_RecordType_Details --></label>
+        <label><!-- This custom label is used to store below message. --></label>
         <name>CPA_RecordType_Details</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA Standalone CR RecordTypeId --></label>
-        <name>CPA_Standalone_CR_RecordTypeId</name>
+        <label><!-- CPA_ResourceSummary_Object_Id --></label>
+        <name>CPA_ResourceSummary_Object_Id</name>
     </customLabels>
     <customLabels>
-        <label><!-- CPA_ Standalone PWO RecordTypeId --></label>
-        <name>CPA_Standalone_PWO_RecordTypeId</name>
+        <label><!-- This custom label is to store the custom filed ID of Submit Response object. --></label>
+        <name>CPA_query_response_URL_Object_ID</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- This custom label is used to store the id of LookupCPA_Queries__c field. --></label>
+        <name>CPA_query_response_URL_id</name>
     </customLabels>
     <customLabels>
         <label><!-- DB - Auto-Convert - Add New Field Mapping --></label>

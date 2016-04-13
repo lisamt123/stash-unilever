@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CPA Status Msg</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CPA Status Msg</value>
+    </caseValues>
+    <fields>
+        <label><!-- CNF Status Msg --></label>
+        <name>CNF_Status_Msg__c</name>
+    </fields>
+    <fields>
+        <label><!-- CR Status Msg --></label>
+        <name>CR_Status_Msg__c</name>
+    </fields>
+    <fields>
+        <label><!-- HLE Request Status Msg --></label>
+        <name>HLE_Request_Status_Msg__c</name>
+    </fields>
+    <fields>
+        <label><!-- LOI Status Msg --></label>
+        <name>LOI_Status_Msg__c</name>
+    </fields>
+    <fields>
+        <label><!-- PWO Status Msg --></label>
+        <name>PWO_Status_Msg__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Message --></label>
+        <name>Status_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- TNF Status Msg --></label>
+        <name>TNF_Status_Msg__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
