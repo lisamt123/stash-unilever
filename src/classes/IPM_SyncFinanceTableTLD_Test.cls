@@ -5,14 +5,8 @@
 	IPM_SyncFinanceTableTLD has Methods to update relative financial records when enver there is updates in Rollouts and Projects TLDs
 */
 @isTest(SeeAllData=false)
-private class IPM_SyncFinanceTableTLD_Test {
-    public static IPM_Project_Rollout__c proRoll1=new IPM_Project_Rollout__c();
-    public static IPM_Project_Rollout__c proRoll2=new IPM_Project_Rollout__c();
-    public static IPM_Project_Rollout__c proRollLocal=new IPM_Project_Rollout__c();
-    public static IPM_Financial__c fin=new IPM_Financial__c();
-    public static IPM_Financial_Year__c finYear=new IPM_Financial_Year__c();
-    public static List<IPM_Financial__c> lstFinancial=new List<IPM_Financial__c>();
-    public static List<IPM_Financial_Year__c> financialYearList=new List<IPM_Financial_Year__c>();
+private class IPM_SyncFinanceTableTLD_Test 
+{
     private static final String TESTPROJECT001_REG ='TestProject001_REG';   
     private static final String TESTPROJECT001_REG_LOC1 ='TestProject001_REG_LOC1'; 
     private static final String TESTPROJECT001_REG_LOC2 ='TestProject001_REG_LOC2';
@@ -25,7 +19,6 @@ private class IPM_SyncFinanceTableTLD_Test {
     private static final String TESTPROJECT001='TestProject001';
     private static final String PROJ_SIZE_MSG='Project(s) size should be 1';
     private static final String PROJ_PHASE_IDEAS_MSG='Project phase should be IDEAS';
-    private static final String PROJ_STATUS_COMPLETED_MSG='Project status should be Completed';
     private static final String TLD_MATCH_MSG='Target launch date should be set correctly';
     private static final String PROJ_ROLLOUT_SIZE_MSG='Project rollout(s) size should be 1';
     private static final String PROJ_PHASE_FEASIBILITY_MSG='Project phase should be FEASIBILITY';
@@ -48,7 +41,7 @@ private class IPM_SyncFinanceTableTLD_Test {
         Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
     */
     static void setupOperationalProjects() {
-        Test.startTest();
+ 		Test.startTest();
         Date targetLaunchDate = System.today().addYears(3);
         //Creation test user
         User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
@@ -95,7 +88,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             projOpeReg.IPM_Temporary_Phase__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             projOpeReg.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
             projOpeReg.IPM_Target_Launch_Dates__c = targetLaunchDate;
-            projList.add(projOpeReg);
+			projList.add(projOpeReg);
             
             IPM_Project__c projOpeLcl = IPM_TestFactory_Helper.createIPMProject(false);
             projOpeLcl.Name=TESTPROJ_OPRL_LCL;
@@ -108,12 +101,12 @@ private class IPM_SyncFinanceTableTLD_Test {
             projOpeLcl.IPM_Temporary_Phase__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             projOpeLcl.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
             projOpeLcl.IPM_Target_Launch_Dates__c = targetLaunchDate;
-            projList.add(projOpeLcl);
+			projList.add(projOpeLcl);
             
             insert projList; 
 
-            List<IPM_Financial__c> fins = new List<IPM_Financial__c>();
-            
+ 			List<IPM_Financial__c> fins = new List<IPM_Financial__c>();
+ 			
             IPM_Financial__c fin1=new IPM_Financial__c();
             String defaultRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Default'].Id;
             fin1.RecordTypeId=defaultRecordTypeId;
@@ -170,7 +163,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             System.assert(finExtIds.contains(TESTPROJ_OPRL_REG),'The Financials list should contain TESTPROJ_OPRL_REG');
             System.assert(finExtIds.contains(TESTPROJ_OPRL_LCL),'The Financials list should contain TESTPROJ_OPRL_LCL');
             
-        }       
+        }   	
     }
     /*
     1.  All the individual tests need unique data setup. 
@@ -180,50 +173,72 @@ private class IPM_SyncFinanceTableTLD_Test {
     2.  The data setup varies for test scenarios, looks like duplicate code block but not. 
         Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
     */
-    static void setupRegionalOriginalIdeasPhaseData(){
-        Test.startTest();
-        Date targetLaunchDate = System.today().addYears(3);
-        //Creation test user
-        User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        globalUser.email = GLOBAL_USER;
-        
+ 	static void setupRegionalOriginalIdeasPhaseData(){
+    	// Create an instance of admin user.
+         User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
          
-        User regionalUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        regionalUser.email = REGIONAL_USER;
-        
-
-        User localUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        localUser.email = LOCAL_USER;
-        
-        localUser.ManagerId = UserInfo.getUserId();
-        
-        List<User> userList = new List<User>{globalUser,regionalUser,localUser};
-        
-        
-        insert userList;
-        System.runAs(regionalUser) {
-             // create project
-            IPM_Project__c project = IPM_TestFactory_Helper.createIPMProject(false);
-            project.Name=TESTPROJECT001_REG;
-            project.Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;
-            project.IPM_Project_Leader__c=globalUser.id;
-            project.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
-            project.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT; 
-            project.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-            project.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
-            project.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
-            project.IPM_Temporary_Phase__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
-            project.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
-            project.IPM_Target_Launch_Dates__c = targetLaunchDate;
-            project.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
-            insert project; 
-
+         User globalProjectLeader = null;
+         User regionalProjectLeader = null;
+         // Create an instances of standard Users for Allocation to Project Leaders.
+         System.runAs(adminUser)
+         {   
+            globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            
+            // Update LastNames to match functionalRoles
+            globalProjectLeader.lastname = 'GLOBAL_PL';
+            regionalProjectLeader.lastname = 'REGIONAL_PL';
+            localProjectLeader.lastname = 'LOCAL_PL'; 
+            
+            List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
+            update userList;
+            
+            List<User> dbUserList =  [Select Id from User where id in :userList];
+            
+            System.assertEquals(dbUserList.size(),userList.size(),'Users not Created Properly.Actual no of Users should be'+userList.size());
+            
+            // Create Company Card information(Master Data)
+            IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+            IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+            IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+            
+            List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+            insert companyCardList;
+            
+            // Inserting Master Data whose OWD are set to readOnly/View All    
+            IPM_TestFactory_Helper.getProjectMasterData();
+            
+            // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+            //IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader}); 
+        } 
+        List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+        Date targetLaunchDate = System.today().addYears(3);
+        // Insert the project as a Global project Leader.
+        System.runAs(regionalProjectLeader)
+        {   
+            test.startTest();
+            projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
+            projectList[0].IPM_Target_Launch_Dates__c = targetLaunchDate;
+            insert projectList;
+            
+            //system.debug(looginglevel.error, );
+            List<IPM_Project__c> dbProjectList =  [Select Id, name from IPM_Project__c where id in :projectList];
+            system.debug(logginglevel.error, 'dbProjectList[0].name -->' + dbProjectList[0].name);
+            
+            projectList[0].Name=TESTPROJECT001_REG;
+            update projectList;
+            
+            List<IPM_Project__c> dbProjectList1 =  [Select Id, name from IPM_Project__c where id in :projectList];
+            system.debug(logginglevel.error, 'dbProjectList1[0].name -->' + dbProjectList1[0].name);
+            System.assertEquals(dbProjectList.size(),projectList.size(),'Projects not Created Properly.Actual size should be '+projectList.size());
+            
             List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
             String rolloutLocalRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.LOCAL_ROLLOUT_RT].Id;
             IPM_Project_Rollout__c localNonkeyProjectRollout1 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
             localNonkeyProjectRollout1.Name=TESTPROJECT001_REG_LOC1;
             localNonkeyProjectRollout1.IPM_Rollout_Project__c = TESTPROJECT001_REG_LOC1;
-            localNonkeyProjectRollout1.Regional_Project__c=project.ID;
+            localNonkeyProjectRollout1.Regional_Project__c=projectList[0].ID;
             localNonkeyProjectRollout1.Market_Cluster__c=MARKET_CLUSTER;
             localNonkeyProjectRollout1.IPM_Rollout_Span__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             localNonkeyProjectRollout1.Target_Launch_Date__c = targetLaunchDate;
@@ -237,7 +252,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             IPM_Project_Rollout__c localNonkeyProjectRollout2 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
             localNonkeyProjectRollout2.Name=TESTPROJECT001_REG_LOC2;
             localNonkeyProjectRollout2.IPM_Rollout_Project__c = TESTPROJECT001_REG_LOC2;
-            localNonkeyProjectRollout2.Regional_Project__c=project.ID;
+            localNonkeyProjectRollout2.Regional_Project__c=projectList[0].ID;
             localNonkeyProjectRollout2.Market_Cluster__c=MARKET_CLUSTER;
             localNonkeyProjectRollout2.IPM_Rollout_Span__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             localNonkeyProjectRollout2.Target_Launch_Date__c = targetLaunchDate;
@@ -250,7 +265,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             IPM_Project_Rollout__c localKeyProjectRollout1 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
             localKeyProjectRollout1.Name=TESTPROJECT001_REG_LOC_K;
             localKeyProjectRollout1.IPM_Rollout_Project__c = TESTPROJECT001_REG_LOC_K;
-            localKeyProjectRollout1.Regional_Project__c=project.ID;
+            localKeyProjectRollout1.Regional_Project__c=projectList[0].ID;
             localKeyProjectRollout1.Market_Cluster__c=MARKET_CLUSTER;
             localKeyProjectRollout1.IPM_Rollout_Span__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             localKeyProjectRollout1.Target_Launch_Date__c = targetLaunchDate;
@@ -267,18 +282,19 @@ private class IPM_SyncFinanceTableTLD_Test {
             String consolidatedRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
             fin1.RecordTypeId=consolidatedRecordTypeId;
             fin1.Financial_External_ID__c=TESTPROJECT001_REG+'_CONSOLIDATED';
-            fin1.Regional_Project__c=project.id;
+            fin1.Regional_Project__c=projectList[0].id;
             fin1.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
             fin1.Status__c=NOT_STARTED;
             fin1.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;//YEAR_5
             fin1.Target_Launch_Date__c = targetLaunchDate;
             fin1.isActive__c=true;
             fins.add(fin1);
+            
             IPM_Financial__c fin2=new IPM_Financial__c();
             String defaultRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Default'].Id;
             fin2.RecordTypeId=defaultRecordTypeId;
             fin2.Financial_External_ID__c=TESTPROJECT001_REG+'_NONKEY';
-            fin2.Regional_Project__c=project.id;
+            fin2.Regional_Project__c=projectList[0].id;
             fin2.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
             fin2.Status__c=NOT_STARTED;
             fin2.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;//YEAR_5
@@ -286,37 +302,37 @@ private class IPM_SyncFinanceTableTLD_Test {
             fin2.isActive__c = true;
             fins.add(fin2);
             insert fins;
-            Test.stopTest();
             
-            List<IPM_Financial__c> finList=[SELECT Name,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c like 'TestProject001_REG%' limit 5];
-            
-            Set<String> finExtIds = new Set<String>();
-            for(IPM_Financial__c financial:  finList) {
-                finExtIds.add(financial.Financial_External_ID__c);
-            }
-            
-            System.assert(finExtIds.contains('TestProject001_REG_CONSOLIDATED'),'The Financials list should contain TestProject001_REG_CONSOLIDATED');
-            System.assert(finExtIds.contains('TestProject001_REG_NONKEY'),'The Financials list should contain TestProject001_REG_NONKEY');
-            
-            
-            List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE name=:TESTPROJECT001_REG limit 1];
-            System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
-            
-            System.assertEquals(IPM_ConstantUtils.PHASE_IDEAS, projlList[0].IPM_Phase__c,PROJ_PHASE_IDEAS_MSG);
-            System.assertEquals(IPM_ConstantUtils.JOB_STATUS_COMPLETED, projlList[0].IPM_Project_Job_Status__c,PROJ_STATUS_COMPLETED_MSG);
-            System.assertEquals(targetLaunchDate, projlList[0].IPM_Target_Launch_Dates__c,TLD_MATCH_MSG);
-           
-            List<IPM_Project_Rollout__c>  projRollOutList=[SELECT Name, Target_Launch_Date__c FROM IPM_Project_Rollout__c WHERE name like 'TestProject001_REG_LOC%' limit 4];
-            
-            System.assertEquals(3,projRollOutList.size(),'Project rollout(s) size should be 3');
-            
-            for(IPM_Project_Rollout__c rollout : projRollOutList) {
-                
-                System.assertEquals(targetLaunchDate, rollout.Target_Launch_Date__c,TLD_MATCH_MSG);
-            }
+            test.stopTest();
         }
         
+        List<IPM_Financial__c> finList=[SELECT Name,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c like 'TestProject001_REG%' limit 5];
+            
+        Set<String> finExtIds = new Set<String>();
+        for(IPM_Financial__c financial:  finList) {
+            finExtIds.add(financial.Financial_External_ID__c);
+        }
+        
+        System.assert(finExtIds.contains('TestProject001_REG_CONSOLIDATED'),'The Financials list should contain TestProject001_REG_CONSOLIDATED');
+        System.assert(finExtIds.contains('TestProject001_REG_NONKEY'),'The Financials list should contain TestProject001_REG_NONKEY');
+        
+        
+        List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE name=: TESTPROJECT001_REG limit 1];
+        System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
+        
+        System.assertEquals(IPM_ConstantUtils.PHASE_IDEAS, projlList[0].IPM_Phase__c,PROJ_PHASE_IDEAS_MSG);
+        System.assertEquals(targetLaunchDate, projlList[0].IPM_Target_Launch_Dates__c,TLD_MATCH_MSG);
+       
+        List<IPM_Project_Rollout__c>  projRollOutList=[SELECT Name, Target_Launch_Date__c FROM IPM_Project_Rollout__c WHERE name like 'TestProject001_REG_LOC%' limit 4];
+        
+        System.assertEquals(3,projRollOutList.size(),'Project rollout(s) size should be 3');
+        
+        for(IPM_Project_Rollout__c rollout : projRollOutList) {
+            
+            System.assertEquals(targetLaunchDate, rollout.Target_Launch_Date__c,TLD_MATCH_MSG);
+        }
     }
+    
     /*
     1.  All the individual tests need unique data setup. 
         Use of single setup method to set all the data will raise too many SOQL exception. 
@@ -325,103 +341,115 @@ private class IPM_SyncFinanceTableTLD_Test {
     2.  The data setup varies for test scenarios, looks like duplicate code block but not. 
         Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
     */
-   static void setupIdeasPhaseData(){
-        Test.startTest();
-        Date targetLaunchDate = System.today().addYears(3);
-        //Creation test user
-        User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        globalUser.email = GLOBAL_USER;
-        
+    static void setupIdeasPhaseData(){
+    	// Create an instance of admin user.
+         User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
          
-        User regionalUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        regionalUser.email = REGIONAL_USER;
-        
-
-        User localUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        localUser.email = LOCAL_USER;
-        
-        localUser.ManagerId = UserInfo.getUserId();
-        
-        List<User> userList = new List<User>{globalUser,regionalUser,localUser};
-        
-        
-        insert userList;
- 
-        System.runAs(globalUser) {
-             // create project
-            IPM_Project__c project = IPM_TestFactory_Helper.createIPMProject(false);
-            project.Name=TESTPROJECT001;
-            project.Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;
-            project.IPM_Project_Leader__c=globalUser.id;
-            project.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
-            project.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT; 
-            project.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-            project.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
-            project.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
-            project.IPM_Temporary_Phase__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
-            project.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
-            project.IPM_Target_Launch_Dates__c = targetLaunchDate;
-            project.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
-            insert project; 
-    
-    
+         User globalProjectLeader = null;
+         // Create an instances of standard Users for Allocation to Project Leaders.
+         System.runAs(adminUser)
+         {   
+            globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            
+            // Update LastNames to match functionalRoles
+            globalProjectLeader.lastname = 'GLOBAL_PL';
+            regionalProjectLeader.lastname = 'REGIONAL_PL';
+            localProjectLeader.lastname = 'LOCAL_PL'; 
+            
+            List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
+            update userList;
+            
+            List<User> dbUserList =  [Select Id from User where id in :userList];
+            
+            System.assertEquals(dbUserList.size(),userList.size(),'Users not Created Properly.Actual no of Users should be'+userList.size());
+            
+            // Create Company Card information(Master Data)
+            IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+            IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+            IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+            
+            List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+            insert companyCardList;
+            
+            // Inserting Master Data whose OWD are set to readOnly/View All    
+            IPM_TestFactory_Helper.getProjectMasterData();
+            
+            // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader}); 
+        } 
+        List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+        Date targetLaunchDate = System.today().addYears(3);
+        // Insert the project as a Global project Leader.
+        System.runAs(globalProjectLeader)
+        {   
+            test.startTest();
+            projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
+            //projectList[0].IPM_Target_Launch_Dates__c=targetLaunchDate;
+            insert projectList;
+            
+            List<IPM_Project__c> dbProjectList =  [Select Id, name from IPM_Project__c where id in :projectList];
+            system.debug(logginglevel.error, 'dbProjectList[0].name -->' + dbProjectList[0].name);
+            
+            System.assertEquals(dbProjectList.size(),projectList.size(),'Projects not Created Properly.Actual size should be '+projectList.size());
+            
             // create region rollout
             String rolloutRegionlaRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.REGIONAL_ROLLOUT_RT].Id;
             IPM_Project_Rollout__c regionalProjectRollout=IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
-            regionalProjectRollout.Name=TESTPROJECT001_REG;
-            regionalProjectRollout.IPM_Rollout_Project__c = TESTPROJECT001_REG;
-            regionalProjectRollout.IPM_Project__c=project.ID;
+            regionalProjectRollout.Name='TestComments1_REG';
+            regionalProjectRollout.IPM_Rollout_Project__c = 'TestComments1_REG';
+            regionalProjectRollout.IPM_Project__c=projectList[0].ID;
             regionalProjectRollout.Market_Cluster__c=MARKET_CLUSTER;
             regionalProjectRollout.IPM_Rollout_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
             regionalProjectRollout.Target_Launch_Date__c = targetLaunchDate;
-            regionalProjectRollout.External_Id__c=TESTPROJECT001_REG;
+            regionalProjectRollout.External_Id__c='TestComments1_REG';
             regionalProjectRollout.RecordTypeId = rolloutRegionlaRecordTypeId;
             regionalProjectRollout.isActive__c=true;
             insert regionalProjectRollout;
-    
             
             List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
             String rolloutLocalRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.LOCAL_ROLLOUT_RT].Id;
             IPM_Project_Rollout__c localNonkeyProjectRollout1 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
-            localNonkeyProjectRollout1.Name=TESTPROJECT001_REG_LOC1;
-            localNonkeyProjectRollout1.IPM_Rollout_Project__c = TESTPROJECT001_REG_LOC1;
-            localNonkeyProjectRollout1.IPM_Project__c=project.ID;
+            localNonkeyProjectRollout1.Name='TestComments1_REG_LOC1';
+            localNonkeyProjectRollout1.IPM_Rollout_Project__c = 'TestComments1_REG_LOC1';
+            localNonkeyProjectRollout1.IPM_Project__c=projectList[0].ID;
             localNonkeyProjectRollout1.Regional_Rollout__c=regionalProjectRollout.id;
             localNonkeyProjectRollout1.Market_Cluster__c=MARKET_CLUSTER;
             localNonkeyProjectRollout1.IPM_Rollout_Span__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             localNonkeyProjectRollout1.Target_Launch_Date__c = targetLaunchDate;
             localNonkeyProjectRollout1.RecordTypeId = rolloutLocalRecordTypeId;
             localNonkeyProjectRollout1.KeyMCO__c = false;
-            localNonkeyProjectRollout1.External_Id__c=TESTPROJECT001_REG_LOC1;
+            localNonkeyProjectRollout1.External_Id__c='TestComments1_REG_LOC1';
             localNonkeyProjectRollout1.isActive__c=true;
             rollouts.add(localNonkeyProjectRollout1);
             
             rolloutLocalRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.LOCAL_ROLLOUT_RT].Id;
             IPM_Project_Rollout__c localNonkeyProjectRollout2 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
-            localNonkeyProjectRollout2.Name=TESTPROJECT001_REG_LOC2;
-            localNonkeyProjectRollout2.IPM_Rollout_Project__c = TESTPROJECT001_REG_LOC2;
-            localNonkeyProjectRollout2.IPM_Project__c=project.ID;
+            localNonkeyProjectRollout2.Name='TestComments1_REG_LOC2';
+            localNonkeyProjectRollout2.IPM_Rollout_Project__c = 'TestComments1_REG_LOC2';
+            localNonkeyProjectRollout2.IPM_Project__c=projectList[0].ID;
             localNonkeyProjectRollout2.Regional_Rollout__c=regionalProjectRollout.id;
             localNonkeyProjectRollout2.Market_Cluster__c=MARKET_CLUSTER;
             localNonkeyProjectRollout2.IPM_Rollout_Span__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             localNonkeyProjectRollout2.Target_Launch_Date__c = targetLaunchDate;
             localNonkeyProjectRollout2.RecordTypeId = rolloutLocalRecordTypeId;
             localNonkeyProjectRollout2.KeyMCO__c = false;
-            localNonkeyProjectRollout2.External_Id__c=TESTPROJECT001_REG_LOC2;
+            localNonkeyProjectRollout2.External_Id__c='TestComments1_REG_LOC2';
             localNonkeyProjectRollout2.isActive__c=true;
             rollouts.add(localNonkeyProjectRollout2);
             
             IPM_Project_Rollout__c localKeyProjectRollout1 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
-            localKeyProjectRollout1.Name=TESTPROJECT001_REG_LOC_K;
-            localKeyProjectRollout1.IPM_Rollout_Project__c = TESTPROJECT001_REG_LOC_K;
-            localKeyProjectRollout1.IPM_Project__c=project.ID;
+            localKeyProjectRollout1.Name='TestComments1_REG_LOC_K';
+            localKeyProjectRollout1.IPM_Rollout_Project__c = 'TestComments1_REG_LOC_K';
+            localKeyProjectRollout1.IPM_Project__c=projectList[0].ID;
             localKeyProjectRollout1.Regional_Rollout__c=regionalProjectRollout.id;
             localKeyProjectRollout1.Market_Cluster__c=MARKET_CLUSTER;
             localKeyProjectRollout1.IPM_Rollout_Span__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             localKeyProjectRollout1.Target_Launch_Date__c = targetLaunchDate;
             localKeyProjectRollout1.RecordTypeId = rolloutLocalRecordTypeId;
             localKeyProjectRollout1.KeyMCO__c = true;
-            localKeyProjectRollout1.External_Id__c=TESTPROJECT001_REG_LOC_K;
+            localKeyProjectRollout1.External_Id__c='TestComments1_REG_LOC_K';
             localKeyProjectRollout1.isActive__c=true;
             rollouts.add(localKeyProjectRollout1);
             insert rollouts;
@@ -430,40 +458,20 @@ private class IPM_SyncFinanceTableTLD_Test {
             String consolidatedRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
             fin1.RecordTypeId=consolidatedRecordTypeId;
             fin1.Financial_External_ID__c=TESTPROJECT001_CONSOLIDATED;
-            fin1.Parent_Project__c=project.id;
+            fin1.Parent_Project__c=projectList[0].ID;
             fin1.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
             fin1.Status__c=NOT_STARTED;
             fin1.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;//YEAR_5
             fin1.Target_Launch_Date__c = targetLaunchDate;
             fin1.isActive__c=true;
             insert fin1;
-    
-            Test.stopTest();
             
-            List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE name=:TESTPROJECT001 limit 1];
-            System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
-            
-            System.assertEquals(IPM_ConstantUtils.PHASE_IDEAS, projlList[0].IPM_Phase__c,PROJ_PHASE_IDEAS_MSG);
-            System.assertEquals(IPM_ConstantUtils.JOB_STATUS_COMPLETED, projlList[0].IPM_Project_Job_Status__c,PROJ_STATUS_COMPLETED_MSG);
-            System.assertEquals(targetLaunchDate, projlList[0].IPM_Target_Launch_Dates__c,TLD_MATCH_MSG);
-            
-    
-            List<IPM_Project_Rollout__c>  projRollOutList=[SELECT Name, Target_Launch_Date__c FROM IPM_Project_Rollout__c WHERE name= :TESTPROJECT001_REG limit 1];
-            System.assertEquals(projRollOutList[0].name,TESTPROJECT001_REG ,PROJ_ROLLOUT_SIZE_MSG);
-            
-            System.assertEquals(targetLaunchDate, projRollOutList[0].Target_Launch_Date__c,TLD_MATCH_MSG);
-    
-    
-            projRollOutList=[SELECT Name, Target_Launch_Date__c FROM IPM_Project_Rollout__c WHERE name like 'TestProject001_REG_LOC%' limit 4];
-            
-            System.assertEquals(3,projRollOutList.size(),'Project rollout(s) size should be 3');
-            
-            for(IPM_Project_Rollout__c rollout : projRollOutList) {
-                
-                System.assertEquals(targetLaunchDate, rollout.Target_Launch_Date__c,TLD_MATCH_MSG);
-            }
+            test.stopTest();
         }
+        List<IPM_Project__c> projlList=[SELECT Id, Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE name =: 'TestComments1' limit 1];
+        System.assertEquals(projlList.size(), 1,PROJ_SIZE_MSG);
     }
+    
     /*
     1.  All the individual tests need unique data setup. 
         Use of single setup method to set all the data will raise too many SOQL exception. 
@@ -473,49 +481,68 @@ private class IPM_SyncFinanceTableTLD_Test {
         Pulling these code blocks into private methods will introduce n-path complexity and reduces code readability.
     */
     static void setupFeasibilityPhaseDataForLocalProject(){
-        Test.startTest();
-        Date targetLaunchDate = System.today().addYears(3);
-        //Creation test user
-        User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        globalUser.email = GLOBAL_USER;
-        
+        User adminUser = IPM_TestFactory_Helper.createUserAdmin(false);
          
-        User regionalUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        regionalUser.email = REGIONAL_USER;
-        
-
-        User localUser = IPM_TestFactory_Helper.createUserAdmin(false);
-        localUser.email = LOCAL_USER;
-        
-        localUser.ManagerId = UserInfo.getUserId();
-        
-        List<User> userList = new List<User>{globalUser,regionalUser,localUser};
-        
-        
-        insert userList;
-        System.runAs(globalUser) {
-        
-            IPM_Project__c project = IPM_TestFactory_Helper.createIPMProject(false);
-            project.Name=TESTPROJECT001;
-            project.Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;
-            project.IPM_Project_Leader__c=globalUser.id;
-            project.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
-            project.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT; 
-            project.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-            project.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
-            project.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
-            project.IPM_Temporary_Phase__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
-            project.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
-            project.IPM_Target_Launch_Dates__c = targetLaunchDate;
-            project.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
-            project.IPM_ProjectJobType__c=IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
-            insert project; 
+         User globalProjectLeader = null;
+         User regionalProjectLeader = null;
+         User localProjectLeader = null;
+         // Create an instances of standard Users for Allocation to Project Leaders.
+         System.runAs(adminUser)
+         {   
+            globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            
+            // Update LastNames to match functionalRoles
+            globalProjectLeader.lastname = 'GLOBAL_PL';
+            regionalProjectLeader.lastname = 'REGIONAL_PL';
+            localProjectLeader.lastname = 'LOCAL_PL'; 
+            
+            List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
+            update userList;
+            
+            List<User> dbUserList =  [Select Id from User where id in :userList];
+            
+            System.assertEquals(dbUserList.size(),userList.size(),'Users not Created Properly.Actual no of Users should be'+userList.size());
+            
+            // Create Company Card information(Master Data)
+            IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+            IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+            IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+            
+            List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+            insert companyCardList;
+            
+            // Inserting Master Data whose OWD are set to readOnly/View All    
+            IPM_TestFactory_Helper.getProjectMasterData();
+            
+            // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader}); 
+        } 
+        List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+        Date targetLaunchDate = System.today().addYears(3);
+        // Insert the project as a Global project Leader.
+        System.runAs(globalProjectLeader)
+        {   
+            test.startTest();
+            projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
+            //projectList[0].IPM_Target_Launch_Dates__c=targetLaunchDate;
+            insert projectList;
+            
+            projectList[0].Name=TESTPROJECT001;
+            projectList[0].IPM_Target_Launch_Dates__c = targetLaunchDate;
+            update projectList;
+            
+            List<IPM_Project__c> dbProjectList =  [Select Id, name from IPM_Project__c where id in :projectList];
+            system.debug(logginglevel.error, 'dbProjectList[0].name -->' + dbProjectList[0].name);
+            
+            System.assertEquals(dbProjectList.size(),projectList.size(),'Projects not Created Properly.Actual size should be '+projectList.size());
                     
             String rolloutRegionlaRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.REGIONAL_ROLLOUT_RT].Id;
             IPM_Project_Rollout__c regionalProjectRollout=IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
             regionalProjectRollout.Name=TESTPROJECT001_REG;
             regionalProjectRollout.IPM_Rollout_Project__c = TESTPROJECT001_REG;
-            regionalProjectRollout.IPM_Project__c=project.ID;
+            regionalProjectRollout.IPM_Project__c=projectList[0].ID;
             regionalProjectRollout.Market_Cluster__c=MARKET_CLUSTER;
             regionalProjectRollout.IPM_Rollout_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
             regionalProjectRollout.Target_Launch_Date__c = targetLaunchDate;
@@ -524,14 +551,14 @@ private class IPM_SyncFinanceTableTLD_Test {
             regionalProjectRollout.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
             regionalProjectRollout.IPM_RolloutJobType__c=IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;
             regionalProjectRollout.IPM_Rollout_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
-            regionalProjectRollout.IPM_Regional_PL__c=regionalUser.id;
+            regionalProjectRollout.IPM_Regional_PL__c=regionalProjectLeader.id;
             regionalProjectRollout.isActive__c=true;
             insert regionalProjectRollout;
     
             IPM_Project__c rolloutProject = IPM_TestFactory_Helper.createIPMProject(false);
             rolloutProject.Name=TESTPROJECT001_REG;
             rolloutProject.Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;
-            rolloutProject.IPM_Project_Leader__c=regionalUser.id;
+            rolloutProject.IPM_Project_Leader__c=regionalProjectLeader.id;
             rolloutProject.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
             rolloutProject.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT; 
             rolloutProject.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
@@ -540,7 +567,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             rolloutProject.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
             rolloutProject.IPM_Target_Launch_Dates__c = targetLaunchDate;
             rolloutProject.IPM_Project_Name__c=TESTPROJECT001_REG;
-            rolloutProject.IPM_Parent_Project__c=project.ID;
+            rolloutProject.IPM_Parent_Project__c=projectList[0].ID;
             rolloutProject.IPM_ProjectJobType__c=PROJECT_CREATION;
             insert rolloutProject; 
             
@@ -549,7 +576,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             IPM_Project_Rollout__c localNonkeyProjectRollout1 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
             localNonkeyProjectRollout1.Name=TESTPROJECT001_REG_LOC1;
             localNonkeyProjectRollout1.IPM_Rollout_Project__c = TESTPROJECT001_REG_LOC1;
-            localNonkeyProjectRollout1.IPM_Project__c=project.ID;
+            localNonkeyProjectRollout1.IPM_Project__c=projectList[0].ID;
             localNonkeyProjectRollout1.Regional_Rollout__c=regionalProjectRollout.id;
             localNonkeyProjectRollout1.Market_Cluster__c=MARKET_CLUSTER;
             localNonkeyProjectRollout1.IPM_Rollout_Span__c=IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL;
@@ -567,7 +594,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             IPM_Project_Rollout__c localNonkeyProjectRollout2 =IPM_TestFactory_Helper.createIPMProjectRollout(FALSE);
             localNonkeyProjectRollout2.Name=TESTPROJECT001_REG_LOC2;
             localNonkeyProjectRollout2.IPM_Rollout_Project__c = TESTPROJECT001_REG_LOC2;
-            localNonkeyProjectRollout2.IPM_Project__c=project.ID;
+            localNonkeyProjectRollout2.IPM_Project__c=projectList[0].ID;
             localNonkeyProjectRollout2.Regional_Rollout__c=regionalProjectRollout.id;
             localNonkeyProjectRollout2.Market_Cluster__c=MARKET_CLUSTER;
             localNonkeyProjectRollout2.IPM_Rollout_Span__c=IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL;
@@ -587,7 +614,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             IPM_Project__c localProject = IPM_TestFactory_Helper.createIPMProject(false);
             localProject.Name=TESTPROJECT001_REG_LOC1;
             localProject.Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;
-            localProject.IPM_Project_Leader__c=localUser.id;
+            localProject.IPM_Project_Leader__c=localProjectLeader.id;
             localProject.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
             localProject.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT; 
             localProject.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
@@ -620,7 +647,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             String consolidatedRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
             fin3.RecordTypeId=consolidatedRecordTypeId;
             fin3.Financial_External_ID__c=TESTPROJECT001_CONSOLIDATED;
-            fin3.Parent_Project__c=project.id;
+            fin3.Parent_Project__c=projectList[0].id;
             fin3.Volume_Unit__c=IPM_ConstantUtils.VOLUME_UNIT_TONS;
             fin3.Status__c=NOT_STARTED;
             fin3.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;//YEAR_5
@@ -656,7 +683,6 @@ private class IPM_SyncFinanceTableTLD_Test {
             globalProjList[0].IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
             update globalProjList[0];
             System.assertEquals(IPM_ConstantUtils.PHASE_FEASIBILITY, globalProjList[0].IPM_Phase__c,PROJ_PHASE_FEASIBILITY_MSG);
-            System.assertEquals(IPM_ConstantUtils.JOB_STATUS_COMPLETED, globalProjList[0].IPM_Project_Job_Status__c,PROJ_STATUS_COMPLETED_MSG);
             System.assertEquals(targetLaunchDate, globalProjList[0].IPM_Target_Launch_Dates__c,TLD_MATCH_MSG);
             
             List<IPM_Project__c> regionalProjList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c, IPM_Target_Launch_Dates__c, IPM_ProjectJobType__c, IPMProject_Span__c, IPM_Project_Type__c,IPM_Parent_Project__c, (Select id, name, Financial_External_ID__c, Target_Launch_Date__c From IPM_Financials_Regional__r)   FROM IPM_Project__c WHERE name=:TESTPROJECT001_REG limit 2];
@@ -695,6 +721,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             System.assertEquals(2,localProjList[0].IPM_Financials_Local__r.size(),'Project financial(s) size should be 1');
         }
     }
+    
     /*
     The datasetup method of this test has Test.startTest() and Test.stopTest(). 
     So cant have another set of Test.startTest() and Test.stopTest().
@@ -705,7 +732,7 @@ private class IPM_SyncFinanceTableTLD_Test {
         String year11 = String.valueOf(targetLanchDate1.year());
         String year12 = String.valueOf(targetLanchDate1.year()+1);
         String year13 = String.valueOf(targetLanchDate1.year()+2);
-        User globalUser = [Select Id from User where Email =:GLOBAL_USER limit 1]; 
+        User globalUser = [Select Id from User where LastName =:'GLOBAL_PL' limit 1]; 
         System.runAs(globalUser) {
             
             IPM_Project__c localProject =[SELECT ID   FROM IPM_Project__c WHERE name=:TESTPROJECT001_REG_LOC1 limit 1];
@@ -756,7 +783,7 @@ private class IPM_SyncFinanceTableTLD_Test {
     The datasetup method of this test has Test.startTest() and Test.stopTest(). 
     So cant have another set of Test.startTest() and Test.stopTest().
     */  
-     static testMethod void testSyncFinanceTableTLD_When_KeyLocalRolloutTLD_Updated() {
+    static testMethod void testSyncFinanceTableTLD_When_KeyLocalRolloutTLD_Updated() {
         setupIdeasPhaseData();
 
 
@@ -764,20 +791,20 @@ private class IPM_SyncFinanceTableTLD_Test {
         String year11 = String.valueOf(targetLanchDate1.year());
         String year12 = String.valueOf(targetLanchDate1.year()+1);
         String year13 = String.valueOf(targetLanchDate1.year()+2);
-        User globalUser = [Select Id from User where Email =:GLOBAL_USER limit 1]; 
+        User globalUser = [Select Id from User where LastName =:'GLOBAL_PL' limit 1]; 
         System.runAs(globalUser) {
             // update rollout1 with targetLanchDate1
-            IPM_Project_Rollout__c rollout1 = [SELECT ID, Name,IPM_Project__c,External_Id__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG_LOC_K limit 1];
+            IPM_Project_Rollout__c rollout1 = [SELECT ID, Name,IPM_Project__c,External_Id__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:'TestComments1_REG_LOC_K' limit 1];
             rollout1.Target_Launch_Date__c = targetLanchDate1;
             update rollout1;
     
-            IPM_Project_Rollout__c reginolRollout = [SELECT ID, Name,IPM_Project__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG limit 1];
+            IPM_Project_Rollout__c reginolRollout = [SELECT ID, Name,IPM_Project__c FROM IPM_Project_Rollout__c WHERE name=:'TestComments1_REG' limit 1];
             System.assert(reginolRollout.id!=null,ROLLOUT_MSG);
             List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE IPM_Project_Rollout__c=:reginolRollout.id limit 2];
             List<ID> updatedFinancialIDList = new List<ID>();
             
             for(IPM_Financial__c updatedFinancial: updatedFinancialList) {
-                if(updatedFinancial.Financial_External_ID__c==TESTPROJECT001_REG_LOC_K) {
+                if(updatedFinancial.Financial_External_ID__c=='TestComments1_REG_LOC_K') {
                     System.assertEquals(targetLanchDate1,updatedFinancial.Target_Launch_Date__c,TLD_MATCH_MSG);
                     updatedFinancialIDList.add(updatedFinancial.id);
                 }
@@ -822,7 +849,7 @@ private class IPM_SyncFinanceTableTLD_Test {
     The datasetup method of this test has Test.startTest() and Test.stopTest(). 
     So cant have another set of Test.startTest() and Test.stopTest().
     */  
-     static testMethod void testSyncFinanceTableTLD_When_NonkeyLocalRolloutsTLD_UpdatedToEarliest() {
+    static testMethod void testSyncFinanceTableTLD_When_NonkeyLocalRolloutsTLD_UpdatedToEarliest() {
         setupIdeasPhaseData();
         List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
 
@@ -830,23 +857,23 @@ private class IPM_SyncFinanceTableTLD_Test {
         String year11 = String.valueOf(targetLanchDate1.year());
         String year12 = String.valueOf(targetLanchDate1.year()+1);
         String year13 = String.valueOf(targetLanchDate1.year()+2);
-        User globalUser = [Select Id from User where Email =:GLOBAL_USER limit 1]; 
+        User globalUser = [Select Id from User where LastName =:'GLOBAL_PL' limit 1]; 
         System.runAs(globalUser) {
             // update rollout1 with targetLanchDate1
-            IPM_Project_Rollout__c rollout1 = [SELECT ID, Name,IPM_Project__c,External_Id__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG_LOC1 limit 1];
+            IPM_Project_Rollout__c rollout1 = [SELECT ID, Name,IPM_Project__c,External_Id__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:'TestComments1_REG_LOC1' limit 1];
             rollout1.Target_Launch_Date__c = targetLanchDate1;
             rollouts.add(rollout1);
             
             
             Date targetLanchDate2 = System.today().addYears(5);
-            IPM_Project_Rollout__c rollout2 = [SELECT ID, Name,IPM_Project__c,External_Id__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG_LOC2 limit 1];
+            IPM_Project_Rollout__c rollout2 = [SELECT ID, Name,IPM_Project__c,External_Id__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:'TestComments1_REG_LOC2' limit 1];
             // update rollout2 with targetLanchDate2
             rollout2.Target_Launch_Date__c = targetLanchDate2;
             rollouts.add(rollout2);
             update rollouts;
     
-            IPM_Project_Rollout__c reginolRollout = [SELECT ID, Name,IPM_Project__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG limit 1];
-            System.assertEquals(reginolRollout.Name,TESTPROJECT001_REG,'Rollout name must be TestProject001_REG');
+            IPM_Project_Rollout__c reginolRollout = [SELECT ID, Name,IPM_Project__c FROM IPM_Project_Rollout__c WHERE name=:'TestComments1_REG' limit 1];
+            System.assertEquals(reginolRollout.Name,'TestComments1_REG','Rollout name must be TestComments1_REG');
             List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE IPM_Project_Rollout__c=:reginolRollout.id limit 5];
             List<ID> updatedFinancialIDList = new List<ID>();
             
@@ -896,7 +923,7 @@ private class IPM_SyncFinanceTableTLD_Test {
     The datasetup method of this test has Test.startTest() and Test.stopTest(). 
     So cant have another set of Test.startTest() and Test.stopTest().
     */  
-     static testMethod void testSyncFinanceTableTLD_When_NonkeyLocalRolloutsTLD_UpdatedToLatest() {
+    static testMethod void testSyncFinanceTableTLD_When_NonkeyLocalRolloutsTLD_UpdatedToLatest() {
         setupIdeasPhaseData();
         List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
 
@@ -904,23 +931,23 @@ private class IPM_SyncFinanceTableTLD_Test {
         String year11 = String.valueOf(targetLanchDate1.year());
         String year12 = String.valueOf(targetLanchDate1.year()+1);
         String year13 = String.valueOf(targetLanchDate1.year()+2);
-        User globalUser = [Select Id from User where Email =:GLOBAL_USER limit 1]; 
+        User globalUser = [Select Id from User where LastName =:'GLOBAL_PL' limit 1]; 
         System.runAs(globalUser) {
             // update rollout1 with targetLanchDate1
-            IPM_Project_Rollout__c rollout1 = [SELECT ID, Name,IPM_Project__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG_LOC1 limit 1];
+            IPM_Project_Rollout__c rollout1 = [SELECT ID, Name,IPM_Project__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:'TestComments1_REG_LOC1' limit 1];
             rollout1.Target_Launch_Date__c = targetLanchDate1;
             rollouts.add(rollout1);
             
             
             Date targetLanchDate2 = System.today().addYears(5);
-            IPM_Project_Rollout__c rollout2 = [SELECT ID, Name,IPM_Project__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG_LOC2 limit 1];
+            IPM_Project_Rollout__c rollout2 = [SELECT ID, Name,IPM_Project__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:'TestComments1_REG_LOC2' limit 1];
             // update rollout2 with targetLanchDate2
             rollout2.Target_Launch_Date__c = targetLanchDate2;
             rollouts.add(rollout2);
             update rollouts;
             
-            IPM_Project_Rollout__c reginolRollout = [SELECT ID, Name,IPM_Project__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG limit 1];
-            System.assertEquals(reginolRollout.Name,TESTPROJECT001_REG,'Rollout name must be TestProject001_REG');
+            IPM_Project_Rollout__c reginolRollout = [SELECT ID, Name,IPM_Project__c FROM IPM_Project_Rollout__c WHERE name=:'TestComments1_REG' limit 1];
+            System.assertEquals(reginolRollout.Name,'TestComments1_REG','Rollout name must be TestComments1_REG');
             List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE IPM_Project_Rollout__c=:reginolRollout.id limit 5];
             List<ID> updatedFinancialIDList = new List<ID>();
             
@@ -965,7 +992,7 @@ private class IPM_SyncFinanceTableTLD_Test {
                 }
             }
         }
-    }
+    } 
     /*
     The datasetup method of this test has Test.startTest() and Test.stopTest(). 
     So cant have another set of Test.startTest() and Test.stopTest().
@@ -978,7 +1005,7 @@ private class IPM_SyncFinanceTableTLD_Test {
         String year11 = String.valueOf(targetLanchDate1.year());
         String year12 = String.valueOf(targetLanchDate1.year()+1);
         String year13 = String.valueOf(targetLanchDate1.year()+2);
-        User regionalUser = [Select Id from User where Email =:REGIONAL_USER limit 1]; 
+        User regionalUser = [Select Id from User where lastname =: 'REGIONAL_PL' limit 1]; 
         System.runAs(regionalUser) {
             // update rollout1 with targetLanchDate1
             IPM_Project_Rollout__c rollout1 = [SELECT ID, Name,IPM_Project__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG_LOC1 limit 1];
@@ -1046,7 +1073,7 @@ private class IPM_SyncFinanceTableTLD_Test {
     The datasetup method of this test has Test.startTest() and Test.stopTest(). 
     So cant have another set of Test.startTest() and Test.stopTest().
     */  
-     static testMethod void testSyncFinanceTableTLD_When_KeyLocalRolloutTLD_Updated_RegionalOriginal() {
+    /*static testMethod void testSyncFinanceTableTLD_When_KeyLocalRolloutTLD_Updated_RegionalOriginal() {
         setupRegionalOriginalIdeasPhaseData();
 
 
@@ -1108,7 +1135,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             }
         }     
         
-    }
+    }*/
     /*
     The datasetup method of this test has Test.startTest() and Test.stopTest(). 
     So cant have another set of Test.startTest() and Test.stopTest().
