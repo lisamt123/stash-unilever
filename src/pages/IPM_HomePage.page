@@ -130,7 +130,7 @@
                                 <div class="item active">
                                     <div class="col-sm-7 sliderImage">                        
                                         <div class="imgHolder">                       
-                                            <img alt="Market" src="{!URLFOR($Resource.IPM_Resource, 'images/christmas-market.jpg')}" />
+                                           <apex:image url="{!$Resource.IPM_HHC_Carousel}" alt="HHC Products" width="380" height="251"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
@@ -139,7 +139,7 @@
                                         </div>
                                         <div class="col-sm-12 noPadding sliderContent">
                                             <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
-                                            <p>{!$Label.IPM_INTERIN_SUPPORT_SOLUTION} </p>
+                                            <p>{!$Label.IPM_INTERIN_SUPPORT_SOLUTION} </p><br/>
                                             <div class="listItem">{!$Label.IPM_INOPLAN_USER_QUERY}</div>
                                             <div class="listItem">{!$Label.IPM_TRAINING_OR_TECHNICAL}</div>                           
                                         </div>
@@ -158,12 +158,9 @@
                                             <h5 class="contentHeader">{!$Label.IPM_PROJECT_UPDATE}</h5>
                                         </div>
                                         <div class="col-sm-12 noPadding sliderContent">
-                                            <p>{!$Label.IPM_WATCH_FOR_UPDATES_TO}</p>
-                                            <div class="listItem">{!$Label.IPM_PDL_FOR_PC}</div>
-                                            <div class="listItem">{!$Label.IPM_POP_UP_AND_EMAIL}</div>
-                                            <div class="listItem">{!$Label.IPM_BD_BB_MISALLIGNMENT_VISIBILITY}</div>
-                                            <div class="listItem">{!$Label.IPM_BB_MILESTONE_DATES}</div>
-                                            <div class="listItem">{!$Label.IPM_GATEKEEPER_CHECKLIST_QUESTIONS}</div>
+                                            <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
+                                            <p>{!$Label.IPM_WATCH_FOR_UPDATES_TO}</p><br />
+                                            <p class="listItem">{!$Label.IPM_PDL_FOR_PC}</p>
                                         </div>
                                         <div class="col-sm-12 noPadding"><a tabindex="0" class="moreLink">More>></a><a tabindex="0" class="lessLink">Less</a></div>
                                     </div>
