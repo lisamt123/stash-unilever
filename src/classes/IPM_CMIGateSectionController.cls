@@ -23,21 +23,19 @@ public with sharing Class IPM_CMIGateSectionController{
     public set<String> countryNames{get; set;}
     public Map<String,Integer> inputCount{get; set;}
     @TestVisible private String gateDocument;
-    public transient List<IPM_Country__c> countryList; //List od Countries
+    public transient List<IPM_Country__c> countryList; //List of Countries
     public map<String,String> mapCountryNameWithCode {get;set;}
-    private static string CLASS_NAME=IPM_CMIGateSectionController.class.getName();
+    public static final string CLASS_NAME=IPM_CMIGateSectionController.class.getName();
+    public Static final String SHOW_TABLE_DATA = 'showTableData';
+    public Static final String GET_CMI_DATA = 'getCMIData';
     /**********************************************************************************************************************************
     @description For Showing Gate CMI Data Values in Table
     **********************************************************************************************************************************/
     public void showTableData(){
         //Initializing Lists
         gateTypes=new List<String>();  
-        gateCMIList=new List<IPM_Gate_CMI__c>();
-        secConList=new List<IPM_Project_Document_Section_Content__c>();
         contentCount=new Map<Id,Integer>();
-        displayCon=new Map<String,IPM_Project_Document_Section_Content__c>(); 
         inputCount=new Map<String,Integer>();
-        countryNames=new set<String>();
         gateDocument=IPM_ConstantUtils.BLANK;
         try{
             if(gateType==IPM_ConstantUtils.CHARTER_GATE){
@@ -61,7 +59,27 @@ public with sharing Class IPM_CMIGateSectionController{
             for(IPM_Gate_CMI_KPI_Inputs__c kpi:IPM_Gate_CMI_KPI_Inputs__c.getall().values()){
                 inputCount.put(kpi.IPM_Test__c,(Integer)kpi.IPM_Input_Size__c);
             }
+            getCMIData();
+        }
+        catch(Exception ex){
             
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));  
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                SHOW_TABLE_DATA,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);                
+        }
+    }
+    /**********************************************************************************************************************************
+    @description For Getting Project and CMI Data
+    **********************************************************************************************************************************/
+    public void getCMIData(){
+        try{
+            //Initializing Lists
+            gateCMIList=new List<IPM_Gate_CMI__c>();
+            secConList=new List<IPM_Project_Document_Section_Content__c>();
+            displayCon=new Map<String,IPM_Project_Document_Section_Content__c>(); 
+            countryNames=new set<String>();
+            countryList=new List<IPM_Country__c>();
+            mapCountryNameWithCode=new map<String,String>();
             //Getting Project
             project=[SELECT Id,IPM_Parent_Project__c FROM IPM_Project__c WHERE Id=:projectId];  
             if(gateType==IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE){
@@ -99,23 +117,20 @@ public with sharing Class IPM_CMIGateSectionController{
                 }
                 contentCount.put(cmi.Id,count);
             }
-            countryList=new List<IPM_Country__c>();
+            
             countryList=[SELECT Id,Country_Name__c,Country_Code__c,IPM_Project__c,IPM_Regional_Project__c FROM IPM_Country__c
                          WHERE IPM_Project__c=:project.Id OR IPM_Regional_Project__c=:project.Id OR IPM_Local_Project__c=:project.Id];  
-            mapCountryNameWithCode=new map<String,String>();
+            
             if(countryList != null && !countryList.isEmpty()){
                 for(IPM_Country__c c:countryList){
                     mapCountryNameWithCode.put(c.Country_Code__c,c.Country_Name__c);
                 }
-            }                                   
+            }
         }
         catch(Exception ex){
-            
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));  
-             
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-                'showTableData',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);                
+                GET_CMI_DATA,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);                
         }
-                       
     }
 }
