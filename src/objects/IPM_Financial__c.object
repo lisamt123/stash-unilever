@@ -4639,7 +4639,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <listViews>
         <fullName>IPM_a7IE00000004Ui8_IPM_Financial</fullName>
         <filterScope>Queue</filterScope>
-        <label>IPM_a7IE00000004Ui8</label>
+        <label>IPM_LORNA</label>
         <queue>IPM_a7IE00000004Ui8</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -4956,6 +4956,24 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <filterScope>Queue</filterScope>
         <label>IPM_JUICE UNICA_N&amp;R</label>
         <queue>IPM_a7IE00000004f1T</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004f2H_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004f2H</label>
+        <queue>IPM_a7IE00000004f2H</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004fHp_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004fHp</label>
+        <queue>IPM_a7IE00000004fHp</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
