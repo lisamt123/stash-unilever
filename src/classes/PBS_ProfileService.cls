@@ -110,6 +110,7 @@ public with sharing class PBS_ProfileService
 
                 if (toAdd != null && !toAdd.isEmpty()) {
                     insert toAdd;
+                       
                 }
                 if (toRemove != null && !toRemove.isEmpty()) {
                     delete toRemove;
@@ -163,6 +164,9 @@ public with sharing class PBS_ProfileService
          */
         public List<Almond__Training_Track__Share> getNewSharingForProfile(PBS_Profile__c profileObject) {
             // find profile for specific set of data
+            
+             
+              
             List<Almond__Training_Track__c> trackList = [
                 SELECT
                     Id
@@ -191,7 +195,7 @@ public with sharing class PBS_ProfileService
                     );
                 }
             }
-
+            
             return result;
         }
 
