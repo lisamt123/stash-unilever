@@ -4,7 +4,7 @@
 * @description  This class is used to test the functionality of IPM_FinancialController class 
 */
 @isTest 
-public class IPM_FinancialController_Test {
+public class IPM_FinancialController_Test { 
     
     private static final string SELCTED_CURRENCY_EUR = 'EUR';
     private static final string SELCTED_CURRENCY_GBP = 'GBP';
