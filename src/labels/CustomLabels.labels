@@ -7656,13 +7656,6 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>years</value>
     </labels>
     <labels>
-        <fullName>IPM_Finacial_Data_Missing</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Finacial key data missing message</shortDescription>
-        <value>Key Financial Data is missing. Please update your business case.</value>
-    </labels>
-    <labels>
         <fullName>IPM_Final_Stategic_Intent</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9069,13 +9062,6 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <protected>false</protected>
         <shortDescription>IPM_Milestone_DueDate_Validation</shortDescription>
         <value>The due date for this milestone must be after the due date for the previous gate&apos;s milestone.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_Milestone_Due_Date</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Postponed Past Date Validation</shortDescription>
-        <value>You cannot postpone your project to a date which is before your previous gate due date. If you would like to do this, please revise your project plan first and then postpone the project.</value>
     </labels>
     <labels>
         <fullName>IPM_Milestone_Due_Date_Error</fullName>
@@ -12508,6 +12494,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Upload will start as soon as the file is selected, please wait to be redirected to the results after this</value>
     </labels>
     <labels>
+        <fullName>IPM_Unsaved_Alert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Unsaved_Alert</shortDescription>
+        <value>You are trying to reload or leave this page without saving your work. Please save before continuing. Unsaved information will be lost. Select Stay on this page/Do not Reload to return and save your data, or select Leave this page/Reload this page (and lose your work) to continue.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Upcoming</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -15579,13 +15572,6 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_FunctionalRoleErrorMsg</shortDescription>
         <value>Enter Functional Role.</value>
-    </labels>
-    <labels>
-        <fullName>IPM_PostponeDate_Required</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_PostponeDate_Required</shortDescription>
-        <value>Postpone On Date cannot be blank.</value>
     </labels>
     <labels>
         <fullName>IPM_Milestone_Due_Date</fullName>
