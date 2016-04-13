@@ -284,19 +284,27 @@ private with sharing class IPM_ProjectHelper_Test
      public static testmethod void testEcodesignSyncStatus()
      {
         List<User> users = [Select Id,Email from User where LastName = 'GLOBAL_PL' limit 1];        
+        
+        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
+        
         User globalUser = null;
         globalUser = users[0];
+        
+        IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
         // Create Regional Projects.
         System.runAs(globalUser)
         {
             Test.startTest();
-            IPM_Project__c proj = [Select Id,EcoDesign_Sync_Status__c,Fetch_Timestamp_Mulesoft__c,Success_TimeStamp_EcoDesign__c,
+            IPM_Project__c proj = [Select Id,EcoDesign_Sync_Status__c,IPM_GateKeeping_Model__c,Fetch_Timestamp_Mulesoft__c,Success_TimeStamp_EcoDesign__c,
                                     BET_Update__c,BET_Link_Requested__c,BET_Link_Requested_on_Date__c,IPM_SourceProjectType__c,IPM_Project_Type__c,
-                                    IPM_Answer_of_Q1__c from IPM_Project__c limit 1000][0];
+                                    IPM_Answer_of_Q1__c from IPM_Project__c where Name in:projectNameSet  limit 1000][0];
+            proj.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
             proj.EcoDesign_Sync_Status__c = 'Ready';
             update proj;
+			
             List<IPM_Project__c> readyprojList = [Select id from IPM_Project__c where EcoDesign_Sync_Status__c = 'Ready' limit 100];
             System.assert(readyprojList.size() > 0, 'Project status changed to Ready');
+			
             //The status is changes to Success by Mulesoft. When Mulesoft changes the sync status from ready to success then , the status should again be revereted back to Ready
             //This ensures that the project is still ready for sync, even after the previous sync was successful.
             proj.EcoDesign_Sync_Status__c = 'Success';
@@ -305,12 +313,14 @@ private with sharing class IPM_ProjectHelper_Test
             System.assertEquals('Ready',projSyncSuccess.EcoDesign_Sync_Status__c,'Project status not changed to Ready');
             proj.EcoDesign_Sync_Status__c = 'Error';
             update proj;
+			
             //The status is changes to Error by Mulesoft. When mulesoft changes the sync status from ready to Error then , the status should again be revereted back to Ready
             //This ensures that the project is still ready for sync, even after the previous sync failed.
             IPM_Project__c projSyncError = [Select Id,EcoDesign_Sync_Status__c,Fetch_Timestamp_Mulesoft__c,Success_TimeStamp_EcoDesign__c from IPM_Project__c Where Id =:proj.id limit 1000][0];
             System.assertEquals('Ready',projSyncError.EcoDesign_Sync_Status__c,'Project status not changed to Ready');
             proj.EcoDesign_Sync_Status__c = 'In Progress';
             update proj;
+			
             //The status is changes to In Prohress by Mulesoft. When Mulesoft changes the status from Ready to In-Progress , this means that the project was fetched for syncing to Eco-design,
             //So project status should change to In Progress successfully
             IPM_Project__c projSyncInProgress = [Select Id,EcoDesign_Sync_Status__c,Fetch_Timestamp_Mulesoft__c,Success_TimeStamp_EcoDesign__c from IPM_Project__c Where Id =:proj.id limit 1000][0];
