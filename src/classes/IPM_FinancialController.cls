@@ -2642,28 +2642,39 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isCopyfromSTDBC=false;
         isTDLAcceptNBC_Confirm=false;
         tldAcceptedBCConfirmed=Label.Accept_from_Regional+IPM_ConstantUtils.IPM_SPACE +label.IPM_and_Confirm;
-        if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(project.IPM_Project_Type__c) ){
-            if((IPM_ConstantUtils.PHASE_FEASIBILITY.equals(project.IPM_Phase__c) && currentFinancial.IPM_Business_Case_Confirmed__c) ||
-            (IPM_ConstantUtils.PHASE_CAPABILITY.equals(project.IPM_Phase__c) && currentFinancial.Is_BC_Confirmed_Capability__c)){
-                if(currentFinancial.Misaligned__c){
-                    financialAcceptFrom=label.IPM_ACCEPT_REGIONAL_BC+ IPM_ConstantUtils.IPM_SPACE + label.IPM_and_Confirm;
-                }
-                if(isTargetLaunchDateMisaligned){
-                    isTDLAcceptNBC_Confirm=true;
-               
-                }
-                isLocalProjectAccept=true;
-            }
-            
+        if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(project.IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(project.IPM_Project_Type__c) &&
+        ((IPM_ConstantUtils.PHASE_FEASIBILITY.equals(project.IPM_Phase__c) && currentFinancial.IPM_Business_Case_Confirmed__c) ||
+        (IPM_ConstantUtils.PHASE_CAPABILITY.equals(project.IPM_Phase__c) && currentFinancial.Is_BC_Confirmed_Capability__c)))
+        {
+          if(currentFinancial.Misaligned__c)
+          { 
+              financialAcceptFrom=label.IPM_ACCEPT_REGIONAL_BC+ IPM_ConstantUtils.IPM_SPACE + label.IPM_and_Confirm;
+          }
+          if(isTargetLaunchDateMisaligned)
+          {
+            isTDLAcceptNBC_Confirm=true;
+           
+          }
+          isLocalProjectAccept=true;
         }
-        if(isEditable && !IPM_ConstantUtils.PHASE_PLE.equals(project.IPM_Phase__c) && !IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c)&& !isLocalProjectAccept){
+        updateEditableFlags(isLocalProjectAccept);
+    }
+    
+    private void updateEditableFlags(Boolean isLocalProjectAccept)
+    {
+        if(isEditable && !IPM_ConstantUtils.PHASE_PLE.equals(project.IPM_Phase__c) && !IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c)&& !isLocalProjectAccept)
+        {
             toShowEditButton=true;      
         }
-        if(isEditable && !IPM_ConstantUtils.PHASE_PLE.equals(project.IPM_Phase__c) && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c)){
+        
+        if(isEditable && !IPM_ConstantUtils.PHASE_PLE.equals(project.IPM_Phase__c) && IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL.equals(project.IPM_Project_Type__c))
+        {
             toShowEditOpern=true;       
         }
-        if((toShowEditOpern||toShowEditButton) && !isEditMode){
+        
+        if((toShowEditOpern||toShowEditButton) && !isEditMode)
+        {
             isCopyfromSTDBC=true;   
         }
-      }
+    } 
 }
