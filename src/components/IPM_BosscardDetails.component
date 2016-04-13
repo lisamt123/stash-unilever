@@ -8,6 +8,7 @@
 -->
 <apex:component controller="IPM_ProjectDetails" > 
 <apex:attribute name="ProName" type="String" assignTo="{!ProjectName}" description="To get project name"/>
+<apex:attribute assignTo="{!isBosspresent}" name="isBosscard" type="Boolean" description="{!$Label.IPM_BosscardFunnel_Description}"/>
     <div class="ipmProjectDetails">
         <div class="panel">
             <div class="panel-body">
@@ -17,7 +18,7 @@
                     </div>
                 </div>    
                 <div class="col-sm-7">                                
-                    <c:IPM_BosscardFunnel />
+                    <c:IPM_BosscardFunnel isBosscard="{!isBosspresent}" />
                 </div>
             </div>                             
         </div>

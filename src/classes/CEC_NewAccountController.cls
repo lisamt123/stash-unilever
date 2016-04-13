@@ -119,7 +119,7 @@ global with sharing class CEC_NewAccountController{
                             accountIds.add(accId);
                         }
                     }        
-                    for (Account consumer : [Select Salutation, Name, Phone, FirstName, LastName, IsPersonAccount,PersonEmail, PersonMailingStreet, PersonMailingCity, PersonMailingPostalCode, PersonMailingState, PersonMailingCountry, Latest_Case_Number__c, Latest_Case_Reason_Code__c,Latest_Case_Product_Code__c,Phone_No_Special_Char__c From Account Where Id In : accountIds]) {
+                    for (Account consumer : [Select Salutation, Name, Phone, FirstName, LastName, IsPersonAccount,PersonEmail, PersonMailingStreet, PersonMailingCity, PersonMailingPostalCode, PersonMailingState, PersonMailingCountry, Latest_Case_Number__c, Latest_Case_Reason_Code__c,Latest_Case_Product_Code__c,Phone_No_Special_Char__c,Consumer_Note__c,VIP__c  From Account Where Id In : accountIds]) {
                         duplicateConsumers.put(consumer.Id, new ConsumerWrapper(consumer)); 
                     }
                     List<ConsumerWrapper> unOrderedConsumerList = duplicateConsumers.values(); 

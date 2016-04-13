@@ -205,7 +205,7 @@ Returns:
             if(permissionSetName == Label.Amr_CAP){
 
                 jobAlloc = [Select id,User__r.Name, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId limit 1];
-                        listOfUserToDisplay = [Select User__r.Name,Id from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
+                        listOfUserToDisplay = [Select User__r.Name,Job_Status__c,Id from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId];
                            
                                         
             }

@@ -14,6 +14,7 @@
     <apex:actionFunction status="Loading" name="updateInfoLogo" action="{!updateInfo}" reRender="">
         <apex:param name="chInfo" assignTo="{!channelInfo}" value=""/>
     </apex:actionFunction>
+    <!-- Render condition for displaying read only or editable customer channel shopper missions -->
     <apex:outputPanel rendered="{!isEditable}">
         <div class="listContainer">
             <div class="row noMargin">
@@ -54,6 +55,7 @@
         </div>   
     </apex:outputPanel>  
     <apex:actionStatus startText="" id="Loading" startStyleClass="cust-overlay"/> 
+    <!-- Render condition for displaying read only or editable customer channel sections -->
     <apex:outputPanel rendered="{!isEditable}">
         <div class="ccContainer">
             
@@ -82,6 +84,7 @@
                                 <div class="col-xs-10 customerstaticLabel">{!c}</div>
                                 
                             </apex:dataList>
+                            <!-- Condition for checking editable -->
                             <apex:outputPanel rendered="{!isEditable}" >
                                 <li class="filterActionscc">
                                     <div class="ipmButtonGroup noPadleft noPadright col-xs-6 pull-left">
@@ -111,7 +114,9 @@
     </apex:actionFunction>
     
     <apex:outputPanel id="showChannel">
+    	<!-- Condition for checking editable -->
         <apex:outputPanel rendered="{!isEditable}">
+        	<!-- Condition for displaying channels -->
             <apex:outputPanel rendered="{!show}">
                 <apex:repeat value="{!secConList}" var="con">
                     <div class="channelContainer channelContainersmall"> 
@@ -123,21 +128,25 @@
                                     </span>
                                     <span class="priorityNumber">
                                         {!$Label.IPM_Customer_Channel_Priority} {!con.IPM_Customer_Channel_Priority__c}
+                                        <!-- Condition for displaying priority arrow -->
                                         <apex:outputPanel rendered="{!AND(channelCount!=1,con.IPM_Customer_Channel_Priority__c=1)}">
                                             <a class="greyArrow dArrow" onclick="updatePriorityScript('{!con.Id}','down',{!con.IPM_Customer_Channel_Priority__c}+1)" ></a>
                                         </apex:outputPanel>
+                                        <!-- Condition for displaying priority arrow -->
                                         <apex:outputPanel rendered="{!AND(channelCount=3,con.IPM_Customer_Channel_Priority__c=2)}">
                                             <a class="greyArrow dArrow" onclick="updatePriority('{!con.Id}','down',{!con.IPM_Customer_Channel_Priority__c}+1)" ></a>
                                             <a class="greyArrow upArrow" onclick="updatePriority('{!con.Id}','up',{!con.IPM_Customer_Channel_Priority__c}-1)" ></a>
                                         </apex:outputPanel>
+                                        <!-- Condition for displaying priority arrow -->
                                         <apex:outputPanel rendered="{!OR(AND(channelCount=2,con.IPM_Customer_Channel_Priority__c=2),AND(channelCount=3,con.IPM_Customer_Channel_Priority__c=3))}">
                                             <a class="greyArrow upArrow" onclick="updatePriority('{!con.Id}','up',{!con.IPM_Customer_Channel_Priority__c}-1)" ></a>
                                         </apex:outputPanel>
                                     </span>
                                 </div>
+                                <!-- Condition for displaying delete button -->
                                 <apex:outputPanel rendered="{!isEditable}">
                                     <div class="col-sm-2 SecButtonSet noPadright pull-right noMtop">
-                                        <a class="icoButton delete deleteChannel" title="Remove Customer Channel" onclick="deletecc('{!con.Id}');"></a>
+                                        <a class="icoButton delete deleteChannel" title="{!$Label.IPM_Remove_Customer_Channel}" onclick="deletecc('{!con.Id}');"></a>
                                     </div>
                                 </apex:outputPanel>
                             </div>
@@ -151,47 +160,61 @@
                             
                             <div class="col-sm-12 noPadleft noPadright custImageContainer custImageContainerMbt clearfix">
                                 <div class="pull-left frstImage marginRL">
+                                	<!-- Condition for editable -->
                                     <apex:outputPanel rendered="{!isEditable}">                                                                                       
+                                    		<!-- For displaying image with hyperlink -->                                                                                   
                                             <apex:outputPanel layout="block" styleClass="uploadImage imgPointer" rendered="{!con.IPM_Preposition_Image_1_Id__c=null}">
                                                 <div title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!con.Id}&desc=p1" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                     <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage"  title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                                 </div> 
                                             </apex:outputPanel>
+                                            <!-- For displaying image with hyperlink -->
                                             <apex:outputPanel layout="block" styleClass="uploadImage" rendered="{!con.IPM_Preposition_Image_1_Id__c!=null}">
                                                 <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Preposition_Image_1_Id__c}" styleClass="ipmImage"   title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                                 <c:IPM_Image_Hover component="{!$Label.IPM_Customer_Channel}"  imageHover="true" channelType="p1" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!con.Id}" imageId="{!con.IPM_Preposition_Image_1_Id__c}"></c:IPM_Image_Hover>
                                            </apex:outputPanel> 
                                     </apex:outputPanel>  
+                                    <!-- Condition for readonly -->
                                     <apex:outputPanel rendered="{!!isEditable}">
                                         <div  class="uploadImage"  >
+                                        	<!-- For displaying place holder image -->   
                                             <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage" rendered="{!IF(AND(con.IPM_Preposition_Image_1_Id__c==null, gdpage==false),'true','false')}"/>        
+                                            <!-- For displaying image -->
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Preposition_Image_1_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Preposition_Image_1_Id__c!=null}"/> 
                                                 
                                         </div>
                                     </apex:outputPanel>
                                 </div>
                                 <div class="pull-left secImage marginRL">  
+                                	<!-- Condition for editable -->
                                     <apex:outputPanel rendered="{!isEditable}">
+                                    	<!-- For displaying image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage imgPointer" rendered="{!con.IPM_Preposition_Image_2_Id__c==null}">
                                             <div title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!con.Id}&desc=p2" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage"  title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />                                        
                                             </div>
                                         </apex:outputPanel>
+                                        <!-- For displaying image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage" rendered="{!con.IPM_Preposition_Image_2_Id__c!=null}">
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Preposition_Image_2_Id__c}" styleClass="ipmImage"   title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             <c:IPM_Image_Hover component="{!$Label.IPM_Customer_Channel}"  imageHover="true" channelType="p2" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!con.Id}" imageId="{!con.IPM_Preposition_Image_2_Id__c}" ></c:IPM_Image_Hover>
                                        </apex:outputPanel> 
                                     </apex:outputPanel>  
+                                     <!-- Condition for readonly -->
                                     <apex:outputPanel rendered="{!!isEditable}">
                                         <div class="uploadImage"  >
+                                        	<!-- For displaying place holder image --> 
                                             <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage" rendered="{!IF(AND(con.IPM_Preposition_Image_2_Id__c==null, gdpage==false),'true','false')}"/>        
+                                             <!-- For displaying image -->
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Preposition_Image_2_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Preposition_Image_2_Id__c!=null}"/>       
                                         </div>
                                     </apex:outputPanel>
                                 </div>  
                             </div>
                             <div class="col-sm-12 commentBox commentBoxsmall">     
+                            	<!-- For displaying comments input -->  
                                 <apex:inputField value="{!con.IPM_Preposition__c}" onchange="update('{!con.Id}',this.value,'prepos');"  html-placeholder="Enter your comment here" rendered="{!isEditable}"/>
+                               	<!-- For displaying comments readonly -->
                                 <apex:outputField value="{!con.IPM_Preposition__c}" html-placeholder="Enter your comment here" rendered="{!!isEditable}"/>
                             </div>
                             <!---------------------------------------------------------Promotion--------------------------------------------------------->  
@@ -203,46 +226,60 @@
                             </div>
                             <div class="col-sm-12 noPadleft noPadright custImageContainer custImageContainerMbt clearfix">
                                 <div class="pull-left frstImage marginRL">
+                                	<!-- Condition for editable -->
                                     <apex:outputPanel rendered="{!isEditable}">
+                                    	<!-- For displaying image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage imgPointer" rendered="{!con.IPM_Promotion_Image_1_Id__c==null}">
                                             <div title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!con.Id}&desc=p3" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage"  title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             </div>
                                         </apex:outputPanel>
+                                        <!-- For displaying image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage" rendered="{!con.IPM_Promotion_Image_1_Id__c!=null}">
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Promotion_Image_1_Id__c}" styleClass="ipmImage"   title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             <c:IPM_Image_Hover component="{!$Label.IPM_Customer_Channel}"  imageHover="true" channelType="p3" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!con.Id}" imageId="{!con.IPM_Promotion_Image_1_Id__c}" ></c:IPM_Image_Hover>
                                        </apex:outputPanel> 
                                     </apex:outputPanel>  
+                                    <!-- Condition for readonly --> 
                                     <apex:outputPanel rendered="{!!isEditable}">
                                         <div  class="uploadImage"  >
+                                        	<!-- For displaying place holder image --> 
                                             <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage" rendered="{!IF(AND(con.IPM_Promotion_Image_1_Id__c==null, gdpage==false),'true','false')}"/>        
+                                            <!-- For displaying image --> 
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Promotion_Image_1_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Promotion_Image_1_Id__c!=null}"/>     
                                         </div>
                                     </apex:outputPanel>
                                 </div> 
                                 <div class="pull-left secImage marginRL">  
+                                <!-- Condition for readonly --> 
                                     <apex:outputPanel rendered="{!isEditable}">
+                                    	<!-- For displaying image --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage imgPointer" rendered="{!con.IPM_Promotion_Image_2_Id__c==null}">
                                             <div title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!con.Id}&desc=p4" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">    
                                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage"  title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />   
                                             </div>
                                         </apex:outputPanel>
+                                        <!-- For displaying image --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage" rendered="{!con.IPM_Promotion_Image_2_Id__c!=null}">
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Promotion_Image_2_Id__c}" styleClass="ipmImage"   title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             <c:IPM_Image_Hover component="{!$Label.IPM_Customer_Channel}"  imageHover="true" channelType="p4" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!con.Id}" imageId="{!con.IPM_Promotion_Image_2_Id__c}" ></c:IPM_Image_Hover>
                                        </apex:outputPanel> 
                                     </apex:outputPanel>  
+                                    <!-- Condition for readonly --> 
                                     <apex:outputPanel rendered="{!!isEditable}">
                                         <div  class="uploadImage"  >
+                                        	<!-- For displaying place holder image --> 
                                             <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage" rendered="{!IF(AND(con.IPM_Promotion_Image_2_Id__c==null, gdpage==false),'true','false')}"/>        
+                                            <!-- For displaying image --> 
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Promotion_Image_2_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Promotion_Image_2_Id__c!=null}"/>     
                                         </div>
                                     </apex:outputPanel>
                                 </div>  
                             </div>
                             <div class="col-sm-12 commentBox commentBoxsmall"> 
+                            	<!-- For displaying input comments --> 
                                 <apex:inputField value="{!con.IPM_Promotion__c}" onchange="update('{!con.Id}',this.value,'promo');" html-placeholder="Enter your comment here" rendered="{!isEditable}"/>
+                                <!-- For dispalying comments readonly -->
                                 <apex:outputField value="{!con.IPM_Promotion__c}" html-placeholder="Enter your comment here" rendered="{!!isEditable}"/>
                             </div>
                             <!---------------------------------------------------------Product--------------------------------------------------------->    
@@ -255,46 +292,60 @@
                             
                             <div class="col-sm-12 noPadleft noPadright custImageContainer custImageContainerMbt clearfix">
                                 <div class="pull-left frstImage marginRL">
+                                	<!-- Condition for editable -->
                                     <apex:outputPanel rendered="{!isEditable}">
+                                    	 <!-- For displaying image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage imgPointer" rendered="{!con.IPM_Product_Image_1_Id__c==null}">
                                             <div title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!con.Id}&desc=p5" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage"  title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             </div>
                                         </apex:outputPanel>
+                                         <!-- For displaying image --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage" rendered="{!con.IPM_Product_Image_1_Id__c!=null}">
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Product_Image_1_Id__c}" styleClass="ipmImage"   title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             <c:IPM_Image_Hover component="{!$Label.IPM_Customer_Channel}"  imageHover="true" channelType="p5" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!con.Id}" imageId="{!con.IPM_Product_Image_1_Id__c}" ></c:IPM_Image_Hover>
                                        </apex:outputPanel>
                                     </apex:outputPanel>  
+                                    <!-- Condition for read only -->
                                     <apex:outputPanel rendered="{!!isEditable}">
                                         <div  class="uploadImage"  >
+                                        	<!-- For displaying place holder image --> 
                                             <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage" rendered="{!IF(AND(con.IPM_Product_Image_1_Id__c==null, gdpage==false),'true','false')}"/>        
+                                            <!-- For displaying image --> 
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Product_Image_1_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Product_Image_1_Id__c!=null}"/>
                                         </div>
                                     </apex:outputPanel>
                                 </div>
                                 <div class="pull-left secImage marginRL">  
+                                	<!-- Condition for editable -->
                                     <apex:outputPanel rendered="{!isEditable}">
+                                    	 <!-- For displaying place holder image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage imgPointer" rendered="{!con.IPM_Product_Image_2_Id__c==null}">
                                             <div title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!con.Id}&desc=p6" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage"  title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             </div>
                                         </apex:outputPanel>
+                                        <!-- For displaying image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage" rendered="{!con.IPM_Product_Image_2_Id__c!=null}">
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Product_Image_2_Id__c}" styleClass="ipmImage"   title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             <c:IPM_Image_Hover component="{!$Label.IPM_Customer_Channel}"  imageHover="true" channelType="p6" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!con.Id}" imageId="{!con.IPM_Product_Image_2_Id__c}" ></c:IPM_Image_Hover>
                                        </apex:outputPanel>
                                     </apex:outputPanel>  
+                                    <!-- Condition for read only -->
                                     <apex:outputPanel rendered="{!!isEditable}">
                                         <div  class="uploadImage"  >
+                                        	<!-- For displaying place holder image-->
                                             <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage" rendered="{!IF(AND(con.IPM_Product_Image_2_Id__c==null, gdpage==false),'true','false')}"/>        
+                                            <!-- For displaying image-->
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Product_Image_2_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Product_Image_2_Id__c!=null}"/> 
                                         </div>
                                     </apex:outputPanel>
                                 </div>  
                             </div>
                             <div class="col-sm-12 commentBox commentBoxsmall">     
+                            	<!-- For displaying input comments -->   
                                 <apex:inputField value="{!con.IPM_Product__c}" onchange="update('{!con.Id}',this.value,'product');" html-placeholder="Enter your comment here" rendered="{!isEditable}"/>
+                                <!-- For displaying comments read only -->
                                 <apex:outputField value="{!con.IPM_Product__c}" html-placeholder="Enter your comment here" rendered="{!!isEditable}"/>
                             </div>
                             <!---------------------------------------------------------Pack--------------------------------------------------------->  
@@ -307,46 +358,60 @@
                             
                             <div class="col-sm-12 noPadleft noPadright custImageContainer custImageContainerMbt clearfix">
                                 <div class="pull-left frstImage marginRL">
+                                <!-- Condition for editable -->
                                     <apex:outputPanel rendered="{!isEditable}">
+                                    	<!-- For displaying place holder image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage imgPointer" rendered="{!con.IPM_Pack_Image_1_Id__c==null}">
                                             <div title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!con.Id}&desc=p7" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage"  title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             </div>
                                         </apex:outputPanel>
+                                        <!-- For displaying image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage" rendered="{!con.IPM_Pack_Image_1_Id__c!=null}">
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Pack_Image_1_Id__c}" styleClass="ipmImage"   title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             <c:IPM_Image_Hover component="{!$Label.IPM_Customer_Channel}"  imageHover="true" channelType="p7" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!con.Id}" imageId="{!con.IPM_Pack_Image_1_Id__c}" ></c:IPM_Image_Hover>
                                        </apex:outputPanel>
                                     </apex:outputPanel>  
+                                     <!-- Condition for read only --> 
                                     <apex:outputPanel rendered="{!!isEditable}">
                                         <div  class="uploadImage"  >
+                                        	<!-- For displaying place holder image --> 
                                             <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage" rendered="{!IF(AND(con.IPM_Pack_Image_1_Id__c==null, gdpage==false),'true','false')}"/>        
+                                            <!-- For displaying image --> 
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Pack_Image_1_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Pack_Image_1_Id__c!=null}"/>     
                                         </div>
                                     </apex:outputPanel>
                                 </div>
                                 <div class="pull-left secImage marginRL">  
+                                	<!-- Condition for editable -->
                                     <apex:outputPanel rendered="{!isEditable}">
+                                    	<!-- For displaying place holder image with hyperlink -->
                                         <apex:outputPanel layout="block" styleClass="uploadImage imgPointer" rendered="{!con.IPM_Pack_Image_2_Id__c==null}">
                                             <div title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!con.Id}&desc=p8" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage"  title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             </div>
                                         </apex:outputPanel>
+                                        <!-- For displaying image with hyperlink -->
                                         <apex:outputPanel layout="block" styleClass="uploadImage" rendered="{!con.IPM_Pack_Image_2_Id__c!=null}">
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Pack_Image_2_Id__c}" styleClass="ipmImage"   title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             <c:IPM_Image_Hover component="{!$Label.IPM_Customer_Channel}"  imageHover="true" channelType="p8" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!con.Id}" imageId="{!con.IPM_Pack_Image_2_Id__c}" ></c:IPM_Image_Hover>
                                        </apex:outputPanel>
                                     </apex:outputPanel>
+                                    <!-- Condition for read only -->
                                     <apex:outputPanel rendered="{!!isEditable}">
                                         <div  class="uploadImage"  >
+                                        	<!-- For displaying place holder image-->
                                             <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage" rendered="{!IF(AND(con.IPM_Pack_Image_2_Id__c==null, gdpage==false),'true','false')}"/>        
+                                            <!-- For displaying image-->
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Pack_Image_2_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Pack_Image_2_Id__c!=null}"/>     
                                         </div>
                                     </apex:outputPanel>
                                 </div>  
                             </div>
                             <div class="col-sm-12 commentBox commentBoxsmall">     
+                                <!-- For displaying input comments -->   
                                 <apex:inputField value="{!con.IPM_Pack__c}" onchange="update('{!con.Id}',this.value,'pack');" html-placeholder="Enter your comment here" rendered="{!isEditable}"/>
+                                <!-- For displaying comments read only -->   
                                 <apex:outputField value="{!con.IPM_Pack__c}" html-placeholder="Enter your comment here" rendered="{!!isEditable}"/>
                             </div> 
                             <!---------------------------------------------------------Price--------------------------------------------------------->  
@@ -359,46 +424,60 @@
                             
                             <div class="col-sm-12 noPadleft noPadright custImageContainer custImageContainerMbt clearfix">
                                 <div class="pull-left frstImage marginRL">
+                                	<!-- Condition for editable -->
                                     <apex:outputPanel rendered="{!isEditable}">
+                                    	<!-- For displaying place holder image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage imgPointer" rendered="{!con.IPM_Price_Image_1_Id__c==null}">
                                             <div title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!con.Id}&desc=p9" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage"  title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             </div>
                                         </apex:outputPanel>
+                                         <!-- For displaying image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage" rendered="{!con.IPM_Price_Image_1_Id__c!=null}">
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Price_Image_1_Id__c}" styleClass="ipmImage"   title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             <c:IPM_Image_Hover component="{!$Label.IPM_Customer_Channel}"  imageHover="true" channelType="p9" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!con.Id}" imageId="{!con.IPM_Price_Image_1_Id__c}" ></c:IPM_Image_Hover>
                                        </apex:outputPanel>
                                     </apex:outputPanel>  
+                                     <!-- Condition for read only --> 
                                     <apex:outputPanel rendered="{!!isEditable}">
                                         <div  class="uploadImage"  >
+                                        	<!-- For displaying place holder image --> 
                                             <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage" rendered="{!IF(AND(con.IPM_Price_Image_1_Id__c==null, gdpage==false),'true','false')}"/>        
+                                            <!-- For displaying image --> 
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Price_Image_1_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Price_Image_1_Id__c!=null}"/>     
                                         </div>
                                     </apex:outputPanel>
                                 </div>
                                 <div class="pull-left secImage marginRL">  
+                                	<!-- Condition for editable -->
                                     <apex:outputPanel rendered="{!isEditable}">
+                                    	<!-- For displaying place holder image with hyperlink -->
                                         <apex:outputPanel layout="block" styleClass="uploadImage imgPointer" rendered="{!con.IPM_Price_Image_2_Id__c==null}">
                                             <div title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!con.Id}&desc=p10" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage"  title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             </div>
                                         </apex:outputPanel>
+                                        <!-- For displaying image with hyperlink -->
                                         <apex:outputPanel layout="block" styleClass="uploadImage" rendered="{!con.IPM_Price_Image_2_Id__c!=null}">
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Price_Image_2_Id__c}" styleClass="ipmImage"   title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             <c:IPM_Image_Hover component="{!$Label.IPM_Customer_Channel}"  imageHover="true" channelType="p10" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!con.Id}" imageId="{!con.IPM_Price_Image_2_Id__c}" ></c:IPM_Image_Hover>
                                        </apex:outputPanel>
                                     </apex:outputPanel>  
+                                    <!-- Condition for read only -->
                                     <apex:outputPanel rendered="{!!isEditable}">
                                         <div class="uploadImage"  >
+                                            <!-- For displaying place holder image-->
                                             <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage" rendered="{!IF(AND(con.IPM_Price_Image_2_Id__c==null, gdpage==false),'true','false')}"/>        
+                                            <!-- For displaying image-->
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Price_Image_2_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Price_Image_2_Id__c!=null}"/>   
                                         </div>
                                     </apex:outputPanel>
                                 </div>  
                             </div>
                             <div class="col-sm-12 commentBox commentBoxsmall">     
+                                <!-- For displaying input comments --> 
                                 <apex:inputField value="{!con.IPM_Price__c}" onchange="update('{!con.Id}',this.value,'price');" html-placeholder="Enter your comment here" rendered="{!isEditable}"/>
+                                <!-- For displaying comments read only -->  
                                 <apex:outputField value="{!con.IPM_Price__c}" html-placeholder="Enter your comment here" rendered="{!!isEditable}"/>
                             </div>
                             <!---------------------------------------------------------Place---------------------------------------------------------> 
@@ -411,46 +490,60 @@
                             
                             <div class="col-sm-12 noPadleft noPadright custImageContainer custImageContainerMbt clearfix">
                                 <div class="pull-left frstImage marginRL">
+                                	<!-- Condition for editable -->
                                     <apex:outputPanel rendered="{!isEditable}">
+                                    	<!-- For displaying place holder image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage imgPointer" rendered="{!con.IPM_Place_Image_1_Id__c==null}">
                                             <div title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!con.Id}&desc=p11" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage"  title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             </div>
                                         </apex:outputPanel>
+                                         <!-- For displaying image with hyperlink --> 
                                         <apex:outputPanel layout="block" styleClass="uploadImage" rendered="{!con.IPM_Place_Image_1_Id__c!=null}">
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Place_Image_1_Id__c}" styleClass="ipmImage"   title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             <c:IPM_Image_Hover component="{!$Label.IPM_Customer_Channel}"  imageHover="true" channelType="p11" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!con.Id}" imageId="{!con.IPM_Place_Image_1_Id__c}" ></c:IPM_Image_Hover>
                                        </apex:outputPanel>
                                     </apex:outputPanel>  
+                                    <!-- Condition for read only --> 
                                     <apex:outputPanel rendered="{!!isEditable}">
                                         <div  class="uploadImage"  >
+                                        	<!-- For displaying place holder image --> 
                                             <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage" rendered="{!IF(AND(con.IPM_Place_Image_1_Id__c==null, gdpage==false),'true','false')}"/>        
+                                            <!-- For displaying image --> 
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Place_Image_1_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Place_Image_1_Id__c!=null}"/>   
                                         </div>
                                     </apex:outputPanel>
                                 </div>
                                 <div class="pull-left secImage marginRL">  
+                                	<!-- Condition for editable -->
                                     <apex:outputPanel rendered="{!isEditable}">
+                                       	<!-- For displaying place holder image with hyperlink -->
                                         <apex:outputPanel layout="block" styleClass="uploadImage imgPointer" rendered="{!con.IPM_Place_Image_2_Id__c==null}">
                                             <div title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" value="{!$Page.IPM_ChannelImageUpload}?Id={!projectId}&projDocSecId={!projDocSecId}&contentId={!con.Id}&desc=p12" id="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
                                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage"  title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             </div>
                                         </apex:outputPanel>
+                                        <!-- For displaying image with hyperlink -->
                                         <apex:outputPanel layout="block" styleClass="uploadImage" rendered="{!con.IPM_Place_Image_2_Id__c!=null}">
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Place_Image_2_Id__c}" styleClass="ipmImage"   title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"   />
                                             <c:IPM_Image_Hover component="{!$Label.IPM_Customer_Channel}"  imageHover="true" channelType="p12" projectId="{!projectId}" projDocSecId="{!projDocSecId}" contentId="{!con.Id}" imageId="{!con.IPM_Place_Image_2_Id__c}" ></c:IPM_Image_Hover>
                                        </apex:outputPanel>
                                     </apex:outputPanel>  
+                                     <!-- Condition for read only -->
                                     <apex:outputPanel rendered="{!!isEditable}">
                                         <div  class="uploadImage"  >
+                                           	<!-- For displaying place holder image-->
                                             <apex:image value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" styleClass="ipmImage" rendered="{!IF(AND(con.IPM_Place_Image_2_Id__c==null, gdpage==false),'true','false')}"/>        
+                                            <!-- For displaying image-->
                                             <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Place_Image_2_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Place_Image_2_Id__c!=null}"/>   
                                         </div>
                                     </apex:outputPanel>
                                 </div>  
                             </div>
                             <div class="col-sm-12 commentBox commentBoxsmall">     
+                                <!-- For displaying input comments --> 
                                 <apex:inputField value="{!con.IPM_Place__c}" onchange="update('{!con.Id}',this.value,'place');" html-placeholder="Enter your comment here" rendered="{!isEditable}"/>
+                                <!-- For displaying comments read only -->  
                                 <apex:outputField value="{!con.IPM_Place__c}" html-placeholder="Enter your comment here" rendered="{!!isEditable}"/>
                             </div>  
                         </div>   
@@ -466,7 +559,7 @@
                                     <div class="container-fluid">
                                         <div class="row">    
                                             <div class="col-sm-12">
-                                                <span class="skipDesc">{!$Label.IPM_Remove_CMI}</span>
+                                                <span class="skipDesc">{!$Label.IPM_Remove_Channel}</span>
                                                 <span>{!$Label.IPM_CMI_NOTE}</span>
                                             </div>
                                             <div class="deleteButtoncontainer txtAlignright pull-right"> 
@@ -491,7 +584,9 @@
     </apex:outputPanel> 
     
     <apex:outputPanel id="showPLView">
+    	<!-- Condition for read only -->
         <apex:outputPanel rendered="{!!isEditable}">
+        	<!-- condition for displaying customer channel -->
             <apex:outputPanel rendered="{!show}">
             
             <div class="row noMargin">
@@ -499,16 +594,19 @@
                     <span>{!$Label.IPM_Customer_Channel_Identified_Shopper_Missions}</span>
                 </div>
                 <div class="col-sm-12 infobox">  
+                <!-- For checking customer channel info --> 
                     <apex:outputPanel layout="block" styleClass="col-sm-4 nopadleft nopadRight" rendered="{!IF(CONTAINS(channelInfo,'Experiential'),True, False)}">
                         <img alt="Experiential" src="{!URLFOR($Resource.IPM_Resource, 'images/icon_experiential_2a.png')}"/>
 
                         <div class="infotext SecButtonSet SecButtonSetInfo nopadLeft">{!$Label.IPM_Customer_Channel_Experiential}</div>                           
                     </apex:outputPanel> 
+                    <!-- For checking customer channel info -->
                     <apex:outputPanel layout="block" styleClass="col-sm-4" rendered="{!IF(CONTAINS(channelInfo,'Routine'),True, False)}">
                         <img alt="Routine" src="{!URLFOR($Resource.IPM_Resource, 'images/icon_routine_2a.png')}"/>
                         
                         <div class="infotext SecButtonSet SecButtonSetInfo nopadLeft">{!$Label.IPM_Customer_Channel_Routine}</div>
                     </apex:outputPanel>
+                    <!-- For checking customer channel info -->
                     <apex:outputPanel layout="block" styleClass="col-sm-4 nopadleft nopadRight" rendered="{!IF(CONTAINS(channelInfo,'Needs for Today'),True, False)}">
                         <img alt="Needs for Today" src="{!URLFOR($Resource.IPM_Resource, 'images/icon_needsfortoday_2a.png')}"/>
                         
@@ -537,12 +635,16 @@
                                     <apex:outputText value="{!$Label.IPM_PROPOSITION}"></apex:outputText>       
                                 </span>
                             </div>
-                            
+                            <!-- For checking  image id not blank-->  
                             <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft noPadright custImageContainer custImageContainerMbt clearfix" rendered="{!OR(con.IPM_Preposition_Image_1_Id__c!=null,con.IPM_Preposition_Image_2_Id__c!=null)}"> 
+                                <!-- For checking  image id not blank-->  
                                 <apex:outputPanel layout="block" styleClass="col-sm-3 frstImage frstImagesmall" rendered="{!con.IPM_Preposition_Image_1_Id__c!=null}">
+                                    <!-- For displaying image -->
                                     <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Preposition_Image_1_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Preposition_Image_1_Id__c!=null}"/>     
                                 </apex:outputPanel>
+                                <!-- For checking  image id not blank-->  
                                 <apex:outputPanel layout="block" styleClass="col-sm-3 secImage secImagesmall" rendered="{!con.IPM_Preposition_Image_2_Id__c!=null}">
+                                    <!-- For displaying image -->
                                     <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Preposition_Image_2_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Preposition_Image_2_Id__c!=null}"/>     
                                 </apex:outputPanel>
                             </apex:outputPanel>
@@ -556,12 +658,16 @@
                                     <apex:outputText value="{!$Label.IPM_PROMOTION}"></apex:outputText>                                 
                                 </span>
                             </div>
-                            
+                             <!-- For checking  image id not blank-->  
                             <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft noPadright custImageContainer custImageContainerMbt clearfix" rendered="{!OR(con.IPM_Promotion_Image_1_Id__c!=null,con.IPM_Promotion_Image_2_Id__c!=null)}"> 
+                                 <!-- For checking  image id not blank-->  
                                 <apex:outputPanel layout="block" styleClass="col-sm-3 frstImage frstImagesmall" rendered="{!con.IPM_Promotion_Image_1_Id__c!=null}">
+                                    <!-- For displaying image -->
                                     <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Promotion_Image_1_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Promotion_Image_1_Id__c!=null}"/>     
                                 </apex:outputPanel>
+                                <!-- For checking  image id not blank-->  
                                 <apex:outputPanel layout="block" styleClass="col-sm-3 secImage secImagesmall" rendered="{!con.IPM_Promotion_Image_2_Id__c!=null}">
+                                    <!-- For displaying image -->
                                     <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Promotion_Image_2_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Promotion_Image_2_Id__c!=null}"/>     
                                 </apex:outputPanel>
                             </apex:outputPanel>
@@ -575,12 +681,16 @@
                                     <apex:outputText value="{!$Label.IPM_PRODUCT}"></apex:outputText>        
                                 </span>
                             </div>       
-                            
+                            <!-- For checking  image id not blank-->  
                             <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft noPadright custImageContainer custImageContainerMbt clearfix" rendered="{!OR(con.IPM_Product_Image_1_Id__c!=null,con.IPM_Product_Image_2_Id__c!=null)}"> 
+                                <!-- For checking  image id not blank-->  
                                 <apex:outputPanel layout="block" styleClass="col-sm-3 frstImage frstImagesmall" rendered="{!con.IPM_Product_Image_1_Id__c!=null}">
+                                     	<!-- For displaying image -->
                                     <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Product_Image_1_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Product_Image_1_Id__c!=null}"/>     
                                 </apex:outputPanel>
+                                <!-- For checking  image id not blank-->  
                                 <apex:outputPanel layout="block" styleClass="col-sm-3 secImage secImagesmall" rendered="{!con.IPM_Product_Image_2_Id__c!=null}">
+                                     	<!-- For displaying image -->
                                     <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Product_Image_2_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Product_Image_2_Id__c!=null}"/>     
                                 </apex:outputPanel>
                             </apex:outputPanel>
@@ -594,12 +704,16 @@
                                     <apex:outputText value="{!$Label.IPM_PACK}"></apex:outputText>         
                                 </span>
                             </div>
-                            
+                            <!-- For checking  image id not blank-->  
                             <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft noPadright custImageContainer custImageContainerMbt clearfix" rendered="{!OR(con.IPM_Pack_Image_1_Id__c!=null,con.IPM_Pack_Image_2_Id__c!=null)}"> 
+                                <!-- For checking  image id not blank-->
                                 <apex:outputPanel layout="block" styleClass="col-sm-3 frstImage frstImagesmall" rendered="{!con.IPM_Pack_Image_1_Id__c!=null}">
+                                   	<!-- For displaying image -->
                                     <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Pack_Image_1_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Pack_Image_1_Id__c!=null}"/>     
                                 </apex:outputPanel>
+                                 <!-- For checking  image id not blank-->
                                 <apex:outputPanel layout="block" styleClass="col-sm-3 secImage secImagesmall" rendered="{!con.IPM_Pack_Image_2_Id__c!=null}">
+                                     <!-- For displaying image -->
                                     <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Pack_Image_2_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Pack_Image_2_Id__c!=null}"/>     
                                 </apex:outputPanel>
                             </apex:outputPanel>
@@ -613,12 +727,16 @@
                                     <apex:outputText value="{!$Label.IPM_PRICE}"></apex:outputText>         
                                 </span>
                             </div>
-                            
+                            <!-- For checking  image id not blank-->  
                             <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft noPadright custImageContainer custImageContainerMbt clearfix" rendered="{!OR(con.IPM_Price_Image_1_Id__c!=null,con.IPM_Price_Image_2_Id__c!=null)}"> 
+                                <!-- For checking  image id not blank-->
                                 <apex:outputPanel layout="block" styleClass="col-sm-3 frstImage frstImagesmall" rendered="{!con.IPM_Price_Image_1_Id__c!=null}">
+                                    <!-- For displaying image -->
                                     <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Price_Image_1_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Price_Image_1_Id__c!=null}"/>     
                                 </apex:outputPanel>
+                                 <!-- For checking  image id not blank-->
                                 <apex:outputPanel layout="block" styleClass="col-sm-3 secImage secImagesmall" rendered="{!con.IPM_Price_Image_2_Id__c!=null}">
+                                    <!-- For displaying image -->
                                     <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Price_Image_2_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Price_Image_2_Id__c!=null}"/>     
                                 </apex:outputPanel>
                             </apex:outputPanel>                            
@@ -631,11 +749,15 @@
                                     <apex:outputText value="{!$Label.IPM_PLACE}"></apex:outputText>         
                                 </span>
                             </div>                            
+                            <!-- For checking  image id not blank-->                        
                             <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft noPadright custImageContainer custImageContainerMbt clearfix" rendered="{!OR(con.IPM_Place_Image_1_Id__c!=null,con.IPM_Place_Image_2_Id__c!=null)}"> 
                                 <apex:outputPanel layout="block" styleClass="col-sm-3 frstImage frstImagesmall" rendered="{!con.IPM_Place_Image_1_Id__c!=null}">
+                                    <!-- For displaying image -->
                                     <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Place_Image_1_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Place_Image_1_Id__c!=null}"/>     
                                 </apex:outputPanel>
+                                 <!-- For checking  image id not blank-->
                                 <apex:outputPanel layout="block" styleClass="col-sm-3 secImage secImagesmall" rendered="{!con.IPM_Place_Image_2_Id__c!=null}">
+                                    <!-- For displaying image -->
                                     <apex:image url="/servlet/servlet.FileDownload?file={!con.IPM_Place_Image_2_Id__c}" styleClass="ipmImage" rendered="{!con.IPM_Place_Image_2_Id__c!=null}"/>     
                                 </apex:outputPanel>
                             </apex:outputPanel>

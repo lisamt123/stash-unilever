@@ -59,6 +59,10 @@
         <name>Accepted_Terms_of_Use__c</name>
     </fields>
     <fields>
+        <label><!-- Advisor Correspondence Display Name --></label>
+        <name>Advisor_Correspondence_Display_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- CEC User Reference --></label>
         <name>CEC_User_Reference__c</name>
     </fields>
@@ -386,6 +390,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Letter Quality Check Percentage --></label>
+        <name>Letter_Quality_Check_Percentage__c</name>
+    </fields>
+    <fields>
         <help><!-- Your Unilever MCO. This field is automatically populated/updated for Unilever users each week. --></help>
         <label><!-- MCO --></label>
         <name>MCO__c</name>
@@ -680,6 +688,10 @@
             <translation><!-- Coffee &amp; Snacks --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Creative Solutions</masterLabel>
+            <translation><!-- Creative Solutions --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Deodorants &amp; Fragrances</masterLabel>
             <translation><!-- Deodorants &amp; Fragrances --></translation>
         </picklistValues>
@@ -690,6 +702,10 @@
         <picklistValues>
             <masterLabel>Food</masterLabel>
             <translation><!-- Food --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food Solutions</masterLabel>
+            <translation><!-- Food Solutions --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Hair Care</masterLabel>
@@ -754,6 +770,10 @@
         <picklistValues>
             <masterLabel>Skin Cleansing</masterLabel>
             <translation><!-- Skin Cleansing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Media</masterLabel>
+            <translation><!-- Social Media --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Spreads</masterLabel>

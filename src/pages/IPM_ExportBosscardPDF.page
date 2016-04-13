@@ -49,6 +49,42 @@
                 }
                 }
                 
+                *
+                {
+                 font-size:10px !importnat;
+                }
+                .heading2 
+                {
+                    font-size:12px !important;
+                    margin-top:-16px !important;
+                    padding-bottom:2px !important;
+                    padding-top:7px !important;
+                }
+                .bdText
+                {
+                   line-height:16px;
+                   padding-top:2px !important
+                }
+                .bdText .label
+                {
+                   font-size:12px !important;
+                   margin-top:7px !important
+                }
+                .bdText div.graytext div
+                {
+                   font-size:12px !important;
+                   padding:0px !important;
+                   margin-bottom:-20px !important
+                }
+                .bdText .graytext2 div
+                {
+                   font-size:10px !important;
+                   padding-bottom:15px !important;
+                   padding-top:10px !important;
+                }
+                .bdText10{
+                    font-size: 7pt;
+                }
                 body, table{font-family:Arial Unicode MS; font-size:14px;}
                 table td {text-align:left; vertical-align:top;}
                 .bold {font-weight: bold; font-family: sans-serif;}
@@ -87,7 +123,7 @@
                 div.header{position: running(header); font-size:16px;}
                 .Iwidth{width:30%;}
                 .heading2, .heading3, .heading4, .bdText {display:block; padding-top:8px; padding-bottom:8px; }
-                .bdText {font-size:11pt; color:#666666!important; text-indent:initial;}
+                .bdText {font-size:10pt; color:#666666!important; text-indent:initial;}
                 .heading2 {color:#253b78!important; font-size:17pt; display:block; border-bottom:0.25pt solid #7fa19e;}
                 .heading3 {color:#0f81bb!important; font-size:13pt; display:block; border-bottom:0.25pt solid #ccd9d8;}
                 .heading4 {color:#0f81bb!important; font-size:11pt; display:block; border-bottom:0.25pt solid #ccd9d8;} 
@@ -100,6 +136,7 @@
              </style>
         </head>
         <body class="docBody">
+            <!--If the IPM_Bosscard_Status__c is in 'In Progress', then the below image will be displayed -->
             <apex:outPutpanel rendered="{!IF(bosscard.IPM_Bosscard_Status__c='In Progress', 'true', 'false')}">
                 <img alt="Draft" src="{!URLFOR($Resource.IPM_Resource, 'images/draft-wm.png')}" class="waterMark"/>
             </apex:outPutpanel>
@@ -109,7 +146,9 @@
                     <table>
                         <tr>
                             <td width="10%">
+                                <!--If the field IPM_Bosscard_Logo_Id__c is null, then the below image will be displayed -->
                                 <apex:image value="{!URLFOR($Resource.IPM_Resource, '/images/upload_img2b.png')}" rendered="{!Bosscard.IPM_Bosscard_Logo_Id__c=null}" styleClass="projLogo"/>
+                                <!--If the field IPM_Bosscard_Logo_Id__c is not null, then the below image will be displayed -->
                                 <apex:image value="{!$Label.IPM_ServletFile}{!Bosscard.IPM_Bosscard_Logo_Id__c}" rendered="{!Bosscard.IPM_Bosscard_Logo_Id__c!=null}" styleClass="projLogo"/>
                             </td>
                             <td align="center" >
@@ -119,6 +158,7 @@
                                 <div class="headSecBlock bold">{!$Label.IPM_BOSSCARD}</div>
                                 <apex:outputText value="{!Bosscard.IPM_Bosscard_Span_Logo__c}" styleClass="headSecBlock regPdfIcon" escape="false" />
                                 <apex:outputText value="{!Bosscard.IPMBosscard_Span__c}" styleClass="regPdfText" />  
+                                <!--If the field IPM_Bosscard_Status__c is Approved, then the below message will be displayed in the panel -->
                                 <apex:outPutpanel rendered="{!IF(Bosscard.IPM_Bosscard_Status__c='Approved', 'true', 'false')}">
                                     <div class="headSecBlock bold">{!$Label.IPM_APPROVED}</div>   
                                 </apex:outPutpanel>
@@ -201,10 +241,10 @@
                 <div class="dataTableBottom"></div>
                 <div>
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_ONE} {!$Label.IPM_BACKGROUND}
+                       {!$Label.IPM_BACKGROUND}
                     </div>
                     <div class="bdText">
-                        <apex:outputField value="{!Bosscard.IPM_Background__c}" />
+                        <div class="bdText10 ">{!Bosscard.IPM_Background__c} </div>
                     </div>
                     <div class="heading2 bold"> 
                         {!$Label.IPM_OPPORTUNITY}
@@ -213,49 +253,49 @@
                         <div class="label">
                             <u>{!$Label.IPM_CONSUM_NEED}</u>
                         </div>
-                        <apex:outputField value="{!Bosscard.IPM_Consumer_Need__c}" />
+                        <div class="bdText10 ">{!Bosscard.IPM_Consumer_Need__c} </div>
                     </div>
                     <div class="bdText">
                         <div class="label">
                             <u>{!$Label.IPM_POTENTIAL_BUSINESS_OPPOR}</u>
                         </div>
-                        <apex:outputField value="{!Bosscard.IPM_Potential_Business_Opportunity__c}" />
+                        <div class="bdText10 ">{!Bosscard.IPM_Potential_Business_Opportunity__c} </div>
                     </div>
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_THREE} {!$Label.IPM_SCOPE}
+                         {!$Label.IPM_SCOPE}
                     </div>
                     <div class="bdText">
-                        <apex:outputField value="{!Bosscard.IPM_Scope__c}" />
+                        <div class="bdText10 ">{!Bosscard.IPM_Scope__c} </div>
                     </div>
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_FOUR} {!$Label.IPM_SUSTAIN}
+                        {!$Label.IPM_SUSTAINABILITY}
                     </div>
                     <div class="bdText">
-                        <apex:outputField value="{!Bosscard.IPM_Sustainibility__c}" />
+                        <div class="bdText10 ">{!Bosscard.IPM_Sustainibility__c} </div>
                     </div>
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_FIVE} {!$Label.IPM_CONSTRAINT}
+                         {!$Label.IPM_CONSTRAINTS}
                     </div>
                     <div class="bdText">
-                        <apex:outputField value="{!Bosscard.IPM_Constraints__c}" />
+                        <div class="bdText10 ">{!Bosscard.IPM_Constraints__c} </div>
                     </div>
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_SIX} {!$Label.IPM_ASSUMPTION}
+                         {!$Label.IPM_ASSUMPTIONS}
                     </div>
                     <div class="bdText">
-                        <apex:outputField value="{!Bosscard.IPM_Assumptions__c}" />
+                        <div class="bdText10 ">{!Bosscard.IPM_Assumptions__c} </div>
                     </div>
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_SEVEN} {!$Label.IPM_RESOURCE}
+                         {!$Label.IPM_RESOURCES}
                     </div>
                     <div class="bdText">
-                        <apex:outputField value="{!Bosscard.IPM_Resources__c}" />
+                        <div class="bdText10 ">{!Bosscard.IPM_Resources__c} </div>
                     </div>  
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_EIGHT} {!$Label.IPM_DELIVERABLE}
+                         {!$Label.IPM_DELIVERABLES}
                     </div>
                     <div class="bdText">
-                        <apex:outputField value="{!Bosscard.IPM_Deliverables__c}" />
+                        <div class="bdText10 ">{!Bosscard.IPM_Deliverables__c} </div>
                     </div>
                 </div>
             </div>

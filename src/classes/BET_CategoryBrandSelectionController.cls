@@ -71,6 +71,7 @@ public with sharing class BET_CategoryBrandSelectionController {
 		}
 		set{
 			bet = value;
+			//FabricConditioner begin
 			if(bet != null && bet.id != null && bet.Is_Fabric_Conditioners__c){
 				fabricConditioner = YES;
 			} else {
@@ -81,6 +82,7 @@ public with sharing class BET_CategoryBrandSelectionController {
 					bet.Is_Fabric_Conditioners__c = true;
 				}
 			}
+			//FabricConditioner end
 		}
 	}
 
@@ -120,12 +122,14 @@ public with sharing class BET_CategoryBrandSelectionController {
 		compData.brand = selectedBrand;
 	}
 
+	//FabricConditioner begin
 	@TestVisible
 	private void updateFabricData(Boolean fabricConditionerCategory){
 		compData.fabricConditionerCategory = fabricConditionerCategory;
 		bet.Is_Fabric_Conditioners__c = fabricConditionerCategory;
 		fabricConditioner = NO;
 	}
+	//FabricConditioner end
 
 	/************************************************************
         Purpose: Action method fired after brand position is changed
@@ -179,14 +183,15 @@ public with sharing class BET_CategoryBrandSelectionController {
 		compData.brand = selectedBrand;
 	}
 
+	//FabricConditioner begin
 	public void onFabricConditionersChange(){
 		System.debug('Entering onFabricConditionersChange');
+		bet.Is_Fabric_Conditioners__c = true;
 		if(String.isBlank(fabricConditioner) || fabricConditioner == NO){
 			bet.Is_Fabric_Conditioners__c = false;
-		} else {
-			bet.Is_Fabric_Conditioners__c = true;
 		}
 	}
+	//FabricConditioner end
 
 	/************************************************************
         Purpose: Action method fired after inoplan project is changed
@@ -238,9 +243,11 @@ public with sharing class BET_CategoryBrandSelectionController {
 		return getSelectOptionsForList(BET_MasterDataService.getBETBrandsForGivenPositioning(selectedBrandPositioning));
 	}
 
+	//FabricConditioner begin
 	public List<SelectOption> getFabricConditioners(){
 		return new List<SelectOption>{new SelectOption(NO,NO),new SelectOption(YES,YES)};
 	}
+	//FabricConditioner end
 
 	/************************************************************
         Purpose: Method builds unique option list from given record list

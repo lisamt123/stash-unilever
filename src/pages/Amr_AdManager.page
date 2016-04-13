@@ -1104,7 +1104,7 @@
                         <div class="form-field-level1">
                             <div class="form-field">
                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!RequireMusicFlag}" styleclass="loadError" html-data-width="70" />
-                                <apex:outputLabel styleclass="checkboxrmt-label">
+                                <apex:outputLabel styleclass="checkboxrmt-label logging-form-label">
                                     {!$Label.Amr_Do_you_anticipate_that_your_production_will_require_Music}
                                     
                                     <strong class="right-8"></strong>                                    
@@ -1124,7 +1124,7 @@
                         <div class="form-field-level1">
                             <div class="form-field">
                                 <apex:outputlabel value="{!CheckWithCMI}" rendered="{!RequireTalentFlag}" styleclass="loadError" html-data-width="70" />
-                                <apex:outputLabel styleclass="checkboxrmt-label">
+                                <apex:outputLabel styleclass="checkboxrmt-label logging-form-label">
                                     {!$Label.Amr_Do_you_anticipate_that_your_production_will_require_Celebrity_Talent}
                                     
                                     <strong class="right-8"></strong>                                    

@@ -12,6 +12,7 @@
 <!-- VERSION  AUTHOR        DATE            DETAIL                    RELEASE/CSR     -->
 <!-- 1.0 -    Kasi&Pavan   22/01/2015      INITIAL DEVELOPMENT        Phase III       -->
 <!-- 2.0 -    Sathish V    04/02/2015      Console UI Enhancement     Phase III       -->
+<!-- 3.0 -    Goverdhan S  16/12/2015      Added Consumer Note field  CSC-2755        -->
 <!--====================================================-->
 
 <apex:page controller="CEC_NewAccountController" tabStyle="Account" cache="true" language="{!$CurrentPage.parameters.lang}">
@@ -62,17 +63,21 @@
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.CEC_Street}"/>
                         <apex:inputField id="vf_account_street" value="{!newConsumer.PersonMailingStreet}" />    
-                    </apex:pageBlockSectionItem>    
+                    </apex:pageBlockSectionItem> 
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
-                        <apex:outputLabel value="City"/>
+                        <apex:outputLabel value="{!$Label.CEC_Account_Site}"/>
+                        <apex:inputField id="vf_account_site" value="{!newConsumer.Site}" />
+                    </apex:pageBlockSectionItem>   
+                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
+                        <apex:outputLabel value="{!$Label.CEC_City}"/>
                         <apex:inputField id="vf_account_city" value="{!newConsumer.PersonMailingCity}" />    
                     </apex:pageBlockSectionItem>   
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
-                        <apex:outputLabel value="County/region"/>
+                        <apex:outputLabel value="{!$Label.CEC_Country_region}"/>
                         <apex:inputField id="vf_account_state" value="{!newConsumer.PersonMailingState}" />    
                     </apex:pageBlockSectionItem>    
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
-                        <apex:outputLabel value="Country"/>                        
+                        <apex:outputLabel value="{!$Label.CEC_Country}"/>                        
                         <apex:inputField id="vf_account_country" value="{!newConsumer.PersonMailingCountry}"/>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
@@ -97,16 +102,17 @@
                 </apex:outputPanel>
                 <apex:pageBlockTable value="{!duplicateConsumerList}" var="dupe" id="duplicates" frame="none" rules="none" >
                     <tr class="container">
-                        <apex:column width="70%" colspan="2" styleClass="name top">
-                            <apex:image url="{!URLFOR($Resource.cec_images,'cec_link_arrow.png')}" width="18" height="18"/>       
+                        <apex:column width="100%" colspan="2" styleClass="name top">                       
+                            <apex:image url="{!URLFOR($Resource.cec_images,'cec_link_arrow.png')}" width="18" height="18"/> &nbsp;                               
                             <apex:actionSupport event="onclick" action="{!chooseAccount}" rerender="ButtonDiv,consumerResults,ErrorMessages" oncomplete="refreshPrimaryTab({!isContactPopulated},{!isTransactionSuccess})">
                                 <apex:param name="selectedAccount" assignTo="{!selectedAccountId}" value="{!dupe.consumer.id}"/>
                             </apex:actionSupport>
-                            <apex:outputLabel value="{!dupe.consumer.Salutation} {!dupe.consumer.Name}"/>
-                        </apex:column>
+                            <apex:outputtext style="font-weight: bold" value="{!dupe.consumer.Salutation} {!dupe.consumer.Name}"/> &nbsp;
+                            <apex:outputText value="{!dupe.consumer.Consumer_Note__c}" escape="false"/>                           
+                        </apex:column>                        
                         <apex:column width="30%" styleClass="more top">
                             <apex:outputLabel value="Show more"/>
-                        </apex:column>  
+                        </apex:column>                                            
                         <apex:column width="20%" styleClass="results-label partial-address" breakBefore="true">
                             <apex:outputLabel value="Address:"/>
                         </apex:column>

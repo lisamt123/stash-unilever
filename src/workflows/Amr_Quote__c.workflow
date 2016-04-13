@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
-        <fullName>Amr Euro Saving Accepted Quote Update</fullName>
+        <fullName>Amr_Euro_Saving_Accepted_Quote_Update</fullName>
         <field>Saving_Accepted_Quote_Euro__c</field>
         <formula>Total_Cost__c  -  Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c</formula>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-        <targetObject>Saving__c</targetObject>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Amr_Euro_Saving_Average_of_Quotes%5F%5Fc</fullName>
-        <field>Euro_Saving_Average_of_Quotes__c</field>
-        <formula>Saving__r.Average_Total_Opening_Quotes__c -  Total_Cost__c</formula>
+        <name>Amr Euro Saving Accepted Quote Update</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -22,101 +14,20 @@
         <fullName>Amr_Percentage_Saving_AcceptedQuote</fullName>
         <field>Percentage_Saving_Accepted_Quote__c</field>
         <formula>Saving__r.Saving_Accepted_Quote_Euro__c / Total_Cost__c</formula>
+        <name>Amr_Percentage_Saving_AcceptedQuote</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
         <targetObject>Saving__c</targetObject>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Amr_Percentage_Saving_Accepted_Quote</fullName>
-        <field>Percent_Saving_Accepted_Quote__c</field>
-        <formula>Saving_Accepted_Quote__c</formula>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Amr_Percentage_Saving_Accepted_Quote</fullName>
         <field>Percentage_Saving_Accepted_Quote__c</field>
-        <formula>Saving__r.Saving_Accepted_Quote_Euro__c *100 /  Total_Cost__c</formula>
+        <formula>if(Total_Cost__c  &lt;&gt; 0,Saving__r.Saving_Average_of_Quotes__c *100 / Total_Cost__c,0)</formula>
+        <name>Amr_Percentage_Saving_Accepted_Quote</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
         <targetObject>Saving__c</targetObject>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Amr_Percentage_Saving_Average_of_Quote</fullName>
-        <field>Percentage_Saving_Average_of_Quote__c</field>
-        <formula>Saving__r.Euro_Saving_Average_of_Quotes__c*100/Saving__r.Average_Total_Opening_Quotes__c</formula>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-        <targetObject>Saving__c</targetObject>
-    </fieldUpdates>
-    <rules>
-        <fullName>Amr_Pecentage_Saving_Accepted_Quote</fullName>
-        <actions>
-            <name>Amr_Percentage_Saving_Accepted_Quote</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Amr_Quote__c.Is_Accepted__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Amr_Percentage_Saving_Average_of_Quote</fullName>
-        <actions>
-            <name>Amr_Percentage_Saving_Average_of_Quote</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Amr_Quote__c.Is_Accepted__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Amr_Saving - Average of Quotes</fullName>
-        <actions>
-            <name>Amr_Euro_Saving_Average_of_Quotes%5F%5Fc</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Amr_Quote__c.Is_Accepted__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Amr_Saving_Accepted_Quote</fullName>
-        <actions>
-            <name>Amr Euro Saving Accepted Quote Update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Amr_Quote__c.Is_Accepted__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Test</fullName>
-        <active>false</active>
-        <criteriaItems>
-            <field>Amr_Quote__c.Is_Accepted__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
 </Workflow>

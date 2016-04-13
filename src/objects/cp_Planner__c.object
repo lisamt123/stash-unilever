@@ -52,6 +52,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -234,6 +235,15 @@
             <value>Market</value>
         </filters>
         <label>All Market</label>
+    </listViews>
+    <listViews>
+        <fullName>CP_Event_Approvers_Queue_cp_Planner</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CP Event Approvers</label>
+        <queue>CP_Event_Approvers_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <nameField>
         <label>Planner Name</label>

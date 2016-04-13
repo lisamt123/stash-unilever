@@ -8,7 +8,7 @@ Purpose:This class has search and sort functionality of RAP User.Also this class
 History
 -------
 VERSION     AUTHOR             DATE           DETAIL           Description
-1.0         Varuna Nikam       16/12/2015     INITIAL DEV      CSR:
+1.0         Mindtree        16/12/2015     INITIAL DEV      CSR:
 *************************************************************************************************************************************/
 public with sharing class Amr_RAPJobPortfolioController_CC{
     
@@ -758,7 +758,7 @@ Returns:
            Set<Id>priorityJobIds = new Set<Id>();
            Set<String> priorityStrings = new Set<String>();
            for(Amr_Job_Allocation__c jobId:jobDetailList){
-               if(jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Priority){
+               if((jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Priority) && (jobId.Job_Status__c == 'Accepted')){
                    priorityJobIds.add(jobId.AM_Job_Detail__r.Id);
                    priorityStrings.add(jobId.AM_Job_Detail__r.AdManagerText__c);
                }
@@ -882,7 +882,7 @@ Returns:
            List<Amr_Job_Allocation__c> dormantJobList = new List<Amr_Job_Allocation__c>();
            Set<Id>dormantJobIds = new Set<Id>();
            for(Amr_Job_Allocation__c jobId:jobDetailList){
-               if(jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Dormant){
+               if((jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Dormant) && (jobId.Job_Status__c == 'Accepted')){
                    dormantJobIds.add(jobId.AM_Job_Detail__r.Id);
                }
            }

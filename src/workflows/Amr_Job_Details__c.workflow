@@ -2,14 +2,12 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
         <fullName>AMR_CAPNotificationAlert</fullName>
-        <ccEmails>maheshsankapal@gmail.com</ccEmails>
+        <ccEmails>maheshsankapal@gmail.com,chsunil2@yahoo.com,swarup.swarup@gmail.com,</ccEmails>
+        <ccEmails>utkarsh.salesforce@gmail.com</ccEmails>
+        <description>AMR_CAPNotificationAlert</description>
         <protected>false</protected>
         <recipients>
-            <recipient>chaitanya.reddy@mindtree.com.chazwa</recipient>
-            <type>user</type>
-        </recipients>
-        <recipients>
-            <recipient>gaurav.kakariya@mindtree.com.chazwa</recipient>
+            <recipient>gaurav.kakariya@mindtree.com</recipient>
             <type>user</type>
         </recipients>
         <recipients>
@@ -17,11 +15,11 @@
             <type>user</type>
         </recipients>
         <recipients>
-            <recipient>mahesh.sankapal@mindtree.com.chazwa</recipient>
+            <recipient>mahesh.sankapal@mindtree.com</recipient>
             <type>user</type>
         </recipients>
         <recipients>
-            <recipient>swarup.kemparaju@mindtree.com.chazwa</recipient>
+            <recipient>swarup.kemparaju@mindtree.com</recipient>
             <type>user</type>
         </recipients>
         <recipients>
@@ -29,94 +27,135 @@
             <type>user</type>
         </recipients>
         <recipients>
-            <recipient>utkarsh.goswami@mindtree.com.chazwa</recipient>
+            <recipient>utkarsh.goswami@mindtree.com</recipient>
             <type>user</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_CAPNotification</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_NoneSelected</fullName>
+        <description>Amr_Agency_NoneSelected</description>
         <protected>false</protected>
         <recipients>
             <field>Agency_Contact_Account_Director_Email__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_Agency_NoneSelected</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_RequireAll</fullName>
+        <description>Amr_Agency_RequireAll</description>
         <protected>false</protected>
         <recipients>
             <field>Agency_Contact_Account_Director_Email__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_Agency_RequireAll</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_RequireMusic</fullName>
+        <description>Amr_Agency_RequireMusic</description>
         <protected>false</protected>
         <recipients>
             <field>Agency_Contact_Account_Director_Email__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_Agency_RequireMusic</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_RequireTalent</fullName>
+        <description>Amr_Agency_RequireTalent</description>
         <protected>false</protected>
         <recipients>
             <field>Agency_Contact_Account_Director_Email__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_Agency_RequireTalent</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_TalentAndMusic</fullName>
+        <description>Amr_Agency_TalentAndMusic</description>
         <protected>false</protected>
         <recipients>
             <field>Agency_Contact_Account_Director_Email__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_Agency_TalentAndMusic</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_TvAndMusic</fullName>
+        <description>Amr_Agency_TvAndMusic</description>
         <protected>false</protected>
         <recipients>
             <field>Agency_Contact_Account_Director_Email__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_Agency_TvAndMusic</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_TvAndTalent</fullName>
+        <description>Amr_Agency_TvAndTalent</description>
         <protected>false</protected>
         <recipients>
             <field>Agency_Contact_Account_Director_Email__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_Agency_TvAndTalent</template>
     </alerts>
     <alerts>
         <fullName>Amr_Agency_TvOrCinema</fullName>
+        <description>Amr_Agency_TvOrCinema</description>
         <protected>false</protected>
         <recipients>
             <field>Agency_Contact_Account_Director_Email__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_Agency_TvOrCinema</template>
     </alerts>
     <alerts>
         <fullName>Amr_JobAccepted</fullName>
+        <description>Amr_JobAccepted</description>
         <protected>false</protected>
+        <recipients>
+            <field>Agency_Contact_Account_Director_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Final_Approver_Of_Material_Email__c</field>
+            <type>email</type>
+        </recipients>
         <recipients>
             <field>Job_Accepted_Email__c</field>
             <type>email</type>
         </recipients>
+        <recipients>
+            <field>Unilever_Finance_Member_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Your_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_RAPAcceptedJob</template>
     </alerts>
     <alerts>
         <fullName>Amr_JobCancellation</fullName>
+        <ccEmails>swarup.swarup@gmail.com</ccEmails>
+        <description>Amr_JobCancellation</description>
         <protected>false</protected>
         <recipients>
             <field>Agency_Contact_Account_Director_Email__c</field>
@@ -138,28 +177,38 @@
             <field>Your_Email_Address__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_JobCancellation</template>
     </alerts>
     <alerts>
         <fullName>Amr_JobReAllocation</fullName>
+        <description>Amr_JobReAllocation</description>
         <protected>false</protected>
         <recipients>
             <field>JobAllocated_Email__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_RAPAllocatedJob</template>
     </alerts>
     <alerts>
         <fullName>Amr_Threshold</fullName>
+        <description>Amr_Threshold</description>
         <protected>false</protected>
         <recipients>
             <field>GBVM_Email__c</field>
             <type>email</type>
         </recipients>
+        <recipients>
+            <field>Unilever_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_ThresholdNotification</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_MusicAndTalent</fullName>
+        <description>Amr_User_MusicAndTalent</description>
         <protected>false</protected>
         <recipients>
             <field>Final_Approver_Of_Material_Email__c</field>
@@ -177,10 +226,12 @@
             <field>Your_Email_Address__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_User_MusicAndTalent</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_NoSelection</fullName>
+        <description>Amr_User_NoSelection</description>
         <protected>false</protected>
         <recipients>
             <field>Final_Approver_Of_Material_Email__c</field>
@@ -198,10 +249,12 @@
             <field>Your_Email_Address__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_User_NoSelectection</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_RequireAll</fullName>
+        <description>Amr_User_RequireAll</description>
         <protected>false</protected>
         <recipients>
             <field>Final_Approver_Of_Material_Email__c</field>
@@ -219,10 +272,12 @@
             <field>Your_Email_Address__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_User_RequireAll</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_RequireMusic</fullName>
+        <description>Amr_User_RequireMusic</description>
         <protected>false</protected>
         <recipients>
             <field>Final_Approver_Of_Material_Email__c</field>
@@ -240,10 +295,12 @@
             <field>Your_Email_Address__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_User_RequireMusic</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_RequireTalent</fullName>
+        <description>Amr_User_RequireTalent</description>
         <protected>false</protected>
         <recipients>
             <field>Final_Approver_Of_Material_Email__c</field>
@@ -261,10 +318,12 @@
             <field>Your_Email_Address__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_User_RequireTalent</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_TvAndMusic</fullName>
+        <description>Amr_User_TvAndMusic</description>
         <protected>false</protected>
         <recipients>
             <field>Final_Approver_Of_Material_Email__c</field>
@@ -282,10 +341,12 @@
             <field>Your_Email_Address__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_User_TvAndMusic</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_TvAndTalent</fullName>
+        <description>Amr_User_TvAndTalent</description>
         <protected>false</protected>
         <recipients>
             <field>Final_Approver_Of_Material_Email__c</field>
@@ -303,10 +364,12 @@
             <field>Your_Email_Address__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_User_TvAndTalent</template>
     </alerts>
     <alerts>
         <fullName>Amr_User_TvOrCinema</fullName>
+        <description>Amr_User_TvOrCinema</description>
         <protected>false</protected>
         <recipients>
             <field>Final_Approver_Of_Material_Email__c</field>
@@ -324,15 +387,18 @@
             <field>Your_Email_Address__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_User_TvOrCinema</template>
     </alerts>
     <alerts>
         <fullName>test</fullName>
+        <description>test</description>
         <protected>false</protected>
         <recipients>
             <field>Agency_Contact_Account_Director_Email__c</field>
             <type>email</type>
         </recipients>
+        <senderType>CurrentUser</senderType>
         <template>unfiled$public/Amr_CAPNotification</template>
     </alerts>
     <rules>
@@ -352,7 +418,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(!Tv__c &amp;&amp; !Cinema__c &amp;&amp; ISPICKVAL(Require_Music__c, &apos;No&apos;)&amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;), TRUE, FALSE)</formula>
+        <formula>if(!NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c &amp;&amp; ISPICKVAL(Require_Music__c, &apos;No&apos;)&amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -363,7 +429,7 @@
         </actions>
         <active>true</active>
         <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; (Tv__c || Cinema__c), TRUE, FALSE)</formula>
+&amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -374,7 +440,7 @@
         </actions>
         <active>true</active>
         <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) 
-&amp;&amp; !Tv__c &amp;&amp; !Cinema__c, TRUE, FALSE)</formula>
+&amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -385,7 +451,7 @@
         </actions>
         <active>true</active>
         <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; !Tv__c &amp;&amp; !Cinema__c, TRUE, FALSE)</formula>
+&amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -396,7 +462,7 @@
         </actions>
         <active>true</active>
         <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; !Tv__c &amp;&amp; !Cinema__c, TRUE, FALSE)</formula>
+&amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -407,7 +473,7 @@
         </actions>
         <active>true</active>
         <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) 
-&amp;&amp; (Tv__c || Cinema__c), TRUE, FALSE)</formula>
+&amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -418,7 +484,7 @@
         </actions>
         <active>true</active>
         <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; (Tv__c || Cinema__c), TRUE, FALSE)</formula>
+&amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -428,7 +494,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if((Cinema__c || Tv__c) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Music__c , &apos;No&apos;), TRUE, FALSE )</formula>
+        <formula>if((NewOriginalMasterCinema__c || NewOriginalMasterTv__c) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Music__c , &apos;No&apos;), TRUE, FALSE )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -438,7 +504,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(ISBLANK(Job_Accepted_Email__c), False, True)</formula>
+        <formula>if( ISCHANGED(Job_Accepted_Email__c) , True, False)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -458,7 +524,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if( !ISBLANK(JobAllocated_Email__c), True, False )</formula>
+        <formula>if(ISCHANGED(JobAllocated_Email__c) , True, False )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -478,7 +544,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if(!Tv__c &amp;&amp; !Cinema__c &amp;&amp; ISPICKVAL(Require_Music__c, &apos;No&apos;)&amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;), TRUE, FALSE)</formula>
+        <formula>if(!NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c &amp;&amp; ISPICKVAL(Require_Music__c, &apos;No&apos;)&amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;), TRUE, FALSE)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -489,7 +555,7 @@
         </actions>
         <active>true</active>
         <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; (Tv__c || Cinema__c), TRUE, FALSE)</formula>
+&amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -500,7 +566,7 @@
         </actions>
         <active>true</active>
         <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;)
-&amp;&amp; !Tv__c &amp;&amp; !Cinema__c, TRUE, FALSE)</formula>
+&amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -511,7 +577,7 @@
         </actions>
         <active>true</active>
         <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; !Tv__c &amp;&amp; !Cinema__c, TRUE, FALSE)</formula>
+&amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -522,7 +588,7 @@
         </actions>
         <active>true</active>
         <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; !Tv__c &amp;&amp; !Cinema__c, TRUE, FALSE)</formula>
+&amp;&amp; !NewOriginalMasterTv__c &amp;&amp; !NewOriginalMasterCinema__c, TRUE, FALSE)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -533,7 +599,7 @@
         </actions>
         <active>true</active>
         <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) 
-&amp;&amp; (Tv__c || Cinema__c), TRUE, FALSE)</formula>
+&amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -544,7 +610,7 @@
         </actions>
         <active>true</active>
         <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
-&amp;&amp; (Tv__c || Cinema__c), TRUE, FALSE)</formula>
+&amp;&amp; (NewOriginalMasterTv__c || NewOriginalMasterCinema__c), TRUE, FALSE)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
@@ -554,7 +620,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>if((Cinema__c || Tv__c) &amp;&amp;  ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) &amp;&amp;  ISPICKVAL(Require_Music__c , &apos;No&apos;), TRUE, FALSE )</formula>
+        <formula>if((NewOriginalMasterCinema__c || NewOriginalMasterTv__c) &amp;&amp;  ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) &amp;&amp;  ISPICKVAL(Require_Music__c , &apos;No&apos;), TRUE, FALSE )</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>

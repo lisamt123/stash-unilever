@@ -27,6 +27,7 @@
 <div>
 <div class="panel-group">
 <apex:repeat value="{!ObjectHistory}" var="History">
+<!-- Below rendered is used to show image -->
 <apex:outputPanel rendered="{!IF(History.FieldName='Gate Document Summary',True,False)}">
 <div class="row ">
     <div class="col-xs-2">
@@ -62,6 +63,7 @@
 <div>
 <div class="panel-group">
 <apex:repeat value="{!ObjectHistory}" var="History2">
+<!-- Below rendered is used to show image -->
 <apex:outputPanel rendered="{!IF(History2.FieldName='PDP Document Summary',True,False)}">
 <div class="row ">
     <div class="col-xs-2">

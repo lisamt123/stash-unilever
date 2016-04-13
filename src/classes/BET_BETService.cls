@@ -55,7 +55,7 @@ public without sharing class BET_BETService {
     public static void updateBet(Id BetId,IPM_BETWrapper IPMProject){
         system.debug('Entring method Update with param @BetId: '+BetId+' @IPMProject: '+IPMProject);
         try{
-            uw_BET__c relatedBet = [select id,IPM_Project__c,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c,Final_Release_Due_Date__c,First_Release_Due_Date__c from uw_Bet__c where id = : BetId];
+            uw_BET__c relatedBet = [select id,IPM_Project__c,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c,Final_Release_Due_Date__c,First_Release_Due_Date__c,Inoplan_Project_Keyword_Search__c from uw_Bet__c where id = : BetId];
             if(relatedBet.IPM_Project__c == IPMProject.projectId){
                 update updateBetFields(relatedBet,IPMProject);
             }
@@ -80,6 +80,7 @@ public without sharing class BET_BETService {
             relatedBet.Category_Group__c = IPMProject.categoryGroupName;
             relatedBet.First_Release_Due_Date__c = getFirstReleaseDueDate(IPMProject.targetLaunchDate);
             relatedBet.Final_Release_Due_Date__c = getFinalReleaseDueDate(IPMProject.targetLaunchDate);
+            relatedBet.Inoplan_Project_Keyword_Search__c = IPMProject.projectName;
             system.debug('Exit method updateBetFields with param @relatedBet: '+relatedBet);
             return relatedBet;
         }catch(Exception e){
@@ -140,7 +141,7 @@ public without sharing class BET_BETService {
         
         List<uw_BET__c> betLst = [Select Id,Name,Status__c,FirstReleaseDate__c,FinalReleaseDate__c,Final_Release_Due_Date__c,
                                     First_Release_Due_Date__c,Is_Archived__c,OwnerID,
-                                    Category_Group__c, Product_Category__c, Brand_Position__c,Product_Brand__c
+                                    Category_Group__c, Product_Category__c, Brand_Position__c,Product_Brand__c,Launch_Date__c
                                     FROM uw_BET__c WHERE Id =: betId];
         
         if(betLst.isEmpty()){

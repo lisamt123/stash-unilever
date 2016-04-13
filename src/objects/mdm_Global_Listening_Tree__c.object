@@ -54,6 +54,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Read</externalSharingModel>
@@ -62,6 +63,15 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Exclude_From_CSAT__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: If checked, cases with this reason code will be excluded from CSAT survey.</description>
+        <externalId>false</externalId>
+        <label>Exclude From CSAT</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>

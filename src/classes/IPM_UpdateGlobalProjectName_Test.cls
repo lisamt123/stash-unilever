@@ -5,159 +5,186 @@
 @isTest
 private class IPM_UpdateGlobalProjectName_Test {
     
-	private static IPM_Project_Rollout__c projectRollout;
-	private static User gkAndPL;
-	private static List<IPM_Project__c> projectAssert;
-	private static string projectName='ProjectCreation';
-	private static string proUpdatedName= 'ProjectUpdation';
-	private static IPM_Project__c parentProject;
-    private static IPM_Project__c childProject; 
-    private static IPM_Project__c subChildProject;
-    private static List<User>userList=new List<User>(); 
-	private static string inValidProject_STR='ProjectCreation_project namw with long string project namw with long string project namw with long stringproject namw with long stringproject namw with long stringproject namw with long string';
+    private static IPM_Project__c project;// Project object initialization
+    private static list<MDO_Geography__c> geographyList;
+    private static list<MDO_Geography__c> geographyDetailList;
+    private static list<String> countryNameList =  new list<String>{'Chile','New Zealand'};
+    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    private static List<IPM_Financial__c> finList=new List<IPM_Financial__c>();
+    private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
+    private static List<IPM_Country__c> countryTest = new List<IPM_Country__c>();
+    private static User stdUserForAssort;
+    private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
+    private static IPM_Financial_Year__c finYear=new IPM_Financial_Year__c();
+    private static final string TEST_COMMENTS_STR='TestComments1';
+    private static final string REGIONAL_STR='Regional';
+    private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
+    private static User globalUser;
+    private static final string PROJECT_DOC_CREATED_STR='Project Document created';
+    private static string projectName='ProjectCreation';
+    private static string projUpdateName='ProjectUpdate';    
     /*****************************************************************************
     * @description Test Data
     */  
-    static void initializedData()
-    {         
-        //insert new user to assign as project leader,gatekeeper etc.
-        gkAndPL = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);
+    
+    @testSetup static void initializeData(){
+        System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
+        {
+            // user has to be created as system admin 
+            stdUserForAssort= IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+        }       
         
-        userList.add(gkAndPL); 
-        List<User>userLists=[SELECT lastName FROM user WHERE id=:gkAndPL.id LIMIT 1];
-        System.AssertEquals(userLists[0].lastName, gkAndPL.lastName,'user lastname is:'+userLists[0].lastName);//positive test 
-            
-		system.runAs(gkAndPL){
-			//create parent project
-			parentProject = IPM_TestFactory_Helper.createIPMProject(false);
-	        parentProject.Name = projectName;
-	        parentProject.IPM_Project_Name__c = projectName;
-	        parentProject.IPM_PM_Approach__c = IPM_ConstantUtils.IPM_APPROACH_INTERNAL;
-	        parentProject.IPM_IsCompleted__c=true;
-	        parentProject.IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
-	        parentProject.IPM_Complexity__c = IPM_ConstantUtils.COMPLEXITY_LITE;
-	        parentProject.IPM_Project_Leader__c=gkAndPL.id;
-	        parentProject.IPM_Target_Launch_Date__c='30-12-2016';
-	        insert parentProject; 
-	        
-	        List<IPM_Project__c>projPList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE id=:parentProject.id LIMIT 1];
-	        system.assertEquals(projPList[0].IPM_Project_Name__c,projectName,'Parent Project name is:'+projPList[0].IPM_Project_Name__c);//positive test 
-	        
-	        //create child project
-	        String CHILD_PROJECT_NAME = 'ProjectCreation_IND';
-	        childProject=new IPM_Project__c();
-	        childProject.Name=CHILD_PROJECT_NAME;
-	        childProject.IPM_Parent_Project__c=parentProject.Id;
-	        childProject.IPM_Project_Name__c=CHILD_PROJECT_NAME;
-	        childProject.IPM_PM_Approach__c=IPM_ConstantUtils.IPM_APPROACH_INTERNAL;
-	        childProject.IPM_IsCompleted__c=true;
-	        childProject.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
-	        childProject.IPM_Complexity__c=IPM_ConstantUtils.COMPLEXITY_LITE;
-	        childProject.IPM_Project_Leader__c=gkAndPL.id;
-	        childProject.IPM_Target_Launch_Date__c='30-12-2016';
-	        childProject.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-	        insert childProject; 
-	        List<IPM_Project__c>projChList=[SELECT IPM_Project_Name__c,IPM_PM_Approach__c,IPM_Complexity__c FROM IPM_Project__c WHERE  id=:childProject.id LIMIT 1];
-	        system.assertEquals(projChList[0].IPM_Project_Name__c,CHILD_PROJECT_NAME,'Child Project name is:'+projChList[0].IPM_Project_Name__c);//positive test 
-	        
-	        //create subchild project
-	        String SUBCHILD_PROJECT_NAME = 'ProjectCreation_IND_IN';
-	        subChildProject=new IPM_Project__c();
-	        subChildProject.Name=SUBCHILD_PROJECT_NAME;
-	        subChildProject.IPM_Parent_Project__c=childProject.Id;
-	        subChildProject.IPM_Project_Name__c=SUBCHILD_PROJECT_NAME;
-	        subChildProject.IPM_PM_Approach__c=IPM_ConstantUtils.IPM_APPROACH_INTERNAL;
-	        subChildProject.IPM_IsCompleted__c=true;
-	        subChildProject.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
-	        subChildProject.IPM_Complexity__c=IPM_ConstantUtils.COMPLEXITY_LITE;
-	        subChildProject.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-	        subChildProject.IPM_Project_Leader__c=gkAndPL.id;
-	        insert subChildProject; 
-	        List<IPM_Project__c>projSubChList=[Select IPM_Project_Name__c,IPM_PM_Approach__c,IPM_Complexity__c From IPM_Project__c where id=:childProject.id];
-	        system.assertEquals(projSubChList[0].IPM_Project_Name__c,CHILD_PROJECT_NAME,'Child Project name is:'+projSubChList[0].IPM_Project_Name__c);//positive test 
-	        
-				
-			//insert project rollout 
-			projectRollout=IPM_TestFactory_Helper.createIPMProjectRollout(false); 
-			projectRollout.IPM_Rollout_Project__c=parentProject.IPM_Project_Name__c;
-			projectRollout.Name=parentProject.IPM_Project_Name__c;
-			projectRollout.IPM_Project__c=parentProject.id;
-			insert projectRollout;
-			List<IPM_Project_Rollout__c>rolloutList=[SELECT IPM_Project__c FROM IPM_Project_Rollout__c WHERE ID=:projectRollout.id LIMIT 1];
-	        system.assertEquals(rolloutList[0].IPM_Project__c, +parentProject.id,'Rollout parent project is:'+parentProject.id);//positive test 
-	            
-			
-			//Query to check all above inserts 
-			projectAssert =[SELECT Id,Name,IPM_Project_Type__c
-	                                            ,(SELECT Name,IPM_Rollout_Project__c,IPM_Project__c from IPM_Project_Rollout__r)
-	                                            FROM IPM_Project__c WHERE Name=:projectName];
-			system.assertEquals(projectAssert[0].Name,projectName);//positive test
-		}		
-		
-    }
-   /**************************************************************
-    *@Description :testmethod to updateProjectName
-    */
-    static testmethod void testUpdateProjectName(){
-        initializedData();
-        test.startTest();
-        //running as global project leader
-        system.runAs(gkAndPL){
-	        //get project old name and new name along with project id
-	        map<id,string>projectOldname=new map<id,string>();
-	        map<id,string>updatedname=new map<id,string>();
-			projectOldname.put(parentProject.id, projectName);
-	        parentProject.IPM_Project_Name__c=proUpdatedName;
-	        parentProject.IPM_Phase__c=IPM_ConstantUtils.Phase_Ideas;
-	        update parentProject;//update parent project
-	        List<IPM_Project__c>projList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE id=:parentProject.id LIMIT 1];
-        	system.assertEquals(projList[0].IPM_Project_Name__c,parentProject.IPM_Project_Name__c,'Parent Project name is:'+projList[0].IPM_Project_Name__c);//positive test 
+        List<User>userLists=[SELECT id FROM user WHERE id=:stdUserForAssort.id LIMIT 1];
+        System.AssertEquals(userLists[0].id, stdUserForAssort.id,'user id is:'+userLists[0].id);//positive test
         
-	        updatedname.put(parentProject.id, parentProject.IPM_Project_Name__c); 
-	        
-	        //call a method which will update project name to entire project related records
-        	IPM_UpdateGlobalProjectName.updateProjectName(updatedname,projectOldname);//call to update rollout name
-            List<IPM_Project_Rollout__c>rolloutList=[SELECT IPM_Rollout_Project__c,IPM_Project__c FROM IPM_Project_Rollout__c WHERE ID=:projectRollout.id LIMIT 1];
-            system.assertEquals(rolloutList[0].IPM_Rollout_Project__c, +parentProject.IPM_Project_Name__c,'Rollout name should be:'+parentProject.IPM_Project_Name__c);//positive test 
+        // Create Company Card information 
+        IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+        IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+        
+        List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+        insert companyCardList;
+        List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
+        
+        IPM_TestFactory_Helper.getProjectMasterData();
+        projectList = IPM_TestFactory_Helper.projectSetUp(3,stdUserForAssort);
+        System.runAs(stdUserForAssort) {
+            insert projectList;
             
-            IPM_UpdateGlobalProjectName.updateChildProjects(updatedname,projectOldname);//call to update child and subchild project name
-            List<IPM_Project__c>chldProjectList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE ID=:childProject.id LIMIT 1];
-            system.assertNotEquals(chldProjectList[0].IPM_Project_Name__c, +childProject.IPM_Project_Name__c,'child name should be:'+chldProjectList[0].IPM_Project_Name__c);//positive test  
+            project=projectList[0];
+            //project.Name='ProChgStatus';
+            List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
             
-            List<IPM_Project__c>subChldProjectList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE ID=:subChildProject.id LIMIT 1];
-			system.assertNotEquals(subChldProjectList[0].IPM_Project_Name__c, +subChildProject.IPM_Project_Name__c,'sub child name should be:'+subChldProjectList[0].IPM_Project_Name__c);//positive test  
+            //create geography related test data
+          geographyList = new list<MDO_Geography__c>();
+          for(string name:countryNameList)
+          {
+              MDO_Geography__c geography = IPM_TestFactory_Helper.createMDOGeography(false);
+              geography.Name = name;
+              geographyList.add(geography);
+          }   
+          insert geographyList;
             
+            List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForAssort,stdUserForAssort,stdUserForAssort});
+            insert regionalRolloutList;
+            List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
+            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
+                  
         }
-		
-        test.stopTest();
     }
-    /**************************************************************
-    *@Description :testmethod to updateProjectName with invalid project name
+    
+    /*************************************************************************************************************************
+    * @description Test Data
     */
+    public static void initializeTestMethodData(){
+        
+        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
+        globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
+        system.runAs(globalUser){
+            projectListObj = [Select Id, Name,IPM_Project_Name__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r )
+            from IPM_Project__c where Name in:projectNameSet];
+            project=projectListObj[0];
+            IPM_Project__c childProj=new IPM_Project__c();
+            childProj.IPM_Parent_Project__c=project.id;
+            childProj.IPM_Project_Name__c=project.Name+'_Name';
+            childProj.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+            insert childProj;
+            list<IPM_Project__c>childPList=[SELECT IPM_Parent_Project__c FROM IPM_Project__c WHERE id=:childProj.id LIMIT 1];
+            system.assertEquals(childPList[0].IPM_Parent_Project__c,project.id,'Parent project id is:'+childPList[0].IPM_Parent_Project__c);
+            
+            IPM_Project__c childProjs=new IPM_Project__c();
+            childProjs.IPM_Parent_Project__c=childProj.id;
+            childProjs.IPM_Project_Name__c=project.Name+'_Names';
+            childProjs.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+            insert childProjs;
+            list<IPM_Project__c>childsPList=[SELECT IPM_Parent_Project__c FROM IPM_Project__c WHERE id=:childProjs.id LIMIT 1];
+            system.assertEquals(childsPList[0].IPM_Parent_Project__c,childProj.id,'Parent project id is:'+childsPList[0].IPM_Parent_Project__c);
+            
+            
+            geographyDetailList = [SELECT id,Name FROM MDO_Geography__c WHERE Name IN: countryNameList];
+            system.assertEquals(geographyDetailList.size(),2);
+          
+            for(IPM_Project__c projectObj : projectListObj) {
+                projDocList = projectObj.Project_Documents__r;
+                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
+            }
+            
+            projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
+            where IPM_Project_Document__c=:projDocList[0].Id];
+            system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id);
+            
+            //create country test data
+          for(integer i=0 ;i<10 ;i++){
+              IPM_Country__c insertCountry = IPM_TestFactory_Helper.createIPMCountry(false);
+              if(i!=7){
+                  insertCountry.IPM_Project__c = projectListObj[0].Id;
+                  insertCountry.IPM_Regional_Project__c = projectListObj[1].Id;
+                  
+              }
+              insertCountry.IPM_Local_Project__c = projectListObj[2].Id;
+              insertCountry.MDO_Geography__c=geographyDetailList[0].id;
+              insertCountry.isActive__c = true;
+              countryTest.add(insertCountry);
+          }
+          insert countryTest;
+          
+          list<IPM_Country__c> countryList = [SELECT Id,IPM_Project__c,MDO_Geography__c,IPM_Local_Project__c,MDO_Geography__r.Name FROM IPM_Country__c WHERE                  MDO_Geography__r.Name IN:countryNameList];
+          for(IPM_Country__c country :countryList)
+          {
+              system.assertEquals(country.IPM_Local_Project__c,projectListObj[2].Id);
+          }
+          
+          for(IPM_Project__c projectObj : projectListObj) {
+                finList = projectObj.IPM_Financials_Consolidated__r;
+                
+            }
+            
+          finYear = IPM_TestFactory_Helper.createIPMFinancialYear(FALSE); 
+          finYear.IPM_Financial__c=finList[0].Id;
+          finYear.Charter_Approved__c=true;
+          finYear.Contract_Approved__c=true;
+          finYear.MD_Approved__c=true;
+          finYear.MD_Approved__c=true;
+          finYear.Copy_Global_to_Local__c=true;
+          finYear.Copy_Global_to_Regional__c=true;
+          finYear.Copy_Local_to_Regional__c=true;
+          finYear.Copy_Regional_to_Local__c=true;       
+          
+          insert finYear;       
+          List<IPM_Financial_Year__c> finyrList=[SELECT Charter_Approved__c FROM IPM_Financial_Year__c WHERE ID=:finYear.id LIMIT 1];
+          system.assertEquals(finyrList[0].Charter_Approved__c,true,'financial chater approver is:'+finyrList[0].Charter_Approved__c);  
+        }
+    }
+    
     static testmethod void testUpdateProjectsName(){
-        initializedData();
-        test.startTest();
+        initializeTestMethodData();
+        globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
+        
         //running as global project leader with invalid project name
-        system.runAs(gkAndPL){
-	        //get project old name and new name along with project id
-	        map<id,string>projectOldname=new map<id,string>();
-	        map<id,string>updatedname=new map<id,string>();
-			projectOldname.put(parentProject.id, projectName);
-	        updatedname.put(parentProject.id, inValidProject_STR); 
-        	//call a method which will update project name to entire project related records
+        system.runAs(globalUser){ 
+            //get project old name and new name along with project id
+            test.startTest();
+            map<id,string>projectOldname=new map<id,string>();
+            map<id,string>updatedname=new map<id,string>();
+            projectOldname.put(Project.id, projectName);
+            updatedname.put(Project.id, projUpdateName); 
+            //call a method which will update project name to entire project related records
             IPM_UpdateGlobalProjectName.updateProjectName(updatedname,projectOldname);//call to update rollout name
-            List<IPM_Project_Rollout__c>rolloutList=[SELECT IPM_Rollout_Project__c,IPM_Project__c FROM IPM_Project_Rollout__c WHERE ID=:projectRollout.id LIMIT 1];
-            system.assertNotEquals(rolloutList[0].IPM_Rollout_Project__c, +inValidProject_STR,'Rollout name should be:'+parentProject.IPM_Project_Name__c);//negative test
+            project.IPM_Project_Name__c=projectName;
+            project.IPM_Phase__c='Ideas';
+            update project; 
+            List<IPM_Project__c>projectLists=[SELECT ID,IPM_Phase__c FROM IPM_Project__c WHERE id=:Project.id LIMIT 1];
+            system.assertEquals(projectLists[0].IPM_Phase__c, project.IPM_Phase__c,'Project phase is:'+projectLists[0].IPM_Phase__c);
             
             IPM_UpdateGlobalProjectName.updateChildProjects(updatedname,projectOldname);//call to update child and subchild project name
-            List<IPM_Project__c>chldProjectList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE ID=:childProject.id LIMIT 1];
-            system.assertEquals(chldProjectList[0].IPM_Project_Name__c, +childProject.IPM_Project_Name__c,'child name should be:'+chldProjectList[0].IPM_Project_Name__c);//positive test  
+            List<IPM_Project__c>updatedChildProjectList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE (IPM_Parent_Project__c=:Project.id OR IPM_Parent_Project__r.IPM_Parent_Project__c =:Project.id) AND IPM_Project_Name__c like:projUpdateName+'%' LIMIT 2];
+            system.assertEquals(updatedChildProjectList.size(),2,'both childs project name got updated');
             
-            List<IPM_Project__c>subChldProjectList=[SELECT IPM_Project_Name__c FROM IPM_Project__c WHERE ID=:subChildProject.id LIMIT 1];
-			system.assertEquals(subChldProjectList[0].IPM_Project_Name__c, +subChildProject.IPM_Project_Name__c,'sub child name should be:'+subChldProjectList[0].IPM_Project_Name__c);//positive test  
-             
+            test.stopTest();
          }
-		
-        test.stopTest();
+        
+        
     }
 }

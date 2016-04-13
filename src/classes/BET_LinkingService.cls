@@ -7,8 +7,8 @@ History
 
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  03-08-2015  Initial
+1.1        blessy.voola@accenture.com 24-Mar-2016    Do not send notification to inactive BET owner
 *************************************************************************************/
-
 /* Service class uses without sharing due to it is used by external system*/
 public without sharing class BET_LinkingService {
 
@@ -26,11 +26,14 @@ public without sharing class BET_LinkingService {
 	*************************************************************/
 	public static void setASLead(Id ProjectId, Id BetId){
 		System.debug('Entering setASLead : ' + ProjectId + ', ' + BetId);
-		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c, Launch_Date__c from uw_Bet__c where id =: BetId];
+		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c, Launch_Date__c,Inoplan_Project_Keyword_Search__c from uw_Bet__c where id =: BetId];
 		IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(ProjectId);
 		BET_LinkingServiceValidator.validateParams(betRecords);
 		try{
 			updateBetRecord(betRecords.get(0),project);
+			//Do not send notification if BET owner is inactive
+            User betowner=[select id,isactive from user where id=:betRecords.get(0).ownerid];
+                if(betowner.isactive)
 			BET_EmailNotificationService.notifyBetOwnerOfNewLeadProject(betRecords.get(0),project);
 		}catch(Exception e){
 			throw new BET_CustomBETException(Label.BET_SetAsLeadExceptionMessage,e);
@@ -61,6 +64,7 @@ public without sharing class BET_LinkingService {
 		bet.Category_Group__c = projectWrapper.categoryGroupName;
 		bet.Product_Category__c = projectWrapper.categoryName;
 		bet.Brand_Position__c = projectWrapper.brandPosition;
+		bet.Inoplan_Project_Keyword_Search__c = projectWrapper.projectName;
 		update bet;
 	}
 
@@ -78,14 +82,18 @@ public without sharing class BET_LinkingService {
 		IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(ProjectId);
 		BET_LinkingServiceValidator.validateFollowRequest(betRecords);
 		try{
+			Boolean setToAutoApprove = BET_Settings__c.getOrgDefaults().FollowRequestAutoApproved__c == null ? false : BET_Settings__c.getOrgDefaults().FollowRequestAutoApproved__c;
 			Boolean shouldBeAutoApproved = checkIfFollowRequestShouldBeAutoapproved(betRecords.get(0),managers);
 			BET_Follow_Request__c followRequest = createFollowRequest(project,betRecords.get(0),managers);
 			createRelatedMemberRequests(followRequest,betRecords.get(0),managers);
-			if(shouldBeAutoApproved) {
+			if(shouldBeAutoApproved || setToAutoApprove) {
 				followRequest.Status__c = FOLLOW_STATUS_APPROVED;
 				update followRequest;
 			} else {
 				if(followRequest.Is_Lead_Request__c){
+					 //Do not send notification if BET owner is inactive
+                User betowner=[select id,isactive from user where id=:betRecords.get(0).ownerid];
+                if(betowner.isactive)
 					BET_EmailNotificationService.notifyBetOwnerOfLeadProjectFollowRequest(betRecords.get(0),project);
 				}
 			}
@@ -203,7 +211,7 @@ public without sharing class BET_LinkingService {
 	*************************************************************/
 	public static void UnFollow(Id ProjectId, Id BetId){ //US 23
 		System.debug('Entering UnFollow : ' + ProjectId + ', ' + BetId);
-		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c,name,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c,Final_Release_Due_Date__c,First_Release_Due_Date__c from uw_Bet__c where id =: BetId];
+		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c,name,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c,Final_Release_Due_Date__c,First_Release_Due_Date__c,Inoplan_Project_Keyword_Search__c from uw_Bet__c where id =: BetId];
 		IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(ProjectId);
 		BET_LinkingServiceValidator.validateParams(betRecords);
 		Id betOwner = betRecords.get(0).ownerid;
@@ -213,6 +221,9 @@ public without sharing class BET_LinkingService {
 				IPM_BETWrapper newProject = BET_LinkingServiceHelper.getOtherFollowingProject(ProjectId,BetId);			
 				if(newProject == null){
 					BET_LinkingServiceHelper.archiveAndUnLeadBet(betRecords.get(0)); //US26
+					//Do not send notification if BET owner is inactive
+                    User owner=[select id,isactive from user where id=:betOwner];
+                if(owner.isactive)
 					BET_EmailNotificationService.notifyBetOwnerOfUnfollow(betRecords.get(0),project); //US22
 				} else {
 					Id oldBetOwner = betRecords.get(0).id;
@@ -238,6 +249,16 @@ public without sharing class BET_LinkingService {
 			throw new BET_CustomBETException(Label.BET_UnFollowExceptionMessage,e);
 		}
 		System.debug('Exit UnFollow');
+	}
+
+	/************************************************************
+		Purpose: Method returns all follow request records for given bet and ipm project
+		Parameters: Id betIdCtrl,Id projectIdCtrl
+		Returns: List of existing follow requests
+		Throws: -
+	*************************************************************/
+	public static List<BET_Follow_Request__c> getFollowRequestsForBetAndIpm(Id betIdCtrl,Id projectIdCtrl){
+		return [SELECT id from BET_Follow_Request__c WHERE Brand_Experience_Toolkit__c =: betIdCtrl and Project_Id__c =:projectIdCtrl];
 	}
 
 }

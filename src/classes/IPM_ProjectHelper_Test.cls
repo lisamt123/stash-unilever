@@ -50,15 +50,18 @@ public with sharing class IPM_ProjectHelper_Test
             
             // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
             IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader}); 
-        }   
+        } 
         
         // Insert the project as a Global project Leader.
         System.runAs(globalProjectLeader)
         {   
             
             List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(3,globalProjectLeader);
-            insert projectList; 
+            insert projectList;
+            
         }
+        
+        
      }
      
      /**
@@ -75,6 +78,7 @@ public with sharing class IPM_ProjectHelper_Test
         User globalProjectLeader = null;
         User regionalProjectLeader = null;
         
+        Test.startTest();
         // Get the list of user's for project leaders.
         List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL')];
         
@@ -92,11 +96,10 @@ public with sharing class IPM_ProjectHelper_Test
                 regionalProjectLeader = lUser;
             }
         }
-        
+        List<IPM_Project__c> projectList=new List<IPM_Project__c>();
         System.RunAs(globalProjectLeader)
         {
-            
-            List<IPM_Project__c> projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
+            projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
                                                     (Select Id from IPM_Financials_Consolidated__r ),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),
                                                     (Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Name in:projectNameSet];
             for(IPM_Project__c project : projectList)
@@ -169,7 +172,7 @@ public with sharing class IPM_ProjectHelper_Test
                 }
                 
                 IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
+                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);    
                 
                 countryList.add(tempCountry);
             }
@@ -177,7 +180,7 @@ public with sharing class IPM_ProjectHelper_Test
             insert countryList;
             
             /******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
-            Test.startTest();
+            
             
              // Set GateKeeping Model as RCLT and start with Regional Project Creation.
             for(IPM_Project__c project : projectList)
@@ -211,7 +214,7 @@ public with sharing class IPM_ProjectHelper_Test
                regionalProjects.addAll(globalToRegionalMap.get(gbProjectId)); 
             }
             
-            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c,(Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];  
+            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c, IPMProject_Span__c, (Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];  
                 
             for(IPM_Project__c regionalProject : DBRegionalProjects) 
             {
@@ -231,7 +234,7 @@ public with sharing class IPM_ProjectHelper_Test
         System.RunAs(regionalProjectLeader)
         {
             // Update phase for Local Rollouts. 
-            List<IPM_Project__c> regionalProjectsFR = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c,(Select Id from Project_Documents__r),(Select Id from Regional_Project_Rollout__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];
+            List<IPM_Project__c> regionalProjectsFR = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c, IPMProject_Span__c, (Select Id from Project_Documents__r),(Select Id from Regional_Project_Rollout__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];
             
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
@@ -240,7 +243,8 @@ public with sharing class IPM_ProjectHelper_Test
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c);     
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c);
+                    System.assertEquals(task.IPM_Phase__c,regionalProject.IPM_Phase__c);   
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
@@ -254,20 +258,35 @@ public with sharing class IPM_ProjectHelper_Test
                 
             }
         }
+      
+        System.RunAs(globalProjectLeader)
+        {
+            // Set fasttact project
+            set<id>projids=new set<id>();
+            for(IPM_Project__c project : projectList)
+            {
+                project.IPM_Fast_Track_Project__c= true;
+                projids.add(project.id);
+            }  
+            
+            update projectList;  
+            IPM_ProjectJobHelper.markProjectAsFailed(projids);
+        }
      }
      
      public static testmethod void testEcodesignSyncStatus()
      {
         List<User> users = [Select Id,Email from User where LastName = 'GLOBAL_PL' limit 1];        
         User globalUser = null;
-       
         globalUser = users[0];
                
         // Create Regional Projects.
         System.runAs(globalUser)
         {
             Test.startTest();
-            IPM_Project__c proj = [Select Id,EcoDesign_Sync_Status__c,Fetch_Timestamp_Mulesoft__c,Success_TimeStamp_EcoDesign__c from IPM_Project__c limit 1000][0];
+            IPM_Project__c proj = [Select Id,EcoDesign_Sync_Status__c,Fetch_Timestamp_Mulesoft__c,Success_TimeStamp_EcoDesign__c,
+                                    BET_Update__c,BET_Link_Requested__c,BET_Link_Requested_on_Date__c,IPM_SourceProjectType__c,IPM_Project_Type__c,
+                                    IPM_Answer_of_Q1__c from IPM_Project__c limit 1000][0];
             proj.EcoDesign_Sync_Status__c = 'Ready';
             update proj;
             
@@ -282,9 +301,33 @@ public with sharing class IPM_ProjectHelper_Test
             
             proj.EcoDesign_Sync_Status__c = 'In Progress';
             update proj;
+            string projectAPI='IPM_Project__c';
+            List<String>apiList=new List<String>();
+            apiList.add(projectAPI);
+            Map<String,Object>projectObjMap=new Map<String,Object>();
+            Map<String,List<Object>>noObjectMap=new Map<String,List<Object>>();
+            IPM_TestFactory.retrieveFieldDescibeBulk(apiList);
+            IPM_TestFactory.retrieveObjectDescibeBulk(apiList);
+            IPM_TestFactory.createSObject(projectAPI,projectObjMap,true);
+            IPM_TestFactory.createSObjectList(projectAPI,noObjectMap,true);
+            List<IPM_Project__c>projNewList=New List<IPM_Project__c>();
+            Map<id,IPM_Project__c>oldProjectMap=new Map<id,IPM_Project__c>();
+            IPM_Project__c addnewValue=new IPM_Project__C();
+            addnewValue.id=projNew.id;
+            addnewValue.IPM_Project_Leader__c=globalUser.id;
+            addnewValue.IPM_Technical_Project_Leader__c=globalUser.id;
+            addnewValue.Deputy_Project_Leader__c=globalUser.id;
+            addnewValue.IPM_Project_Gatekeeper__c=globalUser.id;
+            addnewValue.IPM_Finance_Member__c=globalUser.id;
+            projNewList.add(addnewValue);
+            oldProjectMap.put(projNew.id,addnewValue);
+            IPM_ProjectTriggerHandler.getProjectUsersMap(projNewList, oldProjectMap, false) ;
+            proj.Created_in_error__c=true;
+            update proj;
+            
             Test.stopTest();
         }
-        
+         
         
      }
    

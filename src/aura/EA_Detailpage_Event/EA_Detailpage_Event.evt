@@ -2,6 +2,8 @@
     <aura:attribute name="actvityid" type="string"/>
     <aura:attribute name="member_Id" type="string"/>
     <aura:attribute name="participant_rating" type="string"/>
-    <aura:attribute name="showcontent" type="boolean"/> 
-    
+    <aura:attribute name="pagename" type="string"/>
+    <aura:attribute name="showcontent" type="boolean"/>
+    <aura:attribute name="index" type="integer"/>
+    <aura:attribute name="navigatePageIndex" type="integer"/>
 </aura:event>

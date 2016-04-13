@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
+        <fullName>CEC_Cheque_Sent_Update</fullName>
+        <description>CEC: To set &apos;Cheque Sent&apos; to &apos;N&apos; whenever &apos;Cheque Voided&apos; field is updated to &apos;Y&apos;</description>
+        <field>Cheque_Sent__c</field>
+        <literalValue>0</literalValue>
+        <name>CEC : Cheque Sent Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CEC_Fulfilment_Not_Submitted</fullName>
         <description>CEC: Check the isSubmitted value to True to indicate and Fulfilment is  not in submitted stage for approval process</description>
         <field>isSubmitted__c</field>
@@ -47,6 +57,21 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>CEC %3A Cheque Sent Update</fullName>
+        <actions>
+            <name>CEC_Cheque_Sent_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>cec_Fulfilment__c.Cheque_Voided__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>CEC: This rule will set &apos;Cheque Sent&apos; to &apos;N&apos; whenever &apos;Cheque Voided&apos; field is updated to &apos;Y&apos;</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>Market Update</fullName>
         <actions>

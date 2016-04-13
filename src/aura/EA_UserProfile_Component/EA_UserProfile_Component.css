@@ -72,23 +72,26 @@
 }
 
 .THIS  .main_badge {
-        height: auto;
-    width: 269px;
+    
 }
 .THIS  .main_badge_image{
-    width: 75px;
+    width: 85px;
     margin: 0 auto;
     text-align: center;
         
  }
-   
+.THIS .progress_bar{
+    text-align: center;
+}
 .THIS  img.user_badge-New {
     border-radius: 34px;
 }    
 .THIS .prg_image{
     width:90%;
-    margin-left:5%;
+   margin: 0 auto;
 } 
-       
-   
+.THIS .main_image_content{
+    width: 100%;
+  margin-right: 5%;
+}       
 .THIS ul li{list-style:none;}

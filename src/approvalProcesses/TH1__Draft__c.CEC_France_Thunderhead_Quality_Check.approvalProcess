@@ -37,6 +37,19 @@
     </approvalStep>
     <description>CEC : Approval for Thunderhead Templates</description>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>User.UserRole</field>
+            <operation>equals</operation>
+            <value>CEC Manager - France</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.UserRole</field>
+            <operation>equals</operation>
+            <value>CEC User - France</value>
+        </criteriaItems>
+    </entryCriteria>
     <finalApprovalActions>
         <action>
             <name>CEC_Thunderhead_Approved_Template</name>
@@ -52,6 +65,6 @@
     </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <label>CEC France Thunderhead Quality Check</label>
-    <recordEditability>AdminOnly</recordEditability>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
     <showApprovalHistory>false</showApprovalHistory>
 </ApprovalProcess>

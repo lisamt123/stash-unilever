@@ -6,7 +6,7 @@
 *@Copyright Â© 2015  Unilever    
 ******************************************************************************************************************
 -->
-<apex:page controller="IPM_HomePageController" sidebar="false" standardStylesheets="false" readOnly="true" extensions="IPM_GetHelpDoc">     
+<apex:page controller="IPM_HomePageController" sidebar="false" standardStylesheets="false"  extensions="IPM_GetHelpDoc">     
    
     <apex:pageMessages />
     <div class="row negMargin {!if(alertscount >= 1,'homeboxShow','homeboxhide')}" >
@@ -125,7 +125,7 @@
                                 <div class="item active">
                                     <div class="col-sm-7 sliderImage">                        
                                         <div class="imgHolder">                       
-                                            <img alt="Market" src="{!URLFOR($Resource.IPM_Resource, 'images/christmas-market.jpg')}" />
+                                            <apex:image url="{!$Resource.IPM_HHC_Carousel}" alt="HHC Products" width="380" height="251"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
@@ -134,9 +134,9 @@
                                         </div>
                                         <div class="col-sm-12 noPadding sliderContent">
                                             <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
-                                            <p>{!$Label.IPM_INTERIN_SUPPORT_SOLUTION} </p>
-                                            <div class="listItem">{!$Label.IPM_INOPLAN_USER_QUERY}</div>
-                                            <div class="listItem">{!$Label.IPM_TRAINING_OR_TECHNICAL}</div>                           
+                                            <p>{!$Label.IPM_INTERIN_SUPPORT_SOLUTION} </p><br />
+                                            <p>{!$Label.IPM_INOPLAN_USER_QUERY}</p><br />
+                                            <p>{!$Label.IPM_TRAINING_OR_TECHNICAL}</p>                           
                                         </div>
                                         <div class="col-sm-12 noPadding"><a tabindex="0" class="moreLink">More>></a><a tabindex="0" class="lessLink">Less</a></div>
                                     </div>
@@ -145,7 +145,7 @@
                                 <div class="item">
                                     <div class="col-sm-7 sliderImage">                        
                                         <div class="imgHolder">                       
-                                            <img alt="Cloud" src="{!URLFOR($Resource.IPM_Resource, 'images/cloud-btn.jpg')}" />
+                                            <apex:image url="{!$Resource.IPM_FabCon_Carousel}" alt="FabCon Products" width="380" height="251"/>
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
@@ -153,12 +153,9 @@
                                             <h5 class="contentHeader">{!$Label.IPM_PROJECT_UPDATE}</h5>
                                         </div>
                                         <div class="col-sm-12 noPadding sliderContent">
-                                            <p>{!$Label.IPM_WATCH_FOR_UPDATES_TO}</p>
-                                            <div class="listItem">{!$Label.IPM_PDL_FOR_PC}</div>
-                                            <div class="listItem">{!$Label.IPM_POP_UP_AND_EMAIL}</div>
-                                            <div class="listItem">{!$Label.IPM_BD_BB_MISALLIGNMENT_VISIBILITY}</div>
-                                            <div class="listItem">{!$Label.IPM_BB_MILESTONE_DATES}</div>
-                                            <div class="listItem">{!$Label.IPM_GATEKEEPER_CHECKLIST_QUESTIONS}</div>
+                                            <span class="contentTitle">{!$Label.IPM_TECHNICAL_ISSUE}</span>
+                                            <p>{!$Label.IPM_WATCH_FOR_UPDATES_TO}</p><br />
+                                            <p>{!$Label.IPM_PDL_FOR_PC}</p>                                                                                                                                  
                                         </div>
                                         <div class="col-sm-12 noPadding"><a tabindex="0" class="moreLink">More>></a><a tabindex="0" class="lessLink">Less</a></div>
                                     </div>
@@ -192,7 +189,7 @@
                         <div class="row boxTop">
                             <div class="col-sm-12">
                                 <div class="col-sm-6 centerAlign box3 noPadleft noPadright SecButtonSet" title="{!$Label.IPM_AskIPM}">
-                                    <a class="icoButton askipm" href="http://inside.unilever.com/marketing/IPM/Pages/askipm.aspx" target="_blank" title="Ask IPM"></a>
+                                    <a class="icoButton askipm" href="https://unilever.my.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9E0000000Qc6Y&s=IPM+help&r=1" target="_blank" title="Ask IPM"></a>
                                     <span class="boxTitle">{!$Label.IPM_ASK_IPM}</span>           
                                 </div>
                                 <div class="col-sm-6 centerAlign box4 noPadleft noPadright SecButtonSet" title="{!$Label.IPM_GotoIPMPortal}">

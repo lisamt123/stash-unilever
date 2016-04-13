@@ -48,10 +48,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Account Record Count --></label>
-        <name>Account_Record_Count__c</name>
-    </fields>
-    <fields>
         <label><!-- Additional Information --></label>
         <name>Additional_Information__c</name>
     </fields>
@@ -974,10 +970,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Latest Case Number --></label>
-        <name>Latest_Case_Number__c</name>
-    </fields>
-    <fields>
         <label>Najnowsza sprawa kodu produktu</label>
         <name>Latest_Case_Product_Code__c</name>
     </fields>
@@ -1063,10 +1055,6 @@
         <name>Ownership_Status__c</name>
     </fields>
     <fields>
-        <label><!-- Phone No Special Char --></label>
-        <name>Phone_No_Special_Char__c</name>
-    </fields>
-    <fields>
         <label>Preferowany kanał</label>
         <name>Preferred_Channel__c</name>
         <picklistValues>
@@ -1108,10 +1096,6 @@
         <name>Previous_Names__c</name>
     </fields>
     <fields>
-        <label><!-- Profession --></label>
-        <name>Profession__c</name>
-    </fields>
-    <fields>
         <label><!-- Published --></label>
         <name>Published__c</name>
     </fields>
@@ -1138,34 +1122,6 @@
         <label><!-- Responsible Unilever Employee --></label>
         <name>Responsible_Unilever_Employee__c</name>
         <relationshipLabel><!-- Accounts --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Retention Date --></label>
-        <name>Retention_Date__c</name>
-    </fields>
-    <fields>
-        <label><!-- Retention Reason --></label>
-        <name>Retention_Reason__c</name>
-        <picklistValues>
-            <masterLabel>1-Legal</masterLabel>
-            <translation><!-- 1-Legal --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>2-Customer Request</masterLabel>
-            <translation><!-- 2-Customer Request --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>3-Default</masterLabel>
-            <translation><!-- 3-Default --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
-        <label><!-- Retention Record Id --></label>
-        <name>Retention_Record_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- Retention Record --></label>
-        <name>Retention_Record__c</name>
     </fields>
     <fields>
         <label><!-- Strategic Capabilities Video --></label>
@@ -1306,30 +1262,6 @@
         <label><!-- Year Established --></label>
         <name>Year_Established__c</name>
     </fields>
-    <layouts>
-        <layout>Person Account Layout</layout>
-        <layoutType>PersonAccount</layoutType>
-        <sections>
-            <label>Dodatkowe informacje adresowe</label>
-            <section>Additional Address Information</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>TO Person Account Layout</layout>
-        <layoutType>PersonAccount</layoutType>
-        <sections>
-            <label><!-- Additional Address Information --></label>
-            <section>Additional Address Information</section>
-        </sections>
-        <sections>
-            <label><!-- Additional Demandware Information --></label>
-            <section>Additional Demandware Information</section>
-        </sections>
-    </layouts>
-    <quickActions>
-        <label><!-- Add Expertise --></label>
-        <name>Pitch_Add_Expertise</name>
-    </quickActions>
     <recordTypes>
         <label><!-- Agency --></label>
         <name>Agency</name>

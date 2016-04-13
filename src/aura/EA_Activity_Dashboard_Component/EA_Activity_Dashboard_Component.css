@@ -20,8 +20,9 @@
   margin-left: 15px;
   margin-top: -20px;
   color: black;
-  width: 100%;
-  padding-top:0.5rem;
+  width: 45%;
+  float: left;
+  padding-top:18px;
 }
 .THIS .regular_font {
   font-weight: 100;
@@ -34,8 +35,10 @@
   width: 100%;
   text-transform: uppercase;
 }
-.THIS .right_arrow_img{float: right;
-    padding-right: 10%;
+.THIS .right_arrow_img{
+    float: right;
+    padding-right: 5%;
+    position:relative;
 }   
 .THIS .Container{
     background:white;
@@ -44,8 +47,8 @@
 .THIS   .right_arrow{
     width:10px;
     height:10px;
-    margin-left:180px;
-    margin-top:-40px;
+    margin-left: 300px;
+    margin-top: -32px;
     }
 .THIS .feed_img {
   width: 10px;
@@ -63,6 +66,18 @@
   margin-left:1rem;
     padding-right:8px;
      margin-top:20px;
+    
+}
+.THIS div.feedback , .THIS div.invitation{
+    float: right;
+    padding-right: 0!important;
+    margin-top: -4px!important;
+    width: 113px!important;
+    margin-left: 59%;
+    position: absolute;
+    display: block;
+    padding: 3px 0;
+    height: 22px;
 }
 
 .THIS .inv_img {

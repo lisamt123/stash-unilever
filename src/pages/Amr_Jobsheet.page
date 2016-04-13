@@ -413,9 +413,10 @@
                                    <apex:param value="{!jobList.CreatedDate}" />
                            </apex:outputText><br/><br/>
                            
-                           <span style="font-weight:bold;">RAP Allocated:</span>&nbsp;
+                           <span style="font-weight:bold;">RAP Allocated And Accepted:</span>&nbsp;
                            <apex:repeat value="{!listOfUserToDisplay}" var="job">
-                           <apex:outputText value="{!job.User__r.Name}"></apex:outputText><br/>
+                           <apex:outputText value="{!job.User__r.Name}"></apex:outputText>&nbsp;&nbsp;
+                           <apex:outputText value="{!if(job.Job_Status__c=='Accepted','Yes','No')}"></apex:outputText><br/>
                            </apex:repeat>
                                 <div class="before inner_heading_sub_section margin-bottom20">
                                     <h4>{!$Label.Amr_Before_you_start}</h4>

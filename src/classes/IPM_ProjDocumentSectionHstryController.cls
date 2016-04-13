@@ -22,7 +22,8 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
     public Integer NonNegotiable;
     public Integer removeoptional;
     public decimal FilledinPer{get;set;} //Contains Filled-In Percentage of Project Document Sections
-    
+    public Boolean bDocStatusNotStartedOrApproved{get;set;}//Flag to check if document is in Not Started or Approved Status
+    public static final String IPM_PROJECTDOC_SECTION_HISTORYCTLR_STR = 'IPM_ProjDocumentSectionHstryController';
     /*******************************************************************************************************************************************
 * @description Fetching the Page Parameters and Retrieving Project and Projec Document
 */ 
@@ -31,6 +32,7 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
         FilledinPer=0;
         isTaskeditable=false;
         isAllTask=false; 
+        bDocStatusNotStartedOrApproved = false;
         projectId=ApexPages.currentPage().getParameters().get('Id');
         if(ApexPages.currentPage().getParameters().get('projDocSecId')!=NULL){
             sectionId=ApexPages.currentPage().getParameters().get('projDocSecId');
@@ -48,8 +50,11 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
         }else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
             gateDocument=IPM_ConstantUtils.CONTRACT_GATE;
             nextPhase = IPM_ConstantUtils.PHASE_CAPABILITY ;
-        }else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT){      
+        }else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){      
             gateDocument=IPM_ConstantUtils.CHARTER_GATE;
+            nextPhase = IPM_ConstantUtils.PHASE_CAPABILITY ;
+       }else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){      
+            gateDocument=IPM_ConstantUtils.CONTRACT_GATE;
             nextPhase = IPM_ConstantUtils.PHASE_CAPABILITY ;
                 }else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH){      
             gateDocument=IPM_ConstantUtils.CONTRACT_GATE; 
@@ -67,10 +72,13 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
             gateDocument=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE; 
         }else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_PLE && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL){
             gateDocument=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;  
-        }if((project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_MARKET_READY && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
-            (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_CAPABILITY && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
+        }
+        
+        
+        if((project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_CAPABILITY && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
             (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
-            (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_PLE && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL)){        
+            (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_PLE && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
+            ((project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_READY || project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT) && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)){        
                 projectDocList=[SELECT Id,IPM_Contract_GateKeeper_Model__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,IPM_Approval_Date__c,
                             LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c,LastModifiedBy.Name,IPM_GateDocuments__c,IPM_Project__c 
                             FROM IPM_Project_Document__c 
@@ -81,16 +89,20 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
                 }
                 
                  //For Storing Filled-In Percentage Calculation in Project Object 
-                If(projectDoc != null && projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_NOT_STARTED){
+                If(projectDoc != null && ( projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_NOT_STARTED || projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_APPROVED)){
+                		bDocStatusNotStartedOrApproved = true;
+                		
                         Integer NonNegotiable=[SELECT count() FROM IPM_Project_Document_Section__c 
                                                                    WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER AND 
                                                                    IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!=:IPM_ConstantUtils.APPENDIX];
                         Integer removeoptional=[SELECT count() FROM IPM_Project_Document_Section__c 
                                                                         WHERE IPM_Section_Status__c=:IPM_ConstantUtils.SECTION_STATUS_FILLED AND IPM_Project_Document__c=:projectDoc.Id AND  IPM_Default_Section__c=true AND 
                                                                     IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!=:IPM_ConstantUtils.APPENDIX];
+                                
                                 if(NonNegotiable!=0){
                                         FilledinPer=math.round((Decimal.valueof(removeoptional)/decimal.valueof(NonNegotiable))*100);
                                 }
+                                
                         }            
                 
                 projSectionList=new List<IPM_Project_Document_Section__c>();
@@ -105,64 +117,89 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
         
     }
     
-    /*******************************************************************************************************************************************
-* @description For Moving to Next Gate Document When Status is Approved with Edit
+    /*******************************************************************************************
+    @description To Move the Gate Document to next phase When the Status is Approved with Edits
 */ 
+    public static String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
+    public static String REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId();
+    public static String MOVE_TO_NEXT_DOC_STR = 'moveToNextDocument'; 
     public void moveToNextDocument(){
-        //Savepoint for Rollback Transaction
-        Savepoint sp;
-        try{
-            sp = Database.setSavepoint();
-            List<IPM_Project__c> childProjects=new List<IPM_Project__c>(); //Contains Child Project
-            IPM_Project__c ParentProject=new IPM_Project__c(); //Contains Parent Project
-            if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)
-                project.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
-            else{
-                childProjects=[SELECT Id,IPM_Phase__c,IPM_Parent_Project__c FROM IPM_Project__c WHERE IPM_Parent_Project__c=:project.Id];
-                if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
-                    for(IPM_Project__c cp:childProjects){
-                        cp.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;    
+        
+        Date dt=date.parse(System.today().format());
+        projectDoc.IPM_Approval_Date__c=dt;
+        IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(project);
+        IPM_Project_Type__c nextPhaseProjectType = IPM_Utils.getNextPhase(currentProjectType,false);
+        List<IPM_Project_Rollout__c> regionalRolloutList = new List<IPM_Project_Rollout__c>();
+        List<IPM_Project_Rollout__c> localRolloutList = new List<IPM_Project_Rollout__c>();
+            if(currentProjectType!=null && nextPhaseProjectType !=null && nextPhaseProjectType.IPM_Phase__c!=null)
+            {
+                project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
+                project.IPM_Document_Update_Date__c = Date.today();
+                project.IPM_Document_Update_Comments__c = projectDoc.IPM_Approved_Comments__c;
+                project.IPM_Phase__c = nextPhaseProjectType.IPM_Phase__c;
+                if(currentProjectType.IPM_CreateRegionalProjectOnStatusChange__c)
+                {
+                    Id currentProjectId = project.Id; // variable used in query below NO SONAR
+                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
+                    String rolloutWhereClause = ' WHERE IPM_Project__c =:currentProjectId  AND recordTypeId = :REGIONAL_ROLLOUT_RECORDTYPE limit 10000';
+                    rolloutWhereClause = rolloutQuery + rolloutWhereClause;
+                    regionalRolloutList = database.query(rolloutWhereClause);
+                    if(!regionalRolloutList.isEmpty())
+                    {
+                        for(IPM_Project_Rollout__c rollout : regionalRolloutList)
+                        {
+                            rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+                            rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;  
                     }
-                    project.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
                 }
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
-                    project.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;    
                 }
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
-                    for(IPM_Project__c cp:childProjects){
-                        cp.IPM_Phase__c=IPM_ConstantUtils.PHASE_MARKET_READY;    
+                
+                if(currentProjectType.IPM_CreateLocalProjectOnStatusChange__c)
+                {
+                    Id currentProjectId = project.Id; // variable used in query below NO SONAR
+                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
+                    String rolloutWhereClause = ' WHERE Regional_Project__c  =:currentProjectId  AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE limit 10000';
+                    rolloutWhereClause = rolloutQuery + rolloutWhereClause;
+                    localRolloutList = database.query(rolloutWhereClause);
+                    if(!localRolloutList.isEmpty())
+                    {
+                        for(IPM_Project_Rollout__c rollout : localRolloutList)
+                        {
+                            rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+                            rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;  
                     }
-                    project.IPM_Phase__c=IPM_ConstantUtils.PHASE_MARKET_READY;
                 }
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
-                    project.IPM_Phase__c=IPM_ConstantUtils.PHASE_MARKET_READY;    
                 }   
                 
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_READY && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL){
-                    project.IPM_Phase__c=IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT;    
                 }
-                if(project.IPM_Parent_Project__c!=null && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT){
-                    ParentProject=[SELECT id,IPM_Actual_Launch_Date__c,IPM_GateKeeping_Model__c,IPM_Phase__c FROM IPM_Project__c WHERE id=:project.IPM_Parent_Project__c];
-                    ParentProject.IPM_Phase__c=project.IPM_Phase__c;
-                    update ParentProject;
+            
+            
+            System.SavePoint sp = Database.SetSavePoint();  
+            try
+            {   
+                if(currentProjectType.IPM_CreateRegionalProjectOnStatusChange__c && regionalRolloutList!=null && !regionalRolloutList.isEmpty())
+                {
+                    update regionalRolloutList; 
                 }
+                if(currentProjectType.IPM_CreateLocalProjectOnStatusChange__c && localRolloutList!=null && !localRolloutList.isEmpty())
+                {
+                    update localRolloutList;
             }
-            //Updating Project phase
+                    
             update project;
-            //Updating Phase of Child Projects
-            if(childProjects!=null && !childProjects.isEmpty())
-                update childProjects;
-            //Updating Project Document Status Approved    
-            projectDoc.IPM_Contract_GateKeeper_Model__c=project.IPM_GateKeeping_Model__c;
-            Date dt=date.parse(System.today().format());
-            projectDoc.IPM_Approval_Date__c=dt;
-            projectDoc.IPM_Document_Status__c=IPM_ConstantUtils.STATUS_APPROVED;
-            update projectDoc;
+            }
+            catch (DmlException ex)
+            {
+                Database.Rollback(sp);
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_PROJECTDOC_SECTION_HISTORYCTLR_STR,
+                MOVE_TO_NEXT_DOC_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+
         }
-        catch(Exception ex){
+            catch (Exception ex)
+            {
             Database.rollback(sp);
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'IPM_ProjDocumentSectionHstryController',
-                'moveToNextDocument',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);                
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_PROJECTDOC_SECTION_HISTORYCTLR_STR,
+                MOVE_TO_NEXT_DOC_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
     

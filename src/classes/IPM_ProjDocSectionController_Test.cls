@@ -4,30 +4,25 @@
 * @Description: Test Class Project Document Section Controller
 */
 @isTest
-public class IPM_ProjDocSectionController_Test{   
+private class IPM_ProjDocSectionController_Test{   
     //Initializing Variables
-    public static User platformUser;
-    public static Attachment atth;
-    public static string EXCEPTION_OCCURED = 'Exception occured while saving document.';
-    public static string RECORD_NOT_SAVED = 'Record not saved successfully.';
-    public static string IMAGES_NOT_DELETED = 'image not deleted properly.';
-    public static string SECTION_NOT_UPDATED = 'section not updated properly';
-    public static string PROJ_RESOURCE_NOT_UPDATED = 'project resource not updated properly';
-    public static string PROJ_DOC_SEC_ID_STR = 'projdocsecid';
-    public static string GATE_DOC_SECTION_ACCESS_2 = 'trade_promotion_strategy,country_feedback_requirements';
-    public static string PRIOORITY_NOT_CHANGED = 'priority not changed properly.';
-    public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
-    public static List<IPM_Project__c> projectListObj = new List<IPM_Project__c>();
-    public static List<IPM_Project_Document_Section__c> sectionList = new List<IPM_Project_Document_Section__c>();
-    public static IPM_Project_Document_Section_Content__c sectionContent;
-    public static List<IPM_Gate_Document_Section_Access__c> customSettingDataList = new List<IPM_Gate_Document_Section_Access__c>();
-    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
-    public static IPM_Project_Resource__c ipmProjectResource; 
-    public static List<IPM_Gate_CMI__c> gateCMI = new List<IPM_Gate_CMI__c>();
-    public static List<IPM_Questionnaire__c> questionaire = new List<IPM_Questionnaire__c>();
-    public static User otherUser;
-    public static String Project_Template = 'should be same';
-
+    private static User platformUser;
+    private static final string SECTION_NOT_UPDATED = 'section not updated properly';
+    private static final string PROJ_RESOURCE_NOT_UPDATED = 'project resource not updated properly';
+    private static final string PROJ_DOC_SEC_ID_STR = 'projdocsecid';
+	private static final string SAVE_FAILED = 'save failed';
+    private static final string GATE_DOC_SECTION_ACCESS_2 = 'trade_promotion_strategy,country_feedback_requirements';
+    private static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+    private static List<IPM_Project__c> projectListObj = new List<IPM_Project__c>();
+    private static List<IPM_Project_Document_Section__c> sectionList = new List<IPM_Project_Document_Section__c>();
+    private static IPM_Project_Document_Section_Content__c sectionContent;
+    private static List<IPM_Gate_Document_Section_Access__c> customSettingDataList = new List<IPM_Gate_Document_Section_Access__c>();
+    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    private static IPM_Project_Resource__c ipmProjectResource; 
+    private static List<IPM_Gate_CMI__c> gateCMI = new List<IPM_Gate_CMI__c>();
+    private static List<IPM_Questionnaire__c> questionaire = new List<IPM_Questionnaire__c>();
+    
+	
     /***********************************
     * @Description: Test Data Creation
     * *********************************/
@@ -54,12 +49,14 @@ public class IPM_ProjDocSectionController_Test{
         system.assertEquals(ipmCompanyCardList.size(), 3, 'Company card not created properly.');
         
         IPM_TestFactory_Helper.getProjectMasterData();
-         
+        
         projectList = IPM_TestFactory_Helper.projectSetUp(1,platformUser);
-         
+        
         System.runAs(platformUser)
         {
-           insert projectList;
+            insert projectList;
+            projectList[0].IPM_Technical_Project_Leader__c=platformUser.id;
+            update projectList;
         }  
         Set<Id> projectIdList = new Set<Id>();        
         for(IPM_project__c temp : projectList){
@@ -74,13 +71,13 @@ public class IPM_ProjDocSectionController_Test{
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         System.runAs(globalUser)
         { 
-            projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r)
+            projectListObj = [Select Id, Name,IPM_Technical_Project_Leader__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r)
             from IPM_Project__c where Name in:projectNameSet];
             
             for(IPM_Project__c projectObj : projectListObj)
             {
                 projDocList = projectObj.Project_Documents__r;
-                system.assertEquals(projDocList[0].IPM_GateDocuments__c,'Charter','Project Document created');  
+                system.assertEquals(projDocList[0].IPM_GateDocuments__c,'Charter','Project Document not created');  
             }
             
             sectionList = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
@@ -114,7 +111,7 @@ public class IPM_ProjDocSectionController_Test{
             gateCMI[0].IPM_Skip_Test_Reason__c = 'XYZ';
             update gateCMI;
             IPM_Gate_CMI__c testCMI = [Select id, IPM_Skip_Test_Reason__c from IPM_Gate_CMI__c where id =: gateCMI[0].Id];
-            system.assertEquals(testCMI.IPM_Skip_Test_Reason__c, 'XYZ', 'CMI nit updated properly.');
+            system.assertEquals(testCMI.IPM_Skip_Test_Reason__c, 'XYZ', 'CMI not updated properly.');
             
 
             IPM_Gate_Document_Section_Access__c customSettingData = new IPM_Gate_Document_Section_Access__c();
@@ -189,14 +186,13 @@ public class IPM_ProjDocSectionController_Test{
             update questionaire; 
             IPM_Questionnaire__c testQuestionaire = [Select id, IPM_Active_RQS__c from IPM_Questionnaire__c where id=: questionaire[0].Id];
             system.assertEquals(testQuestionaire.IPM_Active_RQS__c, true, 'Questionare not updated properly.');
-            otherUser= IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
-           }
+        }
     }
     
     /**************************************************************************************************************************
     * @Description: For Running the Test Script
     */ 
-    public static testMethod void testSectionControl1(){ 
+    public static testMethod void testSave(){ 
         Test.startTest();
         createTestData();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
@@ -208,6 +204,9 @@ public class IPM_ProjDocSectionController_Test{
             Test.setCurrentPage(pRef );
             
             IPM_ProjectDocumentSectionController projDocSecControl=new IPM_ProjectDocumentSectionController();
+            projDocSecControl.selectedOTIFStatus='abc';
+            projDocSecControl.gateDocument=IPM_ConstantUtils.CHARTER_GATE;
+            projDocSecControl.secList='asd';
             projDocSecControl.isFlagedNext = 'True';
             projDocSecControl.isChecked = 'true';
             projDocSecControl.IsGateSave = 'Gate';
@@ -218,13 +217,22 @@ public class IPM_ProjDocSectionController_Test{
             projDocSecControl.UpdateTask();
             projDocSecControl.lstPagination();
             projDocSecControl.getSecOption();
-            System.assert(projDocSecControl.projDocSec!=null, 'Project Document Section');
-            System.assert(projDocSecControl.projDoc!=null);
+            System.assert(projDocSecControl.projDocSec!=null, 'Project Document Section not created');
+            System.assert(projDocSecControl.projDoc!=null, 'Project Document not created');
+            projDocSecControl.status=true;
+            projDocSecControl.IsEditableSumm=true;
+            projDocSecControl.projDocSec.IPM_Gate_Document_Summary__c='test with comment.test with comment';
+            projDocSecControl.projDocSec.IPM_Negotiable__c=true;
+            projDocSecControl.save();
+            projDocSecControl.projDocSec.IPM_Negotiable__c=false;
+            projDocSecControl.projDocSec.IPM_PDP_Document_Summary__c=projDocSecControl.projDocSec.IPM_Gate_Document_Summary__c;
+            projDocSecControl.project.name='testwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddata';
+            projDocSecControl.save(); 
         }
         Test.stopTest();
     }
     
-    public static testMethod void testSectionControl2(){ 
+    public static testMethod void testSaveForBBUser(){ 
         Test.startTest();
         createTestData();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
@@ -250,11 +258,12 @@ public class IPM_ProjDocSectionController_Test{
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.save();
+            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID, SAVE_FAILED);
         }
         Test.stopTest();
     }
     
-    public static testMethod void testSectionControl3(){ 
+    public static testMethod void testSaveForCMIUser(){ 
         Test.startTest();
         createTestData();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
@@ -280,11 +289,12 @@ public class IPM_ProjDocSectionController_Test{
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.save();
+            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID, SAVE_FAILED);
         }
         Test.stopTest();
     }
     
-    public static testMethod void testSectionControl4(){ 
+    public static testMethod void testSaveForCDUser(){ 
         Test.startTest();
         createTestData();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
@@ -310,11 +320,12 @@ public class IPM_ProjDocSectionController_Test{
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.save();
+            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID,SAVE_FAILED);
         }
         Test.stopTest();
     }
     
-    public static testMethod void testSectionControl5(){ 
+    public static testMethod void testSaveForRnDUser(){ 
         Test.startTest();
         createTestData();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
@@ -340,11 +351,12 @@ public class IPM_ProjDocSectionController_Test{
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.save();
+            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID, SAVE_FAILED);
         }
         Test.stopTest();
     }
     
-    public static testMethod void testSectionControl6(){ 
+    public static testMethod void testSaveForSCUser(){ 
         Test.startTest();
         createTestData();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
@@ -370,17 +382,32 @@ public class IPM_ProjDocSectionController_Test{
             
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.save();
+            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID,SAVE_FAILED);
         }
+        testResource.IPM_Role_Type__c = 'BB';
+        update testResource; 
+        
+        System.runAs(testUser)
+        {
+            PageReference pRef = Page.IPM_ProjectDocumentSectionEditor;
+            pRef.getparameters().put('Id', projectListObj[0].ID);
+            pRef.getparameters().put(PROJ_DOC_SEC_ID_STR, testSection.Id);
+            Test.setCurrentPage(pRef );
+            
+            IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
+            projDocSecControl.project.IPM_Phase__c=IPM_ConstantUtils.PHASE_MARKET_READY;
+            projDocSecControl.getIpmuserType();
+        }
+        
         Test.stopTest();
     }
     
-    public static testMethod void testSectionControl7(){ 
+    public static testMethod void testPagination(){ 
         Test.startTest();
         createTestData();
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         IPM_Project_Resource__c testResource = [Select id, IPM_User__c, IPM_Role_Type__c from IPM_Project_Resource__c where id =: ipmProjectResource.id];  
         testResource.IPM_Role_Type__c = 'Finance';
-        testResource.IPM_User__c = otherUser.Id;
         update testResource; 
         IPM_Project_Resource__c projResource = [Select id, IPM_Role_Type__c from IPM_Project_Resource__c where id =: testResource.Id];
         system.assertEquals(projResource.IPM_Role_Type__c, 'Finance', PROJ_RESOURCE_NOT_UPDATED);
@@ -403,6 +430,7 @@ public class IPM_ProjDocSectionController_Test{
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.isChecked = 'true';
             projDocSecControl.save();
+            system.assertEquals(projDocSecControl.projectId, projectListObj[0].ID,SAVE_FAILED);
             
             projDocSecControl.isFlagedNext = 'true';
             projDocSecControl.pagination();

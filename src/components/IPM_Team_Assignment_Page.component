@@ -7,12 +7,16 @@
 *************************************************************************
 -->
 
-<apex:component controller="IPM_Team_Assignment_Controller" allowDML="true" id="IPM_TeamAssignmentPage">
+<apex:component controller="IPM_Team_Assignment_Controller" extensions="IPM_GetHelpDoc" allowDML="true" id="IPM_TeamAssignmentPage">
             <apex:form id="frm">
                 <apex:actionStatus id="teamDelete" startStyleClass="proInit" >
                 </apex:actionStatus>
                 <div class="container-fluid">
-                    <div class="row">   
+                    <div class="row">
+                        <!-- To place the help symbol in the top right hand corner of page -->
+                        <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+                            <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+                        </apex:outputPanel> 
                         <div class="col-sm-12 noPadleft noPadright teamHeading">
                                 <div class="col-sm-6 noPadleft pageTitlefont">
                                     {!$Label.IPM_Team}
@@ -159,7 +163,8 @@
                                                     <apex:outputtext value="{!$Label.IPM_Brand_Builders_BB}" rendered="{! if(uRole='BB','true','false')}"/>
                                                     <apex:outputtext value="{!$Label.IPM_Customer_Development_CD}" rendered="{! if(uRole='CD','true','false')}"/>
                                                     <apex:outputtext value="{!$Label.IPM_Consumer_Marketing_Insight_CMI}" rendered="{! if(uRole='CMI','true','false')}"/>
-                                                    <apex:outputtext value="{!$Label.IPM_Brand_Development_Finance_BD_Finance}" rendered="{! if(uRole='Finance','true','false')}"/>
+                                                    <apex:outputtext value="{!$Label.IPM_Brand_Development_Finance_BD_Finance}" rendered="{! if(AND(uRole='Finance',IPM_proj.IPMProject_Span__c!='Local'),'true','false')}"/>
+                                                    <apex:outputtext value="{!$Label.IPM_BRAND_BUILDING_FINANCE}" rendered="{! if(AND(uRole='Finance',IPM_proj.IPMProject_Span__c='Local'),'true','false')}"/>
                                                     <apex:outputtext value="{!$Label.IPM_Supply_Chain_SC}" rendered="{! if(uRole='Supply Chain','true','false')}"/>
                                                     <apex:outputtext value="{!$Label.IPM_Research_and_Development_R_D}" rendered="{! if(uRole='R&D','true','false')}"/> 
                                                     <apex:outputtext value="{!$Label.IPM_Guest}" rendered="{! if(uRole='Guest','true','false')}"/>
@@ -191,6 +196,7 @@
                                                         <apex:outputpanel id="displayAissgnedM" rendered="{!IF(uRole=lstMem.IPM_Role_Type__c, 'true', 'false') }">
                                                             <div class="custPosition noPadleft">
                                                                 <div class="memContainer">                                                                  
+                                                                <!-- If Logged in user is core team member and user role is login user type then User can delete the member  -->                                                                  
                                                                     <apex:outputPanel rendered="{! if(OR(isCoreMemEditable=true,uRole=loginusertype),'true','false')}">
                                                                     <apex:outputPanel rendered="{!isShowEditmode}">
                                                                     <div class="SecButtonSet teamMemberButton" data-toggle="modal" data-target="#ipmModalDelete" title="Delete Member" data-backdrop="static" data-keyboard="false">

@@ -31,26 +31,34 @@ public with sharing class IPM_CustomPermission {
         customPermissionNames = new Set<String>();
         customPermissionsForCurrentUser = new Set<String>();
         
-        // Query the full set of Custom Permissions for the given namespace
-        Map<Id, String> customPermissionNamesById = new Map<Id, String>();
-        List<CustomPermission> customPermissions = 
-            [SELECT Id, DeveloperName FROM CustomPermission LIMIT 500];
-        for(CustomPermission customPermission : customPermissions) {
-            customPermissionNames.add(customPermission.DeveloperName);
-            customPermissionNamesById.put(customPermission.Id, customPermission.DeveloperName);
-        }
+        List<IPM_User_Profile__c>userProfileList=new List<IPM_User_Profile__c>();
+        userProfileList=[SELECT ID FROM IPM_User_Profile__c WHERE IPM_User__c=:UserInfo.getUserId() 
+                                                    AND IPM_Central_Team__c=true LIMIT 1];
+        List<IPM_Company_Card__c>companyCardList=new List<IPM_Company_Card__c>();
+        companyCardList=[SELECT ID FROM IPM_Company_Card__c WHERE IPM_Business_Partner__c=:UserInfo.getUserId() LIMIT 1];
+        if(!userProfileList.isEmpty() || !companyCardList.isEmpty()){
+            // Query the full set of Custom Permissions for the given namespace
+            Map<Id, String> customPermissionNamesById = new Map<Id, String>();
+            List<CustomPermission> customPermissions = 
+                [SELECT Id, DeveloperName FROM CustomPermission LIMIT 500];
+            for(CustomPermission customPermission : customPermissions) {
+                customPermissionNames.add(customPermission.DeveloperName);
+                customPermissionNamesById.put(customPermission.Id, customPermission.DeveloperName);
+            }
 
-        // Query to determine which of these custome settings are assigned to this user
-        List<SetupEntityAccess> setupEntities = 
-            [SELECT SetupEntityId
-                FROM SetupEntityAccess
-                WHERE SetupEntityId in :customPermissionNamesById.keySet() AND
-                      ParentId
-                        IN (SELECT PermissionSetId 
-                            FROM PermissionSetAssignment
-                            WHERE AssigneeId = :UserInfo.getUserId()) LIMIT 10];  
-        for(SetupEntityAccess setupEntity : setupEntities)
-            customPermissionsForCurrentUser.add(customPermissionNamesById.get(setupEntity.SetupEntityId));  
+            // Query to determine which of these custome settings are assigned to this user
+            List<SetupEntityAccess> setupEntities = 
+                [SELECT SetupEntityId
+                    FROM SetupEntityAccess
+                    WHERE SetupEntityId in :customPermissionNamesById.keySet() AND
+                          ParentId
+                            IN (SELECT PermissionSetId 
+                                FROM PermissionSetAssignment
+                                WHERE AssigneeId = :UserInfo.getUserId()) LIMIT 10];  
+            for(SetupEntityAccess setupEntity : setupEntities) {
+                customPermissionsForCurrentUser.add(customPermissionNamesById.get(setupEntity.SetupEntityId));
+            } 
+        }
     }
 
 }

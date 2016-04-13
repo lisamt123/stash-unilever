@@ -58,6 +58,10 @@
         <name>CPG_Code_Reporting__c</name>
     </fields>
     <fields>
+        <label><!-- CSAT Delay --></label>
+        <name>CSAT_Delay__c</name>
+    </fields>
+    <fields>
         <label><!-- Case Brand Mapping --></label>
         <name>Case_Brand_Mapping__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
@@ -135,6 +139,14 @@
         <name>Claims_Notes__c</name>
     </fields>
     <fields>
+        <label><!-- Consumer Email --></label>
+        <name>Consumer_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Note --></label>
+        <name>Consumer_Note__c</name>
+    </fields>
+    <fields>
         <label>Konsumencki opis produktu - bez rozmiaru</label>
         <name>Consumer_Product_Descriptor_no_size__c</name>
     </fields>
@@ -148,6 +160,10 @@
         <picklistValues>
             <masterLabel>Belgium</masterLabel>
             <translation><!-- Belgium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canada</masterLabel>
+            <translation><!-- Canada --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Czech Republic</masterLabel>
@@ -202,6 +218,10 @@
             <translation><!-- Lithuania --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Mexico</masterLabel>
+            <translation><!-- Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Netherlands</masterLabel>
             <translation><!-- Netherlands --></translation>
         </picklistValues>
@@ -237,6 +257,10 @@
             <masterLabel>United Kingdom</masterLabel>
             <translation><!-- United Kingdom --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>United States</masterLabel>
+            <translation><!-- United States --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label>Kraj</label>
@@ -264,6 +288,10 @@
         <name>DefaultCMMAccountOwner_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Default From Address --></label>
+        <name>Default_From_Address__c</name>
+    </fields>
+    <fields>
         <label><!-- Escalated Date --></label>
         <name>Escalated_Date__c</name>
     </fields>
@@ -278,6 +306,10 @@
     <fields>
         <label><!-- Escalated to Closed(Minutes) --></label>
         <name>Escalated_to_Closed_Minutes__c</name>
+    </fields>
+    <fields>
+        <label><!-- ExecuteCaseSurveyWorkflow --></label>
+        <name>ExecuteCaseSurveyWorkflow__c</name>
     </fields>
     <fields>
         <label><!-- Expiry Date --></label>
@@ -300,6 +332,22 @@
         <name>First_Response_Email_Time__c</name>
     </fields>
     <fields>
+        <label><!-- Global Reason L1 desc --></label>
+        <name>Global_Reason_L1_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global Reason L2 desc --></label>
+        <name>Global_Reason_L2_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global Reason L3 desc --></label>
+        <name>Global_Reason_L3_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global Reason L4 desc --></label>
+        <name>Global_Reason_L4_desc__c</name>
+    </fields>
+    <fields>
         <label><!-- Global Reason L5 desc --></label>
         <name>Global_Reason_L5_desc__c</name>
     </fields>
@@ -308,9 +356,17 @@
         <name>HistoricCreatedDate__c</name>
     </fields>
     <fields>
+        <label><!-- Homecare --></label>
+        <name>Homecare__c</name>
+    </fields>
+    <fields>
         <help><!-- Wrong product retrieved or advisor reported incorrectly --></help>
         <label><!-- Inconsistent Case --></label>
         <name>Inconsistent_Case__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ingestion --></label>
+        <name>Ingestion__c</name>
     </fields>
     <fields>
         <label><!-- Is Language Skill Match --></label>
@@ -447,6 +503,10 @@
     <fields>
         <name>Origin</name>
         <picklistValues>
+            <masterLabel>Chat</masterLabel>
+            <translation><!-- Chat --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email</masterLabel>
             <translation><!-- Email --></translation>
         </picklistValues>
@@ -495,6 +555,14 @@
             <translation><!-- Email Nordic --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email North America</masterLabel>
+            <translation><!-- Email North America --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email North America CS</masterLabel>
+            <translation><!-- Email North America CS --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Poland</masterLabel>
             <translation><!-- Email Poland --></translation>
         </picklistValues>
@@ -519,12 +587,40 @@
             <translation><!-- Email UK --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Face to face</masterLabel>
+            <translation><!-- Face to face --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fax</masterLabel>
+            <translation><!-- Fax --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Interactive Voice Response</masterLabel>
+            <translation><!-- Interactive Voice Response --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Letter</masterLabel>
+            <translation><!-- Letter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Phone</masterLabel>
             <translation><!-- Phone --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>SMS / Text Messages</masterLabel>
+            <translation><!-- SMS / Text Messages --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Social</masterLabel>
             <translation><!-- Social --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Media North America</masterLabel>
+            <translation><!-- Social Media North America --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Store</masterLabel>
@@ -548,6 +644,98 @@
         <name>Out_of_Hours__c</name>
     </fields>
     <fields>
+        <label><!-- Override From Address --></label>
+        <name>Override_From_Address__c</name>
+        <picklistValues>
+            <masterLabel>Comments.Canada@benjerry.com</masterLabel>
+            <translation><!-- Comments.Canada@benjerry.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product.Contactus@benjerry.com</masterLabel>
+            <translation><!-- Product.Contactus@benjerry.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ragu.ca@mizkan.com</masterLabel>
+            <translation><!-- Ragu.ca@mizkan.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ragu.us@mizkan.com</masterLabel>
+            <translation><!-- Ragu.us@mizkan.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UnileverConsumercare.CA@unilever.com</masterLabel>
+            <translation><!-- UnileverConsumercare.CA@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UnileverServicioalConsumidor.MX@unilever.com</masterLabel>
+            <translation><!-- UnileverServicioalConsumidor.MX@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>bertolli@mizkan.com</masterLabel>
+            <translation><!-- bertolli@mizkan.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>bertollioliveoilusa@deoleo.com</masterLabel>
+            <translation><!-- bertollioliveoilusa@deoleo.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>carapelliusa@deoleo.com</masterLabel>
+            <translation><!-- carapelliusa@deoleo.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>carbonellusa@deoleo.com</masterLabel>
+            <translation><!-- carbonellusa@deoleo.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>comments@talentigelato.com</masterLabel>
+            <translation><!-- comments@talentigelato.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>consumerproduct@mizkan.com</masterLabel>
+            <translation><!-- consumerproduct@mizkan.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>info@bertolli.ca</masterLabel>
+            <translation><!-- info@bertolli.ca --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>info@bluewater.ca</masterLabel>
+            <translation><!-- info@bluewater.ca --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>info@carapelli.ca</masterLabel>
+            <translation><!-- info@carapelli.ca --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>info@gortons.com</masterLabel>
+            <translation><!-- info@gortons.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>reply.canada@sunproductscorp.com</masterLabel>
+            <translation><!-- reply.canada@sunproductscorp.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>reply.us@sunproductscorp.com</masterLabel>
+            <translation><!-- reply.us@sunproductscorp.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>t2customercare@t2tea.com</masterLabel>
+            <translation><!-- t2customercare@t2tea.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>unileverconsumercare.usa@unilever.com</masterLabel>
+            <translation><!-- unileverconsumercare.usa@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>unileverservices.auxconsommateurs@unilever.com</masterLabel>
+            <translation><!-- unileverservices.auxconsommateurs@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>unileverservicioalconsumidor.usa@unilever.com</masterLabel>
+            <translation><!-- unileverservicioalconsumidor.usa@unilever.com --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <help><!-- Green: No PII Data ; Red: PII Data present in the Description field --></help>
         <label><!-- PII Data Check --></label>
         <name>PII_Data_Check__c</name>
@@ -555,6 +743,10 @@
     <fields>
         <label><!-- PII Warning Check --></label>
         <name>PII_Warning_Check__c</name>
+    </fields>
+    <fields>
+        <label><!-- Personal Care --></label>
+        <name>Personal_Care__c</name>
     </fields>
     <fields>
         <name>Priority</name>
@@ -591,6 +783,10 @@
             <translation><!-- Coffee &amp; Snacks --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Creative Solutions</masterLabel>
+            <translation><!-- Creative Solutions --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Deodorants &amp; Fragrances</masterLabel>
             <translation><!-- Deodorants &amp; Fragrances --></translation>
         </picklistValues>
@@ -601,6 +797,10 @@
         <picklistValues>
             <masterLabel>Food</masterLabel>
             <translation><!-- Food --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food Solutions</masterLabel>
+            <translation><!-- Food Solutions --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Hair Care</masterLabel>
@@ -665,6 +865,10 @@
         <picklistValues>
             <masterLabel>Skin Cleansing</masterLabel>
             <translation><!-- Skin Cleansing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Media</masterLabel>
+            <translation><!-- Social Media --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Spreads</masterLabel>
@@ -788,6 +992,10 @@
         <name>Skill_Match__c</name>
     </fields>
     <fields>
+        <label><!-- Social Response Survey URL --></label>
+        <name>Social_Response_Survey_URL__c</name>
+    </fields>
+    <fields>
         <name>Status</name>
         <picklistValues>
             <masterLabel>Awaiting Information from Consumer</masterLabel>
@@ -869,6 +1077,10 @@
     <fields>
         <label><!-- UPC Code Detail --></label>
         <name>UPC_Code_Detail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unilever Cluster --></label>
+        <name>Unilever_Cluster__c</name>
     </fields>
     <fields>
         <label><!-- Unique ID --></label>
@@ -1030,12 +1242,20 @@
             <section>Attachments</section>
         </sections>
         <sections>
+            <label><!-- CosmetoVigilance links --></label>
+            <section>CosmetoVigilance links</section>
+        </sections>
+        <sections>
             <label><!-- Issue Information --></label>
             <section>Issue Information</section>
         </sections>
         <sections>
             <label>Sprawy powiązane</label>
             <section>Related Cases</section>
+        </sections>
+        <sections>
+            <label><!-- Related Contact Roles --></label>
+            <section>Related Contact Roles</section>
         </sections>
     </layouts>
     <layouts>
@@ -1072,6 +1292,14 @@
         <name>NewChildCase</name>
     </quickActions>
     <quickActions>
+        <label><!-- Email --></label>
+        <name>ONE_Correspond_Email</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Quick Code --></label>
+        <name>Quick_Code</name>
+    </quickActions>
+    <quickActions>
         <label><!-- SendEmail --></label>
         <name>SendEmail</name>
     </quickActions>
@@ -1084,8 +1312,16 @@
         <name>Spam</name>
     </recordTypes>
     <validationRules>
+        <errorMessage><!-- Country and Verbatim is mandatory for this case. --></errorMessage>
+        <name>CEC_Country_and_Verbatim_fields</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Please populate the &apos;Manual Retention Override&apos; field. --></errorMessage>
         <name>CEC_RetentionDetailCheck</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &apos;Used Product Previously&apos; field is mandatory for Complaint cases. --></errorMessage>
+        <name>CEC_UsedProductPreviouslyCheck</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- You Must Select a Product Code &amp; Reason code --></errorMessage>
@@ -1114,5 +1350,9 @@
     <webLinks>
         <label>Następna sprawa</label>
         <name>Next_Case</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Social_Response_URL --></label>
+        <name>Social_Response_URL</name>
     </webLinks>
 </CustomObjectTranslation>

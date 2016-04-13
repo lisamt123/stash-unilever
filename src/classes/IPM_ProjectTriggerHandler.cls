@@ -14,7 +14,7 @@ public with sharing class IPM_ProjectTriggerHandler
     @param3 - isFollow : Boolean value of following parameter.
     @return: Map of Sets of user ids which are assigned projects wise.
     **/
-    private Map<Id, Set<Id>> getProjectUsersMap(IPM_Project__c[] newProjects, Map<Id, IPM_Project__c> oldProjectsMap, Boolean isFollow) {
+    @testvisible private static Map<Id, Set<Id>> getProjectUsersMap(IPM_Project__c[] newProjects, Map<Id, IPM_Project__c> oldProjectsMap, Boolean isFollow) {
         
         Map<Id, Set<Id>> mapToReturn = new Map<Id, Set<Id>>(); //var to return
         for(IPM_Project__c eachproject : newProjects) {
@@ -66,7 +66,7 @@ public with sharing class IPM_ProjectTriggerHandler
     @param2 - newField: new sobject in the context
     @return: Boolean value returns true if its changed.
     **/
-    private Boolean checkChangedUser(String oldField, String newField) {
+    private Static Boolean checkChangedUser(String oldField, String newField) {
         
         Boolean paramToReturn = false;
         if(oldField != newField) {
@@ -92,16 +92,16 @@ public with sharing class IPM_ProjectTriggerHandler
                             
             for(IPM_Project__c proj:newProjects)
             {
-                projectidstr = proj.IPM_Global_ProjectId__c;
+                projectidstr = proj.IPM_Global_Project_Id__c;
                 projideset.add(projectidstr);
                 projideset.add(proj.id);  
             }
                
                     
-            if(projideset != null && projideset.size()>0)
+            if(projideset != null && !projideset.isEmpty())
             {
                 projectmap = new Map<id,IPM_Project__c>([select id from IPM_Project__c where Id IN: projideset]);
-                if(projectmap != null && projectmap.size()>0)
+                if(projectmap != null && !projectmap.isEmpty())
                 {  
                     IPM_GroupManagement.groupmemberupdate(projectmap.keyset());  
                 }  
@@ -139,7 +139,7 @@ public with sharing class IPM_ProjectTriggerHandler
             }
 
         }
-        if(projideset != null && projideset.size()>0)
+        if(projideset != null && !projideset.isEmpty())
         {
             IPM_GroupManagement.queueCreation(projideset); 
         }

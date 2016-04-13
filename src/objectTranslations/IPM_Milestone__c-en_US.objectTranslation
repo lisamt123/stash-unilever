@@ -81,6 +81,35 @@
         <name>IPM_Deputy_Project_Leader_Name__c</name>
     </fields>
     <fields>
+        <label><!-- Due Date@Capability --></label>
+        <name>IPM_Due_Date_Capability__c</name>
+    </fields>
+    <fields>
+        <help><!-- Snapshot of Feasibility Due Date --></help>
+        <label><!-- Due Date@Feasibility --></label>
+        <name>IPM_Due_Date_Feasibility__c</name>
+    </fields>
+    <fields>
+        <help><!-- Snapshot of Idea Due Date --></help>
+        <label><!-- Due Date@Idea --></label>
+        <name>IPM_Due_Date_Idea__c</name>
+    </fields>
+    <fields>
+        <help><!-- Snapshot of Market Deployment Due Date --></help>
+        <label><!-- Due Date@Market Deployment --></label>
+        <name>IPM_Due_Date_Market_Deployment__c</name>
+    </fields>
+    <fields>
+        <help><!-- Snapshot of Market Ready Due Date --></help>
+        <label><!-- Due Date@Market Ready --></label>
+        <name>IPM_Due_Date_Market_Ready__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sanpshot of Post Launch Evaluation Due Date --></help>
+        <label><!-- Due Date@Post Launch Evaluation --></label>
+        <name>IPM_Due_Date_Post_Launch_Evaluation__c</name>
+    </fields>
+    <fields>
         <label><!-- Due Date --></label>
         <name>IPM_Due_Date__c</name>
     </fields>
@@ -315,6 +344,10 @@
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Snapshot Due Dates --></label>
+            <section>Snapshot Due Dates</section>
         </sections>
     </layouts>
     <layouts>

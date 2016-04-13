@@ -30,6 +30,7 @@ public class IPM_ConstantUtils {
     public static String STATUS_ALL = 'All';
     public static String STATUS_EXCLUDED = 'Excluded';
     public static String STATUS_NOT_STARTED = 'Not Started';
+    public static String STATUS_STARTED = 'Started';
     public static String STATUS_NOT_FILLED = 'Filled-in';
     public static String STATUS_APPROVED = 'Approved';
     public static String PD_STATUS_STOPPED = 'Stopped';
@@ -85,6 +86,25 @@ public class IPM_ConstantUtils {
     public static final String OTIF_STATUS_GREEN='Green';
     public static final String OTIF_STATUS_RED='Red';
     public static final String OTIF_STATUS_AMBER='Amber';
+    
+    //to store OTIF report related values
+    public static final String OTIF_SCOPING_COMPLETE='Scoping Complete';
+    public static final String OTIF_TECHNICAL_ACTION_STANDARDS_ACHIEVED_BY_LEAD_REGION='Technical Action Standards Achieved by Lead Region';
+    public static final String OTIF_MATERIALS_SOURCING_STRATEGIES_AGREED='Materials Sourcing Strategies Agreed';
+    public static final String OTIF_ATTRACTIVE_BUSINESS_CASE='Attractive Business Case';
+    public static final String OTIF_TECHNICAL_FEASIBILITY='Technical Feasibility';
+    public static final String OTIF_CAPEX_APPROVED='Capex Approved';
+    public static final String OTIF_CUSTOMER_APPEAL='Customer Appeal';
+    public static final String OTIF_BASES_I='Bases I';
+    public static final String OTIF_BASES_II='Bases II';
+    public static final String OTIF_BASES_III='Bases III';
+    public static final String OTIF_SPEC_BILLS_OF_MATERIALS_IN_INTERSPEC='Spec/Bills of Materials in Interspec';
+    public static final String OTIF_TECHNICAL_AND_PRODUCTION_CAPABILITY_CONFIRMED='Technical and Production Capability Confirmed';
+    public static final String OTIF_COMMUNICATION_BET_FINAL_RELEASE_AVAILABILITY='Communication: BET Final Release Availability';
+    public static final String OTIF_COMMUNICATION_FULL_THINK_BIG_PACK_AVAILABLE='Communication: Full Think Big Pack Available';    
+    public static final String OTIF_CONCEPT_TEST='Concept Test';    
+    public static final String OTIF_FIRST_PROD_CONF_SPEC_FINALISED='First Production Confirmed and Specifications Finalised';        
+    public static final String OTIF_TECH_PROD_CAPABILITY_CONF_MAIN_PLANT='Technical and Production Capability Confirmed at Main Plant';    
     
      //for gate Document
     public static final String INTRODUCTION_HEADER_SEQUENCE='1';
@@ -496,7 +516,7 @@ public class IPM_ConstantUtils {
      
      
       //Constant Declaration
-    public static String DATE_FORMAT='YYYY-MM-dd';
+    public static String DATE_FORMAT='yyyy-MM-dd' ;
     public static String PROJECT_MILESTONES='IPM Project Milestones';
     
     //Gate document various status
@@ -799,8 +819,8 @@ public class IPM_ConstantUtils {
     public static String BET_FINAL_RELEASE = 'Final Release';
     public static String BET_UNRELEASED = 'Unreleased';           
      // BET Milestones related constants
-    public final static string BET_MS_FIRST_RELEASE = 'BETFirstRelease';
-    public final static string BET_MS_FINAL_RELEASE = 'BETFinalRelease';
+    public final static string BET_MS_FIRST_RELEASE = 'BET First Release';
+    public final static string BET_MS_FINAL_RELEASE = 'BET Final Release';
     public final static string STRING_BET = 'BET';
     public final static string STRING_MS_BET_FIRSTRELEASE = 'Brand Experience Toolkit(BET) First Release';
     public final static string STRING_MS_BET_FINALRELEASE = 'Brand Experience Toolkit(BET) Final Release';
@@ -871,6 +891,9 @@ public class IPM_ConstantUtils {
    public static final String rowValue8 = '11';
    public static final String rowValue9 = '12';
    public static final String rowValue10 = '13';
+   public static final Integer rowValue19 = 19;
+   public static final Integer rowValue20 = 20;
+   public static final Integer rowValue21 = 21;
    public static final String rowValue28 = '28';
     public static final String rowValue29 = '29';
     public static final String rowValue30 = '30';
@@ -884,6 +907,7 @@ public class IPM_ConstantUtils {
    public static final String Colon = ':';
    public static final Integer intialVal = 0;
    public static final Integer MaxLimit = 49999;
+   public static final String smallBI = 'Small';
    //row
    public static final Integer row_seven = 7;
    public static final Integer row_twentyseven = 27;
@@ -893,7 +917,7 @@ public class IPM_ConstantUtils {
    public static final String Local = 'Local';
    public static final String Volume = 'Volume';
    public static final String TotalTons = 'Total Tons';
-   public static final String TotalTons0 = 'Total \'000 Units';
+   public static final String TotalTons0 = 'Total 000 Units';
    public static final String Y0Innovation = 'Y0-Innovation-';                                                                 
    public static final String Y0Calendar = 'Y0-Calendar-';
    public static final String Y1InnovationGross = 'Y1-Innovation-Gross';
@@ -914,7 +938,7 @@ public class IPM_ConstantUtils {
    public static final String NullString = null;
    public static final Integer fileSize = 25000000;
    public static final String FINANCIAL_CONTROLLER_STR = '/apex/IPM_FinancialCopyPasteGrid?id=';
-   
+   public static final String BI = 'Bi';
    // Phase Change Job Status 
     public static final String JOB_STATUS_NA = 'Not Applicable';
     public static final String JOB_STATUS_PROCESSING = 'Processing';
@@ -1061,6 +1085,7 @@ public class IPM_ConstantUtils {
    public static final String IPM_FINANCEOBJECT='IPM_Financial__c';
    public static final String IPM_COUNTRYOBJECT='IPM_Country__c';
    public static final String IPM_ROLLOUTOBJECT='IPM_Project_Rollout__c';
+   public static final String IPM_DOCUMENTSECTIONCONTENT='IPM_Project_Document_Section_Content__c';
    
    //BET Search related Constants
    public final static string CATEGORY_TYPE ='Category';
@@ -1072,6 +1097,7 @@ public class IPM_ConstantUtils {
    public static final String IPM_CUTOMER_OPPORTUNITY='Customer Opportunities and Challenges';
    public static final String IPM_GATEKEEPE_CHECKLIST='Gate_Keeper_Checklist'; 
    public static final String IPM_PACK_GRAPHICS='Pack_Graphics';
+   public static final String KEY_ISSUES_NEEDING_FOCUS_IN_GATE_MEETING='Key_Issues_needing_focus_in_Gate_Meeting';
    
    //Ecodesign
    public static final String ECODESIGN_MARKET_PLACE_ACTIVITY_BLG = 'BLG';
@@ -1161,5 +1187,13 @@ public class IPM_ConstantUtils {
    public static final String TLD_UPDATED_FROM_ROLLOUT ='Rollout';
    public static final String TLD_UPDATED_FROM_PROJECT ='Project';
    
-   
+   // local project notifications (REQ02445 & REQ02446)
+   public static final String EMAIL_NOTIFICATION_BODY ='Dear {Gate Keeper}, The Target Launch Date and/or Business Case for {Project Name} have been modified post-{Phase} gate.';
+   public static final String EMAIL_NOTIFICATION_SUBJECT ='Target Launch Date and/or Business Case updated';
+   //DEF2339 & DEF2344 fix
+   public static final String CHARTER_GATE_APPROVAL_MILESTONE = 'Charter Gate Approval';
+   public static final String CONTRACT_GATE_APPROVAL_MILESTONE = 'Contract Gate Approval';
+   public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
+   public static finaL String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
+   public static final Integer KB_TO_BYTES = 1024;
 }
