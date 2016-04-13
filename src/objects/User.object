@@ -488,6 +488,16 @@
         <trackFeedHistory>false</trackFeedHistory>
         <type>TextArea</type>
     </fields>
+	  <fields>
+        <fullName>SessionId__c</fullName>
+        <externalId>false</externalId>
+        <label>SessionId</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Language_Skills_List__c</fullName>
         <description>CEC: This field holds the list of all language skills from the multi-select picklist</description>
@@ -997,16 +1007,6 @@
         <externalId>false</externalId>
         <label>Product Category Skills List</label>
         <length>255</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-	<fields>
-        <fullName>SessionId__c</fullName>
-        <externalId>false</externalId>
-        <label>SessionId</label>
-        <length>250</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
