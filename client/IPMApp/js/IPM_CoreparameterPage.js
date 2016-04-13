@@ -79,3 +79,86 @@ function hilightTaskScript(){
 	jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
 	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
+
+var flag = false;
+(function ($) {
+function _processValue (param) {
+var el = $(this);
+if(el.is(":text") || el.is("textarea") || el.is(":file")){
+el.data(param, el.val());
+}
+else if(el.is(":checkbox") || el.is(":radio")){
+el.data(param, el[0].checked);
+}
+else if(el.is("select")){
+el.data(param, el.val());
+}
+}
+
+$.fn.extend({
+dumpInitialValues : function(){
+this.each(function() {
+  _processValue.call(this, "initialValue");
+});
+},
+checkForModifications: function() {
+var flag = false;
+this.each(function() {
+  var el = $(this);
+  if(el.is(":text") || el.is("textarea") || el.is(":file")){
+	flag = (el.data("initialValue") != el.val());
+  }
+  else if(el.is(":checkbox") || el.is(":radio")){
+	flag = (el.data("initialValue") != el[0].checked);
+  }
+  else if(el.is("select")){
+	flag = (el.data("initialValue") != el.val());
+  }
+  if(flag) return false;
+})
+return flag;
+}
+});
+
+
+$(function(){       
+$(":input").dumpInitialValues();
+function enableNavigationConfirmation(){
+ if($(":input").checkForModifications()){
+	 $(this).removeAttr( "data-dismiss" );
+	 unloadIframe();
+ }
+ else{
+	 $(this).attr("data-dismiss","modal");
+ }
+};
+
+
+$("iframe").each(function(){
+$(this).contents().find(".modal-content .close").click(enableNavigationConfirmation);
+$("iframe", $(this).contents()).each(function(){
+   $(this).contents().find(".modal-content .close").click(enableNavigationConfirmation);
+})
+});
+$(".modal-content .close:visible", parent.parent.document).not(".no-navigate-away").click(enableNavigationConfirmation);   
+});
+function unloadIframe(){
+top.location.href=IPMAppCPP.corePage+'?Id='+IPMAppCPP.projectId;
+}
+function unloadPage()
+{ 
+if($(":input").checkForModifications() && !$("body").data("isSkipNavigationConfirm") && !flag){
+  return IPMAppCPP.wmessage;
+}
+} 
+
+window.onbeforeunload = unloadPage;
+})(jq); 
+function skipValidation() {
+jq("body").data("isSkipNavigationConfirm", true);
+parent.parent.location.reload();
+}
+
+function validate(){
+	flag = true;
+}

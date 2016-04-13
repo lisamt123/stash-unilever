@@ -34,7 +34,7 @@ div.subMenu div:first-child {margin-left: 2%;}
 .strategicIntentTable.table-bordered>thead>tr>th {border: none;width: 10%;white-space: initial;padding: 4px;text-align:center;}
 .strategicIntentTable.table-bordered{border: none;}
 .strategicIntentTable.table-bordered>tbody>tr>td{text-align:center;}
-.projectSpan select{width: 100%;padding: 0.65em 0.3em;height:30px;font-size: 1em;border: 1px solid rgba(0, 0, 0, 0.15);outline: none;color: rgba(0, 0, 0)}
+.projectSpan select{width: 100%;height:30px;font-size: 1em;border: 1px solid rgba(0, 0, 0, 0.15);outline: none;color: rgba(0, 0, 0)}
 .panel-heading.question{margin-top:1%;padding:0 ; padding-left: 0.2%;border-bottom:none ;}
 .fieldLabel{width:100%;}
 .panel-label{padding-top:5px;padding-bottom:5px;}

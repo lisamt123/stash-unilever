@@ -41,7 +41,7 @@
                             </div>
                         </div>                        
                         <!-- Display list of countries matching search criteria -->                       
-                        <div class="searchBox"><label class="greytext"></label> <apex:inputtext value="{!searchCountry}" html-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" /><img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();"/></div>
+                        <div class="searchBox"><label class="greytext"></label> <apex:inputtext value="{!searchCountry}" html-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" html-onfocusout="skipValidation();"/><img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();skipValidation();"/></div>
                         <apex:actionFunction action="{!searchRolloutCountry}" name="callsearch"/>
                         <apex:outputText value="{!$Label.IPM_Rollout_Search_Message}" rendered="{!isNoResult}" styleclass="finGreyBG"/>
                         <apex:outputPanel rendered="{!!isNoResult}">
@@ -150,6 +150,33 @@
                 </apex:actionFunction>      
                 <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script>           
                 <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script> 
+				<script>		
+                 var jq= jQuery.noConflict();		
+	             	var unsaved = false;		
+				            		
+		            jq(function(){ /* DOM ready */		
+		                jq(':input').change(function(){		
+		                	if(jq(this).attr('id') !== "phSearchInput"){		
+		                    	unsaved = true;		
+		                    }		
+		                });		
+		            });		
+		                    		
+		            function unloadPage()		
+		            { 		
+		                if(unsaved){		
+		                    return "{!$Label.IPM_Unsaved_Alert}";           		
+		                }		
+		            } 		
+		           		
+		            window.onbeforeunload = unloadPage;		
+		            		
+		            /* Below code is to skip the unsaved changes*/		
+		            function skipValidation() {		
+		                unsaved = false;		
+		            }    		
+			            		
+             	</script>
                 <apex:outputPanel id="scriptPanel">
                     <script>
                            var IPMRollOutAdd = {SelectedMCO:'{!JSENCODE(selectedMCO)}'};
@@ -263,7 +290,8 @@
                                     srchTxt.addClass('placeholder');
                                     srchTxt.val(srchTxt.attr('placeholder'));   
                                     jq( ".placeholder" ).on( "keypress", function(event) {
-                                          if(event.which == 13) {                                      
+                                          if(event.which == 13) {  
+											unsaved = false;										  
                                           callsearch();
                                           return false;        
                                           }

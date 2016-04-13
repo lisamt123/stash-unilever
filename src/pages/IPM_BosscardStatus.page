@@ -64,7 +64,7 @@
                         </div>
                         <div class="textareaContainer">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
-                            <apex:inputtextarea value="{!inProgressComments}"  id="Bosscommentsinprogress" />
+                            <apex:inputtextarea onfocus="checktextval();" styleClass="txtArea" value="{!inProgressComments}"  id="Bosscommentsinprogress" />
                         </div>
                     </div> 
                     <div class="ipmGetStartedContent" id="status_approved">
@@ -111,7 +111,7 @@
                         </apex:outputPanel>
                         <div class="textareaContainer">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
-                            <apex:inputtextarea value="{!inApprovedComments}"  id="Bosscomments"/>
+                            <apex:inputtextarea onfocus="checktextval();" styleClass="txtArea" value="{!inApprovedComments}"  id="Bosscomments"/>
                             <span class="commentDesc">{!$Label.IPM_Bosscard_Feedback}</span>
                         </div>
                         <apex:actionFunction action="{!filterprojectLeader}" name="callsearch" reRender="SearchCoreMem,peoplecount,refresh"/>
@@ -127,7 +127,7 @@
                         </div>   
                         <div class="textareaContainer">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
-                            <apex:inputtextarea value="{!inNotApprovedComments}"  id="BosscommentsNotApprove"/>
+                            <apex:inputtextarea onfocus="checktextval();" styleClass="txtArea" value="{!inNotApprovedComments}"  id="BosscommentsNotApprove"/>
                         </div>  
                     </div> 
                     <div class="ipmGetStartedContent" id="status_discard">
@@ -138,7 +138,7 @@
                         </div>  
                         <div class="textareaContainer">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
-                            <apex:inputtextarea value="{!inDiscardComments}"  id="BosscommentsDiscard"/>
+                            <apex:inputtextarea onfocus="checktextval();" styleClass="txtArea" value="{!inDiscardComments}"  id="BosscommentsDiscard"/>
                         </div> 
                     </div> 
                     <apex:actionStatus id="loading" startStyleClass="proInit"></apex:actionStatus>
@@ -146,19 +146,19 @@
                         <apex:commandLink value="{!$Label.IPM_CANCEL}" styleClass="ipmButton" onclick="cancel();"/>
                         <apex:outputPanel id="refresh">
                             <!-- When the bosscard is not approved then the navigation should be to the BOSSCARD page and not the project page -->
-                            <apex:commandLink action="{!updateStatus}" value="{!$Label.IPM_CHANGE}" styleClass="ipmButton primary" oncomplete="goToBosscardParentPage()"  rendered="{!isNotApproved}"/>   
+                            <apex:commandLink action="{!updateStatus}" value="{!$Label.IPM_CHANGE}" styleClass="ipmButton primary" oncomplete="goToBosscardParentPage();skipValidation();"  rendered="{!isNotApproved}"/>   
                             <!-- before selecting the PL disable the button -->
                             <apex:outputPanel rendered="{!isApprovedOtherPLSelected}">
                                 <span class="disableButton">{!$Label.IPM_Bosscard_Change}</span>
                             </apex:outputPanel>
                             <!-- After selecting the PL enable the button -->
                              <apex:outputPanel rendered="{!isApprovedWithPLSelected}">
-                                <a onclick="createPro('{!holdPL_STR}');"  Class="ipmButton primary">{!$Label.IPM_Bosscard_Change}</a>
+                                <a onclick="createPro('{!holdPL_STR}');" oncomplete="skipValidation();" Class="ipmButton primary">{!$Label.IPM_Bosscard_Change}</a>
                                  
                              </apex:outputPanel>
                               <!-- If the current logged in user is PL then display the below output panel -->
                             <apex:outputPanel rendered="{!isApprovedButNoPLSelected}">
-                                <a onclick="createPro('{!holdPL_STR}');"  Class="ipmButton primary">{!$Label.IPM_Bosscard_Change}</a>
+                                <a onclick="createPro('{!holdPL_STR}');" oncomplete="skipValidation();" Class="ipmButton primary">{!$Label.IPM_Bosscard_Change}</a>
                                  
                              </apex:outputPanel>
                         </apex:outputPanel>
@@ -177,7 +177,7 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_BosscardStatus.js')}" type="text/javascript"></script>  
     <apex:outputPanel id="refreshstatus">
     <script>
-        var IPMApp = {bossurl:'{!URLFOR($Page.IPM_Bosscard)}',projecturl:'{!URLFOR($Page.IPM_ProjectSetUpView)}',homeurl:'{!URLFOR($Page.IPM_HomePage)}',status:'{!JSINHTMLENCODE(Statusvalue)}',bosscardId:'{!bosscard.Id}',CurrentPage:'{!JSINHTMLENCODE($CurrentPage.parameters.goto)}',ComponentBosscomments:'{!$Component.frm.Bosscomments}',boolVal:'{!searchPL_Bool}', systemMsg:'{!$Label.IPM_System_Admin}'};
+        var IPMApp = {bossurl:'{!URLFOR($Page.IPM_Bosscard)}',wmessage:'{!$Label.IPM_Unsaved_Alert}',projecturl:'{!URLFOR($Page.IPM_ProjectSetUpView)}',homeurl:'{!URLFOR($Page.IPM_HomePage)}',status:'{!JSINHTMLENCODE(Statusvalue)}',bosscardId:'{!bosscard.Id}',CurrentPage:'{!JSINHTMLENCODE($CurrentPage.parameters.goto)}',ComponentBosscomments:'{!$Component.frm.Bosscomments}',boolVal:'{!searchPL_Bool}', systemMsg:'{!$Label.IPM_System_Admin}'};
    </script>
     </apex:outputPanel> 
     <script>

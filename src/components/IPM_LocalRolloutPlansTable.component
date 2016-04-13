@@ -30,12 +30,12 @@ This componet used for regional rollout project
                         <a class="ipmButton localRollout primary pull-right" data-toggle="modal" data-target="#ipmLocalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
                      </apex:outputPanel>
                      <!-- This render condition will check for edit mode(true/false) and project type is local project -->
-                     <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateLocalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus">
+                     <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateLocalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                     
                      
-                    <apex:commandLink styleClass="ipmButton pull-right mr10" value="{!$Label.IPM_CANCEL}" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
+                    <apex:commandLink styleClass="ipmButton pull-right mr10" value="{!$Label.IPM_CANCEL}" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                 </div>
@@ -335,11 +335,11 @@ This componet used for regional rollout project
                         <a class="ipmButton localRollout primary pull-right" data-toggle="modal" data-target="#ipmLocalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
                      </apex:outputPanel>
                      
-                     <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateLocalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus">
+                     <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,isEditable,NOT(projectType.IPM_CreateLocalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                                                            
-                    <apex:commandLink styleClass="ipmButton pull-right mr10" value="Cancel" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
+                    <apex:commandLink styleClass="ipmButton pull-right mr10" value="Cancel" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus" onclick="skipValidation();">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                 </div>
@@ -375,7 +375,7 @@ This componet used for regional rollout project
                                 <apex:actionStatus startText="" id="Loading1" startStyleClass="proInit"/>
                                 <div class="pull-left noPadright">                                  
                                     
-                                    <apex:commandLink value="{!$Label.IPM_SAVE}"  onComplete="reRenderPanels();" reRender="createNewProject" styleClass="ipmButton primary" html-data-dismiss="modal"  action="{!saveRollout}" status="Loading1" >
+                                    <apex:commandLink value="{!$Label.IPM_SAVE}"  onComplete="reRenderPanels();" reRender="createNewProject" styleClass="ipmButton primary" html-data-dismiss="modal"  action="{!saveRollout}" status="Loading1" onclick="skipValidation();">
                                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}" />
                                     </apex:commandLink> 
                                 </div> 

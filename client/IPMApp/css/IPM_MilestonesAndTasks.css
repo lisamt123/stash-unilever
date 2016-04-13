@@ -49,7 +49,7 @@
          text-transform: none;
 		 border-right:0 ;
      }
-	 .nobrdrMstone{border-right:0 ;}
+	 .ipmPanelHeading.nobrdrMstone{border-right:0 ;}
      .gray {
          color: #555;
      }

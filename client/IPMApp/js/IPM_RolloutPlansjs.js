@@ -176,3 +176,28 @@ function scriptPanelLoad(){
     }
     var tldOrignalValue = "";
     var selectedDateField = "";
+	
+var unsaved = false;
+
+jq(function(){
+	jq(':input').change(function() {
+		
+		if(jq(this).attr('id') !== "phSearchInput"){
+			unsaved = true;
+		}
+	});
+});
+		
+function unloadPage()
+{ 
+	if(unsaved){
+		return IPMProAppRP.wmessage;           
+	}
+} 
+
+window.onbeforeunload = unloadPage;
+
+/* Below code is to skip the unsaved changes*/
+function skipValidation() {
+	unsaved = false;
+}

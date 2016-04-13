@@ -53,7 +53,8 @@ function applySelectedRowClass()
 }
 
 jq(document).ready(function() {
-
+  addlistpage();
+  addmstoneviewpage();
 /* Below script is for the Tab functionality on page load. It hides all the tabs content and shows only the first tabs content */
     jq('#ipmAddMilestoneTab .ipmMilestoneContent').hide();
     jq('#ipmAddMilestoneTab .ipmMilestoneTabs li:first').addClass('active');
@@ -96,3 +97,82 @@ jq(document).ready(function() {
         }
     });
 });
+
+function addlistpage(){
+   var unsaved = false;
+   var jq = jQuery.noConflict();
+   jq(function(){       
+         jq(":input").change(function() {
+              unsaved = true;
+          });
+        var frame = parent.document.getElementById("ipmModalDiv");
+         jq(frame).find('.close').click(function(){
+             if(unsaved){
+                 jq(this).removeAttr( "data-dismiss" );
+                 unloadIframe();
+             }
+             else{
+                 jq(this).attr("data-dismiss","modal");
+             }
+         });
+          
+     });   
+     
+     function unloadIframe(){
+       window.top.location.href = IPMAppComp.pageRef + '?id=' + IPMAppComp.projectId;
+     }
+     
+      function unloadPage()
+    { 
+        if(unsaved){
+            return IPMAppComp.wmessage;
+        }
+    } 
+   
+    window.onbeforeunload = unloadPage;
+    
+    /* Below code is to skip the unsaved changes*/
+    function skipValidation() {
+        unsaved = false;
+    }  
+}
+
+function addmstoneviewpage(){
+  var unsaved = false;
+  var jq = jQuery.noConflict();
+  jq(function(){       
+        jq(":input").change(function() {
+             unsaved = true;
+         });
+       var frame = parent.document.getElementById("ipmaddMstonWizard");
+        jq(frame).find('.close').click(function(){
+            if(unsaved){
+                jq(this).removeAttr( "data-dismiss" );
+                unloadIframe();
+            }
+            else{
+                jq(this).attr("data-dismiss","modal");
+            }
+        });
+         
+    });   
+    
+    function unloadIframe(){
+      window.top.location.href = IPMAppComp.pageRefProSetupView + '?Pid=' + IPMAppComp.projectId + '&Milestoneid=milestones';
+    }
+    
+     function unloadPage()
+   { 
+       if(unsaved){
+           return IPMAppComp.wmessage;
+       }
+   } 
+  
+   window.onbeforeunload = unloadPage;
+   
+   /* Below code is to skip the unsaved changes*/
+   function skipValidation() {
+       unsaved = false;
+   }
+  
+}

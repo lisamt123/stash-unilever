@@ -173,7 +173,7 @@
                                                                         <a class="icoButton info" title="{!$Label.IPM_ProjectNameHelpText}"></a>
                                                                     </span>
                                                                     <!-- To display below inputText when current logged in user has edit access   -->
-                                                                    <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox" html-onpaste="return false"  onblur="hideSuggetion();" onkeypress="return invalidChar(event);"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;return false};dupProjectName();"  maxlength="14" rendered="{!isEditable}" >
+                                                                    <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox inputcontent" html-onpaste="return false"  onblur="hideSuggetion();" onkeypress="return invalidChar(event);"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;return false};dupProjectName();"  maxlength="14" rendered="{!isEditable}" html-onfocusout="changeAlertBosscardName();">
                                                                     </apex:inputText>
                                                                     <apex:actionfunction name="dupProjectName" action="{!searchDuplicateProject}" rerender="refreshProjectName"/>
                                                                     <apex:actionfunction name="hideSuggetion" action="{!hideProjectSuggetion}" rerender="refreshProjectName"/>
@@ -490,9 +490,9 @@
                                                 <div class="pull-right proSetupButton renderBtnset txtAlignright">
                                                     <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
                                                     <!-- To display below commandLink when current user has edit access on page, project is saved and phase is not empty    -->
-                                                    <apex:commandLink value="Save and continue" action="{!saveProceed}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5, refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage" rendered="{! AND(isEditable,isSavedDB,NOT(ISNULL(project.IPM_Phase__c)),NOT(ISBLANK(project.IPM_Phase__c)) )}" oncomplete="goTocoreparameters();" />
+                                                    <apex:commandLink value="Save and continue" action="{!saveProceed}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5, refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage" rendered="{! AND(isEditable,isSavedDB,NOT(ISNULL(project.IPM_Phase__c)),NOT(ISBLANK(project.IPM_Phase__c)) )}" oncomplete="goTocoreparameters();" onClick="skipValidation();"/>
                                                     <!-- To display below commandLink when current user has edit access on page and project is not saved.   -->
-                                                    <apex:commandLink value="{!$Label.IPM_SubmitProjectCreation}" action="{!saveProceed}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5,buttonPanel,refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage" rendered="{!AND(isEditable,NOT(isSavedDB)) }" oncomplete="goToHomePage();"/>
+                                                    <apex:commandLink value="{!$Label.IPM_SubmitProjectCreation}" action="{!saveProceed}" styleClass="coreparameters custMarginbottom ipmButton primary"  reRender="CompanyCardPanel,ProjectNamePanel,Container5,buttonPanel,refreshquit,miles,selectNextTabScript,categoryPanel,ProjectSubTypePanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,CompanyCardPanel,BrandPositionPanel,TargetDatePanel,formMessage" rendered="{!AND(isEditable,NOT(isSavedDB)) }" oncomplete="goToHomePage();" onClick="skipValidation();"/>
                                                 </div>
                                             </apex:outputpanel>
                                         </apex:outputPanel>
@@ -550,7 +550,7 @@
                                                 <input type="button" onClick="backTab(this)" class="teammembers ipmButton" value="Back"/>
                                             </div>
                                             <div class="buttonmarRight pull-left ml5">
-                                                <input type="button" onClick="closemilestones()" class="todos ipmButton primary" value="Save and Continue"/>
+                                                <input type="button" onClick="skipValidation(),closemilestones()" class="todos ipmButton primary" value="Save and Continue"/>
                                             </div> 
                                         </div>
                                     </apex:outputpanel>
@@ -597,7 +597,7 @@
                                                 <input type="button" onClick="backTab(this)" class="milestones ipmButton" value="Back"/>
                                             </div>
                                             <div class="buttonmarRight pull-left actionBox" value="{!URLFOR($Page.IPM_ProjectOverview,null,[id=projectId])}">
-                                                <input type="button" class="ipmButton primary" value="Save and Continue"/>
+                                                <input type="button" class="ipmButton primary" value="Save and Continue" onClick="skipValidation();"/>
                                             </div> 
                                         </div>
                                     </apex:outputpanel>
@@ -705,7 +705,7 @@
                                     <div class="skipButtoncontainer1 txtAlignright pull-right">
                                         <div class="buttonmarRight pull-left noPadright fleft">
                                             <apex:outputPanel id="refreshquit">
-                                                <input type="button" class="ipmButton" onClick="quit(this);" value="Quit" />
+                                                <input type="button" class="ipmButton" onClick="quit(this);changeAlertBosscardName();" value="Quit" />
                                             </apex:outputPanel> 
                                         </div> 
                                         <div class="buttonmarRight pull-left noPadright">
@@ -747,7 +747,7 @@
                     </div>
                 </div>
             </div>
-            <div id="ipmModalDiv" class="ipmModalDiv">
+            <div id="ipmModalDiv" class="edittaskModal">
                 <c:IPM_ModalHeaderDiv />
             </div>
             <div id="basicModal" tabindex="-1" data-backdrop-limit="1" class="modal fade">
@@ -768,9 +768,9 @@
                             </div>
                             <div class="paracont">
                                 <div class="floatR">
-                                    <a href="#" title="{!$Label.IPM_Back}" class="ipmButton"
+                                    <a href="#" title="{!$Label.IPM_Back}" class="ipmButton" onClick="skipValidation();"
                                          data-dismiss="modal">{!$Label.IPM_CANCEL}</a> <a href="#"
-                                        title="{!$Label.IPM_SAVE_AND_CONTINUE}" onClick="unlinkBET();"
+                                        title="{!$Label.IPM_SAVE_AND_CONTINUE}" onClick="unlinkBET();skipValidation();"
                                         class="ipmButton primary" data-dismiss="modal">{!$Label.IPM_CP_Unlink}</a>
                                 </div>
                             </div>
@@ -973,7 +973,7 @@
                            jq('#ipmGetStartedTab').parent().find('.ipmGetStartedContent:first').show();
                        });
     ipmModal('#editMilestone', 'Edit Milestone', '30%', '65%', '2%');
-    ipmModal('#editTask', 'Edit To-Dos', '30%', '80%', '2%');
+     ipmModal('#editTask', 'Edit To-do\'s', '38%', '580px', '2%');
     
     jq('.proRoute input[type=radio]').each(function(e){ 
         jq(this).click(function(){
@@ -1236,4 +1236,51 @@ function quitandgo(IsNavigate){
 }
 </script> 
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CoreparameterDesign.js')}" type="text/javascript"></script>
+<script>		
+      var unsaved = false;		
+      var OldBosscardNameVal = "";		
+      var NewBosscardNameVal = "";		
+      var oldInputval = "";		
+      var newInputval = "";		
+            		
+           jq(function(){ /* DOM ready */		
+               OldBosscardNameVal = $(".BosscardNameInputBox ").val();		
+               jq(":input").change(function() {		
+                    unsaved = true;		
+                });             		
+                                            		
+                		
+            });		
+            		
+            function changeAlertBosscardName(){		
+                CurrentBosscardNameVal = jq(".BosscardNameInputBox ").val();		
+                 jq(":input").change(function() {		
+                    unsaved = true;		
+                });		
+                 if( OldBosscardNameVal !== CurrentBosscardNameVal){		
+                    unsaved = true;		
+                  		
+                }else if(unsaved){		
+                    unloadPage();            		
+                }		
+                else{		
+                unsaved = false;		
+                    OldBosscardNameVal = CurrentBosscardNameVal;		
+                }		
+                		
+            }		
+            function unloadPage()		
+            { 		
+                if(unsaved){		
+                    return "{!$Label.IPM_Unsaved_Alert}";            		
+                }		
+            } 		
+           		
+            window.onbeforeunload = unloadPage;		
+            		
+            /* Below code is to skip the unsaved changes*/		
+            function skipValidation() {		
+                unsaved = false;		
+            }		
+     </script>
 </apex:page>

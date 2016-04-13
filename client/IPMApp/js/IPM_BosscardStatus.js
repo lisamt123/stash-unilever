@@ -4,6 +4,7 @@
  *@Created Date: 28/05/2015
 *************************************************************************/
 var jq = jQuery.noConflict();
+var unsaved = false;
 jq(document).ready(function() {
 
 /* Below script is for the Tab functionality on page load. It hides all the tabs content and shows only the first tabs content */
@@ -16,6 +17,8 @@ jq(document).ready(function() {
 /* Below script is for the Tab functionality on click event. Based on the clicked li the tab is highlighted and the content related the clicked tab is displayed. Also it hides the previous opened content */
     jq('#ipmUpdateStatusTab .ipmStatusTabs li').on('click', function(e) {
         e.preventDefault();
+		unsaved = true;
+        checkChange(unsaved);
         var $this = jq(this);
         jq('#ipmUpdateStatusTab .ipmStatusTabs li').removeClass('active');
         jq('#ipmUpdateStatusTab .ipmStatusTabs li').removeClass('highlightRed');
@@ -62,3 +65,88 @@ jq('.searchLeader').keypress(function(e) {
         return false;
     }
 });
+
+function checkChange(elem){
+jq(function(){  
+      var frame = parent.document.getElementById("ipmModalDiv");
+       jq(frame).find('.close').click(function(){
+           if(elem){
+               jq(this).removeAttr( "data-dismiss" );
+               unloadIframe();
+           }
+           else{
+               jq(this).attr("data-dismiss","modal");
+           }
+       });
+        
+   });   
+   
+   function unloadIframe(){
+       window.parent.location.href=IPMApp.bossurl + '?id=' + IPMApp.bosscardId;
+   }
+   
+  function unloadPage()
+  { 
+      if(elem){
+          return IPMApp.wmessage;
+      }
+  } 
+ 
+  window.onbeforeunload = unloadPage;
+  
+  /* Below code is to skip the unsaved changes*/
+  function skipValidation() {
+    elem = false;
+  }
+}
+
+var oldTextareaval = "";
+var newTextareaval = "";
+var initialValue = true;
+jq(function(){  
+      var frame = parent.document.getElementById("ipmModalDiv");
+       jq(frame).find('.close').click(function(){
+           if(unsaved){
+               jq(this).removeAttr( "data-dismiss" );
+               unloadIframe();
+           }
+           else{
+               jq(this).attr("data-dismiss","modal");
+           }
+       });
+        if(initialValue !== false){
+            oldTextareaval = jq(".txtArea ").val();
+        }
+   });   
+   
+   function unloadIframe(){
+       window.parent.location.href=IPMApp.bossurl + '?id=' + IPMApp.bosscardId;
+   }
+   
+   function checktextval(){
+   inputTextArea = jq(".txtArea ");
+    inputTextArea.bind('input propertychange', function() {
+            newTextareaval = jq(".txtArea ").val();
+            initialValue = false;
+            if( oldTextareaval !== newTextareaval ){
+              unsaved = true;
+            }else{
+              unsaved = false;
+            }
+            oldTextareaval = newTextareaval;
+         });
+     }
+  
+  function unloadPage()
+  { 
+      if(unsaved){
+          return IPMApp.wmessage;
+      }
+  } 
+ 
+  window.onbeforeunload = unloadPage;
+  
+  /* Below code is to skip the unsaved changes*/
+  function skipValidation() {
+    unsaved = false;
+  }

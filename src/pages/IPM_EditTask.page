@@ -89,7 +89,7 @@
 			</apex:outputPanel>
 			<div class="buttonMarginRight marginTop ipmButtonGroup pull-right">               
 				<apex:commandLink id="cancelLink" value="Cancel" styleClass="ipmButton buttonMarginRight" reRender="form, reRenderScript" onClick="pageclose();" onComplete="callEditTask()"/>   
-				<apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Save" styleClass="ipmButton green buttonMarginRight" rendered="{!if(taskId != null,true,false)}" reRender="form, reRenderScript" onComplete="{!if(AND(validate),'pageclose(); callEditTask();','')};"/>
+				<apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Save" styleClass="ipmButton green buttonMarginRight" rendered="{!if(taskId != null,true,false)}" reRender="form, reRenderScript" onComplete="{!if(AND(validate),'pageclose(); callEditTask();','')};skipValidation();"/>
 			</div>
 		
 
@@ -110,7 +110,7 @@
 	<script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.min.js')}" type="text/javascript"></script>             
 	<apex:outputPanel id="reRenderScript">
 		<script type="text/javascript">
-			var IPMApp = {projectId:'{!projectId}', ProjectWizard:'{!ProjectWizard}', TasklistPageRef:'{!$Label.IPM_TasklistPageRef}', PojectSetupUrl:'{!$Label.IPM_PojectSetupUrl}'};           
+			var IPMApp = {projectId:'{!projectId}',wmessage:'{!$Label.IPM_Unsaved_Alert}', ProjectWizard:'{!ProjectWizard}', TasklistPageRef:'{!$Label.IPM_TasklistPageRef}', PojectSetupUrl:'{!$Label.IPM_PojectSetupUrl}'};           
 		</script>
 	</apex:outputPanel>
 	<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_EditTask.js')}" type="text/javascript"></script>

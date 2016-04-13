@@ -408,13 +408,13 @@
                                         <apex:outputPanel rendered="{!isEditCoreparameter}"
                                             layout="block">
                                             <a href="#" title="{!$Label.IPM_SAVE_AND_CONTINUE}"
-                                                onClick="checkCoreParam();" class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
+                                                onClick="skipValidation(),checkCoreParam();" class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                                         </apex:outputPanel>
                                         <!--The below panel will be readonly if isEditCoreparameter attribute is false -->
                                         <apex:outputPanel rendered="{!!isEditCoreparameter}"
                                             layout="block">
                                             <a href="#myCarousel" data-slide="next"
-                                                title="{!$Label.IPM_SAVE_AND_CONTINUE}"  onClick="checkTooltip();" id="nextControl"
+                                                title="{!$Label.IPM_SAVE_AND_CONTINUE}"  onClick="skipValidation(),checkTooltip();" id="nextControl"
                                                 class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                                             <!--The below panel will be readonly if isEditable attribute is false -->
                                             <apex:outputPanel rendered="{!!isEditable}">
@@ -480,9 +480,9 @@
                                                 					 <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
                                              						</span>
                                                                 </div>
-                                                                <label class="ipmSelect"> <apex:selectList size="1" multiselect="false"
+                                                                <label class="ipmSelect"> <apex:selectList size="1" multiselect="false" styleClass="subSectorSTR"
                                                                         disabled="{!!editSubSector}" value="{!subSector_STR}">
-                                                                        <apex:selectOptions value="{!lstsubsector}" />
+                                                                        <apex:selectOptions value="{!lstsubsector}" onchange="changelist();"/>
                                                                     </apex:selectList>
                                                                 </label>
                                                             </div>
@@ -655,7 +655,7 @@
                                             <apex:outputPanel rendered="{!isAdditionalCoreparameter}"
                                                 layout="block" styleClass="buttonmarRight pull-left">
                                                 <a href="" title="{!$Label.IPM_Reset}" class="ipmButton"
-                                                    onclick="refreshaddcorep();">{!$Label.IPM_Reset}</a>
+                                                    onclick="refreshaddcorep();validate();">{!$Label.IPM_Reset}</a>
                                             </apex:outputPanel>
                                             <apex:actionFunction name="savecorep" reRender="sectorMarket"
                                                 action="{!saveAdditionalCorep}"
@@ -667,7 +667,7 @@
                                                 styleClass="buttonmarRight ml5 ipmFromAction noPadleft pull-right noPadright"
                                                 layout="block">
                                                 <a href="#" title="{!$Label.IPM_Update}"
-                                                    onClick="savecorep();" class="ipmButton primary">{!$Label.IPM_Update}</a>
+                                                    onClick="savecorep();skipValidation();" class="ipmButton primary">{!$Label.IPM_Update}</a>
                                             </apex:outputPanel>
                                             <!-- If isAdditionalCoreparameter attribute is false, the below panel will be diplayed  -->
                                             <apex:outputPanel rendered="{!!isAdditionalCoreparameter}"
@@ -675,7 +675,7 @@
                                                 layout="block">
                                                 <apex:commandLink onComplete="selectTeam(this);"
                                                     Value="{!$Label.IPM_SAVE_AND_CONTINUE}"
-                                                    rendered="{!isEditable}" action="{!saveAdditionalCorep}"
+                                                    rendered="{!isEditable}" onClick="skipValidation();" action="{!saveAdditionalCorep}"
                                                     styleClass="teammembers ipmButton primary"
                                                     reRender="pgmsg,gototeam,marketMsg1,helpTxt,helpTxt2,helpTxt3,Quest2,Quest3,strategicIntent,QuestionthreeMsg,QuestiontwoMsg,QuestionOneMsg,MarketMsg,marketmain" />
                                             </apex:outputPanel>
@@ -737,7 +737,7 @@
                     <apex:outputPanel rendered="{!isEditCoreparameter}" layout="block"
                         styleClass="buttonmarRight pull-left">
                         <a href="" title="{!$Label.IPM_Reset}" class="ipmButton"
-                            onclick="resetqone();">{!$Label.IPM_Reset}</a>
+                            onclick="resetqone();validate();">{!$Label.IPM_Reset}</a>
                     </apex:outputPanel>
                     <!-- If isEditCoreparameter attribute is false, the below panel will be diplayed  -->
                     <apex:outputPanel styleClass="buttonmarRight backButton pull-left"
@@ -750,13 +750,13 @@
                         <apex:outputPanel rendered="{!AND(isMPAEditable,!editMarketActivityByPL)}">
                             <a href="#myCarousel" data-slide="next"
                                 title="{!$Label.IPM_SAVE_AND_CONTINUE}"
-                                onclick="saveselectedAns();" id="nextControl"
+                                onclick="skipValidation(),saveselectedAns();" id="nextControl"
                                 class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                         </apex:outputPanel>
                         <!-- If isMPAEditable attribute is true && editMarketActivityByPL attribute is true, the below panel will be diplayed  -->
                         <apex:outputPanel rendered="{!AND(isMPAEditable,editMarketActivityByPL)}">
                             <a href="#myCarousel" title="{!$Label.IPM_SAVE_AND_CONTINUE}"
-                                onclick="saveselectedbdAns();" id="nextControl"
+                                onclick="skipValidation(),saveselectedbdAns();" id="nextControl"
                                 class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                         </apex:outputPanel>
                         <!--If isMPAEditable attribute is false, the below panel will be diplayed  -->
@@ -810,7 +810,7 @@
                         <apex:outputPanel rendered="{!isEditCoreparameter}" layout="block"
                             styleClass="buttonmarRight pull-left">
                             <a href="" title="{!$Label.IPM_Reset}" class="ipmButton"
-                                onComplete="resetqtwo();" onclick="resetqtwo();">{!$Label.IPM_Reset}</a>
+                                onComplete="resetqtwo();validate();" onclick="resetqtwo();">{!$Label.IPM_Reset}</a>
                         </apex:outputPanel>
                         <!--If isMPABack attribute value is true, the below panel will be diplayed  -->
                         <apex:outputPanel layout="block"
@@ -830,13 +830,13 @@
                         <!--If isEditable attribute value is true, the below IPM_SAVE_AND_CONTINUE will be diplayed  -->
                             <apex:outputPanel rendered="{!isEditable}">
                                 <a href="#myCarousel" data-slide="next"
-                                    onclick="saveselectedAns();"
+                                    onclick="skipValidation(),saveselectedAns();"
                                     title="{!$Label.IPM_SAVE_AND_CONTINUE}" id="nextControl"
                                     class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                             </apex:outputPanel>
                             <!--If editCPVByBD attribute value is true, the below IPM_SAVE_AND_CONTINUE will be diplayed  -->
                             <apex:outputPanel rendered="{!editCPVByBD}">
-                                <a href="#myCarousel" onclick="saveselectedbdAns();"
+                                <a href="#myCarousel" onclick="skipValidation(),saveselectedbdAns();"
                                     title="{!$Label.IPM_SAVE_AND_CONTINUE}"
                                     class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                             </apex:outputPanel>
@@ -889,7 +889,7 @@
                         <apex:outputPanel rendered="{!isEditCoreparameter}" layout="block"
                             styleClass="buttonmarRight pull-left">
                             <a href="" title="{!$Label.IPM_Reset}" class="ipmButton"
-                                onComplete="resetqthree();" onclick="resetqthree();">{!$Label.IPM_Reset}</a>
+                                onComplete="resetqthree();validate();" onclick="resetqthree();">{!$Label.IPM_Reset}</a>
                         </apex:outputPanel>
                         <!--If editETByTPL attribute value is false, the below will be diplayed  -->
                         <apex:outputPanel layout="block"
@@ -905,7 +905,7 @@
                             <div class="pull-left ml5">
                                 <a href="#myCarousel" data-slide="next"
                                     title="{!$Label.IPM_SAVE_AND_CONTINUE}"
-                                    onclick="saveselectedAns();" id="nextControl"
+                                    onclick="skipValidation(),saveselectedAns();" id="nextControl"
                                     class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                             </div>
                         </apex:outputPanel>
@@ -914,7 +914,7 @@
                             styleClass="buttonmarRight pull-left ml5"
                             rendered="{!editETByTPL}">
                             <a href="#myCarousel" title="{!$Label.IPM_SAVE_AND_CONTINUE}"
-                                onclick="saveselectedbdAns();" class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
+                                onclick="skipValidation(),saveselectedbdAns();" class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                         </apex:outputPanel>
                     </div>
                 </div>

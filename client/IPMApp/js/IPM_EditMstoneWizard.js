@@ -21,3 +21,40 @@ jq(function() {
 function pageclose(){
 	window.top.location.href=IPMAppWizard.ProjectSetupUrl+'?Pid='+IPMAppWizard.projectId+'&Milestoneid=milestones';
 } 
+
+var unsaved = false;
+var jq = jQuery.noConflict();
+jq(function(){       
+jq(":input").change(function() {
+  unsaved = true;
+       });
+     var frame = parent.document.getElementById("ipmModalDiv");
+      jq(frame).find('.close').click(function(){
+          if(unsaved){
+              jq(this).removeAttr( "data-dismiss" );
+              unloadIframe();
+          }
+          else{
+              jq(this).attr("data-dismiss","modal");
+          }
+      });
+       
+  });   
+  
+  function unloadIframe(){
+    window.parent.location.href=IPMAppWizard.ProjectSetupUrl+'?Pid='+IPMAppWizard.projectId+'&Milestoneid=milestones';
+  }
+  
+   function unloadPage()
+ { 
+     if(unsaved){
+         return IPMAppWizard.wmessage;
+     }
+ } 
+
+ window.onbeforeunload = unloadPage;
+ 
+ /* Below code is to skip the unsaved changes*/
+ function skipValidation() {
+     unsaved = false;
+ }
