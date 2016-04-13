@@ -214,11 +214,7 @@ Returns:
                         listOfUserToDisplay.add(jobAlloc);
                       
             }
-           /*
-           N-Path:
-           Jobsheet page is edit page, where CAP/RAP can edit the Job details and submit it. Job detail has 200+ fields 
-           that are dispalyed/required to store in back end and fetch and display on edit page
-           */
+          
             jobList=[select AdditionalSupplementaryNewMaterialDigiA__c,ReworkExistingMaterial__c,Buyouts_Music_Digital_ED__c,NewOriginalMaster__c,NewOriginalMasterTv__c,NewOriginalMasterCinema__c,NewOriginalMasterRadio__c,NewOriginalMasterPrint__c,NewOriginalMasterOutofHome__c,NewOriginalMasterInStore__c,NewOriginalMasterDigital__c,
                     NewOriginalMasterInternalVideo__c,NewOriginalMasterTvMovingImage__c,NewOriginalMasterCinemaMovingImage__c,NewOriginalMasterRadioAudio__c,NewOriginalMasterPrintStillImage__c,NewOriginalMasterOutofHomeMovingImage__c,
                     NewOriginalMasterOutofHomeAudio__c,NewOriginalMasterOutofHomeStillImage__c,NewOriginalMasterInStoreMovingImage__c,NewOriginalMasterInStoreAudio__c,NewOriginalMasterInStoreStillImage__c,NewOriginalMasterDigitalMovingImage__c,
@@ -608,7 +604,7 @@ Returns:
 ************************************************************************************************************************************/     
     public static void jobReAllocate(String selectedRap, Id jobId, Amr_Job_Details__c jobDet){
         try{
-        List<Amr_Job_Allocation__c> jobAllocList = [select Id,Name,User__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = TRUE ]; // AND User__c = :userInfo.getUserId()
+        List<Amr_Job_Allocation__c> jobAllocList = [select Id,Name,User__c from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId AND Is_Primary__c = TRUE ]; 
                for(Amr_Job_Allocation__c jAlloc : jobAllocList ){
             if(jobDet.ownerId == selectedRap){
                 rapAllocateCheck = TRUE;        

@@ -148,22 +148,7 @@
                                     </div>                                
                                 </div>                                
                                 <div class="clear"></div> 
-                            </div>
-                            <div class="margin-bottom10">                            
-                                <div class="displayinlineblock pablock margin-right10 left" style="width:60%">
-                                    <div class="job-field-label left margin-top8imp margin-right5" style="width:45%">{!$Label.Amr_Production_activity_type}</div>
-                                    <div class="job-field-input left" style="width:50%">
-                                        <apex:inputField value="{!savingObject.Production_Type__c}" />
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <div class="displayinlineblock pablock right margin-right10" style="width:30%">                                
-                                    <div class="job-field-input">
-                                        <apex:inputText value="{!categoryName}" html-placeholder="{!$Label.Amr_Category}" />
-                                    </div>
-                                </div>
-                                <div class="clear"></div>                              
-                            </div>
+                            </div>                            
                             <div class="margin-bottom10">
                                 <div class="displayinlineblock left" id="{!if(permissionSetName = 'CAP','stblockCAP','stblockRAP')}">
                                     <div class="job-field-input">
@@ -182,7 +167,21 @@
                                 </div>
                                 <div class="clear"></div>
                             </div>                            
-
+							<div class="margin-bottom10">                            
+                                <div class="displayinlineblock pablock margin-right10 left" style="width:60%">
+                                    <div class="job-field-label left margin-top8imp margin-right5" style="width:45%">{!$Label.Amr_Production_activity_type}</div>
+                                    <div class="job-field-input left" style="width:50%">
+                                        <apex:inputField value="{!savingObject.Production_Type__c}" />
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="displayinlineblock pablock right margin-right10" style="width:30%">                                
+                                    <div class="job-field-input">
+                                        <apex:inputText value="{!categoryName}" html-placeholder="{!$Label.Amr_Category}" />
+                                    </div>
+                                </div>
+                                <div class="clear"></div>                              
+                            </div>
                             <div class="cap-section" style="display:{!if(permissionSetName = $Label.Amr_CAP,'',$Label.Amr_None)}">                                
                                 <div class="margin-bottom10">
                                     <div class="displayinlineblock bud-res-block left" style="width:45%">
