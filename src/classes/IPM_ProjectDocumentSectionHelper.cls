@@ -4,7 +4,7 @@
 * @Description Helper class for IPM_ProjectDocumentSectionHandler.
                */
 
-public class IPM_ProjectDocumentSectionHelper    
+public with sharing class IPM_ProjectDocumentSectionHelper    
 {
     private static final String LIMIT_CLAUSE_STR = ' LIMIT 50000 ';
     

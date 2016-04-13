@@ -3,7 +3,7 @@
 * @date: 19/01/2016
 * @description: Helper methods used to validate different scenario.
 */
-public class IPM_ValidationHelper {
+public with sharing class IPM_ValidationHelper {
     
   	private static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
     
