@@ -9063,13 +9063,7 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <shortDescription>IPM_Milestone_DueDate_Validation</shortDescription>
         <value>The due date for this milestone must be after the due date for the previous gate&apos;s milestone.</value>
     </labels>
-    <labels>
-        <fullName>IPM_Milestone_Due_Date</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Postponed Past Date Validation</shortDescription>
-        <value>You cannot postpone your project to a date which is before your previous gate due date. If you would like to do this, please revise your project plan first and then postpone the project.</value>
-    </labels>
+    
     <labels>
         <fullName>IPM_Milestone_Due_Date_Error</fullName>
         <language>en_US</language>
@@ -10978,7 +10972,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Remember To Update</shortDescription>
-        <value>.Please remember to update the status on the gate document.</value>
+        <value>. Please remember to take the necessary action.</value>
     </labels>
     <labels>
         <fullName>IPM_Remove</fullName>
@@ -15572,5 +15566,12 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_FunctionalRoleErrorMsg</shortDescription>
         <value>Enter Functional Role.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Milestone_Due_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Postponed Past Date Validation</shortDescription>
+        <value>You cannot postpone a milestone&apos;s due date to a date earlier than its predecessor&apos;s due date. You can modify your milestone due dates below.</value>
     </labels>
 </CustomLabels>

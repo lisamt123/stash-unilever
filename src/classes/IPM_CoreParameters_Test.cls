@@ -2,7 +2,8 @@
  *@Author:Cognizant
  *@Date:25/08/2015
  *@Description : To test IPM_CoreParameters class functionalities
- *********************************************/@isTest
+ *********************************************/
+ @isTest
 private with sharing class IPM_CoreParameters_Test {
     //*@Description: Object Variable decleration 
     private static IPM_Project__c projectWithOutBoss;
@@ -260,7 +261,7 @@ private with sharing class IPM_CoreParameters_Test {
     static testmethod void  testgetCoreStrategicIntent(){
          initializedData();
          system.RunAs(userInitialize) {
-           Test.startTest();
+         	Test.startTest();
              sic.answerone_STR=IPM_ConstantUtils.IMPROVEMENT;
              sic.answertwo_STR=IPM_ConstantUtils.NOCHANGE;
              sic.answerthree_STR=IPM_ConstantUtils.BASE;
@@ -270,7 +271,7 @@ private with sharing class IPM_CoreParameters_Test {
              sic.IPM_Coreparameter.IPM_ProjectSubType__c = IPM_ConstantUtils.IPM_BLG;
              sic.getCoreStrategicIntent();
             system.assertEquals(sic.IPM_Coreparameter.IPM_ProjectSubType__c,IPM_ConstantUtils.IPM_BLG,'Load Strategic Intent For BLG Project'); 
-           Test.stopTest();
+         	Test.stopTest();
          }
     }
         
@@ -324,10 +325,10 @@ private with sharing class IPM_CoreParameters_Test {
         system.RunAs(userInitialize) {
             Test.startTest();
             sic.IPM_Coreparameter.id = ProjectWithOutBoss.id;
-            sic.answertwo_STR = Variant;
+            sic.answerone_STR = blg; 
             sic.answerAnswer();//save answer
-            List<IPM_Project__c>projectList=[SELECT IPM_Answer_of_Q2__c FROM IPM_Project__c WHERE ID=:ProjectWithOutBoss.id LIMIT 1];
-            system.assertEquals(projectList[0].IPM_Answer_of_Q2__c, Variant, common_STR + space_STR +Variant);
+            List<IPM_Project__c>projectList=[SELECT IPM_Answer_of_Q1__c FROM IPM_Project__c WHERE ID=:ProjectWithOutBoss.id LIMIT 1];
+            system.assertEquals(projectList[0].IPM_Answer_of_Q1__c, blg, common_STR + space_STR +blg);
             sic.IPM_Coreparameter.Name='InvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectname';
             sic.answerAnswer();//save answer
             Test.stopTest();

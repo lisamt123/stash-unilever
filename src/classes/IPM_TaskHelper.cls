@@ -158,160 +158,68 @@ public with sharing class IPM_TaskHelper {
         getGateSpecificExistingTasks(incomingProjectMap,IPM_ProjectHelper.DBprojectSpecificTasksMap,currentProjectGateExistingTaskMap,previousProjectGateExistingTaskMap);
         
         /*Previous Gate Document Tasks Starts*/
-        
         managePreviousGateExistingTasks(incomingProjectMap,previousProjectGateExistingTaskMap,deleteTaskMap);
         /*Previous Gate Document Tasks Ends*/
+    
+        /*Current Gate Document Tasks Starts*/
+        manageCurrentGateTasks(incomingProjectMap,projectTargetDocumentMap,projectDocumentToTargetSectionMap,currentProjectGateExistingTaskMap);
         
-        upsertTaskList = checkProjectArchival(incomingProjectMap,currentProjectGateExistingTaskMap,previousProjectGateExistingTaskMap);
+        /*Current Gate Document Tasks Ends*/
         
-        if(!upsertTaskList.isEmpty())
+        /* Current Gate Standard Task Starts */
+        getTemplateSpecificTasks(incomingProjectMap,projectToProjectTemplateMap,projectToMasterTaskList);
+        
+        createNewTasksFromTemplates(incomingProjects,projectToMasterTaskList,projectTargetDocumentMap,projectDocumentToTargetSectionMap,projIdProjResListMap,IPM_ConstantUtils.STANDARD_TASKS,projectToNewTaskList);
+        /* Current Gate Standard Task ends */
+        
+        
+        /*Future Tasks Starts*/ 
+        manageFutureAdhocTasks(incomingProjects,projectTargetDocumentMap,projectDocumentToTargetSectionMap,projIdProjResListMap,projectToMasterFutureTasks);
+        
+        createNewTasksFromTemplates(incomingProjects,projectToMasterFutureTasks,projectTargetDocumentMap,projectDocumentToTargetSectionMap,projIdProjResListMap,IPM_ConstantUtils.ADHOC,projectToNewFutureTaskList);
+    
+    	/*Future Tasks ends*/
+		for(id projectId : projectToNewFutureTaskList.keySet())
+		{
+			upsertTaskList.addAll(projectToNewFutureTaskList.get(projectId));
+		}
+        for(IPM_Project__c project : incomingProjects.values()) 
         {
-        	upsert upsertTaskList;
-        }
-        else
-        {
-	        /*Current Gate Document Tasks Starts*/
-	        manageCurrentGateTasks(incomingProjectMap,projectTargetDocumentMap,projectDocumentToTargetSectionMap,currentProjectGateExistingTaskMap);
-	        
-	        /*Current Gate Document Tasks Ends*/
-	        
-	        /* Current Gate Standard Task Starts */
-	        getTemplateSpecificTasks(incomingProjectMap,projectToProjectTemplateMap,projectToMasterTaskList);
-	        
-	        createNewTasksFromTemplates(incomingProjects,projectToMasterTaskList,projectTargetDocumentMap,projectDocumentToTargetSectionMap,projIdProjResListMap,IPM_ConstantUtils.STANDARD_TASKS,projectToNewTaskList);
-	        /* Current Gate Standard Task ends */
-	        
-	        
-	        /*Future Tasks Starts*/ 
-	        manageFutureAdhocTasks(incomingProjects,projectTargetDocumentMap,projectDocumentToTargetSectionMap,projIdProjResListMap,projectToMasterFutureTasks);
-	        
-	        createNewTasksFromTemplates(incomingProjects,projectToMasterFutureTasks,projectTargetDocumentMap,projectDocumentToTargetSectionMap,projIdProjResListMap,IPM_ConstantUtils.ADHOC,projectToNewFutureTaskList);
-	    
-	    	/*Future Tasks ends*/
-			for(id projectId : projectToNewFutureTaskList.keySet())
-			{
-				upsertTaskList.addAll(projectToNewFutureTaskList.get(projectId));
-			}
-	        for(IPM_Project__c project : incomingProjects.values()) 
-	        {
-	            if(IPM_ProjectHelper.projectMasterMap.containsKey(project.Id) && IPM_ProjectHelper.projectMasterMap.get(project.Id)!=null)
-	            {
-	                IPM_Project__c projectDetail = IPM_ProjectHelper.projectMasterMap.get(project.Id);
-	                
-	                // Get associated Project Type
-	                IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(projectDetail);
-	                
-	                Map<Id,IPM_Section__c> associatedTemplateSectionMap = projectToTemplateSectionMap.get(project.Id);
-	                
-	                // Validate whehter Approach is internal.If it is internal then only Manage Tasks for that project.    
-	                if(associatedProjectType!=null && projectToNewTaskList.containsKey(project.Id))
-	                {
-	                	List<IPM_Task__c> projectExistingCurrentGateTasks = currentProjectGateExistingTaskMap.get(project.Id);
-	                    List<IPM_Task__c> projectExsitingpreviousGateTasks = previousProjectGateExistingTaskMap.get(project.Id);
-	                        
-	                    // Master list of Tasks based on template
-	                    List<IPM_Task__c> newTaskList = projectToNewTaskList.get(project.id);
-	                   
-	                    for(IPM_Task__c newTask :newTaskList)
-	                    {
-	                        String associatedSectionNumber = IPM_ConstantUtils.BLANK;
-	                        String newTaskCopyOverKey = IPM_ConstantUtils.BLANK;
-	                        
-	                        IPM_Section__c sec = new IPM_Section__c(Id=newTask.IPM_Section__c);
-	                        
-	                        String associatedExternalId = IPM_TaskHelper.generateTaskExternalId(newTask,projectDetail,new Map<Id,IPM_Section__c>{sec.Id => sec});
-	                        
-	                        if(associatedTemplateSectionMap!=null && !associatedTemplateSectionMap.isEmpty() && associatedTemplateSectionMap.containsKey(newTask.IPM_Section__c) )
-	                        {
-	                            associatedSectionNumber = associatedTemplateSectionMap.get(newTask.IPM_Section__c).IPM_Section_Sequence__c;
-	                        }
-	                                
-	                        if(!String.isBlank(associatedSectionNumber))
-	                        {
-	                            newTaskCopyOverKey = newTask.IPM_Phase__c + associatedSectionNumber + newTask.IPM_Function__c + newTask.IPM_Task_Name__c;
-	                        }
-	                        else
-	                        {
-	                            newTaskCopyOverKey = newTask.IPM_Phase__c + newTask.IPM_Function__c + newTask.IPM_Task_Name__c;
-	                        }        
-	                        
-	                        if(projectExistingCurrentGateTasks !=null)
-	                        {
-	                        	// Perform Copy over from existing Tasks to the new Task.
-	                        	for(IPM_Task__c existingTask : projectExistingCurrentGateTasks)
-		                        {
-		                            String existingTaskCopyOverKey = IPM_ConstantUtils.BLANK;
-		                            
-		                            if(existingTask.IPM_Section__c!=null)
-		                            {
-		                                existingTaskCopyOverKey = existingTask.IPM_Phase__c + existingTask.IPM_Master_Section_Sequence__c + existingTask.IPM_Function__c + existingTask.IPM_Task_Name__c;
-		                            }
-		                            else
-		                            {
-		                                existingTaskCopyOverKey = existingTask.IPM_Phase__c + existingTask.IPM_Function__c + existingTask.IPM_Task_Name__c;
-		                            }
-		                            
-		                            if(newTaskCopyOverKey == existingTaskCopyOverKey)
-		                            {
-		                                if(existingTask.IPM_Due_Date1__c != null)
-		                                {
-		                                   newTask.IPM_Due_Date1__c = existingTask.IPM_Due_Date1__c;
-		                                }
-		                                
-		                                if(existingTask.IPM_Completed__c)
-		                                {
-		                                   newTask.IPM_Completed__c = existingTask.IPM_Completed__c;
-		                                }
-		                                break;
-		                            }
-		                        }
-		                        
-	                        	for(Integer taskCounter=0;taskCounter< projectExistingCurrentGateTasks.size();taskCounter++)
-		                        {
-		                        	IPM_Task__c existingTask =  projectExistingCurrentGateTasks.get(taskCounter);
-		                        	
-		                            // If external Id matches on existing Tasks update the Id on the new to point to the old task.
-		                            if( (existingTask.IsSystemGenerated__c || existingTask.IPM_Type_of_Task__c == IPM_ConstantUtils.STANDARD_TASKS) && associatedExternalId == existingTask.ExternalField__c)
-		                            {
-		                            	
-		                                newTask.Id = existingTask.Id;
-		                                // Once the Task has been mapped to the existing Task, remove it from the List of current tasks.
-		                                projectExistingCurrentGateTasks.remove(taskCounter);
-		                                break;
-		                            }
-		                        }
-	                        
-	                        	
-	                        }
-	                      	upsertTaskList.add(newTask);  
-	                    }
-	                    if(projectExistingCurrentGateTasks!=null && !projectExistingCurrentGateTasks.isEmpty())
-	                    {
-	                    	upsertTaskList.addAll(projectExistingCurrentGateTasks);
-	                    }
-	                    
-	                    if(projectExsitingpreviousGateTasks!=null && !projectExsitingpreviousGateTasks.isEmpty())
-	                    {
-	                    	upsertTaskList.addAll(projectExsitingpreviousGateTasks);
-	                    }
-	                    
-	                }
-	            }
-	        }
-        }
+            if(IPM_ProjectHelper.projectMasterMap.containsKey(project.Id) && IPM_ProjectHelper.projectMasterMap.get(project.Id)!=null)
+            {
+                IPM_Project__c projectDetail = IPM_ProjectHelper.projectMasterMap.get(project.Id);
+                
+                // Get associated Project Type
+                IPM_Project_Type__c associatedProjectType = IPM_Utils.retrieveProjectType(projectDetail);
+                
+                Map<Id,IPM_Section__c> associatedTemplateSectionMap = projectToTemplateSectionMap.get(project.Id);
+                
+                // Validate whehter Approach is internal.If it is internal then only Manage Tasks for that project.    
+                if(associatedProjectType!=null && projectToNewTaskList.containsKey(project.Id))
+                {
+                	List<IPM_Task__c> projectExistingCurrentGateTasks = currentProjectGateExistingTaskMap.get(project.Id);
+                    List<IPM_Task__c> projectExsitingpreviousGateTasks = previousProjectGateExistingTaskMap.get(project.Id);
+                        
+                    // Master list of Tasks based on template
+                    List<IPM_Task__c> newTaskList = projectToNewTaskList.get(project.id);
+                   
+                    manageTaskCopyOverKey(associatedTemplateSectionMap,projectDetail,projectExistingCurrentGateTasks,newTaskList,upsertTaskList);
                     
-        if(upsertTaskList!=null && !upsertTaskList.isEmpty())
-        {
-        	List<IPM_Task__c> finalUpsertList = new List<IPM_Task__c>();
-        	for(IPM_Task__c task : upsertTaskList)
-        	{
-        		if(!deleteTaskMap.containsKey(task.Id))
-        		{
-        			finalUpsertList.add(task);
-        		}
-        	}
-            upsert finalUpsertList ;
+                    if(projectExistingCurrentGateTasks!=null && !projectExistingCurrentGateTasks.isEmpty())
+                    {
+                    	upsertTaskList.addAll(projectExistingCurrentGateTasks);
+                    }
+                    
+                    if(projectExsitingpreviousGateTasks!=null && !projectExsitingpreviousGateTasks.isEmpty())
+                    {
+                    	upsertTaskList.addAll(projectExsitingpreviousGateTasks);
+                    }
+                    
+                }
+            }
         }
+        
+        upsertNotNullTasks(upsertTaskList,deleteTaskMap);            
         
         if(deleteTaskMap!=null && !deleteTaskMap.isEmpty())
         {
@@ -465,7 +373,44 @@ public with sharing class IPM_TaskHelper {
             }
         }
     }
-	/**************************************************************
+    
+ private static void getTypeOfTask(IPM_Task__c masterTask,IPM_Task__c newTask) 
+ {
+    if(masterTask.RecordTypeId == standardTaskId)
+    {
+        newTask.IsSystemGenerated__c = true;
+        newTask.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD_TASKS;
+    } 
+    else
+    {
+        newTask.IsSystemGenerated__c = false;
+        newTask.IPM_Type_of_Task__c = IPM_ConstantUtils.ADHOC;
+    }
+ }
+ 
+ private static void doTeamAssignment(IPM_Project__c projectRec,list<IPM_Project_Resource__c> projResList,IPM_Task__c masterTask,IPM_Task__c newTask)
+ {
+     // assign user to task depending upon existing team members
+    if(projResList != null && !projResList.isEmpty())
+    {
+        for(IPM_Project_Resource__c projectResource : projResList)
+        {
+            if(projectResource.IPM_Role_Type__c!=null && projectResource.IPM_Role_Type__c.equalsIgnoreCase(masterTask.IPM_Function__c) && projectResource.IPM_Project_Role_Owner__c)
+            {
+                newTask.IPM_Assignee__c = projectResource.IPM_User__c; 
+                break;
+            }       
+        }
+    }
+    // if no team member present for specific functional role assign task to PL
+    else if(projectRec.IPM_Project_Leader__c != null && newTask.IPM_Assignee__c == null)
+    {
+        newTask.IPM_Assignee__c = projectRec.IPM_Project_Leader__c;
+    }
+    
+ }
+    
+ /**************************************************************
     * @description: Create tasks when project created, phase changes, when user adds any section
     * @param1 projectList : project record list 
     * @param1 projIdToMasterTaskListMap : project and associated task list
@@ -501,16 +446,7 @@ public with sharing class IPM_TaskHelper {
             newTask.RecordTypeId = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
             newTask.IPM_Task_Section_External_ID__c = masterTask.IPM_SectionExternalIDFormula__c;	
             
-            if(masterTask.RecordTypeId == standardTaskId)
-            {
-            	newTask.IsSystemGenerated__c = true;
-            	newTask.IPM_Type_of_Task__c = IPM_ConstantUtils.STANDARD_TASKS;
-            } 
-            else
-            {
-            	newTask.IsSystemGenerated__c = false;
-            	newTask.IPM_Type_of_Task__c = IPM_ConstantUtils.ADHOC;
-            }
+            getTypeOfTask(masterTask,newTask);
 
          	Map<Id,IPM_Section__c> sectionDetailMap =  new Map<Id,IPM_Section__c>();
             
@@ -522,23 +458,7 @@ public with sharing class IPM_TaskHelper {
             }
             newTask.ExternalField__c = IPM_TaskHelper.generateTaskExternalId(newTask,projectRec,sectionDetailMap);
             
-            // assign user to task depending upon existing team members
-            if(projResList != null && !projResList.isEmpty())
-			{
-				for(IPM_Project_Resource__c projectResource : projResList)
-                {
-                	if(projectResource.IPM_Role_Type__c!=null && projectResource.IPM_Role_Type__c.equalsIgnoreCase(masterTask.IPM_Function__c) && projectResource.IPM_Project_Role_Owner__c)
-                    {
-                    	newTask.IPM_Assignee__c = projectResource.IPM_User__c; 
-                        break;
-                    }       
-                }
-            }
-            // if no team member present for specific functional role assign task to PL
-            else if(projectRec.IPM_Project_Leader__c != null && newTask.IPM_Assignee__c == null)
-            {
-            	newTask.IPM_Assignee__c = projectRec.IPM_Project_Leader__c;
-            }
+            doTeamAssignment(projectRec,projResList,masterTask,newTask);
             
 			//insert active task if does not associated with ENVIRONMENTAL IMPACT SECTION SEQUENCE.If Associated check if its project type is not BLG.
 			projectTaskList.add(newTask);
@@ -566,7 +486,7 @@ public with sharing class IPM_TaskHelper {
 				&& (newTask.IPM_Master_Section_Sequence__c != IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_SEQUENCE || 
 					(newTask.IPM_Master_Section_Sequence__c.equalsIgnoreCase(IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_SEQUENCE) && projectRec.IPM_ProjectSubType__c !=IPM_ConstantUtils.IPM_BLG)))
             {
-        		finalTaskList.add(newTask);
+           			finalTaskList.add(newTask);
         	}
  		}
 		
@@ -604,58 +524,19 @@ public with sharing class IPM_TaskHelper {
 	 			{
 	 				Boolean complexityMatch = false;
 	 				
-	 				// If complexity doesnt match,remove project document section lookup.
-	 				if(projectDetail.IPM_Complexity__c == task.IPM_Task_Complexity__c)
-		    		{
-		    			complexityMatch = true;	
-		    		}
-		    		else
-	 				{
-	 					// Set the Project Document Section as null to assign new Project Document Section
-	 					task.IPM_Project_Document_Section__c = null;
-	 					// Set the complexity as project complexity.
-	 					task.IPM_Task_Complexity__c  = projectDetail.IPM_Complexity__c;
-	 				}
-		    		
-		    		if(complexityMatch ||String.isBlank(task.IPM_Task_Complexity__c))
-		    		{
-		    			for(IPM_Project_Document_Section__c projectDocSection : projectDocSectionList)
-			    		{
-			    			if(task.IPM_Section__c == projectDocSection.IPM_Section__c)
-			    			{
-			    				task.IPM_Project_Document_Section__c = projectDocSection.Id;
-			    				task.IPM_Active__c = projectDocSection.IPM_Default_Section__c;
-			    				break;
-			    			}
-			    		}
-		    		}  
-	    			else
-		    		{
-		    			for(IPM_Project_Document_Section__c projectDocSection : projectDocSectionList)
-			    		{
-			    			if(task.IPM_Task_Section_External_ID__c == projectDocSection.IPM_Master_Section_External_Id__c)
-			    			{	
-			    				task.IPM_Project_Document_Section__c = projectDocSection.Id;
-			    				task.IPM_Active__c = projectDocSection.IPM_Default_Section__c;
-			    				break;
-			    			}
-			    			
-			    		}
-		    		}
+	 				complexityMatch= checkComplexityMatch(projectDetail,task);
+	 				  
+	    			updateTaskSections(complexityMatch,task,projectDocSectionList);
 	 			}
 	 			else
 	 			{
 	 				if(task.IPM_Task_Type__c == IPM_ConstantUtils.TYPE_NEGOTIABLE) 
 					{
 						task.IPM_Active__c = false;
-					}
+					} 
 	 			}
  			}
- 			
- 			if(task.IPM_Active__c && task.IPM_Section__c != null && task.IPM_Project_Document_Section__c == null)
- 			{
- 				task.IPM_Active__c = false;
- 			}
+ 			makeNullDocumentSectionTaskInactive(task);
  		}
  	}
  }
@@ -1026,7 +907,7 @@ public with sharing class IPM_TaskHelper {
     	for(IPM_Project__c project : incomingProjectMap.values())
     	{
     		if(project.Is_Archieved__c)
-    		{
+    		{ 
     			if(currentProjectGateExistingTaskMap.containsKey(project.Id))
     			{
     				for(IPM_Task__c existingTask : currentProjectGateExistingTaskMap.get(project.Id))
@@ -1044,7 +925,7 @@ public with sharing class IPM_TaskHelper {
     				{
     					existingTask.IPM_Completed__c = true;
 			            existingTask.IPM_AutoCompletedBySystem__c = true;
-    					completedTaskList.add(existingTask);	
+    					completedTaskList.add(existingTask);	 
     				}
     				
     			}
@@ -1052,4 +933,195 @@ public with sharing class IPM_TaskHelper {
     	}
     	return completedTaskList;
     }
+    
+   
+   /**************************************************************
+    * @description: Update teh task copy over key
+    * @param1 associatedTemplateSectionMap : project
+    * @param2 projectDetail : current project tasks
+    * @param3 projectExistingCurrentGateTasks : previous gate project tasks
+    */
+   	private static void manageTaskCopyOverKey(Map<Id,IPM_Section__c> associatedTemplateSectionMap,IPM_Project__c projectDetail,List<IPM_Task__c> projectExistingCurrentGateTasks,List<IPM_Task__c> newTaskList,List<IPM_Task__c> upsertTaskList)
+	{
+		for(IPM_Task__c newTask :newTaskList)
+        {
+            String associatedSectionNumber = IPM_ConstantUtils.BLANK;
+            
+	        IPM_Section__c sec = new IPM_Section__c(Id=newTask.IPM_Section__c);
+	        
+	        String associatedExternalId = IPM_TaskHelper.generateTaskExternalId(newTask,projectDetail,new Map<Id,IPM_Section__c>{sec.Id => sec});
+	        
+	        if(associatedTemplateSectionMap!=null && !associatedTemplateSectionMap.isEmpty() && associatedTemplateSectionMap.containsKey(newTask.IPM_Section__c) )
+	        {
+	            associatedSectionNumber = associatedTemplateSectionMap.get(newTask.IPM_Section__c).IPM_Section_Sequence__c;
+	        }
+
+        	if(projectExistingCurrentGateTasks !=null)
+	        {
+	        	// Perform Copy over from existing Tasks to the new Task.
+	        	performTaskCopyOver(newTask,associatedSectionNumber,projectExistingCurrentGateTasks);
+	        	
+	        	for(Integer taskCounter=0;taskCounter< projectExistingCurrentGateTasks.size();taskCounter++)
+	            {
+	            	IPM_Task__c existingTask =  projectExistingCurrentGateTasks.get(taskCounter);
+	            	
+	                // If external Id matches on existing Tasks update the Id on the new to point to the old task.
+	                if( (existingTask.IsSystemGenerated__c || existingTask.IPM_Type_of_Task__c == IPM_ConstantUtils.STANDARD_TASKS) && associatedExternalId == existingTask.ExternalField__c)
+	                {
+	                    newTask.Id = existingTask.Id;
+	                    // Once the Task has been mapped to the existing Task, remove it from the List of current tasks.
+	                    projectExistingCurrentGateTasks.remove(taskCounter);
+	                    break;
+	                }
+	            }
+	        
+	        	
+	        }        	
+      		upsertTaskList.add(newTask);  
+        }
+    }
+    
+    private static void performTaskCopyOver(IPM_Task__c newTask,String associatedSectionNumber,List<IPM_Task__c> projectExistingCurrentGateTasks)
+    {
+    	String newTaskCopyOverKey = getTaskCopyOverKey(newTask,associatedSectionNumber);
+    	
+    	for(IPM_Task__c existingTask : projectExistingCurrentGateTasks)
+        {
+            String existingTaskCopyOverKey = IPM_ConstantUtils.BLANK;
+            
+            existingTaskCopyOverKey = getTaskCopyOverKey(newTask,null);
+            
+            if(newTaskCopyOverKey == existingTaskCopyOverKey)
+            {
+                if(existingTask.IPM_Due_Date1__c != null)
+                {
+                   newTask.IPM_Due_Date1__c = existingTask.IPM_Due_Date1__c;
+                }
+                
+                if(existingTask.IPM_Completed__c)
+                {
+                   newTask.IPM_Completed__c = existingTask.IPM_Completed__c;
+                }
+                break;
+            }
+        }
+	            
+    }
+    
+    
+    /**************************************************************
+    * @description: Get the task copy over key
+    * @param2 task : current project tasks
+    * @param3 associatedSectionNumber : previous gate project tasks
+    */
+    private static String getTaskCopyOverKey(IPM_Task__c task,String associatedSectionNumber){
+    	
+      String taskCopyOverKey;		
+	  if(!String.isBlank(associatedSectionNumber))
+        {
+            taskCopyOverKey = task.IPM_Phase__c + associatedSectionNumber + task.IPM_Function__c + task.IPM_Task_Name__c;
+        }
+            
+	    else if(task.IPM_Section__c!=null)
+        {
+            taskCopyOverKey = task.IPM_Phase__c + task.IPM_Master_Section_Sequence__c + task.IPM_Function__c + task.IPM_Task_Name__c;
+        }
+        else
+        {
+            taskCopyOverKey = task.IPM_Phase__c + task.IPM_Function__c + task.IPM_Task_Name__c;
+        }   
+    	
+    	return taskCopyOverKey;
+    }
+    
+    /**************************************************************
+    * @description: Upsert the not null tasks
+    * @param1 upsertTaskList : project
+    * @param2 deleteTaskMap : current project tasks
+    */
+    private static void upsertNotNullTasks( List<IPM_Task__c> upsertTaskList,Map<Id,IPM_Task__c> deleteTaskMap)
+    {
+		if(upsertTaskList!=null && !upsertTaskList.isEmpty())
+	    {
+	    	List<IPM_Task__c> finalUpsertList = new List<IPM_Task__c>();
+	    	for(IPM_Task__c task : upsertTaskList)
+	    	{
+	    		if(!deleteTaskMap.containsKey(task.Id))
+	    		{
+	    			finalUpsertList.add(task);
+	    		}
+	    	}
+	        upsert finalUpsertList ;
+	    }
+    }
+    
+    /**************************************************************
+    * @description: Update the corresponding project document sections
+    * @param1 complexityMatch 
+    * @param2 task : current project tasks
+    * @param3 projectDocSectionList : project document sections
+    */
+ private static void updateTaskSections(Boolean complexityMatch,IPM_Task__c task ,List<IPM_Project_Document_Section__c> projectDocSectionList){
+ 	
+ 	if(complexityMatch ||String.isBlank(task.IPM_Task_Complexity__c))
+		{
+			for(IPM_Project_Document_Section__c projectDocSection : projectDocSectionList)
+    		{
+    			if(task.IPM_Section__c == projectDocSection.IPM_Section__c)
+    			{
+    				task.IPM_Project_Document_Section__c = projectDocSection.Id;
+    				task.IPM_Active__c = projectDocSection.IPM_Default_Section__c;
+    				break;
+    			}
+    		}
+   	    }  
+		else
+		{
+			for(IPM_Project_Document_Section__c projectDocSection : projectDocSectionList)
+    		{
+    			if(task.IPM_Task_Section_External_ID__c == projectDocSection.IPM_Master_Section_External_Id__c)
+    			{	
+    				task.IPM_Project_Document_Section__c = projectDocSection.Id;
+    				task.IPM_Active__c = projectDocSection.IPM_Default_Section__c;
+    				break;
+    			}
+    		}
+    	}
+  }
+  
+  /**************************************************************
+    * @description: Check the complexity matching of task and project
+    * @param1 projectDetail : project
+    * @param2 task : current tasks
+    */
+  private static Boolean checkComplexityMatch(IPM_Project__c projectDetail,IPM_Task__c task){
+  	Boolean complexityMatch;
+  	// If complexity doesnt match,remove project document section lookup.
+ 	 if(projectDetail.IPM_Complexity__c == task.IPM_Task_Complexity__c)
+	 {
+	 	complexityMatch = true;	
+	 }
+	 else
+ 	{
+ 		// Set the Project Document Section as null to assign new Project Document Section
+ 	    task.IPM_Project_Document_Section__c = null;
+ 		// Set the complexity as project complexity.
+ 		task.IPM_Task_Complexity__c  = projectDetail.IPM_Complexity__c;
+ 		complexityMatch = true;	
+ 	}
+ 	return complexityMatch;
+  }
+    
+  /**************************************************************
+    * @description: Make task inactive if document section is null 
+    * @param1 task : task
+    */
+  private static void makeNullDocumentSectionTaskInactive(IPM_Task__c task){
+  	if(task.IPM_Active__c && task.IPM_Section__c != null && task.IPM_Project_Document_Section__c == null)
+ 	 {
+ 		task.IPM_Active__c = false;
+ 	}
+  }  
+    
+ 
 }

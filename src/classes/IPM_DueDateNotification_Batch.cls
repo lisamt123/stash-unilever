@@ -91,7 +91,7 @@ global without sharing class IPM_DueDateNotification_Batch implements Database.B
 	                    }
 	                projIdNewProjectsSet.add(eachMilestone.IPM_Project__c);
 	                subjectIdMentionIdSetMap.put(eachMilestone.IPM_Project__c,projLeadSet);
-	                projIdchatterMessageMap.put(eachMilestone.IPM_Project__c,IPM_ConstantUtils.IPM_SPACE + IPM_ConstantUtils.PLANNED+eachMilestone.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+IPM_ConstantUtils.GATE+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_DUE_ON_TODAY+System.Label.IPM_Remember_To_Update);
+	                projIdchatterMessageMap.put(eachMilestone.IPM_Project__c,IPM_ConstantUtils.IPM_SPACE + IPM_ConstantUtils.PLANNED+eachMilestone.IPM_Name__c+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_DUE_ON_TODAY+System.Label.IPM_Remember_To_Update);
 	                
 	               }
 	               //If milestone due date is approaching 21 days

@@ -9,9 +9,9 @@
 
 @isTest
 private with sharing class IPM_PerformanceBreakdownController_Test {
-	private static final string PROJECT_BI_LARGE = 'Large';
     static List<IPM_Project__c> regionalProjectList;
     static List<IPM_Project__c> projectList;
+    static List<IPM_Project_Rollout__c> localRolloutList; 
     static List<User> userList;
     static final String TEST_USER_EMAIL = 'globalUser@unilever.test.com';
 	
@@ -32,108 +32,103 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
          {
             insert globalProjectList;
          }
-         
-        Test.startTest(); 
-        List<IPM_Project_Rollout__c> localRolloutList; 
-        System.runAs(userList[0])
-        {
-            // Create Regional Rollouts for Created Global project.
-            List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,globalProjectList,new List<User>{userList[1],userList[1],userList[1]});
-            insert regionalRolloutList;
-            system.assert(!regionalRolloutList.isEmpty(), 'project rollout cannot be created'); //names cannot be asserted as project name set in helper class
-            
-            Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
-            for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
-            {
-                List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
-                if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
-                {
-                    projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
-                }
-                projectRolloutList.add(projectRollout);
-                projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
-            }
-            
-            // Create local Rollouts for Created regional Rollouts.
-            localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{userList[2]});  
-            insert localRolloutList; 
-            system.assert(!localRolloutList.isEmpty(), 'project rollout map cannot be created'); //names cannot be asserted as project and rollout map set in helper class
-            
-            // Create Country specific information.
-            List<IPM_Country__c> countryList= new List<IPM_Country__c>();
-            
-            for(IPM_Project_Rollout__c localRollout : localRolloutList)
-            {
-                String geoExternalId = '';
-                if(localRollout.IPM_Rollout_Project__c.contains('AFR'))
-                {
-                    geoExternalId = 'AGO';
-                }
-                else if(localRollout.IPM_Rollout_Project__c.contains('LA'))
-                {
-                    geoExternalId = 'BRA';
-                }
-                
-                IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new mdm_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
-                
-                countryList.add(tempCountry);
-            }
-            
-            insert countryList;
-            //assert on counti is sufficient, additional soql can be a risk for SOQL gov limit as this method has loads of queries.
-            system.assert(!countryList.isEmpty(), 'country records not created');
-        }
-        
-        //Create id set from projectlist
+         createRegionalAndLocalRollouts(globalProjectList);
+         //This creates Regional original project. But we need rollout projects also and financial
+         createRegionalOriginalProjects();
+     }
+     
+     static void createRegionalAndLocalRollouts(List<IPM_Project__c>globalProjectList)	
+	 {
+		 Test.startTest();
+	        System.runAs(userList[0])
+	        {
+	            // Create Regional Rollouts for Created Global project.
+	            List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,globalProjectList,new List<User>{userList[1],userList[1],userList[1]});
+	            insert regionalRolloutList;
+	            system.assert(!regionalRolloutList.isEmpty(), 'project rollout cannot be created'); //names cannot be asserted as project name set in helper class
+	            
+	            Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
+	            for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
+	            {
+	                List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+	                if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
+	                {
+	                    projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
+	                }
+	                projectRolloutList.add(projectRollout);
+	                projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
+	            }
+	            
+	            // Create local Rollouts for Created regional Rollouts.
+	            localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{userList[2]});  
+	            insert localRolloutList; 
+	            system.assert(!localRolloutList.isEmpty(), 'project rollout map cannot be created'); //names cannot be asserted as project and rollout map set in helper class
+	            
+	            // Create Country specific information.
+	            List<IPM_Country__c> countryList= new List<IPM_Country__c>();
+	            
+	            for(IPM_Project_Rollout__c localRollout : localRolloutList)
+	            {
+	                String geoExternalId = '';
+	                if(localRollout.IPM_Rollout_Project__c.contains('AFR'))
+	                {
+	                    geoExternalId = 'AGO';
+	                }
+	                else if(localRollout.IPM_Rollout_Project__c.contains('LA'))
+	                {
+	                    geoExternalId = 'BRA';
+	                }
+	                
+	                IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new mdm_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
+	                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
+	                
+	                countryList.add(tempCountry);
+	            }
+	            
+	            insert countryList;
+	            //assert on counti is sufficient, additional soql can be a risk for SOQL gov limit as this method has loads of queries.
+	            system.assert(!countryList.isEmpty(), 'country records not created');
+	        }
+	        
+	        Set<Id> setIds = new set<Id>();
+	        System.runAs(userList[1])
+	        {
+	            for(IPM_Project_Rollout__c localRollout : localRolloutList)
+	            {
+	                localRollout.KeyMCO__c = true;
+	                localRollout.IPM_Regional_PL__c = userList[2].Id;
+	                localRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+	                localRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE; 
+	                localRollout.Target_Launch_Date__c = System.today().addMonths(10); //To cover 2523 line
+	                localRollout.Previous_Target_Launch_Date__c = System.today().addMonths(9); //To cover 2523 line
+	                setIds.add(localRollout.id);
+	            }
+	            update localRolloutList;
+	            
+	        }
+	        
+	     
+	      //Create id set from projectlist
         list<id> liGlobIds = new list<id>();
-        set<id> setIds = new set<Id>();
         
         for(IPM_project__c g: globalProjectList){
             liGlobIds.add(g.id);
         }
-        List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(liGlobIds,userList[0]); 
-        //update BI
-        for(IPM_project__c pr: projectListPhaseChange){
-            pr.BI__c = PROJECT_BI_LARGE;
-            setIds.add(pr.id);
-        }
-        update projectListPhaseChange;
+        IPM_TestFactory_Helper.initiateProjectPhaseChange(liGlobIds,userList[0]);
         
         //assert preparation
-        List<IPM_Project__c> selList = [select BI__c from IPM_project__c where id in :setIds];
-        for(IPM_project__c project: selList){
-            system.assertEquals(project.BI__c, PROJECT_BI_LARGE, 'BI not set as Large');
-        }
-        
-        setIds = new set<Id>();
-        System.runAs(userList[1])
+        list<IPM_Project_Rollout__c> selRolloutList = [select KeyMCO__c, IPM_Regional_PL__c, IPM_Project_Job_Status__c, IPM_RolloutJobType__c, Target_Launch_Date__c, Previous_Target_Launch_Date__c from IPM_Project_Rollout__c where id in :setIds];
+        for(IPM_Project_Rollout__c localRollout : selRolloutList)
         {
-            for(IPM_Project_Rollout__c localRollout : localRolloutList)
-            {
-                localRollout.KeyMCO__c = true;
-                localRollout.IPM_Regional_PL__c = userList[2].Id;
-                localRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-                localRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE; 
-                localRollout.Target_Launch_Date__c = System.today().addMonths(10); //To cover 2523 line
-                localRollout.Previous_Target_Launch_Date__c = System.today().addMonths(9); //To cover 2523 line
-                setIds.add(localRollout.id);
-            }
-            update localRolloutList;
-            
-            //assert preparation
-            list<IPM_Project_Rollout__c> selRolloutList = [select KeyMCO__c, IPM_Regional_PL__c, IPM_Project_Job_Status__c, IPM_RolloutJobType__c, Target_Launch_Date__c, Previous_Target_Launch_Date__c from IPM_Project_Rollout__c where id in :setIds];
-            for(IPM_Project_Rollout__c localRollout : selRolloutList)
-            {
-                system.assertEquals(localRollout.KeyMCO__c, true);
-                system.assertEquals(localRollout.IPM_Regional_PL__c, userList[2].Id);
-                system.assertEquals(localRollout.IPM_Project_Job_Status__c, IPM_ConstantUtils.JOB_STATUS_ELIGIBLE);
-                system.assertEquals(localRollout.Previous_Target_Launch_Date__c, System.today()); //To cover 2523 line
-            }
+            system.assertEquals(localRollout.KeyMCO__c, true,'MCO not updated');
+            system.assertEquals(localRollout.IPM_Regional_PL__c, userList[2].Id, 'regional PL not updated');
         }
+        Test.stopTest(); 
+	 }
 
-        //This creates Regional original project. But we need rollout projects also and financial
-        regionalProjectList = IPM_TestFactory_Helper.projectSetUpRegional(5,UserList[1]);
+
+	static void createRegionalOriginalProjects(){
+		regionalProjectList = IPM_TestFactory_Helper.projectSetUpRegional(5,UserList[1]);
         System.runAs(userList[1])
         {
             insert regionalProjectList;
@@ -175,44 +170,36 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
             update localRolloutList;
             projectList[0].IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
             update projectList[0];
+            
+            
             ipm_project__c selP = [select IPM_Phase__c from ipm_project__c where id=:projectList[0].id];
             system.assert(selP!=null,'project did not update properly');
             IPM_TestFactory_Helper.createIPMCountryList(true,1);
-            Test.stopTest();
+            
             //Finance record for global project which is NON consolidate             
              IPM_Financial__c localRolloutFin = [select id, Financial_External_ID__c, Target_Launch_Date__c, RecordTypeId, Regional_External_Id__c, 
              Project_Sustainability_Period__c, Status__c, isGateSubmissionDue__c from IPM_Financial__c where Financial_External_ID__c='TestRegionalComments1_UMCA'];
              system.assert(localRolloutFin!=null, 'Finance record for Local rollout project is not created.');
-             system.assertEquals(localRolloutFin.Financial_External_ID__c, 'TestRegionalComments1_UMCA');
-            
-            
-            
             
             list<IPM_Exchange_Rate__c> liEX = new list<IPM_Exchange_Rate__c>();
             liEX.add(new IPM_Exchange_Rate__c(Name='EUR', Currency_Code__c='EUR',Exchange_Rate__c=1));
             liEX.add(new IPM_Exchange_Rate__c(Name='GBP', Currency_Code__c='GBP',Exchange_Rate__c=0.8)); 
             liEX.add(new IPM_Exchange_Rate__c(Name='USD', Currency_Code__c='USD',Exchange_Rate__c=1.3));         
             insert liEX;   
-            system.assertEquals(liEX.size(),3);
+            system.assertEquals(3, [Select count() from IPM_Exchange_Rate__c limit 100] , 'Exchange rates are not added.');
             
         }
-        
-     }
-     
+	}
      //Use case: Local Rollout project in market ready phase 
      static testMethod void testMarketPerformanceBreakDown(){
         System.runAs([Select Id from User where email =: TEST_USER_EMAIL limit 1][0])
         {
 	         Test.startTest();
-	             //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
-	             IPM_Project__c localRollout = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Local' and IPM_Project_Type__c='Rollout' and Name='TestRegionalComments1_UMCA' limit 1];
-	             system.assert(localRollout!=null,'Local rollout type project not created.');
-	             system.assertEquals(localRollout.name, 'TestRegionalComments1_UMCA');
-	             localRollout.IPM_Phase__c = IPM_ConstantUtils.PHASE_CAPABILITY;
-	             update localRollout;
-	        Test.stopTest();  
-	        List<IPM_Project__c>projList=[SELECT IPM_Phase__c FROM IPM_Project__c WHERE ID=:localRollout.ID LIMIT 1];
-	        system.assertEquals(projList[0].IPM_Phase__c,IPM_ConstantUtils.PHASE_CAPABILITY,'project phase is not updated');
+             //Name hard coded as we know it from nameset. It will be hard to make it dynamic.
+             IPM_Project__c localRollout = [select id, name, IPMProject_Span__c, IPM_SourceProjectType__c, IPM_Project_Type__c, BI__c, IPM_Target_Launch_Dates__c  from IPM_Project__c where IPMProject_Span__c='Local' and IPM_Project_Type__c='Rollout' and Name='TestRegionalComments1_UMCA' limit 1];
+             system.assert(localRollout!=null,'Local rollout type project not created.');
+             localRollout.IPM_Phase__c = IPM_ConstantUtils.PHASE_CAPABILITY;
+             update localRollout;
 	        
 	        PageReference pageRef = Page.ipm_projectdocumentsectioneditor;
 	        Test.setCurrentPageReference(pageRef);  
@@ -220,7 +207,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
 	        IPM_PerformanceBreakdownController sic = new IPM_PerformanceBreakdownController (); 
 	        sic.selectedCurrency=null;
 	        List<SelectOption>lstOptions=sic.getItems();
-	        system.assertEquals(lstOptions.isEmpty(),false,'selelct option list is empty');
+	        system.assertEquals(lstOptions.isEmpty(),false,'selelct option list is not empty');
 	        sic.applyRate();
 	        system.assertEquals(sic.appliedRate,true,'exchange rate is not applied to EUR');
 	        sic.selectedCurrency='BOB';
@@ -251,7 +238,7 @@ private with sharing class IPM_PerformanceBreakdownController_Test {
 	        List<IPM_MarketPerformanceBreakdown__c> marketPerformanceBkList=[SELECT InnovationValueShare__c,InnovationVolumeShare__c FROM IPM_MarketPerformanceBreakdown__c WHERE ID=:sic.marketPerformanceBreakdownList[0].ID LIMIT 1];
 	        system.assertNotEquals(marketPerformanceBkList[0].InnovationValueShare__c,101,'innovation value share is saved');//positive test
 	        system.assertNotEquals(marketPerformanceBkList[0].InnovationVolumeShare__c,101,'innovation volume share is saved');//positive test
-	        
+	        Test.stopTest();
 		       
         }
         

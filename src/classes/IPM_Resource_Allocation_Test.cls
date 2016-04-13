@@ -3,7 +3,7 @@
 */
 
 @isTest
-public class  IPM_Resource_Allocation_Test {
+private class  IPM_Resource_Allocation_Test {
     public static IPM_Project__c project;// Project object initialization
     public static List<IPM_Project__c> projectListObj = new List<IPM_Project__c>();
     public static List<IPM_Project__c> projectList= new List<IPM_Project__c>();

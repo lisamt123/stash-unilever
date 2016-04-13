@@ -1165,7 +1165,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     * @param        NONE
     * @return       Date
     */
-    private Boolean isProjectTLDBeforeMilestoneGates( Date tld ){
+    @Testvisible private Boolean isProjectTLDBeforeMilestoneGates( Date tld ){
         Boolean result = false;
         List<String> milestoneNames = new List<String>{IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE};
         List<IPM_Milestone__c> milestones = [Select IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: project.Id and IPM_Active__c = true and IPM_Name__c in: milestoneNames limit 1000];

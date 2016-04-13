@@ -24,7 +24,8 @@ private class IPM_TaskHelper_Test{
     @testSetup static void projectSetUpData() 
      {
         System.runAs(adminUser){
-            platformUserPL1 = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
+        	
+        	platformUserPL1 = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
             platformUserPL1.lastname = GLOBAL_PL1;
             platformUserPL2  = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.TEAM_DEPUTY_PROJECT_LEADER);
             platformUserPL2.lastname = GLOBAL_PL2;
@@ -40,7 +41,9 @@ private class IPM_TaskHelper_Test{
             system.assertEquals(userUpdatedList2.size(),1,'Global DPL is not created');
             list<User> userUpdatedList3 = [SELECT lastname FROM User WHERE lastname=:GLOBAL_PL1];
             system.assertEquals(userUpdatedList3.size(),1,'Global BD is not created');
+            
         }
+        
         // Create Company Card information 
         IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
         IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
@@ -51,6 +54,21 @@ private class IPM_TaskHelper_Test{
         
         IPM_TestFactory_Helper.getProjectMasterData();
          
+        System.runAs(adminUser){ 
+        List<IPM_Section__c> sectionList =  new List<IPM_Section__c>();
+             
+
+        for(IPM_Section__c secVal:[Select id,IPM_IS_Default_Section__c from IPM_Section__c where IPM_Document_Template__r.IPM_Document_Type__c = 'Contract' and 
+        IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c = :IPM_ConstantUtils.IPM_COMPLEXITY_FULL and 
+        IPM_Document_Template__r.IPM_Project_Template__r.IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL and 
+        ProjectSpan__c includes (:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) limit 10])
+        {
+      	  secVal.IPM_IS_Default_Section__c = true;
+      	  sectionList.add(secVal);
+        }
+        update sectionList;
+
+        }
          // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(new List<User>{platformUserPL1,platformUserPL2,userBDRole}); 
             
@@ -88,10 +106,8 @@ private class IPM_TaskHelper_Test{
         list<IPM_Task__c> taskList= new list<IPM_Task__c> ();
         list<IPM_Task__c> futureTaskList= new list<IPM_Task__c> ();
         map<id,IPM_Task__c> updateTaskMap = new map<id,IPM_Task__c> ();
-        
-        
-        
-        projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Leader__c,Deputy_Project_Leader__c,IPM_GateKeeping_Model__c,
+       
+	    projectDetailList = [Select Id,IPM_Phase__c,IPMProject_Span__c,Name,IPM_Complexity__c,IPM_Project_Leader__c,Deputy_Project_Leader__c,IPM_GateKeeping_Model__c,
                             (Select Id from Project_Documents__r),
                             (Select Id from IPM_Financials_Consolidated__r ),
                             (Select Id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Project_Document_Section__c,IPM_Assignee__c,ExternalField__c,IPM_Active__c from Tasks__r),
@@ -117,15 +133,14 @@ private class IPM_TaskHelper_Test{
        }
        
 		 // query project document section
-       list<IPM_Project_Document_Section__c> projDocSecList = [SELECT Id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Project_ID__c,IPM_Section__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project__c 
+       list<IPM_Project_Document_Section__c> projDocSecList = [SELECT Id,IPM_Default_Section__c ,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Project_ID__c,IPM_Section__c,IPM_Project_Document__c,IPM_Project_Document__r.IPM_Project__c 
                                                                 FROM IPM_Project_Document_Section__c 
                                                                 WHERE IPM_Project_Document__c IN:projectDocumentIdSet and IPM_Project_Document__r.IPM_Project__c=:projectIdSet];
       
-      
-      for(IPM_Section__c secVal:[Select id from IPM_Section__c where IPM_Document_Template__r.IPM_Document_Type__c = 'Contract' and 
-      IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c = :IPM_ConstantUtils.IPM_COMPLEXITY_FULL and 
-      IPM_Document_Template__r.IPM_Project_Template__r.IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL and 
-      ProjectSpan__c includes (:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) limit 10])
+      for(IPM_Section__c secVal:[Select id,IPM_IS_Default_Section__c from IPM_Section__c where IPM_Document_Template__r.IPM_Document_Type__c = 'Contract' and 
+	        IPM_Document_Template__r.IPM_Project_Template__r.IPM_Template_Complexity__c = :IPM_ConstantUtils.IPM_COMPLEXITY_FULL and 
+	        IPM_Document_Template__r.IPM_Project_Template__r.IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL and 
+	        ProjectSpan__c includes (:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) and IPM_IS_Default_Section__c = true limit 10])
       {
       	//Insert a future adhoc task
        		IPM_Task__c futureAdhocTask = IPM_TestFactory_Helper.createIPMTask(projectDetailList[0].id,false);
@@ -133,7 +148,7 @@ private class IPM_TaskHelper_Test{
        		futureAdhocTask.IPM_Task_Name__c = 'Future Feasibility Task';
        		futureAdhocTask.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
        		futureAdhocTask.IPM_Type_of_Gate__c =IPM_ConstantUtils.CONTRACT_GATE;
-       		futureAdhocTask.IPM_Task_Complexity__c = IPM_ConstantUtils.IPM_COMPLEXITY_FULL;
+       		futureAdhocTask.IPM_Task_Complexity__c = IPM_ConstantUtils.COMPLEXITY_LITE;
        		futureAdhocTask.IPM_TaskSpan__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
        		futureAdhocTask.IPM_Function__c =IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
        		futureAdhocTask.IPM_Section__c=secVal.id;
@@ -441,7 +456,8 @@ private class IPM_TaskHelper_Test{
                                            from IPM_Project__c where IPM_Phase__c =:IPM_ConstantUtils.FEASIBILITY_PHASE AND Name IN :projectNameSet];
             system.assert(projectListUpdated.size() == 10);
             
-            list<IPM_Task__c> taskList = [SELECT Id,Name,IPM_Type_of_Task__c,IPM_Task_Complexity__c,IPM_Project_Document_Section__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Assignee__c,IPM_Active__c,IPM_Phase__c,IPM_Project__r.Name,IPM_Completed__c
+            list<IPM_Task__c> taskList = [SELECT Id,IPM_Task_Name__c,IPM_TaskSpan__c,IPM_Type_of_Task__c,IPM_Task_Complexity__c,IPM_Project_Document_Section__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,
+            							  IPM_Assignee__c,IPM_Active__c,IPM_Phase__c,IPM_Project__r.Name,IPM_Completed__c
                                           FROM IPM_Task__c WHERE IPM_Project__r.Name IN :projectNameSet];
             for(IPM_Task__c futureTask:taskList)
             {
