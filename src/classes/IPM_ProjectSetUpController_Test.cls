@@ -59,6 +59,8 @@ private class IPM_ProjectSetUpController_Test {
 		List<MDO_BrandPositions__c>mdoBPositionsList=[SELECT brand_position_id__c FROM MDO_BrandPositions__c WHERE ID=:mdoBrandPositions.ID LIMIT 1];
 		system.assertEquals(mdoBPositionsList[0].brand_position_id__c,mdoBrandPositions.brand_position_id__c,'mdo brand positions id is not matched');
     
+	//Insert Custom Setting of Project Metadata
+     	IPM_TestFactory_Helper.createIPMProjectMetadata();
         //insert custom setting of IPM_Market_Cluster_Short_Names__c
         IPM_TestFactory_Helper.createMarketshortName(true);
         
