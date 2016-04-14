@@ -26,6 +26,39 @@ private class IPM_ProjectSetUpController_Test {
         List<User>plUserList=new List<User>();
         plUserList.add(userInitialize);        
         
+        MDO_BrandPosition__c mdoBPosition=new MDO_BrandPosition__c();
+		mdoBPosition.Name='Lux';
+		mdoBPosition.status__c=ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE;
+		insert mdoBPosition;
+		
+		List<MDO_BrandPosition__c>mdoBrandPosList=[SELECT Name FROM MDO_BrandPosition__c WHERE ID=:mdoBPosition.ID LIMIT 1];
+		system.assertEquals(mdoBrandPosList[0].Name,mdoBPosition.Name,'brand position name is not matched');
+		
+		MDO_Category__c mdoCategory=new MDO_Category__c();
+		mdoCategory.Name='Household Care';
+		insert mdoCategory;
+		
+		List<MDO_Category__c>mdoCategoryList=[SELECT Name FROM MDO_Category__c WHERE ID=:mdoCategory.ID LIMIT 1];
+		system.assertEquals(mdoCategoryList[0].Name,mdoCategory.Name,'mdo category name is not matched');
+		
+		MDO_Category__c mdoCategories=new MDO_Category__c();
+		mdoCategories.Name='House Care';
+		mdoCategories.parent_id__c=mdoCategory.id;
+		insert mdoCategories;
+		
+		List<MDO_Category__c>mdoCategoriesList=[SELECT Name FROM MDO_Category__c WHERE ID=:mdoCategories.ID LIMIT 1];
+		system.assertEquals(mdoCategoriesList[0].Name,mdoCategories.Name,'mdo parent category name is not matched');
+		
+		
+		MDO_BrandPositions__c mdoBrandPositions=new MDO_BrandPositions__c();
+		mdoBrandPositions.status__c=ipm_constantutils.BRANDPOSITION_STATUS_ACTIVE;
+		mdoBrandPositions.brand_position_id__c=mdoBPosition.id;
+		mdoBrandPositions.product_category_id__c=mdoCategories.id;
+		insert mdoBrandPositions;
+		
+		List<MDO_BrandPositions__c>mdoBPositionsList=[SELECT brand_position_id__c FROM MDO_BrandPositions__c WHERE ID=:mdoBrandPositions.ID LIMIT 1];
+		system.assertEquals(mdoBPositionsList[0].brand_position_id__c,mdoBrandPositions.brand_position_id__c,'mdo brand positions id is not matched');
+    
         //insert custom setting of IPM_Market_Cluster_Short_Names__c
         IPM_TestFactory_Helper.createMarketshortName(true);
         
@@ -143,9 +176,17 @@ private class IPM_ProjectSetUpController_Test {
             boolean isTDL=false;
             isTDL=sic.isProjectTLDBeforeMilestoneGates(system.today());
             system.assertEquals(isTDL,true,'isTLD is false');
+            IPM_ProjectSetupController.savetabname('testtab',null);
             sic.project.IPM_PM_Approach__c='External';
             sic.saveIPMApproach();
             system.assertEquals(sic.project.IPM_PM_Approach__c,IPM_ConstantUtils.IPM_APPROACH_INTERNAL,'IPM approach is not internal');
+            
+            sic.project.IPM_Category_Text__c='Household Care';
+            sic.project.IPM_Region_Shr__c='Global';
+            sic.project.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_GLOBAL;
+            sic.project.IPM_Brand_Positioning__c='Lux';
+            sic.getBrandPos();
+                
             
         }
         Test.stopTest(); 
