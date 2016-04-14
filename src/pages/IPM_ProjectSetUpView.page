@@ -1,4 +1,4 @@
-<!--  
+﻿<!--  
 *************************************************************************************************************************************************************
 *@Description:This is project initiation page, where user should enter all project details. User will get 5 tabs to complete the wizard.
 *@Author: Cognizant.
@@ -181,7 +181,7 @@
                                                                         <!-- To display below outputPanel when user typed in project name   -->
                                                                         <apex:outputpanel layout="block" styleClass="autoContainer" rendered="{!!isProjectNameBlank}">
                                                                             <apex:repeat value="{!listofprojectname}" var="proList">          
-                                                                                <apex:outputLabel styleClass="bcAuto" value="{!proList.IPM_Project_Name__c}"/>         
+                                                                                <apex:outputLabel styleClass="bcAuto" value="{!proList}"/>         
                                                                             </apex:repeat>  
                                                                         </apex:outputpanel>
                                                                     </apex:outputpanel>
@@ -801,7 +801,7 @@
     jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }}); 
     var apexAccountList =[];                 
     <apex:repeat value="{!listofprojectname}" var="proList">          
-        apexAccountList.push('{!proList.IPM_Project_Name__c}');         
+        apexAccountList.push('{!proList}');         
     </apex:repeat>
 
     jq(document).ready(function()
