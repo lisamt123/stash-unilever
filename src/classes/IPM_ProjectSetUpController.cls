@@ -36,7 +36,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public Boolean isSavedDB {get;set;} 
     public string isRollout{get;set;} 
     //*@Description: Specifies list of project names
-    public List<IPM_Project__c> listofProjectName {get; set;}
+    public set<string> listofProjectName {get; set;}
     //*@Description: Flag for Image
     public Boolean isImage {get; set;}
     //*@Description: Store Image Id
@@ -775,7 +775,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     {
         try
         {
-            project.IPM_Project_Leader__c=UserInfo.getUserId();
+           
             project.IPM_Project_Navigate__c = true;
             if(!isSavedDB && !skipValidation && projectMetadata!=null )
             {
@@ -1097,7 +1097,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     @Description : search duplicate project name
     *****************************************************************************/
     public void searchDuplicateProject(){
-        listofProjectName=new List<IPM_Project__c>(); 
+        listofProjectName=new Set<string>(); 
         listofProjectName=IPM_WithoutShareController.allProjectList(projectId,project.IPM_Project_Name__c); 
         if(listofProjectName.isEmpty()){
             isProjectNameBlank=true;

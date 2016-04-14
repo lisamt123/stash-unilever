@@ -1,4 +1,4 @@
-<!-- 
+﻿<!-- 
 ***********************************************
 *@Description: Â User is able to update project details from landing page of the core parameter.
 *@Author: Cognizant
@@ -93,7 +93,7 @@
                                         <!-- To display below outputPanel when user typed in project name   -->
                                             <apex:outputpanel layout="block" styleClass="autoContainer" rendered="{!!isProjectNameBlank}">
                                                 <apex:repeat value="{!listofprojectname}" var="proList">          
-                                                    <apex:outputLabel styleClass="bcAuto" value="{!proList.IPM_Project_Name__c}"/>         
+                                                    <apex:outputLabel styleClass="bcAuto" value="{!proList}"/>         
                                                 </apex:repeat> 
                                             </apex:outputpanel> 
                                         </apex:outputpanel>
@@ -497,9 +497,10 @@
     jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});     
     var apexAccountList =[];                        
     <apex:repeat value="{!listofprojectname}" var="proList">                
-        apexAccountList.push('{!proList.IPM_Project_Name__c}');                 
-    </apex:repeat>  
-    </script>
+        apexAccountList.push('{!proList}');                 
+    </apex:repeat> 
+   
+   </script>
     </apex:outputPanel>
      <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_EditProject.js')}" type="text/javascript"></script>
 </apex:page>

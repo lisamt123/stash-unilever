@@ -68,7 +68,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public integer totalTLDProject{get;set;}//total TLD misAligned local project name
     public boolean isBDBBAlignment{get;set;}
     public string bd_BBAlignmentSequence{get;set;}
-    
+    public id documentSectionId{get;set;}
     /*****************************************************************
     @Description :Constructor Fetch the Page parameters and retrieve lists
     *****************************************************************/
@@ -872,6 +872,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         localBCProjectName=new set<String>();
         localFinProjectName=new set<String>();
         localTLDProjectName=new set<String>();
+        documentSectionId=null;
         if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(project.IPMProject_Span__c) && (IPM_ConstantUtils.PHASE_CAPABILITY.equals(project.IPM_Phase__c) || IPM_ConstantUtils.PHASE_FEASIBILITY.equals(project.IPM_Phase__c))){
             finList=new List<IPM_Financial__c>();
             finList=[SELECT IPM_Business_Case_Confirmed__c,Is_BC_Confirmed_Capability__c,Local_Project__r.IPM_Phase__c,Misaligned__c,Local_Project__r.Rollout_Plan_Target_Launch_Date__c,
@@ -909,13 +910,17 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     }
                 }
                 //to display bd/bb alignment section on page
+                List<IPM_Project_Document_Section__c> projectSectionList=new List<IPM_Project_Document_Section__c>();
                 if(tldAlignment || financialAlignment || businessCasePending){
                     isBDBBAlignment=true; 
+                    projectSectionList=[SELECT Id  FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section_Sequence__c=:bd_BBAlignmentSequence LIMIT 1 ];
+                }
+                if(!projectSectionList.isEmpty()){
+                    documentSectionId=projectSectionList[0].id;
                 }
             }
         }
     }
-    
     
     
 }
