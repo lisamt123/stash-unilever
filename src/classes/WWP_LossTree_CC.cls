@@ -28,7 +28,7 @@ public class WWP_LossTree_CC{
          
          } 
          else{
-             message = 'You have not been assigned to any Plant Code. Please contact Administrator';
+             message = label.WWP_NocodeAssigned_Err;
          }
      }
      public void fetchLossTree(){
@@ -49,7 +49,7 @@ public class WWP_LossTree_CC{
         if(lossTree.Loss_Type__c!=null && lossTree.Plant_Code__c!=null){
         
             listLossTree = [select id,name,Loss_Type__c,Planned_Production__c,Actual_Production__c,PO__c,SKU__c,Plant_Code__c,Loss_Name__c,Loss_Sub_Family__c,
-                             Loss_Description__c,Week__c,Planned_Receipt__c,actual_Receipt__c,Planned_dispatch__c,Actual_dispatch__c,PR__c,STO_So__c  from WWP_Loss_Tree__c where Loss_Type__c=: lossTree.Loss_Type__c and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null and Loss_Updated_in_SCDG__c=false];
+                             Loss_Description__c,Week__c,Planned_Receipt__c,actual_Receipt__c,Planned_dispatch__c,Actual_dispatch__c,PR__c,STO_So__c  from WWP_Loss_Tree__c where Loss_Type__c=: lossTree.Loss_Type__c and Plant_Code__c=:lossTree.Plant_Code__c and Loss_Type__c!=null];
             
           if(listLossTree.isEmpty()){
               message = label.WWP_Norecords_Err;
