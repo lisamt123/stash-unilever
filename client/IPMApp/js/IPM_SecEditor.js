@@ -305,4 +305,40 @@ function isNumber(e,ele) {
             
             return false;
         }
+		
+		
+var unsaved = false;
+
+jq(function(){
+
+unsaved = false;
+jq('input:radio, :input').change(
+function(){
+	unsaved = true;
+});
+for (var i in CKEDITOR.instances) {
+	CKEDITOR.instances[i].on('change', function() {
+	unsaved = true; });
+}
+
+});
+	
+function unloadPage()
+{ 
+if(unsaved){
+	return IPMAppSE.wmessage;            
+}
+} 
+
+function saveChanges(){
+unsaved = false;
+}
+
+window.onbeforeunload = unloadPage;
+
+/* Below code is to redirect to a page on cancel*/
+function gotoPageNew() {
+unsaved = false;
+window.top.location.href = IPMAppSE.SectionEditorPageRef+'?id='+IPMAppSE.projectId+'&projDocSecId='+IPMAppSE.projDocSecId;
+}    
   

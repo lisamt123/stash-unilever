@@ -466,3 +466,74 @@ function clearAll() {
     //hot.selection.selectAll();
     hot.selection.empty();
 }
+
+var unsaved = false;
+var initialValue = true;
+var strBrowser = "";
+
+jq('table td').on('dblclick keyup', function(){
+	checkValueChanged();
+});
+
+jq(this).bind('paste', function(event) {
+	if (navigator.userAgent.indexOf("Chrome") > -1) {
+		strBrowser = "CHROME";
+	}
+	if (navigator.userAgent.indexOf("Trident") > -1) {
+		strBrowser = "IE";
+	}
+	
+	var strText;
+	if (strBrowser === "IE") {
+		strText = window.clipboardData.getData('Text');
+	} else if (strBrowser === "CHROME") {
+		strText = (event.originalEvent || event).clipboardData.getData("text/plain");
+	}
+	
+	if(initialValue !== false){
+		oldInputTextAreaVal = jq('.handsontableInputHolder .handsontableInput').val();
+	}
+	
+	newInputTextAreaVal = strText;
+	initialValue = false;
+	if( oldInputTextAreaVal !== newInputTextAreaVal ){
+		unsaved = true;
+	}else{
+		unsaved = false;
+	}
+	
+});
+
+jq(".drpfield").change(function() {
+	unsaved = true;
+});
+		
+function checkValueChanged(){
+	if(initialValue !== false){
+		oldInputTextAreaVal = jq('.handsontableInputHolder .handsontableInput').val();
+	}
+	
+	inputTextArea = jq('.handsontableInputHolder .handsontableInput');
+	inputTextArea.bind('input propertychange', function() {
+		newInputTextAreaVal = jq('.handsontableInputHolder .handsontableInput').val();
+		initialValue = false;
+		if( oldInputTextAreaVal !== newInputTextAreaVal ){
+			unsaved = true;
+		}else{
+			unsaved = false;
+		}
+	 });
+}
+function unloadPage() 
+{ 
+	if(unsaved){
+		return IPMAppFin.wmessage;            
+	}
+} 
+
+window.onbeforeunload = unloadPage;
+
+/* Below code is to skip the unsaved changes*/
+function skipValidation() {
+	unsaved = false;
+}

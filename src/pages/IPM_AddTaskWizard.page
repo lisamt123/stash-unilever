@@ -105,8 +105,8 @@
                     </div>
                     
                     <div class="buttonmarRight ipmButtonGroup pull-right">                
-                        <apex:commandLink id="addLink" action="{!doSaveTasks}" value="Add" styleClass="ipmButton green" rendered="{!if(taskId == null,true,false)}" reRender="form, scriptToRerender" onComplete="{!if(validate,'pageclose()','')};"/>
-                         <apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Save" styleClass="ipmButton green" rendered="{!if(taskId != null,true,false)}" onComplete="pageclose();"/></div>
+                        <apex:commandLink id="addLink" action="{!doSaveTasks}" value="Add" styleClass="ipmButton green" rendered="{!if(taskId == null,true,false)}" reRender="form, scriptToRerender" onComplete="{!if(validate,'pageclose()','')};skipValidation();"/>
+                         <apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Save" styleClass="ipmButton green" rendered="{!if(taskId != null,true,false)}" onComplete="pageclose();skipValidation();"/></div>
             
                 <apex:outputPanel id="popup">
                     <apex:outputPanel styleClass="popupBg" layout="block"
@@ -124,7 +124,7 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.min.js')}" type="text/javascript"></script>     
     <apex:outputPanel id="scriptToRerender">
         <script type="text/javascript">
-        var IPMAppComp = { projectId:'{!projectId}', pageRefProSetupView:'{!$Label.IPM_ProjectSetUpViewPageRef}' };   
+        var IPMAppComp = { projectId:'{!projectId}',wmessage:'{!$Label.IPM_Unsaved_Alert}', pageRefProSetupView:'{!$Label.IPM_ProjectSetUpViewPageRef}' };   
         </script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_AddTaskWizard.js')}" type="text/javascript"></script> 
     </apex:outputPanel>

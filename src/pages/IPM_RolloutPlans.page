@@ -63,9 +63,7 @@
     </apex:composition>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RolloutPlansjs.js')}" type="text/javascript"></script>
-     <apex:outputPanel id="createNewProject">
-         <script>
-           <!--loadPage();-->
-         </script>
-         </apex:outputPanel>
+     <script>
+		var IPMProAppRP = {wmessage:'{!$Label.IPM_Unsaved_Alert}'};
+	</script>
   </apex:page>

@@ -20,3 +20,39 @@ callMilestone();
 function pageclose() {
     window.top.location.href = IPMApp.TasklistPageRef + '?id=' + IPMApp.projectId;
 }
+
+var unsaved = false;
+jq(function(){       
+      jq(":input").change(function() {
+           unsaved = true;
+       });
+     var frame = parent.document.getElementById("ipmModalDiv");
+      jq(frame).find('.close').click(function(){
+          if(unsaved){
+              jq(this).removeAttr( "data-dismiss" );
+              unloadIframe();
+          }
+          else{
+              jq(this).attr("data-dismiss","modal");
+          }
+      });
+       
+  });   
+  
+  function unloadIframe(){
+    window.parent.location.href=IPMApp.TasklistPageRef + '?id=' + IPMApp.projectId;
+  }
+  
+   function unloadPage()
+ { 
+     if(unsaved){
+         return IPMApp.wmessage;
+     }
+ } 
+
+ window.onbeforeunload = unloadPage;
+ 
+ /* Below code is to skip the unsaved changes*/
+ function skipValidation() {
+     unsaved = false;
+ }

@@ -9063,7 +9063,6 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <shortDescription>IPM_Milestone_DueDate_Validation</shortDescription>
         <value>The due date for this milestone must be after the due date for the previous gate&apos;s milestone.</value>
     </labels>
-    
     <labels>
         <fullName>IPM_Milestone_Due_Date_Error</fullName>
         <language>en_US</language>
@@ -12495,6 +12494,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Upload will start as soon as the file is selected, please wait to be redirected to the results after this</value>
     </labels>
     <labels>
+        <fullName>IPM_Unsaved_Alert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Unsaved_Alert</shortDescription>
+        <value>You are trying to reload or leave this page without saving your work. Please save before continuing. Unsaved information will be lost. Select Stay on this page/Do not Reload to return and save your data, or select Leave this page/Reload this page (and lose your work) to continue.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Upcoming</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -15574,4 +15580,5 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Postponed Past Date Validation</shortDescription>
         <value>You cannot postpone a milestone&apos;s due date to a date earlier than its predecessor&apos;s due date. You can modify your milestone due dates below.</value>
     </labels>
+    
 </CustomLabels>

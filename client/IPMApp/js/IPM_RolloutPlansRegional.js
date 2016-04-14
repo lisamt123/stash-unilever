@@ -234,3 +234,25 @@ var jq=jQuery.noConflict();
 	jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
 	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
+
+var unsaved = false;
+
+jq(function(){
+ /* DOM ready */
+	jq(':input').change(function() {
+		unsaved = true;
+	});
+ });     
+function unloadPage()
+{ 
+	if(unsaved){
+		return IPMregionalApp.wmessage;             
+	}
+} 
+
+window.onbeforeunload = unloadPage;
+
+/* Below code is to skip the unsaved changes*/
+function skipValidation() {
+	unsaved = false;
+}

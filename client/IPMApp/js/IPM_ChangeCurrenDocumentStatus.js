@@ -4,6 +4,7 @@
  *@Created Date: 28/05/2015 
 *********************************************************************************************/
 var jq = jQuery.noConflict();
+var unsaved = false;
 jq.browser = {};
 jq(document).ready(function() {
 	//jq(".proInitLoader").show().delay(1500).fadeOut();
@@ -60,6 +61,8 @@ jq(document).ready(function() {
 /* Below script is for the Tab functionality on click event. Based on the clicked li the tab is highlighted and the content related the clicked tab is displayed. Also it hides the previous opened content */
     jq(".ipmStatusTabs").on("click", 'li', function() {
 		jq(".proInitLoader").show().delay(1000).fadeOut();
+        unsaved = true;
+        checkChange(unsaved);
         var $this = jq(this);
         var statTabList = jq('.ipmStatusTabs').find('li');
         statTabList.removeClass('active');
@@ -78,11 +81,7 @@ jq(document).ready(function() {
             slider4.find('input[value=' + IPMApp.Postponed + ']').prop("checked", true);
         }
     });
-    /*if (status === IPMApp.Postponed) {
-		alert('inside1');
-        slider4.find("label:first").off("click").css("cursor", "default");
-        slider4.find('input[value=' + IPMApp.Postponed + ']').prop("checked", true);
-    }*/
+    
 	
 /* Below script works on page load. Based on the status of the gate document text color will be changed */
     if (jq("label[for=statusRadioBtn_2]").text().indexOf(IPMApp.Stopped) !== -1) {
@@ -265,3 +264,88 @@ function changeCurrentStatus(changestatus) {
         });
     }
 }
+
+function checkChange(elem){
+jq(function(){  
+      var frame = parent.document.getElementById("ipmModalDiv");
+       jq(frame).find('.close').click(function(){
+           if(elem){
+               jq(this).removeAttr( "data-dismiss" );
+               unloadIframe();
+           }
+           else{
+               jq(this).attr("data-dismiss","modal");
+           }
+       });
+        
+   });   
+   
+   function unloadIframe(){
+       window.parent.location.href=IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
+   }
+   
+  function unloadPage()
+  { 
+      if(elem){
+          return IPMApp.wmessage;
+      }
+  } 
+ 
+  window.onbeforeunload = unloadPage;
+  
+  /* Below code is to skip the unsaved changes*/
+  function skipValidation() {
+    elem = false;
+  }
+}
+
+var oldTextareaval = "";
+var newTextareaval = "";
+var initialValue = true;
+jq(function(){  
+      var frame = parent.document.getElementById("ipmModalDiv");
+       jq(frame).find('.close').click(function(){
+           if(unsaved){
+               jq(this).removeAttr( "data-dismiss" );
+               unloadIframe();
+           }
+           else{
+               jq(this).attr("data-dismiss","modal");
+           }
+       });
+        if(initialValue !== false){
+            oldTextareaval = jq(".txtArea ").val();
+        }
+   });   
+   
+   function unloadIframe(){
+       window.parent.location.href=IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
+   }
+   
+   function checktextval(){
+   inputTextArea = jq(".txtArea ");
+    inputTextArea.bind('input propertychange', function() {
+            newTextareaval = jq(".txtArea ").val();
+            initialValue = false;
+            if( oldTextareaval !== newTextareaval ){
+              unsaved = true;
+            }else{
+              unsaved = false;
+            }
+            oldTextareaval = newTextareaval;
+         });
+     }
+  
+  function unloadPage()
+  { 
+      if(unsaved){
+          return IPMApp.wmessage;
+      }
+  } 
+ 
+  window.onbeforeunload = unloadPage;
+  
+  /* Below code is to skip the unsaved changes*/
+  function skipValidation() {
+    unsaved = false;
+  }

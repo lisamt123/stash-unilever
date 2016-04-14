@@ -162,7 +162,7 @@
 /* Header css */
     
 /* MISALIGNMENT CSS */
-    td.misaligned{ border: solid 3px #e13728 ;border-left: 3px solid #e13728 ;}
+    td.iPLBorderGay.misaligned{ border: solid 3px #e13728 ;border-left: 3px solid #e13728 ;}
     td.misaligned, td.misaligned a, td.misaligned a:hover{color: #e13728; text-decoration: none;}
     .ipmFinancialNavbar li>a{padding-top:15px ;}
     .ipmFinancialNavbar li>a>span{text-transform: capitalize;}
@@ -242,10 +242,10 @@
 	.otlCurr{font-size:9pt; color:#6E6E6E}
 	.selCur {margin-right:5px;}
 	
-	.finNavTab .tabOdd{top:7px ;}
+	.finNavTab .tabOdd{}
 	.finNavTab{height:47px ;}
-	.finNavTab .tabEven{top:7px ;}
-	.finNavTab .tabEven.active{top:8px ;}
+	.finNavTab .tabEven{}
+	.finNavTab .tabEven.active{}
 	.refreshFromLocal{margin-right:15px ;}
 	.cancelAction{margin-right:10px;}
 	.finAlertBox{display: block;padding: 10px;border-radius: 4px;margin-top: 20px;margin-bottom: 20px;background: #FFFB42;float:left; width:100%}
