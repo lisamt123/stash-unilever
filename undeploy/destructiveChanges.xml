@@ -68,7 +68,9 @@
 		<members>AF_Category_Brands</members>
 		<members>Category_Brands</members>
 		<members>category</members>
+		<members>AgencyHomePage</members>
         <name>ApexPage</name>
     </types>
+	
 	
 </Package>
