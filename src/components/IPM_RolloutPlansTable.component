@@ -308,7 +308,7 @@
                         <div class="ipmAcrdnExpand">
                             <apex:repeat value="{!rolloutTolocalRolloutToCountryMap[regionalRolloutID]}" var="localRolloutId" >  
                             <apex:variable var="localRollout" value="{!lstcompleteRollout[localRolloutId]}" />
-                                
+                            <apex:variable var="nonKeyMcoTLDMisaligned" value="{!nonKeyMcoTLDMisalignedMap[localRollout.Regional_Rollout_External_Id__c]}" />   
                                 <div class="pt20">
                                     <table class="rollouttable editable">                                 
                                         <tr>
