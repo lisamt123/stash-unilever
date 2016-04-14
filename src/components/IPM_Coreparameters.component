@@ -43,7 +43,7 @@
                             <!--The below panel will be editable if isMPAEditable attribute is true -->
                                 <apex:outputPanel layout="block" rendered="{!isMPAEditable}">
                                     <div
-                                        class="slideBar1 slide-bar {! if(isOperational,operationalSlider_STR,'')}"
+                                        class="slide-bar slideBar1 {! if(isOperational,operationalSlider_STR,'')}"
                                         id="slideBar1">
                                         <span class="slideIcon fa fa-circle" id="slideIcon1" />
                                         <div class="sliderTrack qnumone">
@@ -372,6 +372,7 @@
                                                     <td class="blue"><apex:outputPanel rendered="{!strategicGraphTick.IPM_BLG_No_Change__c}">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
+                                                    
                                                     <td class="graphNoborder oprtnNobgrnd"><apex:outputPanel rendered="">
                                                             <span class="fa fa-check-circle checkCircle"></span>
                                                         </apex:outputPanel></td>
@@ -414,7 +415,7 @@
                                         <apex:outputPanel rendered="{!!isEditCoreparameter}"
                                             layout="block">
                                             <a href="#myCarousel" data-slide="next"
-                                                title="{!$Label.IPM_SAVE_AND_CONTINUE}"  onClick="skipValidation(),checkTooltip();" id="nextControl"
+                                                title="{!$Label.IPM_SAVE_AND_CONTINUE}" onClick="skipValidation(),checkTooltip();" id="nextControl"
                                                 class="ipmButton primary">{!$Label.IPM_SAVE_AND_CONTINUE}</a>
                                             <!--The below panel will be readonly if isEditable attribute is false -->
                                             <apex:outputPanel rendered="{!!isEditable}">
@@ -460,11 +461,11 @@
                                                                 <div class="panel-label bsFieldLabel">
                                                                     <apex:outputlabel styleClass="fontB"
                                                                         value="{!$Label.IPM_Market}" />
-                                                                        <span class="SecButtonSet infoMarTop">
-                                                					    <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
-                                             							</span>
+                                                                         <span class="SecButtonSet infoMarTop">
+                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
+                                             </span>
                                                                 </div>
-                                                                <label class="ipmSelect"> <apex:selectList size="1" multiselect="false"
+                                                                <label class="ipmSelect"> <apex:selectList size="1" multiselect="false" 
                                                                         disabled="{!!editSubSector}" value="{!market_STR}">
                                                                         <apex:selectOptions value="{!lstmarket}" />
                                                                     </apex:selectList>
@@ -475,14 +476,14 @@
                                                         <apex:outputPanel rendered="{!ipm_CategoryVal.IPM_Sub_Sector__c}">
                                                             <div class="inputField">
                                                                 <div class="panel-label bsFieldLabel">
-                                                                    <apex:outputlabel  styleClass="fontB" value="{!$Label.IPM_Sub_Sector}" />
-                                                                    <span class="SecButtonSet infoMarTop">
-                                                					 <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
-                                             						</span>
+                                                                    <apex:outputlabel styleClass="fontB" value="{!$Label.IPM_Sub_Sector}" />
+                                                                     <span class="SecButtonSet infoMarTop">
+                                                 <a class="icoButton info smallllinfo" title="{!$Label.IPM_THIS_PARAMETER_WILL_HELP}"></a>
+                                             </span>
                                                                 </div>
                                                                 <label class="ipmSelect"> <apex:selectList size="1" multiselect="false" styleClass="subSectorSTR"
-                                                                        disabled="{!!editSubSector}" value="{!subSector_STR}">
-                                                                        <apex:selectOptions value="{!lstsubsector}" onchange="changelist();"/>
+                                                                        disabled="{!!editSubSector}" value="{!subSector_STR}" onchange="changelist();">
+                                                                        <apex:selectOptions value="{!lstsubsector}" />
                                                                     </apex:selectList>
                                                                 </label>
                                                             </div>
@@ -615,9 +616,12 @@
                                                             </apex:outputPanel>
                                                         </apex:outputPanel>
                                                     </div>
+
                                                 </apex:outputPanel>
-												<div class="col-sm-12 toolkitContainer noPadleft">
-                                                        <!-- If bLinkBET attribute is false, the below panel will be diplayed  -->
+                                                
+                                                <div class="col-sm-12 toolkitContainer noPadleft">
+                                                
+                                                  <!-- If bLinkBET attribute is false, the below panel will be diplayed  -->
                                                         <apex:outputPanel rendered="{!AND(IPM_Coreparameter.IPM_BET_Toolkit__c!=$Label.IPM_BET_NoBET, !bLinkBET)}">
                                                             <apex:outputText value="{!PreSelectedBet.betName}" />
 
@@ -634,8 +638,7 @@
                                                                 rerender="abc,renderme,betOptions,gototeam"
                                                                 oncomplete="betCallBack();" />
                                                         </apex:outputPanel>
-                                                    </div>
-
+                                                        </div>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
 
@@ -667,7 +670,7 @@
                                                 styleClass="buttonmarRight ml5 ipmFromAction noPadleft pull-right noPadright"
                                                 layout="block">
                                                 <a href="#" title="{!$Label.IPM_Update}"
-                                                    onClick="savecorep();skipValidation();" class="ipmButton primary">{!$Label.IPM_Update}</a>
+                                                    onClick="savecorep();skipValidation()" class="ipmButton primary">{!$Label.IPM_Update}</a>
                                             </apex:outputPanel>
                                             <!-- If isAdditionalCoreparameter attribute is false, the below panel will be diplayed  -->
                                             <apex:outputPanel rendered="{!!isAdditionalCoreparameter}"
@@ -810,7 +813,7 @@
                         <apex:outputPanel rendered="{!isEditCoreparameter}" layout="block"
                             styleClass="buttonmarRight pull-left">
                             <a href="" title="{!$Label.IPM_Reset}" class="ipmButton"
-                                onComplete="resetqtwo();validate();" onclick="resetqtwo();">{!$Label.IPM_Reset}</a>
+                                onComplete="resetqtwo();" onclick="resetqtwo();validate();">{!$Label.IPM_Reset}</a>
                         </apex:outputPanel>
                         <!--If isMPABack attribute value is true, the below panel will be diplayed  -->
                         <apex:outputPanel layout="block"
@@ -889,7 +892,7 @@
                         <apex:outputPanel rendered="{!isEditCoreparameter}" layout="block"
                             styleClass="buttonmarRight pull-left">
                             <a href="" title="{!$Label.IPM_Reset}" class="ipmButton"
-                                onComplete="resetqthree();validate();" onclick="resetqthree();">{!$Label.IPM_Reset}</a>
+                                onComplete="resetqthree();" onclick="resetqthree();validate();">{!$Label.IPM_Reset}</a>
                         </apex:outputPanel>
                         <!--If editETByTPL attribute value is false, the below will be diplayed  -->
                         <apex:outputPanel layout="block"
@@ -931,7 +934,6 @@
       </script>
     </apex:outputPanel>
 
-    <script
-        src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Coreparameter_BET.js')}"
-        type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Coreparameter_BET.js')}" type="text/javascript"></script>
+    
 </apex:component>
