@@ -4,8 +4,6 @@ src/classes/IPM_BosscardController.cls
 src/classes/IPM_BosscardController.cls-meta.xml
 src/classes/IPM_ChangProjectDocumentStatusController.cls
 src/classes/IPM_ChangProjectDocumentStatusController.cls-meta.xml
-src/classes/IPM_CustomPermission.cls
-src/classes/IPM_CustomPermission.cls-meta.xml
 src/classes/IPM_OTIF_Report_Batch.cls
 src/classes/IPM_OTIF_Report_Batch.cls-meta.xml
 src/classes/IPM_OTIF_Report_Batch_Test.cls
