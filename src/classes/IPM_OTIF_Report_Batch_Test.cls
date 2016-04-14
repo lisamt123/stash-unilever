@@ -29,6 +29,7 @@ private class IPM_OTIF_Report_Batch_Test {
     public static final String INCREMENTAL = 'Incremental';
     public static final String CALENDAR = 'Calendar';
     private static final string IPMUSER_LASTNAME='IPMUSER_LASTNAME';
+    private static final string GREEN='Green';  
 
     /**********************************************************************
     *  @Description: Test Method to initialize data for the other test methods
@@ -237,103 +238,103 @@ private class IPM_OTIF_Report_Batch_Test {
               IPM_Project_Document_Section_Content__c pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSection.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_CONCEPT_TEST;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';              
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;              
               pDSContectList.add(pojDocSectionSectionCont);
               
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSection.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_SCOPING_COMPLETE;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';              
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;              
               pDSContectList.add(pojDocSectionSectionCont);
               
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionContract.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_CUSTOMER_APPEAL;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);
               
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionContract.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_CAPEX_APPROVED;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);
 
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionContract.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_TECHNICAL_FEASIBILITY;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);
               
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionContract.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_ATTRACTIVE_BUSINESS_CASE;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);
 
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionContract.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_MATERIALS_SOURCING_STRATEGIES_AGREED;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);
               
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionContract.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_TECHNICAL_ACTION_STANDARDS_ACHIEVED_BY_LEAD_REGION;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);
 
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionContract.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_BASES_II;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);
               
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionContract.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_BASES_I;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);           
               
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionMR.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_COMMUNICATION_BET_FINAL_RELEASE_AVAILABILITY;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);           
               
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionMR.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_TECHNICAL_AND_PRODUCTION_CAPABILITY_CONFIRMED;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);
 
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionMR.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_SPEC_BILLS_OF_MATERIALS_IN_INTERSPEC;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);
 
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionMR.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_TECH_PROD_CAPABILITY_CONF_MAIN_PLANT;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);
 
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionMR.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_BASES_III;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);
 
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionMR.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_COMMUNICATION_FULL_THINK_BIG_PACK_AVAILABLE;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont); 
 
               pojDocSectionSectionCont = IPM_TestFactory_Helper.createIPMProjectDocumentSectionContent(FALSE);      
               pojDocSectionSectionCont.IPM_Project_Document_Section__c=pojDocSectionMD.ID;
               pojDocSectionSectionCont.IPM_OTIF_Measure__c = IPM_ConstantUtils.OTIF_FIRST_PROD_CONF_SPEC_FINALISED;
-              pojDocSectionSectionCont.IPM_OTIF_Status__c = 'Green';
+              pojDocSectionSectionCont.IPM_OTIF_Status__c = GREEN;
               pDSContectList.add(pojDocSectionSectionCont);           
               
               insert pDSContectList;
@@ -553,15 +554,19 @@ private class IPM_OTIF_Report_Batch_Test {
     *  @return : none
     *************************************************************************/  
     static testMethod void testOTIFreport1() {  
+        Test.startTest();    
         initializeData1();     
-        Test.startTest();       
+           
         system.runAs(testUser){
             string  query = 'SELECT Id,IPM_Global_ProjectId__c,Project_External_ID__c,Name,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.Id,IPM_Project_Leader__r.Name,Deputy_Project_Leader__r.Name,IPM_Technical_Project_Leader__r.Name,IPM_Finance_Member__r.Name,IPM_Rollout_Status__c,IPM_Category_Group__c,IPM_Category_Text__c,IPM_Phase__c,IPM_Brand_Positioning__c,IPMProject_Span__c, IPMProject_Type__c,Project_Countries__c,IPM_No_of_Country_Rollouts__c,IPM_Threshold_Value__c,IPM_Company_Card__r.Name,IPM_Cluster__c,Market_Cluster__c,Market_Cluster_Name__c,IPM_Clustering__c,IPM_Clusters__c,IPM_Answer_of_Q1__c, IPM_Answer_of_Q2__c, Exempt_from_Threshold__c, IPM_Answer_of_Q3__c,IPM_Strategic_Intent__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Launch_Date__c, IPM_Actual_Launch_Month__c,IPM_Actual_Launch_Year__c,IPMPlatform__c,IPM_Project_Type__c,IPM_Project_Description__c,IPM_Target_Launch_Dates__c,IPM_Project_Rollout__c,IPM_Misalligned__c,CreatedDate,IPM_Project_Start_Date__c,IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c,IPM_CPP__c,IPM_Fast_Track_Project__c,Is_Archieved__c,IPM_Global_OR_Regional__c,IPM_Project_Rollout__r.Target_Launch_Date__c, IPM_Project_Rollout__r.KeyMCO__c FROM IPM_Project__c'; 
             IPM_OTIF_Report_Batch  batchs = new IPM_OTIF_Report_Batch(query); 
-            database.executebatch(batchs,100);            
+            database.executebatch(batchs,100);
         }       
  
         Test.stopTest();
+        List<IPM_Analytics_OTIF__c> otifList = [Select Id,Name from IPM_Analytics_OTIF__c limit 50000];
+        system.assertequals(otifList.size(),4,'OTIF Records Size 4');            
+                         
     }
     
      /**********************************************************************
@@ -581,6 +586,8 @@ private class IPM_OTIF_Report_Batch_Test {
             
         }                   
         Test.stopTest();
+        List<IPM_Analytics_OTIF__c> otifList = [Select Id,Name from IPM_Analytics_OTIF__c limit 50000];
+        system.assertequals(otifList.size(),7,'OTIF Records Size 7');
     }
     
     
