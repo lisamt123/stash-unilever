@@ -23,6 +23,8 @@ src/components/IPM_Team_Assignment.component
 src/components/IPM_Team_Assignment.component-meta.xml
 src/components/IPM_Team_Assignment_Page.component
 src/components/IPM_Team_Assignment_Page.component-meta.xml
+src/flows
+src/flows/IPM_Financial_SnapShot-6.flow
 src/labels
 src/labels/CustomLabels.labels
 src/pages
