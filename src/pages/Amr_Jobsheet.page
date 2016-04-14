@@ -33,7 +33,18 @@
         .width70percent {
             width:100% !important;
         }       
-    </style>                        
+    </style> 
+    <apex:outputPanel rendered="{!if(jobIsAccepted==true,true,false)}">
+    	<script type="text/javascript">
+    		$j(function(){
+    			var subject = $j('.arrow-after').text();
+    			var emailto = $j('.ul-pl-email').val();
+    			if(subject && emailto ) {
+    				location.href="mailto:"+emailto+"?subject="+subject;
+    			}    			
+    		});
+    	</script>
+    </apex:outputPanel>                       
      <div class="mask" style="display:{!if(jobList.AdManagerText__c != null,'none','')}"></div>    
      <div class="mask" style="display:{!if(jobCancellCheck != true,'none','')}"></div>       
     <!---Ad Main section---->
@@ -481,7 +492,7 @@
                                     </apex:outputLabel>
                                 </div>
                                 <div class="form-field2 widthautocomp">
-                                    <apex:inputField value="{!joblist.Unilever_Project_Leader_Email__c}"   styleClass="your_email_address" />
+                                    <apex:inputField value="{!joblist.Unilever_Project_Leader_Email__c}"   styleClass="your_email_address ul-pl-email" />
                                 </div>
                                 <div class="clear">                  
                                 </div>

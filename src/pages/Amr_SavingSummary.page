@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="clear"></div>
                             </div>                            
-							<div class="margin-bottom10">                            
+                            <div class="margin-bottom10">                            
                                 <div class="displayinlineblock pablock margin-right10 left" style="width:60%">
                                     <div class="job-field-label left margin-top8imp margin-right5" style="width:45%">{!$Label.Amr_Production_activity_type}</div>
                                     <div class="job-field-input left" style="width:50%">
@@ -488,7 +488,7 @@
                                 </apex:chart>
                             </apex:pageblock>
                         </div>
-                        <div class="left" style="color:#4CB99A;font-size:24px;margin-top:110px;;width:50%;">
+                        <div class="left" style="color:#4CB99A;font-size:24px;margin-top:110px;;width:50%;display: inline-flex;">
                             <div style="color:#4CB99A;font-size:24px;margin-right:20px;padding:5px;background:#F8F8F8;width:45%" class="left">
                                 <apex:repeat value="{!globalYTDSpend}" var="var">
                                     {!var['savCurrentCostYTD']} <span style="font-size:12px;">Global YTD Spend</span>
@@ -730,10 +730,10 @@
                                             <apex:outputText value="{!job.Quotes__r[0].Service_Company_Name__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q1_PC_Cost_Only})">
-                                            <apex:outputText value="{!job.Quotes__r[0].PC_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[0].Local_Currency_of_PC_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q1_PC_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[0].PC_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[0].Local_Amount_of_PC__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q1_PC_Cost_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[0].PC_Costs_Euro_Amount__c}" />
@@ -748,10 +748,10 @@
                                             <apex:outputText value="{!job.Quotes__r[0].PPC_Country__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q1_PPC_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[0].PPC_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[0].Local_Currency_of_PPC_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_PPC_Cost_Only_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[0].PPC_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[0].Local_Amount_of_PPC__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_PPC_Cost_Only_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[0].PPC_Costs_Euro_Amount__c}" />
@@ -763,10 +763,10 @@
                                             <apex:outputText value="{!job.Quotes__r[0].CA_Location__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q1_CA_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[0].CA_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[0].Local_Currency_of_CA_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q1_CA_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[0].CA_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[0].Local_Amount_of_CA__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q1_Cost_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[0].CA_Costs_Euro_Amount__c}" />
@@ -851,10 +851,10 @@
                                             <apex:outputText value="{!job.Quotes__r[1].Service_Company_Name__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q2_PC_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[1].PC_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[1].Local_Currency_of_PC_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q2_PC_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[1].PC_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[1].Local_Amount_of_PC__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q2_PC_Cost_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[1].PC_Costs_Euro_Amount__c}" />
@@ -869,10 +869,10 @@
                                             <apex:outputText value="{!job.Quotes__r[1].PPC_Country__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q2_PPC_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[1].PPC_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[1].Local_Currency_of_PPC_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q2_PPC_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[1].PPC_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[1].Local_Amount_of_PPC__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q2_PPC_Cost_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[1].PPC_Costs_Euro_Amount__c}" />
@@ -884,10 +884,10 @@
                                             <apex:outputText value="{!job.Quotes__r[1].CA_Location__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q2_CA_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[1].CA_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[1].Local_Currency_of_CA_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q2_CA_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[1].CA_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[1].Local_Amount_of_CA__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q2_CA_Cost_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[1].CA_Costs_Euro_Amount__c}" />
@@ -912,10 +912,10 @@
                                             <apex:outputText value="{!job.Quotes__r[2].Service_Company_Name__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q3_PC_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[2].PC_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[2].Local_Currency_of_PC_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q3_PC_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[2].PC_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[2].Local_Amount_of_PC__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q3_PC_Cost_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[2].PC_Costs_Euro_Amount__c}" />
@@ -930,10 +930,10 @@
                                             <apex:outputText value="{!job.Quotes__r[2].PPC_Country__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q3_PPC_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[2].PPC_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[2].Local_Currency_of_PPC_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q3_PPC_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[2].PPC_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[2].Local_Amount_of_PPC__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q3_PPC_Cost_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[2].PPC_Costs_Euro_Amount__c}" />
@@ -945,10 +945,10 @@
                                             <apex:outputText value="{!job.Quotes__r[2].CA_Location__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q3_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[2].CA_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[2].Local_Currency_of_CA_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_CA_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[2].CA_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[2].Local_Amount_of_CA__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_q3_Cost_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[2].CA_Costs_Euro_Amount__c}" />
@@ -977,10 +977,10 @@
                                             <apex:outputText value="{!job.Quotes__r[3].Service_Company_Name__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q4_PC_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[3].PC_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[3].Local_Currency_of_PC_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q4_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[3].PC_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[3].Local_Amount_of_PC__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q4_PC_Euro_amount}">
                                             <apex:outputText value="{!job.Quotes__r[3].PC_Costs_Euro_Amount__c}" />
@@ -995,10 +995,10 @@
                                             <apex:outputText value="{!job.Quotes__r[3].PPC_Country__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q4_PPC_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[3].PPC_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[3].Local_Currency_of_PPC_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q4_PPC_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[3].PPC_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[3].Local_Amount_of_PPC__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q4_PPC_Cost_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[3].PPC_Costs_Euro_Amount__c}" />
@@ -1010,10 +1010,10 @@
                                             <apex:outputText value="{!job.Quotes__r[3].CA_Location__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q4_CA_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[3].CA_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[3].Local_Currency_of_CA_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q4_CA_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[3].CA_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[3].Local_Amount_of_CA__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q4_CA_Cost_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[3].CA_Costs_Euro_Amount__c}" />
@@ -1037,10 +1037,10 @@
                                             <apex:outputText value="{!job.Quotes__r[4].Service_Company_Name__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q5_PC_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[4].PC_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[4].Local_Currency_of_PC_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q5_PC_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[4].PC_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[4].Local_Amount_of_PC__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q5_PC_Cost_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[4].PC_Costs_Euro_Amount__c}" />
@@ -1055,10 +1055,10 @@
                                             <apex:outputText value="{!job.Quotes__r[4].PPC_Country__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q5_PPC_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[4].PPC_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[4].Local_Currency_of_PPC_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q5_PPC_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[4].PPC_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[4].Local_Amount_of_PPC__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q5_PPC_Cost_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[4].PPC_Costs_Euro_Amount__c}" />
@@ -1070,10 +1070,10 @@
                                             <apex:outputText value="{!job.Quotes__r[4].CA_Location__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q5_CA_Cost_Only}">
-                                            <apex:outputText value="{!job.Quotes__r[4].CA_Costs_Local_Currency__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[4].Local_Currency_of_CA_Costs__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q5_CA_Cost_Local_Amount}">
-                                            <apex:outputText value="{!job.Quotes__r[4].CA_Costs_Local_Amount__c}" />
+                                            <apex:outputText value="{!job.Quotes__r[4].Local_Amount_of_CA__c}" />
                                         </apex:column>
                                         <apex:column headerValue="{!$Label.Amr_Q5_CA_Euro_Amount}">
                                             <apex:outputText value="{!job.Quotes__r[4].CA_Costs_Euro_Amount__c}" />
