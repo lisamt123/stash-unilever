@@ -86,7 +86,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public string globalbusinessImpactStr  {get; set;}
     public IPM_Financial__c fin {get; set;}
     public IPM_Financial__c finRegional{get;set;}// for Financial Regional Business Impact
-	public IPM_Financial__c finLocal{get;set;}// for Financial Local Business Impact
+    public IPM_Financial__c finLocal{get;set;}// for Financial Local Business Impact
+    public boolean isFinancialInvalid{get;set;}
     //variable to capture financial type
     public Boolean isConsolidatedOrNonkey 
     {
@@ -222,6 +223,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isError = FALSE;
         sustainabilityPeriod=0;
         isEditable=false;
+        isFinancialInvalid = false;
         isValidationFailed = false;
         isy0TurnoverInvalid = false;
         isy0ProfitInvalid = false;
@@ -289,6 +291,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 isRolloutError = true;
             }  
         }
+            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
       }
      //method to calculate the Business Impact
      private void setBusinessImpact(Final Id pId){
@@ -1641,7 +1645,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if(currentFinancial.Project_Sustainability_Period__c == selectedSustainabilityPeriod) {
                 sustainabilityPeriodChanging = false;
             }
-            
+            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
         } catch (Exception eX){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     IPM_ConstantUtils.EXCEPTION_CHECKSUSTAINABILITY,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
@@ -1662,7 +1667,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             getFinancials();
             getMisalignmentVisibility();
             isEditMode = FALSE;
-            
+            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
         } 
         catch (Exception ex)
         {
@@ -1686,6 +1692,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             getFinancials();
             getMisalignmentVisibility();
             isEditMode = FALSE;
+            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
         } 
         catch (Exception ex)
         {
@@ -1729,7 +1737,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             milestoneFinanceDataValidationMessage = '';
             Boolean isCalendarValidationFailed = false;
             Boolean isInnovationValidationFailed = false;
-            isValidationError = false;
             isEditMode = false;
             isy0TurnoverInvalid = false;
             isy0ProfitInvalid = false;
@@ -1737,33 +1744,36 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             isValidationFailed = false;
             isITOgrtGTO = false;
             isITOgrtGTOCal = false;
-            isCalendarValidationFailed = validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
-            isInnovationValidationFailed = validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
-            if(isCalendarValidationFailed || isInnovationValidationFailed){
-                isEditMode = true;
-                isValidationError = true;
-                validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;                                
-            }else{
-                isEditMode = false;
-               //DO NOT CHANGE the order - Calendar years need to be saved first before Innovation Years to ensure Volume Units get saved appropriately
-                saveFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
-                saveFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
-    
-                //Update Financial Record
-                currentFinancial.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
-                currentFinancial.put(IPM_ConstantUtils.FIELD_LITERAL_LAST_SAVED + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, System.now());
-                currentFinancial.put(IPM_ConstantUtils.FIELD_LITERAL_LAST_SAVED_BY + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, UserInfo.getUserId());
-                Database.update(currentFinancial);
-                //Update Financial Year Records
-                if (lstUpdateFinancials!=null && !lstUpdateFinancials.isEmpty()) {
-                    update lstUpdateFinancials;
-                }
-                
-                getRolloutWrappers(currentFinancialId);
-                getFinancials();
-                IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved(new List<IPM_Financial__c>{currentFinancial});
-                    
-            }                   
+            validationErrorMessage = IPM_ConstantUtils.INVALID_DATA_TO_SAVE;                                
+                  isEditMode = false;
+                 //DO NOT CHANGE the order - Calendar years need to be saved first before Innovation Years to ensure Volume Units get saved appropriately
+                  saveFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
+                  saveFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
+      
+                  //Update Financial Record
+                  //currentFinancial.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
+                  currentFinancial.put(IPM_ConstantUtils.FIELD_LITERAL_STATUS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, IPM_ConstantUtils.STATUS_IN_PROGRESS);
+                  currentFinancial.put(IPM_ConstantUtils.FIELD_LITERAL_LAST_SAVED + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, System.now());
+                  currentFinancial.put(IPM_ConstantUtils.FIELD_LITERAL_LAST_SAVED_BY + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, UserInfo.getUserId());
+                  if(isFinancialInvalid){
+                  	currentFinancial.isFinancialInvalid__c = true;
+                  }else{
+                    currentFinancial.isFinancialInvalid__c = false;
+                  }
+                  Database.update(currentFinancial);
+                  //Update Financial Year Records
+                  if (lstUpdateFinancials!=null && !lstUpdateFinancials.isEmpty()) {
+                      update lstUpdateFinancials;
+                  }
+                 
+                  getRolloutWrappers(currentFinancialId);
+                  getFinancials();
+                  isCalendarValidationFailed = validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
+                  isInnovationValidationFailed = validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
+              
+                  IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved(new List<IPM_Financial__c>{currentFinancial});      
+                                            
+                             
         } catch (Exception eX){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     IPM_ConstantUtils.EXCEPTION_SAVEFINANCIALS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
@@ -1781,7 +1791,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private Boolean validateInnovationFinancialRecords(IPM_FinancialWrapper finWrapper, String yearType){
         isValidationFailed = false;
         //Validate Innovation Year cell data
-        if(yearType == IPM_ConstantUtils.YEAR_TYPE_INNOVATION && !currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+        if(yearType == IPM_ConstantUtils.YEAR_TYPE_INNOVATION && currentFinancial != NULL  && !currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)){
         	if(BI != IPM_ConstantUtils.smallBI){
                 validateY0Turnover(finWrapper.y0Turnover);
                 
@@ -1805,6 +1815,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 //Validate Gross PBO values
                 validateGrossPBO(finWrapper.lstGrossPLProfit);
                 
+                validateGrossBMI(finWrapper.lstGrossPLAdvertising);
+                validateIncrementalBMI(finWrapper.lstIncrementalPLAdvertising);
                 //Validate Incremental PBO values
                 validateIncrementalPBO(finWrapper.lstIncrementalPLProfit);
         	}
@@ -1823,12 +1835,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private Boolean validateCalendarFinancialRecords(IPM_FinancialWrapper finWrapper, String yearType){
         isValidationFailed = false;
         //Validate Calendar Year cell data
-        if(yearType == IPM_ConstantUtils.YEAR_TYPE_CALENDAR && !currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+        if(yearType == IPM_ConstantUtils.YEAR_TYPE_CALENDAR && currentFinancial != NULL && !currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)){
                Boolean isValidateIncrementalTurnoverFailed= false;
                Boolean isValidateIncrementalProfitFailed= false; 
                Boolean isValidateGrossProfitFailed= false;
                Boolean isValidateGrossPBOFailed= false;
                Boolean isValidateIncrementalPBOFailed= false ;
+               Boolean isValidateGrossBMIFailed= false;
+               Boolean isValidateIncrementalBMIFailed= false ;
                Boolean isValidateGrossTurnoverFailed= false;
                 if(BI != IPM_ConstantUtils.smallBI){
 	                //Validate Gross Turnover values 
@@ -1840,9 +1854,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 	                isValidateIncrementalProfitFailed = validateIncrementalProfit(finWrapper.lstIncrementalPLGrossProfit);
 	                isValidateGrossPBOFailed = validateGrossPBO(finWrapper.lstGrossPLProfit);
 	                isValidateIncrementalPBOFailed = validateIncrementalPBO(finWrapper.lstIncrementalPLProfit);
+                  isValidateGrossBMIFailed = validateGrossBMI(finWrapper.lstGrossPLAdvertising);
+                  isValidateIncrementalBMIFailed = validateIncrementalBMI(finWrapper.lstIncrementalPLAdvertising);
                 }
                 Boolean isValidateCalendarTurnOverFailed=validateCalendarTurnOver(finWrapper.lstGrossPLTurnover,finWrapper.lstIncrementalPLTurnover);
-                if(isValidateCalendarTurnOverFailed && isValidateIncrementalTurnoverFailed && isValidateGrossProfitFailed && isValidateIncrementalProfitFailed && isValidateGrossPBOFailed && isValidateIncrementalPBOFailed){
+                if(isValidateIncrementalBMIFailed && isValidateGrossBMIFailed && isValidateCalendarTurnOverFailed && isValidateIncrementalTurnoverFailed && isValidateGrossProfitFailed && isValidateIncrementalProfitFailed && isValidateGrossPBOFailed && isValidateIncrementalPBOFailed){
                         currentFinancial.isGateSubmissionDue__c = true;
                 }
                 
@@ -1868,7 +1884,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isy0TurnoverInvalid = false;
         isValidationFailed = false;
         //Validate Y0 Turnover value   
-        if(y0Turnover == IPM_ConstantUtils.INVALID_VALUE){
+        if(y0Turnover <= IPM_ConstantUtils.INVALID_VALUE){
             isy0TurnoverInvalid = true;
                 isValidationFailed = true;            
         }
@@ -1883,9 +1899,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 //Validate Gross Turnover values.
         for(IPM_FinancialValueWrapper valueWrapper: lstGrossPLTurnover){
             valueWrapper.isValueInvalid = false;
-                if(valueWrapper.value == IPM_ConstantUtils.INVALID_VALUE){
+            valueWrapper.isGrossTOValueInvalid = false;
+                if(valueWrapper.value <= IPM_ConstantUtils.INVALID_VALUE){
                     valueWrapper.isValueInvalid = true;
+                    valueWrapper.isGrossTOValueInvalid = true;
                     isValidationFailed = true;
+                    isFinancialInvalid = true;
                 }            
         }
         return isValidationFailed;
@@ -1901,9 +1920,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 Boolean isInvalid = false;
         for(IPM_FinancialValueWrapper valueWrapper: lstIncrementalPLTurnover){
             valueWrapper.isValueInvalid = false;
+            valueWrapper.isMinorValueInvalid = false;
             isInvalid = false;
-            if(valueWrapper.value == IPM_ConstantUtils.INVALID_VALUE){                
+            if(valueWrapper.value <= IPM_ConstantUtils.INVALID_VALUE){                
                 valueWrapper.isValueInvalid = true;
+                valueWrapper.isMinorValueInvalid = true;                
                 isValidationFailed = true;
                 isInvalid = true;
             }            
@@ -1918,7 +1939,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     */
     public void validateY0GrossProfit(Decimal y0GrossProfit){
         //Validate Y0GrossProfit value    
-        if(y0GrossProfit == IPM_ConstantUtils.INVALID_VALUE){            
+        if(y0GrossProfit <= IPM_ConstantUtils.INVALID_VALUE){            
             isy0GrossProfitInvalid = true;
             isValidationFailed = true;
         }
@@ -1933,10 +1954,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         //Validate Gross Profit values
         Boolean isInvalid = false;
         for(IPM_FinancialValueWrapper valueWrapper: lstGrossPLGrossProfit){
-            valueWrapper.isValueInvalid = false;
+            valueWrapper.isMinorValueInvalid = false;
             isInvalid = false;
-            if(valueWrapper.value == IPM_ConstantUtils.INVALID_VALUE){
-                valueWrapper.isValueInvalid = true;
+            if(valueWrapper.value <= IPM_ConstantUtils.INVALID_VALUE){
+                valueWrapper.isMinorValueInvalid = true;
                 isValidationFailed = true;
                 isInvalid = true;
             }
@@ -1954,9 +1975,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         Boolean isInvalid = false;
         for(IPM_FinancialValueWrapper valueWrapper: lstIncrementalPLGrossProfit){
             valueWrapper.isValueInvalid = false;
+            valueWrapper.isMinorValueInvalid = false;
             isInvalid = false;
-            if(valueWrapper.value == IPM_ConstantUtils.INVALID_VALUE){
+            if(valueWrapper.value <= IPM_ConstantUtils.INVALID_VALUE){
                 valueWrapper.isValueInvalid = true;
+                valueWrapper.isMinorValueInvalid = true;
                 isValidationFailed = true;
                 isInvalid = true;
             }
@@ -1971,10 +1994,52 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     */
     public void validateY0PBO(Decimal y0Profit){
         //Validate Y0 PBO value    
-        if(y0Profit == IPM_ConstantUtils.INVALID_VALUE){
+        if(y0Profit <= IPM_ConstantUtils.INVALID_VALUE){
             isy0ProfitInvalid = true;
             isValidationFailed = true;
         }
+    }
+    /*******************************************************************************************************
+    * @description                              Used to Validate Gross Profit values
+    * @param lstGrossPLProfit   Used to process the passed lstGrossPLProfit
+    * @return                                   Boolean value says if the validation is failed or not
+    */
+    public boolean validateGrossBMI(List<IPM_FinancialValueWrapper> lstGrossBMI){
+        //Validate Gross Profit values
+        Boolean isInvalid = false;
+        for(IPM_FinancialValueWrapper valueWrapper: lstGrossBMI){
+            valueWrapper.isValueInvalid = false;
+            valueWrapper.isMinorValueInvalid = false;
+            isInvalid = false;
+            if(valueWrapper.value <= IPM_ConstantUtils.INVALID_VALUE){
+                valueWrapper.isValueInvalid = true;
+                valueWrapper.isMinorValueInvalid = true;
+                isValidationFailed = true;
+                isInvalid = true;
+            }
+        } 
+        return isInvalid;
+    }
+    /*******************************************************************************************************
+    * @description                              Used to Validate Gross Profit values
+    * @param lstIncrementalPLProfit     Used to process the passed lstIncrementalPLProfit
+    * @return                                   Boolean value says if the validation is failed or not
+    */
+    public boolean validateIncrementalBMI(List<IPM_FinancialValueWrapper> lstIncrementalBMI){
+        //Validate Incremental Profit values
+        Boolean isInvalid = false;
+        for(IPM_FinancialValueWrapper valueWrapper: lstIncrementalBMI){
+            valueWrapper.isValueInvalid = false;
+            valueWrapper.isMinorValueInvalid = false;
+            isInvalid = false;
+            if(valueWrapper.value <= IPM_ConstantUtils.INVALID_VALUE){
+                valueWrapper.isValueInvalid = true;
+                valueWrapper.isMinorValueInvalid = true;
+                isValidationFailed = true;
+                isInvalid = true;
+            }
+        } 
+        return isInvalid;
     }
     
     /*******************************************************************************************************
@@ -1987,9 +2052,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         Boolean isInvalid = false;
         for(IPM_FinancialValueWrapper valueWrapper: lstGrossPLProfit){
             valueWrapper.isValueInvalid = false;
+            valueWrapper.isMinorValueInvalid = false;
             isInvalid = false;
-            if(valueWrapper.value == IPM_ConstantUtils.INVALID_VALUE){
+            if(valueWrapper.value <= IPM_ConstantUtils.INVALID_VALUE){
                 valueWrapper.isValueInvalid = true;
+                valueWrapper.isMinorValueInvalid = true;
                 isValidationFailed = true;
                 isInvalid = true;
             }
@@ -2007,9 +2074,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         Boolean isInvalid = false;
         for(IPM_FinancialValueWrapper valueWrapper: lstIncrementalPLProfit){
             valueWrapper.isValueInvalid = false;
+            valueWrapper.isMinorValueInvalid = false;
             isInvalid = false;
-            if(valueWrapper.value == IPM_ConstantUtils.INVALID_VALUE){
+            if(valueWrapper.value <= IPM_ConstantUtils.INVALID_VALUE){
                 valueWrapper.isValueInvalid = true;
+                valueWrapper.isMinorValueInvalid = true;
                 isValidationFailed = true;
                 isInvalid = true;
             }
@@ -2108,6 +2177,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             currentFinancial.Copy_Local_to_Regional__c = true;
             update currentFinancial;
             getFinancials();
+            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
         } 
         catch (Exception ex) 
         {
@@ -2136,6 +2207,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             currentFinancial.Copy_Regional_to_Local__c = true;
             update currentFinancial;
             getFinancials();
+            validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
+            validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
         } 
         catch (Exception ex) 
         {
@@ -2231,12 +2304,27 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             for(IPM_FinancialValueWrapper valueWrapperIncremental: lstIncrementalPLTurnover){
                valueWrapperGross.isValueInvalid = false;
                valueWrapperIncremental.isValueInvalid = false;
-            
-               if(valueWrapperGross.index==valueWrapperIncremental.index && valueWrapperGross.Value < valueWrapperIncremental.Value){
-                               isValidWrapperFailed=true;
+               valueWrapperGross.isMinorValueInvalid = false;
+               valueWrapperIncremental.isMinorValueInvalid = false;
+               valueWrapperGross.isGrossTOValueInvalid = false;
+               valueWrapperGross.isGrossTOGRTIto = false;
+               if(valueWrapperGross.index == valueWrapperIncremental.index){
+                             if(valueWrapperGross.Value < valueWrapperIncremental.Value){ 
                                isITOgrtGTOCal = true; 
+                               valueWrapperGross.isGrossTOGRTIto = true;
+                               isFinancialInvalid = true;
+                             } 
      
                }
+                 if( valueWrapperGross.Value <= IPM_ConstantUtils.INVALID_VALUE){
+				                	valueWrapperGross.isValueInvalid = true;
+				                	valueWrapperGross.isGrossTOValueInvalid = true;
+				                	isFinancialInvalid = true;
+               	}
+                if(valueWrapperIncremental.value <= IPM_ConstantUtils.INVALID_VALUE){
+                	valueWrapperIncremental.isValueInvalid = true;
+                	valueWrapperIncremental.isMinorValueInvalid = true;
+                }
                  if(isValidWrapperFailed){
                   valueWrapperGross.isValueInvalid = true;
                     valueWrapperIncremental.isValueInvalid = true;
@@ -2259,11 +2347,26 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             for(IPM_FinancialValueWrapper valueWrapperIncremental: lstIncrementalPLTurnover){
                valueWrapperGross.isValueInvalid = false;
                valueWrapperIncremental.isValueInvalid = false;
-              
-               if(valueWrapperGross.index==valueWrapperIncremental.index && valueWrapperGross.Value<valueWrapperIncremental.Value){
-                       isValidWrapperFailed=true;
+               valueWrapperGross.isMinorValueInvalid = false;
+               valueWrapperIncremental.isMinorValueInvalid = false;
+               valueWrapperGross.isGrossTOValueInvalid = false;
+               valueWrapperGross.isGrossTOGRTIto = false;
+              if(valueWrapperGross.index == valueWrapperIncremental.index){
+               	     if(valueWrapperGross.Value <  valueWrapperIncremental.Value){
                        isITOgrtGTO = true; 
+                       valueWrapperGross.isGrossTOGRTIto = true;
+                       isFinancialInvalid = true;
                      }
+                }
+               if(valueWrapperIncremental.value <= IPM_ConstantUtils.INVALID_VALUE){
+                	valueWrapperIncremental.isValueInvalid = true;
+                	valueWrapperIncremental.isMinorValueInvalid = true;
+                }
+                if(valueWrapperGross.Value <= IPM_ConstantUtils.INVALID_VALUE){
+	                	valueWrapperGross.isValueInvalid = true;
+	                	valueWrapperGross.isGrossTOValueInvalid = true;
+	                	isFinancialInvalid = true;
+                }
                
                  if(isValidWrapperFailed){
                   valueWrapperGross.isValueInvalid = true;
