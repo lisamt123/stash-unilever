@@ -3,7 +3,6 @@
     <types>
 		<members>checkRecursive</members>
 		<members>checkRecursiveBonusQuarterly</members>
-		<members>AgencyHomePageController</members>
 		<members>checkRecursivePOReport</members>
 		<members>AF_AgencyEstimate </members>
 		<members>AF_Assign_Category_Brand</members>
@@ -68,8 +67,7 @@
 		<members>AF_Category_Brands</members>
 		<members>Category_Brands</members>
 		<members>category</members>
-		<members>AgencyHomePage</members>
-        <name>ApexPage</name>
+		<name>ApexPage</name>
     </types>
 	
 	
