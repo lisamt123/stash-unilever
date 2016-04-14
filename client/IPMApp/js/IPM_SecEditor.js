@@ -285,8 +285,9 @@ function isNumber(e,ele) {
 
         if ((charCode !== 44) && (charCode !== 46 || element.indexOf('.') !== -1) &&
             (charCode < 48 || charCode > 57))
+			{
             return false;
-
+			}
         return true;
     }
     function paste(e,obj) {

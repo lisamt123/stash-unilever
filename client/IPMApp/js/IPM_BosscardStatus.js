@@ -96,7 +96,7 @@ jq(function(){
   
   /* Below code is to skip the unsaved changes*/
   function skipValidation() {
-    elem = false;
+     elem = false;
   }
 }
 
@@ -149,4 +149,5 @@ jq(function(){
   /* Below code is to skip the unsaved changes*/
   function skipValidation() {
     unsaved = false;
+	checkChange(unsaved);
   }

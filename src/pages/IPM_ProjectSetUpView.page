@@ -199,7 +199,7 @@
                                                                 <apex:outputPanel layout="block"  styleClass="inputField">  
                                                                     <apex:outputLabel value="{!$Label.IPM_PROJECT_DESCRIPTION}" styleClass="bsFieldLabel descTop" />
                                                                     <!-- To display below inputTextarea when current logged in user has edit access on page   -->
-                                                                    <apex:inputTextarea id="projDesc" value="{!project.IPM_Project_Description__c}" rendered="{!isEditable}"  styleClass="limitdesc BosscardNameInputBox"  />
+                                                                    <apex:inputTextarea id="projDesc" value="{!project.IPM_Project_Description__c}" html-onfocusout="changeAlert();" rendered="{!isEditable}"  styleClass="limitdesc BosscardNameInputBox"  />
                                                                     <apex:outputPanel id="DescMsg" styleClass="proDescLabel" >
                                                                         <!-- To display below outputText when project description is empty while saving project. -->
                                                                         <apex:outputText value="{!$Label.IPM_ENTER_PROJECT_DESCRIPTION}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Project_Description__c'))}" styleClass="projDescErrMsg"/>   
@@ -787,7 +787,10 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Limiter.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CoreParameter.js')}" type="text/javascript"></script>   
-    <apex:outputPanel id="selectNextTabScript">
+    <script>		
+         var IPMAppPS = {wmessage:'{!$Label.IPM_Unsaved_Alert}'};     		
+    </script>
+	<apex:outputPanel id="selectNextTabScript">
     <script>
     function reload()
         {
@@ -1236,51 +1239,4 @@ function quitandgo(IsNavigate){
 }
 </script> 
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CoreparameterDesign.js')}" type="text/javascript"></script>
-<script>		
-      var unsaved = false;		
-      var OldBosscardNameVal = "";		
-      var NewBosscardNameVal = "";		
-      var oldInputval = "";		
-      var newInputval = "";		
-            		
-           jq(function(){ /* DOM ready */		
-               OldBosscardNameVal = $(".BosscardNameInputBox ").val();		
-               jq(":input").change(function() {		
-                    unsaved = true;		
-                });             		
-                                            		
-                		
-            });		
-            		
-            function changeAlertBosscardName(){		
-                CurrentBosscardNameVal = jq(".BosscardNameInputBox ").val();		
-                 jq(":input").change(function() {		
-                    unsaved = true;		
-                });		
-                 if( OldBosscardNameVal !== CurrentBosscardNameVal){		
-                    unsaved = true;		
-                  		
-                }else if(unsaved){		
-                    unloadPage();            		
-                }		
-                else{		
-                unsaved = false;		
-                    OldBosscardNameVal = CurrentBosscardNameVal;		
-                }		
-                		
-            }		
-            function unloadPage()		
-            { 		
-                if(unsaved){		
-                    return "{!$Label.IPM_Unsaved_Alert}";            		
-                }		
-            } 		
-           		
-            window.onbeforeunload = unloadPage;		
-            		
-            /* Below code is to skip the unsaved changes*/		
-            function skipValidation() {		
-                unsaved = false;		
-            }		
-     </script>
 </apex:page>

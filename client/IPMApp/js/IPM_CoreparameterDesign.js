@@ -79,3 +79,54 @@ function invalidChar(key)
 	  return true;
    }   
 }
+
+var unsaved = false;
+var OldBosscardNameVal = "";
+var NewBosscardNameVal = "";
+var oldInputval = "";
+var newInputval = "";
+
+jq(function(){ /* DOM ready */
+   OldBosscardNameVal = jq(".BosscardNameInputBox ").val();
+   jq(":input").change(function() {
+		unsaved = true;
+	});             
+								
+	
+});
+
+function changeAlertBosscardName(){
+	CurrentBosscardNameVal = jq(".BosscardNameInputBox ").val();
+	 jq(":input").change(function() {
+		unsaved = true;
+	});
+	 if( OldBosscardNameVal !== CurrentBosscardNameVal){
+		unsaved = true;
+	  
+	}else if(unsaved){
+		unloadPage();            
+	}
+	else{
+	unsaved = false;
+		OldBosscardNameVal = CurrentBosscardNameVal;
+	}
+	
+}
+
+function changeAlert(){
+	unsaved = true;
+ }
+
+function unloadPage()
+{ 
+	if(unsaved){
+		return IPMAppPS.wmessage;            
+	}
+} 
+
+window.onbeforeunload = unloadPage;
+
+/* Below code is to skip the unsaved changes*/
+function skipValidation() {
+	unsaved = false;
+}
