@@ -146,16 +146,6 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
-	<fields>
-        <fullName>SessionId__c</fullName>
-        <externalId>false</externalId>
-        <label>SessionId</label>
-        <length>250</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <fields>
         <fullName>AF_Brand__c</fullName>
         <description>This represents Brands on the user level</description>
@@ -497,16 +487,6 @@
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <type>TextArea</type>
-    </fields>
-	  <fields>
-        <fullName>SessionId__c</fullName>
-        <externalId>false</externalId>
-        <label>SessionId</label>
-        <length>250</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Language_Skills_List__c</fullName>
