@@ -275,72 +275,10 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         //Copying IPM Financial Year fields
         if(projFinYrmap.containskey(p.id) && String.isNotBlank(p.IPMProject_Span__c)){
             for(IPM_Financial_Year__c fr:projFinYrMap.get(p.id)){
-                // Populating Y3 gTO
-                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross))
-                {  
-                  otifAnalytic.IPM_Charter_Y3_gTO__c = fr.Turnover_Charter__c;
-                  otifAnalytic.IPM_Contract_Y3_gTO__c = fr.Turnover_Contract__c;
-                  otifAnalytic.IPM_MD_Y3_gTO__c = fr.Turnover_MD__c;
-                  otifAnalytic.IPM_MR_Y3_gTO__c = fr.Turnover_MR__c;
-                  otifAnalytic.IPM_Charter_Y3_GM__c = fr.GM_of_TO_Charter__c;
-                  otifAnalytic.IPM_Contract_Y3_GM__c = fr.GM_of_TO_Contract__c;
-                  otifAnalytic.IPM_MD_Y3_GM__c = fr.GM_of_TO_MD__c;
-                  otifAnalytic.IPM_MR_Y3_GM__c = fr.GM_of_TO_MR__c;                  
-                }                   
-                // Populating Y3 iTO                   
-                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental))
-                {                       
-                  otifAnalytic.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
-                  otifAnalytic.IPM_Contract_Y3_iTO__c = fr.Turnover_Contract__c;
-                  otifAnalytic.IPM_MD_Y3_iTO__c = fr.Turnover_MD__c;
-                  otifAnalytic.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;
-                }
-                
-                // Populating Y3 gTO BD
-                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross))
-                {  
-                  /* if(p.IPMProject_Span__c == IPM_ConstantUtils.SpanGlobal && (p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL|| p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
-                   
-                        otifAnalytic.IPM_Y3_gTO_BD__c = fr.Turnover_Global__c;
-                        otifAnalytic.Y3_GM_BD__c = fr.GM_of_TO_Global__c;
-                   } else */
-                   if(p.IPMProject_Span__c == IPM_ConstantUtils.Local &&  p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-                        otifAnalytic.IPM_Y3_gTO_BD__c = fr.Turnover_Local__c;
-                        otifAnalytic.Y3_GM_BD__c = fr.GM_of_TO_Local__c;
-                   } else {
-                        otifAnalytic.IPM_Y3_gTO_BD__c = fr.Turnover_Regional__c;
-                        otifAnalytic.Y3_GM_BD__c = fr.GM_of_TO_Regional__c;
-                   }
-                   
-                }                   
-                // Populating Y3 iTO BD                   
-                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental))
-                {                       
-                   if(p.IPMProject_Span__c == IPM_ConstantUtils.SpanGlobal && (p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL|| p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
-                   
-                        otifAnalytic.IPM_Y3_iTO_BD__c = fr.Turnover_Global__c;
-                   } else if(p.IPMProject_Span__c == IPM_ConstantUtils.Local &&  p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-                        otifAnalytic.IPM_Y3_iTO_BD__c = fr.Turnover_Local__c;
-                   } else {
-                        otifAnalytic.IPM_Y3_iTO_BD__c = fr.Turnover_Regional__c;
-                   }
-                    
-                }
-                    // Populating Y3 gTO BB
-                    if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross) && p.IPMProject_Span__c == IPM_ConstantUtils.Local)
-                    {  
-                       if(p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
-                            otifAnalytic.IPM_Y3_gTO_BB__c = fr.Turnover_Local__c;
-                            otifAnalytic.Y3_GM_BB__c =  fr.GM_of_TO_Local__c;
-                       } 
-                    }                   
-                    // Populating Y3 iTO BB                
-                    if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental) && p.IPMProject_Span__c == IPM_ConstantUtils.Local)
-                    {                       
-                       if(p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
-                            otifAnalytic.IPM_Y3_iTO_BB__c = fr.Turnover_Local__c;
-                       } 
-                    }
+               
+                otifAnalytic = setPLTypeGrossValues(fr,otifAnalytic, p);
+                               
+                otifAnalytic = setPLTypeIncrementalValues(fr,otifAnalytic, p);
         
             }//end of Financial Year For loop
         
@@ -365,44 +303,16 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                     }
                     //a.IPM_Actual_Launch_Date__c = mile.IPM_Completed_on__c; 
                     if(mile.IPM_Due_Date_Idea__c != null ){
-                        if(projGateDocumentMap.containskey(p.id)){  
-                            for(IPM_Project_Document__c pGateDoc : projGateDocumentMap.get(p.id)){ 
-                                if(pGateDoc.IPM_GateDocuments__c.equalsignorecase(IPM_ConstantUtils.CHARTER_GATE) && pGateDoc.IPM_Document_Status__c.contains(IPM_ConstantUtils.STATUS_APPROVED)){
-                                    otifAnalytic.IPM_Charter_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Idea__c.month());
-                                    otifAnalytic.IPM_Charter_Target_Launch_Year__c = string.valueof(mile.IPM_Due_Date_Idea__c.Year());                       
-                                }   
-                            }   
-                        }
+                        otifAnalytic = setValuesForDueDateIdea(mile, otifAnalytic, p);
                     }
                     if(mile.IPM_Due_Date_Feasibility__c != null ){
-                        if(projGateDocumentMap.containskey(p.id)){  
-                            for(IPM_Project_Document__c pGateDoc : projGateDocumentMap.get(p.id)){ 
-                                if(pGateDoc.IPM_GateDocuments__c.equalsignorecase(IPM_ConstantUtils.CONTRACT_GATE) && pGateDoc.IPM_Document_Status__c.contains(IPM_ConstantUtils.STATUS_APPROVED)){                 
-                                   otifAnalytic.IPM_Contract_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Feasibility__c.month());
-                                   otifAnalytic.IPM_Contract_Target_Launch_Year__c = string.valueof(mile.IPM_Due_Date_Feasibility__c.Year());
-                                }   
-                            }   
-                        }                                  
+                        otifAnalytic = setValuesForDueDateFeasibility(mile, otifAnalytic, p);
                     }
                     if(mile.IPM_Due_Date_Capability__c != null ){
-                        if(projGateDocumentMap.containskey(p.id)){  
-                            for(IPM_Project_Document__c pGateDoc : projGateDocumentMap.get(p.id)){ 
-                                if(pGateDoc.IPM_GateDocuments__c.equalsignorecase(IPM_ConstantUtils.MARKET_READY_GATE) && pGateDoc.IPM_Document_Status__c.contains(IPM_ConstantUtils.STATUS_APPROVED)){                 
-                                    otifAnalytic.IPM_MR_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Capability__c.month());
-                                    otifAnalytic.IPM_MR_Target_Launch_Year__c  = string.valueof(mile.IPM_Due_Date_Capability__c.Year());  
-                                }   
-                            }   
-                        }                                   
+                        otifAnalytic = setValuesForDueDateCapability(mile, otifAnalytic, p);
                     }
                     if(mile.IPM_Due_Date_Market_Ready__c != null ){
-                        if(projGateDocumentMap.containskey(p.id)){  
-                            for(IPM_Project_Document__c pGateDoc : projGateDocumentMap.get(p.id)){ 
-                                if(pGateDoc.IPM_GateDocuments__c.equalsignorecase(IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE) && pGateDoc.IPM_Document_Status__c.contains(IPM_ConstantUtils.STATUS_APPROVED)){                    
-                                    otifAnalytic.IPM_MD_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Market_Ready__c.month());
-                                    otifAnalytic.IPM_MD_Target_Launch_Year__c = string.valueof(mile.IPM_Due_Date_Market_Ready__c.Year());   
-                                }   
-                            }   
-                        }                                   
+                        otifAnalytic = setValuesForDueDateMarketReady(mile, otifAnalytic, p); 
                     }   
                 }
            }
@@ -471,50 +381,10 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
      *********************************************************************************************************************/     
     public IPM_Analytics_OTIF__c setRolloutFinancialdetails(IPM_Analytics_OTIF__c otifAnalytic, String finExtId, IPM_Project_Rollout__c pr){
         if(String.isNotBlank(finExtId) && rolloutFinancialYearmap.containskey(finExtId)){ 
-            for(IPM_Financial_Year__c fr:rolloutFinancialYearmap.get(finExtId)){        
-                
-                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c))
-                { 
-                    if(fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
-                        // Populating Y3 gTO
-                       otifAnalytic.IPM_Charter_Y3_gTO__c = fr.Turnover_Charter__c;
-                       otifAnalytic.IPM_Contract_Y3_gTO__c = fr.Turnover_Contract__c;
-                       otifAnalytic.IPM_MD_Y3_gTO__c = fr.Turnover_MD__c;
-                       otifAnalytic.IPM_MR_Y3_gTO__c = fr.Turnover_MR__c;
-                       otifAnalytic.IPM_Charter_Y3_GM__c = fr.GM_of_TO_Charter__c;
-                       otifAnalytic.IPM_Contract_Y3_GM__c = fr.GM_of_TO_Contract__c;
-                       otifAnalytic.IPM_MD_Y3_GM__c = fr.GM_of_TO_MD__c;
-                       otifAnalytic.IPM_MR_Y3_GM__c = fr.GM_of_TO_MR__c;
-                    } else if(fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){
-                        // Populating Y3 iTO                   
-                       otifAnalytic.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
-                       otifAnalytic.IPM_Contract_Y3_iTO__c = fr.Turnover_Contract__c;
-                       otifAnalytic.IPM_MD_Y3_iTO__c = fr.Turnover_MD__c;
-                       otifAnalytic.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;                                      
-                    }
-                } 
-                // Populating Y3 gTO BD
-                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross))
-                {  
-                    otifAnalytic.IPM_Y3_gTO_BD__c = fr.Turnover_Regional__c;
-                    otifAnalytic.Y3_GM_BD__c = fr.GM_of_TO_Regional__c;
-                }                   
-                // Populating Y3 iTO BD                   
-                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental))
-                {                       
-                    otifAnalytic.IPM_Y3_iTO_BD__c = fr.Turnover_Regional__c;
-                }
-                // Populating Y3 gTO BB
-                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross) && pr.IPM_Rollout_Span__c == IPM_ConstantUtils.Local)
-                {  
-                    otifAnalytic.IPM_Y3_gTO_BB__c = fr.Turnover_Local__c;
-                    otifAnalytic.Y3_GM_BB__c =  fr.GM_of_TO_Local__c;
-                }                   
-                // Populating Y3 iTO BB                
-                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental) && pR.IPM_Rollout_Span__c == IPM_ConstantUtils.Local)
-                {  
-                    otifAnalytic.IPM_Y3_iTO_BB__c = fr.Turnover_Local__c;
-                }               
+            for(IPM_Financial_Year__c fr:rolloutFinancialYearmap.get(finExtId)){      
+                otifAnalytic = setPLTypeGrossValuesRollout(fr,otifAnalytic, pr);
+                               
+                otifAnalytic = setPLTypeIncrementalValuesRollout(fr,otifAnalytic, pr);  
             }
         }   
         return otifAnalytic;       
@@ -996,7 +866,171 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
            otifAnalyticProj.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
            otifAnalyticProj.IPM_Market_Cluster__c = proj.Market_Cluster_Name__c;                 
         }
+        //setGeography
+        otifAnalyticProj = setGeography(proj,otifAnalyticProj);
 
+        // populate target launch year & month
+        otifAnalyticProj = setTargetLaunchYearandMonth(proj,otifAnalyticProj);
+
+        //Global Project Business Impact Global will be copy to Global,Regional & Local project
+        if(projFinmap.containskey(proj.Id)){ 
+           otifAnalyticProj.IPM_Business_Impact__c = projFinMap.get(proj.id).Business_Impact_Global__c; 
+        }  
+        return otifAnalyticProj;
+    }           
+    /*********************************************************************************************************************
+     * @Description: To copy PLType Gross values 
+     * @param1: IPM_Financial_Year__c fr
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @param3: IPM_Project__c p     
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/                 
+    public IPM_Analytics_OTIF__c setPLTypeGrossValues(IPM_Financial_Year__c fr,IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){
+        if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross))
+            {  
+              // Populating Y3 gTO  
+              otifAnalytic.IPM_Charter_Y3_gTO__c = fr.Turnover_Charter__c;
+              otifAnalytic.IPM_Contract_Y3_gTO__c = fr.Turnover_Contract__c;
+              otifAnalytic.IPM_MD_Y3_gTO__c = fr.Turnover_MD__c;
+              otifAnalytic.IPM_MR_Y3_gTO__c = fr.Turnover_MR__c;
+              otifAnalytic.IPM_Charter_Y3_GM__c = fr.GM_of_TO_Charter__c;
+              otifAnalytic.IPM_Contract_Y3_GM__c = fr.GM_of_TO_Contract__c;
+              otifAnalytic.IPM_MD_Y3_GM__c = fr.GM_of_TO_MD__c;
+              otifAnalytic.IPM_MR_Y3_GM__c = fr.GM_of_TO_MR__c;  
+              
+              // Populating Y3 gTO BD   
+               if(p.IPMProject_Span__c == IPM_ConstantUtils.Local &&  p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+                    otifAnalytic.IPM_Y3_gTO_BD__c = fr.Turnover_Local__c;
+                    otifAnalytic.Y3_GM_BD__c = fr.GM_of_TO_Local__c;
+               } else {
+                    otifAnalytic.IPM_Y3_gTO_BD__c = fr.Turnover_Regional__c;
+                    otifAnalytic.Y3_GM_BD__c = fr.GM_of_TO_Regional__c;
+               }
+                // Populating Y3 gTO BB             
+               if(p.IPMProject_Span__c == IPM_ConstantUtils.Local && p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
+                    otifAnalytic.IPM_Y3_gTO_BB__c = fr.Turnover_Local__c;
+                    otifAnalytic.Y3_GM_BB__c =  fr.GM_of_TO_Local__c;
+                } 
+            }
+        return otifAnalytic;    
+    }   
+    /*********************************************************************************************************************
+     * @Description: To copy PLType Incremental values 
+     * @param1: IPM_Financial_Year__c fr
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @param3: IPM_Project__c p     
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/                 
+    public IPM_Analytics_OTIF__c setPLTypeIncrementalValues(IPM_Financial_Year__c fr,IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){
+        if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental))
+        {
+          // Populating Y3 iTO  
+          otifAnalytic.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
+          otifAnalytic.IPM_Contract_Y3_iTO__c = fr.Turnover_Contract__c;
+          otifAnalytic.IPM_MD_Y3_iTO__c = fr.Turnover_MD__c;
+          otifAnalytic.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;
+          
+          // Populating Y3 iTO  BD
+           if(p.IPMProject_Span__c == IPM_ConstantUtils.SpanGlobal && (p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL|| p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)){
+           
+                otifAnalytic.IPM_Y3_iTO_BD__c = fr.Turnover_Global__c;
+           } else if(p.IPMProject_Span__c == IPM_ConstantUtils.Local &&  p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+                otifAnalytic.IPM_Y3_iTO_BD__c = fr.Turnover_Local__c;
+           } else {
+                otifAnalytic.IPM_Y3_iTO_BD__c = fr.Turnover_Regional__c;
+           }
+            // Populating Y3 iTO BB
+           if(p.IPMProject_Span__c == IPM_ConstantUtils.Local && p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
+                otifAnalytic.IPM_Y3_iTO_BB__c = fr.Turnover_Local__c;
+           }           
+        }
+        return otifAnalytic;
+    }   
+
+    /*********************************************************************************************************************
+     * @Description: To copy milestone data if due date Idea is populated 
+     * @param1: IPM_Milestone__c mile
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @param3: IPM_Project__c p     
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/                 
+    public IPM_Analytics_OTIF__c setValuesForDueDateIdea(IPM_Milestone__c mile, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){  
+        if(projGateDocumentMap.containskey(p.id)){  
+            for(IPM_Project_Document__c pGateDoc : projGateDocumentMap.get(p.id)){ 
+                if(pGateDoc.IPM_GateDocuments__c.equalsignorecase(IPM_ConstantUtils.CHARTER_GATE) && pGateDoc.IPM_Document_Status__c.contains(IPM_ConstantUtils.STATUS_APPROVED)){
+                    otifAnalytic.IPM_Charter_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Idea__c.month());
+                    otifAnalytic.IPM_Charter_Target_Launch_Year__c = string.valueof(mile.IPM_Due_Date_Idea__c.Year());                       
+                }   
+            }   
+        }   
+        return otifAnalytic;
+    }
+
+
+    /*********************************************************************************************************************
+     * @Description: To copy milestone data if due date Feasibility is populated 
+     * @param1: IPM_Milestone__c mile
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @param3: IPM_Project__c p     
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/                 
+    public IPM_Analytics_OTIF__c setValuesForDueDateFeasibility(IPM_Milestone__c mile, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){
+        if(projGateDocumentMap.containskey(p.id)){  
+            for(IPM_Project_Document__c pGateDoc : projGateDocumentMap.get(p.id)){ 
+                if(pGateDoc.IPM_GateDocuments__c.equalsignorecase(IPM_ConstantUtils.CONTRACT_GATE) && pGateDoc.IPM_Document_Status__c.contains(IPM_ConstantUtils.STATUS_APPROVED)){                 
+                   otifAnalytic.IPM_Contract_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Feasibility__c.month());
+                   otifAnalytic.IPM_Contract_Target_Launch_Year__c = string.valueof(mile.IPM_Due_Date_Feasibility__c.Year());
+                }   
+            }   
+        }                                  
+        return otifAnalytic;
+    }
+
+    /*********************************************************************************************************************
+     * @Description: To copy milestone data if due date Capability is populated 
+     * @param1: IPM_Milestone__c mile
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @param3: IPM_Project__c p     
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/                 
+    public IPM_Analytics_OTIF__c setValuesForDueDateCapability(IPM_Milestone__c mile, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){    
+        if(projGateDocumentMap.containskey(p.id)){  
+            for(IPM_Project_Document__c pGateDoc : projGateDocumentMap.get(p.id)){ 
+                if(pGateDoc.IPM_GateDocuments__c.equalsignorecase(IPM_ConstantUtils.MARKET_READY_GATE) && pGateDoc.IPM_Document_Status__c.contains(IPM_ConstantUtils.STATUS_APPROVED)){                 
+                    otifAnalytic.IPM_MR_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Capability__c.month());
+                    otifAnalytic.IPM_MR_Target_Launch_Year__c  = string.valueof(mile.IPM_Due_Date_Capability__c.Year());  
+                }   
+            }   
+        }                                   
+        return otifAnalytic;
+    }
+
+
+    /*********************************************************************************************************************
+     * @Description: To copy milestone data if due date MarketReady is populated 
+     * @param1: IPM_Milestone__c mile
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @param3: IPM_Project__c p     
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/                 
+    public IPM_Analytics_OTIF__c setValuesForDueDateMarketReady(IPM_Milestone__c mile, IPM_Analytics_OTIF__c otifAnalytic, IPM_Project__c p){   
+       if(projGateDocumentMap.containskey(p.id)){  
+            for(IPM_Project_Document__c pGateDoc : projGateDocumentMap.get(p.id)){ 
+                if(pGateDoc.IPM_GateDocuments__c.equalsignorecase(IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE) && pGateDoc.IPM_Document_Status__c.contains(IPM_ConstantUtils.STATUS_APPROVED)){                    
+                    otifAnalytic.IPM_MD_Target_Launch_Month__c = monthNameIntegerToString.get(mile.IPM_Due_Date_Market_Ready__c.month());
+                    otifAnalytic.IPM_MD_Target_Launch_Year__c = string.valueof(mile.IPM_Due_Date_Market_Ready__c.Year());   
+                }   
+            }   
+        }                                   
+        return otifAnalytic;
+    }   
+    /*********************************************************************************************************************
+     * @Description: To set Geography
+     * @param1: IPM_Project__c proj
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/ 
+    public IPM_Analytics_OTIF__c setGeography(IPM_Project__c proj,IPM_Analytics_OTIF__c otifAnalyticProj){
         if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)){
            otifAnalyticProj.IPM_Geography__c = IPM_Utils.valueGlobal;             
         } else if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
@@ -1006,8 +1040,15 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
         }else if(String.isNotBlank(proj.IPM_Project_Type__c) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
             if(ipmCountryMap.containskey(proj.id)){otifAnalyticProj.IPM_Geography__c = ipmCountryMap.get(proj.id);}
         }
-
-        // populate target launch year & month
+        return otifAnalyticProj;
+    }   
+    /*********************************************************************************************************************
+     * @Description: To set TargetLaunchYearandMonth
+     * @param1: IPM_Project__c proj
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/ 
+    public IPM_Analytics_OTIF__c setTargetLaunchYearandMonth(IPM_Project__c proj,IPM_Analytics_OTIF__c otifAnalyticProj){
         if(String.isNotBlank(proj.IPM_Project_Type__c) && (proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) || proj.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) ||(String.isNotBlank(proj.IPMProject_Span__c) && proj.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional) && proj.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)))){
            otifAnalyticProj.IPM_Target_Launch_Month_BD__c = proj.IPM_Target_Launch_Month__c;
            otifAnalyticProj.IPM_Target_Launch_Year_BD__c = proj.IPM_Target_Launch_Year__c;   
@@ -1021,11 +1062,73 @@ global without sharing class IPM_OTIF_Report_Batch implements Database.Batchable
                otifAnalyticProj.IPM_Target_Launch_Year_BD__c = string.valueof(proj.IPM_Project_Rollout__r.Target_Launch_Date__c.Year());   
             }                  
         }
-
-        //Global Project Business Impact Global will be copy to Global,Regional & Local project
-        if(projFinmap.containskey(proj.Id)){ 
-           otifAnalyticProj.IPM_Business_Impact__c = projFinMap.get(proj.id).Business_Impact_Global__c; 
-        }  
         return otifAnalyticProj;
-    }           
+    }   
+    
+   /*********************************************************************************************************************
+     * @Description: To copy PLType Gross values 
+     * @param1: IPM_Financial_Year__c fr
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @param3: IPM_Project__c p     
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/                 
+    public IPM_Analytics_OTIF__c setPLTypeGrossValuesRollout(IPM_Financial_Year__c fr,IPM_Analytics_OTIF__c otifAnalytic, IPM_Project_Rollout__c pr){
+        if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross))
+            {  
+              // Populating Y3 gTO  
+              otifAnalytic.IPM_Charter_Y3_gTO__c = fr.Turnover_Charter__c;
+              otifAnalytic.IPM_Contract_Y3_gTO__c = fr.Turnover_Contract__c;
+              otifAnalytic.IPM_MD_Y3_gTO__c = fr.Turnover_MD__c;
+              otifAnalytic.IPM_MR_Y3_gTO__c = fr.Turnover_MR__c;
+              otifAnalytic.IPM_Charter_Y3_GM__c = fr.GM_of_TO_Charter__c;
+              otifAnalytic.IPM_Contract_Y3_GM__c = fr.GM_of_TO_Contract__c;
+              otifAnalytic.IPM_MD_Y3_GM__c = fr.GM_of_TO_MD__c;
+              otifAnalytic.IPM_MR_Y3_GM__c = fr.GM_of_TO_MR__c;  
+              
+                // Populating Y3 gTO BD
+                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross))
+                {  
+                    otifAnalytic.IPM_Y3_gTO_BD__c = fr.Turnover_Regional__c;
+                    otifAnalytic.Y3_GM_BD__c = fr.GM_of_TO_Regional__c;
+                }                   
+
+                // Populating Y3 gTO BB
+                if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross) && pr.IPM_Rollout_Span__c == IPM_ConstantUtils.Local)
+                {  
+                    otifAnalytic.IPM_Y3_gTO_BB__c = fr.Turnover_Local__c;
+                    otifAnalytic.Y3_GM_BB__c =  fr.GM_of_TO_Local__c;
+                }                   
+
+            }
+        return otifAnalytic;    
+    }   
+    /*********************************************************************************************************************
+     * @Description: To copy PLType Incremental values 
+     * @param1: IPM_Financial_Year__c fr
+     * @param2: IPM_Analytics_OTIF__c otifAnalytic
+     * @param3: IPM_Project__c p     
+     * @return: IPM_Analytics_OTIF__c OTIF analytic Record
+     *********************************************************************************************************************/                 
+    public IPM_Analytics_OTIF__c setPLTypeIncrementalValuesRollout(IPM_Financial_Year__c fr,IPM_Analytics_OTIF__c otifAnalytic,IPM_Project_Rollout__c pr){
+        if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental))
+        {
+          // Populating Y3 iTO  
+          otifAnalytic.IPM_Charter_Y3_iTO__c = fr.Turnover_Charter__c;
+          otifAnalytic.IPM_Contract_Y3_iTO__c = fr.Turnover_Contract__c;
+          otifAnalytic.IPM_MD_Y3_iTO__c = fr.Turnover_MD__c;
+          otifAnalytic.IPM_MR_Y3_iTO__c = fr.Turnover_MR__c;
+          
+            // Populating Y3 iTO BD                   
+            if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental))
+            {                       
+                otifAnalytic.IPM_Y3_iTO_BD__c = fr.Turnover_Regional__c;
+            }
+            // Populating Y3 iTO BB                
+            if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental) && pR.IPM_Rollout_Span__c == IPM_ConstantUtils.Local)
+            {  
+                otifAnalytic.IPM_Y3_iTO_BB__c = fr.Turnover_Local__c;
+            }   
+        }
+        return otifAnalytic;
+    }       
 }
