@@ -1,0 +1,29 @@
+<messaging:emailTemplate subject="{!RelatedTo.Name} : Termination Requested" recipientType="User" relatedToType="CPA_project_work_order__c" >
+<messaging:htmlEmailBody >
+    Hi, <br/><br/>
+    Termination requested for PWO with ID {!RelatedTo.Name} by {!RelatedTo.LastModifiedBy.Name} on {!Today()}. <br/><br/>
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+
+Regards, <br/><br/>
+
+Automation Contract System
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
+
+
+
+<!---
+Sub: Termination requested for PWO with ID <PWO ID>
+
+Body:
+
+"Hi,
+
+Termination requested for PWO with ID <PWO ID> by <ULPM Name> on <Date & Time>.
+You can access it from here: <URL to PWORF/System>
+
+Regards,
+Automation Contract System"
+
+-->

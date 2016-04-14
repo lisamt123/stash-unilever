@@ -126,7 +126,7 @@ function openEditModal(elem) {
     mDialog.css('margin-top', top);
     jq('#ipmModalEdit .modal-title').html('Edit Milestone');
     mDialog.width('92.3%');
-    mDialog.height('25%');
+    mDialog.height('200px');
     mDialog.css('margin-left', '2%');
     mDialog.css('margin-right', '8%');
 }

@@ -1,0 +1,24 @@
+<messaging:emailTemplate subject="{!RelatedTo.Name} : Submitted" recipientType="User"  relatedToType="CPA_project_work_order__c" >
+<messaging:htmlEmailBody >
+Hi,<br/><br/>
+
+A PWO with ID {!RelatedTo.Name} is Submitted by {!RelatedTo.LastModifiedBy.Name} on {!RelatedTo.LastModifiedDate}.<br/><br/>
+
+You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{! RelatedTo.Name} </a> <br/><br/>
+
+Regards,<br/><br/>
+Automation Contract System
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
+
+<!--
+"Hi,
+
+A <Contract> with ID <Contract ID> is Submitted by <ADM Name> on <Date & Time>.
+You can access it from here: <URL to PWORF/System>
+
+Regards,
+Automation Contract System"
+
+-->

@@ -1,0 +1,466 @@
+src
+src/applications
+src/applications/Contracting.app
+src
+src/approvalProcesses
+src/approvalProcesses/CPA_CR__c.CPA_CR_Approval_Process.approvalProcess
+src/approvalProcesses/CPA_HLE_Request__c.CPA_VDM_HLE_Request_Approval_Process.approvalProcess
+src/approvalProcesses/CPA_LOI__c.CPA_LOI_Approval.approvalProcess
+src/approvalProcesses/CPA_project_work_order__c.CPA_Project_work_order_Approval.approvalProcess
+src/approvalProcesses/CPA_PWORF__c.CPA_VDM_Approval_Process.approvalProcess
+src
+src/classes
+src/classes/CPA_attachment_Trigger_Handler.cls
+src/classes/CPA_attachment_Trigger_Handler.cls-meta.xml
+src/classes/CPA_AttachmentUtil.cls
+src/classes/CPA_AttachmentUtil.cls-meta.xml
+src/classes/CPA_AttchemntUtilController_Test.cls
+src/classes/CPA_AttchemntUtilController_Test.cls-meta.xml
+src/classes/CPA_CalculationOfBusinessDaysForSLADates.cls
+src/classes/CPA_CalculationOfBusinessDaysForSLADates.cls-meta.xml
+src/classes/CPA_CancelController_Test.cls
+src/classes/CPA_CancelController_Test.cls-meta.xml
+src/classes/CPA_CNFTNF_TriggerUtil.cls
+src/classes/CPA_CNFTNF_TriggerUtil.cls-meta.xml
+src/classes/CPA_ConstantsForContractingAppClasses.cls
+src/classes/CPA_ConstantsForContractingAppClasses.cls-meta.xml
+src/classes/CPA_Contract_UtilMethods_Test.cls
+src/classes/CPA_Contract_UtilMethods_Test.cls-meta.xml
+src/classes/CPA_ContractInformationController.cls
+src/classes/CPA_ContractInformationController.cls-meta.xml
+src/classes/CPA_CR_CancelReasonController.cls
+src/classes/CPA_CR_CancelReasonController.cls-meta.xml
+src/classes/CPA_CR_ReturnReasonController.cls
+src/classes/CPA_CR_ReturnReasonController.cls-meta.xml
+src/classes/CPA_CR_TriggerUtil.cls
+src/classes/CPA_CR_TriggerUtil.cls-meta.xml
+src/classes/CPA_CRInformationController.cls
+src/classes/CPA_CRInformationController.cls-meta.xml
+src/classes/CPA_CRListController.cls
+src/classes/CPA_CRListController.cls-meta.xml
+src/classes/CPA_CRTrigger_Handler.cls
+src/classes/CPA_CRTrigger_Handler.cls-meta.xml
+src/classes/CPA_HLE_CancelReasonController.cls
+src/classes/CPA_HLE_CancelReasonController.cls-meta.xml
+src/classes/CPA_HLE_RequestTrigger_Handler.cls
+src/classes/CPA_HLE_RequestTrigger_Handler.cls-meta.xml
+src/classes/CPA_HLERequest_TriggerUtil.cls
+src/classes/CPA_HLERequest_TriggerUtil.cls-meta.xml
+src/classes/CPA_HLERequInformationController.cls
+src/classes/CPA_HLERequInformationController.cls-meta.xml
+src/classes/CPA_InformationController_Test.cls
+src/classes/CPA_InformationController_Test.cls-meta.xml
+src/classes/CPA_Interface_Trigger.cls
+src/classes/CPA_Interface_Trigger.cls-meta.xml
+src/classes/CPA_Key_Contact_Trigger_Handler.cls
+src/classes/CPA_Key_Contact_Trigger_Handler.cls-meta.xml
+src/classes/CPA_Key_Contacts_TriggerUtil.cls
+src/classes/CPA_Key_Contacts_TriggerUtil.cls-meta.xml
+src/classes/CPA_LOI_CancelReasonController.cls
+src/classes/CPA_LOI_CancelReasonController.cls-meta.xml
+src/classes/CPA_LOI_InformationController.cls
+src/classes/CPA_LOI_InformationController.cls-meta.xml
+src/classes/CPA_LOI_ReturnReasonController.cls
+src/classes/CPA_LOI_ReturnReasonController.cls-meta.xml
+src/classes/CPA_LOI_TriggerUtil.cls
+src/classes/CPA_LOI_TriggerUtil.cls-meta.xml
+src/classes/CPA_LOITrigger_Handler.cls
+src/classes/CPA_LOITrigger_Handler.cls-meta.xml
+src/classes/CPA_Project_Work_Order_TriggerUtil.cls
+src/classes/CPA_Project_Work_Order_TriggerUtil.cls-meta.xml
+src/classes/CPA_PWO_LOI_Trigger_Util.cls
+src/classes/CPA_PWO_LOI_Trigger_Util.cls-meta.xml
+src/classes/CPA_PWO_RFTer_Controller.cls
+src/classes/CPA_PWO_RFTer_Controller.cls-meta.xml
+src/classes/CPA_PwoCnfTnf_CancelReasonController.cls
+src/classes/CPA_PwoCnfTnf_CancelReasonController.cls-meta.xml
+src/classes/CPA_PwoCnfTnf_ReturnReasonController.cls
+src/classes/CPA_PwoCnfTnf_ReturnReasonController.cls-meta.xml
+src/classes/CPA_PWORF_CancelReasonController.cls
+src/classes/CPA_PWORF_CancelReasonController.cls-meta.xml
+src/classes/CPA_PWORF_PWO_UtilMethods_Test.cls
+src/classes/CPA_PWORF_PWO_UtilMethods_Test.cls-meta.xml
+src/classes/CPA_PWORF_TriggerUtil.cls
+src/classes/CPA_PWORF_TriggerUtil.cls-meta.xml
+src/classes/CPA_PWORF_WithholdReasonController.cls
+src/classes/CPA_PWORF_WithholdReasonController.cls-meta.xml
+src/classes/CPA_PWORFInformationController.cls
+src/classes/CPA_PWORFInformationController.cls-meta.xml
+src/classes/CPA_PWORFTrigger_Handler.cls
+src/classes/CPA_PWORFTrigger_Handler.cls-meta.xml
+src/classes/CPA_PWOTrigger_Handler.cls
+src/classes/CPA_PWOTrigger_Handler.cls-meta.xml
+src/classes/CPA_Queries_Trigger_Handler.cls
+src/classes/CPA_Queries_Trigger_Handler.cls-meta.xml
+src/classes/CPA_Queries_TriggerUtil.cls
+src/classes/CPA_Queries_TriggerUtil.cls-meta.xml
+src/classes/CPA_Query_comment_Trigger_Handler.cls
+src/classes/CPA_Query_comment_Trigger_Handler.cls-meta.xml
+src/classes/CPA_Req_Deli_and_Key_Contacts_util_Test.cls
+src/classes/CPA_Req_Deli_and_Key_Contacts_util_Test.cls-meta.xml
+src/classes/CPA_RequirementsDeliverables_Handler.cls
+src/classes/CPA_RequirementsDeliverables_Handler.cls-meta.xml
+src/classes/CPA_RequirementsDeliverables_TriggerUtil.cls
+src/classes/CPA_RequirementsDeliverables_TriggerUtil.cls-meta.xml
+src/classes/CPA_Resource_Requirement_Handler.cls
+src/classes/CPA_Resource_Requirement_Handler.cls-meta.xml
+src/classes/CPA_Resource_Requirement_TriggerUtil.cls
+src/classes/CPA_Resource_Requirement_TriggerUtil.cls-meta.xml
+src/classes/CPA_ReturnController_Test.cls
+src/classes/CPA_ReturnController_Test.cls-meta.xml
+src/classes/CPA_SelectRecordType_Test.cls
+src/classes/CPA_SelectRecordType_Test.cls-meta.xml
+src/classes/CPA_SelectRecordTypeController.cls
+src/classes/CPA_SelectRecordTypeController.cls-meta.xml
+src/classes/CPA_Test_Req_Deli_and_Key_Contacts_util.cls
+src/classes/CPA_Test_Req_Deli_and_Key_Contacts_util.cls-meta.xml
+src/classes/CPA_testContractClass.cls
+src/classes/CPA_testContractClass.cls-meta.xml
+src/classes/CPA_testCustomSettingClass_util.cls
+src/classes/CPA_testCustomSettingClass_util.cls-meta.xml
+src/classes/CPA_testGroupNameCustomSettingClass.cls
+src/classes/CPA_testGroupNameCustomSettingClass.cls-meta.xml
+src/classes/CPA_testPWORFClass_util.cls
+src/classes/CPA_testPWORFClass_util.cls-meta.xml
+src/classes/CPA_testStatusMsgCustomSettingClass.cls
+src/classes/CPA_testStatusMsgCustomSettingClass.cls-meta.xml
+src/classes/CPA_TriggerFactory.cls
+src/classes/CPA_TriggerFactory.cls-meta.xml
+src/classes/CPA_Utilities.cls
+src/classes/CPA_Utilities.cls-meta.xml
+src
+src/email
+src/email/CPA_Email_Template-meta.xml
+src/email/CPA_Email_Template
+src/email/CPA_Email_Template/CPA_Accept_PWORF.email
+src/email/CPA_Email_Template/CPA_Accept_PWORF.email-meta.xml
+src/email/CPA_Email_Template/CPA_Answered_HLE_request.email
+src/email/CPA_Email_Template/CPA_Answered_HLE_request.email-meta.xml
+src/email/CPA_Email_Template/CPA_Answered_PWORF.email
+src/email/CPA_Email_Template/CPA_Answered_PWORF.email-meta.xml
+src/email/CPA_Email_Template/CPA_Auto_Accept_a_PWORF.email
+src/email/CPA_Email_Template/CPA_Auto_Accept_a_PWORF.email-meta.xml
+src/email/CPA_Email_Template/CPA_Auto_Accept_PWORF.email
+src/email/CPA_Email_Template/CPA_Auto_Accept_PWORF.email-meta.xml
+src/email/CPA_Email_Template/CPA_CR_is_accepted.email
+src/email/CPA_Email_Template/CPA_CR_is_accepted.email-meta.xml
+src/email/CPA_Email_Template/CPA_CR_is_accepted2.email
+src/email/CPA_Email_Template/CPA_CR_is_accepted2.email-meta.xml
+src/email/CPA_Email_Template/CPA_CR_is_cancelled.email
+src/email/CPA_Email_Template/CPA_CR_is_cancelled.email-meta.xml
+src/email/CPA_Email_Template/CPA_CR_is_resubmitted.email
+src/email/CPA_Email_Template/CPA_CR_is_resubmitted.email-meta.xml
+src/email/CPA_Email_Template/CPA_CR_is_returned.email
+src/email/CPA_Email_Template/CPA_CR_is_returned.email-meta.xml
+src/email/CPA_Email_Template/CPA_CR_is_sent_for_signature.email
+src/email/CPA_Email_Template/CPA_CR_is_sent_for_signature.email-meta.xml
+src/email/CPA_Email_Template/CPA_CR_is_signed.email
+src/email/CPA_Email_Template/CPA_CR_is_signed.email-meta.xml
+src/email/CPA_Email_Template/CPA_CR_Query_Reassigned.email
+src/email/CPA_Email_Template/CPA_CR_Query_Reassigned.email-meta.xml
+src/email/CPA_Email_Template/CPA_CR_query_Responded.email
+src/email/CPA_Email_Template/CPA_CR_query_Responded.email-meta.xml
+src/email/CPA_Email_Template/CPA_CR_query_Submitted.email
+src/email/CPA_Email_Template/CPA_CR_query_Submitted.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_Request_Accepted.email
+src/email/CPA_Email_Template/CPA_HLE_Request_Accepted.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_Request_Answered.email
+src/email/CPA_Email_Template/CPA_HLE_Request_Answered.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_Request_Cancelled_by_SMT.email
+src/email/CPA_Email_Template/CPA_HLE_Request_Cancelled_by_SMT.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_Request_Query_Reassigned.email
+src/email/CPA_Email_Template/CPA_HLE_Request_Query_Reassigned.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_REquest_query_Submitted.email
+src/email/CPA_Email_Template/CPA_HLE_REquest_query_Submitted.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_Request_Resubmitted_by_SMT.email
+src/email/CPA_Email_Template/CPA_HLE_Request_Resubmitted_by_SMT.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_Request_Return_by_VDM.email
+src/email/CPA_Email_Template/CPA_HLE_Request_Return_by_VDM.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_Request_SLA1.email
+src/email/CPA_Email_Template/CPA_HLE_Request_SLA1.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_Request_SLA2.email
+src/email/CPA_Email_Template/CPA_HLE_Request_SLA2.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_Request_Submitted_by_SMT.email
+src/email/CPA_Email_Template/CPA_HLE_Request_Submitted_by_SMT.email-meta.xml
+src/email/CPA_Email_Template/CPA_HLE_REquestquery_Responded.email
+src/email/CPA_Email_Template/CPA_HLE_REquestquery_Responded.email-meta.xml
+src/email/CPA_Email_Template/CPA_LOI_Accepted.email
+src/email/CPA_Email_Template/CPA_LOI_Accepted.email-meta.xml
+src/email/CPA_Email_Template/CPA_LOI_is_cancelled.email
+src/email/CPA_Email_Template/CPA_LOI_is_cancelled.email-meta.xml
+src/email/CPA_Email_Template/CPA_LOI_Query_Reassigned.email
+src/email/CPA_Email_Template/CPA_LOI_Query_Reassigned.email-meta.xml
+src/email/CPA_Email_Template/CPA_LOI_query_Responded.email
+src/email/CPA_Email_Template/CPA_LOI_query_Responded.email-meta.xml
+src/email/CPA_Email_Template/CPA_LOI_query_Submitted.email
+src/email/CPA_Email_Template/CPA_LOI_query_Submitted.email-meta.xml
+src/email/CPA_Email_Template/CPA_LOI_Request_For_Cancellation.email
+src/email/CPA_Email_Template/CPA_LOI_Request_For_Cancellation.email-meta.xml
+src/email/CPA_Email_Template/CPA_LOI_Resubmitted.email
+src/email/CPA_Email_Template/CPA_LOI_Resubmitted.email-meta.xml
+src/email/CPA_Email_Template/CPA_LOI_Returned.email
+src/email/CPA_Email_Template/CPA_LOI_Returned.email-meta.xml
+src/email/CPA_Email_Template/CPA_LOI_Sent_For_Signature.email
+src/email/CPA_Email_Template/CPA_LOI_Sent_For_Signature.email-meta.xml
+src/email/CPA_Email_Template/CPA_LOI_Signed.email
+src/email/CPA_Email_Template/CPA_LOI_Signed.email-meta.xml
+src/email/CPA_Email_Template/CPA_LOI_Submitted.email
+src/email/CPA_Email_Template/CPA_LOI_Submitted.email-meta.xml
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Accepted.email
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Accepted.email-meta.xml
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Cancelled.email
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Cancelled.email-meta.xml
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Delivered.email
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Delivered.email-meta.xml
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Resubmitted.email
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Resubmitted.email-meta.xml
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Returned.email
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Returned.email-meta.xml
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Rqst_Termination.email
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Rqst_Termination.email-meta.xml
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Sent_For_Sign.email
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Sent_For_Sign.email-meta.xml
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Signed.email
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Signed.email-meta.xml
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Submitted.email
+src/email/CPA_Email_Template/CPA_Project_Work_Order_Submitted.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWO_Query_Reassigned.email
+src/email/CPA_Email_Template/CPA_PWO_Query_Reassigned.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWO_query_Responded.email
+src/email/CPA_Email_Template/CPA_PWO_query_Responded.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWO_query_Submitted.email
+src/email/CPA_Email_Template/CPA_PWO_query_Submitted.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_Cancelled_by_SMT.email
+src/email/CPA_Email_Template/CPA_PWORF_Cancelled_by_SMT.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_Cancelled_by_ULPM.email
+src/email/CPA_Email_Template/CPA_PWORF_Cancelled_by_ULPM.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_Query_Reassigned.email
+src/email/CPA_Email_Template/CPA_PWORF_Query_Reassigned.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_query_Responded.email
+src/email/CPA_Email_Template/CPA_PWORF_query_Responded.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_query_Submitted.email
+src/email/CPA_Email_Template/CPA_PWORF_query_Submitted.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_Request_for_Cancellation.email
+src/email/CPA_Email_Template/CPA_PWORF_Request_for_Cancellation.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_Request_for_Withhold.email
+src/email/CPA_Email_Template/CPA_PWORF_Request_for_Withhold.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_Resubmitted_by_SMT.email
+src/email/CPA_Email_Template/CPA_PWORF_Resubmitted_by_SMT.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_Resubmitted_by_ULPM.email
+src/email/CPA_Email_Template/CPA_PWORF_Resubmitted_by_ULPM.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_Submitted_by_SMT.email
+src/email/CPA_Email_Template/CPA_PWORF_Submitted_by_SMT.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_Submitted_by_ULPM.email
+src/email/CPA_Email_Template/CPA_PWORF_Submitted_by_ULPM.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_Withheld_by_SMT.email
+src/email/CPA_Email_Template/CPA_PWORF_Withheld_by_SMT.email-meta.xml
+src/email/CPA_Email_Template/CPA_PWORF_Withheld_by_ULPM.email
+src/email/CPA_Email_Template/CPA_PWORF_Withheld_by_ULPM.email-meta.xml
+src/email/CPA_Email_Template/CPA_Reminder_to_ADM_to_respond.email
+src/email/CPA_Email_Template/CPA_Reminder_to_ADM_to_respond.email-meta.xml
+src/email/CPA_Email_Template/CPA_Reminder_to_enter_a_Clarity_ID.email
+src/email/CPA_Email_Template/CPA_Reminder_to_enter_a_Clarity_ID.email-meta.xml
+src/email/CPA_Email_Template/CPA_Reminder_to_respond_to_PWORF.email
+src/email/CPA_Email_Template/CPA_Reminder_to_respond_to_PWORF.email-meta.xml
+src/email/CPA_Email_Template/CPA_Reminder_to_submit_HLE.email
+src/email/CPA_Email_Template/CPA_Reminder_to_submit_HLE.email-meta.xml
+src/email/CPA_Email_Template/CPA_Reminder_to_submit_PWO.email
+src/email/CPA_Email_Template/CPA_Reminder_to_submit_PWO.email-meta.xml
+src/email/CPA_Email_Template/CPA_Request_for_Cancellation.email
+src/email/CPA_Email_Template/CPA_Request_for_Cancellation.email-meta.xml
+src/email/CPA_Email_Template/CPA_Request_for_Withhold.email
+src/email/CPA_Email_Template/CPA_Request_for_Withhold.email-meta.xml
+src/email/CPA_Email_Template/CPA_Return_PWORF.email
+src/email/CPA_Email_Template/CPA_Return_PWORF.email-meta.xml
+src/email/CPA_Email_Template/CPA_Set_a_CR_as_delivered.email
+src/email/CPA_Email_Template/CPA_Set_a_CR_as_delivered.email-meta.xml
+src/email/CPA_Email_Template/CPA_Submit_a_CR_against_PWO.email
+src/email/CPA_Email_Template/CPA_Submit_a_CR_against_PWO.email-meta.xml
+src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_accepted.email
+src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_accepted.email-meta.xml
+src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_resubmitted.email
+src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_resubmitted.email-meta.xml
+src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_returned.email
+src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_returned.email-meta.xml
+src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_sent_for_signature.email
+src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_sent_for_signature.email-meta.xml
+src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_signed.email
+src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_signed.email-meta.xml
+src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_submitted.email
+src/email/CPA_Email_Template/CPA_TNF_for_PWO_is_submitted.email-meta.xml
+src
+src/groups
+src/groups/CAP_SMT_Group.group
+src/groups/CAP_ULFT_Group.group
+src/groups/CAP_ULPM_group.group
+src/groups/CAP_ULPT_Group.group
+src/groups/CAP_VDM_Group.group
+src
+src/homePageLayouts
+src/homePageLayouts/Unilever - Chatter Only HomePage.homePageLayout
+src
+src/layouts
+src/layouts/CPA_CNF_TNF__c-CNF%2FTNF Layout.layout
+src/layouts/CPA_Commercial_Details__c-Commercial Details Layout.layout
+src/layouts/CPA_CR__c-CPA CR For ULPM ULFT ULPT.layout
+src/layouts/CPA_CR__c-CPA SMT Sent for Signed and Signed.layout
+src/layouts/CPA_CR__c-CPA VDM Delivered Layout.layout
+src/layouts/CPA_CR__c-CR Layout without mandatory fields.layout
+src/layouts/CPA_CR__c-CR Layout.layout
+src/layouts/CPA_CR__c-CR Read Only Layout.layout
+src/layouts/CPA_CR__c-Standalone CR Layout.layout
+src/layouts/CPA_HLE_Request__c-BPE Answered.layout
+src/layouts/CPA_HLE_Request__c-BPE Cancelled.layout
+src/layouts/CPA_HLE_Request__c-BPE.layout
+src/layouts/CPA_HLE_Request__c-HLE Answered.layout
+src/layouts/CPA_HLE_Request__c-HLE Cancelled.layout
+src/layouts/CPA_HLE_Request__c-HLE layout without mandatory fields.layout
+src/layouts/CPA_HLE_Request__c-HLE Request Accepted.layout
+src/layouts/CPA_HLE_Request__c-HLE Request Cancelled.layout
+src/layouts/CPA_HLE_Request__c-HLE Request Layout.layout
+src/layouts/CPA_HLE_Request__c-HLE Request Saved layout.layout
+src/layouts/CPA_HLE_Request__c-HLE.layout
+src/layouts/CPA_Key_Contacts__c-Key Contact Layout.layout
+src/layouts/CPA_Key_Contacts__c-PWORF Key Contact Layout.layout
+src/layouts/CPA_LOI__c-ADM LOI without Mandatory fields.layout
+src/layouts/CPA_LOI__c-LOI Accepted and further.layout
+src/layouts/CPA_LOI__c-LOI Layout without mandatory fields.layout
+src/layouts/CPA_LOI__c-LOI Layout.layout
+src/layouts/CPA_LOI__c-LOI submitted Layout.layout
+src/layouts/CPA_LOI__c-SMT LOI without Mandatory fields.layout
+src/layouts/CPA_LOI__c-ULPM LOI without Mandatory Fields.layout
+src/layouts/CPA_project_work_order__c-CPA Project Work Order Cancel  Layout.layout
+src/layouts/CPA_project_work_order__c-CPA Project Work Order CNF Layout.layout
+src/layouts/CPA_project_work_order__c-CPA Project Work Order CNF Signed Layout.layout
+src/layouts/CPA_project_work_order__c-CPA Project Work Order CNF Submitted   Layout.layout
+src/layouts/CPA_project_work_order__c-CPA Project Work Order Delivered  Layout.layout
+src/layouts/CPA_project_work_order__c-CPA Project Work Order Layout.layout
+src/layouts/CPA_project_work_order__c-CPA Project Work Order Signed  Layout.layout
+src/layouts/CPA_project_work_order__c-CPA Project Work Order Submitted  Layout.layout
+src/layouts/CPA_project_work_order__c-CPA Project Work Order TNF Layout.layout
+src/layouts/CPA_project_work_order__c-CPA Project Work Order TNF Signed Layout.layout
+src/layouts/CPA_project_work_order__c-CPA Project Work Order TNF Submitted layout.layout
+src/layouts/CPA_project_work_order__c-CPA Standalone Project Work Order.layout
+src/layouts/CPA_PWORF__c-All Project Layout.layout
+src/layouts/CPA_PWORF__c-Old RA Layout.layout
+src/layouts/CPA_PWORF__c-Other Project Layout.layout
+src/layouts/CPA_PWORF__c-Other Read Only Layout For SMT.layout
+src/layouts/CPA_PWORF__c-Other Read Only Layout.layout
+src/layouts/CPA_PWORF__c-Other-ADM Page Layout.layout
+src/layouts/CPA_PWORF__c-RA Page Layout.layout
+src/layouts/CPA_PWORF__c-RA Read Only Layout For SMT.layout
+src/layouts/CPA_PWORF__c-RA Read Only Layout.layout
+src/layouts/CPA_PWORF__c-RA-ADM Page Layout.layout
+src/layouts/CPA_PWORF_Ageing__c-CPA PWORF Ageing Layout.layout
+src/layouts/CPA_Queries__c-CPA_Queries Layout.layout
+src/layouts/CPA_Query_comment__c-CPA_Query comments Layout.layout
+src/layouts/CPA_Query_comment__c-Submit Response Layout.layout
+src/layouts/CPA_Requirements_and_Deliverables__c-Requirements and Deliverables Layout.layout
+src/layouts/CPA_Resource_Requirement__c-Resource Requirement Layout.layout
+src/layouts/CPA_Risk_Assessment_and_Mitigation__c-Risk Assessment and Mitigation Layout.layout
+src/layouts/CPA_TAT__c-CPA TAT Layout.layout
+src/layouts/CPA_User_Defined_Attribute__c-User Defined Attribute Layout.layout
+src
+src/objects
+src/objects/CPA_CNF_TNF__c.object
+src/objects/CPA_Commercial_Details__c.object
+src/objects/CPA_CR__c.object
+src/objects/CPA_HLE_Request__c.object
+src/objects/CPA_Key_Contacts__c.object
+src/objects/CPA_LOI__c.object
+src/objects/CPA_project_work_order__c.object
+src/objects/CPA_PWORF__c.object
+src/objects/CPA_PWORF_Ageing__c.object
+src/objects/CPA_Queries__c.object
+src/objects/CPA_Query_comment__c.object
+src/objects/CPA_Requirements_and_Deliverables__c.object
+src/objects/CPA_Resource_Requirement__c.object
+src/objects/CPA_Risk_Assessment_and_Mitigation__c.object
+src/objects/CPA_TAT__c.object
+src/objects/CPA_User_Defined_Attribute__c.object
+src
+src/pages
+src/pages/CPA_Contract_Information_Display_Page.page
+src/pages/CPA_Contract_Information_Display_Page.page-meta.xml
+src/pages/CPA_CR_Cancel_Reason.page
+src/pages/CPA_CR_Cancel_Reason.page-meta.xml
+src/pages/CPA_CR_Information_Display_Page.page
+src/pages/CPA_CR_Information_Display_Page.page-meta.xml
+src/pages/CPA_CR_Reason_for_return.page
+src/pages/CPA_CR_Reason_for_return.page-meta.xml
+src/pages/CPA_CreatePWO.page
+src/pages/CPA_CreatePWO.page-meta.xml
+src/pages/CPA_CRList.page
+src/pages/CPA_CRList.page-meta.xml
+src/pages/CPA_HLE_Cancel_Reason.page
+src/pages/CPA_HLE_Cancel_Reason.page-meta.xml
+src/pages/CPA_HLE_Request_Information_Display_Page.page
+src/pages/CPA_HLE_Request_Information_Display_Page.page-meta.xml
+src/pages/CPA_LOI_Cancel_Reason.page
+src/pages/CPA_LOI_Cancel_Reason.page-meta.xml
+src/pages/CPA_LOI_Information_Display_Page.page
+src/pages/CPA_LOI_Information_Display_Page.page-meta.xml
+src/pages/CPA_LOI_Reason_for_return.page
+src/pages/CPA_LOI_Reason_for_return.page-meta.xml
+src/pages/CPA_PWO_Request_For_Termination.page
+src/pages/CPA_PWO_Request_For_Termination.page-meta.xml
+src/pages/CPA_PwoCnfTnf_Cancel_Reason.page
+src/pages/CPA_PwoCnfTnf_Cancel_Reason.page-meta.xml
+src/pages/CPA_PwoCnfTnf_Return_Reason.page
+src/pages/CPA_PwoCnfTnf_Return_Reason.page-meta.xml
+src/pages/CPA_PWORF_Cancel_Reason.page
+src/pages/CPA_PWORF_Cancel_Reason.page-meta.xml
+src/pages/CPA_PWORF_Information_Display_Page.page
+src/pages/CPA_PWORF_Information_Display_Page.page-meta.xml
+src/pages/CPA_PWORF_Reason_for_Withhold.page
+src/pages/CPA_PWORF_Reason_for_Withhold.page-meta.xml
+src
+src/permissionsets
+src/permissionsets/CPA_ADM.permissionset
+src/permissionsets/CPA_SMT.permissionset
+src/permissionsets/CPA_ULPM.permissionset
+src
+src/queues
+src/queues/CAP_ULPM.queue
+src/queues/CAP_VDM_Queue.queue
+src/queues/CPA_SMT.queue
+src
+src/tabs
+src/tabs/CPA_CR__c.tab
+src/tabs/CPA_HLE_Request__c.tab
+src/tabs/CPA_LOI__c.tab
+src/tabs/CPA_project_work_order__c.tab
+src/tabs/CPA_PWORF__c.tab
+src
+src/triggers
+src/triggers/CPA_Attachment_Trigger.trigger
+src/triggers/CPA_Attachment_Trigger.trigger-meta.xml
+src/triggers/CPA_CRTrigger.trigger
+src/triggers/CPA_CRTrigger.trigger-meta.xml
+src/triggers/CPA_HLERequest_trigger.trigger
+src/triggers/CPA_HLERequest_trigger.trigger-meta.xml
+src/triggers/CPA_Key_Contact_Trigger.trigger
+src/triggers/CPA_Key_Contact_Trigger.trigger-meta.xml
+src/triggers/CPA_LOITrigger.trigger
+src/triggers/CPA_LOITrigger.trigger-meta.xml
+src/triggers/CPA_Project_Work_Order_Triggers.trigger
+src/triggers/CPA_Project_Work_Order_Triggers.trigger-meta.xml
+src/triggers/CPA_PWORF_Trigger.trigger
+src/triggers/CPA_PWORF_Trigger.trigger-meta.xml
+src/triggers/CPA_QueriesTrigger.trigger
+src/triggers/CPA_QueriesTrigger.trigger-meta.xml
+src/triggers/CPA_RequirementsDeliverables_Trigger.trigger
+src/triggers/CPA_RequirementsDeliverables_Trigger.trigger-meta.xml
+src/triggers/CPA_Resource_Requirement_Trigger.trigger
+src/triggers/CPA_Resource_Requirement_Trigger.trigger-meta.xml
+src/triggers/CPA_ResponseTrigger.trigger
+src/triggers/CPA_ResponseTrigger.trigger-meta.xml
+src
+src/workflows
+src/workflows/CPA_CR__c.workflow
+src/workflows/CPA_HLE_Request__c.workflow
+src/workflows/CPA_LOI__c.workflow
+src/workflows/CPA_project_work_order__c.workflow
+src/workflows/CPA_PWORF__c.workflow
+src/workflows/CPA_Queries__c.workflow
+src/workflows/CPA_Query_comment__c.workflow

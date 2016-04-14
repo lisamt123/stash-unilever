@@ -75,6 +75,10 @@ body button.clearButton {
   border: 2px solid #dcdcdc;
   padding: 8px;
   color: #4d5051;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
 }
 
 .form-item .item-input input {
@@ -84,6 +88,10 @@ body button.clearButton {
   border: 2px solid #dcdcdc;
   padding: 8px;
   color: #4d5051;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
 }
 .form-item .item-input select {
   width: 431px;
@@ -97,6 +105,11 @@ body button.clearButton {
 .form-item .item-input textarea {
   width: 400px;
   min-height: 50px;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  border: 2px solid #dcdcdc;
 }
 .form-item .item-input table {
   width: 100%;

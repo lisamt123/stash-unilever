@@ -14,7 +14,8 @@ jq(document).ready(function() {
     }
 });
 function updateAdditional() {
-    window.parent.location.reload(true);
+	var pageURL = window.parent.location.href.replace('&BETOptions=1','');
+	window.parent.location.href = pageURL;
 }
 /* Below code is for the reset functionality in edit coreparameter */
 function resetqone() {
@@ -29,12 +30,17 @@ function resetqthree() {
 /* Below code is for the edit coreparameter modal */
 function checkCoreParam() {
     if (IPMProAppCP.coreParameter == 'true') {
-        window.parent.location.reload(true);
+        var pageURL = window.parent.location.href.replace('&BETOptions=1','');
+		window.parent.location.href = pageURL;
     }
 }
 function sliderCP(el) {
+	jq('.selText').hide();
     var elm = jq('#myCarousel').find('.active').find(el);
     var str = elm.attr("id");
+	if( jq('label').hasClass('fstchild active')){
+		jq('.helpDesc').prepend('<div class="selText">'+IPMProAppCP.select+'</div>');
+	}
     var s = str.match(/\d+$/)[0];
     var totalwidth = elm.width();
     var lblCount = elm.find('label').length;

@@ -11515,6 +11515,8 @@ This project has been marked as exempt from BET requirements by the Leadership t
     </labels>
     <labels>
         <fullName>IPM_TEXT_SHOWN_HERE</fullName>
+<<<<<<< HEAD
+=======
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TEXT_SHOWN_HERE</shortDescription>
@@ -11522,6 +11524,81 @@ This project has been marked as exempt from BET requirements by the Leadership t
     </labels>
     <labels>
         <fullName>IPM_THE_BELOW_SELECTED_COUNTRIES</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THE_BELOW_SELECTED_COUNTRIES</shortDescription>
+        <value>The below selected countries, will be created as a grouped local rollout project</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THE_SELECTION_HERE_DOES_NOT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THE_SELECTION_HERE_DOES_NOT</shortDescription>
+        <value>The selections here does not change the rollout plan, it only indicates to which country the below financials are related to and only applies to Charter</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_CANNOT_BE_PROPOSED_YET</fullName>
+>>>>>>> e8388a35d9b8ade3eb57a9425583044547c0b685
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TEXT_SHOWN_HERE</shortDescription>
+        <value>The text shown here has been copied from Project description. Editing this text will not modify the project description of the IPM Navigator project. This change will only affect the description field of your BET project</value>
+    </labels>
+    <labels>
+<<<<<<< HEAD
+        <fullName>IPM_THE_BELOW_SELECTED_COUNTRIES</fullName>
+=======
+        <fullName>IPM_THIS_PARAMETER_WILL_HELP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_PARAMETER_WILL_HELP</shortDescription>
+        <value>This parameter will help you to classify the project correctly for reporting purposes.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_SHOWS_BUSINESS_CASE_BY_LOCAL_FINANCE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_SHOWS_BUSINESS_CASE_BY_LOCAL_FINANCE</shortDescription>
+        <value>This shows the Business case(s) specified by the Local Finance teams for local rollouts of this project. In case of misalignment, this tab will show BB&apos;s view.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_SHOWS_THE_BUSINESS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_SHOWS_THE_BUSINESS</shortDescription>
+        <value>This shows the Business case as captured during charter approval and it is only for reference, therefore read-only.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_SHOWS_THE_FULL_BUSINESS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_SHOWS_THE_FULL_BUSINESS</shortDescription>
+        <value>This shows the full business case as submitted by the Financial BD</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_SHOWS_THE_FULL_BUSINESS_BB</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_SHOWS_THE_FULL_BUSINESS_BB</shortDescription>
+        <value>This shows the full business case as submitted by the Financial BB</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_VIEW_SHOWS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_VIEW_SHOWS</shortDescription>
+        <value>This view shows the full business case as submitted by Financial BD. In case of misalignment this tab shows BD&apos;s view</value>
+    </labels>
+    <labels>
+        <fullName>IPM_THIS_WILL_DESCRIBE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_THIS_WILL_DESCRIBE</shortDescription>
+        <value>This will describe which part of the organisation you work for and, what type of project and related options will be driven from this selection</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TIMINGS</fullName>
+>>>>>>> e8388a35d9b8ade3eb57a9425583044547c0b685
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_THE_BELOW_SELECTED_COUNTRIES</shortDescription>
@@ -12470,6 +12547,125 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <fullName>ipmFinTableGrossProfit</fullName>
         <language>en_US</language>
         <protected>false</protected>
+<<<<<<< HEAD
+        <shortDescription>IPM_welcomeToFeasibility</shortDescription>
+        <value>We just need you to confirm a few details and then we can create the new BET for your project. Any changes you make here will not affect your IPM project.</value>
+=======
+        <shortDescription>ipmFinTableGrossProfit</shortDescription>
+        <value>Gross Profit</value>
+>>>>>>> e8388a35d9b8ade3eb57a9425583044547c0b685
+    </labels>
+   <labels>
+        <fullName>TLD_After_Charter_Contract_and_Market_Ready_Milestone_Dates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TLD After Charter Contract and Market Ready Milestone Dates</shortDescription>
+        <value>Target Launch Date must be after Charter, Contract and Market Ready mandatory milestones.</value>
+    </labels>  
+    <labels>
+<<<<<<< HEAD
+        <fullName>ipmFinSummaryBIC</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryBIC</shortDescription>
+        <value>BIC</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryCAPEX</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryCAPEX</shortDescription>
+        <value>CAPEX</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryGMbps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryGMbps</shortDescription>
+        <value>GM Y1 bps vs DNDS</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryIRR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryIRR</shortDescription>
+        <value>IRR</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryNPV</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryNPV</shortDescription>
+        <value>NPV</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryPBObps</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryPBObps</shortDescription>
+        <value>PBO Y1 bps vs DNDS</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinSummaryPayback</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinSummaryPayback</shortDescription>
+        <value>Payback</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableAPofTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableAPofTO</shortDescription>
+        <value>BMI (% of T/O)</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableASIncrementalValueShare</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableASIncrementalValueShare</shortDescription>
+        <value>Incremental Value Share</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableASInnovationValueShare</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableASInnovationValueShare</shortDescription>
+        <value>Innovation Value Share</value>
+    </labels>
+    
+    <labels>
+        <fullName>ipmFinTableGDgTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGDgTO</shortDescription>
+        <value>gTO</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableGDiAP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGDiAP</shortDescription>
+        <value>iBMI</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableGDiTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGDiTO</shortDescription>
+        <value>iTO</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableGMofTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableGMofTO</shortDescription>
+        <value>GM (% of T/O)</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableGrossProfit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
         <shortDescription>ipmFinTableGrossProfit</shortDescription>
         <value>Gross Profit</value>
     </labels>
@@ -12505,6 +12701,39 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <fullName>ipmFinTableVolume</fullName>
         <language>en_US</language>
         <protected>false</protected>
+=======
+        <fullName>ipmFinTablePBOofTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTablePBOofTO</shortDescription>
+        <value>PBO (% of T/O)</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableProfitBeforeOverheads</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableProfitBeforeOverheads</shortDescription>
+        <value>Profit Before Overheads</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableTurnover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableTurnover</shortDescription>
+        <value>Turnover</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableValueMarketShare</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ipmFinTableValueMarketShare</shortDescription>
+        <value>Value Market Share</value>
+    </labels>
+    <labels>
+        <fullName>ipmFinTableVolume</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+>>>>>>> e8388a35d9b8ade3eb57a9425583044547c0b685
         <shortDescription>ipmFinTableVolume</shortDescription>
         <value>Volume</value>
     </labels>
@@ -15917,6 +16146,7 @@ Which Communications team do you represent? You must be associated to one Planne
     
    
   
+<<<<<<< HEAD
     <labels>
         <fullName>ipmFinTableAdvertisingPromotions</fullName>
         <language>en_US</language>
@@ -18641,6 +18871,8 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>Amr RewExistingMat at least one optionofMedium mustbe selected corr to OOH</shortDescription>
         <value>For Rework Existing Material : at least one option of Medium must be selected corresponding to Out of Home</value>
     </labels>
+=======
+>>>>>>> e8388a35d9b8ade3eb57a9425583044547c0b685
     <labels>
         <fullName>Amr_ReworkExistMat_atleast_oneoption_of_Media_Channel_mustbe_selected</fullName>
         <language>en_US</language>
@@ -18648,6 +18880,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>Amr ReworkExistMat atleast oneoption of Media Channel mustbe selected</shortDescription>
         <value>For Rework Existing Material : at least one option of Media Channel must be selected</value>
     </labels>
+<<<<<<< HEAD
     <labels>
         <fullName>Amr_ReworkExistMater_atleast_oneoption_of_Medium_mustbeselected_corr_to_inStor</fullName>
         <language>en_US</language>
@@ -18718,6 +18951,10 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>Shoot Location</shortDescription>
         <value>Shoot Location (country)</value>
     </labels>
+=======
+    
+
+>>>>>>> e8388a35d9b8ade3eb57a9425583044547c0b685
     <labels>
         <fullName>Amr_Sound_Studio_name_if_applicable</fullName>
         <language>en_US</language>
@@ -18845,7 +19082,19 @@ Which Communications team do you represent? You must be associated to one Planne
         <value>Target Air Date (i.e. when will material be released)</value>
     </labels>
     <labels>
+<<<<<<< HEAD
         <fullName>Amr_There_is_no_data_to_display</fullName>
+=======
+        <fullName>secondsOblix_Lbl_UIUX_Audio_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio</shortDescription>
+        <value>Full creative development and production of audio content, 30-60</value>
+    </labels>
+    <labels>
+        <fullName>toolbar_app_top_nav_lbl_title_text</fullName>
+>>>>>>> e8388a35d9b8ade3eb57a9425583044547c0b685
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Amr_ There is no data to display</shortDescription>
@@ -19102,5 +19351,140 @@ Which Communications team do you represent? You must be associated to one Planne
         <protected>false</protected>
         <shortDescription>Amr tab</shortDescription>
         <value>tab</value>
+    </labels>
+    <labels>
+        <fullName>WU_Category</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Category</shortDescription>
+        <value>Network</value>
+    </labels>
+    <labels>
+        <fullName>WU_City</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>WU_Country</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>WU_DuplicateCapacityDetailWhileInsert</fullName>
+        <categories>WU_Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_DuplicateCapacityDetailWhileInsert</shortDescription>
+        <value>Warehouse Capacity Detail record already exists with the provided Utilization Start Date and Utilization End Date. If you want to edit the existing Warehouse Capacity Detail record, edit it from the list.</value>
+    </labels>
+    <labels>
+        <fullName>WU_EndDate</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU EndDate</shortDescription>
+        <value>Utilization End Date</value>
+    </labels>
+    <labels>
+        <fullName>WU_MCO</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU MCO</shortDescription>
+        <value>MCO</value>
+    </labels>
+    <labels>
+        <fullName>WU_Region</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU Region</shortDescription>
+        <value>Region</value>
+    </labels>
+    <labels>
+        <fullName>WU_SAPCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU SAPCode</shortDescription>
+        <value>SAP Code</value>
+    </labels>
+    <labels>
+        <fullName>WU_StartDate</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU StartDate</shortDescription>
+        <value>Utilization Start Date</value>
+    </labels>
+    <labels>
+        <fullName>WU_utilizationTypeCannotChange</fullName>
+        <categories>WU_Error Message</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_utilizationTypeCannotChange</shortDescription>
+        <value>Utilization Type for this month has been set.You cannot change it.</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_City</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_City</shortDescription>
+        <value>00N8A000000PZIN</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Country</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Country</shortDescription>
+        <value>00N8A000000PZIQ</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Id</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Id</shortDescription>
+        <value>00O8A000000Jiog</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_MCO</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_MCO</shortDescription>
+        <value>00N8A000000PZIe</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Network</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Network</shortDescription>
+        <value>00N8A000000PZIg</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_Region</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_Region</shortDescription>
+        <value>00N8A000000PZIl</value>
+    </labels>
+    <labels>
+        <fullName>WU_Report_SAP_Code</fullName>
+        <categories>Warehouse Utilization</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WU_Report_SAP_Code</shortDescription>
+        <value>00N8A000000PZIm</value>
     </labels>
 </CustomLabels>

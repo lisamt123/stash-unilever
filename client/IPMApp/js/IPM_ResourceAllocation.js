@@ -16,10 +16,12 @@ jq(document).ready(function() {
 	  });
 	   jq(".teamCheck").change(function() {
 		var $this = jq(this);
-		if($this.is(':checked')) 
+		if($this.is(':checked')) {
 			$this.closest('tr').addClass('selected'); 
-		else 
+			}
+		else {
 			$this.closest('tr').removeClass('selected');
+			}
 	});
 	jq('.teamSearch1 input').clearSearch();
 	jq('.teamSearch2 input').clearSearch();
@@ -61,20 +63,20 @@ function callsearch(blnInvokedFromRollOuts) {
 }
 
 /* Below code is to save the selected team members */
-function SubmitOnClick(objSubmitBtn) {
+function submitOnClick(objSubmitBtn) {
     objSubmitBtn.disabled = true;
     objSubmitBtn.value = 'Adding...';
     saveMembers();
 }
 
 /* Below code is to add the selected members */
-function SubmitAdd(objSubmitBtn) {
+function submitAdd(objSubmitBtn) {
     objSubmitBtn.value = 'Add';
     objSubmitBtn.disabled = false;
 }
 
 /* Below code is to save the role of the members */
-function SubmitOnClick_Role(objSubmitBtn) {
+function submitOnClickRole(objSubmitBtn) {
     objSubmitBtn.disabled = true;
     objSubmitBtn.value = 'Adding...';
     RoleAndCategoryMem();

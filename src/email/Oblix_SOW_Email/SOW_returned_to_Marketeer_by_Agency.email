@@ -1,0 +1,6 @@
+The following SOW has been returned by {!Marketing_SOW__c.Oblix_AgencyEstimate__c} for further amendments.
+
+SOW Name: {!Marketing_SOW__c.Name}
+Comment:s: {!ApprovalRequest.Comments}
+
+Click here to view the SOW: https://unilever--sfproto--c.cs7.visual.force.com/apex/oblix_sowmaindetail?sowId={!Marketing_SOW__c.Id}

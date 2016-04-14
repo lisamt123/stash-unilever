@@ -17,6 +17,7 @@
          .fl {
              float: left;
          }
+		 .searchModal .lookupSearchIcon{background-image: url("../images/search.svg");border: 0px;background-size: 20px 20px;width: 28px;height: 29px;background-position: 5px 6px;background-repeat: no-repeat;position: relative;left: -34px;background-color: #fff;}
 		 .pull-right{float:right;}
 		 .tradeDesc{margin: 10px 0px;display: block;}
 		 .tradeButtonContainer{margin:15px;}
@@ -131,6 +132,7 @@
              color: #636363;
              margin: 0px 0;
          }
+		 .alertAccordian{cursor:pointer;}
         /* .secUsersHistory {
              background: url(../images/tlHistory.jpg) repeat-y 32px 0;
          } */
@@ -1265,7 +1267,7 @@
 		max-height:300px;
 		overflow:auto;
 	}
-	.charterApprover{color:#333;background-color: #F6F6F6;  margin-top: 10px;  display: block;  padding: 10px 10px 10px 0px;  border-top: 1px solid #CCD9D8;  border-bottom: 1px solid #CCD9D8;}
+	.charterApprover{margin-bottom:10px;color:#333;background-color: #F6F6F6;  margin-top: -10px;  display: block;  padding: 10px 10px 10px 0px;  border-bottom: 1px solid #CCD9D8;}
 	.charterApprover a{color:#007DBB !important;}
 	
 	.proMytodoPagination{color:#333;display:block;margin:0px 10px;}
@@ -1280,28 +1282,71 @@
 	.overviewGreyBg{background-color: #F0F0F0;padding: 10px;border-radius: 4px;color:#364354;}
 	
 	/*BET Section*/
+	.skipMembersBtn{cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+	float:right;
+    outline: none;
+    border: none;
+    background-color: #fff;
+	border:1px solid #8ab3da;
+	color:#0f81bb;
+    padding: 0.625em;
+	padding-bottom:0.55em\9!important;
+    font-size: 16px !important;	    
+    line-height: 1;
+	font-family:'Arial';
+    font-weight: bold;
+    font-style: normal;
+    text-align: center;
+    vertical-align: middle;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	}
+	.skipMembersBtn:hover {
+    background: #dbefff;
+}
 	.changeBetLnk {font-weight:bold;padding: 5px 0 15px;}
 	.betName {min-height: 67px!important;border-top: 1px solid #d1d1d1;border-bottom: 1px solid #d1d1d1;line-height: 28px;margin-left: -6px;}
 	.betStatus {padding-top: 10px;padding-bottom: 10px;}
 	.betReleseDateFull {padding: 10px;border: 1px solid #d1d1d1;border-left: 5px solid #f0a03d;margin-bottom: 10px;}
 	.betReleseDate {padding: 10px 10px 10px 14px;border: 1px solid #d1d1d1;margin-bottom: 10px;}
 	.addExternalMembersBtn {
-		cursor: pointer;
-		float: right;
-		color: #FFF;
-		font-weight: bold;
-		background-color: #008000;
-		border: 1px solid #00F;
-		width: 170px;
-		height: 30px;
+		display: inline-block;
+		min-height: 1em;
+		outline: none;
+		border: none;
+		padding: 0.625em;
+		padding-bottom:0.55em\9!important;
+		font-size: 16px !important;	    
+		line-height: 0.96;
+		font-family:'Arial';
+		font-style: normal;
 		text-align: center;
 		vertical-align: middle;
-		line-height: 30px;
+		border-radius:5px;
+		-webkit-border-radius:5px;
+		-moz-border-radius:5px;
+		cursor: pointer;
+		float: right;
+		font-weight: bold;
 		margin-left: 15px;
+		background:#81bf42!important;
+		color:#fff!important;
+		border:1px solid #406b14!important;
 	}
+	.addExternalMembersBtn:hover,.addMembersBtn:hover {
+	background:#56843b!important;
+	color:#fff!important;
+	border:1px solid #406b14!important;
+}
 	.addExternalMembersField {
-		width: 300px;
+		width: 275px;
 		height: 30px;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+		float: left;
 	}
 	.circularSmall {
 		width: 45px;
@@ -1370,6 +1415,7 @@
 		font-weight: bold;
 		width: 100px;
 		margin-top: 5px;
+		word-break: break-word;
 	}
 	.collapseExpand {
 		color: #027eba;
@@ -1384,19 +1430,28 @@
 		height: auto;
 	}
 	.addMembersBtn {
+		display: inline-block;
+		min-height: 1em;
+		outline: none;
+		border: none;
+		padding: 0.625em;
+		padding-bottom:0.55em\9!important;
+		font-size: 16px !important;	    
+		line-height: 0.96;
+		font-family:'Arial';
+		font-style: normal;
+		text-align: center;
+		vertical-align: middle;
+		border-radius:5px;
+		-webkit-border-radius:5px;
+		-moz-border-radius:5px;
 		cursor: pointer;
 		float: right;
-		color: white;
 		font-weight: bold;
-		background-color: green;
-		border: 1px solid blue;
-		width: 160px;
-		height: 30px;
-		text-align: center;
-		vertical-align: -webkit-baseline-middle;
-		vertical-align: middle;
-		line-height: 30px;
 		margin-left: 15px;
+		background:#81bf42!important;
+		color:#fff!important;
+		border:1px solid #406b14!important;
 	}
 	.leadBlock {
 		font-weight: bold;
@@ -1411,6 +1466,10 @@
 		margin: top: 20px;
 		font-style: italic;
 	}
+	.suggestedmembers{cursor:pointer;text-decoration:none;font-weight: bold;}
+	.suggestedmembers:hover{text-decoration:none;}
+	.lookupInput input{margin-left:0px !important;}
+	.item-input input,.dateOnlyInput input{width:300px;padding:4px;border:1px #a8a8a8 solid;border-radius:4px;height:30px;}
 	.scroll {
 		width: auto;
 		max-height: 200px;
@@ -1472,3 +1531,22 @@
     @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
 		.col-xs-8-1024{   width: 54.666667% !important;}
 	}
+	.projOverview .orgIcon {margin-top: 2px;}
+	.projOverview .oprtnIcon {margin-left: 2px;margin-top: 1px;}	           
+    .projOverview .rollIcon {margin-top: 3px;} 
+	
+	/*Create BET POPup New*/
+	  .italicTxt
+      {
+        font-style:italic
+      }
+      .removePadd
+      {
+         padding:0 !important;
+      }
+      .paddTB15
+      {
+        padding:15px 0 15px 0 !important;
+      }
+
+

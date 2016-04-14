@@ -6206,11 +6206,19 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_UsedProductPreviouslyCheck</fullName>
         <active>true</active>
         <description>CEC - Mandatory check for &apos;Used Product Previously&apos; field.</description>
+<<<<<<< HEAD
         <errorConditionFormula>AND( Case_Market__c = &apos;North America&apos;,
 ISPICKVAL( Status , &apos;Closed&apos;),
 $RecordType.Name = &apos;None&apos;,CONTAINS(
 Reason_L1_desc__c , &apos;Complaint&apos;),
 ISPICKVAL(Used_Product_Previously__c ,&apos;&apos;)
+=======
+        <errorConditionFormula>AND( Case_Market__c = &apos;North America&apos;,
+ISPICKVAL( Status , &apos;Closed&apos;),
+$RecordType.Name = &apos;None&apos;,CONTAINS(
+Reason_L1_desc__c , &apos;Complaint&apos;),
+ISPICKVAL(Used_Product_Previously__c ,&apos;&apos;)
+>>>>>>> e8388a35d9b8ade3eb57a9425583044547c0b685
 )</errorConditionFormula>
         <errorMessage>&apos;Used Product Previously&apos; field is mandatory for Complaint cases.</errorMessage>
     </validationRules>

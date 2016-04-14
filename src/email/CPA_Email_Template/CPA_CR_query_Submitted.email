@@ -1,0 +1,13 @@
+<messaging:emailTemplate subject="{!RelatedTo.CR_ID__c} : Query Submitted" recipientType="User"  relatedToType="CPA_Queries__c" >
+<messaging:htmlEmailBody >
+Hi,<br/><br/>
+
+{!RelatedTo.Capture_creator__c} posted a query for {!RelatedTo.CR_ID__c} with ID {!RelatedTo.Name} on {!RelatedTo.Createddate}.<br/>
+
+You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.LookupCR_Query__c} ">{!RelatedTo.CR_ID__c} </a> <br/><br/>
+
+Regards,<br/><br/>
+Automation Contract System
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

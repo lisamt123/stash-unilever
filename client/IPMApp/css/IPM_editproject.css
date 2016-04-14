@@ -2,6 +2,7 @@
 	.ui-autocomplete {max-height: 200px;overflow: auto;}
   
     /* Content styles */
+		.newBrandField{word-break:break-all;}
 		.uploadImages{width: 525px;height: 220px;margin-top: 10% !important;}
 		.buttonmarRight{margin-right:15px;}
 		.editProjectTop{margin-top:20px;}

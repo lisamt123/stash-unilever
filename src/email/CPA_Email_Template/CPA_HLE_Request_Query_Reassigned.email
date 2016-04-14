@@ -1,0 +1,13 @@
+<messaging:emailTemplate subject="{!RelatedTo.HLE_ID__c} : Query Reassigned" recipientType="User"  relatedToType="CPA_Queries__c" >
+<messaging:htmlEmailBody >
+Hi,<br/><br/>
+
+{!RelatedTo.Capture_creator__c} has reassigned query posted on {!RelatedTo.HLE_ID__c} with ID {!RelatedTo.Name} on {!RelatedTo.Createddate}.<br/>
+
+You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.HLE_Request_Query__c} ">{!RelatedTo.HLE_ID__c} </a> <br/><br/>
+
+Regards,<br/><br/>
+Automation Contract System
+
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
