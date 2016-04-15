@@ -4551,7 +4551,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BACKGROUNDPROCESS_INPROGRESS</shortDescription>
-        <value>Your project is currently being created, so please come back in a few minutes... Please refresh the page to continue.</value>
+        <value>Your project is being created.  In a few minutes, please navigate to the IPM Home tab to access it.</value>
     </labels>
     <labels>
         <fullName>IPM_BB</fullName>
@@ -4649,28 +4649,28 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BELOW_ARE_QUICK</shortDescription>
-        <value>Below are the quick links to the sections which require your input. Please click on link to jump to the appropriate section.</value>
+        <value>Below are quick links to sections that require your input. Please click a link to access the section you want to edit.</value>
     </labels>
     <labels>
         <fullName>IPM_BELOW_ARE_THE_TYPICAL</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BELOW_ARE_THE_TYPICAL</shortDescription>
-        <value>Below are the typical things to be done in order to provide input to the sections. Tick the correspondent box, if you have completed them.</value>
+        <value>Below are the typical tasks to be done in order to provide input to gate document sections. Tick the corresponding box when you complete a task.</value>
     </labels>
     <labels>
         <fullName>IPM_BELOW_SELECTED_COUNTRIES_EXCLUDED</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BELOW_SELECTED_COUNTRIES_EXCLUDED</shortDescription>
-        <value>The below selected countries, will be excluded from this Innovation/Renovation/BLG</value>
+        <value>Countries selected below will be excluded from this project.</value>
     </labels>
     <labels>
         <fullName>IPM_BELOW_SELECTED_COUNTRIES_INNOVATION</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BELOW_SELECTED_COUNTRIES_INNOVATION</shortDescription>
-        <value>The below selected countries, will receive innovation as a separate rollout project, with its own timmings</value>
+        <value>Each country selected below will independently manage and launch its own local rollout project.</value>
     </labels>
     <labels>
         <fullName>IPM_BETAccessMsgRegionalLocal</fullName>
@@ -5088,7 +5088,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM BLG Help Text</shortDescription>
-        <value>Activity that builds market penetration and/or consumption of the current product range without making a physical change to any product or pack (this includes artwork changes).</value>
+        <value>Activity that builds market penetration and/or consumption of the current product range without introducing new products or making a physical change to any existing product, pack, formula, or artwork.</value>
     </labels>
     <labels>
         <fullName>IPM_BLG_No_change</fullName>
@@ -5998,7 +5998,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CVP Description</shortDescription>
-        <value>How will consumers perceive this project in their local market relative to exiting offerings (by Unilever and Competitors)? Use the help text to guide your selection.</value>
+        <value>How will consumers perceive this project in their local market relative to existing offerings (by Unilever and competitors)?</value>
     </labels>
     <labels>
         <fullName>IPM_Calendar</fullName>
@@ -6320,8 +6320,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CoreParameter Help Guide</shortDescription>
-        <value>&quot;Project Parameters&quot; define the key attributes for a project and are mandatory. Complete the following steps
-as best as you can, using the help text as a guide. (You may come back and make changes later.)</value>
+        <value>&quot;Project Parameters&quot; define the key attributes for a project and are mandatory.  Complete the following steps as best as you can, using the help text as a guide.  You may come back and make changes later.</value>
     </labels>
     <labels>
         <fullName>IPM_CoreParameter_MPA</fullName>
@@ -6973,7 +6972,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ESSENTIAL_INFFORMATION</shortDescription>
-        <value>First, we need some essential information about your project. Please use the help text as a guide.</value>
+        <value>First, we need some essential information about your project. Please use provided help text as a guide.</value>
     </labels>
     <labels>
         <fullName>IPM_ET_Description</fullName>
@@ -7402,7 +7401,10 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_FAST_TRACK_WHITE_SPACE</shortDescription>
-        <value>Fast track = No limitations in time between Market Ready Gate and Launch. White space = Expansion of Category/Brand in a New market</value>
+        <value>Fast Track projects are not expected to meet On Time requirements of 6 months between Market Ready Approval and Launch.
+
+
+White Space is a strategic classifier – it means launching an existing Unilever brand mix into a geography where it does not exist because there is a demonstrated consumer, market development, or growth opportunity (i.e. it can be an easy win).</value>
     </labels>
     <labels>
         <fullName>IPM_FEASIBILITY</fullName>
@@ -7927,14 +7929,14 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_GCLT_AND_RCLT_ALL_APPROVAL</shortDescription>
-        <value>The GCLT approves all BOSSCARDS and Charter gates and only original Contract and MR gates.  In parallel, RCLTs approve Contract and MR gates for their own rollouts.   This applies to Savoury and Dressings, plus Laundry and Spreads by exception.</value>
+        <value>Select this option if the GCLT and RCLTs will gatekeep Contract and Market Ready Gates in parallel - i.e. GCLT gatekeeps global original projects and RCLTs gatekeep their own regional rollouts.</value>
     </labels>
     <labels>
         <fullName>IPM_GCLT_AND_RCLT_APPROVAL</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_GCLT_AND_RCLT_APPROVAL</shortDescription>
-        <value>The GCLT approves all BOSSCARDS and Charter gates only.  Contract and MR gates are approved by RCLTs.   This applies to HHC, Refreshment, Laundry, and Spreads.</value>
+        <value>Select this option if Contract and Market Ready will be gatekept at RCLT level ONLY.</value>
     </labels>
     <labels>
         <fullName>IPM_GD_APPENDIX_MSG</fullName>
@@ -8641,7 +8643,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_KEY_MCO_NEEDS</shortDescription>
-        <value>KEY MCO needs detailed financial information before Charter. NON-KEY MCO&apos;s need to be grouped together into one business case per market cluster. For Post Charter, every MCO needs to have detailed finance information</value>
+        <value>KEY MCOs need detailed business cases before Charter can be approved. NON-KEY MCOs need to be grouped together into one business case per market cluster. After Charter approval, every MCO needs to have a detailed business case.</value>
     </labels>
     <labels>
         <fullName>IPM_KPI</fullName>
@@ -8928,7 +8930,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>MPA Description</shortDescription>
-        <value>Please categorize project in one of the following areas in order to define Market Place Activity</value>
+        <value>Please categorize the project in one of the following areas in order to define the Market Place Activity.</value>
     </labels>
     <labels>
         <fullName>IPM_MY_SECTIONS_IN</fullName>
@@ -9174,7 +9176,7 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_NEED_TO_SET_UP_PROJECT</shortDescription>
-        <value>First you need to set up the project so let&apos;s get started.</value>
+        <value>First, you&apos;ll need to set up the project - so let&apos;s get started!</value>
     </labels>
     <labels>
         <fullName>IPM_NET_EFFECT_ON_THE_NUM_OF_CU</fullName>
@@ -9598,7 +9600,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ON_CLICK_OF_SAVE_&amp;NOTIFY</shortDescription>
-        <value>On click, Save &amp; Notify button will send an email notification to the Project leader and respective functional team members</value>
+        <value>Clicking the Save &amp; Notify button will save your inputs and notify the Project Leader and functional team members via email that you have completed this section.</value>
     </labels>
     <labels>
         <fullName>IPM_OPP</fullName>
@@ -9760,7 +9762,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Operational HelpText</shortDescription>
-        <value>Relaunch of products usually with no consumer perceivable change to the brand mix. A project the business enters to account for resource allocation (people and/or monetary e.g. Capex) and gatekeeping. Examples: Value Improvement Program (VIP), Regulatory/Compliance, Supply Chain (changing production location).</value>
+        <value>Relaunch of products usually with no consumer perceivable change to the brand mix and managed through IPM for resource allocation (people and/or monetary, e.g. CAPEX) and gatekeeping.   Examples: Value Improvement Program (VIP), Regulatory/Compliance, Supply Chain (changing production location).</value>
     </labels>
     <labels>
         <fullName>IPM_OptionalLabel</fullName>
@@ -9921,7 +9923,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PLEASE_TYPE_IN_THE_CU</shortDescription>
-        <value>Please type in the CU. At this moment in time there is no connection between the CU&apos;s in this field and CU&apos;s from table 3.3.3 in Market Ready Gate</value>
+        <value>Please enter the net count of Consumer Units impacted by this launch.  At this time, there is no link between this field and the CU count in table 3.3.3 at Market Ready gate.</value>
     </labels>
     <labels>
         <fullName>IPM_POINT_OF_PURCHASE</fullName>
@@ -11448,7 +11450,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_SELECT_THE_APPROVER</shortDescription>
-        <value>Select the approver of this Bosscard. It may be the Gatekeeper ( Global category leader ), or Global Brand VP, Regional category VP. The approver can be different from the Gatekeeper of the project itself.</value>
+        <value>The BOSSCARD approver may be different from the Gatekeeper (global category leader), e.g. a global brand VP or regional category VP.</value>
     </labels>
     <labels>
         <fullName>IPM_SELECT_TLD</fullName>
@@ -12015,21 +12017,21 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TEXT_SHOWN_HERE</shortDescription>
-        <value>The text shown here has been copied from Project description. Editing this text will not modify the project description of the IPM Navigator project. This change will only affect the description field of your BET project</value>
+        <value>The text here was copied from the project description.  Editing this text will impact the description field of the BET only - it will not change the project description in IPM Navigator.</value>
     </labels>
     <labels>
         <fullName>IPM_THE_BELOW_SELECTED_COUNTRIES</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_THE_BELOW_SELECTED_COUNTRIES</shortDescription>
-        <value>The below selected countries, will be created as a grouped local rollout project</value>
+        <value>The countries selected below will launch this project as a combined local rollout project.</value>
     </labels>
     <labels>
         <fullName>IPM_THE_SELECTION_HERE_DOES_NOT</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_THE_SELECTION_HERE_DOES_NOT</shortDescription>
-        <value>The selections here does not change the rollout plan, it only indicates to which country the below financials are related to and only applies to Charter</value>
+        <value>The countries indicated below are included in the business case.  Editing these selections here does not change the rollout plans.  This applies to Charter gate only.</value>
     </labels>
     <labels>
         <fullName>IPM_THIS_CANNOT_BE_PROPOSED_YET</fullName>
@@ -12043,21 +12045,21 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_THIS_PARAMETER_WILL_HELP</shortDescription>
-        <value>This parameter will help you to classify the project correctly for reporting purposes.</value>
+        <value>Select the option that best fits your project. This selection helps classify your project correctly for reporting purposes.</value>
     </labels>
     <labels>
         <fullName>IPM_THIS_SHOWS_BUSINESS_CASE_BY_LOCAL_FINANCE</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_THIS_SHOWS_BUSINESS_CASE_BY_LOCAL_FINANCE</shortDescription>
-        <value>This shows the Business case(s) specified by the Local Finance teams for local rollouts of this project. In case of misalignment, this tab will show BB&apos;s view.</value>
+        <value>This view is a regional consolidation of local business cases submitted by BB Finance teams for local rollouts of this project.</value>
     </labels>
     <labels>
         <fullName>IPM_THIS_SHOWS_THE_BUSINESS</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_THIS_SHOWS_THE_BUSINESS</shortDescription>
-        <value>This shows the Business case as captured during charter approval and it is only for reference, therefore read-only.</value>
+        <value>This tab shows the read-only regional business case approved in the global Charter.</value>
     </labels>
     <labels>
         <fullName>IPM_THIS_SHOWS_THE_FULL_BUSINESS</fullName>
@@ -12071,21 +12073,21 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_THIS_SHOWS_THE_FULL_BUSINESS_BB</shortDescription>
-        <value>This shows the full business case as submitted by the Financial BB</value>
+        <value>This tab shows the local business case as submitted by BB Finance.</value>
     </labels>
     <labels>
         <fullName>IPM_THIS_VIEW_SHOWS</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_THIS_VIEW_SHOWS</shortDescription>
-        <value>This view shows the full business case as submitted by Financial BD. In case of misalignment this tab shows BD&apos;s view</value>
+        <value>This tab shows the regional business case as submitted by BD Finance.</value>
     </labels>
     <labels>
         <fullName>IPM_THIS_WILL_DESCRIBE</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_THIS_WILL_DESCRIBE</shortDescription>
-        <value>This will describe which part of the organisation you work for and, what type of project and related options will be driven from this selection</value>
+        <value>This describes what part of the organization  you work for and the type of project.  Related options will be driven from your selections.</value>
     </labels>
     <labels>
         <fullName>IPM_TIMINGS</fullName>
@@ -12190,7 +12192,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TO_DO_ARE_THE_SET</shortDescription>
-        <value>To-Do&apos;s are the set of recommended activities ipm navigator suggests to be performed, however they are not mandatory nor being tracked. To-Do&apos;s are phase, section and role specific. PL can add/remove To-Do&apos;s.</value>
+        <value>To-Do&apos;s are the set of recommended tasks IPM Navigator suggests be completed.  Intended to facilitate project management, they are neither mandatory nor being tracked externally.  To-Do&apos;s are specific to functional role, funnel phase, and document section and may be added/removed by the Project Leader.</value>
     </labels>
     <labels>
         <fullName>IPM_TO_DOs</fullName>
@@ -12225,7 +12227,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TO_EDIT_YOUR_NUMBERS</shortDescription>
-        <value>To edit your numbers, please navigate to Essentials &gt; Financials</value>
+        <value>To edit your numbers, please navigate to the Essentials &gt; Financials tab.</value>
     </labels>
     <labels>
         <fullName>IPM_TRADEMARK_QUESTIONS</fullName>
@@ -12723,7 +12725,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>WhiteSpace HelpText</shortDescription>
-        <value>White Space is a strategic classifier – it means launching an existing Unilever brand mix into a geography where it does not exist because there is a demonstrated consumer/market development/growth opportunity (i.e. it can be an easy win).</value>
+        <value>White Space is a strategic classifier – it means launching an existing Unilever brand mix into a geography where it does not exist because there is a demonstrated consumer, market development, or growth opportunity (i.e. it can be an easy win).</value>
     </labels>
     <labels>
         <fullName>IPM_White_Space</fullName>
@@ -12786,7 +12788,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_YOUR_ESTIMATE</shortDescription>
-        <value>Your estimate of when this project will go to Market. This will be copied over and editable when you set up your project.</value>
+        <value>This is your current estimate of when the project will begin shipping to customers in the first participating market.  It may be edited later.</value>
     </labels>
     <labels>
         <fullName>IPM_YOU_HAVE_ALERT</fullName>
