@@ -2,7 +2,7 @@
 * @author Cognizant
 * @date 23/09/2015
 * @description This class is used for holding the string constants being referenced across
-*              all the classes  
+*              all the classes 
 */
 public class IPM_ConstantUtils {
      
@@ -179,6 +179,7 @@ public class IPM_ConstantUtils {
     public static final String CORPORATE_RISK_QUESTIONNAIRE_RECORDTYPE='Corporate Risk';
     public static final integer RISK_QUESTIONNAIRE_SCORE=3;
     public static final integer POS_QUESTIONNAIRE_SCORE=3;
+    
     
     // financial constant
     
@@ -455,6 +456,7 @@ public class IPM_ConstantUtils {
      public static final String FIELD_LITERAL_CAPEX = 'CAPEX_';
      public static final String FIELD_LITERAL_PAYBACK = 'Payback_';
      public static final String FIELD_LITERAL_STATUS = 'Status_';
+
      public static final String FIELD_LITERAL_GM_BPS = 'GM_Y1_bps_vs_DNDS_';
      public static final String FIELD_LITERAL_PBO_BPS = 'PBO_Y1_bps_vs_DNDS_';
 

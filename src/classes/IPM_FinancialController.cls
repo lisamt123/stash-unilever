@@ -1751,8 +1751,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                   saveFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
       
                   //Update Financial Record
-                  //currentFinancial.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
-                  currentFinancial.put(IPM_ConstantUtils.FIELD_LITERAL_STATUS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, IPM_ConstantUtils.STATUS_IN_PROGRESS);
+                  currentFinancial.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
                   currentFinancial.put(IPM_ConstantUtils.FIELD_LITERAL_LAST_SAVED + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, System.now());
                   currentFinancial.put(IPM_ConstantUtils.FIELD_LITERAL_LAST_SAVED_BY + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, UserInfo.getUserId());
                   if(isFinancialInvalid){
